@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Psixoloq diplomu — qanuni əsaslar. Azərbaycan qanunvericiliyi, Rusiya-Azərbaycan təhsil razılaşması, institut lisenziyası yoxlaması."/>
+  <title>Fəaliyyətin Qanuni Əsasları | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .law-hero { background: linear-gradient(135deg, var(--navy) 0%, #1a3060 100%); padding: 120px 32px 64px; }
+    .law-hero-inner { max-width: 1240px; margin: 0 auto; }
+    .law-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,3.5vw,3rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 16px; }
+    .law-hero h1 em { color: var(--accent); font-style: normal; }
+    .law-hero p { color: rgba(255,255,255,0.68); font-size: 1rem; max-width: 580px; line-height: 1.8; margin-bottom: 28px; font-weight: 300; }
+    .trust-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .trust-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-radius: 6px; padding: 8px 16px; font-size: 0.78rem; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 7px; }
+    .trust-pill .dot { color: var(--accent); font-size: 1rem; }
+
+    /* INTRO ALERT */
+    .alert-block { background: linear-gradient(135deg, rgba(200,169,110,0.10), rgba(13,27,62,0.04)); border: 1.5px solid rgba(200,169,110,0.35); border-radius: 12px; padding: 28px 32px; margin-bottom: 48px; }
+    .alert-block p { font-size: 0.94rem; color: var(--navy); line-height: 1.85; }
+    .alert-block p strong { color: var(--accent); }
+
+    /* LAW CARDS */
+    .law-grid { display: grid; gap: 24px; }
+    .law-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .law-card-head { background: var(--navy); padding: 22px 28px; display: flex; align-items: flex-start; gap: 16px; cursor: pointer; }
+    .law-num { width: 40px; height: 40px; border-radius: 8px; background: rgba(200,169,110,0.18); color: var(--accent); font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .law-head-text { flex: 1; }
+    .law-source { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(200,169,110,0.7); margin-bottom: 5px; }
+    .law-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--white); line-height: 1.3; }
+    .law-arrow { color: rgba(255,255,255,0.4); font-size: 1.2rem; transition: transform .3s; flex-shrink: 0; margin-top: 2px; }
+    .law-card.open .law-arrow { transform: rotate(180deg); }
+    .law-body { max-height: 0; overflow: hidden; transition: max-height .45s ease; background: var(--white); }
+    .law-body-inner { padding: 28px 32px; }
+    .law-article { background: var(--light); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 18px 22px; margin-bottom: 16px; }
+    .law-article-ref { font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: block; }
+    .law-article-text { font-size: 0.88rem; color: var(--text); line-height: 1.85; }
+    .law-article-text strong { color: var(--navy); }
+    .law-comment { font-size: 0.83rem; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
+    .law-link-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: var(--white); font-size: 0.8rem; font-weight: 700; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: background .2s; }
+    .law-link-btn:hover { background: var(--blue); }
+
+    /* INSTITUTE BLOCK */
+    .institute-block { background: var(--light); border-radius: 14px; padding: 36px; margin-top: 48px; }
+    .inst-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .inst-text h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; }
+    .inst-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.8; margin-bottom: 14px; }
+    .inst-check { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 22px; }
+    .inst-check h4 { font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 14px; }
+    .check-step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+    .check-num { width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .check-text { font-size: 0.83rem; color: var(--gray); line-height: 1.6; }
+    .check-text a { color: var(--blue); text-decoration: none; font-weight: 700; }
+    .check-text a:hover { color: var(--accent); }
+    .qr-block { text-align: center; margin-top: 16px; padding: 16px; background: var(--light); border-radius: 8px; }
+    .qr-block p { font-size: 0.78rem; color: var(--gray); margin-top: 8px; line-height: 1.6; }
+    .qr-placeholder { width: 100px; height: 100px; background: var(--border); border-radius: 6px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--gray); text-align: center; }
+
+    /* CONCLUSION */
+    .conclusion { background: var(--navy); border-radius: 14px; padding: 40px; margin-top: 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+    .conclusion h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 10px; }
+    .conclusion p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.75; }
+    .conclusion-btns { display: flex; flex-direction: column; gap: 10px; }
+
+    section { padding: 72px 32px; }
+    .sec { max-width: 1240px; margin: 0 auto; }
+
+    @media (max-width: 768px) {
+      .inst-grid { grid-template-columns: 1fr; }
+      .conclusion { grid-template-columns: 1fr; }
+      .law-hero, section { padding-left: 20px; padding-right: 20px; }
+      .law-body-inner { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">R<span>.</span>AGIMOFF</a>
+    <nav>
+      <a href="index.html">Ana səhifə</a>
+      <a href="tehsil.html" class="active">Təhsil</a>
+      <a href="haqqimda.html">Haqqımda</a>
+      <a href="index.html#services">Xidmətlər</a>
+      <a href="index.html#booking" class="nav-cta">Qeydiyyat</a>
+    </nav>
+    <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" onclick="closeMenu()">Ana səhifə</a>
+  <a href="tehsil.html" onclick="closeMenu()">Təhsil</a>
+  <a href="haqqimda.html" onclick="closeMenu()">Haqqımda</a>
+  <a href="index.html#services" onclick="closeMenu()">Xidmətlər</a>
+  <a href="index.html#booking" onclick="closeMenu()" class="mob-cta">Qeydiyyat</a>
+</div>
+
+<!-- HERO -->
+<div class="law-hero">
+  <div class="law-hero-inner">
+    <div class="breadcrumb" style="padding:0 0 16px;"><a href="index.html" style="color:rgba(255,255,255,0.4)">Ana səhifə</a> → <a href="tehsil.html" style="color:rgba(255,255,255,0.4)">Təhsil</a> → Qanuni əsaslar</div>
+    <span class="tag fi">Hüquqi sənədlər</span>
+    <h1 class="fi">Fəaliyyətin <em>Qanuni Əsasları</em></h1>
+    <p class="fi">Rusiya DPO İnstitutunun Diplomu ilə Azərbaycanda psixoloq kimi fəaliyyət göstərmək tam qanunidır. Aşağıda bunu təsdiq edən üç qanun və yoxlama imkanları verilmişdir.</p>
+    <div class="trust-pills fi">
+      <div class="trust-pill"><span class="dot">⚖️</span>Azərbaycan Respublikası Qanunu</div>
+      <div class="trust-pill"><span class="dot">🤝</span>Rusiya–Azərbaycan Razılaşması</div>
+      <div class="trust-pill"><span class="dot">🏛️</span>Rosobrnadzor Lisenziyası</div>
+      <div class="trust-pill"><span class="dot">✅</span>Onlayn yoxlanılabilir</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="sec">
+
+    <!-- INTRO ALERT -->
+    <div class="alert-block fi">
+      <p>Bir çox vətəndaş haqlı olaraq soruşur: <strong>«Rusiya İnstitutunun diplomu Azərbaycanda keçərlidirmi?»</strong><br/>
+      Cavab: <strong>Bəli, tamamilə qanunidir.</strong> Bunu üç müstəqil hüquqi sənəd təsdiqləyir — ikisi Azərbaycan qanunvericiliyi, biri iki ölkə arasında imzalanmış rəsmi razılaşma.</p>
+    </div>
+
+    <!-- LAWS -->
+    <div class="law-grid">
+
+      <!-- LAW 1 -->
+      <div class="law-card fi" id="law1">
+        <div class="law-card-head" onclick="toggleLaw('law1')">
+          <div class="law-num">1</div>
+          <div class="law-head-text">
+            <div class="law-source">Azərbaycan Respublikasının Qanunu</div>
+            <div class="law-title">«Psixoloji Yardım Haqqında» Qanun — psixoloq kimdir?</div>
+          </div>
+          <div class="law-arrow">▾</div>
+        </div>
+        <div class="law-body" id="law1-body">
+          <div class="law-body-inner">
+            <div class="law-article">
+              <span class="law-article-ref">Maddə 1.0.2 — «Psixoloq» anlayışı</span>
+              <p class="law-article-text">«Psixoloq — bu Qanunla müəyyən edilmiş tələblərə cavab verən, psixoloq ixtisası üzrə ali təhsil almış <strong>və ya «Təhsil haqqında» Azərbaycan Respublikasının Qanununa uyğun olaraq əlavə təhsil alma formasında psixoloq ixtisasını əldə etmiş</strong> və psixoloji yardım göstərmək hüququ olan şəxs»</p>
+            </div>
+            <div class="law-article">
+              <span class="law-article-ref">Maddə 3.2 — «Psixoloq» sözünün istifadəsi</span>
+              <p class="law-article-text">«"Psixoloq", "psixoloji", "psixoanaliz", "psixodiaqnostika", "psixoterapiya" sözlərindən... <strong>yalnız bu Qanuna uyğun olaraq psixoloji yardım göstərmək hüququ olan şəxslər</strong> tərəfindən istifadə edilməsinə yol verilir.»</p>
+            </div>
+            <p class="law-comment">Yəni: əlavə təhsil (DPO) diplomu olan şəxs qanuni olaraq «psixoloq» adlanmaq və psixoloji yardım göstərmək hüququna malikdir.</p>
+            <a href="https://e-qanun.az/framework/41280" target="_blank" class="law-link-btn">
+              ⚖️ Tam mətni oxu → e-qanun.az
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAW 2 -->
+      <div class="law-card fi" id="law2">
+        <div class="law-card-head" onclick="toggleLaw('law2')">
+          <div class="law-num">2</div>
+          <div class="law-head-text">
+            <div class="law-source">Azərbaycan Respublikasının Qanunu</div>
+            <div class="law-title">«Təhsil Haqqında» Qanun — əlavə təhsil nədir?</div>
+          </div>
+          <div class="law-arrow">▾</div>
+        </div>
+        <div class="law-body" id="law2-body">
+          <div class="law-body-inner">
+            <div class="law-article">
+              <span class="law-article-ref">Maddə 24 — Əlavə Təhsil</span>
+              <p class="law-article-text">«Əlavə təhsil — vətəndaşların hərtərəfli təhsil tələbatını ödəmək məqsədi ilə <strong>əlavə təhsil proqramları əsasında verilən təhsil</strong>»</p>
+            </div>
+            <p class="law-comment">Bu maddə əlavə peşə təhsilini (DPO) rəsmi təhsil forması kimi tanıyır. Sankt-Peterburq DPO İnstitutunun diplomu məhz bu kateqoriyaya aiddir.</p>
+            <a href="https://e-qanun.az/framework/18343" target="_blank" class="law-link-btn">
+              ⚖️ Tam mətni oxu → e-qanun.az
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAW 3 -->
+      <div class="law-card fi" id="law3">
+        <div class="law-card-head" onclick="toggleLaw('law3')">
+          <div class="law-num">3</div>
+          <div class="law-head-text">
+            <div class="law-source">Azərbaycan Respublikası Nazirlər Kabineti</div>
+            <div class="law-title">163 nömrəli Qərar — yenidənhazırlanma təhsilinin qaydası</div>
+          </div>
+          <div class="law-arrow">▾</div>
+        </div>
+        <div class="law-body" id="law3-body">
+          <div class="law-body-inner">
+            <div class="law-article">
+              <span class="law-article-ref">Bənd 3.1.1 — Yenidənhazırlanma təhsilinin tərifi</span>
+              <p class="law-article-text">«Yenidənhazırlanma təhsili ilkin baza peşə-ixtisas təhsili almış... hər bir vətəndaşın <strong>müvafiq sahə üzrə yeni peşə və ixtisasa yiyələnmək istəyini həyata keçirən əlavə təhsil formasıdır</strong> və kadrlara olan real tələbatın daha dinamik və çevik surətdə ödənilməsinə xidmət edir.»</p>
+            </div>
+            <p class="law-comment">Başqa ixtisaslı ali təhsilə malik şəxs psixologiya üzrə yenidənhazırlanma keçərək <strong>tam hüquqlu psixoloq diplomu</strong> ala bilər. Bu AR Nazirlər Kabinetinin rəsmi qərarıdır.</p>
+            <a href="https://e-qanun.az/framework/20045" target="_blank" class="law-link-btn">
+              ⚖️ Tam mətni oxu → e-qanun.az
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAW 4 — bilateral agreement -->
+      <div class="law-card fi" id="law4">
+        <div class="law-card-head" onclick="toggleLaw('law4')">
+          <div class="law-num">🤝</div>
+          <div class="law-head-text">
+            <div class="law-source">Beynəlxalq Razılaşma</div>
+            <div class="law-title">Rusiya–Azərbaycan Təhsil Razılaşması — diplom Azərbaycanda tanınır</div>
+          </div>
+          <div class="law-arrow">▾</div>
+        </div>
+        <div class="law-body" id="law4-body">
+          <div class="law-body-inner">
+            <div class="law-article">
+              <span class="law-article-ref">Rusiya–Azərbaycan Razılaşması, Maddə</span>
+              <p class="law-article-text">Rusiya ilə Azərbaycan arasında təhsil sahəsindəki razılaşmaya əsasən <strong>məzunlar Əlavə Təhsil Diplomu ilə işə qəbul edən tərəfin tələblərinə uyğun olduqda, həm Dövlət, həm də özəl müəssisələrdə rəsmi fəaliyyət göstərə bilər.</strong></p>
+            </div>
+            <p class="law-comment">Bu razılaşma Sankt-Peterburq DPO İnstitutunun diplomunu Azərbaycanda rəsmi şəkildə tanınan sənəd kimi müəyyən edir.</p>
+            <a href="https://www.ragimoff.org/_files/ugd/48bdc8_3e59c837cda14035b719182d23360fcc.pdf" target="_blank" class="law-link-btn">
+              📄 Razılaşmanı yüklə (PDF)
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /law-grid -->
+
+    <!-- INSTITUTE VERIFICATION -->
+    <div class="institute-block fi">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);margin-bottom:20px;">🏛️ İnstitutun Lisenziyasını Özünüz Yoxlayın</h3>
+      <div class="inst-grid">
+        <div class="inst-text">
+          <p><strong>Sankt-Peterburq Psixoloqlar və Psixoterapevtlər üçün Əlavə Peşə Təhsili İnstitutu</strong> Rusiyanın Təhsil Nazirliyi tərəfindən lisenziyalanmış rəsmi təhsil müəssisəsidir.</p>
+          <p>Kənan Rəhimov bu institutun Azərbaycandakı rəsmi nümayəndəsidir. İnstitutun saytında müəllimlər siyahısında <strong>«Рагимов Кенан Ровшанович»</strong> adı əlifba sırası ilə tapıla bilər.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+            <a href="https://education-psy.ru/prepodsdpo/#:~:text=Рагимов%0AКенан%20Ровшанович" target="_blank" class="law-link-btn">
+              🔗 İnstitutun saytına keç
+            </a>
+            <a href="https://islod.obrnadzor.gov.ru/rlic/details/48ebc176-cfa7-8531-08a6-bc5b3b43459b/" target="_blank" class="law-link-btn" style="background:var(--green,#1a5c38);">
+              ✅ Rosobrnadzor — lisenziya yoxla
+            </a>
+            <a href="https://obrnadzor.gov.ru/gosudarstvennye-uslugi-i-funkczii/7701537808-gosfunction/formirovanie-i-vedenie-federalnogo-reestra-svedenij-o-dokumentah-ob-obrazovanii-i-ili-o-kvalifikaczii-dokumentah-ob-obuchenii/" target="_blank" class="law-link-btn" style="background:#555;">
+              🔍 Federal reyestr — diplom yoxla
+            </a>
+          </div>
+        </div>
+        <div class="inst-check">
+          <h4>Addım-addım yoxlama:</h4>
+          <div class="check-step">
+            <div class="check-num">1</div>
+            <div class="check-text"><a href="https://islod.obrnadzor.gov.ru/rlic/details/48ebc176-cfa7-8531-08a6-bc5b3b43459b/" target="_blank">Bu linkə keçin</a> — Rosobrnadzor saytında instituta aid lisenziya səhifəsi açılacaq</div>
+          </div>
+          <div class="check-step">
+            <div class="check-num">2</div>
+            <div class="check-text">Lisenziya nömrəsini, tarixi və psixologiya proqramlarına icazəni görəcəksiniz</div>
+          </div>
+          <div class="check-step">
+            <div class="check-num">3</div>
+            <div class="check-text"><a href="https://education-psy.ru/prepodsdpo/" target="_blank">İnstitutun müəllimlər səhifəsinə</a> keçib Kənan Rəhimovun adını tapa bilərsiniz</div>
+          </div>
+          <div class="qr-block">
+            <div class="qr-placeholder">QR kod<br/>əlavə edin</div>
+            <p>QR-kodu skan edərək Rosobrnadzor saytında lisenziyani yoxlayın</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCLUSION -->
+    <div class="conclusion fi">
+      <div>
+        <h3>Nəticə: diplom tamamilə qanunidir</h3>
+        <p>Üç Azərbaycan qanunu + beynəlxalq razılaşma + Rosobrnadzor lisenziyası — bu dörd sənəd birlikdə DPO diplomu ilə psixoloji fəaliyyətin Azərbaycanda tam qanuni olduğunu sübut edir. Hər birini yuxarıdakı linklər vasitəsilə <strong>özünüz yoxlaya bilərsiniz</strong>.</p>
+      </div>
+      <div class="conclusion-btns">
+        <a href="tehsil.html" class="btn btn-primary">Proqrama bax →</a>
+        <a href="https://wa.me/994702200376?text=Salam%2C+diplom+haqq%C4%B1nda+sual+vermək+istəyirəm" class="btn btn-wa" target="_blank">Sual ver</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">R<span>.</span>AGIMOFF</a>
+        <p>Kənan Rəhimov — Həkim Psixoterapevt, Klinik Psixoloq. 22+ il klinik təcrübə. Bakı.</p>
+        <div class="footer-socials">
+          <a href="https://t.me/ragimoff" class="social-link" target="_blank">TG</a>
+          <a href="https://www.facebook.com/Ragimoff.az" class="social-link" target="_blank">FB</a>
+          <a href="https://www.instagram.com/dr.ragimoff" class="social-link" target="_blank">IG</a>
+          <a href="https://youtube.com/@kragimoff" class="social-link" target="_blank">YT</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Qanuni əsaslar</h4><ul>
+        <li><a href="https://e-qanun.az/framework/41280" target="_blank">Psixoloji Yardım Qanunu</a></li>
+        <li><a href="https://e-qanun.az/framework/18343" target="_blank">Təhsil Haqqında Qanun</a></li>
+        <li><a href="https://e-qanun.az/framework/20045" target="_blank">NK 163 nömrəli Qərar</a></li>
+        <li><a href="https://islod.obrnadzor.gov.ru/rlic/details/48ebc176-cfa7-8531-08a6-bc5b3b43459b/" target="_blank">Rosobrnadzor lisenziya</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Təhsil</h4><ul>
+        <li><a href="tehsil.html">Klinik Psixologiya Diplomu</a></li>
+        <li><a href="tehsil.html">Psixoterapiya Praktikumu</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Əlaqə</h4><ul>
+        <li><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+        <li><a href="https://wa.me/994702200376">WhatsApp</a></li>
+        <li><a href="https://t.me/dockenan">Telegram</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RAGIMOFF. Bütün hüquqlar qorunur.</p>
+      <a href="https://www.psychotherapyru.com" target="_blank">Русская версия →</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="shared.js"></script>
+<script>
+  function toggleLaw(id) {
+    const card = document.getElementById(id);
+    const body = document.getElementById(id + '-body');
+    const isOpen = card.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.law-card').forEach(c => {
+      c.classList.remove('open');
+      const b = document.getElementById(c.id + '-body');
+      if (b) b.style.maxHeight = '0';
+    });
+    // Open clicked if was closed
+    if (!isOpen) {
+      card.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+</script>
+</body>
+</html>
