@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Psixoterapiya Praktikumu — Beynəlxalq IPAS Sertifikatı. Həftədə 2 dəfə canlı + online dərslər. Dr. Kənan Rəhimov, Bakı."/>
+  <title>Psixoterapiya Praktikumu | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    .pg-hero { background: linear-gradient(135deg, #0d1b3e 0%, #1e4080 100%); padding: 120px 32px 64px; }
+    .pg-hero-inner { max-width: 1240px; margin: 0 auto; }
+    .pg-hero h1 { font-family: "Playfair Display", serif; font-size: clamp(2rem,3.5vw,3rem); font-weight:700; color:#fff; line-height:1.2; margin-bottom:14px; }
+    .pg-hero h1 em { color: var(--accent); font-style:normal; }
+    .pg-hero p { color:rgba(255,255,255,0.68); font-size:1rem; max-width:560px; line-height:1.8; }
+    section { padding:72px 32px; }
+    .sec { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 320px; gap:56px; align-items:start; }
+    .main h2 { font-family:"Playfair Display",serif; font-size:1.5rem; color:var(--navy); margin:36px 0 14px; }
+    .main h2:first-child { margin-top:0; }
+    .main h3 { font-family:"Playfair Display",serif; font-size:1.1rem; color:var(--navy); margin:24px 0 10px; }
+    .main p { font-size:0.93rem; color:#444; line-height:1.9; margin-bottom:14px; }
+    .main ul { list-style:none; margin:12px 0 18px; }
+    .main ul li { display:flex; gap:10px; margin-bottom:10px; font-size:0.91rem; color:#444; line-height:1.7; }
+    .main ul li::before { content:"✦"; color:var(--accent); flex-shrink:0; margin-top:2px; }
+    .month-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
+    .month-card { background:var(--light); border:1px solid var(--border); border-radius:8px; padding:14px 16px; }
+    .month-num { font-size:0.68rem; font-weight:700; letter-spacing:2px; color:var(--accent); text-transform:uppercase; margin-bottom:4px; }
+    .month-title { font-size:0.88rem; font-weight:700; color:var(--navy); }
+    .highlight { background:linear-gradient(135deg,rgba(200,169,110,0.09),rgba(13,27,62,0.04)); border:1.5px solid rgba(200,169,110,0.3); border-radius:10px; padding:22px 26px; margin:24px 0; }
+    .highlight p { font-size:0.93rem; color:var(--navy); margin:0; line-height:1.8; }
+    .price-box { background:var(--navy); border-radius:12px; padding:28px; margin-top:28px; }
+    .price-box h3 { font-family:"Playfair Display",serif; color:#fff; font-size:1.1rem; margin-bottom:16px; }
+    .price-row { display:flex; justify-content:space-between; align-items:flex-start; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.08); gap:12px; }
+    .price-row:last-child { border-bottom:none; }
+    .price-label { font-size:0.83rem; color:rgba(255,255,255,0.65); }
+    .price-sub { font-size:0.72rem; color:rgba(255,255,255,0.38); margin-top:2px; }
+    .price-val { font-family:"Playfair Display",serif; font-size:1rem; font-weight:700; color:var(--accent); white-space:nowrap; }
+    .sidebar { position:sticky; top:90px; }
+    .s-card { background:var(--light); border:1px solid var(--border); border-radius:10px; padding:22px; margin-bottom:16px; }
+    .s-card h4 { font-family:"Playfair Display",serif; font-size:1rem; color:var(--navy); margin-bottom:12px; }
+    .s-card p { font-size:0.82rem; color:var(--gray); line-height:1.7; margin-bottom:14px; }
+    .s-dark { background:var(--navy); border-color:transparent; }
+    .s-dark h4 { color:#fff; }
+    .s-dark p { color:rgba(255,255,255,0.6); }
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; align-items:center; justify-content:center; }
+    .modal-overlay.show { display:flex; }
+    .modal { background:#fff; border-radius:14px; padding:44px; max-width:400px; width:90%; text-align:center; }
+    .modal h3 { font-family:"Playfair Display",serif; font-size:1.3rem; color:var(--navy); margin-bottom:8px; }
+    .modal p { color:var(--gray); font-size:0.87rem; line-height:1.7; margin-bottom:20px; }
+    .modal-close { background:var(--navy); color:#fff; border:none; padding:10px 26px; border-radius:6px; font-size:0.87rem; font-weight:700; cursor:pointer; }
+    @media(max-width:900px) { .sec { grid-template-columns:1fr; } .sidebar { position:static; } .month-grid { grid-template-columns:1fr; } }
+    @media(max-width:640px) { .pg-hero, section { padding-left:20px; padding-right:20px; } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">R<span>.</span>AGIMOFF</a>
+    <nav>
+      <a href="index.html">Ana səhifə</a>
+      <a href="3.html">Klinik Psixologiya</a>
+      <a href="5.html">Praktikum</a>
+      <a href="haqqimda.html">Haqqımda</a>
+      <a href="qanunlar.html">Qanuni Əsaslar</a>
+      <a href="index.html#booking" class="nav-cta">Qeydiyyat</a>
+    </nav>
+    <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" onclick="closeMenu()">Ana səhifə</a>
+  <a href="3.html" onclick="closeMenu()">Klinik Psixologiya</a>
+  <a href="5.html" onclick="closeMenu()">Praktikum</a>
+  <a href="haqqimda.html" onclick="closeMenu()">Haqqımda</a>
+  <a href="index.html#booking" onclick="closeMenu()" class="mob-cta">Qeydiyyat</a>
+</div>
+<div class="pg-hero">
+  <div class="pg-hero-inner">
+    <span class="tag fi" style="color:var(--accent)">Sertifikat Proqramı · 12 ay</span>
+    <h1 class="fi">Psixoterapiya <em>Praktikumu</em></h1>
+    <p class="fi">Real klinik bacarıqlar, beynəlxalq IPAS sertifikatı. Həftədə 2 dəfə canlı + online. 3+ illik video arxivi.</p>
+  </div>
+</div>
+<section>
+  <div class="sec">
+    <div class="main">
+      <h2>Praktikum nədir?</h2>
+      <p>Praktikum psixologiya sahəsində <strong>real klinik bacarıqları</strong> mənimsəmək üçün hazırlanmış peşəkar proqramdır. Nəzəriyyə deyil — konkret problemi necə həll edəcəyinizi öyrənirsiniz.</p>
+      <div class="highlight"><p>Yaxşı psixoloq heç vaxt işsiz qalmır. Çünki həyatın ən mürəkkəb problemlərini həll edə bilən insan həmişə tələb olunur. Praktikum sizə məhz bu bacarığı verir.</p></div>
+
+      <h2>2026-cı il üçün proqram</h2>
+      <div class="month-grid">
+        <div class="month-card"><div class="month-num">Yanvar</div><div class="month-title">Ümumi Psixologiya</div></div>
+        <div class="month-card"><div class="month-num">Fevral</div><div class="month-title">Psixopatologiya</div></div>
+        <div class="month-card"><div class="month-num">Mart</div><div class="month-title">Klinik Psixodiaqnostika</div></div>
+        <div class="month-card"><div class="month-num">Aprel</div><div class="month-title">Koqnitiv Davranış Terapiyası</div></div>
+        <div class="month-card"><div class="month-num">May</div><div class="month-title">Praktiki Məşğələlər</div></div>
+        <div class="month-card"><div class="month-num">İyun</div><div class="month-title">NLP, Psixosintez</div></div>
+        <div class="month-card" style="background:rgba(200,169,110,0.08);border-color:rgba(200,169,110,0.3)"><div class="month-num">İyul</div><div class="month-title">Tətil / İstirahət</div></div>
+        <div class="month-card"><div class="month-num">Avqust</div><div class="month-title">Praktiki Məşğələlər</div></div>
+        <div class="month-card"><div class="month-num">Sentyabr</div><div class="month-title">Ailə Terapiyası</div></div>
+        <div class="month-card"><div class="month-num">Oktyabr</div><div class="month-title">Praktiki Məşğələlər</div></div>
+        <div class="month-card"><div class="month-num">Noyabr</div><div class="month-title">Müasir Psixoanaliz</div></div>
+        <div class="month-card"><div class="month-num">Dekabr</div><div class="month-title">Praktiki Məşğələlər</div></div>
+      </div>
+      <p><strong>Cədvəl:</strong> həftənin 2-ci və 4-cü günləri, saat 14:00–16:00 — həm əyani, həm online (Zoom).</p>
+
+      <h2>Praktik məşğələlərin 5 formatı</h2>
+      <ul>
+        <li><strong>Psixoloq rolunda</strong> — digər tələbə pasiyent rolunda olaraq real sessiya aparırsınız</li>
+        <li><strong>Pasiyent rolunda</strong> — digər tələbə psixoloq rolunda, siz isə pasiyent kimi iştirak edirsiniz</li>
+        <li><strong>Şəxsi terapiya</strong> — öz real şəxsi münasibətlərinin psixoloji təhlilini aparırsınız</li>
+        <li><strong>Konsilium</strong> — real pasiyenti mütəxəssisin nəzarəti altında qəbul edirsiniz</li>
+        <li><strong>Superviziya</strong> — öz pasiyentinizlə çalışarkən üzləşdiyiniz çətinliklərdə daimi dəstək</li>
+      </ul>
+
+      <h2>Yekun imtahana daxildir</h2>
+      <ul>
+        <li><strong>Terapevtik Kontrakt</strong> — ilk qəbul, psixoterapevtik alyans, konfidensallıq</li>
+        <li><strong>Psixoloji Diaqnostika</strong> — simptomlar, sindromlar, XBT-10, testlər</li>
+        <li><strong>Psixoterapevtik Xəritə</strong> — problemin strukturu, strategiya, nəticələrin qeydiyyatı</li>
+      </ul>
+
+      <h2>Qapalı Telegram qrupuna daxil olursunuz</h2>
+      <p>Qeydiyyatdan keçən kimi 100-dən çox nəzəri və praktiki məşğələnin video yazılarına çıxışınız olur. Bütün yeni dərslər də ora əlavə edilir — heç bir dərsi itirmirsiniz.</p>
+
+      <h2>IPAS Sertifikatı</h2>
+      <p>Dr. Rəhimov 2022-ci ildən Beynəlxalq Psixoterapiya Assosiasiyasının (IPAS) Ambassadorudur. Proqramu bitirənlər <strong>QR kodla yoxlanılan beynəlxalq sertifikat</strong> alır.</p>
+
+      
+      
+            <h2>Məzunlara Verilən Sertifikatlar — Nümunələr</h2>
+      <p>Praktikumu bitirən hər tələbəyə <strong>üç sertifikat</strong> verilir: GTC «Klinik Psixoterapiya Praktikumu», IPAS «Clinical Psychotherapy» və IPAS modul sertifikatı.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0;">
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(13,27,62,0.08);">
+          <img src="images/sample-cert-gtc-praktikum.jpg" 
+               alt="GTC Klinik Psixoterapiya Praktikumu Sertifikatı nümunəsi" 
+               style="width:100%;display:block;" loading="lazy"/>
+          <div style="padding:12px 14px;background:#fff;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">GTC Sertifikatı</div>
+            <div style="font-weight:700;font-size:0.85rem;color:var(--navy);">Klinik Psixoterapiya Praktikumu</div>
+            <div style="font-size:0.75rem;color:var(--gray);margin-top:3px;">36 saat · Kənan Rəhimov imzası</div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(13,27,62,0.08);">
+          <img src="images/sample-cert-ipas-klinik.jpg" 
+               alt="IPAS Clinical Psychotherapy Beynəlxalq Sertifikat nümunəsi" 
+               style="width:100%;display:block;" loading="lazy"/>
+          <div style="padding:12px 14px;background:#fff;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">IPAS Beynəlxalq</div>
+            <div style="font-weight:700;font-size:0.85rem;color:var(--navy);">Clinical Psychotherapy</div>
+            <div style="font-size:0.75rem;color:var(--gray);margin-top:3px;">Robin Mackay · QR kodla yoxlanılır</div>
+          </div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(13,27,62,0.08);">
+          <img src="images/sample-cert-ipas-family.jpg" 
+               alt="IPAS Couples Counselling Family Therapy Sertifikat nümunəsi" 
+               style="width:100%;display:block;" loading="lazy"/>
+          <div style="padding:12px 14px;background:#fff;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">IPAS Beynəlxalq</div>
+            <div style="font-weight:700;font-size:0.85rem;color:var(--navy);">Couples Counselling — Ailə Terapiyası</div>
+            <div style="font-size:0.75rem;color:var(--gray);margin-top:3px;">Modul sertifikatı · IPAS standartları</div>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(200,169,110,0.08);border:1.5px solid rgba(200,169,110,0.3);border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+        <p style="font-size:0.87rem;color:var(--navy);margin:0;line-height:1.8;">
+          ✦ Hər sertifikatda <strong>QR kod</strong> ilə beynəlxalq yoxlama mümkündür · 
+          ✦ Sertifikatlar <strong>intpas.com</strong> portalında qeydiyyatda saxlanılır · 
+          ✦ Sertifikat sahibi IPAS üzvü sayılır
+        </p>
+      </div>
+      <h2>Sertifikat Mərasimi</h2>
+      <p>Praktikumu bitirən tələbələr beynəlxalq IPAS sertifikatlarını şəxsən Dr. Rəhimovdan alırlar.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
+        <img src="images/cert-1.jpg" alt="Sertifikat mərasimi" style="width:100%;border-radius:8px;aspect-ratio:3/4;object-fit:cover;" loading="lazy"/>
+        <img src="images/cert-3.jpg" alt="Sertifikat mərasimi" style="width:100%;border-radius:8px;aspect-ratio:3/4;object-fit:cover;" loading="lazy"/>
+      </div>
+      <img src="images/group-training.jpg" alt="Psixologiya Məktəbi tələbələri" style="width:100%;border-radius:8px;aspect-ratio:16/9;object-fit:cover;margin-bottom:20px;" loading="lazy"/>
+
+      <div class="price-box">
+        <h3>Qiymət</h3>
+        <div class="price-row"><div><div class="price-label">Birdəfəlik ödəniş</div></div><div class="price-val">3 000 AZN</div></div>
+        <div class="price-row"><div><div class="price-label">Aylıq ödəniş</div><div class="price-sub">12 ay × 300 AZN = 3 600 AZN</div></div><div class="price-val">300 AZN/ay</div></div>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="s-card">
+        <h4>Qeydiyyat</h4>
+        <p>Proqram haqqında ətraflı məlumat üçün bizə yazın.</p>
+        <a href="index.html#booking" class="btn btn-navy" style="display:block;text-align:center;margin-bottom:10px;">Forma ilə müraciət</a>
+        <a href="https://wa.me/994702200376?text=Salam%2C%20Psixoterapiya%20Praktikumu%20bar%C9%99d%C9%99%20m%C9%99lumat%20almaq%20ist%C9%99yir%C9%99m." target="_blank" class="btn btn-wa" style="display:flex;align-items:center;justify-content:center;gap:8px;">WhatsApp</a>
+      </div>
+      <div class="s-card">
+        <h4>Faydalı linklər</h4>
+        <a href="qanunlar.html" style="display:block;font-size:0.83rem;color:var(--blue);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--border);">⚖️ Qanuni əsaslar</a>
+        <a href="haqqimda.html" style="display:block;font-size:0.83rem;color:var(--blue);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--border);">👨‍⚕️ Dr. Rəhimov haqqında</a>
+        <a href="https://t.me/ragimoff" target="_blank" style="display:block;font-size:0.83rem;color:var(--blue);text-decoration:none;padding:8px 0;">✈️ Telegram kanal</a>
+      </div>
+      <div class="s-card s-dark">
+        <h4>Taksitlə ödəniş</h4>
+        <p>BirBank, TamKart, BolKart, WorldKart kartları ilə hissə-hissə ödəniş mümkündür.</p>
+        <a href="https://pay.pulpal.az/preview?uniqueCode=24769535" target="_blank" class="btn btn-primary" style="display:block;text-align:center;">Taksitlə ödə</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo">R<span>.</span>AGIMOFF</a><p>Kənan Rəhimov — Həkim Psixoterapevt. 22+ il klinik təcrübə. Bakı.</p>
+        <div class="footer-socials"><a href="https://t.me/ragimoff" class="social-link" target="_blank">TG</a><a href="https://www.instagram.com/dr.ragimoff" class="social-link" target="_blank">IG</a><a href="https://youtube.com/@kragimoff" class="social-link" target="_blank">YT</a></div>
+      </div>
+      <div class="footer-col"><h4>Təhsil</h4><ul>
+        <li><a href="3.html">Klinik Psixologiya Diplomu</a></li>
+        <li><a href="5.html">Psixoterapiya Praktikumu</a></li>
+        <li><a href="2.html">Ümumi Psixologiya</a></li>
+        <li><a href="qanunlar.html">Qanuni əsaslar</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Terapiya</h4><ul>
+        <li><a href="aile-terapiyasi.html">Ailə terapiyası</a></li>
+        <li><a href="enurez.html">Enurez müalicəsi</a></li>
+        <li><a href="panik-ataklar.html">Panik ataklar</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Əlaqə</h4><ul>
+        <li><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+        <li><a href="https://wa.me/994702200376">WhatsApp</a></li>
+        <li><a href="https://t.me/dockenan">Telegram</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 RAGIMOFF</p><a href="https://www.psychotherapyru.com" target="_blank">Русская версия →</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/994702200376" class="wa-float" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<div class="modal-overlay" id="successModal"><div class="modal"><div style="font-size:2.5rem;margin-bottom:12px">✅</div><h3>Müraciətiniz qəbul edildi!</h3><p>24 saat ərzində sizinlə əlaqə saxlayacağıq.</p><button class="modal-close" onclick="closeModal()">Bağla</button></div></div>
+<script src="shared.js"></script>
+</body>
+</html>

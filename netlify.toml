@@ -31,3 +31,29 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# SEO redirects — сохраняем старые URL
+[[redirects]]
+  from = "/3"
+  to = "/3.html"
+  status = 200
+
+[[redirects]]
+  from = "/5"
+  to = "/5.html"
+  status = 200
+
+[[redirects]]
+  from = "/2"
+  to = "/2.html"
+  status = 200
+
+[[redirects]]
+  from = "/dragimoff"
+  to = "/haqqimda.html"
+  status = 200
+
+[[redirects]]
+  from = "/groups"
+  to = "https://t.me/psyproaz"
+  status = 301
