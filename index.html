@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kənan Rəhimov — Həkim-psixiatr, Psixoterapevt. Təhsil, biznes-təlimlər və psixoterapiya xidmətləri."
+    />
+    <title>Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="gtc.css" />
+  </head>
+
+  <body>
+
+    <!-- ═══════════════════════════════════════
+         HEADER
+         ═══════════════════════════════════════ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psixologiya Məktəbi</span>
+        </a>
+
+        <nav class="desktop-nav">
+          <a href="index.html" class="active">Ana Səhifə</a>
+          <a href="tehsil.html">Təhsil</a>
+          <a href="xidmetler.html">Konsultasiya</a>
+          <a href="b2b.html">Korporativ</a>
+          <a href="blog.html">Blog</a>
+          <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
+        </nav>
+
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════
+         MOBILE NAV
+         ═══════════════════════════════════════ -->
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg>
+      </button>
+
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">QEYDİYYAT</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════ -->
+    <section class="page-hero" data-theme="dark" aria-labelledby="hero-heading">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <span class="badge">IPAS Ambassador</span>
+
+          <h1 class="hero-h1" id="hero-heading">Peşəkar <em>Psixologiya</em> Məktəbi</h1>
+
+          <p class="hero-lead">
+            23 illik klinik təcrübə, beynəlxalq standartlar, AR qanunvericiliyi —<br>psixologiya peşəsinə rəsmi yol.
+          </p>
+
+          <div class="hero-btns">
+            <a href="tehsil.html" class="btn btn-fill">Proqramları Seç</a>
+            <a href="xidmetler.html" class="btn btn-line">Konsultasiya</a>
+          </div>
+        </div>
+
+        <div class="photo-col">
+          <img
+            src="images/Hero_Image_8gm1.png"
+            alt="Dr. Kənan Rəhimov"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         STATS STRIP
+         ═══════════════════════════════════════ -->
+    <div class="stats-strip" data-theme="dark">
+      <div class="stats-inner">
+        <div class="stat-item">
+          <span class="stat-num">23+</span>
+          <span class="stat-label">İl Klinik Təcrübə</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-num">3000+</span>
+          <span class="stat-label">Uğurlu Pasient</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-num">300+</span>
+          <span class="stat-label">Peşəkar Məzun</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-num">300+</span>
+          <span class="stat-label">Video Dərs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         ECOSYSTEM — 3 CARDS
+         ═══════════════════════════════════════ -->
+    <section class="sec-3cards" data-theme="light" aria-labelledby="eco-heading">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Fəaliyyət Sahələri</span>
+          <h2 class="sec-h2" id="eco-heading">RAGIMOFF EKOSİSTEMİ</h2>
+          <p class="sec-sub">
+            Dəqiq struktur, elmi metodlar və 23 illik klinik təcrübə
+            əsasında üç əsas fəaliyyət istiqamətində xidmət edirik.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <a href="tehsil.html" class="card featured">
+            <span class="card-label">Tədris Mərkəzi</span>
+            <h3>Təhsil (DPO və Praktikum)</h3>
+            <p>
+              Psixologiya ixtisası üzrə Rəsmi Əlavə Peşə Təhsili diplomu (DPO)
+              və real klinik bacarıqlar üçün Praktikum. Qanuni fəaliyyət üçün
+              nostrifikasiya tələb olunmur.
+            </p>
+            <span class="card-link">Peşəkar ol</span>
+          </a>
+
+          <a href="xidmetler.html" class="card">
+            <span class="card-label">Klinik Xidmət</span>
+            <h3>Konsultasiya və Psixoterapiya</h3>
+            <p>
+              Ailə problemləri, panik atak, depressiya, və uşaqlarda enurez
+              müalicəsi. Medikamentsiz, Koqnitiv-Davranış terapiyası əsasında
+              effektiv nəticə.
+            </p>
+            <span class="card-link">Qəbula yazıl</span>
+          </a>
+
+          <a href="b2b.html" class="card">
+            <span class="card-label">Biznes və HR</span>
+            <h3>Korporativ və B2B</h3>
+            <p>
+              Satış məktəbi, liderlik psixologiyası və HR üçün idarəetmə
+              təlimləri. Şirkətin effektivliyini və işçi motivasiyasını artıran
+              biznes-treninqləri.
+            </p>
+            <span class="card-link">Şirkətini böyüt</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         ABOUT SECTION
+         ═══════════════════════════════════════ -->
+    <section class="sec-2col" data-theme="light" aria-labelledby="about-heading">
+      <div class="sec-inner" style="text-align:center;">
+        <div class="sec-header">
+          <span class="badge on-light">Mütəxəssis Haqqında</span>
+          <h2 class="sec-h2" id="about-heading">Kənan Rəhimov</h2>
+          <p class="sec-sub">
+            Həkim-Psixoterapevt (IPAS Ambassador). 23 illik klinik təcrübə.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-content">
+          <ul class="timeline-list">
+            <li>
+              <strong>2022</strong>
+              <span>Beynəlxalq Psixoterapiya Assosiasiyasının Ambasadoru və bu sahədə tədris aparan Beynəlxalq Dərəcəli həkim psixoterapevt Sertifikatını alıb</span>
+            </li>
+            <li>
+              <strong>2021</strong>
+              <span>Rusiyanın Sankt-Peterburq Əlavə Təhsil İnstitutunun müəllimi və B.D.Karvasarski adına İnstitutunun Səlahiyətli nümayəndəsi təyin olunub</span>
+            </li>
+            <li>
+              <strong>2008</strong>
+              <span>Öncə GTC, sonra da RAGIMOFF şirkətlərinin təsisçisi, bir çox layihələrin biznesin inkişafı üzrə məsləhətçisi - 3000 çox peşəkar təlimlər keçirib</span>
+            </li>
+            <li>
+              <strong>2003</strong>
+              <span>Bakı «Regional Psixologiya Mərkəzi» direktoru olaraq Azərbaycanda Psixologiyanın inkişafı üçün TV və Radio kanalları ilə sosial layihələr aparıb</span>
+            </li>
+            <li>
+              <strong>2003</strong>
+              <span>Peşəkar Həkim Psixoterapevt Fərqlənmə Diplomu və Ekspert Sertifikatı ilə V.M.Bexterev adına Elmi-Tədqiqat İnstitutu tərəfindən təltif olunub</span>
+            </li>
+            <li>
+              <strong>2001</strong>
+              <span>Rusiya Federasiyasının Baş Psixoterapevti professor B.D.Karvasarski tərəfindən təhsil almış və dünya miqyaslı tanınmış psixoanalitik professor V.D.Vidin rəhbərliyi altında çalışıb, 2 illik klink ordinatura keçib</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-col-right">
+          <div class="about-img">
+            <img
+              src="images/photo-portal-crop-removebg-preview.png"
+              alt="Kənan Rəhimov Haqqında"
+              loading="lazy"
+            />
+          </div>
+          <a href="haqqimda.html" class="btn btn-fill about-img-btn">Daha Ətraflı</a>
+        </div>
+      </div>
+
+      <div class="about-action">
+        <span class="diploma-label">Diplomlar və Sertifikatlar</span>
+      </div>
+
+      <div style="height:0;"></div>
+
+      <div class="gallery-band" data-theme="dark">
+        <div class="diploma-gallery" id="diplomaGallery">
+          <div class="dg-mains">
+            <div class="dg-main-item" data-idx="0"><img src="images/diplomas/adtu-diplom-2000.jpg" alt="ADTU Diplom 2000" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="1"><img src="images/diplomas/internatura-2001.jpg" alt="Klinik Ordinatura 2001" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="2"><img src="images/diplomas/sert-psychiatr-2003.jpg" alt="Psixiatr Sertifikat 2003" loading="lazy" /></div>
+          </div>
+          <div class="dg-thumbs">
+            <div class="dg-thumb" data-idx="3"><img src="images/diplomas/sert-psychotherapy-2003.jpg" alt="Psixoterapiya 2003" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="4"><img src="images/diplomas/bekhterev-udost-2.jpg" alt="Bexterev İnstitutu" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="5"><img src="images/diplomas/nlp-diploma-1999.jpg" alt="NLP Diplom 1999" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="6"><img src="images/diplomas/ptsd-apa-2000.jpg" alt="PTSD APA 2000" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="7"><img src="images/diplomas/gtc-cert-team-2007.jpg" alt="GTC Sertifikat 2007" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="8"><img src="images/diplomas/sert-a2139286.jpg" alt="Sertifikat" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="9"><img src="images/diplomas/sert-a2139298.jpg" alt="Sertifikat" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="10"><img src="images/diplomas/ipas-ambassador-2022.jpg" alt="IPAS Ambassador 2022" loading="lazy" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SERVICES
+         ═══════════════════════════════════════ -->
+    <section id="services" class="sec-services" data-theme="light" aria-labelledby="svc-heading">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Klinik Xidmət</span>
+          <h2 class="sec-h2" id="svc-heading">Fərdi Psixoterapiya</h2>
+          <p class="sec-sub">Hansı psixoloji problemlərin həllində sizə kömək edə bilərik?</p>
+        </div>
+      </div>
+
+      <div class="svc-grid">
+        <a href="aile-terapiyasi.html" class="svc-card">
+          <span class="svc-card-label">Cütlük / Ailə</span>
+          <h4>Ailə Terapiyası</h4>
+          <p>
+            Cütlüklər arasında ünsiyyət böhranı, boşanma riski, münaqişə.
+            Həftədə 3 sessiya — ortalama 2–3 ayda nəticə.
+          </p>
+        </a>
+
+        <a href="aile-terapiyasi-usaq.html" class="svc-card">
+          <span class="svc-card-label">Valideyn / Yeniyetmə</span>
+          <h4>Valideyn–Uşaq Terapiyası</h4>
+          <p>
+            Yeniyetmə davranış pozuntuları, valideyn-uşaq münaqişəsi,
+            məktəb adaptasiyası. Ailə sistemi ilə iş.
+          </p>
+        </a>
+
+        <a href="enurez.html" class="svc-card active">
+          <span class="svc-card-label">Uşaq Psixologiyası</span>
+          <h4>Gecə Enurezi</h4>
+          <p>
+            Uşaqlarda yataq islatma probleminin dərmansız, 5 sessiyada
+            80% effektivliklə həlli. Klinik protokol.
+          </p>
+        </a>
+
+        <a href="panik-ataklar.html" class="svc-card">
+          <span class="svc-card-label">Narahatlıq</span>
+          <h4>Panik Ataklar &amp; Təşviş</h4>
+          <p>
+            Gözlənilməz qorxu hücumları, ürək döyüntüsü, boğulma hissi.
+            KBT ilə 5–8 sessiyada stabil nəticə.
+          </p>
+        </a>
+
+        <a href="depressiya.html" class="svc-card">
+          <span class="svc-card-label">Əhval Pozuntusu</span>
+          <h4>Depressiya</h4>
+          <p>
+            Enerji itkisi, maraqsızlıq, boşluq hissi. Medikamentsiz
+            koqnitiv-davranış terapiyası ilə müalicə.
+          </p>
+        </a>
+
+        <a href="sosial-fobiya.html" class="svc-card">
+          <span class="svc-card-label">Sosial Narahatlıq</span>
+          <h4>Sosial Fobiya</h4>
+          <p>
+            İnsanlar qarşısında danışmaq qorxusu, rədd edilmə narahatlığı.
+            Ekspozisiya terapiyası ilə sistematik azaldılma.
+          </p>
+        </a>
+      </div>
+
+      <div class="svc-actions">
+        <a href="xidmetler.html" class="btn btn-line">Bütün Xidmətlər</a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════ -->
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+
+          <!-- Brand column -->
+          <div>
+            <a href="index.html" class="logo-box footer-logo">
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psixologiya Məktəbi</span>
+            </a>
+            <p class="footer-desc">
+              Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik
+              təcrübə. Bakı, Azərbaycan.
+            </p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+
+          <!-- Terapiya column -->
+          <div>
+            <span class="footer-col-title">Terapiya</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Gecə Enurezi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+
+          <!-- Təhsil column -->
+          <div>
+            <span class="footer-col-title">Təhsil</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Bloqu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+
+          <!-- Əlaqə column -->
+          <div>
+            <span class="footer-col-title">Əlaqə</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+          <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════
+         WHATSAPP FLOAT BUTTON
+         ═══════════════════════════════════════ -->
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <script src="shared.js"></script>
+
+    <!-- Diploma Lightbox -->
+    <div class="dg-lightbox" id="dgLightbox">
+      <button class="dg-lb-close" id="dgLbClose" aria-label="Bağla">&#x2715;</button>
+      <button class="dg-lb-prev" id="dgLbPrev" aria-label="Əvvəlki">&#x2039;</button>
+      <div class="dg-lb-img-wrap">
+        <img id="dgLbImg" src="" alt="" />
+      </div>
+      <button class="dg-lb-next" id="dgLbNext" aria-label="Növbəti">&#x203A;</button>
+      <div class="dg-lb-counter" id="dgLbCounter"></div>
+    </div>
+
+    <script>
+    (function () {
+      var gallery = document.getElementById('diplomaGallery');
+      if (!gallery) return;
+
+      // Collect all images in order
+      var items = Array.from(gallery.querySelectorAll('[data-idx]'));
+      items.sort(function(a,b){ return +a.dataset.idx - +b.dataset.idx; });
+      var images = items.map(function(el){
+        var img = el.querySelector('img');
+        return { src: img.src, alt: img.alt };
+      });
+
+      var lb      = document.getElementById('dgLightbox');
+      var lbImg   = document.getElementById('dgLbImg');
+      var lbClose = document.getElementById('dgLbClose');
+      var lbPrev  = document.getElementById('dgLbPrev');
+      var lbNext  = document.getElementById('dgLbNext');
+      var lbCnt   = document.getElementById('dgLbCounter');
+      var current = 0;
+      var timer   = null;
+
+      function show(idx) {
+        current = (idx + images.length) % images.length;
+        lbImg.src = images[current].src;
+        lbImg.alt = images[current].alt;
+        lbCnt.textContent = (current + 1) + ' / ' + images.length;
+      }
+
+      function open(idx) {
+        show(idx);
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        startAuto();
+      }
+
+      function close() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        stopAuto();
+      }
+
+      function startAuto() {
+        stopAuto();
+        timer = setInterval(function(){ show(current + 1); }, 3000);
+      }
+
+      function stopAuto() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      // Click on gallery items
+      items.forEach(function(el){
+        el.addEventListener('click', function(){ open(+el.dataset.idx); });
+      });
+
+      // Controls
+      lbClose.addEventListener('click', close);
+      lbPrev.addEventListener('click', function(e){
+        e.stopPropagation(); show(current - 1); startAuto();
+      });
+      lbNext.addEventListener('click', function(e){
+        e.stopPropagation(); show(current + 1); startAuto();
+      });
+
+      // Click outside image → close
+      lb.addEventListener('click', function(e){
+        if (e.target === lb) close();
+      });
+
+      // Keyboard
+      document.addEventListener('keydown', function(e){
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')  { show(current - 1); startAuto(); }
+        if (e.key === 'ArrowRight') { show(current + 1); startAuto(); }
+      });
+    })();
+    </script>
+
+  </body>
+</html>

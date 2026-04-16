@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Psixologiya, psixoterapiya və özünüinkişaf mövzularında peşəkar məqalələr. Dr. Kənan Rəhimov — Həkim Psixoterapevt, Bakı." />
+    <title>Psixologiya Bloqu | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="gtc.css" />
+    <style>
+      .blog-grid-2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      @media (max-width: 1100px) { .blog-grid-2 { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 768px) { .blog-grid-2 { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Psixologiya Məktəbi</span></a>
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+          <a href="tehsil.html">Təhsil</a>
+          <a href="xidmetler.html">Konsultasiya</a>
+          <a href="b2b.html">Korporativ</a>
+          <a href="blog.html" class="active">Blog</a>
+          <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">QEYDİYYAT</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pg-hero pg-hero-plain" data-theme="dark" aria-labelledby="blog-h1">
+      <div class="pg-hero-inner">
+        <span class="badge">BLOQ</span>
+        <h1 class="hero-h1" id="blog-h1">Psixologiya <em>Bloqu</em></h1>
+        <p class="hero-lead">Peşəkar məqalələr. Elmi araşdırmalar. Praktik tövsiyələr.</p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-inner">
+        <button class="filter-btn active" onclick="filterBlog('all', this)">Hamısı</button>
+        <button class="filter-btn" onclick="filterBlog('aile', this)">Ailə Terapiyası</button>
+        <button class="filter-btn" onclick="filterBlog('klinik', this)">Klinik Psixologiya</button>
+        <button class="filter-btn" onclick="filterBlog('enurez', this)">Enurez</button>
+        <button class="filter-btn" onclick="filterBlog('ozunu', this)">Özünüinkişaf</button>
+        <button class="filter-btn" onclick="filterBlog('tehsil', this)">Psixoloqlar üçün</button>
+      </div>
+    </div>
+
+    <!-- BLOG CONTENT -->
+    <section class="sec-pad" data-theme="light" style="padding-bottom:var(--s-section);" id="blogContent">
+      <div class="sec-inner" style="text-align:left;">
+
+        <!-- Featured -->
+        <a href="blog-aile.html" class="blog-featured" data-cat="aile" style="margin-bottom:32px;">
+          <div class="blog-featured-img" style="background:linear-gradient(135deg,var(--navy),#1a3a6e);"></div>
+          <div class="blog-featured-body">
+            <span class="blog-featured-badge">Seçilmiş Məqalə</span>
+            <div class="blog-featured-title">Boşanma Astanasında Olan Cütlüklərə — Psixoterapevtin Mesajı</div>
+            <div class="blog-featured-meta">Ailə Terapiyası · 8 dəq oxumaq · Dr. Kənan Rəhimov</div>
+            <div class="blog-featured-excerpt">Hər münaqişə boşanma ilə bitmir. Bəzən problem münasibətin özündə deyil, ünsiyyət tərzindədir. 22 illik klinik təcrübəmdən ən çox rast gəldiyim vəziyyət budur — və həll yolu var.</div>
+            <span class="btn btn-fill" style="align-self:flex-start;margin-top:8px;">Məqaləni oxu</span>
+          </div>
+        </a>
+
+        <!-- Blog grid -->
+        <div class="blog-grid-2" id="blogGrid">
+
+          <a href="blog-panik.html" class="blog-card" data-cat="klinik">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy),#1a3a6e);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Klinik Psixologiya</span>
+              <div class="blog-card-title">Panik Atak Zamanı Nə Baş Verir? — Beyin Mexanizmi</div>
+              <div class="blog-card-excerpt">Ürəkdöyünmə, nəfəs çatışmazlığı, ölüm qorxusu — bunların hamısı bir neçə dəqiqə ərzində keçir. Niyə? Beyin nəyi yanlış başa düşür?</div>
+              <div class="blog-card-footer"><span>Klinik Psixologiya · 6 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+          <a href="blog-enurez.html" class="blog-card" data-cat="enurez">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#0d2a3e,#1a4a5e);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Enurez</span>
+              <div class="blog-card-title">Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc</div>
+              <div class="blog-card-excerpt">«Özü keçər», «su içməsin», «hər gecə oyatmaq lazımdır» — bu məsləhətlərin heç biri işə yaramır. Hətta ziyanlıdır.</div>
+              <div class="blog-card-footer"><span>Enurez · 7 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+          <a href="blog-depressiya.html" class="blog-card" data-cat="klinik">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#0d2a1a,#1a4a2e);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Klinik Psixologiya</span>
+              <div class="blog-card-title">Depressiya — «Tənbəllik» Deyil. Beyin Kimyasıdır</div>
+              <div class="blog-card-excerpt">«Özünü yığışdır», «hamının problemi var» — bu sözlər niyə kömək etmir? Depressiyanın neyrobioloji əsasları haqqında.</div>
+              <div class="blog-card-footer"><span>Klinik Psixologiya · 5 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+          <a href="blog-yeniyetme.html" class="blog-card" data-cat="aile">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,var(--navy),#2a5298);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Ailə Terapiyası</span>
+              <div class="blog-card-title">Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz</div>
+              <div class="blog-card-excerpt">13-17 yaş arası beyin inkişafının ən intensiv dövrüdür. Valideynlər niyə «düşmən» görünür? Psixoloji izahat.</div>
+              <div class="blog-card-footer"><span>Ailə Terapiyası · 6 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+          <a href="blog-sosial-fobiya.html" class="blog-card" data-cat="klinik">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#1a0d2a,#2e1060);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Klinik Psixologiya</span>
+              <div class="blog-card-title">Sosial Fobiya — Sadəcə Utancaqlıq Deyil</div>
+              <div class="blog-card-excerpt">İctimai yerlərdə danışmaqdan qorxmaq, mühakimə edilmə hissi — bu simptomlar müalicə olunan vəziyyətdir.</div>
+              <div class="blog-card-footer"><span>Klinik Psixologiya · 5 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+          <a href="blog-psixolog-olmaq.html" class="blog-card" data-cat="tehsil">
+            <div class="blog-card-img" style="background:linear-gradient(135deg,#2a1a0d,#3e2a10);"></div>
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Psixoloqlar üçün</span>
+              <div class="blog-card-title">Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə?</div>
+              <div class="blog-card-excerpt">İnsanlar ən mürəkkəb problemlərini həll edə bilən mütəxəssisə həmişə müraciət edir. Amma həmin mütəxəssis olmaq üçün nə lazımdır?</div>
+              <div class="blog-card-footer"><span>Psixoloqlar üçün · 8 dəq</span><span class="blog-card-read">Oxu</span></div>
+            </div>
+          </a>
+
+        </div>
+
+        <div id="noResults" style="display:none;text-align:center;padding:48px;color:var(--gray);">
+          <p>Bu kateqoriyada hələ məqalə yoxdur. Tezliklə əlavə olunacaq.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band" data-theme="light">
+      <div class="cta-band-inner">
+        <div>
+          <h2>Konsultasiya lazımdır?</h2>
+          <p>Oxuduqlarınız haqqında sualınız varsa — yazın, cavablandırırıq.</p>
+        </div>
+        <div class="cta-band-btns">
+          <a href="https://wa.me/994702200376" target="_blank" class="btn btn-fill" style="background:var(--navy);color:var(--white);">WhatsApp</a>
+          <a href="xidmetler.html" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">Xidmətlər</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Psixologiya Məktəbi</span></a>
+            <p class="footer-desc">Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə. Bakı, Azərbaycan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Terapiya</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Gecə Enurezi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Təhsil</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Bloqu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Əlaqə</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+          <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+    </a>
+
+    <script src="shared.js"></script>
+    <script>
+    function filterBlog(cat, btn) {
+      if (btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      const cards = document.querySelectorAll('.blog-card');
+      const featured = document.querySelector('.blog-featured');
+      let visible = 0;
+      cards.forEach(card => {
+        const match = cat === 'all' || card.dataset.cat === cat;
+        card.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      if (featured) {
+        const fMatch = cat === 'all' || featured.dataset.cat === cat;
+        featured.classList.toggle('hidden', !fMatch);
+        if (fMatch) visible++;
+      }
+      document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+    }
+    </script>
+  </body>
+</html>

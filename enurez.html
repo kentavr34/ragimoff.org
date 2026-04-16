@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Birincil monosimptomatik gecə enurezinin (BMGE, XBT-10 F98.0) müalicəsi. Alarm terapiyası — qızıl standart. 23 ildə 1000+ uşaq. Dərman yoxdur. Dr. Kənan Rəhimov, Bakı." />
+    <title>Gecə Enurezi Müalicəsi | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="gtc.css" />
+    <style>
+      /* Hero with photo */
+      .en-hero { background: var(--navy); padding: 64px var(--s-section); position: relative; overflow: hidden; }
+      .en-hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(181,155,114,0.1) 0%, transparent 68%); pointer-events: none; }
+      .en-hero-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr 480px; gap: 48px; align-items: center; position: relative; z-index: 1; }
+      .en-hero-photo img { width: 100%; height: 400px; object-fit: cover; object-position: center 15%; border: 1px solid rgba(181,155,114,0.15); display: block; }
+      /* Stats bar on accent */
+      .en-stats { background: var(--accent); padding: 0 var(--s-section); }
+      .en-stats-row { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+      .en-stat { padding: 28px 0; text-align: center; border-right: 1px solid rgba(6,24,38,0.15); }
+      .en-stat:last-child { border-right: none; }
+      .en-stat .n { display: block; font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; font-family: var(--font); }
+      .en-stat .l { display: block; font-size: var(--t-xs); font-weight: 700; color: rgba(6,24,38,0.65); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; }
+      /* Section wrappers */
+      .ps { padding: var(--s-section); }
+      .ps.white { background: var(--white); }
+      .ps.light-bg { background: var(--clr-bg); }
+      .ps.dark-bg { background: var(--navy); }
+      .ps-inner { max-width: var(--container-max); margin: 0 auto; }
+      /* Definition grid */
+      .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
+      .def-card { padding: 36px; border-right: 1px solid var(--clr-border); }
+      .def-card:last-child { border-right: none; }
+      .def-code { display: inline-block; font-family: monospace; font-size: 1rem; font-weight: 800; color: var(--navy); background: rgba(181,155,114,0.12); padding: 4px 12px; border: 1px solid rgba(181,155,114,0.3); margin-bottom: 12px; }
+      .def-title { font-size: 1.125rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 10px; font-family: var(--font); }
+      .def-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.8; margin: 0; }
+      /* Danger band */
+      .danger-band { background: rgba(139,0,0,0.04); border: 1px solid rgba(139,0,0,0.15); border-left: 5px solid #8b0000; padding: 36px 40px; margin-top: 40px; }
+      .danger-band h3 { font-size: 1.125rem; font-weight: 800; color: #8b0000; margin-bottom: 12px; font-family: var(--font); }
+      .danger-band p { font-size: 0.9rem; color: var(--navy); line-height: 1.8; margin-bottom: 12px; }
+      .danger-band p:last-child { margin-bottom: 0; }
+      .danger-band strong { color: #8b0000; }
+      /* Diff table */
+      .diff-table { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .diff-head { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--navy); padding: 12px 24px; gap: 16px; }
+      .diff-head span { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+      .diff-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 14px 24px; border-top: 1px solid var(--clr-border); gap: 16px; align-items: start; }
+      .diff-row:hover { background: rgba(181,155,114,0.03); }
+      .diff-cause { color: var(--clr-heading); font-weight: 600; font-size: var(--t-sm); }
+      .diff-what { color: var(--clr-text-muted); font-size: var(--t-sm); }
+      .diff-to { color: var(--accent); font-weight: 700; font-size: 0.8125rem; }
+      /* Trust grid */
+      .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(181,155,114,0.2); margin-top: 40px; }
+      .trust-card { padding: 32px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .trust-card:last-child { border-right: none; }
+      .trust-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
+      .trust-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 10px; font-family: var(--font); }
+      .trust-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
+      /* Instagram block */
+      .ig-block { border: 1px solid rgba(181,155,114,0.25); padding: 40px; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+      .ig-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
+      .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
+      .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+      .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
+      /* YouTube */
+      .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(181,155,114,0.15); }
+      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+      /* Treatment protocol */
+      .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
+      .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
+      .tl-item:last-child { border-bottom: none; }
+      .tl-num { display: flex; align-items: center; justify-content: center; background: var(--navy); font-size: 1.5rem; font-weight: 800; color: var(--accent); border-right: 1px solid rgba(181,155,114,0.2); font-family: var(--font); }
+      .tl-body { padding: 28px 36px; }
+      .tl-tag { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; display: block; }
+      .tl-title { font-size: 1rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 8px; font-family: var(--font); }
+      .tl-desc { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.75; }
+      .tl-pill { display: inline-block; font-size: 0.75rem; font-weight: 700; background: rgba(181,155,114,0.1); color: var(--accent); border: 1px solid rgba(181,155,114,0.3); padding: 3px 10px; margin-top: 10px; }
+      .tl-pill.red { background: rgba(139,0,0,0.06); color: #8b0000; border-color: rgba(139,0,0,0.2); }
+      /* Step scheme */
+      .step-scheme { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .ss-row { display: grid; grid-template-columns: 40px 1fr; align-items: stretch; border-bottom: 1px solid var(--clr-border); }
+      .ss-row:last-child { border-bottom: none; }
+      .ss-n { background: var(--navy); color: var(--accent); font-size: 0.875rem; font-weight: 800; display: flex; align-items: center; justify-content: center; min-height: 56px; font-family: var(--font); }
+      .ss-body { padding: 16px 24px; font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.7; }
+      .ss-body strong { color: var(--clr-heading); }
+      /* Scientific refs */
+      .refs-list { margin-top: 24px; }
+      .ref-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--clr-border); align-items: start; }
+      .ref-item:last-child { border-bottom: none; }
+      .ref-n { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-align: center; }
+      .ref-text { font-size: 0.8125rem; color: var(--clr-text-muted); line-height: 1.65; }
+      .ref-text em { color: var(--clr-heading); font-style: normal; font-weight: 600; }
+      /* Price table */
+      .price-table { max-width: 780px; border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .pt-head { padding: 14px 32px; background: rgba(181,155,114,0.04); border-bottom: 2px solid rgba(181,155,114,0.3); }
+      .pt-head span { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+      .pt-row { display: grid; grid-template-columns: 1fr auto; align-items: start; padding: 14px 32px; border-bottom: 1px solid var(--clr-border); }
+      .pt-row:last-child { border-bottom: none; }
+      .pt-row:hover { background: rgba(181,155,114,0.03); }
+      .pt-label { font-size: 0.9375rem; color: var(--clr-heading); font-weight: 600; }
+      .pt-sub { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 3px; }
+      .pt-price { font-size: 1rem; font-weight: 800; color: var(--clr-heading); text-align: right; white-space: nowrap; font-family: var(--font); }
+      .pt-total { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 18px 32px; background: var(--navy); }
+      .pt-total .tl { font-size: 0.875rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+      .pt-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); font-family: var(--font); }
+      /* Registration form */
+      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
+      .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .reg-path-step:last-child { border-right: none; }
+      .rp-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
+      .reg-path-step h4 { font-size: var(--t-sm); font-weight: 800; color: var(--white); margin-bottom: 6px; font-family: var(--font); }
+      .reg-path-step p { font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+      .reg-form { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
+      .rf2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .rfield { display: flex; flex-direction: column; gap: 8px; }
+      .rfield > label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+      .rfield input, .rfield textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: var(--font); font-size: 0.9375rem; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+      .rfield input:focus, .rfield textarea:focus { border-color: var(--accent); }
+      .rfield input::placeholder, .rfield textarea::placeholder { color: rgba(255,255,255,0.2); }
+      .form-success { display: none; padding: 24px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.35); text-align: center; margin-top: 16px; }
+      .form-success p { color: var(--accent); font-weight: 700; font-size: 0.9375rem; margin: 0; }
+      /* Reviews */
+      .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-bottom: 40px; }
+      .rv-card { padding: 32px; border-right: 1px solid var(--clr-border); border-bottom: 1px solid var(--clr-border); }
+      .rv-card:nth-child(2n) { border-right: none; }
+      .rv-card:nth-last-child(-n+2) { border-bottom: none; }
+      .rv-name { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+      .rv-text { font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.75; font-style: italic; }
+      .rv-meta { font-size: 0.75rem; color: rgba(6,24,38,0.4); margin-top: 14px; }
+      .review-form { background: var(--clr-bg); border: 1px solid var(--clr-border); padding: 40px; }
+      .rv-note { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 16px; line-height: 1.6; border-left: 3px solid rgba(181,155,114,0.4); padding-left: 14px; }
+      /* Blog 2 cards */
+      .blog-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; border: 1px solid var(--clr-border); }
+      .bc { display: block; background: var(--white); border-right: 1px solid var(--clr-border); border-top: 4px solid var(--navy); padding: 36px 32px; text-decoration: none; transition: border-top-color 0.2s; }
+      .bc:last-child { border-right: none; }
+      .bc:hover { border-top-color: var(--accent); }
+      .bc-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); display: block; margin-bottom: 12px; }
+      .bc-title { font-size: var(--t-body); font-weight: 700; color: var(--clr-heading); line-height: 1.3; margin-bottom: 12px; }
+      .bc-lead { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65; margin: 0 0 24px; }
+      .bc-more { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+      /* Responsive */
+      @media (max-width: 1100px) {
+        .en-hero-inner { grid-template-columns: 1fr; }
+        .en-hero-photo { display: none; }
+        .en-stats-row { grid-template-columns: repeat(2,1fr); }
+        .trust-grid, .def-grid { grid-template-columns: 1fr; }
+        .trust-card, .def-card { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+        .trust-card:last-child, .def-card:last-child { border-bottom: none; }
+        .ig-block { grid-template-columns: 1fr; }
+        .reviews-grid { grid-template-columns: 1fr; }
+        .rv-card { border-right: none; }
+        .rv-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--clr-border); }
+        .rv-card:last-child { border-bottom: none; }
+        .blog-grid-2 { grid-template-columns: 1fr; }
+        .bc { border-right: none; border-bottom: 1px solid var(--clr-border); }
+        .bc:last-child { border-bottom: none; }
+        .reg-path { grid-template-columns: repeat(2,1fr); }
+        .diff-head, .diff-row { grid-template-columns: 1fr 1fr; }
+        .diff-head span:nth-child(3), .diff-row span:nth-child(3) { display: none; }
+      }
+      @media (max-width: 768px) {
+        .en-hero { padding: 40px 24px; }
+        .ps { padding: 40px 24px; }
+        .en-stats { padding: 0 24px; }
+        .rf2 { grid-template-columns: 1fr; }
+        .reg-path { grid-template-columns: 1fr; }
+        .reg-path-step { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+        .reg-path-step:last-child { border-bottom: none; }
+        .tl-item { grid-template-columns: 1fr; }
+        .tl-num { min-height: 48px; border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); font-size: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psixologiya Məktəbi</span>
+        </a>
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+          <a href="tehsil.html">Təhsil</a>
+          <a href="xidmetler.html" class="nav-active">Konsultasiya</a>
+          <a href="b2b.html">Korporativ</a>
+          <a href="blog.html">Blog</a>
+          <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">QEYDİYYAT</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="en-hero">
+      <div class="en-hero-inner">
+        <div>
+          <span class="badge" style="margin-bottom:24px;">Uşaq Psixologiyası &middot; XBT-10 F98.0</span>
+          <h1 class="hero-h1" style="color:var(--white);max-width:580px;">Gecə Enurezinin<br/><em>Müalicəsi</em></h1>
+          <p class="hero-lead" style="max-width:500px;">23 ildə 1 000-dən çox uşaq. Heç bir dərman yoxdur.<br>Yalnız beynəlxalq protokollara uyğun alarm terapiyası — uşaq evdən çıxmadan.</p>
+          <div class="hero-btns" style="justify-content:flex-start;">
+            <a href="#registration" class="btn btn-fill">Qeydiyyata Yazıl</a>
+            <a href="https://wa.me/994702200376?text=Salam%2C+u%C5%9Fa%C4%9F%C4%B1m%C4%B1n+enurez+m%C3%BCalic%C9%99si+bar%C9%99d%C9%99+m%C9%99lumat+almaq+ist%C9%99yir%C9%99m." target="_blank" class="btn btn-line">WhatsApp</a>
+          </div>
+        </div>
+        <div class="en-hero-photo">
+          <img src="images/kenan/enurez-mualice.jpg" alt="Dr. Kənan Rəhimov" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="en-stats">
+      <div class="en-stats-row">
+        <div class="en-stat"><span class="n">1 000+</span><span class="l">Sağalan Uşaq — 23 il</span></div>
+        <div class="en-stat"><span class="n">250+</span><span class="l">Uşaq — yalnız 2025-ci ildə</span></div>
+        <div class="en-stat"><span class="n">100+</span><span class="l">Şəhid · Qazi · Aztəminatlı — pulsuz</span></div>
+        <div class="en-stat"><span class="n">0</span><span class="l">Psixotrop dərman istifadəsi</span></div>
+      </div>
+    </div>
+
+    <!-- WHAT IS IT -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Diaqnoz</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Gecə Enurezi və ya BMGE Nədir?</h2>
+        <p class="sec-lead" style="max-width:480px;margin-bottom:0;">BMGE dəqiq diaqnostikası, digər enurez növlərdən ayırd edilməsi — müalicənin ən düzgün başlanğıcıdır.</p>
+        <div class="def-grid">
+          <div class="def-card">
+            <span class="badge on-light" style="margin-bottom:16px;">Tərif</span>
+            <span class="def-code">XBT-10 F98.0</span>
+            <h3 class="def-title">Birincil Monosimptomatik Gecə Enurezi (BMGE)</h3>
+            <p class="def-body">Uşaqda ən azı 2 həftə sabit <strong>"quru gecələr"</strong> olmamışdır. Bu arada maye qəbuluna məhdudiyyət olduqda — bu nəticə hesab edilmir. Gün ərzində ayıq olduqda sidik qaçırma olmur. Yalnız yuxuda sidik qaçırma baş verir. Diaqnoz <strong>5 yaşdan etibarən</strong> qoyulur — bu yaşa kimi gecə qaçırması ilə bağlı uşağa yalnız özünə nəzarət qaydaları izah edilir.</p>
+            <p class="def-body" style="margin-top:8px;">Heç bir "toka vermə", "ot dəmləmə", "belini massaj etmə", akkupunktura və digər əsassız metodlar — yuxudan oyanmaya təsir etmədiyindən — BMGE müalicəsində effektivliyini təsdiqləməyib. Ona baxmayaraq bir çox valideyn ilk bunları sınayır; sabit nəticə olmadığı üçün sonradan heç bir mütəxəssisə etibar etmir.</p>
+          </div>
+          <div class="def-card">
+            <span class="badge on-light" style="margin-bottom:16px;">Mexanizm</span>
+            <h3 class="def-title">Bəs Niyə Keçmir?</h3>
+            <p class="def-body">Əsas səbəb uşaqda yuxunun dərinlik dərəcəsidir. Dərin yuxuda olarkən ayılma siqnalının uşağı oyatmağa gücü çatmır — ona görə də zamanında yuxudan durma refleksi (vərdişi) formalaşmır. Bu bioloji xüsusiyyətdir, tənbəllik, xəstəlik ya da "pis valideynlik" deyil. İrsi komponent var — valideynlərdə yuxu dərindirsə uşaqda ehtimal 75%-ə qalxır.</p>
+            <p class="def-body" style="margin-top:8px;">XBT-10 F98.0 — psixoloji inkişaf pozuntuları bölməsidir. Bu o deməkdir ki, sahə mütəxəssisi psixoterapevt və ya klinik psixoloq — nə nevroloq, nə də uroloq.</p>
+            <p class="def-body" style="margin-top:8px;"><strong>Nevroloji (G.) və ya uroloji (R.) enurez ayrıca kateqoriyadır</strong> — bu xəstəliklərdə gündüz də, ayıq olarkən də sidik qaçırma müşahidə olunur. BMGE yalnız yuxu zamanı baş verir. Digər orqanlarda heç bir patologiya aşkar edilmir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANGER: IMIPRAMINE -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">Xəbərdarlıq</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">İmipramin (Melipramin) Verilməlidir?</h2>
+        <p class="sec-lead" style="margin-bottom:0;color:var(--navy);font-weight:600;">Qısa cavab: XEYİR — enurezin birinci xətt müalicəsində yeri yoxdur.</p>
+        <div class="danger-band">
+          <h3>Qeyri-profil Mütəxəssis Nə Edir?</h3>
+          <p>Bəzi nevroloqlar XBT-10 F98.0 diaqnozu ilə gələn uşaqlara imipramin (melipramin) — trisiklik antidepressant — yazır. Bu preparat sidik ləngiməsinin <strong>müvəqqəti effektini</strong> verir, lakin enurezin mexanizmini — oyatma refleksini — formalaşdırmır. Dərman kəsildikdə enurez ~60% hallarda geri qayıdır (residiv).</p>
+          <p><strong>FDA-nın (Amerika Qida və Dərman Administrasiyası) imipramin üçün Qara Qutu Xəbərdarlığı (Black Box Warning) mövcuddur</strong> — uşaq və yeniyetmələrdə intihar riski. Əlavə olaraq kardiotoksik (ürəyə zərərli) təsiri var. Tibbi ədəbiyyatda enurez müalicəsi zamanı imipramin qəbulu fonunda uşaqlarda ürək dayanması nəticəsindəki ölüm halları qeyd edilmişdir.</p>
+          <p>İmipraminin enurez müalicəsində istifadəsi 1960-cı illərdə başlanıb. O dövrdən bəri beynəlxalq tibbi təşkilatlar (WHO, ICCS, NICE, EAU/ESPU, AUA, ICS) protokollarını yeniləyib — imipramin <strong>birinci xətt müalicəsindən çıxarılıb</strong>. Lakin bəzi mütəxəssislər bu yeniliklərə əməl etmir.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFFERENTIAL DIAGNOSIS -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Differensial Diaqnostika</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Müalicədən Əvvəl Nə İstisna Edilir?</h2>
+        <p class="sec-lead" style="margin-bottom:0;">Psixoterapevt həkim ikincili enurezi — başqa xəstəlik nəticəsini — mütləq istisna edir. Bunlar BMGE deyil.</p>
+        <div class="diff-table">
+          <div class="diff-head">
+            <span>Ehtimal olunan səbəb</span>
+            <span>Nə istisna edilir</span>
+            <span>Yönləndirmə</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Vazopressin (ADH) çatışmazlığı</span>
+            <span class="diff-what">Şəkərsiz diabet</span>
+            <span class="diff-to">Endokrinoloq</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Qlükoza səviyyəsinin yüksəlməsi</span>
+            <span class="diff-what">Şəkərli diabet</span>
+            <span class="diff-to">Endokrinoloq</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Adenoidlər / OUAS</span>
+            <span class="diff-what">Yuxuda oksigen çatışmazlığı, dərin yuxu</span>
+            <span class="diff-to">LOR</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Hemoglobin aşağı</span>
+            <span class="diff-what">Anemiya, xroniki hipoksiya</span>
+            <span class="diff-to">Hematolog</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Sidik yollarının infeksiyası</span>
+            <span class="diff-what">SYİ</span>
+            <span class="diff-to">Uroloq</span>
+          </div>
+          <div class="diff-row" style="border-bottom:none;">
+            <span class="diff-cause">Sidik yollarının anomaliyaları</span>
+            <span class="diff-what">Struktur pozuntular</span>
+            <span class="diff-to">Uroloq</span>
+          </div>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;line-height:1.65;">Üzvi səbəblər istisna edildikdən sonra BMGE diaqnozu təsdiqlənir və müalicəyə başlanır. Əlaqəli mütəxəssisə yönləndirmə psixoterapevt həkimin göstərişi ilə aparılır.</p>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="ps dark-bg">
+      <div class="ps-inner">
+        <span class="badge">Niyə Bizə Etibar Edirsiniz?</span>
+        <h2 class="sec-h2" style="color:var(--white);margin-bottom:8px;margin-top:16px;">Açıqlıq, Məntiq, Sübut</h2>
+        <p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:0;">Biz heç nəyi gizlətmirik. Metodologiya, nəticələr, hətta tədris materialları da açıqdır.</p>
+        <div class="trust-grid">
+          <div class="trust-card">
+            <span class="trust-num">Fakt 01</span>
+            <h3 class="trust-title">Yoxlayın, müqayisə edin</h3>
+            <p class="trust-body">İstifadə etdiyimiz protokol <strong>WHO, ICCS, NICE, EAU/ESPU</strong> tərəfindən tövsiyə olunur. Heç bir psixotrop dərman istifadə etmirik. Yalnız elmi və təsdiqlənmiş metodlara əsaslanır, ciddi mənbələrə istinad edirik — bu səhifənin aşağısında siyahı var.</p>
+          </div>
+          <div class="trust-card">
+            <span class="trust-num">Fakt 02</span>
+            <h3 class="trust-title">Metodologiya tam açıqdır</h3>
+            <p class="trust-body">Gecə enurezinin diaqnostikası və müalicəsinə dair dərsin videosu gənc psixoloqlara dəstək qrupunda və YouTube-da <strong>hamı üçün ödənişsiz</strong> təqdim edilib. Biz istəyirik ki, valideynlər hətta mütəxəssisə müraciət etməzdən əvvəl hər şeyi dəqiq görsün.</p>
+          </div>
+          <div class="trust-card">
+            <span class="trust-num">Fakt 03</span>
+            <h3 class="trust-title">Sosial Məsuliyyət</h3>
+            <p class="trust-body"><strong>Şəhid, Qazi, Müharibə Veteranı və İştirakçısı</strong>, eləcə də təsdiqlənmiş aztəminatlı və ya əlil valideynlərin övladlarının müalicəsi — <strong>tam ödənişsiz</strong>. Yalnız 2025-ci ildə 250-dən çox uşaq müalicə alıb — 100-dən çoxu tam ödənişsiz.</p>
+          </div>
+        </div>
+        <!-- Instagram -->
+        <div class="ig-block">
+          <div>
+            <span class="badge" style="margin-bottom:16px;">Instagram &mdash; Aktuallar</span>
+            <h3 class="ig-title">Mütəxəssis olmayan adamların əlindən uşaqlarınızı qoruyun</h3>
+            <p class="ig-body" style="max-width:700px;">Instagram səhifəmizdə xüsusi aktual bölmələr — <strong>SİDİK QAÇIRMA</strong> və <strong>ENUREZ</strong>. Yanlış müalicə üsulları, əlamətlər, valideyn sualları, real keyslərin izahı. Baxın, paylaşın — bu informasiya pulsuz olmalıdır.</p>
+            <div class="ig-tags">
+              <span class="ig-tag">SİDİK QAÇIRMA</span>
+              <span class="ig-tag">ENUREZ</span>
+            </div>
+          </div>
+          <a href="https://www.instagram.com/dr.ragimoff/" target="_blank" class="btn btn-line" style="border-color:rgba(181,155,114,0.3);color:var(--accent);white-space:nowrap;">Instagram &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- YOUTUBE -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">YouTube Dərs</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Gecə Enurezinin Diaqnostikası və Müalicəsi</h2>
+        <p class="sec-lead" style="margin-bottom:32px;">Gənc psixoloqlara dəstək qrupunda dərsin videosu — indi YouTube-da yüklənib, hamının baxa bilməsi üçün açıq şəkildə. Psixologlara da, valideynlərə də faydalı olsun.</p>
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_ENUREZ?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Gecə Enurezinin Diaqnostikası və Müalicəsi — Dr. Kənan Rəhimov"></iframe>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;">Kanalda daha çox video: <a href="https://youtube.com/@kragimoff" target="_blank" style="color:var(--accent);font-weight:700;">youtube.com/@kragimoff</a></p>
+      </div>
+    </section>
+
+    <!-- TREATMENT PROTOCOL -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">Müalicə Protokolu</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Birincidən Üçüncü Xəttə</h2>
+        <p class="sec-lead" style="margin-bottom:0;">Beynəlxalq protokola (ICCS 2020, NICE, EAU/ESPU 2019) uyğun addım-addım müalicə sxemi.</p>
+        <div class="treat-line">
+          <div class="tl-item">
+            <div class="tl-num">1</div>
+            <div class="tl-body">
+              <span class="tl-tag">Birinci Xətt &mdash; Əsas Metod</span>
+              <div class="tl-title">Davranış Alarm Terapiyası (Gecə Məşqləri)</div>
+              <p class="tl-desc">Alt paltarda və ya çarşabda sensorlu cihaz → sidik ifrazının ilk damcısında siqnal işləyir → uşaq çətin oyanır → valideyn təlimata uyğun təcili oyadır → tualetə gedir → yuxudan oyanma refleksi formalaşır. <strong>Effektivlik: 80% sabit nəticə</strong>. Kurs: 8–12 həftə davam edir. Residiv əhəmiyyətli dərəcədə az. Valideyn fəal iştirak etməlidir.</p>
+              <span class="tl-pill">ICCS 2020 &middot; NICE &middot; Cochrane 2005 — seçim metodu</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">2</div>
+            <div class="tl-body">
+              <span class="tl-tag">Paralelcə &mdash; Mütləq</span>
+              <div class="tl-title">Hissiyətin Artırılması (Gündüz Məşqləri)</div>
+              <p class="tl-desc">Bezləri çıxarmaq (refleksin formalaşmasını bloklayır) &middot; Quru/nəm gecələrin gündəliyi &middot; Kiçik çanaq əzələlərinin, eləcə də sidik yollarının hər bir mərhələsinə aid müalicənin gedişatına uyğun dəstəkləyici məşqlər &middot; hissiyət və iradənin gündəlik gücləndirilməsi &middot; <strong>Utandırma — tamamilə qadağan</strong> (proqnozu pisləşdirdiyi sübut edilib, Cochrane Review 2005).</p>
+              <span class="tl-pill">Alarm terapiyası ilə birlikdə effekti artırır</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">3</div>
+            <div class="tl-body">
+              <span class="tl-tag">Paralelcə &mdash; Mütləq</span>
+              <div class="tl-title">Motivasiya — Uşağın Öz İstəyini Gücləndirmək</div>
+              <p class="tl-desc">Motivasiya məşqləri mütləqdir — uşağın öz həvəsi olmalıdır, əks halda bütün tapşırıqları həvəssiz yerinə yetirəcək, hətta etiraz edərək imtina da edə bilər. Bu səbəbdən <strong>5–8 yaş ən effektiv mərhələ</strong> hesab edilir. Uşaqda bu mövzu ilə bağlı travma olduqda inam zəifləyir, yuxudan oyandıqda sabotaj baş verə bilər. Gedişata uyğun mütəxəssis hər mərhələdə fərqli motivasiya tədbiri tətbiq edir.</p>
+              <span class="tl-pill">Alarm terapiyası ilə birlikdə effekti artırır</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">4</div>
+            <div class="tl-body">
+              <span class="tl-tag">Üçüncü Xətt &mdash; Davranış Terapiyası Effektiv Olmadıqda</span>
+              <div class="tl-title">Kombinasiya: Alarm Terapiya + Dərmanlar</div>
+              <p class="tl-desc">Davranış terapiyası 12 həftə ərzində effektiv olmadıqda, növbəti mərhələdə 2 istiqamətli müalicə davam edir — yuxunun dərinliyini nəzərə alaraq yalnız ciddi kardioloji nəzarət altında istisnai hallarda psixotrop preparatların təyini nəzərə alına bilər. Bu siyahıda mayenin həcmi də çox olduqda endokrinoloji müayinə ilə sübut olduqdan sonra desmopressin və ya digər analoqları təyin edilə bilər (Vande Walle et al., 2012).</p>
+              <span class="tl-pill red">! İmipramin və Amitriptilin — 2012-ci ildən etibarən kardiotoksik təsiri və ölüm halları ilə yanaşı çoxsaylı yan təsirləri olduğu üçün ÜST tərəfindən istifadəsi tövsiyə edilmir</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Yekun Sxem</h3>
+        <div class="step-scheme">
+          <div class="ss-row"><div class="ss-n">1</div><div class="ss-body"><strong>Psixoterapevtlə məsləhət</strong> — ikincili enurezin istisna edilməsi, diaqnozun təsdiqlənməsi</div></div>
+          <div class="ss-row"><div class="ss-n">2</div><div class="ss-body"><strong>İntensiv Alarm + Davranış terapiyası</strong> — 8–12 həftə ərzində həyata keçirilir</div></div>
+          <div class="ss-row"><div class="ss-n">3</div><div class="ss-body"><strong>Nətinə olmadıqda</strong> — Alarm terapiya + Xüsusi müalicə kombinasiyası</div></div>
+          <div class="ss-row"><div class="ss-n">4</div><div class="ss-body"><strong>Effektin olmaması</strong> — təkrar diaqnostika, diaqnozun yenidən nəzərdən keçirilməsi</div></div>
+        </div>
+
+        <h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Elmi Mənbələr</h3>
+        <div class="refs-list">
+          <div class="ref-item"><span class="ref-n">1</span><div class="ref-text">Glazener C.M., Evans J.H., Peto R.E. <em>Alarm interventions for nocturnal enuresis in children.</em> Cochrane Database Syst Rev. 2005 — alarm-terapiya uzunmüddətli nəticələrə görə bütün digər müdaxilələri üstələyir; BMGE-də seçim metodudur.</div></div>
+          <div class="ref-item"><span class="ref-n">2</span><div class="ref-text">Glazener C.M., Evans J.H. <em>Tricyclic and related drugs for nocturnal enuresis in children.</em> Cochrane Review, 2000 — trisiklik antidepressantlar qısamüddətli effekt verir, kardiotoksiklik daxil olmaqla ciddi yan təsirləri var, ləğvdən sonra yüksək residiv.</div></div>
+          <div class="ref-item"><span class="ref-n">3</span><div class="ref-text">Vande Walle J., Rittig S., Bauer S. et al. <em>Practical consensus guidelines for the management of enuresis.</em> Eur J Pediatr. 2012 Jun — imipramin enurezin müalicəsindəki son seçim olmalıdır.</div></div>
+          <div class="ref-item"><span class="ref-n">4</span><div class="ref-text">Radmayr C., Bogaert G., Dogan H.S. et al. <em>EAU/ESPU Paediatric Urology Guidelines.</em> 2019 — BMGE-nin differensial diaqnostikası və müalicə protokolu.</div></div>
+          <div class="ref-item"><span class="ref-n">5</span><div class="ref-text"><em>NICE Guideline: Nocturnal Enuresis — The Management of Bedwetting in Children and Young People.</em> National Institute for Health and Care Excellence, UK — alarm 5 yaşdan yuxarı uşaqlar üçün birinci xətt terapiya.</div></div>
+          <div class="ref-item"><span class="ref-n">6</span><div class="ref-text"><em>ICCS (International Children's Continence Society) Guidelines.</em> 2020 — alarm — farmakoloji müdaxilə olmadan davamlı remissiya verən yeganə metoddur; imipramin tövsiyə edilən protokollara daxil deyil.</div></div>
+          <div class="ref-item"><span class="ref-n">7</span><div class="ref-text">MacLean R.E.G. <em>Imipramine Hydrochloride (Tofranil) and Enuresis.</em> Amer J Psychiat 117:551, 1960 &middot; Epstein S.J. <em>Imipramine in the Control of Enuresis.</em> Arch Pediatr, 1965 — tarixi kontekst; o dövrdən bəri beynəlxalq protokollar kökündən dəyişib.</div></div>
+          <div class="ref-item"><span class="ref-n">8</span><div class="ref-text">WHO, MXK-10, <em>F98.0 Nonorganic enuresis.</em> Davranış və emosional pozuntular bölməsi — profil mütəxəssis psixoterapevt/uşaq psixiatrıdır.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICE -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Qiymətlər</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Müalicənin Dəyəri</h2>
+        <p class="sec-lead" style="margin-bottom:0;">Tam kurs ortalama 450–550 AZN. Şəhid, Qazi, Veteran və aztəminatlı ailələr üçün — tam ödənişsiz.</p>
+        <div class="price-table">
+          <div class="pt-head"><span>Xidmətlər</span></div>
+          <div class="pt-row">
+            <div><div class="pt-label">İlkin qiymətləndirmə</div><div class="pt-sub">30 dəq &middot; ikincili enurezin istisna edilməsi &middot; şəxsi və ya online</div></div>
+            <div class="pt-price">50 AZN</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Kurs başlanğıcı</div><div class="pt-sub">Alarm cihazı + metodologiya + blanqlar + tam instruksiya</div></div>
+            <div class="pt-price">300 AZN</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Aylıq dəstək</div><div class="pt-sub">Həftəlik hesabat analizi &middot; ortalama 2–3 ay</div></div>
+            <div class="pt-price">100 AZN/ay</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Şəhid · Qazi · Veteran · Aztəminatlı</div><div class="pt-sub">Təsdiqedici sənəd əsasında — tam ödənişsiz</div></div>
+            <div class="pt-price" style="color:var(--accent);">Pulsuz</div>
+          </div>
+          <div class="pt-total">
+            <span class="tl">Cəmi (ortalama)</span>
+            <span class="tv">450 – 550 AZN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTRATION -->
+    <section class="ps dark-bg" id="registration">
+      <div class="ps-inner">
+        <span class="badge">Qeydiyyat</span>
+        <h2 class="sec-h2" style="color:var(--white);margin-bottom:8px;margin-top:16px;">Müraciət Formu</h2>
+        <p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:40px;">Formu doldurun — 24 saat ərzində koordinator sizinlə əlaqə saxlayır.</p>
+        <div class="reg-path">
+          <div class="reg-path-step"><span class="rp-num">Addım 01</span><h4>Müraciət</h4><p>Formu doldurun, uşağın yaşını yazın</p></div>
+          <div class="reg-path-step"><span class="rp-num">Addım 02</span><h4>Zəng</h4><p>24 saat ərzində koordinator əlaqə saxlayır</p></div>
+          <div class="reg-path-step"><span class="rp-num">Addım 03</span><h4>İlkin görüş</h4><p>50 AZN &middot; qiymətləndirmə, diaqnozun təsdiqi</p></div>
+          <div class="reg-path-step"><span class="rp-num">Addım 04</span><h4>Kurs başlayır</h4><p>Alarm cihazı + instruksiya — evdə müalicə</p></div>
+        </div>
+        <form class="reg-form" id="enRegForm">
+          <div class="rf2" style="margin-bottom:20px;">
+            <div class="rfield"><label for="er-name">Valideynin adı soyadı</label><input type="text" id="er-name" name="name" placeholder="Ad Soyad" required /></div>
+            <div class="rfield"><label for="er-phone">Telefon</label><input type="tel" id="er-phone" name="phone" placeholder="+994 XX XXX XX XX" required /></div>
+          </div>
+          <div class="rf2" style="margin-bottom:20px;">
+            <div class="rfield"><label for="er-age">Uşağın yaşı</label><input type="text" id="er-age" name="child_age" placeholder="Məsələn: 7 yaş" /></div>
+            <div class="rfield"><label for="er-dur">Neçə ildir davam edir?</label><input type="text" id="er-dur" name="duration" placeholder="Məsələn: 2 ildir" /></div>
+          </div>
+          <div class="rfield" style="margin-bottom:20px;"><label for="er-note">Əlavə qeyd (istəyə bağlı)</label><textarea id="er-note" name="note" rows="3" placeholder="Əvvəlki müalicə cəhdləri, suallar..."></textarea></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;">
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.3);line-height:1.6;max-width:400px;margin:0;">Məlumatlarınız üçüncü şəxslərə ötürülmür.</p>
+            <button type="submit" class="btn btn-fill" style="padding:16px 40px;font-size:0.9375rem;">Müraciət Göndər</button>
+          </div>
+          <div class="form-success" id="enSuccess"><p>Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlayacağıq.</p></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Valideyn Rəyləri</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Uşaqları Sağalanmış Valideynlər Yazır</h2>
+        <p class="sec-lead" style="margin-bottom:40px;">Rəylər yalnız admin təsdiqi sonrası dərc edilir — spam və kənar reklam yoxdur.</p>
+        <div class="reviews-grid">
+          <div class="rv-card">
+            <div class="rv-name">Aynur V. &mdash; Bakı</div>
+            <p class="rv-text">"Oğlum 9 yaşında idi, 4 ildir əziyyət çəkirdi. 10 həftəyə tam sağaldı. Cihaz işləyir, doktor izah edir. Dərman olmadan belə nəticə görmüşdüm ki deyərdim yalan. Amma özüm gözümüzlə gördüm."</p>
+            <div class="rv-meta">2025 &middot; 10 həftəlik kurs</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Rauf M. &mdash; Sumqayıt</div>
+            <p class="rv-text">"Psixiatrlara getdik, hər biri dərman yazdı. Kənan bəy dərman vermədi — sadəcə cihaz və metodologiya. 3 ayda uşağımız tam quruydu. Sadəcə təşəkkür edə bilərik."</p>
+            <div class="rv-meta">2024 &middot; 12 həftəlik kurs</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Sevinc H. &mdash; Gəncə</div>
+            <p class="rv-text">"Online görüşlər ilə müalicə etdilər. Bakıya gəlmədik. Həftəlik hesabatları göndərirdik, hər sual cavablandırıldı. Qızım 8 həftəyə sağaldı. Çox şadıq."</p>
+            <div class="rv-meta">2025 &middot; 8 həftəlik kurs &middot; online</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Fərid K. &mdash; Bakı</div>
+            <p class="rv-text">"Aztəminatlı ailəyik, qısa zamanda pulsuz kömək etdilər. Bu insanlığı xatırladıb. Uşağımız 11 həftəyə tam sağaldı. Allah razı olsun."</p>
+            <div class="rv-meta">2025 &middot; Pulsuz kurs &middot; 11 həftə</div>
+          </div>
+        </div>
+        <div class="review-form">
+          <h3 style="font-size:1.125rem;font-weight:800;color:var(--clr-heading);margin-bottom:8px;font-family:var(--font);">Öz Rəyinizi Paylaşın</h3>
+          <p style="font-size:0.875rem;color:var(--clr-text-muted);margin-bottom:24px;">Rəy yalnız admin yoxlamasından sonra dərc edilir. Spam, reklam, yanlış məlumat qəbul edilmir.</p>
+          <form id="reviewForm">
+            <div class="rf2" style="margin-bottom:16px;">
+              <div class="rfield">
+                <label for="rv-n" style="color:rgba(6,24,38,0.5);">Ad (tam ad lazım deyil)</label>
+                <input type="text" id="rv-n" name="rv_name" placeholder="Aynur V." style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" required />
+              </div>
+              <div class="rfield">
+                <label for="rv-city" style="color:rgba(6,24,38,0.5);">Şəhər</label>
+                <input type="text" id="rv-city" name="rv_city" placeholder="Bakı" style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" />
+              </div>
+            </div>
+            <div class="rfield" style="margin-bottom:16px;">
+              <label for="rv-txt" style="color:rgba(6,24,38,0.5);">Rəyiniz</label>
+              <textarea id="rv-txt" name="rv_text" rows="4" placeholder="Uşağınız neçə yaşındaydı, müalicə neçə həftə çəkdi, nəticə necə oldu..." style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-fill" style="padding:14px 32px;">Rəy Göndər</button>
+            <p class="rv-note">Rəyiniz admin tərəfindən yoxlandıqdan sonra saytda dərc ediləcək.</p>
+            <div class="form-success" id="rvSuccess"><p>Rəyiniz qəbul edildi. Yoxlamadan sonra dərc ediləcək. Təşəkkür edirik.</p></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">Faydalı Oxu</span>
+        <h2 class="sec-h2" style="margin-bottom:16px;margin-top:16px;">Mövzuya Aid Məqalələr</h2>
+        <p class="sec-lead" style="margin-bottom:40px;">Dr. Kənan Rəhimovun enurez mövzusunda yazdığı məqalələr.</p>
+        <div class="blog-grid-2">
+          <a href="blog-enurez.html" class="bc">
+            <span class="bc-cat">Uşaq Psixologiyası</span>
+            <div class="bc-title">Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc</div>
+            <div class="bc-lead">Uşaqlarda gecə enurezi haqqında ən çox yayılmış 5 yanlış inanc və psixoloji müalicənin düzgün yolu.</div>
+            <span class="bc-more">Oxumağa davam et &rarr;</span>
+          </a>
+          <a href="blog-yeniyetme.html" class="bc">
+            <span class="bc-cat">Valideyn-Uşaq</span>
+            <div class="bc-title">Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz</div>
+            <div class="bc-lead">13–17 yaş arası beyin inkişafının ən intensiv dövrüdür. Valideynlər niyə «düşmən» görünür? Psixoloji izahat.</div>
+            <span class="bc-more">Oxumağa davam et &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo">
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psixologiya Məktəbi</span>
+            </a>
+            <p class="footer-desc">Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə. Bakı, Azərbaycan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Terapiya</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Gecə Enurezi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Təhsil</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Bloqu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Əlaqə</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+          <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="shared.js"></script>
+    <script>
+      const GAS_ENDPOINT = '';
+      function submitForm(formId, successId) {
+        const form = document.getElementById(formId);
+        if (!form) return;
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const btn = this.querySelector('[type="submit"]');
+          btn.textContent = 'Göndərilir...';
+          btn.disabled = true;
+          const done = () => {
+            document.getElementById(successId).style.display = 'block';
+            btn.style.display = 'none';
+          };
+          if (GAS_ENDPOINT) {
+            fetch(GAS_ENDPOINT, { method: 'POST', body: new FormData(this) }).then(done).catch(done);
+          } else {
+            setTimeout(done, 800);
+          }
+        });
+      }
+      submitForm('enRegForm', 'enSuccess');
+      submitForm('reviewForm', 'rvSuccess');
+    </script>
+  </body>
+</html>
