@@ -27,18 +27,20 @@
 
       /* ── CURRICULUM TABLE ── */
       .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 40px; }
-      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 12px 32px; border-bottom: 2px solid rgba(181,155,114,0.3); background: rgba(181,155,114,0.04); margin: 0; }
-      .cur-row { display: grid; grid-template-columns: 1fr 100px; border-bottom: 1px solid var(--clr-border); padding: 14px 32px; align-items: center; }
+      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 9px 24px; border-bottom: 2px solid rgba(181,155,114,0.25); background: rgba(181,155,114,0.04); margin: 0; }
+      .cur-row { display: flex; align-items: baseline; padding: 9px 24px; border-bottom: 1px solid var(--clr-border); }
       .cur-row:last-child { border-bottom: none; }
-      .cur-row:hover { background: rgba(181,155,114,0.04); }
-      .cur-num { font-size: var(--t-xs); color: rgba(6,24,38,0.35); font-weight: 700; margin-right: 10px; }
-      .cur-name { font-size: var(--t-sm); color: var(--navy); }
-      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: var(--navy); text-align: right; white-space: nowrap; }
-      .cur-hours span { font-size: var(--t-xs); font-weight: 400; color: var(--clr-text-muted); margin-left: 2px; }
-      .cur-total { display: grid; grid-template-columns: 1fr 100px; background: var(--navy); padding: 20px 32px; align-items: center; }
+      .cur-row:hover { background: rgba(181,155,114,0.03); }
+      .cur-row > div:first-child { display: flex; align-items: baseline; flex: 1; overflow: hidden; }
+      .cur-row > div:first-child::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(6,24,38,0.18); margin: 0 10px 3px; min-width: 16px; }
+      .cur-num { font-size: 0.7rem; color: rgba(6,24,38,0.28); font-weight: 700; margin-right: 8px; flex-shrink: 0; }
+      .cur-name { font-size: var(--t-sm); color: var(--navy); white-space: nowrap; }
+      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: var(--navy); white-space: nowrap; flex-shrink: 0; }
+      .cur-hours span { font-size: 0.7rem; font-weight: 400; color: var(--clr-text-muted); margin-left: 2px; }
+      .cur-total { display: flex; justify-content: space-between; align-items: center; background: var(--navy); padding: 16px 24px; }
       .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
-      .cur-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); text-align: right; }
-      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.25); color: var(--navy); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
+      .cur-total .tv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.25); color: var(--navy); padding: 8px 18px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
       .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
       /* ── REQUIREMENTS ── */
@@ -136,9 +138,9 @@
         .opp-card:last-child { border-bottom: none; }
         .tg-inner { grid-template-columns: 1fr; }
         .tg-reviews { min-width: unset; max-width: 100%; }
-        .cur-row { grid-template-columns: 1fr 80px; padding: 12px 20px; }
-        .cur-group-title { padding: 12px 20px; }
-        .cur-total { padding: 16px 20px; grid-template-columns: 1fr 80px; }
+        .cur-row { padding: 8px 16px; }
+        .cur-group-title { padding: 8px 16px; }
+        .cur-total { padding: 14px 16px; }
       }
     </style>
   </head>
