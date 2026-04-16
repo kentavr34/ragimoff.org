@@ -25,19 +25,21 @@
       .info-val { font-size: var(--t-sm); color: var(--white); font-weight: 600; text-align: right; }
       .info-val.accent { color: var(--accent); font-weight: 800; font-size: var(--t-body); }
 
-      /* ── CURRICULUM ── */
-      .curriculum-wrap { margin-top: 40px; }
-      .curriculum-module { border: 1px solid rgba(255,255,255,0.1); margin-bottom: 2px; overflow: hidden; }
-      .module-header { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 20px 28px; background: rgba(255,255,255,0.03); }
-      .module-meta { display: flex; align-items: center; gap: 16px; }
-      .module-num { font-size: var(--t-xs); font-weight: 800; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0; }
-      .module-name { font-size: var(--t-body); font-weight: 700; color: var(--white); }
-      .module-hours { font-size: var(--t-sm); font-weight: 700; color: var(--accent); white-space: nowrap; background: rgba(181,155,114,0.12); padding: 4px 12px; }
-      .module-topics { padding: 0 28px 20px; display: flex; flex-wrap: wrap; gap: 8px; }
-      .module-topic { font-size: 0.75rem; color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 4px 10px; }
-      .curriculum-total { display: flex; justify-content: space-between; align-items: center; background: var(--accent); padding: 20px 28px; margin-top: 2px; }
-      .curriculum-total-lbl { font-size: var(--t-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); }
-      .curriculum-total-val { font-size: 1.5rem; font-weight: 800; color: var(--navy); }
+      /* ── CURRICULUM TABLE ── */
+      .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 40px; }
+      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 12px 32px; border-bottom: 2px solid rgba(181,155,114,0.3); background: rgba(181,155,114,0.04); margin: 0; }
+      .cur-row { display: grid; grid-template-columns: 1fr 100px; border-bottom: 1px solid var(--clr-border); padding: 14px 32px; align-items: center; }
+      .cur-row:last-child { border-bottom: none; }
+      .cur-row:hover { background: rgba(181,155,114,0.04); }
+      .cur-num { font-size: var(--t-xs); color: rgba(6,24,38,0.35); font-weight: 700; margin-right: 10px; }
+      .cur-name { font-size: var(--t-sm); color: var(--navy); }
+      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: var(--navy); text-align: right; white-space: nowrap; }
+      .cur-hours span { font-size: var(--t-xs); font-weight: 400; color: var(--clr-text-muted); margin-left: 2px; }
+      .cur-total { display: grid; grid-template-columns: 1fr 100px; background: var(--navy); padding: 20px 32px; align-items: center; }
+      .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+      .cur-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); text-align: right; }
+      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.25); color: var(--navy); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
+      .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
       /* ── REQUIREMENTS ── */
       .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
@@ -134,6 +136,9 @@
         .opp-card:last-child { border-bottom: none; }
         .tg-inner { grid-template-columns: 1fr; }
         .tg-reviews { min-width: unset; max-width: 100%; }
+        .cur-row { grid-template-columns: 1fr 80px; padding: 12px 20px; }
+        .cur-group-title { padding: 12px 20px; }
+        .cur-total { padding: 16px 20px; grid-template-columns: 1fr 80px; }
       }
     </style>
   </head>
