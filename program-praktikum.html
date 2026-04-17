@@ -142,6 +142,13 @@
         .cur-total { padding: 16px 20px; }
         .cur-wrap { width: 100%; }
       }
+      @media print {
+        body * { visibility: hidden; }
+        #sec-curriculum, #sec-curriculum * { visibility: visible; }
+        #sec-curriculum { position: absolute; left: 0; top: 0; width: 100%; padding: 24px !important; }
+        .cur-wrap { width: 100% !important; box-shadow: none !important; }
+        .pdf-btn { visibility: hidden !important; }
+      }
     </style>
   </head>
   <body>
@@ -274,7 +281,7 @@
     </section>
 
     <!-- E) SCHEDULE TABLE -->
-    <section style="background:var(--white);">
+    <section id="sec-curriculum" style="background:var(--white);">
       <div class="sec-inner" style="padding:var(--s-section);">
         <span class="badge on-light">2026 CƏDVƏLİ</span>
         <h2 class="sec-h2" style="text-align:left;">Aylıq Proqram Cədvəli</h2>

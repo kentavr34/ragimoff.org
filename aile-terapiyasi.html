@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="gtc.css" />
+    <style>
+      .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(181,155,114,0.15); }
+      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+      .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+      @media (max-width: 768px) { .yt-grid { grid-template-columns: 1fr; } }
+    </style>
   </head>
 
   <body>
@@ -152,6 +158,30 @@
             <p style="color:var(--clr-text-muted); line-height:1.7">BirBank, TamKart, BolKart, WorldKart ilə ödəniş mümkündür. Bank köçürməsi qəbul edilir. Taksit imkanı mövcuddur.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- YOUTUBE -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">YouTube Dərslər</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Ailə Münasibətləri — Video Dərslər</h2>
+        <p class="sec-lead" style="margin-bottom:32px;">Ailədə münasibətlər dözülməz həddə çatdıqda nə etmək lazımdır — 2 hissəlik video izah.</p>
+        <div class="yt-grid">
+          <div>
+            <div class="yt-wrap">
+              <iframe src="https://www.youtube.com/embed/K1n0Cq4LUwE?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Ailədə Münasibətlər — 1 hissə | Dr. Kənan Rəhimov"></iframe>
+            </div>
+            <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:10px;font-weight:600;">1 hissə</p>
+          </div>
+          <div>
+            <div class="yt-wrap">
+              <iframe src="https://www.youtube.com/embed/1KdbirxNtco?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Ailədə Münasibətlər — 2 hissə | Dr. Kənan Rəhimov"></iframe>
+            </div>
+            <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:10px;font-weight:600;">2 hissə</p>
+          </div>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:20px;">Kanalda daha çox video: <a href="https://youtube.com/@kragimoff" target="_blank" style="color:var(--accent);font-weight:700;">youtube.com/@kragimoff</a></p>
       </div>
     </section>
 

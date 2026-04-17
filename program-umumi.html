@@ -157,6 +157,13 @@
         .cur-group-title, .cur-row, .cur-total { padding-left: 16px; padding-right: 16px; }
         .reg-form-wrap { padding: 24px 16px !important; }
       }
+      @media print {
+        body * { visibility: hidden; }
+        #sec-curriculum, #sec-curriculum * { visibility: visible; }
+        #sec-curriculum { position: absolute; left: 0; top: 0; width: 100%; padding: 24px !important; }
+        .cur-wrap { width: 100% !important; box-shadow: none !important; }
+        .pdf-btn { visibility: hidden !important; }
+      }
     </style>
   </head>
   <body>
@@ -259,7 +266,7 @@
     </section>
 
     <!-- CURRICULUM TABLE -->
-    <section data-theme="light" style="background:var(--white);" aria-labelledby="umumi-cur-h">
+    <section id="sec-curriculum" data-theme="light" style="background:var(--white);" aria-labelledby="umumi-cur-h">
       <div class="sec-inner" style="padding:var(--s-section);text-align:left;">
         <span class="badge on-light">TƏDRİS PLANI</span>
         <h2 class="sec-h2" id="umumi-cur-h" style="text-align:left;">Fənnlər Siyahısı — 22 Fənn</h2>
