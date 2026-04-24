@@ -2,6 +2,18 @@
 //  RAGIMOFF.ORG — Shared JS
 // ═══════════════════════════════════════════════
 
+// Google Analytics 4 (G-SF6PE3YDN1)
+(function() {
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-SF6PE3YDN1';
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', 'G-SF6PE3YDN1');
+})();
+
 // Mobile menu
 function toggleMenu() {
   const nav = document.getElementById('mobileNav');

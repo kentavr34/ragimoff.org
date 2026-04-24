@@ -222,6 +222,34 @@
       </div>
     </section>
 
+    <!-- DOCUMENTS GALLERY -->
+    <section id="diplomas" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="dip-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Rəsmi Sənədlər</span>
+          <h2 class="sec-h2" id="dip-h">Məzun Sertifikatları və İnstitut Sənədləri</h2>
+          <p class="sec-sub">Proqramı bitirdikdə alacağınız sertifikatlar<br>və Sankt-Peterburq İDPO institutunun rəsmi sənədləri.</p>
+        </div>
+      </div>
+      <div class="gallery-band" data-theme="dark">
+        <div class="diploma-gallery" id="diplomaGallery">
+          <div class="dg-mains">
+            <div class="dg-main-item" data-idx="0"><img src="images/certificate/cert-sample-ipas-clinical.jpg" alt="IPAS Klinik Sertifikatı" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="1"><img src="images/certificate/cert-sample-ipas-family.jpg" alt="IPAS Ümumi Psixologiya Sertifikatı" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="2"><img src="images/certificate/cert-sample-gtc-dark.jpg" alt="GTC Praktikum Sertifikatı" loading="lazy" /></div>
+          </div>
+          <div class="dg-thumbs">
+            <div class="dg-thumb" data-idx="3"><img src="images/institute/diplom-psy-spb-idpo.jpg" alt="SPb İDPO — Psixologiya Diplomu" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="4"><img src="images/institute/diplom-spb-prilozhenie.jpg" alt="Diploma Əlavə" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="5"><img src="images/institute/diplom-predmety.jpg" alt="Fənnlər Cədvəli" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="6"><img src="images/institute/licenziya-1.jpg" alt="Rəsmi Fəaliyyət Lisenziyası" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="7"><img src="images/institute/licenziya-2.jpg" alt="Lisenziya 2" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="8"><img src="images/institute/licenziya-vypiska.jpg" alt="Lisenziya Çıxarışı" loading="lazy" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- LEGAL BANNER -->
     <div class="legal-banner" data-theme="dark">
       <div class="legal-banner-inner">
@@ -399,6 +427,42 @@
     </a>
 
     <script src="shared.js"></script>
+
+    <!-- Diploma Lightbox -->
+    <div class="dg-lightbox" id="dgLightbox">
+      <button class="dg-lb-close" id="dgLbClose" aria-label="Bağla">&#x2715;</button>
+      <button class="dg-lb-prev" id="dgLbPrev" aria-label="Əvvəlki">&#x2039;</button>
+      <div class="dg-lb-img-wrap"><img id="dgLbImg" src="" alt="" /></div>
+      <button class="dg-lb-next" id="dgLbNext" aria-label="Növbəti">&#x203A;</button>
+      <div class="dg-lb-counter" id="dgLbCounter"></div>
+    </div>
+    <script>
+    (function () {
+      var gallery = document.getElementById('diplomaGallery');
+      if (!gallery) return;
+      var items = Array.from(gallery.querySelectorAll('[data-idx]'));
+      items.sort(function(a,b){ return +a.dataset.idx - +b.dataset.idx; });
+      var images = items.map(function(el){ var img = el.querySelector('img'); return { src: img.src, alt: img.alt }; });
+      var lb = document.getElementById('dgLightbox');
+      var lbImg = document.getElementById('dgLbImg');
+      var lbClose = document.getElementById('dgLbClose');
+      var lbPrev = document.getElementById('dgLbPrev');
+      var lbNext = document.getElementById('dgLbNext');
+      var lbCnt = document.getElementById('dgLbCounter');
+      var current = 0, timer = null;
+      function show(idx) { current = (idx + images.length) % images.length; lbImg.src = images[current].src; lbImg.alt = images[current].alt; lbCnt.textContent = (current + 1) + ' / ' + images.length; }
+      function openLb(idx) { show(idx); lb.classList.add('active'); document.body.style.overflow = 'hidden'; startAuto(); }
+      function closeLb() { lb.classList.remove('active'); document.body.style.overflow = ''; stopAuto(); }
+      function startAuto() { stopAuto(); timer = setInterval(function(){ show(current + 1); }, 3000); }
+      function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+      items.forEach(function(el){ el.addEventListener('click', function(){ openLb(+el.dataset.idx); }); });
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', function(e){ e.stopPropagation(); show(current - 1); startAuto(); });
+      lbNext.addEventListener('click', function(e){ e.stopPropagation(); show(current + 1); startAuto(); });
+      lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+      document.addEventListener('keydown', function(e){ if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') { show(current - 1); startAuto(); } if (e.key === 'ArrowRight') { show(current + 1); startAuto(); } });
+    })();
+    </script>
     <script>
       document.getElementById('regForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
