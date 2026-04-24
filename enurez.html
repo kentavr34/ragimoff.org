@@ -640,28 +640,53 @@
 
     <script src="shared.js"></script>
     <script>
-      const GAS_ENDPOINT = '';
-      function submitForm(formId, successId) {
-        const form = document.getElementById(formId);
-        if (!form) return;
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const btn = this.querySelector('[type="submit"]');
-          btn.textContent = 'Göndərilir...';
-          btn.disabled = true;
-          const done = () => {
-            document.getElementById(successId).style.display = 'block';
-            btn.style.display = 'none';
-          };
-          if (GAS_ENDPOINT) {
-            fetch(GAS_ENDPOINT, { method: 'POST', body: new FormData(this) }).then(done).catch(done);
-          } else {
-            setTimeout(done, 800);
-          }
-        });
-      }
-      submitForm('enRegForm', 'enSuccess');
-      submitForm('reviewForm', 'rvSuccess');
+      // Регистрация на консультацию (enurez)
+      document.getElementById('enRegForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('name') || '',
+          lname: '',
+          phone: fd.get('phone') || '',
+          email: '',
+          service: 'Enurez Konsultasiyası',
+          note: [
+            fd.get('child_age') ? 'Uşağın yaşı: ' + fd.get('child_age') : '',
+            fd.get('duration') ? 'Müddət: ' + fd.get('duration') : '',
+            fd.get('note') || ''
+          ].filter(Boolean).join(' | '),
+          source: 'enurez.html'
+        };
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        document.getElementById('enSuccess').style.display = 'block';
+        btn.style.display = 'none';
+      });
+
+      // Отзыв (enurez)
+      document.getElementById('reviewForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'review',
+          name: fd.get('rv_name') || '',
+          program: 'Enurez (' + (fd.get('rv_city') || '—') + ')',
+          rating: '5',
+          text: fd.get('rv_text') || '',
+          email: ''
+        };
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        document.getElementById('rvSuccess').style.display = 'block';
+        btn.style.display = 'none';
+      });
     </script>
   </body>
 </html>

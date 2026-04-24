@@ -678,19 +678,7 @@
 
     <script src="shared.js"></script>
     <script>
-      document.getElementById('regForm')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = this.querySelector('button[type="submit"]');
-        const success = document.getElementById('regSuccess');
-        btn.textContent = 'Göndərilir...';
-        btn.disabled = true;
-        setTimeout(() => {
-          this.style.opacity = '0.5';
-          this.style.pointerEvents = 'none';
-          success.style.display = 'block';
-          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 800);
-      });
+      wireRegForm('regForm', 'regSuccess', 'program-umumi.html');
     </script>
 
     <!-- Diploma Lightbox -->

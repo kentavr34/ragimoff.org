@@ -68,7 +68,42 @@
         .btn, a[href] { display: none !important; }
         body::before { content: "RAGIMOFF Psixologiya Məktəbi — Tədris Proqramları"; display: block; font-size: 14pt; font-weight: 800; color: #06182b; text-align: center; padding: 16px 0 20px; letter-spacing: 0.05em; text-transform: uppercase; }
       }
-    </style>
+
+      /* ── STUDENTS GALLERY ── */
+      .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+      .students-item { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; border: 1px solid var(--clr-border); }
+      .students-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+      .students-item:hover img { transform: scale(1.05); }
+      @media (max-width: 960px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 560px) { .students-grid { grid-template-columns: 1fr; } }
+
+      /* ── REVIEWS ── */
+      .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+      .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(181,155,114,0.22); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+      .review-stars { color: var(--accent); font-size: 1.1rem; letter-spacing: 2px; }
+      .review-text { font-size: var(--t-sm); color: rgba(255,255,255,0.82); line-height: 1.7; margin: 0; font-style: italic; }
+      .review-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 12px; border-top: 1px solid rgba(181,155,114,0.15); }
+      .review-name { font-size: var(--t-sm); font-weight: 700; color: var(--white); }
+      .review-prog { font-size: var(--t-xs); color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+      @media (max-width: 1100px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 720px) { .reviews-grid { grid-template-columns: 1fr; } .review-card { padding: 22px; } }
+
+      /* ── REVIEW FORM ── */
+      .rev-form-wrap { max-width: 640px; margin: 40px auto 0; background: var(--white); padding: 40px; border: 1px solid var(--clr-border); }
+      .rev-field { margin-bottom: 18px; }
+      .rev-field label { display: block; font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 8px; }
+      .rev-field input, .rev-field select, .rev-field textarea { width: 100%; padding: 12px 14px; font-family: var(--font); font-size: var(--t-sm); border: 1px solid var(--clr-border); background: var(--white); color: var(--clr-text); box-sizing: border-box; border-radius: 0; }
+      .rev-field input:focus, .rev-field select:focus, .rev-field textarea:focus { outline: none; border-color: var(--accent); }
+      .rev-field textarea { resize: vertical; min-height: 120px; }
+      .rev-stars-input { display: flex; gap: 4px; }
+      .rev-stars-input input { position: absolute; opacity: 0; pointer-events: none; }
+      .rev-stars-input label { font-size: 1.8rem; color: rgba(6,24,38,0.2); cursor: pointer; transition: color 0.15s; margin: 0; padding: 0; display: inline-block; }
+      .rev-stars-input label:hover, .rev-stars-input label:hover ~ label { color: var(--accent); }
+      .rev-stars-input input:checked ~ label { color: var(--accent); }
+      .rev-stars-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+      .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(181,155,114,0.06); border-left: 3px solid var(--accent); }
+      .rev-success { display: none; background: #e8f5e9; border: 1px solid #81c784; padding: 20px; color: #2e7d32; font-size: var(--t-sm); font-weight: 600; margin-top: 20px; }
+      @media (max-width: 600px) { .rev-form-wrap { padding: 28px 20px; } }
   </head>
   <body>
 
@@ -264,6 +299,122 @@
       </div>
     </div>
 
+    <!-- STUDENTS GALLERY -->
+    <section id="students" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="stud-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Məktəbimizdən Anlar</span>
+          <h2 class="sec-h2" id="stud-h">Tələbələrimiz və Təlim Prosesi</h2>
+          <p class="sec-sub">Oflayn dərslər, praktikum sessiyaları,<br>sertifikat təqdimatları və korporativ təlimlər.</p>
+        </div>
+        <div class="students-grid" id="studentsGallery">
+          <div class="students-item" data-idx="0"><img src="images/students/group-training.jpg" alt="Qrup təlimi" loading="lazy" /></div>
+          <div class="students-item" data-idx="1"><img src="images/students/psixoterapiya-praktikum.jpg" alt="Psixoterapiya Praktikumu" loading="lazy" /></div>
+          <div class="students-item" data-idx="2"><img src="images/students/klinik-psixologiya-program.jpg" alt="Klinik Psixologiya qrupu" loading="lazy" /></div>
+          <div class="students-item" data-idx="3"><img src="images/students/umumi-psixologiya-program.jpg" alt="Ümumi Psixologiya qrupu" loading="lazy" /></div>
+          <div class="students-item" data-idx="4"><img src="images/students/psixoterapiya-praktikum1.jpg" alt="Praktikum sessiyası" loading="lazy" /></div>
+          <div class="students-item" data-idx="5"><img src="images/students/group-outdoor.jpg" alt="Tələbə qrupu — açıq hava" loading="lazy" /></div>
+          <div class="students-item" data-idx="6"><img src="images/students/psixologiya-mekteb.jpg" alt="Psixologiya Məktəbi" loading="lazy" /></div>
+          <div class="students-item" data-idx="7"><img src="images/students/psixologiya-mekteb1.jpg" alt="Tədris mərkəzi" loading="lazy" /></div>
+          <div class="students-item" data-idx="8"><img src="images/students/korporativ-tehsil.jpg" alt="Korporativ təhsil" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="rev-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge">Məzun Rəyləri</span>
+          <h2 class="sec-h2" id="rev-h">Tələbələrimiz Nə Deyir?</h2>
+          <p class="sec-sub">Real məzunların real hekayələri —<br>iştirak təcrübəsi, nəticələr və tövsiyələr.</p>
+        </div>
+        <div class="reviews-grid" id="reviewsGrid">
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
+            <p class="review-text">"Klinik DPO proqramı bütün gözləntilərimi aşdı. Nəzəriyyə və praktika balansı mükəmməldir. İndi öz ofisimdə müstəqil işləyirəm — ilk ayda 8 müştəri."</p>
+            <div class="review-meta"><span class="review-name">Aynur M.</span><span class="review-prog">Klinik Psixologiya DPO · 2024</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
+            <p class="review-text">"Praktikumda superviziya canlı iş praktikası verdi. Video arxiv çox faydalıdır — hər dərsi 2-3 dəfə təkrar izlədim. Dr. Rəhimovun yanaşması həm akademik, həm də şəxsidir."</p>
+            <div class="review-meta"><span class="review-name">Elşad H.</span><span class="review-prog">Psixoterapiya Praktikumu · 2024</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
+            <p class="review-text">"Ümumi Psixologiya sayəsində tibbi təhsilim olmadan peşəyə daxil oldum. Diplom tam qanunidir — işəgötürənim FRDO reyestrindən yoxladı və heç bir sual çıxmadı."</p>
+            <div class="review-meta"><span class="review-name">Leyla Ə.</span><span class="review-prog">Ümumi Psixologiya DPO · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
+            <p class="review-text">"Onlayn format işlə birlikdə çox əlverişlidir. Canlı dərslər həftəsonu, video arxiv isə gecə-gündüz açıqdır. Oflayn praktikum sessiyaları isə qrupun birləşməsini möhkəmləndirdi."</p>
+            <div class="review-meta"><span class="review-name">Rəşad Q.</span><span class="review-prog">Klinik Psixologiya DPO · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
+            <p class="review-text">"Dərslərdən sonra fərdi suallarıma 24 saat ərzində cavab alıram. Koordinator çox diqqətlidir. Məzun olduqdan sonra da Telegram qrupu aktivdir — həmkarlar şəbəkəsi qaldı."</p>
+            <div class="review-meta"><span class="review-name">Nigar S.</span><span class="review-prog">Psixoterapiya Praktikumu · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="4 ulduz">★★★★☆</div>
+            <p class="review-text">"Proqram çox əhatəlidir, bəzən tempi artırmaq istərdim. Amma hər modulu dərindən işləmək lazım olduğunu başa düşdüm. Beynəlxalq IPAS sertifikatı ölkədən kənarda da işləmək imkanı verdi."</p>
+            <div class="review-meta"><span class="review-name">Kamran B.</span><span class="review-prog">Klinik Psixologiya DPO · 2024</span></div>
+          </div>
+        </div>
+        <div style="margin-top:48px;text-align:center;">
+          <button type="button" class="btn btn-line" id="openRevForm" style="border-color:var(--accent);color:var(--accent);">Öz Rəyinizi Yazın</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEW FORM -->
+    <section id="reviewFormSection" data-theme="light" style="background:var(--white);padding:var(--s-section) 0;display:none;" aria-labelledby="revform-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Rəy Yazın</span>
+          <h2 class="sec-h2" id="revform-h">Təcrübənizi Bölüşün</h2>
+          <p class="sec-sub">Sizin rəyiniz gələcək tələbələr üçün çox dəyərlidir.<br>Rəy moderator yoxlamasından sonra sayta əlavə olunacaq.</p>
+        </div>
+        <form id="reviewForm" class="rev-form-wrap">
+          <div class="rev-field">
+            <label for="rev-name">Ad Soyad</label>
+            <input type="text" id="rev-name" name="name" required maxlength="80" />
+          </div>
+          <div class="rev-field">
+            <label for="rev-program">Bitirdiyiniz Proqram</label>
+            <select id="rev-program" name="program" required>
+              <option value="">Seçin —</option>
+              <option value="umumi">Ümumi Psixologiya DPO</option>
+              <option value="klinik">Klinik Psixologiya DPO</option>
+              <option value="praktikum">Psixoterapiya Praktikumu</option>
+              <option value="konsultasiya">Fərdi Konsultasiya</option>
+            </select>
+          </div>
+          <div class="rev-field">
+            <label>Qiymətləndirmə</label>
+            <div class="rev-stars-input">
+              <input type="radio" id="rev-star5" name="rating" value="5" checked /><label for="rev-star5" title="5 ulduz">★</label>
+              <input type="radio" id="rev-star4" name="rating" value="4" /><label for="rev-star4" title="4 ulduz">★</label>
+              <input type="radio" id="rev-star3" name="rating" value="3" /><label for="rev-star3" title="3 ulduz">★</label>
+              <input type="radio" id="rev-star2" name="rating" value="2" /><label for="rev-star2" title="2 ulduz">★</label>
+              <input type="radio" id="rev-star1" name="rating" value="1" /><label for="rev-star1" title="1 ulduz">★</label>
+            </div>
+          </div>
+          <div class="rev-field">
+            <label for="rev-text">Rəyiniz</label>
+            <textarea id="rev-text" name="text" required minlength="30" maxlength="1000" placeholder="Təcrübənizi, öyrəndiklərinizi və nəticələrinizi yazın..."></textarea>
+          </div>
+          <div class="rev-field">
+            <label for="rev-email">E-poçt <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--clr-text-muted);">(moderasiya üçün, saytda görünməyəcək)</span></label>
+            <input type="email" id="rev-email" name="email" required />
+          </div>
+          <button type="submit" class="btn btn-fill" style="width:100%;">Rəyi Göndər</button>
+          <div class="rev-note">Rəyiniz admin moderasiyasından keçdikdən sonra sayta əlavə olunacaq. Adətən 24 saat ərzində.</div>
+          <div class="rev-success" id="revSuccess">Təşəkkür edirik! Rəyiniz moderator tərəfindən yoxlanıldıqdan sonra sayta əlavə ediləcək. Adətən 24 saat ərzində qərarımızı sizə bildirəcəyik.</div>
+        </form>
+      </div>
+    </section>
+
     <!-- CTA BAND -->
     <div class="cta-band" data-theme="light">
       <div class="cta-band-inner">
@@ -438,24 +589,30 @@
     </div>
     <script>
     (function () {
-      var gallery = document.getElementById('diplomaGallery');
-      if (!gallery) return;
-      var items = Array.from(gallery.querySelectorAll('[data-idx]'));
-      items.sort(function(a,b){ return +a.dataset.idx - +b.dataset.idx; });
-      var images = items.map(function(el){ var img = el.querySelector('img'); return { src: img.src, alt: img.alt }; });
       var lb = document.getElementById('dgLightbox');
       var lbImg = document.getElementById('dgLbImg');
       var lbClose = document.getElementById('dgLbClose');
       var lbPrev = document.getElementById('dgLbPrev');
       var lbNext = document.getElementById('dgLbNext');
       var lbCnt = document.getElementById('dgLbCounter');
-      var current = 0, timer = null;
-      function show(idx) { current = (idx + images.length) % images.length; lbImg.src = images[current].src; lbImg.alt = images[current].alt; lbCnt.textContent = (current + 1) + ' / ' + images.length; }
-      function openLb(idx) { show(idx); lb.classList.add('active'); document.body.style.overflow = 'hidden'; startAuto(); }
+      if (!lb) return;
+      var images = [], current = 0, timer = null;
+      function show(idx) { if (!images.length) return; current = (idx + images.length) % images.length; lbImg.src = images[current].src; lbImg.alt = images[current].alt; lbCnt.textContent = (current + 1) + ' / ' + images.length; }
+      function openLb(imgs, idx) { images = imgs; show(idx); lb.classList.add('active'); document.body.style.overflow = 'hidden'; startAuto(); }
       function closeLb() { lb.classList.remove('active'); document.body.style.overflow = ''; stopAuto(); }
       function startAuto() { stopAuto(); timer = setInterval(function(){ show(current + 1); }, 3000); }
       function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
-      items.forEach(function(el){ el.addEventListener('click', function(){ openLb(+el.dataset.idx); }); });
+
+      function bindGallery(galleryId) {
+        var gallery = document.getElementById(galleryId);
+        if (!gallery) return;
+        var items = Array.from(gallery.querySelectorAll('img'));
+        var imgs = items.map(function(img){ return { src: img.src, alt: img.alt || '' }; });
+        items.forEach(function(img, i){ img.style.cursor = 'pointer'; img.addEventListener('click', function(){ openLb(imgs, i); }); });
+      }
+      bindGallery('diplomaGallery');
+      bindGallery('studentsGallery');
+
       lbClose.addEventListener('click', closeLb);
       lbPrev.addEventListener('click', function(e){ e.stopPropagation(); show(current - 1); startAuto(); });
       lbNext.addEventListener('click', function(e){ e.stopPropagation(); show(current + 1); startAuto(); });
@@ -464,18 +621,70 @@
     })();
     </script>
     <script>
-      document.getElementById('regForm')?.addEventListener('submit', function(e) {
+      // Регистрация
+      document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const btn = this.querySelector('button[type="submit"]');
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
         const success = document.getElementById('regSuccess');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('ad') || '',
+          lname: fd.get('soyad') || '',
+          phone: fd.get('telefon') || '',
+          email: fd.get('email') || '',
+          service: fd.get('proqram') || '',
+          note: [fd.get('odenis') ? 'Ödəniş: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
+          source: 'tehsil.html'
+        };
         btn.textContent = 'Göndərilir...';
         btn.disabled = true;
-        setTimeout(() => {
-          this.style.opacity = '0.5';
-          this.style.pointerEvents = 'none';
+        await submitToAPI(payload);
+        form.style.opacity = '0.5';
+        form.style.pointerEvents = 'none';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      // Кнопка "Öz Rəyinizi Yazın"
+      document.getElementById('openRevForm')?.addEventListener('click', function() {
+        const sec = document.getElementById('reviewFormSection');
+        if (!sec) return;
+        sec.style.display = 'block';
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      // Отзыв
+      document.getElementById('reviewForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const success = document.getElementById('revSuccess');
+        const fd = new FormData(form);
+        const programMap = {
+          umumi: 'Ümumi Psixologiya DPO',
+          klinik: 'Klinik Psixologiya DPO',
+          praktikum: 'Psixoterapiya Praktikumu',
+          konsultasiya: 'Fərdi Konsultasiya'
+        };
+        const payload = {
+          type: 'review',
+          name: fd.get('name') || '',
+          program: programMap[fd.get('program')] || fd.get('program') || '',
+          rating: fd.get('rating') || '',
+          text: fd.get('text') || '',
+          email: fd.get('email') || ''
+        };
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        form.style.opacity = '0.5';
+        form.style.pointerEvents = 'none';
+        if (success) {
           success.style.display = 'block';
           success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 800);
+        }
       });
     </script>
   </body>

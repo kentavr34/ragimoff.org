@@ -40,6 +40,57 @@ function waLink(msg) {
   return 'https://wa.me/994702200376?text=' + encodeURIComponent(msg || 'Salam, məlumat almaq istəyirəm.');
 }
 
+// Backend (Apps Script) — приём форм + Telegram + Google Sheets
+const RAGIMOFF_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+
+async function submitToAPI(payload) {
+  try {
+    const res = await fetch(RAGIMOFF_API, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    return { ok: true };
+  } catch (err) {
+    console.error('submitToAPI error:', err);
+    return { ok: false, error: String(err) };
+  }
+}
+
+// Универсальный обработчик регистрационной формы
+function wireRegForm(formId, successId, source) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const success = document.getElementById(successId);
+    const fd = new FormData(form);
+    const payload = {
+      type: 'registration',
+      fname: fd.get('ad') || fd.get('fname') || fd.get('name') || '',
+      lname: fd.get('soyad') || fd.get('lname') || '',
+      phone: fd.get('telefon') || fd.get('phone') || '',
+      email: fd.get('email') || '',
+      service: fd.get('proqram') || fd.get('service') || fd.get('xidmet') || '',
+      note: [
+        fd.get('odenis') ? 'Ödəniş: ' + fd.get('odenis') : '',
+        fd.get('qeyd') || fd.get('note') || fd.get('mesaj') || ''
+      ].filter(Boolean).join(' | '),
+      source: source || location.pathname.replace(/^\//, '') || 'unknown'
+    };
+    if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
+    await submitToAPI(payload);
+    form.style.opacity = '0.5';
+    form.style.pointerEvents = 'none';
+    if (success) {
+      success.style.display = 'block';
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+}
+
 // Generic booking form submit  mailto + modal
 function submitBooking(emailTo) {
   const fields = ['fname','lname','phone','email','service','note'];

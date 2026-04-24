@@ -618,19 +618,7 @@
       }
     </script>
     <script>
-      document.getElementById('regFormQanun')?.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const btn = this.querySelector('button[type="submit"]');
-        const success = document.getElementById('regSuccessQanun');
-        btn.textContent = 'Göndərilir...';
-        btn.disabled = true;
-        setTimeout(() => {
-          this.style.opacity = '0.5';
-          this.style.pointerEvents = 'none';
-          success.style.display = 'block';
-          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 800);
-      });
+      wireRegForm('regFormQanun', 'regSuccessQanun', 'qanunlar.html');
     </script>
   </body>
 </html>
