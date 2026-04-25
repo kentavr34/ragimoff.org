@@ -125,6 +125,13 @@
   --badge-border:     rgba(212,175,106,0.3);
 }
 
+/* Bare dark-themed sections get a navy background so white text is readable.
+   Heroes keep their own gradient; inline styles always override. */
+section[data-theme="dark"]:not(.pg-hero):not(.pg-hero-plain):not(.page-hero) {
+  background-color: var(--navy);
+  color: var(--white);
+}
+
 [data-theme="dark"] {
   --clr-bg:           var(--navy);
   --clr-bg-surface:   rgba(255,255,255,0.04);
