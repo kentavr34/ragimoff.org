@@ -2730,6 +2730,26 @@ body {
 }
 
 /* ─────────────────────────────────────────────
+   PRICING TABLE (terapiya səhifələrində)
+   ───────────────────────────────────────────── */
+.pricing-tbl { margin-top: 40px; border: 1px solid var(--clr-border); background: var(--clr-bg-surface); border-left: 4px solid var(--accent); }
+.pricing-tbl-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; }
+.pricing-tbl-row + .pricing-tbl-row { border-top: 1px solid var(--clr-border); }
+.pricing-tbl-cell { padding: 24px 28px; border-right: 1px solid var(--clr-border); }
+.pricing-tbl-cell:last-child { border-right: none; }
+.pricing-tbl-name strong { display: block; font-size: 1.0625rem; color: var(--clr-heading); font-family: var(--font); font-weight: 800; margin-bottom: 6px; }
+.pricing-tbl-name span { font-size: 0.85rem; color: var(--clr-text-muted); line-height: 1.5; }
+.pricing-tbl-price { display: flex; flex-direction: column; gap: 6px; }
+.pricing-tbl-price .pl { font-size: 0.7rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+.pricing-tbl-price .pv { font-size: 1.5rem; font-weight: 800; color: var(--clr-heading); font-family: var(--font); line-height: 1; }
+@media (max-width: 768px) {
+  .pricing-tbl-row { grid-template-columns: 1fr 1fr; }
+  .pricing-tbl-name { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--clr-border); }
+  .pricing-tbl-price .pv { font-size: 1.25rem; }
+  .pricing-tbl-cell { padding: 18px 20px; }
+}
+
+/* ─────────────────────────────────────────────
    BLOG FEATURED CARD
    ───────────────────────────────────────────── */
 .blog-featured {

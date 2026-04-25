@@ -64,8 +64,9 @@
       .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
       .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
       /* YouTube */
-      .yt-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border: 1px solid rgba(181,155,114,0.15); }
+      .yt-wrap { position: relative; padding-bottom: 28.125%; height: 0; overflow: hidden; border: 1px solid rgba(181,155,114,0.15); max-width: 50%; margin: 0 auto; }
       .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+      @media (max-width: 768px) { .yt-wrap { max-width: 100%; padding-bottom: 56.25%; } }
       /* Treatment protocol */
       .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
       .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
@@ -364,8 +365,8 @@
     <section class="ps white">
       <div class="ps-inner">
         <span class="badge on-light">YouTube Dərs</span>
-        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Gecə Enurezinin Diaqnostikası və Müalicəsi</h2>
-        <p class="sec-lead" style="margin-bottom:32px;">Gənc psixoloqlara dəstək qrupunda dərsin videosu — indi YouTube-da yüklənib, hamının baxa bilməsi üçün açıq şəkildə. Psixologlara da, valideynlərə də faydalı olsun.</p>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Gecə Enurezinin Müalicəsi</h2>
+        <p class="sec-lead" style="margin-bottom:32px;">Gənc psixoloqlara ödənişsiz dəstək qrupunun dərsi — artıq YouTube-da yüklənib, hamının açıq şəkildə baxa bilməsi üçün.</p>
         <div class="yt-wrap">
           <iframe src="https://www.youtube.com/embed/CPjtCqIKNZc?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Gecə Enurezinin Diaqnostikası və Müalicəsi — Dr. Kənan Rəhimov"></iframe>
         </div>
