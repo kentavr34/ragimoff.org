@@ -104,6 +104,12 @@
       .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(181,155,114,0.06); border-left: 3px solid var(--accent); }
       .rev-success { display: none; background: #e8f5e9; border: 1px solid #81c784; padding: 20px; color: #2e7d32; font-size: var(--t-sm); font-weight: 600; margin-top: 20px; }
       @media (max-width: 600px) { .rev-form-wrap { padding: 28px 20px; } }
+      /* Tələbələr подзаголовок — широкий формат, 2 строки на десктопе */
+      .stud-sub { max-width: 920px; line-height: 1.55; }
+      @media (max-width: 768px) {
+        .stud-sub { font-size: 0.875rem; line-height: 1.5; max-width: 100%; }
+        .stud-sub br { display: none; }
+      }
     </style>
   </head>
   <body>
@@ -309,7 +315,7 @@
         <div class="sec-header">
           <span class="badge on-light">Məktəbimizdən Anlar</span>
           <h2 class="sec-h2" id="stud-h">Tələbələrimiz və Təlim Prosesi</h2>
-          <p class="sec-sub">Oflayn dərslər, praktikum sessiyaları,<br>sertifikat təqdimatları və korporativ təlimlər.</p>
+          <p class="sec-sub stud-sub">Əyani dərslər, Praktikum məşqləri, Peşəkar təlimlər, Azərbaycan dilində başqa yerdə mövcud olmayan 2026-cı ilin tələlərinə uyğun şəxsi tədris vəsaitləri <br>+ sərbəst hazırlıq üçün 300-dən çox dərslərin video yazıları.</p>
         </div>
         <div class="students-grid" id="studentsGallery">
           <div class="students-item" data-idx="0"><img src="images/students/group-training.jpg" alt="Qrup təlimi" loading="lazy" /></div>
