@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="gtc.css" />
     <style>
+      @media (max-width: 900px) { #registration .reg-grid { grid-template-columns: 1fr !important; } }
+      @media (max-width: 600px) { #registration form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
+    </style>
+    <style>
       .ind-card { background: var(--navy); border-top: 4px solid var(--accent); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
       .ind-card h3 { font-size: 1.75rem; font-weight: 800; color: var(--white); margin-bottom: 12px; line-height: 1.2; font-family: var(--font); }
       .ind-card-desc { font-size: var(--t-sm); color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 24px; max-width: 560px; }
@@ -122,7 +126,7 @@
         </div>
       </div>
 
-      <!-- Fərdi Konsultasiya featured -->
+      <!-- Fərdi Konsultasiya — qısa təqdimat -->
       <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section) 32px;">
         <div class="ind-card">
           <div>
@@ -130,14 +134,11 @@
             <h3>Fərdi Konsultasiya</h3>
             <p class="ind-card-desc">Hər terapiya yolu ilk görüşdən başlayır. Problemin mahiyyətini birlikdə müəyyənləşdiririk, hansı istiqamətin sizə uyğun olduğunu aydınlaşdırırıq, iş planı qururuq. Stres, narahatlıq, münasibət problemləri, qərar çətinlikləri — hamısı bu görüşdə masaya gəlir.</p>
           </div>
-          <div style="display:flex;flex-direction:column;gap:16px;min-width:200px;">
+          <div style="display:flex;flex-direction:column;gap:12px;min-width:200px;">
             <div class="ind-meta" style="flex-direction:column;gap:12px;">
               <div class="ind-meta-item"><span class="ind-meta-label">Format</span><span class="ind-meta-val">Online / Ofis</span></div>
               <div class="ind-meta-item"><span class="ind-meta-label">Müddət</span><span class="ind-meta-val">50 dəqiqə</span></div>
-              <div class="ind-meta-item"><span class="ind-meta-label">Növbəti addım</span><span class="ind-meta-val">Proqram və ya davam</span></div>
             </div>
-            <a href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank" class="btn btn-fill" style="text-align:center;">WhatsApp ilə Müraciət</a>
-            <a href="tel:+994702200376" class="btn btn-line" style="text-align:center;">Zəng et</a>
           </div>
         </div>
       </div>
@@ -208,19 +209,90 @@
       </div>
     </section>
 
-    <!-- CTA BAND -->
-    <div class="cta-band" data-theme="light">
-      <div class="cta-band-inner">
-        <div>
-          <h2>Sual var? Yazın — bu gün cavablandırılır.</h2>
-          <p>Hansı istiqamətin sizə uyğun olduğunu bilmirsinizsə — ilk fərdi konsultasiyada birlikdə müəyyənləşdirərik.</p>
+    <!-- CONSULTATION SIGN-UP -->
+    <section id="registration" data-theme="dark" style="background:var(--navy);padding:var(--s-section) 0;" aria-labelledby="reg-h">
+      <div class="sec-inner" style="padding:0 var(--s-section);max-width:980px;">
+        <div class="sec-header">
+          <span class="badge">Konsultasiya Qeydiyyatı</span>
+          <h2 class="sec-h2" id="reg-h">Konsultasiyaya Yazılın</h2>
+          <p class="sec-sub">Formu doldurun və ya WhatsApp ilə yazın — həmin gün cavablandırılır.</p>
         </div>
-        <div class="cta-band-btns">
-          <a href="https://wa.me/994702200376" target="_blank" class="btn btn-fill" style="background:var(--navy);color:var(--white);">WhatsApp</a>
-          <a href="tel:+994702200376" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">Zəng et</a>
+
+        <div class="reg-grid" style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;margin-top:40px;">
+          <!-- Form -->
+          <form id="xidRegForm" style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:32px;display:flex;flex-direction:column;gap:16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+                Ad *
+                <input type="text" name="ad" required placeholder="Adınız" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+                Telefon *
+                <input type="tel" name="telefon" required placeholder="+994 XX XXX XX XX" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              Format
+              <select name="proqram" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;">
+                <option value="Fərdi Konsultasiya — Online">Online (Zoom / WhatsApp video)</option>
+                <option value="Fərdi Konsultasiya — Ofis">Ofisdə (Bakı)</option>
+                <option value="Hələ qərar verməmişəm">Hələ qərar verməmişəm</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              Qeyd (istəyə bağlı)
+              <textarea name="qeyd" rows="3" placeholder="Hansı mövzuda kömək lazımdır?" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;resize:vertical;"></textarea>
+            </label>
+            <button type="submit" class="btn btn-fill" style="margin-top:8px;padding:14px 28px;">Müraciət Göndər</button>
+            <p style="font-size:.75rem;color:rgba(255,255,255,0.45);margin:0;">Məlumatlarınız yalnız əlaqə üçün istifadə olunur, üçüncü şəxslərə ötürülmür.</p>
+            <div class="form-success" id="xidRegSuccess" style="display:none;background:rgba(132,204,22,0.1);border:1px solid rgba(132,204,22,0.4);padding:16px;color:#bef264;font-weight:600;">
+              Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.
+            </div>
+          </form>
+
+          <!-- WhatsApp / Phone alternative -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:28px;">
+              <span style="display:block;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;">Birbaşa Əlaqə</span>
+              <h3 style="font-family:var(--font);font-size:1.125rem;color:#fff;font-weight:700;margin:0 0 12px;">Daha tez cavab istəyirsinizsə</h3>
+              <p style="color:rgba(255,255,255,0.65);font-size:.9rem;line-height:1.6;margin:0 0 20px;">WhatsApp və ya zəng ilə birbaşa əlaqə saxlayın — koordinator həmin gün cavab verir.</p>
+              <a href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank" class="btn btn-fill" style="display:block;text-align:center;margin-bottom:10px;">WhatsApp ilə Yazın</a>
+              <a href="tel:+994702200376" class="btn btn-line" style="display:block;text-align:center;border-color:rgba(255,255,255,0.4);color:#fff;">+994 70 220-03-76</a>
+            </div>
+            <div style="font-size:.85rem;color:rgba(255,255,255,0.6);line-height:1.7;">
+              <strong style="color:#fff;">İş saatları:</strong><br>
+              B.e – Cümə · 10:00 – 20:00<br>
+              Şənbə · 10:00 – 16:00
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <script>
+      document.getElementById('xidRegForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('ad') || '',
+          lname: '',
+          phone: fd.get('telefon') || '',
+          email: '',
+          service: fd.get('proqram') || 'Fərdi Konsultasiya',
+          note: fd.get('qeyd') || '',
+          source: 'xidmetler.html'
+        };
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        if (typeof submitToAPI === 'function') await submitToAPI(payload);
+        form.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+        form.style.opacity = '0.6';
+        document.getElementById('xidRegSuccess').style.display = 'block';
+      });
+    </script>
 
     <!-- FOOTER -->
     <footer class="site-footer" data-theme="dark">
