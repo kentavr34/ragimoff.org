@@ -321,31 +321,38 @@ body {
   width: 100%;
 }
 
-/* Dropdown menyu */
-.desktop-nav .nav-item { position: relative; display: flex; align-items: center; }
+/* Dropdown menyu — horizontal bar below header */
+.desktop-nav .nav-item { position: static; display: flex; align-items: center; }
+.site-header { position: relative; }
 .desktop-nav .nav-dropdown {
-  position: absolute; top: calc(100% + 8px); left: 0;
-  background: var(--navy); border: 1px solid rgba(181,155,114,0.28);
-  min-width: 240px; padding: 8px 0; margin: 0;
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  background: rgba(13, 27, 62, 0.98);
+  border-top: 1px solid rgba(181,155,114,0.18);
+  border-bottom: 1px solid rgba(181,155,114,0.18);
+  margin: 0; padding: 14px var(--s-section);
   list-style: none; z-index: 100;
+  display: flex; flex-wrap: wrap; gap: 8px 28px;
+  justify-content: center; align-items: center;
   opacity: 0; visibility: hidden; transform: translateY(-6px);
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.32);
 }
 .desktop-nav .nav-item:hover .nav-dropdown,
 .desktop-nav .nav-item:focus-within .nav-dropdown {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
-.desktop-nav .nav-dropdown li { margin: 0; padding: 0; }
+.desktop-nav .nav-dropdown li { margin: 0; padding: 0; display: flex; align-items: center; }
 .desktop-nav .nav-dropdown li a {
-  display: block; padding: 11px 20px;
-  color: rgba(255,255,255,0.78); font-size: 0.8rem; font-weight: 600;
+  display: inline-block; padding: 6px 12px;
+  color: rgba(255,255,255,0.78); font-size: 0.78rem; font-weight: 600;
   letter-spacing: 0.04em; text-transform: none;
-  white-space: nowrap; position: static;
+  white-space: nowrap; position: static; border-radius: 0;
 }
 .desktop-nav .nav-dropdown li a::after { display: none; }
 .desktop-nav .nav-dropdown li a:hover {
-  background: rgba(181,155,114,0.12); color: var(--accent);
+  color: var(--accent); background: rgba(181,155,114,0.08);
 }
 
 /* Кнопка регистрации */
