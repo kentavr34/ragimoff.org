@@ -327,16 +327,18 @@ body {
   position: absolute;
   top: calc(100% + 6px); left: 50%;
   transform: translate(-50%, -4px);
-  background: rgba(6, 24, 38, 0.98);
+  background: var(--navy);
   border: none;
   margin: 0; padding: 8px 14px;
   list-style: none; z-index: 100;
-  display: flex; flex-wrap: nowrap; gap: 0 4px;
+  display: flex; flex-wrap: nowrap; gap: 0;
   justify-content: center; align-items: center;
   opacity: 0; visibility: hidden;
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-  backdrop-filter: blur(20px);
   white-space: nowrap;
+}
+.desktop-nav .nav-dropdown li:not(:last-child) {
+  border-right: 1px solid rgba(181,155,114,0.45);
 }
 .desktop-nav .nav-item:hover .nav-dropdown,
 .desktop-nav .nav-item:focus-within .nav-dropdown {
@@ -344,7 +346,7 @@ body {
 }
 .desktop-nav .nav-dropdown li { margin: 0; padding: 0; display: flex; align-items: center; }
 .desktop-nav .nav-dropdown li a {
-  display: inline-block; padding: 4px 10px;
+  display: inline-block; padding: 4px 14px;
   color: rgba(255,255,255,0.7); font-size: 0.74rem; font-weight: 600;
   letter-spacing: 0.04em; text-transform: none;
   white-space: nowrap; position: static; border-radius: 0;
