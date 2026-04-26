@@ -321,6 +321,33 @@ body {
   width: 100%;
 }
 
+/* Dropdown menyu */
+.desktop-nav .nav-item { position: relative; display: flex; align-items: center; }
+.desktop-nav .nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  background: var(--navy); border: 1px solid rgba(181,155,114,0.28);
+  min-width: 240px; padding: 8px 0; margin: 0;
+  list-style: none; z-index: 100;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+.desktop-nav .nav-item:hover .nav-dropdown,
+.desktop-nav .nav-item:focus-within .nav-dropdown {
+  opacity: 1; visibility: visible; transform: translateY(0);
+}
+.desktop-nav .nav-dropdown li { margin: 0; padding: 0; }
+.desktop-nav .nav-dropdown li a {
+  display: block; padding: 11px 20px;
+  color: rgba(255,255,255,0.78); font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: none;
+  white-space: nowrap; position: static;
+}
+.desktop-nav .nav-dropdown li a::after { display: none; }
+.desktop-nav .nav-dropdown li a:hover {
+  background: rgba(181,155,114,0.12); color: var(--accent);
+}
+
 /* Кнопка регистрации */
 .desktop-nav .nav-cta {
   background: var(--gold);
