@@ -340,6 +340,14 @@ body {
 .desktop-nav .nav-dropdown li:not(:last-child) {
   border-right: 2px solid var(--accent);
 }
+/* Konsultasiya dropdown — sürüş sola, "Panik Ataklar" başlığın altında olsun */
+.desktop-nav > .nav-item:nth-of-type(3) .nav-dropdown {
+  transform: translate(calc(-50% - 70px), -4px);
+}
+.desktop-nav > .nav-item:nth-of-type(3):hover .nav-dropdown,
+.desktop-nav > .nav-item:nth-of-type(3):focus-within .nav-dropdown {
+  transform: translate(calc(-50% - 70px), 0);
+}
 .desktop-nav .nav-item:hover .nav-dropdown,
 .desktop-nav .nav-item:focus-within .nav-dropdown {
   opacity: 1; visibility: visible; transform: translate(-50%, 0);
