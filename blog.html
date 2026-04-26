@@ -72,13 +72,14 @@
       <div class="sec-inner" style="text-align:left;">
 
         <!-- Featured -->
-        <a href="blog-aile.html" class="blog-featured" data-cat="aile" style="margin-bottom:32px;">
-          <div class="blog-featured-img" style="background:linear-gradient(135deg,var(--navy),#1a3a6e);"></div>
+        <!-- Featured məqalə avtomatik olaraq blogdakı ilk məqalə ilə doldurulur (JS aşağıda) -->
+        <a href="#" class="blog-featured" id="blogFeatured" style="margin-bottom:32px;">
+          <div class="blog-featured-img" id="blogFeaturedImg"></div>
           <div class="blog-featured-body">
-            <span class="blog-featured-badge">Seçilmiş Məqalə</span>
-            <div class="blog-featured-title">Boşanma Astanasında Olan Cütlüklərə — Psixoterapevtin Mesajı</div>
-            <div class="blog-featured-meta">Ailə Terapiyası · 8 dəq oxumaq · Dr. Kənan Rəhimov</div>
-            <div class="blog-featured-excerpt">Hər münaqişə boşanma ilə bitmir. Bəzən problem münasibətin özündə deyil, ünsiyyət tərzindədir. 22 illik klinik təcrübəmdən ən çox rast gəldiyim vəziyyət budur — və həll yolu var.</div>
+            <span class="blog-featured-badge">Ən Yeni Məqalə</span>
+            <div class="blog-featured-title" id="blogFeaturedTitle">—</div>
+            <div class="blog-featured-meta" id="blogFeaturedMeta">—</div>
+            <div class="blog-featured-excerpt" id="blogFeaturedExcerpt">—</div>
             <span class="btn btn-fill" style="align-self:flex-start;margin-top:8px;">Məqaləni oxu</span>
           </div>
         </a>
@@ -537,6 +538,30 @@
       }
       document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
     }
+
+    // Featured məqaləni avtomatik olaraq blogdakı ilk kartdan doldur
+    document.addEventListener('DOMContentLoaded', () => {
+      const first = document.querySelector('#blogGrid .blog-card');
+      const feat = document.getElementById('blogFeatured');
+      if (!first || !feat) return;
+      const img = first.querySelector('.blog-card-img img');
+      const title = first.querySelector('.blog-card-title')?.textContent || '';
+      const excerpt = first.querySelector('.blog-card-excerpt')?.textContent || '';
+      const cat = first.querySelector('.blog-card-cat')?.textContent || '';
+      const footer = first.querySelector('.blog-card-footer span')?.textContent || '';
+      feat.href = first.href;
+      feat.dataset.cat = first.dataset.cat || '';
+      const imgWrap = document.getElementById('blogFeaturedImg');
+      if (img && imgWrap) {
+        imgWrap.innerHTML = '<img src="' + img.src + '" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />';
+      }
+      const titleEl = document.getElementById('blogFeaturedTitle');
+      if (titleEl) titleEl.textContent = title;
+      const metaEl = document.getElementById('blogFeaturedMeta');
+      if (metaEl) metaEl.textContent = footer + ' · Dr. Kənan Rəhimov';
+      const exEl = document.getElementById('blogFeaturedExcerpt');
+      if (exEl) exEl.textContent = excerpt;
+    });
     </script>
   </body>
 </html>
