@@ -392,6 +392,40 @@ body {
   box-shadow: 0 6px 20px rgba(212, 175, 106, 0.35);
 }
 
+/* ─── Language switcher (RU / AZ) ─── */
+.desktop-nav .lang-switch {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 6px 9px;
+  margin: 0 1px;
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.desktop-nav .lang-switch:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.desktop-nav .lang-switch.lang-active {
+  color: var(--navy);
+  background: var(--gold);
+  border-color: var(--gold);
+  pointer-events: none;
+}
+.desktop-nav .lang-switch::after { display: none !important; }
+.desktop-nav .lang-switch + .lang-switch { margin-right: 10px; }
+
+.mobile-nav .mobile-lang {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px !important;
+  margin-top: 8px;
+}
+
 /* ─────────────────────────────────────────────
    5. MOBILE NAV — hamburger toggle
    ───────────────────────────────────────────── */

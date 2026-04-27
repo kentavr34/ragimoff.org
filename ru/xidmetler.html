@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kənan Rəhimov — psixoterapiya xidmətləri və qiymətlər. Fərdi konsultasiya, ailə terapiyası, depressiya, panik ataklar, sosial fobiya, enurez müalicəsi." />
+    <title>Xidmətlər və Qiymətlər | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../gtc.css" />
+    <style>
+      @media (max-width: 900px) { #registration .reg-grid { grid-template-columns: 1fr !important; } }
+      @media (max-width: 600px) { #registration form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
+    </style>
+    <style>
+      .ind-card { background: var(--navy); border-top: 4px solid var(--accent); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
+      .ind-card h3 { font-size: 1.75rem; font-weight: 800; color: var(--white); margin-bottom: 12px; line-height: 1.2; font-family: var(--font); }
+      .ind-card-desc { font-size: var(--t-sm); color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 24px; max-width: 560px; }
+      .ind-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+      .ind-meta-item { display: flex; flex-direction: column; gap: 4px; }
+      .ind-meta-label { font-size: var(--t-xs); font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+      .ind-meta-val { font-size: var(--t-sm); font-weight: 700; color: var(--white); font-family: var(--font); }
+      .ind-price-block { display: flex; flex-direction: column; gap: 12px; min-width: 200px; }
+      .ind-price-option { background: rgba(255,255,255,0.06); border: 1px solid rgba(181,155,114,0.2); padding: 20px 24px; }
+      .ind-price-type { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+      .ind-price-amt { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-family: var(--font); }
+      .ind-price-sub { font-size: var(--t-xs); color: rgba(255,255,255,0.4); margin-top: 2px; }
+      .svc-prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--clr-border); }
+      .svc-prog-row { display: contents; }
+      .xid-card { background: var(--clr-bg-surface); border-right: 1px solid var(--clr-border); border-top: 4px solid var(--clr-heading); padding: 32px 28px; display: flex; flex-direction: column; transition: border-top-color 0.3s, transform 0.3s; }
+      .xid-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
+      .xid-card:nth-child(3n) { border-right: none; }
+      .xid-card h4 { font-size: 1.125rem; font-weight: 700; color: var(--clr-heading); margin-bottom: 8px; line-height: 1.25; font-family: var(--font); }
+      .xid-card p { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65; margin-bottom: auto; padding-bottom: 20px; }
+      .xid-price-block { background: var(--clr-bg-surface); border-left: 3px solid var(--accent); padding: 14px 18px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .xid-price-col { display: flex; flex-direction: column; gap: 2px; }
+      .xid-price-label { font-size: var(--t-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+      .xid-price-val { font-size: 1.25rem; font-weight: 800; color: var(--clr-heading); font-family: var(--font); }
+      .xid-price-note { font-size: var(--t-xs); color: var(--clr-text-muted); }
+      .pay-block { background: var(--navy); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; border-top: 4px solid var(--accent); }
+      .pay-block h3 { font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
+      .pay-block p { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
+      .discount-box { background: rgba(181,155,114,0.1); border: 1px solid rgba(181,155,114,0.3); padding: 24px; }
+      .discount-pct { font-size: 2.5rem; font-weight: 800; color: var(--accent); font-family: var(--font); line-height: 1; margin-bottom: 8px; }
+      .discount-box h4 { font-size: var(--t-body); font-weight: 800; color: var(--accent); margin-bottom: 8px; font-family: var(--font); }
+      .discount-box p { font-size: var(--t-sm); color: rgba(255,255,255,0.65); line-height: 1.7; margin: 0; }
+      @media (max-width: 1100px) { .svc-prog-grid { grid-template-columns: 1fr 1fr; } .xid-card:nth-child(3n) { border-right: 1px solid var(--clr-border); } .xid-card:nth-child(2n) { border-right: none; } .pay-block { grid-template-columns: 1fr; } .ind-card { grid-template-columns: 1fr; } }
+      @media (max-width: 768px) {
+        .svc-prog-grid { grid-template-columns: 1fr; }
+        .xid-card { border-right: none; border-bottom: 1px solid var(--clr-border); }
+        .ind-card { padding: 32px 24px; }
+        .pay-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
+        .ind-meta { flex-direction: column; gap: 12px; }
+        .xid-price-block { grid-template-columns: 1fr; }
+        .discount-box { padding: 20px; }
+      }
+      @media (max-width: 480px) {
+        .ind-card { padding: 24px 16px; }
+        .pay-block { padding: 24px 16px; }
+        .ind-price-block { min-width: unset; width: 100%; }
+        .discount-pct { font-size: 2rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа психологии</span></a>
+        <nav class="desktop-nav">
+          <div class="nav-item">
+            <a href="index.html">Главная</a>
+            <ul class="nav-dropdown">
+              <li><a href="haqqimda.html">Обо мне</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="tehsil.html">Обучение</a>
+            <ul class="nav-dropdown">
+              <li><a href="program-umumi.html">Общая психология</a></li>
+              <li><a href="program-klinik.html">Клиническая психология ДПО</a></li>
+              <li><a href="program-praktikum.html">Практикум по психотерапии</a></li>
+              <li><a href="qanunlar.html">Юридические основы</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="xidmetler.html" class="nav-active">Консультация</a>
+            <ul class="nav-dropdown">
+              <li><a href="aile-terapiyasi.html">Семейная терапия</a></li>
+              <li><a href="aile-terapiyasi-usaq.html">Детско-родительская терапия</a></li>
+              <li><a href="depressiya.html">Депрессия</a></li>
+              <li><a href="panik-ataklar.html">Панические атаки</a></li>
+              <li><a href="sosial-fobiya.html">Социофобия</a></li>
+              <li><a href="enurez.html">Ночной энурез</a></li>
+            </ul>
+          </div>
+          <a href="b2b.html">Корпоративное</a>
+          <a href="blog.html">Блог</a>
+          <a href="../xidmetler.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="xidmetler.html" class="lang-switch lang-active" aria-label="Русский">RU</a>
+          <a href="tehsil.html#registration" class="nav-cta">ЗАПИСЬ</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Мобильное меню">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Главная</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Обучение</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Консультация</a>
+      <a href="b2b.html" onclick="toggleMenu()">Корпоративное</a>
+      <a href="blog.html" onclick="toggleMenu()">Блог</a>
+      <a href="../xidmetler.html" class="mobile-lang">Azərbaycan dili</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">ЗАПИСЬ</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pg-hero" data-theme="dark" style="background-image:url('../images/kenan/photo-portal-crop.jpg');" aria-labelledby="xid-h1">
+      <div class="pg-hero-inner">
+        <span class="badge">KLİNİK PSİXOTERAPİYA</span>
+        <h1 class="hero-h1" id="xid-h1">Taleyin Hökmü <em>Deyil</em></h1>
+        <p class="hero-lead">Депрессия, panik, fobiya — xarakter zəifliyi deyil, klinik diaqnozdur. Hər birinin həll yolu var.</p>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip" data-theme="dark">
+      <div class="stats-inner">
+        <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">İl Klinik Təcrübə</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">Uğurlu Pasiyent</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">100+</span><span class="stat-label">Beynəlxalq Metodika</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">1-ci</span><span class="stat-label">Seansdan Aydın Nəticə</span></div>
+      </div>
+    </div>
+
+    <!-- ALL SERVICES -->
+    <section style="background: var(--clr-bg);" data-theme="light" aria-labelledby="svc-h">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <div class="sec-header">
+          <span class="badge">Klinik Psixoterapiya</span>
+          <h2 class="sec-h2" id="svc-h">Xarakter Deyil — Diaqnozdur</h2>
+          <p class="sec-sub">Psixologiya bunu xarakter deyil, öyrənilmiş vəziyyət adlandırır.<br>Hər bir münasibət klinik və ya klinik durumun dəqiq həll yolu var.</p>
+        </div>
+      </div>
+
+      <!-- 6 problem cards — no prices -->
+      <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section) var(--s-section);">
+        <div class="svc-prog-grid">
+
+          <div class="xid-card">
+            <span class="card-label">Münasibətlər</span>
+            <h4>Семейная терапия</h4>
+            <p>Cütlüklər döyüşür — bu onların uyğunsuz olduğunu deyil, ünsiyyət alətlərinin olmamasını göstərir. Münaqişənin çox hissəsi valideyn evindən öyrənilmiş patterndən qaynaqlanır. Терапия bu patternləri görünür edir və dəyişdirir.</p>
+            <a href="aile-terapiyasi.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+          <div class="xid-card">
+            <span class="card-label">Uşaq Davranışı</span>
+            <h4>Valideyn–Uşaq Терапияsı</h4>
+            <p>«Pis uşaq» adlandırılan davranışın böyük hissəsi anlaşılmamış emosionaldır. Aqressiya, itaətsizlik, məktəbdən imtina — hamısı daxili siqnaldır. Терапия valideyn-uşaq cütlüyünə bu siqnalları birlikdə oxumağı öyrədir.</p>
+            <a href="aile-terapiyasi-usaq.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+          <div class="xid-card">
+            <span class="card-label">Uşaq Sağlamlığı</span>
+            <h4>Ночной энурез</h4>
+            <p>Gecə sidikyolu nəzarətsizliyi iradə zəifliyi deyil — sinir sisteminin yetkinləşmə prosesidir. Uşağı danlamaq problemi dərinləşdirir. Klinik psixoloji metodlarla 5–8 seans ərzində vəziyyətin əhəmiyyətli yaxşılaşması mümkündür.</p>
+            <a href="enurez.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+          <div class="xid-card">
+            <span class="card-label">Narahatlıq</span>
+            <h4>Панические атаки</h4>
+            <p>Panik atak qorxaqlıq deyil — beyinin yanlış tetiklənmiş alarm sistemidir. Ürəkdöyüntüsü, boğulma, ölüm qorxusu — real fizioloji reaksiyadır, sadəcə yanlış vaxtda. Koqnitiv-davranış terapiyası ilə bu alarm söndürülə bilər.</p>
+            <a href="panik-ataklar.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+          <div class="xid-card">
+            <span class="card-label">Əhval-Ruhiyyə</span>
+            <h4>Депрессия</h4>
+            <p>Депрессия tənbəllik deyil — beyin kimyasının klinik pozuntusudur. «Özünü topla» tövsiyəsi effektsizdir, çünki problem müdriklik deyil, neyromediator tarazlığındadır. Psixoterapiya bu tarazlığı bərpa edir.</p>
+            <a href="depressiya.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+          <div class="xid-card">
+            <span class="card-label">Sosial Həyat</span>
+            <h4>Социофобия</h4>
+            <p>Sosial narahatlıq sadəcə utancaqlıq deyil — müalicə olunan klinik vəziyyətdir. İctimai danışmaqdan qorxu, dəyərləndirilmə həyəcanı — insanların çoxu bunu xarakter xüsusiyyəti hesab edir. Bu yanlışdır. Ekspozisiya terapiyası ilə həll olunur.</p>
+            <a href="sosial-fobiya.html" class="card-link">Həll yoluna bax →</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Fərdi Консультация — başlanğıc nöqtəsi (6 problem cards üstündə) -->
+      <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section) var(--s-section);">
+        <div class="ind-card">
+          <div>
+            <span class="card-label">Başlanğıc nöqtəsi</span>
+            <h3>Fərdi Консультация</h3>
+            <p class="ind-card-desc">Hər terapiya yolu ilk görüşdən başlayır. Problemin mahiyyətini birlikdə müəyyənləşdiririk, hansı istiqamətin sizə uyğun olduğunu aydınlaşdırırıq, iş planı qururuq. Stres, narahatlıq, münasibət problemləri, qərar çətinlikləri — hamısı bu görüşdə masaya gəlir.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;min-width:220px;">
+            <div class="ind-meta" style="flex-direction:column;gap:12px;">
+              <div class="ind-meta-item"><span class="ind-meta-label">Format</span><span class="ind-meta-val">Online / Ofis</span></div>
+              <div class="ind-meta-item"><span class="ind-meta-label">Müddət</span><span class="ind-meta-val">50 dəqiqə</span></div>
+            </div>
+            <a href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank" class="btn btn-fill" style="text-align:center;">QƏBULA YAZIL</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="sec-pad" data-theme="light" style="padding-bottom:var(--s-section);" aria-labelledby="proc-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Necə İşləyir</span>
+          <h2 class="sec-h2" id="proc-h">Записьdan Sessiyaya 4 Addım</h2>
+        </div>
+        <div class="process-grid">
+          <div class="process-step"><span class="process-num">01</span><h4>WhatsApp ilə Контакты</h4><p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p></div>
+          <div class="process-step"><span class="process-num">02</span><h4>Format Seçimi</h4><p>Online (Zoom/WhatsApp video) və ya ofisdə görüş — sizə uyğun olanı seçin.</p></div>
+          <div class="process-step"><span class="process-num">03</span><h4>Vaxt Razılaşması</h4><p>Sizə uyğun gün və vaxt müəyyənləşdirilir. Cədvəl çevikdir — axşam saatları mövcuddur.</p></div>
+          <div class="process-step"><span class="process-num">04</span><h4>Sessiya</h4><p>50 dəqiqəlik sessiya. İlk görüşdə məqsəd, gözlənti və iş planı müzakirə olunur.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULTATION SIGN-UP -->
+    <section id="registration" data-theme="dark" style="background:var(--navy);padding:var(--s-section) 0;" aria-labelledby="reg-h">
+      <div class="sec-inner" style="padding:0 var(--s-section);max-width:980px;">
+        <div class="sec-header">
+          <span class="badge">Консультация Записьı</span>
+          <h2 class="sec-h2" id="reg-h">Консультацияya Yazılın</h2>
+          <p class="sec-sub">Formu doldurun və ya WhatsApp ilə yazın — həmin gün cavablandırılır.</p>
+        </div>
+
+        <div class="reg-grid" style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;margin-top:40px;">
+          <!-- Form -->
+          <form id="xidRegForm" style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:32px;display:flex;flex-direction:column;gap:16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+                Ad *
+                <input type="text" name="ad" required placeholder="Adınız" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+                Telefon *
+                <input type="tel" name="telefon" required placeholder="+994 XX XXX XX XX" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              Format
+              <select name="proqram" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;">
+                <option value="Fərdi Консультация — Online">Online (Zoom / WhatsApp video)</option>
+                <option value="Fərdi Консультация — Ofis">Ofisdə (Bakı)</option>
+                <option value="Hələ qərar verməmişəm">Hələ qərar verməmişəm</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              Qeyd (istəyə bağlı)
+              <textarea name="qeyd" rows="3" placeholder="Hansı mövzuda kömək lazımdır?" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;resize:vertical;"></textarea>
+            </label>
+            <button type="submit" class="btn btn-fill" style="margin-top:8px;padding:14px 28px;">Müraciət Göndər</button>
+            <p style="font-size:.75rem;color:rgba(255,255,255,0.45);margin:0;">Məlumatlarınız yalnız əlaqə üçün istifadə olunur, üçüncü şəxslərə ötürülmür.</p>
+            <div class="form-success" id="xidRegSuccess" style="display:none;background:rgba(132,204,22,0.1);border:1px solid rgba(132,204,22,0.4);padding:16px;color:#bef264;font-weight:600;">
+              Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.
+            </div>
+          </form>
+
+          <!-- WhatsApp / Phone alternative -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:28px;">
+              <span style="display:block;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;">Birbaşa Контакты</span>
+              <h3 style="font-family:var(--font);font-size:1.125rem;color:#fff;font-weight:700;margin:0 0 12px;">Daha tez cavab istəyirsinizsə</h3>
+              <p style="color:rgba(255,255,255,0.65);font-size:.9rem;line-height:1.6;margin:0 0 20px;">WhatsApp və ya zəng ilə birbaşa əlaqə saxlayın — koordinator həmin gün cavab verir.</p>
+              <a href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank" class="btn btn-fill" style="display:block;text-align:center;margin-bottom:10px;">Написать в WhatsApp</a>
+              <a href="tel:+994702200376" class="btn btn-line" style="display:block;text-align:center;border-color:rgba(255,255,255,0.4);color:#fff;">+994 70 220-03-76</a>
+            </div>
+            <div style="font-size:.85rem;color:rgba(255,255,255,0.6);line-height:1.7;">
+              <strong style="color:#fff;">İş saatları:</strong><br>
+              B.e – Cümə · 10:00 – 20:00<br>
+              Şənbə · 10:00 – 16:00
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.getElementById('xidRegForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('ad') || '',
+          lname: '',
+          phone: fd.get('telefon') || '',
+          email: '',
+          service: fd.get('proqram') || 'Fərdi Консультация',
+          note: fd.get('qeyd') || '',
+          source: 'xidmetler.html'
+        };
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        if (typeof submitToAPI === 'function') await submitToAPI(payload);
+        form.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+        form.style.opacity = '0.6';
+        document.getElementById('xidRegSuccess').style.display = 'block';
+      });
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа психологии</span></a>
+            <p class="footer-desc">Кенан Рагимов — Врач-психиатр, психотерапевт. 23 года клинической практики. Баку, Азербайджан.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Терапия</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Семейная терапия</a></li>
+              <li><a href="enurez.html" class="footer-link">Ночной энурез</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Панические атаки</a></li>
+              <li><a href="depressiya.html" class="footer-link">Депрессия</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Социофобия</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Обучение</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Общая психология</a></li>
+              <li><a href="tehsil.html" class="footer-link">Клиническая психология ДПО</a></li>
+              <li><a href="tehsil.html" class="footer-link">Практикум по психотерапии</a></li>
+              <li><a href="blog.html" class="footer-link">Психология (блог)</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">Уроки на YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Контакты</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF — Профессиональная школа психологии. Адрес профессиональной репутации.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+    </a>
+
+    <script src="../shared.js"></script>
+  </body>
+</html>

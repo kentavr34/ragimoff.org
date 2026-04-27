@@ -2,6 +2,47 @@
 //  RAGIMOFF.ORG — Shared JS
 // ═══════════════════════════════════════════════
 
+// Auto language redirect by IP geolocation (only on first visit)
+// Russia → /ru/, Azerbaijan/default → /. Manual choice persists in localStorage.
+(function() {
+  try {
+    var path = window.location.pathname;
+    var isRuPage = /\/ru\//.test(path);
+    var saved = localStorage.getItem('ragimoff_lang');
+
+    if (saved === 'ru' && !isRuPage) {
+      var fname = path.split('/').pop() || 'index.html';
+      window.location.replace('/ru/' + fname);
+      return;
+    }
+    if (saved === 'az' && isRuPage) {
+      var fname2 = path.split('/').pop() || 'index.html';
+      window.location.replace('/' + fname2);
+      return;
+    }
+    if (saved) return;
+
+    fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
+      var country = (d && d.country_code) ? d.country_code.toUpperCase() : '';
+      if (country === 'RU' && !isRuPage) {
+        localStorage.setItem('ragimoff_lang', 'ru');
+        var fn = window.location.pathname.split('/').pop() || 'index.html';
+        window.location.replace('/ru/' + fn);
+      } else {
+        localStorage.setItem('ragimoff_lang', isRuPage ? 'ru' : 'az');
+      }
+    }).catch(function(){});
+  } catch(e){}
+})();
+
+document.addEventListener('click', function(e){
+  var t = e.target.closest && e.target.closest('.lang-switch, .mobile-lang');
+  if (!t) return;
+  var href = t.getAttribute('href') || '';
+  var goesToRu = /\/ru\//.test(href) || /^ru\//.test(href);
+  localStorage.setItem('ragimoff_lang', goesToRu ? 'ru' : 'az');
+});
+
 // Google Analytics 4 (G-SF6PE3YDN1)
 (function() {
   var s = document.createElement('script');
