@@ -2,43 +2,57 @@
 //  RAGIMOFF.ORG — Shared JS
 // ═══════════════════════════════════════════════
 
-// Auto language redirect by IP geolocation (only on first visit)
-// Russia → /ru/, English → /en/, Azerbaijan/default → /
-// Manual choice persists in localStorage.
+// Auto language redirect — priority: 1) saved choice  2) browser language  3) IP
+// AZ = default(/), RU = /ru/, EN = /en/
 (function() {
   try {
-    var path = window.location.pathname;
-    var isRuPage = /\/ru\//.test(path);
-    var isEnPage = /\/en\//.test(path);
-    var saved = localStorage.getItem('ragimoff_lang');
+    var path    = window.location.pathname;
+    var isRu    = /\/ru\//.test(path);
+    var isEn    = /\/en\//.test(path);
+    var fn      = path.split('/').pop() || 'index.html';
+    var saved   = localStorage.getItem('ragimoff_lang');
 
-    if (saved === 'ru' && !isRuPage) {
-      var fn = path.split('/').pop() || 'index.html';
-      window.location.replace('/ru/' + fn);
-      return;
-    }
-    if (saved === 'en' && !isEnPage) {
-      var fn = path.split('/').pop() || 'index.html';
-      window.location.replace('/en/' + fn);
-      return;
-    }
-    if (saved === 'az' && (isRuPage || isEnPage)) {
-      var fn = path.split('/').pop() || 'index.html';
-      window.location.replace('/' + fn);
-      return;
-    }
+    // 1. Saved preference — always wins
+    if (saved === 'ru' && !isRu) { window.location.replace('/ru/' + fn); return; }
+    if (saved === 'en' && !isEn) { window.location.replace('/en/' + fn); return; }
+    if (saved === 'az' && (isRu || isEn)) { window.location.replace('/' + fn); return; }
     if (saved) return;
 
+    // 2. Browser / device language — instant, no network
+    var navLang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+    var lang2   = navLang.split('-')[0]; // 'ru-RU' → 'ru'
+
+    if (lang2 === 'ru' && !isRu) {
+      localStorage.setItem('ragimoff_lang', 'ru');
+      window.location.replace('/ru/' + fn); return;
+    }
+    if (lang2 === 'en' && !isEn) {
+      localStorage.setItem('ragimoff_lang', 'en');
+      window.location.replace('/en/' + fn); return;
+    }
+    // 'az' or 'tr' (common in AZ) — stay on AZ version, let IP confirm
+    if (lang2 === 'az' || lang2 === 'tr') {
+      // skip IP, just save and stay
+      localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
+      return;
+    }
+
+    // 3. IP geolocation — for any other browser language (or empty)
     fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-      var country = (d && d.country_code) ? d.country_code.toUpperCase() : '';
-      if (country === 'RU' && !isRuPage) {
+      var cc = (d && d.country_code) ? d.country_code.toUpperCase() : '';
+      if (cc === 'RU' && !isRu) {
         localStorage.setItem('ragimoff_lang', 'ru');
-        var fn2 = window.location.pathname.split('/').pop() || 'index.html';
-        window.location.replace('/ru/' + fn2);
+        window.location.replace('/ru/' + fn);
+      } else if (cc !== 'AZ' && cc !== '' && !isEn) {
+        // visitor from any country except AZ → EN
+        localStorage.setItem('ragimoff_lang', 'en');
+        window.location.replace('/en/' + fn);
       } else {
-        localStorage.setItem('ragimoff_lang', isRuPage ? 'ru' : isEnPage ? 'en' : 'az');
+        localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
       }
-    }).catch(function(){});
+    }).catch(function(){
+      localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
+    });
   } catch(e){}
 })();
 
@@ -419,49 +433,59 @@ function closeGalleryStage() {
 function initLangDropdown() {
   var nav = document.querySelector('.desktop-nav');
   if (!nav) return;
-  var langLinks = Array.from(nav.querySelectorAll('.lang-switch'));
-  if (!langLinks.length) return;
 
-  var activeLk = langLinks.find(function(l) { return l.classList.contains('lang-active'); });
-  var activeTxt = activeLk ? activeLk.textContent.trim() : 'AZ';
+  // Determine current language from URL path
+  var pth   = window.location.pathname;
+  var fn    = pth.split('/').pop() || 'index.html';
+  var isRu  = /\/ru\//.test(pth);
+  var isEn  = /\/en\//.test(pth);
+  var cur   = isRu ? 'ru' : isEn ? 'en' : 'az';
+
+  // All 3 language options — built from path, not DOM
+  var options = [
+    { code: 'az', label: 'AZ', href: '/' + fn },
+    { code: 'ru', label: 'RU', href: '/ru/' + fn },
+    { code: 'en', label: 'EN', href: '/en/' + fn }
+  ];
+
+  // Remove old .lang-switch links (cleanup HTML remnants)
+  nav.querySelectorAll('.lang-switch').forEach(function(a) {
+    a.parentNode && a.parentNode.removeChild(a);
+  });
 
   // Wrapper
   var wrap = document.createElement('div');
   wrap.className = 'lang-drop-wrap';
 
-  // Button
+  // Button shows current language
   var btn = document.createElement('button');
   btn.className = 'lang-drop-btn';
   btn.setAttribute('type', 'button');
   btn.setAttribute('aria-haspopup', 'listbox');
   btn.setAttribute('aria-expanded', 'false');
-  btn.innerHTML = activeTxt + '<svg class="lang-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  btn.innerHTML = cur.toUpperCase() + '<svg class="lang-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   // Panel
   var panel = document.createElement('div');
   panel.className = 'lang-drop-panel';
   panel.setAttribute('role', 'listbox');
 
-  langLinks.forEach(function(a) {
-    var isCurrent = a.classList.contains('lang-active');
+  options.forEach(function(lg) {
+    var isCurrent = (lg.code === cur);
     var item = document.createElement('a');
     item.className = 'lang-drop-item' + (isCurrent ? ' current' : '');
-    item.href = isCurrent ? '#' : a.href;
-    item.textContent = a.textContent.trim();
-    if (a.getAttribute('aria-label')) item.setAttribute('title', a.getAttribute('aria-label'));
+    item.href = isCurrent ? '#' : lg.href;
+    item.textContent = lg.label;
     item.setAttribute('role', 'option');
     item.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
     if (isCurrent) {
       item.addEventListener('click', function(e) { e.preventDefault(); });
     } else {
       item.addEventListener('click', function() {
-        var h = item.getAttribute('href') || '';
-        var goRu = /\/ru\//.test(h); var goEn = /\/en\//.test(h);
-        localStorage.setItem('ragimoff_lang', goRu ? 'ru' : goEn ? 'en' : 'az');
+        localStorage.setItem('ragimoff_lang', lg.code);
       });
     }
     panel.appendChild(item);
-    a.parentNode && a.parentNode.removeChild(a);
   });
 
   wrap.appendChild(btn);
