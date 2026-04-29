@@ -415,7 +415,25 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
+  align-self: center; /* explicit centering in .desktop-nav flex row */
 }
+
+/* Override .desktop-nav a styles bleeding into dropdown panel items */
+.desktop-nav .lang-drop-panel a {
+  position: static;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  padding: 11px 18px;
+  display: block;
+  text-decoration: none;
+}
+.desktop-nav .lang-drop-panel a::after,
+.desktop-nav .lang-drop-panel a:hover::after { display: none !important; }
+.desktop-nav .lang-drop-panel a.current { color: var(--gold); pointer-events: none; }
+.desktop-nav .lang-drop-panel a:not(.current):hover { background: rgba(255,255,255,0.07); color: #fff; }
 .lang-drop-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.22);
