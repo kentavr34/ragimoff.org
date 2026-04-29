@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Psixologiya, psixoterapiya və özünüinkişaf mövzularında peşəkar məqalələr. Dr. Kənan Rəhimov — Həkim Psixoterapevt, Bakı." />
+    <meta name="description" content="Профессиональные статьи по психологии, психотерапии и саморазвитию. Доктор Кенан Рагимов — Врач-психотерапевт, Баку." />
     <title>Психология (блог) | RAGIMOFF</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -74,21 +74,21 @@
     <!-- HERO -->
     <section class="pg-hero" data-theme="dark" style="background-image:url('../images/blog/blog-hero.jpg');" aria-labelledby="blog-h1">
       <div class="pg-hero-inner">
-        <span class="badge">BLOQ</span>
-        <h1 class="hero-h1" id="blog-h1">Psixologiya <em>Блогu</em></h1>
-        <p class="hero-lead">Peşəkar məqalələr. Elmi araşdırmalar. Praktik tövsiyələr.</p>
+        <span class="badge">БЛОГ</span>
+        <h1 class="hero-h1" id="blog-h1">Блог <em>психологии</em></h1>
+        <p class="hero-lead">Профессиональные статьи. Научные исследования. Практические рекомендации.</p>
       </div>
     </section>
 
     <!-- FILTER BAR -->
     <div class="filter-bar">
       <div class="filter-inner">
-        <button class="filter-btn active" onclick="filterБлог('all', this)">Hamısı</button>
+        <button class="filter-btn active" onclick="filterБлог('all', this)">Все</button>
         <button class="filter-btn" onclick="filterБлог('aile', this)">Семейная терапия</button>
-        <button class="filter-btn" onclick="filterБлог('klinik', this)">Klinik Psixologiya</button>
-        <button class="filter-btn" onclick="filterБлог('enurez', this)">Enurez</button>
-        <button class="filter-btn" onclick="filterБлог('ozunu', this)">Özünüinkişaf</button>
-        <button class="filter-btn" onclick="filterБлог('tehsil', this)">Psixoloqlar üçün</button>
+        <button class="filter-btn" onclick="filterБлог('klinik', this)">Клиническая психология</button>
+        <button class="filter-btn" onclick="filterБлог('enurez', this)">Энурез</button>
+        <button class="filter-btn" onclick="filterБлог('ozunu', this)">Саморазвитие</button>
+        <button class="filter-btn" onclick="filterБлог('tehsil', this)">Для психологов</button>
       </div>
     </div>
 
@@ -96,189 +96,188 @@
     <section class="sec-pad" data-theme="light" style="padding-bottom:var(--s-section);" id="blogContent">
       <div class="sec-inner" style="text-align:left;">
 
-        <!-- Featured -->
-        <!-- Featured məqalə avtomatik olaraq blogdakı ilk məqalə ilə doldurulur (JS aşağıda) -->
+        <!-- Рекомендуемая статья — автоматически заполняется из первой карточки блога (JS ниже) -->
         <a href="blog-depressiya-protokol.html" class="blog-featured" id="blogFeatured" style="margin-bottom:32px;">
           <div class="blog-featured-img" id="blogFeaturedImg" style="background-image:url('../images/blog/depressiya/protokol-cover.jpg');background-size:cover;background-position:center;"></div>
           <div class="blog-featured-body">
             <span class="blog-featured-badge">Самая новая статья</span>
-            <div class="blog-featured-title" id="blogFeaturedTitle">Psixogen Депрессияnın Müalicəsi — Klinik Protokol</div>
-            <div class="blog-featured-meta" id="blogFeaturedMeta">Protokol · 18 dəq · K. Rəhimov, klinik praktika 2008–2025</div>
-            <div class="blog-featured-excerpt" id="blogFeaturedExcerpt">Qısamüddətli kognitiv-restrukturlaşdırma və uzunmüddətli profilaktik strategiyanın inteqrasiyası. 17 illik klinik praktika əsasında — yüngül və orta ağırlıqlı psixogen depressiyada antidepressantsız tam remissiya.</div>
+            <div class="blog-featured-title" id="blogFeaturedTitle">Лечение психогенной депрессии — Клинический протокол</div>
+            <div class="blog-featured-meta" id="blogFeaturedMeta">Протокол · 18 мин · К. Рагимов, клиническая практика 2008–2025</div>
+            <div class="blog-featured-excerpt" id="blogFeaturedExcerpt">Интеграция краткосрочной когнитивной реструктуризации и долгосрочной профилактической стратегии. На основе 17 лет клинической практики — полная ремиссия при лёгкой и умеренной психогенной депрессии без антидепрессантов.</div>
             <span class="btn btn-fill" style="align-self:flex-start;margin-top:8px;">Читать статью</span>
           </div>
         </a>
 
-        <!-- Блог grid -->
+        <!-- Сетка блога -->
         <div class="blog-grid-2" id="blogGrid">
 
           <a href="blog-depressiya-protokol.html" class="blog-card" data-cat="klinik">
-            <div class="blog-card-img"><img src="../images/blog/depressiya/protokol-cover.jpg" alt="Psixogen depressiya protokolu" loading="lazy" /></div>
+            <div class="blog-card-img"><img src="../images/blog/depressiya/protokol-cover.jpg" alt="Клинический протокол психогенной депрессии" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Protokol</span>
-              <div class="blog-card-title">Psixogen Депрессияnın Müalicəsi — Klinik Protokol</div>
-              <div class="blog-card-excerpt">Qısamüddətli kognitiv-restrukturlaşdırma + uzunmüddətli profilaktik strategiya. 17 illik praktika, longituidnal nəticələr, antidepressantsız tam remissiya yolu.</div>
-              <div class="blog-card-footer"><span>Protokol · 18 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клинический протокол</span>
+              <div class="blog-card-title">Лечение психогенной депрессии — Клинический протокол</div>
+              <div class="blog-card-excerpt">Краткосрочная когнитивная реструктуризация + долгосрочная профилактическая стратегия. 17 лет практики, лонгитюдные результаты, полная ремиссия без антидепрессантов.</div>
+              <div class="blog-card-footer"><span>Протокол · 18 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez-protokol.html" class="blog-card" data-cat="enurez">
-            <div class="blog-card-img"><img src="../images/blog/enurez/protokol-cover.jpg" alt="Gecə enurezi protokolu" loading="lazy" /></div>
+            <div class="blog-card-img"><img src="../images/blog/enurez/protokol-cover.jpg" alt="Алармный протокол ночного энуреза" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Protokol</span>
-              <div class="blog-card-title">Ночной энурез — Modifikasiya Edilmiş Alarm-Protokol</div>
-              <div class="blog-card-excerpt">10 həftəlik strukturlaşdırılmış proqram. n=240 klinik praktika, 80% halda tam remissiya. Maye yükləməsi, aktiv valideyn iştirakı, Kegel məşqləri.</div>
-              <div class="blog-card-footer"><span>Protokol · 14 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клинический протокол</span>
+              <div class="blog-card-title">Ночной энурез — Модифицированный алармный протокол</div>
+              <div class="blog-card-excerpt">10-недельная структурированная программа. n=240 клинических случаев, полная ремиссия в 80% случаев. Водная нагрузка, активное участие родителей, упражнения Кегеля.</div>
+              <div class="blog-card-footer"><span>Протокол · 14 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-depressiya-2.html" class="blog-card" data-cat="klinik">
-            <div class="blog-card-img"><img src="../images/blog/depressiya/art2-cover.jpg" alt="KDT seansı" loading="lazy" /></div>
+            <div class="blog-card-img"><img src="../images/blog/depressiya/art2-cover.jpg" alt="КПТ при депрессии" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">KDT Депрессияda Necə İşləyir?</div>
-              <div class="blog-card-excerpt">Koqnitiv-Davranış Терапияsının üçbucağı, avtomatik düşüncələr, davranış aktivləşməsi və effektivlik dəlilləri. Beck Institute, NICE və APA tövsiyələri əsasında.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 11 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Как работает КПТ при депрессии?</div>
+              <div class="blog-card-excerpt">Треугольник когнитивно-поведенческой терапии, автоматические мысли, поведенческая активация и доказательная эффективность. На основе рекомендаций Beck Institute, NICE и APA.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 11 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-depressiya.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/depressiya/art1-cover.jpg" alt="Депрессия" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Депрессия Kədərdən Necə Fərqlənir?</div>
-              <div class="blog-card-excerpt">DSM-5 üzrə 7 klinik əlamət, kədərlə fərq, risk faktorları. Böyük depressiv pozğunluğun tanınması və müalicə yolları — APA və WHO əsaslı.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Депрессия vs Грусть — В чём разница?</div>
+              <div class="blog-card-excerpt">7 клинических признаков по DSM-5, отличие от грусти, факторы риска. Распознавание большого депрессивного расстройства — по материалам APA и ВОЗ.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-depressiya-3.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/depressiya/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Antidepressantlar — Faktlar və Miflər</div>
-              <div class="blog-card-excerpt">SSRI nədir, asılılıq yaradırmı, ömürlük olarmı — ən tez-tez verilən suallara dəlilə əsaslanan cavablar.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Антидепрессанты — Факты и мифы</div>
+              <div class="blog-card-excerpt">Что такое СИОЗС, вызывают ли зависимость, можно ли принимать всю жизнь — доказательные ответы на самые частые вопросы.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-depressiya-4.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/depressiya/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Postpartum Депрессия — Tanımaq və Müalicə</div>
-              <div class="blog-card-excerpt">Doğuşdan sonra depressiya — anaların 15-20%-ində. "Baby blues"-dan fərq, risk amilləri və müalicə yolları.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Послеродовая депрессия — Распознать и лечить</div>
+              <div class="blog-card-excerpt">Депрессия после родов встречается у 15–20% матерей. Отличие от «беби-блюза», факторы риска и пути лечения.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-depressiya-5.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/depressiya/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Mövsümi Депрессия (SAD) və İşıq Терапияsı</div>
-              <div class="blog-card-excerpt">Qışda başlayan, yazda keçən depressiya — sirkadian ritm, melatonin və 10,000 lux işıq terapiyası.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Сезонная депрессия (SAD) и световая терапия</div>
+              <div class="blog-card-excerpt">Депрессия, начинающаяся зимой и проходящая весной — циркадный ритм, мелатонин и световая терапия 10 000 люкс.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-panik.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/panik/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Panik Atak Anında Nə Etməli? — 3 Texnika</div>
-              <div class="blog-card-excerpt">4-7-8 nəfəs, 5-4-3-2-1 topraqlanma və qəbul texnikası — hücum anında sübut edilmiş alətlər.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Что делать во время панической атаки? — 3 техники</div>
+              <div class="blog-card-excerpt">Дыхание 4-7-8, заземление 5-4-3-2-1 и техника принятия — проверенные инструменты во время приступа.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-panik-2.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/panik/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Panik Atak Anında Beyində Nə Baş Verir?</div>
-              <div class="blog-card-excerpt">Amigdala, "yalan həyəcan", adrenalin axını — panik atakın neyrobioloji mexanizmi sadə dildə.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Что происходит в мозге во время панической атаки?</div>
+              <div class="blog-card-excerpt">Миндалина, «ложная тревога», выброс адреналина — нейробиологический механизм панической атаки простым языком.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-panik-3.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/panik/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Agorafobiya — Panik Atakdan Sosial Təcridə</div>
-              <div class="blog-card-excerpt">Niyə panik atakdan sonra insan evdən çıxa bilmir? Qaçınma davranışının necə dərinləşdiyi və müalicə yolları.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Агорафобия — от панических атак к социальной изоляции</div>
+              <div class="blog-card-excerpt">Почему после панических атак человек не может выйти из дома? Как углубляется избегающее поведение и пути лечения.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-panik-4.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/panik/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">KDT Panik Pozğunluqda Necə İşləyir?</div>
-              <div class="blog-card-excerpt">Koqnitiv-Davranış Терапияsının panik üçün xüsusi protokolu: psikoeğitim, interocepetiv ekspozisiya, in vivo ekspozisiya.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 10 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Как работает КПТ при паническом расстройстве?</div>
+              <div class="blog-card-excerpt">Специальный протокол когнитивно-поведенческой терапии при панике: психообразование, интероцептивная экспозиция, экспозиция in vivo.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 10 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-panik-5.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/panik/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Панические атакиla Bağlı 7 Mif və Elmi Cavablar</div>
-              <div class="blog-card-excerpt">"Panik atakdan ölə bilərsən", "ağılını itirirsən", "xarakter zəifliyidir" — yayılmış miflər və dəlilə əsaslanan cavablar.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">7 мифов о панических атаках и научные ответы</div>
+              <div class="blog-card-excerpt">«От панической атаки можно умереть», «потеряешь рассудок», «это слабость характера» — распространённые мифы и доказательные ответы.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez.html" class="blog-card" data-cat="enurez">
             <div class="blog-card-img"><img src="../images/blog/enurez/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Enurez</span>
-              <div class="blog-card-title">Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc</div>
-              <div class="blog-card-excerpt">«Özü keçər», «su içməsin», «danlamaq lazımdır» — yayılmış inanclar və ICCS, NICE əsaslı elmi cavablar.</div>
-              <div class="blog-card-footer"><span>Enurez · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Энурез</span>
+              <div class="blog-card-title">Ребёнок мочит постель по ночам — 5 распространённых заблуждений</div>
+              <div class="blog-card-excerpt">«Само пройдёт», «пусть не пьёт воду», «нужно ругать» — распространённые убеждения и научные ответы на основе ICCS и NICE.</div>
+              <div class="blog-card-footer"><span>Энурез · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez-2.html" class="blog-card" data-cat="enurez">
             <div class="blog-card-img"><img src="../images/blog/enurez/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Enurez</span>
-              <div class="blog-card-title">BMGE — Birincili Monosimptomatik Ночной энурез</div>
-              <div class="blog-card-excerpt">4 növ enurez, diaqnostika kriteriyaları, beynəlxalq müalicə protokolu (ICCS 2020).</div>
-              <div class="blog-card-footer"><span>Enurez · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Энурез</span>
+              <div class="blog-card-title">ПМНЭ — Первичный моносимптоматический ночной энурез</div>
+              <div class="blog-card-excerpt">4 вида энуреза, диагностические критерии, международный протокол лечения (ICCS 2020).</div>
+              <div class="blog-card-footer"><span>Энурез · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez-3.html" class="blog-card" data-cat="enurez">
             <div class="blog-card-img"><img src="../images/blog/enurez/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Enurez</span>
-              <div class="blog-card-title">Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol</div>
-              <div class="blog-card-excerpt">Enurez alarm cihazının işləmə prinsipi (Pavlov şərtlənməsi) və 12 həftəlik tətbiq protokolu.</div>
-              <div class="blog-card-footer"><span>Enurez · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Энурез</span>
+              <div class="blog-card-title">Как работает алармное устройство? — Международный протокол</div>
+              <div class="blog-card-excerpt">Принцип работы алармного устройства при энурезе (Павловское обусловливание) и 12-недельный протокол применения.</div>
+              <div class="blog-card-footer"><span>Энурез · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez-4.html" class="blog-card" data-cat="enurez">
             <div class="blog-card-img"><img src="../images/blog/enurez/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Enurez</span>
-              <div class="blog-card-title">Desmopressin və İmipramin — Dərmanlar</div>
-              <div class="blog-card-excerpt">Desmopressin nə vaxt verilir, imipramin niyə tövsiyə edilmir — beynəlxalq protokollardan cavablar.</div>
-              <div class="blog-card-footer"><span>Enurez · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Энурез</span>
+              <div class="blog-card-title">Десмопрессин и имипрамин — Медикаменты</div>
+              <div class="blog-card-excerpt">Когда назначают десмопрессин, почему имипрамин не рекомендуется — ответы из международных протоколов.</div>
+              <div class="blog-card-footer"><span>Энурез · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-enurez-5.html" class="blog-card" data-cat="enurez">
             <div class="blog-card-img"><img src="../images/blog/enurez/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Enurez</span>
-              <div class="blog-card-title">Valideynlər Üçün 7 Praktik Məsləhət</div>
-              <div class="blog-card-excerpt">Müalicə zamanı uşağa necə kömək edəcəyi — maye rejimi, sıçrayışlar, səfər, motivasiya.</div>
-              <div class="blog-card-footer"><span>Enurez · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Энурез</span>
+              <div class="blog-card-title">7 практических советов для родителей</div>
+              <div class="blog-card-excerpt">Как помочь ребёнку во время лечения — водный режим, срывы, поездки, мотивация.</div>
+              <div class="blog-card-footer"><span>Энурез · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
@@ -286,9 +285,9 @@
             <div class="blog-card-img"><img src="../images/blog/aile/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
               <span class="blog-card-cat">Семейная терапия</span>
-              <div class="blog-card-title">Ailə Münaqişəsini Həll Etmənin 5 Prinsipi</div>
-              <div class="blog-card-excerpt">Gottman İnstitutunun 40 illik araşdırmaları əsasında 5 prinsip — boşanma riskini 90% dəqiqliklə müəyyənləşdirir.</div>
-              <div class="blog-card-footer"><span>Семейная терапия · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <div class="blog-card-title">5 принципов разрешения семейного конфликта</div>
+              <div class="blog-card-excerpt">5 принципов на основе 40-летних исследований Института Готтмана — определяет риск развода с точностью 90%.</div>
+              <div class="blog-card-footer"><span>Семейная терапия · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
@@ -296,9 +295,9 @@
             <div class="blog-card-img"><img src="../images/blog/aile/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
               <span class="blog-card-cat">Семейная терапия</span>
-              <div class="blog-card-title">Toksik Münasibətin 7 Əlaməti — Tanımaq və Çıxış</div>
-              <div class="blog-card-excerpt">Tənqid, gaslighting, izolyasiya, maliyyə kontrolu — sağlam və toksik münasibəti ayıran 7 klinik əlamət.</div>
-              <div class="blog-card-footer"><span>Семейная терапия · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <div class="blog-card-title">7 признаков токсичных отношений — Распознать и выйти</div>
+              <div class="blog-card-excerpt">Критика, газлайтинг, изоляция, финансовый контроль — 7 клинических признаков, отличающих здоровые отношения от токсичных.</div>
+              <div class="blog-card-footer"><span>Семейная терапия · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
@@ -306,9 +305,9 @@
             <div class="blog-card-img"><img src="../images/blog/aile/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
               <span class="blog-card-cat">Семейная терапия</span>
-              <div class="blog-card-title">Boşanma Astanasında Ailə — Müalicə vs Ayrılıq</div>
-              <div class="blog-card-excerpt">Hansı ailələri qurtarmaq mümkündür, hansılar yox? Klinik kriteriyalar və discernment counseling protokolu.</div>
-              <div class="blog-card-footer"><span>Семейная терапия · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <div class="blog-card-title">Семья на грани развода — Терапия или расставание?</div>
+              <div class="blog-card-excerpt">Какие семьи можно спасти, а какие нет? Клинические критерии и протокол discernment counseling.</div>
+              <div class="blog-card-footer"><span>Семейная терапия · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
@@ -316,9 +315,9 @@
             <div class="blog-card-img"><img src="../images/blog/aile/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
               <span class="blog-card-cat">Семейная терапия</span>
-              <div class="blog-card-title">Cütlüklər Necə Düzgün Mübahisə Etməlidir?</div>
-              <div class="blog-card-excerpt">Gottman metodu — yumşaq başlanğıc, 4 atlı, fasilə qaydası, təmir cəhdləri. Konstruktiv mübahisənin 7 qaydası.</div>
-              <div class="blog-card-footer"><span>Семейная терапия · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <div class="blog-card-title">Как правильно спорить в паре?</div>
+              <div class="blog-card-excerpt">Метод Готтмана — мягкое начало, 4 всадника, правило паузы, попытки к примирению. 7 правил конструктивного спора.</div>
+              <div class="blog-card-footer"><span>Семейная терапия · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
@@ -326,166 +325,166 @@
             <div class="blog-card-img"><img src="../images/blog/aile/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
               <span class="blog-card-cat">Семейная терапия</span>
-              <div class="blog-card-title">Etibar İtirildikdə Onu Necə Qaytarmaq Olar?</div>
-              <div class="blog-card-excerpt">Xəyanət, yalan, etibar pozuntusu — 4 mərhələli klinik bərpa protokolu. 12-24 ay strukturlaşdırılmış proses.</div>
-              <div class="blog-card-footer"><span>Семейная терапия · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <div class="blog-card-title">Как восстановить доверие после его утраты?</div>
+              <div class="blog-card-excerpt">Измена, ложь, нарушение доверия — 4-этапный клинический протокол восстановления. Структурированный процесс на 12–24 месяца.</div>
+              <div class="blog-card-footer"><span>Семейная терапия · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-yeniyetme.html" class="blog-card" data-cat="aile">
             <div class="blog-card-img"><img src="../images/blog/aile-usaq/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Uşaq Терапияsı</span>
-              <div class="blog-card-title">Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz</div>
-              <div class="blog-card-excerpt">13-17 yaş — beyin inkişafının ən intensiv dövrüdür. Niyə valideynlər "düşmən" görünür və nə etmək lazımdır.</div>
-              <div class="blog-card-footer"><span>Uşaq Терапияsı · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Детская терапия</span>
+              <div class="blog-card-title">Ваш подросток не разговаривает с вами — причина не в вас</div>
+              <div class="blog-card-excerpt">13–17 лет — самый интенсивный период развития мозга. Почему родители кажутся «врагами» и что делать.</div>
+              <div class="blog-card-footer"><span>Детская терапия · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-aile-usaq-2.html" class="blog-card" data-cat="aile">
             <div class="blog-card-img"><img src="../images/blog/aile-usaq/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Uşaq Терапияsı</span>
-              <div class="blog-card-title">Uşaq Davranış Problemləri — Əmr-Cəza vs Anlama</div>
-              <div class="blog-card-excerpt">Aqressiya, itaətsizlik, məktəbdən imtina — anlaşılmamış emosional siqnaldır. 5 tipik davranış və əsl səbəbləri.</div>
-              <div class="blog-card-footer"><span>Uşaq Терапияsı · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Детская терапия</span>
+              <div class="blog-card-title">Проблемы поведения ребёнка — Приказ-наказание vs Понимание</div>
+              <div class="blog-card-excerpt">Агрессия, непослушание, отказ от школы — это непонятый эмоциональный сигнал. 5 типичных видов поведения и их истинные причины.</div>
+              <div class="blog-card-footer"><span>Детская терапия · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-aile-usaq-3.html" class="blog-card" data-cat="aile">
             <div class="blog-card-img"><img src="../images/blog/aile-usaq/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Uşaq Терапияsı</span>
-              <div class="blog-card-title">Boşanma Sonrası Uşaq — Necə Kömək Etmək Olar?</div>
-              <div class="blog-card-excerpt">Boşanma uşağa zərər vermir — onun necə baş verməsidir. 5 praktik qayda və yaş üzrə reaksiyalar.</div>
-              <div class="blog-card-footer"><span>Uşaq Терапияsı · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Детская терапия</span>
+              <div class="blog-card-title">Ребёнок после развода — Как помочь?</div>
+              <div class="blog-card-excerpt">Развод не вредит ребёнку — вредит то, как он происходит. 5 практических правил и реакции по возрастам.</div>
+              <div class="blog-card-footer"><span>Детская терапия · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-aile-usaq-4.html" class="blog-card" data-cat="aile">
             <div class="blog-card-img"><img src="../images/blog/aile-usaq/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Uşaq Терапияsı</span>
-              <div class="blog-card-title">Məktəbdən İmtina — 5 Əsl Səbəb</div>
-              <div class="blog-card-excerpt">Sosial anksiyete, akademik çətinliklər, ayrılıq narahatlığı, depressiya, travma. Tədricən geri qayıtma protokolu.</div>
-              <div class="blog-card-footer"><span>Uşaq Терапияsı · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Детская терапия</span>
+              <div class="blog-card-title">Отказ от школы — 5 истинных причин</div>
+              <div class="blog-card-excerpt">Социальная тревога, академические трудности, тревога разлуки, депрессия, травма. Протокол постепенного возвращения.</div>
+              <div class="blog-card-footer"><span>Детская терапия · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-aile-usaq-5.html" class="blog-card" data-cat="aile">
             <div class="blog-card-img"><img src="../images/blog/aile-usaq/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Uşaq Терапияsı</span>
-              <div class="blog-card-title">Uşağa "Yox" Demək — Sağlam Sərhəd Necə Qurulur?</div>
-              <div class="blog-card-excerpt">Sevgi və qaydalar bir-birinə zidd deyil. Baumrind-in valideyn stilləri və 5 praktik vəziyyət.</div>
-              <div class="blog-card-footer"><span>Uşaq Терапияsı · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Детская терапия</span>
+              <div class="blog-card-title">Говорить ребёнку «нет» — Как выстроить здоровые границы?</div>
+              <div class="blog-card-excerpt">Любовь и правила не противоречат друг другу. Стили воспитания по Баумринд и 5 практических ситуаций.</div>
+              <div class="blog-card-footer"><span>Детская терапия · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-sosial-fobiya.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/sosial-fobiya/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Социофобия — Sadəcə Utancaqlıq Deyil</div>
-              <div class="blog-card-excerpt">Utancaqlıq və klinik sosial anksiyete arasında fərq, DSM-5 kriteriyaları və müalicə yolları.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Социофобия — Это не просто застенчивость</div>
+              <div class="blog-card-excerpt">Разница между застенчивостью и клинической социальной тревогой, критерии DSM-5 и пути лечения.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-sosial-fobiya-2.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/sosial-fobiya/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">İctimai Çıxış Qorxusu — KDT və Ekspozisiya</div>
-              <div class="blog-card-excerpt">Glossofobiya — yayılmış sosial fobiya. KDT, ekspozisiya hierarxiyası və Toastmasters strategiyası.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Страх публичных выступлений — КПТ и экспозиция</div>
+              <div class="blog-card-excerpt">Глоссофобия — самая распространённая форма социофобии. КПТ, иерархия экспозиции и стратегия Toastmasters.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-sosial-fobiya-3.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/sosial-fobiya/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Qızarma və Tərləmə — Sosial Reaksiyalar</div>
-              <div class="blog-card-excerpt">Eritrofobiya, hiperhidroz, titrəmə — sosial anksiyetenin fiziki simptomları və "spotlight effect" tədqiqatı.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Покраснение и потливость — Социальные реакции</div>
+              <div class="blog-card-excerpt">Эритрофобия, гипергидроз, дрожь — физические симптомы социальной тревоги и исследование «эффекта прожектора».</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-sosial-fobiya-4.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/sosial-fobiya/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Sosial Anksiyete vs İntrovertlik — Fərq Nədə?</div>
-              <div class="blog-card-excerpt">İntrovertlik — sağlam şəxsiyyət. Sosial anksiyete — klinik vəziyyət. İki vəziyyəti necə ayırd etmək?</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Социальная тревога vs Интроверсия — В чём разница?</div>
+              <div class="blog-card-excerpt">Интроверсия — здоровая черта личности. Социальная тревога — клиническое состояние. Как отличить одно от другого.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-sosial-fobiya-5.html" class="blog-card" data-cat="klinik">
             <div class="blog-card-img"><img src="../images/blog/sosial-fobiya/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Klinik Psixologiya</span>
-              <div class="blog-card-title">Sosial Mediada Anksiyete — Yeni Forma</div>
-              <div class="blog-card-excerpt">FOMO, sonsuz müqayisə, beğeni axtarışı — sosial medianın psixoloji çətinlikləri və müdaxilə strategiyaları.</div>
-              <div class="blog-card-footer"><span>Klinik Psixologiya · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Клиническая психология</span>
+              <div class="blog-card-title">Тревога в социальных сетях — Новая форма</div>
+              <div class="blog-card-excerpt">FOMO, бесконечные сравнения, погоня за лайками — психологические трудности социальных сетей и стратегии вмешательства.</div>
+              <div class="blog-card-footer"><span>Клиническая психология · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-psixolog-olmaq.html" class="blog-card" data-cat="tehsil">
             <div class="blog-card-img"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Psixoloqlar üçün</span>
-              <div class="blog-card-title">Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə?</div>
-              <div class="blog-card-excerpt">Niyə peşəkar psixoloqlar daim tələbatdadır və yaxşı psixoloq olmaq üçün nə lazımdır. Karyera yolu və real maliyyə perspektivi.</div>
-              <div class="blog-card-footer"><span>Psixoloqlar üçün · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Для психологов</span>
+              <div class="blog-card-title">Хороший психолог никогда не остаётся без работы — Почему?</div>
+              <div class="blog-card-excerpt">Почему профессиональные психологи всегда востребованы и что нужно, чтобы стать хорошим психологом. Карьерный путь и реальные финансовые перспективы.</div>
+              <div class="blog-card-footer"><span>Для психологов · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-psixolog-olmaq-2.html" class="blog-card" data-cat="tehsil">
             <div class="blog-card-img"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Psixoloqlar üçün</span>
-              <div class="blog-card-title">Klinik vs Общая психология — Fərq və Seçim</div>
-              <div class="blog-card-excerpt">İki psixologiya növünün fərqi, kim hansı yolu seçməlidir və hibrid yanaşma haqqında.</div>
-              <div class="blog-card-footer"><span>Psixoloqlar üçün · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Для психологов</span>
+              <div class="blog-card-title">Клиническая vs Общая психология — Разница и выбор</div>
+              <div class="blog-card-excerpt">Разница между двумя видами психологии, кому какой путь выбрать и о гибридном подходе.</div>
+              <div class="blog-card-footer"><span>Для психологов · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-psixolog-olmaq-3.html" class="blog-card" data-cat="tehsil">
             <div class="blog-card-img"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Psixoloqlar üçün</span>
-              <div class="blog-card-title">Yeni Psixoloq Üçün İlk Müştəri Necə Alınır?</div>
-              <div class="blog-card-excerpt">Universitetdən sonra psixoloji praktika başlatmaq — networking, marketinq, korporativ və ilk 6 aylıq plan.</div>
-              <div class="blog-card-footer"><span>Psixoloqlar üçün · 9 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Для психологов</span>
+              <div class="blog-card-title">Как начинающему психологу найти первых клиентов?</div>
+              <div class="blog-card-excerpt">Начало психологической практики после университета — нетворкинг, маркетинг, корпоративный сектор и план первых 6 месяцев.</div>
+              <div class="blog-card-footer"><span>Для психологов · 9 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-psixolog-olmaq-4.html" class="blog-card" data-cat="tehsil">
             <div class="blog-card-img"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Psixoloqlar üçün</span>
-              <div class="blog-card-title">Süpervizyon — Psixoloqun Davamlı Müəllimi</div>
-              <div class="blog-card-excerpt">Süpervizyon nədir, kim üçün vacibdir, individual vs qrup, necə düzgün süpervizor seçmək.</div>
-              <div class="blog-card-footer"><span>Psixoloqlar üçün · 7 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Для психологов</span>
+              <div class="blog-card-title">Супервизия — Постоянный учитель психолога</div>
+              <div class="blog-card-excerpt">Что такое супервизия, кому она необходима, индивидуальная vs групповая, как правильно выбрать супервизора.</div>
+              <div class="blog-card-footer"><span>Для психологов · 7 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
           <a href="blog-psixolog-olmaq-5.html" class="blog-card" data-cat="tehsil">
             <div class="blog-card-img"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" loading="lazy" /></div>
             <div class="blog-card-body">
-              <span class="blog-card-cat">Psixoloqlar üçün</span>
-              <div class="blog-card-title">Psixoloqun Özünüqayğısı — Burnoutdan Qorunma</div>
-              <div class="blog-card-excerpt">Psixoloji peşədə burnout 40-60%. Maslach modeli, vicarious trauma və 30 günlük özünüqayğı planı.</div>
-              <div class="blog-card-footer"><span>Psixoloqlar üçün · 8 dəq</span><span class="blog-card-read">Читать</span></div>
+              <span class="blog-card-cat">Для психологов</span>
+              <div class="blog-card-title">Забота о себе для психолога — Защита от выгорания</div>
+              <div class="blog-card-excerpt">Выгорание в психологической профессии — 40–60%. Модель Маслах, викарная травма и 30-дневный план самозаботы.</div>
+              <div class="blog-card-footer"><span>Для психологов · 8 мин</span><span class="blog-card-read">Читать</span></div>
             </div>
           </a>
 
         </div>
 
         <div id="noResults" style="display:none;text-align:center;padding:48px;color:var(--gray);">
-          <p>Bu kateqoriyada hələ məqalə yoxdur. Tezliklə əlavə olunacaq.</p>
+          <p>В этой категории статей пока нет. Скоро будет добавлено.</p>
         </div>
 
       </div>
@@ -495,12 +494,12 @@
     <div class="cta-band" data-theme="light">
       <div class="cta-band-inner">
         <div>
-          <h2>Консультация lazımdır?</h2>
-          <p>Читатьduqlarınız haqqında sualınız varsa — yazın, cavablandırırıq.</p>
+          <h2>Нужна консультация?</h2>
+          <p>Если у вас есть вопросы по прочитанному — напишите, ответим.</p>
         </div>
         <div class="cta-band-btns">
           <a href="https://wa.me/994702200376" target="_blank" class="btn btn-fill" style="background:var(--navy);color:var(--white);">WhatsApp</a>
-          <a href="xidmetler.html" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">Xidmətlər</a>
+          <a href="xidmetler.html" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">Услуги</a>
         </div>
       </div>
     </div>
@@ -583,7 +582,7 @@
       document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
     }
 
-    // Featured məqaləni avtomatik olaraq blogdakı ilk kartdan doldur
+    // Автоматически заполняем рекомендуемую статью из первой карточки блога
     document.addEventListener('DOMContentLoaded', () => {
       const first = document.querySelector('#blogGrid .blog-card');
       const feat = document.getElementById('blogFeatured');
@@ -602,7 +601,7 @@
       const titleEl = document.getElementById('blogFeaturedTitle');
       if (titleEl) titleEl.textContent = title;
       const metaEl = document.getElementById('blogFeaturedMeta');
-      if (metaEl) metaEl.textContent = footer + ' · Dr. Kənan Rəhimov';
+      if (metaEl) metaEl.textContent = footer + ' · Д-р Кенан Рагимов';
       const exEl = document.getElementById('blogFeaturedExcerpt');
       if (exEl) exEl.textContent = excerpt;
     });

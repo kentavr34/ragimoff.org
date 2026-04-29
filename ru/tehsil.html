@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="RAGIMOFF Школа психологии — Общая психология, Клиническая психология ДПО, Практикум по психотерапии. Rəsmi dövlət diplomu + beynəlxalq sertifikat." />
+    <meta name="description" content="RAGIMOFF Школа психологии — Общая психология, Клиническая психология ДПО, Практикум по психотерапии. Официальный государственный диплом + международный сертификат." />
     <title>Обучение | RAGIMOFF</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,13 +38,9 @@
         .price-card { padding: 24px 16px; }
         .feat-card { padding: 24px 20px; }
       }
-
-      /* ── PDF EXPORT BUTTON ── */
       .pdf-export-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.12); border: 1px solid rgba(181,155,114,0.35); color: var(--accent); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.2s; text-decoration: none; }
       .pdf-export-btn:hover { background: var(--accent); color: var(--navy); }
       .pdf-export-btn svg { flex-shrink: 0; }
-
-      /* ── PRINT — только программа обучения ── */
       @media print {
         *, *::before, *::after { box-sizing: border-box !important; }
         header, .mobile-nav, .stats-strip, .wa-float, footer,
@@ -66,18 +62,14 @@
         .price-total .num { font-size: 14pt !important; font-weight: 800 !important; color: #b59b72 !important; display: block !important; }
         .price-total .lbl { font-size: 8pt !important; color: #aaa !important; display: block !important; }
         .btn, a[href] { display: none !important; }
-        body::before { content: "RAGIMOFF Школа психологии — Tədris Proqramları"; display: block; font-size: 14pt; font-weight: 800; color: #06182b; text-align: center; padding: 16px 0 20px; letter-spacing: 0.05em; text-transform: uppercase; }
+        body::before { content: "RAGIMOFF Школа психологии — Учебные программы"; display: block; font-size: 14pt; font-weight: 800; color: #06182b; text-align: center; padding: 16px 0 20px; letter-spacing: 0.05em; text-transform: uppercase; }
       }
-
-      /* ── STUDENTS GALLERY ── */
       .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
       .students-item { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; border: 1px solid var(--clr-border); }
       .students-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
       .students-item:hover img { transform: scale(1.05); }
       @media (max-width: 960px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (max-width: 560px) { .students-grid { grid-template-columns: 1fr; } }
-
-      /* ── REVIEWS ── */
       .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
       .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(181,155,114,0.22); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
       .review-stars { color: var(--accent); font-size: 1.1rem; letter-spacing: 2px; }
@@ -87,8 +79,6 @@
       .review-prog { font-size: var(--t-xs); color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
       @media (max-width: 1100px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
       @media (max-width: 720px) { .reviews-grid { grid-template-columns: 1fr; } .review-card { padding: 22px; } }
-
-      /* ── REVIEW FORM ── */
       .rev-form-wrap { max-width: 640px; margin: 40px auto 0; background: var(--white); padding: 40px; border: 1px solid var(--clr-border); }
       .rev-field { margin-bottom: 18px; }
       .rev-field label { display: block; font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 8px; }
@@ -104,7 +94,6 @@
       .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(181,155,114,0.06); border-left: 3px solid var(--accent); }
       .rev-success { display: none; background: #e8f5e9; border: 1px solid #81c784; padding: 20px; color: #2e7d32; font-size: var(--t-sm); font-weight: 600; margin-top: 20px; }
       @media (max-width: 600px) { .rev-form-wrap { padding: 28px 20px; } }
-      /* Tələbələr подзаголовок — широкий формат, 2 строки на десктопе */
       .stud-sub { max-width: 920px; line-height: 1.55; }
       @media (max-width: 768px) {
         .stud-sub { font-size: 0.875rem; line-height: 1.5; max-width: 100%; }
@@ -174,12 +163,12 @@
     <!-- HERO -->
     <section class="pg-hero" data-theme="dark" style="background-image:url('../images/students/psixologiya-mekteb.jpg');" aria-labelledby="tehsil-h1">
       <div class="pg-hero-inner">
-        <span class="badge">TƏHSİL</span>
-        <h1 class="hero-h1" id="tehsil-h1">Psixologiya Peşəsinə <em>Rəsmi Yol</em></h1>
-        <p class="hero-lead">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.<br>Dr. Kənan Rəhimovun şəxsi rəhbərliyi altında.</p>
+        <span class="badge">ОБУЧЕНИЕ</span>
+        <h1 class="hero-h1" id="tehsil-h1">Официальный путь в профессию <em>психолога</em></h1>
+        <p class="hero-lead">Официальный диплом ДПО, сертификат IPAS/BPA.<br>Под личным руководством д-ра Кенана Рагимова.</p>
         <div class="hero-btns">
-          <a href="#programs" class="btn btn-fill">Proqramlara Bax</a>
-          <a href="#registration" class="btn btn-line">Запись</a>
+          <a href="#programs" class="btn btn-fill">Смотреть программы</a>
+          <a href="#registration" class="btn btn-line">Записаться</a>
         </div>
       </div>
     </section>
@@ -187,13 +176,13 @@
     <!-- STATS STRIP -->
     <div class="stats-strip" data-theme="dark">
       <div class="stats-inner">
-        <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">İl Klinik Təcrübə</span></div>
+        <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">Лет клинической практики</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">Uğurlu Pasient</span></div>
+        <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">Успешных пациентов</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Peşəkar Məzun</span></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Профессиональных выпускников</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Video Dərs</span></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Видеоуроков</span></div>
       </div>
     </div>
 
@@ -201,16 +190,16 @@
     <section id="programs" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="prog-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge">Tədris Proqramları</span>
-          <h2 class="sec-h2" id="prog-h">3 Rəsmi Peşə Proqramı</h2>
-          <p class="sec-sub">Hər proqram 1 il — bilavasitə və onlayn format.<br>Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</p>
+          <span class="badge">Учебные программы</span>
+          <h2 class="sec-h2" id="prog-h">3 официальные профессиональные программы</h2>
+          <p class="sec-sub">Каждая программа — 1 год, очный и онлайн-форматы.<br>Рассрочка до 24 месяцев, диплом после полной оплаты.</p>
         </div>
       </div>
       <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section);">
         <div class="pdf-export-row" style="display:flex;justify-content:flex-end;margin-bottom:20px;">
           <button onclick="window.print()" class="pdf-export-btn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-            PDF Yüklə
+            Скачать PDF
           </button>
         </div>
         <div class="price-grid-3">
@@ -219,51 +208,51 @@
           <div class="price-card">
             <div class="price-card-head">
               <h4>Общая психология</h4>
-              <span>DPO Diplom · 1 556 saat</span>
+              <span>Диплом ДПО · 1 556 часов</span>
             </div>
-            <p class="price-card-desc">AR qanunvericiliyinə uyğun FRDO dövlət reyestrinə daxil edilən rəsmi Əlavə Peşə Обучениеi diplomu. Psixoloq kimi hüquqi fəaliyyətin başlanğıcı.</p>
-            <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — 6+6 ay</span></div>
-            <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">4 200 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">100% ödənişdə (−10%)</span><span class="price-row-value accent">3 800 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 12 ay</span><span class="price-row-value">350 AZN/ay</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 24 ay</span><span class="price-row-value">200 AZN/ay</span></div>
-            <div class="price-total"><span class="num">200 AZN</span><span class="lbl">aylıq minimum</span></div>
-            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Запись</a>
-            <a href="program-umumi.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı &rarr;</a>
+            <p class="price-card-desc">Официальный диплом о дополнительном профессиональном образовании (ДПО), включённый в государственный реестр ФРДО. Законное право практиковать как психолог.</p>
+            <div class="price-row"><span class="price-row-label">Длительность</span><span class="price-row-value">1 год — 6+6 мес.</span></div>
+            <div class="price-row"><span class="price-row-label">Полная стоимость</span><span class="price-row-value">185 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">100% оплата (−10%)</span><span class="price-row-value accent">168 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 12 мес.</span><span class="price-row-value">16 тыс. руб./мес.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 24 мес.</span><span class="price-row-value">9 тыс. руб./мес.</span></div>
+            <div class="price-total"><span class="num">9 тыс. руб.</span><span class="lbl">минимальный ежемесячный платёж</span></div>
+            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Записаться</a>
+            <a href="program-umumi.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Учебная программа &rarr;</a>
           </div>
 
           <!-- Клиническая психология ДПО -->
           <div class="price-card featured">
             <div class="price-card-head">
-              <h4>Klinik Psixologiya</h4>
-              <span>DPO Diplom · 1 528 saat</span>
+              <h4>Клиническая психология ДПО</h4>
+              <span>Диплом ДПО · 1 528 часов</span>
             </div>
-            <p class="price-card-desc">Mürəkkəb klinik hallar üzərində müstəqil işləmək hüququ. Öz mərkəzinizi açmaq üçün tam hüquqi status. Beynəlxalq IPAS sertifikatı ilə birgə.</p>
-            <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — 6+6 ay</span></div>
-            <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">6 600 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">100% ödənişdə (−10%)</span><span class="price-row-value accent">6 000 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 12 ay</span><span class="price-row-value">550 AZN/ay</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 24 ay</span><span class="price-row-value">300 AZN/ay</span></div>
-            <div class="price-total"><span class="num">300 AZN</span><span class="lbl">aylıq minimum</span></div>
-            <a href="#registration" class="btn btn-fill" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Запись</a>
-            <a href="program-klinik.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı &rarr;</a>
+            <p class="price-card-desc">Право самостоятельно работать со сложными клиническими случаями. Полный правовой статус для открытия собственного кабинета. В комплекте с международным сертификатом IPAS.</p>
+            <div class="price-row"><span class="price-row-label">Длительность</span><span class="price-row-value">1 год — 6+6 мес.</span></div>
+            <div class="price-row"><span class="price-row-label">Полная стоимость</span><span class="price-row-value">291 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">100% оплата (−10%)</span><span class="price-row-value accent">264 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 12 мес.</span><span class="price-row-value">25 тыс. руб./мес.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 24 мес.</span><span class="price-row-value">14 тыс. руб./мес.</span></div>
+            <div class="price-total"><span class="num">14 тыс. руб.</span><span class="lbl">минимальный ежемесячный платёж</span></div>
+            <a href="#registration" class="btn btn-fill" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Записаться</a>
+            <a href="program-klinik.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Учебная программа &rarr;</a>
           </div>
 
           <!-- Практикум по психотерапии -->
           <div class="price-card">
             <div class="price-card-head">
               <h4>Практикум по психотерапии</h4>
-              <span>IPAS/BPA Sertifikat · 864 saat</span>
+              <span>Сертификат IPAS/BPA · 864 часа</span>
             </div>
-            <p class="price-card-desc">Psixoloq + pasiyent rollarında canlı məşqlər, real keyslərin superviziyası, konsilium formatı. QR-kodla yoxlanılan beynəlxalq IPAS/BPA sertifikatı.</p>
-            <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — praktika</span></div>
-            <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">3 600 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">100% ödənişdə (−20%)</span><span class="price-row-value accent">3 000 AZN</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 12 ay</span><span class="price-row-value">300 AZN/ay</span></div>
-            <div class="price-row"><span class="price-row-label">Rəssite 24 ay</span><span class="price-row-value">175 AZN/ay</span></div>
-            <div class="price-total"><span class="num">175 AZN</span><span class="lbl">aylıq minimum</span></div>
-            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Запись</a>
-            <a href="program-praktikum.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı &rarr;</a>
+            <p class="price-card-desc">Живые тренировки в ролях психолог + пациент, супервизия реальных кейсов, консилиум-формат. Международный сертификат IPAS/BPA с QR-верификацией.</p>
+            <div class="price-row"><span class="price-row-label">Длительность</span><span class="price-row-value">1 год — практика</span></div>
+            <div class="price-row"><span class="price-row-label">Полная стоимость</span><span class="price-row-value">159 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">100% оплата (−20%)</span><span class="price-row-value accent">132 тыс. руб.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 12 мес.</span><span class="price-row-value">14 тыс. руб./мес.</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 24 мес.</span><span class="price-row-value">8 тыс. руб./мес.</span></div>
+            <div class="price-total"><span class="num">8 тыс. руб.</span><span class="lbl">минимальный ежемесячный платёж</span></div>
+            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Записаться</a>
+            <a href="program-praktikum.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Учебная программа &rarr;</a>
           </div>
 
         </div>
@@ -274,17 +263,17 @@
     <section class="sec-pad" data-theme="light" aria-labelledby="benefit-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge on-light">Tədris Keyfiyyəti</span>
-          <h2 class="sec-h2" id="benefit-h">Niyə RAGIMOFF</h2>
-          <p class="sec-sub">23 illik klinik təcrübə, FRDO rəsmi qeydiyyat,<br>müddətsiz tələbə dəstəyi ilə fərqliləşirik.</p>
+          <span class="badge on-light">Качество обучения</span>
+          <h2 class="sec-h2" id="benefit-h">Почему RAGIMOFF</h2>
+          <p class="sec-sub">23 года клинической практики, официальная регистрация в ФРДО,<br>бессрочная поддержка студентов — вот чем мы отличаемся.</p>
         </div>
         <div class="feat-grid-3">
-          <div class="feat-card"><span class="feat-num">01</span><h4>Rəsmi Dövlət Sənədi</h4><p>FRDO dövlət reyestrinə daxil edilən DPO diplomu. AR qanunvericiliyi çərçivəsində tam hüquqi fəaliyyət imkanı. Nostrifikasiya tələb olunmur.</p></div>
-          <div class="feat-card"><span class="feat-num">02</span><h4>Klinik Supervisor</h4><p>Hər tələbəyə fərdi peşəkar kurator təyin edilir. Tədris prosesinin hər mərhələsini birgə keçirirsiniz.</p></div>
-          <div class="feat-card"><span class="feat-num">03</span><h4>Real Praktika</h4><p>Real klinik hallar, konsiliumda canlı iştirak, superviziya. Nəzəriyyə həmişə praktika ilə birgə tədris edilir.</p></div>
-          <div class="feat-card"><span class="feat-num">04</span><h4>Beynəlxalq Tanınma</h4><p>IPAS/BPA sertifikatı — QR kodla yoxlanılan beynəlxalq tanınma. Azərbaycandan kənarda da keçərlidir.</p></div>
-          <div class="feat-card"><span class="feat-num">05</span><h4>Onlayn + Oflayn</h4><p>Tam çevik format — həm canlı dərslər, həm onlayn. Bütün materiallar arxivdə saxlanılır, ömür boyu giriş.</p></div>
-          <div class="feat-card"><span class="feat-num">06</span><h4>Taksit İmkanı</h4><p>Aylıq minimum ödəniş 175–300 AZN səviyyəsinə endirilir. 24 aylıq rəssite — maliyyə yükü minimuma çatdırılır.</p></div>
+          <div class="feat-card"><span class="feat-num">01</span><h4>Официальный государственный документ</h4><p>Диплом ДПО, внесённый в государственный реестр ФРДО. Полное право на юридическую деятельность в рамках законодательства. Нострификация не требуется.</p></div>
+          <div class="feat-card"><span class="feat-num">02</span><h4>Клинический супервизор</h4><p>Каждому студенту назначается индивидуальный профессиональный куратор. Все этапы учебного процесса проходите вместе с наставником.</p></div>
+          <div class="feat-card"><span class="feat-num">03</span><h4>Реальная практика</h4><p>Реальные клинические случаи, живое участие в консилиуме, супервизия. Теория всегда преподаётся в связке с практикой.</p></div>
+          <div class="feat-card"><span class="feat-num">04</span><h4>Международное признание</h4><p>Сертификат IPAS/BPA — международное признание с QR-верификацией. Действителен за пределами Азербайджана.</p></div>
+          <div class="feat-card"><span class="feat-num">05</span><h4>Онлайн + офлайн</h4><p>Полностью гибкий формат — живые занятия и онлайн. Все материалы хранятся в архиве, доступ пожизненный.</p></div>
+          <div class="feat-card"><span class="feat-num">06</span><h4>Рассрочка</h4><p>Минимальный ежемесячный платёж — от 8 тыс. руб. 24-месячная рассрочка — финансовая нагрузка сведена к минимуму.</p></div>
         </div>
       </div>
     </section>
@@ -293,28 +282,28 @@
     <section id="diplomas" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="dip-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge on-light">Rəsmi Sənədlər</span>
-          <h2 class="sec-h2" id="dip-h">Əlavə Обучение Diplomu və Beynəlxalq Sertifikat</h2>
-          <p class="sec-sub">Proqramı bitirdikdən sonra Sankt-Peterburq Əlavə Обучение İnstitutunun<br>tərəfindən məzunlara verilən rəsmi Diplom və Sertifikatlar.</p>
+          <span class="badge on-light">Официальные документы</span>
+          <h2 class="sec-h2" id="dip-h">Диплом ДПО и международный сертификат</h2>
+          <p class="sec-sub">По окончании программы выпускники получают официальный Диплом<br>и сертификаты Санкт-Петербургского института дополнительного образования.</p>
         </div>
       </div>
       <div class="gallery-band" data-theme="dark">
         <div class="diploma-gallery" id="diplomaGallery">
           <div class="dg-mains">
-            <div class="dg-main-item" data-idx="0"><img src="../images/institute/diplom-psy-b-spb-idpo.jpg" alt="SPb Əlavə Обучение İnstitutu — Klinik Psixologiya Diplomu" loading="lazy" /></div>
-            <div class="dg-main-item" data-idx="1"><img src="../images/institute/diplom-spb-idpo.jpg" alt="SPb Əlavə Обучение İnstitutu — Diplom" loading="lazy" /></div>
-            <div class="dg-main-item" data-idx="2"><img src="../images/institute/diplom-psy-spb-idpo.jpg" alt="SPb Əlavə Обучение İnstitutu — Psixologiya Diplomu" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="0"><img src="../images/institute/diplom-psy-b-spb-idpo.jpg" alt="СПб ИДПО — Диплом клинического психолога" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="1"><img src="../images/institute/diplom-spb-idpo.jpg" alt="СПб ИДПО — Диплом" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="2"><img src="../images/institute/diplom-psy-spb-idpo.jpg" alt="СПб ИДПО — Диплом психолога" loading="lazy" /></div>
           </div>
           <div class="dg-thumbs">
-            <div class="dg-thumb" data-idx="3"><img src="../images/institute/diplom-spb-prilozhenie.jpg" alt="Diplom Əlavə" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="4"><img src="../images/certificate/cert-sample-ipas-clinical.jpg" alt="IPAS Klinik Psixologiya Sertifikatı" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="5"><img src="../images/certificate/cert-sample-ipas-family.jpg" alt="IPAS Общая психология Sertifikatı" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="6"><img src="../images/certificate/cert-sample-gtc-dark.jpg" alt="GTC Praktikum Sertifikatı" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="7"><img src="../images/institute/diplom-predmety.jpg" alt="Fənnlər Cədvəli" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="8"><img src="../images/institute/licenziya-1.jpg" alt="Rəsmi Fəaliyyət Lisenziyası" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="9"><img src="../images/institute/licenziya-2.jpg" alt="Lisenziya 2" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="10"><img src="../images/institute/licenziya-vypiska.jpg" alt="Lisenziya Çıxarışı" loading="lazy" /></div>
-            <div class="dg-thumb" data-idx="11"><img src="../images/institute/licenziya-vypiska-2.jpg" alt="Lisenziya Çıxarışı 2" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="3"><img src="../images/institute/diplom-spb-prilozhenie.jpg" alt="Приложение к диплому" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="4"><img src="../images/certificate/cert-sample-ipas-clinical.jpg" alt="Сертификат IPAS — Клиническая психология" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="5"><img src="../images/certificate/cert-sample-ipas-family.jpg" alt="Сертификат IPAS — Общая психология" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="6"><img src="../images/certificate/cert-sample-gtc-dark.jpg" alt="Сертификат GTC — Практикум" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="7"><img src="../images/institute/diplom-predmety.jpg" alt="Таблица дисциплин" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="8"><img src="../images/institute/licenziya-1.jpg" alt="Официальная лицензия на деятельность" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="9"><img src="../images/institute/licenziya-2.jpg" alt="Лицензия 2" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="10"><img src="../images/institute/licenziya-vypiska.jpg" alt="Выписка из лицензии" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="11"><img src="../images/institute/licenziya-vypiska-2.jpg" alt="Выписка из лицензии 2" loading="lazy" /></div>
           </div>
         </div>
       </div>
@@ -324,11 +313,11 @@
     <div class="legal-banner" data-theme="dark">
       <div class="legal-banner-inner">
         <div>
-          <h4>Diplomun Hüquqi Statusu</h4>
-          <p>Rusiya Federasiyası ilə Azərbaycan Respublikası arasında təhsil sahəsindəki Sazişə əsasən (AR Qanunu № 455-IIQ, 13 may 2003) Sankt-Peterburq Əlavə Обучение İnstitutunun Diplomu Azərbaycanda rəsmi tanınan sənəddir. Məzunlar — işə qəbul edən tərəfin tələblərinə uyğun olduqda — həm dövlət, həm də özəl müəssisələrdə fəaliyyət göstərə bilər.</p>
+          <h4>Правовой статус диплома</h4>
+          <p>На основании Соглашения между Российской Федерацией и Азербайджанской Республикой в сфере образования (Закон АР № 455-IIQ от 13 мая 2003 г.) диплом Санкт-Петербургского института дополнительного образования является официально признанным документом в Азербайджане. Выпускники — при соответствии требованиям работодателя — могут вести деятельность как в государственных, так и в частных учреждениях.</p>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;">
-          <a href="https://e-qanun.az/framework/2054" target="_blank" rel="noopener" class="btn btn-fill" style="white-space:nowrap;">Razılaşma ilə tanış olun</a>
+          <a href="https://e-qanun.az/framework/2054" target="_blank" rel="noopener" class="btn btn-fill" style="white-space:nowrap;">Ознакомиться с соглашением</a>
           <a href="qanunlar.html" class="btn btn-line" style="white-space:nowrap;">Юридические основы</a>
         </div>
       </div>
@@ -338,20 +327,20 @@
     <section id="students" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="stud-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge on-light">Məktəbimizdən Anlar</span>
-          <h2 class="sec-h2" id="stud-h">Tələbələrimiz və Təlim Prosesi</h2>
-          <p class="sec-sub stud-sub">Əyani dərslər, Praktikum məşqləri, Peşəkar təlimlər, Azərbaycan dilində başqa yerdə mövcud olmayan 2026-cı ilin tələlərinə uyğun şəxsi tədris vəsaitləri <br>+ sərbəst hazırlıq üçün 300-dən çox dərslərin video yazıları.</p>
+          <span class="badge on-light">Из жизни школы</span>
+          <h2 class="sec-h2" id="stud-h">Наши студенты и учебный процесс</h2>
+          <p class="sec-sub stud-sub">Очные занятия, практикумные тренинги, профессиональные семинары, авторские учебные пособия 2026 года,<br>нигде более не доступные на русском языке + видеозаписи 300+ уроков для самостоятельной подготовки.</p>
         </div>
         <div class="students-grid" id="studentsGallery">
-          <div class="students-item" data-idx="0"><img src="../images/students/group-training.jpg" alt="Qrup təlimi" loading="lazy" /></div>
+          <div class="students-item" data-idx="0"><img src="../images/students/group-training.jpg" alt="Групповой тренинг" loading="lazy" /></div>
           <div class="students-item" data-idx="1"><img src="../images/students/psixoterapiya-praktikum.jpg" alt="Практикум по психотерапии" loading="lazy" /></div>
-          <div class="students-item" data-idx="2"><img src="../images/students/klinik-psixologiya-program.jpg" alt="Klinik Psixologiya qrupu" loading="lazy" /></div>
-          <div class="students-item" data-idx="3"><img src="../images/students/umumi-psixologiya-program.jpg" alt="Общая психология qrupu" loading="lazy" /></div>
-          <div class="students-item" data-idx="4"><img src="../images/students/psixoterapiya-praktikum1.jpg" alt="Praktikum sessiyası" loading="lazy" /></div>
-          <div class="students-item" data-idx="5"><img src="../images/students/group-outdoor.jpg" alt="Tələbə qrupu — açıq hava" loading="lazy" /></div>
+          <div class="students-item" data-idx="2"><img src="../images/students/klinik-psixologiya-program.jpg" alt="Группа клинической психологии" loading="lazy" /></div>
+          <div class="students-item" data-idx="3"><img src="../images/students/umumi-psixologiya-program.jpg" alt="Группа общей психологии" loading="lazy" /></div>
+          <div class="students-item" data-idx="4"><img src="../images/students/psixoterapiya-praktikum1.jpg" alt="Сессия практикума" loading="lazy" /></div>
+          <div class="students-item" data-idx="5"><img src="../images/students/group-outdoor.jpg" alt="Группа студентов — на улице" loading="lazy" /></div>
           <div class="students-item" data-idx="6"><img src="../images/students/psixologiya-mekteb.jpg" alt="Школа психологии" loading="lazy" /></div>
-          <div class="students-item" data-idx="7"><img src="../images/students/psixologiya-mekteb1.jpg" alt="Tədris mərkəzi" loading="lazy" /></div>
-          <div class="students-item" data-idx="8"><img src="../images/students/korporativ-grup.jpg" alt="Корпоративное qrup təlimi" loading="lazy" /></div>
+          <div class="students-item" data-idx="7"><img src="../images/students/psixologiya-mekteb1.jpg" alt="Учебный центр" loading="lazy" /></div>
+          <div class="students-item" data-idx="8"><img src="../images/students/korporativ-grup.jpg" alt="Корпоративный групповой тренинг" loading="lazy" /></div>
         </div>
       </div>
     </section>
@@ -360,60 +349,60 @@
     <section id="reviews" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="rev-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge">Məzun Rəyləri</span>
-          <h2 class="sec-h2" id="rev-h">Tələbələrimiz Nə Deyir?</h2>
-          <p class="sec-sub">Real məzunların real hekayələri —<br>iştirak təcrübəsi, nəticələr və tövsiyələr.</p>
+          <span class="badge">Отзывы выпускников</span>
+          <h2 class="sec-h2" id="rev-h">Что говорят наши студенты?</h2>
+          <p class="sec-sub">Реальные истории реальных выпускников —<br>опыт участия, результаты и рекомендации.</p>
         </div>
         <div class="reviews-grid" id="reviewsGrid">
           <div class="review-card">
-            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
-            <p class="review-text">"Klinik DPO proqramı bütün gözləntilərimi aşdı. Nəzəriyyə və praktika balansı mükəmməldir. İndi öz ofisimdə müstəqil işləyirəm — ilk ayda 8 müştəri."</p>
-            <div class="review-meta"><span class="review-name">Aynur M.</span><span class="review-prog">Клиническая психология ДПО · 2024</span></div>
+            <div class="review-stars" aria-label="5 звёзд">★★★★★</div>
+            <p class="review-text">"Программа клинической ДПО превзошла все мои ожидания. Баланс теории и практики — безупречный. Сейчас работаю самостоятельно в собственном кабинете — первый месяц уже 8 клиентов."</p>
+            <div class="review-meta"><span class="review-name">Айнур М.</span><span class="review-prog">Клиническая психология ДПО · 2024</span></div>
           </div>
           <div class="review-card">
-            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
-            <p class="review-text">"Praktikumda superviziya canlı iş praktikası verdi. Video arxiv çox faydalıdır — hər dərsi 2-3 dəfə təkrar izlədim. Dr. Rəhimovun yanaşması həm akademik, həm də şəxsidir."</p>
-            <div class="review-meta"><span class="review-name">Elşad H.</span><span class="review-prog">Практикум по психотерапии · 2024</span></div>
+            <div class="review-stars" aria-label="5 звёзд">★★★★★</div>
+            <p class="review-text">"Супервизия на практикуме дала живой опыт реальной работы. Видеоархив очень полезен — пересматривал каждое занятие 2–3 раза. Подход д-ра Рагимова — академический и одновременно личностный."</p>
+            <div class="review-meta"><span class="review-name">Эльшад Г.</span><span class="review-prog">Практикум по психотерапии · 2024</span></div>
           </div>
           <div class="review-card">
-            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
-            <p class="review-text">"Общая психология sayəsində tibbi təhsilim olmadan peşəyə daxil oldum. Diplom tam qanunidir — işəgötürənim FRDO reyestrindən yoxladı və heç bir sual çıxmadı."</p>
-            <div class="review-meta"><span class="review-name">Leyla Ə.</span><span class="review-prog">Общая психология DPO · 2023</span></div>
+            <div class="review-stars" aria-label="5 звёзд">★★★★★</div>
+            <p class="review-text">"Благодаря общей психологии я вошла в профессию без медицинского образования. Диплом полностью легален — работодатель проверил через реестр ФРДО, вопросов не возникло."</p>
+            <div class="review-meta"><span class="review-name">Лейла А.</span><span class="review-prog">Общая психология ДПО · 2023</span></div>
           </div>
           <div class="review-card">
-            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
-            <p class="review-text">"Onlayn format işlə birlikdə çox əlverişlidir. Canlı dərslər həftəsonu, video arxiv isə gecə-gündüz açıqdır. Oflayn praktikum sessiyaları isə qrupun birləşməsini möhkəmləndirdi."</p>
-            <div class="review-meta"><span class="review-name">Rəşad Q.</span><span class="review-prog">Клиническая психология ДПО · 2023</span></div>
+            <div class="review-stars" aria-label="5 звёзд">★★★★★</div>
+            <p class="review-text">"Онлайн-формат очень удобен в сочетании с работой. Живые занятия — по выходным, видеоархив — круглосуточно. Офлайн-сессии практикума дополнительно сплотили группу."</p>
+            <div class="review-meta"><span class="review-name">Рашад К.</span><span class="review-prog">Клиническая психология ДПО · 2023</span></div>
           </div>
           <div class="review-card">
-            <div class="review-stars" aria-label="5 ulduz">★★★★★</div>
-            <p class="review-text">"Dərslərdən sonra fərdi suallarıma 24 saat ərzində cavab alıram. Koordinator çox diqqətlidir. Məzun olduqdan sonra da Telegram qrupu aktivdir — həmkarlar şəbəkəsi qaldı."</p>
-            <div class="review-meta"><span class="review-name">Nigar S.</span><span class="review-prog">Практикум по психотерапии · 2023</span></div>
+            <div class="review-stars" aria-label="5 звёзд">★★★★★</div>
+            <p class="review-text">"После занятий получаю ответы на индивидуальные вопросы в течение 24 часов. Координатор очень внимателен. После выпуска Telegram-группа остаётся активной — осталась сеть коллег."</p>
+            <div class="review-meta"><span class="review-name">Нигяр С.</span><span class="review-prog">Практикум по психотерапии · 2023</span></div>
           </div>
           <div class="review-card">
-            <div class="review-stars" aria-label="4 ulduz">★★★★☆</div>
-            <p class="review-text">"Proqram çox əhatəlidir, bəzən tempi artırmaq istərdim. Amma hər modulu dərindən işləmək lazım olduğunu başa düşdüm. Beynəlxalq IPAS sertifikatı ölkədən kənarda da işləmək imkanı verdi."</p>
-            <div class="review-meta"><span class="review-name">Kamran B.</span><span class="review-prog">Клиническая психология ДПО · 2024</span></div>
+            <div class="review-stars" aria-label="4 звезды">★★★★☆</div>
+            <p class="review-text">"Программа очень насыщенная, иногда хотелось ускорить темп. Но понял: каждый модуль надо прорабатывать глубоко. Международный сертификат IPAS дал возможность работать за пределами страны."</p>
+            <div class="review-meta"><span class="review-name">Камран Б.</span><span class="review-prog">Клиническая психология ДПО · 2024</span></div>
           </div>
         </div>
         <div style="margin-top:48px;text-align:center;">
-          <button type="button" class="btn btn-line" id="openRevForm" style="border-color:var(--accent);color:var(--accent);">Öz Rəyinizi Yazın</button>
+          <button type="button" class="btn btn-line" id="openRevForm" style="border-color:var(--accent);color:var(--accent);">Написать отзыв</button>
         </div>
       </div>
     </section>
 
-    <!-- BLOG ARTICLES — Psixoloqlar üçün -->
+    <!-- BLOG ARTICLES -->
     <section data-theme="dark" style="background:var(--navy)">
       <div class="sec-inner" style="padding:var(--s-section)">
-        <span class="badge">PSIXOLOQLAR ÜÇÜN</span>
-        <h2 class="sec-h2" style="margin-top:16px">Peşəkar İnkişaf Məqalələri</h2>
-        <p class="sec-sub">Psixoloq olmaq, karyera, süpervizyon, özünüqayğı haqqında yazılar.</p>
+        <span class="badge">ДЛЯ ПСИХОЛОГОВ</span>
+        <h2 class="sec-h2" style="margin-top:16px">Статьи для профессионального роста</h2>
+        <p class="sec-sub">О профессии психолога, карьере, супервизии и самопомощи.</p>
         <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(181,155,114,0.22)">
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 8 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 8 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Klinik vs Общая психология — Fərq və Seçim</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 9 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Yeni Psixoloq Üçün İlk Müştəri Necə Alınır?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 7 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Süpervizyon — Psixoloqun Davamlı Müəllimi</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 8 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Psixoloqun Özünüqayğısı — Burnoutdan Qorunma</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Хороший психолог никогда не останется без работы — почему?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Клиническая vs Общая психология — разница и выбор</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Как начинающему психологу найти первого клиента?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 7 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Супервизия — постоянный учитель психолога</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Самопомощь психолога — защита от выгорания</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
         </ul>
       </div>
     </section>
@@ -422,46 +411,46 @@
     <section id="reviewFormSection" data-theme="light" style="background:var(--white);padding:var(--s-section) 0;display:none;" aria-labelledby="revform-h">
       <div class="sec-inner">
         <div class="sec-header">
-          <span class="badge on-light">Rəy Yazın</span>
-          <h2 class="sec-h2" id="revform-h">Təcrübənizi Bölüşün</h2>
-          <p class="sec-sub">Sizin rəyiniz gələcək tələbələr üçün çox dəyərlidir.<br>Rəy moderator yoxlamasından sonra sayta əlavə olunacaq.</p>
+          <span class="badge on-light">Написать отзыв</span>
+          <h2 class="sec-h2" id="revform-h">Поделитесь своим опытом</h2>
+          <p class="sec-sub">Ваш отзыв очень ценен для будущих студентов.<br>После модерации отзыв будет добавлен на сайт.</p>
         </div>
         <form id="reviewForm" class="rev-form-wrap">
           <div class="rev-field">
-            <label for="rev-name">Ad Soyad</label>
+            <label for="rev-name">Имя и фамилия</label>
             <input type="text" id="rev-name" name="name" required maxlength="80" />
           </div>
           <div class="rev-field">
-            <label for="rev-program">Bitirdiyiniz Proqram</label>
+            <label for="rev-program">Программа, которую вы окончили</label>
             <select id="rev-program" name="program" required>
-              <option value="">Seçin —</option>
-              <option value="umumi">Общая психология DPO</option>
+              <option value="">Выберите —</option>
+              <option value="umumi">Общая психология ДПО</option>
               <option value="klinik">Клиническая психология ДПО</option>
               <option value="praktikum">Практикум по психотерапии</option>
-              <option value="konsultasiya">Fərdi Консультация</option>
+              <option value="konsultasiya">Индивидуальная консультация</option>
             </select>
           </div>
           <div class="rev-field">
-            <label>Qiymətləndirmə</label>
+            <label>Оценка</label>
             <div class="rev-stars-input">
-              <input type="radio" id="rev-star5" name="rating" value="5" checked /><label for="rev-star5" title="5 ulduz">★</label>
-              <input type="radio" id="rev-star4" name="rating" value="4" /><label for="rev-star4" title="4 ulduz">★</label>
-              <input type="radio" id="rev-star3" name="rating" value="3" /><label for="rev-star3" title="3 ulduz">★</label>
-              <input type="radio" id="rev-star2" name="rating" value="2" /><label for="rev-star2" title="2 ulduz">★</label>
-              <input type="radio" id="rev-star1" name="rating" value="1" /><label for="rev-star1" title="1 ulduz">★</label>
+              <input type="radio" id="rev-star5" name="rating" value="5" checked /><label for="rev-star5" title="5 звёзд">★</label>
+              <input type="radio" id="rev-star4" name="rating" value="4" /><label for="rev-star4" title="4 звезды">★</label>
+              <input type="radio" id="rev-star3" name="rating" value="3" /><label for="rev-star3" title="3 звезды">★</label>
+              <input type="radio" id="rev-star2" name="rating" value="2" /><label for="rev-star2" title="2 звезды">★</label>
+              <input type="radio" id="rev-star1" name="rating" value="1" /><label for="rev-star1" title="1 звезда">★</label>
             </div>
           </div>
           <div class="rev-field">
-            <label for="rev-text">Rəyiniz</label>
-            <textarea id="rev-text" name="text" required minlength="30" maxlength="1000" placeholder="Təcrübənizi, öyrəndiklərinizi və nəticələrinizi yazın..."></textarea>
+            <label for="rev-text">Ваш отзыв</label>
+            <textarea id="rev-text" name="text" required minlength="30" maxlength="1000" placeholder="Напишите о своём опыте, о том, что узнали, и о результатах..."></textarea>
           </div>
           <div class="rev-field">
-            <label for="rev-email">E-poçt <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--clr-text-muted);">(moderasiya üçün, saytda görünməyəcək)</span></label>
+            <label for="rev-email">E-mail <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--clr-text-muted);">(для модерации, на сайте не отображается)</span></label>
             <input type="email" id="rev-email" name="email" required />
           </div>
-          <button type="submit" class="btn btn-fill" style="width:100%;">Rəyi Göndər</button>
-          <div class="rev-note">Rəyiniz admin moderasiyasından keçdikdən sonra sayta əlavə olunacaq. Adətən 24 saat ərzində.</div>
-          <div class="rev-success" id="revSuccess">Təşəkkür edirik! Rəyiniz moderator tərəfindən yoxlanıldıqdan sonra sayta əlavə ediləcək. Adətən 24 saat ərzində qərarımızı sizə bildirəcəyik.</div>
+          <button type="submit" class="btn btn-fill" style="width:100%;">Отправить отзыв</button>
+          <div class="rev-note">Ваш отзыв будет добавлен на сайт после прохождения модерации. Обычно в течение 24 часов.</div>
+          <div class="rev-success" id="revSuccess">Спасибо! Ваш отзыв будет проверен модератором и добавлен на сайт. Обычно мы принимаем решение в течение 24 часов.</div>
         </form>
       </div>
     </section>
@@ -470,11 +459,11 @@
     <div class="cta-band" data-theme="light">
       <div class="cta-band-inner">
         <div>
-          <h2>Следующий Qrupa Yer Sifariş Edin</h2>
-          <p>Qruplar məhdud sayda tələbə ilə formalaşır. Запись bitməzdən əvvəl yerinizi təsdiqləyin.</p>
+          <h2>Забронируйте место в следующей группе</h2>
+          <p>Группы формируются с ограниченным числом студентов. Подтвердите место до окончания набора.</p>
         </div>
         <div class="cta-band-btns">
-          <a href="#registration" class="btn btn-fill" style="background:var(--navy);color:var(--white);">Запись</a>
+          <a href="#registration" class="btn btn-fill" style="background:var(--navy);color:var(--white);">Записаться</a>
           <a href="https://wa.me/994702200376" target="_blank" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">WhatsApp</a>
         </div>
       </div>
@@ -485,88 +474,88 @@
       <div class="sec-inner">
         <div class="sec-header">
           <span class="badge">Запись</span>
-          <h2 class="sec-h2" id="reg-h">Proqrama Qoşulun</h2>
-          <p class="sec-sub" style="color:rgba(255,255,255,0.6);">Formanı doldurun — komandamız<br>24 saat ərzində sizinlə əlaqə saxlayacaq.</p>
+          <h2 class="sec-h2" id="reg-h">Вступить в программу</h2>
+          <p class="sec-sub" style="color:rgba(255,255,255,0.6);">Заполните форму — наша команда<br>свяжется с вами в течение 24 часов.</p>
         </div>
 
         <!-- Steps -->
         <div class="reg-path">
-          <div class="reg-path-step"><span class="reg-path-num">Addım 01</span><h4>Sənədləri hazırlayın</h4><p>Ali təhsil diplomunuzun və şəxsiyyət vəsiqənizin fotosu. Предыдущий psixologiya sertifikatları varsa — onları da tapın.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Addım 02</span><h4>Formanı doldurun</h4><p>Ad, əlaqə məlumatı, proqram seçimi və sənədlər. 3 dəqiqə çəkir.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Addım 03</span><h4>Ödəniş üsulunu seçin</h4><p>Tam ödəniş (−10% endirim), 12 aylıq və ya 24 aylıq rəssite. Qərar formanı göndərməzdən əvvəl tələb edilmir.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Addım 04</span><h4>Başlayın</h4><p>Yeriniz təsdiqlənir, Telegram qrupuna əlavə edilirsiniz. Следующий qrup başlamazdan əvvəl video arxivinə giriş açılır.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 01</span><h4>Подготовьте документы</h4><p>Фото диплома о высшем образовании и удостоверения личности. Если есть предыдущие сертификаты по психологии — найдите их тоже.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 02</span><h4>Заполните форму</h4><p>Имя, контактные данные, выбор программы и документы. Занимает 3 минуты.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Выберите способ оплаты</h4><p>Полная оплата (−10% скидка), 12- или 24-месячная рассрочка. Решение принимается до отправки формы.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 04</span><h4>Начинайте</h4><p>Место подтверждается, вас добавляют в Telegram-группу. До старта следующей группы открывается доступ к видеоархиву.</p></div>
         </div>
 
         <div class="reg-discount">
-          <strong>Daha əvvəl psixologiya kursları keçmisinizmi?</strong>
-          <p>Предыдущий kursların sertifikatlarını formaya əlavə edin — bu, əlavə endirimin əsasını yarada bilər. Tələbələrimizin bir hissəsi bu yolla 600–1 200 AZN qənaət edir.</p>
+          <strong>Проходили ли вы ранее курсы по психологии?</strong>
+          <p>Прикрепите сертификаты предыдущих курсов к форме — это может стать основанием для дополнительной скидки. Часть наших студентов таким образом экономит значительную сумму.</p>
         </div>
 
         <form class="form-section" id="regForm" enctype="multipart/form-data">
           <div class="form-grid">
-            <div class="form-group"><label class="form-label">Ad *</label><input class="form-input" type="text" name="ad" required placeholder="Adınız" /></div>
-            <div class="form-group"><label class="form-label">Soyad *</label><input class="form-input" type="text" name="soyad" required placeholder="Soyadınız" /></div>
-            <div class="form-group"><label class="form-label">Telefon *</label><input class="form-input" type="tel" name="telefon" required placeholder="+994 XX XXX XX XX" /></div>
-            <div class="form-group"><label class="form-label">E-poçt</label><input class="form-input" type="email" name="email" placeholder="email@example.com" /></div>
+            <div class="form-group"><label class="form-label">Имя *</label><input class="form-input" type="text" name="ad" required placeholder="Ваше имя" /></div>
+            <div class="form-group"><label class="form-label">Фамилия *</label><input class="form-input" type="text" name="soyad" required placeholder="Ваша фамилия" /></div>
+            <div class="form-group"><label class="form-label">Телефон *</label><input class="form-input" type="tel" name="telefon" required placeholder="+7 XXX XXX XX XX" /></div>
+            <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" type="email" name="email" placeholder="email@example.com" /></div>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
-            <label class="form-label">Proqram seçin *</label>
+            <label class="form-label">Выберите программу *</label>
             <div class="form-radio-group cols3">
               <input type="radio" name="proqram" id="p1" value="Общая психология" class="form-radio-tile" required />
-              <label for="p1" class="form-radio-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 saat · DPO Diplom</span></label>
+              <label for="p1" class="form-radio-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ч · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p2" value="Klinik Psixologiya" class="form-radio-tile" />
-              <label for="p2" class="form-radio-lbl">Klinik Psixologiya<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 saat · DPO Diplom</span></label>
+              <label for="p2" class="form-radio-lbl">Клиническая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ч · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="form-radio-tile" />
-              <label for="p3" class="form-radio-lbl">Практикум по психотерапии<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 saat · IPAS Sertifikat</span></label>
+              <label for="p3" class="form-radio-lbl">Практикум по психотерапии<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ч · Сертификат IPAS</span></label>
             </div>
           </div>
 
           <div class="form-group" style="margin-top:20px;">
-            <label class="form-label">Ödəniş üstünlüyü</label>
+            <label class="form-label">Предпочтительный способ оплаты</label>
             <div class="form-radio-group cols3">
               <input type="radio" name="odenis" id="o1" value="Tam ödəniş" class="form-radio-tile" />
-              <label for="o1" class="form-radio-lbl">Tam ödəniş<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">−10% endirim</span></label>
+              <label for="o1" class="form-radio-lbl">Полная оплата<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">скидка −10%</span></label>
               <input type="radio" name="odenis" id="o2" value="12 ay rəssite" class="form-radio-tile" />
-              <label for="o2" class="form-radio-lbl">12 aylıq rəssite</label>
+              <label for="o2" class="form-radio-lbl">Рассрочка 12 мес.</label>
               <input type="radio" name="odenis" id="o3" value="24 ay rəssite" class="form-radio-tile" />
-              <label for="o3" class="form-radio-lbl">24 aylıq rəssite</label>
+              <label for="o3" class="form-radio-lbl">Рассрочка 24 мес.</label>
             </div>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
-            <label class="form-label">Sənədlər</label>
+            <label class="form-label">Документы</label>
             <div class="form-file-grid">
               <div class="form-file-item">
-                <span class="form-file-lbl">Ali Обучение Diplomu *</span>
+                <span class="form-file-lbl">Диплом о высшем образовании *</span>
                 <input type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="form-file-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+                <span class="form-file-hint">PDF, JPG или PNG — макс. 5 МБ</span>
               </div>
               <div class="form-file-item">
-                <span class="form-file-lbl">Şəxsiyyət Vəsiqəsi *</span>
+                <span class="form-file-lbl">Удостоверение личности *</span>
                 <input type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="form-file-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+                <span class="form-file-hint">PDF, JPG или PNG — макс. 5 МБ</span>
               </div>
               <div class="form-file-item">
-                <span class="form-file-lbl">Предыдущий Sertifikatlar</span>
+                <span class="form-file-lbl">Предыдущие сертификаты</span>
                 <input type="file" class="form-file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
-                <span class="form-file-hint">Endirim üçün — bir neçə fayl əlavə edə bilərsiniz</span>
+                <span class="form-file-hint">Для скидки — можно прикрепить несколько файлов</span>
               </div>
             </div>
           </div>
 
           <div class="form-group" style="margin-top:20px;">
-            <label class="form-label">Əlavə qeyd</label>
-            <textarea class="form-textarea" name="qeyd" rows="3" placeholder="Sualınız və ya xüsusi vəziyyətiniz..."></textarea>
+            <label class="form-label">Дополнительная заметка</label>
+            <textarea class="form-textarea" name="qeyd" rows="3" placeholder="Ваш вопрос или особые обстоятельства..."></textarea>
           </div>
 
           <div class="form-footer">
-            <p class="form-note">Sənədlər yalnız qeydiyyat məqsədilə qəbul edilir. Üçüncü şəxslərə ötürülmür.</p>
-            <button type="submit" class="btn btn-fill" style="min-width:240px;padding:16px 32px;">Запись Formasını Göndər</button>
+            <p class="form-note">Документы принимаются исключительно для целей регистрации. Третьим лицам не передаются.</p>
+            <button type="submit" class="btn btn-fill" style="min-width:240px;padding:16px 32px;">Отправить заявку на запись</button>
           </div>
 
           <div class="form-success" id="regSuccess">
-            <p>Sorğunuz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.</p>
+            <p>Ваша заявка принята. Мы свяжемся с вами в течение 24 часов.</p>
           </div>
         </form>
       </div>
@@ -656,7 +645,6 @@
       function bindGallery(galleryId) {
         var gallery = document.getElementById(galleryId);
         if (!gallery) return;
-        // Берём прямых детей-обёрток (.dg-main-item, .dg-thumb, .students-item)
         var wrappers = Array.from(gallery.querySelectorAll('.dg-main-item, .dg-thumb, .students-item'));
         if (!wrappers.length) wrappers = Array.from(gallery.children);
         var imgs = wrappers.map(function(w){
@@ -679,7 +667,6 @@
     })();
     </script>
     <script>
-      // Регистрация
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = this;
@@ -693,10 +680,10 @@
           phone: fd.get('telefon') || '',
           email: fd.get('email') || '',
           service: fd.get('proqram') || '',
-          note: [fd.get('odenis') ? 'Ödəniş: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
-          source: 'tehsil.html'
+          note: [fd.get('odenis') ? 'Оплата: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
+          source: 'ru/tehsil.html'
         };
-        btn.textContent = 'Göndərilir...';
+        btn.textContent = 'Отправляется...';
         btn.disabled = true;
         await submitToAPI(payload);
         form.style.opacity = '0.5';
@@ -705,7 +692,6 @@
         success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
 
-      // Кнопка "Öz Rəyinizi Yazın"
       document.getElementById('openRevForm')?.addEventListener('click', function() {
         const sec = document.getElementById('reviewFormSection');
         if (!sec) return;
@@ -713,7 +699,6 @@
         sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
 
-      // Отзыв
       document.getElementById('reviewForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = this;
@@ -721,10 +706,10 @@
         const success = document.getElementById('revSuccess');
         const fd = new FormData(form);
         const programMap = {
-          umumi: 'Общая психология DPO',
+          umumi: 'Общая психология ДПО',
           klinik: 'Клиническая психология ДПО',
           praktikum: 'Практикум по психотерапии',
-          konsultasiya: 'Fərdi Консультация'
+          konsultasiya: 'Индивидуальная консультация'
         };
         const payload = {
           type: 'review',
@@ -734,7 +719,7 @@
           text: fd.get('text') || '',
           email: fd.get('email') || ''
         };
-        btn.textContent = 'Göndərilir...';
+        btn.textContent = 'Отправляется...';
         btn.disabled = true;
         await submitToAPI(payload);
         form.style.opacity = '0.5';

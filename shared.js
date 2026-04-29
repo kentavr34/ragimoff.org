@@ -43,6 +43,105 @@ document.addEventListener('click', function(e){
   localStorage.setItem('ragimoff_lang', goesToRu ? 'ru' : 'az');
 });
 
+// ── SEO: Open Graph · JSON-LD · hreflang · canonical ──────────────────────
+(function() {
+  var head  = document.head;
+  var title = document.title || '';
+  var desc  = (document.querySelector('meta[name="description"]') || {}).content || '';
+  var path  = window.location.pathname;
+  var isRu  = /\/ru\//.test(path);
+  var fname = path.split('/').pop() || 'index.html';
+  var base  = 'https://ragimoff.org';
+  var selfUrl = base + path;
+
+  function meta(prop, val, attr) {
+    if (!val) return;
+    var m = document.createElement('meta');
+    m.setAttribute(attr || 'property', prop);
+    m.content = val;
+    head.appendChild(m);
+  }
+  function link(rel, href, extra) {
+    var l = document.createElement('link');
+    l.rel = rel;
+    l.href = href;
+    if (extra) Object.keys(extra).forEach(function(k){ l.setAttribute(k, extra[k]); });
+    head.appendChild(l);
+  }
+
+  // Canonical
+  link('canonical', selfUrl.split('?')[0].split('#')[0]);
+
+  // hreflang
+  var azUrl = base + '/' + fname;
+  var ruUrl = base + '/ru/' + fname;
+  link('alternate', azUrl,  { hreflang: 'az' });
+  link('alternate', ruUrl,  { hreflang: 'ru' });
+  link('alternate', azUrl,  { hreflang: 'x-default' });
+
+  // Open Graph
+  var isBlog   = /blog/.test(path);
+  var ogType   = isBlog ? 'article' : 'website';
+  var ogLocale = isRu ? 'ru_RU' : 'az_AZ';
+  meta('og:type',        ogType);
+  meta('og:locale',      ogLocale);
+  meta('og:title',       title);
+  meta('og:description', desc);
+  meta('og:url',         selfUrl);
+  meta('og:site_name',   'RAGIMOFF');
+  meta('og:image',       base + '/images/og-cover.jpg');
+
+  // Twitter Card
+  meta('twitter:card',        'summary_large_image', 'name');
+  meta('twitter:title',       title,                 'name');
+  meta('twitter:description', desc,                  'name');
+  meta('twitter:image',       base + '/images/og-cover.jpg', 'name');
+
+  // JSON-LD
+  var author = {
+    '@type':   'Person',
+    'name':    isRu ? 'Кенан Рагимов' : 'Kənan Rəhimov',
+    'url':     base + (isRu ? '/ru/haqqimda.html' : '/haqqimda.html'),
+    'jobTitle': isRu ? 'Врач-психиатр, психотерапевт' : 'Həkim-Psixiatr, Psixoterapevt'
+  };
+  var org = {
+    '@type': 'Organization',
+    'name':  'RAGIMOFF',
+    'url':   base,
+    'logo':  base + '/images/logo.png'
+  };
+  var schema;
+  if (isBlog) {
+    schema = {
+      '@context':    'https://schema.org',
+      '@type':       'BlogPosting',
+      'headline':    title,
+      'description': desc,
+      'url':         selfUrl,
+      'inLanguage':  isRu ? 'ru' : 'az',
+      'author':      author,
+      'publisher':   org,
+      'datePublished': '2026-01-01',
+      'dateModified':  '2026-04-29'
+    };
+  } else {
+    schema = {
+      '@context':    'https://schema.org',
+      '@type':       'MedicalWebPage',
+      'name':        title,
+      'description': desc,
+      'url':         selfUrl,
+      'inLanguage':  isRu ? 'ru' : 'az',
+      'author':      author,
+      'provider':    org
+    };
+  }
+  var s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.text = JSON.stringify(schema);
+  head.appendChild(s);
+})();
+
 // Google Analytics 4 (G-SF6PE3YDN1)
 (function() {
   var s = document.createElement('script');
