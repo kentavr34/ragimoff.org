@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="RAGIMOFF Psychology School — General Psychology, Clinical Psychology CPD, Psychotherapy Practicum. Official state diploma + international certificate." />
+    <title>Education | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../gtc.css" />
+    <style>
+      .price-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+      .feat-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
+      .reg-path-step { padding: 28px 24px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .reg-path-step:last-child { border-right: none; }
+      .reg-path-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: block; }
+      .reg-path-step h4 { font-size: var(--t-body); font-weight: 800; color: var(--white); margin-bottom: 8px; font-family: var(--font); }
+      .reg-path-step p { font-size: var(--t-sm); color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+      .reg-discount { background: rgba(181,155,114,0.06); border: 1px solid rgba(181,155,114,0.25); border-left: 4px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
+      .reg-discount strong { font-size: var(--t-body); font-weight: 800; color: var(--white); display: block; margin-bottom: 8px; }
+      .reg-discount p { font-size: var(--t-sm); color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
+      @media (max-width: 1100px) { .price-grid-3 { display: block; } .feat-grid-3 { grid-template-columns: 1fr 1fr; } .reg-path { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 768px) {
+        .feat-grid-3 { grid-template-columns: 1fr; }
+        .reg-path { grid-template-columns: 1fr; }
+        #programs > div { padding-left: 0 !important; padding-right: 0 !important; }
+        .price-grid-3 { display: flex; flex-direction: column; }
+        .price-card { border-bottom: 1px solid rgba(181,155,114,0.12); padding: 28px 20px; }
+        .price-card:last-child { border-bottom: none; }
+        .form-radio-group.cols3 { grid-template-columns: 1fr 1fr; }
+        .reg-path-step { padding: 20px 16px; }
+        .reg-discount { padding: 16px 20px; }
+      }
+      @media (max-width: 480px) {
+        .form-radio-group.cols3 { grid-template-columns: 1fr; }
+        .price-card { padding: 24px 16px; }
+        .feat-card { padding: 24px 20px; }
+      }
+      .pdf-export-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.12); border: 1px solid rgba(181,155,114,0.35); color: var(--accent); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.2s; text-decoration: none; }
+      .pdf-export-btn:hover { background: var(--accent); color: var(--navy); }
+      .pdf-export-btn svg { flex-shrink: 0; }
+      @media print {
+        *, *::before, *::after { box-sizing: border-box !important; }
+        header, .mobile-nav, .stats-strip, .wa-float, footer,
+        section:not(#programs), div.sec-pad:not(#programs),
+        #programs .sec-inner, #programs .sec-header,
+        #programs .pdf-export-row { display: none !important; }
+        #programs { display: block !important; padding: 0 !important; background: #fff !important; }
+        #programs > div:last-of-type { display: block !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+        .price-grid-3 { display: grid !important; grid-template-columns: repeat(3,1fr) !important; gap: 1px !important; background: #ccc !important; border: 1px solid #ccc !important; }
+        .price-card, .price-card.featured { background: #fff !important; padding: 20px !important; break-inside: avoid; }
+        .price-card-head h4 { font-size: 13pt !important; font-weight: 800 !important; color: #06182b !important; margin: 0 0 4px !important; }
+        .price-card-head span { font-size: 9pt !important; color: #888 !important; }
+        .price-card-desc { font-size: 9pt !important; color: #444 !important; margin: 10px 0 !important; line-height: 1.5 !important; }
+        .price-row { display: flex !important; justify-content: space-between !important; font-size: 9pt !important; padding: 5px 0 !important; border-bottom: 1px solid #eee !important; }
+        .price-row-label { color: #888 !important; }
+        .price-row-value { font-weight: 700 !important; color: #06182b !important; }
+        .price-row-value.accent { color: #b59b72 !important; }
+        .price-total { margin-top: 10px !important; }
+        .price-total .num { font-size: 14pt !important; font-weight: 800 !important; color: #b59b72 !important; display: block !important; }
+        .price-total .lbl { font-size: 8pt !important; color: #aaa !important; display: block !important; }
+        .btn, a[href] { display: none !important; }
+        body::before { content: "RAGIMOFF Psychology School — Education Programmes"; display: block; font-size: 14pt; font-weight: 800; color: #06182b; text-align: center; padding: 16px 0 20px; letter-spacing: 0.05em; text-transform: uppercase; }
+      }
+      .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+      .students-item { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; border: 1px solid var(--clr-border); }
+      .students-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
+      .students-item:hover img { transform: scale(1.05); }
+      @media (max-width: 960px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 560px) { .students-grid { grid-template-columns: 1fr; } }
+      .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+      .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(181,155,114,0.22); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+      .review-stars { color: var(--accent); font-size: 1.1rem; letter-spacing: 2px; }
+      .review-text { font-size: var(--t-sm); color: rgba(255,255,255,0.82); line-height: 1.7; margin: 0; font-style: italic; }
+      .review-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 12px; border-top: 1px solid rgba(181,155,114,0.15); }
+      .review-name { font-size: var(--t-sm); font-weight: 700; color: var(--white); }
+      .review-prog { font-size: var(--t-xs); color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+      @media (max-width: 1100px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 720px) { .reviews-grid { grid-template-columns: 1fr; } .review-card { padding: 22px; } }
+      .rev-form-wrap { max-width: 640px; margin: 40px auto 0; background: var(--white); padding: 40px; border: 1px solid var(--clr-border); }
+      .rev-field { margin-bottom: 18px; }
+      .rev-field label { display: block; font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 8px; }
+      .rev-field input, .rev-field select, .rev-field textarea { width: 100%; padding: 12px 14px; font-family: var(--font); font-size: var(--t-sm); border: 1px solid var(--clr-border); background: var(--white); color: var(--clr-text); box-sizing: border-box; border-radius: 0; }
+      .rev-field input:focus, .rev-field select:focus, .rev-field textarea:focus { outline: none; border-color: var(--accent); }
+      .rev-field textarea { resize: vertical; min-height: 120px; }
+      .rev-stars-input { display: flex; gap: 4px; }
+      .rev-stars-input input { position: absolute; opacity: 0; pointer-events: none; }
+      .rev-stars-input label { font-size: 1.8rem; color: rgba(6,24,38,0.2); cursor: pointer; transition: color 0.15s; margin: 0; padding: 0; display: inline-block; }
+      .rev-stars-input label:hover, .rev-stars-input label:hover ~ label { color: var(--accent); }
+      .rev-stars-input input:checked ~ label { color: var(--accent); }
+      .rev-stars-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
+      .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(181,155,114,0.06); border-left: 3px solid var(--accent); }
+      .rev-success { display: none; background: #e8f5e9; border: 1px solid #81c784; padding: 20px; color: #2e7d32; font-size: var(--t-sm); font-weight: 600; margin-top: 20px; }
+      @media (max-width: 600px) { .rev-form-wrap { padding: 28px 20px; } }
+      .stud-sub { max-width: 920px; line-height: 1.55; }
+      @media (max-width: 768px) {
+        .stud-sub { font-size: 0.875rem; line-height: 1.5; max-width: 100%; }
+        .stud-sub br { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psychology School</span>
+        </a>
+        <nav class="desktop-nav">
+          <div class="nav-item">
+            <a href="index.html">Home</a>
+            <ul class="nav-dropdown">
+              <li><a href="haqqimda.html">About Me</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="tehsil.html" class="nav-active">Education</a>
+            <ul class="nav-dropdown">
+              <li><a href="program-umumi.html">General Psychology</a></li>
+              <li><a href="program-klinik.html">Clinical Psychology CPD</a></li>
+              <li><a href="program-praktikum.html">Psychotherapy Practicum</a></li>
+              <li><a href="qanunlar.html">Legal Basis</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="xidmetler.html">Consultation</a>
+            <ul class="nav-dropdown">
+              <li><a href="aile-terapiyasi.html">Family Therapy</a></li>
+              <li><a href="aile-terapiyasi-usaq.html">Child-Parent Therapy</a></li>
+              <li><a href="depressiya.html">Depression</a></li>
+              <li><a href="panik-ataklar.html">Panic Attacks</a></li>
+              <li><a href="sosial-fobiya.html">Social Phobia</a></li>
+              <li><a href="enurez.html">Nocturnal Enuresis</a></li>
+            </ul>
+          </div>
+          <a href="b2b.html">Corporate</a>
+          <a href="blog.html">Blog</a>
+          <a href="../tehsil.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="../ru/tehsil.html" class="lang-switch" aria-label="Русский">RU</a><a href="tehsil.html" class="lang-switch lang-active" aria-label="English">EN</a>
+          <a href="tehsil.html#registration" class="nav-cta">BOOK</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile menu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Home</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Education</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Consultation</a>
+      <a href="b2b.html" onclick="toggleMenu()">Corporate</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="../tehsil.html" class="mobile-lang">Azərbaycan dili</a>
+      <a href="../ru/tehsil.html" class="mobile-lang">Русский</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">BOOK</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pg-hero" data-theme="dark" style="background-image:url('../images/students/psixologiya-mekteb.jpg');" aria-labelledby="tehsil-h1">
+      <div class="pg-hero-inner">
+        <span class="badge">EDUCATION</span>
+        <h1 class="hero-h1" id="tehsil-h1">The official path to becoming a <em>psychologist</em></h1>
+        <p class="hero-lead">Official CPD diploma, IPAS/BPA certificate.<br>Under the personal guidance of Dr. Kenan Ragimov.</p>
+        <div class="hero-btns">
+          <a href="#programs" class="btn btn-fill">View Programmes</a>
+          <a href="#registration" class="btn btn-line">Enrol</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip" data-theme="dark">
+      <div class="stats-inner">
+        <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">Years of Clinical Practice</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">Successful Patients</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Professional Graduates</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Video Lessons</span></div>
+      </div>
+    </div>
+
+    <!-- PROGRAMS + PRICING -->
+    <section id="programs" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="prog-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge">Education Programmes</span>
+          <h2 class="sec-h2" id="prog-h">3 Official Professional Programmes</h2>
+          <p class="sec-sub">Each programme lasts 1 year, available in-person and online formats.<br>Instalment plan up to 24 months; diploma issued after full payment.</p>
+        </div>
+      </div>
+      <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section);">
+        <div class="pdf-export-row" style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+          <button onclick="window.print()" class="pdf-export-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+            Download PDF
+          </button>
+        </div>
+        <div class="price-grid-3">
+
+          <!-- General Psychology -->
+          <div class="price-card">
+            <div class="price-card-head">
+              <h4>General Psychology</h4>
+              <span>CPD Diploma · 1,556 hours</span>
+            </div>
+            <p class="price-card-desc">Official Continuing Professional Development (CPD) diploma entered in the state register FRDO. Full legal right to practise as a psychologist.</p>
+            <div class="price-row"><span class="price-row-label">Duration</span><span class="price-row-value">1 year — 6+6 months</span></div>
+            <div class="price-row"><span class="price-row-label">Full cost</span><span class="price-row-value">185,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">100% payment (−10%)</span><span class="price-row-value accent">168,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">12-month instalment</span><span class="price-row-value">16,000 RUB/mo.</span></div>
+            <div class="price-row"><span class="price-row-label">24-month instalment</span><span class="price-row-value">9,000 RUB/mo.</span></div>
+            <div class="price-total"><span class="num">9,000 RUB</span><span class="lbl">minimum monthly payment</span></div>
+            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Enrol</a>
+            <a href="program-umumi.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Course Syllabus &rarr;</a>
+          </div>
+
+          <!-- Clinical Psychology CPD -->
+          <div class="price-card featured">
+            <div class="price-card-head">
+              <h4>Clinical Psychology CPD</h4>
+              <span>CPD Diploma · 1,528 hours</span>
+            </div>
+            <p class="price-card-desc">The right to independently work with complex clinical cases. Full legal status to open your own practice. Comes with an international IPAS certificate.</p>
+            <div class="price-row"><span class="price-row-label">Duration</span><span class="price-row-value">1 year — 6+6 months</span></div>
+            <div class="price-row"><span class="price-row-label">Full cost</span><span class="price-row-value">291,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">100% payment (−10%)</span><span class="price-row-value accent">264,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">12-month instalment</span><span class="price-row-value">25,000 RUB/mo.</span></div>
+            <div class="price-row"><span class="price-row-label">24-month instalment</span><span class="price-row-value">14,000 RUB/mo.</span></div>
+            <div class="price-total"><span class="num">14,000 RUB</span><span class="lbl">minimum monthly payment</span></div>
+            <a href="#registration" class="btn btn-fill" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Enrol</a>
+            <a href="program-klinik.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Course Syllabus &rarr;</a>
+          </div>
+
+          <!-- Psychotherapy Practicum -->
+          <div class="price-card">
+            <div class="price-card-head">
+              <h4>Psychotherapy Practicum</h4>
+              <span>IPAS/BPA Certificate · 864 hours</span>
+            </div>
+            <p class="price-card-desc">Live role-play training as psychologist and patient, supervision of real cases, case conference format. International IPAS/BPA certificate with QR verification.</p>
+            <div class="price-row"><span class="price-row-label">Duration</span><span class="price-row-value">1 year — practice</span></div>
+            <div class="price-row"><span class="price-row-label">Full cost</span><span class="price-row-value">159,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">100% payment (−20%)</span><span class="price-row-value accent">132,000 RUB</span></div>
+            <div class="price-row"><span class="price-row-label">12-month instalment</span><span class="price-row-value">14,000 RUB/mo.</span></div>
+            <div class="price-row"><span class="price-row-label">24-month instalment</span><span class="price-row-value">8,000 RUB/mo.</span></div>
+            <div class="price-total"><span class="num">8,000 RUB</span><span class="lbl">minimum monthly payment</span></div>
+            <a href="#registration" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Enrol</a>
+            <a href="program-praktikum.html" class="btn btn-line" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Course Syllabus &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="sec-pad" data-theme="light" aria-labelledby="benefit-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Quality of Education</span>
+          <h2 class="sec-h2" id="benefit-h">Why RAGIMOFF</h2>
+          <p class="sec-sub">23 years of clinical practice, official registration in FRDO,<br>lifetime student support — that is what sets us apart.</p>
+        </div>
+        <div class="feat-grid-3">
+          <div class="feat-card"><span class="feat-num">01</span><h4>Official State Document</h4><p>CPD diploma entered in the state register FRDO. Full right to legal practice within the law. No nostrification required.</p></div>
+          <div class="feat-card"><span class="feat-num">02</span><h4>Clinical Supervisor</h4><p>Each student is assigned an individual professional mentor. All stages of the learning process are completed together with your supervisor.</p></div>
+          <div class="feat-card"><span class="feat-num">03</span><h4>Real Practice</h4><p>Real clinical cases, live participation in case conferences, supervision. Theory is always taught alongside practice.</p></div>
+          <div class="feat-card"><span class="feat-num">04</span><h4>International Recognition</h4><p>IPAS/BPA certificate — international recognition with QR verification. Valid outside Azerbaijan.</p></div>
+          <div class="feat-card"><span class="feat-num">05</span><h4>Online + Offline</h4><p>Fully flexible format — live classes and online. All materials are archived with lifetime access.</p></div>
+          <div class="feat-card"><span class="feat-num">06</span><h4>Instalment Plan</h4><p>Minimum monthly payment — from 8,000 RUB. A 24-month instalment plan reduces the financial burden to a minimum.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTS GALLERY -->
+    <section id="diplomas" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="dip-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Official Documents</span>
+          <h2 class="sec-h2" id="dip-h">CPD Diploma &amp; International Certificate</h2>
+          <p class="sec-sub">Upon completing the programme, graduates receive an official Diploma<br>and certificates from the St. Petersburg Institute of Continuing Education.</p>
+        </div>
+      </div>
+      <div class="gallery-band" data-theme="dark">
+        <div class="diploma-gallery" id="diplomaGallery">
+          <div class="dg-mains">
+            <div class="dg-main-item" data-idx="0"><img src="../images/institute/diplom-psy-b-spb-idpo.jpg" alt="SPb IDPO — Clinical Psychologist Diploma" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="1"><img src="../images/institute/diplom-spb-idpo.jpg" alt="SPb IDPO — Diploma" loading="lazy" /></div>
+            <div class="dg-main-item" data-idx="2"><img src="../images/institute/diplom-psy-spb-idpo.jpg" alt="SPb IDPO — Psychologist Diploma" loading="lazy" /></div>
+          </div>
+          <div class="dg-thumbs">
+            <div class="dg-thumb" data-idx="3"><img src="../images/institute/diplom-spb-prilozhenie.jpg" alt="Diploma Supplement" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="4"><img src="../images/certificate/cert-sample-ipas-clinical.jpg" alt="IPAS Certificate — Clinical Psychology" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="5"><img src="../images/certificate/cert-sample-ipas-family.jpg" alt="IPAS Certificate — General Psychology" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="6"><img src="../images/certificate/cert-sample-gtc-dark.jpg" alt="GTC Certificate — Practicum" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="7"><img src="../images/institute/diplom-predmety.jpg" alt="Subjects Table" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="8"><img src="../images/institute/licenziya-1.jpg" alt="Official Operating Licence" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="9"><img src="../images/institute/licenziya-2.jpg" alt="Licence 2" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="10"><img src="../images/institute/licenziya-vypiska.jpg" alt="Licence Extract" loading="lazy" /></div>
+            <div class="dg-thumb" data-idx="11"><img src="../images/institute/licenziya-vypiska-2.jpg" alt="Licence Extract 2" loading="lazy" /></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGAL BANNER -->
+    <div class="legal-banner" data-theme="dark">
+      <div class="legal-banner-inner">
+        <div>
+          <h4>Legal Status of the Diploma</h4>
+          <p>Under the Agreement between the Russian Federation and the Republic of Azerbaijan in the field of education (AR Law No. 455-IIQ of 13 May 2003), the diploma of the St. Petersburg Institute of Continuing Education is an officially recognised document in Azerbaijan. Graduates — subject to employer requirements — may work in both state and private institutions.</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;">
+          <a href="https://e-qanun.az/framework/2054" target="_blank" rel="noopener" class="btn btn-fill" style="white-space:nowrap;">View the Agreement</a>
+          <a href="qanunlar.html" class="btn btn-line" style="white-space:nowrap;">Legal Basis</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDENTS GALLERY -->
+    <section id="students" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="stud-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">School Life</span>
+          <h2 class="sec-h2" id="stud-h">Our Students &amp; Learning Process</h2>
+          <p class="sec-sub stud-sub">In-person classes, practicum trainings, professional seminars, original 2026 study materials<br>available nowhere else in English + video recordings of 300+ lessons for independent study.</p>
+        </div>
+        <div class="students-grid" id="studentsGallery">
+          <div class="students-item" data-idx="0"><img src="../images/students/group-training.jpg" alt="Group Training" loading="lazy" /></div>
+          <div class="students-item" data-idx="1"><img src="../images/students/psixoterapiya-praktikum.jpg" alt="Psychotherapy Practicum" loading="lazy" /></div>
+          <div class="students-item" data-idx="2"><img src="../images/students/klinik-psixologiya-program.jpg" alt="Clinical Psychology Group" loading="lazy" /></div>
+          <div class="students-item" data-idx="3"><img src="../images/students/umumi-psixologiya-program.jpg" alt="General Psychology Group" loading="lazy" /></div>
+          <div class="students-item" data-idx="4"><img src="../images/students/psixoterapiya-praktikum1.jpg" alt="Practicum Session" loading="lazy" /></div>
+          <div class="students-item" data-idx="5"><img src="../images/students/group-outdoor.jpg" alt="Students Group — Outdoors" loading="lazy" /></div>
+          <div class="students-item" data-idx="6"><img src="../images/students/psixologiya-mekteb.jpg" alt="Psychology School" loading="lazy" /></div>
+          <div class="students-item" data-idx="7"><img src="../images/students/psixologiya-mekteb1.jpg" alt="Training Centre" loading="lazy" /></div>
+          <div class="students-item" data-idx="8"><img src="../images/students/korporativ-grup.jpg" alt="Corporate Group Training" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="rev-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge">Graduate Reviews</span>
+          <h2 class="sec-h2" id="rev-h">What Do Our Students Say?</h2>
+          <p class="sec-sub">Real stories from real graduates —<br>experiences, results and recommendations.</p>
+        </div>
+        <div class="reviews-grid" id="reviewsGrid">
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"The Clinical CPD programme exceeded all my expectations. The balance of theory and practice is perfect. I am now working independently in my own office — 8 clients already in the first month."</p>
+            <div class="review-meta"><span class="review-name">Aynur M.</span><span class="review-prog">Clinical Psychology CPD · 2024</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"The practicum supervision gave me live experience of real work. The video archive is very useful — I rewatched each session 2–3 times. Dr. Ragimov's approach is both academic and deeply personal."</p>
+            <div class="review-meta"><span class="review-name">Elshad G.</span><span class="review-prog">Psychotherapy Practicum · 2024</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"Thanks to General Psychology I entered the profession without a medical background. The diploma is fully legal — my employer verified it through the FRDO register without any issues."</p>
+            <div class="review-meta"><span class="review-name">Leyla A.</span><span class="review-prog">General Psychology CPD · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"The online format is very convenient alongside work. Live classes at weekends, video archive available 24/7. The offline practicum sessions additionally brought the group together."</p>
+            <div class="review-meta"><span class="review-name">Rashad K.</span><span class="review-prog">Clinical Psychology CPD · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 stars">★★★★★</div>
+            <p class="review-text">"After classes I receive answers to individual questions within 24 hours. The coordinator is very attentive. After graduation the Telegram group stays active — a network of colleagues remains."</p>
+            <div class="review-meta"><span class="review-name">Nigyar S.</span><span class="review-prog">Psychotherapy Practicum · 2023</span></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="4 stars">★★★★☆</div>
+            <p class="review-text">"The programme is very intensive — sometimes I wanted to speed things up. But I understood that each module needs to be worked through deeply. The IPAS international certificate gave me the opportunity to work abroad."</p>
+            <div class="review-meta"><span class="review-name">Kamran B.</span><span class="review-prog">Clinical Psychology CPD · 2024</span></div>
+          </div>
+        </div>
+        <div style="margin-top:48px;text-align:center;">
+          <button type="button" class="btn btn-line" id="openRevForm" style="border-color:var(--accent);color:var(--accent);">Write a Review</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG ARTICLES -->
+    <section data-theme="dark" style="background:var(--navy)">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <span class="badge">FOR PSYCHOLOGISTS</span>
+        <h2 class="sec-h2" style="margin-top:16px">Articles for Professional Growth</h2>
+        <p class="sec-sub">About the psychology profession, career, supervision and self-care.</p>
+        <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(181,155,114,0.22)">
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 8 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">A good psychologist will never be without work — why?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 8 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Clinical vs General Psychology — The Difference and How to Choose</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 9 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">How Can a Beginning Psychologist Find Their First Client?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 7 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Supervision — The Psychologist's Constant Teacher</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 8 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Psychologist Self-Care — Protection from Burnout</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REVIEW FORM -->
+    <section id="reviewFormSection" data-theme="light" style="background:var(--white);padding:var(--s-section) 0;display:none;" aria-labelledby="revform-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge on-light">Write a Review</span>
+          <h2 class="sec-h2" id="revform-h">Share Your Experience</h2>
+          <p class="sec-sub">Your review is very valuable to future students.<br>After moderation it will be added to the website.</p>
+        </div>
+        <form id="reviewForm" class="rev-form-wrap">
+          <div class="rev-field">
+            <label for="rev-name">First and Last Name</label>
+            <input type="text" id="rev-name" name="name" required maxlength="80" />
+          </div>
+          <div class="rev-field">
+            <label for="rev-program">Programme you completed</label>
+            <select id="rev-program" name="program" required>
+              <option value="">Choose —</option>
+              <option value="umumi">General Psychology CPD</option>
+              <option value="klinik">Clinical Psychology CPD</option>
+              <option value="praktikum">Psychotherapy Practicum</option>
+              <option value="konsultasiya">Individual Consultation</option>
+            </select>
+          </div>
+          <div class="rev-field">
+            <label>Rating</label>
+            <div class="rev-stars-input">
+              <input type="radio" id="rev-star5" name="rating" value="5" checked /><label for="rev-star5" title="5 stars">★</label>
+              <input type="radio" id="rev-star4" name="rating" value="4" /><label for="rev-star4" title="4 stars">★</label>
+              <input type="radio" id="rev-star3" name="rating" value="3" /><label for="rev-star3" title="3 stars">★</label>
+              <input type="radio" id="rev-star2" name="rating" value="2" /><label for="rev-star2" title="2 stars">★</label>
+              <input type="radio" id="rev-star1" name="rating" value="1" /><label for="rev-star1" title="1 star">★</label>
+            </div>
+          </div>
+          <div class="rev-field">
+            <label for="rev-text">Your Review</label>
+            <textarea id="rev-text" name="text" required minlength="30" maxlength="1000" placeholder="Write about your experience, what you learned and the results..."></textarea>
+          </div>
+          <div class="rev-field">
+            <label for="rev-email">E-mail <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--clr-text-muted);">(for moderation, not shown on the site)</span></label>
+            <input type="email" id="rev-email" name="email" required />
+          </div>
+          <button type="submit" class="btn btn-fill" style="width:100%;">Submit Review</button>
+          <div class="rev-note">Your review will be added to the website after moderation. Usually within 24 hours.</div>
+          <div class="rev-success" id="revSuccess">Thank you! Your review will be checked by a moderator and added to the site. We usually make a decision within 24 hours.</div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band" data-theme="light">
+      <div class="cta-band-inner">
+        <div>
+          <h2>Reserve your place in the next group</h2>
+          <p>Groups are formed with a limited number of students. Confirm your place before enrolment closes.</p>
+        </div>
+        <div class="cta-band-btns">
+          <a href="#registration" class="btn btn-fill" style="background:var(--navy);color:var(--white);">Enrol</a>
+          <a href="https://wa.me/994702200376" target="_blank" class="btn btn-line" style="border-color:var(--navy);color:var(--navy);">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRATION -->
+    <section id="registration" class="sec-pad" data-theme="dark" style="background:var(--navy);padding-bottom:var(--s-section);" aria-labelledby="reg-h">
+      <div class="sec-inner">
+        <div class="sec-header">
+          <span class="badge">Enrolment</span>
+          <h2 class="sec-h2" id="reg-h">Join a Programme</h2>
+          <p class="sec-sub" style="color:rgba(255,255,255,0.6);">Fill in the form — our team will<br>contact you within 24 hours.</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="reg-path">
+          <div class="reg-path-step"><span class="reg-path-num">Step 01</span><h4>Prepare your documents</h4><p>A photo of your higher education diploma and ID. If you have previous psychology certificates — have them ready too.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 02</span><h4>Fill in the form</h4><p>Name, contact details, programme choice and documents. Takes 3 minutes.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 03</span><h4>Choose a payment method</h4><p>Full payment (−10% discount), 12- or 24-month instalment. The decision is made before submitting the form.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 04</span><h4>Get started</h4><p>Your place is confirmed and you are added to the Telegram group. Access to the video archive opens before the next group starts.</p></div>
+        </div>
+
+        <div class="reg-discount">
+          <strong>Have you previously taken any psychology courses?</strong>
+          <p>Attach certificates from previous courses to the form — this may be grounds for an additional discount. Some of our students save a significant amount this way.</p>
+        </div>
+
+        <form class="form-section" id="regForm" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" name="ad" required placeholder="Your first name" /></div>
+            <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" name="soyad" required placeholder="Your last name" /></div>
+            <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" name="telefon" required placeholder="+994 XX XXX XX XX" /></div>
+            <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" type="email" name="email" placeholder="email@example.com" /></div>
+          </div>
+
+          <div class="form-group" style="margin-top:24px;">
+            <label class="form-label">Choose a programme *</label>
+            <div class="form-radio-group cols3">
+              <input type="radio" name="proqram" id="p1" value="General Psychology" class="form-radio-tile" required />
+              <label for="p1" class="form-radio-lbl">General Psychology<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1,556 h · CPD Diploma</span></label>
+              <input type="radio" name="proqram" id="p2" value="Clinical Psychology" class="form-radio-tile" />
+              <label for="p2" class="form-radio-lbl">Clinical Psychology<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1,528 h · CPD Diploma</span></label>
+              <input type="radio" name="proqram" id="p3" value="Psychotherapy Practicum" class="form-radio-tile" />
+              <label for="p3" class="form-radio-lbl">Psychotherapy Practicum<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 h · IPAS Certificate</span></label>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:20px;">
+            <label class="form-label">Preferred payment method</label>
+            <div class="form-radio-group cols3">
+              <input type="radio" name="odenis" id="o1" value="Full payment" class="form-radio-tile" />
+              <label for="o1" class="form-radio-lbl">Full Payment<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">discount −10%</span></label>
+              <input type="radio" name="odenis" id="o2" value="12-month instalment" class="form-radio-tile" />
+              <label for="o2" class="form-radio-lbl">12-Month Instalment</label>
+              <input type="radio" name="odenis" id="o3" value="24-month instalment" class="form-radio-tile" />
+              <label for="o3" class="form-radio-lbl">24-Month Instalment</label>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:24px;">
+            <label class="form-label">Documents</label>
+            <div class="form-file-grid">
+              <div class="form-file-item">
+                <span class="form-file-lbl">Higher Education Diploma *</span>
+                <input type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
+                <span class="form-file-hint">PDF, JPG or PNG — max 5 MB</span>
+              </div>
+              <div class="form-file-item">
+                <span class="form-file-lbl">Identity Document *</span>
+                <input type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
+                <span class="form-file-hint">PDF, JPG or PNG — max 5 MB</span>
+              </div>
+              <div class="form-file-item">
+                <span class="form-file-lbl">Previous Certificates</span>
+                <input type="file" class="form-file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
+                <span class="form-file-hint">For discount — multiple files can be attached</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top:20px;">
+            <label class="form-label">Additional Note</label>
+            <textarea class="form-textarea" name="qeyd" rows="3" placeholder="Your question or special circumstances..."></textarea>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-note">Documents are accepted solely for registration purposes and are not shared with third parties.</p>
+            <button type="submit" class="btn btn-fill" style="min-width:240px;padding:16px 32px;">Submit Enrolment Application</button>
+          </div>
+
+          <div class="form-success" id="regSuccess">
+            <p>Your application has been received. We will contact you within 24 hours.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Psychology School</span></a>
+            <p class="footer-desc">Kenan Ragimov — Psychiatrist, psychotherapist. 23 years of clinical practice. Baku, Azerbaijan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Therapy</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Family Therapy</a></li>
+              <li><a href="enurez.html" class="footer-link">Nocturnal Enuresis</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panic Attacks</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depression</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Social Phobia</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Education</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">General Psychology</a></li>
+              <li><a href="tehsil.html" class="footer-link">Clinical Psychology CPD</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psychotherapy Practicum</a></li>
+              <li><a href="blog.html" class="footer-link">Psychology (blog)</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">Lessons on YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Contacts</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF — Professional Psychology School. Baku, Azerbaijan.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
+    </a>
+
+    <script src="../shared.js"></script>
+
+    <!-- Diploma Lightbox -->
+    <div class="dg-lightbox" id="dgLightbox">
+      <button class="dg-lb-close" id="dgLbClose" aria-label="Close">&#x2715;</button>
+      <button class="dg-lb-prev" id="dgLbPrev" aria-label="Previous">&#x2039;</button>
+      <div class="dg-lb-img-wrap"><img id="dgLbImg" src="" alt="" /></div>
+      <button class="dg-lb-next" id="dgLbNext" aria-label="Next">&#x203A;</button>
+      <div class="dg-lb-counter" id="dgLbCounter"></div>
+    </div>
+    <script>
+    (function () {
+      var lb = document.getElementById('dgLightbox');
+      var lbImg = document.getElementById('dgLbImg');
+      var lbClose = document.getElementById('dgLbClose');
+      var lbPrev = document.getElementById('dgLbPrev');
+      var lbNext = document.getElementById('dgLbNext');
+      var lbCnt = document.getElementById('dgLbCounter');
+      if (!lb) return;
+      var images = [], current = 0, timer = null;
+      function show(idx) { if (!images.length) return; current = (idx + images.length) % images.length; lbImg.src = images[current].src; lbImg.alt = images[current].alt; lbCnt.textContent = (current + 1) + ' / ' + images.length; }
+      function openLb(imgs, idx) { images = imgs; show(idx); lb.classList.add('active'); document.body.style.overflow = 'hidden'; startAuto(); }
+      function closeLb() { lb.classList.remove('active'); document.body.style.overflow = ''; stopAuto(); }
+      function startAuto() { stopAuto(); timer = setInterval(function(){ show(current + 1); }, 3000); }
+      function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+
+      function bindGallery(galleryId) {
+        var gallery = document.getElementById(galleryId);
+        if (!gallery) return;
+        var wrappers = Array.from(gallery.querySelectorAll('.dg-main-item, .dg-thumb, .students-item'));
+        if (!wrappers.length) wrappers = Array.from(gallery.children);
+        var imgs = wrappers.map(function(w){
+          var img = w.querySelector('img');
+          return img ? { src: img.src, alt: img.alt || '' } : null;
+        }).filter(Boolean);
+        wrappers.forEach(function(w, i){
+          w.style.cursor = 'pointer';
+          w.addEventListener('click', function(){ openLb(imgs, i); });
+        });
+      }
+      bindGallery('diplomaGallery');
+      bindGallery('studentsGallery');
+
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', function(e){ e.stopPropagation(); show(current - 1); startAuto(); });
+      lbNext.addEventListener('click', function(e){ e.stopPropagation(); show(current + 1); startAuto(); });
+      lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+      document.addEventListener('keydown', function(e){ if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') { show(current - 1); startAuto(); } if (e.key === 'ArrowRight') { show(current + 1); startAuto(); } });
+    })();
+    </script>
+    <script>
+      document.getElementById('regForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const success = document.getElementById('regSuccess');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('ad') || '',
+          lname: fd.get('soyad') || '',
+          phone: fd.get('telefon') || '',
+          email: fd.get('email') || '',
+          service: fd.get('proqram') || '',
+          note: [fd.get('odenis') ? 'Payment: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
+          source: 'en/tehsil.html'
+        };
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        form.style.opacity = '0.5';
+        form.style.pointerEvents = 'none';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      document.getElementById('openRevForm')?.addEventListener('click', function() {
+        const sec = document.getElementById('reviewFormSection');
+        if (!sec) return;
+        sec.style.display = 'block';
+        sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      document.getElementById('reviewForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const success = document.getElementById('revSuccess');
+        const fd = new FormData(form);
+        const programMap = {
+          umumi: 'General Psychology CPD',
+          klinik: 'Clinical Psychology CPD',
+          praktikum: 'Psychotherapy Practicum',
+          konsultasiya: 'Individual Consultation'
+        };
+        const payload = {
+          type: 'review',
+          name: fd.get('name') || '',
+          program: programMap[fd.get('program')] || fd.get('program') || '',
+          rating: fd.get('rating') || '',
+          text: fd.get('text') || '',
+          email: fd.get('email') || ''
+        };
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        form.style.opacity = '0.5';
+        form.style.pointerEvents = 'none';
+        if (success) {
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    </script>
+  </body>
+</html>

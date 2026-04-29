@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Treatment of primary monosymptomatic nocturnal enuresis (PMNE, ICD-10 F98.0). Alarm therapy — the gold standard. 1000+ children over 23 years. No medication. Dr. Kenan Ragimov, Baku." />
+    <title>Nocturnal Enuresis Treatment | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../gtc.css" />
+    <style>
+      /* Hero with photo */
+      .en-hero { background: var(--navy); padding: 64px var(--s-section); position: relative; overflow: hidden; }
+      .en-hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(181,155,114,0.1) 0%, transparent 68%); pointer-events: none; }
+      .en-hero-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr 480px; gap: 48px; align-items: center; position: relative; z-index: 1; }
+      .en-hero-photo img { width: 100%; height: 400px; object-fit: cover; object-position: center 15%; border: 1px solid rgba(181,155,114,0.15); display: block; }
+      /* Stats bar on accent */
+      .en-stats { background: var(--accent); padding: 0 var(--s-section); }
+      .en-stats-row { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+      .en-stat { padding: 28px 0; text-align: center; border-right: 1px solid rgba(6,24,38,0.15); }
+      .en-stat:last-child { border-right: none; }
+      .en-stat .n { display: block; font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; font-family: var(--font); }
+      .en-stat .l { display: block; font-size: var(--t-xs); font-weight: 700; color: rgba(6,24,38,0.65); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; }
+      /* Section wrappers */
+      .ps { padding: var(--s-section); }
+      .ps.white { background: var(--white); }
+      .ps.light-bg { background: var(--clr-bg); }
+      .ps.dark-bg { background: var(--navy); }
+      .ps-inner { max-width: var(--container-max); margin: 0 auto; }
+      /* Definition grid */
+      .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
+      .def-card { padding: 36px; border-right: 1px solid var(--clr-border); }
+      .def-card:last-child { border-right: none; }
+      .def-code { display: inline-block; font-family: monospace; font-size: 1rem; font-weight: 800; color: var(--navy); background: rgba(181,155,114,0.12); padding: 4px 12px; border: 1px solid rgba(181,155,114,0.3); margin-bottom: 12px; }
+      .def-title { font-size: 1.125rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 10px; font-family: var(--font); }
+      .def-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.8; margin: 0; }
+      /* Danger band */
+      .danger-band { background: rgba(139,0,0,0.04); border: 1px solid rgba(139,0,0,0.15); border-left: 5px solid #8b0000; padding: 36px 40px; margin-top: 40px; }
+      .danger-band h3 { font-size: 1.125rem; font-weight: 800; color: #8b0000; margin-bottom: 12px; font-family: var(--font); }
+      .danger-band p { font-size: 0.9rem; color: var(--navy); line-height: 1.8; margin-bottom: 12px; }
+      .danger-band p:last-child { margin-bottom: 0; }
+      .danger-band strong { color: #8b0000; }
+      /* Diff table */
+      .diff-table { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .diff-head { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--navy); padding: 12px 24px; gap: 16px; }
+      .diff-head span { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+      .diff-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 14px 24px; border-top: 1px solid var(--clr-border); gap: 16px; align-items: start; }
+      .diff-row:hover { background: rgba(181,155,114,0.03); }
+      .diff-cause { color: var(--clr-heading); font-weight: 600; font-size: var(--t-sm); }
+      .diff-what { color: var(--clr-text-muted); font-size: var(--t-sm); }
+      .diff-to { color: var(--accent); font-weight: 700; font-size: 0.8125rem; }
+      /* Trust grid */
+      .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(181,155,114,0.2); margin-top: 40px; }
+      .trust-card { padding: 32px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .trust-card:last-child { border-right: none; }
+      .trust-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
+      .trust-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 10px; font-family: var(--font); }
+      .trust-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
+      /* Instagram block */
+      .ig-block { border: 1px solid rgba(181,155,114,0.25); padding: 40px; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+      .ig-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
+      .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
+      .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+      .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
+      /* YouTube */
+      .yt-wrap { position: relative; padding-bottom: 28.125%; height: 0; overflow: hidden; border: 1px solid rgba(181,155,114,0.15); max-width: 50%; margin: 0 auto; }
+      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+      @media (max-width: 768px) { .yt-wrap { max-width: 100%; padding-bottom: 56.25%; } }
+      /* Treatment protocol */
+      .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
+      .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
+      .tl-item:last-child { border-bottom: none; }
+      .tl-num { display: flex; align-items: center; justify-content: center; background: var(--navy); font-size: 1.5rem; font-weight: 800; color: var(--accent); border-right: 1px solid rgba(181,155,114,0.2); font-family: var(--font); }
+      .tl-body { padding: 28px 36px; }
+      .tl-tag { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; display: block; }
+      .tl-title { font-size: 1rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 8px; font-family: var(--font); }
+      .tl-desc { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.75; }
+      .tl-pill { display: inline-block; font-size: 0.75rem; font-weight: 700; background: rgba(181,155,114,0.1); color: var(--accent); border: 1px solid rgba(181,155,114,0.3); padding: 3px 10px; margin-top: 10px; }
+      .tl-pill.red { background: rgba(139,0,0,0.06); color: #8b0000; border-color: rgba(139,0,0,0.2); }
+      /* Step scheme */
+      .step-scheme { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .ss-row { display: grid; grid-template-columns: 40px 1fr; align-items: stretch; border-bottom: 1px solid var(--clr-border); }
+      .ss-row:last-child { border-bottom: none; }
+      .ss-n { background: var(--navy); color: var(--accent); font-size: 0.875rem; font-weight: 800; display: flex; align-items: center; justify-content: center; min-height: 56px; font-family: var(--font); }
+      .ss-body { padding: 16px 24px; font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.7; }
+      .ss-body strong { color: var(--clr-heading); }
+      /* Scientific refs */
+      .refs-list { margin-top: 24px; }
+      .ref-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--clr-border); align-items: start; }
+      .ref-item:last-child { border-bottom: none; }
+      .ref-n { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-align: center; }
+      .ref-text { font-size: 0.8125rem; color: var(--clr-text-muted); line-height: 1.65; }
+      .ref-text em { color: var(--clr-heading); font-style: normal; font-weight: 600; }
+      /* Price table */
+      .price-table { max-width: 780px; border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
+      .pt-head { padding: 14px 32px; background: rgba(181,155,114,0.04); border-bottom: 2px solid rgba(181,155,114,0.3); }
+      .pt-head span { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+      .pt-row { display: grid; grid-template-columns: 1fr auto; align-items: start; padding: 14px 32px; border-bottom: 1px solid var(--clr-border); }
+      .pt-row:last-child { border-bottom: none; }
+      .pt-row:hover { background: rgba(181,155,114,0.03); }
+      .pt-label { font-size: 0.9375rem; color: var(--clr-heading); font-weight: 600; }
+      .pt-sub { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 3px; }
+      .pt-price { font-size: 1rem; font-weight: 800; color: var(--clr-heading); text-align: right; white-space: nowrap; font-family: var(--font); }
+      .pt-total { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 18px 32px; background: var(--navy); }
+      .pt-total .tl { font-size: 0.875rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+      .pt-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); font-family: var(--font); }
+      /* Registration form */
+      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
+      .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .reg-path-step:last-child { border-right: none; }
+      .rp-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
+      .reg-path-step h4 { font-size: var(--t-sm); font-weight: 800; color: var(--white); margin-bottom: 6px; font-family: var(--font); }
+      .reg-path-step p { font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+      .reg-form { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
+      .rf2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .rfield { display: flex; flex-direction: column; gap: 8px; }
+      .rfield > label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+      .rfield input, .rfield textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: var(--font); font-size: 0.9375rem; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+      .rfield input:focus, .rfield textarea:focus { border-color: var(--accent); }
+      .rfield input::placeholder, .rfield textarea::placeholder { color: rgba(255,255,255,0.2); }
+      .form-success { display: none; padding: 24px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.35); text-align: center; margin-top: 16px; }
+      .form-success p { color: var(--accent); font-weight: 700; font-size: 0.9375rem; margin: 0; }
+      /* Reviews */
+      .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-bottom: 40px; }
+      .rv-card { padding: 32px; border-right: 1px solid var(--clr-border); border-bottom: 1px solid var(--clr-border); }
+      .rv-card:nth-child(2n) { border-right: none; }
+      .rv-card:nth-last-child(-n+2) { border-bottom: none; }
+      .rv-name { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+      .rv-text { font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.75; font-style: italic; }
+      .rv-meta { font-size: 0.75rem; color: rgba(6,24,38,0.4); margin-top: 14px; }
+      .review-form { background: var(--clr-bg); border: 1px solid var(--clr-border); padding: 40px; }
+      .rv-note { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 16px; line-height: 1.6; border-left: 3px solid rgba(181,155,114,0.4); padding-left: 14px; }
+      /* Blog 2 cards */
+      .blog-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; border: 1px solid var(--clr-border); }
+      .bc { display: block; background: var(--white); border-right: 1px solid var(--clr-border); border-top: 4px solid var(--navy); padding: 36px 32px; text-decoration: none; transition: border-top-color 0.2s; }
+      .bc:last-child { border-right: none; }
+      .bc:hover { border-top-color: var(--accent); }
+      .bc-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); display: block; margin-bottom: 12px; }
+      .bc-title { font-size: var(--t-body); font-weight: 700; color: var(--clr-heading); line-height: 1.3; margin-bottom: 12px; }
+      .bc-lead { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65; margin: 0 0 24px; }
+      .bc-more { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+      /* Responsive */
+      @media (max-width: 1100px) {
+        .en-hero-inner { grid-template-columns: 1fr; }
+        .en-hero-photo { display: none; }
+        .en-stats-row { grid-template-columns: repeat(2,1fr); }
+        .trust-grid, .def-grid { grid-template-columns: 1fr; }
+        .trust-card, .def-card { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+        .trust-card:last-child, .def-card:last-child { border-bottom: none; }
+        .ig-block { grid-template-columns: 1fr; }
+        .reviews-grid { grid-template-columns: 1fr; }
+        .rv-card { border-right: none; }
+        .rv-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--clr-border); }
+        .rv-card:last-child { border-bottom: none; }
+        .blog-grid-2 { grid-template-columns: 1fr; }
+        .bc { border-right: none; border-bottom: 1px solid var(--clr-border); }
+        .bc:last-child { border-bottom: none; }
+        .reg-path { grid-template-columns: repeat(2,1fr); }
+        .diff-head, .diff-row { grid-template-columns: 1fr 1fr; }
+        .diff-head span:nth-child(3), .diff-row span:nth-child(3) { display: none; }
+      }
+      @media (max-width: 768px) {
+        .en-hero { padding: 40px 24px; }
+        .ps { padding: 40px 24px; }
+        .en-stats { padding: 0 24px; }
+        .rf2 { grid-template-columns: 1fr; }
+        .reg-path { grid-template-columns: 1fr; }
+        .reg-path-step { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+        .reg-path-step:last-child { border-bottom: none; }
+        .tl-item { grid-template-columns: 1fr; }
+        .tl-num { min-height: 48px; border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); font-size: 1rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psychology School</span>
+        </a>
+        <nav class="desktop-nav">
+          <div class="nav-item">
+            <a href="index.html">Home</a>
+            <ul class="nav-dropdown">
+              <li><a href="haqqimda.html">About Me</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="tehsil.html">Education</a>
+            <ul class="nav-dropdown">
+              <li><a href="program-umumi.html">General Psychology</a></li>
+              <li><a href="program-klinik.html">Clinical Psychology CPD</a></li>
+              <li><a href="program-praktikum.html">Psychotherapy Practicum</a></li>
+              <li><a href="qanunlar.html">Legal Basis</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="xidmetler.html" class="nav-active">Consultation</a>
+            <ul class="nav-dropdown">
+              <li><a href="aile-terapiyasi.html">Family Therapy</a></li>
+              <li><a href="aile-terapiyasi-usaq.html">Child-Parent Therapy</a></li>
+              <li><a href="depressiya.html">Depression</a></li>
+              <li><a href="panik-ataklar.html">Panic Attacks</a></li>
+              <li><a href="sosial-fobiya.html">Social Phobia</a></li>
+              <li><a href="enurez.html">Nocturnal Enuresis</a></li>
+            </ul>
+          </div>
+          <a href="b2b.html">Corporate</a>
+          <a href="blog.html">Blog</a>
+          <a href="../enurez.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="../ru/enurez.html" class="lang-switch" aria-label="Русский">RU</a><a href="enurez.html" class="lang-switch lang-active" aria-label="English">EN</a>
+          <a href="tehsil.html#registration" class="nav-cta">BOOK</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile menu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Home</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Education</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Consultation</a>
+      <a href="b2b.html" onclick="toggleMenu()">Corporate</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="../enurez.html" class="mobile-lang">Azərbaycan dili</a>
+      <a href="../ru/enurez.html" class="mobile-lang">Русский</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">BOOK</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="en-hero">
+      <div class="en-hero-inner">
+        <div>
+          <span class="badge" style="margin-bottom:24px;">Child Psychology &middot; </span>
+          <h1 class="hero-h1" style="color:var(--white);max-width:580px;">Nocturnal <em>Enuresis Treatment</em></h1>
+          <p class="hero-lead" style="max-width:500px;">1,000+ children over 23 years. Without a single medication.<br>Therapy only, following international protocols.</p>
+          <div class="hero-btns" style="justify-content:flex-start;">
+            <a href="#registration" class="btn btn-fill">Book an Appointment</a>
+            <a href="https://wa.me/994702200376?text=Hello%2C+I+would+like+to+learn+about+enuresis+treatment." target="_blank" class="btn btn-line">WhatsApp</a>
+          </div>
+        </div>
+        <div class="en-hero-photo">
+          <img src="../images/kenan/enurez-mualice.jpg" alt="Dr. Kenan Ragimov" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="en-stats">
+      <div class="en-stats-row">
+        <div class="en-stat"><span class="n">1,000+</span><span class="l">Children treated — 23 years</span></div>
+        <div class="en-stat"><span class="n">250+</span><span class="l">Children — in 2025 alone</span></div>
+        <div class="en-stat"><span class="n">20+</span><span class="l">Children of martyrs &amp; veterans — free</span></div>
+        <div class="en-stat"><span class="n">100+</span><span class="l">Low-income families — free</span></div>
+      </div>
+    </div>
+
+    <!-- WHAT IS IT -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Diagnosis</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">What Is Nocturnal Enuresis and PMNE?</h2>
+        <p class="sec-lead" style="max-width:480px;margin-bottom:0;">Accurate diagnosis of PMNE and differentiation from other forms of enuresis — the right starting point for treatment.</p>
+        <div class="def-grid">
+          <div class="def-card">
+            <span class="badge on-light" style="margin-bottom:16px;">Definition</span>
+            <span class="def-code">ICD-10 F98.0</span>
+            <h3 class="def-title">Primary Monosymptomatic Nocturnal Enuresis (PMNE)</h3>
+            <p class="def-body">The child has never had stable <strong>"dry nights"</strong> lasting at least 2 weeks. Restricting fluids during this period does not count as a result. During the day, while awake, there is no urinary incontinence. Incontinence occurs only during sleep. The diagnosis is made <strong>from age 5</strong> — before this age, the child is only taught rules for night-time self-control.</p>
+            <p class="def-body" style="margin-top:8px;">Methods that do not affect waking — "notes", "herbal infusions", "lumbar massage", acupuncture and other unsubstantiated approaches — have not demonstrated effectiveness in treating PMNE. Nevertheless, many parents try these first; failing to achieve a stable result, they later lose confidence in specialists.</p>
+          </div>
+          <div class="def-card">
+            <span class="badge on-light" style="margin-bottom:16px;">Mechanism</span>
+            <h3 class="def-title">Why Does It Persist?</h3>
+            <p class="def-body">The main reason is the depth of the child's sleep. During deep sleep, the waking signal does not reach sufficient strength to rouse the child — so the reflex (skill) of timely waking does not form. This is a biological trait, not laziness, illness or "bad parenting". There is a hereditary component — if parents sleep deeply, the probability in the child rises to 75%.</p>
+            <p class="def-body" style="margin-top:8px;">ICD-10 F98.0 falls under the section on disorders of psychological development. This means the appropriate specialist is a psychotherapist or clinical psychologist, not a neurologist or urologist.</p>
+            <p class="def-body" style="margin-top:8px;"><strong>Neurological (G.) or urological (R.) enuresis is a separate category</strong> — in these conditions, incontinence also occurs during the day while awake. PMNE occurs only during sleep. No pathology of other organs is found.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANGER: IMIPRAMINE -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">Warning</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Should Imipramine (Melipramine) Be Prescribed?</h2>
+        <p class="sec-lead" style="margin-bottom:0;color:var(--navy);font-weight:600;">Short answer: NO — it has no place in first-line enuresis therapy.</p>
+        <div class="danger-band">
+          <h3>What Does a Non-Specialist Do?</h3>
+          <p>Some neurologists prescribe imipramine (melipramine) — a tricyclic antidepressant — to children diagnosed with ICD-10 F98.0. This drug produces a <strong>temporary effect</strong> of urinary retention, but does not form the mechanism of enuresis — the waking reflex. After discontinuation, enuresis returns in approximately 60% of cases (relapse).</p>
+          <p><strong>The FDA (US Food and Drug Administration) has issued a Black Box Warning for imipramine</strong> — risk of suicide in children and adolescents. The drug also has cardiotoxic effects. Medical literature describes cases of children dying from cardiac arrest while taking imipramine for enuresis treatment.</p>
+          <p>The use of imipramine for enuresis began in the 1960s. Since then, international medical organisations (WHO, ICCS, NICE, EAU/ESPU, AUA, ICS) have updated their protocols — imipramine has been <strong>removed from first-line therapy</strong>. Yet some specialists do not follow these updates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFFERENTIAL DIAGNOSIS -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Differential Diagnosis</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">What Is Ruled Out Before Treatment Begins?</h2>
+        <p class="sec-lead" style="margin-bottom:0;">The psychotherapist must rule out secondary enuresis — as a consequence of another condition. This is not PMNE.</p>
+        <div class="diff-table">
+          <div class="diff-head">
+            <span>Possible Cause</span>
+            <span>What Is Excluded</span>
+            <span>Referral</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Vasopressin (ADH) deficiency</span>
+            <span class="diff-what">Diabetes insipidus</span>
+            <span class="diff-to">Endocrinologist</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Elevated glucose level</span>
+            <span class="diff-what">Diabetes mellitus</span>
+            <span class="diff-to">Endocrinologist</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Adenoids / OSAS</span>
+            <span class="diff-what">Sleep hypoxia, deep sleep</span>
+            <span class="diff-to">ENT</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Low haemoglobin</span>
+            <span class="diff-what">Anaemia, chronic hypoxia</span>
+            <span class="diff-to">Haematologist</span>
+          </div>
+          <div class="diff-row">
+            <span class="diff-cause">Urinary tract infection</span>
+            <span class="diff-what">UTI</span>
+            <span class="diff-to">Urologist</span>
+          </div>
+          <div class="diff-row" style="border-bottom:none;">
+            <span class="diff-cause">Urinary tract anomalies</span>
+            <span class="diff-what">Structural abnormalities</span>
+            <span class="diff-to">Urologist</span>
+          </div>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;line-height:1.65;">Once organic causes are excluded, the diagnosis of PMNE is confirmed and treatment begins. Referral to the appropriate specialist is made on the recommendation of the psychotherapist.</p>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="ps dark-bg">
+      <div class="ps-inner">
+        <span class="badge">Why Do They Trust Us?</span>
+        <h2 class="sec-h2" style="color:var(--white);margin-bottom:8px;margin-top:16px;">Transparency, Logic, Evidence</h2>
+        <p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:0;">We hide nothing. Methodology, results and even educational materials — everything is open.</p>
+        <div class="trust-grid">
+          <div class="trust-card">
+            <span class="trust-num">Fact 01</span>
+            <h3 class="trust-title">Check and Compare</h3>
+            <p class="trust-body">The protocol we use is recommended by <strong>WHO, ICCS, NICE, EAU/ESPU</strong>. We do not use psychotropic drugs. We rely only on evidence-based methods — references are provided at the bottom of the page.</p>
+          </div>
+          <div class="trust-card">
+            <span class="trust-num">Fact 02</span>
+            <h3 class="trust-title">Methodology Fully Open</h3>
+            <p class="trust-body">A video lesson on the diagnosis and treatment of nocturnal enuresis for young psychologists is published in the support group and on YouTube — <strong>free for everyone</strong>. We want parents to see everything clearly before consulting a specialist.</p>
+          </div>
+          <div class="trust-card">
+            <span class="trust-num">Fact 03</span>
+            <h3 class="trust-title">Social Responsibility</h3>
+            <p class="trust-body">Treatment for children of <strong>martyrs, veterans and war participants</strong>, as well as confirmed low-income or disabled families, is <strong>completely free</strong>. In 2025 alone, more than 250 children were treated — over 100 of them entirely free of charge.</p>
+          </div>
+        </div>
+        <!-- Instagram -->
+        <div class="ig-block">
+          <div>
+            <span class="badge" style="margin-bottom:16px;">Instagram &mdash; Highlights</span>
+            <h3 class="ig-title">Protect Your Children from Unqualified Specialists</h3>
+            <p class="ig-body" style="max-width:700px;">Our Instagram page has dedicated highlight sections — <strong>URINARY INCONTINENCE</strong> and <strong>ENURESIS</strong>. Wrong treatment methods, signs, parental questions, real case reviews. Watch and share — this information must be free.</p>
+            <div class="ig-tags">
+              <span class="ig-tag">URINARY INCONTINENCE</span>
+              <span class="ig-tag">ENURESIS</span>
+            </div>
+          </div>
+          <a href="https://www.instagram.com/dr.ragimoff/" target="_blank" class="btn btn-line" style="border-color:rgba(181,155,114,0.3);color:var(--accent);white-space:nowrap;">Instagram &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- YOUTUBE -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Lesson on YouTube</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Nocturnal Enuresis Treatment</h2>
+        <p class="sec-lead" style="margin:0 auto 32px; text-align:center; max-width:780px;">A lesson from the free support group for young psychologists — already uploaded to YouTube and open to everyone.</p>
+        <div class="yt-wrap">
+          <iframe src="https://www.youtube.com/embed/CPjtCqIKNZc?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Diagnosis and Treatment of Nocturnal Enuresis — Dr. Kenan Ragimov"></iframe>
+        </div>
+        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;">More videos on the channel: <a href="https://youtube.com/@kragimoff" target="_blank" style="color:var(--accent);font-weight:700;">youtube.com/@kragimoff</a></p>
+      </div>
+    </section>
+
+    <!-- TREATMENT PROTOCOL -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">Treatment Protocol</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">From First to Third Line</h2>
+        <p class="sec-lead" style="margin-bottom:0;">Step-by-step treatment scheme according to the international protocol (ICCS 2020, NICE, EAU/ESPU 2019).</p>
+        <div class="treat-line">
+          <div class="tl-item">
+            <div class="tl-num">1</div>
+            <div class="tl-body">
+              <span class="tl-tag">First Line &mdash; Primary Method</span>
+              <div class="tl-title">Behavioural Alarm Therapy (Night-time Exercises)</div>
+              <p class="tl-desc">A sensor in the underwear or bedding → at the first drops of urine the alarm sounds → the child wakes with difficulty → the parent immediately wakes them per instructions → goes to the toilet → the waking reflex is formed. <strong>Effectiveness: 80% sustained result</strong>. Course: 8–12 weeks. Relapse rate significantly lower. Active parental involvement is mandatory.</p>
+              <span class="tl-pill">ICCS 2020 &middot; NICE &middot; Cochrane 2005 — method of choice</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">2</div>
+            <div class="tl-body">
+              <span class="tl-tag">Concurrent &mdash; Mandatory</span>
+              <div class="tl-title">Sensitivity Enhancement (Daytime Exercises)</div>
+              <p class="tl-desc">Remove nappies (they block reflex formation) &middot; Dry/wet night diary &middot; Supportive exercises for the pelvic floor muscles and each stage of the urinary tract in line with treatment progress &middot; Daily strengthening of sensitivity and voluntary control &middot; <strong>Shaming is strictly prohibited</strong> (proven to worsen prognosis, Cochrane Review 2005).</p>
+              <span class="tl-pill">Increases effectiveness when combined with alarm therapy</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">3</div>
+            <div class="tl-body">
+              <span class="tl-tag">Concurrent &mdash; Mandatory</span>
+              <div class="tl-title">Motivation — Strengthening the Child's Own Desire</div>
+              <p class="tl-desc">Motivational exercises are mandatory — the child must have their own desire, otherwise all tasks will be carried out without enthusiasm or may be refused altogether. Therefore <strong>5–8 years is the most effective period</strong>. If the child has experienced trauma relating to this issue, trust is weakened and sabotage may occur at waking. Depending on treatment progress, the specialist applies different motivational measures at each stage.</p>
+              <span class="tl-pill">Increases effectiveness when combined with alarm therapy</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-num">4</div>
+            <div class="tl-body">
+              <span class="tl-tag">Third Line &mdash; When Behavioural Therapy Is Ineffective</span>
+              <div class="tl-title">Combination: Alarm Therapy + Medication</div>
+              <p class="tl-desc">If behavioural therapy has not produced results after 12 weeks, the next stage involves bidirectional treatment — taking sleep depth into account; in exceptional cases and only under strict cardiological monitoring, psychotropic drugs may be considered. Where an endocrinological investigation has confirmed excess fluid volume, desmopressin or its analogues may be prescribed (Vande Walle et al., 2012).</p>
+              <span class="tl-pill red">! Imipramine and Amitriptyline — not recommended by WHO since 2012 due to cardiotoxicity, documented fatalities and numerous side effects</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Summary Scheme</h3>
+        <div class="step-scheme">
+          <div class="ss-row"><div class="ss-n">1</div><div class="ss-body"><strong>Psychotherapist consultation</strong> — ruling out secondary enuresis, confirming the diagnosis</div></div>
+          <div class="ss-row"><div class="ss-n">2</div><div class="ss-body"><strong>Intensive alarm + behavioural therapy</strong> — conducted over 8–12 weeks</div></div>
+          <div class="ss-row"><div class="ss-n">3</div><div class="ss-body"><strong>If no result</strong> — combination of alarm therapy with specialist treatment</div></div>
+          <div class="ss-row"><div class="ss-n">4</div><div class="ss-body"><strong>No effect</strong> — repeat diagnostics, diagnosis review</div></div>
+        </div>
+
+        <h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Scientific References</h3>
+        <div class="refs-list">
+          <div class="ref-item"><span class="ref-n">1</span><div class="ref-text">Glazener C.M., Evans J.H., Peto R.E. <em>Alarm interventions for nocturnal enuresis in children.</em> Cochrane Database Syst Rev. 2005 — alarm therapy surpasses all other interventions in long-term outcomes; method of choice for PMNE.</div></div>
+          <div class="ref-item"><span class="ref-n">2</span><div class="ref-text">Glazener C.M., Evans J.H. <em>Tricyclic and related drugs for nocturnal enuresis in children.</em> Cochrane Review, 2000 — tricyclic antidepressants produce a short-term effect, carry serious side effects including cardiotoxicity, and have high relapse after discontinuation.</div></div>
+          <div class="ref-item"><span class="ref-n">3</span><div class="ref-text">Vande Walle J., Rittig S., Bauer S. et al. <em>Practical consensus guidelines for the management of enuresis.</em> Eur J Pediatr. 2012 Jun — imipramine should be the last choice in enuresis treatment.</div></div>
+          <div class="ref-item"><span class="ref-n">4</span><div class="ref-text">Radmayr C., Bogaert G., Dogan H.S. et al. <em>EAU/ESPU Paediatric Urology Guidelines.</em> 2019 — differential diagnosis and treatment protocol for PMNE.</div></div>
+          <div class="ref-item"><span class="ref-n">5</span><div class="ref-text"><em>NICE Guideline: Nocturnal Enuresis — The Management of Bedwetting in Children and Young People.</em> National Institute for Health and Care Excellence, UK — alarm is the first-line therapy for children over 5 years.</div></div>
+          <div class="ref-item"><span class="ref-n">6</span><div class="ref-text"><em>ICCS (International Children's Continence Society) Guidelines.</em> 2020 — alarm is the only method that produces sustained remission without pharmacological intervention; imipramine is not included in recommended protocols.</div></div>
+          <div class="ref-item"><span class="ref-n">7</span><div class="ref-text">MacLean R.E.G. <em>Imipramine Hydrochloride (Tofranil) and Enuresis.</em> Amer J Psychiat 117:551, 1960 &middot; Epstein S.J. <em>Imipramine in the Control of Enuresis.</em> Arch Pediatr, 1965 — historical context; international protocols have changed radically since then.</div></div>
+          <div class="ref-item"><span class="ref-n">8</span><div class="ref-text">WHO, ICD-10, <em>F98.0 Nonorganic enuresis.</em> Section on behavioural and emotional disorders — appropriate specialist: psychotherapist / child psychiatrist.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICE -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Pricing</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Treatment Costs</h2>
+        <p class="sec-lead" style="margin-bottom:0;">Full course on average 20,000–25,000 RUB. Children of martyrs, veterans and low-income families — completely free.</p>
+        <div class="price-table">
+          <div class="pt-head"><span>Services</span></div>
+          <div class="pt-row">
+            <div><div class="pt-label">Initial Assessment</div><div class="pt-sub">30 min &middot; ruling out secondary enuresis &middot; in person or online</div></div>
+            <div class="pt-price">3,000 RUB</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Course Start</div><div class="pt-sub">Alarm device + methodology + forms + full instructions</div></div>
+            <div class="pt-price">14,000 RUB</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Monthly Support</div><div class="pt-sub">Weekly report analysis &middot; on average 2–3 months</div></div>
+            <div class="pt-price">5,000 RUB/mo</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">Martyrs · Veterans · Low-Income</div><div class="pt-sub">Upon presentation of supporting document — completely free</div></div>
+            <div class="pt-price" style="color:var(--accent);">Free</div>
+          </div>
+          <div class="pt-total">
+            <span class="tl">Total (average)</span>
+            <span class="tv">20,000–25,000 RUB</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG ARTICLES -->
+    <section data-theme="dark" style="background:var(--navy)">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <span class="badge">FURTHER READING</span>
+        <h2 class="sec-h2" style="margin-top:16px">Articles on Nocturnal Enuresis</h2>
+        <p class="sec-sub">Evidence-based publications on this topic.</p>
+        <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(181,155,114,0.22)">
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-enurez.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/enurez/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 8 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Child Wetting the Bed — 5 Common Misconceptions</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-enurez-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/enurez/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 9 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">PMNE — Primary Monosymptomatic Nocturnal Enuresis: Complete Guide</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-enurez-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/enurez/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 7 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">How Does an Alarm Device Work? — International Protocol</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-enurez-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/enurez/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 7 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Desmopressin and Imipramine — Medications for Enuresis</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-enurez-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/enurez/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Article · 7 min read</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">7 Practical Tips for Parents</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REGISTRATION -->
+    <section class="ps dark-bg" id="registration">
+      <div class="ps-inner">
+        <span class="badge">Booking</span>
+        <h2 class="sec-h2" style="color:var(--white);margin-bottom:8px;margin-top:16px;">Contact Form</h2>
+        <p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:40px;">Fill in the form — a coordinator will get in touch within 24 hours.</p>
+        <div class="reg-path">
+          <div class="reg-path-step"><span class="rp-num">Step 01</span><h4>Enquiry</h4><p>Fill in the form and indicate the child's age</p></div>
+          <div class="reg-path-step"><span class="rp-num">Step 02</span><h4>Call</h4><p>A coordinator will contact you within 24 hours</p></div>
+          <div class="reg-path-step"><span class="rp-num">Step 03</span><h4>Initial Meeting</h4><p>3,000 RUB &middot; assessment, diagnosis confirmation</p></div>
+          <div class="reg-path-step"><span class="rp-num">Step 04</span><h4>Course Start</h4><p>Alarm device + instructions — treatment at home</p></div>
+        </div>
+        <form class="reg-form" id="enRegForm">
+          <div class="rf2" style="margin-bottom:20px;">
+            <div class="rfield"><label for="er-name">Parent's Full Name</label><input type="text" id="er-name" name="name" placeholder="First Last" required /></div>
+            <div class="rfield"><label for="er-phone">Phone</label><input type="tel" id="er-phone" name="phone" placeholder="+994 (XX) XXX-XX-XX" required /></div>
+          </div>
+          <div class="rf2" style="margin-bottom:20px;">
+            <div class="rfield"><label for="er-age">Child's Age</label><input type="text" id="er-age" name="child_age" placeholder="E.g.: 7 years" /></div>
+            <div class="rfield"><label for="er-dur">How Long Has This Been Going On?</label><input type="text" id="er-dur" name="duration" placeholder="E.g.: 2 years" /></div>
+          </div>
+          <div class="rfield" style="margin-bottom:20px;"><label for="er-note">Additional Note (optional)</label><textarea id="er-note" name="note" rows="3" placeholder="Previous treatment attempts, questions..."></textarea></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;">
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.3);line-height:1.6;max-width:400px;margin:0;">Your data will not be shared with third parties.</p>
+            <button type="submit" class="btn btn-fill" style="padding:16px 40px;font-size:0.9375rem;">Submit Enquiry</button>
+          </div>
+          <div class="form-success" id="enSuccess"><p>Your enquiry has been received. We will contact you within 24 hours.</p></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="ps white">
+      <div class="ps-inner">
+        <span class="badge on-light">Parent Reviews</span>
+        <h2 class="sec-h2" style="margin-bottom:8px;margin-top:16px;">Written by Parents of Recovered Children</h2>
+        <p class="sec-lead" style="margin-bottom:40px;">Reviews are published only after confirmation by the administrator — no spam or third-party advertising.</p>
+        <div class="reviews-grid">
+          <div class="rv-card">
+            <div class="rv-name">Aynur V. &mdash; Baku</div>
+            <p class="rv-text">"My son was 9 years old and had been suffering for 4 years. He was completely cured in 10 weeks. The device works, the doctor explains everything. I would not have believed it was possible without medication. But I saw it with my own eyes."</p>
+            <div class="rv-meta">2025 &middot; 10-week course</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Rauf M. &mdash; Sumgait</div>
+            <p class="rv-text">"We went to psychiatrists — every one of them prescribed drugs. Kenan bey gave not a single medication — only the device and the methodology. In 3 months the child stopped completely. Simply — thank you."</p>
+            <div class="rv-meta">2024 &middot; 12-week course</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Sevinch G. &mdash; Ganja</div>
+            <p class="rv-text">"We treated online. We did not travel to Baku. We sent weekly reports and received an answer to every question. Our daughter recovered in 8 weeks. Very happy."</p>
+            <div class="rv-meta">2025 &middot; 8-week course &middot; online</div>
+          </div>
+          <div class="rv-card">
+            <div class="rv-name">Farid K. &mdash; Baku</div>
+            <p class="rv-text">"We are a low-income family — they helped us free of charge and quickly. It reminded me what humanity means. The child recovered in 11 weeks. Enormous gratitude."</p>
+            <div class="rv-meta">2025 &middot; Free course &middot; 11 weeks</div>
+          </div>
+        </div>
+        <div class="review-form">
+          <h3 style="font-size:1.125rem;font-weight:800;color:var(--clr-heading);margin-bottom:8px;font-family:var(--font);">Leave a Review</h3>
+          <p style="font-size:0.875rem;color:var(--clr-text-muted);margin-bottom:24px;">Reviews are published only after administrator verification. Spam, advertising and unverified information will not be accepted.</p>
+          <form id="reviewForm">
+            <div class="rf2" style="margin-bottom:16px;">
+              <div class="rfield">
+                <label for="rv-n" style="color:rgba(6,24,38,0.5);">Name (full name not required)</label>
+                <input type="text" id="rv-n" name="rv_name" placeholder="Anna V." style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" required />
+              </div>
+              <div class="rfield">
+                <label for="rv-city" style="color:rgba(6,24,38,0.5);">City</label>
+                <input type="text" id="rv-city" name="rv_city" placeholder="Baku" style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" />
+              </div>
+            </div>
+            <div class="rfield" style="margin-bottom:16px;">
+              <label for="rv-txt" style="color:rgba(6,24,38,0.5);">Your Review</label>
+              <textarea id="rv-txt" name="rv_text" rows="4" placeholder="How old was the child, how many weeks did treatment last, what was the result..." style="background:var(--white);border:1px solid var(--clr-border);color:var(--navy);" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-fill" style="padding:14px 32px;">Submit Review</button>
+            <p class="rv-note">Your review will be published on the website after administrator verification.</p>
+            <div class="form-success" id="rvSuccess"><p>Your review has been received. It will be published after verification. Thank you.</p></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="ps light-bg">
+      <div class="ps-inner">
+        <span class="badge on-light">FURTHER READING</span>
+        <h2 class="sec-h2" style="margin-bottom:16px;margin-top:16px;">Related Articles</h2>
+        <p class="sec-lead" style="margin-bottom:40px;">Articles by Dr. Kenan Ragimov on the topic of enuresis.</p>
+        <div class="blog-grid-2">
+          <a href="blog-enurez.html" class="bc">
+            <span class="bc-cat">Child Psychology</span>
+            <div class="bc-title">Child Wetting the Bed — 5 Common Misconceptions</div>
+            <div class="bc-lead">The 5 most widespread misconceptions about nocturnal enuresis in children and the correct path to psychological treatment.</div>
+            <span class="bc-more">Read more &rarr;</span>
+          </a>
+          <a href="blog-yeniyetme.html" class="bc">
+            <span class="bc-cat">Parent–Child</span>
+            <div class="bc-title">Your Teenager Won't Talk to You — It's Not About You</div>
+            <div class="bc-lead">Ages 13–17 — the most intensive period of brain development. Why do parents seem like "enemies"? A psychological explanation.</div>
+            <span class="bc-more">Read more &rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo">
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psychology School</span>
+            </a>
+            <p class="footer-desc">Kenan Ragimov — Psychiatrist, psychotherapist. 23 years of clinical practice. Baku, Azerbaijan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Therapy</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Family Therapy</a></li>
+              <li><a href="enurez.html" class="footer-link">Nocturnal Enuresis</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panic Attacks</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depression</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Social Phobia</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Education</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">General Psychology</a></li>
+              <li><a href="tehsil.html" class="footer-link">Clinical Psychology CPD</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psychotherapy Practicum</a></li>
+              <li><a href="blog.html" class="footer-link">Psychology (blog)</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">Lessons on YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Contacts</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF — Professional Psychology School. Baku, Azerbaijan.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="../shared.js"></script>
+    <script>
+      // Registration form (enurez)
+      document.getElementById('enRegForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'registration',
+          fname: fd.get('name') || '',
+          lname: '',
+          phone: fd.get('phone') || '',
+          email: '',
+          service: 'Enuresis consultation',
+          note: [
+            fd.get('child_age') ? 'Child age: ' + fd.get('child_age') : '',
+            fd.get('duration') ? 'Duration: ' + fd.get('duration') : '',
+            fd.get('note') || ''
+          ].filter(Boolean).join(' | '),
+          source: 'en/enurez.html'
+        };
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        document.getElementById('enSuccess').style.display = 'block';
+        btn.style.display = 'none';
+      });
+
+      // Review form (enurez)
+      document.getElementById('reviewForm')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = this;
+        const btn = form.querySelector('[type="submit"]');
+        const fd = new FormData(form);
+        const payload = {
+          type: 'review',
+          name: fd.get('rv_name') || '',
+          program: 'Enuresis (' + (fd.get('rv_city') || '—') + ')',
+          rating: '5',
+          text: fd.get('rv_text') || '',
+          email: ''
+        };
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        await submitToAPI(payload);
+        document.getElementById('rvSuccess').style.display = 'block';
+        btn.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

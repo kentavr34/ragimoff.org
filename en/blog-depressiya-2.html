@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How does cognitive behavioral therapy (CBT) work for depression? Automatic thoughts, behavioral activation, session structure. Kenan Ragimov." />
+    <title>How Does CBT Work for Depression? | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../gtc.css" />
+    <style>
+      .art-cover { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin:0 0 32px; }
+      .art-fig { margin:36px -20px; }
+      .art-fig img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; }
+      .art-fig figcaption { font-size:.8125rem; color:var(--clr-text-muted); margin-top:10px; padding:0 20px; font-style:italic; }
+      .art-sources { margin-top:48px; padding-top:24px; border-top:1px solid var(--clr-border); font-size:.85rem; color:var(--clr-text-muted); }
+      .art-sources strong { color:var(--clr-heading); display:block; margin-bottom:8px; }
+      .art-sources a { color:var(--accent); text-decoration:none; }
+      .art-sources a:hover { text-decoration:underline; }
+      .triangle-box { background:rgba(181,155,114,0.06); border:1px solid var(--clr-border); border-left:3px solid var(--accent); padding:20px 24px; margin:24px 0; }
+      .triangle-box strong { color:var(--clr-heading); }
+      @media (max-width:768px) { .art-fig { margin:28px 0; } .art-fig figcaption { padding:0; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psychology School</span>
+        </a>
+        <nav class="desktop-nav">
+          <div class="nav-item">
+            <a href="index.html">Home</a>
+            <ul class="nav-dropdown">
+              <li><a href="haqqimda.html">About Me</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="tehsil.html">Education</a>
+            <ul class="nav-dropdown">
+              <li><a href="program-umumi.html">General Psychology</a></li>
+              <li><a href="program-klinik.html">Clinical Psychology CPD</a></li>
+              <li><a href="program-praktikum.html">Psychotherapy Practicum</a></li>
+              <li><a href="qanunlar.html">Legal Basis</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="xidmetler.html">Consultation</a>
+            <ul class="nav-dropdown">
+              <li><a href="aile-terapiyasi.html">Family Therapy</a></li>
+              <li><a href="aile-terapiyasi-usaq.html">Child-Parent Therapy</a></li>
+              <li><a href="depressiya.html">Depression</a></li>
+              <li><a href="panik-ataklar.html">Panic Attacks</a></li>
+              <li><a href="sosial-fobiya.html">Social Phobia</a></li>
+              <li><a href="enurez.html">Nocturnal Enuresis</a></li>
+            </ul>
+          </div>
+          <a href="b2b.html">Corporate</a>
+          <a href="blog.html" class="nav-active">Blog</a>
+          <a href="../blog-depressiya-2.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="../ru/blog-depressiya-2.html" class="lang-switch" aria-label="Русский">RU</a><a href="blog-depressiya-2.html" class="lang-switch lang-active" aria-label="English">EN</a>
+          <a href="tehsil.html#registration" class="nav-cta">BOOK</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile menu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Home</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Education</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Consultation</a>
+      <a href="b2b.html" onclick="toggleMenu()">Corporate</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="../blog-depressiya-2.html" class="mobile-lang">Azərbaycan dili</a>
+      <a href="../ru/blog-depressiya-2.html" class="mobile-lang">Русский</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">BOOK</a>
+    </nav>
+
+    <section class="pg-hero pg-hero-plain" data-theme="dark">
+      <div class="pg-hero-inner">
+        <span class="badge">DEPRESSION</span>
+        <h1 class="hero-h1">How Does CBT Work for Depression?</h1>
+        <p class="hero-lead">Kenan Ragimov · 11 min read · 2026</p>
+      </div>
+    </section>
+
+    <section data-theme="light">
+      <div class="sec-inner" style="padding:var(--s-section); max-width:760px; text-align:left">
+        <img src="../images/blog/depressiya/art2-cover.jpg" alt="Psychotherapy session" class="art-cover" loading="lazy" />
+        <div class="article-body">
+          <p>Cognitive behavioral therapy (CBT) is the most researched and proven form of psychotherapy for depression. Developed by Aaron Beck in the 1960s, it is now recommended by leading institutions worldwide — the Beck Institute, Mayo Clinic, and NHS — as the first-choice intervention for depression.</p>
+
+          <p>According to NICE (the UK's National Institute for Health and Care Excellence) guidelines, for mild to moderate depression CBT should be offered as the first intervention — before antidepressants. This is because its effectiveness is comparable to medication, but <strong>the risk of relapse is reduced by more than 50%</strong> — and that is the central theme of this article.</p>
+
+          <h2>The Triangle: Thought — Emotion — Behavior</h2>
+          <p>The core CBT model is a simple triangle. In every situation, three components interact:</p>
+
+          <div class="triangle-box">
+            <strong>Situation</strong> (e.g., a friend did not reply to my message)<br>
+            ↓<br>
+            <strong>Automatic thought</strong> ("he doesn't like me, I'm not interesting")<br>
+            ↓<br>
+            <strong>Emotion</strong> (sadness, feeling of rejection)<br>
+            ↓<br>
+            <strong>Behavior</strong> (I stop writing messages, I withdraw)<br>
+            ↓<br>
+            <strong>Outcome</strong> (social isolation → deepening depression)
+          </div>
+
+          <p>In depression this cycle operates through "dark glasses" — the thinking system automatically favors negative interpretations. Beck called this the "cognitive triad": negative perception of oneself, the world, and the future.</p>
+
+          <h2>Core CBT Tools</h2>
+
+          <p><strong>1. Recording automatic thoughts.</strong> The patient learns to keep a journal: what situation triggered a thought, what they felt, and what behavior it led to. This simple recording makes the "thought → emotion" connection visible.</p>
+
+          <p><strong>2. Recognizing cognitive distortions.</strong> Typical distortions in depression:</p>
+          <ul>
+            <li><em>All-or-nothing thinking:</em> "I got a B on the exam — I'm a failure"</li>
+            <li><em>Overgeneralization:</em> "one friend left — everyone abandons me"</li>
+            <li><em>Mental filtering:</em> out of 9 positive and 1 negative piece of feedback, seeing only the negative</li>
+            <li><em>Mind reading:</em> "he thinks I'm stupid" (without evidence)</li>
+            <li><em>Catastrophizing:</em> "if I lose my job, it's all over"</li>
+            <li><em>Personalization:</em> "he's angry — it must be my fault"</li>
+          </ul>
+
+          <p><strong>3. Thought restructuring.</strong> Asking about evidence: "what facts support this thought? What contradicts it? Is there another way to look at this situation?" The thought is not eliminated — it is rebuilt in a more balanced form.</p>
+
+          <figure class="art-fig">
+            <img src="../images/blog/depressiya/art2-journal.jpg" alt="Thought journal" loading="lazy" />
+            <figcaption>The thought journal is the primary homework tool in CBT. All you need is a notebook and pen.</figcaption>
+          </figure>
+
+          <h2>Behavioral Activation</h2>
+          <p>The classic trap for a person with depression: <strong>"when I feel motivated — I'll start acting."</strong> In reality the opposite is true — action creates motivation, not the other way around.</p>
+
+          <p>The behavioral activation protocol:</p>
+          <ol>
+            <li>The patient records all their activities over a week, rating each for "pleasure" and "achievement" (1–10).</li>
+            <li>The therapist identifies activities with high pleasure and achievement ratings but low frequency.</li>
+            <li>A concrete plan for the following week: "on Wednesday at 10:00 — a 20-minute walk in the park."</li>
+            <li>Gradual increase of activity.</li>
+          </ol>
+
+          <p>Beck Institute research shows that behavioral activation alone is in many cases just as effective as the full CBT protocol — especially for mild to moderate depression.</p>
+
+          <h2>Typical Session Structure</h2>
+          <p>CBT is a structured intervention. Each session is roughly organized as follows:</p>
+          <ul>
+            <li><strong>1–5 min</strong> — mood check, brief review of the past week</li>
+            <li><strong>5–10 min</strong> — review of homework from the previous session</li>
+            <li><strong>10–15 min</strong> — setting the agenda for the current session (patient + therapist)</li>
+            <li><strong>30–40 min</strong> — core work: on a specific thought, situation, or skill</li>
+            <li><strong>5 min</strong> — new homework assignment</li>
+            <li><strong>5 min</strong> — session summary and feedback</li>
+          </ul>
+
+          <h2>Duration and Effectiveness</h2>
+          <p>The standard CBT protocol for depression is 12–20 sessions, weekly. For mild depression, 8–12 sessions may be sufficient; for chronic depression, 20–25.</p>
+
+          <p>Evidence for effectiveness:</p>
+          <ul>
+            <li>Cuijpers et al. 2013 meta-analysis (115 studies): CBT for depression is significantly more effective than placebo and comparable to medication.</li>
+            <li>NICE (2022): for mild to moderate depression, CBT is the first-choice treatment.</li>
+            <li>Hollon et al. (2005): relapse risk within 2 years after treatment — 31% for those who received CBT, 76% for those who received medication only.</li>
+          </ul>
+
+          <h2>Who Benefits Most from CBT?</h2>
+          <p>CBT is suitable for most patients, but works especially well for:</p>
+          <ul>
+            <li>Mild to moderate depression</li>
+            <li>A first episode of depression</li>
+            <li>Patients willing to monitor their own thoughts</li>
+            <li>A preference for a structured approach</li>
+            <li>A wish to avoid medication (pregnancy, breastfeeding)</li>
+          </ul>
+
+          <p>For severe depression and suicidal thoughts, CBT is recommended in combination with antidepressants. Psychotherapy alone is insufficient.</p>
+
+          <h2>How to Get Started?</h2>
+          <p>The simplest way to begin CBT is to consult a certified clinical psychologist or psychiatrist-psychotherapist. At the first consultation the therapist makes a diagnosis, assesses whether CBT is appropriate in your case, and proposes a treatment plan.</p>
+
+          <p>Important: <strong>CBT is not "just talking" — it is structured work</strong>. Homework, keeping a journal, behavioral experiments — 50% of therapy happens between sessions. Active participation multiplies the results.</p>
+        </div>
+
+        <div class="author-block" style="margin-top:48px">
+          <div>
+            <strong>Kenan Ragimov</strong>
+            <p style="color:var(--clr-text-muted); font-size:.9rem; margin:4px 0 0">Psychiatrist, psychotherapist. 23 years of clinical practice. CBT — IPAS certificate.</p>
+          </div>
+        </div>
+
+        <div class="art-sources">
+          <strong>Sources (primary sources used and adapted for clinical practice):</strong>
+          <p><a href="https://beckinstitute.org/about/understanding-cbt/" target="_blank" rel="noopener">Beck Institute — Understanding CBT</a></p>
+          <p><a href="https://www.nice.org.uk/guidance/ng222" target="_blank" rel="noopener">NICE Guideline NG222 — Depression in adults: treatment and management, 2022</a></p>
+          <p><a href="https://www.apa.org/depression-guideline" target="_blank" rel="noopener">APA Clinical Practice Guideline for the Treatment of Depression</a></p>
+          <p>Cuijpers, P. et al. (2013). A meta-analysis of cognitive-behavioural therapy for adult depression. <em>World Psychiatry</em>, 12(2), 137–148.</p>
+          <p>Hollon, S. D. et al. (2005). Prevention of relapse following cognitive therapy. <em>Archives of General Psychiatry</em>, 62(4), 417–422.</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-theme="dark" style="background:var(--navy)">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <span class="badge">READ ALSO</span>
+        <h2 class="sec-h2">Other Articles</h2>
+        <div class="blog-grid-2" style="margin-top:32px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px">
+          <a href="blog-depressiya.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Depression</span>
+              <h3 class="blog-card-title">How Does Depression Differ from Sadness?</h3>
+              <p class="blog-card-excerpt">7 clinical signs and DSM-5 criteria.</p>
+            </div>
+          </a>
+          <a href="blog-panik.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Depression</span>
+              <h3 class="blog-card-title">What to Do During a Panic Attack?</h3>
+              <p class="blog-card-excerpt">3 techniques used in the moment of an attack.</p>
+            </div>
+          </a>
+          <a href="blog-aile.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Family</span>
+              <h3 class="blog-card-title">5 Principles for Resolving Family Conflict</h3>
+              <p class="blog-card-excerpt">Psychological principles for breaking the cycle of conflict.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-band" data-theme="dark">
+      <div class="cta-band-inner">
+        <h2 class="sec-h2">Need help with depression?</h2>
+        <p class="sec-sub">At the first consultation, we'll create a treatment plan together</p>
+        <div class="cta-band-btns">
+          <a href="https://wa.me/994702200376" class="btn btn-fill" target="_blank">Write on WhatsApp</a>
+          <a href="depressiya.html" class="btn btn-line">Depression Therapy</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo">
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psychology School</span>
+            </a>
+            <p class="footer-desc">Kenan Ragimov — Psychiatrist, psychotherapist. 23 years of clinical practice. Baku, Azerbaijan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Therapy</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Family Therapy</a></li>
+              <li><a href="enurez.html" class="footer-link">Nocturnal Enuresis</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panic Attacks</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depression</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Social Phobia</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Education</span>
+            <ul class="footer-links">
+              <li><a href="program-umumi.html" class="footer-link">General Psychology</a></li>
+              <li><a href="program-klinik.html" class="footer-link">Clinical Psychology CPD</a></li>
+              <li><a href="program-praktikum.html" class="footer-link">Psychotherapy Practicum</a></li>
+              <li><a href="blog.html" class="footer-link">Psychology (blog)</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">Lessons on YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Contacts</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF — Professional Psychology School. Baku, Azerbaijan.</p>
+        </div>
+      </div>
+    </footer>
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <script src="../shared.js"></script>
+  </body>
+</html>
