@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 18 — YUXU-OYAQLIQ">
+<title>BÖLMƏ 18 — YUXU-OYAQLIQ | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-18" class="h-bolme">BÖLMƏ 18</h1>
+<h2 id="yuxu-oyaqliq-pozuntulari" class="">YUXU-OYAQLIQ POZUNTULARI</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">7A00</span>–7B2Z — Sleep-wake disorders (ayrı fəsil)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F51</span> (qeyri-üzvi yuxu pozuntuları, F bölməsi); G47 (üzvi yuxu pozuntuları)</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Sleep-Wake Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">7A00</span>–7A0Z</strong></td><td>İnsomnia pozuntuları</td><td>18.1</td></tr>
+<tr><td><strong><span class="icd">7A20</span>–7A2Z</strong></td><td>Hipersomnia pozuntuları</td><td>18.2</td></tr>
+<tr><td><strong><span class="icd">7A40</span>–7A4Z</strong></td><td>Sirkadian-yuxu-oyaqlıq ritm pozuntuları</td><td>18.3</td></tr>
+<tr><td><strong><span class="icd">7A60</span>–7A6Z</strong></td><td>Yuxu-bağlı tənəffüs pozuntuları</td><td>18.4</td></tr>
+<tr><td><strong><span class="icd">7A80</span>–7A8Z</strong></td><td>Hərəkət-bağlı yuxu pozuntuları</td><td>18.5</td></tr>
+<tr><td><strong><span class="icd">7B00</span>–7B2Z</strong></td><td>Parasomnik pozuntular</td><td>18.6</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p>XBT-11 yuxu-oyaqlıq pozuntularını <strong>müstəqil fəsil</strong> kimi ayırdı (Fəsil 7). Bu, müasir somnologiyanın yetkinliyini və yuxu pozuntularının özəl klinik intizam kimi tanınmasını əks etdirir.</p>
+<h3 id="müstəqil-fəsil-statusu" class="">Müstəqil fəsil statusu</h3>
+<p>XBT-10-da yuxu pozuntuları <strong>iki müxtəlif yerdə</strong> idi:</p>
+<ul>
+<li><strong><span class="icd">F51</span></strong> (qeyri-üzvi) — psixiatrik bölmədə</li>
+<li><strong>G47</strong> (üzvi) — neyrologik bölmədə</li>
+</ul>
+<p>XBT-11 onları <strong>vahid fəsildə</strong> birləşdirdi və psixiatriya/neyrologiyanın hər ikisi üçün ümumi referans yaratdı.</p>
+<h3 id="i̇nsomniyanın-yenidən-təsnifi" class="">İnsomniyanın yenidən təsnifi</h3>
+<p>İnsomniya artıq sadəcə &quot;qeyri-üzvi&quot; və ya &quot;ikincili&quot; deyil:</p>
+<ul>
+<li><strong>Xroniki insomniya pozuntusu</strong> (3+ ay) — müstəqil diaqnoz</li>
+<li><strong>Qısa müddətli insomniya pozuntusu</strong> (3 aya qədər)</li>
+<li>&quot;Birincili&quot; və &quot;ikincili&quot; insomniya ayırması aradan qaldırıldı — komorbid olduqda hər iki diaqnoz qoyula bilər</li>
+</ul>
+<h3 id="sirkadian-pozuntuların-genişləndirilməsi" class="">Sirkadian pozuntuların genişləndirilməsi</h3>
+<p>Müasir gec yatma sindromu, növbə işi pozuntusu və qeyri-24-saatlıq ritm pozuntusu kimi sosial-əhəmiyyətli halların təfərrüatlı təsnifi.</p>
+<h3 id="dsm-5-tr-ilə-uyğunlaşma" class="">DSM-5-TR ilə uyğunlaşma</h3>
+<p>XBT-11 və DSM-5-TR-də yuxu pozuntularının təsnifi praktiki olaraq paralel — bu, beynəlxalq elmi nəşrlər və klinik təlimatların işlənməsini asanlaşdırır.</p>
+<hr>
+<h2 id="i̇nsomni̇ya-pozuntulari" class="">İNSOMNİYA POZUNTULARI</h2>
+<h3 id="tərif-xbt-11-7a00" class="">Tərif (XBT-11: <span class="icd">7A00</span>)</h3>
+<p><strong>İnsomniya pozuntusu</strong> — kifayət qədər yuxu fürsəti olduqda belə <strong>yuxuya getmə</strong>, <strong>yuxuda qalma</strong> və ya <strong>erkən oyanma</strong> çətinliyi ilə xarakterizə olunan vəziyyət. Bu çətinliklər funksional pozulma və ya disstresə səbəb olur.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong><span class="icd">7A00</span>.0</strong> Xroniki insomniya pozuntusu — ən azı 3 ay, həftədə ≥3 dəfə</li>
+<li><strong><span class="icd">7A00</span>.1</strong> Qısa müddətli insomniya pozuntusu — 3 aya qədər</li>
+<li><strong>7A0Y</strong> Digər müəyyən</li>
+<li><strong>7A0Z</strong> Dəqiqləşdirilməmiş</li>
+</ul>
+<h3 id="etiologiya" class="">Etiologiya</h3>
+<p>İnsomniya <strong>multifaktorial</strong> pozuntudur. <strong>3-P modeli</strong> (Spielman, 1987) ən geniş istifadə olunan etioloji çərçivədir:</p>
+<ul>
+<li><strong>Predisposing (meyillilik) faktorlar:</strong> ailə anamnezi, neyrobioloji həssaslıq, yüksək kortizol, hyperarousal trait</li>
+<li><strong>Precipitating (provokasiya) faktorlar:</strong> akut stressor, somatik xəstəlik, dərman dəyişikliyi, çevrə dəyişikliyi</li>
+<li><strong>Perpetuating (saxlayan) faktorlar:</strong> yatağa erkən girmə, gündüz yatma, kofein, ekran istifadəsi, yatağa qarşı kondisionirlənmiş təşviş, yuxu haqqında disfunksional düşüncələr</li>
+</ul>
+<h3 id="epidemiologiya" class="">Epidemiologiya</h3>
+<ul>
+<li><strong>Yayılma:</strong> yetkin populyasiyada <strong>30%</strong> (insomniya simptomları), <strong>10%</strong> (klinik insomniya pozuntusu kriterlərinə cavab verir)</li>
+<li><strong>Cinsi nisbət:</strong> Q:K = <strong>1,4:1</strong></li>
+<li><strong>Yaş:</strong> yaşla artır (&gt;65 yaşda 50%-ə qədər)</li>
+<li><strong>Komorbidlik:</strong> depressiya (40%), təşviş pozuntuları (30%), xroniki ağrı (50%), maddə istifadəsi</li>
+</ul>
+<h3 id="klinik-mənzərə" class="">Klinik mənzərə</h3>
+<p><strong>Gecə simptomları:</strong></p>
+<ul>
+<li>Yuxuya getmə latensiyası &gt;30 dəq</li>
+<li>Gecə oyanmaları, yenidən yuxuya getmə çətinliyi</li>
+<li>Erkən oyanma (planlaşdırılan vaxtdan ən azı 30 dəq əvvəl)</li>
+<li>Yuxunun yetersiz hiss edilməsi</li>
+</ul>
+<p><strong>Gündüz simptomları:</strong></p>
+<ul>
+<li>Yorğunluq, enerji itkisi</li>
+<li>Konsentrasiya pozulması, yaddaş problemleri</li>
+<li>Əhval-ruhiyyə dəyişiklikləri (irritabillik, depressivlik)</li>
+<li>Motivasiya itkisi</li>
+<li>Sosial və peşə fəaliyyətinin pozulması</li>
+<li>&quot;Yuxu üçün qorxu&quot; — yatağa girmə təşvişi</li>
+</ul>
+<h3 id="diaqnoz" class="">Diaqnoz</h3>
+<p><strong>XBT-11 meyarları (<span class="icd">7A00</span>):</strong></p>
+<ul>
+<li>Yuxuya getmə, yuxuda qalma və ya erkən oyanma çətinliyi</li>
+<li>Kifayət qədər yuxu fürsəti və münasib şərait olmasına baxmayaraq</li>
+<li>Yuxu pozuntusu nəticəsində gündüz simptomları</li>
+<li>Müddət: xroniki ≥3 ay, həftədə ≥3 gecə</li>
+</ul>
+<p><strong>Diaqnostik alətlər:</strong></p>
+<ul>
+<li><strong>PSQI</strong> (Pittsburgh Sleep Quality Index) — yuxu keyfiyyəti, ümumi göstərici</li>
+<li><strong>ISI</strong> (Insomnia Severity Index) — insomniyanın şiddət ölçüsü, 0–28 bal</li>
+<li><strong>Yuxu gündəliyi</strong> (sleep diary) — 2 həftə minimum</li>
+<li><strong>Aktiqrafiya</strong> — qol-saatlıq cihaz, obyektiv yuxu-oyaqlıq monitorinqi</li>
+<li><strong>Polisomnoqrafiya (PSG)</strong> — rutinə aid deyil; yalnız yuxu apnoesi, narkolepsiya, REM davranış pozuntusu şübhəsində</li>
+</ul>
+<h3 id="differensial-diaqnoz" class="">Differensial diaqnoz</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Vəziyyət</th><th>Fərqləndirici xüsusiyyət</th></tr>
+<tr><td>Sirkadian-ritm pozuntusu</td><td>Pasient yatmaq istəsə yatır, lakin &quot;yanlış&quot; vaxtda</td></tr>
+<tr><td>Obstruktiv yuxu apnoesi</td><td>Xorultu, oyanma boğulma ilə, ortaq partnyor müşahidələri, gündüz yuxululuq</td></tr>
+<tr><td>Narkolepsiya</td><td>Gündüz çoxlu yuxululuq + katapleksiya/yuxu paralizi</td></tr>
+<tr><td>Hərəkət pozuntuları</td><td>Bacaqsız sindrom (RLS), periodik hərəkət pozuntusu</td></tr>
+<tr><td>Depressiya</td><td>Anhedoniya, sübh oyanması depressiyaya xas; insomniya depressiyanın simptomu kimi</td></tr>
+<tr><td>Təşviş pozuntuları</td><td>Yatmazdan əvvəl narahat düşüncələr; somatik təşviş simptomları</td></tr>
+<tr><td>Maddə istifadəsi</td><td>Kofein, alkohol, stimulyatorlar, kəsmə</td></tr>
+<tr><td>Dərman təsiri</td><td>Beta-blokerlər, kortikosteroidlər, SİUSİ, simpatomimetiklər</td></tr>
+</table></div>
+<h3 id="müayinə-üsulları" class="">Müayinə üsulları</h3>
+<p><strong>Mütləq:</strong></p>
+<ul>
+<li>Klinik müsahibə + yuxu gündəliyi (2 həftə)</li>
+<li>ISI və ya PSQI</li>
+<li>Tibbi anamnez (somatik xəstəliklər, dərmanlar, maddə istifadəsi)</li>
+<li>Mental status qiymətləndirməsi (depressiya, təşviş skrininqi)</li>
+</ul>
+<p><strong>Tələbə görə:</strong></p>
+<ul>
+<li>Polisomnoqrafiya — apnoe, narkolepsiya, REM davranış şübhəsi</li>
+<li>Aktiqrafiya — sirkadian pozuntu şübhəsi</li>
+<li>Tibbi laboratoriya — qalxanvari, dəmir (RLS), kortizol səviyyəsi</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə</h3>
+<h4 id="birinci-xətt-kdt-i̇-insomniya-üçün-kognitiv-davranış-terapiyası" class="">Birinci xətt: KDT-İ (insomniya üçün kognitiv-davranış terapiyası)</h4>
+<p><strong>KDT-İ</strong> — bütün beynəlxalq təlimatlarda (NICE, ESRS, AASM) <strong>birinci xətt müalicə</strong> kimi tövsiyə olunur. <strong>Sübutluluq səviyyəsi: A</strong>.</p>
+<p><strong>Komponentləri:</strong></p>
+<ul>
+<li><strong>Stimul nəzarəti</strong> — yataq yalnız yuxu və cinsi həyat üçün; oyaq olarsa yataqdan çıxmaq</li>
+<li><strong>Yuxu məhdudlaşdırması</strong> — yataqda keçirilən vaxtın azaldılması (məs. 6 saata) yuxu effektivliyini artırmaq üçün</li>
+<li><strong>Yuxu gigiyenası</strong> — kofein, alkohol, ekran, otaq mühiti</li>
+<li><strong>Relaxasiya texnikaları</strong> — progressiv əzələ relaksasiyası, mindfulness</li>
+<li><strong>Kognitiv yenidən-yazma</strong> — yuxu haqqında disfunksional düşüncələrin işlənməsi</li>
+<li><strong>Paradoksal niyyət</strong> — &quot;yatmamağa çalışmaq&quot; texnikası</li>
+</ul>
+<p><strong>Effektivlik:</strong> 70–80% remissiya, effekt <strong>uzunmüddətlidir</strong> (fərqli olaraq farmakoterapiyadan).</p>
+<p><strong>Format:</strong> 6–8 seans, fərdi və ya qrup şəklində; rəqəmsal KDT-İ (digital CBT-I) də effektiv (Espie et al., 2019).</p>
+<h4 id="farmakoterapiya-yardımçı-və-qısamüddətli" class="">Farmakoterapiya — yardımçı və qısamüddətli</h4>
+<p>Farmakoterapiya <strong>birinci xətt deyil</strong> — yalnız KDT-İ effektsiz olduqda və ya əlçatmaz olduqda, və ya akut situasiyalarda.</p>
+<p><strong>Birinci sıra:</strong></p>
+<ul>
+<li><strong>Z-dərmanları</strong> (zolpidem, zopiklon, zaleplon) — qısamüddətli istifadə (≤4 həftə); asılılıq və tolerantlıq riski</li>
+<li><strong>Düşük dozada doksepin</strong> (3–6 mq) — H1 antaqonist, asılılıq yox</li>
+<li><strong>Melatonin</strong> (2 mq) — ≥55 yaş və ya pediatrik populyasiyada; sirkadian dəstək</li>
+</ul>
+<p><strong>İkinci sıra:</strong></p>
+<ul>
+<li><strong>Trazodon</strong> (25–100 mq) — antidepressant, lakin off-label insomniya üçün</li>
+<li><strong>Mirtazapin</strong> (7,5–15 mq) — komorbid depressiya varsa</li>
+<li><strong>Suvoreksant, lemboreksant</strong> — yeni nəsil oreksin antaqonistləri (Avropada və ABŞ-da əlçatandır)</li>
+</ul>
+<p><strong>Qaçınılmalı:</strong></p>
+<ul>
+<li><strong>Benzodiazepinlər</strong> uzunmüddətli istifadə — asılılıq, koqnitiv pozulma, yıxılma riski (yaşlılarda)</li>
+<li><strong>Antihistaminlər</strong> (difenhidramin) — koqnitiv yan təsirlər</li>
+<li><strong>Antipsixotiklər</strong> (kvetiapin off-label) — metabolik yan təsirlər; yalnız xüsusi göstərişdə</li>
+</ul>
+<h4 id="yuxu-gigiyenası-bütün-pasiyentlər-üçün" class="">Yuxu gigiyenası — bütün pasiyentlər üçün</h4>
+<ul>
+<li>Eyni yatma və oyanma vaxtı (həftəsonu da)</li>
+<li>Yataq otağı: sərin, qaranlıq, sakit</li>
+<li>Ekran istifadəsi yatmazdan 1 saat əvvəl dayandırılır</li>
+<li>Kofein günün 2-ci yarısında qadağan</li>
+<li>Alkohol — qısamüddətli sedativ effekt, lakin yuxu strukturu pozur</li>
+<li>Yataq yalnız yuxu və cinsi həyat üçün</li>
+<li>Gündüz yatma (&gt;30 dəq) qadağan</li>
+<li>Daimi fiziki aktivlik (yatmazdan 3 saat əvvəl deyil)</li>
+</ul>
+<h3 id="proqnoz" class="">Proqnoz</h3>
+<ul>
+<li>KDT-İ ilə <strong>70–80%</strong> stabil remissiya</li>
+<li>Yalnız farmakoterapiya — qısamüddətli effekt, dayandırıldıqda residiv</li>
+<li>Müalicə olunmayan xroniki insomniya — depressiya, təşviş, ürək-damar xəstəlikləri, koqnitiv enmə, qəza riski</li>
+</ul>
+<hr>
+<h2 id="hi̇persomni̇ya-pozuntulari" class="">HİPERSOMNİYA POZUNTULARI</h2>
+<h3 id="tərif-xbt-11-7a20" class="">Tərif (XBT-11: <span class="icd">7A20</span>)</h3>
+<p><strong>Hipersomniya</strong> — kifayət qədər və ya artıq yuxu olmasına baxmayaraq, <strong>gündüz həddindən artıq yuxululuq</strong> və ya <strong>gündüz yuxulu epizodlar</strong>. Funksional pozulma vacibdir.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong><span class="icd">7A20</span></strong> Narkolepsiya</li>
+<li><strong><span class="icd">7A21</span></strong> İdiopatik hipersomnia</li>
+<li><strong><span class="icd">7A22</span></strong> Kleine-Levin sindromu (epizodik hipersomnia)</li>
+<li><strong><span class="icd">7A23</span></strong> Tibbi vəziyyətə bağlı hipersomnia</li>
+<li><strong><span class="icd">7A24</span></strong> Maddə-induksiya olunmuş hipersomnia</li>
+<li><strong><span class="icd">7A25</span></strong> Yetersiz yuxu sindromu (davranışa bağlı)</li>
+</ul>
+<h3 id="narkolepsiya-əsas-klinik-vahid" class="">Narkolepsiya — əsas klinik vahid</h3>
+<p><strong>Etiologiya:</strong> <strong>Tip 1 narkolepsiya</strong> — hipotalamusda <strong>oreksin (hipokretin)</strong> istehsal edən neyronların itkisi (autoimmun mexanizm); HLA-DQB1*06:02 əlaqəsi.</p>
+<p><strong>Klinik mənzərə (Tip 1):</strong></p>
+<ul>
+<li><strong>Gündüz həddindən artıq yuxululuq</strong> — qarşısıalınmaz yuxu epizodları</li>
+<li><strong>Katapleksiya</strong> — emosional triggerdə (gülüş, sürpriz) qəfil əzələ tonusunun itkisi (qismən və ya tam)</li>
+<li><strong>Hipnaqoqik/hipnopompik halusinasiyalar</strong> — yuxuya gedərkən və ya oyanarkən</li>
+<li><strong>Yuxu paralizi</strong> — oyanış zamanı 1-2 dəq hərəkət edə bilməmək</li>
+<li><strong>Yuxunun parçalanması</strong> — gecə tez-tez oyanma</li>
+</ul>
+<p><strong>Tip 2 narkolepsiya</strong> — katapleksiya yox, oreksin səviyyəsi normaldır.</p>
+<p><strong>Diaqnoz:</strong></p>
+<ul>
+<li><strong>Polisomnoqrafiya + MSLT</strong> (Multiple Sleep Latency Test) — qısa yuxu latensiyası, ≥2 SOREMP</li>
+<li><strong>Likvor oreksin səviyyəsi</strong> — Tip 1-də &lt;110 pq/ml</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>Modafinil/armodafinil</strong> — birinci xətt, yuxululuq üçün</li>
+<li><strong>Solriamfetol, pitolisant</strong> — yeni dərmanlar</li>
+<li><strong>Natriy oksibat</strong> — gecə katapleksiya və yuxu konsolidasiyası üçün</li>
+<li><strong>Antidepressantlar</strong> (venlafaksin, klomipramin) — katapleksiya üçün</li>
+<li><strong>Yatış reji</strong>mi: planlı qısa yuxu epizodları (15–20 dəq, gündə 2–3 dəfə)</li>
+</ul>
+<h3 id="i̇diopatik-hipersomnia" class="">İdiopatik hipersomnia</h3>
+<ul>
+<li>Davam edən gündüz yuxululuq + uzun yuxu (&gt;11 saat)</li>
+<li>Sübh oyanışı çox çətindir (&quot;sleep drunkenness&quot;)</li>
+<li>Polisomnoqrafiyada katapleksiya, SOREMP yox</li>
+<li>Müalicə: modafinil, klarithromisin, pitolisant</li>
+</ul>
+<h3 id="klein-levin-sindromu" class="">Klein-Levin sindromu</h3>
+<p>Çox nadir; epizodik (hər epizod 2–10 gün); yuxululuq + hiperfagia + kognitiv-davranış pozuntu. Yeniyetmə oğlanlarda. Müalicə: litium profilaktika.</p>
+<hr>
+<h2 id="si̇rkadi̇an-yuxu-oyaqliq-ri̇tm-pozuntulari" class="">SİRKADİAN-YUXU-OYAQLIQ RİTM POZUNTULARI</h2>
+<h3 id="tərif-xbt-11-7a40" class="">Tərif (XBT-11: <span class="icd">7A40</span>)</h3>
+<p>Pasientin daxili <strong>bioloji saatı</strong> ilə xarici (sosial, peşə, ailə) tələblər arasındakı uyğunsuzluq. Yuxunun özü normal struktura malikdir, lakin &quot;yanlış&quot; vaxtda baş verir.</p>
+<p><strong>Növləri:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Növ</th><th>Xüsusiyyət</th></tr>
+<tr><td><span class="icd">7A40</span>.0</td><td>Gec yatma fazası pozuntusu</td><td>Yuxu 2-6 səhərə qədər təxirə salınır; oyanma günorta (yeniyetmələrdə geniş)</td></tr>
+<tr><td><span class="icd">7A40</span>.1</td><td>Erkən yatma fazası pozuntusu</td><td>Yuxu 19-21-də başlayır; oyanma 3-5 səhər (yaşlılarda)</td></tr>
+<tr><td><span class="icd">7A40</span>.2</td><td>Qeyri-müntəzəm yuxu-oyaqlıq ritmi</td><td>Yuxu epizodları gün boyu paylanır (demensiya, beyin zədələnmələri)</td></tr>
+<tr><td><span class="icd">7A40</span>.3</td><td>Qeyri-24-saatlıq ritm</td><td>&quot;Sərbəst gedən&quot; ritm; əsasən kor insanlarda</td></tr>
+<tr><td><span class="icd">7A40</span>.4</td><td>Növbə işi pozuntusu</td><td>Gecə növbələri ilə bağlı insomniya + gündüz yuxululuq</td></tr>
+<tr><td><span class="icd">7A40</span>.5</td><td>Vaxt zonası dəyişkənliyi (jet lag)</td><td>Sürətli vaxt zonası dəyişikliyindən sonra</td></tr>
+</table></div>
+<h3 id="müalicə" class="">Müalicə</h3>
+<ul>
+<li><strong>Aydın işıq terapiyası</strong> — səhər (gec faza) və ya axşam (erkən faza)</li>
+<li><strong>Melatonin</strong> — düzgün vaxtda (faza qabağı sürüşmə üçün axşam, fazadan sonra səhər)</li>
+<li><strong>Sirkadian gigiyena</strong> — fiksə yatma vaxtı, ekran qaranlığı, fiziki aktivlik</li>
+<li><strong>Xronoterapiya</strong> — yatma vaxtının tədricən dəyişdirilməsi</li>
+</ul>
+<hr>
+<h2 id="yuxu-bağli-tənəffüs-pozuntulari" class="">YUXU-BAĞLI TƏNƏFFÜS POZUNTULARI</h2>
+<h3 id="obstruktiv-yuxu-apnoesi-osa-əsas-klinik-vahid" class="">Obstruktiv yuxu apnoesi (OSA) — əsas klinik vahid</h3>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">7A60</span> — Yuxu-Bağli Tənəffüs Pozuntulari</div>
+<p><strong>Tərif:</strong> Yuxu zamanı yuxarı havayollarının təkrarlanan obstruksiyası nəticəsində apnoe (≥10 san) və hipopnoe epizodları.</p>
+<p><strong>Klinik mənzərə:</strong></p>
+<ul>
+<li><strong>Xorultu</strong> (pasient özü tez-tez bilmir; partnyor müşahidə edir)</li>
+<li><strong>Müşahidə edilən apnoe epizodları</strong></li>
+<li><strong>Boğulma ilə oyanma</strong></li>
+<li><strong>Gündüz həddindən artıq yuxululuq</strong></li>
+<li><strong>Səhər başağrı</strong></li>
+<li><strong>Kognitiv pozulma, depressiya</strong></li>
+<li><strong>Qan təzyiqi yüksəlməsi, atriyal fibrilasiya</strong></li>
+</ul>
+<p><strong>Risk faktorları:</strong> kişi cinsi, yaş 40+, BMI yüksək, boğaz strukturları (geniş boyun), ailə anamnezi, alkohol, sedatik dərmanlar.</p>
+<p><strong>Uşaqlarda OSA:</strong></p>
+<ul>
+<li>Adenoid və ya tonsillar hipertrofiya — ən geniş səbəb</li>
+<li><strong>Gecə enurezi ilə əlaqə</strong> — uşaq OSA-sının ən vacib psixiatrik praktiki məsələsidir</li>
+<li>Gündüz hiperaktivlik (DDHP ilə qarışdırıla bilər)</li>
+<li>Səhər iştahsızlıq, baş ağrı</li>
+</ul>
+<p><strong>Diaqnoz:</strong></p>
+<ul>
+<li><strong>Polisomnoqrafiya (PSG)</strong> — qızıl standart; AHI (apnoe-hipopnoe indeksi) hesablanır</li>
+<li><strong>AHI ≥5/saat</strong> + simptomlar — yüngül OSA</li>
+<li><strong>AHI 15–30</strong> — orta</li>
+<li><strong>AHI ≥30</strong> — ağır</li>
+<li><strong>Ev poliqrafiyası</strong> — komplikasiyasız hallarda</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>CPAP (Continuous Positive Airway Pressure)</strong> — birinci xətt; orta və ağır OSA-da məcburi</li>
+<li><strong>BiPAP</strong> — CPAP toleransı zəif olduqda</li>
+<li><strong>Çəki itkisi</strong> (10% azalma → 26% AHI azalma)</li>
+<li><strong>Pozisional terapiya</strong> — yan qaytan yatma</li>
+<li><strong>Oral cihaz</strong> — yüngül OSA-da</li>
+<li><strong>Cərrahi</strong> — tonsillektomiya/adenoidektomiya (uşaqlarda); yetkinlərdə UPPP (uvulopalatofaringoplastika), maxillomandibular irəliləyiş</li>
+</ul>
+<p><strong>Psixiatrik komorbidlik:</strong> OSA depressiya, koqnitiv pozulmalar və &quot;müalicəyə müqavimət göstərən depressiya&quot; ilə əlaqəlidir. Müalicəyə cavab verməyən depressiyada <strong>OSA skrininqi (STOP-BANG anketi) tövsiyə olunur</strong>.</p>
+<h3 id="mərkəzi-yuxu-apnoesi" class="">Mərkəzi yuxu apnoesi</h3>
+<p>XBT-11: <span class="icd">7A61</span>. Nəfəs alma cəhdləri yox; mərkəzi tənəffüs idarəetməsinin pozulması. Səbəblər: ürək çatışmazlığı, opioidlər, beyin sapı zədələnmələri.</p>
+<hr>
+<h2 id="hərəkət-bağli-yuxu-pozuntulari" class="">HƏRƏKƏT-BAĞLI YUXU POZUNTULARI</h2>
+<h3 id="bacaqsız-ayaq-sindromu-rls" class="">Bacaqsız ayaq sindromu (RLS)</h3>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">7A80</span> — Hərəkət-Bağli Yuxu Pozuntulari</div>
+<p><strong>Klinik mənzərə:</strong> ayaqlarda narahat hisslər (yandırıcı, qaşınma, &quot;qarınca getmə&quot;), istəyilməz hərəkət ehtiyacı; <strong>istirahət zamanı və axşam pisləşir</strong>, hərəkətlə yüngülləşir.</p>
+<p><strong>Etiologiya:</strong> dəmir defisiti (ferritin &lt;50 ng/ml), dopamin disregulyasiyası, ailə anamnezi, hamiləlik, böyrək xəstəliyi.</p>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>Dəmir əlavəsi</strong> ferritin &lt;50 olduqda</li>
+<li><strong>Dopamin agonistləri</strong> (pramipeksol, ropinirol) — birinci xətt</li>
+<li><strong>Alfa-2-delta liqandlar</strong> (qabapentin, prequbalin) — alternativ</li>
+<li><strong>Triggerlərdən qaçınma</strong> — kofein, alkohol, sedatik antidepressantlar</li>
+</ul>
+<h3 id="periodik-əndamlı-hərəkət-pozuntusu-plmd" class="">Periodik əndamlı hərəkət pozuntusu (PLMD)</h3>
+<p>Yuxu zamanı təkrarlanan ayaq hərəkətləri (PSG-də müşahidə olunur). RLS ilə tez-tez komorbiddir.</p>
+<hr>
+<h2 id="parasomni̇k-pozuntular" class="">PARASOMNİK POZUNTULAR</h2>
+<h3 id="tərif" class="">Tərif</h3>
+<p><strong>Parasomniyalar</strong> — yuxu zamanı <strong>anormal davranışlar, hisslər və ya hərəkətlər</strong>. NREM və REM parasomniyalarına bölünür.</p>
+<h3 id="nrem-parasomniyalar-xbt-11-7b007b03" class="">NREM parasomniyalar (XBT-11: <span class="icd">7B00</span>–<span class="icd">7B03</span>)</h3>
+<p>Yuxunun ilk üçdə birində (dərin NREM) baş verir. Pasient natamam oyanmış vəziyyətdədir, hadisəni xatırlamır.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong><span class="icd">7B00</span> Sərxoş oyanma</strong> (confusional arousal) — qarışıq oyanış, xatırlamır</li>
+<li><strong><span class="icd">7B01</span> Yuxulu yerimə</strong> (somnambulism) — yatağı tərk etmə, ev içində gəzmə</li>
+<li><strong><span class="icd">7B02</span> Yuxu dəhşətləri</strong> (sleep terror) — yüksək səslə qışqırma, intens emosional reaksiya</li>
+<li><strong><span class="icd">7B03</span> Yuxu-bağlı qida pozuntusu</strong> — yuxu zamanı qida qəbulu</li>
+</ul>
+<p><strong>Uşaqlarda yayılmıdır</strong> (3–8 yaş), adətən özü-özünə həll olur.</p>
+<p><strong>Müalicə:</strong> stress, yetersiz yuxu, qızdırma triggerlərini həll etmək; təhlükəsizlik tədbirləri (qapı kilidləri, pencerlər); ağır hallarda qısamüddətli klonazepam.</p>
+<h3 id="rem-parasomniyalar-xbt-11-7b207b22" class="">REM parasomniyalar (XBT-11: <span class="icd">7B20</span>–<span class="icd">7B22</span>)</h3>
+<p>REM yuxusunun pozulması ilə əlaqəli (gecənin ikinci yarısı).</p>
+<p><strong>Növləri:</strong></p>
+<p><strong><span class="icd">7B20</span> REM yuxu davranış pozuntusu (RBD)</strong></p>
+<ul>
+<li>REM-də normal əzələ tonsuzluğu (atoniya) yoxdur</li>
+<li>Yuxudakı sahnələri &quot;yaşamaq&quot; — hərəkət, danışıq, döyüş</li>
+<li><strong>PRODROMAL əlamət</strong> — α-sinukleinopatiyalar (Parkinson xəstəliyi, Lewy cisimcikli demensiya, çox sistemli atrofiya); 50–80% pasiyent 10–15 il ərzində bu xəstəliklərdən birini inkişaf etdirir</li>
+<li>Yaşlılarda; kişilərdə dominant</li>
+<li>Müalicə: <strong>klonazepam</strong> (0,5–2 mq) və ya <strong>melatonin</strong> (3–12 mq) — birinci xətt</li>
+</ul>
+<p><strong><span class="icd">7B21</span> Təkrarlanan izolə yuxu paralizi</strong> — oyanış zamanı 1-2 dəq hərəkət edə bilməmək, qorxulu halusinasiyalarla</p>
+<p><strong><span class="icd">7B22</span> Qabusnamə pozuntusu</strong> — təkrarlanan, yadda qalan qabuslar; PTSP, depressiya ilə əlaqəlidir</p>
+<hr>
+<h2 id="yuxu-pozuntuları-və-psixiatrik-pozuntular-ikitərəfli-əlaqə" class="">Yuxu pozuntuları və psixiatrik pozuntular: ikitərəfli əlaqə</h2>
+<p>Yuxu pozuntuları və psixi pozuntular arasında <strong>mübadilə əlaqəsi</strong> vardır:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Psixi pozuntu</th><th>Yuxu xüsusiyyəti</th><th>Klinik nəticə</th></tr>
+<tr><td>Major depressiya</td><td>Erkən sübh oyanması; REM latensiyası qısalmış; REM-də artım</td><td>İnsomniya — depressiya residivi üçün <strong>erkən xəbərdarlıq</strong> əlaməti</td></tr>
+<tr><td>Bipolyar pozuntu</td><td>Yuxu ehtiyacı azalır (mania); hipersomniya (depressiya)</td><td>Yuxu pozulması — manik epizod <strong>prodromu</strong></td></tr>
+<tr><td>Təşviş pozuntuları</td><td>Yuxuya getmə çətinliyi; gecə oyanmaları</td><td>Təşviş və insomniya bir-birini gücləndirir</td></tr>
+<tr><td>PTSP</td><td>Qabusnamələr (&gt;50%); REM pozulmaları; yuxu paralizi</td><td><strong>CAPS şkalası</strong> kabuslar üçün skrininq</td></tr>
+<tr><td>Şizofreniya</td><td>Yuxu strukturunun qlobal pozulması; davam edən insomniya</td><td>Antipsixotiklər yuxu strukturunu yaxşılaşdırır</td></tr>
+<tr><td>DDHP (uşaqlarda)</td><td>Yuxuya getmə çətinliyi (50%); OSA tez-tez</td><td><strong>OSA istisna olunmalı</strong> DDHP diaqnozu qoyulmazdan əvvəl</td></tr>
+<tr><td>Demensiya</td><td>Qeyri-müntəzəm yuxu-oyaqlıq ritmi; REM pozuntusu</td><td>Sundowning — axşam dezorientasiya</td></tr>
+</table></div>
+<p><strong>Praktik tövsiyələr:</strong></p>
+<ol>
+<li>Hər yeni psixiatrik diaqnozda <strong>yuxu skrininqi</strong> (ISI, PSQI)</li>
+<li>Müalicəyə müqavimət göstərən depressiyada — <strong>OSA skrininqi</strong> (STOP-BANG)</li>
+<li>RBD diaqnozu qoyulduqda — neyroloq müşahidəsi (parkinsonizm proqnozu)</li>
+<li>DDHP şübhəsində — yuxu pozuntusunu istisna etmək</li>
+</ol>
+<hr>
+<h2 id="müalicə-təlimatlarının-xülasəsi" class="">Müalicə təlimatlarının xülasəsi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Birinci xətt</th><th>İkinci xətt</th><th>Sübutluluq</th></tr>
+<tr><td>Xroniki insomniya</td><td>KDT-İ</td><td>Qısamüddətli Z-dərmanı, melatonin</td><td>A (KDT-İ); B (farma)</td></tr>
+<tr><td>Narkolepsiya Tip 1</td><td>Modafinil + natriy oksibat (katapleksiya)</td><td>Solriamfetol, pitolisant</td><td>A</td></tr>
+<tr><td>Sirkadian gec faza</td><td>Aydın işıq + axşam melatonin</td><td>Xronoterapiya</td><td>B</td></tr>
+<tr><td>OSA</td><td>CPAP</td><td>Çəki itkisi, oral cihaz, cərrahi</td><td>A</td></tr>
+<tr><td>RLS</td><td>Dəmir (defisitdə); dopamin agonistləri</td><td>Qabapentin</td><td>A</td></tr>
+<tr><td>RBD</td><td>Klonazepam və ya melatonin</td><td>—</td><td>B</td></tr>
+<tr><td>Uşaq parasomniyaları</td><td>Yuxu gigiyenası, təhlükəsizlik</td><td>Qısamüddətli klonazepam</td><td>C</td></tr>
+</table></div>
+<hr>
+<h2 id="bölmə-18-üçün-mənbələr" class="">Bölmə 18 üçün mənbələr</h2>
+<ol>
+<li>WHO. <em>ICD-11 Clinical Descriptions and Diagnostic Guidelines for Mental, Behavioural and Neurodevelopmental Disorders.</em> 2024.</li>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>American Academy of Sleep Medicine (AASM). <em>International Classification of Sleep Disorders, 3rd ed (ICSD-3).</em> 2014; <em>ICSD-3-TR.</em> 2023.</li>
+<li>Riemann D, et al. <em>European guideline for the diagnosis and treatment of insomnia.</em> J Sleep Res. 2017;26(6):675-700.</li>
+<li>Qaseem A, et al. <em>Management of Chronic Insomnia Disorder in Adults: A Clinical Practice Guideline From the American College of Physicians.</em> Ann Intern Med. 2016;165(2):125-133.</li>
+<li>Espie CA, et al. <em>Effect of digital cognitive behavioral therapy for insomnia on health, psychological well-being, and sleep-related quality of life.</em> JAMA Psychiatry. 2019;76(1):21-30.</li>
+<li>Scammell TE. <em>Narcolepsy.</em> N Engl J Med. 2015;373(27):2654-2662.</li>
+<li>Sateia MJ, et al. <em>Clinical Practice Guideline for the Pharmacologic Treatment of Chronic Insomnia in Adults: An American Academy of Sleep Medicine Clinical Practice Guideline.</em> J Clin Sleep Med. 2017;13(2):307-349.</li>
+<li>Kapur VK, et al. <em>Clinical practice guideline for diagnostic testing for adult obstructive sleep apnea: AASM clinical practice guideline.</em> J Clin Sleep Med. 2017;13(3):479-504.</li>
+<li>Schenck CH, Mahowald MW. <em>REM sleep behavior disorder: clinical, developmental, and neuroscience perspectives 16 years after its formal identification in SLEEP.</em> Sleep. 2002;25(2):120-138.</li>
+<li>Postuma RB, et al. <em>Risk and predictors of dementia and parkinsonism in idiopathic REM sleep behavior disorder: a multicentre study.</em> Brain. 2019;142(3):744-759.</li>
+<li>Trotti LM. <em>Idiopathic Hypersomnia.</em> Sleep Med Clin. 2017;12(3):331-344.</li>
+<li>Aurora RN, et al. <em>The treatment of restless legs syndrome and periodic limb movement disorder in adults.</em> Sleep. 2012;35(8):1039-1062.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-17.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 17 — SÜNİ POZUNTULAR</span></a><a href="bolme-19.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 19 — CİNSİ SAĞLAMLIQ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-18";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

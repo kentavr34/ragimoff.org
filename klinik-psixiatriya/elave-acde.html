@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — Əlavələr A–E">
+<title>Əlavələr A–E | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="əlavələr" class="h-section">ƏLAVƏLƏR</h1>
+<hr>
+<h1 id="əlavə-a" class="h-section">ƏLAVƏ A</h1>
+<h2 id="moni̇tori̇nq-və-müayi̇nə-standartlari" class="">MONİTORİNQ VƏ MÜAYİNƏ STANDARTLARI</h2>
+<p>Bu əlavə psixotrop dərmanların istifadəsində <strong>təhlükəsizlik monitorinqi</strong> və psixiatrik xəstələrin <strong>tibbi vəziyyətinin izlənməsi</strong> üçün standart protokolları təqdim edir.</p>
+<h2 id="a1-antipsikotik-terapiyada-metabolik-monitorinq" class="">A.1. Antipsikotik terapiyada metabolik monitorinq</h2>
+<p>Atipik antipsikotiklər – xüsusilə olanzapin, kvetiapin, klozapin – <strong>metabolik sindrom riskini artırır</strong> (çəki artımı, dislipidemia, insulinə müqavimət, diabet).</p>
+<h3 id="monitorinq-cədvəli-apaada-2004-i̇şıqlandırılmış-ada-apa-acp-naaso" class="">Monitorinq cədvəli (APA/ADA 2004, İşıqlandırılmış ADA-APA-ACP-NAASO):</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Parametr</th><th>Başlanğıc</th><th>4 həftə</th><th>8 həftə</th><th>12 həftə</th><th>Rüblük</th><th>İllik</th></tr>
+<tr><td>Şəxsi/ailə tarixçəsi</td><td>✓</td><td></td><td></td><td></td><td></td><td>✓</td></tr>
+<tr><td>Çəki, bel çevrəsi</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+<tr><td>Arterial təzyiq</td><td>✓</td><td></td><td></td><td>✓</td><td></td><td>✓</td></tr>
+<tr><td>Aclı qlükoza</td><td>✓</td><td></td><td></td><td>✓</td><td></td><td>✓</td></tr>
+<tr><td>Aclı lipid profili</td><td>✓</td><td></td><td></td><td>✓</td><td></td><td>✓ (2 ildə bir)</td></tr>
+</table></div>
+<p><strong>Əgər anormallıq aşkar olunsa:</strong></p>
+<ul>
+<li><strong>Çəki artımı ≥7%:</strong> dərman dəyişdirilməsinə bax (aripiprazol, ziprasidon – metabolik neytral);</li>
+<li><strong>HbA1c ≥6,5% və ya aclı qlükoza ≥7:</strong> diabet konsultasiyası;</li>
+<li><strong>LDL ≥3,4 mmol/L:</strong> pəhriz, statin.</li>
+</ul>
+<h3 id="klozapinə-spesifik-monitorinq-agranulositoza-görə" class="">Klozapinə spesifik monitorinq (agranulositoza görə):</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Müddət</th><th>Tezlik</th></tr>
+<tr><td>İlk 6 ay</td><td>Həftəlik WBC və mütləq neytrofil (ANC)</td></tr>
+<tr><td>7–12 ay</td><td>2 həftədə bir</td></tr>
+<tr><td>12+ ay</td><td>Aylıq</td></tr>
+</table></div>
+<p><strong>ANC göstəriciləri:</strong></p>
+<ul>
+<li><strong>≥2,0 × 10⁹/L:</strong> normal – müalicəni davam et;</li>
+<li><strong>1,5–2,0:</strong> həftəlik izləmə;</li>
+<li><strong>1,0–1,5:</strong> 2 gündə bir izləmə, hematoloq konsultasiyası;</li>
+<li><strong>&lt;1,0:</strong> <strong>dərman dayandırılır, hematoloq müdaxiləsi</strong>.</li>
+</ul>
+<h3 id="antipsikotiklərdə-ekg-monitorinqi" class="">Antipsikotiklərdə EKG monitorinqi:</h3>
+<ul>
+<li><strong>QTc uzanması riski:</strong> xüsusi ziprazidon, haloperidol IV, ondansetron kombinasiya;</li>
+<li><strong>Başlanğıc EKG</strong> risk amilləri olan xəstələrdə (ürək xəstəliyi, elektrolit pozuntusu, &gt;65 yaş);</li>
+<li><strong>QTc &gt;500 msn və ya bazadan &gt;60 msn artım</strong> – <strong>dərman dəyişikliyi</strong>;</li>
+<li><strong>Risk artıran dərmanlar:</strong> klorpromazin, haloperidol (yüksək), tioridazin.</li>
+</ul>
+<h3 id="hiperprolaktinemiya" class="">Hiperprolaktinemiya:</h3>
+<ul>
+<li><strong>Risperidon, amisulprid, paliperidon</strong> – yüksək risk;</li>
+<li>Simptomlar: amenore, galaktoreya, cinsi disfunksiya, osteoporoz;</li>
+<li>Bazal prolaktin; təkrar simptomla.</li>
+</ul>
+<h2 id="a2-litium-monitorinqi" class="">A.2. Litium monitorinqi</h2>
+<p><strong>Dar terapevtik pəncərə</strong> – <strong>səviyyə 0,6–1,2 mEq/L</strong>, &gt;1,5 toksik.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Parametr</th><th>Başlanğıc</th><th>Hər 6 ay</th><th>İllik</th></tr>
+<tr><td>Litium səviyyəsi</td><td>Həftəlik 1-ci ay, sonra hər 6 ay</td><td>✓</td><td></td></tr>
+<tr><td>Kreatinin, eGFR</td><td>✓</td><td>✓</td><td></td></tr>
+<tr><td>TSH</td><td>✓</td><td>✓</td><td></td></tr>
+<tr><td>Elektrolitlər</td><td>✓</td><td>✓</td><td></td></tr>
+<tr><td>Kalsium</td><td>✓</td><td></td><td>✓</td></tr>
+<tr><td>EKG</td><td>✓ (50+ yaş)</td><td></td><td></td></tr>
+<tr><td>Hamiləlik testi</td><td>Doğuş yaşında qadın</td><td></td></tr>
+</table></div>
+<p><strong>Litium intoksikasiyası əlamətləri:</strong></p>
+<ul>
+<li>Tremor (daha güclü);</li>
+<li>Taksikardiya;</li>
+<li>Diareya, qusma;</li>
+<li>Yavaş, qarışıq nitq;</li>
+<li>Ataksiya;</li>
+<li>Konvulsiya – ağır vəziyyətlərdə.</li>
+</ul>
+<p><strong>Vəziyyət dəyişikliyində səviyyə yoxla:</strong> dehidratasiya, NSAİD əlavəsi, ACE inhibitor əlavəsi, böyrək funksiyasında dəyişiklik.</p>
+<h2 id="a3-antikonvulsantlar-valproat-karbamazepin-lamotrigin" class="">A.3. Antikonvulsantlar (valproat, karbamazepin, lamotrigin)</h2>
+<h3 id="valproat" class="">Valproat:</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Parametr</th><th>Başlanğıc</th><th>Hər 6 ay</th></tr>
+<tr><td>CBC (trombositopeniya)</td><td>✓</td><td>✓</td></tr>
+<tr><td>Qaraciyər funksiyası (AST, ALT)</td><td>✓</td><td>✓</td></tr>
+<tr><td>Valproat səviyyəsi</td><td></td><td>Simptom və ya şübhə ilə</td></tr>
+<tr><td>Pankreatit əlamətlərinin izlənməsi</td><td></td><td>Hər ziyarət</td></tr>
+<tr><td><strong>Hamiləlik testi</strong></td><td><strong>QƏTİ MÜTLƏQ doğuş yaşlı qadında</strong></td><td><strong>Hər rüb</strong></td></tr>
+</table></div>
+<p>&gt; <strong>Kritik:</strong> valproat <strong>doğuş yaşlı qadınlarda</strong> neyral boru defekti və koqnitiv zərər səbəbinə görə <strong>yalnız effektiv kontrasepsiya ilə</strong>, digər seçimlər əvvəlcə qiymətləndirildikdən sonra.</p>
+<h3 id="karbamazepin" class="">Karbamazepin:</h3>
+<ul>
+<li>CBC, qaraciyər – başlanğıc, 1 ay, rüblük;</li>
+<li><strong>HLA-B*1502 testi</strong> Asiya mənşəli xəstələrdə (Stevens-Johnson riski);</li>
+<li>Auto-induksiya səbəbindən səviyyənin enməsi ilk 4 həftədə – səviyyə yoxla.</li>
+</ul>
+<h3 id="lamotrigin" class="">Lamotrigin:</h3>
+<ul>
+<li><strong>Yavaş titrasiya</strong> – Stevens-Johnson sindromu riski;</li>
+<li><strong>Başlanğıc 25 mq həftədə</strong>, 4–8 həftə ərzində hədəf dozaya;</li>
+<li>Valproat ilə birlikdə: <strong>başlanğıc 12,5 mq</strong> – valproat lamotrigin metabolizmini yavaşlatır;</li>
+<li>Dəri reaksiyası olsa – <strong>dərhal dayandır.</strong></li>
+</ul>
+<h2 id="a4-ssri̇-və-snri̇-monitorinqi" class="">A.4. SSRİ və SNRİ monitorinqi</h2>
+<ul>
+<li><strong>Hiponatremiya riski</strong> – xüsusilə yaşlılarda, diuretik istifadə edənlərdə;</li>
+<li><strong>Bazal Na</strong>, 1 ay sonra, sonra simptom ilə;</li>
+<li><strong>Suicidalitet artımı</strong> xüsusilə 25 yaşdan aşağı başlanğıcda – ilk 1-2 ay yaxın monitorinq;</li>
+<li><strong>QTc uzanma</strong> – esitalopram, sitalopram (yüksək dozalarda);</li>
+<li><strong>Serotonin sindromu</strong> (MAOİ və ya triptan və s. kombinasiyada) – əlamətlərin öyrədilməsi.</li>
+</ul>
+<h2 id="a5-benzodiazepin-istifadəsi" class="">A.5. Benzodiazepin istifadəsi</h2>
+<ul>
+<li><strong>Maximum uzunluq: 2–4 həftə</strong>;</li>
+<li>Uzunmüddətli istifadədə asılılıq qaçılmazdır;</li>
+<li><strong>Azaltma sxemi (tapering):</strong> 25% hər 2 həftə, bəzən daha yavaş;</li>
+<li><strong>Geriyə təpki simptomları</strong> (rebound anxiety, yuxusuzluq, tremor) normal və müvəqqətidir.</li>
+</ul>
+<h2 id="a6-psixoterapiya-monitorinqi" class="">A.6. Psixoterapiya monitorinqi</h2>
+<p><strong>Keyfiyyət göstəriciləri:</strong></p>
+<ul>
+<li>Seansın davam müddəti, tezlik;</li>
+<li>Xəstə simptom şkalaları (PHQ-9, GAD-7 və s.) <strong>hər 4–6 həftə</strong>;</li>
+<li>Funksional göstəricilər;</li>
+<li>Terapevtik əlaqə qiymətləndirilməsi (Working Alliance Inventory);</li>
+<li>Kənar məqsədlərə çatma;</li>
+<li>Residiv əlamətləri.</li>
+</ul>
+<p><strong>Supervision və kolleqial konsultasiya – kompleks xəstələrdə və istəyən klinisist üçün.</strong></p>
+<hr>
+<h1 id="əlavə-c" class="h-section">ƏLAVƏ C</h1>
+<h2 id="psi̇xi̇atri̇k-təci̇li̇-vəzi̇yyətlər" class="">PSİXİATRİK TƏCİLİ VƏZİYYƏTLƏR</h2>
+<p>Bu əlavə həyatı təhdid edən və ya kəskin kliniki dəyərləndirmə tələb edən psixiatrik vəziyyətlərə praktik yanaşma təqdim edir.</p>
+<h2 id="c1-aktiv-intihar-riski" class="">C.1. Aktiv intihar riski</h2>
+<h3 id="i̇lkin-qiymətləndirmə" class="">İlkin qiymətləndirmə:</h3>
+<ul>
+<li><strong>İntihar düşüncəsi varmı? Plan? Vasitə?</strong></li>
+<li><strong>Yaxınlıq, konkretlik:</strong> &quot;Bu gün axşam həyətəm tabançayla...&quot;  vs ümumi &quot;Bəzən ölmək istəyirəm&quot;;</li>
+<li><strong>Əvvəlki cəhdlər</strong> – ən güclü prediktor;</li>
+<li><strong>Maddə intoksikasiyası</strong> – inhibisiya azalır;</li>
+<li><strong>Protektiv faktorlar</strong> – ailə, dini inanclar, gələcək planlar.</li>
+</ul>
+<h3 id="yüksək-risk-əlamətləri" class="">Yüksək risk əlamətləri:</h3>
+<ul>
+<li>Konkret plan + vasitələrə çatımlılıq;</li>
+<li>Yaxın vəziyyət dəyişikliyi (itki, ağır xəstəlik);</li>
+<li>Təklik + rağın;</li>
+<li>Psixoz və ya ağır depressiya;</li>
+<li>Yeni başlanğıc və ya dərin hipomania (enerji qayıdır + aşağı əhval qalır);</li>
+<li>Yetkin kişi + əlillik + alkogol.</li>
+</ul>
+<h3 id="i̇darəetmə" class="">İdarəetmə:</h3>
+<p><strong>Aşağı-orta risk:</strong></p>
+<ul>
+<li><strong>Təhlükəsizlik planı</strong> – yazılı;</li>
+<li>Vasitələrə çatımlılığın azaldılması (silah uzaqlaşdırılması, dərman kiçik miqdarlarda);</li>
+<li>Yaxın ambulator izləmə (24-48 saatda yenidən);</li>
+<li>Krizi xətti nömrəsi;</li>
+<li>Ailə iştirakı (razılıqla).</li>
+</ul>
+<p><strong>Yüksək risk:</strong></p>
+<ul>
+<li><strong>Hospitalizasiya</strong> (könüllü və ya məcburi);</li>
+<li>Yaxın nəzarət – 1:1 əgər çox yüksək;</li>
+<li>İntihar üsullarının kənarlaşdırılması (kəskin əşya, ip, pəncərə);</li>
+<li>Nəzarətli dərman qəbulu.</li>
+</ul>
+<h3 id="məcburi-hospitalizasiya-azərbaycan-çərçivəsində" class="">Məcburi hospitalizasiya Azərbaycan çərçivəsində:</h3>
+<ul>
+<li>&quot;Psixiatrik yardım haqqında&quot; Azərbaycan Respublikası qanunu;</li>
+<li>Məcburi hospitalizasiya üçün <strong>iki psixiatrın qərarı</strong> və hüquqi prosedur;</li>
+<li>72 saat təcili müşahidə sonra məhkəmə qərarı.</li>
+</ul>
+<h2 id="c2-delirium-tremens-və-alkogol-kəsilməsi" class="">C.2. Delirium tremens və alkogol kəsilməsi</h2>
+<h3 id="simptomlar" class="">Simptomlar:</h3>
+<ul>
+<li><strong>Tremor</strong> – əllər, sonra ümumi;</li>
+<li><strong>Təşviş, aqitasiya;</strong></li>
+<li><strong>Halüsinasiya</strong> – visual, tactile (&quot;həşəratlar üzərimdə&quot;);</li>
+<li><strong>Dezorientasiya;</strong></li>
+<li><strong>Autonom hiperaktivlik</strong> – taksikardiya, təzyiq, tərləmə, qızdırma;</li>
+<li><strong>Tutmalar</strong> (~5-10%).</li>
+</ul>
+<h3 id="müalicə-icu-və-ya-imu-şəraitində" class="">Müalicə (ICU və ya IMU şəraitində):</h3>
+<ul>
+<li><strong>Benzodiazepin</strong> – <strong>diazepam 10-20 mq IV/IM hər 15-20 dəq</strong> sedasyon əldə olunana qədər; sonra saxlayıcı rejim;</li>
+<li>Alternativ: lorazepam (qaraciyər disfunksiyası olanlarda);</li>
+<li><strong>Tiamin 100-300 mq IV</strong> – Wernicke ensefalopatiyasının qarşısının alınması. <strong>Qlukoza verməzdən əvvəl</strong>.</li>
+<li><strong>Maye və elektrolit</strong> bərpası;</li>
+<li>Magnezium sulfatı, kalium – çox vaxt aşağı;</li>
+<li>Ölümçüllük: müalicəsiz 15-20%, adekvat müalicə ilə &lt;1%.</li>
+</ul>
+<h3 id="ciwa-ar-shkalası-monitorinqdə" class="">CIWA-Ar shkalası – monitorinqdə.</h3>
+<h2 id="c3-serotonin-sindromu" class="">C.3. Serotonin sindromu</h2>
+<p><strong>Səbəb:</strong> SSRİ + MAOİ, SSRİ + triptan, SSRİ + tramadol, SSRİ + linezolid, SSRİ + metilen mavisi və s.</p>
+<h3 id="simptomlar" class="">Simptomlar:</h3>
+<ul>
+<li><strong>Mental dəyişiklik</strong> – aqitasiya, konfüziya;</li>
+<li><strong>Autonom</strong> – taksikardiya, hipertoniya, hipertermiya, tərləmə;</li>
+<li><strong>Neyromuskulyar</strong> – tremor, hiperrefleksiya, <strong>klonus</strong> (alt ekstremite – xüsusi əlamət).</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə:</h3>
+<ul>
+<li><strong>Səbəb dərmanının dərhal kəsilməsi;</strong></li>
+<li>Destek – mayelər, elektrolit, soyutma;</li>
+<li>Ağır hallarda <strong>siproheptadin 12 mq ilkin, 2 mq hər saat maksimum 32 mq/gün</strong>;</li>
+<li>İnvaziv müdaxilə (intubasiya) ağır hipertermiyada.</li>
+</ul>
+<h2 id="c4-antipsixotik-malign-sindrom-nms" class="">C.4. Antipsixotik Malign Sindrom (NMS)</h2>
+<p><strong>Səbəb:</strong> antipsikotiklər (xüsusilə yüksək güclü, haloperidol), kəskin başlanğıc və ya dozanın artırılması.</p>
+<h3 id="simptomlar-4-əsas" class="">Simptomlar (4 əsas):</h3>
+<ol>
+<li><strong>Əzələ sərtliyi</strong> (&quot;qurğuşun boru&quot;);</li>
+<li><strong>Hipertermiya</strong> (38–42°C);</li>
+<li><strong>Autonom dəyişkənlik</strong> (yüksək arterial təzyiq, taksikardiya, tərləmə);</li>
+<li><strong>Mental vəziyyət dəyişikliyi</strong> (konfüziya → stupor → koma).</li>
+</ol>
+<p><strong>Laboratoriya:</strong> <strong>CPK kəskin yüksək</strong> (&gt;1000), mioqlobinuriya, leykositoz, ALT/AST yüksək.</p>
+<h3 id="müalicə-icu" class="">Müalicə (ICU):</h3>
+<ul>
+<li><strong>Antipsikotikin dərhal kəsilməsi;</strong></li>
+<li>Soyutma;</li>
+<li>Mayelər (rabdomioliz və akut böyrək çatışmazlığı riski);</li>
+<li><strong>Dantrolen</strong> 1-2,5 mq/kq IV – əzələ sərtliyi azaldır;</li>
+<li><strong>Bromokriptin</strong> 2,5-5 mq hər 8 saat – dopamin agonisti;</li>
+<li>EKT cavabsız hallarda.</li>
+</ul>
+<p><strong>Ölümçüllük:</strong> 5-20% adekvat müalicə ilə.</p>
+<h2 id="c5-kəskin-distoniya" class="">C.5. Kəskin distoniya</h2>
+<p><strong>Səbəb:</strong> antipsikotik başlanğıcı, xüsusilə güclü D2 antaqonistləri.</p>
+<h3 id="simptomlar" class="">Simptomlar:</h3>
+<ul>
+<li>Kəskin əzələ spazmları – boyun (tortikolis), dil, göz (okuloqirik kriz), müəyyən qida-boru spazmı;</li>
+<li>Həyat təhlükəsi – laringeal spazm.</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə:</h3>
+<ul>
+<li><strong>Difenhidramin</strong> 50 mq IM/IV – 15 dəqiqəyə rahatlama;</li>
+<li><strong>Benztropin</strong> 1-2 mq IM/IV;</li>
+<li>Antipsikotikin dozasının azaldılması və ya dəyişdirilməsi;</li>
+<li>Profilaktik antikolinergik riskli xəstələrdə.</li>
+</ul>
+<h2 id="c6-kəskin-mania-və-psixomotor-aqitasiya" class="">C.6. Kəskin mania və psixomotor aqitasiya</h2>
+<h3 id="i̇darəetmə" class="">İdarəetmə:</h3>
+<p>- Oral tercihli: haloperidol 2-5 mq + lorazepam 1-2 mq;</p>
+<p>- IM göstərişlə: haloperidol 5 mq + lorazepam 2 mq (50/50 şpris) və ya olanzapin IM 10 mq;</p>
+<ul>
+<li><strong>Təhlükəsiz mühit</strong> – sakit, stimullardan azad;</li>
+<li><strong>Verbal de-eskalasiya</strong> ilk addım;</li>
+<li><strong>Dərman:</strong></li>
+<li><strong>Qeyri-könüllü hospitalizasiya</strong> göstərişlə;</li>
+<li><strong>Fiziki təmkin</strong> – yalnız son seçim, şəxsi həyat təhlükəsi, qısamüddətli.</li>
+</ul>
+<h2 id="c7-kəskin-psixoz" class="">C.7. Kəskin psixoz</h2>
+<p>Yuxarıdakı ilə oxşar protokol. Diferensial: üzvi səbəblər, maddə intoksikasiyası, doğuşdan sonrakı psixoz, NMS.</p>
+<h2 id="c8-katatoniya" class="">C.8. Katatoniya</h2>
+<h3 id="simptomlar" class="">Simptomlar:</h3>
+<ul>
+<li>Stupor, mutizm;</li>
+<li>Katalepsi (&quot;mum əyilməsi&quot;);</li>
+<li>Negativizm;</li>
+<li>Manerizmlər, stereotiplər;</li>
+<li>Eholalia, ekopraksiya.</li>
+</ul>
+<h3 id="birinci-sıra-müalicə" class="">Birinci sıra müalicə:</h3>
+<ul>
+<li><strong>Lorazepam 1-2 mq IV/IM test</strong> – 1-2 saat ərzində əhəmiyyətli cavab → katatoniya diaqnozu və müalicə;</li>
+<li>Cavab alınsa – 4-24 mq/gün dozaya çıxarmaq;</li>
+<li>Cavabsız – <strong>ECT</strong> 2-ci sıra, çox effektiv;</li>
+<li><strong>Antipsikotikdən qaçınmaq</strong> kəskin fazada – NMS tədbiqi provoke edə bilər.</li>
+</ul>
+<p><strong>Səbəbini axtar:</strong> üzvi (ensefalit, epilepsiya), əhval pozuntusu, şizofreniya, autizm, bəzi maddələr.</p>
+<hr>
+<h1 id="əlavə-d" class="h-section">ƏLAVƏ D</h1>
+<h2 id="hərbi̇-ti̇bbi̇-eksperti̇za-azərbaycanda" class="">HƏRBİ-TİBBİ EKSPERTİZA (AZƏRBAYCANDA)</h2>
+<p>Bu əlavə Azərbaycan Respublikasında hərbi xidmətə yararlılıq qiymətləndirilməsi üçün psixiatrik aspektlərə dair praktik təlimat təqdim edir.</p>
+<h2 id="d1-hüquqi-əsas" class="">D.1. Hüquqi əsas</h2>
+<ul>
+<li><strong>&quot;Hərbi xidmətə çağırış haqqında&quot;</strong> Azərbaycan Respublikası Qanunu;</li>
+<li><strong>Hərbi-tibbi ekspertiza haqqında Əsasnamə;</strong></li>
+<li><strong>Müdafiə Nazirliyinin</strong> normativ aktları;</li>
+<li><strong>Xəstəliklərin cədvəli</strong> – yarıya bölünür: yüngül/ağır dərəcələr, A-D qruplarına.</li>
+</ul>
+<h2 id="d2-psixiatrik-qiymətləndirmə-strukturu" class="">D.2. Psixiatrik qiymətləndirmə strukturu</h2>
+<h3 id="əsas-ekspertiza" class="">Əsas ekspertiza:</h3>
+<ul>
+<li>Şikayətlər və anamnez (xəstə və yaxın qohumları);</li>
+<li>Əvvəlki tibbi sənədlər;</li>
+<li>Klinik müsahibə və mental status müayinəsi;</li>
+<li><strong>Eksperimental-psixoloji müayinə</strong> (EPM) – psixoloq tərəfindən;</li>
+<li>Laboratoriya və instrumental müayinələr lazım olduqda;</li>
+<li>Diferensial, diaqnoz və xəstəliyin dərəcəsinin qiymətləndirilməsi;</li>
+<li>Nəticə.</li>
+</ul>
+<h3 id="tipik-psixoloji-testlər-epm" class="">Tipik psixoloji testlər (EPM):</h3>
+<ul>
+<li><strong>MMPI-2</strong> (Minnesota Multiphasic Personality Inventory-2) – şəxsiyyət profili;</li>
+<li><strong>Raven proqressiv matrisləri</strong> – intellekt;</li>
+<li><strong>Luriya testləri</strong> – yaddaş, diqqət;</li>
+<li><strong>Wechsler IQ şkalası (WAIS)</strong>;</li>
+<li><strong>Rorschach testi</strong> – proyektiv (mübahisəli müasir etibarlılığı);</li>
+<li><strong>Beck, Hamilton şkalaları</strong> – əhval.</li>
+</ul>
+<h2 id="d3-psixiatrik-pozuntular-və-hərbi-xidmətə-yararlılıq-qiymətləndirilməs" class="">D.3. Psixiatrik pozuntular və hərbi xidmətə yararlılıq qiymətləndirilməsi</h2>
+<p>Qrupa görə təsnif (adaptasiya – yerli normativ aktlar əsas):</p>
+<h3 id="a-qrupu-xidmətə-tam-yararlı" class="">A qrupu – xidmətə tam yararlı</h3>
+<p>Psixiatrik tarixçə yoxdur və ya cüzi keçici məsələlər.</p>
+<h3 id="b-qrupu-məhdudiyyətlə-yararlı" class="">B qrupu – məhdudiyyətlə yararlı</h3>
+<ul>
+<li>Yüngül şəxsiyyət cizgiləri (pozuntu həddinə çatmayan);</li>
+<li>Müvəqqəti adaptasiya pozuntuları;</li>
+<li>Yüngül yuxu pozuntuları;</li>
+<li>Remissiya halında nevrotik pozuntular.</li>
+</ul>
+<h3 id="v-qrupu-xidmət-zamanı-məhdud" class="">V qrupu – xidmət zamanı məhdud</h3>
+<ul>
+<li>Qismən remissiya halında orta psixiatrik pozuntular;</li>
+<li>Müəyyən şəxsiyyət pozuntuları;</li>
+<li>Keçmiş PTSD, kompensasiya edilmiş;</li>
+<li>Orta dərəcədə neyrokognitiv disfunksiya.</li>
+</ul>
+<h3 id="q-qrupu-xidmətə-yararsız" class="">Q qrupu – xidmətə yararsız</h3>
+<ul>
+<li>Şizofreniya spektri;</li>
+<li>Bipolyar pozuntu;</li>
+<li>Ağır depressiya;</li>
+<li>Aktiv PTSD/kompleks PTSD (Qarabağ müharibəsi veteranları – ayrıca müalicə proqramı);</li>
+<li>Maddə istifadəsi pozuntuları;</li>
+<li>Ağır şəxsiyyət pozuntuları;</li>
+<li>Mental gerilik;</li>
+<li>Autizm spektri ağır formalar;</li>
+<li>Aktiv intihar riski olan pozuntular;</li>
+<li>Parafilik pozuntular (ağır, aktiv).</li>
+</ul>
+<h2 id="d4-doğuşdan-sonrakı-travma-və-veteran-qiymətləndirməsi" class="">D.4. doğuşdan sonrakı travma və veteran qiymətləndirməsi</h2>
+<p>Qarabağ müharibəsi veteranlarında:</p>
+<ul>
+<li><strong>Kompleks PTSD yüksək yayılma</strong> – travma-yönəldilmiş müdaxilə;</li>
+<li><strong>Alkogol və maddə istifadəsi</strong> komorbid;</li>
+<li><strong>Depressiya, intihar riski;</strong></li>
+<li><strong>Ailə funksiya pozuntusu;</strong></li>
+<li><strong>Moral zərər</strong> – döyüş zamanı etik konflikt (öldürmə, şahid olmaq);</li>
+<li><strong>Yanma və təkrar-travmatizasiya</strong> risk faktorları.</li>
+</ul>
+<p><strong>Spesifik reabilitasiya proqramları:</strong></p>
+<ul>
+<li>Təsdiqli travma terapiyası (PE, CPT, EMDR);</li>
+<li>Qrup terapiyası veteranlara;</li>
+<li>Ailə terapiyası;</li>
+<li>Dərman (SSRİ/SNRİ);</li>
+<li>Sosial reabilitasiya (iş, təhsil).</li>
+</ul>
+<hr>
+<h1 id="əlavə-e" class="h-section">ƏLAVƏ E</h1>
+<h2 id="əlaqəli̇-neyroloji̇-şərtlər" class="">ƏLAQƏLİ NEYROLOJİ ŞƏRTLƏR</h2>
+<p>Psixiatriya və neyrologiyanın kəsişdiyi sahələrdə klinik praktika üçün vacib olan neyroloji xəstəliklərin qısa təsviri.</p>
+<h2 id="e1-epilepsiya-g40-və-psixiatrik-təzahürlər" class="">E.1. Epilepsiya (G40) və psixiatrik təzahürlər</h2>
+<h3 id="epileptik-sindromlar-və-psixiatriya" class="">Epileptik sindromlar və psixiatriya:</h3>
+<p>- İnter-ikt şəxsiyyət dəyişiklikləri (Geschwind sindromu – hiperreligiozluq, hipergrafiya, &quot;viskozlıq&quot;);</p>
+<p>- İnter-ikt psixoz – uzunmüddətli TLE;</p>
+<p>- Post-ikt psixoz – tutma sonrası 24-72 saat ərzində psixotik epizodlar;</p>
+<p>- İkt təşviş və dissosiativ təcrübələr;</p>
+<ul>
+<li><strong>Temporal lob epilepsiyası (TLE)</strong> – ən çox psixiatrik komorbidlik:</li>
+<li><strong>Absans epilepsiyası</strong> – diqqət problemi, DDHP ilə diferensial;</li>
+<li><strong>Juvenile miyoklonik epilepsiya</strong> – yüksək komorbid təşviş, impulsivlik.</li>
+</ul>
+<h3 id="psikogen-qeyri-epileptik-tutmalar-pnes-dissosiativ-neyroloji-simptom-p" class="">Psikogen (qeyri-epileptik) tutmalar (PNES) – dissosiativ neyroloji simptom pozuntusu (<span class="icd">6B60.4</span>):</h3>
+<ul>
+<li><strong>Video-EEG</strong> – qızıl standart diferensial;</li>
+<li>PNES – epilepsiya ilə tez-tez komorbid, 10-30%;</li>
+<li>Müalicə: KDT-PNES, antikonvulsantlardan yavaş kəsilmə.</li>
+</ul>
+<h3 id="antiepileptiklərin-psixiatrik-yan-təsirləri" class="">Antiepileptiklərin psixiatrik yan təsirləri:</h3>
+<ul>
+<li><strong>Levetirasetam:</strong> aqressiya, qıcıqlılıq, depressiya;</li>
+<li><strong>Fenobarbital, primidon:</strong> depressiya, koqnitiv yavaşlama;</li>
+<li><strong>Topiramat:</strong> koqnitiv disfunksiya, depressiya;</li>
+<li><strong>Lamotrigin:</strong> genə əhval stabilizasiya edir.</li>
+</ul>
+<h2 id="e2-baş-ağrısı-və-psixiatrik-komorbidlik" class="">E.2. Baş ağrısı və psixiatrik komorbidlik</h2>
+<ul>
+<li><strong>Migren</strong> – depressiya riski 2-4× yüksək; anxiety pozuntuları;</li>
+<li><strong>Kluster baş ağrısı</strong> – depressiya, intihar riski;</li>
+<li><strong>Xronik gündəlik baş ağrısı</strong> – analgezik həddən istifadə (MOH) – əhval pozuntusu komorbid tez-tez;</li>
+<li><strong>Təkrar tension baş ağrısı</strong> – sıx stres, təşviş ilə əlaqəli.</li>
+</ul>
+<h3 id="i̇darəetmə" class="">İdarəetmə:</h3>
+<ul>
+<li>SSRİ/SNRİ bir çox baş ağrısı tipini yaxşılaşdırır;</li>
+<li>TCA (amitriptilin) profilaktik migren üçün tarixi standart;</li>
+<li>Topiramat, valproat profilaktik;</li>
+<li>KDT xroniki baş ağrısında effektivdir;</li>
+<li><strong>Opioidlərdən və həddən analgesik istifadəsindən qaçmaq.</strong></li>
+</ul>
+<h2 id="e3-beyin-qan-damar-xəstəlikləri-insult" class="">E.3. Beyin-qan damar xəstəlikləri (insult)</h2>
+<ul>
+<li><strong>Post-stroke depressiya:</strong> 30-40% ilk il;</li>
+<li><strong>Post-stroke mania:</strong> nadir, sağ frontal və ya talamik zədələrdə;</li>
+<li><strong>Pseudobulbar affekt</strong> (patoloji gülmə/ağlama): <strong>dekstrometorfan-kinidin kombinasiyası</strong> təsdiqli müalicədir;</li>
+<li><strong>Vaskulyar koqnitiv pozuntu/demensiya:</strong> <span class="icd">6D81</span> altında klassifikasiya;</li>
+<li><strong>Reabilitasiya:</strong> multidisiplinar, psixiatrik dəstək mərkəzi rolunda.</li>
+</ul>
+<h2 id="e4-parkinson-xəstəliyi" class="">E.4. Parkinson xəstəliyi</h2>
+<ul>
+<li><strong>Depressiya:</strong> 30-50%;</li>
+<li><strong>Təşviş:</strong> 30-40%;</li>
+<li><strong>Dopamin agonisti-induksiyalı impuls nəzarət pozuntusu:</strong> 13-36%;</li>
+<li><strong>Parkinsonda psixoz:</strong> əsasən vizual halüsinasiyalar; levodopa-induksiya;</li>
+<li><strong>Parkinsonda demensiya:</strong> <span class="icd">6D85</span>;</li>
+<li><strong>REM yuxu davranış pozuntusu:</strong> Parkinson üçün erkən markeri.</li>
+</ul>
+<p><strong>Müalicə xüsusiyyətləri:</strong></p>
+<ul>
+<li>Antipsikotiklərin Parkinsonda istifadəsi: <strong>kvetiapin, klozapin</strong> (D2 minimal blokada);</li>
+<li><strong>Haloperidol, risperidon</strong> – motor simptomları pisləşdirir;</li>
+<li><strong>SSRİ</strong> depressiya üçün;</li>
+<li><strong>Pimavanserin</strong> – ABŞ-da Parkinson psixozu üçün təsdiqli.</li>
+</ul>
+<h2 id="e5-multipl-skleroz-ms" class="">E.5. Multipl skleroz (MS)</h2>
+<ul>
+<li><strong>Depressiya:</strong> 30-50%;</li>
+<li><strong>Təşviş:</strong> 30%;</li>
+<li><strong>Bipolyar bənzər simptomlar:</strong> 5-10%;</li>
+<li><strong>Pseudobulbar affekt;</strong></li>
+<li><strong>Koqnitiv disfunksiya</strong> – xəstəliyin çoxunda;</li>
+<li><strong>Uyuşuqluq və yorğunluq</strong> – depressiya ilə sıx, diferensial çətin.</li>
+</ul>
+<p><strong>İnterferon-beta terapiyası</strong> depressiyanı pisləşdirir – aktiv monitorinq.</p>
+<h2 id="e6-travmatik-beyin-zədəsi-tbz" class="">E.6. Travmatik beyin zədəsi (TBZ)</h2>
+<ul>
+<li><strong>Post-konkussion sindromu:</strong> baş ağrısı, baş gicəllənməsi, yaddaş problemi, əhval dəyişikliyi;</li>
+<li><strong>Kroniki travma ensefalopatiyası (CTE):</strong> təkrar zədələr, idman (boxing, amerikan futbolu);</li>
+<li><strong>PTSD + TBZ</strong> – çox tez-tez komorbid;</li>
+<li><strong>Şəxsiyyət dəyişikliyi</strong> (<span class="icd">6E68</span>) – frontal zədələrdə.</li>
+</ul>
+<h2 id="e7-demensiya-ətraflı-bölmə-17-də" class="">E.7. Demensiya (ətraflı Bölmə 17-də)</h2>
+<ul>
+<li><span class="icd">6D80</span> Alzheimer;</li>
+<li><span class="icd">6D81</span> Vaskulyar;</li>
+<li><span class="icd">6D82</span> Lewy cisimcik;</li>
+<li><span class="icd">6D83</span> Frontotemporal;</li>
+<li><span class="icd">6D84</span> Maddə-əlaqəli;</li>
+<li><span class="icd">6D85</span> Parkinson ilə;</li>
+<li><span class="icd">6D86</span> Davranış/psixoloji pozuntular demensiyada (BPSD).</li>
+</ul>
+<h2 id="e8-tutmalar-hərəkət-pozuntuları-və-psixiatriya" class="">E.8. Tutmalar, hərəkət pozuntuları və psixiatriya</h2>
+<ul>
+<li><strong>Tourette sindromu (8A05.00)</strong> – XBT-11-də neyroloji xəstəliklər fəslində, lakin DDHP, OKP ilə komorbid çox yüksək;</li>
+<li><strong>Wilson xəstəliyi</strong> – mis metabolizmasının genetik pozuntusu; psixiatrik təqdim (depressiya, psixoz) tez-tez; yoxlanması – səruloplazmin, 24-saatlıq sidik mis;</li>
+<li><strong>Huntington xəstəliyi</strong> – əhval pozuntuları, OKP, psixoz, motor korea.</li>
+</ul>
+<hr>
+<h1 id="qisaltmalar-və-akroni̇mlər" class="h-section">QISALTMALAR VƏ AKRONİMLƏR</h1>
+<p><strong>Psixiatriyada istifadə olunan əsas terminlər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Qısaltma</th><th>Mənası (İngiliscə)</th><th>Azərbaycan dilində</th></tr>
+<tr><td>AACAP</td><td>American Academy of Child and Adolescent Psychiatry</td><td>Amerika Uşaq və Yeniyetmə Psixiatriyası Akademiyası</td></tr>
+<tr><td>ACE</td><td>Adverse Childhood Experiences</td><td>Mənfi uşaqlıq təcrübələri</td></tr>
+<tr><td>DDHP</td><td>Attention Deficit/Hyperactivity Disorder</td><td>Diqqət çatışmazlığı və hiperaktivlik pozuntusu</td></tr>
+<tr><td>APA</td><td>American Psychiatric Association</td><td>Amerika Psixiatrik Birliyi</td></tr>
+<tr><td>ARFID</td><td>Avoidant/Restrictive Food Intake Disorder</td><td>Qaçınıcı/məhdudlaşdırıcı qida qəbulu pozuntusu</td></tr>
+<tr><td>ASPD</td><td>Antisocial Personality Disorder</td><td>Antisosial şəxsiyyət pozuntusu</td></tr>
+<tr><td>BDD (<span class="icd">6C20</span>)</td><td>Bodily Distress Disorder</td><td>Bədən sıxıntı pozuntusu</td></tr>
+<tr><td>BDD (<span class="icd">6B21</span>)</td><td>Body Dysmorphic Disorder</td><td>Bədən dismorfik pozuntusu</td></tr>
+<tr><td>BED</td><td>Binge Eating Disorder</td><td>Həddən çox yemə pozuntusu</td></tr>
+<tr><td>BPD</td><td>Borderline Personality Disorder</td><td>Sərhəd şəxsiyyət pozuntusu</td></tr>
+<tr><td>CAT</td><td>Cognitive Analytic Therapy</td><td></td></tr>
+<tr><td>CBT / KDT</td><td>Cognitive Behavioural Therapy</td><td>Koqnitiv davranış terapiyası</td></tr>
+<tr><td>CD</td><td>Conduct Disorder</td><td>Davranış pozuntusu</td></tr>
+<tr><td>KTTD</td><td>Klinik Təsvirlər və Diaqnostik Tələblər</td><td>Klinik Təsvirlər və Diaqnostik Tələblər</td></tr>
+<tr><td>cPTSD</td><td>Complex PTSD</td><td>Kompleks PTSD</td></tr>
+<tr><td>CSBD</td><td>Compulsive Sexual Behaviour Disorder</td><td>Kompulsiv cinsi davranış pozuntusu</td></tr>
+<tr><td>DBT</td><td>Dialectical Behaviour Therapy</td><td>Dialektik davranış terapiyası</td></tr>
+<tr><td>DID</td><td>Dissociative Identity Disorder</td><td>Dissosiativ şəxsiyyət pozuntusu</td></tr>
+<tr><td>DMDD</td><td>Disruptive Mood Dysregulation Disorder (DSM-5)</td><td></td></tr>
+<tr><td>DPD / DPDR</td><td>Depersonalization-Derealization Disorder</td><td></td></tr>
+<tr><td>DSM-5-TR</td><td>Diagnostic and Statistical Manual, 5th ed., Text Revision</td><td>APA diaqnostik sistemi</td></tr>
+<tr><td>EKT</td><td>Electroconvulsive Therapy</td><td>Elektrokonvulsiv terapiya</td></tr>
+<tr><td>EEG / EKQ</td><td>Electroencephalography</td><td>Elektroensefaloqrafiya</td></tr>
+<tr><td>EMDR</td><td>Eye Movement Desensitization and Reprocessing</td><td></td></tr>
+<tr><td>EPDS</td><td>Edinburgh Postnatal Depression Scale</td><td>Edinburq doğuşdan sonrakı depressiya şkalası</td></tr>
+<tr><td>EPM</td><td>Eksperimental-psixoloji müayinə</td><td></td></tr>
+<tr><td>FBT</td><td>Family-Based Treatment</td><td>Ailə əsaslı müalicə</td></tr>
+<tr><td>FDIA</td><td>Factitious Disorder Imposed on Another</td><td>Başqasına tətbiq edilmiş süni pozuntu</td></tr>
+<tr><td>FDIS</td><td>Factitious Disorder Imposed on Self</td><td>Özünə tətbiq edilmiş süni pozuntu</td></tr>
+<tr><td>FII</td><td>Fabricated or Induced Illness</td><td></td></tr>
+<tr><td>GAD</td><td>Generalized Anxiety Disorder</td><td>Ümumiləşmiş təşviş pozuntusu</td></tr>
+<tr><td>HAND</td><td>HIV-Associated Neurocognitive Disorder</td><td>HIV ilə əlaqəli neyrokoqnitiv pozuntu</td></tr>
+<tr><td>HPA</td><td>Hypothalamic-Pituitary-Adrenal axis</td><td>HPA oxu</td></tr>
+<tr><td>IED</td><td>Intermittent Explosive Disorder</td><td>İntermittent eksplosiv pozuntu</td></tr>
+<tr><td>XBT / İKT</td><td>International Classification of Diseases</td><td>Beynəlxalq Xəstəliklər Təsnifatı</td></tr>
+<tr><td>İPT</td><td>Interpersonal Therapy</td><td>Şəxslərarası terapiya</td></tr>
+<tr><td>ISSTD</td><td>International Society for the Study of Trauma and Dissociation</td><td></td></tr>
+<tr><td>ISTSS</td><td>International Society for Traumatic Stress Studies</td><td></td></tr>
+<tr><td>LGBT+</td><td>Lesbian, Gay, Bisexual, Transgender</td><td></td></tr>
+<tr><td>MBT</td><td>Mentalization-Based Treatment</td><td>Mentalizasiya əsaslı müalicə</td></tr>
+<tr><td>MCI</td><td>Mild Cognitive Impairment / Yüngül neyrokoqnitiv pozuntu</td><td></td></tr>
+<tr><td>MDD</td><td>Major Depressive Disorder</td><td>Əsas depressiv pozuntu</td></tr>
+<tr><td>MDMA</td><td>3,4-metilendioksimetamfetamin</td><td></td></tr>
+<tr><td>MDQ</td><td>Mood Disorder Questionnaire</td><td>Əhval pozuntusu anketi</td></tr>
+<tr><td>MMN</td><td>Beynəlxalq qeyri-patent ad</td><td></td></tr>
+<tr><td>MMPI</td><td>Minnesota Multiphasic Personality Inventory</td><td></td></tr>
+<tr><td>MRT</td><td>Magnitik rezonans tomoqrafiyası</td><td></td></tr>
+<tr><td>MS</td><td>Multipl skleroz</td><td></td></tr>
+<tr><td>MST</td><td>Multisystemic Therapy</td><td>Multisistem terapiyası</td></tr>
+<tr><td>NICE</td><td>UK National Institute for Health and Care Excellence</td><td></td></tr>
+<tr><td>NMS</td><td>Neuroleptic Malignant Syndrome</td><td>antipsixotik malign sindrom</td></tr>
+<tr><td>OCRD</td><td>Obsessive-Compulsive and Related Disorders</td><td>OK-əlaqəli pozuntular</td></tr>
+<tr><td>OKP</td><td>Obsessiv-kompulsiv pozuntu</td><td></td></tr>
+<tr><td>ODD</td><td>Oppositional Defiant Disorder</td><td>Oppozisiya-etiraz pozuntusu</td></tr>
+<tr><td>PANSS</td><td>Positive and Negative Syndrome Scale</td><td></td></tr>
+<tr><td>PCL-5</td><td>PTSD Checklist for DSM-5</td><td></td></tr>
+<tr><td>PD</td><td>Personality Disorder / Şəxsiyyət pozuntusu</td><td></td></tr>
+<tr><td>PGD</td><td>Prolonged Grief Disorder</td><td>Uzanmış matəm pozuntusu</td></tr>
+<tr><td>PHQ</td><td>Patient Health Questionnaire</td><td></td></tr>
+<tr><td>PMT</td><td>Parent Management Training</td><td>Valideyn təhsil proqramı</td></tr>
+<tr><td>PNES</td><td>Psychogenic Non-Epileptic Seizures</td><td>Psikogen qeyri-epileptik tutmalar</td></tr>
+<tr><td>PTSD</td><td>Post-Traumatic Stress Disorder</td><td>Posttravmatik stress pozuntusu</td></tr>
+<tr><td>RBD</td><td>REM Sleep Behaviour Disorder</td><td></td></tr>
+<tr><td>SCID</td><td>Structured Clinical Interview for DSM</td><td>DSM üçün strukturlaşdırılmış klinik müsahibə</td></tr>
+<tr><td>SNRİ</td><td>Serotonin-Norepinephrine Reuptake Inhibitor</td><td></td></tr>
+<tr><td>SSRİ</td><td>Selective Serotonin Reuptake Inhibitor</td><td>Selektiv serotonin geri-alınma inhibitoru</td></tr>
+<tr><td>TBZ</td><td>Travmatik beyin zədəsi</td><td></td></tr>
+<tr><td>TCA</td><td>Tricyclic Antidepressant</td><td>Trisiklik antidepressant</td></tr>
+<tr><td>TF-KDT</td><td>Trauma-Focused CBT</td><td>Travma-yönəldilmiş KDT</td></tr>
+<tr><td>TFP</td><td>Transference-Focused Psychotherapy</td><td></td></tr>
+<tr><td>ÜST / WHO</td><td>World Health Organization</td><td>Ümumdünya Səhiyyə Təşkilatı</td></tr>
+<tr><td>WFSBP</td><td>World Federation of Societies of Biological Psychiatry</td><td></td></tr>
+<tr><td>XBT / ICD</td><td>Xəstəliklərin beynəlxalq təsnifatı</td><td></td></tr>
+<tr><td>Y-BOCS</td><td>Yale-Brown Obsessive Compulsive Scale</td><td></td></tr>
+</table></div>
+<hr>
+<h1 id="ümumi̇-mənbələr-və-ədəbi̇yyat" class="h-section">ÜMUMİ MƏNBƏLƏR VƏ ƏDƏBİYYAT</h1>
+<h2 id="əsas-xbt-11-və-dsm-5-mənbələri" class="">Əsas XBT-11 və DSM-5 mənbələri</h2>
+<ol>
+<li>WHO. <strong>Klinik Təsvirlər və Diaqnostik Tələblər for XBT-11 Mental, Behavioural and Neurodevelopmental Disorders (KTTD).</strong> Geneva: World Health Organization; 2024. ISBN: 9789240077263.</li>
+<li>APA. <strong>Diagnostic and Statistical Manual of Mental Disorders, 5th Edition, Text Revision (DSM-5-TR).</strong> APA Publishing; 2022.</li>
+<li>First MB, Reed GM, Hyman SE, Saxena S. <strong>The development of the XBT-11 Clinical Descriptions and Diagnostic Guidelines for Mental and Behavioural Disorders.</strong> <em>World Psychiatry</em>, 2015; 14: 82–90.</li>
+<li>Reed GM, et al. <strong>Innovations and changes in the XBT-11 classification of mental, behavioural and neurodevelopmental disorders.</strong> <em>World Psychiatry</em>, 2019; 18: 3–19.</li>
+</ol>
+<h2 id="klinik-psixiatriya-dərslikləri" class="">Klinik psixiatriya dərslikləri</h2>
+<ol>
+<li>Popov Yu.V., Vid V.D. <strong>Müasir klinik psixiatriya.</strong> (Современная клиническая психиатрия) 2-ci nəşr. Sankt-Peterburq: Reç, 2006.</li>
+<li>Sadock BJ, Sadock VA, Ruiz P. <em>Kaplan and Sadock&#x27;s Comprehensive Textbook of Psychiatry.</em> 11th ed. Wolters Kluwer; 2023.</li>
+<li>Gelder MG, Andreasen NC, Lopez-Ibor JJ, Geddes JR (eds). <em>New Oxford Textbook of Psychiatry.</em> 3rd ed. Oxford UP; 2020.</li>
+<li>Cowen P, Harrison P, Burns T. <em>Shorter Oxford Textbook of Psychiatry.</em> 7th ed. Oxford UP; 2018.</li>
+</ol>
+<h2 id="azərbaycan-dilində-mənbələr" class="">Azərbaycan dilində mənbələr</h2>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <strong>&quot;Psixi xəstələrin müayinəsi və müalicəsinin sərəncamı&quot; üzrə normativ sənədlər.</strong></li>
+<li><strong>&quot;Psixiatrik yardım haqqında&quot;</strong> Azərbaycan Respublikası Qanunu (2001, dəyişikliklərlə).</li>
+</ol>
+<h2 id="praktik-klinik-qaydalar-guidelines" class="">Praktik klinik qaydalar (guidelines)</h2>
+<ol>
+<li>NICE (UK) Clinical Guidelines – psixiatrik şərtlər üzrə: CG31 OKP, CG78 BPD, CG90 Depressiya, CG113 GAD, CG115 Alkogol, CG158 Davranış pozuntuları, NG69 Yemə pozuntuları, NG116 PTSD, CG111 Enurez.</li>
+<li>APA Practice Guidelines – schizofreniya, BPD, MDD, yemə pozuntuları, Alzheimer.</li>
+<li>WFSBP Guidelines – bipolyar, şizofreniya, OKP, PTSD, paraphilic pozuntular.</li>
+<li>ISTSS (International Society for Traumatic Stress Studies). <em>PTSD Prevention and Treatment Guidelines.</em> 3rd ed. 2019.</li>
+<li>CANMAT/ISBD. <strong>Canadian Network for Mood and Anxiety Treatments / International Society for Bipolar Disorders Treatment Guidelines.</strong> 2018, 2023.</li>
+<li>AACAP Practice Parameters – uşaq və yeniyetmə psixiatrik pozuntuları.</li>
+</ol>
+<h2 id="əsas-peer-review-jurnalları" class="">Əsas peer-review jurnalları</h2>
+<ol>
+<li><em>American Journal of Psychiatry</em> (APA)</li>
+<li><em>World Psychiatry</em> (WPA)</li>
+<li><em>Lancet Psychiatry</em></li>
+<li><em>JAMA Psychiatry</em></li>
+<li><em>British Journal of Psychiatry</em></li>
+<li><em>Psychological Medicine</em></li>
+<li><em>Journal of Clinical Psychiatry</em></li>
+<li><em>European Psychiatry</em></li>
+</ol>
+<h2 id="onlayn-resurslar" class="">Onlayn resurslar</h2>
+<ol>
+<li><strong>WHO XBT-11:</strong> https://icd.who.int</li>
+<li><strong>MGH Center for Women&#x27;s Mental Health:</strong> https://womensmentalhealth.org</li>
+<li><strong>Cochrane Library:</strong> psixiatrik sistematik nəzərdən keçirmələr</li>
+<li><strong>UpToDate Psychiatry</strong> – klinik istinad resursu</li>
+<li><strong>Psychiatry Online (APA Publishing)</strong> – dərsliklər, qaydalar</li>
+<li><strong>Columbia Suicide Severity Rating Scale:</strong> https://cssrs.columbia.edu</li>
+</ol>
+<hr>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>\</p>
+<p>&lt;div style=&quot;text-align: right; font-size: 9pt;&quot;&gt;</p>
+<p><em>Kənan Rəhimov</em></p>
+<p><em>Bakı, 2026</em></p>
+<p><em>ragimoff.org</em></p>
+<p>&lt;/div&gt;</p>
+      <nav class="page-nav"><a href="elave-skalalar.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">Əlavə — Şkalalar</span></a><a href="yekun.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">Yekun — İstifadə qaydaları</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "elave-acde";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

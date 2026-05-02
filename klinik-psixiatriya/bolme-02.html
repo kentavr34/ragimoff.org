@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 2 — ŞİZOFRENİYA">
+<title>BÖLMƏ 2 — ŞİZOFRENİYA | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-2" class="h-bolme">BÖLMƏ 2</h1>
+<h2 id="şi̇zofreni̇ya-və-di̇gər-bi̇ri̇nci̇li̇-psi̇xoti̇k-pozuntular" class="">ŞİZOFRENİYA VƏ DİGƏR BİRİNCİLİ PSİXOTİK POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A20</span>–<span class="icd">6A25</span> — Schizophrenia or other primary psychotic disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F20</span>–<span class="icd">F29</span> — Schizophrenia, schizotypal and delusional disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Schizophrenia Spectrum and Other Psychotic Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<p>Bu bölmədə <strong>birincili psixotik pozuntular</strong> – yəni psixotik simptomların hər hansı digər psixiatrik pozuntuya, üzvi xəstəliyə və ya maddə təsirinə <strong>ikinci dərəcəli olmadığı</strong> klinik vəziyyətlər əhatə olunur:</p>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6A20</span></strong></td><td>Şizofreniya</td><td>2.1</td></tr>
+<tr><td><strong><span class="icd">6A21</span></strong></td><td>Şizoaffektiv pozuntu</td><td>2.2</td></tr>
+<tr><td><strong><span class="icd">6A22</span></strong></td><td>Şizotipik pozuntu</td><td>2.3</td></tr>
+<tr><td><strong><span class="icd">6A23</span></strong></td><td>Kəskin və keçici psixotik pozuntu</td><td>2.4</td></tr>
+<tr><td><strong><span class="icd">6A24</span></strong></td><td>Sayıqlama pozuntusu</td><td>2.5</td></tr>
+<tr><td><strong><span class="icd">6A25</span></strong></td><td>Birincili psixotik pozuntuların simptom təzahürləri (qiymətləndirmə domenleri)</td><td>2.6</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p>XBT-11 birincili psixotik pozuntuların təsnifatına bir sıra <strong>prinsipial dəyişikliklər</strong> gətirmişdir:</p>
+<h3 id="şizofreniya-alt-tiplərinin-ləğv-edi̇lməsi̇" class="">Şizofreniya alt-tiplərinin LƏĞV EDİLMƏSİ</h3>
+<p>XBT-10-da geniş istifadə olunan klassik alt-tiplər <strong>artıq qüvvədə deyil</strong>:</p>
+<ul>
+<li><strong>Paranoid şizofreniya</strong> (<span class="icd">F20.0</span>) – ləğv</li>
+<li><strong>Hebefrenik şizofreniya</strong> (<span class="icd">F20.1</span>) – ləğv</li>
+<li><strong>Katatonik şizofreniya</strong> (<span class="icd">F20.2</span>) – ləğv (katatoniya artıq müstəqil <span class="icd">6A40</span> kateqoriyasıdır – Bölmə 3-ə bax)</li>
+<li><strong>Differensiallaşmamış şizofreniya</strong> (<span class="icd">F20.3</span>) – ləğv</li>
+<li><strong>Residual şizofreniya</strong> (<span class="icd">F20.5</span>) – ləğv</li>
+<li><strong>Sadə şizofreniya</strong> (<span class="icd">F20.6</span>) – ləğv</li>
+</ul>
+<p><strong>Səbəb:</strong> alt-tiplərin diaqnostik etibarlılığı aşağı, vaxtla stabilliyi zəif, müalicə qərarına təsiri minimal idi.</p>
+<h3 id="yeni-dimensional-yanaşma-simptom-domenləri-6a25" class="">Yeni dimensional yanaşma: simptom domenləri (<span class="icd">6A25</span>)</h3>
+<p>Alt-tiplər əvəzinə XBT-11 <strong>altı simptom domenini</strong> təklif edir; hər biri ayrıca qiymətləndirilir:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Simptom domeni</th></tr>
+<tr><td><strong><span class="icd">6A25.0</span></strong></td><td>Pozitiv simptomlar (sayıqlama, halusinasiyalar, dezorqanizasiya)</td></tr>
+<tr><td><strong><span class="icd">6A25.1</span></strong></td><td>Neqativ simptomlar (affekt yastılığı, alogiya, abuliya, anhedoniya, asosialliq)</td></tr>
+<tr><td><strong><span class="icd">6A25.2</span></strong></td><td>Depressiv əhval simptomları</td></tr>
+<tr><td><strong><span class="icd">6A25.3</span></strong></td><td>Manik əhval simptomları</td></tr>
+<tr><td><strong><span class="icd">6A25.4</span></strong></td><td>Psixomotor simptomlar (aqitasiya, ləngləmə, katatoniya komponentləri)</td></tr>
+<tr><td><strong><span class="icd">6A25.5</span></strong></td><td>Koqnitiv simptomlar (diqqət, yaddaş, icra funksiyaları)</td></tr>
+</table></div>
+<p>Bu yanaşma <strong>Kraepelin-vari kateqoriallıqdan müasir dimensional psixiatriyaya keçidi</strong> əks etdirir.</p>
+<h3 id="şizofreniya-gediş-kvalifikatorları-6a20x" class="">Şizofreniya gediş kvalifikatorları (<span class="icd">6A20</span>.x)</h3>
+<p>Diaqnoz qoyulduqda gedişin xarakteri qeyd edilməlidir:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Gediş forması</th></tr>
+<tr><td><span class="icd">6A20.0</span></td><td>İlk epizod, hazırda simptomatik</td></tr>
+<tr><td><span class="icd">6A20.1</span></td><td>Çoxsaylı epizodlar</td></tr>
+<tr><td><span class="icd">6A20.2</span></td><td>Davamlı (kəsilməyən)</td></tr>
+<tr><td><span class="icd">6A20</span>.Y/Z</td><td>Digər/dəqiqləşdirilməmiş</td></tr>
+</table></div>
+<p>Hər biri üçün remissiya statusu (currently symptomatic / partial remission / full remission) əlavə kodla qeyd olunur.</p>
+<h3 id="birinci-dərəcəli-simptomların-şneyder-statusunun-azalması" class="">Birinci dərəcəli simptomların (Şneyder) statusunun azalması</h3>
+<p>XBT-10-da Şneyderin &quot;1-ci dərəcəli simptomları&quot; (səslər başqa-başqasından danışır, düşüncənin oğurlanması, təsir hissi, somatik passivlik və s.) <strong>diaqnostik prioritet</strong> daşıyırdı. XBT-11 bunlardan imtina etmiş, <strong>hər hansı iki əsas simptomun</strong> (bunlardan birinin pozitiv olması şərti ilə) olmasını tələb edir.</p>
+<h3 id="sayıqlama-pozuntusu-6a24-qəribə-bizarre-sayıqlamaya-icazə" class="">Sayıqlama pozuntusu (<span class="icd">6A24</span>) – qəribə (bizarre) sayıqlamaya icazə</h3>
+<p>XBT-10-da sayıqlama pozuntusu üçün sayıqlama &quot;qeyri-qəribə&quot; olmalı idi. XBT-11 bu məhdudiyyəti <strong>ləğv etmişdir</strong> – qəribə sayıqlama da daxil olmaqla.</p>
+<h3 id="i̇nduksiyalı-sayıqlama-pozuntusu-folie-à-deux-6a24-ə-inteqrasiya" class="">İnduksiyalı sayıqlama pozuntusu (folie à deux) – <span class="icd">6A24</span>-ə inteqrasiya</h3>
+<p>XBT-10-da <span class="icd">F24</span> ayrıca diaqnoz idi. XBT-11-də sayıqlama pozuntusu (<span class="icd">6A24</span>) çərçivəsində qeyd olunur.</p>
+<p>\newpage</p>
+<h1 id="6a20-şi̇zofreni̇ya" class="h-disorder"><span class="icd">6A20</span> ŞİZOFRENİYA</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A20</span> — Şizofreniya</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F20</span> — Şizofreniya</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 295.90 — Schizophrenia</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Şizofreniya – <strong>çoxsaylı psixi modallıqlarda davamlı pozuntular</strong> ilə xarakterizə olunan ağır psixiatrik sindromdur. Pozuntular aşağıdakı sahələri əhatə edir:</p>
+<ul>
+<li><strong>Düşüncə</strong> (sayıqlama, formal düşüncə pozuntuları)</li>
+<li><strong>Qavrayış</strong> (halusinasiyalar)</li>
+<li><strong>Özünü dərk</strong> (təsir, passivlik, nəzarət təcrübələri)</li>
+<li><strong>İdrak</strong> (diqqət, verbal yaddaş, sosial idrakda pozuntular)</li>
+<li><strong>İradə</strong> (motivasiya itkisi)</li>
+<li><strong>Affekt</strong> (emosional ifadənin yastılığı)</li>
+<li><strong>Davranış</strong> (qəribə, məqsədsiz davranış, qeyri-mütəşəkkil emosional cavablar)</li>
+<li><strong>Psixomotor</strong> (katatonik komponentlər mümkündür)</li>
+</ul>
+<p><strong>Əsas (core) simptomlar</strong> XBT-11-ə görə:</p>
+<ul>
+<li>Davamlı sayıqlama</li>
+<li>Davamlı halusinasiyalar</li>
+<li>Düşüncə formal pozuntusu (dezorqanizasiya)</li>
+<li>Təsir, passivlik və ya nəzarət təcrübəsi</li>
+</ul>
+<p>Nozoloji vahid kimi şizofreniya <strong>etiologiyası heterogen, lakin klinik təqdimatı və gedişi nisbətən qabaqcadan görülə bilən</strong> ağır psixotik pozuntudur. Tarixən &quot;dementia praecox&quot; (Kraepelin, 1899) kimi başlamış, sonra Bleyler tərəfindən &quot;şizofreniya&quot; (1911) adlandırılmışdır.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<p>Şizofreniya <strong>multifaktorial</strong> pozuntudur. Müasir konsensus – <strong>diatez-stress modeli</strong> (genetik zəiflik + ekoloji tetikləyicilər).</p>
+<h3 id="genetik-amillər" class="">Genetik amillər</h3>
+<ul>
+<li><strong>İrsiyyət göstəricisi 65-80%</strong> – ən yüksək psixiatrik pozuntular sırasında</li>
+<li><strong>Ümumi populyasiyada risk:</strong> 1%</li>
+<li><strong>Birinci dərəcəli qohumda:</strong> 6-10%</li>
+<li><strong>Eyni yumurtalı ikizlərdə konkordans:</strong> 40-50%</li>
+<li><strong>Hər iki valideyndə şizofreniya:</strong> 40%</li>
+</ul>
+<p><strong>Genetik mexanizmlər:</strong></p>
+<ul>
+<li><strong>Polygenic</strong> – yüzlərlə ümumi variantın birgə təsiri (GWAS – 250+ lokus)</li>
+<li><strong>Nadir kopiya sayı dəyişiklikləri (CNV):</strong> 22q11.2 delesiya (DiGeorge sindromu – 25 dəfə risk), 16p11.2, 1q21.1</li>
+<li><strong>De novo mutasiyalar</strong> – sinaptik transmissiya genlərində</li>
+</ul>
+<h3 id="neyroinkişaf-modeli" class="">Neyroinkişaf modeli</h3>
+<p>Şizofreniya <strong>neyroinkişaf pozuntusudur</strong>, ilk klinik təzahürdən illər əvvəl başlayır:</p>
+<ul>
+<li><strong>Erkən neyroinkişaf:</strong> intrauterin və erkən postnatal mərhələlər – &quot;ilkin uyğunsuzluq&quot;</li>
+<li><strong>Subklinik mərhələ:</strong> uşaqlıq və yeniyetməlikdə sosial və koqnitiv inkişafda yumşaq pozuntular</li>
+<li><strong>Prodrom:</strong> psixozun başlanmasından 1-3 il əvvəl – sosial təcrid, depresiv simptomlar, əksik təşviş</li>
+<li><strong>İlk epizod:</strong> adətən 18-25 yaş</li>
+</ul>
+<h3 id="mühit-risk-amilləri" class="">Mühit risk amilləri</h3>
+<p><strong>Antenatal və perinatal:</strong></p>
+<ul>
+<li><strong>Anaya infeksiyalar</strong> hamiləlik dövründə (qrip, toxoplazma, sitomegalovirus)</li>
+<li><strong>Anaya stress, aclıq</strong> (1944-1945 Holland aclığı tədqiqatı – 2x risk)</li>
+<li><strong>Anaya autoimmün xəstəliklər</strong></li>
+<li><strong>Hipoksik-işemik perinatal komplikasiyalar</strong></li>
+<li><strong>Ana yaşı 35-dən yuxarı</strong></li>
+<li><strong>Ata yaşı 45-dən yuxarı</strong> (de novo mutasiya)</li>
+</ul>
+<p><strong>Postnatal:</strong></p>
+<ul>
+<li><strong>Uşaqlıqda travma</strong> (zorakılıq, abuza, neglekt) – risk 3 dəfə artır</li>
+<li><strong>Şəhər mühitində böyümək</strong> – kənddən 2 dəfə yüksək</li>
+<li><strong>Miqrasiya</strong> – 2-3 dəfə risk (xüsusilə 2-ci nəsil miqrant)</li>
+<li><strong>Sosial təcrid, ayrı-seçkilik</strong></li>
+<li><strong>Kanabis istifadəsi</strong> yeniyetmədə (xüsusilə yüksək THC kontentli) – risk 2-4 dəfə artır</li>
+<li><strong>Stimulyantlar (amfetamin, kokain, MDMA)</strong> – risk artırır</li>
+</ul>
+<h3 id="neyrobioloji-mexanizmlər" class="">Neyrobioloji mexanizmlər</h3>
+<p><strong>Dopamin hipotezi (klassik):</strong></p>
+<ul>
+<li><strong>Mezolimbik dopamin hiperaktivliyi</strong> → pozitiv simptomlar</li>
+<li><strong>Mezokortikal dopamin hipoaktivliyi</strong> → neqativ və koqnitiv simptomlar</li>
+<li>Bütün antipsixotiklər D2 reseptor blokadasi yaradır</li>
+</ul>
+<p><strong>Qlutamat hipotezi (müasir):</strong></p>
+<ul>
+<li><strong>NMDA reseptor hipofunksiyası</strong> → həm pozitiv, həm neqativ simptomlar</li>
+<li>Ketamin (NMDA antaqonisti) sağlam insanlarda şizofreniya-bənzər simptomlar yaradır</li>
+</ul>
+<p><strong>Beyin strukturu:</strong></p>
+<ul>
+<li><strong>Yan mədəcik genişlənməsi</strong></li>
+<li><strong>Gri maddə həcminin azalması</strong> (xüsusilə temporal və frontal lob)</li>
+<li><strong>Hippokampus və amigdala atipikliyi</strong></li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<h3 id="yayılma-və-insidens" class="">Yayılma və insidens</h3>
+<ul>
+<li><strong>Ömürlük yayılma:</strong> <strong>0,7-1%</strong> ümumi populyasiyada (dünya üzrə)</li>
+<li><strong>İllik insidens:</strong> 15-30 yeni hal / 100 000</li>
+<li><strong>Azərbaycan:</strong> rəsmi statistikaya görə qeydiyyatda olan halların yayılması ~0,3-0,5% (real göstərici daha yüksək olduğu ehtimal edilir)</li>
+<li><strong>Qlobal müqayisə:</strong> yayılma ölkələr arasında 2-3 dəfə fərqlənir, lakin əsas göstəricilər nisbi sabit qalır</li>
+</ul>
+<h3 id="cins-və-yaş" class="">Cins və yaş</h3>
+<p>- <strong>Kişilərdə:</strong> 18-25 yaş (pik)</p>
+<p>- <strong>Qadınlarda:</strong> 25-35 yaş (pik); ikinci pik – 40-45 yaş (perimenopoza)</p>
+<ul>
+<li><strong>Cins:</strong> kişi:qadın <strong>1,4:1</strong></li>
+<li><strong>Başlanğıc yaşı:</strong></li>
+<li><strong>Çox erkən başlanğıc</strong> (&lt;13 yaş) – nadir, ağır gediş</li>
+<li><strong>Gec başlanğıc</strong> (&gt;45 yaş) – kişilərdə şübhəlidir, ehtimal ki ikincili formalardır</li>
+</ul>
+<h3 id="komorbidlik-və-mortalite" class="">Komorbidlik və mortalite</h3>
+<ul>
+<li><strong>Maddə istifadəsi pozuntusu:</strong> 30-50% (xüsusilə kannabis, alkohol, tütün)</li>
+<li><strong>Tütün asılılığı:</strong> 60-70% (ümumi populyasiyada 20-30%)</li>
+<li><strong>Depressiya:</strong> 40-50% (epizod ərzində və remissiyada)</li>
+<li><strong>Təşviş pozuntuları:</strong> 30-40%</li>
+<li><strong>OKP:</strong> 12-15%</li>
+<li><strong>Suisid:</strong> ömürlük risk <strong>5-10%</strong> (ümumi populyasiyada 0,5%)</li>
+<li><strong>Cismani xəstəliklər:</strong> ürək-damar xəstəlikləri, diabet, metabolik sindrom</li>
+<li><strong>Yaşam müddəti:</strong> ümumi populyasiyadan <strong>15-20 il aşağı</strong></li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="pozitiv-simptomlar-artırılmış-əlavə" class="">Pozitiv simptomlar (artırılmış / əlavə)</h3>
+<p><strong>Sayıqlama (delusion):</strong></p>
+<ul>
+<li><strong>Persekutiv (təqib)</strong> sayıqlama – ən geniş yayılmış (~70%)</li>
+<li><strong>Münasibət sayıqlaması</strong> – mühitin hadisələri özünə aid edilir</li>
+<li><strong>Qrandioz sayıqlama</strong> – özünün böyüklüyü, gücü, seçilmişliyi</li>
+<li><strong>Təsir / nəzarət sayıqlaması</strong> – kənar qüvvələrin onun düşüncələrinə təsiri</li>
+<li><strong>Düşüncə oğurlanması</strong> (&quot;birisi mənim düşüncələrimi oğurlayır&quot;)</li>
+<li><strong>Düşüncə qoyulması</strong> (&quot;yad düşüncələr başıma qoyulur&quot;)</li>
+<li><strong>Düşüncə yayılması</strong> (&quot;mənim düşüncələrim hamıya eşidilir&quot;)</li>
+<li><strong>Hipoxondrik sayıqlama</strong> (Cotard sindromu)</li>
+<li><strong>Qısqanclıq sayıqlaması</strong> (Otello sindromu)</li>
+</ul>
+<p><strong>halusinasiyalar:</strong></p>
+<p>- &quot;Səslər&quot; – şərh edən, müraciət edən, <strong>imperativ (əmredici)</strong> – risk göstəricisi</p>
+<p>- Tez-tez 3-cü şəxsdə</p>
+<ul>
+<li><strong>Eşitmə halusinasiyaları</strong> – ən tipik (75%)</li>
+<li><strong>Görmə halusinasiyaları</strong> – şizofreniyada nadir; varsa üzvi səbəb axtarılmalıdır</li>
+<li><strong>Toxunma (haptik) halusinasiyaları</strong> – nadir; varsa kokain və ya delirium istisna</li>
+<li><strong>Senestopatiyalar</strong> – bədəndə qəribə, ağrılı hisslər</li>
+<li><strong>Psevdohalusinasiyalar</strong> – pasiyent &quot;daxili&quot; kimi qavrayır</li>
+</ul>
+<p><strong>Düşüncə forma pozuntuları (formal thought disorder):</strong></p>
+<ul>
+<li><strong>Dezorqanizasiya</strong> – assosiasiyaların qırılması, &quot;söz salatı&quot;</li>
+<li><strong>Tangensiallıq, sirkumstansiallıq</strong></li>
+<li><strong>Düşüncə bloklanması</strong> (sperrung)</li>
+<li><strong>Neologizmlər, persevarasiya</strong></li>
+</ul>
+<h3 id="neqativ-simptomlar-azaldılmış-itirilmiş" class="">Neqativ simptomlar (azaldılmış / itirilmiş)</h3>
+<p>Neqativ simptomlar pozitiv simptomlardan <strong>müalicəyə daha çətin tabe olur</strong> və funksional pozulmanın əsas mənbəyidir.</p>
+<p><strong>5 əsas neqativ simptom:</strong></p>
+<ol>
+<li><strong>Affekt yastılığı</strong> – emosional ifadənin azalması</li>
+<li><strong>Alogiya</strong> – nitq həcminin azalması</li>
+<li><strong>Avoliya / Abuliya</strong> – iradə və motivasiya çatışmazlığı</li>
+<li><strong>Anhedoniya</strong> – həzz almaq qabiliyyətinin azalması</li>
+<li><strong>Asosiallıq</strong> – sosial əlaqələrə marağın itirilməsi</li>
+</ol>
+<p><strong>Birincili (primary)</strong> – şizofreniyanın özünə xas</p>
+<p><strong>İkincili (secondary)</strong> – depresiya, antipsixotik yan təsirləri, psixotik simptomlardan qaçış</p>
+<h3 id="koqnitiv-simptomlar" class="">Koqnitiv simptomlar</h3>
+<ul>
+<li><strong>Diqqət və konsentrasiya azlığı</strong></li>
+<li><strong>İşçi yaddaş zəifliyi</strong></li>
+<li><strong>Verbal yaddaş pozuntusu</strong></li>
+<li><strong>İcra funksiyaları zəifliyi</strong></li>
+<li><strong>İşləmə sürətinin yavaşlaması</strong></li>
+<li><strong>Sosial idrak pozuntuları</strong></li>
+</ul>
+<p>Koqnitiv pozuntular <strong>prodrom dövründə də mövcuddur</strong> və <strong>funksional çıxışın əsas prediktorudur</strong>.</p>
+<h3 id="xəstəliyin-mərhələləri" class="">Xəstəliyin mərhələləri</h3>
+<p><strong>Premorbid mərhələ</strong> (uşaqlıq):</p>
+<ul>
+<li>Subtle uyğunsuzluqlar – sosial geriləmə, motor koordinasiya pozuntusu</li>
+</ul>
+<p><strong>Prodrom (UHR – Ultra High Risk):</strong></p>
+<ul>
+<li>1-3 il davam edir</li>
+<li><strong>APS (Attenuated Psychotic Symptoms)</strong> – yumşaq psixotik simptomlar</li>
+<li><strong>BLIPS (Brief Limited Intermittent Psychotic Symptoms)</strong> – qısa epizodlar</li>
+<li><strong>2-3 il ərzində 20-35% pasiyentdə tam psixotik epizod inkişaf edir</strong></li>
+</ul>
+<p><strong>İlk epizod, davam edən, xroniki mərhələlər</strong></p>
+<h3 id="klinik-gediş-13-prinsipi" class="">Klinik gediş 1/3 prinsipi</h3>
+<ul>
+<li>1/3 pasiyent – yaxşı funksional bərpa</li>
+<li>1/3 pasiyent – orta funksional səviyyə dəstəklə</li>
+<li>1/3 pasiyent – zəif gediş, davamlı simptomlar və əlilliklə</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-diaqnostik-tələbləri-6a20" class="">XBT-11 diaqnostik tələbləri (<span class="icd">6A20</span>)</h3>
+<p><strong>A. Aşağıdakı simptomlardan ən azı iki simptom</strong> ən azı bir ay davam etmiş olmalıdır, və <strong>bunlardan ən azı bir simptom</strong> (a)–(d) bəndlərindən olmalıdır:</p>
+<p>(a) <strong>Davamlı sayıqlama</strong></p>
+<p>(b) <strong>Davamlı halusinasiyalar</strong> (xüsusilə eşitmə)</p>
+<p>(c) <strong>Düşüncə formal pozuntusu</strong> (dezorqanizasiya)</p>
+<p>(d) <strong>Təsir, passivlik və ya nəzarət təcrübəsi</strong></p>
+<p>(e) <strong>Neqativ simptomlar</strong></p>
+<p>(f) <strong>Qeyri-mütəşəkkil davranış</strong></p>
+<p>(g) <strong>Psixomotor pozuntular</strong> (katatonik komponentlər, agitasiya, ləngləmə)</p>
+<p><strong>B.</strong> Simptomlar tibbi vəziyyət, maddə təsiri ilə tam izah olunmur</p>
+<p><strong>C.</strong> Simptomlar əhəmiyyətli funksional pozulmaya səbəb olur</p>
+<h3 id="xbt-10-f20-ilə-müqayisə" class="">XBT-10 (<span class="icd">F20</span>) ilə müqayisə</h3>
+<p>XBT-10 daha sərt – <strong>Şneyderin 1-ci dərəcəli simptomlarından bir</strong> və ya iki &quot;B&quot; simptom 1 ay davam etməlidir. XBT-11 bu prioriteti <strong>ləğv etmişdir</strong>.</p>
+<p>XBT-10 alt-tipləri (paranoid, hebefrenik, katatonik) – <strong>XBT-11-də ləğv</strong>.</p>
+<h3 id="dsm-5-tr-29590-ilə-müqayisə" class="">DSM-5-TR (295.90) ilə müqayisə</h3>
+<p>Meyarlar XBT-11-ə <strong>çox yaxındır</strong>. <strong>Vacib fərq:</strong> DSM-5-TR-də <strong>6 aylıq tələb</strong> var (1 ay aktiv simptom + prodrom və ya residual), XBT-11-də <strong>1 aylıq aktiv simptom</strong> kifayətdir.</p>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<ol>
+<li>Klinik müsahibə + müşahidə (pasiyent + qohumlar)</li>
+<li>Strukturlaşdırılmış qiymətləndirmə (PANSS, BPRS)</li>
+<li>Cismani və neyroloji müayinə</li>
+<li>Maddə istifadəsi anamnezi və toksikoloji skrining</li>
+<li>Komorbidlik qiymətləndirməsi</li>
+<li>Funksional səviyyə qiymətləndirməsi</li>
+<li>Beyin görüntüləməsi (MRT) – ilk epizod üçün tövsiyə olunur</li>
+<li>Differensial diaqnostika</li>
+</ol>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizoaffektiv pozuntu (<span class="icd">6A21</span>)</strong></td><td>Affektiv epizodlar <strong>və</strong> psixotik simptomlar; affektiv epizodlar əhəmiyyətli hissədə mövcud</td></tr>
+<tr><td><strong>Şizotipik pozuntu (<span class="icd">6A22</span>)</strong></td><td>Psixotik-bənzər simptomlar; tam psixoz meyarları yoxdur</td></tr>
+<tr><td><strong>Sayıqlama pozuntusu (<span class="icd">6A24</span>)</strong></td><td>Yalnız sayıqlama; funksiya nisbi saxlanılır</td></tr>
+<tr><td><strong>Kəskin və keçici psixotik pozuntu (<span class="icd">6A23</span>)</strong></td><td>Davam &lt;1 ay (XBT-11), &lt;3 ay (DSM-5)</td></tr>
+<tr><td><strong>Bipolyar I (<span class="icd">6A60</span>) – psixotik xüsusiyyətlərlə</strong></td><td>Manik və ya depresiv epizod kontekstində</td></tr>
+<tr><td><strong>Maddə induksiyalı psixoz</strong></td><td>Maddə istifadəsi və ya kəsilməsi ilə əlaqəli</td></tr>
+<tr><td><strong>Üzvi (ikincili) psixoz (<span class="icd">6E61</span>)</strong></td><td>Tibbi vəziyyət (epilepsiya, ensefalit, autoimmün) ilə əlaqəli</td></tr>
+<tr><td><strong>OKP (ağır insight çatışmazlığı ilə)</strong></td><td>Obsessiya əsasdır</td></tr>
+<tr><td><strong>Şəxsiyyət pozuntuları</strong></td><td>Davamlı şəxsiyyət xüsusiyyətləri; tam psixotik epizodlar yoxdur</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="klinik-müayinə-alətləri" class="">Klinik müayinə alətləri</h3>
+<p><strong>Strukturlaşdırılmış diaqnostik müsahibə:</strong></p>
+<ul>
+<li><strong>SCID-5</strong> (Structured Clinical Interview for DSM-5)</li>
+<li><strong>MINI</strong> (Mini-International Neuropsychiatric Interview)</li>
+</ul>
+<p><strong>Şiddət qiymətləndirməsi (qızıl standart):</strong></p>
+<ul>
+<li><strong>PANSS</strong> (Positive and Negative Syndrome Scale) – 30 göstərici, 7-bal şkala</li>
+<li><strong>BPRS</strong> (Brief Psychiatric Rating Scale) – 18 göstərici</li>
+<li><strong>SANS</strong> (Scale for the Assessment of Negative Symptoms)</li>
+<li><strong>SAPS</strong> (Scale for the Assessment of Positive Symptoms)</li>
+<li><strong>CGI-S</strong> (Clinical Global Impression-Severity)</li>
+</ul>
+<p><strong>Funksional qiymətləndirmə:</strong></p>
+<ul>
+<li><strong>GAF</strong> (Global Assessment of Functioning)</li>
+<li><strong>PSP</strong> (Personal and Social Performance Scale)</li>
+</ul>
+<p><strong>Suisid riski:</strong></p>
+<ul>
+<li><strong>C-SSRS</strong> (Columbia Suicide Severity Rating Scale)</li>
+</ul>
+<h3 id="laborator-müayinələr" class="">Laborator müayinələr</h3>
+<p><strong>İlk epizod üçün mütləq:</strong></p>
+<ul>
+<li>Tam qan analizi</li>
+<li>Qaraciyər və böyrək funksiyaları</li>
+<li>Aclı qan qlükozası, HbA1c (metabolik baseline)</li>
+<li>Lipid profili</li>
+<li>Tireoid funksiyası (TSH, T4)</li>
+<li>Vitamin B12, folat</li>
+<li>Toksikoloji skrin (sidik): kannabis, amfetamin, opioidlər, kokain, PCP, MDMA</li>
+<li>HIV, sifilis seroloji</li>
+<li>Hamiləlik testi (qadınlarda)</li>
+<li>Prolaktin baseline</li>
+</ul>
+<p><strong>Seçici (klinik şübhədə):</strong></p>
+<ul>
+<li>EEQ – tutmalar, deliriya istisna</li>
+<li>Anti-NMDA-R antikorları (CSF) – atipik təqdim</li>
+<li>Seruloplazmin və 24 saatlıq sidik mis (Wilson xəstəliyi şübhəsi)</li>
+</ul>
+<h3 id="alət-müayinələri" class="">Alət müayinələri</h3>
+<ul>
+<li><strong>Beyin MRT</strong> (T1, T2, FLAIR) – ilk epizod üçün tövsiyə olunur (NICE CG178)</li>
+<li><strong>EKG</strong> – antipsixotik başlanması öncəsi</li>
+<li><strong>Beyin KT</strong> – əgər MRT əlçatan deyil</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>Şizofreniya müalicəsi <strong>multimodaldır</strong>:</p>
+<ol>
+<li><strong>Farmakoloji</strong> (antipsixotiklər)</li>
+<li><strong>Psixosocial</strong> (KDT, ailə müdaxilələri, psixososial reabilitasiya)</li>
+<li><strong>Sistemli dəstək</strong> (icma əsaslı xidmətlər, dəstəkli iş)</li>
+</ol>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<p><strong>Birinci xətt avtoritet bələdçilər:</strong></p>
+<ul>
+<li><strong>NICE CG178 (2014, 2019 update):</strong> <em>Psychosis and schizophrenia in adults: prevention and management</em></li>
+<li><strong>Azərbaycan Respublikası Səhiyyə Nazirliyi:</strong> <em>Şizofreniyanın diaqnostika və müalicəsi üzrə Klinik Protokol</em> (Bakı, 2009)</li>
+<li><strong>APA Practice Guideline for the Treatment of Patients With Schizophrenia</strong> (3rd ed, 2021)</li>
+<li><strong>WFSBP Guidelines for Biological Treatment of Schizophrenia</strong> (2012, 2015)</li>
+<li><strong>Maudsley Prescribing Guidelines</strong> (Taylor, Barnes, Young – 14th ed., 2021)</li>
+</ul>
+<h3 id="kəskin-epizodun-müalicəsi" class="">Kəskin epizodun müalicəsi</h3>
+<h4 id="antipsixotik-seçimi" class="">Antipsixotik seçimi</h4>
+<p><strong>NICE CG178 və APA 2021 prinsipləri:</strong></p>
+<ul>
+<li><strong>İlk epizodda</strong> – pasiyentlə birgə qərar; <strong>atipik (II nəsil)</strong> antipsixotiklər tipik olaraq üstün</li>
+<li><strong>Klozapin yalnız müalicə-rezistent şizofreniyada</strong></li>
+</ul>
+<p><strong>İlk xətt antipsixotiklər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Standart doza</th><th>Əsas yan təsirlər</th><th>Qeydlər</th></tr>
+<tr><td><strong>Olanzapin</strong></td><td>5-20 mq/gün</td><td>Çəki artımı, metabolik sindrom, sedasiya</td><td>Effektiv, metabolik risk yüksək</td></tr>
+<tr><td><strong>Risperidon</strong></td><td>2-6 mq/gün</td><td>EPS doza-bağımlı, hiperprolaktinemiya</td><td>Effektiv, geniş istifadə</td></tr>
+<tr><td><strong>Aripiprazol</strong></td><td>10-30 mq/gün</td><td>Akatizia, başgicəllənmə</td><td>Metabolik profil yaxşı; partial D2 agonisti</td></tr>
+<tr><td><strong>Kvetiapin</strong></td><td>300-800 mq/gün</td><td>Sedasiya, ortostatik hipotenziya, çəki artımı</td><td>Yumşaq EPS profili</td></tr>
+<tr><td><strong>Paliperidon</strong></td><td>6-12 mq/gün</td><td>Hiperprolaktinemiya, EPS</td><td>Risperidon aktiv metaboliti</td></tr>
+<tr><td><strong>Lurasidon</strong></td><td>40-160 mq/gün</td><td>Akatizia</td><td>Metabolik profil çox yaxşı; <strong>yeməklə qəbul mütləq</strong></td></tr>
+<tr><td><strong>Ziprasidon</strong></td><td>80-160 mq/gün</td><td>QTc uzanması</td><td>EKG monitorinqi</td></tr>
+<tr><td><strong>Zuklopentiksol</strong></td><td>25-150 mq/gün</td><td>EPS, sedasiya</td><td>Tipik antipsixotik</td></tr>
+</table></div>
+<p><strong>Tipik (I nəsil) antipsixotiklər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Standart doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Haloperidol</strong></td><td>5-20 mq/gün</td><td>Effektiv pozitiv simptomlarda; ağır EPS</td></tr>
+<tr><td><strong>Xlorpromazin</strong></td><td>200-800 mq/gün</td><td>Klassik; sedasiya, antikolinerjik</td></tr>
+<tr><td><strong>Flupentiksol</strong></td><td>6-18 mq/gün</td><td>LAI formada da</td></tr>
+<tr><td><strong>Pimozid</strong></td><td>4-20 mq/gün</td><td>QTc uzanması, EKG mütləq</td></tr>
+</table></div>
+<p><strong>AR Klinik Protokol (2009) tövsiyələri:</strong></p>
+<ul>
+<li><strong>Atipik antipsixotiklər (AA)</strong> ilk seçim</li>
+<li><strong>Ənənəvi neyroleptiklər (ƏN)</strong> – əgər AA əlçatan deyil</li>
+</ul>
+<h4 id="doza-titrasiyası" class="">Doza titrasiyası</h4>
+<ul>
+<li><strong>Aşağı dozadan başla, pakat artır</strong></li>
+<li>İlk epizodda – <strong>standart dozanın aşağı yarısı</strong> kifayət ola bilər</li>
+<li>Effekt qiymətləndirməsi – 2-4 həftə</li>
+<li>4-6 həftədən sonra effekt yoxsa – dozanı artır və ya başqa preparat</li>
+<li><strong>Polipraqmaziya əleyhinə!</strong></li>
+</ul>
+<h4 id="kəskin-agitasiya-və-davranış-kontroldan-kənarda" class="">Kəskin agitasiya və davranış kontroldan kənarda</h4>
+<p><strong>Oral (üstün):</strong></p>
+<ul>
+<li>Lorazepam 1-2 mq + olanzapin 5-10 mq oral disinteqrating tablet</li>
+<li>Risperidon 1-2 mq oral məhlul</li>
+</ul>
+<p><strong>Əzələdaxili (im):</strong></p>
+<ul>
+<li>Olanzapin im 10 mq + (lazımdırsa) lorazepam 2 mq im</li>
+<li>Aripiprazol im 9.75 mq</li>
+<li>Haloperidol 5 mq + lorazepam 2 mq im (klassik kombinasiya)</li>
+</ul>
+<p><strong>Diqqət:</strong> Olanzapin im + benzodiazepin parenteral – respirator depressiya riski.</p>
+<h3 id="müalicə-rezistent-şizofreniya-və-klozapin" class="">Müalicə-rezistent şizofreniya və klozapin</h3>
+<p><strong>Müalicəyə rezistent şizofreniya (TRS):</strong> ən azı <strong>iki müxtəlif</strong> sinif antipsixotikin <strong>adekvat dozada</strong> və <strong>adekvat müddətdə (6-8 həftə hər biri)</strong> istifadəsindən sonra cavab yox.</p>
+<p><strong>Klozapin – TRS-də ÜSTÜN seçim:</strong></p>
+<ul>
+<li><strong>NICE CG178</strong> – aydın tövsiyə</li>
+<li><strong>30-60% TRS pasiyent klozapinə cavab verir</strong></li>
+</ul>
+<p><strong>Klozapin başlanması protokolu:</strong></p>
+<p>- Tam qan + leykosit formul – həftəlik ilk 18 həftə, sonra 2 həftədə bir 1 ilə qədər, sonra aylıq</p>
+<p>- Neytropeniya inkişafında dərhal kəsmə (yalnız neytrofillər &lt;1500/μL)</p>
+<ul>
+<li><strong>Doza:</strong> 12,5 mq başlanğıc; tədricən 200-450 mq/günə (max 900 mq/gün)</li>
+<li><strong>Sıkı monitoring</strong> – aqranulositoz riski:</li>
+</ul>
+<p>&gt; <strong>VACİB QEYD — klozapinin kəsilməsi.</strong> Klozapinin <strong>birdən-birə dayandırılması</strong> ciddi klinik risklərlə müşayiət olunur:</p>
+<p>&gt; - <strong>Rikoşet psixozu</strong> (rebound psychosis) — klozapinin sürətli kəsilməsi orijinal şizofreniya simptomlarından daha ağır psixotik epizoda səbəb ola bilər (xolinergik və serotonerjik rikoşet)</p>
+<p>&gt; - <strong>Xolinergik rikoşet sindromu</strong> — bulantı, qusma, ishal, başağrı, terlemə (klozapinin antixolinergik təsirinin geri çəkilməsi)</p>
+<p>&gt; - <strong>Aqitasiya, insomnia, narahatlıq</strong> — adrenergik rikoşet</p>
+<p>&gt;</p>
+<p>&gt; <strong>Tövsiyələr:</strong></p>
+<p>&gt; - Aqranulositoz/neytropeniya səbəbilə klozapin <strong>dərhal kəsilərsə</strong> — pasiyent <strong>stasionar şəraitdə müşahidə altında</strong> olmalıdır</p>
+<p>&gt; - Stasionarda paralel başqa antipsixotikə <strong>tədricən keçid</strong> (məsələn, olanzapin və ya kvetiapin)</p>
+<p>&gt; - Aqranulositoz olmayan hallarda — <strong>2-4 həftə ərzində tədricən doza azaltma</strong> (həftədə 25%)</p>
+<p>&gt; - Pasiyent və ailəsi rikoşet riski və xəbərdarlıq əlamətləri haqqında məlumatlandırılmalıdır</p>
+<p><strong>Klozapin əsas yan təsirləri:</strong></p>
+<ul>
+<li>Aqranulositoz (0,8% pasiyentdə; mortalite 5%)</li>
+<li>Miokardit (xüsusilə ilk 4 həftədə)</li>
+<li>Çəki artımı, metabolik sindrom</li>
+<li>Hipersalivasiya</li>
+<li>Konstipasiya – ölümcül ola bilər</li>
+<li>Sedasiya</li>
+<li>Tutmalar (doza-bağlı; 5%)</li>
+</ul>
+<h3 id="davam-edən-saxlanma-müalicə" class="">Davam edən (saxlanma) müalicə</h3>
+<p><strong>Müddət:</strong></p>
+<ul>
+<li><strong>İlk epizoddan sonra:</strong> ən azı 1-2 il (NICE) / 2-5 il (APA)</li>
+<li><strong>Çoxsaylı epizodlardan sonra:</strong> uzunmüddətli, ehtimalən ömürlük</li>
+<li><strong>Davamlı (kontinual) gediş:</strong> ömürlük</li>
+</ul>
+<p><strong>Long-acting injection (LAI) antipsixotiklər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>LAI</th><th>İntervala</th><th>Standart doza</th></tr>
+<tr><td><strong>Haloperidol dekanoat</strong></td><td>4 həftədə bir</td><td>50-200 mq</td></tr>
+<tr><td><strong>Flupentiksol dekanoat</strong></td><td>2-4 həftədə bir</td><td>20-40 mq</td></tr>
+<tr><td><strong>Zuklopentiksol dekanoat</strong></td><td>2-4 həftədə bir</td><td>200-400 mq</td></tr>
+<tr><td><strong>Risperidon LAI</strong> (Consta)</td><td>2 həftədə bir</td><td>25-50 mq</td></tr>
+<tr><td><strong>Paliperidon palmitat</strong></td><td>aylıq, 3 aylıq, 6 aylıq</td><td>75-150 mq aylıq</td></tr>
+<tr><td><strong>Olanzapin pamoat</strong></td><td>2-4 həftədə bir</td><td>150-300 mq</td></tr>
+<tr><td><strong>Aripiprazol LAI</strong> (Maintena)</td><td>aylıq</td><td>400 mq</td></tr>
+</table></div>
+<p><strong>LAI üstünlükləri:</strong> adhesiya problemini həll edir, residiv riskinin əhəmiyyətli azalması.</p>
+<h3 id="antipsixotik-yan-təsirlərinin-idarə-edilməsi" class="">Antipsixotik yan təsirlərinin idarə edilməsi</h3>
+<h4 id="ekstrapiramidal-simptomlar-eps" class="">Ekstrapiramidal simptomlar (EPS)</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Simptom</th><th>Klinik təzahür</th><th>Müalicə</th></tr>
+<tr><td><strong>Akut distoniya</strong></td><td>Boyun, dil, göz əzələləri spazmı</td><td>Biperiden 2-5 mq im</td></tr>
+<tr><td><strong>Parkinsonizm</strong></td><td>Tremor, rigidlik, bradikineziya</td><td>Doza azalt; biperiden 2-4 mq</td></tr>
+<tr><td><strong>Akatiziya</strong></td><td>Daxili narahatlıq, oturmamaq</td><td>Propranolol 30-80 mq/gün</td></tr>
+<tr><td><strong>Tardiv diskineziya</strong></td><td>Geç başlayan diskinetik hərəkətlər</td><td>Valbenazin / dezitenzin; klozapinə keçid</td></tr>
+</table></div>
+<h4 id="metabolik-yan-təsirlər" class="">Metabolik yan təsirlər</h4>
+<p><strong>Çəki artımı və metabolik sindrom riski:</strong></p>
+<ul>
+<li><strong>Yüksək:</strong> olanzapin, klozapin, kvetiapin</li>
+<li><strong>Orta:</strong> risperidon, paliperidon</li>
+<li><strong>Aşağı:</strong> aripiprazol, lurasidon, ziprasidon, asenapin</li>
+</ul>
+<p><strong>Monitoring:</strong></p>
+<ul>
+<li>Çəki – aylıq ilk 6 ay, sonra 6 aylıq</li>
+<li>Bel ölçüsü, qan təzyiqi</li>
+<li>Aclı qlükoza, HbA1c – baseline, 12 həftə, sonra ildə bir</li>
+<li>Lipid profili – baseline, 12 həftə, sonra ildə bir</li>
+</ul>
+<p><strong>Müdaxilə:</strong> pəhriz və fiziki məşq, metformin, antipsixotik dəyişdirilməsi.</p>
+<h4 id="hiperprolaktinemiya" class="">Hiperprolaktinemiya</h4>
+<ul>
+<li><strong>Yüksək risk:</strong> risperidon, paliperidon, amisulpirid, tipik antipsixotiklər</li>
+<li><strong>Aşağı risk:</strong> kvetiapin, aripiprazol, klozapin</li>
+</ul>
+<h4 id="antipsixotik-malign-sindrom-nms" class="">Antipsixotik Malign Sindrom (NMS)</h4>
+<p><strong>Təcili tibbi vəziyyət</strong> – mortalite 10%-ə qədər müalicəsiz.</p>
+<p><strong>Klinik tetrada:</strong> hipertermiya, əzələ rigidliyi, şüur dəyişikliyi, otonom qeyri-sabitlik.</p>
+<p><strong>Laborator:</strong> CPK çox yüksək (&gt;1000), leykositoz, mioqlobinuria.</p>
+<p><strong>Müalicə:</strong> antipsixotikin dərhal kəsilməsi, ICU dəstəkləyici, dantrolen, bromokriptin, EKT.</p>
+<h3 id="psixososial-müdaxilələr" class="">Psixososial müdaxilələr</h3>
+<h4 id="kdtp-cbtp-psixoz-üçün-kdt" class="">KDTp / CBTp (psixoz üçün KDT)</h4>
+<ul>
+<li><strong>Sübutluluq A</strong> – pozitiv simptomların azaldılmasında</li>
+<li><strong>NICE CG178 tövsiyəsi:</strong> bütün psixotik epizod yaşayan pasiyentlərə təklif</li>
+<li>16+ sessiya</li>
+</ul>
+<h4 id="ailə-müdaxilələri" class="">Ailə müdaxilələri</h4>
+<ul>
+<li><strong>Sübutluluq A</strong> – residiv tezliyinin azalması (~25% reduksiyası)</li>
+<li><strong>NICE CG178 tövsiyəsi:</strong> ailə üzvləri ilə yaşayan pasiyentlərə</li>
+</ul>
+<h4 id="koqnitiv-remediasiya" class="">Koqnitiv remediasiya</h4>
+<ul>
+<li><strong>Sübutluluq A</strong> – koqnitiv funksiyaların yaxşılaşdırılması</li>
+<li>20-40+ sessiya</li>
+</ul>
+<h4 id="sosial-bacarıq-təlimi-və-dəstəkli-iş-ips" class="">Sosial bacarıq təlimi və dəstəkli iş (IPS)</h4>
+<ul>
+<li><strong>IPS sübutluluq A</strong> – əmək bərpasında</li>
+</ul>
+<h4 id="erkən-müdaxilə-xidmətləri-eip" class="">Erkən müdaxilə xidmətləri (EIP)</h4>
+<ul>
+<li>İlk epizodun 2-3 illik intensiv müdaxilə dövrü</li>
+<li><strong>NICE CG178</strong> – mütləq tövsiyə</li>
+<li>Funksional çıxışı əhəmiyyətli yaxşılaşdırır</li>
+</ul>
+<h3 id="ekt-elektrokonvulsiv-terapiya" class="">EKT (elektrokonvulsiv terapiya)</h3>
+<p><strong>Göstərişlər (NICE TA59):</strong></p>
+<ul>
+<li>Müalicə-rezistent şizofreniya</li>
+<li>Katatonik vəziyyət</li>
+<li>Suisidal risk yüksək, sürətli cavab tələb olunur</li>
+<li>Klozapin əlçatan deyil və ya əks göstəriş</li>
+</ul>
+<h3 id="ar-klinik-protokolu-2009-yerli-tövsiyələr" class="">AR Klinik Protokolu (2009) – yerli tövsiyələr</h3>
+<p>Azərbaycan Respublikasının rəsmi protokolu (Səhiyyə Nazirliyi kollegiyasının 20.11.2009 №29 qərarı ilə təsdiq):</p>
+<p><strong>Müalicə təşkili:</strong></p>
+<ul>
+<li><strong>İlkin səhiyyə</strong> (ailə həkimi) – şübhəli halların aşkarlanması və yönləndirmə</li>
+<li><strong>İxtisaslaşdırılmış səhiyyə</strong> – psixoneyroloji dispanser və ya stasionar</li>
+<li><strong>Stasionar göstərişlər:</strong> kəskin psixotik epizod, suisidal risk, agresivlik, qulluq səviyyəsi pozulması, ilk epizod diaqnostikası</li>
+</ul>
+<p><strong>Farmakoloji:</strong></p>
+<ul>
+<li>Atipik antipsixotiklər (AA) – 1-ci sıra</li>
+<li>Ənənəvi neyroleptiklər (ƏN) – AA əlçatan deyilsə</li>
+<li>Klozapin – müalicə-rezistent hallarda</li>
+<li>Dəpo formaları – adhesiya problemləri varsa</li>
+</ul>
+<p><strong>Əsas problem nokta:</strong> Azərbaycanda klozapin müalicəsi məhduddur (həftəlik leykosit monitorinqi sistemi tam yerləşməyib).</p>
+<h3 id="komorbidliklərin-müalicəsi" class="">Komorbidliklərin müalicəsi</h3>
+<p><strong>Depresiya:</strong></p>
+<ul>
+<li>Postpsixotik depresiya tipikdir (50%)</li>
+<li>SİUSİ – ehtiyatla</li>
+<li>EKT – ağır hallarda</li>
+</ul>
+<p><strong>Maddə istifadəsi:</strong></p>
+<ul>
+<li>İnteqrasiya olunmuş ikili diaqnoz müalicəsi</li>
+<li>Klozapin – maddə istifadəsi şizofreniyasında xüsusi effektivdir</li>
+</ul>
+<p><strong>Suisid riski:</strong></p>
+<ul>
+<li>Klozapin suisid riskini azaldır (sübutluluq A; InterSePT tədqiqatı)</li>
+</ul>
+<p><strong>Cismani sağlamlıq:</strong></p>
+<ul>
+<li>İllik tibbi müayinə</li>
+<li>Tütün dayandırma (varenicline, NRT)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="yaxşı-proqnoz-prediktorları" class="">Yaxşı proqnoz prediktorları</h3>
+<ul>
+<li>Qadın cinsi</li>
+<li>Gec başlanğıc (&gt;25 yaş)</li>
+<li>Kəskin başlanğıc</li>
+<li>Yaxşı premorbid funksionallıq</li>
+<li>Aktiv affektiv komponentlər</li>
+<li>Dominant pozitiv simptomlar</li>
+<li>Erkən və adekvat müalicə</li>
+<li>Yaxşı ailə dəstəyi və aşağı emosional ifadə</li>
+<li>Maddə istifadəsi yoxluğu</li>
+<li>Yaxşı müalicə adhesiyası</li>
+<li>Erkən müdaxilə xidmətləri (EIP)</li>
+</ul>
+<h3 id="pis-proqnoz-prediktorları" class="">Pis proqnoz prediktorları</h3>
+<ul>
+<li>Kişi cinsi</li>
+<li>Erkən başlanğıc (&lt;18 yaş)</li>
+<li>Subkəskin başlanğıc</li>
+<li>Zəif premorbid funksionallıq</li>
+<li>Dominant neqativ simptomlar</li>
+<li>Aktiv koqnitiv pozuntular</li>
+<li>Müalicədən imtina</li>
+<li>Maddə istifadəsi</li>
+<li>Yüksək emosional ifadə ailədə</li>
+</ul>
+<h3 id="mortalite" class="">Mortalite</h3>
+<ul>
+<li>Ümumi mortalite ümumi populyasiyadan 2-3 dəfə yüksəkdir</li>
+<li>Yaşam müddəti 15-20 il aşağı</li>
+<li>Suisid: ömürlük risk 5-10%</li>
+<li>Cismani xəstəliklər (xüsusilə ürək-damar) – əsas ölüm səbəbi</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>NICE. <em>Psychosis and schizophrenia in adults: prevention and management</em> (CG178). London, 2014/2019.</li>
+<li>APA. <em>Practice Guideline for the Treatment of Patients With Schizophrenia</em> (3rd ed). 2021.</li>
+<li>Hasan A, et al. <em>WFSBP Guidelines for Biological Treatment of Schizophrenia.</em> World J Biol Psychiatry, 2012-2015.</li>
+<li>Taylor DM, Barnes TRE, Young AH. <em>The Maudsley Prescribing Guidelines in Psychiatry</em> (14th ed). Wiley, 2021.</li>
+<li>Leucht S, et al. <em>Comparative efficacy and tolerability of 32 oral antipsychotics for the acute treatment of adults with multi-episode schizophrenia.</em> Lancet, 2019.</li>
+<li>Howes OD, et al. <em>Treatment-Resistant Schizophrenia: TRRIP Working Group Consensus Guidelines.</em> Am J Psychiatry, 2017.</li>
+<li>Owen MJ, Sawa A, Mortensen PB. <em>Schizophrenia.</em> Lancet, 2016.</li>
+<li>Kane JM, et al. <em>Clozapine for the treatment-resistant schizophrenic.</em> Arch Gen Psychiatry, 1988.</li>
+<li>Meltzer HY, et al. <em>Clozapine treatment for suicidality in schizophrenia: InterSePT.</em> Arch Gen Psychiatry, 2003.</li>
+</ol>
+<p><strong>Yerli (Azərbaycan):</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Şizofreniyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol.</em> Bakı, 2009. SN kollegiyasının 20.11.2009 №29 qərarı.</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+<p><strong>MDB və post-sovet:</strong></p>
+<ol>
+<li>Snejnevski A.V. <em>Şizofreniya: multidissiplinar tədqiqat.</em> (Шизофрения: мультидисциплинарное исследование) Moskva: Tibb, 1972.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya.</em> (Современная клиническая психиатрия) – Sankt-Peterburq: Reç, 2006. 2-ci nəşr.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a21-şi̇zoaffekti̇v-pozuntu" class="h-disorder"><span class="icd">6A21</span> ŞİZOAFFEKTİV POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A21</span> — Şizoaffektiv Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F25</span> — Şizoaffektiv pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 295.70 — Schizoaffective Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Şizoaffektiv pozuntu – şizofreniyanın əsas simptomları <strong>və</strong> affektiv epizodun (depresiv və ya manik) simptomlarının <strong>eyni epizod kontekstində birgə</strong> mövcudluğu ilə xarakterizə olunur.</p>
+<p>XBT-11 alt-tipləri (epizod xarakterinə görə):</p>
+<ul>
+<li><strong><span class="icd">6A21.0</span></strong> İlk epizod</li>
+<li><strong><span class="icd">6A21.1</span></strong> Çoxsaylı epizodlar</li>
+<li><strong><span class="icd">6A21.2</span></strong> Davamlı</li>
+</ul>
+<p>DSM-5-TR alt-tipləri (mood epizodun xarakterinə görə):</p>
+<ul>
+<li><strong>Bipolyar tipli</strong> – mania var və ya olmuşdur</li>
+<li><strong>Depresiv tipli</strong> – yalnız depresiv epizodlar</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Genetik:</strong> şizofreniya və əhval pozuntuları ilə örtüşən risk</li>
+<li><strong>Birinci dərəcəli risk</strong> qohumlarda 5-15%</li>
+<li><strong>Mühit amilləri:</strong> stress, maddə istifadəsi tetikləyə bilər</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 0,3%</li>
+<li><strong>Cins:</strong> qadınlarda bir qədər yüksək</li>
+<li><strong>Yaş:</strong> başlanğıc adətən 20-30 yaş</li>
+<li><strong>Komorbidlik:</strong> maddə istifadəsi pozuntusu, suisid riski yüksəkdir</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li><strong>Aktiv epizod:</strong> psixotik simptomlar <strong>və</strong> affektiv simptomlar</li>
+<li><strong>Affektiv epizoddan kənar dövr:</strong> psixotik simptomlar mütləq ən azı 2 həftə davam etməlidir affektiv simptomsuz</li>
+<li><strong>Funksional pozulma</strong> şizofreniyaya yaxındır</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a21" class="">XBT-11 əsas tələblər (<span class="icd">6A21</span>):</h3>
+<p><strong>A.</strong> Şizofreniya meyarlarına uyğun simptomlar <strong>və</strong> depresiv və ya manik epizod <strong>eyni vaxtda və davamlı şəkildə</strong></p>
+<p><strong>B.</strong> Bu simptomlar eyni epizodun ən azı 4 həftə müddətində birgə mövcud olmalıdır</p>
+<p><strong>C.</strong> Aktiv epizod ərzində psixotik simptomlar mood simptomları olmadan ən azı 2 həftə mövcud olmalıdır</p>
+<p><strong>D.</strong> Maddə təsiri və ya tibbi vəziyyət ilə tam izah olunmur</p>
+<h3 id="dsm-5-tr-fərqi-simptom-paterni-daha-sərt-əhval-simptomları-xəstəlik-dö" class="">DSM-5-TR fərqi: simptom paterni daha sərt – əhval simptomları xəstəlik dövrünün böyük hissəsində mövcud olmalıdır.</h3>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizofreniya + komorbid depresiya</strong></td><td>Psixotik simptomlar dominant və davamlı; mood epizodları qısa</td></tr>
+<tr><td><strong>Bipolyar I psixotik xüsusiyyətlərlə</strong></td><td>Psixoz <strong>yalnız</strong> mood epizodu kontekstində</td></tr>
+<tr><td><strong>Tək epizod psixotik depresiya</strong></td><td>Mood-az dövrdə psixoz yoxdur</td></tr>
+<tr><td><strong>Maddə induksiyalı</strong></td><td>Maddə tarixçəsi</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<p>Şizofreniya kimi (Bölmə 2.1.7-ə bax) – əlavə olaraq affektiv epizodlar üzrə qiymətləndirmə (HAM-D, MADRS, YMRS).</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<ul>
+<li><strong>NICE CG178</strong> (şizofreniya üçün, şizoaffektivə də şamil)</li>
+<li><strong>CANMAT bipolar pozuntu üçün</strong> (bipolyar tipli üçün)</li>
+<li><strong>APA Schizophrenia Guideline (2021)</strong></li>
+</ul>
+<h3 id="farmakoloji-yanaşma" class="">Farmakoloji yanaşma</h3>
+<p><strong>Bipolyar tipli:</strong></p>
+<ul>
+<li>Atipik antipsixotik + əhval stabilizatoru (litium, valproat) – 1-ci xətt</li>
+<li>Manik epizod: olanzapin, kvetiapin, risperidon, aripiprazol</li>
+<li>Saxlanma: litium və ya valproat + atipik antipsixotik</li>
+</ul>
+<p><strong>Depresiv tipli:</strong></p>
+<ul>
+<li>Atipik antipsixotik + antidepressant (SİUSİ)</li>
+<li>Kvetiapin xüsusilə effektiv (depresiv komponentdə)</li>
+<li>EKT ağır rezistent hallarda</li>
+</ul>
+<h3 id="psixososial-müdaxilələr" class="">Psixososial müdaxilələr</h3>
+<p>Şizofreniya ilə eyni protokol – KDTp, ailə müdaxilələri, psixososial reabilitasiya.</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Şizofreniyadan yaxşı, lakin tək affektiv pozuntudan pis</li>
+<li>Bipolyar tipli daha yaxşı proqnoz</li>
+<li>Suisid riski yüksəkdir</li>
+<li>Adekvat müalicə ilə remissiya periodları əhəmiyyətli ola bilər</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Cheniaux E, et al. <em>Does schizoaffective disorder really exist?</em> J Affect Disord, 2008.</li>
+<li>Malhi GS, et al. <em>RANZCP clinical practice guidelines for mood disorders.</em> Aust N Z J Psychiatry, 2021.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a22-şi̇zoti̇pi̇k-pozuntu" class="h-disorder"><span class="icd">6A22</span> ŞİZOTİPİK POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A22</span> — Şizotipik Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F22</span> — Davam edən sayıqlama pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 297.1 — Delusional Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Şizotipik pozuntu – ekssentrik davranış, kommunikasiya pozuntusu, qəribə inanclar və qavrayış pozuntuları ilə xarakterizə olunan davamlı patern; lakin <strong>şizofreniyanın tam meyarlarını qarşılamır</strong>.</p>
+<p>XBT-11-də şizofreniya spektri kateqoriyasında qalır. DSM-5-TR-də həm psixotik spektrdə, həm də şəxsiyyət pozuntuları kateqoriyasında qeyd olunur.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Genetik:</strong> şizofreniya ilə güclü əlaqə</li>
+<li><strong>Endofenotipik konsept</strong> – şizofreniya genetik riskinin &quot;yumşaq ifadəsi&quot;</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 0,6-3%</li>
+<li><strong>Cins:</strong> kişilərdə bir qədər yüksək</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p>XBT-11 əsas əlamətlər:</p>
+<ol>
+<li>Qəribə inanclar və magik düşüncə</li>
+<li>Qavrayış təhriflər</li>
+<li>Qəribə düşüncə və nitq</li>
+<li>Qəribə davranış və görünüş</li>
+<li>Şübhəlilik və paranoid düşüncələr</li>
+<li>Affekt yastılığı</li>
+<li>Sosial təcrid</li>
+<li>İlişən fikirlər</li>
+<li>Yaxın münasibətlərdə əksiklik</li>
+</ol>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər" class="">XBT-11 əsas tələblər:</h3>
+<p><strong>A.</strong> Yuxarıdakı simptomlardan 3 və daha çox + 2 ildən çox davam</p>
+<p><strong>B.</strong> Şizofreniya meyarları qarşılanmır</p>
+<p><strong>C.</strong> Erkən-orta yetkinlikdə təzahür</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizofreniya</strong></td><td>Tam psixotik simptomlar</td></tr>
+<tr><td><strong>Sxizoid şəxsiyyət pozuntusu</strong></td><td>Sosial təcrid əsasdır</td></tr>
+<tr><td><strong>Paranoid şəxsiyyət pozuntusu</strong></td><td>Şübhəlilik dominant</td></tr>
+<tr><td><strong>ASP yüksək funksional</strong></td><td>Sosial-kommunikativ pozuntu erkən başlayır</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<ul>
+<li>Klinik müsahibə</li>
+<li>SCID-5-PD</li>
+<li>SPQ (Schizotypal Personality Questionnaire)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li>Spesifik təsdiqli müalicə yoxdur</li>
+<li><strong>Aşağı doza atipik antipsixotiklər</strong> (risperidon 0,5-2 mq) – pozitiv simptomlarda</li>
+<li><strong>KDT</strong> – sosial təcrid, koqnitiv distorsiyalarla iş</li>
+<li><strong>Sosial bacarıq təlimi</strong></li>
+<li>Komorbid depresiya, təşviş üçün – SİUSİ</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Davamlı patern</li>
+<li>5-15% pasiyentdə şizofreniyaya inkişaf</li>
+<li>Sosial və peşə fəaliyyətində məhdudiyyətlər</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Rosell DR, et al. <em>Schizotypal personality disorder: a current review.</em> Curr Psychiatry Rep, 2014.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a23-kəski̇n-və-keçi̇ci̇-psi̇xoti̇k-pozuntu" class="h-disorder"><span class="icd">6A23</span> KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A23</span> — Kəskin Və Keçici Psixotik Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F23</span> — Kəskin və keçici psixotik pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 298.8 — Brief Psychotic Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Kəskin və keçici psixotik pozuntu – çox sürətli başlanğıc psixotik simptomlarla, <strong>3 aydan az davam edən</strong> vəziyyətdir. Tam funksional bərpa adətən mövcuddur.</p>
+<p>Tarixən &quot;bouffée délirante&quot; (Fransa), &quot;kəskin paranoid reaksiya&quot;, &quot;psixogen psixoz&quot; kimi konseptlər bu kateqoriya altına düşürdü.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Stress tetikləyici mümkün (lakin tələb deyil)</li>
+<li>Genetik komponent zəif</li>
+<li>Mühit: əhəmiyyətli stres, miqrasiya, doğuş sonrası</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>İnsidens:</strong> 4-10/100 000 il</li>
+<li><strong>Cins:</strong> qadınlarda 2-3 dəfə yüksək</li>
+<li><strong>Yaş:</strong> 30-50 yaş</li>
+<li>İnkişaf etməkdə olan ölkələrdə daha tez-tez</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Sürətli başlanğıc (2 həftədən az ərzində)</li>
+<li>Polimorf simptomlar – sayıqlama, halusinasiyalar tez-tez dəyişir</li>
+<li>Affektiv labillik</li>
+<li>Konfüziya, dezoryentasiya elementləri</li>
+<li>Tam funksional bərpa simptomların keçməsi ilə</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər" class="">XBT-11 əsas tələblər:</h3>
+<p><strong>A.</strong> Psixotik simptomların kəskin başlanğıcı (2 həftədən az)</p>
+<p><strong>B.</strong> Davam <strong>3 aydan az</strong></p>
+<p><strong>C.</strong> Şizofreniya meyarları qarşılanmır</p>
+<p><strong>D.</strong> Maddə və ya üzvi səbəblər istisna</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizofreniya</strong></td><td>Davam ≥1 ay (XBT-11) / ≥6 ay (DSM-5)</td></tr>
+<tr><td><strong>Maddə induksiyalı</strong></td><td>Maddə tarixçəsi</td></tr>
+<tr><td><strong>Mood epizod psixotik xüsusiyyətlərlə</strong></td><td>Affektiv komponent dominant</td></tr>
+<tr><td><strong>Deliriya</strong></td><td>Şüur dəyişikliyi, dalğalanma; üzvi səbəb</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<ul>
+<li>Şizofreniya ilə eyni alqoritm</li>
+<li><strong>Üzvi səbəblərin daha aktiv istisnası</strong> – beyin MRT, EEQ, geniş laborator</li>
+<li><strong>Toksikoloji skrining mütləq</strong></li>
+<li>Anti-NMDA-R antikorları (atipik təqdimdə)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="kəskin-epizod" class="">Kəskin epizod</h3>
+<ul>
+<li><strong>Aşağı doza atipik antipsixotik</strong> – qısa müddət</li>
+<li><strong>Benzodiazepinlər</strong> – aqitasiya, yuxu üçün</li>
+<li>Stress idarəsi</li>
+</ul>
+<h3 id="davamlı-müalicə" class="">Davamlı müalicə</h3>
+<ul>
+<li>Adətən 3-6 aydan sonra antipsixotik kəsilə bilər</li>
+<li>Davamlı izləmə – residiv riski</li>
+<li>KDTp əgər təkrarlanırsa</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>80%+ pasiyent tam bərpa</li>
+<li>15-20%-də şizofreniyaya inkişaf</li>
+<li>Stress tetikləyici varsa proqnoz daha yaxşı</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Castagnini A, Berrios GE. <em>Acute and transient psychotic disorders (ICD-10 <span class="icd">F23</span>): a review from a European perspective.</em> Eur Arch Psychiatry Clin Neurosci, 2009.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a22-sayiqlama-pozuntusu" class="h-disorder"><span class="icd">6A22</span> SAYIQLAMA POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A22</span> — Sayiqlama Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F22</span> — Davam edən sayıqlama pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 297.1 — Delusional Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Sayıqlama pozuntusu – bir və ya bir neçə davamlı sayıqlama ilə xarakterizə olunan vəziyyət, <strong>digər psixotik simptomlar yoxdur</strong>. Funksional səviyyə sayıqlamaya birbaşa aid olmayan sahələrdə nisbi saxlanılır.</p>
+<p><strong>XBT-11 yenilik:</strong> XBT-10-da sayıqlama &quot;qeyri-qəribə&quot; olmalı idi. XBT-11 bu məhdudiyyəti ləğv edir.</p>
+<p><strong>XBT-11 yenilik 2:</strong> İnduksiyalı sayıqlama pozuntusu (folie à deux, XBT-10-da <span class="icd">F24</span>) <strong><span class="icd">6A24</span>-ə inteqrasiya edilmişdir</strong>.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Genetik komponent: orta (şizofreniyadan az)</li>
+<li>Şəxsiyyət xüsusiyyətləri: paranoid, sxizotipal premorbid</li>
+<li>Sensori məhrumluq: eşitmə pozuntusu</li>
+<li>İmmiqrasiya, sosial təcrid</li>
+<li>Yaşlı yaşda neyrokoqnitiv komponentlər</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 0,2%</li>
+<li><strong>Yaş:</strong> orta-yaşlı və yaşlılar dominant (40+ yaş)</li>
+<li><strong>Cins:</strong> qadın:kişi 2:1 (qısqanclıq sayıqlamasında kişilər dominant)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="sayıqlama-tipləri" class="">Sayıqlama tipləri:</h3>
+<ul>
+<li><strong>Persekutiv</strong> – ən geniş yayılmış</li>
+<li><strong>Münasibət</strong></li>
+<li><strong>Qrandioz</strong></li>
+<li><strong>Erotomanik (Klerambo)</strong> – tanınmış şəxsin gizli sevgisi</li>
+<li><strong>Qısqanclıq (Otello)</strong></li>
+<li><strong>Somatik / hipoxondrik</strong></li>
+<li><strong>Qarışıq</strong></li>
+</ul>
+<h3 id="klinik-xüsusiyyətlər" class="">Klinik xüsusiyyətlər:</h3>
+<ul>
+<li>Sayıqlama sistematik və davamlı</li>
+<li>Pasiyent uyğun mühakimə və davranış sayıqlama mövzusu xaricində</li>
+<li>Halüsinasiyalar nadir</li>
+<li>İnsight zəif</li>
+<li>Stress reaktivlik sayıqlama məzmununa uyğun</li>
+</ul>
+<h3 id="i̇nduksiyalı-sayıqlama-folie-à-deux-6a24" class="">İnduksiyalı sayıqlama (folie à deux, <span class="icd">6A24</span>):</h3>
+<ul>
+<li>Bir şəxsdə sayıqlama digər şəxsə &quot;ötürülür&quot; (yaxın münasibətdə)</li>
+<li>&quot;İndüktor&quot; və &quot;reseptor&quot; rolları</li>
+<li>Ayrılıqdan sonra reseptordakı sayıqlama tez-tez keçir</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a24" class="">XBT-11 əsas tələblər (<span class="icd">6A24</span>):</h3>
+<p><strong>A.</strong> Bir və ya bir neçə davamlı sayıqlama ən azı <strong>3 ay</strong> mövcud olmalıdır</p>
+<p><strong>B.</strong> Şizofreniya simptomları yoxdur və ya çox yumşaqdır</p>
+<p><strong>C.</strong> Funksional pozulma sayıqlama mövzusuna birbaşa aid olmayan sahələrdə minimal</p>
+<p><strong>D.</strong> Tibbi vəziyyət, maddə təsiri ilə tam izah olunmur</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizofreniya</strong></td><td>halusinasiyalar, neqativ simptomlar mövcud</td></tr>
+<tr><td><strong>OKP (insight zəif)</strong></td><td>Obsessiv xarakterli, eqo-distonik</td></tr>
+<tr><td><strong>Bədən dismorfik pozuntusu</strong></td><td>Konkret bədən qüsuru fokusu</td></tr>
+<tr><td><strong>Paranoid şəxsiyyət pozuntusu</strong></td><td>Yalnız şübhəlilik</td></tr>
+<tr><td><strong>Demensiya, deliriya</strong></td><td>Üzvi səbəb, koqnitiv pozuntu</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<ul>
+<li>Klinik müsahibə (uzun, sayıqlama haqqında ehtiyatlı)</li>
+<li>Sensori funksiyaların yoxlanması (eşitmə)</li>
+<li>Beyin MRT – yaşlı pasiyentdə</li>
+<li>Toksikoloji skrining</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p><strong>Müalicə çətindir</strong> – pasiyent klinisistə şübhəylə yanaşır.</p>
+<h3 id="terapevtik-münasibət" class="">Terapevtik münasibət</h3>
+<ul>
+<li>Sayıqlamaya birbaşa qarşı çıxmamaq</li>
+<li>Tarafsiz mövqe</li>
+</ul>
+<h3 id="farmakoloji" class="">Farmakoloji</h3>
+<p>- Risperidon 1-3 mq/gün</p>
+<p>- Olanzapin 5-10 mq/gün</p>
+<p>- Aripiprazol 5-15 mq/gün</p>
+<ul>
+<li><strong>Atipik antipsixotiklər</strong> – aşağı doza</li>
+<li>Pimozid (xüsusilə hipoxondrik və qısqanclıq sayıqlamasında)</li>
+<li><strong>Effekt 30-50%-də</strong> – şizofreniyadan aşağı</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<ul>
+<li>KDTp – ehtiyatlı, klinisistlə güvən qurma</li>
+<li>Sosial təcrid azaltma</li>
+<li>Sensori dəstək (eşitmə cihazları)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Davamlı pattern – tez-tez illərlə dəyişməyən sayıqlama</li>
+<li>30-50% pasiyent farmakoterapiyaya yumşaq cavab verir</li>
+<li>Sosial və işdə fəaliyyətin saxlanması – əksər pasiyentlərdə</li>
+<li>Şizofreniyaya inkişaf nadir (5-10%)</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Munro A. <em>Delusional Disorder: Paranoia and Related Illnesses.</em> Cambridge UP, 1999.</li>
+<li>González-Rodríguez A, et al. <em>Antipsychotic treatment in delusional disorder: a comprehensive review.</em> Curr Pharm Des, 2019.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a25-bi̇ri̇nci̇li̇-psi̇xoti̇k-pozuntularin-si̇mptom-domenləri̇-6a25" class="h-disorder"><span class="icd">6A25</span> BİRİNCİLİ PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ (<span class="icd">6A25</span>)</h1>
+<hr>
+<h2 id="konsepsiya" class="">Konsepsiya</h2>
+<p>XBT-11-də bu <strong>müstəqil diaqnoz deyil</strong>, lakin <strong>diaqnoza əlavə qiymətləndirmə alət sistemidir</strong>. Hər bir birincili psixotik pozuntu (<span class="icd">6A20</span>-<span class="icd">6A24</span>) diaqnozu qoyulduqda klinisist 6 simptom domeninin <strong>şiddətini</strong> ayrıca qiymətləndirməlidir.</p>
+<h2 id="6-simptom-domeni" class="">6 simptom domeni</h2>
+<h3 id="6a250-pozitiv-simptomlar" class=""><span class="icd">6A25.0</span> Pozitiv simptomlar</h3>
+<ul>
+<li>Sayıqlama</li>
+<li>halusinasiyalar</li>
+<li>Təsir, passivlik təcrübələri</li>
+<li>Düşüncə dezorqanizasiyası</li>
+<li>Davranış dezorqanizasiyası</li>
+</ul>
+<h3 id="6a251-neqativ-simptomlar" class=""><span class="icd">6A25.1</span> Neqativ simptomlar</h3>
+<ul>
+<li>Affekt yastılığı</li>
+<li>Alogiya</li>
+<li>Avoliya / abuliya</li>
+<li>Anhedoniya</li>
+<li>Asosiallıq</li>
+</ul>
+<h3 id="6a252-depresiv-əhval-simptomları" class=""><span class="icd">6A25.2</span> Depresiv əhval simptomları</h3>
+<h3 id="6a253-manik-əhval-simptomları" class=""><span class="icd">6A25.3</span> Manik əhval simptomları</h3>
+<h3 id="6a254-psixomotor-simptomlar" class=""><span class="icd">6A25.4</span> Psixomotor simptomlar</h3>
+<ul>
+<li>Aqitasiya</li>
+<li>Ləngləmə</li>
+<li>Katatoniya komponentləri</li>
+</ul>
+<h3 id="6a255-koqnitiv-simptomlar" class=""><span class="icd">6A25.5</span> Koqnitiv simptomlar</h3>
+<ul>
+<li>Diqqət pozuntusu</li>
+<li>Yaddaş zəifliyi</li>
+<li>İcra funksiyaları zəifliyi</li>
+<li>İşləmə sürəti</li>
+</ul>
+<h2 id="şiddət-şkalası" class="">Şiddət şkalası</h2>
+<p>Hər domen üçün 4-bal (yox / yüngül / orta / ağır).</p>
+<h2 id="klinik-tətbiq" class="">Klinik tətbiq</h2>
+<p>Bu sistematik domain qiymətləndirməsi:</p>
+<ul>
+<li>Fərdiləşdirilmiş müalicə planı</li>
+<li>Müalicə cavabının izlənməsi</li>
+<li>Tədqiqat və klinik dialoq</li>
+</ul>
+<p>Şkalalar – PANSS, BPRS – bu domenleri ölçür.</p>
+      <nav class="page-nav"><a href="bolme-01.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 1 — NEYROİNKİŞAF</span></a><a href="bolme-03.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 3 — KATATONİYA</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-02";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

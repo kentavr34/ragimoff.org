@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 4 — ƏHVAL">
+<title>BÖLMƏ 4 — ƏHVAL | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-4" class="h-bolme">BÖLMƏ 4</h1>
+<h2 id="əhval-pozuntulari" class="">ƏHVAL POZUNTULARI</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A60</span>–6A8Z — Mood disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F30</span>–<span class="icd">F39</span> — Mood [affective] disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Depressive Disorders + Bipolar and Related Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6A60</span></strong></td><td>Bipolyar I pozuntu</td><td>4.2</td></tr>
+<tr><td><strong><span class="icd">6A61</span></strong></td><td>Bipolyar II pozuntu</td><td>4.3</td></tr>
+<tr><td><strong><span class="icd">6A62</span></strong></td><td>Siklotimik pozuntu</td><td>4.4</td></tr>
+<tr><td><strong><span class="icd">6A70</span></strong></td><td>Tək epizod depressiv pozuntu</td><td>4.1</td></tr>
+<tr><td><strong><span class="icd">6A71</span></strong></td><td>Təkrarlanan depressiv pozuntu</td><td>4.1</td></tr>
+<tr><td><strong><span class="icd">6A72</span></strong></td><td>Distimik pozuntu</td><td>4.5</td></tr>
+<tr><td><strong><span class="icd">6A73</span></strong></td><td>Mixed depressiv və təşviş pozuntusu</td><td>4.6</td></tr>
+<tr><td><strong><span class="icd">6A80</span></strong></td><td>Simptom təzahürləri (depresiv əhval, manik əhval, qarışıq, melanxolik xüsusiyyətlər və s.)</td><td>4.7</td></tr>
+<tr><td><strong>6A8Z</strong></td><td>Digər/dəqiqləşdirilməmiş əhval pozuntuları</td><td>—</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p>XBT-11 əhval pozuntularının təsnifatına bir sıra <strong>prinsipial dəyişikliklər</strong> gətirmişdir:</p>
+<h3 id="bipolyar-pozuntu-dsm-5-və-xbt-11-də-ayrı-ayrı-lakin-yaxınlaşıb" class="">Bipolyar pozuntu DSM-5 və XBT-11-də ayrı-ayrı, lakin yaxınlaşıb</h3>
+<p>DSM-5-TR-də <strong>bipolyar pozuntular ayrı bölmədə</strong> (depresivlərdən kənarda) yerləşir. <strong>XBT-11 isə</strong> &quot;Mood Disorders&quot; çətirinin altında bipolyar və depresivləri <strong>yenidən birləşdirib</strong>.</p>
+<h3 id="bipolyar-i-və-bipolyar-ii-ayrılma-davam-edir" class="">Bipolyar I və Bipolyar II – ayrılma davam edir</h3>
+<p>XBT-10-da <strong>bipolyar II ayrıca diaqnoz deyildi</strong> (yalnız <span class="icd">F31.8</span> &quot;digər bipolyar&quot;). XBT-11 indi <strong><span class="icd">6A61</span> Bipolyar II</strong> kodunu ayrı verir – DSM-5-TR ilə sinxronlaşma.</p>
+<h3 id="qarışıq-epizodun-yenidən-tərifi" class="">Qarışıq epizodun yenidən tərifi</h3>
+<p>DSM-IV-də <strong>&quot;qarışıq epizod&quot;</strong> alt-tipi var idi (eyni vaxtda mania + depresiya). DSM-5 bunu ləğv etdi və <strong>&quot;qarışıq xüsusiyyətlər&quot; specifiyer</strong>-ə çevirdi. XBT-11 isə <strong><span class="icd">6A80</span></strong> kateqoriyasında &quot;mixed mood symptoms&quot; kimi tanıyır – depresiv epizodda manik simptomlar 3+ olduqda və ya əksi.</p>
+<h3 id="manik-epizodun-tərifi-sərtləşdirildi" class="">Manik epizodun tərifi sərtləşdirildi</h3>
+<p>DSM-5 və XBT-11 indi manik epizod üçün <strong>artırılmış aktivlik və ya enerji</strong> tələb edir – təkcə yüksəlmiş əhval kifayət deyil. Bu DSM-IV-dən fərqdir və əhəmiyyətli klinik təsir göstərir – bəzi köhnə &quot;manic&quot; hesab olunan halları indi bipolyar diaqnozundan çıxarır.</p>
+<h3 id="karuselli-depresiv-epizod-meyarları-yenilənib" class="">Karuselli depresiv epizod meyarları yenilənib</h3>
+<p>XBT-11 depresiv epizod üçün <strong>affektiv, neyrovegetativ və koqnitiv simptomlar</strong> üzrə üç qrup ayırır; <strong>5+ simptom</strong> ən azı 2 həftə ərzində tələb olunur (XBT-10 ilə eyni, lakin daha aydın strukturda).</p>
+<h3 id="yas-matəm-istisnası-saxlandı-lakin-yumşaldıldı" class="">Yas (matəm) istisnası saxlandı, lakin yumşaldıldı</h3>
+<p>XBT-11 <strong>yas reaksiyası 4 həftədən uzun davam etdikdə</strong> depressiv epizod diaqnozunu icazə verir, <strong>xüsusilə tipik depresiv simptomlar varsa</strong> (suisidal idea, dərin günah, psixotik simptomlar, psixomotor ləngləmə). DSM-5-TR-də 2 həftəlik istisna var idi və o ləğv edildi (artıq yas kontekstində depressiya tanına bilər).</p>
+<h3 id="premenstrual-disforik-pozuntu-pmdd" class="">Premenstrual disforik pozuntu (PMDD)</h3>
+<p>XBT-11-də – <strong>GA34.41</strong> (ginekologi bölmədə), DSM-5-TR-də – depresiv pozuntular bölməsində 625.4. Bu kitabda Bölmə 19-da (perinatal/reproduktiv) müzakirə olunur.</p>
+<h3 id="disruptiv-əhval-disregulyasiya-pozuntusu-dmdd" class="">Disruptiv əhval-disregulyasiya pozuntusu (DMDD)</h3>
+<p>DSM-5-TR-də uşaqlar üçün ayrı kateqoriya (296.99). XBT-11-də <strong><span class="icd">6C90</span></strong> &quot;Oppozisiya pozuntusu xroniki qıcıqlanmalı&quot; alt-tipi kimi (Bölmə 14-də – pozucu davranış pozuntularında müzakirə edilir).</p>
+<p>\newpage</p>
+<h1 id="6a60-depressiv-pozuntular" class="h-disorder"><span class="icd">6A60</span> DEPRESSIV POZUNTULAR</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A60</span> — Depressiv Pozuntular</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F32</span> — Depressiv epizod</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 296.2x — Major Depressive Disorder, Single Episode</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p><strong>Depresiv epizod</strong> – ən azı <strong>2 həftə davam edən</strong> dövrdə <strong>depressiv əhval</strong> və/və ya <strong>anhedoniya</strong> dominant olur, yanaşı somatik və koqnitiv simptomlar müşayiət edir. Əhəmiyyətli funksional pozulma yaradır.</p>
+<p><strong>Tək epizod depressiv pozuntu (<span class="icd">6A70</span>):</strong> ömürdə yalnız bir depresiv epizod</p>
+<p><strong>Təkrarlanan depressiv pozuntu (<span class="icd">6A71</span>):</strong> ən azı iki depresiv epizod, hər biri ən azı 2 həftə, aralarında <strong>bir neçə ay</strong> simptomsuz interval</p>
+<p><strong>XBT-11 və DSM-5-TR-də depresiv epizodun simptom kateqoriyaları:</strong></p>
+<p><strong>A. Affektiv simptomlar:</strong></p>
+<ul>
+<li>Depresiv əhval (kədər, ümidsizlik, &quot;boşluq&quot;)</li>
+<li><strong>Anhedoniya</strong> – maraqsızlıq və ya həzz almaq qabiliyyətinin azalması</li>
+</ul>
+<p><strong>B. Koqnitiv-davranış simptomları:</strong></p>
+<ul>
+<li>Konsentrasiya çətinliyi</li>
+<li>Aşağı özünə hörmət</li>
+<li>Həddən artıq və ya uyğunsuz günah hissi</li>
+<li>Ümidsizlik</li>
+<li><strong>Suisidal idea, plan və ya niyyət</strong></li>
+</ul>
+<p><strong>C. Neyrovegetativ simptomlar:</strong></p>
+<ul>
+<li>Yuxu pozuntusu (insomniya və ya hipersomniya)</li>
+<li>İştahanın və ya çəkinin əhəmiyyətli dəyişikliyi</li>
+<li>Psixomotor agitasiya və ya ləngləmə</li>
+<li>Yorğunluq, enerji çatışmazlığı</li>
+</ul>
+<p><strong>Diaqnostik tələb:</strong> <strong>5 və daha çox simptom</strong> (anhedoniya və/və ya depresiv əhval mütləq daxil olmaqla) <strong>ən azı 2 həftə ərzində</strong> <strong>demək olar ki, hər gün, gün ərzində ən azından çox vaxtda</strong>.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<p>Depresiv pozuntu <strong>multifaktorial</strong> xarakterlidir.</p>
+<h3 id="genetik-amillər" class="">Genetik amillər</h3>
+<ul>
+<li><strong>İrsiyyət göstəricisi 35-40%</strong> (orta səviyyə; şizofreniyadan az, lakin əhəmiyyətli)</li>
+<li><strong>Birinci dərəcəli qohumda risk:</strong> ümumi populyasiyadan <strong>2-3 dəfə yüksək</strong></li>
+<li><strong>Polygenic</strong> xarakter – yüzlərlə kiçik təsirli variant</li>
+<li><strong>Spesifik genlər:</strong> 5-HTTLPR (serotonin transporter), BDNF, COMT, FKBP5</li>
+</ul>
+<h3 id="neyrobioloji-mexanizmlər" class="">Neyrobioloji mexanizmlər</h3>
+<p><strong>Monoamin hipotezi (klassik):</strong></p>
+<ul>
+<li>Serotonin (5-HT), noradrenalin və dopamin azlığı</li>
+<li>Bütün antidepressantların təsir mexanizminin əsası</li>
+</ul>
+<p><strong>HPA oxu disregulyasiyası:</strong></p>
+<ul>
+<li>Hipotalamus-hipofiz-adrenal oxun hiperaktivliyi</li>
+<li>Yüksək kortizol səviyyəsi</li>
+<li>Deksametazon supressiya testində qeyri-supressiya</li>
+</ul>
+<p><strong>Neyroinflammatuar nəzəriyyə:</strong></p>
+<ul>
+<li>Provospaltel sitokinlərin (IL-6, TNF-alpha, CRP) artımı</li>
+<li>Mikroqliya aktivasiyası</li>
+<li>&quot;Sickness behavior&quot; konsepti</li>
+</ul>
+<p><strong>Neyroplastiklik və BDNF:</strong></p>
+<ul>
+<li>BDNF (Brain-Derived Neurotrophic Factor) azlığı</li>
+<li>Hippokampus volume azalması (uzun depresiyada)</li>
+<li>Antidepressantlar BDNF-i artırır</li>
+</ul>
+<p><strong>Beyin strukturu:</strong></p>
+<ul>
+<li>Hippokampus volume azalması (xüsusilə uzun davamlı depresiyada)</li>
+<li>Anterior singulat korteks anomaliyası</li>
+<li>Amigdala hiperaktivliyi (mənfi stimullara)</li>
+<li>Default mode network disregulyasiyası (rumninasiya)</li>
+</ul>
+<h3 id="psixososial-amillər" class="">Psixososial amillər</h3>
+<ul>
+<li><strong>Erkən travma</strong> – uşaqlıqda zorakılıq, abuza, neglekt (3-4 dəfə risk)</li>
+<li><strong>Aktual stress</strong> – itki, münasibət problemi, iş itkisi</li>
+<li><strong>Sosial dəstəyin azlığı</strong></li>
+<li><strong>Şəxsiyyət xüsusiyyətləri</strong> – neyrotizm, perfeksionizm</li>
+<li><strong>Koqnitiv zəiflik</strong> – Beckin koqnitiv triadası: özünə, dünyaya, gələcəyə dair mənfi inanclar</li>
+<li><strong>&quot;Öyrənilmiş köməksizlik&quot;</strong> (Seligman)</li>
+</ul>
+<h3 id="tibbi-və-mühit-amilləri" class="">Tibbi və mühit amilləri</h3>
+<ul>
+<li><strong>Cismani xəstəliklər:</strong> ürək-damar, diabet, xərçəng, xroniki ağrı, hipotireoz, MS, Parkinson, Cushing</li>
+<li><strong>Dərmanlar:</strong> kortikosteroidlər, beta-blokatorlar (bəzi), interferon-alpha, retinoidlər (izotretinoin), rezerpin</li>
+<li><strong>Maddə istifadəsi</strong></li>
+<li><strong>Mövsüm təsiri</strong> – mövsümi affektiv pozuntu (Seasonal Affective Disorder, SAD) – qışda</li>
+<li><strong>Vitamin D, B12 çatışmazlığı</strong></li>
+<li><strong>Doğuşdan sonrakı dövr</strong> (Bölmə 19-a bax)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<h3 id="yayılma" class="">Yayılma</h3>
+<ul>
+<li><strong>Ömürlük yayılma:</strong> <strong>15-20%</strong> (qadınlar) / <strong>8-12%</strong> (kişilər)</li>
+<li><strong>12 aylıq yayılma:</strong> <strong>6-7%</strong></li>
+<li><strong>Anlıq yayılma:</strong> ~3-4%</li>
+<li><strong>Azərbaycan:</strong> rəsmi statistikada <strong>1-2%</strong> (real göstərici daha yüksək; aşkarlama az, ailə həkimləri tərəfindən nadir tanınır)</li>
+<li><strong>Globally:</strong> <strong>350+ million pasiyent</strong> (ÜST, 2023)</li>
+<li><strong>DALY</strong> üzrə dünyanın 2-ci ən böyük yükü (ÜST 2030 proqnozu – 1-ci)</li>
+</ul>
+<h3 id="cins-və-yaş" class="">Cins və yaş</h3>
+<ul>
+<li><strong>Cins:</strong> qadın:kişi <strong>2:1</strong> (yeniyetmədən sonra)</li>
+<li><strong>Yaş:</strong> ən geniş yayılma 18-44 yaş arasında</li>
+<li><strong>Erkən başlanğıc</strong> (12-18 yaş) – daha pis proqnoz</li>
+<li><strong>Yaşlı yaşda depresiya</strong> – ayrı klinik xüsusiyyətlər (somatik şikayətlər dominant, koqnitiv pozuntular)</li>
+</ul>
+<h3 id="komorbidlik" class="">Komorbidlik</h3>
+<ul>
+<li><strong>Təşviş pozuntuları:</strong> <strong>60-80%</strong> (yüksəkdir)</li>
+<li><strong>Maddə istifadəsi pozuntuları:</strong> 25-30%</li>
+<li><strong>OKP:</strong> 10-15%</li>
+<li><strong>PTSP:</strong> 30-50% (travma yaşamış pasiyentlərdə)</li>
+<li><strong>Şəxsiyyət pozuntuları:</strong> 30-50%</li>
+<li><strong>Cismani xəstəliklər:</strong> ürək-damar (3-4x risk), diabet (2x), xərçəng yaşıl pasiyentlərdə depresiya 25%</li>
+</ul>
+<h3 id="mortalite-və-suisid" class="">Mortalite və suisid</h3>
+<ul>
+<li><strong>Suisid risk:</strong> ömürlük <strong>5-7%</strong> (dərin depresivlərdə 15%-ə qədər)</li>
+<li><strong>Hər il dünyada</strong> 700,000+ suisid – təxminən yarısı depresiv pasiyentlərdə</li>
+<li><strong>Cardiovascular mortalite</strong> – depresiv pasiyentlərdə yüksək</li>
+<li><strong>Yaşam müddəti</strong> – ümumi populyasiyadan 5-7 il aşağı</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="klassik-depressiv-epizod" class="">Klassik depressiv epizod</h3>
+<p><strong>Affektiv:</strong></p>
+<ul>
+<li><strong>Depresiv əhval</strong> – kədər, ümidsizlik, &quot;boşluq&quot;, &quot;donmuş&quot;</li>
+<li><strong>Anhedoniya</strong> – əvvəllər həzz verən fəaliyyətlərdə maraqsızlıq</li>
+<li><strong>Affekt yastılığı və ya emosional &quot;ağırlıq&quot;</strong></li>
+</ul>
+<p><strong>Koqnitiv:</strong></p>
+<ul>
+<li><strong>Konsentrasiya pozuntusu</strong>, qərar qəbul etmə çətinliyi</li>
+<li><strong>Yaddaş zəifliyi</strong> (&quot;psevdodemensiya&quot;)</li>
+<li><strong>Mənfi avto-konsept</strong> – özünü dəyərsiz hesab etmək</li>
+<li><strong>Günah və aşağı özünə hörmət</strong></li>
+<li><strong>Ümidsizlik gələcək haqqında</strong></li>
+<li><strong>Suisidal idea</strong> – passiv (&quot;yaşamaq istəmirəm&quot;) və ya aktiv (&quot;intihar etmək istəyirəm&quot;)</li>
+</ul>
+<p><strong>Neyrovegetativ:</strong></p>
+<ul>
+<li><strong>Yuxu:</strong> insomniya (xüsusilə erkən oyanma) – tipik və ya hipersomniya</li>
+<li><strong>İştah:</strong> azalma və çəki itkisi və ya artma</li>
+<li><strong>Yorğunluq, enerji çatışmazlığı</strong> (&quot;bütün gün yataqdayam&quot;)</li>
+<li><strong>Psixomotor:</strong> ləngləmə (yavaş hərəkət, yavaş nitq) və ya agitasiya</li>
+<li><strong>Diurnal variasiya</strong> – səhər saatlarında daha pis</li>
+</ul>
+<p><strong>Somatik:</strong></p>
+<ul>
+<li>Baş ağrıları, ümumi ağrılar</li>
+<li>Kardiovaskulyar şikayətlər (xüsusilə yaşlı pasiyentlərdə)</li>
+<li>Mədə-bağırsaq simptomları</li>
+<li>Libido azalması</li>
+<li>Menstrual sikl pozuntuları</li>
+</ul>
+<h3 id="şiddət-dərəcələri" class="">Şiddət dərəcələri</h3>
+<p><strong>Yüngül (XBT-11: <span class="icd">6A70.0</span> / <span class="icd">6A71.0</span>):</strong></p>
+<ul>
+<li>5 simptom (minimum tələb)</li>
+<li>Funksional pozulma yumşaq</li>
+<li>Müstəqil yaşamağa davam edir, lakin çətinliklə</li>
+</ul>
+<p><strong>Orta (XBT-11: <span class="icd">6A70.1</span> / <span class="icd">6A71.1</span>):</strong></p>
+<ul>
+<li>5+ simptom, daha çox şiddətli</li>
+<li>Sosial və peşə fəaliyyətində əhəmiyyətli pozulma</li>
+</ul>
+<p><strong>Ağır (XBT-11: <span class="icd">6A70.2</span> / <span class="icd">6A71.2</span>):</strong></p>
+<ul>
+<li>Bir çox simptom dərin şiddətdə</li>
+<li>Pasiyent gündəlik fəaliyyətə davam edə bilmir</li>
+<li>Suisidal idea/davranış mümkün</li>
+</ul>
+<p><strong>Ağır psixotik xüsusiyyətlərlə (XBT-11: <span class="icd">6A70.3</span> / <span class="icd">6A71.3</span>):</strong></p>
+<ul>
+<li>Yuxarıdakılar + sayıqlama (əhvala uyğun: günah, yox olmaq, dünyanın sonu və ya əhvala zidd) və/və ya halusinasiyalar (eşitmə)</li>
+</ul>
+<h3 id="spesifikatorlar-xüsusiyyətlər-6a80-koduyla" class="">Spesifikatorlar / xüsusiyyətlər (<span class="icd">6A80</span> koduyla)</h3>
+<p><strong>Melanxolik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Mütləq anhedoniya</li>
+<li>Səhər saatlarında pisləşmə (diurnal variasiya)</li>
+<li>Erkən səhər oyanması (&gt;2 saat erkən)</li>
+<li>Psixomotor ləngləmə və ya agitasiya əhəmiyyətli</li>
+<li>Əhəmiyyətli iştahsızlıq və çəki itkisi</li>
+<li>Həddən artıq və ya uyğunsuz günah</li>
+</ul>
+<p><strong>Atipik xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Reaktivlik saxlanılır</strong> – pozitiv hadisələr əhvalı qısa müddətə yaxşılaşdırır</li>
+<li><strong>Hipersomniya</strong> (10+ saat)</li>
+<li><strong>Hiperfagiya, çəki artımı</strong></li>
+<li><strong>&quot;Leaden paralysis&quot;</strong> – əzaların ağırlığı</li>
+<li><strong>Kişilərarası rədd həssaslığı</strong> – bütün həyat boyu</li>
+</ul>
+<p><strong>Mövsümi (mövsümi affektiv pozuntu, SAD):</strong></p>
+<ul>
+<li>Tipik – qışda başlayan, yazda keçən</li>
+<li>Qütb regionlarında və qaranlıq mövsümlərdə daha tez-tez</li>
+<li>Hipersomniya, hiperfagiya (xüsusilə karbohidratlar), çəki artımı</li>
+</ul>
+<p><strong>Postpartum (doğuşdan sonrakı):</strong></p>
+<ul>
+<li>4 həftə (XBT-11) / 4 həftə (DSM-5-TR) ərzində doğuşdan sonra</li>
+<li>10-15% qadında baş verir (Bölmə 19-a bax)</li>
+</ul>
+<p><strong>Qarışıq xüsusiyyətlər:</strong></p>
+<ul>
+<li>Depresiv epizod kontekstində 3+ manik simptom (qarışıq, bipolyar deyil)</li>
+</ul>
+<p><strong>Psixotik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Sayıqlama və/və ya halusinasiyalar</li>
+<li><strong>Mood-uyğun</strong> (uyğun): günah, yox olmaq, ölüm</li>
+<li><strong>Mood-uyğun olmayan:</strong> persekutiv, münasibət, qrandioz</li>
+</ul>
+<p><strong>Katatonik xüsusiyyətlər</strong> (Bölmə 3-ə bax)</p>
+<h3 id="yaşa-görə-xüsusiyyətlər" class="">Yaşa görə xüsusiyyətlər</h3>
+<p><strong>Uşaqlıq depresiyası:</strong></p>
+<ul>
+<li>Çox vaxt qıcıqlanma əhval kimi</li>
+<li>Somatik şikayətlər (qarın ağrısı, baş ağrısı)</li>
+<li>Akademik nailiyyət düşməsi</li>
+<li>Sosial təcrid</li>
+</ul>
+<p><strong>Yeniyetmə depresiyası:</strong></p>
+<ul>
+<li>Qıcıqlanma, hirslilik dominant ola bilər</li>
+<li>Risk davranış (maddə istifadəsi)</li>
+<li>Suisid riski yüksəkdir</li>
+<li>Akademik problemlər</li>
+</ul>
+<p><strong>Yaşlı yaşda depresiya:</strong></p>
+<ul>
+<li><strong>Somatik şikayətlər dominant</strong> (&quot;maskalı&quot; depressiya)</li>
+<li>Koqnitiv pozuntular ön planda (&quot;psevdodemensiya&quot;)</li>
+<li>Kardiovaskulyar simptomlar</li>
+<li><strong>Suisid riski yüksək</strong> (xüsusilə yaşlı kişilər)</li>
+<li>&quot;Vaskulyar depressiya&quot; – ürək-damar xəstəlikləri ilə əlaqəli</li>
+</ul>
+<h3 id="atipik-təqdimat-tipləri-məxfi-formalar" class="">Atipik təqdimat tipləri (məxfi formalar)</h3>
+<p><strong>&quot;Maskalı&quot; depresiya:</strong></p>
+<ul>
+<li>Somatik şikayətlər dominant</li>
+<li>Pasiyent əhval pisləşməsini inkar edir</li>
+<li>Ailə həkiminə tez-tez gəlir, psixiatrik diaqnoz qaçırılır</li>
+<li>Azərbaycan klinik praktikasında <strong>çox yayılmış</strong> – stigmasız təqdimat</li>
+</ul>
+<p><strong>Disforik depresiya:</strong></p>
+<ul>
+<li>Qıcıqlanma, qəzəb dominant</li>
+<li>Affekt labilliyi</li>
+<li>Kişilərdə tipik</li>
+</ul>
+<p><strong>&quot;Anesteziya psixika dolorosa&quot;</strong> (klassik termin):</p>
+<ul>
+<li>Subyektiv emosiyanın &quot;yox olması&quot; hissi</li>
+<li>&quot;Heç bir şey hiss etmirəm&quot;</li>
+<li>Anhedoniyanın ekstremal forması</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-diaqnostik-tələbləri-6a70-6a71" class="">XBT-11 diaqnostik tələbləri (<span class="icd">6A70</span>, <span class="icd">6A71</span>)</h3>
+<p><strong>A. Tək depresiv epizod (<span class="icd">6A70</span>):</strong></p>
+<p><strong>Əsas simptomlar (ən azı 1):</strong></p>
+<ul>
+<li>Depresiv əhval</li>
+<li>Anhedoniya</li>
+</ul>
+<p><strong>Əlavə simptomlar (ümumi 5+ tələb edilir):</strong></p>
+<ul>
+<li>Konsentrasiya çətinliyi</li>
+<li>Aşağı özünə hörmət</li>
+<li>Həddən artıq günah</li>
+<li>Ümidsizlik</li>
+<li>Suisidal idea/davranış</li>
+<li>Yuxu pozuntusu</li>
+<li>İştah/çəki dəyişikliyi</li>
+<li>Psixomotor agitasiya/ləngləmə</li>
+<li>Yorğunluq, enerji çatışmazlığı</li>
+</ul>
+<p><strong>Müddət:</strong> ən azı 2 həftə, demək olar ki hər gün, gün ərzində çox vaxt</p>
+<p><strong>Funksional pozulma:</strong> sosial, peşə və ya digər vacib sahədə əhəmiyyətli</p>
+<p><strong>Manik və ya hipomanik epizod tarixçəsi YOX</strong> (varsa, bipolyar diaqnozu)</p>
+<p><strong>B. Təkrarlanan depresiv pozuntu (<span class="icd">6A71</span>):</strong></p>
+<p>Tək epizod meyarlarına əlavə olaraq:</p>
+<ul>
+<li>Ən azı 2 epizod, hər biri ən azı 2 həftə</li>
+<li>Aralarında <strong>bir neçə ay</strong> simptomsuz dövr (≥2 ay tipik)</li>
+</ul>
+<h3 id="xbt-10-f32-f33-ilə-müqayisə" class="">XBT-10 (<span class="icd">F32</span>, <span class="icd">F33</span>) ilə müqayisə</h3>
+<p>XBT-10 simptomları aydın 3 əsas və 7 əlavə kateqoriyaya ayırır. Strukturu nisbi oxşardır, lakin XBT-11 daha aydın.</p>
+<p>XBT-10 alt-tipləri:</p>
+<ul>
+<li><span class="icd">F32.0</span>/<span class="icd">F33.0</span> Yüngül</li>
+<li><span class="icd">F32.1</span>/<span class="icd">F33.1</span> Orta</li>
+<li><span class="icd">F32.2</span>/<span class="icd">F33.2</span> Ağır psixotik xüsusiyyət olmadan</li>
+<li><span class="icd">F32.3</span>/<span class="icd">F33.3</span> Ağır psixotik xüsusiyyətlərlə</li>
+<li><span class="icd">F33.4</span> Hazırda remissiyada</li>
+</ul>
+<h3 id="dsm-5-tr-2962x-2963x-ilə-müqayisə" class="">DSM-5-TR (296.2x, 296.3x) ilə müqayisə</h3>
+<p>DSM-5-TR meyarları <strong>demək olar ki eyni</strong> XBT-11-ə.</p>
+<p>DSM-5-TR əsas dəyişikliklər:</p>
+<ul>
+<li><strong>Yas istisnası ləğv edildi</strong> (DSM-IV-də 2 ay yas dövründə depresiv epizod diaqnozu qoyulmurdu)</li>
+<li>Spesifikatorlar genişləndirildi</li>
+<li>Şiddət, gediş, remissiya statusu kvalifikatorları</li>
+</ul>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<p>- <strong>PHQ-9</strong> – birincil yardımda və klinikada (5-9 yüngül, 10-14 orta, 15-19 orta-ağır, 20-27 ağır)</p>
+<p>- <strong>HAM-D</strong> (Hamilton Depression Rating Scale) – qızıl standart, 17 və ya 21 göstərici</p>
+<p>- <strong>MADRS</strong> (Montgomery-Åsberg) – tədqiqat və klinika</p>
+<p>- <strong>BDI-II</strong> (Beck Depression Inventory)</p>
+<p>- <strong>C-SSRS</strong> (Columbia Suicide Severity Rating Scale)</p>
+<p>- <strong>MDQ</strong> (Mood Disorder Questionnaire) – manik/hipomanik epizodu istisna etmək</p>
+<p>- Təşviş (GAD-7), maddə istifadəsi (AUDIT, DUDIT), travma (PCL-5)</p>
+<p>- Tireoid funksiyası (TSH)</p>
+<p>- Vitamin B12, folat, vitamin D</p>
+<p>- Tam qan, qaraciyər, böyrək</p>
+<p>- HIV, sifilis (klinik şübhədə)</p>
+<p>- Toksikoloji skrening (gənclərdə)</p>
+<ol>
+<li><strong>Klinik müsahibə</strong> – simptomlar, başlanğıc, gediş, funksional təsir</li>
+<li><strong>Standartlaşdırılmış skrinning və qiymətləndirmə:</strong></li>
+<li><strong>Suisid riski qiymətləndirməsi (mütləq):</strong></li>
+<li><strong>Bipolyar tarama:</strong></li>
+<li><strong>Komorbidlik qiymətləndirməsi:</strong></li>
+<li><strong>Tibbi müayinə</strong> (üzvi səbəblərin istisnası):</li>
+</ol>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Bipolyar I/II pozuntu</strong></td><td>Manik və ya hipomanik epizod tarixçəsi</td></tr>
+<tr><td><strong>Distimiya / xroniki depresiv pozuntu</strong></td><td>2+ il davamlı, lakin yumşaq simptomlar</td></tr>
+<tr><td><strong>Adaptasiya pozuntusu depresiv əhval ilə</strong></td><td>Stresli hadisədən 3 ay ərzində; meyarlar tam qarşılanmır</td></tr>
+<tr><td><strong>Yas reaksiyası</strong></td><td>Spesifik itkiyə cavab; dalğavari, ümidsizlik fokusu yox; suisidal idea olmaması adətən</td></tr>
+<tr><td><strong>Hipotireoz, B12 çatışmazlığı, anemia</strong></td><td>Laborator – TSH, B12, qan analizi</td></tr>
+<tr><td><strong>Maddə induksiyalı depresiya</strong></td><td>Maddə tarixçəsi, kəsmə ilə yaxşılaşma</td></tr>
+<tr><td><strong>Dərman induksiyalı</strong></td><td>Steroidlər, beta-blokatorlar, interferon-alpha</td></tr>
+<tr><td><strong>Yaşlıda demensiya başlanğıcı</strong></td><td>Koqnitiv testlər, gediş; &quot;psevdodemensiya&quot; antidepressanta cavab verir</td></tr>
+<tr><td><strong>PMDD</strong></td><td>Yalnız menstrual sikl ilə əlaqəli</td></tr>
+<tr><td><strong>Mövsümi affektiv pozuntu</strong></td><td>Mövsümi pattern; light terapiyaya cavab</td></tr>
+<tr><td><strong>Burnout (peşə yorğunluğu)</strong></td><td>Konteks-spesifik (iş); diaqnostik vahid kimi XBT-11-də QD85 (peşə amilləri)</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar-və-alətlər" class="">Şkalalar və alətlər</h3>
+<p><strong>Skrinning (birincil yardım):</strong></p>
+<ul>
+<li><strong>PHQ-2</strong> – iki sual; pozitivsə → PHQ-9</li>
+<li><strong>PHQ-9</strong> – 9 göstərici, 0-27 bal</li>
+<li><strong>EPDS</strong> – Edinburqun Doğuşdan Sonrakı Depressiya Şkalası (peripartum)</li>
+<li><strong>GDS-15</strong> – Geriatric Depression Scale</li>
+</ul>
+<p><strong>Klinik şiddət:</strong></p>
+<ul>
+<li><strong>HAM-D</strong> – 17 və ya 21 göstərici, klinisistin qiymətləndirməsi</li>
+<li><strong>MADRS</strong> – 10 göstərici</li>
+<li><strong>BDI-II</strong> – 21 göstərici, pasiyent self-report</li>
+</ul>
+<p><strong>Suisid:</strong></p>
+<ul>
+<li><strong>C-SSRS</strong> – Columbia Suicide Severity Rating Scale</li>
+<li><strong>Beck Hopelessness Scale</strong></li>
+</ul>
+<p><strong>Bipolyar tarama:</strong></p>
+<ul>
+<li><strong>MDQ</strong> – Mood Disorder Questionnaire</li>
+<li><strong>HCL-32</strong> – Hypomania Checklist</li>
+</ul>
+<h3 id="laborator-müayinələr" class="">Laborator müayinələr</h3>
+<p><strong>Birinci xətt (mütləq):</strong></p>
+<ul>
+<li><strong>Tireoid funksiyası</strong> (TSH, T4) – hipotireoz tez-tez depresiv prezentasiya</li>
+<li><strong>Tam qan analizi</strong> – anemia</li>
+<li><strong>Qaraciyər və böyrək funksiyaları</strong> – baseline antidepressant üçün</li>
+<li><strong>Qan qlükozası, HbA1c</strong> – metabolik sindrom</li>
+<li><strong>Vitamin B12, folat</strong> – çatışmazlıq depresiv simptomlar yarada bilər</li>
+<li><strong>Vitamin D</strong> (xüsusilə qışda)</li>
+<li><strong>Toksikoloji skrening</strong> – gənclərdə</li>
+</ul>
+<p><strong>Seçici (klinik şübhədə):</strong></p>
+<ul>
+<li>HIV, sifilis seroloji</li>
+<li>ANA, lupus markerləri</li>
+<li>Kortizol (Cushing şübhəsi)</li>
+<li>Beyin MRT – yaşlı, atipik təqdim</li>
+<li>EKG – baseline (xüsusilə TSA və ya yüksək doza SİUSİ-dan əvvəl)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<p><strong>Birinci xətt avtoritet bələdçilər:</strong></p>
+<ul>
+<li><strong>NICE NG222 (2022):</strong> <em>Depression in adults: treatment and management</em></li>
+<li><strong>Azərbaycan Respublikası Səhiyyə Nazirliyi:</strong> <em>Depressiyanın diaqnostika və müalicəsi üzrə Klinik Protokol</em> (Bakı)</li>
+<li><strong>APA Practice Guideline for the Treatment of Patients with Major Depressive Disorder</strong> (2010 + 2023 update)</li>
+<li><strong>CANMAT 2016 Guidelines for the Treatment of MDD</strong> (Kennedy et al., Can J Psychiatry)</li>
+<li><strong>WFSBP Guidelines for Biological Treatment of Unipolar Depressive Disorders</strong> (2013, 2015)</li>
+<li><strong>BAP (British Association for Psychopharmacology) 2015</strong></li>
+</ul>
+<h3 id="nice-ng222-2022-kompleks-yanaşma" class="">NICE NG222 (2022) – kompleks yanaşma</h3>
+<p>NICE-in <strong>2022 yenilənməsi əhəmiyyətli dəyişikliklər</strong> gətirdi:</p>
+<p><strong>1. Pasiyentlə birgə qərar:</strong></p>
+<ul>
+<li>Müxtəlif terapiyalar arasında pasiyent seçiminə hörmət</li>
+<li>&quot;Mütəxəssis seçimi&quot; yerinə &quot;informasiyalandırılmış pasiyent seçimi&quot;</li>
+</ul>
+<p><strong>2. Yumşaq depresiyada antidepressantlardan başlamaq tövsiyə olunmur:</strong></p>
+<ul>
+<li>Birinci xətt: psixoloji terapiya, fiziki məşq, dəstək qrupları</li>
+<li><strong>Antidepressantlar yalnız orta-ağır depresiyada birinci xətt</strong></li>
+</ul>
+<p><strong>3. Müalicə pillələri (stepped care):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Şiddət</th><th>Birinci xətt müalicə</th></tr>
+<tr><td><strong>Yumşaq, sub-treshold</strong></td><td>Aktiv izləmə, fiziki məşq, vəbahdir kömək təklifi</td></tr>
+<tr><td><strong>Yumşaq-orta</strong></td><td>KDT, IPT, davranış aktivasiyası, müşaviə, mindfulness; antidepressant – pasiyent seçimi ilə</td></tr>
+<tr><td><strong>Orta-ağır</strong></td><td>KDT və/və ya antidepressant (kombinasiya); pasiyent seçimi</td></tr>
+<tr><td><strong>Ağır, psixotik</strong></td><td>Antidepressant + antipsixotik və/və ya ECT; KDT</td></tr>
+</table></div>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<h4 id="birinci-xətt-antidepressantlar" class="">Birinci xətt antidepressantlar</h4>
+<p><strong>SİUSİ (SSRI) – ən geniş istifadə edilən birinci xətt:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Standart doza</th><th>Maksimum</th><th>Yan təsirlər</th><th>Qeydlər</th></tr>
+<tr><td><strong>Sertralin</strong></td><td>50-100 mq/gün</td><td>200 mq</td><td>GI, cinsi disfunksiya</td><td><strong>AR Klinik Protokoluna görə birinci sıra</strong>; geniş istifadə; uşaq və yeniyetmələrdə təsdiqli; perinatal dövrdə nisbi təhlükəsiz</td></tr>
+<tr><td><strong>Esitalopram</strong></td><td>10-20 mq/gün</td><td>20 mq</td><td>QTc uzanması yüksək dozada</td><td>Aşağı yan təsir profili; az qarşılıqlı təsir</td></tr>
+<tr><td><strong>Sitalopram</strong></td><td>20-40 mq/gün</td><td>40 mq (yaşlılarda 20)</td><td>QTc</td><td>Esitalopramın əkiz forması</td></tr>
+<tr><td><strong>Fluoksetin</strong></td><td>20-60 mq/gün</td><td>80 mq</td><td>Stimulyator, insomniya</td><td>Uzun yarı-ömür (stop sindromu az); uşaqlarda təsdiqli</td></tr>
+<tr><td><strong>Paroksetin</strong></td><td>20-50 mq/gün</td><td>50 mq</td><td>Sedasiya, çəki artımı, antikolinerjik, <strong>stop sindromu (kəsmə) ən kəskin</strong></td><td>Hamiləlikdə əks göstəriş (ürək anomaliyaları riski)</td></tr>
+<tr><td><strong>Fluvoksamin</strong></td><td>50-300 mq/gün</td><td>300 mq</td><td>GI, sedasiya</td><td>Çox CYP qarşılıqlı təsir</td></tr>
+</table></div>
+<p><strong>SNİUSİ (SNRI):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Standart doza</th><th>Maksimum</th><th>Qeydlər</th></tr>
+<tr><td><strong>Venlafaksin</strong></td><td>75-225 mq/gün</td><td>375 mq</td><td>Yüksək dozada hipertenziya; aşağı dozada SİUSİ kimi; <strong>stop sindromu kəskin</strong></td></tr>
+<tr><td><strong>Duloksetin</strong></td><td>30-60 mq/gün</td><td>120 mq</td><td>Ağrı sindromlarında üstün; diabet neyropatiyası, fibromiyaljı</td></tr>
+<tr><td><strong>Milnasipran</strong></td><td>50-100 mq/gün</td><td>200 mq</td><td>Avropada, Yaponiyada</td></tr>
+</table></div>
+<p><strong>Atipik / digər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Sinif</th><th>Doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Mirtazapin</strong></td><td>NSM (NaSSA)</td><td>15-45 mq/gün</td><td>Sedasiya, çəki artımı; insomniya və iştahsızlıqda üstün; cinsi yan təsir az</td></tr>
+<tr><td><strong>Bupropion</strong></td><td>NDİUİ</td><td>150-300 mq/gün</td><td>Stimulyator; siqaret tərk etmə; cinsi yan təsir az; <strong>tutma riski</strong></td></tr>
+<tr><td><strong>Trazodon</strong></td><td>SARI</td><td>50-300 mq/gün</td><td>Sedasiya əsas effekt; insomniyada dəyərli</td></tr>
+<tr><td><strong>Vortioksetin</strong></td><td>Multimodal</td><td>10-20 mq/gün</td><td>Koqnitiv simptomlarda üstün; cinsi yan təsir az</td></tr>
+<tr><td><strong>Vilazodon</strong></td><td>SİUSİ + 5-HT1A</td><td>20-40 mq/gün</td><td>Cinsi yan təsir az</td></tr>
+<tr><td><strong>Aqomelatin</strong></td><td>MT1/MT2 + 5-HT2C</td><td>25-50 mq/gün</td><td>Yuxu strukturunu yaxşılaşdırır; <strong>qaraciyər monitorinqi mütləq</strong></td></tr>
+</table></div>
+<p><strong>TSA (Tritsiklik antidepressantlar):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Amitriptilin</strong></td><td>75-150 mq/gün</td><td>Klassik; ağrı sindromlarında üstün; antikolinerjik; QTc; sedasiya</td></tr>
+<tr><td><strong>Klomipramin</strong></td><td>75-225 mq/gün</td><td>OKP-də və ağır depresiyada üstün</td></tr>
+<tr><td><strong>İmipramin</strong></td><td>75-300 mq/gün</td><td>Klassik; panikdə effektiv</td></tr>
+<tr><td><strong>Nortriptilin</strong></td><td>50-150 mq/gün</td><td>TSA-lar arasında ən az antikolinerjik</td></tr>
+<tr><td><strong>Doksepin</strong></td><td>25-300 mq/gün</td><td>Aşağı dozada (3-6 mq) yuxu üçün</td></tr>
+</table></div>
+<p><strong>TSA-larda diqqət:</strong></p>
+<ul>
+<li><strong>Toksiki dozada ölümcül</strong> (overdose) – suisidal pasiyentdə diqqət</li>
+<li>Antikolinerjik: ağız quruluğu, konstipasiya, idrar saxlanması</li>
+<li>Kardiotoksik: QTc uzanması, ortostatik hipotenziya</li>
+<li>Çəki artımı, sedasiya</li>
+<li>Yaşlılarda – yıxılma, deliriya riski</li>
+</ul>
+<p><strong>MAOİ:</strong></p>
+<ul>
+<li><strong>Klassik (irreversible):</strong> fenelzin, tranilcipromin, izokarboksazid</li>
+<li><strong>Reversible (RIMA):</strong> moklobemid</li>
+<li><strong>Tiramin pəhrizi</strong> – klassik MAOI ilə (hipertenzif krız)</li>
+<li>Atipik və rezistent depresiyada</li>
+<li>Çox qarşılıqlı təsirlər</li>
+</ul>
+<h4 id="antidepressant-seçimi" class="">Antidepressant seçimi</h4>
+<p><strong>AR Klinik Protokolu və beynəlxalq tövsiyələrə görə, seçim faktorları:</strong></p>
+<p>- Təşviş → SİUSİ, SNRI</p>
+<p>- Ağrı → duloksetin, amitriptilin</p>
+<p>- İnsomniya → mirtazapin, trazodon</p>
+<p>- Hiperinsomniya, hiperfagiya → bupropion, fluoksetin</p>
+<p>- Cinsi yan təsirə həssaslıq → bupropion, mirtazapin, vortioksetin</p>
+<p>- OKP komorbidi → klomipramin, fluoksetin</p>
+<ul>
+<li><strong>Yan təsir profili</strong> və pasiyent tolerans</li>
+<li><strong>Komorbidlik:</strong></li>
+<li><strong>Əvvəlki cavab</strong> – pasiyentin və ailə üzvünün</li>
+<li><strong>Əlçatanlıq və qiymət</strong> (Azərbaycan kontekstində – sertralin, esitalopram, fluoksetin geniş əlçatandır)</li>
+<li><strong>Hamiləlik və laktasiya</strong> – sertralin, esitalopram, fluoksetin (Bölmə 19-a bax)</li>
+</ul>
+<h4 id="doza-və-titrasiya" class="">Doza və titrasiya</h4>
+<p><strong>Ümumi prinsiplər:</strong></p>
+<ul>
+<li><strong>Aşağı dozadan başla</strong> (yaşlılarda yarı doza)</li>
+<li><strong>2 həftədə bir</strong> dozanı qiymətləndir, lazım olarsa artır</li>
+<li><strong>Tam effekt 4-8 həftə</strong> sonra (ilk təsir 1-2 həftədə)</li>
+<li><strong>Adekvat trial: 6-8 həftə adekvat dozada</strong></li>
+<li><strong>Cavab yoxsa:</strong> dozanı artır → preparatı dəyiş → augmentasiya</li>
+</ul>
+<p><strong>Cavab dərəcələri:</strong></p>
+<ul>
+<li><strong>Cavab (response):</strong> simptomların 50% azalması (HAM-D və ya MADRS-də)</li>
+<li><strong>Remissiya:</strong> HAM-D ≤7 və ya MADRS ≤10</li>
+<li><strong>Bərpa (recovery):</strong> 6+ ay simptomsuz</li>
+</ul>
+<h4 id="müalicə-rezistent-depresiya-trd" class="">Müalicə-rezistent depresiya (TRD)</h4>
+<p><strong>Tərif:</strong> ən azı <strong>iki müxtəlif sinif</strong> antidepressantın adekvat dozada və müddətdə (6-8 həftə hər biri) cavabsız istifadəsi.</p>
+<p><strong>Strategiyalar:</strong></p>
+<p><strong>1. Augmentasiya (əlavə):</strong></p>
+<ul>
+<li><strong>Atipik antipsixotik:</strong> kvetiapin (150-300 mq), aripiprazol (2,5-15 mq), olanzapin, brekspipiprazol (FDA təsdiqli MDD əlavə)</li>
+<li><strong>Litium</strong> (600-1200 mq, qan səviyyəsi 0,6-1,0 mEq/L) – klassik augmentasiya</li>
+<li><strong>T3 (liotironin)</strong> 25-50 mkg/gün – tireoid hormon augmentasiyası</li>
+<li><strong>Bupropion</strong> (SİUSİ ilə kombinasiya)</li>
+<li><strong>Mirtazapin</strong> (SİUSİ + mirtazapin – &quot;kalifornia roketi&quot;)</li>
+</ul>
+<p><strong>2. Sinif dəyişikliyi:</strong></p>
+<ul>
+<li>SİUSİ → SNRI</li>
+<li>SİUSİ → mirtazapin</li>
+<li>SNRI → TSA</li>
+<li>Hər hansı → MAOİ (washout dövrü mütləq)</li>
+</ul>
+<p><strong>3. Yeni neyrosaikulyator alternativlər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Mexanizm</th><th>Doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Esketamin (intranasal)</strong></td><td>NMDA antaqonisti</td><td>56-84 mq, 2x/həftə</td><td>FDA təsdiqli TRD-də; sürətli effekt (saatlar); klinikada</td></tr>
+<tr><td><strong>Ketamin (IV)</strong></td><td>NMDA antaqonisti</td><td>0,5 mq/kq IV 40 dəq</td><td>Off-label, lakin geniş istifadə</td></tr>
+<tr><td><strong>Brekspipiprazol</strong></td><td>D2 partial + 5-HT modulyator</td><td>1-3 mq</td><td>FDA təsdiqli MDD əlavə</td></tr>
+<tr><td><strong>Aripiprazol</strong></td><td>D2 partial</td><td>2,5-15 mq</td><td>Klassik augmentasiya</td></tr>
+</table></div>
+<p><strong>4. EKT (elektrokonvulsiv terapiya):</strong></p>
+<p><strong>Göstərişlər (NICE TA59):</strong></p>
+<ul>
+<li>Ağır depresiya, dərhal cavab tələb olunur</li>
+<li>Suisidal risk yüksəkdir</li>
+<li>Müalicə-rezistent depresiya</li>
+<li>Psixotik depresiya</li>
+<li>Pasiyent yemək/maye qəbulundan imtina edir</li>
+<li>Hamiləlikdə (təhlükəsiz alternativ)</li>
+</ul>
+<p><strong>Effektivlik:</strong> <strong>ən effektiv depresiya müalicəsi</strong> – cavab nisbəti 70-90% TRD-də.</p>
+<p><strong>Protokol:</strong></p>
+<ul>
+<li>Bilateral və ya unilateral</li>
+<li>6-12 sessiya</li>
+<li>Həftədə 2-3 dəfə</li>
+<li>Maintenance EKT residiv profilaktikasında</li>
+</ul>
+<p><strong>5. rTMS (təkrarlanan transkranial maqnit stimulyasiyası):</strong></p>
+<ul>
+<li>FDA təsdiqli TRD-də (2008)</li>
+<li>Sol DLPFC üzərində</li>
+<li>4-6 həftə, gündəlik</li>
+<li>Effektivlik orta (cavab 30-50%)</li>
+<li>Yan təsir minimal</li>
+</ul>
+<h3 id="davam-edən-və-saxlanma-müalicəsi" class="">Davam edən və saxlanma müalicəsi</h3>
+<p><strong>Müddətlər:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Dövr</th><th>Müddət</th></tr>
+<tr><td><strong>Akut faza</strong></td><td>6-12 həftə (remissiyaya qədər)</td></tr>
+<tr><td><strong>Davam faza</strong></td><td>4-9 ay (residivin önlənməsi)</td></tr>
+<tr><td><strong>Saxlanma faza</strong></td><td>1-3 il və ya ömürlük</td></tr>
+</table></div>
+<p><strong>Saxlanma müalicəsi göstərişləri (residiv riskinin yüksək olması):</strong></p>
+<ul>
+<li>3+ keçmiş depresiv epizod</li>
+<li>2 epizod + ailə tarixi və ya residual simptomlar və ya ağır epizod</li>
+<li>Erkən başlanğıc</li>
+<li>Komorbid xronik xəstəliklər</li>
+</ul>
+<p><strong>Antidepressant kəsmə:</strong></p>
+<ul>
+<li><strong>Tədricən, 4-8 həftə üzrə</strong> (xüsusilə paroksetin, venlafaksin – stop sindromu kəskin)</li>
+<li>&quot;Antidepressant discontinuation syndrome&quot; simptomları: başgicəllənmə, qrip-bənzər, sensori (elektrik şoku hissi), GI, təşviş</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>Sübuta əsaslanan terapiyalar:</strong></p>
+<h4 id="koqnitiv-davranış-terapiyası-kdt-cbt" class="">Koqnitiv-davranış terapiyası (KDT / CBT)</h4>
+<ul>
+<li><strong>Sübutluluq A</strong> depresiyada</li>
+<li><strong>NICE-də birinci xətt psixoterapiya</strong></li>
+<li>12-20 sessiya</li>
+<li>Beck modeli – avtomatik mənfi düşüncələrlə iş</li>
+<li>Davranış aktivasiyası (Behavioral Activation) – kompponent və ya müstəqil</li>
+</ul>
+<h4 id="i̇nterpersonal-terapiya-i̇pt-ipt" class="">İnterpersonal terapiya (İPT / IPT)</h4>
+<ul>
+<li><strong>Sübutluluq A</strong></li>
+<li>12-16 sessiya</li>
+<li>4 sahə: itki, rol keçidləri, münasibət münaqişələri, interpersonal defisitlər</li>
+<li>Klerman və Weissman tərəfindən</li>
+</ul>
+<h4 id="davranış-aktivasiyası-behavioral-activation-ba" class="">Davranış aktivasiyası (Behavioral Activation, BA)</h4>
+<ul>
+<li><strong>Sübutluluq A</strong></li>
+<li>KDT-yə effektivlikdə bərabər</li>
+<li>Daha sadə və qısa</li>
+<li>Pleasant Activities Scheduling</li>
+</ul>
+<h4 id="psixodinamik-psixoterapiya" class="">Psixodinamik psixoterapiya</h4>
+<ul>
+<li><strong>Sübutluluq B</strong></li>
+<li>Qısa-müddətli (16-20 sessiya) – Malan, Davanloo, Strupp</li>
+<li>Uzun-müddətli – ağır xroniki depresiya, şəxsiyyət komorbidi</li>
+</ul>
+<h4 id="mindfulness-əsaslı-koqnitiv-terapiya-mbct" class="">Mindfulness əsaslı koqnitiv terapiya (MBCT)</h4>
+<ul>
+<li><strong>Sübutluluq A</strong> residiv profilaktikasında</li>
+<li>8 həftəlik qrup proqramı</li>
+<li>Təkrarlanan depresiyada residiv 40-50% azaldır</li>
+</ul>
+<h4 id="müşaviə-counselling" class="">Müşaviə (counselling)</h4>
+<ul>
+<li>Yumşaq depresiyada</li>
+<li>NICE NG222-də xüsusi yer</li>
+</ul>
+<h3 id="sosial-və-davranış-müdaxilələri" class="">Sosial və davranış müdaxilələri</h3>
+<ul>
+<li><strong>Fiziki məşq</strong> – sübutluluq A, yumşaq-orta depresiyada effektivlik antidepressantlara yaxın</li>
+<li><strong>Light terapiyası</strong> – mövsümi affektiv pozuntuda birinci xətt; non-mövsümi depresiyada da yardımçı</li>
+<li><strong>Sleep hijenası</strong></li>
+<li><strong>Sosial dəstək qrupları</strong></li>
+<li><strong>Self-help materialları, dijital KDT</strong></li>
+</ul>
+<h3 id="ar-klinik-protokolu-səhiyyə-nazirliyi-yerli-tövsiyələr" class="">AR Klinik Protokolu (Səhiyyə Nazirliyi) – yerli tövsiyələr</h3>
+<p>Azərbaycan Respublikasının rəsmi protokolu:</p>
+<p><strong>Diaqnostik və müalicə təşkili:</strong></p>
+<ul>
+<li><strong>İlkin səhiyyə</strong> (ailə həkimi) – yumşaq və orta depresiya</li>
+<li><strong>İxtisaslaşdırılmış</strong> – ağır, psixotik, müalicə-rezistent</li>
+</ul>
+<p><strong>Birinci sıra dərmanlar (AR əlçatanlığı):</strong></p>
+<ul>
+<li><strong>Sertralin, esitalopram, fluoksetin</strong> – geniş əlçatan</li>
+<li><strong>Amitriptilin</strong> – klassik, lakin yaşlılarda diqqət</li>
+<li><strong>Mirtazapin</strong> – yuxu və iştah problemlərində</li>
+</ul>
+<p><strong>Yerli problem nokta:</strong> Azərbaycanda <strong>ECT məhdud əlçatandır</strong> (yalnız Bakı PSM və bir neçə klinikada); rTMS də məhduddur. <strong>Esketamin əlçatan deyil.</strong></p>
+<h3 id="spesifik-populyasiyalar" class="">Spesifik populyasiyalar</h3>
+<p><strong>Hamilələr:</strong></p>
+<ul>
+<li>Sertralin, esitalopram – ən təhlükəsizlər</li>
+<li><strong>Paroksetin əks göstəriş</strong> (ürək anomaliyaları riski)</li>
+<li>EKT – təhlükəsiz alternativ ağır hallarda</li>
+<li>(Bölmə 19-a tam müzakirə)</li>
+</ul>
+<p><strong>Laktasiya dövründə:</strong></p>
+<ul>
+<li>Sertralin, paroksetin – ana südünə minimal keçid</li>
+</ul>
+<p><strong>Uşaq və yeniyetmələr:</strong></p>
+<ul>
+<li><strong>Fluoksetin</strong> – FDA təsdiqli (8+ yaş)</li>
+<li><strong>Esitalopram</strong> – FDA təsdiqli (12+ yaş)</li>
+<li><strong>KDT və İPT-A</strong> birinci xətt</li>
+<li><strong>Suisid riskinin monitorinqi</strong> (xüsusilə ilk 3-4 həftə)</li>
+<li>&quot;Black box warning&quot; – yeniyetmədə antidepressant başlama suisidal idea artıra bilər (lakin tam suisid azalır müalicə ilə)</li>
+</ul>
+<p><strong>Yaşlılar:</strong></p>
+<ul>
+<li><strong>Aşağı dozadan başla, yavaş artır</strong> (&quot;start low, go slow&quot;)</li>
+<li>Sertralin, esitalopram tipik birinci seçim</li>
+<li>Antikolinerjikdən qaçın (TSA, paroksetin)</li>
+<li>Hipona t r i e m i a riski SİUSİ ilə (xüsusilə yaşlı qadınlar)</li>
+<li>Yıxılma riski</li>
+</ul>
+<h3 id="komorbidliklərin-müalicəsi" class="">Komorbidliklərin müalicəsi</h3>
+<p><strong>Təşviş + depresiya:</strong> SİUSİ və ya SNRI birgə müalicə edir; KDT də</p>
+<p><strong>Maddə istifadəsi:</strong> İnteqrasiya olunmuş ikili diaqnoz; bəzi hallarda <strong>bupropion</strong> komorbid siqaret asılılığı üçün üstün</p>
+<p><strong>Xronik ağrı:</strong> <strong>Duloksetin, amitriptilin, mirtazapin</strong> – analjezik təsirli antidepressantlar</p>
+<p><strong>Ürək-damar xəstəliyi:</strong> Sertralin – kardial ən təhlükəsiz; <strong>bupropion ehtiyatla</strong> (AT artımı); SADHART tədqiqatı sertralinin post-MI təhlükəsizliyini təsdiqlədi</p>
+<p><strong>Demensiya:</strong> Antidepressantlar effektivliyi məhduddur; KDT təklif et</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="akut-epizodun-gedişi" class="">Akut epizodun gedişi</h3>
+<ul>
+<li><strong>50-60% pasiyent ilk antidepressanta cavab verir</strong> (4-8 həftədə)</li>
+<li><strong>30-40% remissiya əldə edir</strong></li>
+<li><strong>STAR\*D tədqiqatı</strong> (NIMH 2006): 4 ardıcıl müalicə pillə sonrası kümulativ remissiya 67%</li>
+<li><strong>Adekvat trial 6-8 həftə</strong> kritik vacib</li>
+</ul>
+<h3 id="residiv-riski" class="">Residiv riski</h3>
+<ul>
+<li><strong>Bir epizoddan sonra:</strong> 50% residiv 5 il ərzində</li>
+<li><strong>İki epizoddan sonra:</strong> 70% residiv</li>
+<li><strong>Üç+ epizoddan sonra:</strong> 90% residiv</li>
+<li><strong>Saxlanma müalicəsi</strong> residiv riskini yarıya endirir</li>
+</ul>
+<h3 id="xroniki-gediş" class="">Xroniki gediş</h3>
+<ul>
+<li><strong>20% pasiyentdə depresiya xroniki olur</strong> (2+ il davamlı)</li>
+<li>&quot;Double depression&quot; – distimiya zəminində depresiv epizod</li>
+</ul>
+<h3 id="yaxşı-proqnoz-prediktorları" class="">Yaxşı proqnoz prediktorları</h3>
+<ul>
+<li>Kəskin başlanğıc</li>
+<li>Spesifik tetikləyici stress</li>
+<li>Yaxşı premorbid funksionallıq</li>
+<li>Yaxşı ailə dəstəyi</li>
+<li>Erkən və adekvat müalicə</li>
+<li>Komorbid pozuntu yoxluğu</li>
+</ul>
+<h3 id="pis-proqnoz-prediktorları" class="">Pis proqnoz prediktorları</h3>
+<ul>
+<li>Erkən başlanğıc (uşaqlıq, yeniyetmə)</li>
+<li>Xronik gediş</li>
+<li>Ağır şiddət, psixotik xüsusiyyətlər</li>
+<li>Komorbid təşviş, maddə istifadəsi, şəxsiyyət pozuntusu</li>
+<li>Travma anamnezi</li>
+<li>Müalicədən imtina, adhesiya problemi</li>
+<li>Suisidal davranış tarixi</li>
+</ul>
+<h3 id="mortalite" class="">Mortalite</h3>
+<ul>
+<li><strong>Suisid:</strong> ömürlük risk <strong>5-7%</strong>, dərin depresivlərdə 15%-ə qədər</li>
+<li><strong>All-cause mortalite</strong> ümumi populyasiyadan yüksək</li>
+<li>Yaşam müddəti 5-7 il aşağı</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>National Institute for Health and Care Excellence (NICE). <em>Depression in adults: treatment and management</em> (NG222). London, 2022.</li>
+<li>American Psychiatric Association. <em>Practice Guideline for the Treatment of Patients With Major Depressive Disorder</em> (3rd ed). APA Publishing, 2010, 2023 update.</li>
+<li>Kennedy SH, et al. <em>CANMAT 2016 Clinical Guidelines for the Management of Adults with Major Depressive Disorder.</em> Can J Psychiatry, 2016; 61(9): 540-560.</li>
+<li>Bauer M, et al. <em>World Federation of Societies of Biological Psychiatry (WFSBP) Guidelines for Biological Treatment of Unipolar Depressive Disorders.</em> World J Biol Psychiatry, 2013-2015.</li>
+<li>Cleare A, et al. <em>Evidence-based guidelines for treating depressive disorders with antidepressants: A revision of the 2008 British Association for Psychopharmacology guidelines.</em> J Psychopharmacol, 2015.</li>
+<li>Cipriani A, et al. <em>Comparative efficacy and acceptability of 21 antidepressant drugs for the acute treatment of adults with major depressive disorder.</em> Lancet, 2018.</li>
+<li>Rush AJ, et al. <em>Acute and longer-term outcomes in depressed outpatients requiring one or several treatment steps: a STAR\</em>D report.* Am J Psychiatry, 2006.</li>
+<li>Kupfer DJ, Frank E, Phillips ML. <em>Major depressive disorder: new clinical, neurobiological, and treatment perspectives.</em> Lancet, 2012.</li>
+<li>Daly EJ, et al. <em>Efficacy of esketamine nasal spray in treatment-resistant depression.</em> JAMA Psychiatry, 2018.</li>
+<li>Beck AT, Rush AJ, Shaw BF, Emery G. <em>Cognitive Therapy of Depression.</em> Guilford, 1979 (klassik).</li>
+<li>Klerman GL, Weissman MM. <em>Interpersonal Psychotherapy of Depression.</em> Basic Books, 1984 (klassik).</li>
+</ol>
+<p><strong>Yerli (Azərbaycan):</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Depressiyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol.</em> Bakı.</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+<p><strong>Post-sovet:</strong></p>
+<p>\newpage</p>
+<ol>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) 2 cilddə. Moskva: Tibb, 1999.</li>
+<li>Smulevich A.B. <em>Ümumi tibbdə depressiyalar.</em> (Депрессии в общей медицине) Moskva: Tibbi İnformasiya Agentliyi, 2007.</li>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya.</em> (Современная клиническая психиатрия) – Sankt-Peterburq: Reç, 2006. 2-ci nəşr.</li>
+<li>Mosolov S.N. <em>Müasir antidepressantların klinik tətbiqi.</em> (Клиническое применение современных антидепрессантов) Sankt-Peterburq, 1995.</li>
+</ol>
+<h1 id="6a70-bi̇polyar-i-pozuntu" class="h-disorder"><span class="icd">6A70</span> BİPOLYAR I POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A70</span> — Bipolyar I Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F31</span> — Bipolyar affektiv pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 296.xx — Bipolar I Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Bipolyar I pozuntu – ən azı bir <strong>manik epizod</strong> ilə xarakterizə olunan əhval pozuntusudur. Depresiv epizodlar tipik olur, lakin <strong>diaqnoz üçün tələb olunmur</strong> (manik epizod kifayətdir).</p>
+<p><strong>Manik epizod (XBT-11/DSM-5-TR):</strong></p>
+<p>1. Qrandiozluq, yüksəlmiş özünə hörmət</p>
+<p>2. Yuxu ehtiyacının azalması</p>
+<p>3. Sürətli, basınclı nitq</p>
+<p>4. Düşüncə uçuşu, sürətli düşüncə</p>
+<p>5. Distraktivlik</p>
+<p>6. Məqsədli aktivliyin artması və ya psixomotor agitasiya</p>
+<p>7. Riskli davranış (artıq xərc, cinsi, biznes)</p>
+<ul>
+<li>Ən azı <strong>1 həftə davam edir</strong> (və ya hospitallaşdırma tələb edir)</li>
+<li><strong>Yüksəlmiş, ekspansiv və ya qıcıqlı əhval</strong></li>
+<li><strong>Artırılmış aktivlik və ya enerji</strong> (vacib yenilik – DSM-5/XBT-11)</li>
+<li><strong>3+ simptom</strong> (qıcıqlı əhvalda 4+):</li>
+</ul>
+<p><strong>Hipomanik epizod:</strong></p>
+<ul>
+<li>Ən azı <strong>4 gün davam edir</strong></li>
+<li>Eyni simptom siyahısı, lakin <strong>əhəmiyyətli funksional pozulma və ya hospitallaşdırma yoxdur</strong>, <strong>psixotik simptom yoxdur</strong></li>
+<li>Bipolyar I-də hipomanik epizodlar tipik (lakin tələb deyil)</li>
+</ul>
+<p><strong>Mixed epizod / qarışıq xüsusiyyətlər:</strong></p>
+<ul>
+<li>Manik epizod kontekstində 3+ depresiv simptom (yaxud əksi)</li>
+<li>DSM-5-də ayrı kateqoriya yox – spesifikator olaraq qeyd olunur</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="genetik-amillər" class="">Genetik amillər</h3>
+<ul>
+<li><strong>İrsiyyət göstəricisi 60-85%</strong> – ən yüksək psixiatrik pozuntular sırasında</li>
+<li>Birinci dərəcəli qohumlarda risk <strong>8-10 dəfə yüksək</strong></li>
+<li>Eyni yumurtalı ikizlərdə konkordans 40-70%</li>
+<li><strong>Polygenic risk</strong> – ANK3, CACNA1C, ODZ4</li>
+<li><strong>Şizofreniya ilə genetik üst-üstə düşmə</strong> əhəmiyyətli</li>
+</ul>
+<h3 id="neyrobioloji-mexanizmlər" class="">Neyrobioloji mexanizmlər</h3>
+<ul>
+<li><strong>Neyrotransmitter disregulyasiyası:</strong> dopamin (mania), serotonin və noradrenalin</li>
+<li><strong>İkincil messenger sistemləri:</strong> PKC, GSK-3, inositol monofosfataza – litium və valproatın hədəfləri</li>
+<li><strong>HPA oxu disregulyasiyası</strong></li>
+<li><strong>İnflammatuar markerlər</strong> depresiv və manik epizodlarda</li>
+<li><strong>Mitokondrial disfunksiya</strong></li>
+<li><strong>Beyin volume:</strong> prefrontal və temporal sahələrin azalması</li>
+</ul>
+<h3 id="mühit-amilləri" class="">Mühit amilləri</h3>
+<ul>
+<li><strong>Stress, travma</strong></li>
+<li><strong>Yuxu pozuntusu</strong> – manik epizod tetikleyə bilər</li>
+<li><strong>Maddə istifadəsi</strong> (xüsusilə kannabis, kokain)</li>
+<li><strong>Antidepressant induksiyalı switch</strong> (manik epizod)</li>
+<li><strong>Mövsüm təsiri</strong> (yaz/yaz – manik; payız/qış – depresiv)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<h3 id="yayılma" class="">Yayılma</h3>
+<ul>
+<li><strong>Bipolyar I ömürlük yayılma:</strong> <strong>1%</strong> (qlobal)</li>
+<li><strong>Bipolyar spektr (I + II + cyclothymia):</strong> 2-4%</li>
+<li><strong>Azərbaycan:</strong> rəsmi statistikada aşağı (~0,3-0,5%) – aşkarlama az</li>
+</ul>
+<h3 id="cins-və-yaş" class="">Cins və yaş</h3>
+<ul>
+<li><strong>Cins:</strong> kişi:qadın <strong>1:1</strong> (depresiyadan fərqli)</li>
+<li><strong>Başlanğıc yaşı:</strong> ortalama <strong>20-25 yaş</strong>; pik 18-30</li>
+<li><strong>Erkən başlanğıc</strong> (yeniyetmə) – daha pis proqnoz</li>
+<li><strong>Manik diaqnoz qoyma orta yaşı:</strong> 25-30, lakin əksər pasiyentlərdə <strong>6-10 il diaqnostik gecikmə</strong> mövcuddur (depresiv epizod kimi yanlış diaqnoz)</li>
+</ul>
+<h3 id="komorbidlik" class="">Komorbidlik</h3>
+<ul>
+<li><strong>Təşviş pozuntuları:</strong> 50-70%</li>
+<li><strong>Maddə istifadəsi pozuntuları:</strong> <strong>40-60%</strong> (ümumi populyasiyadan 6-7 dəfə yüksək)</li>
+<li><strong>DDHP:</strong> 20-25%</li>
+<li><strong>Şəxsiyyət pozuntuları:</strong> 30%</li>
+<li><strong>Cismani:</strong> ürək-damar (3x risk), metabolik sindrom, tireoid pozuntuları</li>
+</ul>
+<h3 id="mortalite" class="">Mortalite</h3>
+<ul>
+<li><strong>Suisid:</strong> ömürlük risk <strong>15-20%</strong> – psixiatrik pozuntular arasında ən yüksək</li>
+<li><strong>Yaşam müddəti</strong> – ümumi populyasiyadan 9-13 il aşağı</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="manik-epizod" class="">Manik epizod</h3>
+<p><strong>Yüngül manik (mania):</strong></p>
+<p>- Maliyyə: artıq xərc, kreditlər, biznes &quot;layihələri&quot;</p>
+<p>- Cinsi: hiperseksuallıq, partnyor sayının artması</p>
+<p>- Sürücülük – sürət, qəzalar</p>
+<p>- Maddə istifadəsi</p>
+<ul>
+<li>Yüksəlmiş, ekspansiv əhval və ya qıcıqlanma</li>
+<li>Artırılmış enerji, aktivlik, motor nizamsızlığı</li>
+<li>Yuxu ehtiyacının azalması (&quot;3-4 saat yatıram, lakin enerjim daha çoxdur&quot;)</li>
+<li>Hızlı, basınclı nitq – kəsilmir, fasilə yoxdur</li>
+<li>Düşüncə uçuşu, sürətli düşüncə, ideya yağışı</li>
+<li>Distraktivlik</li>
+<li>Qrandiozluq – özünün böyük qabiliyyətləri, gücü, &quot;missiyası&quot;</li>
+<li><strong>Riskli davranış:</strong></li>
+<li><strong>İnsight zəif və ya yox</strong> – pasiyent xəstə olduğunu qəbul etmir</li>
+</ul>
+<p><strong>Ağır manik (maniak vəziyyət):</strong></p>
+<p>- <strong>Qrandioz sayıqlama</strong> – Allah, peyğəmbər, milyarder</p>
+<p>- <strong>Persekutiv</strong> sayıqlama (ikinci dərəcəli)</p>
+<p>- <strong>Eşitmə halusinasiyalar</strong> (qrandioz)</p>
+<ul>
+<li>Davranış idarəolunmaz, ekstremal agitasiya</li>
+<li>Kontuzya, oryentasiya pozuntusu</li>
+<li>Mövcuddur <strong>psixotik simptomlar</strong> (50% ağır maniyada):</li>
+<li>Kataton xüsusiyyətlər mümkündür</li>
+</ul>
+<h3 id="bipolyar-depresiv-epizod" class="">Bipolyar depresiv epizod</h3>
+<p>Bipolyar I-də depresiv epizodlar tipik unipolyar depresiyadan <strong>bir qədər fərqlənir</strong>:</p>
+<p><strong>Tipik xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Atipik xüsusiyyətlər daha tez-tez</strong> – hipersomniya, hiperfagiya, &quot;leaden paralysis&quot;</li>
+<li><strong>Psixomotor ləngləmə</strong> dominant</li>
+<li><strong>Erkən başlanğıc</strong></li>
+<li><strong>Aile tarixçəsi</strong> bipolyar</li>
+<li><strong>Postpartum başlanğıc</strong></li>
+<li><strong>Antidepressant induksiyalı switch</strong> anamnez</li>
+<li><strong>Qarışıq xüsusiyyətlər</strong> tez-tez</li>
+</ul>
+<p><strong>Əhəmiyyətli kliniki nüans:</strong> Bipolyar depresiv epizodu unipolyar (təkqütblü) depresiyadan diferensiasiya <strong>müalicə qərarı üçün vacibdir</strong> – antidepressant <strong>monoterapiya bipolyar depresiyada effektiv deyil və mania switch-i tetikləyə bilər</strong>.</p>
+<h3 id="mixed-qarışıq-epizodlar" class="">Mixed (qarışıq) epizodlar</h3>
+<p><strong>Qarışıq xüsusiyyətlər (mixed features):</strong></p>
+<ul>
+<li>Manik epizod + 3 depresiv simptom (depresiv əhval, anhedoniya, psixomotor ləngləmə, yorğunluq, dəyərsizlik, suisidal idea)</li>
+<li>Yaxud depresiv epizod + 3 manik simptom (yüksəlmiş əhval, qrandiozluq, sürətli nitq, ideya uçuşu, məqsədli aktivlik artması, riskli davranış)</li>
+</ul>
+<p><strong>Klinik təzahür:</strong></p>
+<ul>
+<li>Disforiya, hirsli yüksəlmə, qarışıqlıq</li>
+<li>Suisidal risk <strong>çox yüksəkdir</strong></li>
+<li>Müalicə daha çətin</li>
+</ul>
+<h3 id="sürətli-sikl-rapid-cycling" class="">Sürətli sikl (rapid cycling)</h3>
+<ul>
+<li><strong>4+ epizod</strong> 12 ay ərzində</li>
+<li><strong>Ultra-rapid:</strong> günlər</li>
+<li><strong>Ultra-ultra-rapid:</strong> saatlar</li>
+<li><strong>Pis proqnoz, daha çətin müalicə</strong></li>
+<li>Qadınlarda dominant, antidepressant istifadəsi ilə əlaqəli</li>
+</ul>
+<h3 id="funksional-təsir" class="">Funksional təsir</h3>
+<ul>
+<li><strong>Akademik və peşə fəaliyyəti pozulur</strong></li>
+<li><strong>Münasibətlər</strong> – evlilik, dostluq risk altındadır</li>
+<li><strong>Maliyyə</strong> – manik epizoddan sonra tez-tez ağır borclar</li>
+<li><strong>Sosial nəticələr</strong> – inappropriate davranış, hüquqi problemlər</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a60" class="">XBT-11 əsas tələblər (<span class="icd">6A60</span>)</h3>
+<p><strong>Bipolyar I diaqnozu üçün:</strong></p>
+<ul>
+<li>Ömürdə ən azı bir <strong>manik və ya qarışıq epizod</strong></li>
+<li>Depresiv epizodlar tələb deyil</li>
+</ul>
+<h3 id="xbt-10-ilə-müqayisə" class="">XBT-10 ilə müqayisə</h3>
+<p>XBT-10 <span class="icd">F31</span> daha az dəqiq idi – Bipolyar II ayrıca yox idi.</p>
+<h3 id="dsm-5-tr-ilə-müqayisə" class="">DSM-5-TR ilə müqayisə</h3>
+<p><strong>Demək olar identik.</strong> Əsas fərq:</p>
+<ul>
+<li>DSM-5-TR-də manik epizod meyarı <strong>artırılmış aktivlik və ya enerji</strong> mütləqdir (DSM-IV-də yox idi)</li>
+<li>Hipomanik epizod ən azı <strong>4 gün</strong> (DSM-IV-də 4+ gün)</li>
+</ul>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<p>- <strong>MDQ</strong> (Mood Disorder Questionnaire) – 13 sual</p>
+<p>- <strong>HCL-32</strong> (Hypomania Checklist)</p>
+<p>- <strong>YMRS</strong> (Young Mania Rating Scale) – 11 göstərici</p>
+<p>- <strong>MADRS</strong> depresiv epizodda</p>
+<ol>
+<li><strong>Klinik müsahibə</strong> – simptomlar, gediş, anamnez</li>
+<li><strong>Manik/hipomanik tarama:</strong></li>
+<li><strong>Kollateral məlumat</strong> – aile üzvlərindən (pasiyent insight zəif)</li>
+<li><strong>Şiddət qiymətləndirməsi:</strong></li>
+<li><strong>Komorbid pozuntu skrining:</strong> maddə istifadəsi, təşviş, OKP</li>
+<li><strong>Cismani və laborator</strong> – tireoid, B12, toksikoloji</li>
+</ol>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Bipolyar II</strong></td><td>Yalnız hipomanik epizod (manik yox); depresiv epizod tələbdir</td></tr>
+<tr><td><strong>Unipolar depresiya (MDD)</strong></td><td>Manik və hipomanik epizod yoxdur</td></tr>
+<tr><td><strong>Şizofreniya</strong></td><td>Davamlı psixotik simptomlar; mood-az dövrdə də psixoz</td></tr>
+<tr><td><strong>Şizoaffektiv pozuntu</strong></td><td>Psixotik simptomlar mood-az dövrdə də mövcud (ən azı 2 həftə)</td></tr>
+<tr><td><strong>DDHP</strong></td><td>Davamlı, episodik deyil; aktivlik artması davamlı; əhval yüksəlməsi yox</td></tr>
+<tr><td><strong>Maddə induksiyalı</strong></td><td>Maddə tarixçəsi (kokain, amfetamin)</td></tr>
+<tr><td><strong>Tireotoksikoz, Cushing</strong></td><td>Endokrin testlər</td></tr>
+<tr><td><strong>Borderline şəxsiyyət pozuntusu</strong></td><td>Affekt labilliyi davamlı, saatlar/günlər; bipolyar epizod günlər/həftələr</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar" class="">Şkalalar</h3>
+<ul>
+<li><strong>YMRS</strong> (Young Mania Rating Scale) – qızıl standart manik epizod şiddəti</li>
+<li><strong>MADRS</strong> – bipolyar depresiv epizodda</li>
+<li><strong>MDQ</strong> – tarama</li>
+<li><strong>CGI-BP</strong> – ümumi klinik təəssürat (bipolar versiya)</li>
+</ul>
+<h3 id="tibbi-müayinələr" class="">Tibbi müayinələr</h3>
+<p><strong>Birinci xətt:</strong></p>
+<ul>
+<li>Tireoid funksiyası (TSH, T4)</li>
+<li>Tam qan, qaraciyər, böyrək</li>
+<li>Qan qlükozası, lipid profili</li>
+<li><strong>Toksikoloji skrening</strong> (sidik)</li>
+<li>HIV, sifilis (klinik şübhədə)</li>
+<li>Hamiləlik testi (qadınlarda – litium başlanması öncəsi)</li>
+<li><strong>EKG</strong> – baseline (litium, antipsixotik üçün)</li>
+</ul>
+<p><strong>Spesifik:</strong></p>
+<ul>
+<li>Beyin MRT – ilk epizod, atipik təqdim</li>
+<li>EEQ – tutmalar şübhəsi</li>
+<li>Ana-NMDA-R antikorları – atipik psixotik təqdimdə</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>Bipolyar pozuntu müalicəsi <strong>3 fazada</strong> baxılır:</p>
+<ol>
+<li><strong>Akut mania</strong> müalicəsi</li>
+<li><strong>Akut bipolyar depresiya</strong> müalicəsi</li>
+<li><strong>Saxlanma müalicəsi</strong> – residiv profilaktikası</li>
+</ol>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<p><strong>Birinci xətt avtoritet bələdçilər:</strong></p>
+<ul>
+<li><strong>CANMAT/ISBD 2018 Guidelines + 2021 Update</strong> (Yatham et al.) – <strong>iyerarxik sıralama</strong> ilə (ən müasir)</li>
+<li><strong>NICE CG185 (2014, 2020 review):</strong> <em>Bipolar disorder: assessment and management</em></li>
+<li><strong>APA Practice Guideline for Treatment of Patients With Bipolar Disorder</strong> (2002, update)</li>
+<li><strong>WFSBP Guidelines for Biological Treatment of Bipolar Disorders</strong> (2009-2018)</li>
+<li><strong>BAP Guidelines for Bipolar Disorder</strong> (2016)</li>
+<li><strong>RANZCP 2020 Mood Disorder Guidelines</strong></li>
+</ul>
+<h3 id="akut-manik-epizodun-müalicəsi" class="">Akut manik epizodun müalicəsi</h3>
+<h4 id="canmatisbd-2018-iyerarxik-sıralama-bi̇ri̇nci̇-xətt" class="">CANMAT/ISBD 2018 iyerarxik sıralama – BİRİNCİ XƏTT</h4>
+<p><strong>Monoterapiya (sıra ilə üstünlüyə görə):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Sıra</th><th>Preparat</th><th>Standart doza</th></tr>
+<tr><td>1</td><td><strong>Litium</strong></td><td>600-1200 mq/gün, qan səviyyəsi 0,8-1,2 mEq/L</td></tr>
+<tr><td>2</td><td><strong>Kvetiapin</strong></td><td>400-800 mq/gün</td></tr>
+<tr><td>3</td><td><strong>Divalproeks (valproat)</strong></td><td>750-2000 mq/gün, qan səviyyəsi 50-125 mkg/mL</td></tr>
+<tr><td>4</td><td><strong>Asenapin</strong></td><td>10-20 mq/gün (sublinqual)</td></tr>
+<tr><td>5</td><td><strong>Aripiprazol</strong></td><td>15-30 mq/gün</td></tr>
+<tr><td>6</td><td><strong>Paliperidon</strong></td><td>6-12 mq/gün (&gt;6 mq)</td></tr>
+<tr><td>7</td><td><strong>Risperidon</strong></td><td>2-6 mq/gün</td></tr>
+<tr><td>8</td><td><strong>Cariprazin</strong></td><td>3-12 mq/gün</td></tr>
+</table></div>
+<p><strong>Kombinasiya (üstün cavab nisbəti, ~20% yüksək):</strong></p>
+<ul>
+<li><strong>Litium + atipik antipsixotik</strong> (kvetiapin, aripiprazol, risperidon)</li>
+<li><strong>Divalproeks + atipik antipsixotik</strong></li>
+</ul>
+<h4 id="i̇kinci-xətt" class="">İkinci xətt</h4>
+<ul>
+<li>Olanzapin</li>
+<li>Karbamazepin</li>
+<li>EKT</li>
+<li>Litium + divalproeks</li>
+<li>Ziprasidon</li>
+<li>Haloperidol (təcili agitasiyada)</li>
+</ul>
+<h4 id="üçüncü-xətt" class="">Üçüncü xətt</h4>
+<ul>
+<li>Klorpromazin, Flupentiksol, Klozapin, Tamoksifen</li>
+</ul>
+<h4 id="akut-agitasiyada-təcili-sedasiya-canmat-2018" class="">Akut agitasiyada təcili sedasiya (CANMAT 2018)</h4>
+<p><strong>Birinci xətt:</strong></p>
+<ul>
+<li><strong>Aripiprazol IM</strong> 9,75 mq</li>
+<li><strong>Olanzapin IM</strong> 10 mq (lorazepamla 1+ saat fasilə)</li>
+<li><strong>Lorazepam IM</strong> 2 mq</li>
+<li><strong>Loksapin inhalat</strong> 10 mq</li>
+</ul>
+<p><strong>İkinci xətt:</strong></p>
+<ul>
+<li>Asenapin sublinqual</li>
+<li>Haloperidol IM ± lorazepam IM</li>
+<li>Ziprasidon IM</li>
+</ul>
+<h4 id="antidepressant-dayandirilmasi" class="">Antidepressant DAYANDIRILMASI</h4>
+<p>Manik epizod yarananda <strong>antidepressantlar dərhal dayandırılır</strong> (CANMAT 2018) – mania kəskinləşdirə bilər.</p>
+<h3 id="akut-bipolyar-i-depresiv-epizodun-müalicəsi" class="">Akut bipolyar I depresiv epizodun müalicəsi</h3>
+<h4 id="canmatisbd-2018-iyerarxik-sıralama-bi̇ri̇nci̇-xətt" class="">CANMAT/ISBD 2018 iyerarxik sıralama – BİRİNCİ XƏTT</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Sıra</th><th>Müalicə</th></tr>
+<tr><td>1</td><td><strong>Kvetiapin</strong> monoterapiya 300-600 mq/gün</td></tr>
+<tr><td>2</td><td><strong>Lurasidon + litium və ya divalproeks</strong> (lurasidon 20-120 mq)</td></tr>
+<tr><td>3</td><td><strong>Litium</strong> monoterapiya</td></tr>
+<tr><td>4</td><td><strong>Lurasidon</strong> monoterapiya</td></tr>
+</table></div>
+<p>&gt; <strong>VACİB QEYD — Lamotrijin haqqında.</strong> CANMAT/ISBD 2018-ə əsasən, <strong>lamotrijin akut bipolyar I depresiv epizodda effektiv deyil</strong> — randomizə nəzarətli sınaqlarda monoterapiya kimi plasebodan üstünlüyü göstərilməmişdir. Lamotrijinin sübuta əsaslanan istifadəsi <strong>yalnız depresiv epizodların profilaktikasıdır</strong> (saxlanma fazası — bax 8.4). Akut depresiv epizodda lamotrijin birinci xətt sayılmır.</p>
+<h4 id="i̇kinci-xətt" class="">İkinci xətt</h4>
+<ul>
+<li>Divalproeks</li>
+<li>Lamotrijin (yalnız adyuvant kimi, monoterapiya kimi yox; tədricən titrasiya — Stevens-Johnson sindromu riski)</li>
+<li>SİUSİ və ya bupropion <strong>mood stabilizatoru ilə kombinasiyada</strong> (yalnız!)</li>
+<li>EKT</li>
+<li>Cariprazin</li>
+<li>Olanzapin-fluoksetin kombinasiyası</li>
+</ul>
+<h4 id="antidepressantlardan-istifadə-qaydaları-canmat-2018" class="">Antidepressantlardan istifadə qaydaları (CANMAT 2018)</h4>
+<p><strong>Bipolyar I depresivdə:</strong></p>
+<ul>
+<li>Antidepressant <strong>monoterapiya əks göstərişdir</strong></li>
+<li>Yalnız <strong>mood stabilizatoru ilə birgə</strong></li>
+<li><strong>SİUSİ və bupropion</strong> üstündür (TSA, SNRI-ə nisbətən mania switch riski az)</li>
+<li><strong>Mixed xüsusiyyətlər varsa antidepressantlardan qaçınılmalı</strong></li>
+</ul>
+<h3 id="saxlanma-müalicəsi-residiv-profilaktikası" class="">Saxlanma müalicəsi (residiv profilaktikası)</h3>
+<p>Bipolyar pozuntu <strong>xroniki, residivverən xəstəlikdir</strong> – uzun-müddətli müalicə tələb olunur.</p>
+<h4 id="canmatisbd-2018-iyerarxik-sıralama-bi̇ri̇nci̇-xətt-monoterapi̇ya" class="">CANMAT/ISBD 2018 iyerarxik sıralama – BİRİNCİ XƏTT MONOTERAPİYA</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Sıra</th><th>Preparat</th></tr>
+<tr><td>1</td><td><strong>Litium</strong></td></tr>
+<tr><td>2</td><td><strong>Kvetiapin</strong></td></tr>
+<tr><td>3</td><td><strong>Divalproeks</strong></td></tr>
+<tr><td>4</td><td><strong>Lamotrijin</strong> (xüsusilə depresiv epizod profilaktikasında)</td></tr>
+<tr><td>5</td><td><strong>Asenapin</strong></td></tr>
+<tr><td>6</td><td><strong>Aripiprazol</strong> (oral və ya aylıq inyeksiya)</td></tr>
+</table></div>
+<h4 id="birinci-xətt-kombi̇nasi̇yalar" class="">Birinci xətt KOMBİNASİYALAR</h4>
+<ul>
+<li><strong>Kvetiapin + litium və ya divalproeks</strong></li>
+<li><strong>Aripiprazol + litium və ya divalproeks</strong></li>
+</ul>
+<h4 id="i̇kinci-xətt-monoterapiya" class="">İkinci xətt monoterapiya</h4>
+<ul>
+<li>Olanzapin</li>
+<li>Risperidon LAI (uzun təsirli inyeksiya)</li>
+<li>Karbamazepin</li>
+<li>Paliperidon</li>
+</ul>
+<h4 id="üçüncü-xətt" class="">Üçüncü xətt</h4>
+<ul>
+<li>Klozapin</li>
+<li>EKT (maintenance)</li>
+<li>Litium + lamotrijin</li>
+<li>Aripiprazol + lamotrijin</li>
+</ul>
+<h3 id="litium-detallı-qeydlər" class="">Litium – detallı qeydlər</h3>
+<p><strong>Litium hələ də qızıl standart</strong> bipolyar pozuntuda – <strong>ölüm riskini, suisid riskini, residiv riskini azaldır</strong> (CANMAT 2018, sübutluluq A).</p>
+<p><strong>Doza və monitoring:</strong></p>
+<p>- <strong>Akut mania:</strong> 0,8-1,2 mEq/L</p>
+<p>- <strong>Saxlanma:</strong> 0,6-1,0 mEq/L (yaşlılarda 0,4-0,8)</p>
+<ul>
+<li><strong>Başlanğıc:</strong> 300 mq 2 dəfə gündə</li>
+<li><strong>Hədəf qan səviyyəsi:</strong></li>
+<li><strong>Toksiklik səviyyəsi:</strong> &gt;1,5 mEq/L (1,5-2,0 yüngül; 2,0-2,5 orta; &gt;2,5 ağır)</li>
+<li><strong>Qan səviyyəsi yoxlama:</strong> son dozadan 12 saat sonra</li>
+</ul>
+<p><strong>Pre-treatment qiymətləndirmə (mütləq):</strong></p>
+<ul>
+<li><strong>Tireoid funksiyası</strong> (TSH, T4)</li>
+<li><strong>Böyrək funksiyası</strong> (kreatinin, GFR)</li>
+<li><strong>EKG</strong></li>
+<li><strong>Qan təzyiqi</strong></li>
+<li><strong>Hamiləlik testi</strong> (qadınlarda)</li>
+<li><strong>Tam qan, qan qlükozası</strong></li>
+</ul>
+<p><strong>Monitoring (saxlanma):</strong></p>
+<ul>
+<li>Litium səviyyəsi – hər 3-6 ay</li>
+<li>TSH – hər 6-12 ay</li>
+<li>Böyrək – hər 6-12 ay</li>
+<li>Çəki, AT – mütəmadi</li>
+</ul>
+<p><strong>Yan təsirlər:</strong></p>
+<p>- <strong>Tireoid disfunksiyası</strong> (xüsusilə qadınlarda)</p>
+<p>- <strong>Renal disfunksiya</strong> (xroniki interstisial nefrit, nefrogen diabetes insipidus)</p>
+<p>- Çəki artımı</p>
+<p>- Tremor (yaşlılarda kəskin)</p>
+<p>- Akne, psoriasis kəskinləşməsi</p>
+<ul>
+<li><strong>Erkən:</strong> tremor (yumşaq), nausea, polidipsiya, poliuria, çəki artımı</li>
+<li><strong>Xroniki:</strong></li>
+</ul>
+<p><strong>Toksiklik əlamətləri:</strong></p>
+<ul>
+<li><strong>Yüngül (1,5-2,0):</strong> tremor, ataksiya, nausea, qusma, ishal</li>
+<li><strong>Orta (2,0-2,5):</strong> kəskin tremor, dezoryentasiya, mioklonus</li>
+<li><strong>Ağır (&gt;2,5):</strong> tutmalar, koma, ürək aritmiyaları, ölüm riski</li>
+</ul>
+<p><strong>Toksikliyin müalicəsi:</strong></p>
+<ul>
+<li>Dərhal dayandırma</li>
+<li>Hidratasiya (IV)</li>
+<li><strong>Hemodialyaz</strong> (&gt;3,5 mEq/L və ya simptomatik &gt;2,5)</li>
+</ul>
+<p><strong>Qarşılıqlı təsirlər (vacib):</strong></p>
+<ul>
+<li><strong>Diuretiklər (tiazid)</strong> – litium səviyyəsini artırır</li>
+<li><strong>NSAİD</strong> – litium səviyyəsini artırır</li>
+<li><strong>ACE inhibitorları</strong> – litium səviyyəsini artırır</li>
+<li>Dehidratasiya, sodium azlıq – toksiklik riski</li>
+</ul>
+<p><strong>Hamiləlikdə:</strong></p>
+<ul>
+<li>Birinci trimestrdə <strong>Ebstein anomaliyası</strong> riski (klassik düşüncədən az)</li>
+<li>Risk-fayda dəyərləndirilməsi mütləq</li>
+</ul>
+<h3 id="divalproeks-valproat-detallı-qeydlər" class="">Divalproeks (valproat) – detallı qeydlər</h3>
+<p><strong>Doza:</strong></p>
+<ul>
+<li><strong>Akut mania:</strong> 750-2000 mq/gün, sürətli titrasiya</li>
+<li><strong>Hədəf qan səviyyəsi:</strong> 50-125 mkg/mL</li>
+</ul>
+<p><strong>Pre-treatment:</strong></p>
+<ul>
+<li>Tam qan, qaraciyər funksiyası</li>
+<li>Hamiləlik testi (qadınlarda)</li>
+</ul>
+<p><strong>Yan təsirlər:</strong></p>
+<ul>
+<li><strong>GI</strong> – nausea, qusma, ishal</li>
+<li><strong>Hepatotoksisite</strong> – nadir, lakin ağır</li>
+<li><strong>Pankreatit</strong> – nadir, lakin ağır</li>
+<li><strong>Tremor</strong></li>
+<li><strong>Çəki artımı, metabolik sindrom</strong></li>
+<li><strong>Saç tökülməsi</strong></li>
+<li><strong>Trombositopeniya, leykopeniya</strong></li>
+<li><strong>Hiperammonemiya</strong></li>
+</ul>
+<p><strong>Hamiləlik:</strong></p>
+<ul>
+<li><strong>Reproduktiv yaşda qadınlarda istifadəsi MƏHDUDLAŞDIRILIB</strong> (NICE 2018, FDA)</li>
+<li><strong>Neyral boru defekti riski 5-10%</strong>, koqnitiv pozuntular, autizm</li>
+<li>Yalnız müstəsna hallarda və effektiv kontraseptiv ilə</li>
+</ul>
+<h3 id="lamotrijin-detallı-qeydlər" class="">Lamotrijin – detallı qeydlər</h3>
+<p><strong>Doza titrasiyası MÜTLƏQ YAVAŞ</strong> (Stevens-Johnson sindromu riski):</p>
+<ul>
+<li>1-2 həftə: 25 mq/gün</li>
+<li>3-4 həftə: 50 mq/gün</li>
+<li>5-ci həftə: 100 mq/gün</li>
+<li>6-cı həftə: 200 mq/gün</li>
+</ul>
+<p><strong>Effektivlik:</strong></p>
+<ul>
+<li><strong>Bipolyar depresiv epizodda zəif</strong> (akut)</li>
+<li><strong>Bipolyar depresiv epizod profilaktikasında effektiv</strong> (saxlanma)</li>
+</ul>
+<p><strong>Yan təsirlər:</strong></p>
+<ul>
+<li><strong>Stevens-Johnson sindromu</strong> (0,3% – ölümcül ola bilər)</li>
+<li>Başgicəllənmə, baş ağrısı</li>
+<li>Diplopia, ataksiya</li>
+</ul>
+<p><strong>Diqqət:</strong> Valproat ilə birgə istifadə – lamotrijin səviyyəsini iki dəfə artırır → <strong>doza yarıya endirilməlidir</strong></p>
+<h3 id="atipik-antipsixotiklər-bipolyar-pozuntuda" class="">Atipik antipsixotiklər bipolyar pozuntuda</h3>
+<p>Bütün atipik antipsixotiklərin yan təsir profili Bölmə 2.1.8.5-də verilmişdir. Bipolyar kontekstində spesifik qeydlər:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Mania</th><th>Bipolyar dep.</th><th>Saxlanma</th></tr>
+<tr><td><strong>Kvetiapin</strong></td><td>✓ (1-ci xətt)</td><td>✓ (1-ci xətt monoterapiya)</td><td>✓</td></tr>
+<tr><td><strong>Lurasidon</strong></td><td>–</td><td>✓ (1-ci xətt + lithium/valproat)</td><td>–</td></tr>
+<tr><td><strong>Olanzapin</strong></td><td>✓</td><td>OFC olaraq</td><td>✓</td></tr>
+<tr><td><strong>Aripiprazol</strong></td><td>✓</td><td>–</td><td>✓ (LAI da)</td></tr>
+<tr><td><strong>Risperidon</strong></td><td>✓</td><td>–</td><td>✓ (LAI)</td></tr>
+<tr><td><strong>Asenapin</strong></td><td>✓</td><td>–</td><td>✓</td></tr>
+<tr><td><strong>Cariprazin</strong></td><td>✓</td><td>✓ (2-ci xətt)</td><td>–</td></tr>
+<tr><td><strong>Paliperidon</strong></td><td>✓ (&gt;6 mq)</td><td>–</td><td>–</td></tr>
+<tr><td><strong>Klozapin</strong></td><td>–</td><td>–</td><td>Müalicə-rezistent</td></tr>
+</table></div>
+<h3 id="ekt-bipolyar-pozuntuda" class="">EKT bipolyar pozuntuda</h3>
+<p><strong>Göstərişlər:</strong></p>
+<ul>
+<li>Müalicə-rezistent mania</li>
+<li>Müalicə-rezistent bipolyar depresiya</li>
+<li>Suisidal risk yüksəkdir, sürətli cavab tələb olunur</li>
+<li>Hamiləlik (təhlükəsiz alternativ)</li>
+<li>Katatonik xüsusiyyətlər</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>Sübutluluq A</strong> – farmakoterapiya ilə paralel:</p>
+<ul>
+<li><strong>KDT bipolyar pozuntu üçün</strong> (CBT-BD) – residiv əlamətlərini tanıma, davranış aktivasiyası</li>
+<li><strong>İPT və sosial ritm terapiyası (IPSRT)</strong> – Frank və Kupfer; sirkadian ritmi sabitləşdirir</li>
+<li><strong>Aile fokuslu terapiya (FFT)</strong> – ifadəli emosiyanı azaldır</li>
+<li><strong>Psikoeducation</strong> – sübutluluq A; pasiyent və aile</li>
+<li><strong>Davranış müdaxilələri</strong> – yuxu hijenası, fiziki məşq</li>
+</ul>
+<h3 id="yeni-və-müalicə-rezistent-strategiyalar" class="">Yeni və müalicə-rezistent strategiyalar</h3>
+<ul>
+<li><strong>Klozapin</strong> – müalicə-rezistent mania, ardıcıl epizodlar</li>
+<li><strong>ECT maintenance</strong> – residiv-rəsindəki bipolyar</li>
+<li><strong>Ketamin/Esketamin</strong> – bipolyar depresiyada tədqiqat mərhələsi (mania switch riski qiymətləndirilir)</li>
+<li><strong>Tamoksifen</strong> – PKC inhibitoru; mania-da</li>
+<li><strong>rTMS, tDCS</strong> – bipolyar depresiyada</li>
+</ul>
+<h3 id="spesifik-populyasiyalar" class="">Spesifik populyasiyalar</h3>
+<p><strong>Hamiləlik:</strong></p>
+<ul>
+<li><strong>Litium</strong> – Ebstein anomaliyası riski (1-ci trimestr); risk-fayda</li>
+<li><strong>Valproat əks göstəriş</strong></li>
+<li><strong>Lamotrijin</strong> – nisbi təhlükəsiz</li>
+<li><strong>Atipik antipsixotik</strong> (xüsusilə kvetiapin, olanzapin) – mövcud məlumatlar yaxşı</li>
+<li>EKT – təhlükəsiz alternativ</li>
+<li>(Bölmə 19-a bax)</li>
+</ul>
+<p><strong>Yaşlılar:</strong></p>
+<ul>
+<li>Litium – aşağı doza, hədəf 0,4-0,8 mEq/L</li>
+<li>Renal və koqnitiv monitoring kəskin</li>
+<li>Atipik antipsixotik (xüsusilə kvetiapin) yaxşı tolerasiya</li>
+</ul>
+<p><strong>Uşaq və yeniyetmələr:</strong></p>
+<ul>
+<li>Birinci xətt: <strong>lithium, kvetiapin, risperidon, aripiprazol</strong> (FDA təsdiqli)</li>
+<li>Lurasidon – bipolyar I depresiv epizodda təsdiqli</li>
+<li>KDT, FFT, IPSRT</li>
+<li>Antidepressant məhdud istifadə + mood stabilizatoru</li>
+</ul>
+<h3 id="komorbid-maddə-istifadəsi" class="">Komorbid maddə istifadəsi</h3>
+<ul>
+<li><strong>Çox tez-tez</strong> bipolyarda (40-60%)</li>
+<li><strong>İnteqrasiya olunmuş ikili diaqnoz müalicəsi</strong></li>
+<li><strong>Litium + valproat</strong> geri çəkilmə kontekstində problemli</li>
+<li><strong>Lamotrijin</strong> alkogol kəsmə dövründə</li>
+<li><strong>Klozapin</strong> əlavə fayda komorbid maddə istifadəsində</li>
+</ul>
+<h3 id="ar-konteksti" class="">AR konteksti</h3>
+<p>Azərbaycanda <strong>bipolyar pozuntu üzrə spesifik yerli klinik protokol nəşr edilməyib</strong>, lakin əhval pozuntularının ümumi protokolu çərçivəsində müzakirə edilir:</p>
+<ul>
+<li><strong>Litium</strong> – əlçatandır</li>
+<li><strong>Valproat (depakin xrono)</strong> – əlçatandır</li>
+<li><strong>Lamotrijin</strong> – əlçatandır</li>
+<li><strong>Atipik antipsixotiklər</strong> – kvetiapin, olanzapin, risperidon, aripiprazol əlçatan</li>
+<li><strong>Lurasidon, asenapin, cariprazin</strong> – əlçatan deyil və ya məhduddur</li>
+<li><strong>ECT</strong> – yalnız Bakı PSM və bir neçə klinikada</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="akut-epizod" class="">Akut epizod</h3>
+<ul>
+<li><strong>Manik epizod adekvat müalicə ilə 4-8 həftədə remissiya</strong></li>
+<li><strong>Bipolyar depresiv epizod</strong> – orta 4-6 ay, müalicəsiz daha uzun</li>
+<li><strong>Qarışıq epizod</strong> – ən pis proqnoz, müalicəyə davamlı</li>
+</ul>
+<h3 id="uzunmüddətli-gediş" class="">Uzunmüddətli gediş</h3>
+<ul>
+<li><strong>90% pasiyentdə residiv</strong> ömür boyu</li>
+<li><strong>Hər il ortalama 0,4-0,7 epizod</strong></li>
+<li><strong>Hər epizod arası vaxt qısalır</strong> (kindling fenomeni)</li>
+<li><strong>Erkən başlanğıc + sürətli sikl + maddə istifadəsi</strong> = pis proqnoz</li>
+</ul>
+<h3 id="funksional-bərpa" class="">Funksional bərpa</h3>
+<ul>
+<li><strong>Simptom remissiyası ≠ funksional remissiya</strong></li>
+<li><strong>30-50% pasiyent ömrü boyu funksional pozulma yaşayır</strong> (xüsusilə koqnitiv simptomlar)</li>
+<li><strong>Erkən və adekvat müalicə</strong> funksional çıxışı yaxşılaşdırır</li>
+</ul>
+<h3 id="mortalite" class="">Mortalite</h3>
+<ul>
+<li><strong>Suisid:</strong> ömürlük risk 15-20% – psixiatrik pozuntular arasında ən yüksək</li>
+<li><strong>Depresiv və qarışıq epizodlarda risk pikdir</strong></li>
+<li><strong>Litium suisid riskini azaldır</strong> (sübutluluq A)</li>
+<li><strong>Cardiovascular mortalite</strong> yüksəkdir – metabolik sindrom, çəki artımı</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>Yatham LN, Kennedy SH, Parikh SV, et al. <em>Canadian Network for Mood and Anxiety Treatments (CANMAT) and International Society for Bipolar Disorders (ISBD) 2018 guidelines for the management of patients with bipolar disorder.</em> Bipolar Disord. 2018;20(2):97-170.</li>
+<li>Yatham LN, et al. <em>2021 update.</em> Bipolar Disord, 2021.</li>
+<li>National Institute for Health and Care Excellence (NICE). <em>Bipolar disorder: assessment and management</em> (CG185). London, 2014/2020.</li>
+<li>Grunze H, et al. <em>World Federation of Societies of Biological Psychiatry (WFSBP) guidelines for the biological treatment of bipolar disorders.</em> World J Biol Psychiatry, 2009-2018.</li>
+<li>Goodwin GM, et al. <em>Evidence-based guidelines for treating bipolar disorder: revised third edition recommendations from the British Association for Psychopharmacology.</em> J Psychopharmacol, 2016.</li>
+<li>Malhi GS, et al. <em>Royal Australian and New Zealand College of Psychiatrists clinical practice guidelines for mood disorders.</em> Aust N Z J Psychiatry, 2021.</li>
+<li>Geddes JR, Miklowitz DJ. <em>Treatment of bipolar disorder.</em> Lancet, 2013.</li>
+<li>Vieta E, et al. <em>Bipolar disorders.</em> Nat Rev Dis Primers, 2018.</li>
+<li>Cipriani A, et al. <em>Lithium in the prevention of suicide in mood disorders: updated systematic review and meta-analysis.</em> BMJ, 2013.</li>
+</ol>
+<p><strong>Yerli (Azərbaycan):</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Depressiyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol.</em> Bakı (bipolyar epizodları daxil olmaqla əhval pozuntularını əhatə edir).</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+<p><strong>Post-sovet:</strong></p>
+<ol>
+<li>Mosolov S.N. <em>Bipolyar affektiv pozuntu.</em> (Биполярное аффективное расстройство) Moskva: Sosial-siyasi fikir, 2008.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya.</em> (Современная клиническая психиатрия) – Sankt-Peterburq: Reç, 2006. 2-ci nəşr.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a71-bi̇polyar-ii-pozuntu" class="h-disorder"><span class="icd">6A71</span> BİPOLYAR II POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A71</span> — Bipolyar Ii Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F31.8</span> — Digər bipolyar affektiv pozuntular</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 296.89 — Bipolar II Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Bipolyar II pozuntu – <strong>ən azı bir hipomanik epizod</strong> və <strong>ən azı bir depresiv epizod</strong> ilə xarakterizə olunur, <strong>manik epizod tarixçəsi yoxdur</strong>.</p>
+<p><strong>Klinik fərqlər Bipolyar I-dən:</strong></p>
+<ul>
+<li>Manik epizod yox – yalnız hipomanik</li>
+<li>Depresiv epizodlar tələbdir (Bipolyar I-də yox)</li>
+<li><strong>Depresiv epizodlar daha çox vaxt</strong> xəstəliyin gedişində</li>
+<li><strong>Hipomanik epizodlar tez-tez aşkar olunmur</strong> – pasiyent &quot;yaxşı vaxtlar&quot; hesab edir</li>
+<li>Diaqnostik gecikmə <strong>10-15 il</strong> orta hesabla</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Bipolyar I-yə bənzər (genetika, neyrobiologiya)</li>
+<li><strong>Genetik üst-üstə düşmə</strong> Bipolyar I, MDD, şizofreniya ilə</li>
+<li><strong>Cins:</strong> <strong>qadınlarda dominant</strong> (1,5-2x)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 0,5-1%</li>
+<li><strong>Cins:</strong> qadın:kişi 1,5-2:1</li>
+<li><strong>Yaş:</strong> orta başlanğıc 20-25 yaş, lakin diaqnoz adətən 30+</li>
+<li><strong>Komorbidlik:</strong> təşviş 60%, maddə istifadəsi 30%, BPD 30%</li>
+<li><strong>Suisid:</strong> ömürlük risk 10-15% – Bipolyar I-yə yaxın</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="hipomanik-epizod" class="">Hipomanik epizod</h3>
+<ul>
+<li>4 gün+ davam edir</li>
+<li>Yüksəlmiş və ya qıcıqlı əhval + artırılmış aktivlik/enerji</li>
+<li>3+ simptom (4+ qıcıqlıda)</li>
+<li><strong>Funksional pozulma əhəmiyyətli deyil və ya pozitiv</strong></li>
+<li><strong>Hospitallaşdırma yox, psixotik simptom yox</strong></li>
+</ul>
+<h3 id="bipolyar-ii-depresiv-epizodu" class="">Bipolyar II depresiv epizodu</h3>
+<ul>
+<li>Bipolyar I-yə bənzər</li>
+<li><strong>Atipik xüsusiyyətlər tez-tez:</strong> hipersomniya, hiperfagiya, &quot;leaden paralysis&quot;</li>
+<li><strong>Mixed xüsusiyyətlər tez-tez</strong></li>
+</ul>
+<h3 id="klinik-gedişin-xüsusiyyətləri" class="">Klinik gedişin xüsusiyyətləri</h3>
+<ul>
+<li><strong>Depresiv vaxt: hipomanik vaxt ≈ 35:1</strong> (Judd 2003)</li>
+<li><strong>Qadınlarda perimenopozada kəskinləşmə</strong></li>
+<li><strong>Sürətli sikl</strong> Bipolyar II-də daha tez-tez</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a61" class="">XBT-11 əsas tələblər (<span class="icd">6A61</span>):</h3>
+<p><strong>A.</strong> Ən azı bir <strong>hipomanik epizod</strong></p>
+<p><strong>B.</strong> Ən azı bir <strong>depresiv epizod</strong></p>
+<p><strong>C.</strong> <strong>Manik və ya qarışıq epizod tarixçəsi YOX</strong></p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Bipolyar I</strong></td><td>Manik epizod tarixçəsi</td></tr>
+<tr><td><strong>Unipolar depresiya</strong></td><td>Hipomanik epizod yoxdur</td></tr>
+<tr><td><strong>Cyclothymia</strong></td><td>Hipomanik və depresiv simptomlar <strong>subtreshold</strong>; tam epizod meyarları qarşılanmır</td></tr>
+<tr><td><strong>Borderline şəxsiyyət pozuntusu</strong></td><td>Affekt labilliyi davamlı (saatlar); qruplaşdırılmış epizodlar yox</td></tr>
+<tr><td><strong>DDHP</strong></td><td>Davamlı; əhval yüksəlməsi yox</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<p>Bipolyar I ilə eyni (Bölmə 4.2.7).</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="canmatisbd-2018-tövsiyələri-bipolyar-ii-üçün" class="">CANMAT/ISBD 2018 tövsiyələri Bipolyar II üçün</h3>
+<p><strong>Akut hipomanik epizod:</strong></p>
+<ul>
+<li>Sıx monitoring, mood stabilizatoru optimizasiyası</li>
+<li>Spesifik akut müalicə tədqiqatı məhdud</li>
+<li>Litium, valproat, atipik antipsixotik</li>
+</ul>
+<p><strong>Akut depresiv epizod – BİRİNCİ XƏTT:</strong></p>
+<ul>
+<li><strong>Kvetiapin monoterapiya</strong> – Bipolyar II depresivdə sübutluluğu ən güclü olan</li>
+<li><strong>Litium</strong> monoterapiya</li>
+<li><strong>Lamotrijin</strong> monoterapiya — <em>Bipolyar II-də fərqli olaraq, akut depresivdə də sübuta malik (CANMAT/ISBD 2018 — Bipolyar II Section)</em></li>
+<li><strong>Sertralin</strong> monoterapiya (digər SİUSİ-lərə nisbətən – nadir hadisədir – Bipolyar II-də monoterapiya tövsiyə oluna bilər, lakin diqqət)</li>
+</ul>
+<p>&gt; <strong>Vacib fərq:</strong> Bipolyar I akut depresivdə lamotrijin <strong>birinci xətt deyil</strong> (yuxarıdakı 8.3 bölməsinə bax). Bipolyar II depresivdə isə fərqli sübutluluq profili nəticəsində lamotrijin birinci xətt seçimləri sırasındadır.</p>
+<p><strong>Saxlanma:</strong></p>
+<ul>
+<li><strong>Kvetiapin</strong> – birinci xətt</li>
+<li><strong>Litium</strong> – birinci xətt</li>
+<li><strong>Lamotrijin</strong> – birinci xətt</li>
+<li><strong>Antidepressant + mood stabilizatoru</strong> – əgər antidepressant cavab vermişdirsə</li>
+</ul>
+<h3 id="antidepressantların-istifadəsi" class="">Antidepressantların istifadəsi</h3>
+<ul>
+<li>Bipolyar II-də <strong>antidepressantlar daha az risklidir</strong> Bipolyar I ilə müqayisədə (mania switch nadir)</li>
+<li><strong>&quot;Pure depression&quot;</strong> kontekstində (qarışıq xüsusiyyət yoxdur) – CANMAT ikinci xətt</li>
+<li><strong>Yenə də mood stabilizatoru ilə kombinasiya tövsiyə olunur</strong></li>
+<li><strong>SİUSİ və bupropion</strong> üstündür</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p>Bipolyar I ilə eyni (KDT-BD, IPSRT, FFT, psixoeducation).</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Bipolyar I-dən bir qədər yumşaq, lakin &quot;yumşaq deyil&quot;</strong></li>
+<li><strong>Funksional pozulma əhəmiyyətli</strong> – depresiv vaxtın çoxluğu səbəbindən</li>
+<li><strong>Suisid riski yüksək</strong> (10-15%)</li>
+<li><strong>Erkən diaqnoz çox vacibdir</strong> – tipik 10-15 il gecikmə var</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Yatham LN, et al. <em>CANMAT/ISBD 2018 guidelines.</em> Bipolar Disord, 2018.</li>
+<li>Judd LL, et al. <em>The long-term natural history of the weekly symptomatic status of bipolar II disorder.</em> Arch Gen Psychiatry, 2003.</li>
+<li>Vieta E, et al. <em>Bipolar II disorder: arguments for a separate entity.</em> Mov Disord, 2003.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a72-si̇kloti̇mi̇k-pozuntu" class="h-disorder"><span class="icd">6A72</span> SİKLOTİMİK POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A72</span> — Siklotimik Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F34.0</span> — Siklotimiya</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 301.13 — Cyclothymic Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Siklotimik pozuntu – <strong>2 il+ davam edən</strong> xroniki əhval qeyri-sabitliyi ilə xarakterizə olunur; <strong>subtreshold hipomanik və subtreshold depresiv simptomlar</strong> dövrlərlə dəyişir, <strong>lakin tam epizod meyarları (mania, hipomania və ya MDE) qarşılanmır</strong>.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Bipolyar pozuntu spektrinin yumşaq forması</li>
+<li><strong>Genetik:</strong> ailədə bipolyar I/II</li>
+<li>Şəxsiyyət xüsusiyyətləri ilə örtüşmə (BPD, narsisistik)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 0,4-1%</li>
+<li><strong>Cins:</strong> kişi:qadın 1:1</li>
+<li><strong>Başlanğıc:</strong> yeniyetmə-erkən yetkinlik</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>2+ il davam edən <strong>xroniki əhval qeyri-sabitliyi</strong></li>
+<li>Subtreshold hipomanik dövrlər: yüksəlmiş enerji, riskli davranış (lakin tam meyar yox)</li>
+<li>Subtreshold depresiv dövrlər: kədər, anhedoniya (lakin tam meyar yox)</li>
+<li><strong>Funksional pozulma əhəmiyyətli ola bilər</strong></li>
+<li><strong>Münasibətlərdə qeyri-sabitlik</strong> tipik</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a62" class="">XBT-11 əsas tələblər (<span class="icd">6A62</span>):</h3>
+<p><strong>A.</strong> Çoxsaylı subtreshold hipomanik və subtreshold depresiv simptom dövrləri <strong>2+ il davamı</strong> (uşaqlarda 1+ il)</p>
+<p><strong>B.</strong> Bu dövrlər <strong>ümumi vaxtın yarısından çoxunda</strong> mövcud olmalıdır</p>
+<p><strong>C.</strong> <strong>2+ aydan uzun simptomsuz interval olmamalı</strong></p>
+<p><strong>D.</strong> Tam manik, hipomanik və ya depresiv epizod meyarları <strong>HEÇ VAXT qarşılanmamalıdır</strong></p>
+<p><strong>E.</strong> Funksional pozulma və ya əhəmiyyətli distress</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Bipolyar II</strong></td><td>Tam hipomanik və depresiv epizod meyarları</td></tr>
+<tr><td><strong>Distimik pozuntu</strong></td><td>Yalnız depresiv simptomlar (yüksəlmə yoxdur)</td></tr>
+<tr><td><strong>Borderline şəxsiyyət</strong></td><td>Affekt labilliyi saatlar/dəqiqələr; identiklik pozuntusu, tərk edilmə qorxusu</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<ul>
+<li>Klinik müsahibə</li>
+<li>Mood diary 1-2 ay</li>
+<li>Ailə anamnezi</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="tövsiyələr-canmat-2018" class="">Tövsiyələr (CANMAT 2018)</h3>
+<ul>
+<li><strong>Klinik tədqiqat məhduddur</strong></li>
+<li><strong>Mood stabilizatoru:</strong> litium, valproat, lamotrijin – birinci xətt</li>
+<li><strong>Atipik antipsixotik:</strong> kvetiapin – sübutluluğa malikdir</li>
+<li><strong>Antidepressant ehtiyatla</strong> (mania switch potensialı)</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<ul>
+<li>KDT</li>
+<li>İPSRT (sirkadian ritm)</li>
+<li>Psikoeducation</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>15-50% pasiyent Bipolyar I və ya II-yə inkişaf edir</strong></li>
+<li>Davamlı, lakin yumşaq forma adətən</li>
+<li>Funksional təsir əhəmiyyətli ola bilər</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Van Meter AR, et al. <em>Cyclothymic disorder: a critical review.</em> Clin Psychol Rev, 2012.</li>
+<li>Perugi G, et al. <em>Cyclothymia reloaded: A reappraisal of the most misconceived affective disorder.</em> J Affect Disord, 2015.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a62-di̇sti̇mi̇k-pozuntu" class="h-disorder"><span class="icd">6A62</span> DİSTİMİK POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A62</span> — Distimik Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F34.1</span> — Distimiya</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.4 — Persistent Depressive Disorder (Dysthymia)</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Distimik pozuntu (xroniki depresiv pozuntu) – <strong>2 il+ davam edən</strong> depresiv əhval, lakin <strong>tam depresiv epizod meyarları əksər vaxt qarşılanmır</strong>. DSM-5-də &quot;Persistent Depressive Disorder&quot; kimi yenidən təsnif olunmuşdur (distimiya + xroniki MDD birgə).</p>
+<p><strong>&quot;Double depression&quot;:</strong> Distimiya zəminində MDD epizodu.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Genetik komponent MDD ilə örtüşür</li>
+<li><strong>Travmatik uşaqlıq</strong> – güclü əlaqə</li>
+<li><strong>Şəxsiyyət xüsusiyyətləri</strong> – neyrotizm, depresiv şəxsiyyət</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 1,5-3% ömürlük</li>
+<li><strong>Qadın:kişi</strong> 2:1</li>
+<li><strong>Başlanğıc:</strong> uşaqlıq, yeniyetmə (erkən başlanğıc) və ya yetkin (gec başlanğıc)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li><strong>Davamlı kədərli əhval</strong> 2+ il</li>
+<li>Yumşaq somatik və koqnitiv simptomlar</li>
+<li><strong>Funksional adaptasiya saxlanılır, lakin mövcud &quot;fon&quot;</strong></li>
+<li>Pasiyent tez-tez &quot;həmişə belə olmuşam&quot; deyir</li>
+<li>Anhedoniya, ümidsizlik, aşağı özünə hörmət</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a72" class="">XBT-11 əsas tələblər (<span class="icd">6A72</span>):</h3>
+<p><strong>A.</strong> Davamlı depresiv əhval və ya anhedoniya <strong>2+ il</strong> (uşaqlarda 1+ il), demək olar hər gün</p>
+<p><strong>B.</strong> Aşağıdakı simptomlardan 2+:</p>
+<p><strong>C.</strong> Heç vaxt <strong>tam depresiv epizod meyarları</strong> qarşılanmayıb (ilk 2 il ərzində)</p>
+<p><strong>D.</strong> Manik, hipomanik epizod yox</p>
+<p><strong>E.</strong> 2+ aydan uzun simptomsuz interval yox</p>
+<ul>
+<li>Yuxu pozuntusu</li>
+<li>Yorğunluq</li>
+<li>Aşağı özünə hörmət</li>
+<li>Konsentrasiya çətinliyi</li>
+<li>Ümidsizlik</li>
+<li>İştah pozuntusu</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>MDD</strong></td><td>Tam epizod meyarları, bir neçə həftə davam</td></tr>
+<tr><td><strong>Adaptasiya pozuntusu</strong></td><td>Stresli hadisəyə cavab; 6 aya qədər</td></tr>
+<tr><td><strong>Cyclothymia</strong></td><td>Hipomanik dövrlər mövcud</td></tr>
+<tr><td><strong>Depresiv şəxsiyyət</strong></td><td>Davamlı şəxsiyyət xüsusiyyətləri</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<p>MDD ilə eyni (PHQ-9, HAM-D, və s.).</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>Antidepressantlar</strong> – effektiv (SİUSİ, SNRI)</li>
+<li><strong>Psixoterapiya</strong> – KDT, İPT (CBASP – Cognitive Behavioral Analysis System of Psychotherapy – xroniki depresiya üçün xüsusi)</li>
+<li><strong>Kombinasiya</strong> – farmakoterapiya + KDT/CBASP – ən effektiv</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>75% pasiyent həyat boyu MDD epizodu yaşayır</strong> (double depression)</li>
+<li><strong>Xroniki, lakin müalicə cavabı yaxşıdır</strong></li>
+<li>Erkən başlanğıc + uşaqlıq travması = pis proqnoz</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Cuijpers P, et al. <em>Psychotherapy versus pharmacotherapy for adults with chronic depression: meta-analysis.</em> J Clin Psychiatry, 2010.</li>
+<li>McCullough JP. <em>Treatment for Chronic Depression: Cognitive Behavioral Analysis System of Psychotherapy (CBASP).</em> Guilford, 2003.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a73-qarişiq-depressi̇v-və-təşvi̇ş-pozuntusu" class="h-disorder"><span class="icd">6A73</span> QARIŞIQ DEPRESSİV VƏ TƏŞVİŞ POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A73</span> — Qarişiq Depressiv Və Təşviş Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F41.2</span> — Qarışıq təşviş və depressiv pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Mixed Anxiety and Depressed Mood (V-code)</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Mixed depresiv və təşviş pozuntusu – həm depresiv, həm təşviş simptomları <strong>eyni vaxtda</strong> mövcud, lakin <strong>heç biri ayrıca tam diaqnoz meyarlarını qarşılamır</strong>.</p>
+<p><strong>XBT-11-də müstəqil kateqoriya</strong> (DSM-5-TR-də deyil – yalnız spesifikator).</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li>Depresiya və təşviş üçün ortaq amillər</li>
+<li>&quot;İkili neyrotrans miter disregulyasiyası&quot; – serotonin, noradrenalin</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 5-10% birincil yardımda</li>
+<li>Tipik kontekst: ailə həkimi, somatik klinika</li>
+<li>Komorbid xronik tibbi xəstəliklərlə tez-tez</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Depresiv simptomlar (kədər, anhedoniya)</li>
+<li>Təşviş simptomları (narahatlıq, somatik)</li>
+<li><strong>Funksional pozulma əhəmiyyətli</strong></li>
+<li>&quot;Maskalı&quot; təqdimat tez-tez (somatik şikayətlər)</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a73" class="">XBT-11 əsas tələblər (<span class="icd">6A73</span>):</h3>
+<p><strong>A.</strong> Depresiv simptomlar və təşviş simptomları eyni vaxtda</p>
+<p><strong>B.</strong> Heç biri tam diaqnoz meyarlarını qarşılamır</p>
+<p><strong>C.</strong> Funksional pozulma və ya əhəmiyyətli distress</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>MDD + komorbid GAD</strong></td><td>Hər iki pozuntu tam meyarları qarşılayır</td></tr>
+<tr><td><strong>Adaptasiya pozuntusu</strong></td><td>Stress kontekstində</td></tr>
+<tr><td><strong>Yumşaq depresiya / yumşaq təşviş</strong></td><td>Bir pozuntu dominant</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<ul>
+<li>PHQ-9 + GAD-7 birgə skrining</li>
+<li>Komorbid pozuntu istisnası</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>SİUSİ</strong> – həm depresiv, həm təşviş simptomlarını idarə edir</li>
+<li><strong>SNRI</strong> (venlafaksin, duloksetin) – effektiv</li>
+<li><strong>KDT</strong> – həm depresiv, həm təşvişi əhatə edir</li>
+<li><strong>Ümumiyyətlə depresiya müalicəsi tövsiyələrinə yaxındır</strong></li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Yumşaq və orta forma adətən</li>
+<li>Müalicə cavabı yaxşıdır</li>
+<li>Xronikləşmə mümkündür təşviş pozuntusu kimi</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Möller HJ, et al. <em>Mixed anxiety-depression: a clinically relevant condition?</em> Eur Psychiatry, 2016.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6a8z-əhval-pozuntularinin-si̇mptom-təzahürləri̇" class="h-disorder">6A8Z ƏHVAL POZUNTULARININ SİMPTOM TƏZAHÜRLƏRİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A80</span> — Əhval Pozuntularinin Simptom Təzahürləri</div>
+<hr>
+<h2 id="konsepsiya" class="">Konsepsiya</h2>
+<p>Bu <strong>müstəqil diaqnoz deyil</strong> – əhval pozuntusu (depresiv, bipolyar) diaqnozu qoyulduqda <strong>klinik təqdimatın xüsusiyyətlərini dəqiqləşdirən kvalifikator sistemidir</strong>.</p>
+<h2 id="əsas-spesifikatorlar" class="">Əsas spesifikatorlar</h2>
+<h3 id="6a800-mövcud-depresiv-epizodda-əhəmiyyətli-təşviş-simptomları-ilə" class=""><span class="icd">6A80.0</span> Mövcud depresiv epizodda – əhəmiyyətli təşviş simptomları ilə</h3>
+<ul>
+<li>Aktiv depresiv epizod kontekstində 2+ təşviş simptomu</li>
+<li>Daha pis proqnoz, suisid riski yüksək</li>
+</ul>
+<h3 id="6a801-mövcud-depresiv-epizodda-melanxolik-xüsusiyyətlərlə" class=""><span class="icd">6A80.1</span> Mövcud depresiv epizodda – melanxolik xüsusiyyətlərlə</h3>
+<ul>
+<li>Bütün simptomlar əhval reaksiyasının olmaması</li>
+<li>Səhər saatlarında pisləşmə</li>
+<li>Erkən səhər oyanışı (&gt;2 saat)</li>
+<li>Ağır psixomotor agitasiya/ləngləmə</li>
+<li>Ağır iştahsızlıq və çəki itkisi</li>
+<li>Ağır günah</li>
+</ul>
+<h3 id="6a802-mövcud-depresiv-epizodda-atipik-xüsusiyyətlərlə" class=""><span class="icd">6A80.2</span> Mövcud depresiv epizodda – atipik xüsusiyyətlərlə</h3>
+<ul>
+<li>Reaktiv əhval saxlanılır</li>
+<li>Hipersomniya</li>
+<li>Hiperfagiya, çəki artımı</li>
+<li>&quot;Leaden paralysis&quot;</li>
+<li>İnterpersonal həssaslıq</li>
+</ul>
+<h3 id="6a803-mövcud-psixotik-xüsusiyyətlərlə" class=""><span class="icd">6A80.3</span> Mövcud psixotik xüsusiyyətlərlə</h3>
+<ul>
+<li>Sayıqlama və/və ya halusinasiyalar</li>
+<li>Mood-uyğun: günah, yoxluq, ölüm, qrandiozluq</li>
+<li>Mood-uyğun olmayan: persekutiv</li>
+</ul>
+<h3 id="6a804-mixed-xüsusiyyətlərlə" class=""><span class="icd">6A80.4</span> Mixed xüsusiyyətlərlə</h3>
+<ul>
+<li>Mövcud depresiv epizodda 3+ manik simptom (yaxud əksi)</li>
+</ul>
+<h3 id="6a805-peripartum-başlanğıc" class=""><span class="icd">6A80.5</span> Peripartum başlanğıc</h3>
+<ul>
+<li>4 həftə ərzində doğuşdan əvvəl və ya sonra</li>
+<li>(Bölmə 19-a tam müzakirə)</li>
+</ul>
+<h3 id="6a806-mövsümi-pattern" class=""><span class="icd">6A80.6</span> Mövsümi pattern</h3>
+<ul>
+<li>Tipik – qışda başlayır, yazda keçir</li>
+<li>Müalicə: light terapiyası, SİUSİ (bupropion XL FDA təsdiqli)</li>
+</ul>
+<h3 id="6a807-sürətli-sikl-rapid-cycling-bipolyar-iii" class=""><span class="icd">6A80.7</span> Sürətli sikl (rapid cycling) – Bipolyar I/II</h3>
+<ul>
+<li>4+ epizod 12 ay ərzində</li>
+<li>Pis proqnoz</li>
+</ul>
+<h3 id="digər-vacib-spesifikatorlar" class="">Digər vacib spesifikatorlar:</h3>
+<ul>
+<li>Katatonik xüsusiyyətlər (Bölmə 3-ə bax)</li>
+<li>Tam remissiya / qismən remissiya</li>
+<li>Şiddət dərəcəsi (yüngül, orta, ağır)</li>
+</ul>
+<h2 id="klinik-tətbiq" class="">Klinik tətbiq</h2>
+<p>Bu spesifikatorlar <strong>müalicə qərarlarını birbaşa təsir edir</strong>:</p>
+<ul>
+<li><strong>Melanxolik depresiya:</strong> TSA və EKT-yə daha yaxşı cavab</li>
+<li><strong>Atipik depresiya:</strong> MAOİ klassik üstün; SİUSİ effektiv</li>
+<li><strong>Psixotik depresiya:</strong> antidepressant + antipsixotik kombinasiyası və ya EKT</li>
+<li><strong>Mixed xüsusiyyətlər:</strong> mood stabilizatoru/antipsixotik; antidepressantdan qaçınma</li>
+<li><strong>Peripartum:</strong> spesifik laktasiya/hamiləlik təhlükəsizliyi</li>
+<li><strong>Mövsümi:</strong> light terapiyası birinci xətt</li>
+<li><strong>Rapid cycling:</strong> lithium/lamotrijin; antidepressantdan qaçınma</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Yatham LN, et al. <em>CANMAT/ISBD 2018 guidelines.</em> Bipolar Disord, 2018.</li>
+<li>NICE NG222. <em>Depression in adults.</em> 2022.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-03.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 3 — KATATONİYA</span></a><a href="bolme-05.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 5 — TƏŞVİŞ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-04";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

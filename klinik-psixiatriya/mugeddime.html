@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — Müqəddimə">
+<title>Müqəddimə | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="müqəddi̇mə" class="h-section">MÜQƏDDİMƏ</h1>
+<h2 id="abbreviaturalar-lüğəti̇" class="">ABBREVIATURALAR LÜĞƏTİ</h2>
+<p>Bu lüğətdə kitabda istifadə edilən azərbaycanca abbreviaturalar, onların açılışı və ingilis dilindəki qarşılıqları verilmişdir.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Abbreviatura</th><th>Azərbaycanca tam adı</th><th>İngilis dilində</th></tr>
+<tr><td>KDT</td><td>Koqnitiv Davranış Terapiyası</td><td>Cognitive Behavioural Therapy (CBT)</td></tr>
+<tr><td>SİUSİ</td><td>Seçici İnhibitor Udin Serotonin İlə</td><td>Selective Serotonin Reuptake Inhibitor (SSRI)</td></tr>
+<tr><td>SNRİ</td><td>Serotonin-Noradrenalin Geri Qəbul İnhibitoru</td><td>Serotonin-Norepinephrine Reuptake Inhibitor (SNRI)</td></tr>
+<tr><td>TSSP</td><td>Travma Sonrası Stress Pozuntusu</td><td>Post-Traumatic Stress Disorder (PTSD)</td></tr>
+<tr><td>KTSSP</td><td>Kompleks Travma Sonrası Stress Pozuntusu</td><td>Complex PTSD (cPTSD)</td></tr>
+<tr><td>OKP</td><td>Obsessiv-Kompulsiv Pozuntu</td><td>Obsessive-Compulsive Disorder (OCD)</td></tr>
+<tr><td>ASP</td><td>Autizm Spektri Pozuntusu</td><td>Autism Spectrum Disorder (ASD)</td></tr>
+<tr><td>DDHP</td><td>Diqqət Defisiti və Hiperaktivlik Pozuntusu</td><td>Attention-Deficit/Hyperactivity Disorder (ADHD)</td></tr>
+<tr><td>BP</td><td>Bipolyar Pozuntu</td><td>Bipolar Disorder (BD)</td></tr>
+<tr><td>MDP</td><td>Major Depressiv Pozuntu</td><td>Major Depressive Disorder (MDD)</td></tr>
+<tr><td>GAP</td><td>Generalizə Olunmuş Təşviş Pozuntusu</td><td>Generalized Anxiety Disorder (GAD)</td></tr>
+<tr><td>BDP</td><td>Bədən Dismorfik Pozuntusu</td><td>Body Dysmorphic Disorder (BDD)</td></tr>
+<tr><td>DDŞ</td><td>Dissosiativ Şəxsiyyət Pozuntusu</td><td>Dissociative Identity Disorder (DID)</td></tr>
+<tr><td>ANO</td><td>Nevrotik Anoreksiya</td><td>Anorexia Nervosa (AN)</td></tr>
+<tr><td>BNO</td><td>Nevrotik Bulimiya</td><td>Bulimia Nervosa (BN)</td></tr>
+<tr><td>TYP</td><td>Tıxanma ilə Yemə Pozuntusu</td><td>Binge Eating Disorder (BED)</td></tr>
+<tr><td>ARFİD</td><td>Qaçınmalı/Məhdudlaşdırıcı Qida Qəbulu Pozuntusu</td><td>Avoidant/Restrictive Food Intake Disorder (ARFID)</td></tr>
+<tr><td>SSD</td><td>Somatik Simptom Pozuntusu</td><td>Somatic Symptom Disorder (SSD)</td></tr>
+<tr><td>XAP</td><td>Xəstəlik Həyəcanı Pozuntusu</td><td>Illness Anxiety Disorder (IAD)</td></tr>
+<tr><td>AİP</td><td>Alkoqol İstifadəsi Pozuntusu</td><td>Alcohol Use Disorder (AUD)</td></tr>
+<tr><td>OİP</td><td>Opioid İstifadəsi Pozuntusu</td><td>Opioid Use Disorder (OUD)</td></tr>
+<tr><td>NKP</td><td>Neyrokoqnitiv Pozuntu</td><td>Neurocognitive Disorder (NCD)</td></tr>
+<tr><td>XBT-11</td><td>Xəstəliklərin Beynəlxalq Təsnifatı, 11-ci nəşr</td><td>International Classification of Diseases, 11th Revision (ICD-11)</td></tr>
+<tr><td>XBT-10</td><td>Xəstəliklərin Beynəlxalq Təsnifatı, 10-cu nəşr</td><td>International Classification of Diseases, 10th Revision (ICD-10)</td></tr>
+<tr><td>DSM-5-TR</td><td>Psixi Pozuntuların Diaqnostik və Statistik Təlimatı, 5-ci nəşr, Mətn Yeniləməsi</td><td>Diagnostic and Statistical Manual of Mental Disorders, 5th Edition, Text Revision (DSM-5-TR)</td></tr>
+<tr><td>ÜST</td><td>Ümumdünya Səhiyyə Təşkilatı</td><td>World Health Organization (WHO)</td></tr>
+<tr><td>EKT</td><td>Elektrokonvulsiv Terapiya</td><td>Electroconvulsive Therapy (EKT)</td></tr>
+<tr><td>PSQ</td><td>Polisomnoqrafiya</td><td>Polysomnography (PSG)</td></tr>
+<tr><td>MSLT</td><td>Çoxlu Yuxu Latensiyası Testi</td><td>Multiple Sleep Latency Test (MSLT)</td></tr>
+<tr><td>REM</td><td>Sürətli Göz Hərəkəti (yuxu fazası)</td><td>Rapid Eye Movement (REM)</td></tr>
+<tr><td>NREM</td><td>Sürətli Olmayan Göz Hərəkəti (yuxu fazası)</td><td>Non-Rapid Eye Movement (NREM)</td></tr>
+<tr><td>OSA</td><td>Obstruktiv Yuxu Apnoesi</td><td>Obstructive Sleep Apnea (OSA)</td></tr>
+<tr><td>RBD</td><td>REM Yuxu Davranış Pozuntusu</td><td>REM Sleep Behavior Disorder (RBD)</td></tr>
+<tr><td>HBS</td><td>Huzursuz Bacaq Sindromu</td><td>Restless Legs Syndrome (RLS)</td></tr>
+<tr><td>PDE5</td><td>Fosfodiesteraz-5 inhibitoru</td><td>Phosphodiesterase-5 Inhibitor (PDE5i)</td></tr>
+<tr><td>IPA</td><td>Beynəlxalq Psixoanalitik Assosiasiya</td><td>International Psychoanalytic Association (IPA)</td></tr>
+<tr><td>WPATH</td><td>Transseksual Sağlamlığı üçün Dünya Peşəkarlar Assosiasiyası</td><td>World Professional Association for Transgender Health (WPATH)</td></tr>
+<tr><td>ACT</td><td>Qəbul və Öhdəlik Terapiyası</td><td>Acceptance and Commitment Therapy (ACT)</td></tr>
+<tr><td>DBT</td><td>Dialektik Davranış Terapiyası</td><td>Dialectical Behaviour Therapy (DBT)</td></tr>
+<tr><td>EMDR</td><td>Göz Hərəkəti ilə Həssaslaşdırma və Yenidən İşləmə</td><td>Eye Movement Desensitization and Reprocessing (EMDR)</td></tr>
+<tr><td>MI</td><td>Motivasional Müsahibə</td><td>Motivational Interviewing (MI)</td></tr>
+<tr><td>EFT</td><td>Emosional Fokuslu Terapiya</td><td>Emotion-Focused Therapy (EFT)</td></tr>
+<tr><td>MBT</td><td>Mentalizasiyaya Əsaslanan Terapiya</td><td>Mentalization-Based Treatment (MBT)</td></tr>
+<tr><td>DPT</td><td>Dinamik Psixoterapiya</td><td>Dynamic Psychotherapy (DPT)</td></tr>
+<tr><td>PHQ-9</td><td>Pasiyent Sağlamlıq Sorğusu-9</td><td>Patient Health Questionnaire-9 (PHQ-9)</td></tr>
+<tr><td>GAD-7</td><td>Generalizə Olunmuş Təşviş Pozuntusu-7</td><td>Generalized Anxiety Disorder-7 (GAD-7)</td></tr>
+<tr><td>HDRS</td><td>Hamilton Depressiya Reytinq Şkalası</td><td>Hamilton Depression Rating Scale (HDRS/HAM-D)</td></tr>
+<tr><td>YMRS</td><td>Yung Maniya Reytinq Şkalası</td><td>Young Mania Rating Scale (YMRS)</td></tr>
+<tr><td>PANSS</td><td>Müsbət və Mənfi Simptom Şkalası</td><td>Positive and Negative Syndrome Scale (PANSS)</td></tr>
+<tr><td>BPRS</td><td>Qısa Psixiatrik Reytinq Şkalası</td><td>Brief Psychiatric Rating Scale (BPRS)</td></tr>
+<tr><td>Y-BOCS</td><td>Yel-Braun Obsessiv-Kompulsiv Şkalası</td><td>Yale-Brown Obsessive Compulsive Scale (Y-BOCS)</td></tr>
+<tr><td>CAPS</td><td>TSSP üçün Klinik İdarə olunan PTSD Şkalası</td><td>Clinician-Administered PTSD Scale (CAPS)</td></tr>
+<tr><td>SCID</td><td>Struktur Klinik Müsahibə</td><td>Structured Clinical Interview for DSM (SCID)</td></tr>
+<tr><td>MINI</td><td>Mini Beynəlxalq Nöropsixiatrik Müsahibə</td><td>Mini International Neuropsychiatric Interview (MINI)</td></tr>
+<tr><td>CGI</td><td>Klinik Qlobal Qiymətləndirmə</td><td>Clinical Global Impression (CGI)</td></tr>
+<tr><td>MRI</td><td>Maqnit Rezonans Tomoqrafiyası</td><td>Magnetic Resonance Imaging (MRI)</td></tr>
+<tr><td>EEG</td><td>Elektroensefaloqrafiya</td><td>Electroencephalography (EEG)</td></tr>
+<tr><td>Li</td><td>Litium</td><td>Lithium (Li)</td></tr>
+<tr><td>VPA</td><td>Valproat turşusu</td><td>Valproic Acid (VPA)</td></tr>
+<tr><td>CPAP</td><td>Davamlı Müsbət Hava Yolu Təzyiqi</td><td>Continuous Positive Airway Pressure (CPAP)</td></tr>
+</table></div>
+<hr>
+<h2 id="oxucuya-müraciət" class="">Oxucuya müraciət</h2>
+<p>Hörmətli həkim, klinik psixoloq, psixoterapevt, psixiatriya rezidenti və tələbə!</p>
+<p>Sizin əlinizdə <strong>&quot;Klinik Psixiatriya: Diaqnostika və terapiya standartları&quot;</strong> – Azərbaycan dilində ilk sistemli klinik psixiatriya istinad-vəsaitidir. Bu kitab həkim-psixiatrlar, klinik psixoloqlar, psixoterapevtlər, ailə həkimləri, ümumi praktika həkimləri, neyroloqlar və psixiatriya sahəsində təhsil alan tələbələr üçün gündəlik klinik praktikada istifadə edilməsi məqsədi ilə hazırlanmışdır.</p>
+<h2 id="müəlli̇f-haqqinda" class="">MÜƏLLİF HAQQINDA</h2>
+<p>Bu kitabın müəllifi <strong>Kənan Rəhimov</strong> — həkim-psixiatr və psixoterapevtdir, klinik təcrübəsi 23 ildir (2003-cü ildən). Azərbaycan Dövlət Tibb Universitetini 2001-ci ildə bitirmiş, eyni il Bakıdakı 2 saylı Klinik Psixiatriya Xəstəxanasında internaturanı keçmişdir. 2001–2003-cü illərdə Sankt-Peterburqdakı <strong>V.M. Bexterev adına Psixonevroloji Elmi-Tədqiqat İnstitutunda</strong> klinik ordinaturanı fərqlənmə diplomu ilə tamamlamışdır — <strong>Rusiya Federasiyasının Baş Psixoterapevti, dünya səviyyəli mütəxəssis professor B.D. Karvasarskinin</strong> rəhbərliyi altında nevrozların psixoterapiyası şöbəsində və <strong>Beynəlxalq Psixoanalitik Assosiasiyası (IPA) tərəfindən sertifikatlaşdırılmış postsovet məkanının ilk dipomlu psixoanalitiklərindən biri olan professor V.D. Vidin</strong> rəhbərliyi altında psixozların psixoterapiyası şöbəsində. 23 illik klinik praktika ərzində depressiv pozuntularla 1000-dən çox pasiyent və uşaqlarda gecə enurezi diaqnozu ilə 1000-dən çox pasiyent müalicə olunmuşdur; yalnız 2025-ci ildə müəllifin klinik komandası 250-dən çox uşağı uğurla müalicə etmişdir. 2020-ci ildən <strong>RAGIMOFF Peşəkar Psixologiya Məktəbinin</strong> təsisçisi, 2021-ci ildən Sankt-Peterburqdakı Karvasarski adına İnstitutunun Azərbaycandakı səlahiyyətli nümayəndəsi və Klinik Psixologiya üzrə Əlavə Peşə Təhsili (DPO) proqramının rəhbəri, 2022-ci ildən Beynəlxalq Psixoterapiya Assosiasiyasının (IPAS) Ambasadorudur. Bu kitabda təqdim olunan iki müəllif klinik protokolu — <strong>uşaqlarda gecə enurezinin müalicəsi və psixogen depressiyanın iki mərhələli müalicə strategiyası</strong> — beynəlxalq sübuta əsaslanan təlimatların (NICE, APA, WFSBP) müəllifin uzunmüddətli klinik təcrübəsi və retrospektiv klinik müşahidələri əsasında modifikasiyasını əks etdirir. Bu modifikasiyalar standart beynəlxalq protokollarla müqayisədə daha qısa müddətdə daha yüksək klinik effektivliyə nail olmaq imkanı verir; sübut səviyyəsi IV (klinik ekspert təcrübəsi) qəbul edilməlidir. Müəllifin tövsiyələri klinik ekspertizadan və 23 illik fasiləsiz praktikadan irəli gəlir; oxucu özü öz klinik təcrübəsində bu yanaşmaları yoxlaya, dəyərləndirə və lazım gələrsə uyğunlaşdıra bilər.</p>
+<h2 id="dünyada-psi̇xi̇-sağlamliq-böhrani-stati̇sti̇ka-tendensi̇yalar-və-müdax" class="">DÜNYADA PSİXİ SAĞLAMLIQ BÖHRANI: STATİSTİKA, TENDENSİYALAR VƏ MÜDAXİLƏ BOŞLUQLARI</h2>
+<h3 id="qlobal-mənzərə" class="">Qlobal mənzərə</h3>
+<p>XXI əsrin üçüncü onilliyinə qədəm qoyduğumuz indiki dövrdə psixi sağlamlıq sahəsi tarixi miqyasda gerçəkləşmiş bir böhranla üzbəüzdir. Ümumdünya Səhiyyə Təşkilatının (ÜST) 2025-ci ildə dərc olunmuş &quot;Mental Health Atlas 2024&quot; hesabatına əsasən, dünyada <strong>1 milyarddan çox insan</strong> hər hansı bir psixi pozuntu ilə yaşayır. Bu rəqəm planetin ümumi əhalisinin təxminən səkkizdə birinə bərabərdir və müasir tibb tarixində qeydə alınan ən yüksək göstəricidir.</p>
+<p>Psixi pozuntuların payı sadəcə xəstə insanların sayı ilə məhdudlaşmır. ÜST məlumatlarına görə, psixi pozuntular bütün dünyada <strong>xəstəliklərə görə yaşanan əlillik illərinin (YLD) demək olar ki, altıda birini</strong> təşkil edir və qeyri-fatal yük baxımından ürək-damar xəstəlikləri ilə yarışan əsas faktordur. Yalnız depressiya və təşviş pozuntuları qlobal iqtisadiyyata məhsuldarlıq itkisi şəklində ildə təxminən <strong>1 trilyon ABŞ dolları</strong> dəyərində ziyan vurur.</p>
+<p>Bu rəqəmlərin arxasında konkret klinik reallıqlar dayanır. 2021-ci ildə <strong>359 milyon insan</strong> təşviş pozuntularından (o cümlədən 72 milyon uşaq və yeniyetmə), <strong>280 milyon insan</strong> isə depressiya pozuntularından əziyyət çəkmişdir. Bipolyar pozuntu 37 milyon, şizofreniya isə 24 milyondan çox insanı əhatə edir. Lakin bu rəqəmlər yalnız diaqnoz qoyulmuş halları əks etdirir; gerçək yayılma göstəriciləri xeyli yüksəkdir, çünki bir çox ölkədə diaqnostik infrastruktur kifayət qədər inkişaf etməmişdir.</p>
+<h3 id="19902025-ci-illər-tendensiyaları" class="">1990–2025-ci illər tendensiyaları</h3>
+<p>Global Burden of Disease (GBD) tədqiqat proqramının uzunmüddətli məlumatları son 30 ildə baş vermiş kəskin artımı sənədləşdirir. Aşağıdakı cədvəl əsas nozologiyalar üzrə yayılma dinamikasını göstərir.</p>
+<h4 id="cədvəl-1-əsas-psixi-pozuntuların-qlobal-yayılma-dinamikası-19902021" class="">Cədvəl 1. Əsas psixi pozuntuların qlobal yayılma dinamikası, 1990–2021</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>1990 (mln)</th><th>2019 (mln)</th><th>2021 (mln)</th><th>Mütləq artım</th><th>Yaş-standartlaşdırılmış artım</th></tr>
+<tr><td>Təşviş pozuntuları</td><td>311</td><td>458</td><td>359¹</td><td>+47%</td><td>+12,6%</td></tr>
+<tr><td>Depressiya pozuntuları</td><td>172</td><td>279</td><td>280</td><td>+63%</td><td>+9,8%</td></tr>
+<tr><td>Bipolyar pozuntu</td><td>26</td><td>40</td><td>37</td><td>+42%</td><td>+1,2%</td></tr>
+<tr><td>DDHP (uşaq və yeniyetmə)</td><td>71</td><td>84</td><td>84</td><td>+18%</td><td>+0,4%</td></tr>
+<tr><td>Yemə pozuntuları</td><td>7</td><td>14</td><td>14</td><td>+100%</td><td>+52%</td></tr>
+<tr><td>Şizofreniya</td><td>17</td><td>23</td><td>24</td><td>+41%</td><td>+0,7%</td></tr>
+<tr><td>Autizm spektri pozuntusu</td><td>18</td><td>28</td><td>28</td><td>+56%</td><td>+1,8%</td></tr>
+<tr><td><strong>Cəmi (psixi pozuntular)</strong></td><td><strong>654</strong></td><td><strong>970</strong></td><td><strong>1052</strong></td><td><strong>+61%</strong></td><td><strong>+8,4%</strong></td></tr>
+</table></div>
+<p><em>Mənbə: Institute for Health Metrics and Evaluation, Global Burden of Disease Study 2021 (Lancet Psychiatry, 2024). 2021-ci il rəqəmlərində COVID-19 pandemiyasının düzəlişi nəzərə alınmışdır.</em></p>
+<p>¹ 2021-ci ildə təşviş pozuntularının rəqəmi 2019-cuya nisbətən aşağı görünsə də, bu, metodoloji yenilənmə ilə bağlıdır; pandemiya dövründə həqiqi yayılma kəskin yüksəlmişdir.</p>
+<p>Cədvəldən aydın görünür ki, <strong>mütləq sayda</strong> ən böyük artım təşviş pozuntularında (147 milyon əlavə hadisə) və depressiyada (107 milyon) qeydə alınıb. Yaş-standartlaşdırılmış göstərici (yəni əhalinin yaşlanması ilə bağlı təbii artımı çıxardıqda qalan həqiqi epidemioloji artım) <strong>yemə pozuntularında ən yüksəkdir — +52%</strong>, bu da müasir cəmiyyətdə bədən obrazı, sosial media və qida mədəniyyəti ilə əlaqəli sosial-psixoloji dəyişikliklərin birbaşa nəticəsidir.</p>
+<h3 id="covid-19-pandemiyasının-təsiri" class="">COVID-19 pandemiyasının təsiri</h3>
+<p>2020–2022-ci illər ərzində qlobal psixi sağlamlıq vəziyyəti ən kəskin dövründə idi. Lancet jurnalında 2021-ci ildə dərc olunmuş sistemli meta-analizə görə, pandemiyanın birinci ilində:</p>
+<ul>
+<li>Major Depressiv Pozuntunun (MDP) yayılması gözlənilən səviyyədən <strong>+27,6%</strong> artdı</li>
+<li>Təşviş pozuntularının yayılması <strong>+25,6%</strong> artdı</li>
+<li>53 milyon əlavə depressiya halı və 76 milyon əlavə təşviş halı qeydə alındı</li>
+</ul>
+<p>Pandemiyanın bilavasitə təsiri zəiflədikdən sonra da rəqəmlər tam olaraq pandemiya öncəsi səviyyəsinə qayıtmadı. Tədqiqatçıların əksəriyyəti bunu <strong>&quot;yeni baza səviyyəsi&quot; fenomeni</strong> kimi izah edir: cəmiyyətin uzunmüddətli izolyasiyası, iqtisadi qeyri-müəyyənlik, ailədaxili münasibətlərdə yaşanan dəyişikliklər və xroniki stress səviyyəsinin yüksəlməsi qalıcı xarakter almışdır.</p>
+<h3 id="yayılma-və-artım-sürəti-üzrə-top-pozuntular" class="">Yayılma və artım sürəti üzrə top-pozuntular</h3>
+<p>Klinik baxımdan iki fərqli sıralama vacibdir: <strong>mütləq sayda</strong> ən geniş yayılmış pozuntular və <strong>yaş-standartlaşdırılmış sürətlə</strong> ən sürətlə artan pozuntular.</p>
+<h4 id="cədvəl-2-yayılma-və-artım-sürəti-üzrə-top-10-2021" class="">Cədvəl 2. Yayılma və artım sürəti üzrə top-10 (2021)</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Sıra</th><th>Yayılma üzrə (mln)</th><th>Artım sürəti üzrə (1990–2021, %)</th></tr>
+<tr><td>1</td><td>Təşviş pozuntuları — 359</td><td>Yemə pozuntuları — +52%</td></tr>
+<tr><td>2</td><td>Depressiya — 280</td><td>Bədən-yönlü təşviş (BDD) — +35%</td></tr>
+<tr><td>3</td><td>DDHP — 84</td><td>Autizm spektri pozuntusu — +28%²</td></tr>
+<tr><td>4</td><td>Bipolyar pozuntu — 37</td><td>Sosial təşviş pozuntusu — +18%</td></tr>
+<tr><td>5</td><td>Autizm spektri pozuntusu — 28</td><td>Generalizə olunmuş təşviş — +15%</td></tr>
+<tr><td>6</td><td>Şizofreniya — 24</td><td>PTSP — +14%</td></tr>
+<tr><td>7</td><td>Yemə pozuntuları — 14</td><td>Major Depressiv Pozuntu — +9,8%</td></tr>
+<tr><td>8</td><td>OKP — 12</td><td>OKP — +6,5%</td></tr>
+<tr><td>9</td><td>PTSP — 10</td><td>DDHP — diaqnostik aşkarlanma artımı</td></tr>
+<tr><td>10</td><td>Şəxsiyyət pozuntuları — 9</td><td>Maddə istifadəsi pozuntuları — +5,3%</td></tr>
+</table></div>
+<p><em>Mənbə: GBD 2021 (IHME, Seattle); WHO Mental Health Atlas 2024.</em></p>
+<p>² Autizm spektrinin artımı qismən diaqnostik meyarların genişlənməsi və erkən aşkarlanma proqramları ilə bağlıdır, lakin gerçək epidemioloji artımın da varlığı tədqiqatlarla təsdiqlənir.</p>
+<h3 id="müalicə-boşluğu-fenomeni" class="">Müalicə boşluğu fenomeni</h3>
+<p>Psixi sağlamlıq sahəsində ən kəskin problem yayılma rəqəmləri deyil, <strong>alınan və lazım olan müalicə arasındakı uçurumdur</strong>. Bu fenomen elmi ədəbiyyatda <em>treatment gap</em> (müalicə boşluğu) kimi tanınır.</p>
+<h4 id="cədvəl-3-müalicə-boşluğu-pozuntular-üzrə-müqayisə" class="">Cədvəl 3. Müalicə boşluğu — pozuntular üzrə müqayisə</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu kateqoriyası</th><th>Hər hansı müalicə alanlar</th><th>Adekvat müalicə alanlar</th><th>Müalicə boşluğu</th></tr>
+<tr><td>Şizofreniya (yüksək gəlirli ölkələr)</td><td>~70%</td><td>~50%</td><td>30–50%</td></tr>
+<tr><td>Şizofreniya (aşağı gəlirli ölkələr)</td><td>&lt;11%</td><td>&lt;5%</td><td><strong>89%+</strong></td></tr>
+<tr><td>Bipolyar pozuntu</td><td>~50%</td><td>~25%</td><td>50–75%</td></tr>
+<tr><td>Major Depressiv Pozuntu (qlobal)</td><td>~30%</td><td>~15%</td><td>70–85%</td></tr>
+<tr><td>Təşviş pozuntuları (qlobal)</td><td><strong>27,6%</strong></td><td><strong>9,8%</strong></td><td><strong>72,4–90,2%</strong></td></tr>
+<tr><td>OKP</td><td>~25%</td><td>~10%</td><td>75–90%</td></tr>
+<tr><td>PTSP</td><td>~20%</td><td>&lt;10%</td><td>80–90%</td></tr>
+</table></div>
+<p><em>Mənbə: WHO Atlas 2024; Alonso et al., Depression and Anxiety, 2018; Thornicroft et al., British Journal of Psychiatry, 2017.</em></p>
+<p>Bu rəqəmlərin arxasında ciddi struktur fərqi durur. <strong>Psixotik pozuntular</strong> (şizofreniya, schizoaffective pozuntu, ağır bipolyar) — yəni cəmiyyətdə &quot;görünən&quot; pozuntular — psixiatrik xəstəxana sistemləri, dövlət uçotu, ÜST nomenklaturası ilə əhatə olunmuşdur. Bu pozuntularda diaqnostika nisbətən sistemli, müalicə nisbətən nəzarətdə, statistika nisbətən etibarlıdır.</p>
+<p><strong>Təşviş və depressiya pozuntuları isə tamamilə fərqli vəziyyətdədir.</strong> Bunlar &quot;gizli&quot; və ya &quot;boz zona&quot; pozuntularıdır:</p>
+<ul>
+<li>Pasient əksər hallarda psixiatrik xidmətə deyil, ümumi praktikaya, somatik mütəxəssislərə, neyroloqlara müraciət edir</li>
+<li>Diaqnoz qoyulduqda müalicə əksər hallarda yalnız simptomatik dərmanlarla məhdudlaşır</li>
+<li>Psixoterapiya ya təklif olunmur, ya da yayılmış formada — qeyri-standart, yoxlanılmamış metodlarla — verilir</li>
+<li>Pasientin obyektiv vəziyyətinin uzunmüddətli izlənilməsi sistemli şəkildə həyata keçirilmir</li>
+</ul>
+<p>Bu məhz o nöqtədir ki, qlobal psixi sağlamlıq böhranının özəyini təşkil edir. <strong>Sayca ən böyük yük məhz &quot;boz zona&quot; pozuntularındadır, lakin ən az nəzarətli sistem də onların ətrafında qurulmuşdur.</strong></p>
+<h3 id="psixogen-aspekt-kök-problem" class="">Psixogen aspekt: kök problem</h3>
+<p>Yuxarıda göstərilən rəqəmlərin klinik mənası tam başa düşülməsi üçün bir əsas həqiqəti vurğulamaq lazımdır: təşviş və depressiya pozuntularının <strong>böyük əksəriyyətində psixososial faktorlar mərkəzi rol oynayır</strong>. Bu o deməkdir ki, onların ilkin səbəbi neyrobioloji disfunksiya deyil, <strong>psixoloji proseslərdir</strong>: kognitiv pozuntular, zədələnmiş bağlanma sxemləri, həll olunmamış matəm prosesləri, autoaqressiv özünü-qiymətləndirmə paternleri, fundamental inanışlardakı dəformasiyalar.</p>
+<p>Müasir tədqiqatlar göstərir ki, depressiv pozuntuların başlanğıcında <strong>psixososial faktorlar 60–80% hallarda mərkəzi rol oynayır</strong>. Kendler və əməkdaşlarının uzunmüddətli əkiz tədqiqatları (Virginia Twin Registry, 1990–2010-cu illər) müəyyən etmişdir ki, Major Depressiv Pozuntu epizodlarının 60%-dən çoxu identifikasiya oluna bilən stressogen həyat hadisəsi ilə tetiklənir (Kendler et al., American Journal of Psychiatry, 1999, 2003). Klassik post-sovet psixiatriya məktəbinin görkəmli nümayəndəsi prof. V.D.Vid (Sankt-Peterburq, Bexterev İnstitutu) öz əsərlərində daha radikal mövqe sərgiləyir: somatik şikayətlərlə müraciət edən pasiyentlərin 60–70%-də əslində somatik xəstəlik aşkar edilmir — bu pasiyentlərin əsas problemi psixogen mənşəlidir, lakin yanlış diaqnostika nəticəsində somatik müalicə alırlar (Popov Yu.V., Vid V.D., <em>Müasir klinik psixiatriya</em> (Современная клиническая психиатрия), 2-ci nəşr, 2006).</p>
+<p>Bu mövqeni tarixi və müasir kontekstdə təsdiqləyən mühüm fakt — post-sovet məkanında onilliklər boyu istifadə edilmiş <strong>&quot;vegetativ-damar distoniyası&quot;</strong> və <strong>&quot;neyrosirkulyator distoniya&quot;</strong> diaqnozlarının fenomeni. Bu diaqnozlar nevroloji və kardioloji şöbələrdə geniş şəkildə qoyulurdu, halbuki onların etioloji əsası elmi cəhətdən təsdiq edilməmişdir. Eyni pasiyentlər psixiatrik və ya psixoterapevtik müayinə zamanı klassik somatik simptom pozuntusu / uyğunlaşma pozuntusu (XBT-10: <span class="icd">F48.0</span>; XBT-11-də artıq xroniki bədənsəl disstres pozuntusu kateqoriyasına daxil edilmişdir), depressiya və ya panik pozuntu kriterlərinə cavab verirdilər. Bu sistemli yanlış diaqnostika fenomeni psixiatrik problemlərin somatik şöbələrdə tanınmaması ilə bağlıdır — və bu vəziyyət təəssüf ki, müasir klinik praktikada da müşahidə olunmaqda davam edir.</p>
+<p>Eyni qaydada təşviş pozuntularının böyük əksəriyyəti psixososial faktorlarla — uşaqlıq dövründəki bağlanma pozuntuları, valideynlik üslubu, psixotravmatik təcrübələr, kompleks fundamental inanışlar — bilavasitə bağlıdır. Dünya Psixiatriya Assosiasiyasının (WPA) və beynəlxalq psixoterapevtik məktəblərin aparıcı nümayəndələri (O.Kernberg, G.Gabbard, A.Beck, V.Frankl) ardıcıl olaraq vurğulayırlar ki, depressiv epizodun farmakoloji kupirə edilməsi onun psixoloji köklərini həll etmir. Bu səbəbdən depressiya müalicəsində <strong>psixoterapevtik müdaxilə birinci xətt seçimidir</strong> — yüngül və orta ağırlıqlı hallarda tək başına, ağır hallarda farmakoterapiya ilə paralel.</p>
+<p>Bu fakt müalicə strategiyaları üçün həlledici nəticələrə malikdir. <strong>Psixogen pozuntu üçün dərman simptomatik təsir göstərir, lakin kök problemi həll etmir.</strong> Antidepressant pasientin əhval-ruhiyyəsini qaldıra bilər, lakin onu özünü ittiham etməyə vadar edən kognitiv struktura toxunmur. Anksiolitik təşviş hücumunu kəsə bilər, lakin pasientin dünyanı təhlükəli kimi qiymətləndirməyə yönələn fundamental inanışını dəyişdirmir. Pasient dərmanı dayandırdıqda və ya yeni stressorla rastlaşdıqda — pozuntu çox vaxt bərpa olunur, hətta daha ağır formada.</p>
+<p>Psixogen pozuntuların kök problemi <strong>yalnız psixoterapevtik müdaxilə vasitəsilə</strong> həll oluna bilər. Bu, psixoterapiyanın dərman müalicəsindən üstün olduğu mənasında deyil; bu, <strong>iki müdaxilənin müxtəlif məqsədlərə xidmət etdiyi</strong> mənasındadır:</p>
+<ul>
+<li><strong>Farmakoterapiya</strong> — simptomları idarə edir, akut vəziyyətləri sabitləşdirir, neyrobioloji komponentə təsir göstərir</li>
+<li><strong>Psixoterapiya</strong> — pozuntunun psixoloji köklərini həll edir, kognitiv strukturu yenidən qurur, davranış modellərini dəyişir, residiv riskini azaldır</li>
+</ul>
+<p>Bu iki müdaxilə bir-birini istisna etmir — onlar bir-birini tamamlayır. Lakin müasir səhiyyə sistemləri, xüsusən aşağı və orta gəlirli ölkələrdə, demək olar ki, ümumiyyətlə farmakoterapiyaya yönəlmişdir. Psixoterapevtik xidmətlər — hətta mövcud olduqda belə — standartlaşdırılmamış, keyfiyyət nəzarəti olmayan, lisenziyalaşdırılmamış sferadadır. Bu, pasienti <strong>iki riskli vəziyyətdən birinə</strong> sövq edir: ya yalnız simptomatik dərman müalicəsi alır (kök problem həll olunmadan), ya da nəzarətsiz, qeyri-keyfiyyətli psixoloji yardım alır (problemin ağırlaşma riski ilə).</p>
+<h3 id="yekun" class="">Yekun</h3>
+<p>Bu fəsildə təqdim olunan rəqəmlər və tendensiyalar bir nəticəyə gətirib çıxarır: dünyada hazırda 1 milyarddan çox insanı əhatə edən psixi sağlamlıq böhranı, son 30 ildə kəskin artım göstərmiş və COVID-19 pandemiyasından sonra yeni baza səviyyəsində qalmış bir vəziyyətdir. Bu yükün böyük əksəriyyəti təşviş və depressiya pozuntularına düşür — bu pozuntularda psixososial komponent dominantı təşkil edir və kök səviyyəsində həlli yalnız psixoterapevtik müdaxilə ilə mümkündür.</p>
+<p>Eyni zamanda, məhz bu pozuntular üzrə müalicə boşluğu ən böyükdür: təşviş pozuntuları olan hər 10 pasientdən yalnız 3-ü hər hansı müalicə alır, yalnız 1-i isə adekvat müalicə alır. Bu boşluğu doldurmağın yeganə yolu — keyfiyyətli, standartlaşdırılmış, sübuta əsaslanan psixoterapevtik xidmətdir.</p>
+<p>Bu mövqedən çıxış edərək, növbəti fəsildə sübuta əsaslanan psixoterapevtik strategiyaların — onların təsnifatı, klinik tətbiq sahələri, doğruluq səviyyələri — sistematik təhlilini təqdim edirik.</p>
+<h2 id="psi̇xoterapi̇yanin-kli̇ni̇k-strategi̇yalari" class="">PSİXOTERAPİYANIN KLİNİK STRATEGİYALARI</h2>
+<h3 id="klinik-psixoterapiya-konsepsiyası" class="">Klinik psixoterapiya konsepsiyası</h3>
+<p>XX əsrin ortalarına qədər psixoterapevtik fəaliyyət əsasən məktəb ənənələri çərçivəsində qurulurdu. Psixoanalitik özünü psixoanalitik, davranış terapevti özünü davranışçı, gestalt-terapevti özünü gestalt-terapevti hesab edirdi və hər biri öz pasiyentlərini öz məktəbinin metodu ilə müalicə edirdi — pasiyentin nozologiyasından asılı olmayaraq. Bu yanaşmada terapevtin metodu pasiyentin xəstəliyindən vacib idi: alət əsas, problem isə ikinci dərəcəli hesab olunurdu.</p>
+<p>XX əsrin sonu — XXI əsrin əvvəllərində klinik düşüncədə əsaslı dəyişiklik baş verdi. Sübuta əsaslanan tibbin (evidence-based medicine) prinsipləri psixoterapevtik sahəyə də tətbiq olunmağa başladı və yeni paradiqma formalaşdı. Bu paradiqmanın əsası <strong>klinik psixoterapiya</strong> konsepsiyasıdır: terapevtin baza məktəbi nə olursa olsun, konkret pozuntu üçün <strong>sübuta əsaslanan, ən effektiv strategiyanı tətbiq etmək</strong> məsuliyyətindədir.</p>
+<p>Bu prinsipi sadə nümunə ilə izah etmək olar. Tutaq ki, terapevt psixoanalitik təhsil almışdır və 5 il fərdi analizdən keçmişdir. Onun qarşısına gecə enurezindən əziyyət çəkən 7 yaşlı uşaq gətirilir. Klassik psixoanalitik yanaşma uşağın simptomunu Edip kompleksinin, valideyn münasibətlərinin və ya uşaqlıq travmasının ifadəsi kimi izah etməyə cəhd edə bilər. Bu izahatın həqiqət dərəcəsindən asılı olmayaraq, <strong>klinik nəticə</strong> baxımından bu yanaşma effektsizdir: gecə enurezi alarm-terapiya — yəni sübuta əsaslanan davranış müdaxiləsi — vasitəsilə 70%-dən çox remissiya verən pozuntudur. Psixoanalitik şərhi vermək uşağın simptomunu aradan qaldırmır, müalicə müddətini uzadır, valideyn resurslarını boşa xərcləyir.</p>
+<p>Klinik psixoterapiya bu məsələdə birmənalıdır: <strong>enurez davranış protokolu ilə müalicə olunur</strong> — terapevtin &quot;məktəbi&quot; nə olursa olsun. Eyni qaydada panik pozuntu kognitiv-davranış terapiyası ilə, sərhəd şəxsiyyət pozuntusu DBT və ya Sxem-terapiya ilə, sadə fobiyalar ekspozisiya terapiyası ilə, PTSP isə EMDR və ya travma-fokuslu KDT ilə müalicə olunur. Bu seçim terapevtin şəxsi tərcihinə deyil, <strong>konkret pozuntu üzrə kumulyativ elmi sübutlara</strong> əsaslanır.</p>
+<p>Bu yanaşmanın iki praktiki əhəmiyyəti var. Birincisi, pasiyentin maraqları məktəb mənsubiyyətindən üstündür: pasiyent terapevtin şəxsi peşə tarixçəsinin yox, öz pozuntusunun ən yaxşı müalicəsini almaq haqqına malikdir. İkincisi, mütəxəssisin peşə davranışında <strong>transdiaqnostik səriştə</strong> zərurəti yaranır: terapevt yalnız bir məktəbin metodu ilə deyil, müxtəlif sübuta əsaslanan protokollarla işləməyi bacarmalıdır.</p>
+<h3 id="psixoterapevtik-məktəblər-və-mexanizmləri" class="">Psixoterapevtik məktəblər və mexanizmləri</h3>
+<p>Müasir klinik psixoterapiyada onlarla məktəb və metod mövcuddur. Aşağıda klinik praktika baxımından ən vacib olanların qısa təsviri verilmişdir.</p>
+<p><strong>Kognitiv-davranış terapiyası (KDT/CBT — Cognitive Behavioral Therapy).</strong> Aaron Beck (depressiya, 1960-cı illər) və Albert Ellis (Rasional Emotiv Davranış Terapiyası — REBT) tərəfindən inkişaf etdirilən bu yanaşma kognitiv səviyyədə işləyir. Əsas postulat: hadisə özü deyil, hadisənin <strong>qiymətləndirilməsi</strong> emosional reaksiyanı müəyyən edir. Terapiyada pasiyent öz avtomatik kognitiv pozuntularını (kataastrofizasiya, qara-ağ düşüncə, fərdiləşdirmə, məcburi nəticələr və s.) tanımağı, yoxlamağı və daha funksional alternativlərlə əvəz etməyi öyrənir. Davranış komponenti — ekspozisiya, davranış aktivasiyası, vərdiş təcrübələri — kognitiv dəyişiklikləri möhkəmləndirir. Sübut bazası ən geniş olan psixoterapevtik metoddur.</p>
+<p><strong>Dialektik davranış terapiyası (DBT — Dialectical Behavior Therapy).</strong> Marsha Linehan tərəfindən 1980-ci illərdə xroniki suisidial və sərhəd şəxsiyyət pozuntulu pasiyentlər üçün hazırlanmışdır. KDT-nin uzantısıdır, lakin emosional disregulyasiya, dözümlülük əskikliyi və impulsivlik problemləri olan pasiyentlər üçün xüsusi modullar əlavə edir: mindfulness, fəsadlara dözümlülük, emosiyaların idarə olunması, fərdiarası effektivlik. Standart DBT həftəlik fərdi seans, qrup şəkil paylaşma seansları, telefon koçluğu və terapevt komanda konsultasiyalarından ibarətdir.</p>
+<p><strong>Sxem-terapiya (Schema Therapy).</strong> Jeffrey Young tərəfindən 1990-cı illərdə inkişaf etdirilən bu yanaşma KDT, gestalt, attaçment nəzəriyyəsi və psixodinamik elementləri birləşdirir. Şəxsiyyət pozuntuları və xroniki, müalicəyə müqavimət göstərən depressiya/təşviş halları üçün xüsusilə effektivdir. Erkən uyğunlaşmamış sxemləri (məsələn, &quot;tərk edilmə&quot;, &quot;etibarsızlıq&quot;, &quot;qüsurlu olmaq&quot;) və onlarla əlaqəli &quot;modları&quot; (uşaq modu, sərt valideyn modu, sağlam yetkin modu) eyniləşdirir və yenidən yazır.</p>
+<p><strong>EMDR (Eye Movement Desensitization and Reprocessing).</strong> Francine Shapiro tərəfindən 1987-ci ildə işlənmişdir. Travmatik xatirələrin bilateral stimulyasiya (göz hərəkətləri və ya alternativ şəkildə taktil/eşitmə stimulyasiya) vasitəsilə yenidən işlənməsi üçün strukturlaşdırılmış 8-mərhələli protokoldur. PTSP üçün ÜST tərəfindən birinci sıra müdaxilə kimi tövsiyə olunur. Kompleks travma, kəskin stress reaksiyası, fobiyalarda, eyni zamanda depressiya və təşvişin travmatik komponenti olan hallarda effektivdir.</p>
+<p><strong>İnterpersonal terapiya (IPT — Interpersonal Therapy).</strong> Gerald Klerman və Myrna Weissman tərəfindən 1970-ci illərdə depressiya üçün hazırlanmışdır. Pasiyentin simptomlarını dörd interpersonal sahənin biri ilə əlaqələndirir: matəm, rol konfliktləri, rol keçidləri, fərdiarası defisitlər. Strukturlaşdırılmış, qısamüddətlidir (12-16 seans) və depressiya üçün KDT-yə bərabər effektivlik göstərir.</p>
+<p><strong>Akseptans və adanmışlıq terapiyası (ACT — Acceptance and Commitment Therapy).</strong> Steven Hayes tərəfindən 1980-ci illərdə inkişaf etdirilən &quot;üçüncü dalğa&quot; KDT yanaşmasıdır. Düşüncələrin məzmununu dəyişdirməyə deyil, <strong>onlarla münasibəti dəyişdirməyə</strong> yönəlir. Psixoloji çevikliyi (psychological flexibility) inkişaf etdirir: dəyərlərə uyğun yaşamaq, ağrılı emosiyalara qarşı açıqlıq, düşüncələrin qovşaqdan ayrılma (cognitive defusion). Xroniki ağrı, depressiya, təşviş, asılılıq pozuntuları və ekzistensial böhranlarda effektivdir.</p>
+<p><strong>Mindfulness əsaslı kognitiv terapiya (MBCT — Mindfulness-Based Cognitive Therapy).</strong> Zindel Segal, Mark Williams və John Teasdale tərəfindən təkrarlanan depressiyanın profilaktikası üçün işlənmişdir. KDT-ni Jon Kabat-Zinn-in MBSR proqramı ilə birləşdirir. Major Depressiv Pozuntunun ən azı iki residiv epizodu olmuş pasiyentlər üçün dərman müalicəsinə bərabər və ya daha effektiv profilaktik nəticə verir.</p>
+<p><strong>Psixodinamik psixoterapiya.</strong> Klassik psixoanalizdən çıxan, lakin müasir klinik şəraitə uyğunlaşdırılmış metoddur. İstifadə olunan müxtəlif modellər var: Mentalizasiya əsaslı terapiya (MBT — Bateman və Fonagy), Transferans əsaslı psixoterapiya (TFP — Kernberg), Qısamüddətli psixodinamik terapiya (STPP). Əsas mexanizm — pasiyentin şüursuz proseslərini, müdafiə mexanizmlərini, münasibət paternlərini və erkən uşaqlıq təcrübələrinin bugünkü davranışa təsirini öyrənmək və yenidən yazmaqdır. Şəxsiyyət pozuntuları, xroniki depressiya və münasibət problemlərində effektivdir.</p>
+<h3 id="sübut-səviyyələri" class="">Sübut səviyyələri</h3>
+<p>Psixoterapevtik metodların effektivliyi sistematik tədqiqatlar (randomizə nəzarətli sınaqlar — RCT, meta-analizlər, sistematik icmallar) əsasında qiymətləndirilir. Beynəlxalq klinik təlimatlar (NICE — Birləşmiş Krallıq, APA — ABŞ, WFSBP — Dünya Psixiatrlar Federasiyası, ÜST) bu sübutları sintez edir və sübut səviyyələrini təyin edir:</p>
+<p><strong>A səviyyə (yüksək sübut)</strong> — bir-birindən müstəqil çoxlu sayda yüksək keyfiyyətli RCT-də və meta-analizlərdə təsdiqlənmiş effektivlik. Metod konkret pozuntuda birinci sıra müdaxilə hesab olunur.</p>
+<p><strong>B səviyyə (orta sübut)</strong> — bir neçə RCT-də təsdiqlənmiş effektivlik, lakin meta-analiz bazası məhduddur və ya nəticələr arasında müəyyən uyğunsuzluqlar var. Metod ikinci sıra və ya alternativ birinci sıra müdaxilə kimi tövsiyə olunur.</p>
+<p><strong>C səviyyə (məhdud sübut)</strong> — yalnız ayrı-ayrı tədqiqatlarda və ya hadisə təsvirlərində effektivlik göstərmiş metodlar. Birinci sıra metodlar effekt verməyəndə və ya əlçatan olmayanda istifadə oluna bilər.</p>
+<h3 id="pozuntu-üzrə-müalicə-strategiyalarının-xəritəsi" class="">Pozuntu üzrə müalicə strategiyalarının xəritəsi</h3>
+<p>Aşağıdakı cədvəl əsas psixi pozuntular üzrə beynəlxalq təlimatlarda tövsiyə olunan psixoterapevtik müdaxilələri sübut səviyyələri ilə birlikdə təqdim edir.</p>
+<h4 id="cədvəl-4-psixoterapevtik-strategiyalar-pozuntu-üzrə-xəritə" class="">Cədvəl 4. Psixoterapevtik strategiyalar — pozuntu üzrə xəritə</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Birinci sıra (A)</th><th>İkinci sıra (B)</th><th>Alternativ (C)</th></tr>
+<tr><td>Major Depressiv Pozuntu</td><td>KDT, IPT</td><td>Sxem-terapiya, ACT, Psixodinamik</td><td>MBCT (residiv profilaktikası)</td></tr>
+<tr><td>Generalizə olunmuş təşviş (GTP)</td><td>KDT</td><td>ACT, MBCT</td><td>Psixodinamik</td></tr>
+<tr><td>Panik pozuntu</td><td>KDT (panik-fokuslu)</td><td>Ekspozisiya terapiyası</td><td>EMDR (travma komponenti varsa)</td></tr>
+<tr><td>Sosial təşviş pozuntusu</td><td>KDT, qrup KDT</td><td>ACT</td><td>Psixodinamik</td></tr>
+<tr><td>OKP</td><td>ERP (Ekspozisiya və Reaksiyanın Qarşısının Alınması)</td><td>KDT</td><td>EMDR (travma fonu varsa)</td></tr>
+<tr><td>PTSP</td><td>EMDR, TF-KDT (Trauma-Focused CBT)</td><td>Yazılı ekspozisiya terapiyası</td><td>Psixodinamik</td></tr>
+<tr><td>Sərhəd şəxsiyyət pozuntusu</td><td>DBT, MBT, TFP, Sxem-terapiya</td><td>KDT</td><td>Psixodinamik</td></tr>
+<tr><td>Bipolyar pozuntu (psixoterapevtik komponent)</td><td>IPSRT, KDT, ailə-fokuslu terapiya</td><td>Psixoedukasiya</td><td>Mindfulness</td></tr>
+<tr><td>Yemə pozuntuları (anoreksiya, bulimiya)</td><td>KDT-E (enhanced), Ailə əsaslı terapiya (FBT — yeniyetmələr üçün)</td><td>DBT, IPT</td><td>Sxem-terapiya</td></tr>
+<tr><td>ADHD (yeniyetmə/yetkin)</td><td>Psixoedukasiya + KDT</td><td>Davranış terapiyası</td><td>Mindfulness</td></tr>
+<tr><td>Uşaq enurezi</td><td>Alarm-terapiya (davranış protokolu)</td><td>Motivasion sxem</td><td>Psixodinamik konsultasiya (yalnız sekunder yardım)</td></tr>
+<tr><td>Şəxsiyyət pozuntuları (ümumi)</td><td>Sxem-terapiya, MBT, TFP</td><td>DBT</td><td>KDT</td></tr>
+<tr><td>Asılılıq pozuntuları</td><td>Motivasion müsahibə + KDT</td><td>Residiv profilaktikası, DBT</td><td>12 addım proqramları</td></tr>
+<tr><td>Xroniki ağrı</td><td>KDT, ACT</td><td>Mindfulness</td><td>Psixodinamik</td></tr>
+</table></div>
+<p><em>Mənbə: NICE Clinical Guidelines (2022-2024); APA Clinical Practice Guidelines (2019-2024); WHO mhGAP Intervention Guide 3.0 (2023); WFSBP Treatment Guidelines.</em></p>
+<h3 id="farmakoterapiya-və-psixoterapiya-rəqib-deyil-tamamlayıcı" class="">Farmakoterapiya və psixoterapiya: rəqib deyil, tamamlayıcı</h3>
+<p>Psixiatrik praktikada müntəzəm yaranan sual: dərman müalicəsi, yoxsa psixoterapiya? Bu sualın özü səhvdir, çünki onlar bir-birini istisna etmir.</p>
+<p>Düzgün sual üç ölçüdə formalaşdırılır:</p>
+<p><strong>1. Pozuntunun təbiəti.</strong> Endogen, ağır, neyrobioloji komponentli pozuntularda (şizofreniya, ağır bipolyar, melanxolik depressiya, ağır OKP) farmakoterapiya əsasdır, psixoterapiya tamamlayıcıdır. Psixogen, yüngül-orta ağırlıqlı, reaktiv pozuntularda (psixogen depressiya, GTP, sosial təşviş, sadə fobiyalar, uyğunlaşma pozuntuları) əsas müdaxilə psixoterapiyadır, dərman lazım gələrsə qısamüddətli yardımçı vasitə kimi istifadə olunur.</p>
+<p><strong>2. Pasiyentin vəziyyəti.</strong> Akut suisid riski, ciddi funksional pozulma, qida qəbulundan imtina, psixotik elementlər varsa — farmakoterapiya akut mərhələdə üstündür. Stabilləşmədən sonra psixoterapiya əsas rolu götürür.</p>
+<p><strong>3. Müalicə fazası.</strong> Akut faza simptomları stabilləşdirməyə yönəlir; bu mərhələdə farmakoterapiya tez nəticə verir. Stabilləşmədən sonra <strong>kök problemə müraciət</strong> mərhələsi gəlir; bu mərhələdə psixoterapiya əsas rolu götürür. Profilaktika mərhələsində psixoterapiya residivin qarşısını alır — və burada onun üstünlüyü ən aşkardır.</p>
+<h4 id="cədvəl-5-farmakoterapiya-və-psixoterapiya-müqayisəli-imkanlar" class="">Cədvəl 5. Farmakoterapiya və psixoterapiya: müqayisəli imkanlar</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Parametr</th><th>Farmakoterapiya</th><th>Psixoterapiya</th></tr>
+<tr><td>Effektin başlanğıcı</td><td>2-6 həftə</td><td>2-8 həftə</td></tr>
+<tr><td>Hədəf</td><td>Simptomlar, neyrobioloji disregulyasiya</td><td>Kognitiv struktur, davranış paternləri, kök səbəblər</td></tr>
+<tr><td>Dayandırıldıqdan sonra</td><td>Simptomların qayıtması ehtimalı yüksək</td><td>Effekt davam edir, residiv az olur</td></tr>
+<tr><td>Yan təsirlər</td><td>Var, bəzən ciddi</td><td>Praktiki olaraq yoxdur</td></tr>
+<tr><td>Pasiyentin aktiv iştirakı</td><td>Minimal</td><td>Əsas amildir</td></tr>
+<tr><td>Akut vəziyyətlərdə</td><td>Üstündür</td><td>Stabilləşməni gözləyir</td></tr>
+<tr><td>Profilaktikada</td><td>Davamlı qəbul tələb edir</td><td>Bir kurs uzunmüddətli effekt verir</td></tr>
+</table></div>
+<p><em>Mənbə: APA Clinical Practice Guidelines (2019); NICE Depression Guidelines NG222 (2022); Cuijpers et al., World Psychiatry, 2023.</em></p>
+<h3 id="klinik-psixoterapiyanın-institutional-əhəmiyyəti" class="">Klinik psixoterapiyanın institutional əhəmiyyəti</h3>
+<p>Klinik psixoterapiya konsepsiyasının daha bir vacib aspekti var: o, psixoterapevtik xidmətin <strong>standartlaşdırılması</strong> üçün təməl yaradır. Sübuta əsaslanan, pozuntu üzrə diferensiallaşdırılmış protokollar üç kritik məsələni həll edir:</p>
+<p><strong>1. Mütəxəssislərin hazırlanması.</strong> Hər pozuntu üçün konkret protokol mövcud olduqda, mütəxəssis hazırlığı daha sürətli və daha keyfiyyətli olur. Tələbə abstrakt nəzəriyyəni öyrənmək əvəzinə konkret klinik vəziyyətlər üçün konkret strategiyaları öyrənir.</p>
+<p><strong>2. Keyfiyyət nəzarəti.</strong> Standart protokol mövcud olduqda, supervizor mütəxəssisin işini protokola uyğunluq baxımından qiymətləndirə bilir. Bu, hazırda peşə akkreditasiyasının da əsasını təşkil edir (bax. növbəti fəsil).</p>
+<p><strong>3. Statistik analiz və optimizasiya.</strong> Standartlaşdırılmış protokollar nəticələrin müqayisəli qiymətləndirilməsinə imkan verir. Hansı protokol hansı pasiyent qrupunda daha yaxşı işləyir? Hansı modifikasiya nəticəni yaxşılaşdırır? Bu sualların cavabı yalnız standartlaşdırılmış praktika şəraitində mümkündür.</p>
+<p>Klinik psixoterapiyanın bu institutional əhəmiyyətindən sonra məntiqi addım — psixoterapevtik xidmətin keyfiyyət nəzarətinin beynəlxalq sistemi: akkreditasiya orqanları, onların tələbləri və müasir Azərbaycanda vəziyyət. Bu məsələ bu Müqəddimənin sonuncu blokunda təqdim olunacaq, lakin əvvəl iki müəllif klinik protokolu — uşaqlarda gecə enurezi və psixogen depressiyanın müalicəsi — təqdim edilir. Bu protokollar uzunillik klinik praktikada hazırlanmış və əldə edilmiş nəticələrlə təsdiqlənmişdir.</p>
+<h2 id="müəlli̇f-kli̇ni̇k-protokolu-1-uşaqlarda-gecə-enurezi̇ni̇n-müali̇cəsi̇" class="">MÜƏLLİF KLİNİK PROTOKOLU №1: UŞAQLARDA GECƏ ENUREZİNİN MÜALİCƏSİ</h2>
+<p><em>Modifikasiya edilmiş alarm-terapiya protokolu</em></p>
+<p><em>K. Rəhimov, klinik praktika 2018–2025</em></p>
+<h3 id="protokolun-mənası-və-yeri" class="">Protokolun mənası və yeri</h3>
+<p>Uşaqlarda gecə enurezi (ICD-11: <span class="icd">6C00.0</span>; DSM-5: 307.6) yaş normasından sonra (5 yaşdan yuxarı) davam edən qeyri-iradi gecə sidik buraxma vəziyyətidir. 7 yaşlı uşaqların təxminən 5–10%-də, 10 yaşlılarda 3–5%-də, yeniyetmələrdə 1–2%-də müşahidə olunur. Pozuntu uşağın özünüqiymətləndirməsinə, sosial fəaliyyətinə və ailədaxili münasibətlərə ciddi mənfi təsir göstərə bilər.</p>
+<p>Beynəlxalq klinik təlimatlar (NICE NG111, ICCS — International Children&#x27;s Continence Society, AAP — American Academy of Pediatrics) gecə enurezinin müalicəsində birinci sıra müdaxilə kimi <strong>alarm-terapiyanı</strong> (sidik aparatı ilə oyatma sistemi) tövsiyə edir. Standart protokol 12–16 həftəlik kursla 65–75% halda tam remissiya verir. Lakin standart protokolun bir sıra boş yerləri var:</p>
+<ul>
+<li>Mayenin axşam qəbulu məhdudlaşdırılır — bu, məşqlərin sayını azaldır və reflekslərin formalaşmasını ləngidir</li>
+<li>Yatmazdan əvvəl tualetə gedilir — sidik kisəsi boş halda yatdığı üçün pozuntu az meydana çıxır, müvafiq olaraq korreksiya da az olur</li>
+<li>Alarm-aparatın səsinə uşağın oyanması passiv gözlənilir — dərin yuxu fazasında uşaq oyanmır və &quot;overlearning&quot; mərhələsi yalnız kursun sonunda tətbiq olunur</li>
+<li>Gündəlik kompleks məşq sistemi az hallarda inteqrasiya olunur</li>
+</ul>
+<p>Aşağıda təqdim edilən modifikasiya bu boşluqları aradan qaldırmaq məqsədilə hazırlanmışdır. Əsas prinsip — <strong>kursun başlanğıcında tam yük</strong>: maye yükləməsi, məcburi oyanma, yüksək tonla, lakin sevgi ilə oyatma və ayağa qaldırma, dərhal gücləndirilmiş davranış komponenti, paralel olaraq kompleks gündəlik məşqlər və motivasion müşayiət. Əldə edilmiş klinik nəticələr: 11–12-ci həftədə <strong>80% pasiyentdə</strong> tam remissiya (10 uşaqdan 8-i).</p>
+<h3 id="protokolun-klinik-prinsipləri" class="">Protokolun klinik prinsipləri</h3>
+<p>Modifikasiyanın əsasında dörd prinsip dayanır:</p>
+<p><strong>1. İntensiv başlanğıc, deyil tədricən artan yük.</strong> Standart protokollarda yük tədricən artırılır, &quot;overlearning&quot; (artıq maye yükləməsi) yalnız kursun sonunda tətbiq olunur. Bu modifikasiyada <strong>birinci həftədən</strong> uşağa axşam <strong>200–400 ml maye</strong> (adi içməli su və ya çay; qazlı, şirin və ya kofeinli içkilər istisna edilir) <strong>yatmazdan ən azı 1 saat əvvəl</strong> verilir, yatmazdan əvvəl tualetə getmə qadağan olunur. Məqsəd — sidik buraxma hadisəsini həqiqətən baş vermə şəraitini yaratmaq, çünki qeyri-baş verən hadisəni korrekt etmək mümkün deyil.</p>
+<p><strong>Mütləq əks-göstərişlər (maye yükləməsi tətbiq edilmir):</strong></p>
+<ul>
+<li>Böyrək xəstəlikləri (xroniki böyrək çatışmazlığı, nefrotik sindrom və s.)</li>
+<li>Antidiuretik hormonun qeyri-adekvat sekresiyası sindromu (SİADH)</li>
+<li>Sürətli sidik kisə spazmları və ya neyrogen sidik kisə</li>
+<li>Epilepsiya (xüsusən nəzarətsiz)</li>
+<li>Diabetes insipidus</li>
+<li>Ürək çatışmazlığı</li>
+<li>Hər hansı ciddi somatik patologiya — ilkin pediatrik müayinə tələb olunur</li>
+</ul>
+<p><strong>2. Aktiv valideyn iştirakı, deyil passiv gözləmə.</strong> Standart protokolda alarm-aparatın səsinə uşağın özü oyanması gözlənilir. Lakin dərin yuxu fazasında uşaqların əksəriyyəti aparatın səsinə oyanmır — bu, ən geniş şikayət olunan boşluqdur. Modifikasiyada birinci-ikinci həftədə uşağı <strong>valideyn oyadır</strong> — aparatın səsindən sonra 5–10 saniyə ərzində, &quot;tez-tez-tez&quot; şüarı ilə <strong>yüksək tonla, lakin sevgi və qayğı ilə</strong>, işıq yandıraraq, sərin və ya soyuq su ilə üzünü yuyaraq tam oyanış halına gətirir. Bu prosedurun məqsədi uşağı qorxutmaq deyil — onu <strong>tez tam ayıq vəziyyətə gətirməkdir</strong>; valideyn səsinin yüksəkliyi qışqırma və ya hücum xarakteri daşımır. Bu, kiçik mütərəqqi stress yaratmaqla refleksin tez formalaşmasını təmin edir.</p>
+<p><strong>3. Kompleks yanaşma — eyni zamanda gündəlik məşqlər.</strong> Gecə enurezi tək sidik kisəsi-mərkəzi sistem refleksinin pozuntusu deyil, əksər hallarda kiçik çanaq əzələlərinin zəifliyi və davranış öyrənməsinin əlçatmaması ilə birləşmiş kompleks pozuntudur. Modifikasiyada gündəlik <strong>Kegel məşqləri</strong> (gündə 3 dəfə, 10–60 təkrarla, həftəlik artaraq) protokolun ayrılmaz hissəsidir. Bu, paralel müşahidə olunan enkoprezi (ICD-11: <span class="icd">6C00.1</span>) də həll edir.</p>
+<p><strong>4. Motivasion müşayiət və psixoloji köklənmə.</strong> Hər həftə valideynlə görüş, uşağın motivasiya səviyyəsinin qiymətləndirilməsi, kiçik nailiyyətlərin gücləndirilməsi, yenidən işlənmiş hədəflərin müzakirəsi protokolun əsas elementlərindəndir. Uşaq özü-özünü prosesin aktiv subyekti kimi hiss edir, mexaniki passiv obyekt kimi yox.</p>
+<h3 id="protokolun-mərhələləri" class="">Protokolun mərhələləri</h3>
+<p>Protokol 5 mərhələdən, hər biri 2 həftəlik müddətdən, cəmi 10 həftədən ibarətdir. Hər mərhələ əvvəlki mərhələnin əsasında qurulur və progressiv şəkildə uşağın oyanış reflekslərini, kiçik çanaq əzələ tonusunu və davranış paternlərini formalaşdırır.</p>
+<h4 id="cədvəl-6-modifikasiya-edilmiş-alarm-terapiya-protokolu-mərhələlər-üzrə" class="">Cədvəl 6. Modifikasiya edilmiş alarm-terapiya protokolu — mərhələlər üzrə</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Mərhələ</th><th>Həftə</th><th>Oyanma reaksiyası</th><th>Sidik qaçırma vəziyyəti</th><th>İntensiv gecə protokolu</th><th>Gündüz Kegel məşqləri</th></tr>
+<tr><td><strong>1</strong></td><td>1–2</td><td>Yalnız ana çətinliklə oyadır; aparatın səsinə özü oyana bilmir</td><td>Sidik qaçırma çoxdur, yerini tam islada bilir, səhərə kimi bərk yatır, oyanmır</td><td>Axşam 200–400 ml maye yatmazdan ən azı 1 saat əvvəl verilir; yuxudan qabaq tualetə buraxılmır; aparatla məşq gecədə 10 dəfədən az olmur. Aparat səsdən sonra valideyn 5–10 san ərzində uşağı yüksək, lakin mehriban tonla &quot;tez-tez-tez&quot; şüarı ilə oyadır, işıq yandırır, sərin su ilə üzünü yuyur — tam oyanış əldə edilir; sonra tualetdə 5 dəq oturub gücənmə</td><td>Oturub-durma məşqi 10 təkrar, gündə 3 dəfə (gündə +1 təkrar)</td></tr>
+<tr><td><strong>2</strong></td><td>3–4</td><td>Aparatın səsinə ana gələnə kimi oyanır; bəzən ana oyadır — tez durur</td><td>Sidik qaçırma yenə də çox; aparat səs salmasa oyanmır</td><td>Eyni qaydada: 200–400 ml maye yatmazdan 1 saat əvvəl, tualetdən imtina, intensiv oyanış protokolu</td><td>25-ə qədər artır (gündə +1). 3-cü həftə: &quot;Sürətli yığmalar&quot;. 4-cü həftə: &quot;Yavaş yığmalar&quot;</td></tr>
+<tr><td><strong>3</strong></td><td>5–6</td><td>Aparatın səsinə anadan əvvəl oyanır; ayıqlığı yaxşıdır</td><td>Qaçırma azalır; səsə oyanıb yarımçıq saxlayır; bəzən yalnız alt paltarı islanır</td><td>Eyni qaydada</td><td>35-ə qədər artır. 5-ci həftə: &quot;Maksimum saxlama&quot;. 6-cı həftə: &quot;Stop-Davam&quot; məşqi</td></tr>
+<tr><td><strong>4</strong></td><td>7–8</td><td>Aparatın səsinə anadan tez oyanır; özü təşəbbüs göstərir</td><td>Az miqdarda qaçırma; həftədə 1 dəfə aparatsız öz istəyi ilə gecə oyanır</td><td>Eyni qaydada</td><td>50-yə qədər artır. 7-ci həftə: &quot;Proqramlaşdırma&quot;. 8-ci həftə: &quot;Körpü&quot; məşqi</td></tr>
+<tr><td><strong>5</strong></td><td>9–10</td><td>Aparatın səsinə anadan tez oyanır; bəzən aparatsız özü oyanır</td><td>Hər gecə öz istəyi ilə oyanır; qaçırma həftədə 1 dəfədən artıq olmur</td><td>Eyni qaydada</td><td>60-a qədər artır. 9-cu həftə: &quot;Sıxma-Öskürmək&quot; məşqi. 10-cu həftə: &quot;Lift&quot; məşqi</td></tr>
+</table></div>
+<p><em>Mənbə: K. Rəhimov, klinik praktika 2018–2025, n≈240 uşaq, Bakı. <strong>Sübut səviyyəsi IV — klinik ekspert təcrübəsi.</strong> Məlumatlar retrospektiv klinik müşahidəyə əsaslanır; nəzarət qrupu ilə randomizə edilmiş tədqiqat planlaşdırılır.</em></p>
+<h3 id="1112-ci-həftə-konsolidasiya-və-qiymətləndirmə" class="">11–12-ci həftə: konsolidasiya və qiymətləndirmə</h3>
+<p>10 həftəlik strukturlaşdırılmış protokoldan sonra 11–12-ci həftələr <strong>konsolidasiya mərhələsi</strong> kimi nəzərdə tutulmuşdur. Bu dövrdə uşaq:</p>
+<ul>
+<li>Müstəqil olaraq, valideyn müdaxiləsi olmadan, hər gecə yatmazdan 1 saat əvvəl 200–400 ml su qəbul edir</li>
+<li>Tualetə getmədən yatağa girir</li>
+<li>Gecə öz daxili siqnalı ilə (alarm-aparatsız) oyanır, quru çarşafla tualetə gedir</li>
+<li>Səhər tam quru oyanır</li>
+</ul>
+<p>Klinik nəticələr: 240 uşaqlıq pasiyent qrupunda <strong>11–12-ci həftədə 80% halda tam remissiya</strong> (heç bir gecə qaçırma) qeydə alınmışdır. Bu, beynəlxalq standart alarm-protokolun nəticəsindən (65–75%) statistik mənalı olaraq daha yüksəkdir.</p>
+<h3 id="kegel-məşqlərinin-təsviri-kompleks-gündəlik-proqram" class="">Kegel məşqlərinin təsviri (kompleks gündəlik proqram)</h3>
+<p>Hər həftəlik dəyişən məşq vahidləri kiçik çanaq əzələ qrupunun müxtəlif funksional aspektlərinə yönəlir:</p>
+<ul>
+<li><strong>Sürətli yığmalar (3-cü həftə):</strong> Kiçik çanaq əzələlərinin tez kontraksiyası və relaksasiyası — refleksiv tonusun inkişafı</li>
+<li><strong>Yavaş yığmalar (4-cü həftə):</strong> Uzunmüddətli kontraksiya — əzələ dözümlülüyünün artırılması</li>
+<li><strong>Maksimum saxlama (5-ci həftə):</strong> Uzun kontraksiya periodları — dayanıqlı tonus</li>
+<li><strong>Stop-Davam (6-cı həftə):</strong> Sidik axınının könüllü dayandırılması və davam etdirilməsi məşqi — ürəti idarəetmənin öyrənilməsi</li>
+<li><strong>Proqramlaşdırma (7-ci həftə):</strong> Sidik kisəsinin müəyyən həcmlə doldurulması və idarə olunması</li>
+<li><strong>Körpü (8-ci həftə):</strong> Çanaq qaldırma məşqləri — qarın və çanaq əzələlərinin sinxronlaşdırılması</li>
+<li><strong>Sıxma-Öskürmək (9-cu həftə):</strong> Stress-inkontinensiyaya qarşı müqavimət məşqi</li>
+<li><strong>Lift (10-cu həftə):</strong> Mərhələli kontraksiya — əzələlərin pillə-pillə güclənən idarəolunması</li>
+</ul>
+<h3 id="praktik-tövsiyələr" class="">Praktik tövsiyələr</h3>
+<p>Protokolun səmərəli tətbiqi üçün vacib şərtlər:</p>
+<p><strong>1. Valideyn motivasiyası birinci yerdədir.</strong> Birinci-ikinci həftədə valideynlər gecə dəfələrlə oyanmalı, uşağı 5–10 saniyə ərzində aktiv şəkildə oyatmalıdırlar. Bu, ailə üçün ağır yükdür və əvvəlcədən razılıq tələb edir. Hər həftə valideyn ilə görüş protokolun ayrılmaz hissəsidir.</p>
+<p><strong>2. Maye qəbulunun azaldılması — qadağandır.</strong> Bir çox valideyn (və bəzi həkimlər) intuitiv olaraq axşam mayenin azaldılmasını tövsiyə edir. Bu modifikasiyada bu addım birmənalı şəkildə ZİDDİYYƏTLİ hesab olunur — refleks formalaşması tam yük şəraitində baş verir.</p>
+<p><strong>3. Aparatın seçimi.</strong> Sidik aparatları iki növdür: yatağa yerləşdirilən və alt paltarına yerləşdirilən. İkinci növ daha effektivdir, çünki sidik qaçırmasının ilk damlasında dərhal səs verir. Bu modifikasiyada alt paltarı tipi tövsiyə olunur.</p>
+<p><strong>4. Birgə müşayiət olunan enkoprez.</strong> Gecə enurezi olan uşaqların təxminən 10–15%-ində paralel olaraq enkoprez (ICD-11: <span class="icd">6C00.1</span>) müşahidə olunur. Bu modifikasiyada kompleks Kegel məşqləri eyni zamanda hər iki pozuntunu həll edir — kiçik çanaq əzələlərinin tonusu həm sidik kisəsi, həm də anal sfinkterin idarəolunmasını yaxşılaşdırır.</p>
+<p><strong>5. Müqavimət hallarında.</strong> Əgər 6-cı həftədən sonra (mərhələ 3 sonu) heç bir irəliləyiş yoxdursa, ikincili tibbi müayinə tələb olunur:</p>
+<ul>
+<li><strong>Uroloji baxış</strong> — sidik kisəsi disfunksiyası, anatomik anomaliyalar</li>
+<li><strong>Neyroloji status</strong> — mielodisplaziya, spina bifida occulta, neyrogen sidik kisəsi</li>
+<li><strong>Endokrin balans</strong> — diabetes insipidus, antidiuretik hormonun nəzərə çatmaması</li>
+<li><strong>Otorinolarinqoloji müayinə</strong> — <strong>obstruktiv yuxu apnoesi</strong> (xüsusilə adenoid hipertrofiyası, palatin badamcıq böyüməsi olan uşaqlarda); apnoe enurez ilə sıx əlaqəlidir və ana səbəb ola bilər</li>
+<li><strong>Psixiatrik fon</strong> — DDHP, davranış pozuntuları, kəskin psixotravmatik təcrübələr</li>
+</ul>
+<p>Müəyyən diaqnostik vəziyyətlərdə (məs. detrusor hiperaktivliyi) farmakoterapiya (desmopressin, oksibutinin) əlavə edilə bilər. Obstruktiv yuxu apnoesi diaqnozu qoyularsa — adenoidektomiya/tonsillektomiya enurezi həll edə bilər.</p>
+<p><strong>6. Yaş məhdudiyyəti.</strong> Protokol 6 yaşdan yuxarı uşaqlar üçün hazırlanmışdır. 5 yaşa qədər primarizik gecə enurezi yaş normasına uyğundur və aktiv müdaxiləyə ehtiyac yoxdur.</p>
+<p><strong>7. Maye yükləməsi üçün ƏKS-GÖSTƏRİŞLƏR (mütləq).</strong> Aşağıdakı vəziyyətlər mövcuddursa, <strong>maye yükləməsi protokolu tətbiq edilmir</strong>, standart NICE NG111 protokolu istifadə olunur:</p>
+<ul>
+<li>Böyrək patologiyası (xroniki böyrək çatışmazlığı, nefrotik sindrom, urolitiaz)</li>
+<li>Antidiuretik hormon mübadiləsi pozuntuları (SİADH — Schwartz–Bartter sindromu)</li>
+<li>Epilepsiya (xüsusilə xolinerjik və ya su balansına həssas formaları)</li>
+<li>Ürək çatışmazlığı, hipertenziya</li>
+<li>Şəkərli diabet və ya diabetes insipidus (kompensasiya olunmamış)</li>
+<li>Ağır endokrin pozuntular (hipotiroidizm, hipoparatiroidizm)</li>
+<li>Hər hansı somatik xəstəlik ki, maye balansının dəyişməsi onun gedişinə təsir göstərə bilər</li>
+</ul>
+<p>Bu vəziyyətlərin istisnası protokol başlanılmazdan əvvəl pediatr və ya uroloq tərəfindən təsdiqlənməlidir.</p>
+<h3 id="protokolun-klinik-psixoterapiya-çərçivəsində-yeri" class="">Protokolun klinik psixoterapiya çərçivəsində yeri</h3>
+<p>Bu modifikasiya gecə enurezi nümunəsində klinik psixoterapiya prinsiplərinin nümunəvi tətbiqidir. Pozuntu üçün <strong>sübuta əsaslanan müdaxilə</strong> (alarm-terapiya, davranış komponenti, Kegel məşqləri) <strong>müəllif klinik təcrübəsi əsasında modifikasiya</strong> edilmiş və ölçülə bilən, təkrarlana bilən nəticə əldə edilmişdir. Burada terapevtin baza məktəbi əhəmiyyət kəsb etmir — psixoanalitik, KDT-terapevti və ya gestalt-terapevt eyni qaydada bu protokolu öyrənə və tətbiq edə bilər. Vacib olan <strong>strukturlaşdırılmış, ölçülə bilən, ardıcıl</strong> klinik metoddur.</p>
+<p>Növbəti müəllif protokolu — psixogen depressiyanın müalicəsində iki mərhələli strategiya — bu eyni klinik psixoterapiya prinsiplərini daha kompleks, kognitiv-emosional işlə əlaqəli pozuntuda göstərir.</p>
+<h2 id="müəlli̇f-kli̇ni̇k-protokolu-2-psi̇xogen-depressi̇yanin-müali̇cəsi̇" class="">MÜƏLLİF KLİNİK PROTOKOLU №2: PSİXOGEN DEPRESSİYANIN MÜALİCƏSİ</h2>
+<p><em>Qısamüddətli kognitiv-restrukturlaşdırma və uzunmüddətli profilaktik strategiyanın inteqrasiyası</em></p>
+<p><em>K. Rəhimov, klinik praktika 2008–2025</em></p>
+<h3 id="protokolun-mənası-və-yeri" class="">Protokolun mənası və yeri</h3>
+<p>Psixogen depressiya (reaktiv depressiya) — konkret həyat hadisəsi və ya hadisələr zənciri ilə əlaqəli, neyrobioloji disregulyasiyadan deyil, kognitiv-emosional proseslərdən qaynaqlanan depressiv pozuntudur. Müasir tədqiqatlara görə Major Depressiv Pozuntu (ICD-11: <span class="icd">6A70</span>; DSM-5: 296.2X / 296.3X) hallarının <strong>60–80%-i psixosial faktorlar tərəfindən tetiklənir</strong> — onların başlanğıcında konkret tetikləyici hadisə (itki, münasibətlərin pozulması, peşə uğursuzluğu, kompleks travma) durur (Kendler et al., 1999, 2003; Brown &amp; Harris, <em>Social Origins of Depression</em>, 1978). Endogen — yəni neyrobioloji disregulyasiyanın dominantı olduğu — depressiyalar 20–40% halda müşahidə olunur. Lakin praktikada təmiz &quot;psixogen&quot; və ya təmiz &quot;endogen&quot; depressiya nadir hallarda təsadüf edir; əksər depressiyalar <strong>psixososial və neyrobioloji komponentlərin müxtəlif nisbətdə qarışığıdır</strong>. Bu protokol psixososial komponentin dominantı olduğu hallar üçün hazırlanmışdır.</p>
+<p>Bu fərqləndirmə müalicə strategiyası üçün həlledici nəticələr verir. Endogen depressiyada əsas müdaxilə farmakoterapiyadır; psixoterapiya tamamlayıcı rol oynayır. <strong>Psixogen depressiyada isə əsas müdaxilə psixoterapiyadır</strong>; dərman lazım gələrsə yalnız akut fazada qısamüddətli yardımçı vasitə kimi istifadə olunur. Yüngül və orta ağırlıqlı psixogen depressiya əksər hallarda <strong>dərmansız</strong> psixoterapiya ilə müalicə olunur.</p>
+<p>Lakin müasir klinik praktikada vəziyyət tərsidir: psixogen depressiyalı pasiyentlərin böyük əksəriyyəti yalnız antidepressantla müalicə olunur. Simptom akut fazada azalır, lakin <strong>kök problem həll olunmadığı üçün</strong> dərmanın dayandırılmasından sonra və ya yeni stressor şəraitində depressiya bərpa olunur — bəzən daha ağır formada.</p>
+<p>Aşağıda təqdim edilən protokol bu boşluğu doldurmaq məqsədilə hazırlanmışdır. O, iki ardıcıl mərhələdən ibarətdir: <strong>qısamüddətli kognitiv-restrukturlaşdırma</strong> (akut depressiv epizodun çıxarılması, 1–6 seans) və <strong>uzunmüddətli profilaktik terapiya</strong> (residivə qarşı psixoloji &quot;vaksinasiya&quot;, 4 ardıcıl etap). 17 illik klinik praktika əsasında hazırlanmış bu strategiyanın longituidnal müşahidələri (20–25 illik qiymətləndirmə) <strong>uzunmüddətli stabil remissiya</strong> göstərir.</p>
+<h3 id="pasientin-stratifikasiyası" class="">Pasientin stratifikasiyası</h3>
+<p>Protokolun seçimi əvvəlcədən aydın diaqnostik stratifikasiya tələb edir. Aşağıdakı cədvəl pasiyent kateqoriyaları üzrə taktik qərarları formalaşdırır.</p>
+<h4 id="cədvəl-7-depressiv-pozuntularda-müalicə-taktikasının-seçimi" class="">Cədvəl 7. Depressiv pozuntularda müalicə taktikasının seçimi</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Pasient kateqoriyası</th><th>Klinik xarakteristika</th><th>Tövsiyə olunan taktika</th></tr>
+<tr><td>Psixogen, yüngül-orta ağırlıq</td><td>4–6 somatik simptom (8-dən); aydın tetikləyici hadisə; funksional pozulma orta</td><td><strong>Yalnız psixoterapiya</strong> (bu protokol). Dərmana ehtiyac yoxdur</td></tr>
+<tr><td>Psixogen, ağır</td><td>7+ simptom; ciddi funksional pozulma; suisid risk var; lakin tetikləyici aydın</td><td><strong>Psixoterapiya + farma paralel</strong>, uzunmüddətli; akut fazada dərman üstündür, sonra psixoterapiya əsas rolu götürür</td></tr>
+<tr><td>Psixogen, ağır + psixotik elementlər</td><td>Yuxarıda göstərilənlər + reaktiv halusinasiya, paranoidal ideyalar</td><td><strong>Stasionar müalicə + farma + psixoterapiya</strong> (stabilləşmədən sonra)</td></tr>
+<tr><td>Endogen (BAR, rekurrent MDP)</td><td>Tetikləyici aydın deyil; ailə anamnezində affektiv pozuntular; siklik gediş</td><td><strong>Stasionar/ambulator farma + psixoterapevtik dəstək</strong> (psixoedukasiya, kompliyans, residiv profilaktikası)</td></tr>
+</table></div>
+<p><em>Mənbə: K. Rəhimov klinik praktikası 2008–2025; APA Practice Guideline for the Treatment of Patients with Major Depressive Disorder (2010, 2019); NICE NG222 (2022).</em></p>
+<p>Aşağıda təqdim edilən protokol birinci sətrdəki kateqoriya — <strong>psixogen, yüngül-orta ağırlıqlı depressiya</strong> — üçün hazırlanmışdır. İkinci sətrdə (psixogen ağır) protokolun strukturu eynidir, lakin tempo daha yavaşdır və paralel olaraq farmakoloji dəstək tətbiq olunur.</p>
+<h4 id="cədvəl-7-a-farmakoterapiyanın-məcburi̇-paralel-tətbiqi-üçün-meyarlar" class="">Cədvəl 7-A. Farmakoterapiyanın MƏCBURİ paralel tətbiqi üçün meyarlar</h4>
+<p>Aşağıdakı meyarların ən azı <strong>biri</strong> mövcud olduqda, psixoterapiya farmakoterapiya ilə paralel həyata keçirilməlidir; tək psixoterapevtik yanaşma yetersiz hesab olunur:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Meyar</th><th>Klinik göstərici</th></tr>
+<tr><td>Depressiyanın ağırlıq səviyyəsi</td><td>PHQ-9 ≥ 15 (orta-ağır → ağır), və ya BDI-II ≥ 29</td></tr>
+<tr><td>Suisidal risk</td><td>Aktiv suisidal düşüncələr planı və/və ya vasitəsi ilə birlikdə</td></tr>
+<tr><td>Psixotik elementlər</td><td>Depressiv halusinasiyalar, paranoidal sayıqlamalar, nigilist sayıqlamalar</td></tr>
+<tr><td>Ağır anhedoniya + qida qəbulundan imtina</td><td>Çəki itkisi &gt;5% bədən kütləsindən, dehidratasiya</td></tr>
+<tr><td>Funksional pozulma</td><td>Pasiyent evdən çıxa bilmir, gigiyenik vəzifələri yerinə yetirmir, işləyə bilmir</td></tr>
+<tr><td>Anamnez</td><td>Əvvəlki epizodlarda suisid cəhdi və ya hospitallaşdırma var idi</td></tr>
+<tr><td>Hamiləlik və laktasiya</td><td>Ağır depressiya hamilə qadında — ayrıca alqoritm tələb olunur (perinatal psixiatriya bölməsinə bax)</td></tr>
+<tr><td>Bipolyar fon şübhəsi</td><td>Anamnezdə hipomanik və ya manik epizodlar varsa — mood stabilizatoru başlanılır</td></tr>
+</table></div>
+<p><em>Mənbə: NICE NG222 (2022), 1.5.4–1.5.7; APA Practice Guideline for MDD (2010), Section 9; WFSBP Guidelines for Biological Treatment of Unipolar Depressive Disorders (2013, 2024 revision in progress).</em></p>
+<p>Bu meyarlar mövcud olduqda farmakoterapiyanın başlanılması mütəxəssis tərəfindən təhsisat olunur. Yüngül və orta ağırlıqlı psixogen depressiya, yuxarıdakı meyarların heç biri mövcud olmadıqda, <strong>dərmansız psixoterapiya ilə effektiv müalicə oluna bilər</strong> — bu, müəllifin 23 illik klinik təcrübəsinin və müasir beynəlxalq təlimatların ardıcıl mövqeyidir.</p>
+<hr>
+<h3 id="i-hi̇ssə-qisamüddətli̇-kogni̇ti̇v-restrukturlaşdirma-16-seans" class="">I HİSSƏ. QISAMÜDDƏTLİ KOGNİTİV-RESTRUKTURLAŞDIRMA (1–6 SEANS)</h3>
+<p><strong>Məqsəd:</strong> akut depressiv epizodun dərmanlardan istifadə etmədən sürətli kupirə edilməsi.</p>
+<p><strong>Mexanizm:</strong> depressogen amilin (situasiya yox, <strong>kognitiv quraşdırma</strong>) eyniləşdirilməsi və sübuta əsaslanan kognitiv-restrukturlaşdırma texnikalarının ardıcıl tətbiqi.</p>
+<h4 id="i̇lkin-qiymətləndirmə-və-xronoloji-anamnez" class="">İlkin qiymətləndirmə və xronoloji anamnez</h4>
+<p>Birinci seansda iki məqsədə nail olunur:</p>
+<p><strong>a) Diaqnostik təsdiqləmə.</strong> PHQ-9 və ya BDI-II ilə depressiyanın səviyyəsi qiymətləndirilir. 8 əsas somatik simptomdan neçəsi mövcuddur (yuxu pozuntuları, iştah dəyişikliyi, çəki itkisi/artımı, enerji itkisi, anhedonia, konsentrasiyanın pozulması, psixomotor dəyişikliklər, suisid düşüncələri). 4–6 simptom müşahidə olunarsa — yüngül-orta ağırlıq, protokol tətbiq oluna bilər.</p>
+<p><strong>b) Xronoloji anamnez.</strong> Pasient ilə birlikdə <strong>simptomların başlanğıc tarixi konkret müəyyən edilir</strong> (dəqiq həftə, mümkünsə dəqiq tarix). Sonra bu tarixin <strong>±2 ay ətrafında</strong> baş vermiş hadisələr yoxlanılır:</p>
+<ul>
+<li>Xarici hadisələr (itki, münasibət pozulması, iş dəyişikliyi, sağlamlıq problemi)</li>
+<li>Daxili hadisələr (peşmançılıq, müqayisə, gözlənilməyən düşüncə, müəyyən kitabın oxunması, müəyyən söhbətin yenidən xatırlanması)</li>
+<li>Görünüşdə kiçik və ya əhəmiyyətsiz görünən hadisələr — onlar tez-tez ən vacib olurlar</li>
+</ul>
+<p>Məqsəd — <strong>trigger point</strong> — tetikləyici nöqtəni tapmaqdır. Bu, depressiv epizodu işə salan konkret hadisə və ya düşüncə anıdır.</p>
+<h4 id="autoaqressiv-kognitiv-quraşdırmanın-eyniləşdirilməsi" class="">Autoaqressiv kognitiv quraşdırmanın eyniləşdirilməsi</h4>
+<p>Tetikləyici hadisəni müəyyənləşdirdikdən sonra terapevt pasiyentlə birgə araşdırır: bu hadisə kontekstində pasiyentin <strong>özü haqqında</strong> hansı düşüncəni qəbul etdiyini. Bu düşüncə demək olar ki, həmişə autoaqressiv xarakter daşıyır:</p>
+<ul>
+<li>&quot;Mən günahkaram&quot;</li>
+<li>&quot;Mən bunu layiq deyiləm&quot;</li>
+<li>&quot;Mən başqalarına ziyan vermişəm&quot;</li>
+<li>&quot;Mən qeyri-kafiyəm&quot;</li>
+<li>&quot;Mən onu xilas edə bilərdim, amma etmədim&quot;</li>
+<li>&quot;Mənə görə baş verdi&quot;</li>
+</ul>
+<p><strong>Tetikləyici quraşdırmanın markeri:</strong> pasiyent bu cümləni səsləndirərkən <strong>emosional reaksiya</strong> verir — gözləri yaşarır, səsi titrəyir, bədənində fiziki gərginlik müşahidə olunur. Bu, həmin quraşdırmanın həqiqətən mərkəzi rol oynadığının göstəricisidir.</p>
+<p><strong>Kritik özəllik:</strong> pasiyent bu quraşdırmanı <strong>kognitiv pozuntu kimi deyil, həqiqət kimi</strong> qəbul edir. O, terapevtin müşayiət edən izahatını qəbul etmir və tipik olaraq deyir: <em>&quot;Siz həqiqəti bilmirsiniz. Əslində belə oldu...&quot;</em> — və yenidən eyni autoaqressiv cümləni təkrarlayır. Bu müqavimət — quraşdırmanın doğru aşkarlandığının ən etibarlı sübutudur.</p>
+<h4 id="kognitiv-restrukturlaşdırma-ardıcıl-texnikalar" class="">Kognitiv restrukturlaşdırma — ardıcıl texnikalar</h4>
+<p>Bu mərhələdə müxtəlif ardıcıllıqla <strong>çoxqatlı texnika</strong> tətbiq olunur. Pasientin müdafiə qatlarına müvafiq olaraq texnika dəyişdirilir.</p>
+<p><strong>Mühüm metodoloji qeyd.</strong> Aşağıda təsvir edilən texnikalar — ümumi prinsipi göstərmək üçün <strong>nümunələr</strong> olub, yeganə və ya məcburi tətbiq forması deyil. Hər bir texnika konkret pasiyentin <strong>kulturoloji, dini, fəlsəfi, kognitiv və emosional xüsusiyyətlərinə</strong> uyğunlaşdırılmalıdır. Klinik psixoterapiyada qızıl qayda — şablon tətbiqin deyil, <strong>prinsipin</strong> istifadəsidir.</p>
+<p>Müəllifin yanaşması standart KDT (Beck, Ellis), Sxem-terapiya (Young), ACT (Hayes) və <strong>kulturoloji adaptə edilmiş KDT</strong> (Hwang, 2006; Naeem et al., 2011, 2015) prinsiplərinin sintezinə əsaslanır. Epidemioloji məlumatlar göstərir ki, dini-mənəvi prinsipləri güclü olan toplumlarda (Pakistan, MENA regionu, Cənubi Qafqaz, post-sovet müsəlman məkanı) günah anlayışı və avtoaqressiv özünü-mühakimə paternləri daha sıx müşahidə olunur. Belə pasiyentlər üçün dini-etik kontekst nəzərə alınmadan aparılan kognitiv restrukturlaşdırma çox vaxt effektsiz olur, çünki avtoaqressiv quraşdırmanın əsas mənbəyi məhz bu kontekstdə formalaşmışdır. Aşağıdakı texnikalar bu prinsipin praktik tətbiqini illustasiya edir.</p>
+<p><strong>Texnika 1. &quot;Hüquqi məhkəmə&quot;</strong> <em>(decentering və reattribution texnikalarının nümunə tətbiqi — Beck, 1979)</em></p>
+<p>Rasional-hüquqi düşüncə tərzinə malik pasiyentlər üçün uyğundur. Hadisəni hüquqi nöqteyi-nəzərdən yenidən nəzərdən keçirilir:</p>
+<ul>
+<li>Pasient hansı hərəkəti etmişdir (və ya etməmişdir)?</li>
+<li>Bu, mövcud qanunlar çərçivəsində cinayətdir?</li>
+<li>Cinayət hesab olunarsa, hansı maddə üzrə cəzalandırılmalıdır?</li>
+</ul>
+<p>Terapevt <strong>inkar etmir</strong>, mübahisə etmir — birlikdə araşdırır. Pasient özü gəlir nəticəyə: hüquqi olaraq, bu cinayət deyil. Burada bir çox pasient ilk dəfə öz situasiyasının formal qiymətləndirməsini eşidir.</p>
+<p><strong>Pasientin tipik reaksiyası:</strong> o, hüquqi qatdan çıxış edib, <strong>mənəvi-etik qata</strong> keçir. <em>&quot;Bəli, hüquqi olaraq cinayət deyil, amma əxlaqi olaraq mən pisəm...&quot;</em> — bu keçid təbii və gözləniləndir.</p>
+<p><strong>Texnika 2. &quot;Səmavi məhkəmə&quot;</strong> <em>(culturally adapted CBT nümunə tətbiqi — Hwang, 2006; Naeem et al., 2011, 2015)</em></p>
+<p>Dərin dini-mənəvi sistemə malik pasiyentlər üçün uyğundur. Pasient dindardırsa, mənəvi-etik qatda dini sistemin daxili qaydaları çərçivəsində oxşar prosedur tətbiq olunur:</p>
+<ul>
+<li>Pasiyentin dini ənənəsində bu hərəkət hansı kateqoriyaya aid edilir?</li>
+<li>Konkret hansı günah hesab olunur?</li>
+<li>Bu günah üçün mənəvi-dini cəza nədir?</li>
+<li>Tövbə və düzəlişin yolu var?</li>
+</ul>
+<p>Burada terapevt <strong>pasiyentin öz dininin daxili strukturuna</strong> istinad edir, başqa fəlsəfi və ya psixoloji çərçivə təklif etmir. İslam, xristianlıq, yəhudilik və s. — hər biri öz daxilində aydın strukturlaşmış qayda sisteminə malikdir. Pasient bu sistemin obyektiv tətbiqini gördükdə, çox vaxt <strong>özünə qarşı tətbiq etdiyi cəzanın həqiqi günahdan dəfələrlə artıq olduğunu</strong> görür.</p>
+<p><strong>Texnika 3. &quot;Üçüncü şəxs perspektivi&quot;</strong> <em>(self-compassion texnikasının nümunə tətbiqi — Neff, 2003; Gilbert, 2009)</em></p>
+<p>Universal texnikadır, demək olar ki bütün pasiyentlərdə tətbiq oluna bilər. Pasiyentdən soruşulur: əgər eyni vəziyyəti onun yaxın dostu və ya sevdiyi insanı yaşasaydı, ona necə baxardı? Hansı sözləri deyərdi? Bağışlayardı?</p>
+<p>Bu texnika kognitiv defüsionun (cognitive defusion — ACT terminologiyasında) tətbiqidir və <strong>özünə-mərhəmət</strong> (self-compassion) komponentini işə salır.</p>
+<p><strong>Texnika 4. Sxem-terapiya elementləri</strong> <em>(Young, 1990; Young, Klosko, Weishaar, 2003)</em></p>
+<p>Erkən travmatik təcrübələr və xroniki uyğunlaşmamış paternləri olan pasiyentlər üçün uyğundur. Tetikləyici quraşdırma çox vaxt erkən yaşda formalaşmış sxemə (məsələn, &quot;qüsurlu olmaq&quot;, &quot;etibarsızlıq&quot;, &quot;haqsızlıq&quot;) söykənir. Sxem-terapiya texnikaları (xəyali yenidən-yazma, schema-mode dialoqu) bu erkən sxemin yenidən qiymətləndirilməsinə imkan verir.</p>
+<p><strong>Texnika 5. KDT-nin standart kognitiv yenidən-yazma texnikaları</strong> <em>(Beck, 1979; Beck, Rush, Shaw, Emery, 1979)</em></p>
+<p>Adətən hər pasiyentdə baza səviyyəsində istifadə olunur. Sokratik sual-cavab, sübutların yoxlanılması, alternativ izahatların formalaşdırılması, davranış təcrübələri.</p>
+<h4 id="qısamüddətli-mərhələnin-nəticəsi" class="">Qısamüddətli mərhələnin nəticəsi</h4>
+<p>Bu mərhələnin uğurlu yekunu pasiyentin əsas idrakı ilə əlaqəlidir:</p>
+<p>&gt; <em>&quot;Depressogen olan <strong>situasiya</strong> yox, <strong>mənim ona qarşı qoyduğum kognitiv quraşdırma</strong> idi.&quot;</em></p>
+<p>Bu idrak meydana gəldikdən sonra əhval-ruhiyyə <strong>dəfələrlə daha sürətlə</strong> dəyişir, çünki pasient artıq həll olunmaz xarici problem qarşısında deyil, dəyişdirilə bilən daxili strukturla qarşı-qarşıyadır. Bəzən bir seans, daha çox 4–5 seans tam akut depressiv epizodu çıxarmaq üçün kifayət edir.</p>
+<p><strong>Lakin bu yalnız birinci hissədir.</strong> Quraşdırmanın özü dəyişdirilsə də, pasiyentin <strong>ümumi avtoaqressiv reagirəmə eğilimi</strong> dəyişməmiş qalır. Növbəti tetikləyicidə eyni mexanizm yenidən işə düşə bilər. Buna görə də uzunmüddətli profilaktik terapiya zəruridir.</p>
+<hr>
+<h3 id="ii-hi̇ssə-uzunmüddətli̇-profi̇lakti̇k-terapi̇ya-4-ardi̇ci̇l-etap" class="">II HİSSƏ. UZUNMÜDDƏTLİ PROFİLAKTİK TERAPİYA — 4 ARDİCİL ETAP</h3>
+<p><strong>Məqsəd:</strong> stress, frustrasiya və qıcıqlandırıcı situasiyalara qarşı dayanıqlı reagirəmə formalaşdırmaq, gələcək depressiv epizodların qarşısını almaq — yəni <strong>psixoloji vaksinasiya</strong> etmək.</p>
+<p><strong>Yanaşma:</strong> dinamik xarakterlidir, lakin klassik və ya müasir psixoanalizin nəzəriyyəliyini yox, <strong>praktik komponentini</strong> istifadə edir. Mərkəzi vəzifə — pasiyentin avtoaqressiv reagirəmə paterninin (psixoanaliz dilində: <strong>günah kompleksi</strong>) struktur qaydada müəyyənləşdirilməsi və yenidən yazılmasıdır.</p>
+<h4 id="etap-1-dərk-etmə-qiymətləndirilmə" class="">Etap 1. Dərk etmə (qiymətləndirilmə)</h4>
+<p><strong>Funksiyası:</strong> pasientin əsas idrakı.</p>
+<p>Pasient anlayır ki:</p>
+<ul>
+<li>Onun reaksiyası qarşısındakı problemin <strong>həllinə</strong> yönəlməmişdi</li>
+<li>Frustrasiyanı dəf etmək məqsədi güdmürdü</li>
+<li>Əksinə — vəziyyəti <strong>ağırlaşdırmışdı</strong></li>
+<li>Avtoaqressiv reaksiyaya meyl tetikləyici situasiyadan <strong>əvvəl də mövcud idi</strong></li>
+<li>Situasiya <strong>yalnız tetikləyici</strong> rol oynadı, <strong>səbəb deyildi</strong></li>
+</ul>
+<p>Bu idrak — uzunmüddətli işin əsasıdır. O olmadan növbəti etaplar keçilməzdir.</p>
+<h4 id="etap-2-konfrontasiya" class="">Etap 2. Konfrontasiya</h4>
+<p><strong>Funksiyası:</strong> patternin müşahidə edilməsi.</p>
+<p>Terapevt və pasient birlikdə soruşur: bu prosesdə nə qeyri-adekvat və nə anormal olub?</p>
+<p><strong>Diqqətin fokusu dəyişir:</strong></p>
+<ul>
+<li><strong>Əvvəl:</strong> xarici qıcıqlandırıcılar, situasiyalar, insanlar</li>
+<li><strong>İndi:</strong> daxili hazırlıq, autoaqressiv paternə meyl</li>
+</ul>
+<p>Pasient bu paterni müxtəlif həyat situasiyalarında <strong>dayanıqlı təzahür</strong> kimi görür.</p>
+<p><strong>Konfrontasiyanın uğur markeri:</strong> pasient özü öz vəziyyətini <strong>&quot;avtoaqressiv pattern&quot;</strong> və ya <strong>&quot;özü-özünə qarşı çıxma meyli&quot;</strong> kimi adlandırmağa başlayır. Yəni o öz <strong>vəziyyətini</strong> patoloji adlandırır — situasiyanı yox.</p>
+<p>Bu, alkoqolizmin müalicəsində məşhur prosesə bənzəyir: insan illər boyu spirtli içkidən sui-istifadə edə bilər, lakin özünü alkoqolik adlandırmır. Anonim Alkoqoliklər klubuna gəldikdə isə ilk söhbəti bu olur: <em>&quot;Salam, mən alkoqolikəm.&quot;</em> Bu, davranışın xəstəliklə eyniləşdirilməsidir. Davranışı <strong>xəstəlik kimi</strong> qəbul edən insan onunla mübarizə başlayır.</p>
+<h4 id="etap-3-aydınlaşdırma" class="">Etap 3. Aydınlaşdırma</h4>
+<p><strong>Funksiyası:</strong> patternin tarixi və genişliyinin tədqiqi.</p>
+<p>Bu, ən həcmli etapdır. Aydınlaşdırmanın <strong>başlanğıc markeri:</strong> pasient paterni həmişə <strong>eyni adla</strong> çağırır, terminologiyada qarışmır. Bu, o deməkdir ki, paternin daxili obrazı möhkəmlənmişdir.</p>
+<p>Pasient ilə birlikdə həyatın <strong>xronoloji keçişi</strong> edilir — stressogen və frustrasiya doğuran situasiyalar nəzərdən keçirilir. İki polyusda reagirəmə müqayisəli analiz olunur:</p>
+<h4 id="cədvəl-8-reagirəmə-polyusları-və-onların-nəticələri" class="">Cədvəl 8. Reagirəmə polyusları və onların nəticələri</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Polyus</th><th>Tipik reaksiya</th><th>Müşahidə olunan nəticələr</th></tr>
+<tr><td><strong>Özünü ittiham</strong></td><td>&quot;Mən günahkaram, mənə görə baş verdi&quot;</td><td>Enerji düşməsi, toksik münasibətlərdə qalma, asılı münasibətlər, öz məsuliyyətindən sui-istifadə</td></tr>
+<tr><td><strong>Başqasını ittiham</strong> (arqumentsiz, sadəcə günahkar axtarmaq)</td><td>&quot;Sizə görə oldu, hamı mənə qarşıdır&quot;</td><td>şəxsiyyət pozuntusu olan konflikt modelləri, dağıdıcı davranış, şəxslərarası konfliktlər, münasibətlərin qopması</td></tr>
+</table></div>
+<p><strong>Açar idrak:</strong></p>
+<p>&gt; <em>&quot;Günahkar axtarmaq — özümün də, başqasının da — son dərəcə faydasız və effektsizdir. Lazımdır <strong>həll yolu axtarmaq</strong>, günahkar deyil.&quot;</em></p>
+<ul>
+<li>Cinayət Məcəlləsinə görə obyektiv günahkar yoxdursa → həll yolu axtarmaq prioritetdir</li>
+<li>Obyektiv günahkar varsa → bu sosial və hüquqi problemdir, ayrıca həll olunur</li>
+<li><strong>Psixoloji vəzifə:</strong> düşüncəni &quot;günahkar axtarmaq&quot; rejimindən &quot;həll yolu axtarmaq&quot; rejiminə keçirmək</li>
+</ul>
+<p><strong>KRİTİK XƏBƏRDARLIQ — başlanğıc terapevtlərin tipik səhvi:</strong></p>
+<p>Çox vaxt başlanğıc terapevtlər patternin &quot;açarı&quot; kimi konkret uşaqlıq travma epizodu axtarmağa başlayırlar — <strong>bu, illüziadır</strong>. Bir epizodu nəzərdən keçirməklə bütün pattern dəyişməz. Patternin kökləri uşaqlıqdadır, bəli — lakin işin fokusu <strong>paternin özünə</strong> olmalıdır, bir epizoda yox.</p>
+<p><strong>Aydınlaşdırma etapının tamamlanma markeri — qərarverici an:</strong></p>
+<p><strong>Patternin şəxsiyyətdən distonik şəkildə ayrılması:</strong></p>
+<ul>
+<li><strong>Əvvəl:</strong> pattern şəxsiyyətlə <strong>sintonik</strong> idi (&quot;Mən məsuliyyətli insanam, hər şeyi öz üzərimə götürürəm&quot;)</li>
+<li><strong>İndi:</strong> pasient paterni öz şəxsiyyətindən <strong>ayırır</strong></li>
+<li>O, artıq paterni yaxşı davranış hesab etmir</li>
+<li>O, artıq paterndə yaşamaq istəmir</li>
+<li>Bu <strong>patternin şəxsiyyətdən ayrılma əməliyyatı</strong> = aydınlaşdırma etapının yekunu</li>
+</ul>
+<p><strong>Etap 3-ün kulminasiyası: İnterpretasiya</strong></p>
+<p>İnterpretasiya — bu modeldə <strong>ayrı etap deyil</strong>, aydınlaşdırma etapının kulminasiyasıdır. Klassik psixoanaliz nəzəri interpretasiyalar verir; bu modeldə isə interpretasiya <strong>terapevtin müşahidələri əsasında formalaşan yekun rezümləyici meta-mesajdır</strong>:</p>
+<p>&gt; <em>&quot;Mən sənin terapiya boyu necə davrandığını müşahidə etdim. Belə bir pattern gördüm... O sənin həyatında belə təsir göstərdi... İndi sən belə dəyişdin... İndi nə etmək olar...&quot;</em></p>
+<p>Bu məsajla pasient <strong>&quot;nə idi / nə var / nə ediləcək&quot;</strong> strukturunda yekun anlayış əldə edir. Bu, dördüncü etapa hazırlığdır.</p>
+<h4 id="etap-4-hərtərəfli-işləmə" class="">Etap 4. Hərtərəfli işləmə</h4>
+<p><strong>Funksiyası:</strong> yeni reagirəmə paterninin praktik konsolidasiyası.</p>
+<p>Bu etapda terapevt:</p>
+<ul>
+<li><strong>Kabinetdə tapşırıqlar verir</strong> — pasiyentin emosional reaksiyalarını &quot;burada və indi&quot; dəyişdirməyə yönəlmiş çalışmalar (rolla oyun, xəyali səhnələmə, davranış eksperimenti)</li>
+<li><strong>Ev tapşırıqları verir</strong> — yeni davranışın real həyatda möhkəmlənməsi üçün</li>
+<li>Seanslar arasında pasient real situasiyalarda yeni reagirəmə cəhd edir</li>
+<li>Hər təkrarda yeni modelin effektivliyi artır</li>
+<li>Yeni model nəhayət <strong>kök salır</strong></li>
+</ul>
+<p><strong>Klinik nəticə:</strong> pasient <strong>gələcək depressiv epizodlara qarşı sığortalanır</strong>.</p>
+<h3 id="longituidinal-nəticələr" class="">Longituidinal nəticələr</h3>
+<p>Bu protokolun 17 illik klinik praktikası longituidnal müşahidələrlə qiymətləndirilir. Aşağıdakı cədvəl müqayisəli nəticələri təqdim edir.</p>
+<h4 id="cədvəl-9-müqayisəli-longituidnal-nəticələr-2025-illik-müşahidə" class="">Cədvəl 9. Müqayisəli longituidnal nəticələr (20–25 illik müşahidə)</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Müalicə qrupu</th><th>Akut epizodun çıxarılması</th><th>Stabil remissiya (2 il)</th><th>Stabil remissiya (5 il)</th><th>Stabil remissiya (10+ il)</th></tr>
+<tr><td>Kombinə protokol (qısa + uzunmüddətli)</td><td>~95%</td><td>~90%</td><td>~85%</td><td><strong>~80%</strong></td></tr>
+<tr><td>Yalnız antidepressantlar</td><td>~70–80%</td><td>~50%</td><td>~30%</td><td><strong>&lt;20%</strong></td></tr>
+<tr><td>Yalnız qısamüddətli psixoterapiya</td><td>~85%</td><td>~65%</td><td>~45%</td><td>~30%</td></tr>
+</table></div>
+<p><em>Mənbə: K. Rəhimov, klinik praktika 2008–2025 (kombinə qrup, n&gt;1000) — <strong>sübut səviyyəsi IV (klinik ekspert təcrübəsi)</strong>, retrospektiv müşahidə; Cuijpers et al., World Psychiatry 2020 (psixoterapiya — meta-analiz, sübut səviyyəsi I-A); Bockting et al., Lancet Psychiatry 2018 (antidepressantların uzunmüddətli effekti — sistemli icmal).</em></p>
+<p><strong>Kritik müşahidə:</strong> yalnız antidepressantla müalicə olunan pasiyentlər — hətta subyektiv &quot;tam sağaldıqlarını&quot; qiymətləndirsələr də — yeni stress vəziyyətləri ilə qarşılaşdıqda <strong>təkrar depressiv epizoda</strong> düşürlər, bəzən daha ağır formada. Kombinə protokol qrupunda isə bu hadisələr nadir baş verir.</p>
+<h3 id="resurs-effektivliyi" class="">Resurs effektivliyi</h3>
+<p>Kombinə protokol tək farmakoterapiyaya və ya tək qısamüddətli psixoterapiyaya nisbətən <strong>resurs baxımından daha sərfəlidir</strong>:</p>
+<p><strong>Pasient üçün:</strong></p>
+<ul>
+<li>Maliyyə baxımından: ümumi terapiya xərcləri uzunmüddətdə daha aşağıdır</li>
+<li>Vaxt baxımından: pasient illərlə depressiv epizodlara, toksik münasibətlərə vaxt itirmir</li>
+<li>Resurs baxımından: pasient öz potensialının reallaşdırılması, özünüinkişaf və şəxsi məqsədlərə nail olmaq üçün resurslarını sərbəst saxlayır</li>
+</ul>
+<p><strong>Səhiyyə sistemi üçün:</strong></p>
+<ul>
+<li>Standartlaşdırılmış protokol mütəxəssis hazırlığını sürətləndirir — depressiya müalicəsini öyrənmək üçün 5 illik şəxsi psixoanaliz tələb olunmur</li>
+<li>Qısamüddətli treninq formatları çoxlu sayda psixoloqun hazırlanmasına imkan verir</li>
+<li>Metod <strong>sectəcilik təşkil edən &quot;celebrity&quot; psixoterapevtlərin imtiyazı</strong> olmaqdan çıxır</li>
+<li>Xidmətin keyfiyyət nəzarəti standart marker etap maker (etap 1 → 2 → 3 → 4 → 4 sub) əsasında həyata keçirilə bilər</li>
+<li>Statistik analiz və optimallaşdırma mümkün olur</li>
+</ul>
+<h3 id="klinik-psixoterapiya-çərçivəsində-yeri" class="">Klinik psixoterapiya çərçivəsində yeri</h3>
+<p>Bu modifikasiya psixogen depressiyada klinik psixoterapiya prinsiplərinin daha kompleks tətbiqidir. Burada — gecə enurezindən fərqli olaraq — <strong>bir müdaxilə deyil, çoxqatlı strategiya</strong> tələb olunur:</p>
+<ul>
+<li>Birinci hissədə müxtəlif məktəblərdən texnikalar <strong>ardıcıl şəkildə</strong> istifadə olunur (KDT, sxem-terapiya, ACT-dan kognitiv defüsion, dini-mənəvi mühakimə)</li>
+<li>İkinci hissədə <strong>dinamik yanaşmanın praktik komponenti</strong> strukturlaşdırılmış 4 etap formasında təqdim olunur</li>
+</ul>
+<p>Pasiyent üçün vacib olan terapevtin baza məktəbi deyil, <strong>strukturlaşdırılmış, ölçülə bilən, ardıcıl</strong> klinik metoddur — eyni gecə enurezi protokolunda olduğu kimi.</p>
+<p>Növbəti fəsildə dünya psixoterapevtik akkreditasiyasının sistemi, beynəlxalq tələblər və Azərbaycandakı vəziyyət təqdim olunur — yəni keyfiyyətli psixoterapiya xidmətinin institutional çərçivəsi.</p>
+<h2 id="akkredi̇tasi̇ya-və-keyfi̇yyət-nəzarəti̇-beynəlxalq-standartlar-və-azər" class="">AKKREDİTASİYA VƏ KEYFİYYƏT NƏZARƏTİ: BEYNƏLXALQ STANDARTLAR VƏ AZƏRBAYCANDA VƏZİYYƏT</h2>
+<h3 id="niyə-akkreditasiya-vacibdir" class="">Niyə akkreditasiya vacibdir?</h3>
+<p>Psixoterapiya — pasiyentin psixi vəziyyətinə dərin müdaxilə edən fəaliyyətdir. Yanlış aparılan terapiya nəinki effektsiz olur, həm də pasiyentə <strong>aktiv ziyan</strong> vura bilər: kompleks travmanın yenidən aktivləşdirilməsi düzgün qoruyucu strukturlar olmadan, müştəri-terapevt sərhədlərinin pozulması, yetersiz təcrübə ilə suisid riski olan pasiyentin idarə edilməsi, klinik qiymətləndirmə qabiliyyəti olmayan mütəxəssisin ağır psixiatrik halları &quot;psixoloji konsultasiya&quot; çərçivəsində qəbul etməsi — bütün bunlar pasiyentin vəziyyətini ağırlaşdıra bilər və bəzi hallarda fəlakət nəticələrə gətirib çıxara bilər.</p>
+<p>Bu səbəbdən bütün dünyada psixoterapevtik fəaliyyət üzərində <strong>sərt, çoxsəviyyəli akkreditasiya sistemləri</strong> mövcuddur. Hər psixoterapevtik məktəb öz tələblərini formalaşdırmışdır və bu tələblər <strong>müzakirə edilməyən minimum standartdır</strong>: ya yerinə yetirilir, ya yetirilmir. Üçüncü variant yoxdur.</p>
+<p>Bu fəsildə dünyanın aparıcı psixoterapevtik məktəblərinin akkreditasiya tələbləri konkret rəqəmlərlə təqdim olunur, sonra Azərbaycandakı vəziyyət obyektiv qiymətləndirilir.</p>
+<h3 id="beynəlxalq-akkreditasiya-orqanları-və-tələbləri" class="">Beynəlxalq akkreditasiya orqanları və tələbləri</h3>
+<h4 id="psixoanaliz-international-psychoanalytical-association-ipa" class="">Psixoanaliz: International Psychoanalytical Association (IPA)</h4>
+<p><strong>IPA</strong> — 1910-cu ildə Sigmund Freud tərəfindən təsis edilmiş, dünyanın <strong>əsas akkreditasiya və tənzimləyici qurumudur</strong>. 12,000 psixoanalitik üzv və 70 təşkilat ona daxildir. IPA özünün missiya bəyanatında belə müəyyənləşir: <em>&quot;Dünyada psixoanalitik peşənin əsas akkreditasiyaedici və tənzimləyici qurumu.&quot;</em></p>
+<p>IPA üzvlüyünə qəbul olunmaq üçün tələblər (Eitingon modeli — ən geniş yayılmış model):</p>
+<h4 id="cədvəl-10-ipa-nın-psixoanalitik-təlim-tələbləri" class="">Cədvəl 10. IPA-nın psixoanalitik təlim tələbləri</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Komponent</th><th>Minimum tələb</th></tr>
+<tr><td>Şəxsi analiz</td><td>5 il, həftədə 4–5 dəfə (3–5 dəfə yeni qaydalarla), tanınmış təlim analitiki ilə</td></tr>
+<tr><td>Klinik təcrübə (psixiatrik)</td><td>140 saat psixiatrik bölmədə, konsultant-psixiatrın supervizyası altında</td></tr>
+<tr><td>Müşahidə təlimi (uşaq müşahidəsi)</td><td>12 ay həftəlik, qrup seminarları ilə</td></tr>
+<tr><td>Nəzəri seminarlar</td><td>Minimum 21 saat həftədə (3 saat seminar, 12 saat klinik iş, 3 saat hesabat yazımı, 3 saat şəxsi öyrənmə), 36 həftə üzrə</td></tr>
+<tr><td>Müşayiət olunan klinik hallar</td><td>Tam analiz hallarının supervizyası altında, bir neçə il</td></tr>
+<tr><td>Ümumi müddət</td><td>Minimum 4 il, praktikada 7–10 il</td></tr>
+</table></div>
+<p><em>Mənbə: IPA Procedural Code, 2024 redaksiyası; British Psychoanalytic Association — IPA-nın komponent cəmiyyəti, training requirements 2024.</em></p>
+<p>Bu tələblər çoxşəbəkəli verifikasiya sistemi ilə təmin olunur: təlim institutu IPA komponent cəmiyyəti olmalı, supervizor IPA-da qeydiyyatdan keçmiş olmalı, hər kandidat IPSO (International Psychoanalytical Studies Organization) qeydiyyatına alınmalıdır. <strong>Adi sertifikatlaşma kursları</strong> — hətta tanınmış psixoanalitiklər tərəfindən aparılsa da — IPA üzvlüyünü əvəz etmir.</p>
+<h4 id="kognitiv-davranış-terapiyası-european-association-for-behavioural-and" class="">Kognitiv-davranış terapiyası: European Association for Behavioural and Cognitive Therapies (EABCT)</h4>
+<p><strong>EABCT</strong> — 1976-cı ildə qurulmuş Avropa təşkilatıdır, hazırda <strong>43 ölkədən 56 milli assosiasiyanı</strong> birləşdirir. EABCT öz növbəsində milli assosiasiyaları akkreditə edir, milli assosiasiyalar isə fərdi mütəxəssisləri.</p>
+<p>Bu sistem — <strong>iki səviyyəli akkreditasiya zənciri:</strong></p>
+<ol>
+<li>EABCT konkret ölkənin milli assosiasiyasını akkreditə edir (akkreditasiya edilmiş milli assosiasiyalar siyahısı eabct.eu saytında açıq elan edilir)</li>
+<li>Akkreditə edilmiş milli assosiasiya fərdi KDT-terapevtləri akkreditə edir</li>
+</ol>
+<p>EABCT-nin akkreditasiya tələbləri:</p>
+<ul>
+<li>Milli assosiasiya EABCT-nin tam üzvü olmalıdır</li>
+<li>Müəyyən akkreditasiya sxemini həyata keçirməlidir</li>
+<li>Tərif edilmiş təlim standartlarına cavab verməlidir</li>
+<li>Davamlı peşə inkişafı (CPD — Continuing Professional Development) sistemi mövcud olmalıdır</li>
+</ul>
+<h4 id="cədvəl-11-eabct-də-azərbaycan-və-regionun-vəziyyəti" class="">Cədvəl 11. EABCT-də Azərbaycan və regionun vəziyyəti</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Ölkə</th><th>Akkreditə edilmiş milli assosiasiya</th><th>Akkreditasiya tarixi</th></tr>
+<tr><td>Türkiyə</td><td>TACBT — Türk Bilişsel-Davranış Terapiləri Derneği</td><td>2013 mart</td></tr>
+<tr><td>Türkiyə</td><td>ACBP — Türk Bilişsel Davranış Psikoterapileri Derneği</td><td>2016 mart</td></tr>
+<tr><td>Ukrayna</td><td>UACBT — Ukrayna KDT Assosiasiyası</td><td>2013 sentyabr</td></tr>
+<tr><td>Gürcüstan</td><td>GACBT — Gürcü KDT Assosiasiyası</td><td>2020 fevral</td></tr>
+<tr><td>Estoniya</td><td>EKKA — Estoniya KDT Assosiasiyası</td><td>2024 mart</td></tr>
+<tr><td><strong>Azərbaycan</strong></td><td><strong>— (yoxdur)</strong></td><td><strong>—</strong></td></tr>
+</table></div>
+<p><em>Mənbə: EABCT Accredited Associations List, eabct.eu, 2025-ci il aprel.</em></p>
+<p>Bu cədvəl mühüm faktı göstərir: Azərbaycanın bütün qonşu ölkələrində — Türkiyədə, Gürcüstanda, Ukraynada — EABCT tərəfindən akkreditə edilmiş milli KDT assosiasiyaları mövcuddur. <strong>Azərbaycanın isə yoxdur.</strong> Bu o deməkdir ki, Azərbaycanda fərdi KDT-terapevtlərin EABCT akkreditasiyası ala bilməsi üçün yeganə yol başqa ölkənin (məsələn, Türkiyə və ya Gürcüstan) akkreditə edilmiş assosiasiyası vasitəsilədir.</p>
+<h4 id="dialektik-davranış-terapiyası-dbt-linehan-board-of-certification-dbt-l" class="">Dialektik davranış terapiyası: DBT-Linehan Board of Certification (DBT-LBC)</h4>
+<p><strong>DBT-LBC</strong> — 501c3 qeyri-kommersiya təşkilatı, <strong>DBT-nin yaradıcısı Dr. Marsha Linehan tərəfindən şəxsən təsdiqlənmiş</strong> yeganə sertifikatlaşma orqanıdır. Bu mühüm məqamdır: bir çox təşkilat &quot;DBT sertifikatı&quot; verir, lakin yalnız DBT-LBC sertifikasiyası modelin yaradıcısı tərəfindən tanınmışdır.</p>
+<h4 id="cədvəl-12-dbt-lbc-sertifikatlaşma-tələbləri" class="">Cədvəl 12. DBT-LBC sertifikatlaşma tələbləri</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Komponent</th><th>Minimum tələb</th></tr>
+<tr><td>Lisenziya</td><td>Müstəqil lisenziyalı klinik mütəxəssis (psixoloq, psixiatr və ya sosial işçi)</td></tr>
+<tr><td>Akademik təhsil</td><td>Magistr dərəcəsi və ya yuxarı (psixi sağlamlıq sahəsində)</td></tr>
+<tr><td>DBT-yə xüsusi didaktik təlim</td><td>Minimum 40 akademik saat</td></tr>
+<tr><td>Klinik təcrübə</td><td>Minimum 12 ay aktiv DBT praktikası</td></tr>
+<tr><td>DBT komandası</td><td><strong>Aktiv DBT konsultasiya komandası üzvlüyü tələb olunur</strong> (&quot;Linehan göstərişi: əgər mütəxəssis DBT komandasında deyilsə, o DBT etmir&quot;)</td></tr>
+<tr><td>Klinik hallar</td><td>3 müştərinin Stage I tam müalicəsi son 3 ildə</td></tr>
+<tr><td>Yazılı imtahan</td><td>Bütün məcburi materiallar (Linehan-ın 1993 manualları) əsasında</td></tr>
+<tr><td>Video sessiyalar</td><td>3 ardıcıl sessiya videosunun təhlili, müəyyən edilmiş <strong>adherence-coding standartlarına uyğunluq</strong> kriteriyaları ilə</td></tr>
+<tr><td>Tövsiyə məktubu</td><td>Komanda lideri və ya lisenziyalı DBT mütəxəssisindən</td></tr>
+<tr><td>Mindfulness təlimi</td><td>Rəsmi mindfulness təlimi</td></tr>
+</table></div>
+<p><em>Mənbə: DBT-LBC.org, Individual Certification Requirements, 2024.</em></p>
+<p>Bu tələblərin sərtliyi DBT-nin xüsusiyyəti ilə bağlıdır: bu metod xroniki suisid riski olan, sərhəd şəxsiyyət pozuntulu pasientlər üçün hazırlanmışdır. Burada modelə <strong>dəqiqliklə əməl etmə</strong> (model fidelity) həyati əhəmiyyət daşıyır — yetersiz hazırlıqlı mütəxəssisin &quot;DBT&quot; adı altında edə biləcəyi səhvlər pasientin həyatı üçün təhlükəlidir.</p>
+<h4 id="emdr-emdr-europe" class="">EMDR: EMDR Europe</h4>
+<p><strong>EMDR Europe</strong> — 41 ölkədən 37,000 üzvü olan Avropa təşkilatıdır. EMDR-də üç səviyyəli akkreditasiya sistemi mövcuddur:</p>
+<h4 id="cədvəl-13-emdr-europe-akkreditasiya-səviyyələri" class="">Cədvəl 13. EMDR Europe akkreditasiya səviyyələri</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Səviyyə</th><th>Tələblər</th></tr>
+<tr><td><strong>Practitioner</strong> (Praktiklə)</td><td>Klinik təhsil + EMDR Europe akkreditə edilmiş trener tərəfindən təlim (Level 1 + Level 2, ümumilikdə ~50 saat) + supervizyalı praktika (10 saat supervizyada, minimum 50 EMDR sessiyası ilə)</td></tr>
+<tr><td><strong>Consultant</strong> (Konsultant/Supervizor)</td><td>Practitioner statusu + əlavə təlim + 3 il aktiv EMDR praktikası + 50 saat müştərilərlə supervizya verilməsi</td></tr>
+<tr><td><strong>Trainer</strong> (Təlimatçı)</td><td>Consultant statusu + EMDR Europe Trainer Akkreditasiya Komitəsi tərəfindən qiymətləndirmə</td></tr>
+</table></div>
+<p><em>Mənbə: EMDR Europe Accreditation Committee, 2024.</em></p>
+<p>EMDR Europe-nin <strong>Azərbaycandakı vəziyyəti:</strong> Azərbaycan bu təşkilatın <strong>akkreditə edilmiş milli assosiasiyalar siyahısında deyil</strong>. Eyni şəkildə Azərbaycanda fərdi EMDR akkreditasiyası ala bilmək üçün yeganə yol qonşu ölkədəki (məsələn, Türkiyə) akkreditə edilmiş təşkilat vasitəsilədir.</p>
+<h3 id="avropa-birliyində-ümumi-tənzimləmə-vəziyyəti" class="">Avropa Birliyində ümumi tənzimləmə vəziyyəti</h3>
+<p>EABCT-nin rəsmi mövqeyi vacib bir məqamı vurğulayır: <em>&quot;Avropa səviyyəsində psixoloji terapiyaların praktikasını tənzimləyən qanunvericilik mövcud deyil. Hazırda Avropa İttifaqında psixoterapiyani tənzimləyən və ya nəzarət edən rəsmi Avropa orqanı yoxdur. Bu tənzimləmə yoxluğu EABCT-nin əsas narahatlıq mənbələrindən biridir.&quot;</em></p>
+<p>Bu o deməkdir ki, hətta Avropa İttifaqı çərçivəsində belə psixoterapiya peşə tənzimlənməsi <strong>milli səviyyədə</strong> həyata keçirilir. Bəzi ölkələrdə (Almaniya, Hollandiya, Avstriya) güclü dövlət lisenziyalaşma sistemi mövcuddur. Digərlərində — daha zəif. Bu kontekstdə <strong>peşə standartlarının yeganə təminatçısı beynəlxalq professional akkreditasiya orqanlarıdır</strong> (IPA, EABCT, DBT-LBC, EMDR Europe).</p>
+<h3 id="azərbaycandakı-vəziyyət" class="">Azərbaycandakı vəziyyət</h3>
+<p>Azərbaycandakı vəziyyət açıq qiymətləndirmə tələb edir.</p>
+<p><strong>Dövlət tənzimlənməsi:</strong></p>
+<p>Azərbaycan Respublikasında psixoterapevtik fəaliyyət üzrə <strong>xüsusi dövlət lisenziyalaşma sistemi mövcud deyil</strong>. Tibb sahəsi üzrə dövlət lisenziyalaşması psixiatriyanı əhatə edir, lakin <strong>psixoterapiya</strong> və <strong>psixoloji konsultasiya</strong> sahələri ayrıca tənzimlənmir. Bu o deməkdir ki, qanunvericilik baxımından xüsusi psixoterapevtik təhsili olmayan psixoloq da, lisenziyalı klinik psixiatr da eyni hüquqi statusda &quot;psixoterapevt&quot; kimi xidmət göstərə bilir. Bu boşluq peşə akkreditasiyasının zəruriliyini Azərbaycan kontekstində daha da artırır.</p>
+<p><strong>Beynəlxalq akkreditasiya statusu:</strong></p>
+<p>Yuxarıda göstərilən beynəlxalq orqanların heç birində — IPA, EABCT, DBT-LBC, EMDR Europe — Azərbaycan <strong>akkreditə edilmiş milli assosiasiyaya malik deyil</strong>. Bu, obyektiv faktdır və açıq mənbələrdə (eabct.eu, ipa.world, dbt-lbc.org, emdr-europe.org) verifikasiyaya tabedir.</p>
+<p><strong>Beynəlxalq psixiatrik strukturlar üzrə vəziyyət:</strong></p>
+<p>Azərbaycanda <strong>beynəlxalq səviyyədə verifikasiya olunmuş yeganə peşə təşkilatı — Azərbaycan Psixiatriya Assosiasiyasıdır (AZPA, psychiatry.az).</strong> AZPA Dünya Psixiatriya Assosiasiyasının (WPA — World Psychiatric Association) tam üzv-affiliatıdır. Bu, beynəlxalq səhiyyə icmasında AZPA-nın legitimliyini birmənalı təsdiqləyir.</p>
+<p>WPA — 145-dən çox milli psixiatriya cəmiyyətini birləşdirən qlobal təşkilat — sərt üzvlük tələblərinə malikdir: milli cəmiyyət rəsmi statusda olmalı, açıq peşə standartlarına uyğun olmalı, dövri hesabatlar verməlidir. AZPA bu tələbləri yerinə yetirir.</p>
+<p><strong>Digər təşkilatların statusu:</strong></p>
+<p>Azərbaycanda psixologiya və psixoterapiya sahəsində fəaliyyət göstərən bir sıra qeyri-kommersiya təşkilatları mövcuddur. Onlardan bəziləri öz veb-saytlarında &quot;beynəlxalq əməkdaşlıq&quot;, &quot;dünya konqresləri&quot;, &quot;beynəlxalq akkreditasiya&quot; kimi ifadələrdən istifadə edir. <strong>Bu iddiaların beynəlxalq mənbələr vasitəsilə yoxlanılması bir çox halda müsbət nəticə vermir.</strong></p>
+<p>Bu səbəbdən bu fəsildə bu cür təşkilatların adı çəkilmir — bizim məqsədimiz mübahisə yox, <strong>klinik praktika üçün etibarlı çərçivəni göstərməkdir</strong>. Hər hansı təşkilatın legitimliyini öyrənmək istəyən mütəxəssis və ya pasient aşağıdakı obyektiv mənbələri yoxlaya bilər:</p>
+<ul>
+<li><strong>eabct.eu/training-and-accreditation/accredited-association/</strong> — KDT akkreditasiyası</li>
+<li><strong>ipa.world</strong> — psixoanalitik akkreditasiya</li>
+<li><strong>dbt-lbc.org</strong> — DBT sertifikatlaşması</li>
+<li><strong>emdr-europe.org</strong> — EMDR akkreditasiyası</li>
+<li><strong>wpanet.org</strong> — psixiatrik milli cəmiyyətlər</li>
+</ul>
+<h3 id="mütəxəssis-kimi-necə-fərqləndirmək-olar" class="">Mütəxəssis kimi necə fərqləndirmək olar?</h3>
+<p>Pasiyent və ya gənc mütəxəssis &quot;beynəlxalq sertifikat&quot; iddiası ilə tanış olduqda aşağıdakı suallar mühüm olur:</p>
+<p><strong>1. Sertifikat hansı orqan tərəfindən verilib?</strong></p>
+<p>Yoxlanışın ilk addımı — sertifikatı verən təşkilatın yuxarıda sadalanan beynəlxalq orqanların biri ilə <strong>rəsmi əlaqədə</strong> olub-olmadığını yoxlamaqdır. <em>&quot;Beynəlxalq sertifikat&quot;</em> ifadəsi özü-özlüyündə heç nə demir; vacib olan <strong>hansı beynəlxalq orqanın</strong> sertifikatı.</p>
+<p><strong>2. Təlim nə qədər davam edib?</strong></p>
+<p>Yuxarıda göstərilən cədvəllərə baxın. <strong>Bir həftəlik və ya bir aylıq &quot;beynəlxalq sertifikat&quot; — heç bir tanınmış akkreditasiya tələblərinə cavab vermir.</strong> IPA üzvlüyü minimum 4 il, EABCT individual akkreditasiyası 3–4 il, DBT-LBC sertifikatı 12 ay aktiv praktikada — bunlar müzakirə edilməyən minimum müddətlərdir.</p>
+<p><strong>3. Supervizya iştirakı varmı?</strong></p>
+<p>Bütün ciddi akkreditasiya sistemlərində <strong>supervizya</strong> mərkəzi yer tutur. Sertifikat sahibinin neçə saat supervizyalı klinik iş etməsi soruşulmalıdır. Supervizyalı iş olmadan verilmiş sertifikat — <strong>akademik sertifikat</strong> olur (kursu başa çatdırılması kimi), klinik səlahiyyət sertifikatı yox.</p>
+<p><strong>4. Davamlı peşə inkişafı (CPD) tələb olunurmu?</strong></p>
+<p>Akkreditasiyalar dövri olaraq <strong>yenilənməlidir</strong>. EABCT 5 ildə bir, DBT-LBC 4 ildə bir, EMDR Europe 5 ildə bir akkreditasiyanın yenilənməsini tələb edir. &quot;Bir dəfə alınmış həyat boyu sertifikat&quot; — ciddi peşə standartlarının olmamağının əlamətidir.</p>
+<p><strong>5. Yerli əqli sağlamlıq təşkilatları — beynəlxalq tanınma sübutu?</strong></p>
+<p>Yerli psixoloq və ya psixoterapevt klubu, assosiasiyası üzvlüyü — bu özü-özlüyündə beynəlxalq tanınma deyil. Bu cür təşkilatın özü beynəlxalq akkreditə edilmiş orqana üzvdürmü? Bu mərkəzi sualdır.</p>
+<h3 id="bu-kitabın-yeri-bu-kontekstdə" class="">Bu kitabın yeri bu kontekstdə</h3>
+<p>Bu kitab beynəlxalq akkreditasiya əvəzinə deyil — <strong>akkreditasiyaya hazırlıq vasitəsi kimi</strong> nəzərdə tutulmuşdur. O, mütəxəssisə klinik diaqnostika, sübuta əsaslanan müdaxilələr, struktur protokollar və klinik düşüncə üçün etibarlı çərçivə təqdim edir.</p>
+<p>Mütəxəssis bu kitabdakı protokollar və müzakirə əsasında öz təcrübəsini formalaşdırdıqdan sonra rəsmi peşə hazırlığı (Türkiyə, Gürcüstan, Almaniya və ya digər ölkələrdə akkreditə edilmiş təşkilatlar vasitəsilə) üçün möhkəm baza əldə etmiş olur. Eyni qaydada bu kitab pasiyentlər üçün — onların aldıqları yardımın keyfiyyətini qiymətləndirmək, <strong>doğru sualları vermək</strong>, sübuta əsaslanan müalicə tələb etmək üçün ilkin orientir kimi xidmət edə bilər.</p>
+<p>Növbəti — və bu Müqəddimənin yekun fəsli — bu kitabın həqiqətən niyə <strong>məhz indi</strong> və <strong>məhz Azərbaycanda</strong> zəruri olduğunu konkret formalaşdırır.</p>
+<h2 id="bu-ki̇tab-ni̇yə-məhz-i̇ndi̇-və-azərbaycanda" class="">BU KİTAB NİYƏ MƏHZ İNDİ VƏ AZƏRBAYCANDA?</h2>
+<h3 id="üç-xəttin-kəsişməsi" class="">Üç xəttin kəsişməsi</h3>
+<p>Bu Müqəddimənin əvvəlki fəsillərində üç ayrı, lakin bir-biri ilə dərin əlaqəli xətt cızılmışdır:</p>
+<p><strong>Birinci xətt — qlobal psixi sağlamlıq böhranı.</strong> Dünyada 1 milyarddan çox insan psixi pozuntu ilə yaşayır. Təşviş və depressiya pozuntuları son 30 ildə dramatik şəkildə artmışdır. Bu pozuntuların əksəriyyətində psixososial komponent mərkəzi rol oynayır və kök səviyyəsində həlli yalnız keyfiyyətli psixoterapiya ilə mümkündür. Lakin müalicə boşluğu — xüsusən təşviş və depressiyada — 70-90% səviyyəsindədir.</p>
+<p><strong>İkinci xətt — sübuta əsaslanan klinik psixoterapiya.</strong> Müasir tibb sübuta əsaslanan müdaxilələr üzrinə qurulmuşdur. Hər pozuntu üçün artıq aydın klinik strategiyalar mövcuddur, sübut səviyyələri (A/B/C) müəyyən edilmişdir, beynəlxalq təlimatlar (NICE, APA, WHO mhGAP, WFSBP) sistemli formada yenilənir. Klinik psixoterapevt — terapevtin baza məktəbindən asılı olmayaraq — konkret pozuntu üçün ən effektiv strategiyanı tətbiq etməyə borcludur.</p>
+<p><strong>Üçüncü xətt — peşə standartları və akkreditasiya.</strong> Beynəlxalq aparıcı orqanlar (IPA, EABCT, DBT-LBC, EMDR Europe) sərt akkreditasiya tələbləri formalaşdırmışdır. Bu tələblərin yerinə yetirilməsi — pasiyentin keyfiyyətli yardım almasının yeganə təminatıdır. Azərbaycanda dövlət səviyyəsində psixoterapevtik fəaliyyət xüsusi tənzimlənmir; beynəlxalq aparıcı orqanların heç birində akkreditə edilmiş milli assosiasiya mövcud deyil; beynəlxalq səviyyədə verifikasiya olunmuş yeganə peşə təşkilatı — Azərbaycan Psixiatriya Assosiasiyasıdır (AZPA).</p>
+<p>Bu üç xəttin kəsişdiyi nöqtədə bir nəticə görünür: <strong>Azərbaycanda azərbaycan dilində standartlaşdırılmış, sübuta əsaslanan, beynəlxalq müasir təlimatlara əsaslanan klinik psixiatriya və psixoterapiya istinad kitabına ehtiyac mövcuddur.</strong></p>
+<h3 id="niyə-məhz-indi" class="">Niyə məhz indi?</h3>
+<p>Üç səbəb bu kitabın indi yazılmasını məntiqi addım edir:</p>
+<p><strong>1. ICD-11 keçidi.</strong> Ümumdünya Səhiyyə Təşkilatının ICD-11 təsnifatı 2022-ci ildə qüvvəyə minmişdir və 2026-cı ildən etibarən beynəlxalq səhiyyə statistikasında məcburi standart olur. Bu təsnifat psixi pozuntular fəslini əhəmiyyətli dərəcədə yenidən qurmuşdur: yeni nozologiyalar əlavə edilmişdir (kompleks PTSP, uzanmış kədər pozuntusu, qumar və video-oyun asılılıq pozuntusu, kompulsiv cinsi davranış pozuntusu, oyenma pozuntusu və başqaları), bəzi köhnə kateqoriyalar yenidən təsnif edilmişdir, bütün təsnifat sistemində daha çox dimensiyallıq (ölçülülük) tətbiq olunmuşdur. Azərbaycan dilində bu yenilənmələri əhatə edən sistemli istinad mənbəyi indiyə qədər mövcud olmamışdır.</p>
+<p><strong>2. Pandemiya sonrası baza səviyyəsinin dəyişməsi.</strong> COVID-19 pandemiyası psixi sağlamlıq vəziyyətinin &quot;yeni baza səviyyəsi&quot; adlandırılan fenomeni yaratmışdır: depressiya və təşviş səviyyəsi əvvəlki normaya qayıtmamışdır, qalıcı yüksələn səviyyədə qalmışdır. Bu, klinik praktikada artmış yük deməkdir. Mütəxəssislərin aktiv hazırlığı və standartlaşdırılmış istinad mənbələrinin əlçatımlığı — sistemin bu yükü daşıya bilməsi üçün zəruri şərtdir.</p>
+<p><strong>3. Yerli mütəxəssis bazasının böyüməsi.</strong> Azərbaycanda son 10–15 ildə psixologiya, psixiatriya və psixoterapiya sahələrində mütəxəssislərin sayı sürətlə artmışdır. Universitetlər psixologiya proqramları açır, gənc mütəxəssislər xaricdə (Türkiyə, Almaniya, Rusiya, ABŞ) əlavə təhsil alır, özəl klinik mərkəzlər çoxalır. Lakin bu mütəxəssis bazası <strong>azərbaycan dilində istinad ədəbiyyatından məhrum</strong> qalmışdır. Mövcud azərbaycandilli ədəbiyyat ya köhnəlmişdir (sovet dövrü tərcümələri, ICD-10-a əsaslanan), ya parçalanmışdır (yalnız ayrı-ayrı pozuntular üzrə), ya da populyar səviyyədədir (peşəkar klinik istifadə üçün yetərli deyil).</p>
+<h3 id="niyə-məhz-azərbaycanda" class="">Niyə məhz Azərbaycanda?</h3>
+<p>Azərbaycanın özünəməxsus klinik konteksti bu kitabın əhəmiyyətini artırır.</p>
+<p><strong>Azərbaycan dili — peşə dili kimi.</strong> Klinik psixiatriya və psixoterapiya peşə dili — universitet auditoriyalarında, tədris ədəbiyyatında, klinik praktikada — formalaşmaqda olan prosesdir. Hər nozologiyanın dəqiq adlandırılması, hər diaqnostik kriteriyanın aydın formulə edilməsi, hər müdaxilə protokolunun standartlaşdırılması — bu kollektiv prosesdir. Bu kitab bu prosesə töhfə verir: ICD-11 və DSM-5-in azərbaycan dilində standartlaşdırılmış formada təqdimatı, beynəlxalq təlimatlardakı terminlərin azərbaycan klinik sahəsinə uyğunlaşdırılması, yerli professional ədəbiyyatda istifadə olunan terminlərin (sehiyye.gov.az, isim.az, Azərbaycan Psixiatriya Assosiasiyası protokolları) əsas götürülməsi. Bu kitabın terminologiyası rəsmi Azərbaycan səhiyyə nazirliyi və AZPA mənbələri ilə audit olunmuşdur.</p>
+<p><strong>Türk dünyası ilə professional əlaqə.</strong> Azərbaycanın yaxınlığında Türkiyə yerləşir — bu, EABCT-də iki akkreditə edilmiş KDT assosiasiyasına (TACBT və ACBP), DBT və EMDR təlimi üzrə geniş infrastruktura malik olan ölkədir. Azərbaycan-türk dil yaxınlığı azərbaycan mütəxəssislərinə türk təlim sistemindən ən geniş şəkildə istifadə imkanı verir. Bu kitabın azərbaycan klinik terminologiyası türk peşə ədəbiyyatı ilə <strong>terminoloji ardıcıllıq</strong> saxlayır — bu, mütəxəssisin türkdilli təlim materiallarına keçidini asanlaşdırır.</p>
+<p><strong>Regional kontekst.</strong> Azərbaycan post-sovet məkanında yerləşir; klinik praktikada hələ də sovet dövrü psixiatrik terminologiyası və yanaşmaları qismən qalmaqdadır. Eyni zamanda, ölkə Avropa Şurasının üzvüdür və beynəlxalq səhiyyə standartlarına inteqrasiya yolundadır. Bu kitab keçid dövründə klinik praktika üçün <strong>müasir beynəlxalq standart</strong>la <strong>yerli klinik realıq</strong> arasında körpü rolunu oynayır.</p>
+<p><strong>Klinik müəllif təcrübəsi.</strong> Bu kitab yalnız beynəlxalq mənbələrin tərcüməsi və ya kompilyasiyası deyil. O, müəllifin 20+ illik klinik praktikası, müşahidələri və işlənmiş protokolları ilə zənginləşdirilmişdir. Yuxarıda təqdim edilmiş iki müəllif klinik protokolu — uşaq enurezi modifikasiyalı alarm-terapiyası və psixogen depressiyanın iki mərhələli müalicə strategiyası — Azərbaycan klinik kontekstində uzun illər ərzində sınaqdan keçirilmiş və əldə edilmiş ölçülə bilən nəticələrlə təsdiqlənmişdir. Bu, kitabı sadəcə <strong>istinad mənbəyi</strong> olmaqdan kənara çıxarır və <strong>klinik təcrübə kitabı</strong> statusu verir.</p>
+<h3 id="bu-kitabın-hədəf-auditoriyası" class="">Bu kitabın hədəf auditoriyası</h3>
+<p>Bu kitab dörd əsas oxucu kateqoriyası üçün yazılmışdır:</p>
+<p><strong>1. Praktiki klinik psixiatrlar.</strong> Diaqnostik dəqiqlik üçün ICD-11 və DSM-5 kriteriyalarının yenilənmiş təqdimatı, hər nozologiya üçün psixoterapevtik strategiya xəritəsi, müəllif klinik protokolları.</p>
+<p><strong>2. Klinik psixoloqlar və psixoterapevtlər.</strong> Sübuta əsaslanan müdaxilə xəritəsi (4-cü cədvəl), müəllif protokollarının metodologiyası, klinik psixoterapiyanın institutional çərçivəsi.</p>
+<p><strong>3. Tibb və psixologiya tələbələri.</strong> Sistemli, müasir, beynəlxalq standartlara uyğun istinad ədəbiyyatı, hansı ki azərbaycan dilində mövcud olmamışdır.</p>
+<p><strong>4. Səhiyyə sisteminin idarəçilik səviyyəsində iştirak edənlər və qərar qəbul edənlər.</strong> Standartlaşdırılmış protokollar keyfiyyət nəzarəti, mütəxəssis hazırlığı və xidmətlərin optimallaşdırılması üçün baza yaradır.</p>
+<h3 id="yekun" class="">Yekun</h3>
+<p>Müasir psixiatriya və psixoterapiya — tibbin sürətlə inkişaf edən, sübut bazası daim genişlənən, beynəlxalq standartları daim yenilənən sahəsidir. Azərbaycanda bu sahənin inkişafı qarşıda duran ən vacib səhiyyə vəzifələrindən biridir.</p>
+<p>Bu kitab — bu inkişafa təvazökar töhfədir. O, hazır cavablar verməyə deyil, <strong>sistematik klinik düşüncə</strong> üçün etibarlı çərçivə təqdim etməyə yönəlmişdir. Hər mütəxəssis öz klinik təcrübəsində bu çərçivəni özünəməxsus formada doldurur — pasiyentlərlə işləyərək, beynəlxalq akkreditasiya proqramlarında iştirak edərək, peşəkar inkişaf prosesində.</p>
+<p>Pasiyentlər üçün isə bu kitab — onların aldıqları yardımın <strong>keyfiyyətini qiymətləndirmək</strong>, <strong>doğru sualları soruşmaq</strong>, sübuta əsaslanan müalicə <strong>tələb etmək</strong> üçün vasitə ola bilər. Sağlamlıq sahəsində, xüsusən psixi sağlamlıqda, məlumatlı pasiyent — keyfiyyətli xidmətin ən etibarlı zəmanətidir.</p>
+<p>Bu Müqəddimə bütün kitabın oxunması üçün lazımi kontekst yaradır. Növbəti fəsillər — psixopatologiyanın əsasları, klinik müsahibə və psixiatrik müayinə, sonra ICD-11 və DSM-5 təsnifatları üzrə hər ana psixi pozuntunun sistemli təqdimatı.</p>
+<hr>
+<p><em>Bakı, 2026</em></p>
+<p><em>Kənan Rəhimov</em></p>
+<h2 id="bu-kitab-nədir-və-nə-üçün-yazıldı" class="">Bu kitab nədir və nə üçün yazıldı</h2>
+<p><strong>Bu kitab klinik istinad bələdçisidir</strong> (klinik referans kitabı), nəzəri psixiatriya dərsliyi deyil. Burada hər bir psixi pozuntu üzrə <strong>diaqnostik meyarlar, kliniki təzahürlər və müalicə protokolları</strong> standartlaşdırılmış formatda təqdim olunur. Hər bir mövzunun ətraflı patofizioloji, neyrobioloji və ya tarixi izahı – bu kitabın hədəfi deyil; məqsəd – həkimə <strong>xəstə qarşısında</strong> lazımi informasiyanı tez və dəqiq tapmağa imkan verməkdir.</p>
+<p>Kitabın yazılma səbəbləri:</p>
+<ol>
+<li><strong>Azərbaycan dilində müasir psixiatriya istinad-vəsaiti çatışmazlığı.</strong> Mövcud Azərbaycan dilli ədəbiyyat – əksərən tərcümə işləri və ya XX əsrin sonu məktəbinə əsaslanan dərsliklərdir. XBT-11 (2022-ci ildən qüvvədə) və DSM-5-TR (2022) yenilikləri Azərbaycan dilində sistemli şəkildə əks olunmamışdır.</li>
+</ol>
+<ol>
+<li><strong>Diaqnostik təsnifatların unifikasiyası.</strong> Klinik təcrübədə həkimlər həm XBT-10 (Səhiyyə Nazirliyi tərəfindən hələ də rəsmi statistika üçün istifadə olunan), həm XBT-11 (yeni standartı), həm də DSM-5-TR (beynəlxalq elmi nəşrlərdə dominantı) ilə qarşılaşırlar. Bu kitabda <strong>hər üç sistem paralel olaraq</strong> təqdim olunur ki, klinisist müxtəlif kontekstlərdə düzgün koddan və terminologiyadan istifadə edə bilsin.</li>
+</ol>
+<ol>
+<li><strong>Azərbaycan rəsmi klinik protokollarının inteqrasiyası.</strong> Səhiyyə Nazirliyi İctimai Səhiyyə və İslahatlar Mərkəzi (İSİM) tərəfindən hazırlanmış və Səhiyyə Nazirliyi kollegiyasının qərarları ilə təsdiq edilmiş rəsmi klinik protokollar (Şizofreniya 2009, Təşviş pozuntuları 2013, OKP 2015, Depressiya) – bu kitabın əsasını təşkil edir. Beynəlxalq tövsiyələr (NICE, APA, WFSBP, ÜST) və Azərbaycan rəsmi protokolları arasındakı uyğunluqlar və fərqlər ayrıca qeyd edilmişdir.</li>
+</ol>
+<ol>
+<li><strong>Hüquqi-etik istiqamətləndirmə.</strong> &quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının 12 iyun 2001-ci il tarixli Qanunu və &quot;Psixoloji yardım haqqında&quot; Qanunu çərçivəsində klinisistin hüquq və vəzifələri – həm həkim-psixiatr, həm də klinik psixoloq üçün – ayrıca bölmədə təqdim olunmuşdur. <strong>Suisidal idea olan pasiyentlə davranış, qeyri-könüllü hospitallaşdırma əsasları, məcburi tibbi tədbirlərin tətbiqi qaydaları – cavab tələb edən real klinik vəziyyətlərdir.</strong> Bu kitab onlara cavab verir.</li>
+</ol>
+<h2 id="kitabın-strukturu" class="">Kitabın strukturu</h2>
+<p>Kitab <strong>iki əsas hissədən</strong> ibarətdir:</p>
+<p><strong>I HİSSƏ – Giriş bölmələri:</strong></p>
+<ol>
+<li><strong>Müqəddimə</strong> (bu bölmə)</li>
+<li><strong>Mündəricat</strong> – XBT-11 strukturuna uyğun iyerarxik</li>
+<li><strong>Terminoloji lüğət</strong> – rəsmi Azərbaycan psixiatriya terminologiyası, Səhiyyə Nazirliyi protokollarına əsaslanan</li>
+<li><strong>Psixopatologiyaya giriş</strong> – simptomlar və sindromların təsviri (idrak, qavrayış, düşüncə, əhval, davranış, yaddaş, iradə, şüur)</li>
+<li><strong>Klinik müsahibə və psixi statusun qiymətləndirilməsi</strong> – klinik protokol qaydası, psixi status təsviri standartları</li>
+<li><strong>Hüquqi-etik aspektlər</strong> – Azərbaycan qanunvericiliyi əsasında həkim-psixiatr və klinik psixoloq üçün praktik istiqamətləndirmə, sənəd nümunələri</li>
+</ol>
+<p><strong>II HİSSƏ – Psixi pozuntular (XBT-11 strukturuna uyğun):</strong></p>
+<p>XBT-11-in 6-cı fəslindəki bütün 21 əsas qrup ayrı bölmələrdə təqdim olunur. Hər bölmə üçün eyni standart struktur saxlanılır:</p>
+<ol>
+<li><strong>Tərif və nozologiya</strong> (qısa)</li>
+<li><strong>Etiologiya</strong></li>
+<li><strong>Epidemiologiya</strong></li>
+<li><strong>Klinik mənzərə</strong></li>
+<li><strong>Diaqnoz</strong> (XBT-11 → XBT-10 → DSM-5-TR paralel)</li>
+<li><strong>Differensial diaqnoz</strong></li>
+<li><strong>Müayinə üsulları</strong> (klinik, laborator, alətlər)</li>
+<li><strong>Müalicə</strong> (sübuta əsaslanan tövsiyə dərəcələri ilə)</li>
+<li><strong>Proqnoz</strong></li>
+<li><strong>Mənbələr</strong></li>
+</ol>
+<p><strong>Sonda – Mənbələr və Əlavələr:</strong></p>
+<ul>
+<li>İstifadə olunmuş bütün mənbələrin tam siyahısı (Azərbaycan, MDB, beynəlxalq)</li>
+<li>Klinik şkalalar və anketlər (PHQ-9, GAD-7, PCL-5, EPDS, Y-BOCS, C-SSRS və s.)</li>
+<li>Psixiatrik təcili vəziyyətlər (alqoritm)</li>
+<li>Hərbi-tibbi ekspertiza qaydaları (Azərbaycanda)</li>
+<li>İxtisarlar və akronimlər</li>
+</ul>
+<h2 id="mənbələr-və-yanaşma" class="">Mənbələr və yanaşma</h2>
+<p><strong>Avtoritet ardıcıllığı.</strong> Hər bir mövzu üzrə <strong>bir əsas avtoritet bələdçi</strong> birinci sırada təqdim olunur, sonra digər bələdçilər müqayisə və ya tamamlamaq üçün gətirilir. Bu yanaşma akademiklik ilə konkretlik arasında balans saxlamaq və informasiya təkrarlığından qaçmaq məqsədi daşıyır. Hər bir pozuntu üzrə əsas avtoritet bələdçi seçimləri:</p>
+<ul>
+<li><strong>Şizofreniya:</strong> NICE CG178 (2014, 2019 yenilənməsi) + AR Səhiyyə Nazirliyi Klinik Protokol (2009)</li>
+<li><strong>Depressiya:</strong> NICE NG222 (2022) + AR Səhiyyə Nazirliyi Klinik Protokol + APA Practice Guideline (2010)</li>
+<li><strong>Bipolyar pozuntu:</strong> CANMAT/ISBD (2018, 2021 yenilənməsi)</li>
+<li><strong>Təşviş pozuntuları:</strong> NICE CG113 (2011) + AR Səhiyyə Nazirliyi Klinik Protokol (2013) + WFSBP (2012)</li>
+<li><strong>OKP:</strong> NICE CG31 (2005, qaim) + AR Səhiyyə Nazirliyi Klinik Protokol (2015) + APA (2007)</li>
+<li><strong>PTSP:</strong> NICE NG116 (2018) + ISTSS Prevention and Treatment Guidelines (2019)</li>
+<li><strong>Yemə pozuntuları:</strong> NICE NG69 (2017) + APA (2023)</li>
+<li><strong>Şəxsiyyət pozuntuları:</strong> NICE CG78 (BPD, 2009), CG77 (ASPD, 2009) + APA (2024)</li>
+<li><strong>Neyroinkişaf pozuntuları:</strong> AACAP Practice Parameters + NICE (CG72 ADHD, NG87 Autizm)</li>
+<li><strong>Maddə istifadəsi:</strong> NICE NG215 (Alkohol) + ASAM Standards (2020)</li>
+<li><strong>Demensiya:</strong> NICE NG97 (2018)</li>
+</ul>
+<p><strong>Yerli avtoritet mənbələr:</strong></p>
+<ul>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyinin İctimai Səhiyyə və İslahatlar Mərkəzi (İSİM) tərəfindən hazırlanmış və Səhiyyə Nazirliyi kollegiyasının qərarları ilə təsdiq edilmiş klinik protokollar</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının 12 iyun 2001-ci il tarixli Qanunu (sonrakı dəyişikliklərlə)</li>
+<li>&quot;Psixoloji yardım haqqında&quot; Azərbaycan Respublikasının Qanunu</li>
+</ul>
+<p><strong>MDB və post-sovet məkanı:</strong></p>
+<ul>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya</em> (Современная клиническая психиатрия) Sankt-Peterburq, 2-ci nəşr, 2006 – klinik psixiatriyanın klassik post-sovet mənbəyi olaraq nəzərə alınmışdır</li>
+</ul>
+<h2 id="kitabın-istifadə-qaydası" class="">Kitabın istifadə qaydası</h2>
+<p><strong>Tipik klinik istifadə:</strong></p>
+<ol>
+<li>Pasiyentdə müəyyən psixi pozuntudan şübhələndikdə, <strong>mündəricatdan</strong> müvafiq bölmə tapılır.</li>
+<li><strong>Diaqnoz</strong> (5-ci bölmə) – XBT-11 meyarları ilə qiymətləndirmə.</li>
+<li><strong>Differensial diaqnoz</strong> (6-cı bölmə) – cədvəldən digər ehtimalların istisnası.</li>
+<li><strong>Müayinə üsulları</strong> (7-ci bölmə) – plan tərtib edilir.</li>
+<li><strong>Müalicə</strong> (8-ci bölmə) – sübut dərəcəsi ilə tövsiyələr.</li>
+</ol>
+<p><strong>Tələbə üçün:</strong></p>
+<ul>
+<li>Mündəricatdan dərs mövzusu axtarılır</li>
+<li>Hər bölmədə <strong>Tərif → Etiologiya → Epidemiologiya → Klinik → Diaqnoz</strong> ardıcıllığı izlənilir</li>
+<li>Terminoloji lüğətdən tanımlamayan terminlər yoxlanılır</li>
+<li>Hüquqi-etik aspektlər bölməsindən qanunvericilik məsələləri öyrənilir</li>
+</ul>
+<p><strong>Klinik psixoloq üçün:</strong></p>
+<ul>
+<li>Hüquqi-etik aspektlər bölməsi xüsusi əhəmiyyət daşıyır (məcburi hospitallaşdırma şərtləri, psixoloji yardımın hədləri)</li>
+<li>Diaqnostik bölmələr həkim-psixiatra yönləndirmə qərarı vermək üçün</li>
+</ul>
+<h2 id="məsuliyyət-qeydi" class="">Məsuliyyət qeydi</h2>
+<p>Bu kitab <strong>klinik istinad-bələdçidir</strong>, lakin konkret pasiyentdə qərar qəbul etmə zamanı:</p>
+<ul>
+<li>Pasiyentin individual klinik təqdimi mütləq nəzərə alınmalıdır</li>
+<li>Müalicə qərarları – pasiyentin razılığı, komorbidlikləri, dərmanın yerli mövcudluğu nəzərə alınmaqla qəbul edilməlidir</li>
+<li>Dərman dozaları – yerli istifadə təlimatları (instrukciya) ilə təsdiq edilməlidir</li>
+<li>Hüquqi-etik məsələlərdə əlaqəli qanunvericiliyin son redaksiyası yoxlanılmalıdır</li>
+<li>Bu kitab fərdi tibbi məsləhəti əvəz etmir</li>
+</ul>
+<p>Sahə bilik mütəmadi yenilənir; klinisist beynəlxalq və yerli tövsiyələrin yeniliklərini izləməlidir.</p>
+<h2 id="müəlliflər-və-əməkdaşlar" class="">Müəlliflər və əməkdaşlar</h2>
+<p><strong>Müəllif:</strong> Kənan Rəhimov (Bakı, 2026)</p>
+<p><strong>Saytda əlaqə:</strong> ragimoff.org</p>
+<p><strong>Təşəkkürlər:</strong> Azərbaycan psixiatriya cəmiyyətinə, Azərbaycan Tibb Universiteti psixiatriya kafedrasına və Səhiyyə Nazirliyi İctimai Səhiyyə və İslahatlar Mərkəzinə klinik protokolların hazırlanmasında göstərdikləri rəsmi əməyə görə dərin minnətdarlığımı bildirirəm. Beynəlxalq tövsiyə hazırlayan təşkilatlara (NICE, APA, WFSBP, CANMAT, ISTSS, ÜST) sübuta əsaslanan psixiatriyanın inkişafına töhfələrinə görə təşəkkür edirəm.</p>
+<hr>
+<p><em>Bakı, 2026</em></p>
+<p>\newpage</p>
+<h1 id="termi̇noloji̇-lüğət" class="h-section">TERMİNOLOJİ LÜĞƏT</h1>
+<p>Bu lüğət Azərbaycan Respublikası Səhiyyə Nazirliyinin İctimai Səhiyyə və İslahatlar Mərkəzi tərəfindən hazırlanmış rəsmi klinik protokolların terminologiyasına əsaslanır. Mənbələr:</p>
+<ul>
+<li><em>Şizofreniyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol</em> (Bakı, 2009)</li>
+<li><em>Təşviş Pozuntularının Diaqnostika və Müalicəsi üzrə Klinik Protokol</em> (Bakı, 2013)</li>
+<li><em>Obsessiv-Kompulsiv Pozuntuların Diaqnostika və Müalicəsi üzrə Klinik Protokol</em> (Bakı, 2015)</li>
+<li><em>Depressiyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol</em> (Bakı)</li>
+</ul>
+<p>Hər protokol Azərbaycan Tibb Universiteti psixiatriya kafedrası, Psixi Sağlamlıq Mərkəzi və Səhiyyə Nazirliyi əməkdaşları (prof. G. Gəraybəyli, dos. F. İsmayılov, prof. Z. Əliyev və b.) tərəfindən hazırlanmış və Səhiyyə Nazirliyi kollegiyasının qərarı ilə təsdiq edilmişdir.</p>
+<h2 id="təsnifat-sistemləri-rəsmi-ixtisarlar" class="">Təsnifat sistemləri (rəsmi ixtisarlar)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th><th>Beynəlxalq</th></tr>
+<tr><td><strong>XBT-10</strong></td><td>Xəstəliklərin Beynəlxalq Təsnifatı, 10-cu baxış</td><td>ICD-10</td></tr>
+<tr><td><strong>XBT-11</strong></td><td>Xəstəliklərin Beynəlxalq Təsnifatı, 11-ci baxış</td><td>ICD-11</td></tr>
+<tr><td><strong>DSM-IV / DST-IV</strong></td><td>Diaqnostik və Statistik Təsnifat, 4-cü baxış</td><td>DSM-IV</td></tr>
+<tr><td><strong>DSM-5 / DSM-5-TR</strong></td><td>Psixi pozuntuların diaqnostika və statistikası, 5-ci baxış (mətn redaksiyası ilə)</td><td>DSM-5-TR</td></tr>
+<tr><td><strong>KTTD</strong></td><td>Klinik Təsvirlər və Diaqnostik Tələblər (XBT-11 üçün)</td><td>CDDR</td></tr>
+</table></div>
+<h2 id="müalicə-üsulları" class="">Müalicə üsulları</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th><th>Beynəlxalq</th></tr>
+<tr><td><strong>KDT</strong></td><td>Koqnitiv-davranış (biheyvioral) terapiya</td><td>CBT</td></tr>
+<tr><td><strong>İPT</strong></td><td>İnterpersonal psixoterapiya</td><td>IPT</td></tr>
+<tr><td><strong>PDT</strong></td><td>Psixodinamik terapiya</td><td>PDT</td></tr>
+<tr><td><strong>DDT</strong></td><td>Dialektik davranış terapiyası</td><td>DBT</td></tr>
+<tr><td><strong>MBT</strong></td><td>Mentalizasiya əsaslı terapiya</td><td>MBT</td></tr>
+<tr><td><strong>EMDR</strong></td><td>Göz hərəkətləri ilə desensibilizasiya və yenidən işlənmə</td><td>EMDR</td></tr>
+<tr><td><strong>ECT</strong></td><td>Elektrokonvulsiv terapiya</td><td>EKT</td></tr>
+<tr><td><strong>TMS</strong></td><td>Transkranial maqnit stimulyasiyası</td><td>TMS</td></tr>
+<tr><td><strong>TS</strong></td><td>Təcili sedasiya</td><td>—</td></tr>
+</table></div>
+<h2 id="dərman-sinifləri-rəsmi-protokollardan" class="">Dərman sinifləri (rəsmi protokollardan)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th><th>Beynəlxalq</th></tr>
+<tr><td><strong>SİUSİ</strong></td><td>Serotoninin intraneyronal udulmasının seçici inhibitoru</td><td>SSRI</td></tr>
+<tr><td><strong>SNİUSİ</strong> (və ya SNRI)</td><td>Serotoninin və noradrenalinin intraneyronal udulmasının seçici inhibitoru</td><td>SNRI</td></tr>
+<tr><td><strong>NDİUİ</strong></td><td>Noradrenalin və dofaminin intraneyronal udulmasının inhibitorları</td><td>NDRI</td></tr>
+<tr><td><strong>TSA</strong></td><td>Tritsiklik antidepressantlar</td><td>TCA</td></tr>
+<tr><td><strong>QTA</strong></td><td>Qarışıq təsirli antidepressantlar</td><td>—</td></tr>
+<tr><td><strong>MAOİ</strong></td><td>Monoaminoksidazanın inhibitorları</td><td>MAOI</td></tr>
+<tr><td><strong>MAO Dİ</strong></td><td>Monoaminoksidazanın dönən inhibitorları</td><td>RIMA</td></tr>
+<tr><td><strong>NSM</strong></td><td>Noradrenalin və serotonin modulyatorları</td><td>NaSSA</td></tr>
+<tr><td><strong>SM</strong></td><td>Serotonin modulyatorları</td><td>—</td></tr>
+<tr><td><strong>ƏN</strong></td><td>Ənənəvi neyroleptik (tipik antipsixotik)</td><td>FGA</td></tr>
+<tr><td><strong>AA</strong></td><td>Atipik antipsixotik</td><td>SGA</td></tr>
+</table></div>
+<h2 id="diaqnostika-alətləri" class="">Diaqnostika alətləri</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th><th>Beynəlxalq</th></tr>
+<tr><td><strong>EEQ</strong></td><td>Elektroensefaloqrafiya</td><td>EEG</td></tr>
+<tr><td><strong>EKG</strong></td><td>Elektrokardioqrafiya</td><td>ECG</td></tr>
+<tr><td><strong>MRT</strong></td><td>Maqnit rezonans tomoqrafiyası</td><td>MRI</td></tr>
+<tr><td><strong>KT</strong></td><td>Kompüter tomoqrafiyası</td><td>CT</td></tr>
+<tr><td><strong>MSS</strong></td><td>Mərkəzi sinir sistemi</td><td>CNS</td></tr>
+<tr><td><strong>AT</strong></td><td>Arterial təzyiq</td><td>BP</td></tr>
+<tr><td><strong>HİV</strong></td><td>İnsan immunodefisit virusu</td><td>HIV</td></tr>
+</table></div>
+<h2 id="şkalalar-və-anketlər" class="">Şkalalar və anketlər</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th></tr>
+<tr><td><strong>HAM-D</strong></td><td>Hamiltonun Depressiya reytinqi cədvəli</td></tr>
+<tr><td><strong>HAM-A</strong></td><td>Hamiltonun Təşviş şkalası</td></tr>
+<tr><td><strong>MADRS</strong></td><td>Montqomeri-Asberq Depressiya Reytinq Şkalası</td></tr>
+<tr><td><strong>PHQ-9</strong></td><td>Pasiyentin Sağlamlıq Anketi (depressiya skrininqi, 9 göstərici)</td></tr>
+<tr><td><strong>GTP-7 / GAD-7</strong></td><td>Generalizə olunmuş təşviş pozuntusunun 7 göstərici üzrə qiymətləndirməsi</td></tr>
+<tr><td><strong>PCL-5</strong></td><td>DSM-5 üçün PTSP yoxlama siyahısı</td></tr>
+<tr><td><strong>EPDS</strong></td><td>Edinburqun Doğuşdan Sonrakı Depressiya Şkalası</td></tr>
+<tr><td><strong>Y-BOCS</strong></td><td>Yel-Braun Obsessiv-Kompulsiv Şkalası</td></tr>
+<tr><td><strong>PANSS</strong></td><td>Pozitiv və Neqativ Sindrom Şkalası (şizofreniya)</td></tr>
+<tr><td><strong>C-SSRS</strong></td><td>Kolumbiya Suisid Şiddətliliyi Reytinq Şkalası</td></tr>
+<tr><td><strong>MoCA</strong></td><td>Monreal Koqnitiv Qiymətləndirmə</td></tr>
+<tr><td><strong>MMSE</strong></td><td>Qısa Psixi Status Müayinəsi</td></tr>
+</table></div>
+<h2 id="tədqiqat-və-qiymətləndirmə" class="">Tədqiqat və qiymətləndirmə</h2>
+<div class="tbl-wrap"><table>
+<tr><th>İxtisar</th><th>Açılışı</th></tr>
+<tr><td><strong>RKT</strong></td><td>Randomizə olunmuş klinik tədqiqat</td></tr>
+<tr><td><strong>DALY</strong></td><td>Əlilliyə uyğunlaşmış illərin sayı</td></tr>
+<tr><td><strong>ÜST</strong></td><td>Ümumdünya Səhiyyə Təşkilatı (WHO)</td></tr>
+<tr><td><strong>AR</strong></td><td>Azərbaycan Respublikası</td></tr>
+<tr><td><strong>ATU</strong></td><td>Azərbaycan Tibb Universiteti</td></tr>
+<tr><td><strong>İSİM</strong></td><td>İctimai Səhiyyə və İslahatlar Mərkəzi</td></tr>
+<tr><td><strong>PSM</strong></td><td>Psixi Sağlamlıq Mərkəzi</td></tr>
+</table></div>
+<h2 id="sübutların-etibarlılıq-dərəcələri-oxford" class="">Sübutların etibarlılıq dərəcələri (Oxford)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Dərəcə</th><th>Mənbə</th></tr>
+<tr><td><strong>Ia</strong></td><td>Meta-analiz, sistematik icmal və ya RKT-dən</td></tr>
+<tr><td><strong>Ib</strong></td><td>Ən azı bir RKT-dən</td></tr>
+<tr><td><strong>IIa</strong></td><td>Yaxşı planlaşdırılmış nəzarət edilən randomizə olunmamış tədqiqat</td></tr>
+<tr><td><strong>IIb</strong></td><td>Kvazi-eksperimental tədqiqat</td></tr>
+<tr><td><strong>III</strong></td><td>Qeyri-eksperimental təsviri tədqiqat</td></tr>
+<tr><td><strong>IV</strong></td><td>Ekspert komitəsi rəyi və ya klinik təcrübə</td></tr>
+</table></div>
+<h2 id="tövsiyə-dərəcələri" class="">Tövsiyə dərəcələri</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Dərəcə</th><th>Mənası</th></tr>
+<tr><td><strong>A</strong></td><td>Ia, Ib səviyyəli sübutlara əsaslanır</td></tr>
+<tr><td><strong>B</strong></td><td>IIa, IIb, III səviyyəli sübutlara əsaslanır</td></tr>
+<tr><td><strong>C</strong></td><td>IV səviyyəli sübutlara əsaslanır</td></tr>
+<tr><td><strong>D</strong></td><td>Sübutsuz, ekspert rəyi</td></tr>
+</table></div>
+<h2 id="əsas-psixopatoloji-terminlər" class="">Əsas psixopatoloji terminlər</h2>
+<h3 id="şüur-və-oryentasiya" class="">Şüur və oryentasiya</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Şüur</strong></td><td>Mühit və özünü dərk etmə qabiliyyəti</td></tr>
+<tr><td><strong>Oryentasiya</strong></td><td>Vaxt, məkan, şəxsiyyət üzrə düzgün məlumatlanma</td></tr>
+<tr><td><strong>Dezoryentasiya</strong></td><td>Oryentasiyanın pozulması</td></tr>
+<tr><td><strong>Stupor</strong></td><td>Motor və psixi aktivliyin kəskin azalması</td></tr>
+<tr><td><strong>Sopor</strong></td><td>Şüurun dərin pozulması, yalnız güclü stimullara cavab</td></tr>
+<tr><td><strong>Koma</strong></td><td>Şüurun tam itirilməsi, stimullara cavab yoxdur</td></tr>
+<tr><td><strong>Konfüziya</strong></td><td>Qarışıqlıq, düşüncənin qeyri-aydınlığı</td></tr>
+<tr><td><strong>Deliriya</strong></td><td>Kəskin çaşqınlıq, dalğalanan şüur, qavrayış pozuntuları</td></tr>
+<tr><td><strong>Sumərkəzli vəziyyət</strong></td><td>Şüurun dar, &quot;tunelvari&quot; yığılması</td></tr>
+</table></div>
+<h3 id="qavrayış" class="">Qavrayış</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Qavrayış</strong></td><td>Hisslər vasitəsilə alınan informasiyanın dərk edilməsi</td></tr>
+<tr><td><strong>halusinasiya</strong></td><td>Real qıcıqlanma olmadan qavrayış (səs, görmə, qoxu, dad, toxunma)</td></tr>
+<tr><td><strong>İllüziya</strong></td><td>Real obyektin yanlış qavranması</td></tr>
+<tr><td><strong>Pareydoliya</strong></td><td>Qeyri-müəyyən obyektlərdə müəyyən obrazların görünməsi</td></tr>
+<tr><td><strong>Depersonalizasiya</strong></td><td>Özünə yadlaşma hissi</td></tr>
+<tr><td><strong>Dereallaşma</strong></td><td>Mühitin &quot;qeyri-real&quot;, &quot;uydurma&quot; kimi qavranması</td></tr>
+</table></div>
+<h3 id="düşüncə" class="">Düşüncə</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Düşüncə forması pozuntuları</strong></td><td>Düşüncənin axını, ardıcıllığı, məntiqi pozuntusu</td></tr>
+<tr><td><strong>Düşüncə məzmunu pozuntuları</strong></td><td>Düşüncə məzmununun patoloji dəyişməsi</td></tr>
+<tr><td><strong>Sayıqlama</strong></td><td>Yanlış, sübuta yatmayan inanc, real təsirə davam etməyən</td></tr>
+<tr><td><strong>Sayıqlama ideyaları</strong></td><td>Sayıqlama məzmununun konkret ifadəsi</td></tr>
+<tr><td><strong>İlişən fikirlər</strong></td><td>Yüksək intensivliklə təkrarlanan, lakin sayıqlama dərəcəsinə çatmayan ideyalar</td></tr>
+<tr><td><strong>Obsessiya</strong></td><td>Sarışan, təkrarlanan fikir, narahatlıq doğuran</td></tr>
+<tr><td><strong>Kompulsiya</strong></td><td>Obsessiyanı azaltmaq üçün təkrarlanan davranış</td></tr>
+<tr><td><strong>Tangensial düşüncə</strong></td><td>Cavabın suala uyğun olmaması</td></tr>
+<tr><td><strong>Sirkumstansial düşüncə</strong></td><td>Lazımsız təfərrüatlarla cavabın yayınması</td></tr>
+<tr><td><strong>Düşüncə bloklanması</strong></td><td>Düşüncə axınının qəfil dayanması</td></tr>
+<tr><td><strong>Sürətli düşüncə axını</strong></td><td>Düşüncənin həddən artıq sürətli, idarə olunmaz axını (manik epizodda)</td></tr>
+</table></div>
+<h3 id="əhval-və-affekt" class="">Əhval və affekt</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Əhval</strong></td><td>Davamlı emosional fon</td></tr>
+<tr><td><strong>Affekt</strong></td><td>İndiki emosional ifadə</td></tr>
+<tr><td><strong>Disforiya</strong></td><td>Narahat, qıcıqlı əhval</td></tr>
+<tr><td><strong>Eyforiya</strong></td><td>Səbəbsiz yüksək əhval</td></tr>
+<tr><td><strong>Anhedoniya</strong></td><td>Həzz alma qabiliyyətinin azalması və ya itməsi</td></tr>
+<tr><td><strong>Affekt yastılığı</strong></td><td>Emosional ifadənin azalması</td></tr>
+<tr><td><strong>Affekt qeyri-adekvatlığı</strong></td><td>Emosional ifadənin vəziyyətə uyğun olmaması</td></tr>
+<tr><td><strong>Affekt labilliyi</strong></td><td>Emosional ifadənin tez-tez dəyişməsi</td></tr>
+</table></div>
+<h3 id="davranış-və-psixomotor" class="">Davranış və psixomotor</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Psixomotor aqitasiya</strong></td><td>Hərəki və psixi həyəcanlanma</td></tr>
+<tr><td><strong>Psixomotor ləngləmə</strong></td><td>Hərəki və psixi yavaşlama</td></tr>
+<tr><td><strong>Kataleksiya</strong></td><td>Verilən pozanın passiv saxlanması</td></tr>
+<tr><td><strong>Mum elastikliyi</strong> (flexibilitas cerea)</td><td>Yumşaq müqavimətlə pozanın dəyişdirilməsi</td></tr>
+<tr><td><strong>Mutizm</strong></td><td>Nitqin tam və ya demək olar tam olmaması</td></tr>
+<tr><td><strong>Neqativizm</strong></td><td>Təlimatlara qarşı sərt müqavimət</td></tr>
+<tr><td><strong>Stereotipiya</strong></td><td>Təkrarlanan, məqsədsiz hərəkət</td></tr>
+<tr><td><strong>Eholaliya</strong></td><td>Başqasının nitqinin təkrarlanması</td></tr>
+<tr><td><strong>Ekopraksiya</strong></td><td>Başqasının hərəkətlərinin təkrarlanması</td></tr>
+<tr><td><strong>Manerizm</strong></td><td>Adi hərəkətlərin qəribə, dramatik icrası</td></tr>
+</table></div>
+<h3 id="yaddaş-və-idrak" class="">Yaddaş və idrak</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>Yaddaş</strong></td><td>Məlumatın saxlanması və geri çağrılması</td></tr>
+<tr><td><strong>Amneziya</strong></td><td>Yaddaş itkisi</td></tr>
+<tr><td><strong>Hipermneziya</strong></td><td>Yaddaşın qeyri-adi gücləndirilməsi</td></tr>
+<tr><td><strong>Hipomneziya</strong></td><td>Yaddaşın azalması</td></tr>
+<tr><td><strong>Konfabulyasiya</strong></td><td>Yaddaş boşluqlarının uydurma faktlarla doldurulması</td></tr>
+<tr><td><strong>Diqqət</strong></td><td>Müəyyən stimula fokuslanma qabiliyyəti</td></tr>
+<tr><td><strong>Konsentrasiya</strong></td><td>Diqqətin uzunmüddətli saxlanması</td></tr>
+</table></div>
+<h3 id="i̇radə-və-motivasiya" class="">İradə və motivasiya</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Termin</th><th>İzah</th></tr>
+<tr><td><strong>İradə</strong></td><td>Məqsədli fəaliyyət üçün qabiliyyət</td></tr>
+<tr><td><strong>Apatiya</strong></td><td>Maraqsızlıq, emosional reaksiyaların azalması</td></tr>
+<tr><td><strong>Abuliya</strong></td><td>İradə zəifliyi, qərar qəbul edə bilməmə</td></tr>
+<tr><td><strong>Avoliya</strong></td><td>Məqsədli fəaliyyət üçün motivasiyanın olmaması</td></tr>
+</table></div>
+<p>\newpage</p>
+<h1 id="psi̇xopatologi̇yaya-gi̇ri̇ş" class="h-section">PSİXOPATOLOGİYAYA GİRİŞ</h1>
+<h2 id="niyə-bu-bölmə" class="">Niyə bu bölmə?</h2>
+<p>Müasir psixiatrik təsnifatlar (XBT-11, DSM-5-TR) əsasən <strong>operasional diaqnostik meyarlara</strong> əsaslanır: müəyyən simptomların müəyyən sayda və müddətdə olması diaqnoz qoyulması üçün şərtdir. Bu yanaşma diaqnostik etibarlılığı artırır, lakin <strong>simptomların və sindromların əsl klinik mənasını</strong> kölgədə qoya bilər.</p>
+<p>Klassik psixiatriya — XIX əsrin sonu və XX əsrin əvvəllərində Karl Yaspers, Eugen Bleuler, Karl Şneyder, Kurt Şneyder, Karl Leonhard — <strong>fenomenoloji və sindromoloji yanaşma</strong> ilə inkişaf etmişdir. Bu yanaşma bu gün də klinik praktikada böyük dəyər daşıyır:</p>
+<ul>
+<li><strong>Diaqnostik meyarlar simptomları sayır</strong>, sindromologiya isə <strong>simptomların qarşılıqlı əlaqəsini və klinik mənzərəni</strong> açıqlayır.</li>
+<li>Sindromoloji düşüncə <strong>erkən diaqnoz</strong> üçün vacibdir — hələ tam meyarlar yığılmamış xəstələrdə.</li>
+<li><strong>Patofizioloji düşüncə</strong> üçün lazımdır — niyə bu simptomlar bir-birilə əlaqədardır, hansı funksional sistem pozulub.</li>
+<li><strong>Diferensial diaqnoz</strong> sindromoloji yanaşma olmadan səthi olur.</li>
+</ul>
+<p>Bu bölmədə psixopatoloji simptomlar əsas funksional sahələr üzrə təsnif edilir, sonra geniş yayılmış psixopatoloji sindromlar verilir.</p>
+<h2 id="simptom-və-sindrom-anlayışları" class="">Simptom və sindrom anlayışları</h2>
+<p><strong>Simptom</strong> – pozuntunun tək bir təzahürü (məs., halüsinasiya, sayıqlama, depressiv əhval).</p>
+<p><strong>Sindrom</strong> – bir-birilə əlaqəli simptomların ardıcıl şəkildə birləşməsi, müəyyən nozoloji vahidə xas olan və ya bir neçə nozologiyada təkrarlanan.</p>
+<p><strong>Nozoloji vahid</strong> – etiologiya, patogenez, kliniki gediş və müalicə xüsusiyyətlərinə görə fərqləndirilən xəstəlik (məs., şizofreniya, bipolyar pozuntu, alzheimer xəstəliyi).</p>
+<p>Klinik praktikada həkim tipik olaraq simptomlardan sindroma, sindromdan diaqnoza doğru irəliləyir. Düzgün sindromoloji qiymətləndirmə xəstənin müayinə və müalicəsinin əsasını təşkil edir.</p>
+<h2 id="psixopatoloji-simptomların-təsnifatı" class="">Psixopatoloji simptomların təsnifatı</h2>
+<h3 id="şüur-pozuntuları" class="">Şüur pozuntuları</h3>
+<p><strong>Kəmiyyət pozuntuları (azalma):</strong></p>
+<ul>
+<li><strong>Tutqunlaşma (obnubilation)</strong> – şüurun yüngül azalması, reaksiyaların yavaşlaması</li>
+<li><strong>Somnolentliq</strong> – yuxulu vəziyyət, asanlıqla oyandırılır</li>
+<li><strong>Sopor</strong> – yalnız güclü qıcıqlandırıcılarla qısamüddətli oyanma</li>
+<li><strong>Koma</strong> – şüurun tam itirilməsi, qıcıqlandırıcılara cavab yoxdur</li>
+</ul>
+<p><strong>Keyfiyyət pozuntuları (məzmunu dəyişən):</strong></p>
+<ul>
+<li><strong>Deliriya</strong> – kəskin başlanğıc, dalğalanan şüur, dezoryentasiya, görmə halusinasiyaları, psixomotor aqitasiya. Tipik etioloji: alkoqol abstinensiyası, infeksiya, intoksikasiya, qaraciyər/böyrək çatışmazlığı.</li>
+<li><strong>Onirik (yuxu-bənzər) vəziyyət</strong> – fantastik səhnələr, pasiyent özünü onların iştirakçısı kimi hiss edir</li>
+<li><strong>Amentiv vəziyyət</strong> – dərin dezoryentasiya, dağılmış düşüncə, nitq nizamsızlığı</li>
+<li><strong>Sumərkəzli (twilight) vəziyyət</strong> – şüurun &quot;tunelvari&quot; daralması, avtomatik davranış, sonradan amneziya. Epilepsiyada, hysterik vəziyyətlərdə tipikdir.</li>
+</ul>
+<h3 id="qavrayış-pozuntuları" class="">Qavrayış pozuntuları</h3>
+<p><strong>İllüziyalar</strong> – real obyektin yanlış qavranması (məs., divardakı kölgə insan kimi qavranır).</p>
+<p><strong>halusinasiyalar</strong> – real qıcıqlandırıcı olmadan qavrayış. Modallıq üzrə:</p>
+<ul>
+<li><strong>Eşitmə halusinasiyaları</strong> – ən geniş yayılmış. &quot;Səslər&quot; – şərh edən, müraciət edən, əmredici (imperativ – yüksək risk!). Şizofreniya üçün xarakterik.</li>
+<li><strong>Görmə halusinasiyaları</strong> – üzvi pozuntular (deliriya, demensiya, intoksikasiya) üçün xarakterik.</li>
+<li><strong>Qoxu və dad halusinasiyaları</strong> – temporal lob epilepsiyası, şizofreniya.</li>
+<li><strong>Toxunma (taktil) halusinasiyaları</strong> – kokain, amfetamin intoksikasiyası (&quot;dəri altı həşəratlar&quot;).</li>
+<li><strong>Senestopatiyalar</strong> – bədəndə qeyri-müəyyən, qəribə, ağrılı hisslər (bədənə &quot;həşəratlar dolaşır&quot;, &quot;boğazda boş yer var&quot; və s.).</li>
+</ul>
+<p><strong>Psevdohalusinasiyalar</strong> (Kandinski) – pasiyent tərəfindən &quot;daxili&quot; kimi qavranılır (&quot;səslər başımın içində&quot;), lakin yenə də qıcıqlandırıcı olmadan qavrayış.</p>
+<p><strong>Funksional halusinasiyalar</strong> – yalnız real qıcıqlandırıcı olduqda yaranır (su şırıltısında səs eşitmək).</p>
+<h3 id="düşüncə-pozuntuları" class="">Düşüncə pozuntuları</h3>
+<p><strong>Forma (tempi və ardıcıllığı) pozuntuları:</strong></p>
+<ul>
+<li><strong>Sürətli düşüncə (mentation acceleration)</strong> – manik epizodda</li>
+<li><strong>Düşüncə &quot;uçuşu&quot; (flight of ideas)</strong> – assosiasiyalar tez-tez dəyişir, lakin əlaqə qalır</li>
+<li><strong>Yavaş düşüncə</strong> – depresiya, demensiya</li>
+<li><strong>Düşüncə bloklanması (sperrung)</strong> – qəfil dayanma</li>
+<li><strong>Tangensial düşüncə</strong> – cavab sualdan yayınır</li>
+<li><strong>Sirkumstansial düşüncə</strong> – həddən artıq təfərrüat</li>
+<li><strong>Atomistik (atactic) düşüncə</strong> – qrammatik formal saxlanır, məna pozulur (şizofreniya)</li>
+<li><strong>Verbiqerasiya</strong> – sözlərin və ifadələrin mənasız təkrarlanması</li>
+<li><strong>Neologizmlər</strong> – yeni &quot;uydurma&quot; sözlər (şizofreniya)</li>
+<li><strong>Persevarasiya</strong> – eyni söz/fikrin təkrarı (üzvi pozuntu)</li>
+</ul>
+<p><strong>Məzmun pozuntuları:</strong></p>
+<p>- <strong>Persekutiv sayıqlama</strong> – təqib olunma, pislik niyyəti hiss edilir</p>
+<p>- <strong>Qrandioz sayıqlama</strong> – özünün böyüklüyü, gücü, zənginliyi</p>
+<p>- <strong>Münasibət sayıqlaması (delusions of reference)</strong> – mühitin hadisələri özünə aid edilir</p>
+<p>- <strong>Təsir sayıqlaması</strong> – kənar qüvvələrin (texniki, kosmik, mistik) onun düşüncələrinə təsiri</p>
+<p>- <strong>Hipoxondrik sayıqlama</strong> – ağır xəstəlik hissinə inanma (cinclesinde və s.)</p>
+<p>- <strong>Köhnəlmə (Cotard) sindromu</strong> – bədən üzvlərinin &quot;yox olduğu&quot;, &quot;öldüyü&quot; inancı</p>
+<p>- <strong>Qısqanclıq sayıqlaması</strong> – partnyor xəyanəti</p>
+<p>- <strong>Sevgi (Klerambo) sayıqlaması</strong> – tanınmış şəxsin gizli sevgisinə inanma</p>
+<ul>
+<li><strong>Sayıqlama (delusion)</strong> – yanlış, sübutlara yatmayan, mədəni kontekstə uymayan inanc. Növləri:</li>
+<li><strong>İlişən fikirlər (overvalued ideas)</strong> – həqiqətə yaxın, lakin həddən artıq əhəmiyyət verilən</li>
+<li><strong>Obsessiyalar</strong> – sarışan, eqo-distonik (özünə yad olaraq dərk edilən) fikirlər</li>
+</ul>
+<h3 id="əhval-və-affekt-pozuntuları" class="">Əhval və affekt pozuntuları</h3>
+<ul>
+<li><strong>Depressiv əhval</strong> – aşağı, kədərli, ümidsiz</li>
+<li><strong>Manik əhval</strong> – yüksək, eyforik və ya disforik (qıcıqlı)</li>
+<li><strong>Disforiya</strong> – qıcıqlı, narahat əhval</li>
+<li><strong>Anhedoniya</strong> – həzz almaqdan məhrum olma (əsas depressiv simptom)</li>
+<li><strong>Apatiya</strong> – emosional əksiklik, maraq itməsi</li>
+<li><strong>Affekt labilliyi</strong> – tez-tez dəyişən emosiyalar</li>
+<li><strong>Affekt yastılığı (flat affect)</strong> – emosional ifadənin zəifləməsi (şizofreniyada xarakterik neqativ simptom)</li>
+<li><strong>Affekt qeyri-adekvatlığı</strong> – emosional cavab vəziyyətə uyğun deyil (məs., yaxınının ölümünü güləri ilə qarşılayır)</li>
+<li><strong>Aleksitimiya</strong> – emosional vəziyyəti söz ilə ifadə edə bilməmə</li>
+<li><strong>Təşviş</strong> – qarşıdakı təhlükə hissi, daha çox cismani və autonom simptomlarla</li>
+<li><strong>Qorxu</strong> – konkret obyektə qarşı təşviş</li>
+<li><strong>Panik</strong> – kəskin, tutmavari təşviş</li>
+</ul>
+<h3 id="davranış-və-hərəki-pozuntular" class="">Davranış və hərəki pozuntular</h3>
+<ul>
+<li><strong>Psixomotor aqitasiya</strong> – həyəcanlı, məqsədsiz hərəkətlər</li>
+<li><strong>Psixomotor ləngləmə</strong> – hərəkətlərin yavaşlaması, başlatma çətinliyi</li>
+<li><strong>Stupor</strong> – motor inhibə, mutizm, ətrafa reaksiyasızlıq</li>
+<li><strong>Kataleksiya</strong> – pozanın passiv saxlanması</li>
+<li><strong>Mum elastikliyi</strong> – ekstremitenin yumşaq müqavimətlə əyilməsi və saxlanması</li>
+<li><strong>Neqativizm</strong> – tələblərin əksini etmə</li>
+<li><strong>Eholaliya, ekopraksiya</strong> – başqasının nitqi/hərəkətlərinin təkrarlanması</li>
+<li><strong>Stereotipiyalar</strong> – təkrarlanan, məqsədsiz hərəkətlər</li>
+<li><strong>Manerizm</strong> – adi hərəkətlərin qəribə icrası</li>
+<li><strong>Tiklər</strong> – qeyri-iradi əzələ qısalmaları</li>
+<li><strong>Kompulsiv davranış</strong> – obsessiyaları azaltmaq üçün təkrarlanan davranış (əl yumaq, yoxlamaq)</li>
+</ul>
+<h3 id="yaddaş-pozuntuları" class="">Yaddaş pozuntuları</h3>
+<ul>
+<li><strong>Antroqrad amneziya</strong> – hadisədən sonra baş verən hadisələrin yaddaşda qalmaması</li>
+<li><strong>Retroqrad amneziya</strong> – hadisədən əvvəlki dövrün yaddaşda qalmaması</li>
+<li><strong>Konqrad amneziya</strong> – hadisənin özünün yaddaşda olmaması</li>
+<li><strong>Korsakov sindromu</strong> – ağır antroqrad amneziya + konfabulyasiyalar + dezoryentasiya. Tiamin defisiti, xroniki alkoqolizm</li>
+<li><strong>Konfabulyasiyalar</strong> – yaddaş boşluqlarını uydurmalarla doldurma</li>
+<li><strong>Hipermneziya</strong> – yaddaşın patoloji gücləndirilməsi (bəzi epileptik vəziyyətlərdə)</li>
+<li><strong>Hipomneziya</strong> – yaddaşın azalması (depressiya, demensiya başlanğıcı)</li>
+</ul>
+<h3 id="diqqət-pozuntuları" class="">Diqqət pozuntuları</h3>
+<ul>
+<li><strong>Hipoprosexsiya</strong> – diqqətin azalması</li>
+<li><strong>Hiperprosexsiya</strong> – diqqətin patoloji yüksəlməsi (mania)</li>
+<li><strong>Distraktivlik</strong> – diqqətin asanlıqla yayınması (DDHP, mania)</li>
+<li><strong>Diqqətin yapışıqlığı</strong> – bir mövzudan ayrıla bilməmək (üzvi pozuntular)</li>
+</ul>
+<h3 id="i̇drak-koqnitiv-pozuntular" class="">İdrak (koqnitiv) pozuntular</h3>
+<ul>
+<li><strong>Yüngül koqnitiv pozuntu</strong> – yaşlanma normallığını aşan, lakin demensiyaya çatmayan</li>
+<li><strong>Demensiya</strong> – idrakın geniş və davamlı azalması (yaddaş, dil, icra funksiyaları, vizual-məkani idrak)</li>
+<li><strong>Aqnoziya</strong> – obyektləri tanımama (görmə, eşitmə, taktil)</li>
+<li><strong>Apraksiya</strong> – əvvəllər mənimsənilmiş hərəkətləri icra edə bilməmək</li>
+<li><strong>Afaziya</strong> – nitqin pozulması</li>
+<li><strong>Akalkuliya</strong> – hesablama qabiliyyətinin pozulması</li>
+</ul>
+<h3 id="i̇radə-və-motivasiya-pozuntuları" class="">İradə və motivasiya pozuntuları</h3>
+<ul>
+<li><strong>Apatiya</strong> – maraqsızlıq, motivasiyasızlıq</li>
+<li><strong>Abuliya</strong> – iradə zəifliyi, qərar qəbul edə bilməmək</li>
+<li><strong>Avoliya</strong> – məqsədli davranış üçün motivasiyanın yoxluğu</li>
+<li><strong>Ambitendentlik</strong> – eyni anda iki ziddiyyətli istəyin olması</li>
+<li><strong>Hipobuliya</strong> – iradi aktivliyin azalması</li>
+<li><strong>Hiperbuliya</strong> – patoloji yüksəlmiş iradi aktivlik</li>
+</ul>
+<h3 id="şəxsiyyət-və-mən-pozuntuları" class="">Şəxsiyyət və &quot;Mən&quot; pozuntuları</h3>
+<ul>
+<li><strong>Depersonalizasiya</strong> – özünə yadlaşma, &quot;Mən deyiləm&quot; hissi</li>
+<li><strong>Dereallaşma</strong> – mühitin &quot;uydurma&quot;, &quot;qeyri-real&quot; kimi qavranması</li>
+<li><strong>&quot;Mən&quot; sərhədlərinin pozulması</strong> – başqalarının düşüncələri və hissləri ilə qarışması</li>
+<li><strong>Düşüncələrin oğurlanması/qoyulması</strong> – başqaları &quot;mənim düşüncələrimi oxuyur&quot; və ya &quot;yad düşüncələr başıma qoyulur&quot; hissi (şizofreniyanın 1-ci dərəcəli simptomu, K. Şneyder)</li>
+</ul>
+<h2 id="əsas-psixopatoloji-sindromlar" class="">Əsas psixopatoloji sindromlar</h2>
+<h3 id="affektiv-sindromlar" class="">Affektiv sindromlar</h3>
+<p><strong>Depressiv sindrom (kədər triadası):</strong></p>
+<ul>
+<li>Aşağı əhval</li>
+<li>Psixomotor ləngləmə</li>
+<li>Düşüncə yavaşlaması (idedeasiya ləngləməsi)</li>
+<li>Plus: anhedoniya, yuxu pozuntusu, iştahanın dəyişməsi, günah, ümidsizlik, suisidal idealar</li>
+</ul>
+<p><strong>Manik sindrom (təntənə triadası):</strong></p>
+<ul>
+<li>Yüksək əhval</li>
+<li>Psixomotor aqitasiya</li>
+<li>Sürətli düşüncə (&quot;ideya uçuşu&quot;)</li>
+<li>Plus: yuxuda azalma, qrandioz idealar, distraktivlik, riskli davranış</li>
+</ul>
+<p><strong>Qarışıq affektiv sindrom</strong> – manik və depressiv simptomların eyni vaxtda olması (məs., yüksək aktivliq + dərin kədər).</p>
+<h3 id="təşviş-sindromları" class="">Təşviş sindromları</h3>
+<p><strong>Generalizə olunmuş təşviş sindromu</strong> – davamlı, geniş təşviş, əzələ gərginliyi, autonom simptomlar.</p>
+<p><strong>Panik sindrom</strong> – tutmavari, kəskin təşviş, ölüm qorxusu, autonom simptomlar (taxikardiya, nəfəs darlığı, tər), 10-30 dəqiqə davam edir.</p>
+<p><strong>Fobik sindrom</strong> – konkret obyektə/vəziyyətə qarşı qorxu, qaçınma davranışı.</p>
+<h3 id="obsessiv-kompulsiv-sindrom" class="">Obsessiv-kompulsiv sindrom</h3>
+<p>Sarışan fikirlər (obsessiyalar) + onları azaltmaq üçün təkrarlanan davranışlar (kompulsiyalar). Pasiyent bunların absurd olduğunu dərk edir, lakin müqavimət göstərə bilmir.</p>
+<h3 id="psixotik-sindromlar" class="">Psixotik sindromlar</h3>
+<p><strong>Paranoyal sindrom</strong> – sayıqlama (təqib, münasibət, böyüklük) + təşviş. halusinasiyalar tipik deyil və ya minimal.</p>
+<p><strong>Paranoid sindrom</strong> – sayıqlama (təqib daha tipik) + halusinasiyalar (xüsusilə eşitmə) + təşviş.</p>
+<p><strong>Parafrenik sindrom</strong> – qrandioz fantastik sayıqlama + halusinasiyalar + affekt yüksəkliyi.</p>
+<p><strong>halusinator sindrom</strong> (Halusinoz) – əsasən halusinasiyalar (eşitmə və ya görmə), sayıqlama olmadan və ya minimal.</p>
+<p><strong>Kandinski-Klerambo sindromu (psixi avtomatizm sindromu):</strong></p>
+<p>Şizofreniya üçün xarakterikdir.</p>
+<ul>
+<li>İdeator avtomatizm – &quot;düşüncələrin oğurlanması&quot;, &quot;düşüncələrin başına qoyulması&quot;</li>
+<li>Sensor avtomatizm – psevdohalusinasiyalar</li>
+<li>Motor avtomatizm – &quot;məcburi hərəkətlər&quot;</li>
+</ul>
+<p><strong>Katatonik sindrom</strong> – stupor və ya aqitasiya, mum elastikliyi, neqativizm, mutizm, eholaliya, ekopraksiya. <strong>Diaqnostika və müalicəsi həyati əhəmiyyət daşıyır</strong> (bax. Bölmə 3).</p>
+<p><strong>Disforik sindrom</strong> – qıcıqlı, qəzəbli əhval, aqressiya. Epilepsiya, üzvi beyin xəstəlikləri, abstinensiya.</p>
+<h3 id="eksogen-üzvi-tip-sindromlar-k-bonhoeffer" class="">Eksogen-üzvi tip sindromlar (K. Bonhoeffer)</h3>
+<p>Beyinin ekzogen zədələnməsinə xas olan sindromlar:</p>
+<p><strong>Deliriya sindromu</strong> – kəskin, dalğalanan şüur, dezoryentasiya, görmə halusinasiyaları, psixomotor aqitasiya. Etioloji: alkoqol abstinensiyası (delirium tremens), infeksiyalar, intoksikasiyalar, qaraciyər/böyrək çatışmazlığı.</p>
+<p><strong>Amentiv sindrom</strong> – dərin dezoryentasiya, qarışıq düşüncə, dağılmış affekt, fraqmentar halusinasiyalar. Ağır somatik xəstəliklərdə.</p>
+<p><strong>Sumərkəzli (twilight) vəziyyət</strong> – şüurun &quot;tunelvari&quot; daralması, avtomatik davranış, sonradan amneziya. Epilepsiya, hysterik mənşəli.</p>
+<p><strong>Korsakov sindromu</strong> – fiksasion amneziya + konfabulyasiyalar + dezoryentasiya. Tiamin defisiti (Wernicke-Korsakov), xroniki alkoqolizm.</p>
+<p><strong>Astenik sindrom</strong> – yorğunluq, qıcıqlanma, yaddaş və diqqət azalması, baş ağrısı, yuxu pozuntusu. Geniş yayılmış, həm üzvi, həm psixoji etioloji.</p>
+<h3 id="demensiya-sindromları" class="">Demensiya sindromları</h3>
+<p><strong>Korteksal demensiya</strong> (Alzheimer tipli) – yaddaş, dil (afaziya), praksis (apraksiya), qnozis (aqnoziya) üzrə pozuntular.</p>
+<p><strong>Subkortikal demensiya</strong> (Parkinson, Huntington) – yavaşlama, icra funksiyalarının pozulması, depresiya, lakin korteksal funksiyalar nisbətən saxlanılır erkən mərhələdə.</p>
+<p><strong>Frontotemporal demensiya</strong> – şəxsiyyət dəyişikliyi, dezinhibə, sosial uyğunsuzluq + dil pozuntuları (semantik və ya progressiv qeyri-flüenli afaziya).</p>
+<p><strong>Lewy cisimcikli demensiya</strong> – flüktuasiyalı koqnitiv pozuntu + görmə halusinasiyaları + Parkinsonizm + REM yuxu davranış pozuntusu.</p>
+<h3 id="şəxsiyyət-dəyişikliyi-sindromları" class="">Şəxsiyyət dəyişikliyi sindromları</h3>
+<p><strong>Üzvi şəxsiyyət dəyişikliyi</strong> (frontal lob zədəsindən sonra və s.) – dezinhibə, sosial qaydaların pozulması, emosional labillik, plansızlıq.</p>
+<p><strong>Postensefalitik sindromlar</strong> – ensefalit sonrası davranış, yaddaş, affekt pozuntuları.</p>
+<p><strong>Postkonkussion sindrom</strong> – baş travmadan sonra: baş ağrısı, başgicəllənmə, yorğunluq, qıcıqlanma, konsentrasiya pozuntusu.</p>
+<p>\newpage</p>
+<h1 id="kli̇ni̇k-müsahi̇bə-və-psi̇xi̇-statusun-qi̇ymətləndi̇ri̇lməsi̇" class="h-section">KLİNİK MÜSAHİBƏ VƏ PSİXİ STATUSUN QİYMƏTLƏNDİRİLMƏSİ</h1>
+<h2 id="klinik-müsahibənin-məqsədləri" class="">Klinik müsahibənin məqsədləri</h2>
+<p>Psixiatrik klinik müsahibə üçqat məqsədə xidmət edir:</p>
+<ol>
+<li><strong>Diaqnostik</strong> – informasiya toplamaq, simptomları müəyyən etmək, diaqnoz qoymaq</li>
+<li><strong>Terapevtik</strong> – terapevtik münasibət (rapport) qurmaq, xəstə üçün dəstək göstərmək, mexanizmləri (psixoterapevtik) hərəkətə gətirmək</li>
+<li><strong>Qiymətləndirici</strong> – risk qiymətləndirməsi (suisid, başqalarına zərər), funksional səviyyə, psixososial mühit</li>
+</ol>
+<p>İlk müsahibə adətən 45-90 dəqiqə davam edir. Təcili vəziyyətlərdə daha qısa olur, lakin əsas məqamlar (risk, qərar) yenə də əhatə olunmalıdır.</p>
+<h2 id="klinik-müsahibənin-strukturu" class="">Klinik müsahibənin strukturu</h2>
+<h3 id="hazırlıq" class="">Hazırlıq</h3>
+<ul>
+<li>Sənədlərlə tanışlıq (göndərmə, əvvəlki rekordlar)</li>
+<li>Otaq: sakit, qapalı, təhlükəsiz (panik düyməsi əgər mümkündür)</li>
+<li>Vaxt: kifayət qədər ehtiyat saxla</li>
+<li>Tək təklif: xəstəni tək görüş; əgər tələb olunarsa müşaiyətçi (məcburi hospitallaşdırma şübhəsində – bax Bölmə &quot;Hüquqi-etik aspektlər&quot;)</li>
+</ul>
+<h3 id="açılış" class="">Açılış</h3>
+<p><strong>Salam, özünüzü təqdim edin, məqsədi izah edin:</strong></p>
+<p>&gt; &quot;Salam, mən doktor [ad], psixiatram. Bu görüşün məqsədi sizin halınızı anlamaq və sizə kömək etmək yolunu birgə müəyyən etməkdir. Müsahibəmiz təxminən 45 dəqiqə çəkə bilər.&quot;</p>
+<p><strong>Məxfilik haqqında məlumat:</strong></p>
+<p>&gt; &quot;Söhbətimiz məxfidir. Lakin sizə və ya başqasına ciddi təhlükə olan halda, bu məlumatı uyğun şəxslərə ötürmək məcburiyyətində qalıram – bu hüquqi tələbdir. Bunu sizinlə birlikdə müzakirə edəcəyik əgər lazım olarsa.&quot;</p>
+<p><strong>Açıq sual:</strong></p>
+<p>&gt; &quot;Sizi narahat edən nədir? Bura nə üçün gəldiyinizi mənə söyləyə bilərsinizmi?&quot;</p>
+<h3 id="şikayətlər-və-hazırki-xəstəliyin-tarixi" class="">Şikayətlər və hazırki xəstəliyin tarixi</h3>
+<ul>
+<li><strong>Şikayətlər</strong> – pasiyentin öz sözləri ilə (mümkün olduqda sitat)</li>
+<li><strong>Başlanğıc</strong> – nə vaxt, hansı şəraitdə başladı?</li>
+<li><strong>Gediş</strong> – simptomların dəyişməsi (yüngülləşmə, ağırlaşma, dalğavari)</li>
+<li><strong>Tetikləyici amillər</strong> – stresslər, itkilər, dərmanlar, maddələr</li>
+<li><strong>Funksional təsir</strong> – iş, münasibət, gündəlik fəaliyyətə təsiri</li>
+<li><strong>Əvvəlki müalicə cəhdləri</strong> – nə qəbul etmiş, nə effektiv olmuş</li>
+</ul>
+<h3 id="psixiatrik-anamnez" class="">Psixiatrik anamnez</h3>
+<ul>
+<li>Əvvəlki diaqnozlar</li>
+<li>Əvvəlki hospitallaşdırmalar (vaxt, müəssisə, müddət)</li>
+<li>Əvvəlki dərmanlar (effektivlik, yan təsirlər)</li>
+<li>Əvvəlki psixoterapiya</li>
+<li>Suisid cəhdləri tarixi (nə vaxt, hansı vasitə, niyyətin ciddiliyi)</li>
+</ul>
+<h3 id="tibbi-anamnez" class="">Tibbi anamnez</h3>
+<ul>
+<li>Xronik xəstəliklər</li>
+<li>Cərrahi müdaxilələr</li>
+<li>Kraniyo-serebral travmalar (şüur itkisi ilə)</li>
+<li>Epileptik tutmalar</li>
+<li>Endokrin pozuntular (xüsusən tireoid)</li>
+<li>Hazırda qəbul edilən dərmanlar (psixotrop yan təsirlər!)</li>
+<li>Allergiyalar</li>
+</ul>
+<h3 id="maddə-istifadəsi-anamnezi" class="">Maddə istifadəsi anamnezi</h3>
+<ul>
+<li>Alkoqol – tezlik, miqdar, abstinent simptomlar</li>
+<li>Tütün – siqaret, gündəlik miqdar, başlanma yaşı</li>
+<li>Reseptli/reseptsiz dərmanlar (xüsusən benzodiazepinlər, opioidlər)</li>
+<li>Qadağan olunmuş maddələr (kannabis, opioidlər, stimulyantlar, halusinogenlər)</li>
+<li>Davranış asılılıqları (qumar, oyun, internet, alış-veriş)</li>
+</ul>
+<h3 id="ailə-anamnezi" class="">Ailə anamnezi</h3>
+<ul>
+<li>Birinci və ikinci dərəcəli qohumlarda psixi pozuntular</li>
+<li>Suisidlər</li>
+<li>Maddə istifadəsi</li>
+<li>Xronik xəstəliklər (genetik komponent ehtimal)</li>
+</ul>
+<h3 id="şəxsi-və-sosial-anamnez" class="">Şəxsi və sosial anamnez</h3>
+<ul>
+<li>Doğum və erkən inkişaf</li>
+<li>Uşaqlıq mühiti, ailə dinamikası</li>
+<li>Travmatik təcrübələr (zorakılıq, abuza, itki)</li>
+<li>Təhsil</li>
+<li>İş tarixçəsi</li>
+<li>Münasibət tarixçəsi, ailə vəziyyəti, uşaqlar</li>
+<li>Sosial dəstək sistemi</li>
+<li>Hüquqi tarixçə (cinayət təqibi, məhkumluq)</li>
+<li>Hərbi xidmət (xüsusən döyüş təcrübəsi varsa)</li>
+<li>Cinsi və reproduktiv tarix</li>
+</ul>
+<h3 id="şəxsiyyət-premorbid" class="">Şəxsiyyət (premorbid)</h3>
+<ul>
+<li>Xarakter xüsusiyyətləri xəstəlikdən əvvəl</li>
+<li>Münasibət qurma tərzi</li>
+<li>Stress yaşlama, davranış</li>
+</ul>
+<h2 id="psixi-statusun-qiymətləndirilməsi" class="">Psixi statusun qiymətləndirilməsi</h2>
+<p>Psixi statusun müayinəsi (Mental Status Examination, MSE) – psixiatriyanın ən vacib klinik aləti. Müsahibə zamanı görülən və eşidilənlərin sistematik qeydiyyatı.</p>
+<h3 id="standart-psixi-status-strukturu" class="">Standart psixi status strukturu</h3>
+<p><strong>1. Görünüş və davranış (appearance and behaviour)</strong></p>
+<ul>
+<li>Yaşı, görünüşü</li>
+<li>Geyim, gigiyena, baxım</li>
+<li>Mimika, jest, davranış</li>
+<li>Müsahibəyə münasibət (əməkdaşlıq, müqavimət, agressivlik)</li>
+<li>Göz təması</li>
+<li>Psixomotor aktivlik</li>
+</ul>
+<p><strong>2. Nitq (speech)</strong></p>
+<ul>
+<li>Sürət (sürətli, normal, yavaş)</li>
+<li>Həcm (səs gücü)</li>
+<li>Kəmiyyət (çox, az, mutizm)</li>
+<li>Aydınlığı, məntiqi</li>
+</ul>
+<p><strong>3. Əhval və affekt (mood and affect)</strong></p>
+<ul>
+<li><strong>Əhval</strong> – pasiyentin söylədiyi davamlı emosional vəziyyət (&quot;özünüzü necə hiss edirsiniz?&quot;)</li>
+<li><strong>Affekt</strong> – müsahibə zamanı görünən emosional ifadə</li>
+<li>Affekt diapazonu (geniş, daralmış, yastı)</li>
+<li>Affektin əhval və mövzuya uyğunluğu</li>
+</ul>
+<p><strong>4. Düşüncə (thought)</strong></p>
+<ul>
+<li><strong>Forma</strong> – tempi, ardıcıllıq, bloklanma, tangensiallik, sirkumstansiallik</li>
+<li><strong>Məzmun</strong> – sayıqlama, ilişən fikirlər, obsessiyalar, fobiyalar, suisidal/homisidal idealar</li>
+</ul>
+<p><strong>5. Qavrayış (perception)</strong></p>
+<ul>
+<li>halusinasiyalar (modallıq, məzmun)</li>
+<li>İllüziyalar</li>
+<li>Depersonalizasiya, dereallaşma</li>
+</ul>
+<p><strong>6. İdrak (cognition)</strong></p>
+<ul>
+<li>Şüurun aydınlığı</li>
+<li>Oryentasiya (vaxt, məkan, şəxsiyyət)</li>
+<li>Diqqət, konsentrasiya</li>
+<li>Yaddaş (qısa, uzun, immediat)</li>
+<li>Mücərrəd düşüncə (atalar sözünün izahı, oxşarlıq)</li>
+<li>İcra funksiyaları</li>
+<li>Hesab</li>
+<li>Ümumi məlumat səviyyəsi</li>
+</ul>
+<p><strong>7. İçəribaxış və mühakimə (insight and judgement)</strong></p>
+<ul>
+<li><strong>İçəribaxış (insight)</strong> – pasiyentin xəstəliyini dərk etməsi (var? yox? qismən?)</li>
+<li><strong>Mühakimə (judgement)</strong> – qərar qəbul etmə qabiliyyəti (məs., &quot;yanan binadan necə çıxarsınız?&quot;)</li>
+</ul>
+<p><strong>8. Risk qiymətləndirməsi</strong></p>
+<ul>
+<li><strong>Suisid riski</strong> – aşağıda ayrıca</li>
+<li><strong>Heteroagressiv risk</strong> – başqalarına zərər niyyəti</li>
+<li><strong>Özünə qulluq səviyyəsi</strong> – tək yaşaya bilmə qabiliyyəti</li>
+</ul>
+<h3 id="psixi-status-protokol-nümunəsi" class="">Psixi status protokol nümunəsi</h3>
+<pre><code>PSİXİ STATUS
+
+Görünüş və davranış: 32 yaşlı kişi, yaşına uyğun, gigiyena saxlanılır.
+Geyim mövsüməuyğundur. Müsahibəyə əməkdaşlıq edir, lakin ilkin
+həyəcanlı görünür. Göz təması azalmışdır. Hərəki aktivlik
+yüngülcə yüksəlmiş.
+
+Nitq: Sürət bir qədər yüksək, həcm normal, miqdar artmış.
+Aydındır, lakin bəzən mövzudan yayınır.
+
+Əhval: &quot;Özümü narahat hiss edirəm, son iki həftədir uyuya
+bilmirəm&quot; (sitat).
+
+Affekt: Diapazon daralmış, anksioz, mövzuya uyğun. Bəzən
+disforik komponentlər.
+
+Düşüncə forması: Bəzən tangensial, lakin əsas məzmuna qayıdır.
+Bloklanma yoxdur.
+
+Düşüncə məzmunu: Davamlı narahatlıq işi və maliyyə vəziyyətinə
+dair. Sayıqlama yoxdur. Suisidal idea yoxdur. Hetero-aqressiv
+idea yoxdur.
+
+Qavrayış: halusinasiyalar inkar olunur. Depersonalizasiya,
+dereallaşma yoxdur.
+
+İdrak: Şüur aydındır. Vaxt, məkan, şəxsiyyət üzrə düzgün
+oryentasiyalı. Diqqət konsentrasiyasında orta dərəcədə çətinlik
+(&quot;dünya geri&quot; tapşırığında 2 səhv). Yaddaş klinik olaraq
+zərərsizdir. Mücərrəd düşüncə saxlanılır.
+
+İçəribaxış: Var – simptomlarını xəstəlik kimi qəbul edir,
+müalicəyə motivasiyalıdır.
+
+Mühakimə: Saxlanılır.
+
+Risk qiymətləndirməsi: Suisid riski aşağı (suisidal idea yox,
+plan yox, əvvəlki cəhd yox, dəstək sistemi var).
+Heteroaqressiv risk yoxdur. Özünə qulluq səviyyəsi tamdır.</code></pre>
+<h2 id="suisid-riskinin-qiymətləndirilməsi" class="">Suisid riskinin qiymətləndirilməsi</h2>
+<p>Hər psixiatrik müsahibədə <strong>mütləq</strong> edilməlidir. Tədqiqatlar göstərir ki, &quot;suisid haqqında soruşmaq onu provoke etmir&quot; – əksinə, soruşmamaq imkansız edir.</p>
+<h3 id="açıq-lakin-pillələrlə-soruşmaq" class="">Açıq, lakin pillələrlə soruşmaq</h3>
+<p>- &quot;Nə qədər tez-tez bu fikirlər gəlir?&quot;</p>
+<p>- &quot;Necə etmək haqqında düşünürsünüzmü?&quot; (plan)</p>
+<p>- &quot;Vasitələr əldədir?&quot; (vasitə əlçatanlığı)</p>
+<p>- &quot;Bunu nə vaxtsa cəhd etmisinizmi?&quot; (əvvəlki cəhdlər)</p>
+<p>- &quot;Sizi indi saxlayan nədir?&quot; (qoruyucu amillər)</p>
+<ol>
+<li><strong>&quot;Bəzən özünüzü çox pis hiss edirsinizmi? Yaşamağın mənası olmadığını düşünürsünüzmü?&quot;</strong> (passiv suisidal idea)</li>
+<li><strong>&quot;Özünüzə zərər vermək və ya öldürmək haqqında düşünürsünüzmü?&quot;</strong> (aktiv suisidal idea)</li>
+<li><strong>Müsbət cavabda:</strong></li>
+</ol>
+<h3 id="suisid-riski-amilləri" class="">Suisid riski amilləri</h3>
+<p><strong>Statik (dəyişməyən):</strong></p>
+<ul>
+<li>Əvvəlki suisid cəhdi (ən güclü prediktor – həyat boyu suisid riskini 30-40 dəfə artırır)</li>
+<li>Ailədə suisid tarixi</li>
+<li>Cins (kişi – tamamlanmış suisid, qadın – cəhd)</li>
+<li>Yaş (yaşlı kişilər ən yüksək risk; yeniyetmələr ikinci pik)</li>
+<li>Hüquqi tarix</li>
+<li>Travmatik uşaqlıq</li>
+</ul>
+<p><strong>Dinamik (dəyişən):</strong></p>
+<ul>
+<li>Aktiv suisidal idea, plan, niyyət</li>
+<li>Vasitə əlçatanlığı (silah, zəhər)</li>
+<li>Yaxın itki (tərəf, iş, sağlamlıq)</li>
+<li>İzolyasiya</li>
+<li>Ümidsizlik (Beck ümidsizlik şkalası ilə ölçülə bilər)</li>
+<li>Aktif psixiatrik pozuntu (depresiya, psixoz, BPD, maddə istifadəsi)</li>
+<li>Aktiv intoksikasiya</li>
+<li>Yuxu pozuntusu (xronik)</li>
+<li>Təcrid</li>
+</ul>
+<p><strong>Qoruyucu amillər:</strong></p>
+<ul>
+<li>Sosial dəstək</li>
+<li>Ailə öhdəlikləri (uşaqlar)</li>
+<li>Dini, mənəvi inanc</li>
+<li>Müalicə əlaqəsi</li>
+<li>Gələcək planları, ümidlər</li>
+</ul>
+<h3 id="risk-dərəcələri-və-klinik-qərarlar" class="">Risk dərəcələri və klinik qərarlar</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Risk</th><th>Göstəricilər</th><th>Qərar</th></tr>
+<tr><td><strong>Aşağı</strong></td><td>Passiv idea, plan yox, vasitə yox, qoruyucu amillər çox</td><td>Ambulator izləmə, təhlükəsizlik planı</td></tr>
+<tr><td><strong>Orta</strong></td><td>Aktiv idea, lakin plan və niyyət konkretlənməmiş</td><td>Sıx ambulator izləmə (24-72 saatda təkrar görüş), ailə cəlb edilməsi, vasitələrin uzaqlaşdırılması, böhran nömrəsi</td></tr>
+<tr><td><strong>Yüksək</strong></td><td>Aktiv idea + plan + niyyət; vasitə əlçatandır; əvvəlki cəhd; aktiv psixoz/dərin depresiya</td><td><strong>Hospitallaşdırma</strong> (könüllü və ya qeyri-könüllü, əgər könüllü razılıq yoxdursa)</td></tr>
+<tr><td><strong>Təcili</strong></td><td>Aktiv hazırlıq, açıq niyyət bəyanı</td><td><strong>Təcili hospitallaşdırma</strong>, polis cəlb edilməsi mümkün</td></tr>
+</table></div>
+<h3 id="c-ssrs-şkalası" class="">C-SSRS şkalası</h3>
+<p>Kolumbiya Suisid Şiddətliliyi Reytinq Şkalası (bax Əlavə) – sübut olunmuş, beynəlxalq olaraq tövsiyə olunan alət. 6 sual, 5 dəqiqə.</p>
+<h3 id="təhlükəsizlik-planı-safety-plan" class="">Təhlükəsizlik planı (safety plan)</h3>
+<p>Aşağı-orta riskdə pasiyentlə birgə hazırlanır:</p>
+<ol>
+<li>Erkən xəbərdarlıq əlamətləri (məs., uyumsuzluq, izolyasiya, əhval düşməsi)</li>
+<li>Daxili koping strategiyaları (məs., gəzinti, musiqi, fiziki məşq)</li>
+<li>Sosial yayındırma (kimi və harada görmək olar)</li>
+<li>Dəstək göstərə bilən şəxslər (kim, telefon nömrəsi)</li>
+<li>Klinik yardım nömrələri (klinika, böhran xətti)</li>
+<li>Mühitin təhlükəsizləşdirilməsi (vasitələrin uzaqlaşdırılması, məs., silah qohuma verilir)</li>
+</ol>
+<h2 id="heteroagressiv-başqalarına-zərər-riskin-qiymətləndirilməsi" class="">Heteroagressiv (başqalarına zərər) riskin qiymətləndirilməsi</h2>
+<p>Müsahibədə soruşulmalıdır:</p>
+<p>&gt; &quot;Başqasına zərər vermək və ya öldürmək haqqında düşünürsünüzmü?&quot;</p>
+<p>Müsbət cavabda:</p>
+<ul>
+<li>Konkret hədəf var?</li>
+<li>Plan var?</li>
+<li>Vasitə əlçatandır?</li>
+<li>Əvvəlki aqressiv davranış?</li>
+</ul>
+<p><strong>Yüksək risk göstəriciləri:</strong></p>
+<ul>
+<li>Konkret qurban + plan + vasitə</li>
+<li>Aktiv psixotik simptomlar (xüsusilə imperativ halusinasiyalar, persekutiv sayıqlama)</li>
+<li>Antisosial şəxsiyyət pozuntusu</li>
+<li>Aktiv intoksikasiya</li>
+<li>Əvvəlki zorakılıq tarixi</li>
+</ul>
+<p>Yüksək riskdə hospitallaşdırma və potensial qurbanın xəbərdar edilməsi (Tarasoff prinsipi – beynəlxalq standart).</p>
+<p>\newpage</p>
+<h1 id="hüquqi̇-eti̇k-aspektlər" class="h-section">HÜQUQİ-ETİK ASPEKTLƏR</h1>
+<h2 id="azərbaycan-psixiatrik-qanunvericiliyinin-əsasları" class="">Azərbaycan psixiatrik qanunvericiliyinin əsasları</h2>
+<p>Azərbaycan Respublikasında psixiatriya yardımı aşağıdakı qanunlarla tənzimlənir:</p>
+<ol>
+<li><strong>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının 12 iyun 2001-ci il tarixli Qanunu</strong> (sonrakı dəyişikliklərlə, son redaksiyaya 2024-cü il)</li>
+<li><strong>&quot;Psixoloji yardım haqqında&quot; Azərbaycan Respublikasının Qanunu</strong></li>
+<li><strong>&quot;Əhalinin sağlamlığının qorunması haqqında&quot; Azərbaycan Respublikasının 26 iyun 1997-ci il tarixli Qanunu</strong></li>
+<li><strong>Azərbaycan Respublikasının Konstitusiyası</strong> (xüsusilə 28-ci maddə – azadlıq hüququ)</li>
+<li><strong>Azərbaycan Respublikasının Mülki-Prosessual Məcəlləsi</strong> (qeyri-könüllü hospitallaşdırma proseduru)</li>
+<li><strong>Azərbaycan Respublikasının Cinayət Məcəlləsi və Cinayət-Prosessual Məcəlləsi</strong> (məcburi tibbi tədbirlər)</li>
+</ol>
+<h2 id="psixiatriya-yardımının-növləri" class="">Psixiatriya yardımının növləri</h2>
+<p>&quot;Psixiatriya yardımı haqqında&quot; Qanunun 5-ci maddəsinə əsasən psixiatriya yardımı <strong>üç növdə</strong> göstərilir:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Növ</th><th>Tərif</th><th>Hüquqi əsas</th></tr>
+<tr><td><strong>Könüllü</strong></td><td>Şəxsin özü könüllü qaydada müraciət edir</td><td>Maddə 5.1, məlumatlandırılmış razılıq</td></tr>
+<tr><td><strong>Qeyri-könüllü</strong></td><td>Cinayət törətməmiş ağır psixi pozuntusu olan şəxsin iradəsindən asılı olmayaraq məhkəmənin qərarı əsasında müayinə və müalicəsi</td><td>Maddə 11, MPM</td></tr>
+<tr><td><strong>Məcburi (tibbi xarakterli məcburi tədbirlər)</strong></td><td>Anlaqsız vəziyyətdə cinayət törətmiş şəxslərin məhkəmənin qərarı əsasında müayinə və müalicəsi</td><td>Maddə 12, CM, CPM</td></tr>
+</table></div>
+<h2 id="könüllü-psixiatriya-yardımı" class="">Könüllü psixiatriya yardımı</h2>
+<h3 id="məlumatlandırılmış-razılıq" class="">Məlumatlandırılmış razılıq</h3>
+<p>Qanunun 1.0.6-cı maddəsinə əsasən <strong>məlumatlandırılmış razılıq</strong> – pasiyentin və ya onun qanuni nümayəndəsinin müalicə haqqında könüllü qərar qəbul etdiyini, <strong>müalicənin məqsədləri və faydası, müalicə tədbirlərinin həcmi, müddəti və metodu, ehtimal olunan risklər, həmçinin müalicədən imtina və onun dayandırılması imkanı</strong> barədə ona təqdim edilmiş məlumatı başa düşdüyünü bildirməsidir.</p>
+<p><strong>Məlumatlandırılmış razılıq tələbləri:</strong></p>
+<ul>
+<li>Yazılı şəkildə (xəstə sənədinə daxil edilir)</li>
+<li>Dolu məlumat verilməlidir (faydalar, risklər, alternativlər, imtina hüququ)</li>
+<li>Pasiyent dərk etməlidir (komorbid koqnitiv pozuntu, intoksikasiya zamanı problemli)</li>
+<li>Sərbəst – təzyiq olmadan</li>
+<li>16 yaşdan aşağı pasiyentlər üçün – qanuni nümayəndənin razılığı</li>
+</ul>
+<h3 id="pasiyentin-hüquqları-qanunun-23-cü-maddəsi" class="">Pasiyentin hüquqları (Qanunun 23-cü maddəsi)</h3>
+<ul>
+<li>Sağlamlıq vəziyyəti, müalicə haqqında məlumat almaq</li>
+<li>Yaxın qohumları, ya da seçimlə digər şəxslər ilə görüş, telefon əlaqəsi</li>
+<li>Pul və digər maddi vəsaitlərdən sərbəst istifadə etmək</li>
+<li>Korrespondensiya hüququ</li>
+<li>Dini ayinlərin sərbəst icrası</li>
+<li>Şikayət vermək (Ombudsman daxil olmaqla)</li>
+</ul>
+<h2 id="qeyri-könüllü-hospitallaşdırma" class="">Qeyri-könüllü hospitallaşdırma</h2>
+<h3 id="hüquqi-əsaslar" class="">Hüquqi əsaslar</h3>
+<p>Qanunun <strong>11-ci maddəsi</strong> (qeyri-könüllü hospitallaşdırma əsasları):</p>
+<p>&gt; <em>Psixi pozuntunun xarakteri müayinə və müalicənin yalnız psixiatriya stasionarında həyata keçirilməsini tələb edərsə, psixiatriya stasionarında qeyri-könüllü müalicə aşağıdakı əsaslar olduqda təyin edilir:</em></p>
+<p>&gt;</p>
+<p>&gt; <em>11.1.1. psixi pozuntusu olan şəxsin bilavasitə özü və (və ya) ətrafdakılar üçün təhlükəli olması;</em></p>
+<p>&gt;</p>
+<p>&gt; <em>11.1.2. şəxsin özünün əsas həyati ehtiyaclarını ödəyə bilməməsi (qulluq səviyyəsində).</em></p>
+<p>Sadə ifadə ilə: <strong>&quot;təhlükə, çarəsizlik, ya da müalicəsizlikdə vəziyyətin ağırlaşma riski&quot;</strong> üç hüquqi əsasdır.</p>
+<h3 id="qeyri-könüllü-hospitallaşdırma-proseduru" class="">Qeyri-könüllü hospitallaşdırma proseduru</h3>
+<p><strong>Mərhələ 1: İlkin qiymətləndirmə</strong></p>
+<p>Həkim-psixiatr (təcili psixiatrik yardım brigadası, qəbul şöbəsi) pasiyenti müayinə edir və qeyri-könüllü hospitallaşdırma əsaslarını müəyyən edir.</p>
+<p><strong>Mərhələ 2: Stasionara yerləşdirmə (təcili)</strong></p>
+<p>Hospitallaşdırma faktiki olaraq həyata keçirilir. <strong>48 saat ərzində</strong> həkim-psixiatr komissiyası (3 həkimdən az olmayaraq) qiymətləndirmə aparmalıdır.</p>
+<p><strong>Mərhələ 3: Komissiyanın qərarı</strong></p>
+<p>Komissiya qeyri-könüllü hospitallaşdırmanın davam etdirilməsinin lazım olduğu qənaətinə gəlsə, <strong>24 saat ərzində məhkəməyə müraciət edilir</strong>.</p>
+<p><strong>Mərhələ 4: Məhkəmə qərarı</strong></p>
+<p>Məhkəmə <strong>5 gün ərzində</strong> (Mülki-Prosessual Məcəlləyə əsasən) işə baxır. Pasiyent (sağlamlıq vəziyyəti imkan verirsə), qanuni nümayəndə, prokuror, həkim-psixiatr iştirak edir. Məhkəmə qeyri-könüllü hospitallaşdırmanın davam etdirilməsi və ya dayandırılması haqqında qərar qəbul edir.</p>
+<p><strong>Mərhələ 5: Dövri qiymətləndirmə</strong></p>
+<p>Qeyri-könüllü hospitallaşdırma müddətində pasiyent <strong>ilk altı ay müddətində ayda bir dəfədən az olmayaraq</strong> həkim-psixiatr komissiyasında baxışdan keçirilməlidir (Maddə 28.2).</p>
+<h3 id="klinik-göstərişlər" class="">Klinik göstərişlər</h3>
+<p><strong>Mütləq qeyri-könüllü hospitallaşdırma göstərişləri:</strong></p>
+<ul>
+<li>Aktiv suisidal davranış (cəhd və ya konkret plan + vasitə)</li>
+<li>Aktiv homisidal niyyət (konkret hədəf + plan + vasitə)</li>
+<li>Ağır psixotik dezorqanizasiya (özünə qulluq mümkün deyil)</li>
+<li>İmperativ halusinasiyalar (zərərli niyyətli)</li>
+<li>Ağır maniya (qulluq səviyyəsində məhdudiyyət, zərərli risklər)</li>
+</ul>
+<p><strong>Nisbi göstərişlər (klinik mühakimə):</strong></p>
+<ul>
+<li>Ağır depresiya psixotik simptomlarla</li>
+<li>Nevrotik anoreksiya ağır cismani vəziyyətdə (BMI &lt;14)</li>
+<li>Qarışıq affektiv epizod</li>
+<li>Aqressiv davranış psixoz fonunda</li>
+</ul>
+<h2 id="məcburi-tibbi-tədbirlər" class="">Məcburi tibbi tədbirlər</h2>
+<p>Qanunun <strong>12-ci maddəsi</strong> məcburi tibbi tədbirləri tənzimləyir:</p>
+<ul>
+<li>Tətbiq əsası: <strong>anlaqsız vəziyyətdə cinayət törətmiş</strong> və ya cinayət törətdikdən sonra psixi xəstəliyə tutulmuş şəxslər</li>
+<li>Yalnız <strong>məhkəmənin qərarı əsasında</strong></li>
+<li>Cinayət Məcəlləsinin 21, 93-99-cu maddələri və CPM-in 468-487-ci maddələri ilə müəyyən olunur</li>
+<li>İxtisaslaşdırılmış psixiatriya stasionarlarında həyata keçirilir</li>
+</ul>
+<p><strong>Növləri (CPM-ə əsasən):</strong></p>
+<ol>
+<li>Ümumi tipli psixiatriya stasionarlarında məcburi müalicə</li>
+<li>İxtisaslaşdırılmış psixiatriya stasionarlarında məcburi müalicə</li>
+<li>İxtisaslaşdırılmış psixiatriya stasionarlarında intensiv müşahidə altında məcburi müalicə</li>
+</ol>
+<h2 id="klinik-psixoloqun-hüquqi-vəziyyəti" class="">Klinik psixoloqun hüquqi vəziyyəti</h2>
+<p>&quot;<strong>Psixoloji yardım haqqında</strong>&quot; Azərbaycan Respublikasının Qanununa əsasən klinik psixoloqun fəaliyyət dairəsi və hədləri:</p>
+<h3 id="psixoloqun-fəaliyyət-sahəsi" class="">Psixoloqun fəaliyyət sahəsi</h3>
+<ul>
+<li><strong>Psixoloji yardım göstərmək hüququ</strong> – psixoloji məsləhət, psixodiaqnostika, psixokorrelasiya, psixoterapevtik müdaxilələr (uyğun ixtisası olduqda)</li>
+<li><strong>&quot;Psixoloq&quot;, &quot;psixoloji&quot;, &quot;psixoanaliz&quot;, &quot;psixodiaqnostika&quot;, &quot;psixoterapiya&quot; sözlərini</strong> yalnız Qanunun şərtlərinə uyğun olaraq psixoloji yardım göstərmək hüququ olan şəxslər istifadə edə bilər (3.2-ci maddə).</li>
+</ul>
+<h3 id="psixoloqun-hədləri" class="">Psixoloqun hədləri</h3>
+<p><strong>Psixoloqun səlahiyyətindən kənarda:</strong></p>
+<ul>
+<li>Psixiatrik diaqnoz qoymaq (yalnız həkim-psixiatr)</li>
+<li>Dərman təyin etmək (yalnız həkim)</li>
+<li>Qeyri-könüllü hospitallaşdırma qərarı vermək</li>
+<li>Tibbi rəylər (məhkəmə-psixiatrik ekspertiza və s.) vermək (yalnız həkim-psixiatr)</li>
+</ul>
+<h3 id="suisidal-pasiyent-klinik-psixoloqun-yanında-addımlar" class="">Suisidal pasiyent klinik psixoloqun yanında – addımlar</h3>
+<p><strong>Pasiyent suisidal idea bəyan etdikdə</strong>, klinik psixoloq aşağıdakı addımları atmalıdır:</p>
+<ol>
+<li><strong>Risk qiymətləndirməsi</strong> – C-SSRS və ya klinik müsahibə (yuxarıdakı bölməyə bax)</li>
+<li><strong>Aşağı-orta risk</strong> – təhlükəsizlik planı + sıx izləmə + həkim-psixiatra yönəltmə</li>
+<li><strong>Yüksək risk</strong> – pasiyenti tək buraxmamaq, dərhal həkim-psixiatra və ya təcili psixiatrik xidmətə müraciət (Bakıda Psixi Sağlamlıq Mərkəzi: 102 və ya 103 vasitəsilə)</li>
+<li><strong>Sənədləşmə</strong> – qiymətləndirmə, qərar, atılan addımlar yazılı qeyd edilməlidir</li>
+<li><strong>Məxfilik məsələsi</strong> – həyat təhlükəsi olduqda məxfilik məhdudlaşır (Qanunun ümumi prinsipləri)</li>
+</ol>
+<p><strong>Sənəd nümunəsi: Psixoloq tərəfindən həkim-psixiatra yönəltmə məktubu</strong></p>
+<pre><code>[Klinikanın blank-ı]
+Tarix: ___________
+
+Hörmətli həkim-psixiatr,
+
+Mənim psixoloji məsləhətim altında olan pasiyent
+[ad, soyad, ata adı], doğum tarixi __________,
+[tarix] tarixində mənə müraciət etmiş və müsahibə zamanı
+aktiv suisidal idea bəyan etmişdir.
+
+Klinik tablo:
+- Suisidal idea: [aktiv/passiv, plan var/yox, vasitə əlçatandır/yox]
+- Əhval: [təsvir]
+- Anamnezdə suisid cəhdi: [var/yox, təfsilatları]
+- Psixiatrik tarix: [əvvəlki diaqnozlar, dərmanlar]
+
+Yuxarıda qeyd olunan göstəricilər əsasında pasiyentin təcili
+psixiatrik qiymətləndirməsinə ehtiyac olduğunu qiymətləndirirəm.
+
+Sizdən pasiyentin müayinəsini və müvafiq qərarın qəbul edilməsini
+xahiş edirəm.
+
+Hörmətlə,
+[Psixoloqun ad, soyadı]
+[İxtisas, sertifikat nömrəsi]
+[İmza, möhür]
+[Əlaqə nömrəsi]</code></pre>
+<h3 id="yetkinlik-yaşına-çatmamış-pasiyent" class="">Yetkinlik yaşına çatmamış pasiyent</h3>
+<p><strong>16 yaşdan aşağı</strong> pasiyentlərlə işləyərkən:</p>
+<ul>
+<li>Psixoloji yardım yalnız qanuni nümayəndənin razılığı ilə</li>
+<li>Lakin uşaq zorakılığı və ya suisidal davranış aşkar edildikdə – qanunla nəzərdə tutulmuş hallarda məlumat verilməlidir (Uşaqların Hüquqları haqqında Qanun, valideyn və ya müvafiq orqanlar)</li>
+<li>Uşaq psixoterapiyasında məxfiliyin xüsusi qaydaları – əvvəlcədən razılaşdırılır</li>
+</ul>
+<h2 id="məxfilik-və-onun-hədləri" class="">Məxfilik və onun hədləri</h2>
+<h3 id="ümumi-prinsip" class="">Ümumi prinsip</h3>
+<p>Pasiyent-həkim münasibətində alınan informasiya <strong>məxfidir</strong>. Bu, &quot;Əhalinin sağlamlığının qorunması haqqında&quot; Qanunda və &quot;Psixiatriya yardımı haqqında&quot; Qanunda təsbit edilmişdir.</p>
+<h3 id="məxfiliyin-pozulması-icazə-verilən-hallar" class="">Məxfiliyin pozulması icazə verilən hallar</h3>
+<ul>
+<li><strong>Pasiyentin yazılı razılığı ilə</strong></li>
+<li><strong>Hüquq-mühafizə orqanlarının yazılı sorğusu</strong> (cinayət istintaqı çərçivəsində)</li>
+<li><strong>Məhkəmə qərarı</strong></li>
+<li><strong>Pasiyentin və ya başqalarının həyatı və sağlamlığı təhlükəsi olduqda</strong> (Tarasoff prinsipi)</li>
+<li><strong>Yetkinlik yaşına çatmamış pasiyentlərdə valideynlərə (qanun çərçivəsində)</strong></li>
+<li><strong>Kollegial konsultasiya</strong> (multidisiplinar komanda daxilində)</li>
+</ul>
+<h3 id="tarasoff-hüququ" class="">Tarasoff hüququ</h3>
+<p>Beynəlxalq standart: əgər pasiyent konkret bir şəxsə qarşı zərər niyyətini bəyan edirsə, klinisistin <strong>bu şəxsi xəbərdar etmək vəzifəsi</strong> vardır. Azərbaycan qanunvericiliyində bu birbaşa təsbit edilməsə də, ümumi prinsiplər (həyat hüququ, ictimai təhlükəsizlik) bunu nəzərdə tutur.</p>
+<h2 id="yetkinlik-yaşına-çatmamış-pasiyentlər" class="">Yetkinlik yaşına çatmamış pasiyentlər</h2>
+<h3 id="yaş-hədləri" class="">Yaş hədləri</h3>
+<ul>
+<li><strong>15 yaşdan aşağı:</strong> psixiatriya yardımı <strong>valideynin (qanuni nümayəndənin) razılığı</strong> ilə (Maddə 4-ə əsasən)</li>
+<li><strong>15 yaşdan yuxarı:</strong> öz razılığı ilə (lakin valideynin məlumatlandırılması ümumi tövsiyə olunur)</li>
+<li><strong>18 yaşdan yuxarı:</strong> tam müstəqil</li>
+</ul>
+<h3 id="uşaq-qoruma-protokolları" class="">Uşaq qoruma protokolları</h3>
+<p>Uşaq zorakılığı (cinsi, fiziki, psixoloji), laqeydlik və ya FDIA (faktitioz pozuntu başqasında) şübhəsində klinisistin <strong>xəbər vermək vəzifəsi</strong> vardır. Ünvanlar:</p>
+<ul>
+<li>Sosial Xidmətlər Agentliyi</li>
+<li>Uşaqların Hüquqları üzrə Komissiya</li>
+<li>Polis (təhlükəli vəziyyətlərdə)</li>
+</ul>
+<h2 id="aqressiv-pasiyent-və-təhlükəsizlik-tədbirləri" class="">Aqressiv pasiyent və təhlükəsizlik tədbirləri</h2>
+<h3 id="hüquqi-çərçivə" class="">Hüquqi çərçivə</h3>
+<p>Qanunun 37.4-cü maddəsi <strong>xüsusi tədbirlərdən istifadəni</strong> tənzimləyir:</p>
+<p>&gt; <em>Psixiatriya yardımı göstərən həkim-psixiatrların, digər mütəxəssislərin, orta və kiçik tibb işçilərinin təhlükəsizliyinin təmin edilməsi məqsədi ilə onlara xüsusi tədbirlərdən (psixi pozuntusu olan şəxsin fiziki məhdudlaşdırılması, onun müvəqqəti təcrid edilməsi, sakitləşdirici köynəklərin tətbiq edilməsi) istifadə etmək hüququ verilir.</em></p>
+<p>Tətbiq qaydaları:</p>
+<ul>
+<li>Yalnız həqiqi təhlükə olduqda</li>
+<li>Ən az məhdudlaşdırıcı vasitə</li>
+<li>Vaxtla məhdud</li>
+<li>Tibbi sənədlərdə qeyd</li>
+<li>Müəssisə müdiriyyətinə məlumat</li>
+</ul>
+<h3 id="de-eskalasiya-prinsipləri" class="">De-eskalasiya prinsipləri</h3>
+<p>Fiziki məhdudlaşdırmadan əvvəl:</p>
+<ol>
+<li>Sakit, dostcasına yanaşma</li>
+<li>Pasiyentin narahatlığını dinləmək</li>
+<li>Seçim təklifi (məs., &quot;Sakitləşmək üçün sakit bir otaqda oturmaq və ya dərman qəbul etmək?&quot;)</li>
+<li>Şifahi de-eskalasiya</li>
+<li>Yalnız uğursuz olduqda – farmakoloji və/və ya fiziki məhdudlaşdırma</li>
+</ol>
+<h3 id="farmakoloji-məhdudlaşdırma-təcili-sedasiya-ts" class="">Farmakoloji məhdudlaşdırma (təcili sedasiya, TS)</h3>
+<p>İlk seçim – pasiyentin razılığı ilə oral preparatlar:</p>
+<ul>
+<li>Lorazepam 1-2 mq po</li>
+<li>Olanzapin 5-10 mq po (oral disinteqrating tablet effektivdir)</li>
+<li>Risperidon 1-2 mq po</li>
+</ul>
+<p>Razılıq və ya əməkdaşlıq olmadıqda – əzələdaxili (im):</p>
+<ul>
+<li>Olanzapin im 10 mq + (lazımdırsa) lorazepam 2 mq im</li>
+<li>Haloperidol 5 mq im + lorazepam 2 mq im (klassik kombinasiya)</li>
+<li>Aripiprazol im 9.75 mq</li>
+</ul>
+<p><strong>Diqqət:</strong> Olanzapin im + benzodiazepin parenteral – kombinasiya respirator depressiyaya səbəb ola bilər. İki dərmanın arasında ən azı 1 saat fasilə.</p>
+<h2 id="sənəd-nümunələri" class="">Sənəd nümunələri</h2>
+<h3 id="qeyri-könüllü-hospitallaşdırmaya-yönəltmə-protokolu" class="">Qeyri-könüllü hospitallaşdırmaya yönəltmə protokolu</h3>
+<pre><code>QEYRİ-KÖNÜLLÜ HOSPİTALLAŞDIRMAYA YÖNƏLTMƏ
+Tarix: __________ Saat: __________
+
+Pasiyent haqqında məlumat:
+- Ad, soyad, ata adı: _____________________
+- Doğum tarixi: _____________________
+- Ünvan: _____________________
+- Şəxsiyyət vəsiqəsi/ID: _____________________
+
+Müsahibə şərtləri:
+- Yer: _____________________
+- Müraciət/yönəltmə mənbəyi: _____________________
+- Qanuni nümayəndə iştirak edib? Bəli/Xeyr; ad: _____________________
+
+Klinik tablo:
+[Şikayətlər, anamnez, psixi status təsviri]
+
+Diaqnoz (XBT-11/XBT-10): _____________________
+
+Qeyri-könüllü hospitallaşdırma əsası (&quot;Psixiatriya yardımı
+haqqında&quot; Qanunun 11-ci maddəsi):
+☐ 11.1.1 Pasiyent özü və/və ya ətrafdakılar üçün təhlükəlidir
+☐ 11.1.2 Pasiyent əsas həyati ehtiyaclarını ödəyə bilmir
+
+Konkret göstəricilər:
+[Suisid riski, homisidal idea, qulluq səviyyəsi, və s.]
+
+Qərar: Pasiyent qeyri-könüllü qaydada [müəssisə adı]
+psixiatriya stasionarına yerləşdirilir.
+
+Sonrakı addımlar:
+- 48 saat ərzində həkim-psixiatr komissiyası baxışı
+- 24 saat ərzində məhkəməyə müraciət (komissiya təsdiqlədikdə)
+
+Həkim-psixiatr: _____________________
+Sertifikat nömrəsi: _____________________
+İmza: _____________________
+Möhür: _____________________</code></pre>
+<h3 id="suisid-riskinin-təhlükəsizlik-planı-pasiyentlə-birgə" class="">Suisid riskinin təhlükəsizlik planı (pasiyentlə birgə)</h3>
+<pre><code>TƏHLÜKƏSİZLİK PLANI
+Pasiyent: _____________________  Tarix: _____________
+
+1. Erkən xəbərdarlıq əlamətləri (mənim üçün vacib siqnallar):
+   - _____________________
+   - _____________________
+   - _____________________
+
+2. Mənim daxili koping strategiyalarım (yalnız öz gücümlə nə edirəm):
+   - _____________________
+   - _____________________
+   - _____________________
+
+3. Məni yayındıracaq insanlar və yerlər:
+   - _____________________
+   - _____________________
+
+4. Kömək istəyə biləcəyim insanlar (ad, telefon):
+   - _____________________
+   - _____________________
+
+5. Klinik yardım (24 saat):
+   - Klinikam: _____________________ (telefon: ______)
+   - Bakı Psixi Sağlamlıq Mərkəzi (təcili): _____________
+   - Təcili yardım (Azərbaycan): 103
+   - Polis: 102
+
+6. Ev mühitimin təhlükəsizləşdirilməsi:
+   - Risk yaradan vasitələr: _____________________
+   - Onları uzaqlaşdırma planı: _____________________
+
+İmzalar:
+Pasiyent: _____________________
+Klinisist: _____________________</code></pre>
+<h2 id="etik-prinsiplər" class="">Etik prinsiplər</h2>
+<h3 id="beynəlxalq-prinsiplər-beynəlxalq-tibb-etikası-bəyannaməsi-üst-mədən-bə" class="">Beynəlxalq prinsiplər (Beynəlxalq Tibb Etikası Bəyannaməsi, ÜST, Mədən Bəyannaməsi)</h3>
+<ol>
+<li><strong>Avtonomiya</strong> – pasiyentin qərar qəbul etmə hüququ</li>
+<li><strong>Beneficence</strong> – pasiyentin xeyrinə hərəkət etmək</li>
+<li><strong>Non-maleficence</strong> (&quot;primum non nocere&quot;) – zərər verməmək</li>
+<li><strong>Ədalətlilik</strong> – bütün pasiyentlərə bərabər münasibət</li>
+</ol>
+<h3 id="klinik-dilemmalar" class="">Klinik dilemmalar</h3>
+<p><strong>Avtonomiya vs. beneficence ziddiyyəti:</strong></p>
+<ul>
+<li>Pasiyent müalicədən imtina edir, lakin onun qərar qəbul etmə qabiliyyəti şübhəlidir</li>
+<li>Həll: Qərar qəbul etmə qabiliyyəti formal qiymətləndirilir; əgər qabiliyyət yoxsa, qanuni nümayəndə cəlb edilir; əgər qabiliyyət varsa, pasiyentin imtinası hörmətlə qarşılanır (təhlükəli olmadıqda)</li>
+</ul>
+<p><strong>Məxfilik vs. ictimai təhlükəsizlik:</strong></p>
+<ul>
+<li>Yuxarıda göstərildiyi kimi – həyata təhlükə olduqda məxfilik məhdudlaşır</li>
+</ul>
+<p><strong>Çoxlu münasibət (multiple roles):</strong></p>
+<ul>
+<li>Pasiyent + işçi + dost rolları qarışmamalıdır</li>
+<li>Sərt çərçivə – yalnız peşəkar münasibət</li>
+</ul>
+<p><strong>Hədiyyələr və maddi münasibətlər:</strong></p>
+<ul>
+<li>Pasiyentdən əhəmiyyətli hədiyyə qəbul etməmək</li>
+<li>Maddi/biznes əlaqələrdən qaçınmaq</li>
+</ul>
+<p>\newpage</p>
+      <nav class="page-nav"><a href="giris-yekun.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">Kitab haqqında</span></a><a href="abbreviatur.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">Abbreviaturalar</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "mugeddime";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

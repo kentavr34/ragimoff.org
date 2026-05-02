@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — Giriş">
+<title>Giriş | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="gi̇ri̇ş" class="h-section">GİRİŞ</h1>
+<h2 id="bu-kitab-haqqında" class="">Bu kitab haqqında</h2>
+<p>Sizin əlinizdə olan kitab – <strong>klinik psixiatriyanın müasir standartları</strong> üzrə Azərbaycan dilində ilk sistematik təqdimatdır. Kitab <strong>Beynəlxalq Xəstəliklər Təsnifatının 11-ci revizyası (XBT-11)</strong> əsasında qurulub və onun strukturunu, diaqnostik meyarlarını, müalicə yanaşmalarını Azərbaycan klinik ənənəsinə və post-sovet psixiatrik məktəbinə uyğun şəkildə inteqrasiya edir.</p>
+<p>Kitab <strong>praktik klinisist üçün istinad rəhbəri</strong> kimi hazırlanmışdır – psixiatrist, psixoterapevt, nevroloq, birincili səhiyyə həkimi, klinik psixoloq, tibbi təhsilin son kurs tələbələri və rezidentləri üçün.</p>
+<h2 id="niyə-xbt-11" class="">Niyə XBT-11?</h2>
+<p>Ümumdünya Səhiyyə Təşkilatı (ÜST) XBT-11-i 2019-cu ildə qəbul etdi və 2022-ci ildən onun rəsmi tətbiqi başladı. XBT-11 psixi pozuntular fəslində <strong>dərin paradiqma dəyişikliklərini</strong> gətirib:</p>
+<ul>
+<li><strong>Kompleks PTSD</strong> (<span class="icd">6B41</span>) – yeni rəsmi diaqnoz;</li>
+<li><strong>Uzanmış matəm pozuntusu</strong> (<span class="icd">6B42</span>) – yeni rəsmi diaqnoz;</li>
+<li><strong>Şəxsiyyət pozuntularının kateqorial sistemindən dimensional sistemə keçid</strong> – əsas konseptual yenilik;</li>
+<li><strong>Somatoform pozuntuları bədən sıxıntı pozuntusu (BDD)</strong> ilə əvəzlənməsi;</li>
+<li><strong>Gender incongruence psixiatrik fəsildən çıxarılması;</strong></li>
+<li><strong>Oyun asılılığı (Gaming Disorder)</strong> rəsmi diaqnoz olaraq;</li>
+<li><strong>Kompulsiv cinsi davranış pozuntusu (CSBD)</strong> yeni kateqoriya;</li>
+<li><strong>DDHP-nin neyroinkişaf qrupuna köçürülməsi;</strong></li>
+<li><strong>Hipoxondriya OCRD-yə yerləşdirilməsi;</strong></li>
+<li><strong>Üzvi/funksional dixotomiyasının ləğvi.</strong></li>
+</ul>
+<p>Bu dəyişikliklər həm nozologiya, həm də müalicə standartlarında yenidən qiymətləndirmə tələb edir.</p>
+<h2 id="kitabın-strukturu-və-xüsusiyyətləri" class="">Kitabın strukturu və xüsusiyyətləri</h2>
+<h3 id="fəsillərin-təşkili" class="">Fəsillərin təşkili</h3>
+<p>Hər klinik fəsil <strong>11 bölmədən</strong> ibarətdir:</p>
+<ol>
+<li><strong>Tərif və qısa təsvir</strong> – pozuntunun mahiyyəti, XBT-11 yenilikləri;</li>
+<li><strong>Epidemiologiya</strong> – yayılma, cins, yaş, komorbidlik;</li>
+<li><strong>Etiologiya və patogenez</strong> – bioloji, psixoloji, sosial amillər, Popov-Vid yanaşması;</li>
+<li><strong>Diaqnostik meyarlar</strong> – XBT-11 KTTD, XBT-10, DSM-5-TR müqayisəli;</li>
+<li><strong>Klinik formalar</strong> (lazım olduqda) və ya kliniki təzahürün xüsusiyyətləri;</li>
+<li><strong>Diferensial diaqnostika</strong> – cədvəl formatında;</li>
+<li><strong>Müayinə və qiymətləndirmə</strong> – klinik müsahibə, skrininq şkalaları, laboratoriya;</li>
+<li><strong>Müalicə</strong> – ümumi strategiya, fazalı yanaşma, psixoterapiya, farmakoterapiya, xüsusi klinik vəziyyətlər;</li>
+<li><strong>Monitorinq və proqnoz;</strong></li>
+<li><strong>Mənbələr</strong> – XBT-11 KTTD 2024, APA, NICE, WFSBP, ISTSS, ISSTD və digər beynəlxalq qaydalar;</li>
+<li><strong>Tarixi konsepsiyalar</strong> – klassik konseptualizasiyadan müasirə keçid.</li>
+</ol>
+<h3 id="terminologiya" class="">Terminologiya</h3>
+<p><strong>Psixiatrik terminologiya Azərbaycan dilində sistemləşdirilib.</strong> Bir çox termin klassik rus-sovet psixiatriyasından gələn adaptasiyaları təqdim edir, çünki Azərbaycanda psixiatrik təhsil ənənəvi olaraq rus dilində formalaşmışdır. Beynəlxalq terminlər ingilis dilində kvadrat mötərizədə verilir, terminoloji aydınlıq üçün.</p>
+<h3 id="popov-vid-məktəbi-inteqrasiyası" class="">Popov-Vid məktəbi inteqrasiyası</h3>
+<p>Yu.V. Popov və V.D. Vid &quot;Müasir klinik psixiatriya&quot; (Современная клиническая психиатрия) (Sankt-Peterburq: Reç, 2006, 2-ci nəşr) – post-sovet klinik psixiatriyasının klassik dərsliyidir. Onların yanaşması – klassik nozologiya, biopsixososial model, praktik klinik yanaşma – müasir beynəlxalq qaydalarla <strong>uyğun olduğu yerdə</strong> bu kitaba inteqrasiya edilmişdir. Fərqlər olan yerlərdə (məs. XBT-11 dimensional şəxsiyyət modeli) bu açıq şəkildə göstərilir.</p>
+<h3 id="müalicə-standartları" class="">Müalicə standartları</h3>
+<p>Hər pozuntu üçün müalicə <strong>beynəlxalq qaydalardan</strong> istinad edilir:</p>
+<ul>
+<li><strong>APA</strong> (American Psychiatric Association) Clinical Practice Guidelines;</li>
+<li><strong>NICE</strong> (UK National Institute for Health and Care Excellence);</li>
+<li><strong>WFSBP</strong> (World Federation of Societies of Biological Psychiatry);</li>
+<li><strong>CANMAT / ISBD</strong> (Bipolyar pozuntu);</li>
+<li><strong>ISTSS</strong> (International Society for Traumatic Stress Studies);</li>
+<li><strong>ISSTD</strong> (International Society for the Study of Trauma and Dissociation);</li>
+<li><strong>AACAP</strong> (American Academy of Child and Adolescent Psychiatry);</li>
+<li><strong>Milli dərman reyestrləri</strong> və təlimatlar.</li>
+</ul>
+<p>Dərman adları həm <strong>beynəlxalq qeyri-patent ad (MNN)</strong>, həm də ticari (brand) adda verilir – çünki Azərbaycan bazarında dərmanlar əksərən ticari adla tanınır.</p>
+<h3 id="azərbaycan-klinik-konteksti" class="">Azərbaycan klinik konteksti</h3>
+<p>Hər uyğun yerdə <strong>Azərbaycan kontekstinə spesifik qeydlər</strong> verilir:</p>
+<ul>
+<li>Birincili səhiyyədə tətbiq məsələləri;</li>
+<li>Mədəni xüsusiyyətlər və stigma;</li>
+<li>Hüquqi-etik çərçivələr;</li>
+<li>Mövcud resursların məhdudluğu;</li>
+<li>Qarabağ Müharibəsi veteranlarında travma pozuntuları;</li>
+<li>Azərbaycan dilində validasiya edilmiş alətlər.</li>
+</ul>
+<h3 id="şkalalar-və-alətlər" class="">Şkalalar və alətlər</h3>
+<p><strong>Əlavə B-də</strong> ən çox istifadə olunan skrininq və qiymətləndirmə alətləri tam mətn olaraq (sərbəst lisenziyalı) və ya təsvir olaraq (kommersiyalı) təqdim olunur.</p>
+<h2 id="kitabın-istifadə-qaydası" class="">Kitabın istifadə qaydası</h2>
+<p><strong>Klinisist üçün praktik axın:</strong></p>
+<ol>
+<li><strong>Diaqnostik sual</strong> – XBT-11 kodlaşma axtarışı ilə müvafiq fəsli tapın;</li>
+<li><strong>Diaqnostik meyarlar</strong> – Bölmə 4-ə baxın (KTTD + XBT-10 + DSM-5-TR müqayisəli);</li>
+<li><strong>Diferensial</strong> – Bölmə 6 cədvəli;</li>
+<li><strong>Müayinə planı</strong> – Bölmə 7, şkala və laboratoriya;</li>
+<li><strong>Müalicə planlaşdırma</strong> – Bölmə 8;</li>
+<li><strong>Monitorinq</strong> – Bölmə 9.</li>
+</ol>
+<p><strong>Tədrisdə:</strong></p>
+<ul>
+<li>Xronoloji oxuma yox, mövzuya görə;</li>
+<li>Hər fəsil müstəqildir, lakin oxşar fəsillər bir-birinə istinad edir;</li>
+<li>Əlavələrdəki şkalalar təcrübə üçün hazırdır.</li>
+</ul>
+<p><strong>Tədqiqatçı üçün:</strong></p>
+<ul>
+<li>Hər fəslin mənbələr bölməsi müasir beynəlxalq araşdırma məqalələrinin siyahısıdır;</li>
+<li>Tarixi konsepsiyalar bölməsi nozoloji evolusiyanı izləyir.</li>
+</ul>
+<h2 id="məsuliyyət-qeydi-disclaimer" class="">Məsuliyyət qeydi (disclaimer)</h2>
+<p>Bu kitab <strong>praktik istinad rəhbəri</strong>dir. Konkret klinik qərarlar həmişə fərdi xəstənin vəziyyətini, komorbidliyini, müalicə cavabını və ən son tibbi məlumatı nəzərə alaraq qəbul edilməlidir. <strong>Kitab elmi mənbə və rəhbərdir – fərdi tibbi məsləhəti əvəz etmir</strong>. Dərman dozaları və spesifik protokollar yerli təsdiqli informasiya ilə yoxlanılmalıdır.</p>
+<h2 id="təşəkkürlər" class="">Təşəkkürlər</h2>
+<p>Bu kitab Azərbaycanda müasir psixiatriyanın inkişafına töhfə vermək məqsədi ilə hazırlanıb. Ümumdünya Səhiyyə Təşkilatının <strong>KTTD</strong> komandasına, beynəlxalq klinik qaydalar yazan mütəxəssislərə, Popov-Vid-in post-sovet psixiatrik ənənəsinə, Azərbaycan həmkarlarıma – hamısına təşəkkür.</p>
+<p>Kitab açıq mənbə ruhunda hazırlanmışdır və inkişaf etməyə davam edəcək. Rəylər, qeydlər və təkliflər sonrakı nəşrlərdə nəzərə alınacaq.</p>
+<hr>
+      <nav class="page-nav"><a href="index.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">Titul + Önsöz</span></a><a href="giris-yekun.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">Kitab haqqında</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "giris";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

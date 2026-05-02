@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 15 — ŞƏXSİYYƏT">
+<title>BÖLMƏ 15 — ŞƏXSİYYƏT | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-15" class="h-bolme">BÖLMƏ 15</h1>
+<h2 id="şəxsi̇yyət-pozuntulari" class="">ŞƏXSİYYƏT POZUNTULARI</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D10</span>–<span class="icd">6D11</span> — Personality disorders and related traits</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F60</span>–<span class="icd">F62</span> — Şəxsiyyət pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Personality Disorders (ana mətn: 10 kateqorial tip; Alternativ Model: Əlavə B)</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11</th><th>Kateqoriya</th><th>Bölmə</th></tr>
+<tr><td><strong><span class="icd">6D10</span></strong></td><td>Şəxsiyyət pozuntusu – ümumi meyarlar</td><td>15.1</td></tr>
+<tr><td><strong><span class="icd">6D10.0</span>–<span class="icd">6D10.2</span></strong></td><td>Şiddət dərəcəsi: yüngül / orta / ağır</td><td>15.2</td></tr>
+<tr><td><strong><span class="icd">6D11.0</span>–<span class="icd">6D11.4</span></strong></td><td>Şəxsiyyət xüsusiyyət domenləri (5 domain)</td><td>15.3</td></tr>
+<tr><td><strong><span class="icd">6D11.5</span></strong></td><td>Sərhəd nümunəsi (Borderline pattern)</td><td>15.4</td></tr>
+<tr><td>—</td><td>Antisosial/Dissosial nümunə</td><td>15.5</td></tr>
+<tr><td>—</td><td>XBT-10 kateqoriyalarının XBT-11-ə çevrilməsi</td><td>15.6</td></tr>
+</table></div>
+<h2 id="konseptual-inqilab-xbt-11" class="">Konseptual inqilab (XBT-11)</h2>
+<h3 id="kateqorial-sistemdən-ölçülü-dimensional-sistemə-keçid" class="">Kateqorial sistemdən ölçülü (dimensional) sistemə keçid</h3>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> 10 spesifik tip — paranoid, şizoid, şizotipal, antisosial, emosional qeyri-sabit (impulsiv/BPD), dissosiativ, anankast, narahatlıqdan qaçan, asılı, başqası. Hər birinin konkret diaqnostik meyarları.</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> Bu 10 tip <strong>ləğv edildi</strong>. Bunun yerinə:</div>
+<ol>
+<li>Əvvəlcə <strong>şəxsiyyət pozuntusu var mı?</strong> — ümumi meyarlar (<span class="icd">6D10</span>)</li>
+<li>Varsa, <strong>şiddəti nə qədər?</strong> — yüngül / orta / ağır (<span class="icd">6D10.0</span>–2)</li>
+<li><strong>Hansı xüsusiyyət domenləri üstündür?</strong> — 5 domain (<span class="icd">6D11</span>)</li>
+<li><strong>Sərhəd nümunəsi var mı?</strong> — opsional spesifikator (<span class="icd">6D11.5</span>)</li>
+</ol>
+<h3 id="niyə-bu-dəyişiklik" class="">Niyə bu dəyişiklik?</h3>
+<p><strong>Kateqorial sistemin problemləri:</strong></p>
+<ul>
+<li>Komorbidlik həddən yüksəkdir – pasiyentlərin ~50%-ə qədər bir neçə kateqorial tip meyarları qarşılayır</li>
+<li>&quot;NOS&quot; (dəqiqləşdirilməmiş, <span class="icd">F60.9</span>) XBT-10-da ən geniş yayılmış şəxsiyyət diaqnozu idi</li>
+<li>Kateqorial tiplər əslində <strong>süreklilik</strong> (dimensionality) göstərir — kəskin sərhədlər yoxdur</li>
+<li>Müalicə spesifik tipdən çox <strong>şiddət + xüsusiyyət domenləri</strong> ilə müəyyən edilir</li>
+<li>Stigma: spesifik etiketlər (məs., &quot;antisosial&quot;) möhürləyir</li>
+</ul>
+<p><strong>Dimensional sistemin üstünlükləri:</strong></p>
+<ul>
+<li>Hər pasiyent öz kombinasiyasında əks olunur</li>
+<li>Şiddət aydın klinik qərar verir (hospitalizasiya, müdaxilə intensivliyi)</li>
+<li>Müalicə planlaşdırması daha dəqiq</li>
+<li>Zaman içrə dəyişikliyi izləmək mümkün</li>
+</ul>
+<h3 id="dsm-5-tr-ilə-vəziyyət" class="">DSM-5-TR ilə vəziyyət</h3>
+<p>DSM-5-TR <strong>ana mətndə hələ kateqorial sistemi</strong> (10 tip) saxladı – dəyişiklik DSM-6-ya buraxıldı. Lakin <strong>Alternativ Model (AMPD)</strong> Əlavə B-də yer alır — XBT-11-ə yaxın dimensional yanaşma. Gözlənilir ki, <strong>DSM-6 kateqorial sistemi ləğv edəcək</strong>.</p>
+<h3 id="azərbaycan-konteksti" class="">Azərbaycan konteksti</h3>
+<p>AR Klinik Protokolu olmadığından şəxsiyyət pozuntuları üzrə XBT-10 kateqorial terminologiyası hənüz istifadə olunur. Bu kitab XBT-11 dimensional sistemini əsas götürür; Bölmə 15.6-da XBT-10 → XBT-11 çevirmə cədvəli verilmişdir.</p>
+<p>\newpage</p>
+<h1 id="6d10-şəxsi̇yyət-pozuntusu-ümumi̇-meyarlar" class="h-disorder"><span class="icd">6D10</span> ŞƏXSİYYƏT POZUNTUSU — ÜMUMİ MEYARLAR</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D10</span> — Şəxsiyyət Pozuntusu — Ümumi Meyarlar</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F60</span> — Spesifik şəxsiyyət pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 301.xx — Personality Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Şəxsiyyət pozuntusu — <strong>özü ilə münasibətdə (öz funksiyası) və başqaları ilə münasibətdə (şəxslərarası funksiya) davamlı pozulma</strong>; müxtəlif şəxsi və sosial kontekstlərə yayılmış; gündəlik fəaliyyəti, münasibətləri, sosial rolu ciddi şəkildə pozan; zamanla davamlı (kökləri erkən inkişafda, yetkinlikdə aydın olur).</p>
+<p><strong>Öz funksiyası (self-functioning) pozulması:</strong></p>
+<ul>
+<li><strong>Kimlik (identity):</strong> özünü tutarlı, stabil şəkildə qavrama qabiliyyəti</li>
+<li><strong>Özünə hörmət:</strong> özü haqqında pozitiv-realistik fikir</li>
+<li><strong>Özünə dair doğruluq:</strong> öz hisslərini, düşüncələrini tanıma</li>
+<li><strong>Öz-korreksiya:</strong> hərəkətlərinin nəticəsini qiymətləndirmə</li>
+</ul>
+<p><strong>Şəxslərarası funksiya (interpersonal functioning) pozulması:</strong></p>
+<ul>
+<li><strong>Empatiya:</strong> başqalarının perspektivini anlamaq</li>
+<li><strong>Yaxınlıq:</strong> dərin, stabil, qarşılıqlı münasibətlər qurmaq</li>
+<li><strong>Münasibətlər:</strong> uzunmüddətli sağlam münasibətləri saxlamaq</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="genetik-amillər" class="">Genetik amillər</h3>
+<p>- <strong>Mənfi affektivlik:</strong> neyrotizm genlər (serotonin sistemi)</p>
+<p>- <strong>Dissosiallik:</strong> MAOA, 5-HTTLPR</p>
+<p>- <strong>Anankastiya:</strong> OKP ilə ortaq genetik komponent</p>
+<p>- <strong>Dezinhibisiya:</strong> DDHP/maddə asılılığı ilə ortaq</p>
+<ul>
+<li><strong>Ümumi irsiyyət göstəricisi:</strong> 40-60% (şəxsiyyət pozuntularında dəyişkən)</li>
+<li>Hər domain üçün spesifik genetik vektorlar mövcuddur:</li>
+</ul>
+<h3 id="neyrobioloji" class="">Neyrobioloji</h3>
+<ul>
+<li><strong>Prefrontal korteks</strong> – impuls nəzarəti, sosial qiymətləndirmə</li>
+<li><strong>Amigdala</strong> – emosional reaktivlik (BPD, antisosial)</li>
+<li><strong>Serotonin sistemi</strong> – affekt tənzimləmə</li>
+<li><strong>HPA oxu</strong> – travma ilə əlaqəli neyrobioloji dəyişikliklər</li>
+<li><strong>Bağlılıq sistemi neyrobiyologiyası</strong> – oksitosinin rolu (BPD)</li>
+</ul>
+<h3 id="psixososial-amillər" class="">Psixososial amillər</h3>
+<p><strong>Erkən travma (ən güclü risk faktoru):</strong></p>
+<ul>
+<li>Fiziki istismar</li>
+<li>Cinsi istismar</li>
+<li>Neglekt (emosional / fiziki)</li>
+<li>Valideyn psixi xəstəliyi (xüsusilə BPD valideyn)</li>
+<li>Ailə daxilindəki zorakılıq</li>
+</ul>
+<p><strong>Bağlılıq nəzəriyyəsi (Bowlby):</strong></p>
+<ul>
+<li>Güvənsiz bağlılıq (anxious, avoidant, disorganized)</li>
+<li>&quot;Daxili işçi model&quot; – özü və başqaları haqqında qeyri-sağlam inanclar</li>
+</ul>
+<p><strong>Biyososial model (Linehan – BPD üçün, lakin geniş tətbiq olunur):</strong></p>
+<ul>
+<li><strong>Emosional duyarlılıq</strong> (biologiya) + <strong>invalidating environment</strong> (sosial mühit)</li>
+<li>Birinin hissləri &quot;səhv&quot;, &quot;yanlış&quot;, &quot;abartılmış&quot; kimi qiymətləndirilən mühit</li>
+</ul>
+<h3 id="mədəni-amillər" class="">Mədəni amillər</h3>
+<ul>
+<li><strong>Şəxsiyyət pozuntularının ifadəsi mədəni kontekstlə dəyişir</strong> – vacib differensiasiya</li>
+<li>Azərbaycanda &quot;kollektivist&quot; mədəniyyət – şəxsiyyət ifadəsinin normaları fərqlidir</li>
+<li>Diaqnoz yalnız <strong>mədəni baxımdan deviant olmayan</strong> kontekstdə qoyulmalıdır</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma (ümumi):</strong> 10-12% ümumi populyasiyada; psixiatrik pasiyentlərdə 40-60%</li>
+<li><strong>Cins:</strong> tipə görə dəyişir (BPD qadın dominant; antisosial kişi dominant)</li>
+<li><strong>Yaş:</strong> yetkinlikdə aydın; DSM-5-TR ≥18 yaş (nadir hallarda yeniyetmədə)</li>
+<li><strong>Azərbaycanda:</strong> spesifik məlumat yoxdur; əhali ümumi yayılma gözlənilir</li>
+</ul>
+<h3 id="komorbidlik" class="">Komorbidlik</h3>
+<ul>
+<li><strong>MDD:</strong> 50-70% (şəxsiyyət pozuntusunda xroniki)</li>
+<li><strong>Anksiyete pozuntuları:</strong> 40-60%</li>
+<li><strong>Maddə istifadəsi:</strong> 30-50%</li>
+<li><strong>PTSP:</strong> 30-40% (xüsusilə BPD)</li>
+<li>Şəxsiyyət pozuntularında <strong>suisid riski 2-4x artmış</strong></li>
+</ul>
+<h2 id="klinik-mənzərə-ümumi-xüsusiyyətlər" class="">Klinik mənzərə — Ümumi xüsusiyyətlər</h2>
+<h3 id="zamanla-davamlılıq" class="">Zamanla davamlılıq</h3>
+<p>Şəxsiyyət pozuntuları <strong>xroniki, davamlı</strong> xarakter daşıyır:</p>
+<ul>
+<li>Yaşın keçməsi ilə tiplər yavaş dəyişir – lakin spesifik domenlərin şiddəti azalır (xüsusilə 40+ yaşda)</li>
+<li>&quot;Kindling&quot; effekti – stresslə episodik kəskinləşmə</li>
+<li>Əsas funksional çatışmazlıqlar davamlıdır</li>
+</ul>
+<h3 id="ego-sintoniklik" class="">Ego-sintoniklik</h3>
+<p>Şəxsiyyət pozuntusunun klassik xüsusiyyəti – pasiyent öz davranışını <strong>normal kimi qavrayır</strong>:</p>
+<ul>
+<li>&quot;Bu mənim xarakterimdir&quot;</li>
+<li>Başqaları problemi görür, pasiyent görmür</li>
+<li><strong>İnsight problemi</strong> – müalicə uyumunu çətinləşdirir</li>
+</ul>
+<p><em>İstisna: BPD – tez-tez eqo-distonik</em> (pasiyent özünü dəyişmək istəyir, lakin bacarmır)</p>
+<h3 id="i̇nflyeksibillik-çevrilməzlik" class="">İnflyeksibillik (Çevrilməzlik)</h3>
+<p>Şəxsiyyət pozuntusunda xüsusiyyətlər müxtəlif kontekstlərə <strong>uyğunlaşmır</strong>:</p>
+<ul>
+<li>Yeni vəziyyətlərdə eyni reaksiya nümunəsi</li>
+<li>Öyrənmə yolu ilə dəyişiklik çətin</li>
+<li>İş, ev, sosial mühitdə eyni pattern</li>
+</ul>
+<h3 id="klinik-funksional-meyarlar" class="">Klinik-funksional meyarlar</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Funksiya</th><th>Sağlam norma</th><th>Şəxsiyyət pozuntusu</th></tr>
+<tr><td>Kimlik</td><td>Stabil, davamlı</td><td>Boş, qeyri-sabit, diffuz</td></tr>
+<tr><td>Özünə hörmət</td><td>Adaptiv, realistik</td><td>Ekstremal (çox yüksək/aşağı)</td></tr>
+<tr><td>Münasibətlər</td><td>Dərin, stabil, qarşılıqlı</td><td>Qeyri-sabit, konfliktsəl, sığ</td></tr>
+<tr><td>Empatiya</td><td>İnce, çevik</td><td>Yoxdur / zəif / ekstrema</td></tr>
+<tr><td>Davranış</td><td>Kontekstə uyğun</td><td>Çevrilməz, kontekstdən asılı deyil</td></tr>
+</table></div>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6d10" class="">XBT-11 əsas tələblər (<span class="icd">6D10</span>):</h3>
+<p><strong>A.</strong> <strong>Öz funksiyası</strong> pozulması:</p>
+<ul>
+<li>Kimlik pozulması <strong>VƏ/VƏ YA</strong> öz-hörmət pozulması</li>
+</ul>
+<p><strong>B.</strong> <strong>Şəxslərarası funksiya</strong> pozulması:</p>
+<ul>
+<li>Empatiya azlığı <strong>VƏ/VƏ YA</strong> yaxınlıq qurmaq çətinliyi</li>
+</ul>
+<p><strong>C.</strong> Pozulma <strong>müxtəlif kontekstlərə yayılmışdır</strong> (ev, iş, sosial)</p>
+<p><strong>D.</strong> Pozulma <strong>zamanla davamlıdır</strong> – epizodik deyil (ən azı 2 il; yeniyetmədə qayıdış mümkün)</p>
+<p><strong>E.</strong> Pozulma <strong>mədəni cəhətdən gözlənilən normalar</strong> çərçivəsindən kənardır</p>
+<p><strong>F.</strong> Başqa psixi pozuntu, maddə, tibbi vəziyyətin birbaşa nəticəsi deyil</p>
+<hr>
+<p>Diaqnoz qoyulduqdan sonra <strong>ikinci addım – şiddət:</strong></p>
+<p>\newpage</p>
+<h1 id="6d100-şəxsi̇yyət-pozuntusunun-şi̇ddət-dərəcəsi̇" class="h-disorder"><span class="icd">6D10.0</span> ŞƏXSİYYƏT POZUNTUSUNUN ŞİDDƏT DƏRƏCƏSİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D10</span> — Şəxsiyyət Pozuntusunun Şiddət Dərəcəsi</div>
+<hr>
+<h2 id="şiddət-domenləri" class="">Şiddət domenləri</h2>
+<p>XBT-11-də şiddət <strong>iki funksional domenə</strong> əsasən müəyyən edilir:</p>
+<ul>
+<li><strong>Özü ilə münasibət</strong> (öz funksiyası)</li>
+<li><strong>Başqaları ilə münasibət</strong> (şəxslərarası funksiya)</li>
+</ul>
+<h2 id="şiddət-dərəcələri" class="">Şiddət dərəcələri</h2>
+<h3 id="6d100-yüngül-şəxsiyyət-pozuntusu" class=""><span class="icd">6D10.0</span> — Yüngül Şəxsiyyət Pozuntusu</h3>
+<p><strong>Öz funksiyası:</strong></p>
+<ul>
+<li>Kimlik/özünə hörmət problemləri mövcuddur, lakin açıq stressdə daha güclü</li>
+<li>Özünü düşündürən düşüncə tezliyi artmış, lakin funksiyalara müdaxilə az</li>
+</ul>
+<p><strong>Şəxslərarası funksiya:</strong></p>
+<ul>
+<li>Bəzi stres vəziyyətlərində münasibətlər çətin, lakin ümumiyyətlə saxlanılır</li>
+<li>Empatiya zəifdir, lakin bəzən başqasını düşünə bilir</li>
+</ul>
+<p><strong>Klinik görünüş:</strong></p>
+<ul>
+<li>İşdə, ailədə çətinliklər var</li>
+<li>Tamamilə dağılmış münasibətlər yoxdur</li>
+<li>Müalicəyə motivasiya mövcud ola bilər</li>
+</ul>
+<hr>
+<h3 id="6d101-orta-şəxsiyyət-pozuntusu" class=""><span class="icd">6D10.1</span> — Orta Şəxsiyyət Pozuntusu</h3>
+<p><strong>Öz funksiyası:</strong></p>
+<ul>
+<li>Kimlik açıq şəkildə pozulmuş – boşluq hissi, özünü tanımamaq</li>
+<li>Özünə hörmət həddən artıq aşağı ya da qeyri-stabil</li>
+<li>Pozitiv özünü qiymətləndirmə nadir</li>
+</ul>
+<p><strong>Şəxslərarası funksiya:</strong></p>
+<ul>
+<li>Münasibətlər konfliktlidir, qeyri-stablidir</li>
+<li>Empatiya əhəmiyyətli dərəcədə zəifdir</li>
+<li>Davamlı yakın münasibət saxlamaq çətin</li>
+</ul>
+<p><strong>Klinik görünüş:</strong></p>
+<ul>
+<li>Peşə fəaliyyəti pozulmuş (iş itkisi, konfliktlər)</li>
+<li>Münasibətlər dağılır, sıfırdan başlayır</li>
+<li>Hospitalizasiya bəzən</li>
+<li>Müalicə çətin, lakin mümkün</li>
+</ul>
+<hr>
+<h3 id="6d102-ağır-şəxsiyyət-pozuntusu" class=""><span class="icd">6D10.2</span> — Ağır Şəxsiyyət Pozuntusu</h3>
+<p><strong>Öz funksiyası:</strong></p>
+<ul>
+<li>Kimlik həddən dağılmış – dissosiasiya, &quot;mənsizlik&quot;</li>
+<li>Özünə hörmət yoxdur ya da ekstremal pozitivliyin altında gizlənir</li>
+<li>Özünə zərər, suisid impulsu güclü</li>
+</ul>
+<p><strong>Şəxslərarası funksiya:</strong></p>
+<ul>
+<li>Münasibətlər tam çətin – başqasını &quot;insani&quot; görmək qabiliyyəti minimal</li>
+<li>Empatiya demək olar yoxdur</li>
+<li>İzolyasiya ya da intensiv, dağıdıcı münasibətlər</li>
+</ul>
+<p><strong>Klinik görünüş:</strong></p>
+<ul>
+<li>Funksionallıq ciddi şəkildə pozulmuş – iş/gündəlik fəaliyyət qeyri-mümkün</li>
+<li>Mütamadi hospitalizasiya</li>
+<li>Suisid, özünə zərər aktiv risk</li>
+<li>Uzunmüddətli intensiv müdaxilə tələb olunur</li>
+</ul>
+<h2 id="şiddətin-klinik-əhəmiyyəti" class="">Şiddətin klinik əhəmiyyəti</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Şiddət</th><th>Müalicə intensivliyi</th><th>Psixoterapiya</th><th>Farmakoterapiya</th></tr>
+<tr><td><strong>Yüngül</strong></td><td>Ambulatoria</td><td>Fərdi KDT/psixodinamik</td><td>Komorbidliklər</td></tr>
+<tr><td><strong>Orta</strong></td><td>Ambulatoria + intensiv</td><td>DBT, Sxema, MBT</td><td>SİUSİ, dəstəkləyici</td></tr>
+<tr><td><strong>Ağır</strong></td><td>Stasionar, day hospital</td><td>DBT intensiv, MBT</td><td>Çoxlu komorbid</td></tr>
+</table></div>
+<p>\newpage</p>
+<h1 id="6d101-şəxsi̇yyət-xüsusi̇yyət-domenləri̇" class="h-disorder"><span class="icd">6D10.1</span> ŞƏXSİYYƏT XÜSUSİYYƏT DOMENLƏRİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D11</span> — Şəxsiyyət Xüsusiyyət Domenləri</div>
+<hr>
+<h2 id="giriş" class="">Giriş</h2>
+<p>Şiddət müəyyən edildikdən sonra <strong>hansı xüsusiyyət domenləri üstündür</strong> kodlanır. Beş domain aşağıdakılardır:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Domain</th><th>Keçmiş XBT-10 ekvivalentləri</th></tr>
+<tr><td><span class="icd">6D11.0</span></td><td>Mənfi affektivlik</td><td>Emosional qeyri-sabit (<span class="icd">F60.3</span>), Asılı (<span class="icd">F60.7</span>)</td></tr>
+<tr><td><span class="icd">6D11.1</span></td><td>Ayrılma (Detachment)</td><td>Şizoid (<span class="icd">F60.1</span>), Narahatlıqdan qaçan (<span class="icd">F60.6</span>)</td></tr>
+<tr><td><span class="icd">6D11.2</span></td><td>Dissosiallik</td><td>Antisosial (<span class="icd">F60.2</span>), Paranoid (<span class="icd">F60.0</span>)</td></tr>
+<tr><td><span class="icd">6D11.3</span></td><td>Dezinhibisiya</td><td>Emosional qeyri-sabit impulsiv (<span class="icd">F60.30</span>)</td></tr>
+<tr><td><span class="icd">6D11.4</span></td><td>Anankastiya</td><td>Anankast (<span class="icd">F60.5</span>)</td></tr>
+<tr><td><span class="icd">6D11.5</span></td><td>Sərhəd nümunəsi</td><td>Emosional qeyri-sabit BPD (<span class="icd">F60.31</span>)</td></tr>
+</table></div>
+<p><strong>Qeyd:</strong> Pasiyent <strong>bir neçə domeni</strong> birlikdə göstərə bilər. Bu XBT-10-da &quot;komorbid diagnoz&quot; adlandırılırdı – indi bir diaqnozun alt-dimensiyaları kimi ifadə olunur.</p>
+<hr>
+<h2 id="mənfi-affektivlik-domeni-6d110" class="">Mənfi Affektivlik Domeni (<span class="icd">6D11.0</span>)</h2>
+<p><strong>Negative affectivity</strong> – geniş mənfi emosional təcrübəyə meyillilik.</p>
+<p><strong>Əsas xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Emosional labillik</strong> – hisslər sürətlə, intensiv dəyişir; kiçik tetikləyicilər güclü reaksiya</li>
+<li><strong>Həyəcanlılıq</strong> – müxtəlif situasiyalarda intensiv narahatlıq hissi</li>
+<li><strong>Ayrılma həyəcanı</strong> – yaxın insanların itiriləcəyindən qorxu</li>
+<li><strong>Pessimizm</strong> – gələcək haqqında sistemli mənfi gözləntilər</li>
+<li><strong>Özünü pisləmə</strong> – xəta və uğursuzluqlara ekzaqere özünü günahlandırma</li>
+</ul>
+<p><strong>Klinik əhəmiyyəti:</strong> Bu domain yüksək olduqda komorbid <strong>MDD</strong> və <strong>anksiyete pozuntuları</strong> riski çox yüksəkdir. Müalicədə affekt tənzimləmə prioritetdir.</p>
+<hr>
+<h2 id="ayrılma-domeni-6d111" class="">Ayrılma Domeni (<span class="icd">6D11.1</span>)</h2>
+<p><strong>Detachment</strong> – sosial, emosional ayrılma.</p>
+<p><strong>Əsas xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Sosial ayrılma</strong> – sosial əlaqələrə az maraq; yalnızlıq seçim kimi</li>
+<li><strong>Sınıq bağlılıq</strong> – yaxın münasibət qurmaq istəyi ya da bacarığı az</li>
+<li><strong>Anhedoniya</strong> – zövq almaqda çətinlik; həyatın rəngsiz görünməsi</li>
+<li><strong>Məhdud affekt</strong> – emosional ifadə az; &quot;soyuq&quot; görünüş</li>
+<li><strong>İntimlikdən qaçınma</strong> – fiziki yaxınlıqdan narahat olmaq</li>
+</ul>
+<p><strong>Klinik əhəmiyyəti:</strong> Bu domain XBT-10 <strong>şizoid</strong> (sosial ayrılma) və <strong>narahatlıqdan qaçan</strong> (social anxiety ilə komorbid ayrılma) pozuntuları əhatə edir. Fərqləndirmə: şizoid tipə oxşarda emosional ayrılma; qaçan tipə oxşarda sosial qorxu birlikdə.</p>
+<hr>
+<h2 id="dissosiallik-domeni-6d112" class="">Dissosiallik Domeni (<span class="icd">6D11.2</span>)</h2>
+<p><strong>Dissociality</strong> – başqalarının hüquqlarına laqeydlik, manipulyasiya, qəddar davranış.</p>
+<p><strong>Əsas xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Manipulyativlik</strong> – öz məqsədləri üçün başqalarını idarə etmək, aldatmaq</li>
+<li><strong>Hiyləkarlıq</strong> – şəxsi qazanc üçün yalan, aldatma</li>
+<li><strong>Qəddarlıq</strong> – başqalarının əzabına etinasızlıq, bəzən bundan zövq</li>
+<li><strong>Düşmənçilik</strong> – qıcıqlanma, hüsumət, aqressiv reaksiyalar</li>
+<li><strong>Prososial emosiyaların azlığı</strong> – empatiya, günah hissi az</li>
+</ul>
+<p><strong>Klinik əhəmiyyəti:</strong> Bu domain XBT-10 <strong>antisosial</strong> (<span class="icd">F60.2</span>) və qismən <strong>paranoid</strong> (<span class="icd">F60.0</span>) pozuntularını əhatə edir. Yüksək Dissosiallik + aşağı şiddət = saqqatlı, lakin funksional; yüksək şiddət + yüksək Dissosiallik = ağır antisosial/şəxsiyyət pozuntusu olan profil.</p>
+<hr>
+<h2 id="dezinhibisiya-domeni-6d113" class="">Dezinhibisiya Domeni (<span class="icd">6D11.3</span>)</h2>
+<p><strong>Disinhibition</strong> – impuls nəzarəti zəifliyi, uzunmüddətli nəticələri görməmə.</p>
+<p><strong>Əsas xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>İmpulsivlik</strong> – ani hərəkət etmə, nəticəni düşünmədən</li>
+<li><strong>Diqqətsizlik</strong> – öhdəliklərə, öz sağlamlığına qayğısızlıq</li>
+<li><strong>Çevilməzlik</strong> – uzunmüddətli məqsədlər qurmaqda çətinlik</li>
+<li><strong>Risk alma</strong> – nəticəni düşünmədən təhlükəli davranış</li>
+<li><strong>Özü-nəzarətsizlik</strong> – emosional/davranış nəzarəti zəif</li>
+</ul>
+<p><strong>Klinik əhəmiyyəti:</strong> Bu domain XBT-10 <strong>emosional qeyri-sabit impulsiv tip</strong> (<span class="icd">F60.30</span>) ilə örtüşür. Maddə istifadəsi, ağır BPD, impuls nəzarət problemləri bu domeni yüksək göstərir.</p>
+<hr>
+<h2 id="anankastiya-domeni-6d114" class="">Anankastiya Domeni (<span class="icd">6D11.4</span>)</h2>
+<p><strong>Anankastia</strong> – mükəmməliyyət istəyi, nəzarət ehtiyacı, çevirməzlik.</p>
+<p><strong>Əsas xüsusiyyətlər:</strong></p>
+<ul>
+<li><strong>Mükəmməliyyətçilik</strong> – sərt standartlar; mükəmməl olmayan işi bitirə bilməmək</li>
+<li><strong>Qrammatik davranış</strong> – ciddi qaydalar, prosedurlar üzərindən idarə</li>
+<li><strong>Məzmunçuluq</strong> – detallar, siyahılar, qrafiklər üzərindən idarə olmaq; başa görünməz</li>
+<li><strong>Çevirməzlik</strong> – fərqli yanaşmalara açıq olmaq çətin</li>
+<li><strong>Nəzarət ehtiyacı</strong> – planlar, nəticə, prosedur üzərindəki nəzarəti itirmək qorxusu</li>
+</ul>
+<p><strong>Klinik əhəmiyyəti:</strong> XBT-10 <strong>anankast şəxsiyyət pozuntusu</strong> (<span class="icd">F60.5</span>) bu domeni əks etdirir. OKP ilə fərqləndirmə: anankastiya şəxsiyyət daxilindədir (ego-sintonik), OKP epizodik (ego-distonik). Yüksək Anankastiya → OKP komorbidlik riski.</p>
+<p>\newpage</p>
+<h1 id="6d11-sərhəd-nümunəsi̇-borderline-pattern" class="h-disorder"><span class="icd">6D11</span> SƏRHƏD NÜMUNƏSİ (Borderline pattern)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D11</span> — Sərhəd Nümunəsi (Borderline Pattern)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F60.3</span> — Emosional qeyri-sabit şəxsiyyət pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 301.83 — Borderline Personality Disorder (severity specifier)</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Sərhəd nümunəsi — <strong>şəxsiyyət pozuntusu</strong> diaqnozu kontekstindəki spesifik klinik nümunə: intensiv, qeyri-sabit münasibətlər; qeyri-sabit kimlik; güclü affektiv labillik; impulsivlik; özünə zərər vermə; tərk edilmə qorxusu.</p>
+<p><strong>XBT-11-də:</strong></p>
+<ul>
+<li>Əvvəlcə ümumi şəxsiyyət pozuntusu meyarları (<span class="icd">6D10</span>) qarşılanmalıdır</li>
+<li>Sonra &quot;borderline nümunəsi&quot; qualifikator kimi əlavə edilir (<span class="icd">6D11.5</span>)</li>
+<li>Tipik domain: Mənfi affektivlik + Dezinhibisiya + Ayrılma (bəzən)</li>
+</ul>
+<p><strong>DSM-5-TR-də:</strong> Hələ kateqorial diaqnoz (301.83) olaraq qalır.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="biopsixososial-model-linehan" class="">Biopsixososial model (Linehan)</h3>
+<p><strong>Bioloji:</strong> Emosional həssaslığa bioloji meyl — sürətli, intensiv emosional reaksiyalar; yavaş &quot;səngiməsi&quot;</p>
+<p><strong>Psixoloji:</strong></p>
+<ul>
+<li>Uşaqlıqda &quot;geçersizləşdirici mühit&quot; — uşağın daxili təcrübəsi (hisslər, fikirlər, istəklər) davamlı olaraq yanlış, məqsədsiz, qeyri-normal kimi tutulur</li>
+<li>Erkən travma anamnezi çox yüksəkdir: cinsi istismar, fiziki zorakılıq, etinasızlıq</li>
+<li>Dezorqanizə bağlılıq</li>
+</ul>
+<p><strong>Sosial:</strong> Ailə disfunksiyası; bağlılıq figürünün özünün zorakı, qeyri-etibarlı olması</p>
+<h3 id="neyrobioloji" class="">Neyrobioloji</h3>
+<ul>
+<li>Amigdala hiperaktivliyi (emosional reaktivlik)</li>
+<li>Prefrontal korteks (vmPFC) hipoaktivliyi (emosional tənzimləmə pozuntusu)</li>
+<li>Serotonin sisteminin disfunksiyası (impulsivlik)</li>
+<li>Hipokampus volume azalması (travma kontekstdə)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Ümumi populyasiyada ~1,4-2,7%</li>
+<li><strong>Psixiatrik stasionarda:</strong> ~20%</li>
+<li><strong>Klinik populyasiyada:</strong> ~10%</li>
+<li><strong>Cins:</strong> kişi:qadın 1:1 (əvvəlki &quot;qadın dominant&quot; biasın nəticəsi idi)</li>
+<li><strong>Başlanğıc:</strong> yeniyetməlik; diaqnoz adətən 18+ yaş</li>
+<li><strong>Mortalite:</strong> intihar ~10% həyat boyu</li>
+<li><strong>Komorbidlik:</strong> MDD 60-70%, PTSD 30-60%, maddə istifadəsi 30-40%, yemə pozuntuları 25%, DDHP 40%</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="doqquz-klinik-əlamət-dsm-5-tr" class="">Doqquz klinik əlamət (DSM-5-TR)</h3>
+<ol>
+<li><strong>Tərk edilmə qorxusu</strong> — həqiqi ya hayali; ekstrema cəhdlər; &quot;qalmayı&quot;ni tələb etmək</li>
+<li><strong>Intensiv, qeyri-sabit şəxslərarası münasibətlər</strong> — idealizasiya ↔ devalvasiya (&quot;splitting&quot;)</li>
+<li><strong>Kimlik pozuntusu</strong> — qeyri-sabit, dəyişən özünü qiymətləndirmə/kimlik</li>
+<li><strong>İmpulsivlik</strong> (≥2 sahədə): pul xərcləmə, seks, maddə, sürücülük, yemə</li>
+<li><strong>Tekrarlanan özünə zərər vermə, intihar davranışı, ya intihar jestləri</strong></li>
+<li><strong>Affektiv labillik</strong> — intensiv, epizodik disforiya, qıcıqlanma, narahatlıq (saatlar-günlər)</li>
+<li><strong>Xroniki boşluq hissi</strong></li>
+<li><strong>Uyğunsuz, intensiv qəzəb</strong> ya da qəzəbi nəzarətdə saxlamaqda çətinlik</li>
+<li><strong>Stressin tetiklediyi keçici paranoid ideya ya dissosiasiya</strong></li>
+</ol>
+<h3 id="klinik-nüanslar" class="">Klinik nüanslar</h3>
+<p><strong>Splitting (bölünmə):</strong></p>
+<ul>
+<li>Dünya ya &quot;tamamilə yaxşı&quot; ya &quot;tamamilə pis&quot;</li>
+<li>Terapevt bir gün &quot;həyat xilaskarı&quot;, başqa gün &quot;mənə kömək etmir&quot;</li>
+<li>Heyran qalmaq → kəskin devalvasiya</li>
+</ul>
+<p><strong>Özünə zərər vermə:</strong></p>
+<ul>
+<li>Tez-tez emosional gərginliyi azaltmaq üçün (funksional rol)</li>
+<li>Intihar niyyəti olmadan — lakin ciddi tibbi risk</li>
+<li>Ambulatorda kontrat, hospitalizasiya kriteriyaları</li>
+</ul>
+<p><strong>Boşluq hissi:</strong></p>
+<ul>
+<li>&quot;İçim boşdur&quot;, &quot;heç nə hiss etmirəm&quot;</li>
+<li>Dissosiasiya, dissosial davranışla gücləndirilməsi</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-6d115" class="">XBT-11 (<span class="icd">6D11.5</span>)</h3>
+<p>Əvvəlcə ümumi şəxsiyyət pozuntusu (<span class="icd">6D10</span>) meyarları:</p>
+<ul>
+<li>Şəxsiyyət funksiyasının davamlı pozulması (öz funksiyası + şəxslərarası)</li>
+<li>Müxtəlif kontekstlərə yayılmış</li>
+<li>Davamlı, zamanla stabil</li>
+</ul>
+<p>Sonra borderline nümunəsi (<span class="icd">6D11.5</span>):</p>
+<p>Aşağıdakıların əhəmiyyətli şəkildə olması:</p>
+<ul>
+<li>Şəxsiyyət funksiyasının intensiv qeyri-sabitliyi</li>
+<li>Güclü, kaotik emosional reaksiyalar</li>
+<li>Güclü tərk edilmə qorxusu</li>
+<li>Şəxslərarası münasibətlərin intensivliyi + qeyri-sabitliyi</li>
+<li>İmpulsivlik</li>
+<li>Özünə zərər vermə davranışı</li>
+</ul>
+<h3 id="dsm-5-tr-30183" class="">DSM-5-TR (301.83)</h3>
+<p>9 meyardan ≥5; bax klinik mənzərə (4.1).</p>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<ol>
+<li>Ümumi şəxsiyyət funksiyasını qiymətləndir</li>
+<li>Simptom domenlerini müəyyən et</li>
+<li>Borderline nümunəsinin xüsusiyyətlərini sına</li>
+<li>Şiddəti qiymətləndir (<span class="icd">6D10.0</span>-2)</li>
+<li>Komorbidliyi qiymətləndir (PTSD, MDD, maddə)</li>
+</ol>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Bipolyar II</strong></td><td>Affekt dəyişikliyi gündəlik saatlar deyil, epizodik günlər-həftələr; hipomaniya</td></tr>
+<tr><td><strong>PTSD</strong></td><td>Travmaya spesifik simptomlar; intruzivlik, qaçış; BPD ilə komorbid ola bilər</td></tr>
+<tr><td><strong>MDD</strong></td><td>Epizodik; stabil şəxsiyyət funksiyası; tərk edilmə qorxusu dominant deyil</td></tr>
+<tr><td><strong>Dissosiativ şəxsiyyət pozuntusu</strong></td><td>Alternativ identiklik halları; geniş dissosiasiya; BPD ilə örtüşmə</td></tr>
+<tr><td><strong>Narsisistik şəxsiyyət</strong></td><td>Qrandiozluq dominant; qeyrətsizlik; empati az lakin özgüvən yüksək</td></tr>
+<tr><td><strong>Antisosial şəxsiyyət</strong></td><td>Sistemli hüquq pozuntusu; günahsız qalmaq; peşmanlıq yox</td></tr>
+<tr><td><strong>DDHP</strong></td><td>Diqqətsizlik, impulsivlik uşaqlıqda; kimlik pozuntusu yox</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar" class="">Şkalalar</h3>
+<p><strong>Klinik şiddət:</strong></p>
+<ul>
+<li><strong>ZAN-BPD</strong> (Zanarini Rating Scale for BPD) — 9 BPD əlaməti, klinisistin müsahibəsi</li>
+<li><strong>BSL-23</strong> (Borderline Symptom List) — pasiyent self-report</li>
+</ul>
+<p><strong>Ümumi şəxsiyyət:</strong></p>
+<ul>
+<li><strong>LPFS</strong> (Level of Personality Functioning Scale, DSM-5)</li>
+<li><strong>PID-5</strong> (Personality Inventory for DSM-5)</li>
+<li><strong>SCID-5-PD</strong> — strukturlaşdırılmış klinik müsahibə</li>
+</ul>
+<p><strong>Skrining:</strong></p>
+<ul>
+<li><strong>MSI-BPD</strong> (McLean Screening Instrument for BPD) — 10 sual</li>
+</ul>
+<h3 id="tibbi-müayinələr" class="">Tibbi müayinələr</h3>
+<ul>
+<li>EKG, qaraciyər funksiyası (farmakoterapiya öncəsi)</li>
+<li>Toksikologiya (maddə istifadəsi şübhəsi)</li>
+<li>Beyin MRT (atipik, neyroloji simptomlar)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>Şəxsiyyət pozuntusu müalicəsi — <strong>uzunmüddətli (aylıq-illik)</strong>, <strong>psixoterapiya mərkəzli</strong>, farmakoterapiya dəstəkləyici.</p>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<ul>
+<li><strong>NICE NG69 (2009, 2018 review):</strong> <em>Borderline personality disorder: recognition and management</em></li>
+<li><strong>APA Practice Guideline for BPD</strong> (2001, 2024 update)</li>
+<li><strong>NICE CG77:</strong> <em>Antisocial personality disorder</em></li>
+<li><strong>WFSBP Personality Disorder Guidelines</strong> (2015)</li>
+</ul>
+<h3 id="psixoterapiya-birinci-xətt" class="">Psixoterapiya — birinci xətt</h3>
+<h4 id="dialektik-davranış-terapiyası-dbt-sübutluluq-a-bpd-üçün" class="">Dialektik Davranış Terapiyası (DBT) — sübutluluq A, BPD üçün</h4>
+<p><strong>Linehan tərəfindən BPD üçün xüsusi hazırlanmış:</strong></p>
+<p><strong>Dörd modul:</strong></p>
+<ol>
+<li><strong>Mindfulness (Bilinçlilik)</strong> — gündəlik tətbiq; özünü müşahidə; keçici hisslər</li>
+<li><strong>Distress tolerantlığı</strong> — böhran survivalı bacarıqları; TIPP (Temperatur, İntensiv məşq, Paced nəfəs, Progressive relaxasiya)</li>
+<li><strong>Emosional tənzimləmə</strong> — emosiyaları tanımaq, azaltmaq; məqsəd davranışı</li>
+<li><strong>Şəxslərarası effektivlik</strong> — münasibətdə nə istədiyini söyləmək; özünə hörməti qorumaq</li>
+</ol>
+<p><strong>Format:</strong></p>
+<ul>
+<li><strong>Fərdi terapiya</strong> (həftədə 1 dəfə) — dinamika, motivasiya, bacarıqların tətbiqi</li>
+<li><strong>Qrup bacarıq terapiyası</strong> (həftədə 1-2 dəfə, 2,5 saat) — bacarıqların öyrədilməsi</li>
+<li><strong>Telefon konsultasiyası</strong> — kriz anlarında</li>
+<li><strong>Terapevt konsultasiyası</strong> (peşə tükənmişliyinin profilaktikasısı üçün)</li>
+</ul>
+<p><strong>Müddət:</strong> 12-24 ay standard; bir çox pasiyent üçün daha uzun</p>
+<p><strong>Effektivlik:</strong></p>
+<ul>
+<li>Özünə zərər vermə azaldır (40-50%)</li>
+<li>İntihar cəhdlərini azaldır</li>
+<li>Hospitalizasiya sayını azaldır</li>
+<li>Emosional disregulyasiya yaxşılaşır</li>
+</ul>
+<h4 id="mentalizasiya-əsaslı-terapiya-mbt-sübutluluq-a" class="">Mentalizasiya Əsaslı Terapiya (MBT) — sübutluluq A</h4>
+<p><strong>Bateman, Fonagy tərəfindən:</strong></p>
+<ul>
+<li>Mentalizasiya qabiliyyətini bərpa etmək — özünün və başqasının zehni vəziyyətini anlamaq</li>
+<li>Həftəlik fərdi + qrup</li>
+<li>12-18 ay</li>
+<li>Xüsusilə bağlılıq travması kontekstli BPD-də</li>
+</ul>
+<h4 id="sxema-terapiyası-st-sübutluluq-a" class="">Sxema Terapiyası (ST) — sübutluluq A</h4>
+<p><strong>Young tərəfindən:</strong></p>
+<ul>
+<li>Erkən maladaptiv sxemalar (uşaqlıqdan gələn inanc patternləri)</li>
+<li>&quot;Limited reparenting&quot; — terapevt kompensator valideyn kimi</li>
+<li>2-3 il</li>
+<li>Kompleks, ağır şəxsiyyət pozuntusunda</li>
+</ul>
+<h4 id="transferans-fokuslu-psixoterapiya-tfp" class="">Transferans Fokuslu Psixoterapiya (TFP)</h4>
+<p><strong>Kernberg tərəfindən:</strong></p>
+<ul>
+<li>Psixoanalitik əsas</li>
+<li>Transferansdakı splitting/idealizasiya/devalvasiyanı işləmək</li>
+<li>Həftədə 2 sessiya</li>
+<li>Sübutluluq A</li>
+</ul>
+<h4 id="qısa-terapiyalar-yüngül-orta-üçün" class="">Qısa terapiyalar (yüngül-orta üçün)</h4>
+<ul>
+<li><strong>DBT-A</strong> (yeniyetmə versiyası, 16-24 sessiya)</li>
+<li><strong>STEPPS</strong> (Systems Training for Emotional Predictability and Problem Solving) — qrup formatlı, 20 həftə</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>Vacib:</strong> <strong>Farmakoterapiya şəxsiyyət pozuntusunu &quot;müalicə etmir&quot;</strong> — komorbidliyi, spesifik simptomları idarə edir.</p>
+<p><strong>NICE NG69 (2018):</strong> Şəxsiyyət pozuntusu üçün spesifik farmakoterapiya tövsiyəsi yoxdur; komorbidlik müalicəsi.</p>
+<p><strong>Bununla belə klinik praktikada:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Simptom</th><th>Preparat</th><th>Sübutluluq</th></tr>
+<tr><td>Emosional labillik, impulsivlik</td><td><strong>Valproat</strong>, <strong>Topiramat</strong></td><td>B</td></tr>
+<tr><td>Qıcıqlanma, aqressiya, impulsivlik</td><td><strong>Aripiprazol</strong>, <strong>Olanzapin</strong> (aşağı doza)</td><td>B</td></tr>
+<tr><td>Depressiya, narahatlıq, impulsivlik</td><td><strong>SİUSİ</strong> (fluoksetin, sertralin)</td><td>B</td></tr>
+<tr><td>Psixotik epizodlar, paranoya</td><td>Aşağı doza atipik antipsixotik</td><td>B</td></tr>
+<tr><td>Kəskin böhran</td><td>Kısamüddətli benzodiazepin (diqqətlə)</td><td>C</td></tr>
+</table></div>
+<p><strong>Diqqət:</strong></p>
+<ul>
+<li>Bənzodiazepinlərin uzunmüddətli istifadəsi BPD-də <strong>tövsiyə edilmir</strong> (asılılıq, disinhibisiya riski)</li>
+<li>Polipragmaziyadan qaçınmaq</li>
+<li>Farmakoterapiya şəxsiyyət pozuntusunun əsas müalicəsi deyil</li>
+</ul>
+<h3 id="böhran-idarəsi" class="">Böhran idarəsi</h3>
+<p><strong>Özünə zərər vermə/intihar böhranında:</strong></p>
+<p>- Yüksək lethal intihar planı</p>
+<p>- Ambulatorda böhranın idarə edilə bilməməsi</p>
+<p>- DBT telefon konsultasiyası</p>
+<p>- Terapevtə çatış</p>
+<ol>
+<li><strong>Güvənlilik qiymətləndirilməsi</strong> — C-SSRS</li>
+<li><strong>Böhran planı</strong> — pasiyentlə birgə hazırlanmış</li>
+<li><strong>Hospitalizasiya meyarları:</strong></li>
+<li><strong>Ambulatorda:</strong></li>
+<li><strong>Qısamüddətli stasionar</strong> — sabitləşmə üçün; uzunmüddətli deyil (BPD-də uzun hospitalizasiya mənfi nəticə verir)</li>
+</ol>
+<h3 id="anankast-obsessiv-kompulsiv-şəxsiyyət-nümunəsi" class="">Anankast (obsessiv-kompulsiv) şəxsiyyət nümunəsi</h3>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Mükəmməlliyə həddən artıq diqqət; standartlar heç vaxt kifayət etmir</li>
+<li>Qaydalara ciddi bağlılıq; çevik olmama</li>
+<li>Nəzarət ehtiyacı — işi başqasına tapşıramamaq</li>
+<li>Möhtəkirlik — atmaqdan qorxma</li>
+<li>Qərar qəbulunda blokada — səhv etmə qorxusundan</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>KDT — mükəmməllik standartlarına müdaxilə; nəzarəti azaltmaq</li>
+<li>Mindfulness — &quot;yetəri nədir?&quot; sualı</li>
+<li>SİUSİ — komorbid OKP varsa</li>
+</ul>
+<h3 id="narsisistik-şəxsiyyət-nümunəsi" class="">Narsisistik şəxsiyyət nümunəsi</h3>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Qrandiozluq — xüsusi, üstün olduğuna inanc</li>
+<li>Empatiya azlığı — başqalarının hisslərini görür, əhəmiyyət vermir</li>
+<li>Pərəstiş ehtiyacı</li>
+<li>İstismar davranışı</li>
+<li>Qısqanclıq, ya başqalarının özünü qısqandığına inanc</li>
+<li>Narsisistik yara — tənqidə kəskin reaksiya</li>
+</ul>
+<p><strong>Diaqnoz çətinliyi:</strong> özlüyündə yardım axtarmırlar; &quot;həkim mənə nə öyrədə bilər?&quot;</p>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>Psixoanalitik/psixodinamik terapiya — uzunmüddətli</li>
+<li>Sxema terapiyası</li>
+<li>Farmakoterapiya — komorbidlik (depressiya tez-tez)</li>
+</ul>
+<h3 id="paranoid-şəxsiyyət-nümunəsi" class="">Paranoid şəxsiyyət nümunəsi</h3>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Başqalarının niyyətinə davamlı şübhə</li>
+<li>Sözlərə gizli mənalar tapmaq</li>
+<li>Bağışlamama — uzunmüddətli kin</li>
+<li>İzah edilmədən başqalarına sadaqət şübhəsi</li>
+<li>Etirazçılıq — sürüşmez hissedirik</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>Psixodinamik terapiya — şübhə arxasındakı qorxu</li>
+<li>KDT — şübhəyə dair inanclar</li>
+<li>Güvən qurmaq çox çətin (terapevtə də şübhə)</li>
+</ul>
+<h3 id="antisosialdissosial-şəxsiyyət-nümunəsi" class="">Antisosial/Dissosial şəxsiyyət nümunəsi</h3>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Sistematik hüquq pozuntusu, etinasızlıq</li>
+<li>Manipulyasiya, aldatma</li>
+<li>İmpulsivlik, qaydasızlıq</li>
+<li>Günahsız qalmaq, riskli davranış</li>
+<li>Peşmanlıq, empati az</li>
+<li>CD anamnezi tez-tez</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>KDT</strong> — ağır antisosial üçün effektivlik məhdud</li>
+<li><strong>Kontingensiya idarəsi</strong> (məhkumiyyətdə)</li>
+<li><strong>Maddə istifadəsi müalicəsi</strong> — komorbidlik</li>
+<li>Hüquq sistemlə koordinasiya</li>
+</ul>
+<p><strong>Azərbaycanda:</strong> antisosial şəxsiyyət psixiatrik sistemdə az müalicə alır; hüquq sistemi dominant</p>
+<h3 id="azərbaycanda-şəxsiyyət-pozuntuları" class="">Azərbaycanda şəxsiyyət pozuntuları</h3>
+<ul>
+<li><strong>DBT, MBT, TFP, ST</strong> ixtisaslaşmış terapevtlər az</li>
+<li>Şəxsiyyət pozuntusu tez-tez &quot;xarakter zəifliyi&quot; kimi qəbul edilir — stigma yüksək</li>
+<li>Farmakoterapiya dominant müalicə modeli</li>
+<li><strong>Beynəlxalq resurslar:</strong> DBT online treninqlər (Psych Budapest, ISSTD)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="şəxsiyyət-pozuntularının-ümumi-gedişi" class="">Şəxsiyyət pozuntularının ümumi gedişi</h3>
+<ul>
+<li><strong>Yüngül-orta:</strong> adekvat müalicə ilə əhəmiyyətli yaxşılaşma</li>
+<li><strong>BPD:</strong> uzunmüddətli izləmə tədqiqatları (Zanarini et al.) — 10 il sonra 85%-nin kriterlara uyğun olmadığını göstərir. Lakin <strong>funksional bərpa daha yavaşdır</strong> — simptomlar yaxşılaşır, münasibət/iş funksiyası daha uzun çəkir</li>
+<li><strong>Antisosial:</strong> ağır formada pis; yaşla bəzi azalma</li>
+<li><strong>Anankast:</strong> tez-tez xroniki, lakin yüksək funksionallıq saxlanılır</li>
+</ul>
+<h3 id="yaxşı-proqnoz-prediktorları" class="">Yaxşı proqnoz prediktorları</h3>
+<ul>
+<li>Yüngül şiddət</li>
+<li>Güclü terapevtik alyans</li>
+<li>Komorbidliklərin müalicəsi</li>
+<li>Sosial dəstək</li>
+<li>DBT/MBT-yə uyum</li>
+</ul>
+<h3 id="pis-proqnoz-prediktorları" class="">Pis proqnoz prediktorları</h3>
+<ul>
+<li>Ağır şiddət</li>
+<li>Aktiv maddə istifadəsi</li>
+<li>Komorbid PTSD müalicəsiz</li>
+<li>Sosial izolasiya</li>
+<li>Tez-tez hospitalizasiya dövrləri</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>National Institute for Health and Care Excellence (NICE). <em>Borderline personality disorder</em> (NG69). London, 2009/2018.</li>
+<li>Linehan MM. <em>Cognitive-Behavioral Treatment of Borderline Personality Disorder.</em> Guilford, 1993.</li>
+<li>Bateman A, Fonagy P. <em>Mentalization-Based Treatment for Borderline Personality Disorder.</em> Oxford UP, 2016.</li>
+<li>Young JE, et al. <em>Schema Therapy: A Practitioner&#x27;s Guide.</em> Guilford, 2003.</li>
+<li>Kernberg OF. <em>Borderline Conditions and Pathological Narcissism.</em> Aronson, 1975.</li>
+<li>Zanarini MC, et al. <em>Attainment and stability of sustained symptomatic remission and recovery among patients with borderline personality disorder.</em> Am J Psychiatry, 2012.</li>
+<li>Tyrer P, et al. <em>The ICD-11 classification of personality disorders: A new approach.</em> World Psychiatry, 2019.</li>
+<li>Bandelow B, et al. <em>WFSBP guidelines for the pharmacological treatment of personality disorders.</em> World J Biol Psychiatry, 2015.</li>
+</ol>
+<p><strong>Yerli (Azərbaycan):</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Psixiatriya klinik protokollar.</em> Bakı.</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+<p><strong>Post-sovet:</strong></p>
+<ol>
+<li>Qindikin V.Ya., Quryeva V.A. <em>Şəxsiyyət patologiyası.</em> (Личностная патология) Moskva: Triada-X, 1999.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Qannuşkin P.B. <em>Psixopatiyaların klinikası: statika, dinamika, sistematika.</em> (Клиника психопатий) Moskva: Medqiz, 1933 (klassik).</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d102-anti̇sosi̇aldi̇ssosi̇al-nümunəsi̇" class="h-disorder"><span class="icd">6D10.2</span> ANTİSOSİAL/DİSSOSİAL NÜMUNƏSİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D10</span> — Antisosial/Dissosial Nümunəsi</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F60</span> — Spesifik şəxsiyyət pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 301.xx — Personality Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Antisosial/dissosial nümunə – <strong>başqalarının hüquqlarına sistemli laqeydlik</strong>, <strong>sosial normaların pozulması</strong>, manipulyasiya, qəddar davranış; <strong>empatiya</strong> və <strong>günah hissinin</strong> struktural çatışmazlığı; <strong>pasiyent bunları problem kimi qavramır</strong> (eqo-sintonik).</p>
+<p><strong>XBT-11 terminoloji qeydi:</strong> XBT-11 ayrıca &quot;antisosial şəxsiyyət pozuntusu&quot; kodu saxlamayıb. Bu klinik tablo <strong><span class="icd">6D10</span> + yüksək Dissosiallik</strong> kombinasiyası ilə əks olunur. Bununla belə, klinik ədəbiyyatda &quot;antisosial&quot; termini istifadə olunmağa davam edir; bu kitabda &quot;antisosial/dissosial nümunə&quot; kimi işlənir.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="genetik" class="">Genetik</h3>
+<ul>
+<li><strong>MAOA gen poliformizmi</strong> + uşaqlıq istismarı → güclü sintaktik interaksiya (Caspi 2002)</li>
+<li>İrsiyyət göstəricisi: 40-50%</li>
+<li>Davranış pozuntusu ilə güclü genetik süreklilik</li>
+</ul>
+<h3 id="neyrobioloji" class="">Neyrobioloji</h3>
+<ul>
+<li><strong>Amigdala hiporeaktivliyi</strong> – qorxu kondisionasiyası zəif → cəza siqnalları işlənmir</li>
+<li><strong>Ventromedial prefrontal korteks</strong> zəifliyi – özünü nəzarət, sosial qərar qəbulu</li>
+<li><strong>Aşağı kortizol</strong> – stress reaksiyası düşük; &quot;autonomik hipo-arousal&quot;</li>
+<li><strong>Aşağı 5-HIAA</strong> (serotonin metaboliti) – impulsiv aqressiya</li>
+</ul>
+<h3 id="psixososial" class="">Psixososial</h3>
+<ul>
+<li>Uşaqlıqda fiziki istismar, neglekt</li>
+<li>Valideyn antisosiallığı (model)</li>
+<li>Antisosial peer group (yeniyetmə dövründə kritik)</li>
+<li>Məktəb uğursuzluğu, aşağı sosioiqtisadi status</li>
+<li><strong>Uşaqlıq başlanğıclı davranış pozuntusu</strong> – ən güclü prediktor</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 2-4% ümumi populyasiyada; məhkəmə/həbs kontekstdə 40-70%</li>
+<li><strong>Cins:</strong> kişi:qadın 5:1; lakin qadınlarda tez-tez tanınmır</li>
+<li><strong>Başlanğıc:</strong> davranış pozuntusu uşaqlıqda → antisosial şəxsiyyət yetkinlikdə</li>
+<li><strong>DSM-5-TR tələbi:</strong> Davranış pozuntusu əlamətlərinin 15 yaşa qədər başlaması</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="əsas-xüsusiyyətlər" class="">Əsas xüsusiyyətlər</h3>
+<ul>
+<li><strong>Sosial normaları pozmaq</strong> – qayda, qanun, öhdəliklərə laqeydlik</li>
+<li><strong>Hiyləkarlıq, aldatma</strong> – şəxsi qazanc üçün yalan, aldatma, manipulyasiya</li>
+<li><strong>İmpulsivlik</strong> – plan yoxdur, gündəlik qərar</li>
+<li><strong>İrritabl aqressivlik</strong> – davalara girişmə, başqalarına fiziki zərər</li>
+<li><strong>Özü və başqasının təhlükəsizliyinə laqeydlik</strong></li>
+<li><strong>Maliyyə məsuliyyətsizliyi</strong> – öhdəliklərə əməl etməmək</li>
+<li><strong>Günah hissi yox</strong> – başqasına ziyan verdikdə narahat olmur; yaxud rasionalizasiya</li>
+</ul>
+<h3 id="şəxsiyyət-pozuntusu-olan-profil-ağır-dissosiallik" class="">&quot;şəxsiyyət pozuntusu olan&quot; profil (ağır Dissosiallik)</h3>
+<ul>
+<li><strong>Səthi cəlbedicilik</strong> (Hare: &quot;glib superficial charm&quot;) – ilk görüşdə cəlbedici</li>
+<li><strong>Böyüklük hissi</strong> (grandiosity)</li>
+<li><strong>Empatiya sıfır</strong> – başqasının hissiyatına məhəl yoxdur</li>
+<li><strong>Parazitik lüksüm</strong> – başqalarının hesabına yaşamaq</li>
+<li><strong>Stimul axtarışı</strong> – daim yeni, həyəcanlı</li>
+<li><strong>Cinayət müxtəlifliyi</strong> – tək sahə deyil, geniş</li>
+<li><strong>PCL-R</strong> – Hare şəxsiyyət pozuntusu Yoxlama Siyahısı</li>
+</ul>
+<h3 id="qadınlarda-xüsusiyyətlər" class="">Qadınlarda xüsusiyyətlər</h3>
+<p>Kişilərə nisbətən qadınlarda:</p>
+<ul>
+<li>Fiziki aqressiya az; <strong>relational aggression</strong> (manipulyasiya, qibet) daha çox</li>
+<li>Cinsi davranış pozuntuları tez-tez</li>
+<li>Maddə istifadəsi komorbidliyi</li>
+<li>Daha az tanınır, daha az diaqnoz alır</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-çərçivəsində" class="">XBT-11 çərçivəsində:</h3>
+<p><strong>A.</strong> Şəxsiyyət pozuntusu ümumi meyarları (<span class="icd">6D10</span>) qarşılanır</p>
+<p><strong>B.</strong> Dissosiallik domeninin (<span class="icd">6D11.2</span>) yüksək olması:</p>
+<ul>
+<li>Manipulyativlik, hiyləkarlıq, qəddarlıq, düşmənçilik</li>
+</ul>
+<p><strong>C.</strong> Şiddət: tipik orta-ağır</p>
+<h3 id="dsm-5-tr-əlavə-tələbi-3017" class="">DSM-5-TR əlavə tələbi (301.7):</h3>
+<ul>
+<li>≥18 yaş</li>
+<li>15 yaşa qədər davranış pozuntusu tarixi</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>BPD (Sərhəd nümunəsi)</strong></td><td>Emosional labillik, tərk edilmə qorxusu; günah hissi var; müalicəyə müraciət edir</td></tr>
+<tr><td><strong>Narsisistik şəxsiyyət</strong></td><td>Böyüklük, empatiya az; lakin qanun pozma, zorakılıq az</td></tr>
+<tr><td><strong>Davranış pozuntusu</strong></td><td>&lt;18 yaş; yetkinlikdə antisosial meyarlara yenidən baxılır</td></tr>
+<tr><td><strong>Manik epizod</strong></td><td>Episodik; aqressiya maniya dövrü ilə bağlı</td></tr>
+<tr><td><strong>Maddə intoksikasiyası</strong></td><td>Kontekstli; sərxoş olmadıqda fərqli</td></tr>
+<tr><td><strong>PTSP</strong></td><td>Travma anamnezi; hipervijilans, qaçınma; empatiya mövcud</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="xüsusi-çətinlik-motivasiya-yoxdur" class="">Xüsusi çətinlik: motivasiya yoxdur</h3>
+<p>Antisosial nümunə pasiyentlər <strong>öz iradəsi ilə müalicəyə</strong> tez-tez müraciət etmir – müalicə adətən <strong>məhkəmə qərarı, həbs alternativ, yaxın münasibətin tələbi</strong> ilə gəlir.</p>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>Ümumi prinsip:</strong></p>
+<ul>
+<li>Dəyişiklik üçün <strong>daxili motivasiya</strong> olduqda psixoterapiya effektiv</li>
+<li><strong>Məhkəmə-psixiatrik kontekstdə:</strong> cognitive-behavioral, CBT-A (antisocial)</li>
+</ul>
+<p><strong>Ən effektiv yanaşmalar:</strong></p>
+<ul>
+<li><strong>Koqnitiv-analitik terapiya</strong> – Ryle; praqmatik, struktur</li>
+<li><strong>Motivasional Müsahibə</strong> – dəyişiklik üçün ambivalentliklə iş</li>
+<li><strong>Forenzik kontekstdə:</strong> Reasoning &amp; Rehabilitation (R&amp;R) proqramı; Aggression Replacement Training</li>
+</ul>
+<p><strong>DBT:</strong> BPD ilə komorbidlikdə effektiv</p>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>Spesifik preparat yoxdur</strong> antisosial şəxsiyyət üçün.</p>
+<p><strong>Komorbidlik müalicəsi:</strong></p>
+<ul>
+<li>Maddə istifadəsi (Bölmə 12)</li>
+<li>Komorbid MDD: SİUSİ</li>
+<li>Aqressiya: litium, valproat, atipik antipsixotiklər</li>
+<li>İmpulsivlik: DDHP varsa stimulyantlar</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Ağır antisosial nümunə = pis proqnoz</strong></li>
+<li><strong>&quot;şəxsiyyət pozuntusu olan&quot; profil (yüksək Dissosiallik)</strong> = müalicəyə ən az cavab</li>
+<li>Yaşla (40-50+) şiddətin azalması mümkün</li>
+<li>Motivasiya + uzunmüddətli terapiya ilə bəziləri yaxşılaşır</li>
+<li>Maddə istifadəsinin müalicəsi ən effektiv komponent</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Hare RD. <em>Without Conscience: The Disturbing World of the Psychopaths Among Us.</em> Guilford, 1993.</li>
+<li>Moffitt TE. <em>Adolescence-limited and life-course-persistent antisocial behavior.</em> Psychol Rev, 1993.</li>
+<li>Caspi A, et al. <em>Role of genotype in the cycle of violence in maltreated children.</em> Science, 2002.</li>
+<li>Patrick CJ (ed). <em>Handbook of Psychopathy.</em> Guilford, 2018.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d10-xbt-10-kateqori̇yalarinin-xbt-11-ə-çevri̇lməsi̇" class="h-disorder"><span class="icd">6D10</span> XBT-10 KATEQORİYALARININ XBT-11-Ə ÇEVRİLMƏSİ</h1>
+<p><strong>Klinik istifadə üçün çevirici cədvəl</strong></p>
+<hr>
+<p>Azərbaycanda hənüz XBT-10 terminologiyasından istifadə olunduğundan, aşağıdakı cədvəl klinisistlər üçün istinad kimi hazırlanmışdır.</p>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-10 Diaqnozu</th><th>XBT-10 Kodu</th><th>XBT-11 Ekvivalent</th></tr>
+<tr><td><strong>Paranoid şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.0</span></td><td><span class="icd">6D10</span> + Dissosiallik ↑ (şübhəcilik, düşmənçilik)</td></tr>
+<tr><td><strong>Şizoid şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.1</span></td><td><span class="icd">6D10</span> + Ayrılma ↑ (sosial ayrılma, sınıq affekt)</td></tr>
+<tr><td><strong>Şizotipal pozuntu</strong></td><td><span class="icd">F21</span></td><td>XBT-11-də psixotik bölmədə saxlanıb (<span class="icd">6A22</span>)</td></tr>
+<tr><td><strong>Antisosial şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.2</span></td><td><span class="icd">6D10</span> + Dissosiallik ↑ (ağır)</td></tr>
+<tr><td><strong>Emosional qeyri-sabit – İmpulsiv tip</strong></td><td><span class="icd">F60.30</span></td><td><span class="icd">6D10</span> + Dezinhibisiya ↑</td></tr>
+<tr><td><strong>Emosional qeyri-sabit – BPD tipi</strong></td><td><span class="icd">F60.31</span></td><td><span class="icd">6D10</span> + Sərhəd nümunəsi (<span class="icd">6D11.5</span>)</td></tr>
+<tr><td><strong>dissosiativ (Histrionik) şəxsiyyət</strong></td><td><span class="icd">F60.4</span></td><td><span class="icd">6D10</span> + Mənfi affektivlik ↑ + Dezinhibisiya ↑</td></tr>
+<tr><td><strong>Anankast şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.5</span></td><td><span class="icd">6D10</span> + Anankastiya ↑</td></tr>
+<tr><td><strong>Narahatlıqdan qaçan şəxsiyyət</strong></td><td><span class="icd">F60.6</span></td><td><span class="icd">6D10</span> + Ayrılma ↑ + Mənfi affektivlik ↑</td></tr>
+<tr><td><strong>Asılı şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.7</span></td><td><span class="icd">6D10</span> + Mənfi affektivlik ↑ (ayrılma həyəcanı)</td></tr>
+<tr><td><strong>Narsisistik şəxsiyyət pozuntusu</strong></td><td><span class="icd">F60.8</span></td><td><span class="icd">6D10</span> + Dissosiallik ↑ (böyüklük, empatiya az)</td></tr>
+<tr><td><strong>Dəqiqləşdirilməmiş (NOS)</strong></td><td><span class="icd">F60.9</span></td><td><span class="icd">6D10</span> + relevant domain kombinasiyası</td></tr>
+</table></div>
+<p><strong>Qeyd:</strong> Bu çevirici orientir cədvəlidir – bire-bir uyğunlaşma mümkün deyil. XBT-11 dimensional sisteminin əsas prinsipindən yararlanmaq üçün hər pasiyenti ayrıca 5 domain üzrə qiymətləndirmək lazımdır.</p>
+<h2 id="müalicə-yanaşması-xbt-11-ə-uyğun" class="">Müalicə yanaşması: XBT-11-ə uyğun</h2>
+<p><strong>Şiddət əsasında müalicə intensivliyi:</strong></p>
+<ul>
+<li><strong>Yüngül:</strong> ambulatoria, fərdi psixoterapiya, 1 dəfə/həftə</li>
+<li><strong>Orta:</strong> intensiv ambulatoria, qrup + fərdi, DBT/MBT/Sxema terapiyası</li>
+<li><strong>Ağır:</strong> day hospital, stasionar; intensiv, multidisiplinar</li>
+</ul>
+<p><strong>Domain əsasında terapevtik fokus:</strong></p>
+<ul>
+<li><strong>Mənfi affektivlik:</strong> DBT (affekt tənzimləmə), SİUSİ</li>
+<li><strong>Ayrılma:</strong> sosial bacarıqlar, qrup terapiyası</li>
+<li><strong>Dissosiallik:</strong> motivasional müsahibə, forenzik KDT</li>
+<li><strong>Dezinhibisiya:</strong> DBT (distress dözüm, impuls nəzarəti)</li>
+<li><strong>Anankastiya:</strong> KDT (perfeksionizm, nəzarət buraxmaq)</li>
+<li><strong>Sərhəd nümunəsi:</strong> Dialektik Davranış Terapiyası (DBT), MBT, Sxema terapiyası</li>
+</ul>
+<h2 id="bölmə-15-üçün-əsas-mənbələr" class="">Bölmə 15 üçün əsas mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>Tyrer P, et al. <em>The development of the ICD-11 classification of personality disorders: an amalgam of science, pragmatism, and politics.</em> Annu Rev Clin Psychol, 2019.</li>
+<li>Herpertz SC, et al. <em>The ICD-11 classification of personality disorders: relation to the five-factor model.</em> Personal Disord, 2020.</li>
+<li>Linehan MM. <em>DBT Skills Training Manual.</em> 2nd ed. Guilford, 2015.</li>
+<li>Young JE, Klosko JS, Weishaar ME. <em>Schema Therapy: A Practitioner&#x27;s Guide.</em> Guilford, 2003.</li>
+<li>Bateman A, Fonagy P. <em>Mentalization-Based Treatment for Personality Disorders.</em> Oxford UP, 2016.</li>
+<li>Hare RD. <em>Psychopathy Checklist-Revised (PCL-R).</em> 2nd ed. MHS, 2003.</li>
+<li>Oldham JM, Skodol AE. <em>Personality Disorders.</em> FOCUS, 2000.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-14.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 14 — POZUCU DAVRANIŞ</span></a><a href="bolme-16.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 16 — PARAFİLİK</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-15";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

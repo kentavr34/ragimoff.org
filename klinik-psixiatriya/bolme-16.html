@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 16 — PARAFİLİK">
+<title>BÖLMƏ 16 — PARAFİLİK | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-16" class="h-bolme">BÖLMƏ 16</h1>
+<h2 id="parafi̇li̇k-pozuntular" class="">PARAFİLİK POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D30</span>–6D3Z — Paraphilic disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F65</span> — Cinsi üstünlük pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Paraphilic Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6D30</span></strong></td><td>Voyüristik pozuntu</td><td>16.1</td></tr>
+<tr><td><strong><span class="icd">6D31</span></strong></td><td>Exhibisionistik pozuntu</td><td>16.2</td></tr>
+<tr><td><strong><span class="icd">6D32</span></strong></td><td>Frottüristik pozuntu</td><td>16.3</td></tr>
+<tr><td><strong><span class="icd">6D33</span></strong></td><td>Pedofilik pozuntu</td><td>16.4</td></tr>
+<tr><td><strong><span class="icd">6D34</span></strong></td><td>Zoofilia pozuntusu</td><td>16.5</td></tr>
+<tr><td><strong><span class="icd">6D35</span></strong></td><td>Cinsi sadizm pozuntusu</td><td>16.6</td></tr>
+<tr><td><strong><span class="icd">6D36</span></strong></td><td>Cinsi mazoxizm pozuntusu</td><td>16.7</td></tr>
+<tr><td><strong>6D3Z</strong></td><td>Digər parafilia pozuntular</td><td>16.8</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="parafilia-vs-parafilia-pozuntusu" class="">Parafilia vs Parafilia pozuntusu</h3>
+<p><strong>Ən vacib ayrım – XBT-11-in əsas prinsipi:</strong></p>
+<p><strong>Parafilia</strong> – atipik cinsi maraq, fantaziya, istək. <strong>Özlüyündə diaqnoz deyil.</strong> Fərqli seksual üstünlüklər normativ diapazonda yer ala bilər.</p>
+<p><strong>Parafilia pozuntusu</strong> – parafilia <strong>+</strong> aşağıdakılardan biri:</p>
+<ol>
+<li>Pasiyentin özündə <strong>distress</strong> yaradır (istəmədiyi hissiyat)</li>
+<li><strong>Başqa şəxsə zərər</strong> verir (xüsusilə razılığı olmayan şəxs və ya uşaq)</li>
+<li><strong>Hüquqi</strong>, sosial, peşə fəsadları</li>
+</ol>
+<p><strong>Nəticə:</strong> Konsensual, yetkin partnyorlar arasındakı BDSM, fetişizm kimi tiplər <strong>özlüyündə diaqnoz deyil</strong>. Diaqnoz yalnız zərər və ya distress kontekstindədir.</p>
+<h3 id="pedofiliya-ayrı-status" class="">Pedofiliya – ayrı status</h3>
+<p>Pedofiliya konsensual olmur – uşağın zərəri avtomatik mövcuddur. <strong>Həm razılığı olmayan hərəkət, həm də fantaziya klinik əhəmiyyətlidir.</strong></p>
+<h3 id="forensik-kontekst" class="">Forensik kontekst</h3>
+<p>Parafilia pozuntuları psixiatriyada tez-tez <strong>məhkəmə-psixiatrik ekspertiza</strong> kontekstindədir:</p>
+<ul>
+<li>Cinsi cürmün qurbanı kim?</li>
+<li>Məsuliyyət qabiliyyəti?</li>
+<li>Müalicə tövsiyəsi?</li>
+<li>Residiv riski?</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6d31-6d33-ekspozi̇si̇ya-ekshi̇bi̇si̇oni̇zm-vuayeri̇zm-frottüri̇zm" class="h-disorder"><span class="icd">6D31</span>-<span class="icd">6D33</span> EKSPOZİSİYA (EKSHİBİSİONİZM), VUAYERİZM, FROTTÜRİZM</h1>
+<hr>
+<h2 id="voyüristik-pozuntu" class="">Voyüristik Pozuntu</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D30</span> | <strong>XBT-10:</strong> <span class="icd">F65.3</span> | <strong>DSM-5-TR:</strong> 302.82</div>
+<p><strong>Tərif:</strong> Razılığı olmayan şəxsi soyunarkən, cinsi fəaliyyətdə izləməkdən intensiv cinsi həzz alma; bu <strong>aktı icra etmək</strong> (gözetləmə) və ya <strong>güclü istək</strong> pasiyentə distress verir ya da başqasına zərər verir.</p>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Gizli gözetləmə (pəncərə, kamera)</li>
+<li>Tez-tez masturbasiya ilə birlikdə</li>
+<li>Pasiyentin əksəriyyəti hərəkəti icra etmir – yalnız fantaziya</li>
+</ul>
+<p><strong>Epidemiologiya:</strong> Kişi dominant; yayılma dəqiq bilinmir. Müraciət az – utanma, hüquqi qorxu.</p>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>KDT – distress, rezistans idarəsi</li>
+<li>Antiandrogen (ağır, residiv halda) – testosteron azaltma; libido azaldır</li>
+<li>SİUSİ – obsessiv komponent varsa</li>
+</ul>
+<hr>
+<h2 id="exhibisionistik-pozuntu" class="">Exhibisionistik Pozuntu</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D31</span> | <strong>XBT-10:</strong> <span class="icd">F65.2</span> | <strong>DSM-5-TR:</strong> 302.4</div>
+<p><strong>Tərif:</strong> Razılığı olmayan şəxsə öz cinsiyyət orqanını nümayiş etdirməkdən intensiv cinsi həzz alma; distress yaradır ya da bu hərəkəti icra edir.</p>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>İctimai yerlər (park, metrostansiya, maşın)</li>
+<li>Qurbanın reaksiyası kritik – çox vaxt şok/qorxu</li>
+<li>Tez-tez öz-özlüyündə məmnun deyil (eqo-distonik)</li>
+<li>Komorbid: obsessiv xüsusiyyətlər, maddə istifadəsi</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>KDT + rezidiv profilaktika</li>
+<li>Antiandrogen (məhkəmə kontekstindədirsə)</li>
+<li>Qrup terapiyası (relapse prevention qrupu)</li>
+</ul>
+<hr>
+<h2 id="frottüristik-pozuntu" class="">Frottüristik Pozuntu</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D32</span> | <strong>XBT-10:</strong> <span class="icd">F65.8</span> | <strong>DSM-5-TR:</strong> 302.89</div>
+<p><strong>Tərif:</strong> Razılığı olmayan şəxsə toxunmaqdan, sürtünməkdən intensiv cinsi həzz alma; ictimai yerlərdə (metro, izdiham).</p>
+<p><strong>Müalicə:</strong> Exhibisionizm kimi – KDT, antiandrogen, məhkəmə kontekstdə.</p>
+<p>\newpage</p>
+<h1 id="6d36-pedofi̇li̇k-pozuntu" class="h-disorder"><span class="icd">6D36</span> PEDOFİLİK POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D36</span> — Pedofilik Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F65.9</span> — Cinsi seçim pozuntusu, dəqiqləşdirilməmiş</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Other Specified Paraphilic Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Pedofilik pozuntu – <strong>pubertete çatmamış uşaqlara</strong> (tipik olaraq 13 yaş altı) davamlı, güclü cinsi maraq; bu maraq:</p>
+<ul>
+<li>Pasiyentdə <strong>distress</strong> yaradır <strong>VƏ/VƏ YA</strong></li>
+<li><strong>Uşağa cinsi hərəkət</strong> icra olunmuşdur ya da icra riski var</li>
+</ul>
+<p><strong>Yaş meyarı:</strong> Pasiyent ən azı 16 yaş; uşaqdan ən azı 5 yaş böyük.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Atipik neyroinkişaf:</strong> prenatal hormonal məruz qalma hipotezi</li>
+<li><strong>Beyin quruluşu:</strong> sağ parental lob, frontotemporal ağ maddə dəyişiklikləri (bəzi tədqiqatlar)</li>
+<li><strong>Travma anamnezi:</strong> istismar qurbanı olmuş şəxslərdə artmış risk (lakin birbaşa kauzal deyil)</li>
+<li><strong>Komorbidlik:</strong> pedofiliya tez-tez başqa parafilia, antisosial, maddə ilə birlikdədir</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 1-5% kişilərdə (gizli, aşkar yayılma çox az)</li>
+<li><strong>Cins:</strong> kişi 90%+</li>
+<li>Müraciət: tez-tez məhkəmə/həbs sonrası</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li><strong>Eksklüziv tip:</strong> yalnız uşaqlara maraq</li>
+<li><strong>Qeyri-eksklüziv tip:</strong> uşaqlara maraqla yanaşı yetkinlərə də maraq</li>
+<li><strong>Əlaqəli zaman:</strong> girl-oriented vs boy-oriented</li>
+<li>Fantaziya, mastürbasiya, uşağa ekspozisiya, cinsi istismar</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-6d33" class="">XBT-11 (<span class="icd">6D33</span>):</h3>
+<p><strong>A.</strong> Pubertete çatmamış uşağa güclü, davamlı cinsi maraq (ən azı 6 ay)</p>
+<p><strong>B.</strong> Maraq aktual davranışa çevrilmiş <strong>VƏ/VƏ YA</strong> pasiyentdə ciddi distress yaratmış</p>
+<p><strong>C.</strong> Pasiyent ≥16 yaş; uşaqdan ≥5 yaş böyük</p>
+<h2 id="forensik-məsələlər" class="">Forensik məsələlər</h2>
+<ul>
+<li><strong>Uşağa cinsi istismar = hüquqi cinayət</strong> – psixiatrik diaqnozdan asılı olmayaraq</li>
+<li><strong>Psixiatrik ekspertiza</strong> – məsuliyyət qabiliyyəti, müalicə tövsiyəsi</li>
+<li><strong>Residiv riski qiymətləndirilməsi:</strong> Static-99, SVR-20</li>
+<li><strong>Məhkəmə qərarı ilə müalicə</strong> – məcburi formada ola bilər</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="farmakoterapiya-antiandrogenlər" class="">Farmakoterapiya – antiandrogenlər</h3>
+<p><strong>Cinsi deviant davranışın farmakoterapiyası – ən effektiv:</strong></p>
+<p><strong>Medroksiprogesteron asetat (MPA – Depo-Provera):</strong></p>
+<ul>
+<li>Testosteron səviyyəsini azaldır</li>
+<li>Cinsi istəyi effektiv azaldır</li>
+<li>IM: 150-400 mq/2 həftə</li>
+<li>Yan: osteoporoz, kilo artımı, depresiya</li>
+</ul>
+<p><strong>Lüprolid asetat (GnRH agonist):</strong></p>
+<ul>
+<li>LH/FSH azaldır → testosteron minimal</li>
+<li>Daha effektiv; IM aylıq</li>
+<li>Yan: osteoporoz, isti basma</li>
+</ul>
+<p><strong>Siproteron asetat (Androkur – Avropa):</strong></p>
+<ul>
+<li>Antiandrogen</li>
+<li>Testosteron reseptor blokajı</li>
+</ul>
+<p><strong>SİUSİ (yüksək doza):</strong></p>
+<ul>
+<li>Obsessiv fantaziyaları azaldır</li>
+<li>Antiandrogen deyil, lakin kompulsivliyi azaldır</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>Residiv Profilaktikası (RP) – qızıl standart:</strong></p>
+<ul>
+<li>Marlatt &amp; Laws protokolu</li>
+<li>Residiv tsiklinin identifikasiyası</li>
+<li>&quot;Lapse&quot; vs &quot;relapse&quot; – fərq öyrədilir</li>
+<li>Risk situasiyalarının idarəsi</li>
+</ul>
+<p><strong>Koqnitiv restrukturizasiya:</strong></p>
+<ul>
+<li>&quot;Uşaq razılaşdı&quot; kimi bəhanəli inanclar</li>
+<li>Viktim empati – qurbanın perspektivi</li>
+<li>Cinsi fantaziyaların işlənməsi</li>
+</ul>
+<p><strong>Həyat boyu izləmə</strong> – müalicə residivi tam aradan qaldırmır.</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Eksklüziv tip = yüksək residiv riski</strong></li>
+<li>Antiandrogen müalicə riski əhəmiyyətli azaldır</li>
+<li><strong>Qeyri-eksklüziv + müalicə = daha yaxşı proqnoz</strong></li>
+<li>Həyat boyu psixiatrik nəzarət</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Barbaree HE, Marshall WL (eds). <em>The Juvenile Sex Offender.</em> Guilford, 2006.</li>
+<li>Hanson RK, Morton-Bourgon KE. <em>The characteristics of persistent sexual offenders.</em> J Consult Clin Psychol, 2005.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d3z-di̇gər-parafi̇li̇k-pozuntular" class="h-disorder">6D3Z DİGƏR PARAFİLİK POZUNTULAR</h1>
+<hr>
+<h2 id="zoofilia-pozuntusu-6d34" class="">Zoofilia Pozuntusu (<span class="icd">6D34</span>)</h2>
+<p>Heyvana cinsi maraq; aktual davranış icra olunmuşdur ya da distress. Nadir; klinik aşkarlama az. Müalicə: KDT, antiandrogen.</p>
+<hr>
+<h2 id="cinsi-sadizm-pozuntusu-6d35" class="">Cinsi Sadizm Pozuntusu (<span class="icd">6D35</span>)</h2>
+<p>Razılığı olmayan şəxsə fiziki və ya psixoloji əzab vermək yolu ilə intensiv cinsi həzz alma; distress yaratmış ya da aktual davranış icra olunmuş.</p>
+<p><strong>Forensik əhəmiyyəti:</strong> Şiddətli cinsi cürmlər (rape, qətl) kontekstindədir. Static-99R, SVR-20 risk qiymətləndirilməsi. Antiandrogen, forensik KDT.</p>
+<hr>
+<h2 id="cinsi-mazoxizm-pozuntusu-6d36" class="">Cinsi Mazoxizm Pozuntusu (<span class="icd">6D36</span>)</h2>
+<p>Özünə ağrı, həqarət, əsarət üzündən intensiv cinsi həzz; pasiyentdə distress ya da funksional pozulma. Konsensual BDSM (yetkin partnyorlar) özlüyündə diaqnoz deyil.</p>
+<hr>
+<h2 id="digər-parafilia-pozuntular-6d3z" class="">Digər Parafilia Pozuntular (6D3Z)</h2>
+<p><strong>Fetişizm:</strong> Cansız əşyalardan ya da spesifik bədən hissəsindən intensiv cinsi məşğulluq.</p>
+<p><strong>Transvestistik pozuntu:</strong> Karşı cins geyimi ilə erotik həzz; distress yaradır.</p>
+<p><strong>Frotage, urofilia, koprofilia</strong> – nadir, klnikada az.</p>
+<p><strong>Ümumi müalicə prinsipi:</strong></p>
+<ul>
+<li>Distress yoxdursa, konsensual münasibətdədirsə – müdaxilə tələb olunmur</li>
+<li>Distress varsa: KDT, mindfulness, gərginlik idarəsi</li>
+<li>Razılığı olmayan hərəkət icra olundusa: forensik psixiatriya</li>
+</ul>
+<h2 id="bölmə-16-üçün-ümumi-mənbələr" class="">Bölmə 16 üçün ümumi mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Långström N. <em>The DSM diagnostic criteria for exhibitionism, voyeurism, and frotteurism.</em> Arch Sex Behav, 2010.</li>
+<li>Seto MC. <em>Pedophilia and Sexual Offending Against Children.</em> APA, 2008.</li>
+<li>Laws DR, O\&#x27;Donohue WT (eds). <em>Sexual Deviance: Theory, Assessment, and Treatment.</em> Guilford, 2008.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-15.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 15 — ŞƏXSİYYƏT</span></a><a href="bolme-17.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 17 — SÜNİ POZUNTULAR</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-16";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

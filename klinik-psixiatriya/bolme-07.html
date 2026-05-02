@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 7 — STRESS">
+<title>BÖLMƏ 7 — STRESS | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-7" class="h-bolme">BÖLMƏ 7</h1>
+<h2 id="stresslə-əlaqəli̇-pozuntular" class="">STRESSLƏ ƏLAQƏLİ POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B40</span>–6B4Z — Disorders specifically associated with stress</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F43</span> — Ağır stress reaksiyası və uyğunlaşma pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Trauma- and Stressor-Related Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6B40</span></strong></td><td>Posttravmatik stress pozuntusu (PTSP)</td><td>7.1</td></tr>
+<tr><td><strong><span class="icd">6B41</span></strong></td><td>Kompleks posttravmatik stress pozuntusu (KPTSP)</td><td>7.2</td></tr>
+<tr><td><strong><span class="icd">6B42</span></strong></td><td>Uzanmış kədər pozuntusu</td><td>7.3</td></tr>
+<tr><td><strong><span class="icd">6B43</span></strong></td><td>Uyğunlaşma pozuntusu</td><td>7.4</td></tr>
+<tr><td><strong><span class="icd">6B44</span></strong></td><td>Reaktiv bağlılıq pozuntusu</td><td>7.5</td></tr>
+<tr><td><strong><span class="icd">6B45</span></strong></td><td>Dezinhibisiyalı sosial əlaqə pozuntusu</td><td>7.6</td></tr>
+<tr><td><strong>6B4Z</strong></td><td>Dəqiqləşdirilməmiş stress pozuntusu</td><td>—</td></tr>
+<tr><td><strong>QE84</strong></td><td>Kəskin stres reaksiyası</td><td>7.7</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="kptsp-yeni-müstəqil-diaqnoz" class="">KPTSP – yeni müstəqil diaqnoz</h3>
+<p><strong>XBT-11-in ən vacib yeniliklərindən biri.</strong> XBT-10-da PTSP-nin ağır forması kimi nəzərdən keçirilirdi. <strong>XBT-11 Kompleks PTSP-ni (<span class="icd">6B41</span>) PTSP-dən ayrıca müstəqil kateqoriya</strong> kimi kodladı:</p>
+<ul>
+<li>PTSP simptom klasterləri (üç əsas domain) <strong>ÜSTÜNƏ</strong> əlavə &quot;özünü təşkil etmə&quot; pozuntuları (affekt disregulyasiyası, şəxsi identiklik pozuntusu, münasibət pozuntuları)</li>
+<li>Tipik kontekst: <strong>uzunmüddətli, sistemli travma</strong> (uşaqlıq zorakılığı, insan alveri, qadın zorakılığı, soyqırım, işgəncə)</li>
+</ul>
+<h3 id="uzanmış-kədər-pozuntusu-6b42-yeni" class="">Uzanmış kədər pozuntusu (<span class="icd">6B42</span>) – yeni</h3>
+<p>XBT-10-da müstəqil diaqnoz yox idi. <strong>XBT-11 onu ayrıca kateqoriya</strong> etdi:</p>
+<ul>
+<li>Sevimli şəxsin itirilməsindən ən azı 6 ay sonra davam edən davamlı kəskin kədər</li>
+<li>Normal yas reaksiyasından fərqli neyrobioloji profil</li>
+<li>Spesifik müalicə protokolu</li>
+</ul>
+<h3 id="ptsp-simptom-strukturu-yenidən-təşkil-edildi" class="">PTSP simptom strukturu yenidən təşkil edildi</h3>
+<p>XBT-11-də PTSP üç əsas domain:</p>
+<ol>
+<li><strong>Yenidən yaşama</strong> (re-experiencing) – intruziv xatirələr, kabuslar, flashback</li>
+<li><strong>Qaçınma</strong> (avoidance) – travmaya aid düşüncə, yer, insanlardan</li>
+<li><strong>Hazırda təhlükə hissi</strong> (sense of current threat) – hipervijilans, artmış qorxu cavabı</li>
+</ol>
+<p><strong>DSM-5-TR-dən fərqli:</strong> DSM-5-TR-də dörd domain var (neqativ koqnisiya/əhval əlavə). XBT-11 daha dar meyarlar tətbiq edir, klinik utiliti daha yüksəkdir.</p>
+<h3 id="kəskin-stres-reaksiyası-qe84-normal-reaksiya" class="">Kəskin stres reaksiyası (QE84) – normal reaksiya</h3>
+<p>XBT-11-də <strong>6B</strong> kateqoriyası deyil, <strong>QE84</strong> (normal cavab kontekstində). Bu – travmadan sonra ilk günlər-həftələrdə normal disstress reaksiyasıdır; diaqnoz kimi sayılmır.</p>
+<p><strong>Azərbaycan konteksti:</strong> Bu bölmə Azərbaycan üçün xüsusi klinik əhəmiyyət daşıyır. 1988-1994 Birinci Qarabağ müharibəsi, 2020 İkinci Qarabağ müharibəsi və işğaldan azad olunmuş ərazilərə qayıdış dövrü çoxsaylı travmatik vəziyyətlər yaratmışdır. <strong>Məcburi köçkünlər, müharibə veteranları, itkilər yaşamış ailələr</strong> – bu kateqoriyalar Azərbaycanda psixiatrik xidmətin prioritet qrup hesab edilməlidir.</p>
+<p>\newpage</p>
+<h1 id="6b40-posttravmati̇k-stress-pozuntusu-ptsp" class="h-disorder"><span class="icd">6B40</span> POSTTRAVMATİK STRESS POZUNTUSU (PTSP)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B40</span> — Posttravmatik Stress Pozuntusu (Ptsp)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F43.1</span> — Travma sonrası stress pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 309.81 — Posttraumatic Stress Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>PTSP – <strong>həyat üçün təhlükəli, ağır</strong> travmatik hadisəyə məruz qaldıqdan sonra inkişaf edən xroniki psixiatrik sindromdur. Üç əsas simptom klasterdən ibarətdir: travmanın yenidən yaşanması, qaçınma, hazırda təhlükə hissi.</p>
+<p><strong>Travmatik hadisə (XBT-11/DSM-5-TR tərifi):</strong></p>
+<p>- Birbaşa yaşama</p>
+<p>- Şahidlik etmə (başqasına baş verdiyini görmə)</p>
+<p>- Yaxın şəxsin başına gəldiyini öyrənmə</p>
+<p>- Peşəkar məruz qalma (xilasetmə işçiləri, həkimlər)</p>
+<ul>
+<li>Ölüm, ağır zədə, cinsi zorakılıq ilə nəticələnən hadisə</li>
+<li><strong>Formaları:</strong></li>
+</ul>
+<p><strong>Azərbaycan travmatik vəziyyətlər:</strong></p>
+<ul>
+<li>Müharibə döyüş travması (Qarabağ müharibələri)</li>
+<li>Məcburi köçkünlük, deportasiya</li>
+<li>Şəhid ailələri – yaxın itkisi</li>
+<li>Döyüşçülərdə PTSP</li>
+<li>Xocalı hadisəsi (20 Yanvar, Qarabağ müharibəsi)</li>
+<li>Məişət zorakılığı (qadınlarda)</li>
+<li>Trafik qəzaları</li>
+<li>Yanğın, fəlakətlər</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="travma-məruz-qalması" class="">Travma məruz qalması</h3>
+<p><strong>Evrensel olmayan:</strong> Travmatik hadisəyə məruz qalan hər kəs PTSP inkişaf etdirmir:</p>
+<ul>
+<li>Kəskin stres reaksiyası: travmaya maruz qalanların <strong>60-90%-i</strong></li>
+<li>PTSP inkişaf edir: <strong>5-20%</strong> (travma növündən asılı)</li>
+</ul>
+<p><strong>Ən yüksək PTSP riski yaradan travmalar:</strong></p>
+<ul>
+<li><strong>Cinsi zorakılıq/İnsanlardan gələn travma:</strong> 45-65% PTSP</li>
+<li><strong>Döyüş travması:</strong> 20-30%</li>
+<li><strong>İşgəncə:</strong> 30-50%</li>
+<li><strong>Kütləvi kütlə xəsarəti:</strong> 5-15%</li>
+<li><strong>Trafik qəzası:</strong> 10-15%</li>
+<li><strong>Təbii fəlakət:</strong> 5-10%</li>
+</ul>
+<h3 id="genetik-amillər" class="">Genetik amillər</h3>
+<ul>
+<li><strong>İrsiyyət göstəricisi:</strong> 30-40%</li>
+<li><strong>FKBP5</strong> geni – HPA oxu ilə əlaqəli; stress-epigenetika</li>
+<li><strong>5-HTTLPR</strong> (serotonin transporter)</li>
+</ul>
+<h3 id="risk-amilləri" class="">Risk amilləri</h3>
+<p><strong>Travmadan əvvəl:</strong></p>
+<ul>
+<li>Əvvəlki psixi pozuntu (depresiya, təşviş)</li>
+<li>Əvvəlki travma anamnezi</li>
+<li>Uşaqlıq adversiteti</li>
+<li>Ailədə psixi pozuntu</li>
+<li>Aşağı sosioiqtisadi status</li>
+<li>Cins (qadınlarda risk 2x)</li>
+<li><strong>Dissosiativ meyllər</strong></li>
+</ul>
+<p><strong>Travma zamanı:</strong></p>
+<ul>
+<li>Travmanın şiddəti, müddəti</li>
+<li>Bədən zədəsi</li>
+<li><strong>İnsanlardan gələn travma</strong> (naturel fəlakətdən pis)</li>
+<li><strong>Peritraumatik dissosiasiya</strong> – ən güclü predikator</li>
+</ul>
+<p><strong>Travmadan sonra:</strong></p>
+<ul>
+<li>Sosial dəstəyin olmaması</li>
+<li>Başqa stres faktoru</li>
+<li>Qayıd travmaya</li>
+<li>Psixi sağlamlıq xidmətinə çıxış yox</li>
+</ul>
+<h3 id="neyrobioloji-mexanizmlər" class="">Neyrobioloji mexanizmlər</h3>
+<p><strong>HPA oxu disregulyasiyası:</strong></p>
+<ul>
+<li>Kortizol paradoksal <strong>aşağıdır</strong> (depresiyadan fərqli) – PTSP-də</li>
+<li>Neqativ feedback hiperaktivdir (hipokortizolizm)</li>
+<li>Deksametazon supersuppression (HPA hiperassessibility)</li>
+</ul>
+<p><strong>Amigdala hiperaktivliyi:</strong></p>
+<ul>
+<li>Travma stimullarına həddən artıq cavab</li>
+<li>&quot;Fear conditioning&quot; – travma yeri, qoxu, səs → conditioned fear response</li>
+</ul>
+<p><strong>Prefrontal korteks (mPFC) hipoaktivliyi:</strong></p>
+<ul>
+<li>Amigdala inhibisiyası zəifdir</li>
+<li>&quot;Extinction&quot; (söndürmə) zəifdir</li>
+</ul>
+<p><strong>Hippokampus:</strong></p>
+<ul>
+<li>Həcm azalması (stress neürotoksikliyi)</li>
+<li>Kontekstual xatirə qoyumu zəifdir</li>
+<li><strong>Traumatik yaddaşın kontekstsiz &quot;sensor&quot; formatda saxlanması</strong> – flashback mexanizmi</li>
+</ul>
+<p><strong>Noradrenalin sistemi:</strong></p>
+<ul>
+<li>Hiperaktivdir – yuxu pozuntusu, hipervijilans, startle reflex</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<h3 id="yayılma" class="">Yayılma</h3>
+<ul>
+<li><strong>Ömürlük yayılma:</strong> 7-12%</li>
+<li><strong>12 aylıq:</strong> 3-5%</li>
+<li><strong>Müharibə veteranları:</strong> 10-30%</li>
+<li><strong>Azərbaycan:</strong> xüsusi tədqiqat məhduddur; lakin müharibə veteranları, məcburi köçkünlər, Xocalı sağ qalanları arasında yüksək yayılma ehtimal edilir</li>
+</ul>
+<h3 id="cins" class="">Cins</h3>
+<ul>
+<li><strong>Qadın:kişi 2:1</strong> – cinsi zorakılıq prevalansı ilə əlaqəli</li>
+</ul>
+<h3 id="başlanğıc" class="">Başlanğıc</h3>
+<ul>
+<li>Travmadan sonra tipik <strong>4-6 həftə</strong> ərzində</li>
+<li><strong>&quot;Gec başlanan&quot; PTSP (delayed onset):</strong> 6 aydan sonra – mövcuddur, lakin nadir</li>
+<li><strong>Xroniki gediş:</strong> 30% pasiyentdə</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="üç-əsas-simptom-klastri-xbt-11" class="">Üç əsas simptom klastri (XBT-11)</h3>
+<p><strong>A. Yenidən yaşama (Re-experiencing) – ən spesifik simptom:</strong></p>
+<ul>
+<li><strong>Flashbacklər</strong> – travmatik hadisənin canlı, qeyri-iradi xatirəsi, sanki hər şey &quot;indi&quot; baş verir; pasiyent travmaya &quot;qayıdır&quot;</li>
+<li><strong>Kabuslar</strong> – travma ilə bağlı</li>
+<li><strong>İntruziv xatirələr</strong> – istəksiz, canlı, güclü emosional reaksiya ilə müşayiət</li>
+<li><strong>Cismani reaksiyalar</strong> travma stimullarına: ürək döyüntüsü, tər, titrəmə</li>
+</ul>
+<p><strong>B. Qaçınma (Avoidance):</strong></p>
+<ul>
+<li><strong>Daxili qaçınma:</strong> travma ilə bağlı düşüncə, hisslər, xatirələrdən qaçma</li>
+<li><strong>Xarici qaçınma:</strong> travmanı xatırladan yer, insan, fəaliyyət, vəziyyətdən qaçma</li>
+</ul>
+<p><strong>C. Hazırda təhlükə hissi (Current threat – XBT-11 terminologiyası):</strong></p>
+<ul>
+<li><strong>Hipervijilans</strong> – daim &quot;alert&quot; vəziyyəti, arxada oturmaq, çıxışı izləmək</li>
+<li><strong>Artmış qorxu cavabı</strong> (hyperstartle) – gözlənilməz səs, hərəkətdə ekzajere cavab</li>
+<li><strong>Konsantrasiya çətinliyi</strong></li>
+</ul>
+<h3 id="dsm-5-tr-dəki-əlavə-domain" class="">DSM-5-TR-dəki əlavə domain</h3>
+<p>DSM-5-TR XBT-11-ə əlavə olaraq <strong>4-cü domain</strong>:</p>
+<p>- Özünü, başqalarını, dünyaya dair mənfi inanclar (&quot;Mən qüsurlu bir insanam&quot;, &quot;Dünya tamamilə təhlükəlidir&quot;)</p>
+<p>- Özünü günahlandırma, günah</p>
+<p>- Neqativ emosional hal (qorxu, dəhşət, qəzəb, günah, xəcalət)</p>
+<p>- Xoşagəlimli təcrübə yaşama qabiliyyətinin azalması (anhedoniya)</p>
+<p>- Başqalarından uzaqlaşma, özgəlik hissi</p>
+<p>- Pozitiv emosiyaların məhdudlaşması</p>
+<ul>
+<li><strong>Neqativ koqnisiya və əhval:</strong></li>
+</ul>
+<h3 id="xüsusi-klinik-simptomlar" class="">Xüsusi klinik simptomlar</h3>
+<p><strong>Dissosiasiya:</strong></p>
+<ul>
+<li>Depersonalizasiya – özündən ayrılma</li>
+<li>Derealizasiya – ətrafın &quot;real olmama&quot; hissi</li>
+<li>&quot;Dissosiativ alt-tip&quot; DSM-5-TR-də</li>
+</ul>
+<p><strong>Emosional küt (emotional numbing):</strong></p>
+<ul>
+<li>Sevimli fəaliyyətlərə maraqsızlıq</li>
+<li>Başqalarından uzaqlaşma</li>
+<li>Emosional reaksiyanın azalması</li>
+</ul>
+<p><strong>Müharibə spesifik:</strong></p>
+<ul>
+<li><strong>&quot;Survivor guilt&quot;</strong> – sağ qalmaq günahı</li>
+<li>Moral injury – etik normalar pozulduqda</li>
+<li><strong>Şəhid ailələri</strong> – &quot;niyə o, mən deyil&quot;</li>
+</ul>
+<h3 id="funksional-pozulma" class="">Funksional pozulma</h3>
+<ul>
+<li><strong>Münasibətlər:</strong> nikah, ailə, dostluq</li>
+<li><strong>Peşə fəaliyyəti</strong></li>
+<li><strong>Cismani sağlamlıq:</strong> ağrı sindromatik, immunitet pozuntusu</li>
+<li><strong>Maddə istifadəsi</strong> artmış riski (özünü-müalicə)</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b40" class="">XBT-11 əsas tələblər (<span class="icd">6B40</span>)</h3>
+<p><strong>A. Travmatik hadisəyə məruz qalma:</strong></p>
+<ul>
+<li>Birbaşa yaşama, şahidlik, xəbər alma, peşəkar məruz qalma</li>
+</ul>
+<p><strong>B. Yenidən yaşama (ən azı 1):</strong></p>
+<ul>
+<li>Intrusiv xatirələr</li>
+<li>Flashbacklər</li>
+<li>Kabuslar</li>
+<li>Cismani reaksiyalar travma stimullarına</li>
+</ul>
+<p><strong>C. Qaçınma (ən azı 1):</strong></p>
+<ul>
+<li>Daxili qaçınma (düşüncə, hisslər)</li>
+<li>Xarici qaçınma (yer, insan, fəaliyyət)</li>
+</ul>
+<p><strong>D. Hazırda təhlükə hissi (ən azı 1):</strong></p>
+<ul>
+<li>Hipervijilans</li>
+<li>Artmış qorxu cavabı</li>
+</ul>
+<p><strong>E.</strong> Simptomlar travmadan <strong>bir neçə həftə</strong> davam edir</p>
+<p><strong>F.</strong> Funksional pozulma</p>
+<h3 id="xbt-10-f431-ilə-müqayisə" class="">XBT-10 (<span class="icd">F43.1</span>) ilə müqayisə</h3>
+<p>XBT-10 meyarları daha az strukturlaşdırılmışdır. Simptom domenləri belə ayrılmış deyildi.</p>
+<h3 id="dsm-5-tr-30981-ilə-müqayisə" class="">DSM-5-TR (309.81) ilə müqayisə</h3>
+<p><strong>Əsas fərqlər:</strong></p>
+<ul>
+<li>DSM-5-TR 4 domain (XBT-11-də 3)</li>
+<li>DSM-5-TR-də neqativ koqnisiya/əhval domain</li>
+<li>DSM-5-TR <strong>dissosiativ alt-tip</strong> (depersonalizasiya/derealizasiya)</li>
+<li>DSM-5-TR <strong>gec başlanan spesifikator</strong> (6+ ay)</li>
+<li>XBT-11 <strong>Kompleks PTSP ayrıca diaqnoz</strong> (DSM-5-TR-də yox)</li>
+</ul>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<p>- <strong>PCL-5</strong> (PTSD Checklist for DSM-5) – 20 göstərici, self-report skrining</p>
+<p>- <strong>CAPS-5</strong> (Clinician-Administered PTSD Scale) – qızıl standart; klinisistin müsahibəsi</p>
+<p>- <strong>IES-R</strong> (Impact of Event Scale-Revised)</p>
+<p>- Depresiya (PHQ-9)</p>
+<p>- Maddə istifadəsi (AUDIT, DUDIT)</p>
+<p>- Suisid riski (C-SSRS)</p>
+<p>- ITQ (International Trauma Questionnaire) – XBT-11 üçün validlənmiş</p>
+<ol>
+<li><strong>Klinik müsahibə</strong> – travma anamnezi (ehtiyatlı, pasiyentə güvən qurulduqdan sonra)</li>
+<li><strong>Standartlaşdırılmış qiymətləndirmə:</strong></li>
+<li><strong>Komorbidlik:</strong></li>
+<li><strong>Kompleks PTSP xüsusiyyətlərinin qiymətləndirilməsi:</strong></li>
+<li><strong>Travma tipinin qiymətləndirilməsi</strong> (uzun sürən, insanlardan gələn = Kompleks PTSP riski)</li>
+</ol>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Kompleks PTSP (<span class="icd">6B41</span>)</strong></td><td>Özünü təşkil etmə pozuntuları əlavə: affekt disregulyasiyası, identiklik, münasibət</td></tr>
+<tr><td><strong>Kəskin stres reaksiyası</strong></td><td>Travmadan sonra 4 həftəyə qədər (PTSP üçün bir neçə həftə tələb)</td></tr>
+<tr><td><strong>Uyğunlaşma pozuntusu</strong></td><td>Stressorla aydın müvəqqəti əlaqə; tam PTSP meyarları yox</td></tr>
+<tr><td><strong>Major depressiv pozuntu</strong></td><td>Yenidən yaşama/intruzivlik yox; flashback yox</td></tr>
+<tr><td><strong>Generalizə təşviş pozuntusu</strong></td><td>Travma-spesifik mövzu dominant deyil</td></tr>
+<tr><td><strong>OKP</strong></td><td>Obsessiyalar travmadan sonra başlasa da, eqo-distonik obsessiya strukturu var; travma-spesifik qaçınma yox</td></tr>
+<tr><td><strong>Dissosiativ pozuntular</strong></td><td>Geniş dissosiasiya; identiklik pozuntusu</td></tr>
+<tr><td><strong>Şəxsiyyət pozuntusu (BPD)</strong></td><td>Uşaqlıq başlanğıclı, geniş şəxsiyyət paterni; PTSP travma-keçidhli</td></tr>
+<tr><td><strong>Psixotik pozuntular</strong></td><td>Flashback psevdohalusinasiyadan ayırd edilməlidir: PTSP-də yenidən yaşama kontekstini pasiyent bilir</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar" class="">Şkalalar</h3>
+<p><strong>Skrining:</strong></p>
+<ul>
+<li><strong>PCL-5</strong> – 20 göstərici (0-4 bal), 33+ PTSP şübhəsi</li>
+<li><strong>PC-PTSD-5</strong> – 5 sual, birincil yardım skrining</li>
+</ul>
+<p><strong>Klinik şiddət (qızıl standart):</strong></p>
+<ul>
+<li><strong>CAPS-5</strong> – strukturlaşdırılmış müsahibə, ~45 dəq</li>
+</ul>
+<p><strong>Funksional:</strong></p>
+<ul>
+<li><strong>Sheehan Disability Scale</strong></li>
+<li><strong>GAF</strong></li>
+</ul>
+<p><strong>XBT-11 üçün spesifik:</strong></p>
+<ul>
+<li><strong>ITQ</strong> (International Trauma Questionnaire) – PTSP + KPTSP differensiasiyası üçün validlənmiş</li>
+</ul>
+<h3 id="tibbi-müayinələr" class="">Tibbi müayinələr</h3>
+<ul>
+<li>Tam qan analizi, tireoid funksiyası (PTSP ilə qaçış qorxusu şübhəsi)</li>
+<li>Toksikoloji skrining (komorbid maddə istifadəsi)</li>
+<li>EKG (PTSP-də ürək-damar komorbidlik artmış)</li>
+<li>Sleep study (ağır yuxu pozuntusu)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>PTSP müalicəsinin üç sütunu:</p>
+<ol>
+<li><strong>Travma-fokuslu psixoterapiya</strong> (birinci xətt)</li>
+<li><strong>Farmakoterapiya</strong> (ikinci xətt; dəstəkləyici)</li>
+<li><strong>Sosial və sistem dəstəyi</strong></li>
+</ol>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<p><strong>Birinci xətt avtoritet bələdçilər:</strong></p>
+<ul>
+<li><strong>NICE NG116 (2018):</strong> <em>Post-traumatic stress disorder</em></li>
+<li><strong>ISTSS (International Society for Traumatic Stress Studies) Guidelines (2018/2019)</strong></li>
+<li><strong>VA/DoD PTSD Guidelines (2023)</strong> – müharibə veteranları üçün</li>
+<li><strong>APA PTSD Treatment Guideline (2017)</strong></li>
+<li><strong>WHO Guidelines: mhGAP Intervention Guide</strong> – aşağı resurslu mühitlər üçün</li>
+</ul>
+<h3 id="psixoterapiya-birinci-xətt" class="">Psixoterapiya – birinci xətt</h3>
+<h4 id="travma-fokuslu-kdt-tf-kdt-tf-cbt" class="">Travma-fokuslu KDT (TF-KDT / TF-CBT)</h4>
+<p><strong>Sübutluluq A</strong> – NICE NG116-da birinci xətt:</p>
+<p><strong>Prolonged Exposure Therapy (PE) – Foa:</strong></p>
+<ul>
+<li><strong>İmaginal ekspozisiya</strong> – travmanın detallı, tekrarlayan xatirəsi (in sensu) → habituation</li>
+<li><strong>In vivo ekspozisiya</strong> – qaçınılan yerlərdən yenidən yaxınlaşma</li>
+<li>Protokol: 8-15 sessiya</li>
+</ul>
+<p><strong>Cognitive Processing Therapy (CPT) – Resick:</strong></p>
+<ul>
+<li><strong>&quot;Stok nöqtələri&quot;</strong> (stuck points) – travmaya bağlı mənfi inanc və koqnisiyaların müəyyənləşdirilməsi</li>
+<li>Koqnitiv restrukturizasiya</li>
+<li>Protokol: 12 sessiya</li>
+</ul>
+<p><strong>Trauma-Focused CBT (uşaq üçün, TF-KDT-A):</strong></p>
+<ul>
+<li>Uşaq + valideyn komponentli</li>
+<li>8-20 sessiya</li>
+</ul>
+<h4 id="göz-hərəkəti-ilə-desensitizasiya-və-yenidən-prosessləmə-emdr" class="">Göz Hərəkəti ilə Desensitizasiya və Yenidən Prosessləmə (EMDR)</h4>
+<p><strong>EMDR – NICE NG116-da birinci xətt:</strong></p>
+<ul>
+<li><strong>Shapiro</strong> tərəfindən inkişaf etdirilmiş</li>
+<li>Travma xatirlənərkən <strong>bilateral stimulyasiya</strong> (göz hərəkəti, toxunma, səs)</li>
+<li>Mexanizm: &quot;qoşalaşmış diqqət&quot; (dual attention) travma xatirəsini yenidən prosessləyir</li>
+<li>Protokol: 8 faza, 6-12 sessiya</li>
+</ul>
+<p><strong>EMDR effektivliyi:</strong></p>
+<ul>
+<li>TF-KDT ilə bərabər effektivlik</li>
+<li>Bəzi pasiyentlər TF-KDT-yə nisbətən EMDR-ı üstün tutulur (az &quot;homework&quot;)</li>
+</ul>
+<h4 id="yazı-ekspozisiyası-terapiyası-wet" class="">Yazı ekspozisiyası terapiyası (WET)</h4>
+<ul>
+<li>Qısa, 5 sessiyalıq protokol</li>
+<li>Müharibə kontekstinə uyğunlaşdırılmış</li>
+</ul>
+<h4 id="narrativ-ekspozisiya-terapiyası-net" class="">Narrativ Ekspozisiya Terapiyası (NET)</h4>
+<ul>
+<li><strong>Soyqırım, müharibə, mültəci kontekstinə xüsusi</strong> uyğun</li>
+<li>Pasiyent öz həyat hekayəsini bütünlüklə &quot;yenidən qurur&quot;</li>
+<li><strong>Azərbaycan-Qarabağ konteksti üçün potensial uyğun</strong></li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>NICE NG116:</strong> Farmakoterapiya <strong>ikinci xətt</strong> (yalnız psixoterapiya mümkün deyilsə, yaxud birinci xətt tercih üzrə, yaxud ağır depressiyada komorbid):</p>
+<h4 id="birinci-xətt-si̇usi̇" class="">Birinci xətt: SİUSİ</h4>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Sertralin</strong></td><td>50-200 mq/gün</td><td>FDA-PTSP təsdiqi; AR Klinik Protokolu</td></tr>
+<tr><td><strong>Paroksetin</strong></td><td>20-50 mq/gün</td><td>FDA-PTSP təsdiqi</td></tr>
+<tr><td><strong>Fluoksetin</strong></td><td>20-60 mq/gün</td><td>Effektiv</td></tr>
+<tr><td><strong>Esitalopram</strong></td><td>10-20 mq/gün</td><td>Off-label, lakin geniş istifadə</td></tr>
+</table></div>
+<h4 id="birinci-xətt-alternativ-snri" class="">Birinci xətt alternativ: SNRI</h4>
+<ul>
+<li><strong>Venlafaksin XR</strong> 75-225 mq/gün – FDA-PTSP olmayan, lakin sübutluluq A</li>
+</ul>
+<h4 id="i̇kinci-xətt" class="">İkinci xətt</h4>
+<p>- Doza: 1-15 mq/gecə</p>
+<p>- PTSP-də kəskin kabus azaldır (VA/DoD tövsiyəsi)</p>
+<ul>
+<li><strong>Prazosin</strong> (alfa-1 blokator) – <strong>kabuslar</strong> üçün; orta-yüksək sübutluluq</li>
+<li><strong>Mirtazapin</strong> – yuxu, kabuslar, iştahsızlıq komorbidlikdə</li>
+</ul>
+<h4 id="üçüncü-xətt-tədqiqat" class="">Üçüncü xətt / Tədqiqat</h4>
+<ul>
+<li><strong>MDMA-assisted therapy</strong> – FDA araşdırması davam edir; ağır, rezistent PTSP-də</li>
+<li><strong>Esketamin</strong> – PTSP + MDD komorbidlikdə</li>
+<li><strong>Kannabidiol (CBD)</strong> – tədqiqat</li>
+<li><strong>Propranolol</strong> – erkən müdaxilə (travmadan sonra 6 saat) → yaddaş konsolidasiyasına müdaxilə (hələ tədqiqat)</li>
+</ul>
+<h4 id="bənzodiazepinlər-ptsp-də-əleyh" class="">Bənzodiazepinlər PTSP-də – ƏLEYH</h4>
+<p><strong>NICE NG116 açıq tövsiyəsi:</strong> PTSP-də benzodiazepinlərdən <strong>qaçınılmalıdır</strong>:</p>
+<ul>
+<li><strong>&quot;Fear extinction&quot;</strong> (qorxu söndürməsi) prosesini bloklayır</li>
+<li>Uzunmüddətli PTSP gedişini pisləşdirir</li>
+<li>Asılılıq riski</li>
+<li>Yalnız kəskin stres reaksiyasında qısamüddətli – müzakirəli</li>
+</ul>
+<h3 id="xüsusi-populyasiyalar" class="">Xüsusi populyasiyalar</h3>
+<p><strong>Müharibə veteranları:</strong></p>
+<ul>
+<li><strong>Moral injury</strong> əlavə komponent – etik günahkarlıq</li>
+<li><strong>&quot;Warrior&quot; mədəniyyəti</strong> – köməyə müraciət etməkdən imtina</li>
+<li>Komorbid baş beyin zədəsi (TBI)</li>
+<li>Komorbid maddə istifadəsi (xüsusilə alkohol)</li>
+<li><strong>Spesifik protokol:</strong> VA/DoD 2023, CPT, PE uyğunlaşdırılmış</li>
+</ul>
+<p><strong>Uşaqlar:</strong></p>
+<ul>
+<li>TF-KDT spesifik protokol</li>
+<li>Valideyn dahil edilməsi mütləq</li>
+<li><strong>EMDR uşaq versiyası</strong></li>
+</ul>
+<p><strong>Cinsi zorakılıq sağ qalanları:</strong></p>
+<ul>
+<li>Xüsusi ehtiyatlı, fiziki təhlükəsizlik qurulması</li>
+<li><strong>Somatic Experiencing</strong> terapiyası – bədən-fokuslu</li>
+<li>TF-KDT adaptasiyası</li>
+</ul>
+<p><strong>Azərbaycanda spesifik qruplar:</strong></p>
+<ul>
+<li><strong>Qarabağ veteranları</strong> – hər iki müharibə</li>
+<li><strong>Məcburi köçkünlər</strong> – yurd itkisi, məcburi köç travması, kimlik itkisi</li>
+<li><strong>Xocalı sağ qalanları</strong> – kütləvi travma</li>
+<li><strong>Şəhid ailələri</strong> – yas + travma kombinasiyası</li>
+<li><strong>Uzunmüddətli köçkünlük</strong> (30+ il köçkünlük yarası)</li>
+</ul>
+<h3 id="ar-konteksti" class="">AR konteksti</h3>
+<p>Azərbaycanda PTSP üçün:</p>
+<ul>
+<li><strong>Spesifik klinik protokol nəşr edilməyib</strong> (2013 Təşviş Protokolu ümumi müzakirəni əhatə edir)</li>
+<li><strong>TF-KDT, EMDR məhduddur</strong> – sertifikatlı terapevt az</li>
+<li>Farmakoterapiya geniş – sertralin, paroksetin əlçatan</li>
+<li><strong>PSM-Bakı</strong> – müharibə veteranları üçün ixtisaslaşdırılmış proqram lazımdır (hazırda mövcuddur bəzi formatlarda)</li>
+<li><strong>Mültəci, köçkün psixosocial dəstək</strong> – BSMF (Böyük Sevinc Müdafiə Fondları) kimi NGO-ların rolu</li>
+</ul>
+<h3 id="profilaktika" class="">Profilaktika</h3>
+<p><strong>Psixoloji debriefing (PD/CISD) – TÖVSİYƏ EDİLMİR:</strong></p>
+<ul>
+<li>Travmadan sonra müstəqil profilaktika kimi</li>
+<li>Sübutluluq: effektiv deyil, bəzən zərərlidir</li>
+</ul>
+<p><strong>Erkən psixoloji müdaxilə:</strong></p>
+<ul>
+<li><strong>Psixoloji ilk yardım (PFA)</strong> – kəskin mərhələdə dəstəkləyici</li>
+<li><strong>Erkən TF-KDT</strong> (2-4 həftədə) – residiv profilaktikasında effektiv</li>
+</ul>
+<p><strong>Sosial dəstək:</strong> ən güclü müdafiəedici faktor</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="müalicə-cavabı" class="">Müalicə cavabı</h3>
+<ul>
+<li><strong>TF-KDT / EMDR ilə 60-80% pasiyent əhəmiyyətli yaxşılaşır</strong></li>
+<li><strong>Remissiya:</strong> 20-30 % (tam)</li>
+<li><strong>Farmakoterapiya tək:</strong> 30-50%</li>
+</ul>
+<h3 id="xroniki-gediş" class="">Xroniki gediş</h3>
+<ul>
+<li>Müalicəsiz: <strong>30% pasiyentdə xroniki gediş</strong> (&gt;1 il)</li>
+<li><strong>Erkən müalicə → daha yaxşı proqnoz</strong></li>
+</ul>
+<h3 id="yaxşı-proqnoz-prediktorları" class="">Yaxşı proqnoz prediktorları</h3>
+<ul>
+<li>Tək travma (kompleks seriya yox)</li>
+<li>Güclü sosial dəstək</li>
+<li>Müalicəyə tez başlamaq</li>
+<li>Maddə istifadəsi yox</li>
+<li>Komorbid pozuntu yox</li>
+</ul>
+<h3 id="pis-proqnoz-prediktorları" class="">Pis proqnoz prediktorları</h3>
+<ul>
+<li>Uşaqlıq travması (Kompleks PTSP riski)</li>
+<li>Uzunmüddətli, insanlardan gələn travma</li>
+<li>Sosial dəstəyin olmaması</li>
+<li>Komorbid MDD, maddə istifadəsi</li>
+<li>Müalicə gecikməsi</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>National Institute for Health and Care Excellence (NICE). <em>Post-traumatic stress disorder</em> (NG116). London, 2018.</li>
+<li>Bisson JI, et al. <em>ISTSS PTSD Prevention and Treatment Guidelines.</em> ISTSS, 2019.</li>
+<li>U.S. Department of Veterans Affairs / DoD. <em>VA/DoD Clinical Practice Guideline for PTSD.</em> Washington, 2023.</li>
+<li>American Psychological Association. <em>Clinical Practice Guideline for the Treatment of PTSD.</em> 2017.</li>
+<li>Foa EB, et al. <em>Prolonged Exposure Therapy for PTSD.</em> Oxford UP, 2007.</li>
+<li>Resick PA, Monson CM, Chard KM. <em>Cognitive Processing Therapy for PTSD.</em> Guilford, 2017.</li>
+<li>Shapiro F. <em>Eye Movement Desensitization and Reprocessing.</em> Guilford, 2018.</li>
+<li>Cienfuegos J, Monelli C. <em>Testimony of political repression as a therapeutic instrument.</em> Am J Orthopsychiatry, 1983.</li>
+<li>Herman JL. <em>Trauma and Recovery.</em> BasicBooks, 1992 (klassik).</li>
+</ol>
+<p><strong>Yerli (Azərbaycan) və regional:</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Təşviş Pozuntularının Diaqnostika və Müalicəsi üzrə Klinik Protokol.</em> Bakı, 2013.</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+<li>Jalilova R, et al. <em>Mental health in post-conflict Azerbaijan: challenges and perspectives.</em> (Regional tədqiqat).</li>
+</ol>
+<p><strong>Post-sovet:</strong></p>
+<ol>
+<li>Tarabrina N.V. <em>Travma sonrası stresin psixologiyası üzrə praktik rəhbərlik.</em> (Практическое руководство по психологии посттравматического стресса) Moskva: Koqito-Mərkəz, 2007.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b41-kompleks-posttravmati̇k-stress-pozuntusu-kptsp" class="h-disorder"><span class="icd">6B41</span> KOMPLEKS POSTTRAVMATİK STRESS POZUNTUSU (KPTSP)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B41</span> — Kompleks Posttravmatik Stress Pozuntusu (Kptsp)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F43.10</span> — Kompleks TSSP</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Complex PTSD</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Kompleks PTSP – <strong>uzunmüddətli, sistemli, escape-ın çətin olduğu travmalara</strong> (uşaqlıq zorakılığı, insanlar arası, cinsiyyətdən asılı şiddət, işgəncə, insan alveri, müharibə əsarəti) məruz qaldıqdan sonra inkişaf edən pozuntudur.</p>
+<p><strong>PTSP simptomları + &quot;özünü təşkil etmə&quot; pozuntuları (DSO – Disturbances in Self-Organization)</strong></p>
+<p><strong>XBT-11-in ən mühüm yeniliklərindən biridir.</strong> Herman (1992) &quot;complex trauma&quot; konseptini akademik olaraq müdafiə etmişdi, lakin DSM-IV/ICD-10-da diaqnostik yer yox idi. XBT-11 bunu nəhayət rəsmi etdi.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="xarakteristik-travma-tipləri" class="">Xarakteristik travma tipləri</h3>
+<p>KPTSP üçün tipik travmalar <strong>məcburi, uzunmüddətli, escape-ı bloke edilmiş</strong> kontekstdə baş verir:</p>
+<ul>
+<li><strong>Uşaqlıq cinsiyyəti/fiziki istismarı</strong> (xüsusilə davamlı, ailə daxili)</li>
+<li><strong>Uşaqlıq neglekt (ihmal)</strong></li>
+<li><strong>Məişət şiddəti</strong> (uzun dövr)</li>
+<li><strong>İnsan alveri, cinsi istismar</strong></li>
+<li><strong>Müharibə əsarəti, işgəncə</strong></li>
+<li><strong>Soyqırım, totalitar rejim</strong></li>
+<li><strong>Dini kult istismarı</strong></li>
+</ul>
+<h3 id="bioloji-xüsusiyyətlər" class="">Bioloji xüsusiyyətlər</h3>
+<ul>
+<li><strong>Uşaqlıq travması</strong> beyin neyroinkişafını dəyişdirir</li>
+<li><strong>Allostatic load</strong> – uzunmüddətli stress yükü</li>
+<li>HPA oxu kronik disregulyasiyası</li>
+<li>Amigdala-prefrontal əlaqənin struktural dəyişikliyi</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> ~1-3% ümumi populyasiyada (PTSP-dən az)</li>
+<li>Klinik nümunədə isə travma ixtisas klnikalarında <strong>20-50%</strong> KPTSP</li>
+<li><strong>Cins:</strong> qadın dominant (uşaqlıq cinsi istismar prevalansı ilə əlaqəli)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="üç-ptsp-klastri-üç-dso-domain" class="">Üç PTSP klastri + üç DSO domain</h3>
+<p><strong>PTSP simptomları (hər üç lazımdır):</strong></p>
+<ul>
+<li>Yenidən yaşama</li>
+<li>Qaçınma</li>
+<li>Hazırda təhlükə hissi</li>
+</ul>
+<p><strong>Özünü Təşkil Etmə Pozuntuları (DSO – 3 domain):</strong></p>
+<p><strong>1. Affekt disregulyasiyası:</strong></p>
+<ul>
+<li>Kəskin emosional &quot;fırtınaları&quot;</li>
+<li>Xroniki disforik əhval</li>
+<li>Emosional küt (numbing) episodları ilə növbəlilik</li>
+<li>Özə zərər vermə (SIB) – emosional reliefdən</li>
+<li>Özünü sakitləşdirmə qabiliyyətsizliyi</li>
+</ul>
+<p><strong>2. Özünə dair mənfi inanclar:</strong></p>
+<ul>
+<li>Davamlı aşağı özünə hörmət</li>
+<li>&quot;Mən qüsurlu bir insanam&quot; inanc</li>
+<li>&quot;Mən layiq deyiləm&quot; hissi</li>
+<li>Dərin xəcalət hissi (shame – guilt-dən fərqli)</li>
+</ul>
+<p><strong>3. Münasibət pozuntuları:</strong></p>
+<ul>
+<li>Başqalarına etibar çətinliyi</li>
+<li>Bağlılıq qurma çətinliyi</li>
+<li>&quot;Yaxın&quot; olmaqdan qaçınma</li>
+<li>Münasibətdə tərk edilmə həssaslığı</li>
+<li>Yenidən viktimizasiya riski</li>
+</ul>
+<h3 id="dissosiasiya" class="">Dissosiasiya</h3>
+<ul>
+<li>KPTSP-də dissosiasiya daha geniş</li>
+<li>Depersonalizasiya, derealizasiya</li>
+<li>Amneziya epizodları</li>
+<li>Ağır hallarda DID (Dissosiativ İdentiklik Pozuntusu) ilə örtüşmə</li>
+</ul>
+<h3 id="somatik-simptomlar" class="">Somatik simptomlar</h3>
+<ul>
+<li>Xronik ağrı</li>
+<li>Mədə-bağırsaq pozuntuları</li>
+<li>Seksüal disfunksiya</li>
+<li>Baş ağrısı</li>
+<li>&quot;Bədəndən uzaqlaşma&quot; hissi</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b41" class="">XBT-11 əsas tələblər (<span class="icd">6B41</span>)</h3>
+<p><strong>A.</strong> Uzunmüddətli, sistemli, escape-ı çətin travmaya məruz qalma</p>
+<p><strong>B.</strong> Tam PTSP meyarları (<span class="icd">6B40</span>): yenidən yaşama + qaçınma + hazırda təhlükə hissi</p>
+<p><strong>C.</strong> Özünü Təşkil Etmə Pozuntuları (DSO) – hamısı lazımdır:</p>
+<ul>
+<li>Affekt disregulyasiyası</li>
+<li>Mənfi özünə baxış</li>
+<li>Münasibət pozuntuları</li>
+</ul>
+<p><strong>D.</strong> Funksional pozulma</p>
+<h3 id="ptsp-vs-kptsp-differensiasiyası" class="">PTSP vs KPTSP differensiasiyası</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Xüsusiyyət</th><th>PTSP</th><th>KPTSP</th></tr>
+<tr><td><strong>Travma</strong></td><td>Tək/sınırlı sayda</td><td>Uzunmüddətli, sistemli, qaçış yox</td></tr>
+<tr><td><strong>Simptom domenləri</strong></td><td>3</td><td>3 + DSO (3 əlavə)</td></tr>
+<tr><td><strong>Özünə baxış</strong></td><td>Adətən mühafizə</td><td>Davamlı mənfi, xəcalət</td></tr>
+<tr><td><strong>Munasibətlər</strong></td><td>Münasibətdə çətinlik</td><td>Fundamental bağlılıq qurma pozuntusu</td></tr>
+<tr><td><strong>Affekt</strong></td><td>Hipervijilans dominant</td><td>Disregulyasiya, küt, emosional fırtına</td></tr>
+<tr><td><strong>Başlanğıc</strong></td><td>Tez-tez yetkinlikdə</td><td>Tez-tez uşaqlıqda</td></tr>
+</table></div>
+<h3 id="itq-international-trauma-questionnaire" class="">ITQ (International Trauma Questionnaire)</h3>
+<ul>
+<li>XBT-11 üçün validlənmiş</li>
+<li>Hem PTSP, həm KPTSP simptomlarını ölçür</li>
+<li>Brewin tərəfindən hazırlanmış</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>PTSP</strong></td><td>DSO yox</td></tr>
+<tr><td><strong>Borderline şəxsiyyət pozuntusu (BPD)</strong></td><td>Sıx örtüşmə; KPTSP-də travma kauzal; BPD-də geniş şəxsiyyət paterni uşaqlıq travmasından gəlir – komorbid mümkün</td></tr>
+<tr><td><strong>Dissosiativ şəxsiyyət pozuntusu (DID)</strong></td><td>Geniş dissosiasiya; alternativ identiklik keçidləri</td></tr>
+<tr><td><strong>Şəxsiyyət pozuntusu (ümumi)</strong></td><td>Travma kontekstindən asılı olmayaraq davamlı</td></tr>
+<tr><td><strong>Major depressiv pozuntu</strong></td><td>Yenidən yaşama, qaçınma, DSO yox</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="faza-yönümlü-müalicə-istss-20182019" class="">Faza-yönümlü müalicə (ISTSS 2018/2019)</h3>
+<p>KPTSP üçün faza-yönümlü yanaşma:</p>
+<p><strong>Faza 1 – Təhlükəsizlik, sabitləşdirmə, bacarıqlar:</strong></p>
+<ul>
+<li>Təhlükəsizlik (cismani) qurmaq</li>
+<li><strong>Affekt tənzimləmə bacarıqları</strong> – DBT elementləri</li>
+<li><strong>Mindfulness</strong></li>
+<li>Bədən–ağıl bağlantısı</li>
+<li>Müddət: aylıq – aylardır</li>
+</ul>
+<p><strong>Faza 2 – Travma prosessləşməsi:</strong></p>
+<ul>
+<li><strong>EMDR uyğunlaşdırılmış</strong></li>
+<li>TF-KDT KPTSP versiyası</li>
+<li>Narrativ terapiya</li>
+<li>Somatic Experiencing</li>
+<li>Yalnız sabitləşmədən sonra</li>
+</ul>
+<p><strong>Faza 3 – İnteqrasiya, yenidən bağlanma:</strong></p>
+<ul>
+<li>Şəxsi identikliyin yenidən qurulması</li>
+<li>Münasibətlər üzərindəki iş</li>
+<li>Cəmiyyəttə yenidən bütünləşmə</li>
+</ul>
+<h3 id="xüsusi-müdaxilə-yanaşmaları" class="">Xüsusi müdaxilə yanaşmaları</h3>
+<p><strong>DBT (Dialektik Davranış Terapiyası):</strong></p>
+<ul>
+<li>Affekt disregulyasiyası, özə zərər vermə, münasibət problemləri üçün</li>
+<li>Linehandan kənar KPTSP-yə adaptasiya</li>
+<li><strong>Mindfulness, toleransiya, emosional tənzimləmə, interpersonal bacarıqlar</strong> – 4 modul</li>
+</ul>
+<p><strong>Affektiv-İnterpersonal Tənzimləmə Bacarıqları + Narrativ Terapiya (STAIR-NT):</strong></p>
+<ul>
+<li>KPTSP üçün spesifik hazırlanmış</li>
+<li>Sübutluluq A</li>
+</ul>
+<p><strong>Somatic Experiencing:</strong></p>
+<ul>
+<li>Levine tərəfindən</li>
+<li>Bədən-fokuslu travma prosessləşməsi</li>
+<li>KPTSP bədən komponentinə yönəlmiş</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p>PTSP kimi (SİUSİ, SNRI, prazosin) + KPTSP spesifik:</p>
+<ul>
+<li><strong>DBT-dən gəlir:</strong> kəskin kriz üçün qısamüddətli benzodiazepin (lakin ekstrem diqqət)</li>
+<li><strong>Özə zərər verməyə qarşı:</strong> aşağı doza antipsixotik (kvetiapin, olanzapin)</li>
+<li><strong>Affekt labilliyi üçün:</strong> litium, valproat</li>
+<li><strong>Dissosiyasiya üçün:</strong> naltrexon</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Standart PTSP-dən daha çətin</strong></li>
+<li><strong>Faza-yönümlü müalicə ilə</strong> əhəmiyyətli yaxşılaşma mümkündür</li>
+<li><strong>Uzunmüddətli müalicə</strong> (2-5 il) tez-tez</li>
+<li>Sosial dəstək kritik</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>WHO. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>Bisson JI, et al. <em>ISTSS Guidelines.</em> ISTSS, 2019.</li>
+<li>Herman JL. <em>Trauma and Recovery.</em> BasicBooks, 1992.</li>
+<li>Brewin CR, et al. <em>A proposal for a revised taxonomy of trauma types.</em> J Trauma Stress, 2017.</li>
+<li>Karatzias T, et al. <em>Psychological interventions for ICD-11 complex PTSD: a systematic review and meta-analysis.</em> Psychol Med, 2019.</li>
+<li>Cloitre M, et al. <em>STAIR narrative therapy for adults with PTSD related to childhood abuse.</em> J Consult Clin Psychol, 2010.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b42-uzanmiş-kədər-pozuntusu" class="h-disorder"><span class="icd">6B42</span> UZANMIŞ KƏDƏR POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B42</span> — Uzadilmiş Kədər Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F43.8</span> — Uzunmüddətli kədər</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Prolonged Grief Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Uzanmış kədər pozuntusu – sevimli şəxsin itirilməsindən sonra <strong>ən azı 6 ay</strong> davam edən, <strong>normal yas reaksiyasının intensivliyi ilə uyğun olmayan</strong> davamlı kəskin kədər, intizarla yas.</p>
+<p><strong>Normal yas reaksiyasından fərq:</strong></p>
+<ul>
+<li>Normal yas: zaman içrə azalan dalğavari kədər; pasiyent &quot;inkişaf edir&quot;</li>
+<li>Uzadılmış kədər: <strong>intensivlik azalmır</strong>, &quot;ilişib qalır&quot;; gündəlik funksionallıq pozulur</li>
+</ul>
+<p><strong>XBT-11 yenilik:</strong> XBT-10-da müstəqil diaqnoz yox idi. <strong>2022-ci ildə həm XBT-11 (<span class="icd">6B42</span>), həm DSM-5-TR (296.99) müstəqil diaqnoz kimi daxil etdi.</strong></p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<p>- Gözlənilməz, ani ölüm</p>
+<p>- Kriminal hadisə, intihar, müharibə</p>
+<p>- Uşaq itkisi (valideyn üçün)</p>
+<p>- Güclü bağımlılıq münasibəti</p>
+<p>- Öncəki psixi pozuntu</p>
+<ul>
+<li><strong>Bağlılıq sisteminin disregulyasiyası</strong> (Bowlby) – itirilmiş şəxsə bağlılıq &quot;kəsilmə&quot; prosessini gedə bilmir</li>
+<li><strong>Neyrobioloji:</strong> amigdala, anterior singulat reaktivliyi itkilə bağlı stimullara hiperaktiv qalır</li>
+<li><strong>Risk amilləri:</strong></li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yas keçirənlərin ~10%-i</strong> uzanmış kədər kriteriyalarını qarşılayır</li>
+<li><strong>Kütləvi yas (müharibə, soyqırım)</strong> – daha yüksək yayılma</li>
+<li><strong>Azərbaycan konteksti:</strong> Qarabağ müharibəsi şəhid ailələri, məcburi köçkünlüklə itkilər yaşayan ailələr – xüsusi risk qrupu</li>
+<li><strong>Cins:</strong> qadın dominant; yaşlılarda yüksək</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="əsas-simptomlar" class="">Əsas simptomlar</h3>
+<ul>
+<li><strong>İntizar</strong> – itmiş şəxs üçün davamlı, intensiv arzulanma; hər şeydə onun izini axtarmaq</li>
+<li><strong>Kəskin kədər</strong> – intensivliyi zaman içrə azalmır</li>
+<li><strong>Emosional ağrı</strong> – itki ilə bağlı</li>
+</ul>
+<p><strong>Əlavə simptomlar:</strong></p>
+<ul>
+<li>İtmiş şəxsdən ayrılmağa müqavimət (onu qəbul etməmək)</li>
+<li>Gələcəkə ümidsizlik</li>
+<li>Həyata maraqsızlıq</li>
+<li>Tənhalıq, özü-özlüyündən uzaqlaşma</li>
+<li>Həyatda &quot;mənasızlıq&quot;</li>
+<li>Ölüm arzusu, özünü onun yanına qatmaq arzusu</li>
+</ul>
+<h3 id="fərqlilik-normal-yas-vs-uzadılmış-kədər-vs-mdd" class="">Fərqlilik: Normal yas vs Uzadılmış kədər vs MDD</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Cəhət</th><th>Normal yas</th><th>Uzadılmış kədər</th><th>MDD</th></tr>
+<tr><td><strong>Fokus</strong></td><td>İtirilmiş şəxs</td><td>İtirilmiş şəxs</td><td>Ümumi; özünə</td></tr>
+<tr><td><strong>Əhval</strong></td><td>Dalğavari</td><td>Davamlı intensiv</td><td>Davamlı depresiv</td></tr>
+<tr><td><strong>Anhedoniya</strong></td><td>Müvəqqəti</td><td>Məhdud</td><td>Geniş</td></tr>
+<tr><td><strong>Özünə hörmət</strong></td><td>Adətən saxlanılır</td><td>Adətən saxlanılır</td><td>Azalmış</td></tr>
+<tr><td><strong>Suisidal ideya</strong></td><td>Ölməyi arzulamaq – itmiş şəxslə birlikdə</td><td>Ölməyi arzulamaq</td><td>Aktiv suisidal plan</td></tr>
+<tr><td><strong>Zaman</strong></td><td>Azalır</td><td>Uzanır, azalmır</td><td>Azalmır (müalicəsiz)</td></tr>
+</table></div>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b42" class="">XBT-11 əsas tələblər (<span class="icd">6B42</span>)</h3>
+<p><strong>A.</strong> Sevimli şəxsin itirilməsindən ən azı <strong>6 ay</strong> keçmişdir</p>
+<p><strong>B.</strong> Davamlı intensiv kədər əşağıdakı simptomlarla:</p>
+<ul>
+<li>İtirilmiş şəxs üçün davamlı intizar</li>
+<li>Davamlı məşğulluq (itmiş şəxs haqqında)</li>
+<li>Güclü emosional ağrı (kədər, günah, qəzəb, inkar)</li>
+</ul>
+<p><strong>C.</strong> Aşağıdakılardan ən azı <strong>bir neçəsi:</strong></p>
+<ul>
+<li>Kimlik: özünü itirilmiş şəxsdən ayırd etmək çətinliyi</li>
+<li>Ölüm/ölümü inkar</li>
+<li>Həyata maraqsızlıq</li>
+<li>İtmiş şəxsə bağlı yerlərdən qaçınma (yaxud ifrat fəaliyyət)</li>
+<li>Tənhalıq, dünyadan kənar olmaq</li>
+<li>İnsan münasibətlərindən uzaqlaşma</li>
+</ul>
+<p><strong>D.</strong> Funksional pozulma</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Normal yas</strong></td><td>Azalan intensivlik; funksional bərpa</td></tr>
+<tr><td><strong>MDD</strong></td><td>İtki ilə bağlı olmayan mənfi inanclar; ümumi anhedoniya</td></tr>
+<tr><td><strong>PTSP</strong></td><td>Gözlənilməz ölüm → Uzadılmış kədər + PTSP komorbid mümkün</td></tr>
+<tr><td><strong>Uyğunlaşma pozuntusu</strong></td><td>Müxtəlif stressorlar, yas-spesifik deyil</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>Complicated Grief Treatment (CGT) – Shear:</strong></p>
+<p>- İtki haqqında danışmağı canlandırmaq (yenidən yaşama)</p>
+<p>- Kederə izin verməmə düşüncəsinə müdaxilə</p>
+<p>- Gələcəyə yönəlik məqsəd qurma</p>
+<p>- İtirilmiş şəxsə transformasiya olunmuş münasibət (yox, unutmaq yox)</p>
+<ul>
+<li>Spesifik uzanmış kədər üçün hazırlanmış</li>
+<li><strong>Sübutluluq A</strong></li>
+<li>16 sessiya</li>
+<li><strong>Komponenlər:</strong></li>
+</ul>
+<p><strong>Fərdi KDT:</strong></p>
+<ul>
+<li>Keddərə diqqəti inhibə edən düşüncələrlə iş</li>
+<li>İnteqrasiya</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<ul>
+<li><strong>SİUSİ</strong> – MDD komorbidlikdə effektiv; uzanmış kədər özündə məhdud sübutluluq</li>
+<li>Nortriptilin (TCAs) – bəzi tədqiqatlar</li>
+<li><strong>Kombinátsiya KDT + SİUSİ</strong> – ağır hallarda</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Müalicəsiz: xroniki</li>
+<li><strong>CGT ilə 70-75% pasiyent əhəmiyyətli yaxşılaşır</strong></li>
+<li>Normal yas prosessinə qayıtmaq mümkündür</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> APA Publishing, 2022 (DSM-5-TR 2022-ci ildə əlavə edildi).</li>
+<li>WHO. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>Shear MK, et al. <em>Complicated grief treatment.</em> JAMA, 2016.</li>
+<li>Prigerson HG, et al. <em>Prolonged grief disorder: psychobiological foundations and treatment overview.</em> Neuropsychopharmacology, 2021.</li>
+<li>Eisma MC, et al. <em>Is prolonged grief disorder and complicated grief unique? Analysis of prolonged grief disorder criteria.</em> Cogn Behav Ther, 2020.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b43-uyğunlaşma-pozuntusu" class="h-disorder"><span class="icd">6B43</span> UYĞUNLAŞMA POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B43</span> — Uyğunlaşma Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F43.20</span> — Uyğunlaşma pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 309.xx — Adjustment Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Uyğunlaşma pozuntusu – <strong>müəyyən edilə bilən stressordan</strong> 1 ay ərzində inkişaf edən emosional və/ya davranış simptomları; simptomlar <strong>stressora mütənasib olmayan</strong> reaksiya ilə xarakterizə olunur.</p>
+<p><strong>Azərbaycanda geniş yayılmış</strong> – iş itkisi, boşanma, yas, köç, pensiya, ağır xəstəlik diaqnozu.</p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Psixiatrik konsultasiyaların 5-20%-i</strong> uyğunlaşma pozuntusu</li>
+<li><strong>Cins:</strong> qadın 2:1</li>
+<li><strong>Yaş:</strong> bütün yaşlarda</li>
+<li>Onkoloji xəstələrdə: 20-30%</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p><strong>XBT-11 / DSM-5-TR alt-tipləri:</strong></p>
+<ul>
+<li>Depressiv əhvalla (ən geniş yayılmış)</li>
+<li>Təşvişlə</li>
+<li>Qarışıq depressiv və təşvişli</li>
+<li>Davranış pozuntusu ilə</li>
+<li>Qarışıq emosional-davranış</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b43" class="">XBT-11 əsas tələblər (<span class="icd">6B43</span>):</h3>
+<p><strong>A.</strong> Müəyyən edilə bilən psixososial stressor</p>
+<p><strong>B.</strong> Stressordan <strong>1 ay</strong> ərzində simptomların başlanması</p>
+<p><strong>C.</strong> Simptomlar stressora mütənasib olmayan reaksiya</p>
+<p><strong>D.</strong> Simptomlar <strong>başqa psixi pozuntu meyarlarını qarşılamır</strong></p>
+<p><strong>E.</strong> Stressor aradan qaldırıldıqdan 6 ay sonra simptomlar keçir</p>
+<h3 id="simptom-spektri" class="">Simptom spektri:</h3>
+<ul>
+<li>Depresiv əhval, ağlayan epizodlar</li>
+<li>Narahatlıq, gərginlik</li>
+<li>Konsentrasiya çətinliyi</li>
+<li>İmpulsiv davranış</li>
+<li>Gündəlik fəaliyyətlərdən geri çəkilmə</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Normal stres reaksiyası</strong></td><td>Funksional pozulma yox</td></tr>
+<tr><td><strong>MDD</strong></td><td>Stressordan müstəqil simptomlar; tam meyarlar</td></tr>
+<tr><td><strong>PTSP</strong></td><td>Həyat üçün təhlükəli travma; spesifik simptom paterni</td></tr>
+<tr><td><strong>Uzadılmış kədər</strong></td><td>İtki spesifik; 6+ ay</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="birinci-xətt-psixososial-dəstək" class="">Birinci xətt: psixososial dəstək</h3>
+<ul>
+<li><strong>Dəstəkləyici psixoterapiya</strong></li>
+<li><strong>Problem-həll yanaşması</strong></li>
+<li><strong>Stressor idarəsi</strong></li>
+<li>Strateji həyat planlaması</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<ul>
+<li><strong>KDT</strong> – depresiv/təşviş komponentlər üçün</li>
+<li><strong>Problem-solving therapy</strong></li>
+<li><strong>Qısa psixodinamik terapiya</strong></li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<ul>
+<li><strong>Adətən tələb olmur</strong></li>
+<li><strong>SİUSİ</strong> – ağır simptomlar, komorbid depresiya</li>
+<li><strong>Benzodiazepin qısamüddətli</strong> – kəskin təşviş</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Əksər pasiyentdə stressor aradan qaldırıldıqda yaxşılaşma</strong></li>
+<li><strong>Xronikləşmə (6+ ay)</strong> – əgər stressor davam edir</li>
+<li>Gənc yaş, sosial dəstək – yaxşı proqnoz</li>
+<li>Komorbid şəxsiyyət pozuntusu – pis proqnoz</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Casey P. <em>Adjustment disorder: new developments.</em> Curr Psychiatry Rep, 2014.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b4z-di̇gər-stress-əlaqəli̇-pozuntular" class="h-disorder">6B4Z DİGƏR STRESS ƏLAQƏLİ POZUNTULAR</h1>
+<hr>
+<h2 id="reakti̇v-bağliliğ-və-dezi̇nhi̇bi̇si̇yali-sosi̇al-əlaqə-pozuntusu" class="">REAKTİV BAĞLILIĞ VƏ DEZİNHİBİSİYALI SOSİAL ƏLAQƏ POZUNTUSU</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B44</span> — Reaktiv Bağliliğ Və Dezinhibisiyali Sosial Əlaqə Pozuntusu</div>
+<p><strong>Klinik kontekst:</strong> Hər ikisi <strong>uşaqlıqda adekvat qulluğun olmadığı</strong> (neglekt, institutionalizasiya, yenidən-yenidən qulluqverən dəyişikliyi) nəticəsindən inkişaf edir.</p>
+<p><strong>Reaktiv bağlılıq pozuntusu (<span class="icd">6B44</span>):</strong></p>
+<ul>
+<li>Uşaq qulluqverən yetkinlərə <strong>bağlılıq davranışı göstərmir</strong></li>
+<li>Hətta distressdə – comfort axtarmır</li>
+<li>Emosional küt, sosial aridlik</li>
+<li>Emosional disregulyasiya</li>
+<li><strong>Etiologiya:</strong> sosial neglekt, mutiple qulluqverən dəyişikliyi, institusionalizasiya</li>
+</ul>
+<p><strong>Dezinhibisiyalı sosial əlaqə pozuntusu (<span class="icd">6B45</span>):</strong></p>
+<ul>
+<li>Uşaq <strong>yad yetkinlərə</strong> həddən artıq münasibət qurur – tanış kimi davranır</li>
+<li>Fiziki təmasda sosial inhibisiya yox</li>
+<li>Yad ilə tez-tez gedir (risk davranışı)</li>
+<li>Bağlılıq sisteminin disregulyasiyası</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə:</h3>
+<ul>
+<li>Birinci xətt: <strong>qulluq ətrafının yaxşılaşdırılması</strong> (stabil, müsbət, cavab verən qulluqverən)</li>
+<li><strong>DDP (Dyadic Developmental Psychotherapy)</strong> – bağlılıq-fokuslu</li>
+<li><strong>Farmakoterapiya rol oynamır</strong></li>
+</ul>
+<hr>
+<h2 id="kəski̇n-stres-reaksi̇yasi-normal-reaksiya" class="">KƏSKİN STRES REAKSİYASI (Normal Reaksiya)</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> QE84 – Normal reaksiya, <strong>patoloji diaqnoz deyil</strong></div>
+<p><strong>Tərif:</strong> Travmatik hadisədən sonra <strong>4 həftəyə qədər</strong> ərzində intensiv emosional reaksiya; flashback, dissosiasiya, uyuşuqluq, geri çəkilmə, yuxu pozuntusu.</p>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>Psixoloji ilk yardım (PFA)</strong> – güvən, qulluq, məlumat, bağlantı, ümid</li>
+<li><strong>Aktiv izləmə</strong> – 4 həftəyə qədər gözlə (PTSP inkişaf edərsə → müalicəyə keç)</li>
+<li><strong>Erkən TF-KDT</strong> (2-4 həftədə) – ağır reaksiyalarda PTSP profilaktikası</li>
+<li>Benzodiazepin <strong>tövsiyə edilmir</strong> (PTSP inkişafını artırır)</li>
+</ul>
+<hr>
+<h2 id="stres-pozuntulari-üçün-ümumi̇-qeydlər" class="">STRES POZUNTULARI ÜÇÜN ÜMUMİ QEYDLƏR</h2>
+<h3 id="azərbaycan-konteksti-prioritet-populyasiyalar" class="">Azərbaycan konteksti – prioritet populyasiyalar</h3>
+<p>Azərbaycanın unikal tarixi-siyasi kontekstini nəzərə alaraq, aşağıdakı qruplar psixiatrik sistemin prioritet diqqəti altında olmalıdır:</p>
+<p><strong>1. Müharibə veteranları (hər iki Qarabağ müharibəsi):</strong></p>
+<ul>
+<li>PTSP yüksək prevalans</li>
+<li>Moral injury komponenti</li>
+<li>Alkogol/maddə komorbidliyi</li>
+<li>Köməyə müraciət edir etmirlər (maskulinlik normaları)</li>
+</ul>
+<p><strong>2. Şəhid ailələri:</strong></p>
+<ul>
+<li>Uzanmış kədər pozuntusu riski</li>
+<li>Travmatik yas (ani, erken, şiddətli ölüm)</li>
+<li>Dövlət xidmətlərinin funksiyası</li>
+</ul>
+<p><strong>3. Məcburi köçkünlər (İDP-lər):</strong></p>
+<ul>
+<li>Yurd itkisi (ambiguous loss)</li>
+<li>Uzunmüddətli köçkünlük (1988-2023)</li>
+<li>Kumulativ travma</li>
+<li>Ev itirilməsi → kimlik, kök itkisi</li>
+</ul>
+<p><strong>4. Qarabağa qayıdanlar:</strong></p>
+<ul>
+<li>Yenidən inteqrasiya stresi</li>
+<li>Tanınmayan ev, dağıdılmış mühit</li>
+<li>Travma yerlərinə dönüş</li>
+</ul>
+<p><strong>5. Cinsi zorakılıq sağ qalanları:</strong></p>
+<ul>
+<li>Gizli, tanınmamış</li>
+<li>PTSP + KPTSP riski</li>
+<li>Stigma, klinik tanınmazlıq</li>
+</ul>
+<h3 id="resurs-məhdudluğunda-müalicə" class="">Resurs məhdudluğunda müalicə</h3>
+<p>WHO mhGAP (Mental Health Gap Action Programme) klinik protokolları aşağı/orta resurslu ölkələr üçün uyğunlaşdırılmışdır:</p>
+<ul>
+<li><strong>Psixoloji ilk yardım</strong> – ixtisaslaşmamış işçilər tərəfindən</li>
+<li><strong>Qısa müdaxilələr</strong> (PM+ – Problem Management Plus) – 5 sessiya</li>
+<li><strong>NET</strong> (Narrative Exposure Therapy) – az resursla effektiv</li>
+</ul>
+<h2 id="bölmə-7-üçün-ümumi-mənbələr" class="">Bölmə 7 üçün ümumi mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>NICE. <em>Post-traumatic stress disorder</em> (NG116). London, 2018.</li>
+<li>ISTSS. <em>PTSD Prevention and Treatment Guidelines.</em> 2019.</li>
+<li>VA/DoD. <em>Clinical Practice Guideline for PTSD.</em> 2023.</li>
+<li>WHO. <em>mhGAP Intervention Guide.</em> Geneva, 2016.</li>
+<li>Herman JL. <em>Trauma and Recovery.</em> BasicBooks, 1992.</li>
+<li>Shear MK, et al. <em>Complicated grief and related bereavement issues for DSM-5.</em> Depress Anxiety, 2011.</li>
+<li>Prigerson HG, et al. <em>Prolonged grief disorder: psychobiological foundations.</em> Neuropsychopharmacology, 2021.</li>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Təşviş Pozuntularının Klinik Protokol.</em> Bakı, 2013.</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-06.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 6 — OBSESSİV-KOMPULSİV</span></a><a href="bolme-08.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 8 — DİSSOSİATİV</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-07";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

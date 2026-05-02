@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 19 — CİNSİ SAĞLAMLIQ">
+<title>BÖLMƏ 19 — CİNSİ SAĞLAMLIQ | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-19" class="h-bolme">BÖLMƏ 19</h1>
+<h2 id="ci̇nsi̇-sağlamliq-i̇lə-əlaqəli̇-pozuntular" class="">CİNSİ SAĞLAMLIQ İLƏ ƏLAQƏLİ POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">HA00</span>–HA8Z — Conditions related to sexual health (ayrı fəsil — Fəsil 17)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F52</span> (cinsi disfunksiyalar — psixiatriya bölməsində); <span class="icd">F64</span> (cinsiyyət identifikasiyası pozuntuları)</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Sexual Dysfunctions; Gender Dysphoria</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">HA00</span>–HA0Z</strong></td><td>Cinsi disfunksiyalar</td><td>19.1</td></tr>
+<tr><td><strong><span class="icd">HA20</span>–HA2Z</strong></td><td>Cinsi ağrı pozuntuları</td><td>19.2</td></tr>
+<tr><td><strong><span class="icd">HA40</span></strong></td><td>Cinsiyyət uyğunsuzluğu</td><td>19.3</td></tr>
+<tr><td>—</td><td>Dərman-induksiya olunmuş cinsi disfunksiya</td><td>19.4</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p>XBT-11-də cinsi sağlamlıq pozuntularına yanaşma <strong>prinsipial dəyişikliyə</strong> uğradı.</p>
+<h3 id="müstəqil-fəsil-cinsi-sağlamlıq" class="">Müstəqil fəsil — cinsi sağlamlıq</h3>
+<p>XBT-10-da cinsi disfunksiyalar <strong><span class="icd">F52</span></strong> kodunda, <strong>psixiatriya bölməsində</strong> idi. Cinsiyyət identifikasiyası pozuntuları (<span class="icd">F64</span>) də psixiatrik bölmədə idi.</p>
+<p>XBT-11 onları <strong>psixi pozuntular fəslindən çıxardı</strong> və <strong>müstəqil &quot;Cinsi sağlamlıq ilə əlaqəli vəziyyətlər&quot; fəslinə</strong> (Fəsil 17) köçürdü.</p>
+<p>Bu, vacib <strong>deastiqmatizasiya</strong> addımıdır: bu vəziyyətlər artıq &quot;psixi pozuntu&quot; kimi deyil, <strong>cinsi sağlamlıq məsələləri</strong> kimi formalaşdırılır.</p>
+<h3 id="cinsiyyət-uyğunsuzluğu-yeni-status" class="">Cinsiyyət uyğunsuzluğu — yeni status</h3>
+<p>Köhnə &quot;cinsiyyət identifikasiyası pozuntusu&quot; (<span class="icd">F64</span>) → yeni <strong>&quot;Cinsiyyət uyğunsuzluğu&quot;</strong> (<span class="icd">HA40</span>, gender incongruence). Bu konseptual yenilənmənin nəticələri:</p>
+<ul>
+<li>Vəziyyət psixi pozuntu kimi təsnif edilmir</li>
+<li>Lakin tibbi yardım üçün rəsmi diaqnoz statusunu saxlayır (sığorta, hormonal tənzimləmə, cərrahi yardım üçün)</li>
+</ul>
+<h3 id="diaqnostik-tələblərin-yenilənməsi" class="">Diaqnostik tələblərin yenilənməsi</h3>
+<p>Cinsi disfunksiyaların müddət və tezlik tələbləri <strong>müasir tədqiqatlara</strong> uyğunlaşdırılmışdır. Yeni &quot;cinsi həyəcan/maraq&quot; və &quot;subyektiv qiymətləndirmə&quot; mərkəzi rol oynayır.</p>
+<h3 id="klinik-mənzərənin-əhəmiyyəti" class="">Klinik mənzərənin əhəmiyyəti</h3>
+<p>Bu fəsil psixiatr-psixoterapevt üçün vacibdir, çünki:</p>
+<ul>
+<li>Cinsi disfunksiyalar <strong>psixi pozuntular ilə birlikdə</strong> çox tez-tez müşahidə olunur (depressiya, təşviş, PTSP)</li>
+<li><strong>Antidepressantların yan təsiri</strong> kimi cinsi disfunksiya çox geniş yayılmışdır (xüsusən SİUSİ)</li>
+<li>Cinsi disfunksiya — <strong>gizli klinik problem</strong>; pasient özü ilk olaraq qeyd etmir, lakin həyat keyfiyyətinə ciddi təsir göstərir</li>
+</ul>
+<hr>
+<h2 id="ci̇nsi̇-di̇sfunksi̇yalar" class="">CİNSİ DİSFUNKSİYALAR</h2>
+<h3 id="tərif-və-ümumi-anlayışlar" class="">Tərif və ümumi anlayışlar</h3>
+<p><strong>Cinsi disfunksiya</strong> — pasiyentin və ya partnyorun gözləntilərinə uyğun cinsi reaksiyanın həyata keçirilməməsi, <strong>ən azı bir neçə ay davam edən və klinik əhəmiyyətli disstresə səbəb olan</strong>.</p>
+<p><strong>XBT-11 əsas kateqoriyalar:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Pozuntu</th><th>Açıqlama</th></tr>
+<tr><td><span class="icd">HA00</span></td><td>Cinsi həyəcan disfunksiyası</td><td>Aşağı və ya çatışmayan cinsi maraq və həyəcan</td></tr>
+<tr><td><span class="icd">HA01</span></td><td>Orqazm disfunksiyası</td><td>Orqazmın yoxluğu və ya ləngimə</td></tr>
+<tr><td><span class="icd">HA02</span></td><td>Erekksiya disfunksiyası</td><td>Erekksiya əldə etmə və ya saxlama çətinliyi</td></tr>
+<tr><td><span class="icd">HA03</span></td><td>Erkən boşalma</td><td>İntravagial latensiya &lt;1 dəq və ya niyyətdən əvvəl</td></tr>
+<tr><td><span class="icd">HA04</span></td><td>Boşalmanın gecikməsi</td><td>Uzun cinsi stimulyasiyaya baxmayaraq boşalma çətinliyi</td></tr>
+</table></div>
+<h3 id="etiologiya" class="">Etiologiya</h3>
+<p>Cinsi disfunksiyalar <strong>biopsixososial</strong> mənşəlidir:</p>
+<p><strong>Bioloji faktorlar:</strong></p>
+<ul>
+<li>Endokrin pozuntular (testosteron defisiti, hipotireoz, diabet)</li>
+<li>Nevroloji vəziyyətlər (Parkinson, MS, periferik neyropatiya)</li>
+<li>Vaskulyar pozuntular (ürək-damar xəstəlikləri, ED-də xüsusən)</li>
+<li>Dərman təsirləri (bax 19.4)</li>
+<li>Yaş</li>
+</ul>
+<p><strong>Psixoloji faktorlar:</strong></p>
+<ul>
+<li>Performans təşvişi</li>
+<li>Erkən cinsi təcrübələr (travmatik və ya ittiham yaradan)</li>
+<li>Dini-mədəni qadağalar</li>
+<li>Özünüqiymətləndirmə problemleri</li>
+<li>Bədən obrazı pozuntuları</li>
+<li>Psixi pozuntular (depressiya, təşviş, PTSP)</li>
+</ul>
+<p><strong>Münasibət faktorları:</strong></p>
+<ul>
+<li>Münasibət konflikti</li>
+<li>Ünsiyyət problemləri</li>
+<li>Etibar pozulması</li>
+<li>Cinsi maraqların uyğunsuzluğu</li>
+</ul>
+<h3 id="klinik-mənzərə-pozuntu-növləri-üzrə" class="">Klinik mənzərə pozuntu növləri üzrə</h3>
+<h4 id="cinsi-həyəcan-disfunksiyası-ha00" class="">Cinsi həyəcan disfunksiyası (<span class="icd">HA00</span>)</h4>
+<p><strong>Qadınlarda:</strong></p>
+<ul>
+<li>Cinsi fantaziyaların azlığı və ya yoxluğu</li>
+<li>Cinsi aktivlikdə marağın itməsi</li>
+<li>Genital reaksiyaların azalması (vaginalı lubrikasiya, klitor sensitivlik)</li>
+</ul>
+<p><strong>Kişilərdə:</strong></p>
+<ul>
+<li>Cinsi maraq və fantaziyaların azlığı (hipoaktiv cinsi həyəcan)</li>
+<li>Spontan erekksiyaların azalması</li>
+</ul>
+<h4 id="erektil-disfunksiya-ha02" class="">Erektil disfunksiya (<span class="icd">HA02</span>)</h4>
+<p><strong>Tərif:</strong> erekksiyanın əldə edilməsi və ya cinsi əlaqə üçün kifayət qədər saxlanması mümkün olmaması.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong>Birincili</strong> — heç vaxt normal funksiya olmamışdır (nadir, adətən üzvi mənşəli)</li>
+<li><strong>İkincili</strong> — əvvəllər normal funksiya olmuşdur (ən geniş yayılmış)</li>
+<li><strong>Selektiv</strong> — bəzi situasiyalarda var, digərlərində yox (psixogen əlamət)</li>
+</ul>
+<p><strong>Etioloji ayrılıq mühüm:</strong></p>
+<ul>
+<li><strong>Üzvi ED</strong> — bütün situasiyalarda; gecə/səhər erekksiyaları yox; aşamalı başlanğıc</li>
+<li><strong>Psixogen ED</strong> — situational; gecə/səhər erekksiyaları qorunur; ani başlanğıc</li>
+</ul>
+<h4 id="erkən-boşalma-ha03" class="">Erkən boşalma (<span class="icd">HA03</span>)</h4>
+<p><strong>Tərif:</strong></p>
+<ul>
+<li>İntravagial boşalma latensiyası &lt;1 dəq (birincili) və ya &lt;3 dəq (ikincili)</li>
+<li>Yoxsa niyyətdən əvvəl boşalma</li>
+<li>Disstres və münasibət problemi</li>
+</ul>
+<p><strong>Yayılma:</strong> kişilərin <strong>20-30%-i</strong> həyat boyu hər hansı bir formada təsir görür.</p>
+<h4 id="boşalmanın-gecikməsi-ha04" class="">Boşalmanın gecikməsi (<span class="icd">HA04</span>)</h4>
+<p>Uzun cinsi stimulyasiyaya baxmayaraq boşalmanın əldə edilməməsi və ya əhəmiyyətli ləngiməsi.</p>
+<p><strong>Səbəblər:</strong></p>
+<ul>
+<li>SİUSİ (ən geniş yayılmış)</li>
+<li>Yaş</li>
+<li>Diabetes</li>
+<li>Spinal travma</li>
+<li>Psixogen mənşəli (təşviş, partnyora qarşı emosional uzaqlıq)</li>
+</ul>
+<h4 id="qadın-orqazm-disfunksiyası-ha01" class="">Qadın orqazm disfunksiyası (<span class="icd">HA01</span>)</h4>
+<p>Adekvat cinsi həyəcandan sonra orqazmın əldə edilməməsi və ya əhəmiyyətli ləngiməsi. Yayılma 10–15%.</p>
+<h3 id="diaqnostik-dəyərləndirmə" class="">Diaqnostik dəyərləndirmə</h3>
+<p><strong>Mütləq komponentlər:</strong></p>
+<ul>
+<li><strong>Cinsi anamnez</strong> — başlanğıc (ani/aşamalı), kontekst (selektiv/qlobal), münasibət vəziyyəti</li>
+<li><strong>Tibbi anamnez</strong> — diabetes, hipertenziya, neyroloji, endokrin</li>
+<li><strong>Dərman anamnezi</strong> — antidepressantlar, antihipertenzivlər, sedativlər</li>
+<li><strong>Psixiatrik qiymətləndirmə</strong> — depressiya, təşviş, PTSP, münasibət problemleri</li>
+<li><strong>Fiziki müayinə</strong> — endokrinoloji, nevroloji, urooji</li>
+<li><strong>Laborator</strong> — testosteron (səhər), prolaktin, qalxanvari, qanda şəkər, lipidlər</li>
+</ul>
+<p><strong>İxtisaslaşmış cihazlar:</strong></p>
+<ul>
+<li>Erekksiya disfunksiyasında: penis dopplerometriya, gecə erekksiya monitorinqi (NPT)</li>
+<li>Vaginal cihazlar: photoplethysmography (psixoseksual tədqiqatlarda)</li>
+</ul>
+<p><strong>Şkalalar:</strong></p>
+<ul>
+<li><strong>IIEF-5</strong> (International Index of Erectile Function) — kişi cinsi funksiyası</li>
+<li><strong>FSFI</strong> (Female Sexual Function Index) — qadın cinsi funksiyası</li>
+<li><strong>PEDT</strong> (Premature Ejaculation Diagnostic Tool)</li>
+</ul>
+<h3 id="differensial-diaqnoz" class="">Differensial diaqnoz</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Vəziyyət</th><th>Fərqləndirici xüsusiyyət</th></tr>
+<tr><td>Üzvi mənşəli</td><td>Bütün situasiyalarda; gecə erekksiyaları yox; aşamalı</td></tr>
+<tr><td>Dərman induksiyası</td><td>Dərman başlanması ilə zaman uyğunluğu; doza-asılılıq</td></tr>
+<tr><td>Münasibət problemi</td><td>Selektiv (yalnız konkret partnyorla); başqa kontekstdə norma</td></tr>
+<tr><td>Depressiya/Təşviş</td><td>Komorbid; əsas pozuntu müalicəsi cinsi funksiyanı yaxşılaşdıra bilər</td></tr>
+<tr><td>Endokrin pozuntu</td><td>Testosteron, prolaktin, TSH dəyişiklikləri</td></tr>
+<tr><td>Nevroloji</td><td>MS, diabetes neyropatiyası, spinal pozuntular</td></tr>
+</table></div>
+<h3 id="müalicə" class="">Müalicə</h3>
+<p>Cinsi disfunksiyaların müalicəsi <strong>çoxqatlı</strong> yanaşma tələb edir.</p>
+<h4 id="erektil-disfunksiya" class="">Erektil disfunksiya</h4>
+<p><strong>Birinci xətt:</strong></p>
+<p>- Sildenafil 25-100 mq, cinsi əlaqədən 30-60 dəq əvvəl</p>
+<p>- Tadalafil 5-20 mq (uzun təsir, 36 saat)</p>
+<p>- <strong>Əks göstəriş:</strong> nitratların eyni vaxtda qəbulu (qan təzyiqi düşmə təhlükəsi)</p>
+<ul>
+<li><strong>PDE5 inhibitorları</strong> — sildenafil (Viagra), tadalafil (Cialis), vardenafil (Levitra), avanafil</li>
+<li><strong>Cüt psixoterapiyası</strong> — performans təşvişində</li>
+</ul>
+<p><strong>İkinci xətt:</strong></p>
+<ul>
+<li>Vakuum cihazları</li>
+<li>İntrakavernoz alprostadil injeksiyaları</li>
+<li>İntrauretral alprostadil</li>
+</ul>
+<p><strong>Üçüncü xətt:</strong></p>
+<ul>
+<li>Penis protezləri (cərrahi)</li>
+</ul>
+<h4 id="erkən-boşalma" class="">Erkən boşalma</h4>
+<p><strong>Davranış üsulları:</strong></p>
+<ul>
+<li><strong>&quot;Stop-Start&quot; texnikası</strong> (Semans, 1956) — boşalma yaxınlaşdıqda dayandırma</li>
+<li><strong>&quot;Squeeze&quot; texnikası</strong> (Masters &amp; Johnson) — penisə təzyiq</li>
+</ul>
+<p><strong>Farmakoterapiya:</strong></p>
+<ul>
+<li><strong>Topical anesthetics</strong> (lidokain/prilokain spreyi) — cinsi əlaqədən əvvəl</li>
+<li><strong>SİUSİ</strong> off-label (paroksetin 20 mq, sertralin 50 mq) və ya <strong>dapoksetin</strong> (qısa təsirli SİUSİ, &quot;as needed&quot;, 30-60 mq)</li>
+<li><strong>Tramadol</strong> off-label (ehtiyatla — opioid)</li>
+</ul>
+<h4 id="cinsi-həyəcan-disfunksiyası" class="">Cinsi həyəcan disfunksiyası</h4>
+<ul>
+<li><strong>Cüt psixoterapiyası</strong> + <strong>cinsi terapiya</strong> (Masters &amp; Johnson, Helen Singer Kaplan modelləri)</li>
+<li><strong>Hormonal qiymətləndirmə</strong> və düzəldilməsi</li>
+<li><strong>Mindfulness-based sex therapy</strong> (Brotto et al.) — qadınlarda effektiv</li>
+</ul>
+<h4 id="qadın-orqazm-disfunksiyası" class="">Qadın orqazm disfunksiyası</h4>
+<ul>
+<li><strong>Cinsi terapiya</strong> + sensate focus məşqləri</li>
+<li><strong>Vibrator istifadəsi</strong> — terapevtik məqsədlə</li>
+<li><strong>Direkt klitor stimulyasiyası</strong> — partnyorla ünsiyyət</li>
+</ul>
+<h4 id="boşalmanın-gecikməsi" class="">Boşalmanın gecikməsi</h4>
+<ul>
+<li>Səbəb-yönlü müalicə (dərman düzəlişi)</li>
+<li>Psixoseksual terapiya</li>
+<li>Dərman təsiriylə bağlı olarsa — alternativ antidepressant (mirtazapin, bupropion)</li>
+</ul>
+<h3 id="proqnoz" class="">Proqnoz</h3>
+<ul>
+<li>Psixogen mənşəli — psixoseksual terapiya ilə <strong>70–80% effektiv</strong></li>
+<li>Üzvi mənşəli — əsas xəstəliyin müalicəsi + sımptomatik dəstək</li>
+<li>Dərman induksiyalı — dərman dəyişikliyi və ya dozanın azaldılması ilə <strong>çox vaxt tam bərpa</strong></li>
+</ul>
+<hr>
+<h2 id="ci̇nsi̇-ağri-pozuntulari" class="">CİNSİ AĞRI POZUNTULARI</h2>
+<h3 id="cinsi-disareyadispareuniya-ha20" class="">Cinsi disareya/dispareuniya (<span class="icd">HA20</span>)</h3>
+<p><strong>Tərif:</strong> cinsi əlaqə zamanı təkrarlanan və ya davamlı genital ağrı.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong>Səthi (introital)</strong> — vagin girişində (vulvodiniya, vestibulit)</li>
+<li><strong>Dərin (lokomotor)</strong> — pelvik dərinlikdə (endometrioz, pelvik iltihab xəstəlikləri)</li>
+</ul>
+<p><strong>Səbəblər:</strong></p>
+<ul>
+<li><strong>Üzvi:</strong> vulvodiniya, vaginal infeksiya, atrofik vagininit (postmenopauzal), endometrioz, pelvik kongestion</li>
+<li><strong>Psixogen:</strong> travma anamnezi, qorxu, partnyorla münasibət</li>
+</ul>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li>Üzvi səbəbin müalicəsi (qoruyucular, hormonlar, antibiotik)</li>
+<li>Pelvik döşəmə fizioterapiyası</li>
+<li>KDT</li>
+<li>Cüt cinsi terapiyası</li>
+</ul>
+<h3 id="vaginizm-ha21" class="">Vaginizm (<span class="icd">HA21</span>)</h3>
+<p><strong>Tərif:</strong> vagin əzələlərinin qeyri-iradi spazmı, penetrasiyanı çətinləşdirir və ya imkansız edir.</p>
+<p><strong>Etiologiya:</strong> travma anamnezi, dini-mədəni qadağalar, performans təşvişi.</p>
+<p><strong>Müalicə:</strong></p>
+<ul>
+<li><strong>Sistematik desensitizasiya</strong> — birinci xətt</li>
+<li><strong>Vagin dilatatorları</strong> — tədricən genişlənmiş ölçü</li>
+<li><strong>Pelvik döşəmə fizioterapiyası</strong></li>
+<li><strong>KDT</strong> + cüt psixoterapiyası</li>
+<li>Effektivlik: 80–90%</li>
+</ul>
+<hr>
+<h2 id="ci̇nsi̇yyət-uyğunsuzluğu-ha40" class="">CİNSİYYƏT UYĞUNSUZLUĞU (<span class="icd">HA40</span>)</h2>
+<h3 id="tərif-və-konseptual-yenilik" class="">Tərif və konseptual yenilik</h3>
+<p><strong>XBT-11 tərifi:</strong> Pasientin <strong>təcrübə etdiyi cinsiyyət identitetinin</strong> doğuşda təyin edilən cinsiyyətlə <strong>uyğunsuzluğu</strong>, klinik əhəmiyyətli disstres və ya disfunksiya yaradan.</p>
+<p><strong>Vacib qeyd:</strong> XBT-11-də bu vəziyyət <strong>psixi pozuntular fəsilindən çıxarılmışdır</strong> və &quot;Cinsi sağlamlıq&quot; fəsilinə köçürülmüşdür. Bu, beynəlxalq tibbi icmanın mövqeyini əks etdirir: cinsiyyət uyğunsuzluğu <strong>psixi pozuntu deyil</strong>.</p>
+<p>Diaqnoz statusu <strong>tibbi yardım almaq üçün</strong> saxlanılır (hormonal tənzimləmə, sığorta əhatəsi, cərrahi proseduralar).</p>
+<h3 id="növləri" class="">Növləri</h3>
+<ul>
+<li><strong><span class="icd">HA40</span>.0</strong> Yeniyetmə və ya yetkinlikdə cinsiyyət uyğunsuzluğu</li>
+<li><strong><span class="icd">HA40</span>.1</strong> Uşaqlıqda cinsiyyət uyğunsuzluğu</li>
+</ul>
+<h3 id="klinik-dəyərləndirmə-psixiatrpsixoterapevt-rolu" class="">Klinik dəyərləndirmə — psixiatr/psixoterapevt rolu</h3>
+<p>Psixiatr və psixoterapevtin rolu <strong>diaqnozun düzgün qoyulması və komorbid pozuntuların qiymətləndirilməsidir</strong>.</p>
+<p><strong>Klinik qiymətləndirmə komponentləri:</strong></p>
+<ul>
+<li>Cinsiyyət identitetinin mənfı təcrübəsinin müddəti və davamlığı</li>
+<li>Funksional pozulma və disstres səviyyəsi</li>
+<li>Komorbid psixi pozuntular — depressiya, təşviş, PTSP, suisid riski (yüksəkdir)</li>
+<li>Sosial dəstək və ailə vəziyyəti</li>
+<li>İntelektual kapasiteta və autizm spektri xüsusiyyətləri (komorbidlik tez-tez)</li>
+</ul>
+<p><strong>WPATH (World Professional Association for Transgender Health) Standards of Care 8</strong> (2022) bu sahənin mərkəzi beynəlxalq təlimatıdır.</p>
+<h3 id="yardım-yanaşması" class="">Yardım yanaşması</h3>
+<p><strong>Vacib prinsiplər:</strong></p>
+<ul>
+<li><strong>Affirmativ yanaşma</strong> — pasientin öz təcrübəsinə hörmət</li>
+<li><strong>Multidisiplinar əməkdaşlıq</strong> — psixiatr, endokrinoloq, cərrah, hüquqşünas</li>
+<li><strong>Mərhələli proses</strong> — xüsusən yeniyetmələr üçün</li>
+<li><strong>Komorbid pozuntuların müalicəsi</strong> — depressiya, təşviş, suisid riskinin qiymətləndirilməsi və idarəolunması</li>
+<li><strong>Konversiya terapiyası qadağandır</strong> — beynəlxalq tibbi və hüquqi konsensus (WHO, WPATH)</li>
+</ul>
+<p><strong>Qeyd:</strong> Bu fəsildə bu pozuntu obyektiv tibbi mövzu kimi təqdim olunur. Praktik müalicə qərarları multidisiplinar komanda və ixtisaslaşmış mərkəzlərdə qəbul edilməlidir. Azərbaycan kontekstində bu sahədə formalaşmış tibbi infrastruktur məhduddur; mütəxəssis olduqda beynəlxalq akademik mənbələrə (WPATH SOC 8, Endocrine Society Clinical Practice Guideline) istinad olunmalıdır.</p>
+<hr>
+<h2 id="dərman-i̇nduksi̇ya-olunmuş-ci̇nsi̇-di̇sfunksi̇ya" class="">DƏRMAN-İNDUKSİYA OLUNMUŞ CİNSİ DİSFUNKSİYA</h2>
+<p>Bu, <strong>psixiatrik praktikada xüsusi əhəmiyyətə malik bölmədir</strong>, çünki psixoaktiv dərmanlar — xüsusilə antidepressantlar — cinsi disfunksiyanın <strong>ən geniş yayılmış səbəbidir</strong>.</p>
+<h3 id="si̇usi̇-induksiya-olunmuş-cinsi-disfunksiya-ssri-induced-sexual-dysfun" class="">SİUSİ-induksiya olunmuş cinsi disfunksiya (SSRI-induced sexual dysfunction)</h3>
+<p><strong>Yayılma:</strong></p>
+<ul>
+<li>SİUSİ qəbul edən pasiyentlərin <strong>30-80%-də</strong> hər hansı dərəcədə cinsi disfunksiya</li>
+<li>Subyektiv olaraq pasiyent özü qeyd etmədikdə, aktiv soruşmaqla yayılma daha yüksəkdir</li>
+</ul>
+<p><strong>Klinik mənzərə:</strong></p>
+<ul>
+<li><strong>Boşalmanın gecikməsi və ya yoxluğu</strong> (kişilərdə) — ən geniş</li>
+<li><strong>Anorqazmiya</strong> (qadınlarda)</li>
+<li>Cinsi həyəcan/maraq azalması (hər iki cinsdə)</li>
+<li>Erekksiya disfunksiyası</li>
+<li>Genital sensitivlik azalması</li>
+</ul>
+<p><strong>SİUSİ-lərin müqayisəli profili:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Dərman</th><th>Cinsi yan təsir tezliyi</th></tr>
+<tr><td>Paroksetin</td><td>Yüksək (~50%)</td></tr>
+<tr><td>Sertralin</td><td>Yüksək (~40%)</td></tr>
+<tr><td>Fluoksetin</td><td>Yüksək (~40%)</td></tr>
+<tr><td>Sitalopram, essitalopram</td><td>Orta (~30%)</td></tr>
+<tr><td>Venlafaksin (SNRI)</td><td>Yüksək (~40%)</td></tr>
+<tr><td>Mirtazapin</td><td>Aşağı (&lt;10%) — antagonist 5-HT2C</td></tr>
+<tr><td>Bupropion</td><td>Çox aşağı (&lt;5%) — dopaminergik mexanizm</td></tr>
+<tr><td>Vortioksetin</td><td>Aşağı (~10%)</td></tr>
+<tr><td>Aqomelatin</td><td>Çox aşağı (&lt;5%)</td></tr>
+</table></div>
+<h3 id="pssd-post-ssri-sexual-dysfunction" class="">PSSD — Post-SSRI Sexual Dysfunction</h3>
+<p><strong>Tərif:</strong> SİUSİ dayandırıldıqdan sonra <strong>uzunmüddətli və ya daimi</strong> davam edən cinsi disfunksiya.</p>
+<p><strong>Klinik xüsusiyyətlər:</strong></p>
+<ul>
+<li>Genital sensitivlik azalması (genital anesthesiya)</li>
+<li>Cinsi maraq tam yoxluğu</li>
+<li>Anhedonik orqazm — orqazm hisslərinin emosional qiymətinin itməsi</li>
+</ul>
+<p><strong>Status:</strong> PSSD tibb icmasında nisbətən yeni tanınan vəziyyətdir; <strong>EMA tərəfindən 2019-cu ildə rəsmi tanınmışdır</strong>. Effektiv müalicə hələ tapılmamışdır. Pasiyenti SİUSİ başlanmazdan əvvəl bu risk haqqında məlumatlandırmaq vacibdir.</p>
+<h3 id="antipsixotik-induksiya-olunmuş-cinsi-disfunksiya" class="">Antipsixotik-induksiya olunmuş cinsi disfunksiya</h3>
+<p><strong>Mexanizm:</strong></p>
+<ul>
+<li><strong>Hiperprolaktinemiya</strong> — D2 blokadası → prolaktin yüksəlir → libido azalır, ED, qalaktoreya</li>
+<li>Antikolinerjik təsir</li>
+<li>Adrenergik blok</li>
+</ul>
+<p><strong>Müqayisəli profil:</strong></p>
+<ul>
+<li><strong>Yüksək risk:</strong> risperidon, paliperidon, haloperidol, amisulpirid (prolaktin yüksəltmə)</li>
+<li><strong>Aşağı risk:</strong> aripiprazol, kvetiapin, klozapin, olanzapin</li>
+</ul>
+<h3 id="digər-psixoaktiv-dərmanlar" class="">Digər psixoaktiv dərmanlar</h3>
+<ul>
+<li><strong>Mood stabilizatorları</strong> (litium) — orta risk</li>
+<li><strong>Benzodiazepinlər</strong> — sedasiya, libido azalması</li>
+<li><strong>Opioidlər</strong> — testosteron supressiyası, libido azalması</li>
+<li><strong>Antiandrogenlər</strong> (siproteronasetat) — terapevtik məqsədlə cinsi nəzarət (parafilik pozuntularda)</li>
+</ul>
+<h3 id="klinik-idarəetmə-alqoritmi" class="">Klinik idarəetmə alqoritmi</h3>
+<h4 id="pasiyent-si̇usi̇-qəbul-edir-cinsi-disfunksiya" class="">Pasiyent SİUSİ qəbul edir + cinsi disfunksiya:</h4>
+<p><strong>Addım 1:</strong> Aktiv qiymətləndirmə (pasiyent özü qeyd etməyə bilər — birbaşa soruşmaq lazımdır)</p>
+<p><strong>Addım 2:</strong> Risk-fayda təhlili</p>
+<ul>
+<li>Depressiya remissiyada davamlıdırsa və simptom yüngüldürsə → &quot;wait and watch&quot; (bəzən tolerantlıq inkişaf edir, 6-8 həftə)</li>
+<li>Disstres yüksəkdirsə → müdaxilə</li>
+</ul>
+<p><strong>Addım 3:</strong> Müdaxilə variantları</p>
+<p>- Bupropion (mexanizmi fərqli, libido neytral)</p>
+<p>- Mirtazapin (antagonist 5-HT2/3)</p>
+<p>- Vortioksetin</p>
+<p>- Aqomelatin</p>
+<p>- Bupropion 150-300 mq əlavə (qadınlarda effektiv RCT-lərdə)</p>
+<p>- PDE5 inhibitor (kişi ED üçün — sildenafil)</p>
+<p>- Sildenafil qadınlarda (off-label, sübutluluq məhdud)</p>
+<ul>
+<li><strong>Dozanın azaldılması</strong> (ehtiyatla — depressiya residiv riski)</li>
+<li><strong>Dərman dəyişikliyi:</strong></li>
+<li><strong>Augmentation:</strong></li>
+<li><strong>Drug holidays</strong> — yalnız qısa yarı-ömrü olan SİUSİ-lərdə (sertralin, paroksetin) və yalnız stabil pasiyentlərdə; mexanizm: cinsi əlaqədən 24 saat əvvəl atlama</li>
+<li><strong>Cinsi terapiya / cüt terapiyası</strong></li>
+</ul>
+<h4 id="antipsixotik-cinsi-disfunksiya" class="">Antipsixotik + cinsi disfunksiya:</h4>
+<ul>
+<li>Prolaktin səviyyəsini yoxlamaq</li>
+<li>Yüksəkdirsə: aripiprazola keçid (parsial agonist, prolaktini azaldır) və ya kabergolin əlavə</li>
+<li>Aşağı doza ilə eksperiment</li>
+</ul>
+<hr>
+<h2 id="klinik-praktikada-xüsusi-mövzular" class="">Klinik praktikada xüsusi mövzular</h2>
+<h3 id="aktiv-soruşma-vacibdir" class="">Aktiv soruşma vacibdir</h3>
+<p>Pasiyentlərin əksəriyyəti cinsi disfunksiyanı <strong>ilk olaraq qeyd etmir</strong>. Səbəbləri:</p>
+<ul>
+<li>Utanc, mədəni təbu</li>
+<li>Mövzunun &quot;tibbi&quot; hesab edilməməsi</li>
+<li>Dərman ilə əlaqəsi qurulmaması</li>
+</ul>
+<p><strong>Praktik yanaşma:</strong> SİUSİ başlanması zamanı və hər kontrol vizitində birbaşa soruşma:</p>
+<ul>
+<li><em>&quot;Antidepressantlar bəzən cinsi həyatınıza təsir edə bilər. Sizdə hər hansı bir dəyişiklik var?&quot;</em></li>
+<li><em>&quot;Cinsi maraq, həyəcan, orqazm — bu sahələrdə bir şey dəyişdimi?&quot;</em></li>
+</ul>
+<h3 id="mədəni-dini-kontekst" class="">Mədəni-dini kontekst</h3>
+<p>Azərbaycan kontekstində:</p>
+<ul>
+<li>Müsəlman dini-mədəni mühit cinsi mövzuların açıq müzakirəsini çətinləşdirə bilər</li>
+<li>Pasiyent qadın olduqda — qadın həkim/psixoloqun olması daha çox açıqlığa imkan yaradır</li>
+<li>Münasibət konteksti (əksəriyyət ailə yönlü) — cüt yanaşması effektiv ola bilər</li>
+<li>Dini liderlərlə əməkdaşlıq bəzi hallarda faydalı (xüsusən vaginizm, cinsi qadağa təcrübələri)</li>
+</ul>
+<h3 id="suisid-riski-qiymətləndirməsi" class="">Suisid riski qiymətləndirməsi</h3>
+<p>Cinsi disfunksiya — özü-özlüyündə depressiya simptomu və ya pasientə əhəmiyyətli stress mənbəyi ola bilər. Xüsusən:</p>
+<ul>
+<li>Erkən yaşlarda inkişaf edən erektil disfunksiya</li>
+<li>PSSD (uzunmüddətli)</li>
+<li>Cinsiyyət uyğunsuzluğu (xüsusilə yüksək risk)</li>
+</ul>
+<p>Bütün cinsi disfunksiya hallarında <strong>bazis suisid risk qiymətləndirməsi</strong> (C-SSRS) tövsiyə olunur.</p>
+<hr>
+<h2 id="bölmə-19-üçün-mənbələr" class="">Bölmə 19 üçün mənbələr</h2>
+<ol>
+<li>WHO. <em>ICD-11 — Conditions related to sexual health (Chapter 17).</em> 2022.</li>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>McCabe MP, et al. <em>Definitions of Sexual Dysfunctions in Women and Men: A Consensus Statement From the Fourth International Consultation on Sexual Medicine 2015.</em> J Sex Med. 2016;13(2):135-143.</li>
+<li>Hatzimouratidis K, et al. <em>EAU Guidelines on Erectile Dysfunction, Premature Ejaculation, and Penile Curvature.</em> European Association of Urology, 2021.</li>
+<li>Brotto LA, et al. <em>A psychoeducational intervention for sexual dysfunction in women with gynecologic cancer.</em> Arch Sex Behav. 2008;37(2):317-329.</li>
+<li>Reed GM, et al. <em>Disorders related to sexuality and gender identity in the ICD-11: revising the ICD-10 classification based on current scientific evidence, best clinical practices, and human rights considerations.</em> World Psychiatry. 2016;15(3):205-221.</li>
+<li>Coleman E, et al. <em>Standards of Care for the Health of Transgender and Gender Diverse People, Version 8.</em> WPATH, 2022.</li>
+<li>Hembree WC, et al. <em>Endocrine Treatment of Gender-Dysphoric/Gender-Incongruent Persons: An Endocrine Society Clinical Practice Guideline.</em> J Clin Endocrinol Metab. 2017;102(11):3869-3903.</li>
+<li>Montejo AL, et al. <em>Frequency of sexual dysfunction in patients with a psychotic disorder receiving antipsychotics.</em> J Sex Med. 2010;7(10):3404-3413.</li>
+<li>Bala A, et al. <em>Post-SSRI Sexual Dysfunction: A Literature Review.</em> Sex Med Rev. 2018;6(1):29-34.</li>
+<li>EMA — European Medicines Agency. <em>PRAC recommendation on persistent sexual dysfunction following SSRI/SNRI use.</em> 2019.</li>
+<li>Clayton AH, et al. <em>Antidepressant-Associated Sexual Dysfunction: A Potentially Avoidable Therapeutic Challenge.</em> Curr Psychiatry Rep. 2018;20(7):46.</li>
+<li>Masters WH, Johnson VE. <em>Human Sexual Inadequacy.</em> Little, Brown, 1970.</li>
+<li>Kaplan HS. <em>The New Sex Therapy.</em> Brunner/Mazel, 1974.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-18.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 18 — YUXU-OYAQLIQ</span></a><a href="bolme-20.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 20 — NEYROKOQNİTİV</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-19";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

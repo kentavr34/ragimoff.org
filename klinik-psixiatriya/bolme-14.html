@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 14 — POZUCU DAVRANIŞ">
+<title>BÖLMƏ 14 — POZUCU DAVRANIŞ | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-14" class="h-bolme">BÖLMƏ 14</h1>
+<h2 id="pozucu-davraniş-və-di̇ssosi̇al-pozuntular" class="">POZUCU DAVRANIŞ VƏ DİSSOSİAL POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C90</span>–6C9Z — Disruptive behaviour or dissocial disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F91</span> — Davranış pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Disruptive, Impulse-Control, and Conduct Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6C90</span></strong></td><td>Oppozisiya-etiraz pozuntusu (OEP)</td><td>14.1</td></tr>
+<tr><td><strong><span class="icd">6C91</span></strong></td><td>Davranış-dissosial pozuntu (DDP)</td><td>14.2</td></tr>
+<tr><td><strong>6C9Z</strong></td><td>Dəqiqləşdirilməmiş</td><td>—</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="ddhp-bu-qrupdan-çıxarıldı" class="">DDHP bu qrupdan çıxarıldı</h3>
+<p>XBT-10-da hiperkinetik pozuntu (<span class="icd">F90</span>) bəzi təsnifatlarda davranış pozuntuları yaxınlığında idi. <strong>XBT-11 DDHP-ni neyroinkişaf pozuntularına köçürdü</strong> (<span class="icd">6A05</span>, Bölmə 1-ə bax). Səbəb: DDHP xəstələri <strong>qəsdli davranış pozuntusu göstərmir</strong>; bu neyroinkişafın xüsusiyyətidir, antisosial pattern deyil. Bu ayrılma damğalaşmanı azaldır və müalicə yanaşmasını dəqiqləşdirir.</p>
+<h3 id="oep-üçün-iki-yeni-kvalifikator" class="">OEP üçün iki yeni kvalifikator</h3>
+<p>XBT-11 ODD/OEP üçün <strong>iki spesifikator</strong> əlavə etdi:</p>
+<ul>
+<li><strong>&quot;Xroniki qıcıqlanma-qəzəb&quot;</strong> (chronic irritability-anger) — uzunmüddətli irritabl əhval; bu pasiyentlərdə <strong>depressiya, GAD riski yüksək</strong>dir; əhval pozuntusu spektri ilə əlaqəli ola bilər</li>
+<li><strong>&quot;Məhdud prososial emosiya&quot;</strong> (limited prosocial emotions) — aşağı empatiya, günah hissi yox, etinasızlıq; <strong>ağır gediş, antisosial şəxsiyyət üçün risk prediktoru</strong></li>
+</ul>
+<h3 id="ömür-boyu-diaqnoz" class="">Ömür boyu diaqnoz</h3>
+<p>XBT-10-da bu pozuntular əsasən &quot;uşaq və yeniyetmə&quot; kontekstində idi. <strong>XBT-11 lifespan perspektivi tətbiq edir</strong> – yetkinlərdə də diaqnoz qoyula bilər (azaldılmış formada).</p>
+<h3 id="dsm-5-tr-ilə-fərq" class="">DSM-5-TR ilə fərq</h3>
+<p><strong>DMDD (Disruptive Mood Dysregulation Disorder)</strong> – DSM-5-TR-də <strong>depressiv pozuntular</strong> bölməsində ayrıca diaqnoz (Bölmə 4-ə bax). <strong>XBT-11 onu OEP &quot;xroniki qıcıqlanma-qəzəb&quot; kvalifikatoru kimi saxladı</strong> – ayrıca diaqnoz yaratmadı.</p>
+<p>\newpage</p>
+<h1 id="6c91-oppozi̇si̇ya-eti̇raz-pozuntusu-oep" class="h-disorder"><span class="icd">6C91</span> OPPOZİSİYA-ETİRAZ POZUNTUSU (OEP)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C91</span> — Oppozisiya-Etiraz Pozuntusu (Oep)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F91</span> — Davranış pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 312.8x — Conduct Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Oppozisiya-etiraz pozuntusu (OEP) – <strong>qıcıqlanma əhvalı, mübahisə-etiraz davranışı, kin/qisas nümunəsi</strong> ilə xarakterizə olunan davranış pozuntusu; <strong>ən azı 6 ay</strong> davam edir; yaş-uyğun davranış normalarından kənarda; əhəmiyyətli funksional pozulma.</p>
+<p><strong>Üç simptom domeni (XBT-11):</strong></p>
+<ol>
+<li><strong>Qıcıqlanmış əhval</strong> – tez kədərlənir, hirslənir, qəzəbli</li>
+<li><strong>Mübahisəli/etirazlı davranış</strong> – yetkinlərlə mübahisə, qaydalara tabe olmama</li>
+<li><strong>Kin/qisas</strong> – qəsdən başqalarını qıcıqlandırmaq, intiqam alma</li>
+</ol>
+<p><strong>Şiddət:</strong></p>
+<ul>
+<li><strong>Yüngül:</strong> simptomlar bir mühitdə (məs., yalnız evdə)</li>
+<li><strong>Orta:</strong> ən az iki mühitdə</li>
+<li><strong>Ağır:</strong> üç və ya daha çox mühitdə</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="genetik" class="">Genetik</h3>
+<ul>
+<li><strong>İrsiyyət göstəricisi:</strong> 50-60%</li>
+<li>Antisosial spektr ilə ortaq genetik komponent</li>
+<li>Neyrobehaviorial fenotip: aşağı serotonergik aktivlik, yüksək testosteron</li>
+</ul>
+<h3 id="neyrobioloji" class="">Neyrobioloji</h3>
+<ul>
+<li>Prefrontal korteks – limbik bağlantı zəifliyi</li>
+<li>Amigdala hiperreaktivliyi (xroniki qıcıqlanma kvalifikatorunda)</li>
+<li>HPA oxu disregulyasiyası</li>
+</ul>
+<h3 id="psixososial" class="">Psixososial</h3>
+<ul>
+<li><strong>Tutarsız tərbiyə</strong> – rəqsiz qaydalar, izahsız cəza</li>
+<li><strong>Ağır cəza, fiziki istismar</strong> – güclü risk</li>
+<li><strong>Valideyn psixopatologiyası</strong> – MDD, antisosial, alkohol asılılığı</li>
+<li><strong>Aşağı sosioiqtisadi status</strong></li>
+<li><strong>Müəllim-şagird münasibəti</strong> problemləri</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<p>- DDHP: 30-50% (ən geniş)</p>
+<p>- Depressiya: 14%</p>
+<p>- GAD: 10%</p>
+<p>- Davranış pozuntusu: 30% (OEP-dən progressiya)</p>
+<ul>
+<li><strong>Yayılma:</strong> 3-5% uşaq və yeniyetmələrdə</li>
+<li><strong>Cins:</strong> uşaqlıqda oğlan dominant (1,4:1); yeniyetməlikdə qadınlaşır</li>
+<li><strong>Başlanğıc:</strong> 8 yaşa qədər (orta 6 yaş)</li>
+<li><strong>Komorbidlik:</strong></li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="davranış-simptomları" class="">Davranış simptomları</h3>
+<p><strong>Qıcıqlanmış əhval (4-5 yaş ərzində ən az 4 simptom):</strong></p>
+<ul>
+<li>Tez hirslənir, qəzəblənir</li>
+<li>Tez &quot;tutuşur&quot;, incidir</li>
+<li>Davamlı qıcıqlanma, narazılıq</li>
+</ul>
+<p><strong>Mübahisəli/etirazlı davranış:</strong></p>
+<ul>
+<li>Yetkinlərlə mübahisə (xüsusilə valideyn, müəllim)</li>
+<li>Qaydalara aktiv tabe olmama</li>
+<li>Başqalarını &quot;qıcıqlandırmaq&quot; üçün qəsdən hərəkət</li>
+<li>Öz səhvlərini başqalarına atmaq</li>
+<li>Tələblərə &quot;həmsöhbət olub mübahisə&quot;</li>
+</ul>
+<p><strong>Kin/qisas:</strong></p>
+<ul>
+<li>Son 6 ayda ən az 2 dəfə intiqam alma davranışı</li>
+<li>&quot;Sən mənə bunu etdin...&quot; pattern</li>
+<li>Uzunmüddətli kin saxlama</li>
+</ul>
+<h3 id="mühit-spesifik-təzahürlər" class="">Mühit-spesifik təzahürlər</h3>
+<ul>
+<li><strong>Tipik olaraq evdə daha güclü</strong> (valideynlərlə)</li>
+<li>Məktəbdə fərqli tablo ola bilər (müəllim ilə yaxşı, dostlarla problemli)</li>
+<li><strong>Tək mühitdə</strong> olduqda diaqnoz qoyulmamalıdır əgər funksional pozulma yoxdursa</li>
+</ul>
+<h3 id="xroniki-qıcıqlanma-qəzəb-kvalifikatoru" class="">&quot;Xroniki qıcıqlanma-qəzəb&quot; kvalifikatoru</h3>
+<p>Bu paterndə OEP-dən fərqli xüsusiyyətlər:</p>
+<ul>
+<li><strong>Davamlı, sabit irritabl əhval</strong> (uşaq nadir hallarda &quot;yaxşı əhvalda&quot;)</li>
+<li>&quot;Əhval partlayışları&quot; – yaşa görə uyğun olmayan</li>
+<li>Bu pasiyentlər <strong>MDD və GAD inkişaf riski yüksək</strong></li>
+<li>DSM-5-TR-də ayrıca DMDD diaqnozu kimi tanınır</li>
+</ul>
+<h3 id="məhdud-prososial-emosiya-kvalifikatoru" class="">&quot;Məhdud prososial emosiya&quot; kvalifikatoru</h3>
+<p><strong>Çox vacib prediktiv əhəmiyyət:</strong></p>
+<ul>
+<li>Empatiya azlığı – başqalarının duyğularına laqeyd</li>
+<li>Günah hissi yox / az</li>
+<li>Akademik/peşə problemlərinə laqeyd</li>
+<li>Səthi affekt / sığ emosional ifadə</li>
+<li><strong>Ağır gediş, antisosial şəxsiyyətə progressiya riski</strong></li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6c90" class="">XBT-11 əsas tələblər (<span class="icd">6C90</span>):</h3>
+<p><strong>A.</strong> <strong>6 ay+</strong> davam edən pozucu davranış nümunəsi:</p>
+<ul>
+<li>Qıcıqlanmış əhval <strong>VƏ/VƏ YA</strong> mübahisəli/etirazlı davranış <strong>VƏ/VƏ YA</strong> kin/qisas</li>
+</ul>
+<p><strong>B.</strong> Davranış <strong>yaş-uyğun normaları aşır</strong> – uşaqlığın &quot;tipik mübahisəliliyindən&quot; kənar</p>
+<p><strong>C.</strong> Əhəmiyyətli funksional pozulma (ailə, sosial, akademik, peşə)</p>
+<p><strong>D.</strong> <strong>Davranış-dissosial pozuntu (<span class="icd">6C91</span>) meyarlarını qarşılamır</strong> (OEP daha yumşaqdır)</p>
+<h3 id="spesifikatorlar" class="">Spesifikatorlar:</h3>
+<ul>
+<li><strong>Mühit:</strong> ev / məktəb / iş / sosial</li>
+<li><strong>Şiddət:</strong> yüngül / orta / ağır</li>
+<li><strong>Xroniki qıcıqlanma-qəzəb</strong> (var/yox)</li>
+<li><strong>Məhdud prososial emosiya</strong> (var/yox)</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>DDHP (<span class="icd">6A05</span>)</strong></td><td>İmpulsivlik, diqqətsizlik dominant; qəsdən mübahisə az</td></tr>
+<tr><td><strong>Davranış-dissosial pozuntu (<span class="icd">6C91</span>)</strong></td><td>Daha ağır – heyvana zərər, oğurluq, fiziki cəlbiyyət</td></tr>
+<tr><td><strong>Major depressiv pozuntu (uşaq)</strong></td><td>İrritabl əhval; lakin anhedoniya, yuxu, iştah simptomları</td></tr>
+<tr><td><strong>DMDD (DSM-5)</strong></td><td>XBT-11-də OEP kvalifikatoru kimi</td></tr>
+<tr><td><strong>Bipolyar pozuntu (uşaq)</strong></td><td>Episodik mania; OEP davamlı</td></tr>
+<tr><td><strong>Avoidant şəxsiyyət</strong></td><td>Qaçınma; mübahisə az</td></tr>
+<tr><td><strong>Autizm spektr pozuntusu</strong></td><td>Qaydaları başa düşmə pozuntusu, sosial qıt; qəsdən deyil</td></tr>
+<tr><td><strong>Travma reaksiyası</strong></td><td>Travma anamnezi</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar" class="">Şkalalar</h3>
+<ul>
+<li><strong>CBCL</strong> (Child Behavior Checklist) – Achenbach</li>
+<li><strong>TRF</strong> (Teacher Report Form) – müəllim qiymətləndirməsi</li>
+<li><strong>CPRS-R</strong> (Conners Parent Rating Scale) – DDHP komorbidlik</li>
+<li><strong>NCBRF</strong> (Nisonger Child Behavior Rating Form)</li>
+<li><strong>APSD</strong> (Antisocial Process Screening Device) – &quot;limited prosocial emotions&quot; kvalifikatoru üçün</li>
+</ul>
+<h3 id="klinik-qiymətləndirmə" class="">Klinik qiymətləndirmə</h3>
+<ul>
+<li><strong>Çoxinformator</strong> yanaşma – valideyn + müəllim + uşaq</li>
+<li><strong>Müşahidə</strong> – ailə dinamikası, müəllim-uşaq qarşılıqlı təsiri</li>
+<li>Komorbidlik (DDHP, MDD, GAD) tam qiymətləndirmə</li>
+<li>Travma, fiziki istismar tarixçəsi</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>OEP müalicəsi <strong>valideyn təlimi</strong> + <strong>uşaq KDT</strong> + <strong>məktəb əməkdaşlığı</strong> kombinasiyası tələb edir. Farmakoterapiya ikinci xətt – yalnız komorbidliklərdə.</p>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<ul>
+<li><strong>NICE NG87 (2017):</strong> <em>Antisocial behaviour and conduct disorders in children and young people</em></li>
+<li><strong>AACAP Practice Parameter for ODD</strong> (2007)</li>
+<li><strong>APA Practice Guideline</strong></li>
+</ul>
+<h3 id="birinci-xətt-valideyn-i̇darəetmə-təlimi-pmt" class="">Birinci xətt: Valideyn İdarəetmə Təlimi (PMT)</h3>
+<p><strong>PMT (Parent Management Training) – sübutluluq A:</strong></p>
+<ul>
+<li>Webster-Stratton &quot;Incredible Years&quot; proqramı</li>
+<li>Triple P (Positive Parenting Program)</li>
+<li>Patterson Sosial Öyrənmə Modeli</li>
+<li>Barkley Defiant Children proqramı</li>
+</ul>
+<p><strong>Komponenlər:</strong></p>
+<ol>
+<li><strong>Pozitiv möhkəmləndirmə</strong> – uyğun davranışı tutmaq və mükafatlandırmaq</li>
+<li><strong>Açıq qaydalar və gözləntilər</strong></li>
+<li><strong>Tutarlı nəticələr</strong> – cəza tutarlı, izahlı</li>
+<li><strong>Time-out</strong> texnikası – emosional regulasiya üçün</li>
+<li><strong>Effektiv əmrlər</strong> – konkret, sayılı</li>
+<li>Münasibət gücləndirilməsi (warm relationship)</li>
+</ol>
+<p><strong>Effekt:</strong> PMT 60-70% uşağa effektiv; valideyn psikopatologiyası → effekt azalır.</p>
+<h3 id="uşaq-müdaxilələri" class="">Uşaq müdaxilələri</h3>
+<p><strong>Problem-Solving Skills Training (PSST):</strong></p>
+<ul>
+<li>Kazdin protokol</li>
+<li>Problem həll alqoritmləri</li>
+<li>Sosial situasiyalarda alternativ reaksiyalar</li>
+<li>12-25 sessiya</li>
+</ul>
+<p><strong>Anger Coping Programs:</strong></p>
+<ul>
+<li>Lochman protokol</li>
+<li>Qəzəb tetikləyicilərinin identifikasiyası</li>
+<li>Relaksasiya, koqnitiv müdaxilə</li>
+</ul>
+<h3 id="multimodal-müdaxilələr" class="">Multimodal müdaxilələr</h3>
+<p><strong>Multisystemic Therapy (MST):</strong></p>
+<ul>
+<li>Henggeler</li>
+<li>Ağır OEP/davranış pozuntusu üçün</li>
+<li>Ailə, məktəb, dostlar – bütün sistemlərə müdaxilə</li>
+<li>4-6 ay intensiv</li>
+</ul>
+<p><strong>Functional Family Therapy (FFT):</strong> Alexander – ailə dinamikası fokusunda.</p>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>Birinci sıra preparat yoxdur</strong> – KDT/PMT birinci xətt.</p>
+<p><strong>Komorbidliklər üçün:</strong></p>
+<p>- Metabolik yan təsirlər ciddi monitorinq</p>
+<ul>
+<li><strong>DDHP komorbid:</strong> stimulyantlar (metilfenidat, amfetamin) – aqressiyanı da azaldır</li>
+<li><strong>Xroniki qıcıqlanma:</strong> SİUSİ (fluoksetin, sertralin)</li>
+<li><strong>Ağır aqressiya:</strong> atipik antipsixotiklər (risperidon 0,25-2 mq, aripiprazol)</li>
+<li><strong>Əhval sabitləyiciləri:</strong> litium, valproat – aqressiyada</li>
+</ul>
+<h3 id="məktəb-əməkdaşlığı" class="">Məktəb əməkdaşlığı</h3>
+<ul>
+<li><strong>Davranış müdaxilə planı</strong> (BIP – Behavior Intervention Plan)</li>
+<li><strong>IEP</strong> (Individualized Education Plan) – əgər akademik təsir varsa</li>
+<li>Müəllim təlimi (PMT komponentləri ilə)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>PMT + uşaq KDT ilə 60-70% klinik yaxşılaşma</strong></li>
+<li><strong>&quot;Məhdud prososial emosiya&quot; kvalifikatoru = pis proqnoz</strong> (antisosial şəxsiyyətə progressiya 30-50%)</li>
+<li>&quot;Xroniki qıcıqlanma-qəzəb&quot; → MDD, GAD progressiyası</li>
+<li><strong>30% OEP davranış-dissosial pozuntuya progressiya</strong></li>
+<li>Erkən müdaxilə = yaxşı proqnoz</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>NICE. <em>Antisocial behaviour and conduct disorders in children and young people</em> (NG87/CG158). 2013/2017.</li>
+<li>AACAP. <em>Practice Parameter for the Assessment and Treatment of Children and Adolescents With Oppositional Defiant Disorder.</em> J Am Acad Child Adolesc Psychiatry, 2007.</li>
+<li>Webster-Stratton C. <em>The Incredible Years.</em> Incredible Years Inc, 2005.</li>
+<li>Kazdin AE. <em>Parent Management Training: Treatment for Oppositional, Aggressive, and Antisocial Behavior in Children and Adolescents.</em> Oxford UP, 2005.</li>
+<li>Barkley RA. <em>Defiant Children: A Clinician\&#x27;s Manual for Assessment and Parent Training.</em> Guilford, 2013.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6c90-davraniş-di̇ssosi̇al-pozuntu-ddp" class="h-disorder"><span class="icd">6C90</span> DAVRANIŞ-DİSSOSİAL POZUNTU (DDP)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C90</span> — Davraniş-Dissosial Pozuntu (Ddp)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F91.3</span> — Opozisiya-etiraz pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 313.81 — Oppositional Defiant Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Davranış-dissosial pozuntu (DDP) – <strong>başqalarının əsas hüquqlarını və ya yaş-uyğun cəmiyyət normalarını sistematik pozan</strong> davranış nümunəsi; <strong>12 ay</strong> davam edir; aşağıdakı dörd kateqoriyada simptomlar mövcuddur:</p>
+<ol>
+<li><strong>İnsanlara və heyvanlara aqressiya</strong> (zorbalıq, hücum, cinsi məcburiyyət, silah istifadəsi)</li>
+<li><strong>Mülkiyyətin məhv edilməsi</strong> (yanğın salma, vandallıq)</li>
+<li><strong>Yalan-oğurluq</strong> (ev oğurluğu, mağaza oğurluğu, dələduzluq)</li>
+<li><strong>Ciddi qaydaların pozulması</strong> (gecə evdən qaçma, məktəbdən qaçma &lt;13 yaş)</li>
+</ol>
+<p><strong>Yaş başlanğıcı – diaqnostik vacib:</strong></p>
+<ul>
+<li><strong>Uşaqlıq başlanğıclı</strong> (10 yaşa qədər) – pis proqnoz</li>
+<li><strong>Yeniyetmə başlanğıclı</strong> (10 yaşdan sonra) – daha yaxşı proqnoz</li>
+</ul>
+<p><strong>Şiddət:</strong></p>
+<ul>
+<li><strong>Yüngül:</strong> az simptom, az ziyan</li>
+<li><strong>Orta:</strong> orta sayda simptom, orta ziyan</li>
+<li><strong>Ağır:</strong> çox simptom, ciddi ziyan (silahla hücum, cinsi məcburiyyət, fiziki yaralanma)</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="bio-psiko-sosial-model" class="">Bio-psiko-sosial model</h3>
+<p><strong>Genetik (40-60% irsiyyət):</strong></p>
+<ul>
+<li><strong>MAOA gen poliformizmi</strong> – aqressiyaya bias (Caspi məşhur tədqiqat)</li>
+<li>5-HTTLPR genotipi</li>
+<li>Antisosial spektrlə örtüşmə</li>
+</ul>
+<p><strong>Neyrobioloji:</strong></p>
+<ul>
+<li><strong>Aşağı kortizol cavabı</strong> stress vəziyyətlərinə (autonomik hipo-arousal)</li>
+<li><strong>Aşağı qorxu kondisionasiyası</strong> (amigdala disfunksiyası)</li>
+<li><strong>Prefrontal korteks</strong> zəifliyi – impuls nəzarəti</li>
+</ul>
+<p><strong>Psixososial:</strong></p>
+<ul>
+<li><strong>Fiziki istismar, neglekt</strong> – güclü risk</li>
+<li><strong>Valideyn antisosiallığı, alkohol asılılığı</strong></li>
+<li><strong>Aşağı sosioiqtisadi status</strong></li>
+<li><strong>Boşanma, qeyri-stabil ailə</strong></li>
+<li><strong>Antisosial ortaq qrup</strong> (peer group) – yeniyetməlikdə kritik</li>
+<li><strong>Məktəb uğursuzluğu</strong></li>
+<li><strong>Cəmiyyət zorakılığı, silah-narkotik mühiti</strong></li>
+</ul>
+<h3 id="predispozisiya-yolları" class="">Predispozisiya yolları</h3>
+<p><strong>&quot;Erkən başlanğıc, neyroinkişaf yolu&quot;:</strong></p>
+<ul>
+<li>Uşaqlıqda DDHP + OEP → DDP</li>
+<li>Pis proqnoz, antisosial şəxsiyyətə yol</li>
+</ul>
+<p><strong>&quot;Yeniyetmə başlanğıclı, sosial yol&quot;:</strong></p>
+<ul>
+<li>Antisosial yaşıdlarla əlaqə</li>
+<li>Adolescence-limited</li>
+<li>Yetkinlikdə remissiya geniş</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<p>- DDHP: 35%</p>
+<p>- Maddə istifadəsi: 50% yeniyetmələrdə</p>
+<p>- MDD: 25-50%</p>
+<p>- Anksiyete: 30%</p>
+<p>- PTSP: 30% (xüsusilə qızlarda)</p>
+<p>- Öyrənmə pozuntuları: 20-30%</p>
+<ul>
+<li><strong>Yayılma:</strong> 2-10% (orta 4%) uşaq və yeniyetmələrdə</li>
+<li><strong>Cins:</strong> kişi:qadın 4:1 (uşaqlıqda); yeniyetmədə 2:1</li>
+<li><strong>Başlanğıc:</strong> 7-15 yaş pik</li>
+<li><strong>Azərbaycan:</strong> spesifik epidemioloji məlumat yoxdur</li>
+<li><strong>Komorbidlik:</strong></li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="dörd-kateqoriya-simptom-nümunələri" class="">Dörd kateqoriya simptom nümunələri</h3>
+<p><strong>1. İnsanlara və heyvanlara aqressiya:</strong></p>
+<ul>
+<li>Zorbalıq (bullying), təhdid, qorxutma</li>
+<li>Fiziki davalara başlama</li>
+<li>Silah istifadə (taxta, daş, bıçak, atəş silahı)</li>
+<li>Fiziki cəfa (fiziki yaralama)</li>
+<li>Heyvana fiziki cəfa</li>
+<li>Oğurluq qurban ilə üz-üzə (rabbery, mugging)</li>
+<li>Cinsi fəaliyyət üçün məcburiyyət</li>
+</ul>
+<p><strong>2. Mülkiyyətin məhv edilməsi:</strong></p>
+<ul>
+<li>Qəsdən yanğın salma (zərər niyyəti ilə)</li>
+<li>Mülkiyyətə qəsdən zərər vermə (vandallıq)</li>
+</ul>
+<p><strong>3. Yalan və oğurluq:</strong></p>
+<ul>
+<li>Başqasının evi/maşını/binasına soxulma</li>
+<li>Yalan – obyekt əldə etmək, məsuliyyətdən qaçmaq üçün</li>
+<li>Üz-üzə olmadan oğurluq (mağaza oğurluğu, saxtakarlıq)</li>
+</ul>
+<p><strong>4. Ciddi qaydaların pozulması:</strong></p>
+<ul>
+<li>Valideyn qadağasına baxmayaraq evdən gecə qaçma (13 yaşa qədər başlanmış)</li>
+<li>Evdən qaçma (gecə qalmaq) – ən az 2 dəfə uzun müddət</li>
+<li>Tez-tez məktəbdən yayınma (13 yaşa qədər başlanmış)</li>
+</ul>
+<h3 id="məhdud-prososial-emosiya-kvalifikatoru" class="">&quot;Məhdud prososial emosiya&quot; kvalifikatoru</h3>
+<p>DDP-də xüsusilə əhəmiyyətli – <strong>şəxsiyyət pozuntusu olan fenotip prediktoru</strong>:</p>
+<ul>
+<li><strong>Empatiya yox / az</strong></li>
+<li><strong>Günah hissi yox / az</strong></li>
+<li><strong>Səthi və ya defisiti affekt</strong></li>
+<li><strong>Akademik/peşə problemlərinə laqeydlik</strong></li>
+</ul>
+<p>Bu kvalifikator → <strong>psixoterapevtik müdaxilələrə daha az cavab</strong>, antisosial şəxsiyyətə yüksək risk.</p>
+<h3 id="cinsiyyət-fərqləri" class="">Cinsiyyət fərqləri</h3>
+<p><strong>Oğlanlar:</strong> fiziki aqressiya, vandalizm dominant.</p>
+<p><strong>Qızlar:</strong> &quot;relational aggression&quot; – sosial manipulyasiya, izolyasiya, qibet, cinsi davranış pozuntuları, qaçma, oğurluq.</p>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6c91" class="">XBT-11 əsas tələblər (<span class="icd">6C91</span>):</h3>
+<p><strong>A.</strong> <strong>12 ay+</strong> davam edən, başqalarının hüquqlarını və ya cəmiyyət normalarını pozan davranış nümunəsi:</p>
+<ul>
+<li>4 simptom kateqoriyasından <strong>ən az 3-ü</strong></li>
+<li>Ən azı <strong>bir</strong> simptom son 6 ayda</li>
+</ul>
+<p><strong>B.</strong> Əhəmiyyətli funksional pozulma</p>
+<p><strong>C.</strong> <strong>18 yaşdan böyükdürsə</strong>, antisosial şəxsiyyət pozuntusu meyarlarını qarşılamamalıdır</p>
+<h3 id="spesifikatorlar" class="">Spesifikatorlar:</h3>
+<ul>
+<li><strong>Yaş başlanğıcı:</strong> uşaqlıq (≤10 yaş) / yeniyetmə (&gt;10 yaş) / dəqiqləşdirilməmiş</li>
+<li><strong>Şiddət:</strong> yüngül / orta / ağır</li>
+<li><strong>Məhdud prososial emosiya</strong> (var/yox)</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>OEP</strong></td><td>Daha yumşaq; başqalarının hüquqlarını pozma yox</td></tr>
+<tr><td><strong>DDHP</strong></td><td>İmpulsivlik – qəsdli zərər niyyəti yox</td></tr>
+<tr><td><strong>Antisosial şəxsiyyət (yetkin)</strong></td><td>18 yaşdan sonra; uşaqlıqda DDP tarixçəsi</td></tr>
+<tr><td><strong>Maddə istifadəsi pozuntusu</strong></td><td>İntoksikasiya kontekstli davranış</td></tr>
+<tr><td><strong>Bipolyar (uşaq)</strong></td><td>Episodik mania; aqressiya manik epizodda</td></tr>
+<tr><td><strong>Travma reaksiyası</strong></td><td>Travma anamnezi; PTSP simptomları</td></tr>
+<tr><td><strong>Autizm spektr</strong></td><td>Sosial qaydaları başa düşməmə; qəsdən deyil</td></tr>
+<tr><td><strong>Psixotik pozuntu</strong></td><td>Sayıqlama, halusinasiya</td></tr>
+</table></div>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<h3 id="şkalalar" class="">Şkalalar</h3>
+<ul>
+<li><strong>CBCL</strong> (Child Behavior Checklist)</li>
+<li><strong>TRF</strong> (Teacher Report Form)</li>
+<li><strong>YSR</strong> (Youth Self-Report)</li>
+<li><strong>APSD</strong> (Antisocial Process Screening Device) – kallous-unemotional traits</li>
+<li><strong>ICU</strong> (Inventory of Callous-Unemotional Traits)</li>
+<li><strong>PCL-YV</strong> (Hare Psychopathy Checklist – Youth Version) – şəxsiyyət pozuntusu olan xüsusiyyətlər</li>
+</ul>
+<h3 id="klinik-qiymətləndirmə" class="">Klinik qiymətləndirmə</h3>
+<ul>
+<li><strong>Çoxinformator</strong> (valideyn, müəllim, uşaq, məhkəmə)</li>
+<li>Polis/məhkəmə tarixçəsi</li>
+<li>Tibbi: TBI, neyroloji</li>
+<li>Komorbidlik: DDHP, maddə istifadəsi, PTSP, depressiya</li>
+<li>Travma və istismar tarixçəsi</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<ul>
+<li><strong>NICE NG87 / CG158:</strong> <em>Antisocial behaviour and conduct disorders</em></li>
+<li><strong>AACAP Practice Parameter for Conduct Disorder</strong> (2018)</li>
+</ul>
+<h3 id="birinci-xətt-multikomponent-davranış-müdaxilələri" class="">Birinci xətt: Multikomponent davranış müdaxilələri</h3>
+<p><strong>Multisystemic Therapy (MST) – sübutluluq A:</strong></p>
+<ul>
+<li><strong>Henggeler</strong> protokolu</li>
+<li>Ağır DDP-də ən effektiv</li>
+<li><strong>Ailə + məktəb + cəmiyyət</strong> səviyyəsində müdaxilə</li>
+<li>24/7 mütəxəssis əlçatanlığı</li>
+<li>4-6 ay intensiv</li>
+<li>Cinayət təkrarlanmasını <strong>40-70% azaldır</strong></li>
+<li>Hospitalizasiyanı 50% azaldır</li>
+</ul>
+<p><strong>Functional Family Therapy (FFT) – sübutluluq A:</strong></p>
+<ul>
+<li>Alexander</li>
+<li>Ailə daxili kommunikasiya, münasibət dinamikası</li>
+<li>8-30 sessiya, 3-6 ay</li>
+</ul>
+<p><strong>Multidimensional Treatment Foster Care (MTFC):</strong></p>
+<ul>
+<li>Chamberlain</li>
+<li>Ailədən ayrılmış uşaqlar üçün – himayədar ailədə struktur müalicə</li>
+<li><strong>Cinayət təkrarlanmasını 50% azaldır</strong></li>
+</ul>
+<h3 id="erkən-başlanğıc-ddp-üçün" class="">Erkən başlanğıc DDP üçün</h3>
+<ul>
+<li><strong>PMT</strong> (Bölmə 14.1-də OEP üçün təsvir edilmiş protokollar)</li>
+<li><strong>Webster-Stratton &quot;Incredible Years&quot;</strong> – 3-12 yaş</li>
+<li><strong>Triple P</strong> – pozitiv valideyn proqramı</li>
+</ul>
+<h3 id="yeniyetmə-üçün" class="">Yeniyetmə üçün</h3>
+<ul>
+<li><strong>MST</strong> – ağır hallarda</li>
+<li><strong>FFT</strong> – orta hallarda</li>
+<li><strong>Aggression Replacement Training (ART)</strong> – Goldstein</li>
+<li><strong>CBT-aggression</strong> – qəzəb idarəsi, problem-həll</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>Spesifik FDA təsdiqi yoxdur</strong> DDP üçün. Komorbidliklərdə:</p>
+<p><strong>DDHP komorbid:</strong></p>
+<ul>
+<li><strong>Stimulyantlar</strong> (metilfenidat, amfetamin) – aqressiyanı və impulsivliyi azaldır</li>
+</ul>
+<p><strong>Aqressiv simptomlar (KDT-rezistent):</strong></p>
+<ul>
+<li><strong>Risperidon</strong> 0,25-2 mq/gün – aqressiya azaldır; metabolik monitorinq</li>
+<li><strong>Aripiprazol</strong> – alternativ; metabolik profil daha yaxşı</li>
+<li><strong>Klonidin</strong> (alfa-2 agonist) – aqressiya, impulsivlik</li>
+</ul>
+<p><strong>Əhval disregulyasiyası:</strong></p>
+<ul>
+<li><strong>Litium</strong> – aqressiya azaldır (sübutluluq B)</li>
+<li><strong>Valproat</strong> – aqressiv epizodlar</li>
+<li><strong>Karbamazepin</strong> – impulsivlik</li>
+</ul>
+<p><strong>Komorbid MDD:</strong> SİUSİ.</p>
+<h3 id="hüquqi-və-sosial-xidmət-əməkdaşlığı" class="">Hüquqi və sosial xidmət əməkdaşlığı</h3>
+<ul>
+<li>Yetkinlik məhkəməsi (juvenile court)</li>
+<li>Sosial xidmətlər</li>
+<li>Məktəb administrasiyası</li>
+<li>Probation officer</li>
+<li>Cəmiyyət əsaslı müdaxilələr</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="yaş-başlanğıcı-ən-güclü-prediktor" class="">Yaş başlanğıcı – ən güclü prediktor</h3>
+<p><strong>Uşaqlıq başlanğıcı (≤10 yaş):</strong></p>
+<ul>
+<li>50% antisosial şəxsiyyət pozuntusuna progressiya</li>
+<li>Yetkinlikdə cinayət riski yüksək</li>
+<li>Maddə istifadəsi geniş</li>
+</ul>
+<p><strong>Yeniyetmə başlanğıcı:</strong></p>
+<ul>
+<li>25% antisosial şəxsiyyətə progressiya</li>
+<li>Daha yaxşı proqnoz – &quot;adolescence-limited&quot;</li>
+<li>Yetkinlikdə remissiya geniş</li>
+</ul>
+<h3 id="müalicə-effektivliyi" class="">Müalicə effektivliyi</h3>
+<ul>
+<li><strong>MST: 40-70% azalma</strong> cinayət təkrarlanması</li>
+<li><strong>FFT: 30-50% azalma</strong></li>
+<li><strong>PMT (uşaqlıqda):</strong> 60-70% klinik yaxşılaşma</li>
+<li>&quot;Məhdud prososial emosiya&quot; kvalifikatoru = pis proqnoz</li>
+</ul>
+<h3 id="yaxşı-proqnoz-prediktorları" class="">Yaxşı proqnoz prediktorları</h3>
+<ul>
+<li>Yeniyetmə başlanğıcı</li>
+<li>Komorbidlik yox</li>
+<li>Ailə dəstəyi</li>
+<li>Akademik müvəffəqiyyət</li>
+<li>&quot;Limited prosocial emotions&quot; yox</li>
+</ul>
+<h3 id="pis-proqnoz-prediktorları" class="">Pis proqnoz prediktorları</h3>
+<ul>
+<li>Uşaqlıq başlanğıcı</li>
+<li>&quot;Limited prosocial emotions&quot; var</li>
+<li>Erkən maddə istifadəsi</li>
+<li>Antisosial peer group</li>
+<li>Disfunksional ailə</li>
+<li>Aşağı IQ</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>NICE. <em>Antisocial behaviour and conduct disorders in children and young people: recognition and management</em> (NG87/CG158). 2013/2017.</li>
+<li>AACAP. <em>Practice Parameter for the Assessment and Treatment of Children and Adolescents With Conduct Disorder.</em> J Am Acad Child Adolesc Psychiatry, 2018.</li>
+<li>Henggeler SW, et al. <em>Multisystemic Therapy for Antisocial Behavior in Children and Adolescents.</em> Guilford, 2009.</li>
+<li>Patterson GR. <em>A social interactional approach to antisocial behavior.</em> Eugene OR: Castalia, 1992.</li>
+<li>Moffitt TE. <em>Adolescence-limited and life-course-persistent antisocial behavior.</em> Psychol Rev, 1993 (klassik).</li>
+<li>Caspi A, et al. <em>Role of genotype in the cycle of violence in maltreated children.</em> Science, 2002 (MAOA tədqiqat).</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-13.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 13 — İMPULS NƏZARƏTİ</span></a><a href="bolme-15.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 15 — ŞƏXSİYYƏT</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-14";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

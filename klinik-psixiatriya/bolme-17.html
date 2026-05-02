@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 17 — SÜNİ POZUNTULAR">
+<title>BÖLMƏ 17 — SÜNİ POZUNTULAR | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-17" class="h-bolme">BÖLMƏ 17</h1>
+<h2 id="süni-fakti̇ti̇oz-pozuntular" class="">SÜNI (FAKTİTİOZ) POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D50</span>–<span class="icd">6D51</span> — Factitious disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F68.1</span> — Intentional production of symptoms</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.19 — Factitious Disorder</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11</th><th>Pozuntu</th><th>Bölmə</th></tr>
+<tr><td><strong><span class="icd">6D50</span></strong></td><td>Özünə uyğulanmış süni pozuntu</td><td>17.1</td></tr>
+<tr><td><strong><span class="icd">6D51</span></strong></td><td>Başqasına uyğulanmış süni pozuntu (Münchhausen surroqat)</td><td>17.2</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="i̇ki-kateqoriya-aydınlaşdı" class="">İki kateqoriya aydınlaşdı</h3>
+<p>XBT-10-da <span class="icd">F68.1</span> kimi vahid kateqoriya idi. <strong>XBT-11 iki ayrı kateqoriya:</strong></p>
+<ul>
+<li><strong><span class="icd">6D50</span></strong> – özünə (adult self-directed)</li>
+<li><strong><span class="icd">6D51</span></strong> – başqasına (proxy, əvvəlki adı &quot;Münchhausen by proxy&quot;)</li>
+</ul>
+<h3 id="simulyasiyadan-malingering-ayrım" class="">Simulyasiyadan (malingering) ayrım</h3>
+<p><strong>Süni pozuntu</strong> – simptomlar <strong>şüurlu</strong> yaradılır, lakin <strong>motivasiya psixoloji</strong> (pasiyent rolunu almaq, qulluq almaq).</p>
+<p><strong>Simulyasiya (malingering)</strong> – simptomlar şüurlu yaradılır, <strong>motivasiya xarici maddi qazanc</strong> (sığorta, həbs azaldılması, iş gücündən azad).</p>
+<p><strong>Süni pozuntu DSM-5-TR / XBT-11-də psixi pozuntudur. Simulyasiya deyil.</strong></p>
+<p>\newpage</p>
+<h1 id="6d50-özünə-uyğulanmiş-süni̇-pozuntu" class="h-disorder"><span class="icd">6D50</span> ÖZÜNƏ UYĞULANMIŞ SÜNİ POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D50</span> — Özünə Uyğulanmiş Süni Pozuntu</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Özünə uyğulanmış süni pozuntu – <strong>fiziki və ya psixi simptomların şüurlu şəkildə uydurulması, ağırlaşdırılması, induksiya edilməsi</strong>; pasiyent bu simptomlarla <strong>tibbi sistemdən qulluq almaq</strong> üçün davranır; motivasiya xarici qazanc deyil, <strong>pasiyent rolunu almaq</strong>.</p>
+<p><strong>Tarixi ad:</strong> &quot;Münchhausen sindromu&quot; – ağır, gəzgindən formalar üçün işlənirdi.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Travma anamnezi:</strong> uşaqlıqda xəstəlik/qulluq ilə əlaqəli başlıq</li>
+<li>Xəstəxanalar, tibbi mühit pasiyent üçün <strong>güvənli, qulluqlu mühit</strong></li>
+<li><strong>Şəxsiyyət pozuntuları:</strong> borderline, antisosial, histrionik komorbidliyi geniş</li>
+<li>Tibb işçilərindəkinösbəti yüksək (tibbi bilik çatışmazlıq yox)</li>
+<li><strong>Ağrının &quot;simvollaşdırılması&quot;</strong> – tibbi diqqət = qulluq = sevgi</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Yayılma: &lt;1%; çox az müraciət, az diaqnoz</li>
+<li><strong>Qadın dominant</strong> (klassik Münchhausen kişi dominant – nadir)</li>
+<li>Tez-tez tibb işçiləri</li>
+<li><strong>Diaqnostik gecikmə:</strong> orta 10+ il; çoxsaylı hospitalizasiya</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="simptom-manipulyasiyası-üsulları" class="">Simptom manipulyasiyası üsulları</h3>
+<p><strong>Uydurma:</strong></p>
+<ul>
+<li>Mövcud olmayan simptomları bildirmək (baş ağrısı, ağrı, görmə pozuntusu)</li>
+<li>Anamnezdə yalan (tibbi tarixçəni &quot;zənginləşdirmək&quot;)</li>
+</ul>
+<p><strong>Ağırlaşdırma:</strong></p>
+<ul>
+<li>Mövcud simptomları şişirtmək</li>
+</ul>
+<p><strong>İnduksiya:</strong></p>
+<ul>
+<li><strong>Özünə zərər</strong> – dəriyə yara, iynə soxma</li>
+<li><strong>Maddə qəbulu</strong> – laksativ, insulindən istifadə</li>
+<li><strong>Yaraya müdaxilə</strong> – açıq yaranı çirklətmək</li>
+<li>İdrar nümunəsinə qan əlavə etmək</li>
+</ul>
+<h3 id="red-flags-şübhə-işarələri" class="">&quot;Red flags&quot; – şübhə işarələri</h3>
+<ul>
+<li><strong>Çoxsaylı hospitalizasiya</strong> müxtəlif klinkada</li>
+<li><strong>Simptomlar tibbi müayinədə aşkar olunmur</strong></li>
+<li><strong>Pasiyent müayinə nəticəsi normaldırsa narahat olur</strong> (normal nəticə = narahatlıq)</li>
+<li>Tibb işçisi özü</li>
+<li>Müalicəyə paradoksal reaktiv xəstələnmə</li>
+<li>Klinikadan çıxandan sonra simptomlar keçir, qayıtanda yenidən</li>
+<li><strong>Çoxsaylı cərrahi</strong> – &quot;laparotomy scar&quot;</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-6d50" class="">XBT-11 (<span class="icd">6D50</span>):</h3>
+<p><strong>A.</strong> Fiziki və ya psixi simptomların uydurulması, ağırlaşdırılması, induksiyası – şüurlu</p>
+<p><strong>B.</strong> Pasiyent özünü xəstəliyə görə müalicəyə sövq edir</p>
+<p><strong>C.</strong> Motivasiya – pasiyent rolu almaq (xarici qazanc yox)</p>
+<p><strong>D.</strong> Müalicəyə motivasiya olmadıqda simptomlar azalır (diagnostik)</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Simulyasiya</strong></td><td>Xarici maddi qazanc motivi aydındır</td></tr>
+<tr><td><strong>Bədənsəl disstres pozuntusu</strong></td><td>Simptomlar şüurlu yaradılmır</td></tr>
+<tr><td><strong>Hipoxondriya</strong></td><td>Xəstəlik qorxusu; yaratma yox</td></tr>
+<tr><td><strong>Konversiya (FND)</strong></td><td>Şüursuz; motor/sensor</td></tr>
+<tr><td><strong>Şəxsiyyət pozuntusu</strong></td><td>Geniş şəxsiyyət paterni komorbid ola bilər</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="xüsusi-çətinlik-inkar" class="">Xüsusi çətinlik: inkar</h3>
+<p>Pasiyentlər <strong>diaqnozu qəbul etmir</strong> – müdaxilə dirənci böyükdür.</p>
+<p><strong>Yanaşma prinsipi:</strong></p>
+<ul>
+<li><strong>Konfrontasiya</strong> → pasiyent klinikadan çıxır (effektsiz)</li>
+<li><strong>Güvən əsaslı, qeyri-konfrontatif yanaşma</strong> – daha effektiv</li>
+<li>&quot;Stressin simptomlarınıza kömək edə biləcəyini düşünürük&quot; – psixoloji siqnalı yumşatmaq</li>
+</ul>
+<p><strong>Psixoterapiya:</strong></p>
+<ul>
+<li>Travma fokuslu (TF-KDT)</li>
+<li>Şəxsiyyət pozuntusuna yönəlmiş (DBT, sxema)</li>
+<li>Uzunmüddətli; motivasiya problemi</li>
+</ul>
+<p><strong>Tibb sistemi ilə koordinasiya:</strong></p>
+<ul>
+<li>Bir koordinator həkim (çoxlu klinik &quot;shopping&quot; dayandırmaq)</li>
+<li>Gereksiz tibbi müdaxilədən qaçınma</li>
+<li>Multidisiplinar komanda (psixiatr + internist)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Çox çətin; xroniki gediş</li>
+<li>Müalicəyə gəlmə nadir</li>
+<li>Cismani fəsadlar (özünə zərər) ciddi risk</li>
+<li>Koordinasiya ilə gereksiz hospitalizasiya azalır</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Bass C, Halligan P. <em>Factitious disorders and malingering: challenges for clinical assessment and management.</em> Lancet, 2014.</li>
+<li>Feldman MD. <em>Playing Sick? Untangling the Web of Munchausen Syndrome.</em> Brunner-Routledge, 2004.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d51-başqasina-uyğulanmiş-süni̇-pozuntu" class="h-disorder"><span class="icd">6D51</span> BAŞQASINA UYĞULANMIŞ SÜNİ POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D51</span> — Başqasina Uyğulanmiş Süni Pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F68</span>.A — Başqasına süni xəstəlik yaratma</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.19 — Factitious Disorder Imposed on Another</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Başqasına uyğulanmış süni pozuntu – <strong>başqa şəxsdə</strong> (tipik olaraq uşaqda, lakin yaşlılarda da) simptomların şüurlu uydurulması, ağırlaşdırılması, induksiyası; qurbanı &quot;xəstə&quot; kimi qulluqdan tibbi sistemdən qulluq almaq.</p>
+<p><strong>Tarixi ad:</strong> &quot;Münchhausen by proxy&quot; (MBP) – Meadow (1977).</p>
+<p><strong>XBT-11 qeydi:</strong> Diaqnoz <strong>törədiciyə</strong> qoyulur (qurban deyil). Qurbanda komorbid reaksiyalar əyrıca kodlanır.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Törədici:</strong> tez-tez <strong>ana</strong> (85%+); tibb biliyinə malik ola bilər</li>
+<li><strong>Motivasiya:</strong> qulluqverən rolunda diqqət almaq, xəstə uşağa &quot;fədakar ana&quot; imici</li>
+<li>Şəxsiyyət pozuntusu (histrionik, borderline) komorbid</li>
+<li>Özünün uşaqlıqda istismar tarixi</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Yayılma: nadir, lakin klinik əhəmiyyətli</li>
+<li>Qurban: adətən &lt;5 yaş uşaq; həm də yaşlılar, sağlamlıq şəraitindən asılı şəxslər</li>
+<li><strong>Mortalite:</strong> tanınmamış hallarda qurban ölə bilər (hərəkət ağır olduqda)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="simptom-formaları" class="">Simptom formaları</h3>
+<ul>
+<li>Uşağa qida yedizdirməmək, aclıq</li>
+<li>Uşağa zərərli maddə vermək (laksativ, hipnotik)</li>
+<li>Uşağın nəfəsini tutmaq</li>
+<li>Yara yaratmaq, çirkləndirmək</li>
+<li>Laborator nümunəsinə başqa maddə əlavə etmək</li>
+</ul>
+<h3 id="red-flags-şübhə-işarələri" class="">&quot;Red flags&quot; – şübhə işarələri</h3>
+<ul>
+<li>Uşaqda <strong>izahsız, qeyri-adi xəstəlik nümunəsi</strong></li>
+<li>Simptomlar <strong>anası ilə olduqda artır, ayrıldıqda azalır</strong></li>
+<li>Ananın <strong>tibbi biliklər normaldan yüksəkdir</strong></li>
+<li>Ananın <strong>tibb mühitinə isti münasibəti</strong> – klinisistlərə çox yaxın</li>
+<li>Çoxsaylı müxtəlif diaqnozlar</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-6d51" class="">XBT-11 (<span class="icd">6D51</span>):</h3>
+<p><strong>A.</strong> Başqa şəxsdə simptomların uydurulması/induksiyası – törədici tərəfindən şüurlu</p>
+<p><strong>B.</strong> Törədici qurbana qulluqverən rolunda tibbi sistemdən diqqət/qulluq alır</p>
+<p><strong>C.</strong> Xarici maddi qazanc motivi yox</p>
+<p><strong>D.</strong> Digər psixi pozuntu tam izah etmir</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="prioritet-qurbanın-mühafizəsi" class="">Prioritet: Qurbanın mühafizəsi</h3>
+<p><strong>QANUNI MƏSULIYYƏT:</strong> Bu vəziyyət <strong>uşaq istismarı</strong> adlandırılır – qanuni müdaxilə tələb olunur.</p>
+<ul>
+<li><strong>Dərhal:</strong> uşağı törədicidən ayırmaq</li>
+<li><strong>Sosial xidmətlər + məhkəmə</strong> cəlb etmək</li>
+<li><strong>Gizli müşahidə</strong> (kamera, palata izlənməsi) – sübut toplamaq</li>
+<li>Törədiciyə psixiatrik müdaxilə – güvən əsaslı, uzunmüddətli</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Tanınmayan hallarda qurban üçün ağır risk</li>
+<li>Törədici müalicəyə nadir müraciət edir</li>
+<li>Uzunmüddətli nəzarət tələb olunur</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Meadow R. <em>Munchausen syndrome by proxy.</em> Lancet, 1977 (original).</li>
+<li>Flaherty EG, et al. <em>Evaluating children with fractures for child physical abuse.</em> Pediatrics, 2014.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-16.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 16 — PARAFİLİK</span></a><a href="bolme-18.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 18 — YUXU-OYAQLIQ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-17";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 21 — HAMİLƏLİK">
+<title>BÖLMƏ 21 — HAMİLƏLİK | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-19" class="h-bolme">BÖLMƏ 19</h1>
+<h2 id="hami̇ləli̇k-və-doğuş-dövrlə-əlaqəli̇-psi̇xi̇-pozuntular" class="">HAMİLƏLİK VƏ DOĞUŞ DÖVRLƏ ƏLAQƏLİ PSİXİ POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6E20</span> — Mental or behavioural disorders associated with pregnancy, childbirth or the puerperium</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F53</span> — Puerperium ilə əlaqəli psixi pozuntular (<span class="icd">F53.0</span>–<span class="icd">F53.1</span>)</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Peripartum onset specifier (MDD, bipolyar üçün) + Postpartum psychosis</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Kateqoriya</th><th>Pozuntu</th><th>Bölmədə yeri</th></tr>
+<tr><td>Hamiləlik</td><td>Hamiləlik dövrü depresiyası, hamiləlik dövrü anksiyetesi</td><td>19.1</td></tr>
+<tr><td>Doğuşdan sonra</td><td>Erkən doğuş sonrası emosional reaksiya (&quot;Baby blues&quot;) (normal reaksiya)</td><td>19.2</td></tr>
+<tr><td>Klinik</td><td>Postpartum depresiya (PPD)</td><td>19.3</td></tr>
+<tr><td>Klinik</td><td>Doğuşdan sonrakı psixoz (PPP)</td><td>19.4</td></tr>
+<tr><td>Klinik</td><td>Doğuşdan sonrakı anksiyete, OKP, PTSP</td><td>19.5</td></tr>
+<tr><td>Ümumi</td><td>Azərbaycan konteksti, müalicə</td><td>19.6</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p><strong>XBT-10</strong> yalnız doğuşdan sonrakı dövrünü (<span class="icd">F53</span>) əhatə edirdi.</p>
+<p><strong>XBT-11 (<span class="icd">6E20</span>)</strong> hamiləlik dövründəki psixi pozuntuları da daxil etdi — <strong>hamiləlik dövrü + doğuşdan sonrakı dövr</strong> tam spektr.</p>
+<p><strong>DSM-5-TR yanaşması:</strong> Ayrı diaqnoz deyil — mövcud pozuntuların <strong>&quot;doğum ətrafı başlanğıc&quot; spesifikatoru</strong> kimi (MDD, bipolyar).</p>
+<p>\newpage</p>
+<h1 id="6e20-hami̇ləli̇k-dövründə-psi̇xi̇-pozuntular" class="h-disorder"><span class="icd">6E20</span> HAMİLƏLİK DÖVRÜNDƏ PSİXİ POZUNTULAR</h1>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Hamiləlik dövründə qadınların <strong>10-20%-i klinik depresiya</strong>, <strong>15-20%-i klinik anksiyete</strong> yaşayır. Bu <strong>&quot;hamiləlik sevinci&quot; ilə normallaşdırılır</strong>, az aşkar edilir, müalicəsiz qalır.</p>
+<h2 id="risk-amilləri" class="">Risk amilləri</h2>
+<ul>
+<li>Hamiləlikdən əvvəl depresiya/anksiyete tarixi</li>
+<li>Planlaşdırılmamış hamiləlik</li>
+<li>Ərlə münasibət problemləri</li>
+<li>Sosial dəstəyin azlığı</li>
+<li>Maliyyə stresi</li>
+<li>Sağalma üçün hamiləlik (öncəki ölü doğum, düşük)</li>
+<li><strong>Azərbaycanda:</strong> erkən yaşda nikah, valideyn təzyiqi, cins üçün sosial gözlənti</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p><strong>Prenatal depressiya:</strong></p>
+<ul>
+<li>Aşağı əhval, ağlama epizodları</li>
+<li>Hamiləlikdən zövq ala bilməmə</li>
+<li>Körpə üçün narahatlıq</li>
+<li>Gündəlik funksionallıq pozulması</li>
+</ul>
+<p><strong>Prenatal anksiyete:</strong></p>
+<ul>
+<li>Körpənin sağlamlığı üçün həddən narahatlıq</li>
+<li>Doğuşdan həddən qorxu (tokofobiya)</li>
+<li>Özünün doğuş zamanı ölümü qorxusu</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p><strong>Birinci xətt (yüngül-orta):</strong></p>
+<ul>
+<li>KDT (cognitive-behavioural), İPT (interpersonal therapy)</li>
+<li>Sosial dəstəyin gücləndirilməsi</li>
+<li>Mindfulness-əsaslı müdaxilələr</li>
+</ul>
+<p><strong>Farmakoterapiya:</strong></p>
+<ul>
+<li>Ağır hallarda: SİUSİ (sertralin, fluoksetin) – hamiləlikdə görece güvənli</li>
+<li><strong>Paroxetin hamiləlikdə ƏLEYH</strong> – kardiak qüsur riski (PPHN)</li>
+<li>Bütün dərmanlar risk-fayda nisbəti ilə qiymətləndirilir</li>
+<li><strong>Müalicəsiz ağır hamiləlik dövrü depressiyası</strong> da özü risk yaradır (vaxtından əvvəl doğuş, aşağı çəki)</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6e200-erkən-doğuşdan-sonraki-emosional-reaksi̇ya-baby-blues" class="h-disorder"><span class="icd">6E20.0</span> ERKƏN DOĞUŞDAN SONRAKI EMOSIONAL REAKSİYA (&quot;Baby blues&quot;)</h1>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Erkən doğuş sonrası emosional reaksiya (ingilis. &quot;baby blues&quot;) – doğuşdan sonra <strong>2-4 gün ərzində</strong> başlayan, <strong>1-2 həftə</strong> davam edən, <strong>özbəzöz keçən</strong> emosional reaktivlik dövrü.</p>
+<p><strong>Normal reaksiyadır – psixiatrik diaqnoz deyil.</strong></p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<p>Doğum edən qadınların <strong>50-80%-i</strong> erkən doğuş sonrası emosional reaksiya yaşayır.</p>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Ağlama epizodları, həssaslıq</li>
+<li>Əhvalın tez dəyişkənliyi</li>
+<li>Yorğunluq, əsəbilik</li>
+<li>Körpəyə sevgi ilə birlikdə</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li>Müalicə tələb olunmur</li>
+<li>Ailə dəstəyi, istirahət</li>
+<li>Simptomlar 2 həftəni keçirsə → <strong>PPD qiymətləndirilməsi</strong> tələb olunur</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6e20-doğuşdan-sonraki-depressi̇ya-ppd" class="h-disorder"><span class="icd">6E20</span> DOĞUŞDAN SONRAKI DEPRESSİYA (PPD)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6E20</span> — Doğuşdan Sonraki Depressiya (Ppd)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F53.0</span> — Yüngül puerperiya psixi pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Postpartum Depression / Specifier</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Doğuşdan sonrakı depressiya (PPD) – doğuşdan sonra <strong>4 həftə ərzində</strong> başlayan <strong>major depressiv epizod</strong>; lakin klinik praktikada doğuşdan sonra <strong>ilk 1 il</strong> içrə inkişaf edən depressiya da PPD kimi qiymətləndirilir.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="hormonal" class="">Hormonal</h3>
+<ul>
+<li><strong>Estrogen, progesteron</strong> – doğuşdan sonra kəskin düşür</li>
+<li>Bu hormonal dəyişiklik <strong>serotonin, dopamin sistemlərini</strong> tetikləyir</li>
+<li>Risk: hormonal həssas qadınlar (PMS tarixçəsi)</li>
+</ul>
+<h3 id="risk-amilləri" class="">Risk amilləri</h3>
+<ul>
+<li><strong>Əvvəlki PPD tarixi</strong> (ən güclü: 50% residiv)</li>
+<li>Prenatal depressia/anksiyete</li>
+<li>Bipolyar pozuntu tarixi</li>
+<li>Sosial dəstəyin azlığı</li>
+<li>Körpənin kolitsi/yuxu problemləri</li>
+<li>Qayınana münasibəti (Azərbaycanda güclü faktor)</li>
+<li>Valideynliyə adaptasiya çətinliyi</li>
+<li>Emzirmə problemləri</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 10-15% (doğum edən qadınlarda)</li>
+<li><strong>Aşkar olunma:</strong> yalnız 50% aşkar olunur; müalicə daha az</li>
+<li><strong>Kişilərdə:</strong> &quot;paternal PPD&quot; – 5-10% ata</li>
+<li><strong>Azərbaycanda:</strong> damğalanma + &quot;ana sevinməlidir&quot; norması → az diaqnoz</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Davamlı kədər, ağlama</li>
+<li>Körpəyə bağlanmaqda çətinlik (ana-körpə bağlanması problemləri)</li>
+<li>Özünü yaxşı ana hiss etməmə, özünü günahlandırma</li>
+<li>Körpəyə zərər verə biləcəyi qorxusu (obsessiv düşüncə – PPD OKP komponenti)</li>
+<li>Ağır anhedoniya – körpədən zövq ala bilməmə</li>
+<li>Yorğunluq, yuxu pozuntusu (körpədən asılı olmayan)</li>
+<li><strong>Suisidal düşüncələr</strong> – ağır hallarda</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-dsm-5-tr" class="">XBT-11 / DSM-5-TR:</h3>
+<p>Major depressiv epizod meyarları + <strong>doğuşdan sonra başlanğıc</strong> (4 həftə içrə – DSM; geniş kontekstdə 1 il).</p>
+<p><strong>Skrining:</strong> <strong>EPDS</strong> (Edinburgh Postnatal Depression Scale) – 10 sual; 10+ PPD şübhəsi; 13+ klinik əhəmiyyətli.</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="birinci-xətt-psixoterapiya" class="">Birinci xətt: Psixoterapiya</h3>
+<ul>
+<li><strong>İPT</strong> (İnterpersonal Therapy) – doğuşdan sonrakı dövr üçün xüsusi protokol; sübutluluq A</li>
+<li><strong>KDT</strong> – depressiv koqnisiyalara müdaxilə</li>
+<li>Qrup terapiyası – ana qrupları; sosial dəstəyin gücləndirilməsi</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<p><strong>Emzirmə kontekstinda qiymətləndirilməli:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Emzirmədə</th><th>Qeydlər</th></tr>
+<tr><td><strong>Sertralin</strong></td><td>Güvənli (birinci seçim)</td><td>Az süd keçişi</td></tr>
+<tr><td><strong>Fluoksetin</strong></td><td>Qəbul edilə bilər</td><td>Uzun yarıömür; süd keçişi var</td></tr>
+<tr><td><strong>Esitalopram</strong></td><td>Güvənli</td><td></td></tr>
+<tr><td><strong>Paroksetin</strong></td><td>Güvənli</td><td>Emzirmədə SİUSİ içərisindən; lakin hamiləlikdə ƏLEYH</td></tr>
+<tr><td><strong>SNİUSİ</strong></td><td>Sınırlı məlumat</td><td></td></tr>
+</table></div>
+<p><strong>Brexanolone (Zulresso):</strong> FDA 2019 – doğuşdan sonrakı PPD üçün IV, 60 saat infüziya; neuroaktiv steroid; möhtəşəm effekt lakin giriş çətin, baha, Azərbaycanda mövcud deyil.</p>
+<p><strong>Zuranolone (Zurzuvae):</strong> FDA 2023 – oral, 14 günlük kurs; PPD üçün ilk oral spesifik müalicə.</p>
+<h3 id="sosial-dəstək" class="">Sosial dəstək</h3>
+<ul>
+<li><strong>Ailə/ər cəlb etmə</strong> – körpə baxımının paylaşdırılması</li>
+<li><strong>İstirahat imkanı</strong></li>
+<li><strong>Psikoeducation</strong> – ailəyə (sevinmək məcbur deyil, bu xəstəlikdir)</li>
+<li>Körpə baxımı köməyi</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Müalicə ilə 85-90% tam remissiya</li>
+<li>Müalicəsiz: 6-12 ay davam edir, bəziləri xronikləşir</li>
+<li>Residiv riski 50% növbəti doğuşda</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6e21-doğuşdan-sonraki-psi̇xoz-ppp" class="h-disorder"><span class="icd">6E21</span> DOĞUŞDAN SONRAKI PSİXOZ (PPP)</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6E21</span> — Doğuşdan Sonraki Psixoz (Ppp)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F53.1</span> — Ağır puerperiya psixotik pozuntular</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 293.89 — Postpartum Psychosis</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Doğuşdan sonrakı psixoz – doğuşdan sonra <strong>1-4 həftə</strong> ərzində başlayan <strong>kəskin psixotik epizod</strong>; tez-tez manik xüsusiyyətlər.</p>
+<p><strong>TİBBİ TƏCİLİ VƏZİYYƏT</strong> – körpə və ana üçün həyat riski.</p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>1-2/1000</strong> doğum</li>
+<li><strong>Bipolyar pozuntu tarixi</strong> → risk 100x artır</li>
+<li>Öncəki PPP → 50-60% residiv</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li><strong>Kəskin başlanğıc</strong> (günlər ərzində)</li>
+<li><strong>Yuxusuzluq</strong> – yatmaq istəmir, lazım deyil hissi</li>
+<li><strong>Qarışıq əhval</strong> – manik yüksəklik + disforik irritabillik</li>
+<li><strong>halusinasiyalar</strong> (vizual, işitmə)</li>
+<li><strong>Sayıqlamalar</strong> (körpəyə zərər vermə, özünü xilasedici hesab etmə)</li>
+<li><strong>Dezoriyentasiya</strong> – konfüziya, tanıyan olmama</li>
+<li><strong>Körpəni öldürmə impulsu</strong> – aktiv qiymətləndirilməlidir</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p><strong>ACİL HOSPİTALİZASİYA</strong> – anadan körpəni ayırmaq ola bilər.</p>
+<p><strong>Farmakoterapiya:</strong></p>
+<ul>
+<li><strong>Litium</strong> – birinci xətt (bipolyar episod kimi); emzirmədə diqqət</li>
+<li><strong>Antipsixotik</strong> – haloperidol, olanzapin, ketiapin</li>
+<li><strong>Benzo</strong> – kısamüddətli sedativ</li>
+<li><strong>ECT</strong> – sürətli effekt tələb olunanda, ağır hallarda</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Müalicə ilə sürətli remissiya</li>
+<li><strong>Növbəti hamiləlikdə litium profilaktikası</strong> tövsiyə olunur</li>
+<li>Uzunmüddətli: bipolyar pozuntu diaqnozu – 75%+</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6e20-doğuşdan-sonraki-təşvi̇ş-okp-ptsp" class="h-disorder"><span class="icd">6E20</span> DOĞUŞDAN SONRAKI TƏŞVİŞ, OKP, PTSP</h1>
+<hr>
+<h2 id="doğuşdan-sonrakı-anksiyete" class="">Doğuşdan sonrakı Anksiyete</h2>
+<ul>
+<li>Yayılma: 10-15%</li>
+<li>Körpəyə zərər gəlməsi qorxusu (çox vaxt normal narahatlıq, lakin klinik ola bilər)</li>
+<li>EPDS anksiyete subşkalası + GAD-7</li>
+<li>Müalicə: KDT, SİUSİ</li>
+</ul>
+<h2 id="doğuşdan-sonrakı-okp" class="">Doğuşdan sonrakı OKP</h2>
+<ul>
+<li>Körpəyə zərər verə biləcəyi haqqında intruziv obsessiv düşüncələr</li>
+<li>Pasiyent bu düşüncələrdən dəhşətə gəlir (eqo-distonik)</li>
+<li>Körpədən qaçınma davranışı (obsessiv)</li>
+<li><strong>PPP-dən fərqli: pasiyent etmək istəmir</strong> – psixozda etmək impulsu var</li>
+<li>Müalicə: KDT (ERP), SİUSİ</li>
+</ul>
+<h2 id="doğuş-ptsp-si" class="">Doğuş PTSP-si</h2>
+<ul>
+<li>Travmatik doğuş (acil sezaryen, cansız doğuş, ağrı trayması)</li>
+<li>PTSP simptomları (flashback, qaçınma)</li>
+<li>EMDR, KDT</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6e2z-azərbaycan-konteksti̇-və-ümumi̇-müalicə-pri̇nsi̇pləri̇" class="h-disorder">6E2Z AZƏRBAYCAN KONTEKSTİ VƏ ÜMUMİ MÜALICƏ PRİNSİPLƏRİ</h1>
+<hr>
+<h2 id="azərbaycanda-perinatal-psixi-sağlamlıq" class="">Azərbaycanda Perinatal Psixi Sağlamlıq</h2>
+<p><strong>Xüsusi faktorlar:</strong></p>
+<ul>
+<li><strong>&quot;Ana sevinməlidir&quot;</strong> norması – PPD normallaşdırılmır, müalicəyə gəlmə az</li>
+<li><strong>Qayınana rolu</strong> – yaşayış şəraiti, valideynlik qərarları üzərindəki nüfuz</li>
+<li><strong>Cins üçün sosial gözlənti</strong> – oğlan doğmaq istəyi; qız doğduqda rədd</li>
+<li><strong>Xidmətlərə çıxış</strong> – kənd ərazilərdə məhdud</li>
+<li><strong>Aşkar olunma</strong> – mamalıq/qinekologiya xidmətlərində psixiatrik skrininq azdır</li>
+</ul>
+<p><strong>Tövsiyə:</strong> Bütün doğum verən qadınlara 2-6 həftədə EPDS skrininqi – <strong>hamiləlik və doğuşdan sonrakı dövrə psixiatrik xidmətin əsası</strong>.</p>
+<h2 id="hamiləlikdəemzirmədə-dərman-seçimi" class="">Hamiləlikdə/Emzirmədə Dərman Seçimi</h2>
+<p><strong>Ümumi prinsip:</strong> Müalicəsiz ciddi psixi pozuntu da risk yaradır (düşük, vaxtından əvvəl doğuş, ana-körpə bağlanmasının pozulması).</p>
+<p><strong>Ən güvənli SİUSİ:</strong></p>
+<ul>
+<li>Sertralin → birinci seçim</li>
+<li>Esitalopram → alternativ</li>
+<li>Fluoksetin → qəbul edilə bilər</li>
+</ul>
+<p><strong>Qaçınılacaqlar:</strong></p>
+<ul>
+<li>Paroksetin (hamiləlikdə kardiak risk)</li>
+<li>Litium (hamiləlikdə diqqətlə, doğuşdan sonra Ebstein anomaliyası riski)</li>
+<li>Valproat (teratogen – <strong>çox yüksək risk; hamiləlikdə ƏLEYH</strong>)</li>
+</ul>
+<h2 id="bölmə-19-üçün-mənbələr" class="">Bölmə 19 üçün mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>NICE. <em>Antenatal and postnatal mental health</em> (CG192). 2014/2020.</li>
+<li>Cox JL, et al. <em>Detection of postnatal depression: Edinburgh Postnatal Depression Scale.</em> Br J Psychiatry, 1987.</li>
+<li>Wisner KL, et al. <em>Postpartum depression.</em> N Engl J Med, 2002.</li>
+<li>Sit D, et al. <em>A review of postpartum psychosis.</em> J Women\&#x27;s Health, 2006.</li>
+<li>Meltzer-Brody S, et al. <em>Brexanolone injection in post-partum depression: two multicentre, double-blind, randomised, placebo-controlled, phase 3 trials.</em> Lancet, 2018.</li>
+<li>Freeman MP, et al. <em>Zuranolone for major depressive disorder.</em> JAMA Psychiatry, 2023.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-20.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 20 — NEYROKOQNİTİV</span></a><a href="bolme-22.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 22–23 — İKİNCİLİ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-21";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

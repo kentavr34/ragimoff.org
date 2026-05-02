@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 3 — KATATONİYA">
+<title>BÖLMƏ 3 — KATATONİYA | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-3" class="h-bolme">BÖLMƏ 3</h1>
+<h2 id="katatoni̇ya" class="">KATATONİYA</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6A40</span>–6A4Z — Catatonia</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F06.1</span> (üzvi katatonik pozuntu); <span class="icd">F20.2</span> (katatonik şizofreniya – ləğv); <span class="icd">F30</span>-<span class="icd">F33</span> (affektiv pozuntularda katatonik xüsusiyyətlər)</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 293.89 — Catatonia (ayrıca diaqnostik kateqoriya)</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6A40</span></strong></td><td>Digər psixi pozuntu ilə əlaqəli katatoniya</td><td>3.1</td></tr>
+<tr><td><strong><span class="icd">6A41</span></strong></td><td>Psixoaktiv maddə ilə əlaqəli katatoniya</td><td>3.2</td></tr>
+<tr><td><strong>6A4Z</strong></td><td>Katatoniya, dəqiqləşdirilməmiş</td><td>3.3</td></tr>
+<tr><td><strong><span class="icd">6E69</span></strong></td><td>Tibbi vəziyyətlərlə əlaqəli ikincili katatoniya</td><td>3.4</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<p>XBT-11-də <strong>katatoniya tarixi əhəmiyyətli statusunu bərpa etdi</strong>. Köhnə təsnifatda katatoniya əsasən:</p>
+<ul>
+<li><strong>Şizofreniyanın alt-tipi</strong> (XBT-10: <span class="icd">F20.2</span> – paranoid, hebefrenik, residual ilə yanaşı) idi</li>
+<li>Üzvi (<span class="icd">F06.1</span>) və əhval pozuntularında &quot;spesifikator&quot; kimi qeyd olunurdu</li>
+</ul>
+<p>XBT-11 əsaslı dəyişikliklər:</p>
+<h3 id="katatoniya-artıq-müstəqil-diaqnostik-kateqoriyadır" class="">Katatoniya artıq müstəqil diaqnostik kateqoriyadır</h3>
+<p>Şizofreniyanın alt-tipi kimi katatoniya <strong>ləğv edilmişdir</strong>. Yeni kateqoriya <strong><span class="icd">6A40</span>-6A4Z</strong> ayrıca fəsildə yerləşir.</p>
+<h3 id="etiologiyaya-əsaslanan-təsnifat" class="">Etiologiyaya əsaslanan təsnifat</h3>
+<p><strong>Katatoniya bir nozoloji vahid deyil, sindromdur</strong> – etiologiya müxtəlif ola bilər:</p>
+<ul>
+<li>Şizofreniya, şizoaffektiv, kəskin psixotik (<span class="icd">6A20</span>-<span class="icd">6A23</span>) → <span class="icd">6A40</span></li>
+<li>Bipolyar, depresiv epizodlar (<span class="icd">6A60</span>-<span class="icd">6A72</span>) → <span class="icd">6A40</span></li>
+<li>ASP (<span class="icd">6A02</span>), DDHP (<span class="icd">6A05</span>) → <span class="icd">6A40</span></li>
+<li>Maddə intoksikasiyası və ya kəsmə → <span class="icd">6A41</span></li>
+<li>Üzvi tibbi vəziyyət (ensefalit, autoimmün, NMDA-R, infeksiya, neyroloji, endokrin) → <strong><span class="icd">6E69</span></strong> (tibbi vəziyyətlərlə əlaqəli)</li>
+</ul>
+<h3 id="dsm-5-tr-sinxronlaşması" class="">DSM-5-TR sinxronlaşması</h3>
+<p>DSM-5-TR-də 2013-cü ildən katatoniya <strong>müstəqil diaqnostik vahid</strong> kimi tanınır. XBT-11 bu yanaşmaya uyğunlaşdı.</p>
+<h3 id="klinik-əhəmiyyəti" class="">Klinik əhəmiyyəti</h3>
+<p>Katatoniyanın aktiv tanınması və müalicəsi:</p>
+<ul>
+<li><strong>Yüksək gizli yayılma</strong> (psixiatrik stasionarda 9-15%)</li>
+<li><strong>Mortaliteyi əhəmiyyətli azaldır</strong> (xüsusilə malign formada)</li>
+<li><strong>Antipsixotiklərdən qaçınma</strong> (NMS riskini azaldır)</li>
+<li><strong>Spesifik müalicəyə cavab verir</strong> (lorazepam, EKT)</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6a40-katatoni̇ya-ümumi̇-pri̇nsi̇plər" class="h-disorder"><span class="icd">6A40</span> KATATONİYA – ÜMUMİ PRİNSİPLƏR</h1>
+<p>(XBT-11 alt-tiplərini ortaq müzakirə)</p>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Katatoniya – <strong>psixomotor, davranış və affektiv pozuntularla</strong> xarakterizə olunan kompleks neyropsixiatrik sindromdur. Klinik təzahürlər <strong>hipokinetik (azaldılmış aktivlik)</strong>, <strong>parakinetik (təhrif olunmuş aktivlik)</strong> və <strong>hiperkinetik (artırılmış aktivlik)</strong> formada təzahür edə bilər.</p>
+<p><strong>Tarixi:</strong> Karl Kahlbaum (1874) &quot;Die Katatonie oder das Spannungsirresein&quot; əsərində ilk tam təsvir vermiş. Yunanca <em>kata</em> (aşağı) + <em>tonos</em> (gərginlik) – &quot;düşmüş gərginlik&quot;. Sonra Kraepelin tərəfindən dementia praecox (sonradan şizofreniya) çərçivəsində tutulmuşdur, lakin müasir dövrdə &quot;trans-nozoloji sindrom&quot; kimi qəbul edilir.</p>
+<p><strong>Klinik mahiyyət:</strong> <strong>trans-diaqnostik sindrom</strong> – müxtəlif psixiatrik və üzvi vəziyyətlərdə təzahür edə bilər. <strong>GABA-erjik sistem disregulyasiyası</strong> mərkəzi mexanizm sayılır.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="psixiatrik-səbəblər-70" class="">Psixiatrik səbəblər (~70%)</h3>
+<ul>
+<li><strong>Affektiv pozuntular</strong> (depresiya, mania, bipolyar) – <strong>ən geniş yayılmış</strong> səbəb (~40-50%)</li>
+<li><strong>Şizofreniya və şizoaffektiv pozuntu</strong> – ~15-20%</li>
+<li><strong>ASP</strong> – uşaq və yeniyetmələrdə əhəmiyyətli; &quot;geç-başlayan ASP-ASP-li katatoniya&quot; (ASD-related catatonia)</li>
+<li><strong>Doğuşdan sonrakı psixoz</strong> – 20% postpartum psixotik epizoddan katatonik xüsusiyyətlər</li>
+<li><strong>PTSP, dissosiativ pozuntular</strong></li>
+</ul>
+<h3 id="üzvi-tibbi-vəziyyətlər-20" class="">Üzvi tibbi vəziyyətlər (~20%)</h3>
+<p><strong>Neyroloji:</strong></p>
+<ul>
+<li><strong>Anti-NMDA reseptor ensefaliti</strong> – mütləq istisna olunmalıdır (xüsusilə gənc qadınlar)</li>
+<li>Limbik ensefalit (digər autoimmün)</li>
+<li>Tutmalar (status epilepticus non-convulsivus)</li>
+<li>Beyin şişləri (frontal, bazal qanqliyalar)</li>
+<li>İnsult (bazal qanqliya)</li>
+<li>Multipl skleroz</li>
+<li>Parkinson xəstəliyi</li>
+<li>Ensefalitlər (HSV, JE, COVID-19 sonrası)</li>
+</ul>
+<p><strong>Sistem:</strong></p>
+<ul>
+<li>Lupus, SLE</li>
+<li>Tireoid pozuntuları (xüsusilə tireotoksikoz, miksedema)</li>
+<li>Wilson xəstəliyi</li>
+<li>Vitamin B12, folat çatışmazlığı</li>
+<li>Pelaqra (B3 çatışmazlığı)</li>
+<li>Hepatik və ya renal ensefalopatiya</li>
+<li>Hiponatriyemia, kalsiyum anomaliyaları</li>
+<li>HIV ensefalopatiyası</li>
+</ul>
+<h3 id="maddə-induksiyalı-5-10" class="">Maddə induksiyalı (~5-10%)</h3>
+<ul>
+<li><strong>Antipsixotik kəsməsi</strong> (xüsusilə klozapin)</li>
+<li><strong>Benzodiazepin kəsməsi</strong> (paradoksal – benzodiazepinlər müalicə etsə də, kəsmə katatoniya yaratır)</li>
+<li><strong>Disulfiram, alkohol kəsmə</strong></li>
+<li><strong>Kokain, MDMA, sintetik kannabinoidlər</strong></li>
+<li><strong>Steroidlər, immunosüpressorlar</strong></li>
+<li><strong>Litium intoksikasiyası</strong></li>
+<li><strong>Serotonin sindromu</strong> (digər kateqoriya, lakin örtüşür)</li>
+</ul>
+<h3 id="neyrobioloji-mexanizmlər" class="">Neyrobioloji mexanizmlər</h3>
+<p><strong>GABA-A reseptor hipoaktivliyi</strong> – mərkəzi hipoteza (lorazepam effekti bunu dəstəkləyir)</p>
+<p><strong>Dopamin disregulyasiyası:</strong></p>
+<ul>
+<li>Bazal qanqliya dopamin azlığı</li>
+<li>Antipsixotiklər (D2 blokadası) katatoniyanı kəskinləşdirə bilər və ya yaratmaq</li>
+</ul>
+<p><strong>Qlutamat:</strong></p>
+<ul>
+<li>NMDA-R disfunksiyası (anti-NMDA-R ensefalitin əsası)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<h3 id="yayılma" class="">Yayılma</h3>
+<ul>
+<li><strong>Psixiatrik stasionar pasiyentlərin 9-17%-i</strong> katatonik xüsusiyyətlərə sahib</li>
+<li><strong>Anti-psixotiklə müalicə dövrünün başlanmasından əvvəl</strong> yayılma daha yüksək idi (50%-ə qədər köhnə tədqiqatlarda)</li>
+<li><strong>Aktiv aşkarlama ilə yayılma artır</strong> – həkimlər tez-tez gözdən qaçırırlar</li>
+</ul>
+<h3 id="cins" class="">Cins</h3>
+<ul>
+<li>Cins fərqi əhəmiyyətli deyil, lakin <strong>affektiv katatoniyada</strong> qadınlar bir qədər dominant</li>
+</ul>
+<h3 id="yaş" class="">Yaş</h3>
+<ul>
+<li><strong>Bütün yaşlarda</strong> mümkündür</li>
+<li><strong>Uşaq və yeniyetmələrdə ASP konteksdə</strong> xüsusi əhəmiyyət</li>
+<li><strong>Yaşlılarda üzvi səbəblər</strong> dominant</li>
+</ul>
+<h3 id="komorbidlik" class="">Komorbidlik</h3>
+<ul>
+<li><strong>Affektiv pozuntu</strong> – ən tez-tez (40-50%)</li>
+<li><strong>Şizofreniya spektri</strong> – 15-20%</li>
+<li><strong>ASP-də</strong> yeniyetmə və yetkin yaşda yeni başlanan katatoniya nadir, lakin tanınmalıdır</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="kahlbaum-klassik-triadası" class="">Kahlbaum klassik triadası</h3>
+<ol>
+<li><strong>Stupor / hipokinezi</strong> – motor aktivliyin tam və ya demək olar tam dayanması</li>
+<li><strong>Mutizm</strong> – nitqin tam yoxluğu (anlamağa baxmayaraq)</li>
+<li><strong>Neqativizm</strong> – passiv (təlimatları icra etməmək) və ya aktiv (əksini etmək) müqavimət</li>
+</ol>
+<h3 id="bush-francis-catatonia-rating-scale-bfcrs-23-göstərici" class="">Bush-Francis Catatonia Rating Scale (BFCRS) – 23 göstərici</h3>
+<p><strong>İlk 14 göstərici – diaqnostik (Catatonia Screening Instrument, CSI):</strong></p>
+<ol>
+<li><strong>Aqitasiya / həyəcanlanma</strong> – həddən artıq motor aktivlik, məqsədsiz</li>
+<li><strong>İmmobilizasiya / stupor</strong> – həddən artıq hipoaktivlik, stimullara minimal cavab</li>
+<li><strong>Mutizm</strong> – sıfır və ya minimal nitq (1 dəq-də 1-2 söz)</li>
+<li><strong>Baxış</strong> – fokus saxlanmır, &quot;boş&quot; baxış</li>
+<li><strong>Poza saxlama (posturing)</strong> – qəribə, uzunmüddətli pozaların saxlanması</li>
+<li><strong>Qrimas</strong> – uzunmüddətli üz qıvrılmaları</li>
+<li><strong>Eholaliya</strong> – başqasının nitqinin təkrarı</li>
+<li><strong>Ekopraksia</strong> – başqasının hərəkətlərinin təkrarı</li>
+<li><strong>Stereotipiya</strong> – təkrarlanan, məqsədsiz, qeyri-cəlb edici hərəkətlər</li>
+<li><strong>Manerizm</strong> – qəribə, məqsədli görünən hərəkətlər</li>
+<li><strong>Verbiqerasiya</strong> – mənasız söz təkrarı</li>
+<li><strong>Rigidlik</strong> – yumşaq müqavimət (lakin mum elastikliyi olmadan)</li>
+<li><strong>Neqativizm</strong> – təlimatlara qarşı təkrarlanan müqavimət</li>
+<li><strong>Mum elastikliyi (cerea flexibilitas)</strong> – əzaların hər hansı pozada saxlanması</li>
+</ol>
+<p><strong>Əlavə 9 göstərici (severity assessment):</strong></p>
+<ul>
+<li>Withdrawal, ambitendency, automatic obedience, mitgehen (pasif izləmə), gegenhalten (qarşı qoyma), grasp reflex, perseverasiya, kombatativlik, otonom anomaliyalar</li>
+</ul>
+<h3 id="klinik-formalar" class="">Klinik formalar</h3>
+<p><strong>Hipokinetik (retardə) forma – tipik klassik:</strong></p>
+<ul>
+<li>Stupor, mutizm, immobilizasiya</li>
+<li>Posturing, mum elastikliyi</li>
+<li>Yemək və qulluq səviyyəsi pozuluq</li>
+<li><strong>Ən tez-tez aşkar olunmayan</strong> – pasiyent &quot;depresiv&quot; və ya &quot;reaksiyasız&quot; hesab edilir</li>
+</ul>
+<p><strong>Hiperkinetik (eksitatif) forma:</strong></p>
+<ul>
+<li>Aqitasiya, məqsədsiz hərəkət</li>
+<li>Ekopraksiya, eholaliya</li>
+<li>Stereotipiyalar</li>
+<li>Pozitiv simptomlar (sayıqlama, halusinasiyalar) ilə müşayiət oluna bilər</li>
+</ul>
+<p><strong>Parakinetik forma:</strong></p>
+<ul>
+<li>Manerizm, qrimaslar</li>
+<li>Dilemmalı davranış (ambitendency)</li>
+<li>Mitgehen / gegenhalten</li>
+<li>Neqativizm</li>
+</ul>
+<p><strong>Periodik katatoniya (Gjessing):</strong></p>
+<ul>
+<li>Episodik forma, dövrlərlə təkrarlanan</li>
+<li>Hiperkinetik və hipokinetik fazaların dəyişməsi</li>
+<li>Müalicəyə cavab fərqli ola bilər</li>
+</ul>
+<h3 id="malign-katatoniya-kataton-febrillik" class="">Malign katatoniya (kataton febrillik)</h3>
+<p><strong>Təcili tibbi vəziyyət</strong> – mortalite müalicəsiz <strong>20-50%</strong>.</p>
+<p><strong>Klinik tetrada:</strong></p>
+<ul>
+<li><strong>Hipertermiya</strong> (&gt;38°C, tez-tez &gt;40°C)</li>
+<li><strong>Otonom qeyri-sabitlik</strong> (taxikardiya, AT dalğalanmaları, tərləmə, takipne)</li>
+<li><strong>Ağır rigidlik və posturing</strong></li>
+<li><strong>Şüur dəyişikliyi</strong></li>
+</ul>
+<p><strong>Laborator:</strong></p>
+<ul>
+<li><strong>CPK çox yüksək</strong> (&gt;1000 IU/L, tez-tez &gt;5000)</li>
+<li>Leykositoz, mioqlobinuria</li>
+<li>Asidoz, dehidratasiya</li>
+<li>Renal disfunksiya (rabdomioliz nəticəsində)</li>
+</ul>
+<p><strong>Vacib differensial:</strong></p>
+<ul>
+<li><strong>antipsixotik malign sindromdan (NMS) ayırd etmək çətindir</strong> – bəziləri vahid spektrin iki ucu hesab edir</li>
+<li><strong>Serotonin sindromu</strong> – hiperrefleksiya, klonus</li>
+<li><strong>Anti-NMDA-R ensefaliti</strong> – mütləq istisna</li>
+</ul>
+<p><strong>Müalicə:</strong> Malign formada <strong>dərhal ECT</strong> üstündür (lorazepamdan əvvəl və ya ona paralel).</p>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6a40-6a41-6e69" class="">XBT-11 əsas tələblər (<span class="icd">6A40</span>, <span class="icd">6A41</span>, <span class="icd">6E69</span>)</h3>
+<p><strong>Diaqnoz üçün ən azı 3 simptom</strong> aşağıdakı 12 simptomdan tələb olunur:</p>
+<ol>
+<li>Stupor</li>
+<li>Kataleksia (poza saxlama)</li>
+<li>Mum elastikliyi</li>
+<li>Mutizm</li>
+<li>Neqativizm</li>
+<li>Posturing</li>
+<li>Manerizm</li>
+<li>Stereotipiya</li>
+<li>Aqitasiya</li>
+<li>Qrimas</li>
+<li>Eholaliya</li>
+<li>Ekopraksia</li>
+</ol>
+<p><strong>Etiologiya kvalifikatorları:</strong></p>
+<ul>
+<li><strong><span class="icd">6A40</span></strong> – əsas psixiatrik pozuntu</li>
+<li><strong><span class="icd">6A41</span></strong> – psixoaktiv maddə</li>
+<li><strong><span class="icd">6E69</span></strong> – tibbi vəziyyət</li>
+</ul>
+<h3 id="dsm-5-tr-ilə-müqayisə-29389" class="">DSM-5-TR ilə müqayisə (293.89)</h3>
+<p>DSM-5-TR meyarları XBT-11-ə <strong>çox yaxındır</strong> – həmçinin <strong>12 simptomdan ən azı 3</strong> tələb edir. Spesifik fərqlər minimaldır.</p>
+<p>DSM-5-TR alt-tipləri (etiologiyaya görə):</p>
+<ul>
+<li>Catatonia associated with another mental disorder</li>
+<li>Catatonic disorder due to another medical condition  </li>
+<li>Unspecified catatonia</li>
+</ul>
+<h3 id="diaqnoz-qoyma-alqoritmi" class="">Diaqnoz qoyma alqoritmi</h3>
+<p><strong>Mərhələ 1: Klinik şübhə</strong></p>
+<p>Stupor, mutizm, qəribə posturing, neqativizm görüldükdə <strong>mütləq katatoniya düşünülməlidir</strong>.</p>
+<p><strong>Mərhələ 2: BFCRS qiymətləndirməsi</strong></p>
+<p>İlk 14 göstərici üzrə formal qiymətləndirmə (Catatonia Screening Instrument). <strong>Ən azı 2 göstərici</strong> klinik şübhə üçün kifayətdir.</p>
+<p><strong>Mərhələ 3: Lorazepam çağırış testi (Lorazepam Challenge Test)</strong></p>
+<p><strong>Diaqnostik və terapevtik təsdiqdir.</strong></p>
+<p>Protokol (BAP 2023):</p>
+<p>- IV-dən 5 dəqiqə sonra</p>
+<p>- IM-dən 15 dəqiqə sonra</p>
+<p>- Oraldan 30 dəqiqə sonra</p>
+<ol>
+<li>Baseline BFCRS qiymətləndirilir</li>
+<li><strong>Lorazepam 1-2 mq IV / IM / oral</strong> verilir (uşaq və yaşlılarda 0,5-1 mq)</li>
+<li>Reqiymətləndirmə:</li>
+<li><strong>Pozitiv cavab</strong> = BFCRS-də ≥50% azalma və ya əhəmiyyətli klinik dəyişiklik (məs., mutizm → qısa nitq)</li>
+<li>Pozitiv cavab + klinik şübhə yüksəkdirsə → katatoniya təsdiq olunur, lorazepam ilə müalicəyə başlanır</li>
+<li>Cavab yoxsa, 30-60 dəq sonra ikinci doza (parenteral)</li>
+</ol>
+<p><strong>Diqqət:</strong></p>
+<ul>
+<li>Pozitiv cavab müalicə qərarını dəstəkləyir</li>
+<li>Mənfi cavab katatoniyanı tamamilə istisna etmir (xüsusilə xroniki formalarda)</li>
+<li>Test özü qısa müddətli sedasiya yarada bilər</li>
+</ul>
+<h3 id="etioloji-axtarış-mütləq" class="">Etioloji axtarış (mütləq)</h3>
+<p><strong>Klinik:</strong></p>
+<ul>
+<li>Anamnez (psixiatrik tarix, dərmanlar, maddə istifadəsi)</li>
+<li>Cismani və neyroloji müayinə</li>
+<li>Vital göstəricilər, dehidratasiya statusu</li>
+</ul>
+<p><strong>Laborator (mütləq):</strong></p>
+<ul>
+<li>Tam qan analizi</li>
+<li>Qaraciyər və böyrək funksiyaları</li>
+<li>Qan qlükozası, elektrolitlər (Na, K, Ca, Mg, P)</li>
+<li><strong>CPK</strong> (rabdomioliz, malign forma)</li>
+<li><strong>Tireoid funksiyası</strong> (TSH, T4)</li>
+<li>B12, folat</li>
+<li>Qan qaz analizi (ağır hallarda)</li>
+<li><strong>Toksikoloji skrining</strong> (sidik)</li>
+<li>HIV, sifilis seroloji</li>
+<li>ANA, lupus markerləri</li>
+<li><strong>Anti-NMDA reseptor antikorları (serum və CSF)</strong> – mütləq gənc pasiyentlərdə, yeni başlayan, atipik təqdim</li>
+<li>Seruloplazmin, mis (Wilson xəstəliyi)</li>
+</ul>
+<p><strong>Alət:</strong></p>
+<ul>
+<li><strong>Beyin MRT</strong> (ilk epizod, atipik təqdim) – struktural pozuntular istisna</li>
+<li><strong>EEQ</strong> – non-konvulsiv status epileptikus istisna; üzvi vəziyyətdə &quot;yavaş&quot; dalğalar</li>
+<li><strong>CSF analizi</strong> – ensefalit şübhəsi: hüceyrələr, protein, qlükoza, anti-NMDA-R, oligoklonal zolaqlar</li>
+<li><strong>EKG</strong> – qardiyak komorbidlik</li>
+</ul>
+<p><strong>Spesifik testlər (klinik şübhədə):</strong></p>
+<ul>
+<li>Porfirin (akut intermittent porfiriya)</li>
+<li>Heavy metals (qurğuşun)</li>
+<li>Long-chain fatty acids (X-əlaqəli adrenoleykodistrofiya)</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Antipsixotik Malign Sindrom (NMS)</strong></td><td>Antipsixotik istifadə anamnezi, &quot;rolling onset&quot;; CPK çox yüksək. Bəzi mütəxəssislər malign katatoniya ilə eyni spektr hesab edir</td></tr>
+<tr><td><strong>Serotonin sindromu</strong></td><td>Serotoninerjik dərmanlar; <strong>hiperrefleksiya, klonus</strong> (katatonida tipik deyil)</td></tr>
+<tr><td><strong>Locked-in sindromu</strong></td><td>Beyin sapı zədəsi; göz hərəkətləri ilə kommunikasiya; tam parez; MRT-də spesifik</td></tr>
+<tr><td><strong>Selektiv mutizm</strong></td><td>Müəyyən kontekstlərdə (təşviş əsaslı); digər katatonik simptomlar yoxdur</td></tr>
+<tr><td><strong>Dissosiativ stupor</strong></td><td>Travma anamnezi; davam qısa; lorazepam testinə cavab fərqli</td></tr>
+<tr><td><strong>Ağır depresiya psixomotor ləngləmə ilə</strong></td><td>Mutizm, stupor &quot;yumşaq&quot;; lakin posturing, mum elastikliyi yoxdur</td></tr>
+<tr><td><strong>Konversion (FND, funksional neyroloji)</strong></td><td>Travma və ya stress kontekstli; uyğunsuzluqlar müayinədə</td></tr>
+<tr><td><strong>Akinetik mutizm</strong></td><td>Bazal qanbiya zədəsi; &quot;boş&quot; baxış; EKT-yə cavab vermir</td></tr>
+<tr><td><strong>Status epilepticus non-convulsivus</strong></td><td>EEQ ilə istisna mütləq</td></tr>
+<tr><td><strong>İntoksikasiya</strong> (PCP, ketamin, GHB)</td><td>Toksikoloji skrining</td></tr>
+</table></div>
+<p><strong>Vacib qayda:</strong> <strong>Antipsixotik almayan hər stupor – katatoniya istisna olunmalıdır.</strong></p>
+<h2 id="müayinə-üsulları" class="">Müayinə üsulları</h2>
+<p>(Bölmə 5.4-də verilib – diaqnoz qoyma alqoritmi)</p>
+<h3 id="standartlaşdırılmış-şkalalar" class="">Standartlaşdırılmış şkalalar</h3>
+<p><strong>Bush-Francis Catatonia Rating Scale (BFCRS):</strong></p>
+<ul>
+<li>23 göstərici, 0-3 şiddət şkalası</li>
+<li>İlk 14 göstərici skrining (CSI)</li>
+<li>Lorazepam-cavabla validlənmiş</li>
+<li>Ən geniş istifadə edilən qızıl standart</li>
+</ul>
+<p><strong>Northoff Catatonia Rating Scale (NCRS):</strong></p>
+<ul>
+<li>40 göstərici (15 davranış, 13 motor, 12 affektiv)</li>
+<li>DSM-5-TR və XBT-11 meyarlarını tam əhatə edir</li>
+<li>Affektiv komponentləri xüsusilə vurğulayır</li>
+</ul>
+<p><strong>Pediatric Catatonia Rating Scale</strong> – uşaq və yeniyetmələr üçün</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>Katatoniya müalicəsi <strong>vaxtla yarışır</strong> – erkən müalicə həm mortalitey azaldır, həm uzunmüddətli komplikasiyaları (decubitus, aspirasiya pnevmoniya, venoz tromboz, dehidratasiya, malnütrisiya, kontraktura) önləyir.</p>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<p><strong>Birinci xətt avtoritet bələdçilər:</strong></p>
+<ul>
+<li><strong>British Association for Psychopharmacology (BAP) 2023:</strong> <em>Evidence-based consensus guidelines for the management of catatonia</em> (Rogers et al., J Psychopharmacol, 2023) – <strong>ən müasir və hərtərəfli</strong></li>
+<li><strong>APA Resource Document on Catatonia (2025)</strong></li>
+<li><strong>NICE TA59 (ECT göstərişi katatoniyada)</strong></li>
+</ul>
+<h3 id="antipsixotiklərin-dayandırılması-mütləq" class="">Antipsixotiklərin dayandırılması (mütləq)</h3>
+<p><strong>Katatoniya tanındıqda antipsixotiklər DAYANDIRILMALIDIR</strong> (BAP 2023, sübutluluq A):</p>
+<ul>
+<li>Antipsixotiklər katatoniyanı <strong>kəskinləşdirə bilər</strong></li>
+<li><strong>NMS və malign katatoniya riskini artırır</strong></li>
+<li>İstisnalar: schizoaffektiv, davamlı şizofreniya kontekstində – yalnız səviyyə xeyli azaldılaraq və/yaxud əvəzinə klozapin</li>
+</ul>
+<h3 id="birinci-xətt-benzodiazepinlər-lorazepam" class="">Birinci xətt: Benzodiazepinlər (lorazepam)</h3>
+<p><strong>Lorazepam – qızıl standart:</strong></p>
+<p><strong>Doza:</strong></p>
+<ul>
+<li><strong>Yetkinlər:</strong> başlanğıc 1-2 mq oral / IV / IM, <strong>3-4 dəfə gündə</strong></li>
+<li><strong>Tipik effektiv doza:</strong> 6-16 mq/gün</li>
+<li><strong>Maksimum:</strong> 24-30 mq/gün (xroniki, ASP-əlaqəli, davamlı katatoniyada bəzən tələb olunur)</li>
+<li><strong>Uşaq və yaşlı:</strong> 0,5-1 mq başlanğıc, ehtiyatla titrasiya</li>
+</ul>
+<p><strong>Titrasiya:</strong></p>
+<ul>
+<li>1 mq po 8 saatda bir başla</li>
+<li>24 saatdan sonra cavab qiymətləndir</li>
+<li>Əgər cavab qisməndirsə – dozanı 1-2 mq artır</li>
+<li>Maksimum effekt 3-7 gün</li>
+</ul>
+<p><strong>Davam:</strong></p>
+<ul>
+<li><strong>Ən azı 3 həftə</strong> stabil cavabdan sonra (BAP 2023)</li>
+<li>Tədricən kəsmə <strong>çox yavaş</strong> (residiv riski)</li>
+</ul>
+<p><strong>Diqqət:</strong></p>
+<ul>
+<li>Respirator depressiyaya qarşı monitorinq</li>
+<li>Sedasiya tipik, lakin <strong>respirator komprometsizdirsə müalicəni dayandırma</strong></li>
+<li>IM yol uzunmüddətli istifadədə tövsiyə olunmur (CPK artımı)</li>
+</ul>
+<p><strong>Effektivlik:</strong></p>
+<ul>
+<li><strong>70-80% pasiyent lorazepama cavab verir</strong></li>
+<li>ASP-li, xroniki şizofreniya kontekstli – aşağı cavab (~30-50%)</li>
+</ul>
+<h3 id="i̇kinci-xətt-ekt-elektrokonvulsiv-terapiya" class="">İkinci xətt: EKT (Elektrokonvulsiv terapiya)</h3>
+<p><strong>Göstərişlər (NICE TA59, BAP 2023):</strong></p>
+<ul>
+<li><strong>Lorazepama 5-7 gün ərzində cavab yox</strong> (sübutluluq A)</li>
+<li><strong>Malign katatoniya</strong> (ilk xətt – lorazepamla paralel və ya əvəzinə)</li>
+<li><strong>Ağır komplikasiyalar:</strong> dehidratasiya, malnütrisiya, ağır rigidlik</li>
+<li><strong>Suisidal davranış</strong></li>
+</ul>
+<p><strong>Protokol:</strong></p>
+<ul>
+<li><strong>Bilateral ECT</strong> üstündür (sübutluluq A; unilateraldan effektivdir katatoniada)</li>
+<li><strong>Tezlik:</strong> gündə 1-2 dəfə ilk 3-5 gün, sonra 2-3 dəfə həftədə</li>
+<li><strong>Sayı:</strong> 6-12 sessiya tipik, lakin lazımi qədər</li>
+<li><strong>Maintenance ECT</strong> – residiv halında tövsiyə oluna bilər</li>
+</ul>
+<p><strong>ECT effektivliyi:</strong></p>
+<ul>
+<li><strong>80-100%</strong> cavab nisbəti, lorazepama rezistent hallarda da</li>
+<li>Sürətli effekt – 1-2 sessiyadan sonra dəyişiklik</li>
+<li><strong>Malign formada həyatxilas edici</strong></li>
+</ul>
+<p><strong>Azərbaycan kontekstində:</strong> EKT məhdud əlçatandır (Bakı PSM, bəzi xəstəxanalar). BAP 2023 tövsiyələri qarşısında klinisistlər lorazepama uzunmüddətli (yüksək doza) etibar etməyə tələb olunur, lakin malign formada <strong>xəstəxanalararası transfer</strong> lazım ola bilər.</p>
+<h3 id="digər-farmakoloji-müalicələr" class="">Digər farmakoloji müalicələr</h3>
+<p><strong>Üçüncü xətt (lorazepam və EKT-yə cavabsız hallarda):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Dərman</th><th>Doza</th><th>Sübutluluq</th><th>Qeydlər</th></tr>
+<tr><td><strong>Klozapin</strong></td><td>12,5-300 mq/gün</td><td>C</td><td>Şizofreniya kontekstində, ASP-də, NMS sonrası</td></tr>
+<tr><td><strong>Memantin</strong></td><td>5-20 mq/gün</td><td>C</td><td>NMDA antaqonisti</td></tr>
+<tr><td><strong>Amantadin</strong></td><td>100-300 mq/gün</td><td>C</td><td>NMDA modulasiya</td></tr>
+<tr><td><strong>Topiramat</strong></td><td>50-200 mq/gün</td><td>D</td><td>GABA modulasiya</td></tr>
+<tr><td><strong>Karbamazepin / okskarbazepin</strong></td><td>Standart</td><td>D</td><td>Affektiv komponent dominantsa</td></tr>
+<tr><td><strong>Litium</strong></td><td>Standart</td><td>D</td><td>Periodik katatoniyada</td></tr>
+<tr><td><strong>Zolpidem</strong></td><td>10 mq</td><td>C</td><td>Subkortikal insult sonrası katatoniyada xüsusi</td></tr>
+<tr><td><strong>rTMS</strong></td><td>Sol DLPFC</td><td>D</td><td>Tədqiqat mərhələsi</td></tr>
+</table></div>
+<h3 id="dəstəkləyici-tibbi-müalicə-mütləq" class="">Dəstəkləyici tibbi müalicə (mütləq)</h3>
+<p>Katatoniya <strong>tibbi-həyati emergency</strong>-dir, geniş dəstəkləyici qulluq tələb olunur:</p>
+<p><strong>Əsas:</strong></p>
+<ul>
+<li><strong>Mayelər</strong> (IV, hidratasiya saxlanması)</li>
+<li><strong>Qida</strong> – nazoqastrik tübaja gerek ola bilər (mutizm, neqativizm fonunda)</li>
+<li><strong>Decubitus profilaktikası</strong> (immobilizasiyada) – pozisional dəyişikliklər</li>
+<li><strong>Venoz tromboz profilaktikası</strong> – aşağı doza heparin (LMWH)</li>
+<li><strong>Kontrakturanın profilaktikası</strong> – passiv hərəkət, fizioterapiya</li>
+<li><strong>Aspirasiya pnevmoniyasının profilaktikası</strong> – baş yüksəlmiş poza</li>
+<li><strong>Sidik və bağırsaq idarəsi</strong> – kateterizasiya, lavman lazım ola bilər</li>
+<li><strong>Cilddə bütövlüyün saxlanması</strong></li>
+</ul>
+<h3 id="spesifik-vəziyyətlər" class="">Spesifik vəziyyətlər</h3>
+<h4 id="malign-katatoniya-nms" class="">Malign katatoniya / NMS</h4>
+<p><strong>Təcili tədbirlər:</strong></p>
+<ol>
+<li><strong>Antipsixotiklərin dərhal kəsilməsi</strong> (NMS varsa)</li>
+<li><strong>Hipertermianın aktiv idarə edilməsi</strong> – soyutma</li>
+<li><strong>ICU və ya yüksək nəzarət şərtləri</strong></li>
+<li><strong>Mayelər və elektrolitlərin korreksiyası</strong></li>
+<li><strong>Lorazepam IV</strong> yüksək dozalarda (ilk xətt)</li>
+<li><strong>ECT</strong> – malign formada <strong>birinci 24-48 saatda</strong> mütləq düşünülməli</li>
+<li><strong>Dantrolen</strong> 1-3 mq/kq IV (hipertermiya, rigidlik)</li>
+<li><strong>Bromokriptin</strong> 2,5-10 mq po (D2 agonisti)</li>
+<li><strong>Rabdomioliz idarəsi</strong> – mayelər, sidik alkalinizasiyası</li>
+</ol>
+<h4 id="asp-li-katatoniya-uşaq-və-yeniyetmələr-xüsusi-diqqət" class="">ASP-li katatoniya (uşaq və yeniyetmələr — xüsusi diqqət)</h4>
+<p>ASP-li uşaq və yeniyetmələrdə katatoniya <strong>xüsusi klinik vahid</strong> kimi tanınır və <strong>hələ də klinik praktikada nadir hallarda diaqnoz olunur</strong> — çünki onun əlamətləri ASP-nin özünün simptomları (stereotipiyalar, ritualistik davranışlar, immobillik epizodları) ilə qarışdırıla bilər.</p>
+<p><strong>Epidemiologiya:</strong></p>
+<ul>
+<li>ASP-li yeniyetmələrin <strong>12-17%-ində</strong> kataton əlamətlər müşahidə olunur (Wing &amp; Shah, 2000)</li>
+<li>ASP-li uşaqlarda 10 yaşdan sonra ortaya çıxma riski artır</li>
+<li>Yetkin ASP-də yayılma daha aşağı (5-7%)</li>
+</ul>
+<p><strong>Klinik təqdimat ASP-də:</strong></p>
+<p>ASP-li pasiyentdə katatoniya təqdimatı yetkin populyasiyadan fərqlidir:</p>
+<ul>
+<li><strong>&quot;Yavaşlama&quot;</strong> (slowing) — hərəkətlərin və danışıqın əhəmiyyətli yavaşlaması</li>
+<li><strong>Funksional regression</strong> — əvvəllər mənimsənilmiş bacarıqların itməsi (paltar geyinmə, qida qəbulu, tualet istifadəsi)</li>
+<li><strong>Mutizm</strong> və ya əhəmiyyətli olaraq danışıqın azalması</li>
+<li><strong>Stereotipiyaların intensivləşməsi</strong> — adi ASP stereotipiyalarının kataton intensifikasiyası</li>
+<li><strong>Negativizm</strong> və əmrlərə müqavimət</li>
+<li><strong>İnkontinensiya</strong> — funksional regressiyanın bir hissəsi</li>
+<li><strong>Ekzistensial katastrofa</strong> — pasiyent inkişaf etmiş bacarıqları qəfil itirir</li>
+</ul>
+<p><strong>Bush-Francis-in adaptasiyası:</strong></p>
+<p>Standart Bush-Francis Catatonia Rating Scale (BFCRS) ASP-də <strong>çətin tətbiq olunur</strong>, çünki ASP-nin özünün xüsusiyyətləri (göz təması yox, sosial qarşılıqlı əlaqə zəif, stereotipiyalar) əsas balların artmasına səbəb ola bilər. Müasir tövsiyə — <strong>Wing &amp; Shah (2000) tərəfindən hazırlanan ASP-spesifik kataton qiymətləndirmə</strong> istifadə etmək, və ya <strong>bazis (premorbid) vəziyyət ilə müqayisə</strong> yolu ilə diaqnoz qoymaq:</p>
+<ul>
+<li>Pasiyentin əvvəlki funksional səviyyəsi nə idi?</li>
+<li>İndi nə qədər pisləşmişdir?</li>
+<li>Bu pisləşmə ilk neçə həftə/aydır davam edir?</li>
+</ul>
+<p><strong>Diaqnostik prinsip:</strong> Yeni və ya əhəmiyyətli funksional pisləşmə + kataton əlamətlər → katatonia diaqnozu, ASP rəqib diaqnoz olaraq qəbul edilməsin.</p>
+<p><strong>Trigger faktorlar (ASP-li pasiyentlərdə):</strong></p>
+<ul>
+<li>Yeniyetmə dövrü, hormonal dəyişikliklər</li>
+<li>Travmatik təcrübələr</li>
+<li>Rutinin pozulması</li>
+<li>İnfeksiya, somatik xəstəlik</li>
+<li>Komorbid psixiatrik pozuntular (depressiya, OKP)</li>
+</ul>
+<p><strong>Pediatrik dozalanma:</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>Dərman</th><th>Yaş</th><th>Doza</th></tr>
+<tr><td><strong>Lorazepam (PO/IV)</strong></td><td>&lt;12 yaş</td><td>0,025-0,05 mq/kq/doza, gündə 3-4 dəfə (max 6 mq/gün)</td></tr>
+<tr><td><strong>Lorazepam (PO/IV)</strong></td><td>12-17 yaş</td><td>0,05-0,1 mq/kq/doza (max 8 mq/gün, ekstremallıqda 12 mq/gün)</td></tr>
+<tr><td><strong>Lorazepam (test dozası)</strong></td><td>hər hansı yaş</td><td>0,05 mq/kq IV, 1 saat sonra qiymətləndirmə</td></tr>
+</table></div>
+<p><strong>Vacib qeyd:</strong> ASP-li pasiyentlərdə bəzən <strong>standart yetkin dozalardan yüksək</strong> dozalar tələb olunur (10-20 mq/gün), lakin pediatrik populyasiyada bu <strong>nəzarətli mühitdə</strong>, <strong>nəfəs alma monitorinqi ilə</strong> edilməlidir.</p>
+<p><strong>ECT pediatrik populyasiyada:</strong></p>
+<ul>
+<li>EKT pediatrik kataton üçün <strong>etibarlıdır və effektivdir</strong> (effektivlik 85-95%)</li>
+<li>Göstəriş: <strong>48-72 saat lorazepam terapiyasına müqavimət</strong> + <strong>həyatı təhdid edən vəziyyət</strong> (qida qəbulundan imtina, dehidratasiya, malign əlamətlər)</li>
+<li>Etika qaydaları: valideyn icazəsi + (uşaq yaşına uyğun) razılığı; etik komitə müsahibəsi</li>
+<li><strong>Standart sxem:</strong> bilateral EKT, gündə 3 dəfə həftədə (Mon-Wed-Fri); 6-12 seans</li>
+<li><strong>Saxlanma ECT</strong> lazım ola bilər (residiv riski yüksəkdir)</li>
+</ul>
+<p><strong>Klozapin:</strong></p>
+<ul>
+<li>ASP-li yeniyetmələrdə uzunmüddətli profilaktika üçün</li>
+<li>Doza: 12,5 mq başlanğıc; 200-400 mq/günə qədər tədricən artırılır</li>
+<li>Standart monitorinq sxemi (qan testləri, miokardit erkən fazada)</li>
+</ul>
+<p><strong>Komorbid OKP/təşviş:</strong></p>
+<p>ASP-li pasiyentlərdə katatoniya çox vaxt komorbid OKP və ya yüksək təşviş ilə əlaqəlidir. Stabilləşmədən sonra:</p>
+<ul>
+<li><strong>SİUSİ</strong> (sertralin, fluoksetin) — düşük dozalar</li>
+<li><strong>Davranış müdaxilələri</strong> — sosial dəstək, sensoriy regulasiya</li>
+</ul>
+<p><strong>Proqnoz:</strong></p>
+<ul>
+<li>Erkən diaqnoz və lorazepam başlanması ilə <strong>70-80% remissiya</strong></li>
+<li>Geç diaqnoz halında uzunmüddətli müalicə tələb olunur</li>
+<li>ASP-li pasiyentlərdə <strong>residiv riski yüksəkdir</strong> — uzunmüddətli profilaktik müalicə tövsiyə olunur</li>
+</ul>
+<h4 id="postpartum-katatoniya" class="">Postpartum katatoniya</h4>
+<ul>
+<li>20% postpartum psixotik epizoddan katatonik</li>
+<li><strong>Lorazepam birinci xətt</strong> (laktasiya ilə uyğun aşağı dozalarda)</li>
+<li>Ana və körpənin təhlükəsizliyi mütləq qiymətləndirilir</li>
+<li>EKT ağır hallarda – effektiv və laktasiya ilə uyğun</li>
+</ul>
+<h4 id="anti-nmda-r-ensefaliti" class="">Anti-NMDA-R ensefaliti</h4>
+<ul>
+<li><strong>İmmunoterapiya birinci xətt:</strong> steroidlər, IVIG, plazmaferez, rituximab</li>
+<li>Lorazepam katatonik simptomlar üçün dəstəkləyici</li>
+<li>EKT mübahisəli (bəzi hallarda effektiv, bəzilərində kəskinləşdirir)</li>
+<li><strong>Tumour axtarışı</strong> – ovarian teratoma 50% halda gənc qadınlarda</li>
+</ul>
+<h3 id="maintenance-müalicə" class="">Maintenance müalicə</h3>
+<ul>
+<li><strong>Lorazepam ən azı 3 həftə</strong> stabil cavabdan sonra</li>
+<li><strong>Tədricən kəsmə</strong> – həftədə 10-25% azalma</li>
+<li><strong>Residiv halında</strong> lorazepama qayıtma</li>
+<li><strong>Periodik katatoniyada</strong> uzunmüddətli profilaktik (litium, antikonvulsantlar)</li>
+<li><strong>Şizofreniya kontekstində</strong> klozapin saxlanma</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<h3 id="müalicə-cavabı" class="">Müalicə cavabı</h3>
+<ul>
+<li><strong>70-80% pasiyent lorazepama tam və ya qismən cavab verir</strong> (ilk 1-7 gündə)</li>
+<li><strong>80-100% pasiyent EKT-yə cavab verir</strong> (lorazepam-rezistent hallarda da)</li>
+<li><strong>Erkən müalicə = yaxşı proqnoz</strong></li>
+</ul>
+<h3 id="mortalite" class="">Mortalite</h3>
+<ul>
+<li><strong>Düzgün müalicə ilə mortalite minimal</strong> (&lt;5%)</li>
+<li><strong>Müalicəsiz malign katatoniyada mortalite 20-50%</strong></li>
+<li><strong>Komplikasiyalar (aspirasiya pnevmoniya, venoz tromboz, rabdomioliz)</strong> ölümün əsas səbəbidir</li>
+</ul>
+<h3 id="residiv" class="">Residiv</h3>
+<ul>
+<li><strong>20-30% pasiyent təkrarlanan katatonik epizodlar yaşayır</strong></li>
+<li>Periodik katatoniya – təbii təkrarlanan</li>
+<li>Affektiv kontekstdə residiv affektiv epizodla</li>
+<li><strong>Dövri profilaktik benzodiazepin</strong> bəzi hallarda</li>
+</ul>
+<h3 id="etioloji-proqnoz" class="">Etioloji proqnoz</h3>
+<ul>
+<li><strong>Affektiv katatoniya</strong> – ən yaxşı proqnoz, primary affektiv pozuntu müalicəsi ilə</li>
+<li><strong>Şizofreniya katatoniyası</strong> – orta proqnoz, klozapin etibarlı seçim</li>
+<li><strong>ASP-li katatoniya</strong> – uzunmüddətli müalicə tələb edə bilər</li>
+<li><strong>Üzvi katatoniya</strong> – əsas xəstəliyə bağlıdır (anti-NMDA-R: yaxşı, əgər erkən müalicədir; ensefalit: dəyişkən)</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<p><strong>Beynəlxalq:</strong></p>
+<ol>
+<li>World Health Organization. <em>ICD-11 CDDR.</em> Geneva, 2024.</li>
+<li>American Psychiatric Association. <em>DSM-5-TR.</em> APA Publishing, 2022.</li>
+<li>Rogers JP, Oldham MA, Fricchione G, et al. <em>Evidence-based consensus guidelines for the management of catatonia: Recommendations from the British Association for Psychopharmacology.</em> J Psychopharmacol. 2023;37(4):327-369.</li>
+<li>American Psychiatric Association. <em>Resource Document on Catatonia.</em> APA Publishing, 2025.</li>
+<li>National Institute for Health and Care Excellence (NICE). <em>Guidance on the use of electroconvulsive therapy</em> (TA59). London, 2003.</li>
+<li>Bush G, Fink M, Petrides G, Dowling F, Francis A. <em>Catatonia. I. Rating scale and standardized examination.</em> Acta Psychiatr Scand. 1996;93(2):129-136.</li>
+<li>Bush G, Fink M, Petrides G, Dowling F, Francis A. <em>Catatonia. II. Treatment with lorazepam and electroconvulsive therapy.</em> Acta Psychiatr Scand. 1996;93(2):137-143.</li>
+<li>Fink M, Taylor MA. <em>Catatonia: A Clinician&#x27;s Guide to Diagnosis and Treatment.</em> Cambridge University Press, 2003.</li>
+<li>Northoff G. <em>Catatonia and neuroleptic malignant syndrome: psychopathology and pathophysiology.</em> J Neural Transm, 2002.</li>
+<li>Sienaert P, Dhossche DM, Vancampfort D, De Hert M, Gazdag G. <em>A clinical review of the treatment of catatonia.</em> Front Psychiatry, 2014.</li>
+<li>Walther S, et al. <em>Structure and neural mechanisms of catatonia.</em> Lancet Psychiatry, 2019.</li>
+<li>Wilson JE, et al. <em>Delirium and catatonia in critically ill patients: the delirium and catatonia prospective cohort investigation.</em> Crit Care Med, 2017.</li>
+<li>Dhossche DM. <em>Decalogue of catatonia in autism spectrum disorder.</em> Front Psychiatry, 2014.</li>
+</ol>
+<p><strong>Yerli (Azərbaycan):</strong></p>
+<ol>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Şizofreniyanın Diaqnostika və Müalicəsi üzrə Klinik Protokol.</em> Bakı, 2009 (katatonik xüsusiyyətlər kontekstində).</li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+</ol>
+<p><strong>Post-sovet:</strong></p>
+<ol>
+<li>Kaplan H.I., Sadock B.J. <em>Klinik psixiatriya.</em> (Клиническая психиатрия) 2 cilddə. Moskva: Tibb, 1994 (klassik təsvir).</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya.</em> (Современная клиническая психиатрия) – Sankt-Peterburq: Reç, 2006. 2-ci nəşr.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-02.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 2 — ŞİZOFRENİYA</span></a><a href="bolme-04.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 4 — ƏHVAL</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-03";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

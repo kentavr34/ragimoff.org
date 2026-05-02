@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — Əlavə — Şkalalar">
+<title>Əlavə — Şkalalar | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="əlavə-b" class="h-section">ƏLAVƏ B</h1>
+<h2 id="neyroi̇nki̇şaf-pozuntulariin-skri̇ni̇nq-şkalalari" class="">NEYROİNKİŞAF POZUNTULARIIN SKRİNİNQ ŞKALALARI</h2>
+<p>&gt; <strong>İstifadə qaydaları:</strong> Bu şkalalar <strong>diaqnostik deyil, skrininq alətlərdir</strong>. Müsbət nəticə – ixtisaslaşmış klinik qiymətləndirmə üçün göstərişdir, <strong>diaqnoz deyil.</strong> Qəti diaqnoz klinik müsahibə, ətraflı qiymətləndirmə və (lazım olduqda) standartlaşdırılmış diaqnostik alətlər (ADOS-2, ADI-R, WISC-V və s.) vasitəsilə qoyulur.</p>
+<p>&gt;</p>
+<p>&gt; <strong>Lisenziya statusu:</strong> Bu əlavədə təqdim edilən bütün şkalalar elmi-araşdırma və klinik istifadə üçün tərtibatçılar tərəfindən açıq şəkildə təqdim edilmiş alətlərdir.</p>
+<hr>
+<h2 id="b1-m-chat-r-autizm-spektri-üçün-düzəldilmiş-yoxlama-cədvəli-1630-aylıq" class="">B.1. M-CHAT-R: Autizm Spektri üçün Düzəldilmiş Yoxlama Cədvəli (16–30 aylıq uşaqlar)</h2>
+<p><strong>Orijinal müəlliflər:</strong> Diana L. Robins, Deborah Fein, Marianne Barton, 2009.</p>
+<p><strong>Orijinal istinad:</strong> Robins DL, Fein D, Barton M. M-CHAT-R/F. Self-published, 2009; Pediatrics, 2014; 133: 37–45.</p>
+<h3 id="təlimat" class="">Təlimat</h3>
+<p>Bu anket uşağınızın gündəlik davranışı haqqında 20 sualdan ibarətdir. <strong>Valideyn və ya ilkin qulluq edən tərəfindən doldurulur.</strong> Hər suala <strong>BƏLİ</strong> və ya <strong>XEYR</strong> kimi cavab verin – uşağınızın <strong>adətən</strong> necə davrandığı əsasında. Əgər davranışı bir-iki dəfə görmüsünüzsə, amma ümumiyyətlə uşaq belə etmirsə, <strong>XEYR</strong> cavablayın.</p>
+<h3 id="suallar" class="">Suallar</h3>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>Sual</th><th>Bəli</th><th>Xeyr</th></tr>
+<tr><td>1</td><td>Əgər siz otağın o tərəfindəki bir şeyə baxsanız, uşağınız da ora baxırmı? (Məsələn, uçan təyyarəyə, böyük heyvana və ya oyuncağa)</td><td></td><td></td></tr>
+<tr><td>2</td><td>Heç uşağınızın kar olduğunu düşünmüsünüzmü?</td><td></td><td></td></tr>
+<tr><td>3</td><td>Uşağınız uydurma oyunlar oynayırmı? (Məsələn, boş fincandan içmək kimi, telefonla danışmaq kimi, kuklaya yemək vermək kimi)</td><td></td><td></td></tr>
+<tr><td>4</td><td>Uşağınız əşyalara dırmanmağı sevirmi? (Məbəl, pilləkən, ağac)</td><td></td><td></td></tr>
+<tr><td>5</td><td>Uşağınız ovuclarını, barmaqlarını və ya bədəninin digər hissələrini gözünün qarşısında qeyri-adi hərəkətlərlə edirmi?</td><td></td><td></td></tr>
+<tr><td>6</td><td>Uşağınız istədiyi bir şeyə işarə edirmi? (Məsələn, bufetdən uzaqda olan bir oyuncaq üçün)</td><td></td><td></td></tr>
+<tr><td>7</td><td>Uşağınız maraqlı bir şeyə diqqətinizi cəlb etmək üçün işarə edirmi? (Məsələn, göydəki təyyarə və ya böyük maşın)</td><td></td><td></td></tr>
+<tr><td>8</td><td>Uşağınız başqa uşaqlara maraq göstərirmi? (Məsələn, oyun parkında uşaqlara baxır, onlara qoşulmağa çalışır)</td><td></td><td></td></tr>
+<tr><td>9</td><td>Uşağınız sizə bir şey göstərməklə və ya önünüzə qoymaqla sizinlə paylaşırmı (bunu kömək üçün deyil, paylaşmaq üçün)?</td><td></td><td></td></tr>
+<tr><td>10</td><td>Uşağınız adı çağırıldıqda cavab verirmi?</td><td></td><td></td></tr>
+<tr><td>11</td><td>Uşağınıza gülümsədiyinizdə, o da sizə gülümsəyirmi?</td><td></td><td></td></tr>
+<tr><td>12</td><td>Uşağınız gündəlik səslərdən narahat olurmı? (Məsələn, tozsoran, yüksək musiqi)</td><td></td><td></td></tr>
+<tr><td>13</td><td>Uşağınız yeriyirmi?</td><td></td><td></td></tr>
+<tr><td>14</td><td>Uşağınız siz onunla, onun paltarını geyindirən və ya oynayarkən gözlərinizə baxırmı?</td><td></td><td></td></tr>
+<tr><td>15</td><td>Uşağınız sizin etdiklərinizi təqlid edirmi? (Məsələn, siz üzünüzə fəaliyyət etdikdə, o da eyni şeyi edir)</td><td></td><td></td></tr>
+<tr><td>16</td><td>Uşağınız bir şey eşitdikdə sizə baxırmı ki, nəyin olduğunu görsün?</td><td></td><td></td></tr>
+<tr><td>17</td><td>Uşağınız diqqətinizi cəlb etməyə çalışırmı? (Məsələn, sizə baxmaq, tərif almaq üçün, &quot;bax!&quot; demək)</td><td></td><td></td></tr>
+<tr><td>18</td><td>Uşağınız anladığı sözlərə cavab verirmi? (Məsələn, &quot;topu mənə ver&quot; və ya &quot;kitabı götür&quot; deyildiyində)</td><td></td><td></td></tr>
+<tr><td>19</td><td>Əgər bir şey yeni və ya qəribə baş verərsə, uşağınız sizin reaksiyanızı görmək üçün üzünüzə baxırmı?</td><td></td><td></td></tr>
+<tr><td>20</td><td>Uşağınız hərəkətli oyunları sevirmi? (Məsələn, havada tullanmaq, dizin üstünə hoppanmaq)</td><td></td><td></td></tr>
+</table></div>
+<h3 id="hesablama" class="">Hesablama</h3>
+<p><strong>Risk xalı = XEYR cavablarının sayı</strong>, <strong>istisna olaraq 2, 5 və 12-ci sual üçün XEYR – risk əlamətidir (bu üç sualda BƏLİ cavabı risk sayılır).</strong></p>
+<p>Yəni:</p>
+<ul>
+<li>1, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 20-ci suallarda <strong>XEYR cavabı</strong> risk əlaməti hesab edilir.</li>
+<li>2, 5, 12-ci suallarda <strong>BƏLİ cavabı</strong> risk əlaməti hesab edilir.</li>
+</ul>
+<h3 id="nəticələrin-şərhi" class="">Nəticələrin şərhi</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Xal</th><th>Risk səviyyəsi</th><th>Tövsiyə</th></tr>
+<tr><td><strong>0–2</strong></td><td>Aşağı risk</td><td>Əlavə qiymətləndirmə tələb olunmur (digər risk amilləri yoxdursa); 24 aya qədər yenidən skrininq tövsiyə olunur</td></tr>
+<tr><td><strong>3–7</strong></td><td>Orta risk</td><td><strong>M-CHAT-R/F (Follow-up) tələb olunur</strong> – strukturlaşdırılmış izləmə müsahibəsi; tibbi işçi tərəfindən aparılır</td></tr>
+<tr><td><strong>8–20</strong></td><td>Yüksək risk</td><td><strong>Təcili ASP diaqnostik qiymətləndirməsi və erkən müdaxilə proqramına göndərmə tələb olunur</strong></td></tr>
+</table></div>
+<p>&gt; <strong>Qeyd:</strong> M-CHAT-R – Azərbaycan dilində müxtəlif klinikalarda istifadə olunur, lakin rəsmi validasiya Azərbaycan populyasiyasında məhduddur. Yuxarıdakı tərcümə klinik praktik üçündür; elmi tədqiqatlarda orijinal rəsmi tərcümə istifadə olunmalıdır (rəsmi tərcümələr üçün: https://mchatscreen.com).</p>
+<hr>
+<h2 id="b2-aq-10-qısa-autizm-spektri-qiymətləndirməsi-16-yaş" class="">B.2. AQ-10: Qısa Autizm Spektri Qiymətləndirməsi (16 yaş+)</h2>
+<p><strong>Orijinal müəlliflər:</strong> Carrie Allison, Bonnie Auyeung, Simon Baron-Cohen, 2012.</p>
+<p><strong>Orijinal istinad:</strong> Allison C, Auyeung B, Baron-Cohen S. Toward brief &quot;red flags&quot; for autism screening: the short Autism Spectrum Quotient (AQ-10). <em>J Am Acad Child Adolesc Psychiatry</em>, 2012; 51: 202–212.</p>
+<h3 id="təlimat" class="">Təlimat</h3>
+<p>Aşağıdakı 10 ifadə haqqında nə düşünürsünüz? Hər ifadə üçün <strong>Mütləq razıyam, Qismən razıyam, Qismən razı deyiləm, Mütləq razı deyiləm</strong> variantlarından birini seçin.</p>
+<h3 id="suallar" class="">Suallar</h3>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>İfadə</th></tr>
+<tr><td>1</td><td>Mən tez-tez kiçik səslərə diqqət edirəm – başqaları bunları görmədiyində</td></tr>
+<tr><td>2</td><td>Mən adətən kiçik detallara deyil, ümumi şəklə daha çox diqqət edirəm</td></tr>
+<tr><td>3</td><td>Mən bir sosial vəziyyətdə bir neçə insanın söhbətini izləməkdə çətinlik çəkirəm</td></tr>
+<tr><td>4</td><td>Mən tez-tez bir mövzu və ya fəaliyyət üzərində o qədər cəmləşirəm ki, başqa şeyləri itirirəm</td></tr>
+<tr><td>5</td><td>Mən başqasının bir şey deyəndə nə düşündüyünü və ya hiss etdiyini asan anlayıram</td></tr>
+<tr><td>6</td><td>Mən insanların niyyətlərini oxumaqda yaxşıyam</td></tr>
+<tr><td>7</td><td>Hekayə oxuyanda, personajların nə düşündüyünü başa düşməkdə çətinlik çəkirəm</td></tr>
+<tr><td>8</td><td>Mən əvvəllər etdiyim fəaliyyətlər haqqında detallı məlumat toplamağı sevirəm (məsələn, avtomobil növləri, quşlar, qatarlar)</td></tr>
+<tr><td>9</td><td>Mən bir insana baxan zaman onun nə düşündüyünü və ya hiss etdiyini başa düşməkdə çətinlik çəkirəm</td></tr>
+<tr><td>10</td><td>Mən sosial vəziyyətlərdə necə davranmağı bilməkdə çətinlik çəkirəm</td></tr>
+</table></div>
+<h3 id="hesablama" class="">Hesablama</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Sual</th><th>&quot;Mütləq razıyam / Qismən razıyam&quot; – 1 bal</th><th>&quot;Mütləq razı deyiləm / Qismən razı deyiləm&quot; – 1 bal</th></tr>
+<tr><td>1</td><td>✓</td><td></td></tr>
+<tr><td>2</td><td></td><td>✓</td></tr>
+<tr><td>3</td><td>✓</td><td></td></tr>
+<tr><td>4</td><td>✓</td><td></td></tr>
+<tr><td>5</td><td></td><td>✓</td></tr>
+<tr><td>6</td><td></td><td>✓</td></tr>
+<tr><td>7</td><td>✓</td><td></td></tr>
+<tr><td>8</td><td>✓</td><td></td></tr>
+<tr><td>9</td><td>✓</td><td></td></tr>
+<tr><td>10</td><td>✓</td><td></td></tr>
+</table></div>
+<p><strong>Cəmi xal = 10-dan</strong></p>
+<h3 id="nəticələrin-şərhi" class="">Nəticələrin şərhi</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Xal</th><th>Tövsiyə</th></tr>
+<tr><td><strong>0–5</strong></td><td>ASP diaqnostik qiymətləndirməsi ehtimalı aşağıdır</td></tr>
+<tr><td><strong>≥6</strong></td><td><strong>Ətraflı ASP klinik qiymətləndirməsi tövsiyə olunur</strong></td></tr>
+</table></div>
+<p>&gt; <strong>Qeyd:</strong> AQ-10 klassik AQ-50-nin qısa versiyasıdır. NICE CG142 (UK) tərəfindən birincili səhiyyədə yetkin ASP skrininqi üçün rəsmi tövsiyə edilir. Həssaslıq ~77%, spesifiklik 36–41%. <strong>AQ-10 xüsusilə &quot;öz-özünün skrinigi&quot;ndə etibarlıdır və klinisistin ilkin müsahibəsi ilə birlikdə istifadə olunmalıdır.</strong></p>
+<hr>
+<h2 id="b3-asrs-v11-yetkin-ddhp-öz-özünü-hesabat-şkalası" class="">B.3. ASRS v1.1: Yetkin DDHP Öz-özünü Hesabat Şkalası</h2>
+<p><strong>Orijinal müəlliflər:</strong> WHO, Ronald C. Kessler və əməkdaşları, Harvard Medical School, 2005.</p>
+<p><strong>Orijinal istinad:</strong> Kessler RC, Adler L, Ames M, et al. The World Health Organization Adult DDHP Self-Report Scale (ASRS). <em>Psychological Medicine</em>, 2005; 35: 245–256.</p>
+<h3 id="təlimat" class="">Təlimat</h3>
+<p>Bu şkala yetkinlərdə DDHP simptomlarının skrininqi üçündür. Aşağıdakı 6 suala – <strong>son 6 ay ərzində</strong> necə hiss etmisiniz – əsaslanaraq cavab verin. Hər sual üçün <strong>Heç vaxt, Nadirən, Bəzən, Tez-tez, Çox tez-tez</strong> variantlarından birini seçin.</p>
+<h3 id="hissə-a-birincili-skrininq-6-sual" class="">Hissə A – Birincili skrininq (6 sual)</h3>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>Sual</th><th>Heç vaxt</th><th>Nadirən</th><th>Bəzən</th><th>Tez-tez</th><th>Çox tez-tez</th></tr>
+<tr><td>1</td><td>Bir layihənin çətin hissəsi başa çatdıqdan sonra son detalları bitirməkdə nə qədər tez-tez çətinlik çəkirsiniz?</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td>Təşkilat tələb edən bir iş görərkən işləri sıraya qoymaqda nə qədər tez-tez çətinlik çəkirsiniz?</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td>Görüş və ya öhdəlikləri xatırlamaqda nə qədər tez-tez problem yaşayırsınız?</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td>Çox düşüncə tələb edən bir tapşırığınız olduqda, nə qədər tez-tez başlamaqdan çəkinirsiniz və ya onu təxirə salırsınız?</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td>Uzun müddət oturmalı olduğunuz vaxt nə qədər tez-tez əl və ayaqlarınızı qımıldadırsınız və ya dartırsınız?</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td>Nə qədər tez-tez &quot;motorla işləyən&quot; kimi həddindən artıq fəal və ya bir şeyi etmək məcburiyyətində hiss edirsiniz?</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<h3 id="hesablama-hissə-a-üçün" class="">Hesablama (Hissə A üçün)</h3>
+<p>Cədvəldəki bold hücrələrdə olan cavablar – müsbət əlamətdir.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Sual</th><th>Müsbət əlamət sayılan cavablar</th></tr>
+<tr><td>1</td><td><strong>Bəzən, Tez-tez, Çox tez-tez</strong></td></tr>
+<tr><td>2</td><td><strong>Bəzən, Tez-tez, Çox tez-tez</strong></td></tr>
+<tr><td>3</td><td><strong>Bəzən, Tez-tez, Çox tez-tez</strong></td></tr>
+<tr><td>4</td><td><strong>Tez-tez, Çox tez-tez</strong></td></tr>
+<tr><td>5</td><td><strong>Tez-tez, Çox tez-tez</strong></td></tr>
+<tr><td>6</td><td><strong>Tez-tez, Çox tez-tez</strong></td></tr>
+</table></div>
+<p><strong>Cəmi müsbət əlamət sayı = \_\_\_\_\_ / 6</strong></p>
+<h3 id="nəticələrin-şərhi" class="">Nəticələrin şərhi</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Müsbət əlamət sayı</th><th>Şərh</th></tr>
+<tr><td><strong>0–3</strong></td><td>Simptomlar yetkin DDHP üçün tipik deyil</td></tr>
+<tr><td><strong>≥4</strong></td><td><strong>Simptomlar yetkin DDHP üçün yüksək dərəcədə uyğundur. Tibbi qiymətləndirmə tövsiyə olunur.</strong></td></tr>
+</table></div>
+<h3 id="hissə-b-genişləndirilmiş-sorğu-12-əlavə-sual" class="">Hissə B – Genişləndirilmiş sorğu (12 əlavə sual)</h3>
+<p>Hissə A müsbət olduqda, klinik qiymətləndirmə ilə birgə istifadə üçün Hissə B sualları (12 əlavə sual) istifadə olunur. Hissə B tam versiyası tərtibatçıların rəsmi saytından əldə edilə bilər: https://www.hcp.med.harvard.edu/ncs/asrs.php</p>
+<p>&gt; <strong>Qeyd:</strong> ASRS v1.1 – ÜST tərəfindən hazırlanmış, dünyada ən çox istifadə olunan yetkin DDHP skrininq şkalasıdır. Dünyaca olan Kessler tərəfindən sonra <strong>ASRS-5 (DSM-5 meyarlarına görə, 2017)</strong> işlənilib – daha qısa 5 suallı versiya. Hər iki versiya skrininq üçün münasibdir, ASRS v1.1 hələ də geniş istifadədədir.</p>
+<hr>
+<h2 id="b4-snap-iv-swanson-nolan-və-pelham-reytinq-şkalası-uşaq-ddhp" class="">B.4. SNAP-IV: Swanson, Nolan və Pelham Reytinq Şkalası (uşaq DDHP)</h2>
+<p><strong>Orijinal müəlliflər:</strong> James M. Swanson, 1983.</p>
+<p><strong>Orijinal istinad:</strong> Swanson JM. School-based assessments and interventions for ADD students. Irvine, CA: KC Publishing, 1992.</p>
+<h3 id="təlimat" class="">Təlimat</h3>
+<p>SNAP-IV – uşaqlarda DDHP simptomlarının DSM-IV/DSM-5 meyarlarına əsaslanan qiymətləndirməsidir. <strong>Valideyn və ya müəllim tərəfindən doldurulur.</strong> Hər simptom son 1 ay ərzində uşağınızda necə müşahidə olunur: <strong>Heç (0), Kifayət qədər (1), Çox (2), Çox-çox (3).</strong></p>
+<h3 id="suallar-snap-iv-qısa-versiya-26-sual" class="">Suallar (SNAP-IV qısa versiya – 26 sual)</h3>
+<p><strong>Diqqətsizlik subskalası (Items 1–9):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>İfadə</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>1</td><td>Tez-tez məktəb işində və ya digər fəaliyyətlərdə diqqətsiz səhvlər buraxır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td>Tez-tez diqqətini tapşırıqlarda və ya oyunlarda saxlamaqda çətinlik çəkir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td>Tez-tez birbaşa danışıldıqda dinləmir kimi görünür</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td>Tez-tez təlimatlara əməl etmir və məktəb işini, gündəlik tapşırıqları bitirmir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td>Tez-tez tapşırıqları və fəaliyyətləri təşkil etməkdə çətinlik çəkir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td>Tez-tez davamlı zehni səy tələb edən tapşırıqlardan qaçır, xoşlamır və ya könülsüzlüklə yerinə yetirir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td>Tez-tez tapşırıqlar və ya fəaliyyətlər üçün lazımi əşyaları itirir (məktəb materialları, karandaş, kitab)</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td>Tez-tez xarici stimullarla asanlıqla dağılır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>9</td><td>Tez-tez gündəlik fəaliyyətlərdə unutkandır</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<p><strong>Hiperaktivlik-impulsivlik subskalası (Items 10–18):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>İfadə</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>10</td><td>Tez-tez əl və ayaqlarını qımıldadır və ya oturduğu yerdə dartır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>11</td><td>Tez-tez otaqda oturmalı olduğu yerdə oturmur</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>12</td><td>Tez-tez qeyri-adi vəziyyətlərdə həddindən artıq qaçır və ya dırmaşır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>13</td><td>Tez-tez sakit oynamaqda çətinlik çəkir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>14</td><td>Tez-tez &quot;hərəkətli&quot; və ya &quot;motorla işləyən&quot; kimi davranır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>15</td><td>Tez-tez həddindən artıq danışır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>16</td><td>Tez-tez sual bitməmiş cavabları ağızdan qaçırdır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>17</td><td>Tez-tez öz növbəsini gözləyə bilmir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>18</td><td>Tez-tez başqalarının fəaliyyətini kəsir (söhbətə, oyuna)</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<p><strong>Opozisiyon-etiraz davranışı subskalası (Items 19–26):</strong></p>
+<div class="tbl-wrap"><table>
+<tr><th>№</th><th>İfadə</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><td>19</td><td>Tez-tez özünü itirir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>20</td><td>Tez-tez yetkinlərlə mübahisə edir</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>21</td><td>Tez-tez yetkinlərin tələblərinə və ya qaydalara qarşı çıxır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>22</td><td>Tez-tez qəsdən başqalarını qıcıqlandırır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>23</td><td>Tez-tez öz səhvləri və ya pis davranışı üçün başqalarını günahlandırır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>24</td><td>Tez-tez başqaları tərəfindən asan qıcıqlandırılır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>25</td><td>Tez-tez əsəbidir və kəskin narazıdır</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>26</td><td>Tez-tez qisasçı və ya kinli davranır</td><td></td><td></td><td></td><td></td></tr>
+</table></div>
+<h3 id="hesablama" class="">Hesablama</h3>
+<p><strong>Hər subskalanın ortalaması:</strong></p>
+<ul>
+<li>Diqqətsizlik subskalası (1–9): cəm ÷ 9 = \_\_\_\_\_</li>
+<li>Hiperaktivlik-impulsivlik subskalası (10–18): cəm ÷ 9 = \_\_\_\_\_</li>
+<li>Opozisiyon-etiraz subskalası (19–26): cəm ÷ 8 = \_\_\_\_\_</li>
+</ul>
+<h3 id="nəticələrin-şərhi-orta-səviyyələr" class="">Nəticələrin şərhi (orta səviyyələr)</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Subskala</th><th>Valideyn: müsbət sərhəd</th><th>Müəllim: müsbət sərhəd</th></tr>
+<tr><td>Diqqətsizlik</td><td>≥1,78</td><td>≥2,56</td></tr>
+<tr><td>Hiperaktivlik-impulsivlik</td><td>≥1,44</td><td>≥1,78</td></tr>
+<tr><td>Opozisiyon-etiraz</td><td>≥1,88</td><td>≥2,00</td></tr>
+</table></div>
+<p><em>Bu sərhədlər Bussing et al., 2008 məlumatlarına əsaslanır və ABŞ populyasiyası üçündür. Azərbaycan populyasiyasında xüsusi validasiya aparılmamışdır – nəticələr klinik kontekstdə şərh edilməlidir.</em></p>
+<h3 id="diaqnostik-şərh" class="">Diaqnostik şərh</h3>
+<p>DDHP-nin DSM meyarlarına uyğun təqdimat növü:</p>
+<ul>
+<li><strong>Əsasən diqqətsiz:</strong> Yalnız diqqətsizlik subskalası müsbət;</li>
+<li><strong>Əsasən hiperaktiv-impulsiv:</strong> Yalnız hiperaktivlik subskalası müsbət;</li>
+<li><strong>Kombinə edilmiş:</strong> Hər iki subskala müsbət.</li>
+</ul>
+<p>Opozisiyon-etiraz subskalası ilə müsbət nəticə – <strong>komorbid opozisiyon-etiraz pozuntusunun (ODD, XBT-11 <span class="icd">6C90</span>)</strong> əhtimalını göstərir.</p>
+<p>&gt; <strong>Qeyd:</strong> SNAP-IV – tədqiqat və klinik istifadə üçün sərbəst əlçatandır. Tam 90 suallı versiya, qısa 26 suallı versiya və müəllim versiyaları Swanson prof. rəsmi saytından yüklənə bilər: http://www.shared-care.ca/files/Scoring_for_SNAP_IV_Guide_26-item.pdf</p>
+<hr>
+<h2 id="b5-intellektual-və-adaptiv-qiymətləndirmənin-əsas-alətləri-məlumat-cəd" class="">B.5. Intellektual və adaptiv qiymətləndirmənin əsas alətləri (məlumat cədvəli)</h2>
+<p>Aşağıdakı alətlər <strong>lisenziyalı psixoloji alətlərdir</strong> və mətnin içində tam verilə bilmirlər. Onların əldə edilməsi və istifadəsi üçün klinik psixoloq və ya ixtisaslı mütəxəssis lazımdır.</p>
+<h3 id="b51-i̇ntellektual-qiymətləndirmə" class="">B.5.1. İntellektual qiymətləndirmə</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Alət</th><th>Yaş qrupu</th><th>Naşir</th><th>Tipik vaxt</th></tr>
+<tr><td><strong>WPPSI-IV</strong> (Wechsler Preschool and Primary Scale of Intelligence)</td><td>2 il 6 ay – 7 il 7 ay</td><td>Pearson</td><td>60–90 dəq</td></tr>
+<tr><td><strong>WISC-V</strong> (Wechsler Intelligence Scale for Children)</td><td>6–16 yaş</td><td>Pearson</td><td>60–90 dəq</td></tr>
+<tr><td><strong>WAIS-IV/V</strong> (Wechsler Adult Intelligence Scale)</td><td>16–90 yaş</td><td>Pearson</td><td>60–90 dəq</td></tr>
+<tr><td><strong>Stanford-Binet 5</strong></td><td>2 yaş+</td><td>Riverside Insights</td><td>45–75 dəq</td></tr>
+<tr><td><strong>Leiter-3</strong> (qeyri-verbal)</td><td>3–75+ yaş</td><td>Stoelting</td><td>25–40 dəq</td></tr>
+<tr><td><strong>Raven&#x27;s Progressive Matrices</strong></td><td>5 yaş+</td><td>Pearson</td><td>20–40 dəq</td></tr>
+</table></div>
+<h3 id="b52-adaptiv-davranış" class="">B.5.2. Adaptiv davranış</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Alət</th><th>Yaş qrupu</th><th>Naşir</th><th>Qiymətləndirmə növü</th></tr>
+<tr><td><strong>Vineland-3</strong> (Vineland Adaptive Behavior Scales)</td><td>Doğuşdan 90+ yaşa</td><td>Pearson</td><td>Valideyn/müəllim müsahibəsi</td></tr>
+<tr><td><strong>ABAS-3</strong> (Adaptive Behavior Assessment System)</td><td>Doğuşdan 89 yaşa</td><td>WPS</td><td>Valideyn/müəllim müsahibəsi</td></tr>
+</table></div>
+<h3 id="b53-autizm-diaqnostik-alətləri" class="">B.5.3. Autizm diaqnostik alətləri</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Alət</th><th>Yaş qrupu</th><th>Naşir</th><th>Tipik vaxt</th></tr>
+<tr><td><strong>ADOS-2</strong> (Autism Diagnostic Observation Schedule)</td><td>12 ay – yetkin</td><td>WPS</td><td>40–60 dəq (5 modul)</td></tr>
+<tr><td><strong>ADI-R</strong> (Autism Diagnostic Interview – Revised)</td><td>2 yaş – yetkin</td><td>WPS</td><td>90–150 dəq</td></tr>
+<tr><td><strong>CARS-2</strong> (Childhood Autism Rating Scale)</td><td>2 yaş+</td><td>WPS</td><td>15–30 dəq</td></tr>
+<tr><td><strong>SRS-2</strong> (Social Responsiveness Scale)</td><td>2,5–yaş+</td><td>WPS</td><td>15–20 dəq</td></tr>
+</table></div>
+<h3 id="b54-ddhp-ətraflı-qiymətləndirmə" class="">B.5.4. DDHP ətraflı qiymətləndirmə</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Alət</th><th>Yaş qrupu</th><th>Naşir</th></tr>
+<tr><td><strong>Conners-3</strong> (Conners Rating Scales)</td><td>6–18 yaş</td><td>MHS</td></tr>
+<tr><td><strong>Conners CBRS</strong></td><td>6–18 yaş</td><td>MHS</td></tr>
+<tr><td><strong>CAARS</strong> (Conners Adult DDHP Rating Scales)</td><td>18+ yaş</td><td>MHS</td></tr>
+<tr><td><strong>BRIEF-2</strong> (Behavior Rating Inventory of Executive Function)</td><td>5–18 yaş</td><td>PAR</td></tr>
+<tr><td><strong>CPT-3</strong> (Conners Continuous Performance Test)</td><td>8 yaş+</td><td>MHS</td></tr>
+</table></div>
+<hr>
+<h2 id="müəllifin-qeydi" class="">Müəllifin qeydi</h2>
+<p>Əlavə B-də təqdim edilən skrininq şkalaları (M-CHAT-R, AQ-10, ASRS v1.1, SNAP-IV) klinik işdə birbaşa istifadə üçün hazırdır. Bu şkalaların müəlliflərinə və onların qurumlarına – <strong>WHO, Harvard Medical School, Baron-Cohen və əməkdaşlarına, Robins, Fein, Barton və Swansona</strong> – müasir psixiatriyaya böyük töhfələrinə görə təşəkkür edirik.</p>
+<p>Lisenziyalı diaqnostik alətlər (ADOS-2, WISC-V, Vineland-3 və s.) bu kitabda tam təqdim edilə bilmir – onların istifadəsi xüsusi təlim və rəsmi əldə edilmiş nüsxə tələb edir. Klinik psixoloqlar bu alətləri Pearson, WPS, MHS kimi rəsmi naşirlər vasitəsilə əldə etməlidirlər.</p>
+<p><strong>Azərbaycan dilinə rəsmi və validasiya edilmiş tərcümə məsələsi:</strong> Yuxarıda təqdim edilən Azərbaycanca tərcümələr klinik istifadə üçün işçi variantdır. Elmi nəşrlər və validasiya araşdırmaları üçün rəsmi naşirlərlə əlaqə zəruridir. Azərbaycan populyasiyasında standartlaşdırılmış normların hazırlanması mühüm gələcək vəzifədir.</p>
+<hr>
+      <nav class="page-nav"><a href="bolme-ps.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">PSİXOSOMATİK</span></a><a href="elave-acde.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">Əlavələr A–E</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "elave-skalalar";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 8 — DİSSOSİATİV">
+<title>BÖLMƏ 8 — DİSSOSİATİV | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-8" class="h-bolme">BÖLMƏ 8</h1>
+<h2 id="di̇ssosi̇ati̇v-pozuntular" class="">DİSSOSİATİV POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B60</span>–6B6Z — Dissociative disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44</span> — Dissosiativ [konversiya] pozuntular</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Dissociative Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6B60</span></strong></td><td>Dissosiativ neyroloji simptom pozuntusu</td><td>8.1</td></tr>
+<tr><td><strong><span class="icd">6B61</span></strong></td><td>Dissosiativ amneziya</td><td>8.2</td></tr>
+<tr><td><strong><span class="icd">6B62</span></strong></td><td>Dissosiativ fuqa</td><td>8.3</td></tr>
+<tr><td><strong><span class="icd">6B63</span></strong></td><td>Trans pozuntusu</td><td>8.4</td></tr>
+<tr><td><strong><span class="icd">6B64</span></strong></td><td>Özündən ayrılma pozuntusu (Depersonalizasiya-derealizasiya)</td><td>8.5</td></tr>
+<tr><td><strong><span class="icd">6B65</span></strong></td><td>Dissosiativ şəxsiyyət pozuntusu (DŞP)</td><td>8.6</td></tr>
+<tr><td><strong><span class="icd">6B66</span></strong></td><td>Qismən dissosiativ şəxsiyyət pozuntusu</td><td>8.7</td></tr>
+<tr><td><strong>6B6Y/Z</strong></td><td>Digər/dəqiqləşdirilməmiş</td><td>—</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="konversiya-pozuntusu-dissosiativ-neyroloji-simptom-pozuntusu" class="">&quot;Konversiya pozuntusu&quot; → &quot;Dissosiativ neyroloji simptom pozuntusu&quot;</h3>
+<p>XBT-10-da bu qrup &quot;dissosiativ (konversiya) pozuntular&quot; (<span class="icd">F44</span>) adlanırdı. <strong>XBT-11 terminologiyanı dəyişdi:</strong></p>
+<ul>
+<li><strong>&quot;Konversiya&quot;</strong> – Freyd-vari, psixoanalitik termin</li>
+<li><strong>&quot;Dissosiativ neyroloji simptom pozuntusu&quot;</strong> – daha dəqiq, neyroloji context aydınlaşdırır</li>
+<li>DSM-5-TR-də &quot;Functional Neurological Symptom Disorder (FND)&quot; – yanaşmanın dəyişdiyini əks etdirir</li>
+</ul>
+<h3 id="dşp-və-qismən-dşp-ayrı-diaqnozlar" class="">DŞP və Qismən DŞP ayrı diaqnozlar</h3>
+<p>XBT-11 <strong><span class="icd">6B65</span></strong> (tam DŞP) vs <strong><span class="icd">6B66</span></strong> (qismən DŞP) ayrımı daxil etdi.</p>
+<h3 id="trans-pozuntusu" class="">Trans pozuntusu</h3>
+<p>XBT-11 mədəni kontekstdə trans vəziyyətlərini daha dəqiq müzakirə edir – patologiya/normal mədəni fenomen ayrımı.</p>
+<p>\newpage</p>
+<h1 id="6b60-di̇ssosi̇ati̇v-neyroloji̇-si̇mptom-pozuntusu" class="h-disorder"><span class="icd">6B60</span> DİSSOSİATİV NEYROLOJİ SİMPTOM POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B60</span> — Dissosiativ Neyroloji Simptom Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44</span> — Dissosiativ pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.11 — Functional Neurological Symptom Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>Dissosiativ neyroloji simptom pozuntusu (FND) – <strong>hərəkət, sensor, koqnitiv, eşitmə, görmə, şüur pozuntularının</strong> neyroloji xəstəlik olmadan təzahür etdiyi pozuntudur.</p>
+<p><strong>Əsas prinsip:</strong> Simptomlar <strong>real</strong> (pasiyent uydurmuq deyil), <strong>neyroloji mexanizm yox</strong> (struktur patologiya), lakin <strong>funksional pozuntu</strong> mövcuddur.</p>
+<p><strong>XBT-11 / DSM-5-TR-də diaqnoz aktiv olaraq qoyulur</strong> – yalnız istisna əsasında deyil:</p>
+<ul>
+<li><strong>&quot;Pozitiv klinik əlamətlər&quot;</strong> simptomların funksional xarakterini sübut edir (Hoovers işarəsi, la belle indifférence yox artıq tələb deyil)</li>
+</ul>
+<h3 id="alt-tiplər-xbt-11" class="">Alt-tiplər (XBT-11)</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Alt-tip</th></tr>
+<tr><td><strong><span class="icd">6B60.0</span></strong></td><td>Zəiflik, iflic (motor simptom)</td></tr>
+<tr><td><strong><span class="icd">6B60.1</span></strong></td><td>Hərəkət pozuntusu (tremor, distoni, mioklonus, ataksiya)</td></tr>
+<tr><td><strong><span class="icd">6B60.2</span></strong></td><td>Yutma simptomları</td></tr>
+<tr><td><strong><span class="icd">6B60.3</span></strong></td><td>Nitq simptomları (afoni, dizartri)</td></tr>
+<tr><td><strong><span class="icd">6B60.4</span></strong></td><td>Hissizlik, anesteziya (sensor)</td></tr>
+<tr><td><strong><span class="icd">6B60.5</span></strong></td><td>Görmə simptomları</td></tr>
+<tr><td><strong><span class="icd">6B60.6</span></strong></td><td>Eşitmə simptomları</td></tr>
+<tr><td><strong><span class="icd">6B60.7</span></strong></td><td>Tutma/konvulsiya simptomları (<strong>FNE – Functional Non-Epileptic Events</strong>)</td></tr>
+<tr><td><strong><span class="icd">6B60.8</span></strong></td><td>Koqnitiv simptomlar</td></tr>
+<tr><td><strong><span class="icd">6B60.9</span></strong></td><td>Qarışıq</td></tr>
+</table></div>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="stres-diathesis-modeli" class="">Stres-diathesis modeli</h3>
+<ul>
+<li><strong>Predispozan:</strong> travma anamnezi (uşaqlıq, məişət zorakılığı), əvvəlki psixi pozuntu, şəxsiyyət xüsusiyyətləri</li>
+<li><strong>Tetikləyici:</strong> kəskin stress, fiziki zədə, xəstəlik, cərrahiyyə</li>
+<li><strong>Davamlı edən:</strong> sosial möhkəmləndirmə, pasiyent rolunun qəbulu, müalicəyə inamsızlıq</li>
+</ul>
+<h3 id="neyrobioloji" class="">Neyrobioloji</h3>
+<p><strong>Aktiv qaynak (aktual model – Edwards 2012, Carson 2016):</strong></p>
+<ul>
+<li>Prefrontal korteks → motor korteks inhibisiyası</li>
+<li>&quot;Attention top-down&quot; mexanizm – iradi kontrol bloku</li>
+<li>fMRI: motor hərəkəti zamanı prefrontal aktivasiya motor aktivasiyasını bloklayır</li>
+</ul>
+<p><strong>Prediktiv neyrologiya modeli (Hallett):</strong></p>
+<ul>
+<li>Beyin &quot;gözlənilən&quot; simptomları &quot;həqiqiləşdirir&quot;</li>
+<li>&quot;Nocebo&quot; mexanizmi</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Neyroloji klinikalarda:</strong> ~6-10% xəstə FND</li>
+<li><strong>Cins:</strong> qadın 3:1 (motor/tutma; sensor)</li>
+<li><strong>Yaş:</strong> geniş; pik 20-50 yaş</li>
+<li><strong>Azərbaycanda:</strong> somatizasiya tendensiyası ilə birlikdə geniş yayılmış ehtimal edilir; tez-tez neyroloji servisdə qalır</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="funksional-motor-simptomlar" class="">Funksional motor simptomlar</h3>
+<p><strong>Funksional tremor:</strong></p>
+<ul>
+<li>Tutarlı olmayan tezlik, genliyə</li>
+<li><strong>&quot;Entrainment test&quot;</strong> – pasiyentə başqa ritm tapşırılır → trenor tezliyi dəyişir (epileptik tremorun dəyişmədiyi)</li>
+<li>Distraksiyanla azalır</li>
+</ul>
+<p><strong>Funksional iflic/parezi:</strong></p>
+<ul>
+<li><strong>&quot;Hoover işarəsi&quot;</strong> – pasiyent bir ayağı qaldırır; eyni anda sağlam ayağın fleksiya gücü artır (normal refleks) → sağlam ayaqda refleks fleksiya komandasının olduğunu sübut edir, lakin pasiyent &quot;qaçır&quot;</li>
+<li>Müayinə nümunəsi tutarlı deyil</li>
+</ul>
+<p><strong>Funksional distoni:</strong></p>
+<ul>
+<li>Tez-tez sabit poza (fixed dystonia)</li>
+</ul>
+<h3 id="funksional-tutma-fne-functional-non-epileptic-events" class="">Funksional tutma (FNE – Functional Non-Epileptic Events)</h3>
+<p><strong>Epilepsiyadan differensiasiya (vacib):</strong></p>
+<ul>
+<li>Uzunmüddətli davam (tipik &gt;2 dəq; epileptik 1-2 dəq)</li>
+<li>Gözlər bağlı (epileptik adətən açıq)</li>
+<li>Sinxron əzələ hərəkəti yox (epilepsiyada sinxron)</li>
+<li>Pelvik thrust (intiktual)</li>
+<li>Diqqət yayındırılmaqla dayandırma mümkün</li>
+<li><strong>Postictal dövr yox</strong> (epilepsiyada var)</li>
+<li><strong>V-EEG (Video-EEG) – diaqnostik qızıl standart</strong> – atak zamanı EEQ normaldır</li>
+</ul>
+<h3 id="positive-signs-aktiv-diaqnoz-üçün" class="">&quot;Positive signs&quot; – aktiv diaqnoz üçün</h3>
+<p>FND diaqnozu üçün struktur patologiyanı istisna etmək <strong>tək başına kifayət deyil</strong>. <strong>Pozitiv əlamətlər</strong> funksional xarakteri göstərməlidir:</p>
+<ul>
+<li>Hoover işarəsi, entrainment, distraksiya effekti</li>
+<li>Tutarlı olmayan klinik pattern</li>
+<li>Müayinə zamanı variasiya</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b60" class="">XBT-11 əsas tələblər (<span class="icd">6B60</span>)</h3>
+<p><strong>A.</strong> Hərəkət, sensor, koqnitiv, şüur pozuntusu</p>
+<p><strong>B.</strong> Tanınan neyroloji xəstəlik ilə tam izah olunmur</p>
+<p><strong>C.</strong> Simptomların funksional xarakterini göstərən klinik əlamətlər</p>
+<p><strong>D.</strong> Funksional pozulma</p>
+<h3 id="müayinə" class="">Müayinə</h3>
+<ul>
+<li><strong>Klinik neyroloji müayinə</strong> – funksional işarələr (Hoover, distraksiya)</li>
+<li><strong>MRT beyin</strong> – struktur istisna</li>
+<li><strong>V-EEG</strong> – funksional tutma şübhəsində</li>
+<li><strong>Somatosensory evoked potentials</strong> – funksional sensor şikayətdə</li>
+<li>Psixiatrik qiymətləndirmə – travma, psixi komorbidlik</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Epilepsiya</strong></td><td>V-EEG-də ictal dəyişiklik</td></tr>
+<tr><td><strong>MS, ALS, Myasteniya</strong></td><td>Neyroloji müayinə + laborator</td></tr>
+<tr><td><strong>Simulyasiya / Malingering</strong></td><td>Şüurlu, motiv var; FND-də şüursuz</td></tr>
+<tr><td><strong>Somatik simptom pozuntusu</strong></td><td>Somatik simptomlar + narahatlıq; neyroloji pattern yox</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="diaqnozu-bildirmə-ilk-addım" class="">Diaqnozu bildirmə (ilk addım)</h3>
+<p><strong>Kritik komponent:</strong> FND-ni pasiyentə <strong>düzgün izah etmək</strong>:</p>
+<ul>
+<li>&quot;Neyroloji zədə yox, lakin neyroloji funksiya pozuntusudur&quot;</li>
+<li>&quot;Real simptomlar, ancaq fərqli mexanizm&quot;</li>
+<li><strong>&quot;Hardware vs software&quot;</strong> analogy – beyin strukturu sağlam, &quot;proqram&quot; pozulub</li>
+<li>Uydurma olmadığını vurğulamaq</li>
+</ul>
+<h3 id="fizioterapiya" class="">Fizioterapiya</h3>
+<ul>
+<li>Funksional motor simptomlar üçün <strong>birinci xətt</strong></li>
+<li>Hərəkət patterning, qayıdış strategiyaları</li>
+<li>Nielsen protokolu</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>KDT-FND:</strong></p>
+<ul>
+<li>Tetikləyici situasiyalar, düşüncə patternləri</li>
+<li>Travma komponenti varsa TF-KDT</li>
+<li>8-12 sessiya</li>
+</ul>
+<p><strong>Birbaşa hipnoz terapiyası (bəzi klinikalarda):</strong></p>
+<ul>
+<li>Uzunmüddətli effekt sınırlı</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<ul>
+<li><strong>Spesifik FND preparatı yox</strong></li>
+<li>Komorbid depresiya, təşviş: SİUSİ</li>
+<li>Ağrı komponenti: duloksetin, amitriptilin</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Erkən diaqnoz + düzgün kommunikasiya = yaxşı proqnoz</li>
+<li>Uzun simptom sürəsi, çoxsaylı hospitalizasiya = pis</li>
+<li>50-60% pasiyentdə simptomlar stabilləşir və ya yaxşılaşır</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Stone J, et al. <em>Functional neurological symptom disorder.</em> Pract Neurol, 2020.</li>
+<li>Carson A, et al. <em>Functional symptoms in neurology.</em> J Neurol Neurosurg Psychiatry, 2016.</li>
+<li>Nielsen G, et al. <em>Physiotherapy for functional motor disorders.</em> J Neurol Neurosurg Psychiatry, 2015.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b61-di̇ssosi̇ati̇v-amnezi̇ya" class="h-disorder"><span class="icd">6B61</span> DİSSOSİATİV AMNEZİYA</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B61</span> — Dissosiativ Amneziya</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44.0</span> — Dissosiativ amneziya</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.12 — Dissociative Amnesia</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Dissosiativ amneziya – <strong>travmatik və ya stresli hadisələr, şəxsi məlumat haqqında</strong> yaddaşın itirilməsi; bu itirilmə <strong>neyroloji xəstəlik, maddə təsiri</strong> ilə izah olunmur.</p>
+<p><strong>Növləri:</strong></p>
+<ul>
+<li><strong>Lokalizə:</strong> spesifik zaman dövrünün yaddaşı (məs., travma dövrü)</li>
+<li><strong>Selektiv:</strong> bu dövr içrə bəzi hadisələr</li>
+<li><strong>Generalizə:</strong> bütün şəxsi tarixçə (nadir; fuqa ilə əlaqəli)</li>
+<li><strong>Jarqon:</strong> &quot;Dissociative block&quot; – məsafənin qorunması kimi adaptiv mexanizm</li>
+</ul>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Travma mərkəzdədir</strong> – uşaqlıq istismarı, qadın zorakılığı, döyüş travması</li>
+<li>Yaddaş konsolidasiyasının emosional stresslə maneəsidir</li>
+<li>Neyrobioloji: hipokampal supressiya, &quot;state-dependent memory&quot;</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Yayılma: ~1-2%</li>
+<li>Qadın dominant</li>
+<li>Komorbidlik: PTSP, depresiya, somatizasiya</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Pasiyent <strong>yaddaş boşluğunu bilir</strong> (bazı hallarda bilmir)</li>
+<li>Digər koqnitiv funksiyalar sağlam</li>
+<li><strong>La belle indifférence</strong> – yaddaş itkisinə görə sakit (klassik amma hər zaman deyil)</li>
+<li><strong>Fuqa varsa:</strong> pasiyent yeni kimlik qurur, köhnə həyatı yadına gəlmir</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b61" class="">XBT-11 əsas tələblər (<span class="icd">6B61</span>):</h3>
+<p><strong>A.</strong> Travmatik/stresli hadisələr, şəxsi məlumat haqqında yaddaş itirilməsi</p>
+<p><strong>B.</strong> Neyroloji xəstəlik, maddə ilə izah olunmur</p>
+<p><strong>C.</strong> Funksional pozulma</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Amnestik sindrom (neyroloji)</strong></td><td>Beyin zədəsi, Korsakoff; anterograd &gt; retrograd</td></tr>
+<tr><td><strong>Demensiya</strong></td><td>Proqressiv; geniş koqnitiv pozuntu</td></tr>
+<tr><td><strong>Simulyasiya</strong></td><td>Şüurlu; nöroloji testlər tutarsız</td></tr>
+<tr><td><strong>Alkohol (blackout)</strong></td><td>İstifadə tarixi</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>Psixoterapiya</strong> – travma-fokuslu (TF-KDT, EMDR)</li>
+<li><strong>Dəstəkləyici, güvən quran mühit</strong></li>
+<li>Hipnoz bəzən istifadə edilir (məhdud sübutluluq)</li>
+<li><strong>Acılı hadisəni &quot;açmağa&quot; məcbur etmə – ƏLEYH</strong> (retraumatizasiya riski)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Stressor aradan qaldırıldıqda spontan yaxşılaşma mümkün</li>
+<li>Travma prosessləşdirilməsi yaddaşı geri gətirə bilər</li>
+<li>Xroniki formalar – daha çətin</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Brand BL, et al. <em>Dissociative disorders: an overlooked diagnosis.</em> Psychiatr Clin North Am, 2006.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b62-di̇ssosi̇ati̇v-fuqa" class="h-disorder"><span class="icd">6B62</span> DİSSOSİATİV FUQA</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B62</span> — Fuga Hali (Dissosiativ Fuqa)</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44.3</span> — Trans və posessiya pozuntuları</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.15 — Other Specified Dissociative Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Dissosiativ fuqa – dissosiativ amneziya kontekstindəki <strong>gözlənilməz, məqsədyönlü köç</strong> + <strong>şəxsi identikliyin qismən itirilməsi</strong> və ya <strong>yeni kimliyin qurulması</strong>.</p>
+<p><strong>XBT-11-də:</strong> Fuqa artıq ayrıca pozuntu deyil – Dissosiativ amneziyanın spesifikatoru.</p>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Pasiyent bilmədən evdən uzaq yerlərə köçür</li>
+<li>Bəzən saatlar, günlər, bəzən aylar</li>
+<li><strong>Yeni ad, peşə, kimlik</strong> qurur</li>
+<li>&quot;Oyananda&quot; – özünün harada olduğunu bilmir</li>
+<li>Köhnə həyatı yadına gəlmir (generalizə amneziya)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>Dissosiativ amneziya ilə eyni (TF-KDT, dəstəkləyici mühit, psixoterapiya).</p>
+<p>\newpage</p>
+<h1 id="6b63-trans-pozuntusu" class="h-disorder"><span class="icd">6B63</span> TRANS POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B63</span> — Trans Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44.3</span> — Trans və posessiya pozuntuları</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Trans pozuntusu – <strong>şüurun dərin dəyişikliyi</strong> ilə xarakterizə olunur: ətraf mühitdən azalmış diqqət, azalmış hərəkət repertuarı, identikliyin müvəqqəti dəyişikliyi. Bu <strong>öz iradəsi ilə baş vermir</strong> və pasiyentə <strong>distress yaradır</strong>.</p>
+<p><strong>Mədəni kontekst – vacib diferensiasiya:</strong></p>
+<p>XBT-11 xüsusi qeyd edir ki, <strong>trans halları mədəni/dini praktikalarda normaldir</strong> (müxtəlif cəmiyyətlərdə ritualların bir hissəsi). <strong>Diaqnoz yalnız pasiyent üçün istənməyən, distress yaradan</strong>, funksional pozulma yaradan hallarda qoyulur.</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li>Travma kontekstindədirsə TF-KDT</li>
+<li>Mədəni/dini faktor araşdırılmalıdır</li>
+<li>SİUSİ komorbid depresiya/təşvişdə</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6b64-depersonalizasiya-dereali̇zasi̇ya-pozuntusu" class="h-disorder"><span class="icd">6B64</span> DEPERSONALIZASIYA-DEREALİZASİYA POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B64</span> — Özü-Özlərindən Ayrilma Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44.81</span> — Multipl şəxsiyyət pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.14 — Dissociative Identity Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Özündən ayrılma pozuntusu – <strong>depersonalizasiya</strong> (özündən ayrılma, özünü &quot;kənardan izləmə&quot;) <strong>və/ya derealizasiya</strong> (ətrafın gerçək olmayan, &quot;dumanıq&quot; kimi hiss edilməsi) epizodlarının davamlı və ya qayıdıcı forması; <strong>reallıq testi pozulmur</strong> (psixozdan fərqli).</p>
+<p><strong>Depersonalizasiya:</strong></p>
+<ul>
+<li>&quot;Sanki kənardan özümü izləyirəm&quot;</li>
+<li>&quot;Öz hisslərim mənə aid deyil&quot;</li>
+<li>&quot;Robotam sanki&quot;</li>
+<li>&quot;Əllərim özümün deyil&quot;</li>
+</ul>
+<p><strong>Derealizasiya:</strong></p>
+<ul>
+<li>&quot;Hər şey real deyil, yuxu kimi&quot;</li>
+<li>&quot;Ətrafım dumanla örtülüdür&quot;</li>
+<li>&quot;Rənglər solmuş, cansız&quot;</li>
+<li>&quot;Əlimdəki şeylər haqqında qeyri-real hiss&quot;</li>
+</ul>
+<p><strong>Reallıq testi sağlam:</strong> &quot;Bilirəm ki, bu real – amma <em>hiss etmirəm</em> ki real&quot;</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Stress, travma, narahatlıq</strong> – trigerləyir</li>
+<li><strong>Marihuana</strong> – tipik tetikləyici (xüsusilə ilk istifadə)</li>
+<li><strong>Ağır yorğunluq, yuxusuzluq</strong></li>
+<li><strong>Deprivation</strong> (hissizlik kamerasında)</li>
+<li>Neyrobioloji: limbik-kortikal modulasiya pozuntusu</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Ömürlük yayılma: ~2%</li>
+<li>Ötücü epizodlar (klinik deyil): 50%+ insanda</li>
+<li>Başlanğıc: adətən 16-22 yaş</li>
+<li>Komorbidlik: depresiya (60%), təşviş (40%)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li><strong>Qorxu</strong> – &quot;Dəli oluram?&quot;, &quot;Nə isə yanlış var?&quot;</li>
+<li><strong>Introspeksiya</strong> – davamlı özünü müşahidə, &quot;test etmə&quot;</li>
+<li>Sürücülükdə çətinlik</li>
+<li>Funksional qiymətləndirmə pozuntusu</li>
+<li><strong>Əhval tipik normal</strong> (ya da yüngül depresif) – anhedoniyadan fərqli</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b64" class="">XBT-11 əsas tələblər (<span class="icd">6B64</span>):</h3>
+<p><strong>A.</strong> Davamlı/qayıdıcı depersonalizasiya/derealizasiya</p>
+<p><strong>B.</strong> <strong>Reallıq testi sağlamdır</strong> (psixoz deyil)</p>
+<p><strong>C.</strong> Maddə, neyroloji, başqa psixi pozuntu ilə tam izah olunmur</p>
+<p><strong>D.</strong> Funksional pozulma</p>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Psixotik pozuntu</strong></td><td>Reallıq testi pozulur</td></tr>
+<tr><td><strong>Panik atakası</strong></td><td>Epizodik, kəskin; dp/dr keçicidir</td></tr>
+<tr><td><strong>Maddə intoksikasiyası (kanabis)</strong></td><td>Toksikologiya; intoksikasiya kontekstli</td></tr>
+<tr><td><strong>Temporal lob epilepsiyası</strong></td><td>EEQ; ictal dp/dr</td></tr>
+<tr><td><strong>MDD</strong></td><td>Anhedoniya; dp/dr tam klinik tablonun küçük hissəsi</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>KDT – birinci xətt:</strong></p>
+<ul>
+<li><strong>Koqnitiv:</strong> &quot;dəli olmaq&quot; qorxusuna müdaxilə; reallıq sınama</li>
+<li><strong>Davranış:</strong> introspeksiya azaltma (&quot;özünü izləmə&quot; kompulsiya)</li>
+<li><strong>Mindfulness</strong> – əksər hallarda faydalı (anda qalmaq)</li>
+<li><strong>Eksternallaşdırma</strong> – &quot;robot&quot; inancına müqavimət</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<ul>
+<li><strong>Spesifik preparat yox</strong> – dünyada sınırlı sübutluluq</li>
+<li>Komorbid depresiya, təşviş: <strong>SİUSİ</strong> – simptomları azalda bilər</li>
+<li><strong>Fluoksetin</strong> – bəzi tədqiqatlar</li>
+<li><strong>Lamotrijin</strong> – bəzi müsbət tədqiqatlar</li>
+<li><strong>Naltrexon</strong> – opioid antagonizmi yolu ilə (bəzi hallarda)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Komorbid depresiya, təşviş müalicə edilərsə çox hallarda dp/dr azalır</li>
+<li>Tək başına dp/dr diaqnozu xroniki ola bilər</li>
+<li>Əksər hallarda stabil (pisləşmir, yaxşılaşmır xüsusi müalicə olmadan)</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Sierra M. <em>Depersonalization: A New Look at a Neglected Syndrome.</em> Cambridge UP, 2009.</li>
+<li>Hunter EC, et al. <em>Cognitive behaviour therapy for depersonalisation disorder.</em> Behav Res Ther, 2005.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b65-di̇ssosi̇ati̇v-şəxsi̇yyət-pozuntusu" class="h-disorder"><span class="icd">6B65</span> DİSSOSİATİV ŞƏXSİYYƏT POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B65</span> — Dissosiativ İdentiklik Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F44.81</span> — Multipl şəxsiyyət pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 300.14 — Other Specified Dissociative Disorder</div>
+<hr>
+<h2 id="tərif-və-nozologiya" class="">Tərif və nozologiya</h2>
+<p>DŞP – <strong>iki və ya daha çox alternativ şəxsiyyət halının (identiklik, şüur, yaddaş, qavrayış, affekt, davranış nümunəsi ilə xarakterizə)</strong> mövcudluğu; bu hallar insanın davranışına nəzarəti müəyyən vaxtlarda öz üzərinə götürür; <strong>dissosiativ amneziya</strong> bu hallar arası mövcuddur.</p>
+<p><strong>Terminoloji dəyişiklik:</strong> XBT-10-da &quot;Çox şəxsiyyət pozuntusu&quot; (Multiple Personality Disorder) adlanırdı. <strong>XBT-11/DSM-5-TR: &quot;Dissosiativ şəxsiyyət pozuntusu&quot;</strong> – daha dəqiq, &quot;çox şəxsiyyət&quot; yanıltıcı idi.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<h3 id="travma-dissosiasiya-modeli" class="">Travma-dissosiasiya modeli</h3>
+<p>DŞP <strong>ən çox şiddətli uşaqlıq travmasının</strong> (xüsusilə cinsi/fiziki istismar, neglekt) nəticəsidir:</p>
+<ul>
+<li><strong>Erkən yaşda (3-9 yaş)</strong> – neyroinkişafın həssas dövrü</li>
+<li>Uşağın psixikası travmatik yaşantıları &quot;böl&quot; üsulu ilə emal edir → alternativ identiklik halları</li>
+<li>Hər identiklik müəyyən emosional vəziyyəti, travmatik xatirəni &quot;saxlayır&quot;</li>
+</ul>
+<h3 id="i̇atrogen-mübahisə" class="">İatrogen mübahisə</h3>
+<p>Mübahisəli mövzu: <strong>&quot;İatrogen DŞP&quot;</strong> – bəzi tədqiqatçılar müəyyən müalicə texnikaları (hipnoz, alternativ identikliklərin adlandırılması) DŞP-in yaradılmasında rol oynaya bilər hesab edir. Lakin əksər DŞP ekspertləri travma modelini dəstəkləyir.</p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Yayılma:</strong> 1-3% ümumi populyasiyada (klinik nümunədə az aşkar olunur)</li>
+<li><strong>Cins:</strong> qadın 9:1 (diaqnostik gecikmə; kişilər daha az diaqnoz alır)</li>
+<li><strong>Diaqnostik gecikmə:</strong> orta 6-12 il (əvvəlcə depresiya, şizofreniya, BPD diaqnozu)</li>
+<li><strong>Uşaqlıq cinsi istismarı:</strong> 90%+ hallarda tarixçədə</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="alternativ-identiklik-halları-alters" class="">Alternativ identiklik halları (Alters)</h3>
+<ul>
+<li><strong>Sayı:</strong> 2-100+ (ağır travma = daha çox; orta 15-20)</li>
+<li><strong>Xüsusiyyətlər:</strong> hər birinin öz adı, yaşı, cinsi, nitqi, davranışı, yaddaşı var</li>
+<li><strong>&quot;Host&quot;</strong> – ən çox zamanı əhatə edən identiklik</li>
+<li><strong>&quot;Persecutor&quot; alt</strong> – özünü zədələyən, təhlükəli</li>
+<li><strong>&quot;Child&quot; alt</strong> – uşaqlıq yaşında, qorunan</li>
+<li><strong>&quot;Protector&quot; alt</strong> – qoruyucu</li>
+</ul>
+<h3 id="switching-keçid" class="">Switching (Keçid)</h3>
+<ul>
+<li>Bir identiklikdən digərinə keçid – <strong>tez-tez stresslə tetiklənir</strong></li>
+<li>Klinik görünür: baxışın dəyişməsi, bədən dilinin dəyişməsi, nitqin dəyişməsi, yaddaş boşluğu</li>
+<li>Pasiyent keçidi bilmir (əksər hallarda)</li>
+</ul>
+<h3 id="klinik-simptomlar" class="">Klinik simptomlar</h3>
+<ul>
+<li><strong>&quot;Çoxsaylı vaxtı yadda saxlamama&quot;</strong> – &quot;gün ortasında yuxuya getmişəm&quot; kimi; həqiqətdə alt keçiB</li>
+<li><strong>Səslər baş içindən</strong> – altların danışması (psixozdan fərqli: bunlar &quot;daxili səslər&quot;)</li>
+<li><strong>&quot;Yaşanmamış şey&quot;</strong> – mağazada alış-veriş etmişlər, lakin bilmirəm; dost deyir ki, söhbət etdik, yadıma gəlmir</li>
+<li><strong>Bədən görüntüsündə tutarsızlıq</strong> – güzgüyə baxanda tanımır</li>
+<li><strong>Self-harm</strong> – adətən &quot;persecutor&quot; altın hərəkəti</li>
+<li><strong>&quot;Passive influence&quot;</strong> – nəsə etmişəm, amma etmək istəmirdim</li>
+</ul>
+<h3 id="komorbidlik" class="">Komorbidlik</h3>
+<ul>
+<li><strong>PTSP/KPTSP</strong> – demək olar bütün hallarda</li>
+<li><strong>MDD</strong></li>
+<li><strong>Yemə pozuntuları</strong></li>
+<li><strong>Maddə istifadəsi</strong></li>
+<li><strong>BPD</strong> – örtüşmə</li>
+<li><strong>Somatoform simptomlar</strong></li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-əsas-tələblər-6b65" class="">XBT-11 əsas tələblər (<span class="icd">6B65</span>)</h3>
+<p><strong>A.</strong> İki və ya daha çox ayrı identiklik halı:</p>
+<ul>
+<li>Hər birinin öz qavrayış, düşüncə, his, davranış nümunəsi var</li>
+<li>Müəyyən vaxtlarda insanın davranışına nəzarəti öz üzərinə götürür</li>
+</ul>
+<p><strong>B.</strong> Dissosiativ amneziya – identikliklərin keçidi arasında; şəxsi məlumatın müəyyən hissəsi bir identiklikdən digərinə gizlənir</p>
+<p><strong>C.</strong> Simptomlar maddə, neyroloji, başqa psixi pozuntu ilə tam izah olunmur</p>
+<p><strong>D.</strong> Funksional pozulma</p>
+<h3 id="dsm-5-tr-fərqləri" class="">DSM-5-TR fərqləri</h3>
+<p>DSM-5-TR meyarları demək olar eyni, lakin <strong>&quot;başqası tərəfindən müşahidə edilən və ya pasiyent özü bildirir&quot;</strong> ayrımı.</p>
+<h3 id="diaqnostik-alətlər" class="">Diaqnostik alətlər</h3>
+<ul>
+<li><strong>SCID-D</strong> (Structural Clinical Interview for Dissociative Disorders) – qızıl standart</li>
+<li><strong>MID</strong> (Multiscale Dissociation Inventory)</li>
+<li><strong>DES-II</strong> (Dissociative Experiences Scale) – skrining</li>
+</ul>
+<h2 id="differensial-diaqnostika" class="">Differensial diaqnostika</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Pozuntu</th><th>Fərqləndirici əlamətlər</th></tr>
+<tr><td><strong>Şizofreniya</strong></td><td>&quot;Səslər&quot; → xarici (şizofreniya); &quot;daxili&quot; (DŞP); psixoz meyarları</td></tr>
+<tr><td><strong>BPD</strong></td><td>Geniş şəxsiyyət instabilitliyi; alternativ identiklik keçidi yox</td></tr>
+<tr><td><strong>Epilepsiya temporal lob</strong></td><td>EEQ; ictal simptomlar</td></tr>
+<tr><td><strong>Malingering</strong></td><td>Şüurlu; neyroloji testlər tutarsız</td></tr>
+<tr><td><strong>Simulyasiya</strong></td><td>İkincil qazanc</td></tr>
+</table></div>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="faza-yönümlü-müalicə" class="">Faza-yönümlü müalicə</h3>
+<p><strong>ISSTD (International Society for the Study of Trauma and Dissociation) Rehbərləri:</strong></p>
+<p><strong>Faza 1 – Təhlükəsizlik, sabitləşmə, bacarıqlar:</strong></p>
+<ul>
+<li>Özə zərər vermənin azaldılması</li>
+<li>Affekt tənzimləmə</li>
+<li><strong>&quot;İnsider communication&quot;</strong> – identikliklərin bir-biri ilə daxili dialoq</li>
+<li>Güvən qurmaq</li>
+</ul>
+<p><strong>Faza 2 – Travma prosessləşməsi:</strong></p>
+<ul>
+<li>Travma xatirələri diqqətlə prosessləşdirilir</li>
+<li>EMDR uyğunlaşdırılmış</li>
+<li><strong>Birbaşa şüurlu travma ekspozisiyası TƏHLÜKƏLİDİR</strong> – faza 1 tamamlanmadan</li>
+</ul>
+<p><strong>Faza 3 – Bütünləşmə:</strong></p>
+<ul>
+<li>Alternativ identikliklərin &quot;inteqrasiyası&quot; (bütün identikliklərin bir bütöv halına gəlməsi – məqsəd)</li>
+<li>Orta 5-10 il terapiya</li>
+</ul>
+<h3 id="farmakoterapiya" class="">Farmakoterapiya</h3>
+<ul>
+<li><strong>DŞP üçün spesifik preparat yox</strong></li>
+<li><strong>Komorbid MDD/PTSP:</strong> SİUSİ</li>
+<li><strong>Affekt disregulyasiyası:</strong> DBT + dərman</li>
+<li><strong>Psixotik simptom varsa:</strong> aşağı doza atipik antipsixotik (diqqətlə)</li>
+<li>Benzodiazepinlərdən qaçınma (dissosiasiyayı artırır)</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Uzunmüddətli terapiya ilə yaxşılaşma mümkündür</strong></li>
+<li><strong>Bütünləşmə məqsəd</strong>, lakin hər zaman əlçatan deyil</li>
+<li>&quot;Birliksiz funksionallıq&quot; (functional plurality) – alternativ, lakin sağlam gediş</li>
+<li>Xidmətlərə çıxış, sosial dəstək kritik</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Brand BL, et al. <em>Separating fact from fiction: an empirical examination of DID.</em> Psychol Clin North Am, 2016.</li>
+<li>ISSTD. <em>Guidelines for Treating Dissociative Identity Disorder in Adults.</em> 3rd revision, 2011.</li>
+<li>Herman JL. <em>Trauma and Recovery.</em> BasicBooks, 1992.</li>
+<li>van der Kolk BA. <em>The Body Keeps the Score.</em> Viking, 2014.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6b66-qi̇smən-di̇ssosi̇ati̇v-şəxsi̇yyət-pozuntusu" class="h-disorder"><span class="icd">6B66</span> QİSMƏN DİSSOSİATİV ŞƏXSİYYƏT POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6B66</span> — Qismən Dissosiativ İdentiklik Pozuntusu</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F48.1</span> — Depersonalizasiya-derealizasiya sindromu</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>DŞP meyarlarını tam qarşılamayan, lakin <strong>ayrı identiklik intruziyaları</strong> mövcud olan forma:</p>
+<ul>
+<li>Alternativ identiklik hallarda insanın davranışına <strong>tam nəzarət etmir</strong> (qismən)</li>
+<li><strong>Çoxsaylı alternativ identiklik olmaya bilər</strong></li>
+<li>Yaddaş boşluqları daha yumşaq</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<ul>
+<li>Qismən identiklik keçidləri</li>
+<li>Passiv təsir simptomları</li>
+<li>Amneziya epizodları – yüngül-orta</li>
+<li>Komorbid PTSP daha tez-tez</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p>DŞP ilə oxşar faza-yönümlü müalicə, lakin intensivlik azaldılmış.</p>
+<hr>
+<h2 id="bölmə-8-üçün-ümumi-mənbələr" class="">Bölmə 8 üçün ümumi mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Spiegel D, et al. <em>Dissociative disorders in DSM-5.</em> Depress Anxiety, 2011.</li>
+<li>Brand BL, et al. <em>A survey of practices and recommended treatment interventions among expert therapists treating patients with dissociative identity disorder.</em> Psychol Trauma, 2012.</li>
+<li>Stone J, et al. <em>Functional neurological symptom disorder.</em> Pract Neurol, 2020.</li>
+<li>ISSTD. <em>Guidelines for Treating Dissociative Identity Disorder in Adults.</em> 2011.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Popov Yu.V., Vid V.D. <em>Müasir klinik psixiatriya.</em> (Современная клиническая психиатрия) – Sankt-Peterburq: Reç, 2006. 2-ci nəşr.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-07.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 7 — STRESS</span></a><a href="bolme-09.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 9 — YEMƏ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-08";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

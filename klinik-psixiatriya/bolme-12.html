@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 12 — MADDƏ İSTİFADƏSİ">
+<title>BÖLMƏ 12 — MADDƏ İSTİFADƏSİ | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-12" class="h-bolme">BÖLMƏ 12</h1>
+<h2 id="maddə-i̇sti̇fadəsi̇-və-asililiq-pozuntulari" class="">MADDƏ İSTİFADƏSİ VƏ ASILILIQ POZUNTULARI</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C40</span>–6C9Z — Disorders due to substance use or addictive behaviours</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F10</span>–<span class="icd">F19</span> — Mental and behavioural disorders due to psychoactive substance use</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Substance-Related and Addictive Disorders</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<h3 id="maddə-qrupları-xbt-11" class="">Maddə qrupları (XBT-11):</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Kod</th><th>Maddə</th></tr>
+<tr><td><span class="icd">6C40</span></td><td>Alkohol</td></tr>
+<tr><td><span class="icd">6C41</span></td><td>Kannabis</td></tr>
+<tr><td><span class="icd">6C42</span></td><td>Sintetik kannabinoidlər</td></tr>
+<tr><td><span class="icd">6C43</span></td><td>Opioidlər</td></tr>
+<tr><td><span class="icd">6C44</span></td><td>Sedativlər, hipnotiklər, anksiolotiklər (benzodiazepin daxil)</td></tr>
+<tr><td><span class="icd">6C45</span></td><td>Kokain</td></tr>
+<tr><td><span class="icd">6C46</span></td><td>Stimulyantlar (amfetamin, metamfetamin, MDMA)</td></tr>
+<tr><td><span class="icd">6C47</span></td><td>Sintetik katinonlar</td></tr>
+<tr><td><span class="icd">6C48</span></td><td>Kafein</td></tr>
+<tr><td><span class="icd">6C49</span></td><td>Halusinogenlər (LSD, ketamin, PCP, meskalin)</td></tr>
+<tr><td>6C4A</td><td>Nikotindən inhalyatorlar/tütün</td></tr>
+<tr><td>6C4B</td><td>Uçucu maddələr (yapışqan, boya)</td></tr>
+<tr><td>6C4C</td><td>MDMA (ekzaz)</td></tr>
+<tr><td>6C4D</td><td>Dissosiativlər</td></tr>
+<tr><td>6C4E</td><td>Digər maddələr</td></tr>
+<tr><td><strong><span class="icd">6C90</span></strong></td><td>Oyun (gambling) asılılıq pozuntusu</td></tr>
+<tr><td><strong><span class="icd">6C91</span></strong></td><td>Oyun-video (gaming) asılılıq pozuntusu</td></tr>
+</table></div>
+<h3 id="klinikal-anlayışlar-hər-maddə-üçün" class="">Klinikal anlayışlar (hər maddə üçün):</h3>
+<ul>
+<li><strong>Zərərli istifadə</strong> – fəsadlar var, asılılıq tam yox</li>
+<li><strong>Asılılıq sindromu</strong> – tam asılılıq (tolerantlıq, withdrawal, güclü istəmə (craving), nəzarətsizlik)</li>
+<li><strong>Zəhərlənmə (intoksikasiya)</strong></li>
+<li><strong>Kəsmə (withdrawal)</strong></li>
+<li><strong>İnduksiyalı pozuntular</strong> (psixoz, depressiya, anxiety, mania, delirium)</li>
+</ul>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="oyun-asılılığı-yeni" class="">&quot;Oyun asılılığı&quot; – yeni</h3>
+<p><strong>XBT-11 <span class="icd">6C91</span></strong> (Gaming disorder) dünyada ilk dəfə rəsmi diaqnoz kimi tanındı (2022). Əhəmiyyətli mübahisə, lakin WHO qərar verdi.</p>
+<h3 id="zərərli-istifadə-modeli-dəqiqləşdi" class="">&quot;Zərərli istifadə modeli&quot; dəqiqləşdi</h3>
+<p>XBT-11 <strong>&quot;single episode of harmful use&quot;</strong> kateqoriyası əlavə etdi.</p>
+<h3 id="asılılıq-tərifi-asam-2019-ilə-uyğunlaşma" class="">&quot;Asılılıq&quot; tərifi – ASAM 2019 ilə uyğunlaşma</h3>
+<p>Asılılıq artıq sadə fiziki asılılıq deyil – <strong>beyin mükafat sistemi, motivasiya, yaddaş, davranış nəzarəti</strong> disregulyasiyası.</p>
+<p>\newpage</p>
+<h1 id="6c4z-ümumi-pri̇nsi̇plər-asililiq-nörobi̇ologi̇yasi-və-di̇aqnosti̇ka" class="h-disorder">6C4Z ÜMUMI PRİNSİPLƏR: ASILILIQ NÖROBİOLOGİYASI VƏ DİAQNOSTİKA</h1>
+<hr>
+<h2 id="asılılığın-neyrobioloji-modeli" class="">Asılılığın neyrobioloji modeli</h2>
+<h3 id="mükafat-sistemi-reward-pathway" class="">Mükafat sistemi (reward pathway)</h3>
+<p><strong>Nükleus akkumbensdə dopamin sürüşü:</strong></p>
+<ul>
+<li>Bütün asılığı yaradan maddələr <strong>mezolimbik dopamin sistemini aktivləşdirir</strong></li>
+<li>Doğal mükafat (yemək, seks) → dopamin sürüşü</li>
+<li>Maddə (xüsusilə kokain, amfetamin, opioidlər) → <strong>10-100 dəfə güclü</strong> dopamin sürüşü</li>
+<li>Beyin bu &quot;super stimulu&quot; öyrənir</li>
+</ul>
+<h3 id="tolerantlıq-və-withdrawal" class="">Tolerantlıq və withdrawal</h3>
+<ul>
+<li><strong>Tolerantlıq:</strong> eyni effekt üçün daha yüksək doza lazım (reseptor downregulasiyası)</li>
+<li><strong>Fiziki asılılıq:</strong> maddə kəsildikdə <strong>withdrawal</strong> (çəkilmə) sindromu</li>
+<li><strong>Psixoloji asılılıq:</strong> maddə olmadan narahat, craving</li>
+</ul>
+<h3 id="asılılıq-beyin-xəstəliyi-kimi-nida-modeli" class="">Asılılıq beyin xəstəliyi kimi (NIDA modeli)</h3>
+<p>1. Binge/intoksikasiya (nükleus akkumbensdə dopamin)</p>
+<p>2. Withdrawal/neqativ affekt (amigdala; kortizol, noradrenalin yüksək)</p>
+<p>3. Meşğulluq/gözləmə (prefrontal korteks; decision-making pozuntusu, craving)</p>
+<ul>
+<li><strong>3 mərhələ:</strong></li>
+<li>Hər mərhələ dövr yaradır → xroniki xəstəlik</li>
+</ul>
+<h2 id="diaqnostik-meyarlar" class="">Diaqnostik meyarlar</h2>
+<h3 id="asılılıq-sindromu-xbt-11dsm-5-tr-ən-azı-2-3-meyar-12-ay-ərzində" class="">Asılılıq sindromu (XBT-11/DSM-5-TR – ən azı 2-3 meyar 12 ay ərzində)</h3>
+<ol>
+<li>Tolerantlıq – eyni effekt üçün miqdar artımı</li>
+<li>Withdrawal – maddə kəsildikdə çəkilmə sindromu</li>
+<li>Daha uzun / daha çox istifadə planlandığından</li>
+<li>Məhdudlaşdırmaq istəyir, bacarıq yox</li>
+<li>Maddə əldə etmək, istifadə etmək, ondan çıxmaq üçün çox vaxt xərclənir</li>
+<li>Mühüm sosial, iş, digər fəaliyyətlər tərk edilir</li>
+<li>Zərər verildiyi bilinərkən istifadə davam edir</li>
+<li><strong>Craving</strong> – güclü istəmə impulsları (DSM-5-TR əlavəsi)</li>
+</ol>
+<p><strong>Şiddət:</strong></p>
+<ul>
+<li>2-3 meyar: yüngül</li>
+<li>4-5 meyar: orta</li>
+<li>6+ meyar: ağır</li>
+</ul>
+<h3 id="zərərli-istifadə-xbt-11-harmful-use" class="">Zərərli istifadə (XBT-11: Harmful use)</h3>
+<ul>
+<li>Psixoloji/cismani/sosial zərər var</li>
+<li>Asılılıq tam meyarları yox</li>
+</ul>
+<h2 id="skrining-alətləri" class="">Skrining alətləri</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Maddə</th><th>Skala</th></tr>
+<tr><td>Alkohol</td><td><strong>AUDIT</strong> (Alcohol Use Disorders Identification Test, WHO); <strong>CAGE</strong> (4 sual)</td></tr>
+<tr><td>Ümumi maddə</td><td><strong>DAST-10</strong> (Drug Abuse Screening Test)</td></tr>
+<tr><td>Opioid</td><td><strong>ORT</strong> (Opioid Risk Tool); <strong>COWS</strong> (Clinical Opioid Withdrawal Scale)</td></tr>
+<tr><td>Kannabis</td><td><strong>CUDIT-R</strong></td></tr>
+<tr><td>Ümumi geniş</td><td><strong>ASSIST</strong> (WHO Alcohol, Smoking, Substance Involvement Screening Test)</td></tr>
+</table></div>
+<h2 id="tibbi-müayinə" class="">Tibbi müayinə</h2>
+<p><strong>Hər asılılıq pasiyentdə:</strong></p>
+<ul>
+<li>Tam qan, qaraciyər, böyrək funksiyaları</li>
+<li>Qan qlükozası, lipid profili</li>
+<li><strong>Toksikoloji skrining (sidik/qan)</strong> – müalicəni idarə etmək üçün</li>
+<li><strong>HIV, HCV, HBsAg</strong> – intravenöz istifadəçilərdə mütləq</li>
+<li>EKG (kokain, metamfetamin; QTc; kardiak)</li>
+<li>Tireoid funksiyası</li>
+<li>Hamiləlik testi (qadınlarda)</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c40-alkohol-i̇sti̇fadəsi̇-və-asililiq-pozuntusu" class="h-disorder"><span class="icd">6C40</span> ALKOHOL İSTİFADƏSİ VƏ ASILILIQ POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C40</span> — Alkohol İstifadəsi Və Asililiq Pozuntusu</div>
+<hr>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Dünyada:</strong> ən geniş yayılmış maddə pozuntusu; ~3 milyar qəbul edən, 280 milyon asılılıq</li>
+<li><strong>Azərbaycanda:</strong> əhali sırasında içki içənlər azdır (müsəlman mədəniyyəti), lakin içki içən populyasiyada ağır asılılıq mövcuddur</li>
+<li>Mortalite: <strong>3 milyon ölüm/il</strong> dünyada (qəzalar, siroz, xərçəng)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="kəskin-intoksikasiya" class="">Kəskin intoksikasiya</h3>
+<ul>
+<li>Davranış dezinhibisiyası, koordinasiya pozuntusu, nitq bulanıqlığı</li>
+<li><strong>Ağır intoksikasiya:</strong> koma, respirator depressiya (ölüm riski)</li>
+<li><strong>Qan alkoqol:</strong> 0,08% – hüquqi hədd; 0,3%+ koma riski</li>
+</ul>
+<h3 id="alkohol-kəsmə-sindromu" class="">Alkohol kəsmə sindromu</h3>
+<p><strong>Klinik qiymətləndirmə – CIWA-Ar (Clinical Institute Withdrawal Assessment):</strong></p>
+<p><strong>Yüngül (CIWA-Ar &lt;10):</strong></p>
+<ul>
+<li>Tremor, taxikardiya, tərləmə, yuxusuzluq</li>
+<li>Ambulatorda idarə oluna bilər</li>
+</ul>
+<p><strong>Orta (CIWA-Ar 10-18):</strong></p>
+<ul>
+<li>Daha şiddetli vegetativ simptomlar</li>
+</ul>
+<p><strong>Ağır (CIWA-Ar &gt;18) – TƏCİLİ:</strong></p>
+<ul>
+<li><strong>Delirium tremens</strong> – 48-72 saat sonra pik; halusinasiyalar, dezoryentasiya</li>
+<li><strong>Tonik-klonik tutmalar</strong> (kəsmədən 6-48 saat sonra)</li>
+<li><strong>Mortalite 15-20%</strong> müalicəsiz</li>
+</ul>
+<h3 id="kəsmə-müalicəsi" class="">Kəsmə müalicəsi</h3>
+<p><strong>Benzodiazepin – birinci xətt:</strong></p>
+<ul>
+<li><strong>Diazepam</strong> – uzun yarı-ömür; loading dose protokolu</li>
+<li><strong>Lorazepam</strong> – qaraciyər xəstəliyindəgüvənli (qaraciyər metabolizması yox)</li>
+<li><strong>Klonazepam</strong> – alternativ</li>
+</ul>
+<p><strong>Protokollar:</strong></p>
+<ul>
+<li><strong>Simptom tetiklənmiş:</strong> CIWA-Ar skoru əsasında (daha az benzodiazepin)</li>
+<li><strong>Sabit doz:</strong> müəyyən dozaya enir, tədricən azaldılır</li>
+</ul>
+<p><strong>Tiamin (Vitamin B1) – MÜTLƏQ:</strong></p>
+<ul>
+<li>Wernicke ensefalopatiya profilaktikası üçün</li>
+<li><strong>100-500 mq IV/IM</strong> qlükozdan əvvəl (qlükoz B1 tüketir)</li>
+</ul>
+<p><strong>Wernicke-Korsakoff sindromu:</strong></p>
+<ul>
+<li>Wernicke: konfüziya, ataksiya, oftalmoplegiya (kəskin, geri çevrilə bilər)</li>
+<li>Korsakoff: retrograd+anterograd amneziya (xroniki, az geri çevrilir)</li>
+</ul>
+<h3 id="alkohol-induksiyalı-psixiatrik-pozuntular" class="">Alkohol induksiyalı psixiatrik pozuntular</h3>
+<ul>
+<li><strong>Alkohol induksiyalı psixoz</strong> – halüsinasiyalar (eşitmə), paranoya</li>
+<li><strong>Alkohol induksiyalı depressiya</strong> – tez-tez (kəsmədən sonra 4 həftə gözlə)</li>
+<li><strong>Alkohol induksiyalı demensiya</strong></li>
+</ul>
+<h3 id="cismani-fəsadlar" class="">Cismani fəsadlar</h3>
+<ul>
+<li><strong>Qaraciyər:</strong> steatoz → hepatit → siroz → HCC</li>
+<li><strong>Pankreatit</strong> (kəskin və xroniki)</li>
+<li><strong>Kardiyomyopatiya</strong></li>
+<li><strong>Periferik neyropati</strong></li>
+<li><strong>Anemia</strong> (B12/folat; direkt toksik)</li>
+<li><strong>İmmunitet pozuntusu</strong></li>
+<li><strong>Xərçəng:</strong> ağız, qida borusu, mədə, qaraciyər, döş, bağırsaq</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="əsas-tövsiyə-bələdçiləri" class="">Əsas tövsiyə bələdçiləri</h3>
+<ul>
+<li><strong>NICE NG115 (2018):</strong> <em>Alcohol-use disorders: diagnosis, assessment and management</em></li>
+<li><strong>ASAM Clinical Practice Guideline for Alcohol Use Disorder</strong> (2023)</li>
+<li><strong>WFSBP Alcohol Guidelines</strong></li>
+<li><strong>AR Klinik Protokolu</strong> – mövcud</li>
+</ul>
+<h3 id="farmakoterapiya-içkinin-önlənməsi" class="">Farmakoterapiya – içkinin önlənməsi</h3>
+<p><strong>Naltrekson – birinci xətt:</strong></p>
+<ul>
+<li>Opioid reseptor antagonisti → içkinin &quot;mükafat&quot; effektini azaldır</li>
+<li>Oral: 50 mq/gün; LAI: 380 mq aylıq (Vivitrol)</li>
+<li>Effektiv: içki epizodlarını, ağır içkini azaldır</li>
+<li><strong>Qaraciyər xəstəliyindədiqqət</strong> (hepatotoksik yüksək dozada)</li>
+</ul>
+<p><strong>Akamprosat – birinci xətt:</strong></p>
+<ul>
+<li>Qlutamat/GABA balansını normallaşdırır</li>
+<li>Doza: 666 mq 3x/gün</li>
+<li>Qaraciyər xəstəliyindəgüvənli</li>
+<li>Böyrək xəstəliyindəəks göstəriş</li>
+</ul>
+<p><strong>Disulfiram (Antabus) – ikinci xətt:</strong></p>
+<ul>
+<li>Aldehid dehidrogenazasını bloklayır</li>
+<li>Alkohol qəbulundan 10-30 dəq sonra: ürəkbulanma, qusma, qızarma, taxikardiya</li>
+<li>Doza: 250-500 mq/gün</li>
+<li><strong>Motivasiya yüksək</strong> olduqda effektiv</li>
+<li>Gizli istifadəni önləmir</li>
+<li><strong>Kardiovaskulyar risk</strong> (ciddi reaksiya, xüsusilə yaşlılarda)</li>
+</ul>
+<p><strong>Nalmefen (Selincro) – ikinci xətt:</strong></p>
+<ul>
+<li>µ-opioid antaqonisti + κ-opioid partial agonisti</li>
+<li>Avropa Dərman Agentliyi (EMA) tərəfindən 2013-cü ildə alkohol qəbulunun azaldılması üçün təsdiqlənmişdir</li>
+<li>Doza: 18 mq, <strong>&quot;as-needed&quot;</strong> rejimində — pasiyent içki istəyini hiss etdikdə (ən azı 1-2 saat əvvəl)</li>
+<li><strong>Yanaşma fərqi:</strong> abstinensiyaya yox, <strong>istehlakın azaldılmasına</strong> yönəlmişdir (harm reduction modeli)</li>
+<li>Sübutluluq: ESENSE-1, ESENSE-2 RCT (Mann et al., Biol Psychiatry, 2013) — ağır içki günlərini 60% azaltdı</li>
+<li>Azərbaycanda: bazarda mövcud deyil, lakin Avropa ölkələrindən idxal mümkündür</li>
+</ul>
+<p><strong>Topirat, qabapentin – üçüncü xətt:</strong></p>
+<ul>
+<li>Sübutluluq var; off-label</li>
+</ul>
+<h3 id="psixoterapiya" class="">Psixoterapiya</h3>
+<p><strong>KDT-Alkohol:</strong></p>
+<ul>
+<li>Tetikləyici situasiyaların identifikasiyası</li>
+<li>Residiv profilaktikası</li>
+<li>12 sessiya</li>
+</ul>
+<p><strong>Motivasional Müsahibə (MI):</strong></p>
+<ul>
+<li>&quot;Dəyişmək üçün inam&quot;ı artırmaq</li>
+<li>Ambivalentliklə iş</li>
+<li>Brief motivational interventions – birincil yardım üçün</li>
+</ul>
+<p><strong>12-addım proqramı (AA – Anonim Alkoqoliklər):</strong></p>
+<ul>
+<li>Qrup mühitdə həmyaşıd dəstəyi</li>
+<li>Lifelong sobriety filosofiyası</li>
+<li>Birçox pasiyent üçün effektiv; sübutluluq dəstəklənir</li>
+</ul>
+<h3 id="azərbaycanda-müalicə" class="">Azərbaycanda müalicə</h3>
+<ul>
+<li><strong>PSM-Bakı narkologiya şöbəsi</strong> – stasionar detoks</li>
+<li><strong>Naltrekson, akamprosat</strong> – əlçatan</li>
+<li><strong>Disulfiram</strong> – geniş istifadə (AR-da köklü)</li>
+<li><strong>AA</strong> – məhdud; mədəni kontekstdə dini proqramlar alternativ</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c45-opi̇oi̇d-i̇sti̇fadəsi̇-və-asililiq-pozuntusu" class="h-disorder"><span class="icd">6C45</span> OPİOİD İSTİFADƏSİ VƏ ASILILIQ POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C45</span> — Opioid İstifadəsi Və Asililiq Pozuntusu</div>
+<hr>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li>Dünyada opioid krizi: ABŞ-da 2021-ci ildə 80 000+ opioid overdozu ölümü</li>
+<li><strong>Azərbaycanda:</strong> heroin, dezomorfin (krokodil); nəşə qaçaqmalçılığı marşrutunda coğrafi mövqe</li>
+<li><strong>Reçeteli opioidlər:</strong> xroniki ağrı pasiyentlərində asılılıq riski</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="i̇ntoksikasiya" class="">İntoksikasiya</h3>
+<p><strong>Opioid miosis (daralmış göz bəbəyi)</strong> + respirator depressiya + şüur depressiyası – klinik triad.</p>
+<h3 id="overdoz-tibbi-təcili-vəziyyət" class="">Overdoz – tibbi təcili vəziyyət</h3>
+<p><strong>Nalokson (Narcan) – həyatxilas antidot:</strong></p>
+<ul>
+<li>IM/IV: 0,4-2 mq; 2-5 dəqiqə sonra residiv mümkün (naloksonun yarı-ömrü qısa)</li>
+<li><strong>Nazal sprey 4 mq</strong> – ev şəraitinə; nəzərdən keçirilə bilər</li>
+</ul>
+<h3 id="opioid-kəsmə-sindromu" class="">Opioid kəsmə sindromu</h3>
+<p><strong>COWS</strong> (Clinical Opioid Withdrawal Scale) – şiddəti qiymətləndirir.</p>
+<p>Simptomlar: ağrı, gözlər yaşarması, burun axması, tərləmə, tük dikəlməsi, qusma, ishal, həyəcan, insomniya, taxikardiya.</p>
+<p><strong>Tibbi təhlükə az</strong> (alkohol kəsmədən fərqli), lakin <strong>subjektiv distress çox</strong> – compliance problemi.</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="opioid-agonist-terapiyası-oat-qızıl-standart" class="">Opioid Agonist Terapiyası (OAT) – qızıl standart</h3>
+<p><strong>Metadon:</strong></p>
+<ul>
+<li>Tam opioid agonisti; uzun yarı-ömür (24-36 saat)</li>
+<li><strong>Doza:</strong> tədricən başlayır 20-30 mq/gün → hədəf 60-120 mq/gün</li>
+<li>Klinikada günlük dozalaşdırma (ən azından başlangıçda)</li>
+<li><strong>Yan:</strong> QTc uzanması – EKG monitorinqi; başqa sedativlərlə ehtiyat</li>
+</ul>
+<p><strong>Buprenorfin/Nalokson (Suboxone):</strong></p>
+<ul>
+<li>Partial opioid agonisti + nalokson (sublingual injeksiyana qarşı)</li>
+<li><strong>Sublingval</strong> (eritdilir): 4/1, 8/2, 16/4 mq/gün</li>
+<li>Daha güvənli overdoz profili (siling effect)</li>
+<li><strong>Azərbaycanda mövcuddur (məhdud)</strong></li>
+</ul>
+<h3 id="nalokson-ev-şəraitinə-harm-reduction" class="">Nalokson ev şəraitinə (harm reduction)</h3>
+<ul>
+<li>Aktiv istifadəçilərin evine nalokson verin</li>
+<li>Ailə üzvlərini necə istifadə edəcəyini öyrədin</li>
+</ul>
+<h3 id="psixososial" class="">Psixososial</h3>
+<ul>
+<li>KDT, Motivasional Müsahibə</li>
+<li>Kontingensiya idarəsi</li>
+<li>12-addım (NA – Narkotiklər Anonimi)</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c43-kannabi̇s-i̇sti̇fadəsi̇-və-asililiq-pozuntusu" class="h-disorder"><span class="icd">6C43</span> KANNABİS İSTİFADƏSİ VƏ ASILILIQ POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C43</span> — Kannabis İstifadəsi Və Asililiq Pozuntusu</div>
+<hr>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Dünyada ən geniş yayılmış qeyri-legal maddə:</strong> 200 milyon+ istifadəçi</li>
+<li><strong>Azərbaycanda:</strong> nisbətən geniş yayılmış; gənclik arasında artım</li>
+<li><strong>Yeniyetmə istifadəsi</strong> → psixoz riski (xüsusilə yüksək THC)</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="kəskin-intoksikasiya" class="">Kəskin intoksikasiya</h3>
+<p>Eyfori, relaksasiya; perceptual dəyişikliklər; qırmızı gözlər; ürək döyüntüsü; diqqət, yaddaş pozuntusu; panik atak (yüksək doza); psixotik simptomlar (nadir, lakin mövcud).</p>
+<h3 id="kannabis-kəsmə-sindromu" class="">Kannabis kəsmə sindromu</h3>
+<p>DSM-5-TR/XBT-11-də tanınır: əsəbilik, narahatlıq, yuxusuzluq, iştahsızlıq, ağrı. Yüngül-orta; 1-2 həftə.</p>
+<h3 id="kannabis-induksiyalı-psixoz" class="">Kannabis induksiyalı psixoz</h3>
+<ul>
+<li>Yüksək THC kontentli kannabis → psixotik epizod</li>
+<li>Tez-tez keçici, lakin şizofreniyanın erken epizoduna görə trigger ola bilər</li>
+<li>Gənclik dövründə istifadə risk 4x artırır</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>OAT analoqusu yox</strong> (benzodiazepin kimi ikametçi müalicə yoxdur)</li>
+<li><strong>KDT, MI</strong> – birinci xətt</li>
+<li><strong>Withdrawal simptomları:</strong> benzodiazepin qısamüddətli, zolpidem</li>
+<li><strong>Kannabis psixozunda:</strong> atipik antipsixotik</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c44-sti̇mulyant-i̇sti̇fadəsi̇" class="h-disorder"><span class="icd">6C44</span> STİMULYANT İSTİFADƏSİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C44</span> — Stimulyant İstifadəsi</div>
+<hr>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p><strong>Kəskin intoksikasiya:</strong></p>
+<ul>
+<li>Eyfori, enerji artımı, qidalanmama, yuxusuzluq</li>
+<li>Takikardiya, hipertensiya, midriaz</li>
+<li><strong>Ağır:</strong> arritmiya, MI, insult, hipertensiv kriz</li>
+</ul>
+<p><strong>Kəsmə:</strong></p>
+<ul>
+<li>&quot;Crash&quot;: depressiya, yuxu artımı, iştah artımı, yorğunluq</li>
+<li>Craving intensiv</li>
+</ul>
+<p><strong>Uzunmüddətli:</strong></p>
+<ul>
+<li>Kardiyomiyopatiya, septal perforasiya (kokain burundan)</li>
+<li>Paranoya, psixoz</li>
+<li>Koqnitiv pozuntular</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>OAT yox</strong> (spesifik ikametçi müalicə yoxdur)</li>
+<li><strong>KDT, MI, kontingensiya idarəsi</strong> – birinci xətt</li>
+<li>Psixozda atipik antipsixotik</li>
+<li>Depressiyada SİUSİ</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c4a-sedati̇v-hi̇pnoti̇k-və-anksi̇oli̇ti̇k-i̇sti̇fadəsi̇" class="h-disorder">6C4A SEDATİV, HİPNOTİK VƏ ANKSİOLİTİK İSTİFADƏSİ</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C44</span> | <strong>DSM-5-TR:</strong> 304.10</div>
+<hr>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p><strong>Benzodiazepin asılılığı:</strong></p>
+<ul>
+<li>Geniş yayılmış; xüsusilə uzunmüddətli reçete edilmiş benzodiazepinlər</li>
+<li><strong>Azərbaycanda:</strong> benzodiazepin istifadəsi yüksəkdir (nəzarətsiz satış)</li>
+</ul>
+<p><strong>Kəsmə sindromu:</strong></p>
+<ul>
+<li><strong>Həyat üçün TƏHLÜKƏLİDİR</strong> – alkohol kəsmə kimi</li>
+<li>Tutmalar, delirium (xüsusilə qısa yarı-ömürlü benzodiazepin kəsimləri)</li>
+<li><strong>Tədricən 10-25% həftə azaltma</strong> vacib</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<p><strong>Detoksifikasiya:</strong></p>
+<ul>
+<li>Uzun yarı-ömürlü benzodiazepinə keçid (diazepam) → tədricən kəsmə</li>
+<li>Stasionar ağır hallarda</li>
+</ul>
+<p><strong>Psixoterapiya:</strong> KDT, MI</p>
+<p>\newpage</p>
+<h1 id="6c48-ni̇koti̇n-asi̇li̇liği" class="h-disorder"><span class="icd">6C48</span> NİKOTİN ASİLİLIĞI</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C48</span> — Nikotin Asililiği</div>
+<hr>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Dünyada:</strong> 1,3 milyar tütün istifadəçisi; 8 milyon ölüm/il</li>
+<li><strong>Azərbaycanda:</strong> kişilərdə ~50%, qadınlarda ~5%</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="farmakoterapiya-birinci-xətt" class="">Farmakoterapiya – birinci xətt</h3>
+<p><strong>Vareniklin (Champix/Chantix):</strong></p>
+<ul>
+<li>Nikotin reseptorunun partial agonisti</li>
+<li>Ən effektiv dərman (2x nikotinli ersatz; 3x plsebo)</li>
+<li>Doza: 0,5 mq/gün 3 gün → 0,5 mq 2x/gün 4 gün → 1 mq 2x/gün 12 həftə</li>
+<li><strong>Nöropsixiatrik risk izlənməsi</strong> (depressiya, suisidal düşüncə haqqında uyarı)</li>
+</ul>
+<p><strong>Nikotin ersatz terapiyası (NRT):</strong></p>
+<ul>
+<li>Yapışqan (patch), saqqız, inhaler, sprey</li>
+<li>Yüngül-orta asılılıqda; kombinasiya daha effektiv</li>
+</ul>
+<p><strong>Bupropion (Zyban):</strong></p>
+<ul>
+<li>Antidepressant; nikotin kəsmə simptomlarını azaldır</li>
+<li>150 mq 2x/gün; tutma riski (kontrendikasiya epilepsiyada)</li>
+</ul>
+<h3 id="davranış-müdaxilələri" class="">Davranış müdaxilələri</h3>
+<ul>
+<li><strong>Brief Advice</strong> – &quot;5A&quot; (Ask, Advise, Assess, Assist, Arrange)</li>
+<li>Motivasional Müsahibə</li>
+<li>Qrup terapiyası</li>
+<li>Rəqəmsal proqramlar (quit smoking apps)</li>
+</ul>
+<p>\newpage</p>
+<h1 id="6c50-qumar-və-vi̇deo-oyun-asililiq-pozuntusu" class="h-disorder"><span class="icd">6C50</span> QUMAR VƏ VİDEO-OYUN ASILILIQ POZUNTUSU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6C90</span> — Qumar Və Video-Oyun Asililiq Pozuntusu</div>
+<hr>
+<h2 id="oyun-asılılığı-gambling-disorder" class="">Oyun asılılığı (Gambling Disorder)</h2>
+<h3 id="tərif" class="">Tərif</h3>
+<p>Oyun asılılığı – nəzarətsiz, problemli qumar oynamaq davranışı; maliyyə, ailə, sosial, peşə fəsadları.</p>
+<h3 id="epidemiologiya" class="">Epidemiologiya</h3>
+<ul>
+<li>Yayılma: 0,5-2%</li>
+<li>Kişi dominant; online qumarın artımı ilə yayılma artır</li>
+</ul>
+<h3 id="klinik-mənzərə" class="">Klinik mənzərə</h3>
+<ul>
+<li><strong>Miqdar/tezlik artımı</strong> (tolerantlıq analogu)</li>
+<li>Oynamağı dayandıra bilmir</li>
+<li><strong>&quot;Maliyyə çərçivəsindən kənar&quot;</strong> oynama</li>
+<li>Maliyyə böhranı, ailə dağılması</li>
+<li>Gizlilik, yalan</li>
+<li><strong>Suisid riski</strong> yüksəkdir (borçlar, xəcalət)</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə</h3>
+<p><strong>KDT – birinci xətt (sübutluluq A)</strong></p>
+<p><strong>Motivasional Müsahibə</strong></p>
+<p><strong>GA (Gamblers Anonymous)</strong> – 12-addım</p>
+<p><strong>Farmakoterapiya:</strong></p>
+<p>- Doza: 50-150 mq/gün</p>
+<p>- Xüsusilə <strong>şiddətli oyun istəyi</strong> və <strong>opioid disregulyasiyası</strong> olan pasiyentlərdə effektiv</p>
+<p>- Yan təsirlər: bulantı, baş ağrısı, hepatotoksisite (qaraciyər funksiyası nəzarəti)</p>
+<ul>
+<li><strong>Naltrekson</strong> — craving azaldır; sübutluluq səviyyəsi B (Kim et al., Biol Psychiatry, 2001; Grant et al., Am J Psychiatry, 2008)</li>
+<li><strong>Nalmefen</strong> — Kim və əməkdaşlarının pilot tədqiqatlarında effektivlik göstərmişdir; sübutluluq C (sınaq)</li>
+<li><strong>SİUSİ</strong> — komorbid depressiya, OKP elementlərinin müalicəsi</li>
+<li><strong>Litium</strong> — komorbid bipolyar pozuntu və ya impulsiv-aqressiv komponent varsa (sübutluluq C)</li>
+</ul>
+<hr>
+<h2 id="video-oyun-asılılıq-pozuntusu-gaming-disorder" class="">Video-Oyun Asılılıq Pozuntusu (Gaming Disorder)</h2>
+<h3 id="tərif-xbt-11-6c91" class="">Tərif (XBT-11: <span class="icd">6C91</span>)</h3>
+<p>Gaming disorder – <strong>video oyun istifadəsinin nəzarətsizliyi</strong> ilə xarakterizə olunan davranış; digər fəaliyyətlər üzərindəoyunun üstünlüyü; fəsadlara baxmayaraq davam; əhəmiyyətli funksional pozulma.</p>
+<p><strong>XBT-11 yenilik:</strong> 2022-ci ildən rəsmi diaqnoz. DSM-5-TR-də &quot;əlavə tədqiqat&quot; statusunda (appendix).</p>
+<h3 id="epidemiologiya" class="">Epidemiologiya</h3>
+<ul>
+<li><strong>1-3%</strong> oynayanlar arasında klinik problemli</li>
+<li>Gənc kişilərdə dominant</li>
+<li>Azərbaycanda smartphone/internet penetrasiyası ilə artım gözlənilir</li>
+</ul>
+<h3 id="klinik-mənzərə" class="">Klinik mənzərə</h3>
+<ul>
+<li>Gündə 8-12+ saat oynama</li>
+<li>Yemək, yuxu ihmal edilir</li>
+<li>Məktəb/iş fəaliyyəti pozulur</li>
+<li>Sosial münasibət yalnız oyun daxilindədir</li>
+<li>Kəsmə cəhdlərindəasəbilik, narahatlıq</li>
+</ul>
+<h3 id="müalicə" class="">Müalicə</h3>
+<ul>
+<li><strong>KDT-internet asılılıq</strong> uyğunlaşdırılmış</li>
+<li>Ailə cəlbetmə</li>
+<li>Ekran vaxt məhdudiyəti</li>
+<li>Farmakoterapiya: spesifik yox; komorbid (DDHP, depressiya) müalicəsi</li>
+</ul>
+<hr>
+<h2 id="bölmə-12-üçün-ümumi-mənbələr" class="">Bölmə 12 üçün ümumi mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>NICE. <em>Alcohol-use disorders: diagnosis, assessment and management</em> (NG115). 2018.</li>
+<li>ASAM. <em>Clinical Practice Guideline for Alcohol Use Disorder.</em> 2023.</li>
+<li>ASAM. <em>Clinical Practice Guideline for Opioid Use Disorder Treatment.</em> 2020.</li>
+<li>Volkov ND, et al. <em>Neurobiologic advances from the brain disease model of addiction.</em> N Engl J Med, 2016.</li>
+<li>Schuckit MA. <em>Treatment of opioid-use disorders.</em> N Engl J Med, 2016.</li>
+<li>West R, Shiffman S. <em>Smoking Cessation.</em> 2nd ed. Health Press, 2016.</li>
+<li>Azərbaycan Respublikası Səhiyyə Nazirliyi. <em>Narkologiya xidməti.</em></li>
+<li>&quot;Psixiatriya yardımı haqqında&quot; Azərbaycan Respublikasının Qanunu (12.06.2001).</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>İvanets N.N. <em>Narkologiya üzrə mühazirələr.</em> (Лекции по наркологии) Moskva, 2000.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-11.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 11 — BƏDƏNSƏL DISSTRES</span></a><a href="bolme-13.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 13 — İMPULS NƏZARƏTİ</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-12";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

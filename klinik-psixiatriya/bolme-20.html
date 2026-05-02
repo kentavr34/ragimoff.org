@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Klinik Psixiatriya — BÖLMƏ 20 — NEYROKOQNİTİV">
+<title>BÖLMƏ 20 — NEYROKOQNİTİV | KLİNİK PSİXİATRİYA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://ragimoff.org" class="hdr-back" title="Ana sayta qayıt">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>XBT-11 · K.Rəhimov · 2026</small>
+    </div>
+  </a>
+  <div class="hdr-search">
+    <input id="search-input" type="text" placeholder="Diaqnoz, dərman, kod axtarın..." autocomplete="off">
+    <span class="ico">⌕</span>
+    <div id="search-drop"></div>
+  </div>
+  <button class="menu-btn" onclick="toggleSb()">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+      <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
+    </svg>
+  </button>
+</header>
+
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div id="ov" onclick="toggleSb()"></div>
+
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <div class="sb-hdr"><h3>📋 Mündəricat</h3></div>
+    <nav><div class="nav-item"><a href="index.html" data-slug="index" class="nav-link"><span>Titul + Önsöz</span></a></div>
+<div class="nav-item"><a href="giris.html" data-slug="giris" class="nav-link"><span>Giriş</span></a></div>
+<div class="nav-item"><a href="giris-yekun.html" data-slug="giris-yekun" class="nav-link"><span>Kitab haqqında</span></a></div>
+<div class="nav-item"><a href="mugeddime.html" data-slug="mugeddime" class="nav-link"><span>Müqəddimə</span></a></div>
+<div class="nav-item"><a href="abbreviatur.html" data-slug="abbreviatur" class="nav-link"><span>Abbreviaturalar</span></a></div>
+<div class="nav-item"><a href="bolme-01.html" data-slug="bolme-01" class="nav-link is-bolme"><span class='nav-code'>6A00–6A0Z</span><span>Bl.1 — NEYROİNKİŞAF</span></a></div>
+<div class="nav-item"><a href="bolme-02.html" data-slug="bolme-02" class="nav-link is-bolme"><span class='nav-code'>6A20–6A2Z</span><span>Bl.2 — ŞİZOFRENİYA</span></a></div>
+<div class="nav-item"><a href="bolme-03.html" data-slug="bolme-03" class="nav-link is-bolme"><span class='nav-code'>6A40</span><span>Bl.3 — KATATONİYA</span></a></div>
+<div class="nav-item"><a href="bolme-04.html" data-slug="bolme-04" class="nav-link is-bolme"><span class='nav-code'>6A60–8Z</span><span>Bl.4 — ƏHVAL</span></a></div>
+<div class="nav-item"><a href="bolme-05.html" data-slug="bolme-05" class="nav-link is-bolme"><span class='nav-code'>6B00–0Z</span><span>Bl.5 — TƏŞVİŞ</span></a></div>
+<div class="nav-item"><a href="bolme-06.html" data-slug="bolme-06" class="nav-link is-bolme"><span class='nav-code'>6B20–2Z</span><span>Bl.6 — OBSESSİV-KOMPULSİV</span></a></div>
+<div class="nav-item"><a href="bolme-07.html" data-slug="bolme-07" class="nav-link is-bolme"><span class='nav-code'>6B40–4Z</span><span>Bl.7 — STRESS</span></a></div>
+<div class="nav-item"><a href="bolme-08.html" data-slug="bolme-08" class="nav-link is-bolme"><span class='nav-code'>6B60–6Z</span><span>Bl.8 — DİSSOSİATİV</span></a></div>
+<div class="nav-item"><a href="bolme-09.html" data-slug="bolme-09" class="nav-link is-bolme"><span class='nav-code'>6B80–8Z</span><span>Bl.9 — YEMƏ</span></a></div>
+<div class="nav-item"><a href="bolme-10.html" data-slug="bolme-10" class="nav-link is-bolme"><span class='nav-code'>6C00</span><span>Bl.10 — İFRAZAT</span></a></div>
+<div class="nav-item"><a href="bolme-11.html" data-slug="bolme-11" class="nav-link is-bolme"><span class='nav-code'>6C20</span><span>Bl.11 — BƏDƏNSƏL DISSTRES</span></a></div>
+<div class="nav-item"><a href="bolme-12.html" data-slug="bolme-12" class="nav-link is-bolme"><span class='nav-code'>6C40–9Z</span><span>Bl.12 — MADDƏ İSTİFADƏSİ</span></a></div>
+<div class="nav-item"><a href="bolme-13.html" data-slug="bolme-13" class="nav-link is-bolme"><span class='nav-code'>6C70–7Z</span><span>Bl.13 — İMPULS NƏZARƏTİ</span></a></div>
+<div class="nav-item"><a href="bolme-14.html" data-slug="bolme-14" class="nav-link is-bolme"><span class='nav-code'>6C90–9Z</span><span>Bl.14 — POZUCU DAVRANIŞ</span></a></div>
+<div class="nav-item"><a href="bolme-15.html" data-slug="bolme-15" class="nav-link is-bolme"><span class='nav-code'>6D10</span><span>Bl.15 — ŞƏXSİYYƏT</span></a></div>
+<div class="nav-item"><a href="bolme-16.html" data-slug="bolme-16" class="nav-link is-bolme"><span class='nav-code'>6D30–3Z</span><span>Bl.16 — PARAFİLİK</span></a></div>
+<div class="nav-item"><a href="bolme-17.html" data-slug="bolme-17" class="nav-link is-bolme"><span class='nav-code'>6D50</span><span>Bl.17 — SÜNİ POZUNTULAR</span></a></div>
+<div class="nav-item"><a href="bolme-18.html" data-slug="bolme-18" class="nav-link is-bolme"><span class='nav-code'>7A00–7B</span><span>Bl.18 — YUXU-OYAQLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-19.html" data-slug="bolme-19" class="nav-link is-bolme"><span class='nav-code'>HA00</span><span>Bl.19 — CİNSİ SAĞLAMLIQ</span></a></div>
+<div class="nav-item"><a href="bolme-20.html" data-slug="bolme-20" class="nav-link is-bolme"><span class='nav-code'>6D70–8Z</span><span>Bl.20 — NEYROKOQNİTİV</span></a></div>
+<div class="nav-item"><a href="bolme-21.html" data-slug="bolme-21" class="nav-link is-bolme"><span class='nav-code'>6E20</span><span>Bl.21 — HAMİLƏLİK</span></a></div>
+<div class="nav-item"><a href="bolme-22.html" data-slug="bolme-22" class="nav-link is-bolme"><span class='nav-code'>6E40+</span><span>Bl.22–23 — İKİNCİLİ</span></a></div>
+<div class="nav-item"><a href="bolme-ps.html" data-slug="bolme-ps" class="nav-link"><span>PSİXOSOMATİK</span></a></div>
+<div class="nav-item"><a href="elave-skalalar.html" data-slug="elave-skalalar" class="nav-link"><span>Əlavə — Şkalalar</span></a></div>
+<div class="nav-item"><a href="elave-acde.html" data-slug="elave-acde" class="nav-link"><span>Əlavələr A–E</span></a></div>
+<div class="nav-item"><a href="yekun.html" data-slug="yekun" class="nav-link"><span>Yekun — İstifadə qaydaları</span></a></div></nav>
+  </aside>
+
+  <main class="site-main">
+    <div class="content-wrap">
+      <h1 id="bölmə-18" class="h-bolme">BÖLMƏ 18</h1>
+<h2 id="neyrokoqni̇ti̇v-pozuntular" class="">NEYROKOQNİTİV POZUNTULAR</h2>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D70</span>–6D8Z — Neurocognitive disorders</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F00</span>–<span class="icd">F03</span> (demensiya), <span class="icd">F04</span>–<span class="icd">F09</span> (organik)</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> Neurocognitive Disorders (Major + Mild)</div>
+<hr>
+<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
+<div class="tbl-wrap"><table>
+<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
+<tr><td><strong><span class="icd">6D70</span></strong></td><td>Delirium</td><td>18.1</td></tr>
+<tr><td><strong><span class="icd">6D71</span></strong></td><td>Yüngül Neyrokoqnitiv Pozuntu (Mild NCD)</td><td>18.2</td></tr>
+<tr><td><strong><span class="icd">6D80</span></strong></td><td>Demensiya (Major NCD) – ümumi</td><td>18.3</td></tr>
+<tr><td><strong><span class="icd">6D80.0</span></strong></td><td>Alzheimer xəstəliyindən demensiya</td><td>18.4</td></tr>
+<tr><td><strong><span class="icd">6D80.1</span></strong></td><td>Serebrovaskulyar xəstəlikdən demensiya</td><td>18.5</td></tr>
+<tr><td><strong><span class="icd">6D80.2</span></strong></td><td>Lewy cisimciyi xəstəliyindən demensiya</td><td>18.6</td></tr>
+<tr><td><strong><span class="icd">6D80.3</span></strong></td><td>Frontotemporal demensiya</td><td>18.7</td></tr>
+<tr><td><strong><span class="icd">6D80.4</span></strong></td><td>Parkinson xəstəliyindən demensiya</td><td>18.8</td></tr>
+<tr><td><strong>6D8Z</strong></td><td>Digər/dəqiqləşdirilməmiş</td><td>—</td></tr>
+</table></div>
+<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
+<h3 id="demensiya-neyrokoqnitiv-pozuntu-spektri" class="">&quot;Demensiya&quot; → &quot;Neyrokoqnitiv pozuntu&quot; spektri</h3>
+<p>XBT-11 <strong>demensiya</strong> termini ilə yanaşı <strong>neyrokoqnitiv pozuntu</strong> çərçivəsini geniş tətbiq etdi. DSM-5-TR artıq <strong>Major NCD</strong> (ağır) vs <strong>Mild NCD</strong> (yüngül) ayrımı gətirdi.</p>
+<h3 id="yüngül-neyrokoqnitiv-pozuntu-müstəqil-diaqnoz" class="">Yüngül neyrokoqnitiv pozuntu müstəqil diaqnoz</h3>
+<p>XBT-10-da &quot;MCI&quot; (Mild Cognitive Impairment) ayrıca diaqnoz deyildi. <strong>XBT-11 / DSM-5-TR onu müstəqil</strong> kateqoriya etdi – erkən müdaxilə şansı üçün.</p>
+<h3 id="etioloji-kodlama" class="">Etioloji kodlama</h3>
+<p>XBT-11-də demensiya <strong>əsas etioloji xəstəliyə</strong> görə kodlanır (Alzheimer, vaskulyar, Lewy, FTD, Parkinson).</p>
+<p>\newpage</p>
+<h1 id="6d75-deli̇ri̇um" class="h-disorder"><span class="icd">6D75</span> DELİRİUM</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D70</span> — Delirium</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F00</span> — Alzheimer xəstəliyində demensiya</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> 331.0 — Major NCD Due to Alzheimer&#x27;s Disease</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Delirium – <strong>şüurun kəskin pozulması</strong> (oriyentasiya, diqqət, qavrayış); qısa müddətdə inkişaf edir (saatlar-günlər); klinik gediş dalgalı (gün içrə dəyişkən); <strong>üzvi səbəb</strong> mövcuddur.</p>
+<p><strong>Klinik vaciblik:</strong> Delirium tibbi TƏCILI VƏZIYYƏTDIR. Ölüm riski yüksəkdir.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<p><strong>&quot;I WATCH DEATH&quot; mnemonikin:</strong></p>
+<ul>
+<li><strong>I</strong> – Infection (infeksiya: pnevmoniya, sidik yolu)</li>
+<li><strong>W</strong> – Withdrawal (çəkilmə: alkohol, benzo)</li>
+<li><strong>A</strong> – Acute metabolic (metabolik: hiponatremi, hepatik ensefalopatiya)</li>
+<li><strong>T</strong> – Trauma (TBI, yanıq)</li>
+<li><strong>C</strong> – CNS pathology (insult, meningit, beyin şişi)</li>
+<li><strong>H</strong> – Hypoxia (MI, KOAH)</li>
+<li><strong>D</strong> – Deficiencies (B12, tiyamin)</li>
+<li><strong>E</strong> – Endocrine (tiroid, adrenal)</li>
+<li><strong>A</strong> – Acute vascular (insult, hipertansif ensefalopatiya)</li>
+<li><strong>T</strong> – Toxins/Drugs (opioidlər, benzodiazepin, antikolinerjik, steroid)</li>
+<li><strong>H</strong> – Heavy metals</li>
+</ul>
+<p><strong>Azərbaycanda ən sık:</strong> dərman toksikliyi (xüsusilə yaşlılarda polipragmaziya), infeksiyalar, metabolik.</p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Xəstəxana pasiyentlərinin 10-30%-i</strong>; yaşlılarda 50%+</li>
+<li><strong>İCU:</strong> 80%+ hallarda</li>
+<li><strong>Mortalite:</strong> aktiv deliriuimda 10-35%</li>
+<li><strong>Uzunmüddətli:</strong> demensiya inkişafı riskini 2-5x artırır</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<h3 id="üç-motor-tip" class="">Üç motor tip</h3>
+<p><strong>Hiperaktiv delirium (25-30%):</strong></p>
+<ul>
+<li>Həyəcan, agitasiya</li>
+<li>Halusinasiyalar (vizual dominant)</li>
+<li>Sayıqlamalar (paranoid)</li>
+<li>Asan tanınır</li>
+</ul>
+<p><strong>Hipoaktiv delirium (50%):</strong></p>
+<ul>
+<li>Süstlük, uzlaşma, yuxulama</li>
+<li><strong>Tez-tez tanınmır</strong> – depressiya, demensiya kimi yanlış</li>
+<li><strong>Pis proqnoz</strong></li>
+</ul>
+<p><strong>Qarışıq tip (25%):</strong></p>
+<ul>
+<li>Hər ikisi</li>
+</ul>
+<h3 id="əsas-simptomlar" class="">Əsas simptomlar</h3>
+<ul>
+<li><strong>Diqqət pozulması</strong> – konsentrasiya, istiqamət, ətrafı izləmə qabiliyyəti</li>
+<li><strong>Şüur bulanıqlığı</strong> – mühitin aydın qavranılmaması</li>
+<li><strong>Oriyentasiya pozulması</strong> – yer, zaman (şəxs az)</li>
+<li><strong>Koqnitiv dəyişikliklər</strong> – yaddaş, nitq, vizuospatial</li>
+<li><strong>Qavrayış pozulması</strong> – illüziyalar, halusinasiyalar</li>
+<li><strong>Dalgalanma</strong> – günün müxtəlif vaxtlarında dəyişkən (gecə pisləşmə tipik)</li>
+</ul>
+<h3 id="delirium-vs-demensiya" class="">Delirium vs Demensiya</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Cəhət</th><th>Delirium</th><th>Demensiya</th></tr>
+<tr><td><strong>Başlanğıc</strong></td><td>Kəskin (saatlar-günlər)</td><td>Yavaş (aylar-illər)</td></tr>
+<tr><td><strong>Gediş</strong></td><td>Dalgalı, gün içrə</td><td>Sabit/proqressiv</td></tr>
+<tr><td><strong>Şüur</strong></td><td>Pozulmuş</td><td>Adətən saxlanılır (erkən)</td></tr>
+<tr><td><strong>Diqqət</strong></td><td>Həddən pozulmuş</td><td>Orta</td></tr>
+<tr><td><strong>Gecə davranışı</strong></td><td>Daha ağır</td><td>Nisbətən stabil</td></tr>
+<tr><td><strong>halusinasiyalar</strong></td><td>Sıx (vizual)</td><td>Geç, az</td></tr>
+<tr><td><strong>Reversibillik</strong></td><td>Çox hallarda bəli</td><td>Əksər az reversibil</td></tr>
+</table></div>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-6d70" class="">XBT-11 (<span class="icd">6D70</span>):</h3>
+<p><strong>A.</strong> Şüurun pozulması (diqqət, oriyentasiya)</p>
+<p><strong>B.</strong> Qısa müddətdə inkişaf (saat-gün); dalgalı gediş</p>
+<p><strong>C.</strong> Koqnitiv dəyişiklik (yaddaş, dil, qavrayış)</p>
+<p><strong>D.</strong> Üzvi etioloji amil mövcuddur</p>
+<p><strong>Skrining:</strong> <strong>CAM</strong> (Confusion Assessment Method) – diaqnostik alət.</p>
+<h2 id="müalicə" class="">Müalicə</h2>
+<h3 id="etiologiyanın-aradan-qaldırılması-mütləq-birinci" class="">Etiologiyanın aradan qaldırılması – MÜTLƏQ BIRINCI</h3>
+<ul>
+<li>İnfeksiyanın müalicəsi</li>
+<li>Dərman toksikliyi istisnası (anticholinergic burden)</li>
+<li>Metabolik korreksiya (elektrolitlər, qlükoza)</li>
+<li>Ağrı idarəsi</li>
+</ul>
+<h3 id="qeyri-farmakologiya-birinci-xətt" class="">Qeyri-farmakologiya – birinci xətt</h3>
+<ul>
+<li><strong>Oriyentasiya</strong> – gün işığı, saat, güzgü, tanış əşyalar</li>
+<li><strong>Mobilitasiya</strong> – mümkünsə gəzmə</li>
+<li><strong>Yuxu siklinin normallaşdırılması</strong> – gecə sakit mühit, gündüz aktivlik</li>
+<li><strong>Sensor yardımcılar</strong> – eynək, eşitmə cihazı</li>
+<li><strong>Ailə yanında</strong> – tanış üz, sakit səs</li>
+<li><strong>Kateter/IV xətt minimizasiyası</strong></li>
+</ul>
+<h3 id="farmakoterapiya-agitasiya-üçün" class="">Farmakoterapiya (agitasiya üçün)</h3>
+<p><strong>Benzodiazepin ƏLEYH</strong> (halusinogen delirium istisna: alkohol kəsmə, benzo kəsmə):</p>
+<p><strong>Haloperidol:</strong></p>
+<ul>
+<li>0,5-1 mq IV/IM; titrləmə</li>
+<li>Ağır agitasiyada effektiv</li>
+<li><strong>QTc izlənməsi</strong></li>
+</ul>
+<p><strong>Atipik antipsixotiklər:</strong></p>
+<ul>
+<li>Kvetiapin 12,5-50 mq – yaşlılarda daha güvənli</li>
+<li>Olanzapin – IM formada mövcud</li>
+<li>Risperidon – azaldılmış doza</li>
+</ul>
+<p><strong>Melatonin/Ramelteon:</strong> yuxu sikli üçün (profilaktik)</p>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li>Etioloji müalicə ilə çox hallarda tam bərpa</li>
+<li><strong>Yaşlılarda uzunmüddətli koqnitiv pozulma riski</strong></li>
+<li>Hipoaktif tip – pis proqnoz</li>
+<li>Delirium epizodu → demensiya riskini artırır</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Inouye SK, et al. <em>Clarifying confusion: the confusion assessment method.</em> Ann Intern Med, 1990.</li>
+<li>Barr J, et al. <em>Clinical practice guidelines for the management of pain, agitation, and delirium in adult ICU patients.</em> Crit Care Med, 2013.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d71-yüngül-neyrokoqni̇ti̇v-pozuntu" class="h-disorder"><span class="icd">6D71</span> YÜNGÜL NEYROKOQNİTİV POZUNTU</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D71</span> — Yüngül Neyrokoqnitiv Pozuntu</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Yüngül neyrokoqnitiv pozuntu – <strong>əvvəlki koqnitiv səviyyəyə nisbətən</strong> bir və ya bir neçə koqnitiv domendə <strong>yüngül azalma</strong>; lakin bu azalma <strong>müstəqil fəaliyyəti maneə törətmir</strong> (gündəlik həyat saxlanılır).</p>
+<p><strong>Klinik əhəmiyyəti:</strong> Alzheimer demensiyanın preklinik/prodromal mərhələsi ola bilər – <strong>erkən müdaxilə şansı</strong>.</p>
+<h2 id="koqnitiv-domenlər-6" class="">Koqnitiv domenlər (6)</h2>
+<ol>
+<li><strong>Mürəkkəb diqqət</strong> – konsentrasiya, bölünmüş diqqət</li>
+<li><strong>İcra funksiyaları</strong> – planlama, çevik düşüncə</li>
+<li><strong>Öyrənmə/yaddaş</strong> – yeni məlumatı yadda saxlama</li>
+<li><strong>Dil</strong> – adlandırma, nitq ifadəsi</li>
+<li><strong>Vizuospatial</strong> – məkan qavrayışı, cism tanıma</li>
+<li><strong>Sosial idrak</strong> – emosiyaların qavranılması</li>
+</ol>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="xbt-11-dsm-5-tr" class="">XBT-11 / DSM-5-TR:</h3>
+<p><strong>A.</strong> Əvvəlki koqnitiv səviyyəyə nisbətən <strong>yüngül azalma</strong> – pasiyent, yaxın şəxs, klinik müşahidə</p>
+<p><strong>B.</strong> Neyropsikoloji testlər: norma altı (1-2 SD aşağı), lakin ağır pozulma yox</p>
+<p><strong>C.</strong> Koqnitiv azalma <strong>müstəqil gündəlik fəaliyyəti maneə törətmir</strong></p>
+<p><strong>D.</strong> Delirium, başqa psixi pozuntu tam izah etmir</p>
+<h3 id="müayinə-alətləri" class="">Müayinə alətləri:</h3>
+<ul>
+<li><strong>MoCA</strong> (Montreal Cognitive Assessment) – 26+ normal; 18-25 mild NCD</li>
+<li><strong>MİNİ-KOQ</strong> (Mini-Cog) – skrining; resurs az mühitdə</li>
+<li><strong>MMSE</strong> – yüngül NCD üçün az həssas</li>
+<li>Neyropsikoloji test batareyası (daha dəqiq qiymətləndirmə)</li>
+</ul>
+<h2 id="müalicə" class="">Müalicə</h2>
+<ul>
+<li><strong>Etiologiya müalicəsi</strong> (vaskulyar risk amilləri, depressiya, yuxu)</li>
+<li><strong>Koqnitiv stimulyasiya</strong> – aktiv zehin fəaliyyəti</li>
+<li><strong>Aerobik məşq</strong> – ən effektiv qeyri-farmakologiya (NICE tövsiyəsi)</li>
+<li><strong>Alzheimer (Mild NCD):</strong> xolin esteraza inhibitorları sınırlı sübutluluq</li>
+<li><strong>Sosial aktivlik, münasibətlər</strong></li>
+</ul>
+<p>\newpage</p>
+<h1 id="6d70-demensi̇ya-ümumi̇-pri̇nsi̇plər" class="h-disorder"><span class="icd">6D70</span> DEMENSİYA — ÜMUMİ PRİNSİPLƏR</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D70</span> — Demensiya — Ümumi Prinsiplər</div>
+<div class="xbt-line"><span class="xbt-lbl">XBT-10:</span> <span class="icd">F06.7</span> — Yüngül koqnitiv pozuntu</div>
+<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> — — Mild Neurocognitive Disorder</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Demensiya (Major NCD) – <strong>əvvəlki koqnitiv səviyyəyə nisbətən</strong> bir və ya bir neçə koqnitiv domendə <strong>əhəmiyyətli azalma</strong>; bu azalma <strong>müstəqil fəaliyyəti ciddi maneə törədir</strong> (gündəlik iş, ailə, özünə qulluq).</p>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Dünya:</strong> 55 milyon+ demensiya xəstəsi (2023); 2050-yə 153 milyon gözlənilir</li>
+<li><strong>65 yaş:</strong> hər 14 nəfərdən 1-i</li>
+<li><strong>85 yaş:</strong> hər 3 nəfərdən 1-i</li>
+<li><strong>Azərbaycanda:</strong> yaşlı əhalinin artımı ilə yayılma artır; epidemioloji məlumat məhdud</li>
+<li><strong>Xərc:</strong> ailəyə, cəmiyyətə ən yüksək xəst yükü yaradan pozuntulardan</li>
+</ul>
+<h2 id="ümumi-klinik-əlamətlər" class="">Ümumi klinik əlamətlər</h2>
+<p><strong>Koqnitiv:</strong></p>
+<ul>
+<li>Qısamüddətli yaddaş (əşya yeri, söhbət)</li>
+<li>Adlandırma çətinliyi (anomiya)</li>
+<li>Oriyentasiya pozulması (zaman &gt; yer &gt; şəxs)</li>
+<li>Mühakimə, planlama pozulması</li>
+</ul>
+<p><strong>Davranış:</strong></p>
+<ul>
+<li>Depressiya, əhval dəyişikliyi (erkən)</li>
+<li>Apati, maraqsızlıq</li>
+<li>İrritabillik, aqressiya</li>
+<li>Psixotik simptomlar (halusinasiyalar, sayıqlamalar – orta-ağır mərhələdə)</li>
+<li>&quot;Sundowning&quot; – axşam agitasiyası</li>
+</ul>
+<p><strong>Funksional:</strong></p>
+<ul>
+<li>İADL: alış-veriş, ev işləri, maliyyə – pozulur (erkən)</li>
+<li>ADL: yemək, geyim, gigiyena – pozulur (gec)</li>
+</ul>
+<h2 id="demensiya-şiddəti" class="">Demensiya şiddəti</h2>
+<p><strong>Yüngül:</strong></p>
+<ul>
+<li>Mürəkkəb IADL pozulmuş</li>
+<li>Sosial fəaliyyət azalmış</li>
+<li>Yaxın kömək ilə müstəqil yaşayış mümkün</li>
+</ul>
+<p><strong>Orta:</strong></p>
+<ul>
+<li>IADL əhəmiyyətli pozulmuş</li>
+<li>ADL-ə dəstək tələb olunur</li>
+<li>Psixiatrik simptomlar tez-tez</li>
+<li>Nəzarətsiz qalmaq təhlükəli</li>
+</ul>
+<p><strong>Ağır:</strong></p>
+<ul>
+<li>ADL tam asılılıq</li>
+<li>Nitq minimal</li>
+<li>Yataq rejimi</li>
+<li>Aspirasiya, infeksiya riski</li>
+</ul>
+<h2 id="müalicə-ümumi-prinsiplər" class="">Müalicə – Ümumi Prinsiplər</h2>
+<h3 id="qeyri-farmakologiya-birinci-xətt" class="">Qeyri-farmakologiya – birinci xətt</h3>
+<ul>
+<li><strong>Oriyentasiya terapiyası</strong> – yer, tarix, tanış şəxslər</li>
+<li><strong>Yaddaş kitabı</strong> – gündəlik rutinin vizual xatırlatmaları</li>
+<li><strong>Aktiv stimulyasiya</strong> – musiqi, söhbət, tanış fəaliyyətlər</li>
+<li><strong>Fiziki aktivlik</strong> – demensiya gedişini yavaşlatır</li>
+<li><strong>Sağlam yuxu, qidalanma</strong></li>
+<li><strong>Ailə dayağı</strong> – qulluqvericilərə psikoeducation, peşə tükənmişliyinin profilaktikası</li>
+</ul>
+<h3 id="vaskulyar-risk-amilləri-müalicəsi" class="">Vaskulyar risk amilləri müalicəsi</h3>
+<ul>
+<li>Hipertensiya nəzarəti</li>
+<li>Diabet nəzarəti</li>
+<li>Lipid idarəsi</li>
+<li>Antiaqreqant (vaskulyar demensiyadə)</li>
+<li>Siqaret, alkohol</li>
+</ul>
+<h3 id="psixiatrik-simptomların-müalicəsi" class="">Psixiatrik simptomların müalicəsi</h3>
+<p><strong>Depressiya:</strong> SİUSİ (sertralin, sitalopram)</p>
+<p><strong>Aqressiya/agitasiya:</strong> Atipik antipsixotiklər aşağı doz (risperidon, ketiapin) – <strong>&quot;black box&quot;: yaşlıda ölüm riski artır; yalnız digər müdaxilələr uğursuz olduqda</strong></p>
+<p><strong>Yuxu pozuntusu:</strong> Melatonin, trazadon; benzodiazepin <strong>ƏLEYH</strong></p>
+<p>\newpage</p>
+<h1 id="6d70-alzheimer-xəstəli̇yi̇ndən-demensi̇ya" class="h-disorder"><span class="icd">6D70</span> ALZHEIMER XƏSTƏLİYİNDƏN DEMENSİYA</h1>
+<div class="xbt-line"><span class="xbt-lbl">XBT-11:</span> <span class="icd">6D70</span> — Alzheimer Xəstəliyindən Demensiya</div>
+<hr>
+<h2 id="tərif" class="">Tərif</h2>
+<p>Alzheimer xəstəliyi – <strong>beta-amiloid plaklar</strong> və <strong>tau neurofibriller yumaqları</strong> ilə xarakterizə olunan neyrodejenerativ xəstəlik; yavaş, proqressiv koqnitiv azalma.</p>
+<h2 id="etiologiya" class="">Etiologiya</h2>
+<ul>
+<li><strong>Sporodik (90%):</strong> çox faktorlu – yaş, APOE ε4, vaskulyar, lifestyle</li>
+<li><strong>Familial (&lt;10%):</strong> APP, PSEN1, PSEN2 mutasiyaları; erkən başlanğıc (40-60 yaş)</li>
+<li><strong>APOE ε4:</strong> ən güclü genetik risk faktoru (risk 3-4x; homoziqot 8-12x)</li>
+</ul>
+<p><strong>Neyropatologiya:</strong></p>
+<ul>
+<li>Beta-amiloid plakaları (ekstraselülar)</li>
+<li>Tau neurofibriller yumaqları (intraneuronal)</li>
+<li>Hipokampus → korteks yayılma (Braak staging)</li>
+</ul>
+<h2 id="epidemiologiya" class="">Epidemiologiya</h2>
+<ul>
+<li><strong>Demensiyanın 60-70%-i</strong> Alzheimer</li>
+<li><strong>65 yaşdan hər 5 il ikiqat risk</strong></li>
+<li>Qadın dominant (uzunömürlülük ilə bağlı)</li>
+<li><strong>Azərbaycan:</strong> yaşlı əhali artdıqca prevalans artır</li>
+</ul>
+<h2 id="klinik-mənzərə" class="">Klinik mənzərə</h2>
+<p><strong>Erkən mərhələ:</strong></p>
+<ul>
+<li><strong>Epizodik yaddaş</strong> azalması (yeni məlumat – ən əvvəl)</li>
+<li>Adlandırma çətinliyi</li>
+<li>Zaman dezoriyentasiyası</li>
+<li>Şüur saxlanılır; pasiyent fərqlənir (anosognoziya yoxdur)</li>
+</ul>
+<p><strong>Orta mərhələ:</strong></p>
+<ul>
+<li>Geniş koqnitiv pozulma</li>
+<li>Yer dezoriyentasiyası</li>
+<li>Psixotik simptomlar başlayır</li>
+<li>ADL pozulması</li>
+</ul>
+<p><strong>Ağır mərhələ:</strong></p>
+<ul>
+<li>Söz sayı minimala enər</li>
+<li>Yataq rejimi</li>
+<li>Əzələ rigiditesi</li>
+<li>Aspirasiya pnevmoniyası riski</li>
+</ul>
+<h2 id="diaqnoz" class="">Diaqnoz</h2>
+<h3 id="müayinə" class="">Müayinə:</h3>
+<p><strong>Klinik:</strong></p>
+<ul>
+<li>MoCA, MMSE</li>
+<li>Geniş neyropsikoloji test batareyası</li>
+<li>ADL/IADL qiymətləndirilməsi</li>
+</ul>
+<p><strong>Laborator:</strong></p>
+<ul>
+<li>Qan: B12, folat, TSH, tam qan, qaraciyər/böyrək</li>
+<li>Reviziya: HIV, sifilis (reversibil demensiya istisna)</li>
+</ul>
+<p><strong>Görüntüləmə:</strong></p>
+<ul>
+<li><strong>MRT beyin</strong> – hipokampus atrofiyası; vaskulyar istisna</li>
+<li><strong>PET (amiloid/FDG)</strong> – mütəxəssis mərkəzlərində</li>
+<li><strong>Likvordə</strong> beta-amiloid↓, tau↑ – mütəxəssis</li>
+</ul>
+<h2 id="farmakoterapiya" class="">Farmakoterapiya</h2>
+<h3 id="xolin-esteraza-inhibitorları-chei-birinci-xətt-yüngül-orta" class="">Xolin esteraza inhibitorları (ChEI) – birinci xətt yüngül-orta</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Preparat</th><th>Doza</th><th>Qeydlər</th></tr>
+<tr><td><strong>Donepezil</strong></td><td>5-10 mq/gün</td><td>Ən geniş istifadə; gecə</td></tr>
+<tr><td><strong>Rivastigmin</strong></td><td>3-12 mq/gün (oral); 4,6-9,5 mq/24s (patch)</td><td>Patch forması üstün; Parkinson demensiyasında birinci</td></tr>
+<tr><td><strong>Qalantamin</strong></td><td>8-24 mq/gün</td><td>Nikotinik modulasiya da</td></tr>
+</table></div>
+<p><strong>Mexanizm:</strong> Asetilxolini parçalayan enzimi bloklayır → xolinerjik transmissiya artır</p>
+<p><strong>Effekt:</strong> Simptomatik; mülayim yaxşılaşma 6-12 ay; sürəti yavaşlatır</p>
+<h3 id="memantın-yüngül-nmda-antagonist-orta-ağır" class="">Memantın (Yüngül NMDA antagonist) – orta-ağır</h3>
+<ul>
+<li>Doza: 5 mq/gün → 20 mq/gün</li>
+<li><strong>Donepezil ilə kombinasiya</strong> effektiv (orta-ağır Alzheimer)</li>
+</ul>
+<h3 id="yeni-dərmanlar-2023" class="">Yeni dərmanlar (2023)</h3>
+<p><strong>Lecanemab (Leqembi)</strong> – FDA 2023 təsdiqi:</p>
+<ul>
+<li>Anti-beta-amiloid monoklonal antikor</li>
+<li>Erkən Alzheimer-da sürəti 27% azaldır</li>
+<li>Yan: ARIA (amiloid-related imaging abnormalities)</li>
+<li>Azərbaycanda hənüz mövcud deyil</li>
+</ul>
+<h2 id="proqnoz" class="">Proqnoz</h2>
+<ul>
+<li><strong>Ömürlük proqnoz:</strong> diaqnozdan 8-12 il (dəyişkən)</li>
+<li><strong>Ölüm səbəbi:</strong> aspirasiya pnevmoniyası, infeksiya, yataq yarası</li>
+<li>Ailə qulluqvericilərinin peşə tükənmişliyinin profilaktikasısı vacib</li>
+</ul>
+<h2 id="mənbələr" class="">Mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Scheltens P, et al. <em>Alzheimer\&#x27;s disease.</em> Lancet, 2021.</li>
+<li>van Dyck CH, et al. <em>Lecanemab in early Alzheimer\&#x27;s disease.</em> N Engl J Med, 2023.</li>
+</ol>
+<p>\newpage</p>
+<h1 id="6d7z-di̇gər-demensi̇ya-formalari" class="h-disorder">6D7Z DİGƏR DEMENSİYA FORMALARI</h1>
+<hr>
+<h2 id="serebrovaskulyar-xəstəlikdən-demensiya-6d801" class="">Serebrovaskulyar Xəstəlikdən Demensiya (<span class="icd">6D80.1</span>)</h2>
+<p><strong>Vaskulyar demensiya (VD):</strong></p>
+<ul>
+<li>Demensiyaların <strong>10-20%-i</strong></li>
+<li><strong>Etioloji:</strong> insult, lakunar infarktlar, diffuz ağ maddə zədəsi</li>
+<li><strong>Xüsusiyyəti:</strong> pilləli irəliləyiş (insultdan sonra kəskin kötüləşmə), fokal neyroloji simptomlar</li>
+<li><strong>Risk amilləri:</strong> hipertensiya, diabet, atrial fibrillasiya, siqaret</li>
+<li><strong>Müalicə:</strong> vaskulyar risk amilləri nəzarəti; antiaqreqant (aspirn); ChEI sınırlı sübutluluq</li>
+</ul>
+<hr>
+<h2 id="lewy-cisimciyi-xəstəliyindən-demensiya-6d802" class="">Lewy Cisimciyi Xəstəliyindən Demensiya (<span class="icd">6D80.2</span>)</h2>
+<p><strong>DLB (Dementia with Lewy Bodies):</strong></p>
+<ul>
+<li>Demensiyaların <strong>10-15%-i</strong></li>
+<li><strong>Klinik triad:</strong> dalgalı koqnisiya + vizual halusinasiyalar + parkinsonizm</li>
+<li><strong>Əlavə:</strong> REM yuxu davranışı pozuntusu (RBD – prodromal)</li>
+<li><strong>MÜTLƏQ:</strong> antipsixotiklərdən <strong>qaçınma</strong> (ölümcül həssaslıq riski)</li>
+<li><strong>Müalicə:</strong> ChEI (rivastigmin üstün); parkinsonizm levodopa (halusinasiya artıra bilər)</li>
+</ul>
+<hr>
+<h2 id="frontotemporal-demensiya-6d803" class="">Frontotemporal Demensiya (<span class="icd">6D80.3</span>)</h2>
+<p><strong>FTD (Frontotemporal Lobar Degeneration):</strong></p>
+<p>- Davranış variantı (bvFTD) – disinhibisiya, sosial uygunsuzluq, apati</p>
+<p>- Semantik demensiya – söz mənasının itirilməsi</p>
+<p>- Proqressiv qeyri-axıcı afaziya – nitq axıcılığı pozulması</p>
+<ul>
+<li>65 yaş altı demensiyanın <strong>ən geniş yayılmış forması</strong></li>
+<li><strong>Üç variant:</strong></li>
+<li><strong>Yaddaş görece saxlanılır</strong> (Alzheimerdən fərqli) – erkən mərhələdə</li>
+<li><strong>Müalicə:</strong> simptomatik (antidepressant – impulsivlik üçün); ChEI effektsiz</li>
+</ul>
+<hr>
+<h2 id="parkinson-xəstəliyindən-demensiya-6d804" class="">Parkinson Xəstəliyindən Demensiya (<span class="icd">6D80.4</span>)</h2>
+<p><strong>PDD (Parkinson\&#x27;s Disease Dementia):</strong></p>
+<ul>
+<li>Parkinson xəstəliyinin <strong>75-80%-i</strong> 10 ildən sonra demensiya inkişaf etdirir</li>
+<li>Parkinson diaqnozundan <strong>1+ il sonra</strong> koqnisiya pozulur</li>
+<li>Lewy cisimciyi xəstəliyindən fərq: <strong>zaman ardıcıllığı</strong> (parkinsonizm əvvəl)</li>
+<li><strong>Müalicə:</strong> Rivastigmin (patch) – birinci xətt; FDA təsdiqi</li>
+</ul>
+<hr>
+<h2 id="bölmə-18-üçün-ümumi-mənbələr" class="">Bölmə 18 üçün ümumi mənbələr</h2>
+<ol>
+<li>APA. <em>DSM-5-TR.</em> 2022.</li>
+<li>WHO. <em>ICD-11 CDDR.</em> 2024.</li>
+<li>Inouye SK, et al. <em>Delirium in elderly patients.</em> Lancet, 2014.</li>
+<li>Scheltens P, et al. <em>Alzheimer\&#x27;s disease.</em> Lancet, 2021.</li>
+<li>McKeith IG, et al. <em>Diagnosis and management of dementia with Lewy bodies.</em> Neurology, 2017.</li>
+<li>Rascovsky K, et al. <em>Sensitivity of revised diagnostic criteria for the behavioural variant of frontotemporal dementia.</em> Brain, 2011.</li>
+<li>Emre M, et al. <em>Rivastigmine for dementia associated with Parkinson\&#x27;s disease.</em> N Engl J Med, 2004.</li>
+<li>NICE. <em>Dementia: assessment, management and support for people living with dementia and their carers</em> (NG97). 2018.</li>
+<li>Tiqanov A.S. (red.). <em>Psixiatriya üzrə rəhbərlik.</em> (Руководство по психиатрии) Moskva: Tibb, 1999.</li>
+<li>Yaxno N.N. <em>Neyroloji klinikada koqnitiv pozuntular.</em> (Когнитивные расстройства в неврологической клинике) Nevrologiya jurnalı, 2006.</li>
+</ol>
+      <nav class="page-nav"><a href="bolme-19.html" class="pnav-btn prev"><span class="pnav-dir">← Əvvəlki</span><span class="pnav-title">BÖLMƏ 19 — CİNSİ SAĞLAMLIQ</span></a><a href="bolme-21.html" class="pnav-btn next"><span class="pnav-dir">Növbəti →</span><span class="pnav-title">BÖLMƏ 21 — HAMİLƏLİK</span></a></nav>
+    </div>
+  </main>
+</div>
+
+<button id="btt" title="Yuxarı">↑</button>
+<script>
+const CURRENT = "bolme-20";
+const ALL_PAGES = [{"slug": "index", "title": "Titul + \u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Giri\u015f", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "Abbreviaturalar", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
+
+// Sidebar active
+document.querySelectorAll('.nav-link').forEach(a=>{
+  if(a.getAttribute('data-slug')===CURRENT) a.classList.add('active');
+});
+
+// Progress bar
+const pf = document.getElementById('prog-fill');
+const btt = document.getElementById('btt');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY, t=document.body.scrollHeight-window.innerHeight;
+  if(pf) pf.style.width=(t>0?s/t*100:0)+'%';
+  if(btt) btt.classList.toggle('on',s>400);
+});
+
+// Search index (page headings)
+const idx=[];
+document.querySelectorAll('[id]').forEach(el=>{
+  const t=el.textContent.trim();
+  if(t&&['H1','H2','H3'].includes(el.tagName))
+    idx.push({id:el.id,title:t.slice(0,90),page:CURRENT});
+});
+// Add all pages for cross-page search
+ALL_PAGES.forEach(p=>idx.push({id:'',title:p.title,page:p.slug,code:p.code||''}));
+
+const si=document.getElementById('search-input');
+const sd=document.getElementById('search-drop');
+if(si&&sd){
+  let tmr;
+  si.addEventListener('input',()=>{
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{
+      const q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      const res=idx.filter(x=>(x.title+' '+(x.code||'')).toLowerCase().includes(q)).slice(0,12);
+      if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+      sd.innerHTML=res.map(r=>{
+        const hl=s=>s.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+        return `<div class="sr" onclick="goTo('${r.page}','${r.id}')">${r.code?`<div class="sr-code">${hl(r.code)}</div>`:''}
+          <div class="sr-title">${hl(r.title)}</div>
+          <div class="sr-sub">${r.page}.html</div></div>`;
+      }).join('');
+      sd.classList.add('on');
+    },220);
+  });
+  document.addEventListener('click',e=>{if(!e.target.closest('.hdr-search'))sd.classList.remove('on');});
+  si.addEventListener('keydown',e=>{if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+}
+
+function goTo(page,id){
+  sd&&sd.classList.remove('on');
+  if(page===CURRENT&&id){
+    const el=document.getElementById(id);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'start'});return;}
+  }
+  window.location.href=page+'.html'+(id?'#'+id:'');
+}
+
+function toggleSb(){
+  document.getElementById('sb').classList.toggle('on');
+  document.getElementById('ov').classList.toggle('on');
+}
+document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
