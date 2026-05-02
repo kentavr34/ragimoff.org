@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
   --bg:       #0F1117;
@@ -19,7 +19,7 @@
   --blue:     #58A6FF;
   --red:      #F85149;
   --r:        8px;
-  --font:     'Literata', Georgia, serif;
+  --font:     'Inter', sans-serif;
   --mono:     'JetBrains Mono', monospace;
   --sidebar:  280px;
   --hdr:      58px;
@@ -130,8 +130,8 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 /* ── MAIN ─────────────────────────────────────── */
 .site-main{
   flex:1;margin-left:var(--sidebar);
-  padding:52px 60px 100px;
-  max-width:calc(var(--sidebar) + var(--max-w) + 120px);
+  padding:72px 80px 100px 60px;
+  max-width:calc(var(--sidebar) + var(--max-w) + 160px);
   min-width:0;
 }
 .content-wrap{max-width:var(--max-w)}
@@ -167,14 +167,15 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 
 /* ── TYPOGRAPHY ───────────────────────────────── */
 h1.h-bolme{
-  font-size:22px;font-weight:700;color:var(--gold);
+  font-size:22px;font-weight:800;color:var(--gold);
   padding:28px 0 10px;border-bottom:2px solid var(--gold2);
-  margin:40px 0 20px;letter-spacing:.02em;font-family:var(--mono);
+  margin:40px 0 20px;letter-spacing:.02em;font-family:'Montserrat',sans-serif;
 }
 h1.h-disorder{
   font-size:20px;font-weight:700;color:var(--text);
   padding:24px 0 8px;margin:36px 0 16px;
   border-bottom:1px solid var(--border);
+  font-family:'Montserrat',sans-serif;
 }
 h1.h-section{
   font-size:22px;font-weight:700;color:var(--gold);margin:32px 0 18px;
@@ -254,7 +255,7 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
   .hdr-title small{display:none}
 }
 @media(max-width:600px){
-  .site-main{padding:24px 16px 70px}
+  .site-main{padding:28px 14px 70px}
   .page-hdr h1{font-size:22px}
   h1.h-bolme{font-size:19px}
   h1.h-disorder{font-size:17px}
@@ -305,3 +306,48 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 }
 .hdr-back:hover { color: var(--gold); border-color: var(--gold2); }
 @media (max-width: 600px) { .hdr-back { display: none; } }
+
+/* ── EXPANDABLE TOC SUB-ITEMS ─────────────────── */
+.nav-has-sub { position: relative; }
+
+.nav-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--text3); font-size: 9px; padding: 4px 6px;
+  transition: transform .2s, color .2s;
+  line-height: 1;
+}
+.nav-has-sub:hover .nav-toggle { color: var(--gold2); }
+.nav-has-sub.open .nav-toggle { transform: translateY(-50%) rotate(90deg); color: var(--gold); }
+
+.nav-sub {
+  display: none;
+  padding: 2px 0 6px 0;
+}
+.nav-has-sub.open .nav-sub { display: block; }
+
+.nav-sub-link {
+  display: flex; align-items: baseline; gap: 7px;
+  padding: 5px 14px 5px 22px;
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 12px;
+  line-height: 1.4;
+  border-left: 2px solid transparent;
+  margin-left: 10px;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.nav-sub-link:hover {
+  color: var(--text);
+  border-left-color: var(--gold2);
+  background: rgba(230,180,74,0.06);
+}
+.sub-code {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--gold2); flex-shrink: 0;
+  letter-spacing: .03em;
+}
+.sub-name { flex: 1; }
+
+/* Shift chapter link right to make room for toggle */
+.nav-has-sub > .nav-link { padding-right: 28px; }
