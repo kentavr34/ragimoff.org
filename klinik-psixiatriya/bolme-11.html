@@ -602,9 +602,28 @@ function goTo(page,id){
 }
 
 function toggleSb(){
-  document.getElementById('sb').classList.toggle('on');
-  document.getElementById('ov').classList.toggle('on');
+  var sb=document.getElementById('sb'), ov=document.getElementById('ov');
+  sb.classList.toggle('on'); ov.classList.toggle('on');
 }
+function closeSb(){
+  var sb=document.getElementById('sb'), ov=document.getElementById('ov');
+  if(sb) sb.classList.remove('on');
+  if(ov) ov.classList.remove('on');
+}
+// Закрыть сайдбар при клике по любой ссылке внутри (мобильный)
+var sbNav=document.querySelector('#sb nav');
+if(sbNav){
+  sbNav.addEventListener('click',function(e){
+    if(window.innerWidth<960){
+      var a=e.target.closest('a');
+      if(a) setTimeout(closeSb, 80);
+    }
+  });
+}
+// Закрыть по Escape
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeSb();
+});
 document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 </script>
 
