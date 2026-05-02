@@ -190,7 +190,7 @@
           <a href="b2b.html">Korporativ</a>
           <a href="blog.html">Blog</a>
           <a href="ru/program-praktikum.html" class="lang-switch" aria-label="Русская версия">RU</a><a href="program-praktikum.html" class="lang-switch lang-active" aria-label="Azərbaycanca">AZ</a>
-          <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
+          <a href="#" class="nav-cta" onclick="openKitabModal();return false;">Kitabın sifarişi</a>
         </nav>
         <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
           <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
@@ -701,5 +701,67 @@
       document.addEventListener('keydown', function(e){ if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') { show(current - 1); startAuto(); } if (e.key === 'ArrowRight') { show(current + 1); startAuto(); } });
     })();
     </script>
-  </body>
+  
+<!-- ── Kitabın Sifarişi Modal ─────────────────────────── -->
+<div id="kitab-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#1a1d27;border:1px solid #2e3245;border-radius:12px;padding:36px 32px 28px;width:100%;max-width:400px;margin:20px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.7);">
+    <button onclick="closeKitabModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#8892aa;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;">✕</button>
+    <div style="width:44px;height:44px;border-radius:8px;background:#E6B44A;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#0f1117;margin-bottom:16px;">КП</div>
+    <h2 style="font-size:20px;font-weight:700;color:#f0f2f8;margin:0 0 10px;font-family:monospace;">Kitabın sifarişi</h2>
+    <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:3px solid #c49b2f;padding-left:12px;">Kitab çap nəşrinə hazırlanır. İlk oxucular arasında olmaq istəyirsinizsə, məlumatlarınızı buraxın — nəşr olunan kimi dərhal sizinlə əlaqə saxlayacağıq.</p>
+    <form id="kitab-form-main">
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Ad Soyad</label>
+        <input id="km-name" type="text" placeholder="Adınız və soyadınız" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Mobil nömrə</label>
+        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+      </div>
+      <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Sifariş et</button>
+    </form>
+    <div id="km-success" style="display:none;background:rgba(100,200,120,.1);border:1px solid rgba(100,200,120,.3);border-radius:8px;padding:20px;font-size:14px;color:#6dc87e;text-align:center;margin-top:16px;line-height:1.6;">
+      Təşəkkür edirik!<br>Kitab nəşr olunan kimi sizinlə əlaqə saxlayacağıq.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+  window.openKitabModal = function(){
+    var m = document.getElementById('kitab-modal');
+    m.style.display = 'flex'; document.body.style.overflow = 'hidden';
+    setTimeout(function(){ var n=document.getElementById('km-name'); if(n)n.focus(); }, 120);
+  };
+  window.closeKitabModal = function(){
+    document.getElementById('kitab-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  };
+  document.getElementById('kitab-modal').addEventListener('click', function(e){
+    if (e.target === this) closeKitabModal();
+  });
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('kitab-form-main');
+    if (!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var name  = (document.getElementById('km-name').value||'').trim();
+      var phone = (document.getElementById('km-phone').value||'').trim();
+      if (!name||!phone){alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.');return;}
+      var parts = name.split(/\s+/);
+      var payload = {type:'registration',fname:parts[0]||'',lname:parts.slice(1).join(' ')||'',
+        phone:phone,service:'Kitab sifarişi',source:'ragimoff.org/kitab-sifarisi'};
+      if(btn){btn.textContent='Göndərilir...';btn.disabled=true;}
+      try { await fetch(KITAB_API,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }
+      catch(err){console.error(err);}
+      document.getElementById('km-success').style.display='block';
+      form.style.display='none';
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeKitabModal();});
+  });
+})();
+</script>
+</body>
 </html>

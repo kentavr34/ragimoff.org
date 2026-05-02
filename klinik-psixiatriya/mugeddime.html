@@ -23,6 +23,7 @@
     <span class="ico">⌕</span>
     <div id="search-drop"></div>
   </div>
+  <button class="kitab-btn" onclick="openKitabModal()"><span class="kitab-full">Kitabın sifarişi</span><span class="kitab-short">Sifariş</span></button>
   <button class="menu-btn" onclick="toggleSb()">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
       <rect y="2" width="18" height="2" rx="1"/><rect y="8" width="18" height="2" rx="1"/><rect y="14" width="18" height="2" rx="1"/>
@@ -2204,5 +2205,75 @@ function toggleSub(btn){
 }
 </script>
 
+
+<!-- ── Kitabın Sifarişi Modal ─────────────────────────── -->
+<div id="kitab-modal" class="kitab-overlay" onclick="if(event.target===this)closeKitabModal()">
+  <div class="kitab-box">
+    <button class="kitab-close" onclick="closeKitabModal()" aria-label="Bağla">✕</button>
+    <div class="kitab-logo">КП</div>
+    <h2 class="kitab-title">Kitabın sifarişi</h2>
+    <p class="kitab-desc">Kitab çap nəşrinə hazırlanır. İlk oxucular arasında olmaq istəyirsinizsə, məlumatlarınızı buraxın — nəşr olunan kimi dərhal sizinlə əlaqə saxlayacağıq.</p>
+    <form id="kitab-form">
+      <div class="kitab-field">
+        <label for="kitab-name">Ad Soyad</label>
+        <input id="kitab-name" name="name" type="text" placeholder="Adınız və soyadınız" required autocomplete="name">
+      </div>
+      <div class="kitab-field">
+        <label for="kitab-phone">Mobil nömrə</label>
+        <input id="kitab-phone" name="phone" type="tel" placeholder="+994 XX XXX XX XX" required autocomplete="tel">
+      </div>
+      <button type="submit" class="kitab-submit">Sifariş et</button>
+    </form>
+    <div id="kitab-success" class="kitab-success" style="display:none">
+      Təşəkkür edirik!<br>Kitab nəşr olunan kimi sizinlə əlaqə saxlayacağıq.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+  window.openKitabModal = function(){
+    document.getElementById('kitab-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('kitab-name').focus(); }, 120);
+  };
+  window.closeKitabModal = function(){
+    document.getElementById('kitab-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('kitab-form');
+    if (!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var name  = (document.getElementById('kitab-name').value || '').trim();
+      var phone = (document.getElementById('kitab-phone').value || '').trim();
+      if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+      var parts = name.split(/\s+/);
+      var payload = {
+        type: 'registration',
+        fname: parts[0] || '',
+        lname: parts.slice(1).join(' ') || '',
+        phone: phone,
+        service: 'Kitab sifarişi',
+        source: 'klinik-psixiatriya/kitab-sifarisi'
+      };
+      if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
+      try {
+        await fetch(KITAB_API, { method:'POST', mode:'no-cors',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body: JSON.stringify(payload) });
+      } catch(err) { console.error(err); }
+      document.getElementById('kitab-success').style.display = 'block';
+      form.style.display = 'none';
+    });
+    // ESC закрывает
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeKitabModal();
+    });
+  });
+})();
+</script>
 </body>
 </html>

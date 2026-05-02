@@ -90,6 +90,83 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 }
 .menu-btn svg{width:22px;height:22px;display:block}
 
+/* ── KİTAB SİFARİŞİ BUTTON ───────────────────── */
+.kitab-btn{
+  background:var(--gold);color:var(--bg);
+  border:none;border-radius:6px;
+  padding:8px 14px;font-size:12px;font-weight:700;
+  font-family:var(--mono);letter-spacing:.04em;
+  cursor:pointer;flex-shrink:0;white-space:nowrap;
+  transition:background .2s,transform .1s;
+}
+.kitab-btn:hover{background:#f0c050;transform:translateY(-1px)}
+@media(max-width:700px){.kitab-btn{font-size:11px;padding:7px 10px}}
+@media(max-width:480px){.kitab-btn span.kitab-full{display:none}.kitab-btn span.kitab-short{display:inline}}
+@media(min-width:481px){.kitab-btn span.kitab-short{display:none}}
+
+/* ── KİTAB SİFARİŞİ MODAL ────────────────────── */
+.kitab-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.72);z-index:9999;
+  align-items:center;justify-content:center;
+}
+.kitab-overlay.open{display:flex}
+.kitab-box{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:36px 32px 28px;
+  width:100%;max-width:400px;margin:20px;
+  position:relative;box-shadow:0 30px 80px rgba(0,0,0,.7);
+}
+.kitab-close{
+  position:absolute;top:14px;right:16px;
+  background:none;border:none;color:var(--text3);
+  font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;
+}
+.kitab-close:hover{color:var(--text)}
+.kitab-logo{
+  width:44px;height:44px;border-radius:8px;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:14px;font-weight:700;color:var(--bg);
+  margin-bottom:16px;
+}
+.kitab-title{
+  font-size:20px;font-weight:700;color:var(--text);
+  margin:0 0 10px;font-family:var(--mono);
+}
+.kitab-desc{
+  font-size:13px;color:var(--text2);line-height:1.65;
+  margin:0 0 22px;border-left:3px solid var(--gold2);
+  padding-left:12px;
+}
+.kitab-field{margin-bottom:14px}
+.kitab-field label{
+  display:block;font-size:11px;font-weight:700;
+  color:var(--text3);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;
+}
+.kitab-field input{
+  width:100%;background:var(--bg3);
+  border:1px solid var(--border);border-radius:6px;
+  color:var(--text);font-family:var(--font);font-size:14px;
+  padding:10px 13px;outline:none;box-sizing:border-box;
+  transition:border-color .2s;
+}
+.kitab-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+.kitab-submit{
+  width:100%;background:var(--gold);color:var(--bg);
+  border:none;border-radius:6px;padding:13px;
+  font-size:14px;font-weight:700;font-family:var(--mono);
+  cursor:pointer;margin-top:6px;transition:background .2s;
+}
+.kitab-submit:hover{background:#f0c050}
+.kitab-submit:disabled{opacity:.6;cursor:not-allowed}
+.kitab-success{
+  background:rgba(100,200,120,.1);
+  border:1px solid rgba(100,200,120,.3);
+  border-radius:8px;padding:20px;
+  font-size:14px;color:#6dc87e;
+  text-align:center;margin-top:16px;line-height:1.6;
+}
+
 /* ── LAYOUT ───────────────────────────────────── */
 .site-layout{display:flex;margin-top:var(--hdr);min-height:calc(100vh - var(--hdr))}
 
