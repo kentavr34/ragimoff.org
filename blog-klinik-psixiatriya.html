@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Klinik Psixiatriya — XBT-11 əsaslı diaqnostika və terapiya rəhbərliyi. 22 bölmə, 100-dən çox diaqnoz. Kənan Rəhimov, Həkim-Psixiatr." />
+    <title>Klinik Psixiatriya — XBT-11 Rəhbərliyi | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="gtc.css" />
+    <style>
+      .art-cover { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin:0 0 32px; border-radius:8px; }
+      .art-fig { margin:36px -20px; }
+      .art-fig img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; }
+      .art-fig figcaption { font-size:.8125rem; color:var(--clr-text-muted); margin-top:10px; padding:0 20px; font-style:italic; }
+      .art-sources { margin-top:48px; padding-top:24px; border-top:1px solid var(--clr-border); font-size:.85rem; color:var(--clr-text-muted); }
+      .art-sources strong { color:var(--clr-heading); display:block; margin-bottom:8px; }
+      .art-sources a { color:var(--accent); text-decoration:none; }
+      .art-sources a:hover { text-decoration:underline; }
+      .bolme-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; margin:24px 0 32px; }
+      .bolme-card { background:var(--clr-surface,#f4f6fb); border-radius:8px; padding:14px 16px; border-left:3px solid var(--accent); }
+      .bolme-card .bc-code { font-size:.75rem; font-weight:700; color:var(--accent); letter-spacing:.04em; margin-bottom:4px; }
+      .bolme-card .bc-title { font-size:.9rem; font-weight:600; color:var(--clr-heading); line-height:1.35; }
+      @media (max-width:768px) { .art-fig { margin:28px 0; } .art-fig figcaption { padding:0; } .bolme-grid { grid-template-columns:1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="index.html" class="logo-box">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Psixologiya Məktəbi</span>
+        </a>
+        <nav class="desktop-nav">
+          <div class="nav-item">
+            <a href="index.html">Ana Səhifə</a>
+            <ul class="nav-dropdown">
+              <li><a href="haqqimda.html">Haqqımda</a></li>
+              <li><a href="/klinik-psixiatriya/">Klinik Psixiatriya</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="tehsil.html">Təhsil</a>
+            <ul class="nav-dropdown">
+              <li><a href="program-umumi.html">Ümumi Psixologiya</a></li>
+              <li><a href="program-klinik.html">Klinik Psixologiya DPO</a></li>
+              <li><a href="program-praktikum.html">Psixoterapiya Praktikumu</a></li>
+              <li><a href="qanunlar.html">Qanuni Əsaslar</a></li>
+            </ul>
+          </div>
+          <div class="nav-item">
+            <a href="xidmetler.html">Konsultasiya</a>
+            <ul class="nav-dropdown">
+              <li><a href="aile-terapiyasi.html">Ailə Terapiyası</a></li>
+              <li><a href="aile-terapiyasi-usaq.html">Aile-Uşaq Terapiyası</a></li>
+              <li><a href="depressiya.html">Depressiya</a></li>
+              <li><a href="panik-ataklar.html">Panik Ataklar</a></li>
+              <li><a href="sosial-fobiya.html">Sosial Fobiya</a></li>
+              <li><a href="enurez.html">Gecə Enurezi</a></li>
+            </ul>
+          </div>
+          <a href="b2b.html">Korporativ</a>
+          <a href="blog.html" class="nav-active">Blog</a>
+          <a href="ru/blog-klinik-psixiatriya.html" class="lang-switch" aria-label="Русская версия">RU</a><a href="en/blog-klinik-psixiatriya.html" class="lang-switch" aria-label="English">EN</a><a href="blog-klinik-psixiatriya.html" class="lang-switch lang-active" aria-label="Azərbaycanca">AZ</a>
+          <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
+        </nav>
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        </button>
+      </div>
+    </header>
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
+      </button>
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+      <a href="/klinik-psixiatriya/" onclick="toggleMenu()">Klinik Psixiatriya</a>
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+      <a href="ru/blog-klinik-psixiatriya.html" class="mobile-lang">Русская версия</a>
+      <a href="en/blog-klinik-psixiatriya.html" class="mobile-lang">English</a>
+      <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">QEYDİYYAT</a>
+    </nav>
+
+    <section class="pg-hero pg-hero-plain" data-theme="dark">
+      <div class="pg-hero-inner">
+        <span class="badge">KLİNİK PSİXİATRİYA</span>
+        <h1 class="hero-h1">Klinik Psixiatriya — XBT-11 Əsaslı Diaqnostika Rəhbərliyi</h1>
+        <p class="hero-lead">Kənan Rəhimov · 10 dəq oxuma · 2026</p>
+      </div>
+    </section>
+
+    <section data-theme="light">
+      <div class="sec-inner" style="padding:var(--s-section); max-width:760px; text-align:left">
+
+        <div class="article-body">
+
+          <p>2026-cı ildə "Klinik Psixiatriya" rəhbərliyi ilk dəfə Azərbaycan dilində nəşr olundu. Bu kitab klinik psixiatriyanın bütün əsas bölmələrini — neyroinкişaf pozuntularından tutmuş şəxsiyyət pozuntularına, yuxu pozğunluqlarına, cinsi sağlamlıq məsələlərinə qədər — vahid, ardıcıl strukturda əhatə edir. Əsas fərqləndirici cəhət: hər diaqnoz XBT-11 (Xəstəliklərin Beynəlxalq Təsnifatı, 11-ci nəşr) kodlaşdırması ilə paralel olaraq verilir, DSM-5-TR ilə müqayisəli nəzərdən keçirilir.</p>
+
+          <p>Bu rəhbərlik akademik monoqrafiya deyil. O, gündəlik klinik işi dəstəkləmək üçün yaradılmış strukturlaşdırılmış istinad vəsaitidir: kompakt, dəqiq, praktik. Hər diaqnoz seksiyası tərif, diaqnostik kriteriyalar, differensial diaqnostika, müalicə istiqamətləri və XBT-11 kodu ilə tamamlanır.</p>
+
+          <h2>XBT-11 nədir və niyə vacibdir?</h2>
+          <p>ÜST-ün (Ümumdünya Səhiyyə Təşkilatı) XBT-11 sənədi — Xəstəliklərin Beynəlxalq Təsnifatının ən son, 2022-ci ildə qüvvəyə minmiş nəşridir. XBT-10 ilə müqayisədə psixiatrik bölmə kökündən yenilənmişdir:</p>
+          <ul>
+            <li><strong>Autizm spektri pozuntusu</strong> ayrıca, daha geniş diaqnostik çərçivədə təqdim olunur.</li>
+            <li><strong>Şəxsiyyət pozuntuları</strong> artıq kateqorial yox, dimensional modellə (ağırlıq dərəcəsi + dominant xüsusiyyətlər) qiymətləndirilir.</li>
+            <li><strong>Kompleks PTSD</strong> müstəqil diaqnoz kimi daxil edilib — XBT-10-da bu ayrıca mövcud deyildi.</li>
+            <li><strong>Oyun pozuntusu</strong> (Gaming disorder) rəsmi diaqnoz statusu alıb.</li>
+            <li>Cins uyumsuzluğu psixiatrik bölmədən çıxarılıb, cinsi sağlamlıq bölməsinə köçürülüb.</li>
+          </ul>
+          <p>Azərbaycanda hələ XBT-11-ə keçid rəsmi olaraq tamamlanmamış olsa da, beynəlxalq elmi icma artıq yeni sistemi əsas götürür. Klinik psixiatriya sahəsində çalışan hər mütəxəssis bu yeniliklərə bələd olmalıdır.</p>
+
+          <h2>Kitabın quruluşu — 22 bölmə</h2>
+          <p>Rəhbərlik 22 əsas bölmədən ibarətdir. Hər bölmə müvafiq XBT-11 kod aralığını əhatə edir:</p>
+
+          <div class="bolme-grid">
+            <div class="bolme-card"><div class="bc-code">6A00–6A0Z</div><div class="bc-title">NEYROİNKİŞAF POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6A20–6A25</div><div class="bc-title">ŞİZOFRENİYA VƏ DİGƏR BİRİNCİLİ PSİXOTİK POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6A40–6A4Z</div><div class="bc-title">KATATONİYA</div></div>
+            <div class="bolme-card"><div class="bc-code">6A60–6A8Z</div><div class="bc-title">ƏHVAL POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6B00–6B0Z</div><div class="bc-title">TƏŞVİŞ VƏ QORXU İLƏ ƏLAQƏLİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6B20–6B2Z</div><div class="bc-title">OBSESSİV-KOMPULSİV VƏ ƏLAQƏLİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6B40–6B4Z</div><div class="bc-title">STRESSLƏ ƏLAQƏLİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6B60–6B6Z</div><div class="bc-title">DİSSOSİATİV POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6B80–6B8Z</div><div class="bc-title">YEMƏ VƏ YEMƏKƏBENZƏRİ DAVRANIŞ POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6C00–6C0Z</div><div class="bc-title">İFRAZAT POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6C20–6C2Z</div><div class="bc-title">BƏDƏNSƏL DİSSTRES VƏ ƏLAQƏLİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6C40–6C9Z</div><div class="bc-title">MADDƏ İSTİFADƏSİ VƏ ASILILIQ POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6C70–6C7Z</div><div class="bc-title">İMPULS NƏZARƏTİ POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6C90–6C9Z</div><div class="bc-title">POZUCU DAVRANIŞ VƏ DİSSOSİAL POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6D10–6D1Z</div><div class="bc-title">ŞƏXSİYYƏT POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">6D30–6D3Z</div><div class="bc-title">PARAFİLİK POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6D50–6D51</div><div class="bc-title">SÜNI (FAKTİTİOZ) POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">7A00–7B2Z</div><div class="bc-title">YUXU-OYAQLIQ POZUNTULARI</div></div>
+            <div class="bolme-card"><div class="bc-code">HA00–HA8Z</div><div class="bc-title">CİNSİ SAĞLAMLIQ İLƏ ƏLAQƏLİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6D70–6D8Z</div><div class="bc-title">NEYROKOQNİTİV POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6E20</div><div class="bc-title">HAMİLƏLİK VƏ DOĞUŞ DÖVRLƏ ƏLAQƏLİ PSİXİ POZUNTULAR</div></div>
+            <div class="bolme-card"><div class="bc-code">6E60–6E6Z</div><div class="bc-title">İKİNCİLİ PSİXİ VƏ DAVRANIŞ SİNDROMLARI</div></div>
+          </div>
+
+          <p>Hər bölmə ayrıca HTML-səhifə kimi strukturlaşdırılıb: kod aralığı, bölmənin ümumi tərifi, xəstəliklərin XBT-11 diaqnostik kriteriyaları, differensial diaqnostika cədvəlləri, terapiya istiqamətləri. Kitab içi naviqasiya tam interaktivdir — oглавление vasitəsilə hər diaqnoza birbaşa keçmək mümkündür.</p>
+
+          <h2>Klinik istifadə — necə oxumalı?</h2>
+          <p>Rəhbərlik ardıcıl oxunmaq üçün deyil — istinad mənbəyi kimi istifadə olunmaq üçündür. Praktik iş axını belədir:</p>
+          <ol>
+            <li><strong>Şikayət qrupu müəyyənləşdirin.</strong> Xəstə əhval pozğunluğundan danışırsa — 4-cü bölməyə (6A60–6A8Z) gedin.</li>
+            <li><strong>Diaqnostik kriteriyaları yoxlayın.</strong> Hər pozuntu seksiyasında XBT-11 A, B, C kriteriyaları ardıcıl verilir.</li>
+            <li><strong>Differensial diaqnostikanı keçin.</strong> Oxşar klinik mənzərə verən alternativ diaqnozlarla müqayisəli analiz aparın.</li>
+            <li><strong>Müalicə istiqamətlərini nəzərdən keçirin.</strong> Hər seksiyada farmakoloji və psixoterapevtik yanaşmalar qeyd olunur.</li>
+          </ol>
+          <p>Kitab həm masaüstü, həm mobil cihazlarda tam işlək formatda açılır. Onlayn versiyada axtarış funksiyası — diaqnoz adı, kod və ya simptom üzrə — anında nəticə verir.</p>
+
+          <h2>Kimə ünvanlanıb?</h2>
+          <p>Əsas hədəf auditoriyası — praktik fəaliyyət göstərən psixiatrlar, klinik psixoloqlar, rezidentlər və psixiatriyanın qonşu sahələrindəki (nevrologiya, ailə həkimliyi, pediatriya) mütəxəssislərdir. Kitab eyni zamanda psixologiya üzrə ixtisaslaşmış tələbə və magistrantlar üçün dərs vəsaiti kimi istifadə edilə bilər.</p>
+          <p>Terminologiya Azərbaycan tibb dilinin normalarına uyğunlaşdırılmış, beynəlxalq nomenklatura isə latın transliterasiyası ilə qorunub saxlanılmışdır. XBT-11 kodları hər seksiyada açıq şəkildə göstərilir — beynəlxalq yazışmalarda və statistik hesabatlarda birbaşa istifadəyə hazırdır.</p>
+
+          <p style="margin-top:32px"><a href="/klinik-psixiatriya/" class="btn btn-fill" style="display:inline-block">Kitabı oxu →</a></p>
+
+        </div>
+
+        <div class="art-sources">
+          <strong>Əsas mənbələr:</strong>
+          <p><a href="https://icd.who.int/en" target="_blank" rel="noopener">WHO — International Classification of Diseases, 11th Revision (ICD-11), 2022</a></p>
+          <p><a href="https://www.psychiatry.org/psychiatrists/practice/dsm" target="_blank" rel="noopener">American Psychiatric Association — DSM-5-TR, 2022</a></p>
+          <p>Rəhimov K. — Klinik Psixiatriya: XBT-11 Əsaslı Diaqnostika və Terapiya Standartları. Bakı, 2026.</p>
+        </div>
+
+        <div class="author-block" style="margin-top:48px">
+          <div>
+            <strong>Kənan Rəhimov</strong>
+            <p style="color:var(--clr-text-muted); font-size:.9rem; margin:4px 0 0">Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-theme="dark" style="background:var(--navy)">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <span class="badge">OXUYUN</span>
+        <h2 class="sec-h2">Digər Məqalələr</h2>
+        <div class="blog-grid-2" style="margin-top:32px; display:grid; grid-template-columns:repeat(3,1fr); gap:24px">
+          <a href="blog-depressiya.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Klinik</span>
+              <h3 class="blog-card-title">Depressiya Kədərdən Necə Fərqlənir?</h3>
+              <p class="blog-card-excerpt">DSM-5 üzrə 7 klinik əlamət, kədərlə fərq, risk faktorları.</p>
+            </div>
+          </a>
+          <a href="blog-panik.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Klinik</span>
+              <h3 class="blog-card-title">Panik Atakın Anatomiyası</h3>
+              <p class="blog-card-excerpt">Panik atakın klinik mənzərəsi, döngü mexanizmi və müalicə yolları.</p>
+            </div>
+          </a>
+          <a href="blog-psixolog-olmaq.html" class="blog-card" style="text-decoration:none">
+            <div class="blog-card-body">
+              <span class="blog-card-cat">Peşə</span>
+              <h3 class="blog-card-title">Psixoloq Olmaq: Haradan Başlamaq Lazımdır?</h3>
+              <p class="blog-card-excerpt">Peşəkar psixoloq yolunun 5 əsas addımı.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-band" data-theme="dark">
+      <div class="cta-band-inner">
+        <h2 class="sec-h2">XBT-11 üzrə tam psixiatrik istinad</h2>
+        <p class="sec-sub">Onlayn kitab — pulsuz, tam, interaktiv</p>
+        <div class="cta-band-btns">
+          <a href="/klinik-psixiatriya/" class="btn btn-fill">Kitabı Aç</a>
+          <a href="https://wa.me/994702200376" class="btn btn-line" target="_blank">Sual vermək</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer" data-theme="dark">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div>
+            <a href="index.html" class="logo-box footer-logo">
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psixologiya Məktəbi</span>
+            </a>
+            <p class="footer-desc">Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə. Bakı, Azərbaycan.</p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <div>
+            <span class="footer-col-title">Terapiya</span>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Gecə Enurezi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Təhsil</span>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Bloqu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+          <div>
+            <span class="footer-col-title">Əlaqə</span>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+        </div>
+      </div>
+    </footer>
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+    <script src="gtc.js"></script>
+  </body>
+</html>
