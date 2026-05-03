@@ -827,13 +827,22 @@ function goTo(page,id){
   window.location.href=page+'.html'+(id?'#'+id:'');
 }
 
+var _sbScroll=0;
 function toggleSb(){
-  var sb=document.getElementById('sb'), ov=document.getElementById('ov');
-  sb.classList.toggle('on'); ov.classList.toggle('on');
+  var sb=document.getElementById('sb'),ov=document.getElementById('ov');
+  if(sb.classList.contains('on')){
+    _sbScroll=sb.scrollTop;
+    sb.classList.remove('on');
+    if(ov) ov.classList.remove('on');
+  } else {
+    sb.classList.add('on');
+    if(ov) ov.classList.add('on');
+    setTimeout(function(){sb.scrollTop=_sbScroll;},10);
+  }
 }
 function closeSb(){
-  var sb=document.getElementById('sb'), ov=document.getElementById('ov');
-  if(sb) sb.classList.remove('on');
+  var sb=document.getElementById('sb'),ov=document.getElementById('ov');
+  if(sb){_sbScroll=sb.scrollTop;sb.classList.remove('on');}
   if(ov) ov.classList.remove('on');
 }
 // Закрыть сайдбар при клике по любой ссылке внутри (мобильный)
@@ -869,11 +878,23 @@ document.getElementById('btt')?.addEventListener('click',()=>window.scrollTo({to
   document.querySelectorAll('.nav-link').forEach(function(a){
     if(a.dataset.slug === path) a.classList.add('active');
   });
+  // Scroll sidebar to show active chapter
+  setTimeout(function(){
+    var sb=document.getElementById('sb');
+    var open=sb&&sb.querySelector('.nav-has-sub.open');
+    if(sb&&open){
+      var target=open.offsetTop-Math.round(sb.offsetHeight/3);
+      sb.scrollTop=Math.max(0,target);
+    }
+  },80);
 })();
 
 function toggleSub(btn){
-  var item = btn.closest('.nav-has-sub');
+  var sb=document.getElementById('sb');
+  var top=sb?sb.scrollTop:0;
+  var item=btn.closest('.nav-has-sub');
   item.classList.toggle('open');
+  if(sb) requestAnimationFrame(function(){sb.scrollTop=top;});
 }
 </script>
 
