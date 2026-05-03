@@ -627,11 +627,14 @@ hr {
     height: 240px !important;
   }
 
-  /* Badge: push down from nav, pull closer to H1 */
+  /* Badge positioning */
   .hero-text .badge {
     margin-top: 8px !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 10px !important;
   }
+  /* Extra gap between badge and H1 — done on H1 side, not badge side,
+     so it doesn't affect layout during JS measurement */
+  .hero-h1 { margin-top: 5px !important; }
 
   /* Section headings on mobile */
   .sec-h2 { font-size: 1.6rem !important; }

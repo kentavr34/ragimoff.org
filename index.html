@@ -850,13 +850,14 @@
     var target=w2.getBoundingClientRect().width;
     w2.style.display='';
     if(!target) return;
-    // Fit h1-w1 (PEŞƏKAR) to same width
+    // Fit h1-w1 (PEŞƏKAR) to 80% of PSİXOLOGİYA MƏKTƏBİ width
+    var scaleTarget = target * 0.80;
     var lo=10, hi=160;
     w1.style.display='inline';
     for(var i=0;i<30;i++){
       var mid=(lo+hi)/2;
       w1.style.fontSize=mid+'px';
-      if(w1.getBoundingClientRect().width < target) lo=mid;
+      if(w1.getBoundingClientRect().width < scaleTarget) lo=mid;
       else hi=mid;
     }
     w1.style.fontSize=Math.floor(lo)+'px';
