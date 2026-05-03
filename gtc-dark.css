@@ -122,6 +122,12 @@ div[style*="background: #fff"] {
 .desktop-nav a.nav-active {
   color: var(--bnb-gold) !important;
 }
+/* CTA button: dark text on gold — must override the .desktop-nav a rule */
+.desktop-nav .nav-cta,
+.desktop-nav .nav-cta:hover {
+  color: #0B0E11 !important;
+  font-weight: 800 !important;
+}
 .nav-dropdown {
   background: var(--bnb-surface) !important;
   border-color: var(--bnb-border) !important;
@@ -563,6 +569,14 @@ hr {
   .hero-search-bar { max-width: 100%; }
   .hero-search-btn span { display: none; }
   .hero-search-btn::after { content: "🔍"; font-size: 16px; }
+}
+
+/* ─── Responsive line breaks: br-mob / br-desk ─── */
+.br-mob { display: none; }
+.br-desk { display: inline; }
+@media (max-width: 768px) {
+  .br-mob { display: inline; }
+  .br-desk { display: none; }
 }
 
 /* ─── diploma-label: line-height fix (--type-label-line:1 causes overlap) ─── */
