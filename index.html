@@ -150,10 +150,6 @@
             23 illik klinik təcrübə, beynəlxalq standartlar<span class="br-mob"><br></span> və təlimlər,<span class="br-desk"><br></span> AR qanunvericiliyinə uyğun<span class="br-mob"><br></span> psixologiya peşəsinə rəsmi yol.
           </p>
 
-          <div class="hero-btns">
-            <a href="tehsil.html" class="btn btn-fill">Proqramları Seç</a>
-            <a href="xidmetler.html" class="btn btn-line">Konsultasiya</a>
-          </div>
           <div class="hero-search-wrap">
             <div class="hero-search-bar">
               <input id="hero-si" type="text" placeholder="Mövzu, xidmət, diaqnoz axtarın..." autocomplete="off">
@@ -765,6 +761,22 @@
   var si2=document.getElementById('hero-si'),sd2=document.getElementById('hero-sd');
   if(!si2||!sd2)return;
   var idx2=null,loading2=false;
+
+  /* ── Portal: move sd2 to <body> to escape overflow:hidden on .page-hero ── */
+  document.body.appendChild(sd2);
+
+  function positionSD(){
+    var bar = si2.closest('.hero-search-bar') || si2.parentElement;
+    var r = bar.getBoundingClientRect();
+    sd2.style.position = 'fixed';
+    sd2.style.top      = (r.bottom + 4) + 'px';
+    sd2.style.left     = r.left + 'px';
+    sd2.style.width    = r.width + 'px';
+    sd2.style.zIndex   = '9999';
+    sd2.style.maxHeight= '360px';
+    sd2.style.overflowY= 'auto';
+  }
+
   function load2(cb){
     if(idx2){cb(idx2);return;}
     if(loading2){setTimeout(function(){load2(cb);},80);return;}
@@ -780,6 +792,7 @@
     var res=data.filter(function(x){
       return(x.title+' '+(x.text||'')).toLowerCase().includes(q.toLowerCase());
     }).slice(0,12);
+    positionSD();
     if(!res.length){sd2.innerHTML='<div class="ssr"><div class="ssr-title">Nəticə tapılmadı</div></div>';sd2.classList.add('on');return;}
     sd2.innerHTML=res.map(function(r){
       var snip='';var txt=r.text||'';var lo=txt.toLowerCase();var i2=lo.indexOf(q.toLowerCase());
@@ -792,6 +805,7 @@
     }).join('');
     sd2.classList.add('on');
   }
+  function closeSD(){ sd2.classList.remove('on'); }
   window.heroSearch=function(){
     var q=si2.value.trim();
     if(q.length<2)return;
@@ -803,16 +817,18 @@
     clearTimeout(tmr2);
     tmr2=setTimeout(function(){
       var q=si2.value.trim();
-      if(q.length<2){sd2.classList.remove('on');return;}
+      if(q.length<2){closeSD();return;}
       load2(function(data){showResults(q,data);});
     },200);
   });
   si2.addEventListener('keydown',function(e){
     if(e.key==='Enter'){heroSearch();}
-    if(e.key==='Escape'){si2.value='';sd2.classList.remove('on');}
+    if(e.key==='Escape'){si2.value='';closeSD();}
   });
+  window.addEventListener('scroll',function(){if(sd2.classList.contains('on'))positionSD();},{passive:true});
+  window.addEventListener('resize',function(){if(sd2.classList.contains('on'))positionSD();},{passive:true});
   document.addEventListener('click',function(e){
-    if(!e.target.closest('.hero-search-wrap'))sd2.classList.remove('on');
+    if(!si2.contains(e.target)&&!sd2.contains(e.target))closeSD();
   });
 })();
 </script>
