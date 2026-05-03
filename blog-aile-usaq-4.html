@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="gtc.css" />
+    <link rel="stylesheet" href="gtc-dark.css" />
     <style>
       .art-cover { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin:0 0 32px; }
       .art-fig { margin:36px -20px; }
@@ -21,6 +22,48 @@
       .triangle-box { background:rgba(181,155,114,0.06); border:1px solid var(--clr-border); border-left:3px solid var(--accent); padding:20px 24px; margin:24px 0; }
       @media (max-width:768px) { .art-fig { margin:28px 0; } .art-fig figcaption { padding:0; } }
     </style>
+      <meta name="keywords" content="psixoterapevt, psixoloq, psixiatr, həkim, Kənan Rəhimov, Bakı, psixologiya, psixoterapiya, depressiya, həyəcan, fobiya, OKP, PTSD" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Məktəbdən İmtina — 5 Əsl Səbəb | RAGIMOFF" />
+    <meta property="og:description" content="Niyə uşaq" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ragimoff.org/blog-aile-usaq-4.html" />
+    <meta property="og:locale" content="az_AZ" />
+    <link rel="canonical" href="https://ragimoff.org/blog-aile-usaq-4.html" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person",
+"name":"Kənan Rəhimov","jobTitle":"Həkim-Psixiatr, Psixoterapevt",
+"description":"23 illik klinik təcrübəyə malik həkim-psixiatr, psixoterapevt və psixologiya müəllimi.",
+"url":"https://ragimoff.org","sameAs":["https://ragimoff.org/haqqimda.html"],
+"knowsAbout":["Psixiatriya","Psixoterapiya","CBT","EMDR","Depressiya","OKP","PTSD"],
+"worksFor":{"@type":"Organization","name":"RAGIMOFF Psixologiya Məktəbi","url":"https://ragimoff.org"},
+"address":{"@type":"PostalAddress","addressLocality":"Bakı","addressCountry":"AZ"}}
+</script>
+  <style id="site-search-css">
+.site-search-wrap{position:relative;margin-left:12px}
+#site-si{background:rgba(255,255,255,0.1);border:1px solid rgba(181,155,114,0.3);
+  border-radius:4px;color:#fff;font-family:inherit;font-size:13px;
+  padding:6px 34px 6px 12px;width:200px;outline:none;
+  transition:border-color .2s,width .3s,background .2s}
+#site-si:focus{border-color:#d4af6a;background:rgba(255,255,255,0.15);width:260px}
+#site-si::placeholder{color:rgba(255,255,255,0.4)}
+.site-search-ico{position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,0.45);font-size:14px;pointer-events:none}
+#site-sd{display:none;position:absolute;top:calc(100% + 6px);right:0;width:360px;
+  background:#0e1a24;border:1px solid rgba(181,155,114,0.25);border-radius:6px;
+  max-height:400px;overflow-y:auto;z-index:2000;
+  box-shadow:0 16px 48px rgba(0,0,0,0.6)}
+#site-sd.on{display:block}
+.ssr{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);
+  cursor:pointer;transition:background .15s}
+.ssr:last-child{border-bottom:none}
+.ssr:hover{background:rgba(255,255,255,0.06)}
+.ssr-title{font-size:13px;font-weight:600;color:#e0e0e0;margin-bottom:2px}
+.ssr-snip{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.5}
+.ssr-sub{font-size:10px;color:#d4af6a;margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.ssr mark{background:rgba(212,175,106,0.35);color:#fff;border-radius:2px}
+@media(max-width:900px){.site-search-wrap{display:none}}
+</style>
   </head>
   <body>
     <header class="site-header">
@@ -353,6 +396,51 @@
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeKitabModal();});
   });
+})();
+</script>
+<script id="site-search-js">
+(function(){
+  var si=document.getElementById('site-si'),sd=document.getElementById('site-sd');
+  if(!si||!sd)return;
+  var idx=null,loading=false;
+  function load(cb){
+    if(idx){cb(idx);return;}
+    if(loading){setTimeout(function(){load(cb);},80);return;}
+    loading=true;
+    fetch('/search-index.json').then(function(r){return r.json();})
+      .then(function(d){idx=d;loading=false;cb(d);})
+      .catch(function(){idx=[];loading=false;cb([]);});
+  }
+  si.addEventListener('focus',function(){load(function(){});},{once:true});
+  var tmr;
+  si.addEventListener('input',function(){
+    clearTimeout(tmr);
+    tmr=setTimeout(function(){
+      var q=si.value.trim().toLowerCase();
+      if(q.length<2){sd.classList.remove('on');return;}
+      load(function(data){
+        var esc=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+        var re=new RegExp(esc,'gi');
+        function hl(s){return s?String(s).replace(re,function(m){return'<mark>'+m+'</mark>'}):''}
+        var res=data.filter(function(x){
+          return(x.title+' '+(x.text||'')).toLowerCase().includes(q);
+        }).slice(0,15);
+        if(!res.length){sd.innerHTML='<div class="ssr"><div class="ssr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        sd.innerHTML=res.map(function(r){
+          var snip='';var txt=r.text||'';var lo=txt.toLowerCase();var i2=lo.indexOf(q);
+          if(i2>=0){var s=Math.max(0,i2-50);snip=txt.slice(s,s+120).trim();}
+          var url=r.url||(r.page+'.html'+(r.id?'#'+r.id:''));
+          return '<div class="ssr" onclick="window.location.href=\''+url+'\'">'
+            +'<div class="ssr-title">'+hl(r.title)+'</div>'
+            +(snip?'<div class="ssr-snip">'+hl(snip)+'</div>':'')
+            +'<div class="ssr-sub">'+r.sub+'</div></div>';
+        }).join('');
+        sd.classList.add('on');
+      });
+    },200);
+  });
+  document.addEventListener('click',function(e){if(!e.target.closest('.site-search-wrap'))sd.classList.remove('on');});
+  si.addEventListener('keydown',function(e){if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
 })();
 </script>
 </body>

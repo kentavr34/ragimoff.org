@@ -1,0 +1,339 @@
+/* ═══════════════════════════════════════════════
+   GTC DARK THEME OVERRIDE
+   Applies book-style dark theme to the main site.
+   Loaded after gtc.css — overrides light defaults.
+   ═══════════════════════════════════════════════ */
+
+/* ─── 1. ROOT TOKENS — dark palette ─── */
+:root {
+  /* Core dark palette (matching klinik-psixiatriya/style.css) */
+  --bg-dark:       #0F1117;
+  --bg-dark2:      #161B22;
+  --bg-dark3:      #1C2333;
+  --bg-dark4:      #21262D;
+  --border-dark:   #30363D;
+  --gold-book:     #E6B44A;
+  --gold-book2:    #C8961F;
+  --text-light:    #E6EDF3;
+  --text-light2:   #8B949E;
+  --text-light3:   #6E7681;
+
+  /* Override semantic tokens to dark */
+  --clr-bg:           var(--bg-dark);
+  --clr-bg-surface:   var(--bg-dark2);
+  --clr-heading:      var(--text-light);
+  --clr-text:         var(--text-light);
+  --clr-text-muted:   var(--text-light2);
+  --clr-border:       var(--border-dark);
+  --clr-label:        var(--gold-book);
+
+  /* Gold override — slightly brighter for dark bg */
+  --gold:              var(--gold-book);
+  --accent:            var(--gold-book);
+
+  /* Badge */
+  --badge-bg:          rgba(230,180,74,0.12);
+  --badge-color:       var(--gold-book);
+  --badge-border:      rgba(230,180,74,0.25);
+
+  /* Buttons */
+  --btn-fill-bg:        var(--gold-book);
+  --btn-fill-color:     #0F1117;
+  --btn-fill-bg-hover:  #fff;
+  --btn-fill-color-hover: #0F1117;
+  --btn-ghost-border:  rgba(230,180,74,0.5);
+  --btn-ghost-text:    var(--gold-book);
+
+  /* Shadows — stronger on dark bg */
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* ─── 2. BODY ─── */
+body {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* ─── 3. LIGHT SECTIONS → DARK ─── */
+[data-theme="light"] {
+  --clr-bg:           var(--bg-dark2);
+  --clr-bg-surface:   var(--bg-dark3);
+  --clr-heading:      var(--text-light);
+  --clr-text:         var(--text-light);
+  --clr-text-muted:   var(--text-light2);
+  --clr-border:       var(--border-dark);
+  --clr-label:        var(--gold-book);
+  --badge-bg:         rgba(230,180,74,0.12);
+  --badge-color:      var(--gold-book);
+  --badge-border:     rgba(230,180,74,0.25);
+  --btn-ghost-border: rgba(230,180,74,0.5);
+  --btn-ghost-text:   var(--gold-book);
+  background: var(--bg-dark2);
+  color: var(--text-light);
+}
+
+/* ─── 4. SECTION BACKGROUNDS ─── */
+.sec-3cards,
+.sec-2col,
+.sec-services,
+.sec-programs,
+.sec-blog,
+.sec-testimonials,
+.sec-faq,
+.sec-contact,
+.sec-cta,
+.pg-section,
+.pg-section-alt,
+.pg-section-dark,
+.pg-hero,
+.pg-hero-plain,
+section[data-theme="light"]:not(.page-hero) {
+  background: var(--bg-dark2);
+}
+
+/* Alternating sections — slight tonal difference */
+.sec-services,
+.sec-programs,
+.sec-testimonials {
+  background: var(--bg-dark3);
+}
+
+/* ─── 5. CARDS ─── */
+.card {
+  background: var(--bg-dark3);
+  border-top-color: var(--border-dark);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.card:hover {
+  background: var(--bg-dark4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+.card h3 { color: var(--text-light); }
+.card p { color: var(--text-light2); }
+.card-label { color: var(--gold-book); }
+.card-link { color: var(--text-light); }
+.card:hover .card-link { color: var(--gold-book); }
+
+/* Service cards */
+.svc-card {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+}
+.svc-card:hover {
+  background: var(--bg-dark4);
+  border-color: var(--gold-book);
+}
+.svc-card h4 { color: var(--text-light); }
+.svc-card p { color: var(--text-light2); }
+.svc-card-label { color: var(--gold-book); }
+.svc-card.active {
+  border-top-color: var(--gold-book);
+  background: rgba(230,180,74,0.06);
+}
+
+/* ─── 6. HERO SECTION ─── */
+.page-hero {
+  background: linear-gradient(135deg, #0F1117 0%, #161B22 60%, #1a1f2e 100%);
+}
+.hero-lead { color: var(--text-light2); }
+
+/* Stats strip */
+.stats-strip {
+  background: var(--bg-dark2);
+  border-color: rgba(230,180,74,0.15);
+}
+.stat-label { color: var(--text-light3); }
+.stat-num { color: var(--gold-book); }
+
+/* ─── 7. TIMELINE / ABOUT ─── */
+.timeline-list li { color: var(--text-light2); }
+.timeline-list li::before {
+  background: var(--gold-book);
+  box-shadow: 0 0 0 4px var(--bg-dark2);
+}
+.timeline-list li:hover::before { background: var(--gold-book); }
+.timeline-list strong { color: var(--gold-book); }
+.timeline-list span { color: var(--text-light2); }
+.timeline-list li:hover span { color: var(--text-light); }
+.timeline-list::before { background: rgba(230,180,74,0.2); }
+
+/* ─── 8. BOOKS BAND ─── */
+.books-band {
+  background: var(--bg-dark);
+  border-color: rgba(230,180,74,0.12);
+}
+
+/* ─── 9. PROGRAM / BLOG CARDS ─── */
+.prog-card,
+.blog-card,
+.post-card {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+.prog-card:hover,
+.blog-card:hover,
+.post-card:hover {
+  background: var(--bg-dark4);
+  border-color: var(--gold-book);
+}
+.prog-card h3, .blog-card h3, .post-card h3 { color: var(--text-light); }
+.prog-card p, .blog-card p, .post-card p { color: var(--text-light2); }
+
+/* ─── 10. PAGE INNER CONTENT (blog articles, service pages) ─── */
+.pg-content,
+.article-body,
+.post-body,
+.page-body {
+  color: var(--text-light);
+}
+.pg-content h1, .pg-content h2, .pg-content h3,
+.article-body h1, .article-body h2, .article-body h3 {
+  color: var(--text-light);
+}
+.pg-content p,
+.article-body p { color: var(--text-light2); }
+
+/* ─── 11. FORM ELEMENTS ─── */
+input, textarea, select {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--gold-book);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(230,180,74,0.15);
+}
+input::placeholder, textarea::placeholder {
+  color: var(--text-light3);
+}
+label { color: var(--text-light2); }
+
+/* ─── 12. REGISTRATION / FAQ / TESTIMONIALS ─── */
+.faq-item,
+.faq-q,
+.faq-a {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+.faq-q { color: var(--text-light); }
+.faq-a { color: var(--text-light2); }
+.faq-q::after { color: var(--gold-book); }
+
+.testimonial-card,
+.review-card {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+}
+.testimonial-text,
+.review-text { color: var(--text-light2); }
+.testimonial-name,
+.review-name { color: var(--text-light); }
+
+/* ─── 13. REGISTRATION FORM SECTION ─── */
+.reg-section,
+.reg-form-wrap,
+.form-section {
+  background: var(--bg-dark2);
+}
+.reg-card,
+.reg-form {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+}
+
+/* ─── 14. TABLE STYLES (for pages with tables) ─── */
+table {
+  border-color: var(--border-dark);
+}
+th {
+  background: var(--bg-dark3);
+  color: var(--text-light);
+  border-color: var(--border-dark);
+}
+td {
+  border-color: var(--border-dark);
+  color: var(--text-light2);
+}
+tr:hover td { background: rgba(230,180,74,0.04); }
+
+/* ─── 15. MOBILE NAV OVERLAY ─── */
+.mobile-nav {
+  background: var(--bg-dark);
+}
+
+/* ─── 16. SECTION DIVIDERS ─── */
+hr {
+  border-color: var(--border-dark);
+}
+
+/* ─── 17. SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-book2); }
+
+/* ─── 18. BADGE ─── */
+.badge.on-light {
+  background: var(--badge-bg);
+  color: var(--gold-book);
+  border: 1px solid var(--badge-border);
+}
+
+/* ─── 19. BLOG & ARTICLE PAGES ─── */
+.blog-article-wrap,
+.article-wrap,
+.service-wrap {
+  background: var(--bg-dark2);
+}
+.article-header { color: var(--text-light); }
+.article-meta { color: var(--text-light3); }
+.article-lead { color: var(--text-light2); }
+
+/* ─── 20. PROGRAMS PAGE SPECIFIC ─── */
+.prog-section,
+.program-intro {
+  background: var(--bg-dark2);
+  color: var(--text-light);
+}
+
+/* ─── 21. CONTACT / APPOINTMENT ─── */
+.contact-card,
+.appt-card {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+}
+
+/* ─── 22. HIGHLIGHT / CALLOUT BOXES ─── */
+.callout,
+.info-box,
+.note-box {
+  background: var(--bg-dark3);
+  border-left-color: var(--gold-book);
+  color: var(--text-light2);
+}
+
+/* ─── 23. ACCORDION / EXPAND ─── */
+.accordion-item {
+  background: var(--bg-dark3);
+  border-color: var(--border-dark);
+}
+.accordion-header { color: var(--text-light); }
+.accordion-body { color: var(--text-light2); }
+
+/* ─── 24. TAG / CHIP PILLS ─── */
+.tag, .chip, .pill {
+  background: rgba(230,180,74,0.1);
+  color: var(--gold-book);
+  border: 1px solid rgba(230,180,74,0.2);
+}
+
+/* ─── 25. MOBILE NAV SPECIFIC ─── */
+.mobile-nav a {
+  color: var(--text-light2);
+  border-bottom-color: var(--border-dark);
+}
+.mobile-nav a:hover { color: var(--gold-book); }
+.mobile-nav .btn { margin-top: 8px; }
