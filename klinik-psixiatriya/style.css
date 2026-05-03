@@ -27,8 +27,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:5px;height:5px}
@@ -276,12 +276,15 @@ hr{border:none;border-top:1px solid var(--border);margin:28px 0}
 
 /* XBT lines */
 .xbt-line{
-  display:flex;align-items:flex-start;gap:12px;
+  display:flex;align-items:flex-start;gap:8px;
+  flex-wrap:wrap;
   padding:8px 16px;margin:5px 0;
   background:var(--bg3);border-left:3px solid var(--gold2);
   border-radius:0 6px 6px 0;font-size:14px;
+  word-break:break-word;overflow-wrap:break-word;
+  min-width:0;overflow:hidden;
 }
-.xbt-lbl{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;padding-top:1px}
+.xbt-lbl{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--gold);flex-shrink:0;padding-top:1px;white-space:nowrap}
 
 /* Tables */
 .tbl-wrap{overflow-x:auto;margin:20px 0;border-radius:var(--r);border:1px solid var(--border)}
@@ -347,13 +350,18 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
   .hdr-title small{display:none}
 }
 @media(max-width:600px){
-  .site-main{padding:28px 14px 70px}
+  .site-main{padding:28px 14px 70px;max-width:100%;overflow-x:hidden}
+  .content-wrap{max-width:100%;overflow-x:hidden}
   .page-hdr h1{font-size:22px}
-  h1.h-bolme{font-size:19px}
-  h1.h-disorder{font-size:17px}
-  p{font-size:15.5px}
-  .pnav-btn{min-width:0}
+  h1.h-bolme{font-size:19px;word-break:break-word}
+  h1.h-disorder{font-size:17px;word-break:break-word}
+  p{font-size:15.5px;word-break:break-word;overflow-wrap:break-word}
+  li{word-break:break-word;overflow-wrap:break-word}
+  .pnav-btn{min-width:0;word-break:break-word}
   .hdr-title{display:none}
+  .xbt-line{padding:7px 10px;font-size:13px;gap:6px}
+  .icd{font-size:11px}
+  td,th{word-break:break-word;overflow-wrap:break-word}
 }
 
 /* HOME PAGE */
@@ -437,9 +445,9 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 .sub-code {
   font-family: var(--mono); font-size: 10px;
   color: var(--gold2); flex-shrink: 0;
-  letter-spacing: .03em;
+  letter-spacing: .03em; white-space: nowrap;
 }
-.sub-name { flex: 1; }
+.sub-name { flex:1; min-width:0; word-break:break-word; overflow-wrap:break-word; }
 
 /* Shift chapter link right to make room for toggle */
 .nav-has-sub > .nav-link { padding-right: 28px; }
