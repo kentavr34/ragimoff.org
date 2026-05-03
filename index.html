@@ -205,9 +205,9 @@
         <div class="sec-header">
           <span class="badge on-light">Fəaliyyət Sahələri</span>
           <h2 class="sec-h2" id="eco-heading">RAGIMOFF EKOSİSTEMİ</h2>
-          <p class="sec-sub">
-            Dəqiq struktur, elmi metodlar və 23 illik klinik təcrübə
-            əsasında üç əsas fəaliyyət istiqamətində xidmət edirik.
+          <p class="sec-sub eco-sub">
+            <span class="eco-lead-line">Dəqiq struktur, elmi metodlar və 23 illik klinik təcrübə</span>
+            <span class="eco-lead-line">əsasında üç əsas fəaliyyət istiqamətində xidmət edirik.</span>
           </p>
         </div>
 
@@ -878,6 +878,33 @@
       line.style.display='block';
       line.style.whiteSpace='';
     });
+    // ── Eco section: fit subtitle lines to heading width ──
+    var ecoH=document.getElementById('eco-heading');
+    var ecoLeads=document.querySelectorAll('.eco-lead-line');
+    ecoLeads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
+    if(ecoH && ecoLeads.length){
+      ecoH.style.display='inline';
+      ecoH.style.whiteSpace='nowrap';
+      var ecoTarget=ecoH.getBoundingClientRect().width;
+      ecoH.style.display='';
+      ecoH.style.whiteSpace='';
+      if(ecoTarget){
+        ecoLeads.forEach(function(line){
+          line.style.display='inline';
+          line.style.whiteSpace='nowrap';
+          var lo3=8, hi3=40;
+          for(var k=0;k<30;k++){
+            var mid3=(lo3+hi3)/2;
+            line.style.fontSize=mid3+'px';
+            if(line.getBoundingClientRect().width < ecoTarget) lo3=mid3;
+            else hi3=mid3;
+          }
+          line.style.fontSize=Math.floor(lo3)+'px';
+          line.style.display='block';
+          line.style.whiteSpace='';
+        });
+      }
+    }
   }
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded', fitAll);
