@@ -147,13 +147,15 @@
           <h1 class="hero-h1" id="hero-heading"><span class="h1-w1">Peşəkar</span> <span class="h1-w2"><em>Psixologiya</em> Məktəbi</span></h1>
 
           <p class="hero-lead">
-            23 illik klinik təcrübə, beynəlxalq<span class="br-mob"><br></span> standartlar<span class="br-desk"><br></span> və təlimlər, AR qanunvericiliyinə<span class="br-mob"><br></span> uyğun psixologiya peşəsinə rəsmi yol.
+            <span class="lead-line">23 illik klinik təcrübə, beynəlxalq</span>
+            <span class="lead-line">standartlar və təlimlər, AR qanunvericiliyinə</span>
+            <span class="lead-line">uyğun psixologiya peşəsinə rəsmi yol.</span>
           </p>
 
           <div class="hero-search-wrap">
             <div class="hero-search-bar">
               <input id="hero-si" type="text" placeholder="Mövzu, xidmət, diaqnoz axtarın..." autocomplete="off">
-              <button class="hero-search-btn" onclick="heroSearch()"><span>AXTAR</span></button>
+              <button class="hero-search-btn" onclick="heroSearch()"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>AXTAR</span></button>
             </div>
             <div id="hero-sd"></div>
           </div>
@@ -834,33 +836,52 @@
 </script>
 <script>
 (function(){
-  function fitW1(){
+  function fitAll(){
     var w1=document.querySelector('.h1-w1');
     var w2=document.querySelector('.h1-w2');
+    var leads=document.querySelectorAll('.lead-line');
+    // Reset all
+    if(w1){ w1.style.fontSize=''; w1.style.display=''; }
+    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; });
     if(!w1||!w2) return;
-    w1.style.fontSize=''; w1.style.display='';
     if(window.innerWidth > 768) return;
+    // Measure target = natural text width of PSİXOLOGİYA MƏKTƏBİ at 20px
     w2.style.display='inline';
     var target=w2.getBoundingClientRect().width;
     w2.style.display='';
     if(!target) return;
-    var scaleTarget = target * 1.0;
+    // Fit h1-w1 (PEŞƏKAR) to same width
     var lo=10, hi=160;
     w1.style.display='inline';
     for(var i=0;i<30;i++){
       var mid=(lo+hi)/2;
       w1.style.fontSize=mid+'px';
-      if(w1.getBoundingClientRect().width < scaleTarget) lo=mid;
+      if(w1.getBoundingClientRect().width < target) lo=mid;
       else hi=mid;
     }
     w1.style.fontSize=Math.floor(lo)+'px';
     w1.style.display='block';
     w1.style.textAlign='center';
+    // Fit each subtitle line to same target width
+    leads.forEach(function(line){
+      line.style.display='inline';
+      line.style.whiteSpace='nowrap';
+      var lo2=8, hi2=40;
+      for(var j=0;j<30;j++){
+        var mid2=(lo2+hi2)/2;
+        line.style.fontSize=mid2+'px';
+        if(line.getBoundingClientRect().width < target) lo2=mid2;
+        else hi2=mid2;
+      }
+      line.style.fontSize=Math.floor(lo2)+'px';
+      line.style.display='block';
+      line.style.whiteSpace='';
+    });
   }
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', fitW1);
-  } else { fitW1(); }
-  window.addEventListener('resize', fitW1, {passive:true});
+    document.addEventListener('DOMContentLoaded', fitAll);
+  } else { fitAll(); }
+  window.addEventListener('resize', fitAll, {passive:true});
 })();
 </script>
 </body>

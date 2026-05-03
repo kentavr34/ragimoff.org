@@ -568,7 +568,12 @@ hr {
 @media (max-width: 600px) {
   .hero-search-bar { max-width: 100%; }
   .hero-search-btn span { display: none; }
-  .hero-search-btn::after { content: "🔍"; font-size: 16px; }
+  .hero-search-btn::after { content: none; }
+  .search-icon { display: block; }
+}
+/* Desktop: hide SVG icon, show text only */
+@media (min-width: 601px) {
+  .search-icon { display: none; }
 }
 /* ─── Hero H1: two-line fit on mobile ─── */
 @media (max-width: 768px) {
@@ -630,13 +635,9 @@ hr {
 
   /* Section headings on mobile */
   .sec-h2 { font-size: 1.6rem !important; }
-  /* hero-lead: 3 equal-width lines on mobile */
-  .hero-lead {
-    font-size: 14px !important;
-    line-height: 1.65 !important;
-    text-align: justify !important;
-    text-align-last: justify !important;
-  }
+  /* hero-lead: each .lead-line sized by JS to match H1 width */
+  .hero-lead { line-height: 1.6 !important; }
+  .lead-line { display: block; text-align: center; }
 
   /* Stacked layout for cards */
   .grid-3 { grid-template-columns: 1fr !important; }
