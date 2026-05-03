@@ -570,12 +570,17 @@ hr {
   .hero-search-btn span { display: none; }
   .hero-search-btn::after { content: "🔍"; font-size: 16px; }
 }
-
 /* ─── Hero H1: two-line fit on mobile ─── */
 @media (max-width: 768px) {
-  .hero-h1 { line-height: 1.1 !important; }
-  .h1-w1 { display: block; white-space: nowrap; line-height: 1.1; }
-  .h1-w2 { display: block; line-height: 1.1; }
+  /* h1 font-size 20px → PSİXOLOGİYA MƏKTƏBİ fits on one line */
+  .hero-h1 { font-size: 20px !important; line-height: 1.15 !important; }
+  .h1-w1 {
+    display: block;
+    white-space: nowrap;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .h1-w2 { display: block; line-height: 1.15; }
 }
 
 /* ─── Responsive line breaks: br-mob / br-desk ─── */
@@ -594,20 +599,44 @@ hr {
 
 /* ─── 29. MOBILE RESPONSIVE ADJUSTMENTS ─── */
 @media (max-width: 768px) {
-  /* Hero photo: show full image without cropping, normal side padding */
+  /* Hero photo: cover mode — face fills the column, crop sides */
   .photo-col {
     padding: 0 24px !important;
   }
   .photo-col img {
-    object-fit: contain !important;
-    height: auto !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    height: 100% !important;
     width: 100% !important;
-    max-width: 100% !important;
+  }
+
+  /* About section portrait: limit to match hero face size */
+  .about-img {
+    max-height: 240px !important;
+    overflow: hidden !important;
+  }
+  .about-img img {
+    object-fit: cover !important;
+    object-position: top center !important;
+    width: 100% !important;
+    height: 240px !important;
+  }
+
+  /* Badge: push down from nav, pull closer to H1 */
+  .hero-text .badge {
+    margin-top: 8px !important;
+    margin-bottom: 10px !important;
   }
 
   /* Section headings on mobile */
   .sec-h2 { font-size: 1.6rem !important; }
-  .hero-h1 { font-size: clamp(1.5rem, 6vw, 2.2rem) !important; }
+  /* hero-lead: 3 equal-width lines on mobile */
+  .hero-lead {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+    text-align: justify !important;
+    text-align-last: justify !important;
+  }
 
   /* Stacked layout for cards */
   .grid-3 { grid-template-columns: 1fr !important; }

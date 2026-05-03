@@ -147,7 +147,7 @@
           <h1 class="hero-h1" id="hero-heading"><span class="h1-w1">Peşəkar</span> <span class="h1-w2"><em>Psixologiya</em> Məktəbi</span></h1>
 
           <p class="hero-lead">
-            23 illik klinik təcrübə, beynəlxalq standartlar<span class="br-mob"><br></span> və təlimlər,<span class="br-desk"><br></span> AR qanunvericiliyinə uyğun<span class="br-mob"><br></span> psixologiya peşəsinə rəsmi yol.
+            23 illik klinik təcrübə, beynəlxalq<span class="br-mob"><br></span> standartlar<span class="br-desk"><br></span> və təlimlər, AR qanunvericiliyinə<span class="br-mob"><br></span> uyğun psixologiya peşəsinə rəsmi yol.
           </p>
 
           <div class="hero-search-wrap">
@@ -838,18 +838,13 @@
     var w1=document.querySelector('.h1-w1');
     var w2=document.querySelector('.h1-w2');
     if(!w1||!w2) return;
-    // Reset
-    w1.style.fontSize='';
-    w1.style.display='';
+    w1.style.fontSize=''; w1.style.display='';
     if(window.innerWidth > 768) return;
-    // Measure target: width of line 2 text
     w2.style.display='inline';
     var target=w2.getBoundingClientRect().width;
     w2.style.display='';
     if(!target) return;
-    // Binary search: measure w1 as inline to get actual text width
-    // Scale w1 to 80% of w2 width for balanced proportions
-    var scaleTarget = target * 0.80;
+    var scaleTarget = target * 1.0;
     var lo=10, hi=160;
     w1.style.display='inline';
     for(var i=0;i<30;i++){
