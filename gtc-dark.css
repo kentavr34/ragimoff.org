@@ -609,10 +609,12 @@ hr {
     padding: 0 !important;
   }
   .photo-col img {
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: center top !important;
-    height: 100% !important;
+    max-width: 100% !important;
     width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
   }
 
   /* About section portrait: limit to match hero face size */
