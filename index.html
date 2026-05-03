@@ -152,12 +152,19 @@
           <h1 class="hero-h1" id="hero-heading">Peşəkar <em>Psixologiya</em> Məktəbi</h1>
 
           <p class="hero-lead">
-            23 illik klinik təcrübə, beynəlxalq standartlar, AR qanunvericiliyi —<br>psixologiya peşəsinə rəsmi yol.
+            23 illik klinik təcrübə, beynəlxalq<br>standartlar, AR qanunvericiliyi —<br>psixologiya peşəsinə rəsmi yol.
           </p>
 
           <div class="hero-btns">
             <a href="tehsil.html" class="btn btn-fill">Proqramları Seç</a>
             <a href="xidmetler.html" class="btn btn-line">Konsultasiya</a>
+          </div>
+          <div class="hero-search-wrap">
+            <div class="hero-search-bar">
+              <input id="hero-si" type="text" placeholder="Mövzu, xidmət, diaqnoz axtarın..." autocomplete="off">
+              <button class="hero-search-btn" onclick="heroSearch()"><span>AXTAR</span></button>
+            </div>
+            <div id="hero-sd"></div>
           </div>
         </div>
 
@@ -489,8 +496,11 @@
               <span class="logo-sub">Psixologiya Məktəbi</span>
             </a>
             <p class="footer-desc">
-              Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik
-              təcrübə. Bakı, Azərbaycan.
+              Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə.
+            </p>
+            <p class="footer-address">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold)" style="vertical-align:middle;margin-right:4px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              AZ1065, Bakı şəhəri, Caspian Business Center, 9-cu mərtəbə
             </p>
             <div class="social-links">
               <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
@@ -691,6 +701,63 @@
   });
   document.addEventListener('click',function(e){if(!e.target.closest('.site-search-wrap'))sd.classList.remove('on');});
   si.addEventListener('keydown',function(e){if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
+})();
+</script>
+
+<script>
+(function(){
+  var si2=document.getElementById('hero-si'),sd2=document.getElementById('hero-sd');
+  if(!si2||!sd2)return;
+  var idx2=null,loading2=false;
+  function load2(cb){
+    if(idx2){cb(idx2);return;}
+    if(loading2){setTimeout(function(){load2(cb);},80);return;}
+    loading2=true;
+    fetch('/search-index.json').then(function(r){return r.json();})
+      .then(function(d){idx2=d;loading2=false;cb(d);})
+      .catch(function(){idx2=[];loading2=false;cb([]);});
+  }
+  function showResults(q, data){
+    var esc=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    var re=new RegExp(esc,'gi');
+    function hl(s){return s?String(s).replace(re,function(m){return'<mark>'+m+'</mark>'}):''}
+    var res=data.filter(function(x){
+      return(x.title+' '+(x.text||'')).toLowerCase().includes(q.toLowerCase());
+    }).slice(0,12);
+    if(!res.length){sd2.innerHTML='<div class="ssr"><div class="ssr-title">Nəticə tapılmadı</div></div>';sd2.classList.add('on');return;}
+    sd2.innerHTML=res.map(function(r){
+      var snip='';var txt=r.text||'';var lo=txt.toLowerCase();var i2=lo.indexOf(q.toLowerCase());
+      if(i2>=0){var s=Math.max(0,i2-40);snip=txt.slice(s,s+100).trim();}
+      var url=r.url||(r.page+'.html'+(r.id?'#'+r.id:''));
+      return '<div class="ssr" onclick="window.location.href=\''+url+'\'">'
+        +'<div class="ssr-title">'+hl(r.title)+'</div>'
+        +(snip?'<div class="ssr-snip">'+hl(snip)+'</div>':'')
+        +'<div class="ssr-sub">'+r.sub+'</div></div>';
+    }).join('');
+    sd2.classList.add('on');
+  }
+  window.heroSearch=function(){
+    var q=si2.value.trim();
+    if(q.length<2)return;
+    load2(function(data){showResults(q,data);});
+  };
+  si2.addEventListener('focus',function(){load2(function(){});},{once:true});
+  var tmr2;
+  si2.addEventListener('input',function(){
+    clearTimeout(tmr2);
+    tmr2=setTimeout(function(){
+      var q=si2.value.trim();
+      if(q.length<2){sd2.classList.remove('on');return;}
+      load2(function(data){showResults(q,data);});
+    },200);
+  });
+  si2.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){heroSearch();}
+    if(e.key==='Escape'){si2.value='';sd2.classList.remove('on');}
+  });
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.hero-search-wrap'))sd2.classList.remove('on');
+  });
 })();
 </script>
 </body>
