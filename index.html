@@ -858,8 +858,10 @@
       if(heroH1 && deskLeads.length){
         var deskTarget=heroH1.getBoundingClientRect().width;
         if(deskTarget){
+          var heroSB=document.querySelector('.hero-search-bar');
           if(heroLead) heroLead.style.maxWidth=deskTarget+'px';
           if(heroSW)   heroSW.style.maxWidth=(deskTarget*2)+'px';
+          if(heroSB)   heroSB.style.maxWidth=(deskTarget*2)+'px';
           deskLeads.forEach(function(line){
             line.style.display='inline'; line.style.whiteSpace='nowrap';
             var lo_d=8, hi_d=60;
