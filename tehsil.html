@@ -54,6 +54,9 @@
       }
 
       /* ── TEHSIL HERO FITTING ── */
+      @media (min-width: 769px) {
+        .pg-hero-inner { padding-bottom: 150px !important; }
+      }
       .th-h1-w1, .th-h1-w2 { white-space: nowrap; line-height: 1.15; }
       /* Десктоп: H1 в одну строку */
       @media (min-width: 769px) {
@@ -246,15 +249,15 @@
       <div class="pg-hero-inner">
         <span class="badge">ƏLAVƏ TƏHSİL</span>
         <h1 class="hero-h1" id="tehsil-h1">
-          <span class="th-h1-w1">Psixologiya Peşəsinə</span>
-          <span class="th-h1-w2"><em>Rəsmi Yol</em></span>
+          <span class="th-h1-w1">Psixologiya Sahəsində</span>
+          <span class="th-h1-w2">Karyera İmkanları</span>
         </h1>
         <p class="hero-lead">
-          <span class="lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
-          <span class="lead-line">Dr. Kənan Rəhimovun</span>
-          <span class="lead-line">şəxsi rəhbərliyi altında.</span>
-          <span class="desk-lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
-          <span class="desk-lead-line">Dr. Kənan Rəhimovun şəxsi rəhbərliyi altında.</span>
+          <span class="lead-line">Rəsmi SPb Əlavə Təhsil İntitutu,</span>
+          <span class="lead-line">Psixoloq Diplomu.</span>
+          <span class="lead-line">IPAS/BPA sertifikatı.</span>
+          <span class="desk-lead-line">Rəsmi Sankt-Peterburq Əlavə Təhsil İntitutu Tədris Proqramı - Psixoloq Diplomu,</span>
+          <span class="desk-lead-line">Dr. Kənan Rəhimovun birbaşa rəhbərliyi altında Praktikum - IPAS/BPA sertifikatı.</span>
         </p>
         <div class="hero-search-wrap">
           <div class="hero-search-bar">
@@ -913,14 +916,27 @@
     if(!w1||!w2) return;
 
     if(window.innerWidth>768){
-      /* DESKTOP: скрыть мобильные строки, subtitle до 560px, шрифт макс 20px */
+      /* DESKTOP: все 3 строки = ширина поисковика */
       leads.forEach(function(l){l.style.cssText='display:none!important';});
+      if(w2){w2.style.fontSize='';w2.style.display='';}
+      var heroH1=document.querySelector('.hero-h1');
       var heroLead=document.querySelector('.pg-hero-inner .hero-lead');
-      var dt=560; /* фиксированная ширина — как search bar */
-      if(heroLead) heroLead.style.maxWidth=dt+'px';
+      var heroSW=document.querySelector('.pg-hero-inner .hero-search-wrap');
+      var dt=heroSW ? Math.round(heroSW.getBoundingClientRect().width) : 560;
+      if(!dt) dt=560;
+      /* Подогнать H1 под ту же ширину */
+      if(heroH1){
+        heroH1.style.display='inline-block';heroH1.style.whiteSpace='nowrap';
+        var loH=8,hiH=120;
+        for(var k=0;k<30;k++){var mH=(loH+hiH)/2;heroH1.style.fontSize=mH+'px';if(heroH1.getBoundingClientRect().width<dt)loH=mH;else hiH=mH;}
+        heroH1.style.fontSize=Math.floor(loH)+'px';
+        heroH1.style.display='';heroH1.style.whiteSpace='';
+      }
+      /* Подогнать subtitle под ту же ширину */
+      if(heroLead){heroLead.style.width=dt+'px';heroLead.style.maxWidth='none';}
       deskLeads.forEach(function(line){
         line.style.display='inline';line.style.whiteSpace='nowrap';
-        var lo=8,hi=20; /* потолок 20px для subtitle */
+        var lo=8,hi=40;
         for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
         line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
       });
