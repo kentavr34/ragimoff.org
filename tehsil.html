@@ -289,9 +289,9 @@
             <span class="pr-h2-w2">Proqramı</span>
           </h2>
           <p class="sec-sub">
-            <span class="pr-lead-mob">Hər proqram 1 il —</span>
-            <span class="pr-lead-mob">bilavasitə və onlayn format.</span>
-            <span class="pr-lead-mob">Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</span>
+            <span class="pr-lead-mob">Hər proqram 1 il — bilavasitə</span>
+            <span class="pr-lead-mob">və onlayn format. Ödəniş 24 aya qədər,</span>
+            <span class="pr-lead-mob">diplom tam ödənişdən sonra.</span>
             <span class="pr-lead-desk">Hər proqram 1 il — bilavasitə və onlayn format.</span>
             <span class="pr-lead-desk">Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</span>
           </p>
@@ -957,20 +957,30 @@
     if(!ph1||!ph2) return;
 
     if(window.innerWidth>768){
-      /* Десктоп: H2 одной строкой, subtitle 2 линии подогнать под ширину H2 */
+      /* Десктоп: H2 одной строкой + 2 строки subtitle — все одинаковой ширины */
       pMob.forEach(function(l){l.style.cssText='display:none!important';});
       ph1.style.cssText=''; ph2.style.cssText='';
       var progH2=document.getElementById('prog-h');
-      if(progH2&&pDesk.length){
-        var dt=progH2.getBoundingClientRect().width;
-        if(dt){
-          pDesk.forEach(function(line){
-            line.style.display='inline';line.style.whiteSpace='nowrap';
-            var lo=8,hi=22;
-            for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
-            line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
-          });
-        }
+      var secHdr=document.querySelector('#programs .sec-header');
+      /* Цель — ширина sec-header контейнера */
+      var dt=secHdr ? secHdr.getBoundingClientRect().width : 0;
+      if(!dt) dt=700;
+      if(progH2 && pDesk.length){
+        /* Подогнать H2: inline-block+nowrap чтобы измерить текст, а не контейнер */
+        progH2.style.display='inline-block';
+        progH2.style.whiteSpace='nowrap';
+        var loH=10,hiH=160;
+        for(var k=0;k<30;k++){var mH=(loH+hiH)/2;progH2.style.fontSize=mH+'px';if(progH2.getBoundingClientRect().width<dt)loH=mH;else hiH=mH;}
+        progH2.style.fontSize=Math.floor(loH)+'px';
+        progH2.style.display='';
+        progH2.style.whiteSpace='';
+        /* Подогнать 2 строки subtitle к той же цели */
+        pDesk.forEach(function(line){
+          line.style.display='inline';line.style.whiteSpace='nowrap';
+          var lo=8,hi=30;
+          for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
+          line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
+        });
       }
       return;
     }
