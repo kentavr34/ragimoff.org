@@ -844,14 +844,14 @@
     var w2=document.querySelector('.h1-w2');
     var leads=document.querySelectorAll('.lead-line');
     var deskLeads=document.querySelectorAll('.desk-lead-line');
-    // Reset all
-    if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
-    deskLeads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
     if(!w1||!w2) return;
 
     if(window.innerWidth > 768) {
-      // ── DESKTOP: fit desk-lead-line to hero-text column width ──
+      // ── DESKTOP ──
+      // Явно скрыть мобильные строки
+      leads.forEach(function(l){ l.style.cssText='display:none!important'; });
+      if(w1){ w1.style.fontSize=''; w1.style.display=''; }
+      // Fit desk-lead-line to hero-text column width
       var heroText=document.querySelector('.hero-text');
       if(heroText && deskLeads.length){
         var deskTarget=heroText.getBoundingClientRect().width;
@@ -868,6 +868,10 @@
     }
 
     // ── MOBILE ──
+    // Явно скрыть десктопные строки
+    deskLeads.forEach(function(l){ l.style.cssText='display:none!important'; });
+    if(w1){ w1.style.fontSize=''; w1.style.display=''; }
+    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
     // Measure target = natural text width of PSİXOLOGİYA MƏKTƏBİ at 20px
     w2.style.display='inline';
     var target=w2.getBoundingClientRect().width;
