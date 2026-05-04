@@ -194,13 +194,22 @@ div[style*="background: #fff"] {
   /* Desktop: show fitted desktop lines, hide mobile lines */
   .lead-line     { display: none !important; }
   .desk-lead-line { display: block; white-space: nowrap; line-height: 1.6; }
-  /* Subtitle + search: поднять на 150px, сузить на 30% */
-  .hero-lead {
+  /* Badge: поднять весь стек hero-text на 150px */
+  .hero-text .badge {
     margin-top: -150px !important;
+  }
+  /* Subtitle: сузить на 30% */
+  .hero-lead {
     max-width: 70% !important;
   }
-  .hero-search-wrap {
-    max-width: 70% !important;
+  /* Search bar: вдвое шире subtitle (full column width) */
+  .hero-search-wrap,
+  .hero-search-bar {
+    max-width: 100% !important;
+  }
+  /* Убрать пустоту под фото на 10px */
+  .stats-strip {
+    margin-top: -10px !important;
   }
 }
 /* Desktop lines hidden by default (mobile shows them via mobile media query) */
