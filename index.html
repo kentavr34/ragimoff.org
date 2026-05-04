@@ -851,11 +851,15 @@
       // Явно скрыть мобильные строки
       leads.forEach(function(l){ l.style.cssText='display:none!important'; });
       if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-      // Fit desk-lead-line to hero-text column width
-      var heroText=document.querySelector('.hero-text');
-      if(heroText && deskLeads.length){
-        var deskTarget=heroText.getBoundingClientRect().width;
+      // Цель = ширина H1; поиск = 2×H1
+      var heroH1=document.querySelector('.hero-h1');
+      var heroLead=document.querySelector('.hero-lead');
+      var heroSW=document.querySelector('.hero-search-wrap');
+      if(heroH1 && deskLeads.length){
+        var deskTarget=heroH1.getBoundingClientRect().width;
         if(deskTarget){
+          if(heroLead) heroLead.style.maxWidth=deskTarget+'px';
+          if(heroSW)   heroSW.style.maxWidth=(deskTarget*2)+'px';
           deskLeads.forEach(function(line){
             line.style.display='inline'; line.style.whiteSpace='nowrap';
             var lo_d=8, hi_d=60;
