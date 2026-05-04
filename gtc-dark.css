@@ -185,19 +185,12 @@ div[style*="background: #fff"] {
   }
   .photo-col img {
     width: var(--photo-w) !important;
-    height: calc(100% + 50px) !important;
+    height: auto !important;
     margin-top: -50px !important;
     max-width: none !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
     object-position: top center !important;
   }
-}
-/* Desktop hero photo: show from top so person is visible */
-.photo-col img {
-  object-position: top center !important;
-  object-fit: contain !important;
-  height: auto !important;
-  width: var(--photo-w) !important;
 }
 .hero-lead { color: rgba(234,236,239,0.88) !important; }
 
