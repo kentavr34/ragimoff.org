@@ -41,10 +41,14 @@
       }
 
       /* ── TEHSIL HERO FITTING ── */
-      .th-h1-w1, .th-h1-w2 { display: block; white-space: nowrap; line-height: 1.15; }
+      .th-h1-w1, .th-h1-w2 { white-space: nowrap; line-height: 1.15; }
+      /* Десктоп: H1 в одну строку */
+      @media (min-width: 769px) {
+        .th-h1-w1, .th-h1-w2 { display: inline !important; }
+      }
+      /* Мобайл: H1 на две строки, каждая — почти на всю ширину */
       @media (max-width: 768px) {
-        .th-h1-w1 { text-align: center; margin-bottom: 8px; }
-        .th-h1-w2 { text-align: center; }
+        .th-h1-w1, .th-h1-w2 { display: block; text-align: center; }
         .pg-hero-inner .hero-lead { margin-top: 16px; }
       }
 
@@ -236,14 +240,16 @@
           <span class="lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
           <span class="lead-line">Dr. Kənan Rəhimovun</span>
           <span class="lead-line">şəxsi rəhbərliyi altında.</span>
-          <span class="desk-lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
+          <span class="desk-lead-line">Rəsmi DPO Diplomu,</span>
+          <span class="desk-lead-line">IPAS/BPA sertifikatı.</span>
           <span class="desk-lead-line">Dr. Kənan Rəhimovun şəxsi rəhbərliyi altında.</span>
         </p>
         <div class="hero-search-wrap">
           <div class="hero-search-bar">
-            <input id="th-si" type="text" placeholder="Proqram, mövzu, sertifikat axtarın..." autocomplete="off">
-            <button class="hero-search-btn" onclick="document.getElementById('programs')?.scrollIntoView({behavior:'smooth'});return false;"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>AXTAR</span></button>
+            <input id="hero-si" type="text" placeholder="Proqram, mövzu, sertifikat axtarın..." autocomplete="off">
+            <button class="hero-search-btn" onclick="heroSearch()"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>AXTAR</span></button>
           </div>
+          <div id="hero-sd"></div>
         </div>
       </div>
     </section>
@@ -900,24 +906,20 @@
       return;
     }
 
-    /* MOBILE: скрыть десктопные строки, подогнать под ширину th-h1-w1 (длиннее) */
+    /* MOBILE: target = ширина pg-hero-inner минус отступы */
     deskLeads.forEach(function(l){l.style.cssText='display:none!important';});
     leads.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
-    /* Цель = ширина th-h1-w1 ("Psixologiya Peşəsinə" — длинная строка) */
-    w1.style.display='inline';
-    var target=w1.getBoundingClientRect().width;
-    w1.style.display='';
+    var inner=document.querySelector('.pg-hero-inner');
+    var target=inner ? inner.getBoundingClientRect().width - 32 : window.innerWidth - 48;
     if(!target) return;
-    /* Подогнать th-h1-w1 под ту же ширину */
-    w1.style.display='inline';
-    /* Подогнать th-h1-w2 ("Rəsmi Yol") под ту же ширину что w1 */
-    w2.style.display='inline';
-    var lo=10,hi=160;
-    for(var i=0;i<30;i++){var mid=(lo+hi)/2;w2.style.fontSize=mid+'px';if(w2.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
-    w2.style.fontSize=Math.floor(lo)+'px';w2.style.display='block';w2.style.textAlign='center';
-    /* Восстановить w1 display */
-    w1.style.display='block';w1.style.textAlign='center';
-    /* Подогнать каждую строку subtitle */
+    /* Подогнать w1 и w2 к одной ширине */
+    [w1,w2].forEach(function(w){
+      w.style.display='inline';w.style.whiteSpace='nowrap';
+      var lo=10,hi=160;
+      for(var i=0;i<30;i++){var mid=(lo+hi)/2;w.style.fontSize=mid+'px';if(w.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
+      w.style.fontSize=Math.floor(lo)+'px';w.style.display='block';w.style.textAlign='center';w.style.whiteSpace='';
+    });
+    /* Подогнать каждую строку subtitle к той же ширине */
     leads.forEach(function(line){
       line.style.display='inline';line.style.whiteSpace='nowrap';
       var lo2=8,hi2=40;
