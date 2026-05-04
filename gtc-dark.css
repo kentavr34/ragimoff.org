@@ -175,8 +175,13 @@ div[style*="background: #fff"] {
     justify-content: flex-start !important;
     align-items: flex-start !important;
     padding-top: 100px !important;
-    padding-bottom: 100px !important;
+    padding-bottom: 0 !important;
   }
+  /* Сбросить браузерные дефолты + line-height — чтобы визуальные gap'ы совпадали с layout */
+  .hero-text .badge      { line-height: 1 !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+  .hero-text .hero-h1    { line-height: 1 !important; }
+  .hero-text .hero-lead  { padding: 0 !important; }
+  .hero-text .hero-search-wrap { margin-bottom: 0 !important; }
   .photo-col {
     align-self: stretch !important;
     overflow: visible !important;
