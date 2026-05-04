@@ -185,11 +185,12 @@ div[style*="background: #fff"] {
   }
   .photo-col img {
     width: calc(var(--photo-w) * 0.8) !important;
-    height: calc(100% + 50px) !important;
+    height: auto !important;
     margin-top: -50px !important;
     max-width: none !important;
-    object-fit: cover !important;
-    object-position: top center !important;
+    object-fit: unset !important;
+    object-position: unset !important;
+    clip-path: inset(0 0 50px 0) !important;
   }
   /* Desktop: show fitted desktop lines, hide mobile lines */
   .lead-line     { display: none !important; }
