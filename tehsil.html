@@ -40,6 +40,14 @@
         .feat-card { padding: 24px 20px; }
       }
 
+      /* ── TEHSIL HERO FITTING ── */
+      .th-h1-w1, .th-h1-w2 { display: block; white-space: nowrap; line-height: 1.15; }
+      @media (max-width: 768px) {
+        .th-h1-w1 { text-align: center; margin-bottom: 8px; }
+        .th-h1-w2 { text-align: center; }
+        .pg-hero-inner .hero-lead { margin-top: 16px; }
+      }
+
       /* ── PDF EXPORT BUTTON ── */
       .pdf-export-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.12); border: 1px solid rgba(181,155,114,0.35); color: var(--accent); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.2s; text-decoration: none; }
       .pdf-export-btn:hover { background: var(--accent); color: var(--navy); }
@@ -220,11 +228,22 @@
     <section class="pg-hero" data-theme="dark" style="background-image:url('images/students/psixologiya-mekteb.jpg');" aria-labelledby="tehsil-h1">
       <div class="pg-hero-inner">
         <span class="badge">TƏHSİL</span>
-        <h1 class="hero-h1" id="tehsil-h1">Psixologiya Peşəsinə <em>Rəsmi Yol</em></h1>
-        <p class="hero-lead">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.<br>Dr. Kənan Rəhimovun şəxsi rəhbərliyi altında.</p>
-        <div class="hero-btns">
-          <a href="#programs" class="btn btn-fill">Proqramlara Bax</a>
-          <a href="#registration" class="btn btn-line">Qeydiyyat</a>
+        <h1 class="hero-h1" id="tehsil-h1">
+          <span class="th-h1-w1">Psixologiya Peşəsinə</span>
+          <span class="th-h1-w2"><em>Rəsmi Yol</em></span>
+        </h1>
+        <p class="hero-lead">
+          <span class="lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
+          <span class="lead-line">Dr. Kənan Rəhimovun</span>
+          <span class="lead-line">şəxsi rəhbərliyi altında.</span>
+          <span class="desk-lead-line">Rəsmi DPO Diplomu, IPAS/BPA sertifikatı.</span>
+          <span class="desk-lead-line">Dr. Kənan Rəhimovun şəxsi rəhbərliyi altında.</span>
+        </p>
+        <div class="hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="th-si" type="text" placeholder="Proqram, mövzu, sertifikat axtarın..." autocomplete="off">
+            <button class="hero-search-btn" onclick="document.getElementById('programs')?.scrollIntoView({behavior:'smooth'});return false;"><svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>AXTAR</span></button>
+          </div>
         </div>
       </div>
     </section>
@@ -850,6 +869,66 @@
     });
     document.addEventListener('keydown',function(e){if(e.key==='Escape')closeKitabModal();});
   });
+})();
+</script>
+<script>
+/* ── Tehsil hero: binary-search font-size fitting ── */
+(function(){
+  function fitTehsil(){
+    var w1=document.querySelector('.th-h1-w1');
+    var w2=document.querySelector('.th-h1-w2');
+    var leads=document.querySelectorAll('.pg-hero-inner .lead-line');
+    var deskLeads=document.querySelectorAll('.pg-hero-inner .desk-lead-line');
+    if(w1){w1.style.fontSize='';w1.style.display='';}
+    if(w2){w2.style.fontSize='';w2.style.display='';}
+    leads.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
+    deskLeads.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
+    if(!w1||!w2) return;
+
+    if(window.innerWidth>768){
+      /* DESKTOP: скрыть мобильные строки, подогнать десктопные под 90% ширины H1 */
+      leads.forEach(function(l){l.style.cssText='display:none!important';});
+      var heroH1=document.getElementById('tehsil-h1');
+      var heroLead=document.querySelector('.pg-hero-inner .hero-lead');
+      if(heroH1&&deskLeads.length){
+        var dt=Math.floor(heroH1.getBoundingClientRect().width*0.9);
+        if(dt){
+          if(heroLead) heroLead.style.maxWidth=dt+'px';
+          deskLeads.forEach(function(line){
+            line.style.display='inline';line.style.whiteSpace='nowrap';
+            var lo=8,hi=60;
+            for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
+            line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
+          });
+        }
+      }
+      return;
+    }
+
+    /* MOBILE: скрыть десктопные строки, подогнать H1 и subtitle под ширину th-h1-w2 */
+    deskLeads.forEach(function(l){l.style.cssText='display:none!important';});
+    leads.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
+    /* Цель = ширина th-h1-w2 (длинная строка) */
+    w2.style.display='inline';
+    var target=w2.getBoundingClientRect().width;
+    w2.style.display='';
+    if(!target) return;
+    /* Подогнать th-h1-w1 под ту же ширину */
+    w1.style.display='inline';
+    var lo=10,hi=160;
+    for(var i=0;i<30;i++){var mid=(lo+hi)/2;w1.style.fontSize=mid+'px';if(w1.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
+    w1.style.fontSize=Math.floor(lo)+'px';w1.style.display='block';w1.style.textAlign='center';
+    /* Подогнать каждую строку subtitle */
+    leads.forEach(function(line){
+      line.style.display='inline';line.style.whiteSpace='nowrap';
+      var lo2=8,hi2=40;
+      for(var j=0;j<30;j++){var m2=(lo2+hi2)/2;line.style.fontSize=m2+'px';if(line.getBoundingClientRect().width<target)lo2=m2;else hi2=m2;}
+      line.style.fontSize=Math.floor(lo2)+'px';line.style.display='block';line.style.whiteSpace='';
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fitTehsil);}
+  else{fitTehsil();}
+  window.addEventListener('resize',fitTehsil,{passive:true});
 })();
 </script>
 <script id="site-search-js">
