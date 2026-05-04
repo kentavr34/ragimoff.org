@@ -260,7 +260,10 @@
           <span class="badge on-light">Mütəxəssis Haqqında</span>
           <h2 class="sec-h2" id="about-heading">Kənan Rəhimov</h2>
           <p class="sec-sub">
-            Həkim-Psixoterapevt (IPAS Ambassador). 23 illik klinik təcrübə.
+            <span class="ab-lead-mob">Həkim-Psixiatr-Psixoterapevt</span>
+            <span class="ab-lead-mob">23 illik klinik təcrübə və</span>
+            <span class="ab-lead-mob">beynəlxalq dərəcə.</span>
+            <span class="ab-lead-desk">Həkim-Psixiatr-Psixoterapevt. 23 illik klinik təcrübə və beynəlxalq dərəcə.</span>
           </p>
         </div>
       </div>
@@ -848,22 +851,29 @@
 
     if(window.innerWidth > 768) {
       // ── DESKTOP ──
-      // Явно скрыть мобильные строки
       leads.forEach(function(l){ l.style.cssText='display:none!important'; });
+      // сбросить JS-стили H1 перед измерением
       if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-      // Цель = ширина H1; поиск = 2×H1
+      if(w2){ w2.style.fontSize=''; }
       var heroH1=document.querySelector('.hero-h1');
       var heroLead=document.querySelector('.hero-lead');
-      var heroSW=document.querySelector('.hero-search-wrap');
       if(heroH1 && deskLeads.length){
-        var deskTarget=heroH1.getBoundingClientRect().width;
-        var leadTarget=Math.floor(deskTarget*0.9);
-        if(deskTarget){
-          if(heroLead) { heroLead.style.maxWidth=leadTarget+'px'; }
+        // Цель = 72% от ширины hero-text контейнера (= 90% × 0.8 → -20% от предыдущего)
+        var containerW=heroH1.getBoundingClientRect().width;
+        var target=Math.floor(containerW*0.72);
+        if(target){
+          // Подогнать H1 под ту же ширину (inline-block trick)
+          heroH1.style.display='inline-block'; heroH1.style.whiteSpace='nowrap';
+          var loH=8,hiH=120;
+          for(var k=0;k<30;k++){var mH=(loH+hiH)/2;heroH1.style.fontSize=mH+'px';if(heroH1.getBoundingClientRect().width<target)loH=mH;else hiH=mH;}
+          heroH1.style.fontSize=Math.floor(loH)+'px';
+          heroH1.style.display=''; heroH1.style.whiteSpace='';
+          // Подогнать subtitle под ту же ширину → правая/левая граница совпадают с H1
+          if(heroLead){ heroLead.style.width=target+'px'; heroLead.style.maxWidth='none'; }
           deskLeads.forEach(function(line){
             line.style.display='inline'; line.style.whiteSpace='nowrap';
-            var lo_d=8, hi_d=60;
-            for(var jd=0;jd<30;jd++){ var md=(lo_d+hi_d)/2; line.style.fontSize=md+'px'; if(line.getBoundingClientRect().width<leadTarget) lo_d=md; else hi_d=md; }
+            var lo_d=8,hi_d=60;
+            for(var jd=0;jd<30;jd++){var md=(lo_d+hi_d)/2;line.style.fontSize=md+'px';if(line.getBoundingClientRect().width<target)lo_d=md;else hi_d=md;}
             line.style.fontSize=Math.floor(lo_d)+'px'; line.style.display='block'; line.style.whiteSpace='';
           });
         }
@@ -945,6 +955,42 @@
     document.addEventListener('DOMContentLoaded', fitAll);
   } else { fitAll(); }
   window.addEventListener('resize', fitAll, {passive:true});
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ fitAll(); });
+  }
+})();
+</script>
+<script>
+/* ── About section: binary-search fitting (mobile only) ── */
+(function(){
+  function fitAbout(){
+    if(window.innerWidth>768) return;
+    var abH2=document.getElementById('about-heading');
+    var abMob=document.querySelectorAll('.ab-lead-mob');
+    var abDesk=document.querySelectorAll('.ab-lead-desk');
+    abDesk.forEach(function(l){l.style.cssText='display:none!important';});
+    var secHdr=document.querySelector('.sec-2col .sec-header');
+    var target=secHdr ? secHdr.getBoundingClientRect().width-32 : window.innerWidth-48;
+    if(!target) return;
+    /* Fit H2 */
+    if(abH2){
+      abH2.style.display='inline';abH2.style.whiteSpace='nowrap';
+      var loH=10,hiH=160;
+      for(var k=0;k<30;k++){var mH=(loH+hiH)/2;abH2.style.fontSize=mH+'px';if(abH2.getBoundingClientRect().width<target)loH=mH;else hiH=mH;}
+      abH2.style.fontSize=Math.floor(loH)+'px';abH2.style.display='block';abH2.style.whiteSpace='';
+    }
+    /* Fit subtitle lines */
+    abMob.forEach(function(line){
+      line.style.display='inline';line.style.whiteSpace='nowrap';
+      var lo=8,hi=60;
+      for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<target)lo=m;else hi=m;}
+      line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fitAbout);}
+  else{fitAbout();}
+  window.addEventListener('resize',fitAbout,{passive:true});
+  if(document.fonts && document.fonts.ready){document.fonts.ready.then(function(){fitAbout();});}
 })();
 </script>
 </body>

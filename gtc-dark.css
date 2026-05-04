@@ -184,7 +184,7 @@ div[style*="background: #fff"] {
     justify-content: flex-end !important;
   }
   .photo-col img {
-    width: var(--photo-w) !important;
+    width: calc(var(--photo-w) * 0.8) !important;
     height: calc(100% + 50px) !important;
     margin-top: -50px !important;
     max-width: none !important;
@@ -721,6 +721,9 @@ hr {
 
   /* Force about section dark */
   .sec-2col { background: var(--bnb-surface) !important; }
+
+  /* Hero photo: -20% on mobile */
+  .photo-col img { max-width: 224px !important; width: 224px !important; }
 
   /* Timeline on mobile */
   .about-content { padding-left: 0 !important; }
