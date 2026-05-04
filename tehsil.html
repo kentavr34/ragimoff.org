@@ -886,38 +886,37 @@
     if(!w1||!w2) return;
 
     if(window.innerWidth>768){
-      /* DESKTOP: скрыть мобильные строки, подогнать десктопные под 90% ширины H1 */
+      /* DESKTOP: скрыть мобильные строки, subtitle до 560px, шрифт макс 20px */
       leads.forEach(function(l){l.style.cssText='display:none!important';});
-      var heroH1=document.getElementById('tehsil-h1');
       var heroLead=document.querySelector('.pg-hero-inner .hero-lead');
-      if(heroH1&&deskLeads.length){
-        var dt=Math.floor(heroH1.getBoundingClientRect().width*0.9);
-        if(dt){
-          if(heroLead) heroLead.style.maxWidth=dt+'px';
-          deskLeads.forEach(function(line){
-            line.style.display='inline';line.style.whiteSpace='nowrap';
-            var lo=8,hi=60;
-            for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
-            line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
-          });
-        }
-      }
+      var dt=560; /* фиксированная ширина — как search bar */
+      if(heroLead) heroLead.style.maxWidth=dt+'px';
+      deskLeads.forEach(function(line){
+        line.style.display='inline';line.style.whiteSpace='nowrap';
+        var lo=8,hi=20; /* потолок 20px для subtitle */
+        for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
+        line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
+      });
       return;
     }
 
-    /* MOBILE: скрыть десктопные строки, подогнать H1 и subtitle под ширину th-h1-w2 */
+    /* MOBILE: скрыть десктопные строки, подогнать под ширину th-h1-w1 (длиннее) */
     deskLeads.forEach(function(l){l.style.cssText='display:none!important';});
     leads.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
-    /* Цель = ширина th-h1-w2 (длинная строка) */
-    w2.style.display='inline';
-    var target=w2.getBoundingClientRect().width;
-    w2.style.display='';
+    /* Цель = ширина th-h1-w1 ("Psixologiya Peşəsinə" — длинная строка) */
+    w1.style.display='inline';
+    var target=w1.getBoundingClientRect().width;
+    w1.style.display='';
     if(!target) return;
     /* Подогнать th-h1-w1 под ту же ширину */
     w1.style.display='inline';
+    /* Подогнать th-h1-w2 ("Rəsmi Yol") под ту же ширину что w1 */
+    w2.style.display='inline';
     var lo=10,hi=160;
-    for(var i=0;i<30;i++){var mid=(lo+hi)/2;w1.style.fontSize=mid+'px';if(w1.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
-    w1.style.fontSize=Math.floor(lo)+'px';w1.style.display='block';w1.style.textAlign='center';
+    for(var i=0;i<30;i++){var mid=(lo+hi)/2;w2.style.fontSize=mid+'px';if(w2.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
+    w2.style.fontSize=Math.floor(lo)+'px';w2.style.display='block';w2.style.textAlign='center';
+    /* Восстановить w1 display */
+    w1.style.display='block';w1.style.textAlign='center';
     /* Подогнать каждую строку subtitle */
     leads.forEach(function(line){
       line.style.display='inline';line.style.whiteSpace='nowrap';
