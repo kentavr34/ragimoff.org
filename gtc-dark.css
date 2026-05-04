@@ -178,17 +178,18 @@ div[style*="background: #fff"] {
   }
   .photo-col {
     align-self: stretch !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     position: relative !important;
     z-index: 2 !important;
+    justify-content: flex-end !important;
   }
   .photo-col img {
-    width: 100% !important;
+    width: var(--photo-w) !important;
     height: calc(100% + 50px) !important;
     margin-top: -50px !important;
     max-width: none !important;
     object-fit: cover !important;
-    object-position: 50% 0% !important;
+    object-position: top center !important;
   }
 }
 /* Desktop hero photo: show from top so person is visible */
