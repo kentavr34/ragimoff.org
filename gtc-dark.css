@@ -185,10 +185,10 @@ div[style*="background: #fff"] {
   }
   .photo-col img {
     width: var(--photo-w) !important;
-    height: auto !important;
+    height: calc(100% + 50px) !important;
     margin-top: -50px !important;
     max-width: none !important;
-    object-fit: contain !important;
+    object-fit: cover !important;
     object-position: top center !important;
   }
   /* Desktop: show fitted desktop lines, hide mobile lines */
@@ -200,6 +200,15 @@ div[style*="background: #fff"] {
   }
   .stats-strip {
     margin-top: 0 !important;
+  }
+  /* Search bar: растянуть на всю ширину hero-text */
+  .hero-search-wrap {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  .hero-search-bar {
+    width: 100% !important;
+    max-width: none !important;
   }
 }
 /* Desktop lines hidden by default (mobile shows them via mobile media query) */
