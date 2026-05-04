@@ -156,16 +156,26 @@ div[style*="background: #fff"] {
   background: linear-gradient(135deg, #0B0E11 0%, #161B22 100%) !important;
 }
 @media (min-width: 769px) {
-  .page-hero { min-height: 0 !important; padding-bottom: 0 !important; }
-  .hero-inner { margin-bottom: 0 !important; align-items: flex-end !important; }
-  .hero-text { margin-bottom: 60px !important; }
-  .photo-col { align-self: stretch !important; overflow: hidden !important; }
+  .page-hero {
+    min-height: 0 !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+    padding-top: 70px !important;
+    padding-bottom: 50px !important;
+  }
+  .hero-inner {
+    margin-bottom: 0 !important;
+    align-items: flex-end !important;
+  }
+  .hero-text { margin-bottom: 0 !important; }
+  .photo-col { align-self: flex-end !important; }
   .photo-col img {
-    height: 100% !important;
-    width: auto !important;
+    width: var(--photo-w) !important;
+    height: auto !important;
     max-width: none !important;
-    object-fit: cover !important;
-    object-position: top center !important;
+    max-height: 80vh !important;
+    object-fit: contain !important;
+    object-position: bottom center !important;
   }
 }
 /* Desktop hero photo: show from top so person is visible */
