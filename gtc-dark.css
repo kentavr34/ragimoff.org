@@ -204,10 +204,25 @@ div[style*="background: #fff"] {
   /* Search bar: фиксированная ширина */
   .hero-search-wrap { width: 620px !important; max-width: none !important; }
   .hero-search-bar  { max-width: none !important; }
+  /* About subtitle: desktop = одна строка, мобильные spans скрыты */
+  .ab-lead-mob  { display: none !important; }
+  .ab-lead-desk { display: block; }
 }
 /* Desktop lines hidden by default (mobile shows them via mobile media query) */
 .desk-lead-line { display: none; }
 .hero-lead { color: rgba(234,236,239,0.88) !important; }
+
+/* ─── CURRICULUM TABLE — светлый текст на тёмном фоне ─── */
+.cur-wrap .cur-name                              { color: #e0e3ec !important; }
+.cur-wrap .cur-hours                             { color: #e0e3ec !important; }
+.cur-wrap .cur-hours span                        { color: rgba(224,227,236,0.5) !important; }
+.cur-wrap .cur-num                               { color: rgba(224,227,236,0.32) !important; }
+.cur-wrap .cur-date                              { color: rgba(224,227,236,0.45) !important; }
+.cur-wrap .cur-row                               { border-bottom-color: rgba(224,227,236,0.07) !important; }
+.cur-wrap .cur-row > div:first-child::after,
+.cur-wrap .cur-row > div:nth-child(2)::after     { border-bottom-color: rgba(224,227,236,0.1) !important; }
+.cur-wrap                                        { border-color: rgba(224,227,236,0.1) !important; }
+.pdf-btn                                         { color: #e0e3ec !important; border-color: rgba(224,227,236,0.2) !important; }
 
 /* ─── 8. STATS STRIP ─── */
 .stats-strip {
@@ -673,16 +688,13 @@ hr {
     transform-origin: top center !important;
   }
 
-  /* About section portrait: limit to match hero face size */
+  /* About section portrait: show full photo, no clipping */
   .about-img {
-    max-height: 240px !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   .about-img img {
-    object-fit: cover !important;
-    object-position: top center !important;
     width: 100% !important;
-    height: 240px !important;
+    height: auto !important;
   }
 
   /* Badge positioning */
@@ -712,6 +724,16 @@ hr {
 
   /* Timeline on mobile */
   .about-content { padding-left: 0 !important; }
+
+  /* Photo (photo-portal) */
+  .about-col-right { margin-bottom: 0 !important; }
+
+  /* About subtitle: mobile spans */
+  .ab-lead-desk { display: none !important; }
+  .ab-lead-mob  { display: block; text-align: center; }
+
+  /* Daha Ətraflı button */
+  .about-img-btn { margin-top: 0 !important; }
 }
 
 /* ─── 30. PAGE SECTION BACKGROUNDS — OVERRIDE ALL INLINE COLORS ─── */
