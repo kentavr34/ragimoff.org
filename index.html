@@ -150,6 +150,8 @@
             <span class="lead-line">23 illik klinik təcrübə, beynəlxalq</span>
             <span class="lead-line">standartlar və təlimlər, AR qanunvericiliyinə</span>
             <span class="lead-line">uyğun psixologiya peşəsinə rəsmi yol.</span>
+            <span class="desk-lead-line">23 illik klinik təcrübə, beynəlxalq kvalifikasiya,</span>
+            <span class="desk-lead-line">AR qanunvericiliyinə uyğun psixologiya peşəsinə rəsmi yol.</span>
           </p>
 
           <div class="hero-search-wrap">
@@ -841,17 +843,37 @@
     var w1=document.querySelector('.h1-w1');
     var w2=document.querySelector('.h1-w2');
     var leads=document.querySelectorAll('.lead-line');
+    var deskLeads=document.querySelectorAll('.desk-lead-line');
     // Reset all
     if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; });
+    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
+    deskLeads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
     if(!w1||!w2) return;
-    if(window.innerWidth > 768) return;
+
+    if(window.innerWidth > 768) {
+      // ── DESKTOP: fit desk-lead-line to hero-text column width ──
+      var heroText=document.querySelector('.hero-text');
+      if(heroText && deskLeads.length){
+        var deskTarget=heroText.getBoundingClientRect().width;
+        if(deskTarget){
+          deskLeads.forEach(function(line){
+            line.style.display='inline'; line.style.whiteSpace='nowrap';
+            var lo_d=8, hi_d=60;
+            for(var jd=0;jd<30;jd++){ var md=(lo_d+hi_d)/2; line.style.fontSize=md+'px'; if(line.getBoundingClientRect().width<deskTarget) lo_d=md; else hi_d=md; }
+            line.style.fontSize=Math.floor(lo_d)+'px'; line.style.display='block'; line.style.whiteSpace='';
+          });
+        }
+      }
+      return;
+    }
+
+    // ── MOBILE ──
     // Measure target = natural text width of PSİXOLOGİYA MƏKTƏBİ at 20px
     w2.style.display='inline';
     var target=w2.getBoundingClientRect().width;
     w2.style.display='';
     if(!target) return;
-    // Fit h1-w1 (PEŞƏKAR) to 80% of PSİXOLOGİYA MƏKTƏBİ width
+    // Fit h1-w1 (PEŞƏKAR) to PSİXOLOGİYA MƏKTƏBİ width
     var scaleTarget = target * 1.0;
     var lo=10, hi=160;
     w1.style.display='inline';

@@ -191,7 +191,12 @@ div[style*="background: #fff"] {
     object-fit: contain !important;
     object-position: top center !important;
   }
+  /* Desktop: show fitted desktop lines, hide mobile lines */
+  .lead-line     { display: none !important; }
+  .desk-lead-line { display: block; white-space: nowrap; line-height: 1.6; }
 }
+/* Desktop lines hidden by default (mobile shows them via mobile media query) */
+.desk-lead-line { display: none; }
 .hero-lead { color: rgba(234,236,239,0.88) !important; }
 
 /* ─── 8. STATS STRIP ─── */
