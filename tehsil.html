@@ -40,6 +40,19 @@
         .feat-card { padding: 24px 20px; }
       }
 
+      /* ── PROGRAMS SECTION FITTING ── */
+      .pr-h2-w1, .pr-h2-w2 { white-space: nowrap; line-height: 1.15; }
+      @media (min-width: 769px) {
+        .pr-h2-w1, .pr-h2-w2 { display: inline !important; }
+        .pr-lead-mob  { display: none !important; }
+        .pr-lead-desk { display: block; white-space: nowrap; }
+      }
+      @media (max-width: 768px) {
+        .pr-h2-w1, .pr-h2-w2 { display: block; text-align: center; }
+        .pr-lead-mob  { display: block; text-align: center; }
+        .pr-lead-desk { display: none !important; }
+      }
+
       /* ── TEHSIL HERO FITTING ── */
       .th-h1-w1, .th-h1-w2 { white-space: nowrap; line-height: 1.15; }
       /* Десктоп: H1 в одну строку */
@@ -271,8 +284,17 @@
       <div class="sec-inner">
         <div class="sec-header">
           <span class="badge">Tədris Proqramları</span>
-          <h2 class="sec-h2" id="prog-h">3 Rəsmi Peşə Proqramı</h2>
-          <p class="sec-sub">Hər proqram 1 il — bilavasitə və onlayn format.<br>Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</p>
+          <h2 class="sec-h2" id="prog-h">
+            <span class="pr-h2-w1">3 Rəsmi Peşə</span>
+            <span class="pr-h2-w2">Proqramı</span>
+          </h2>
+          <p class="sec-sub">
+            <span class="pr-lead-mob">Hər proqram 1 il —</span>
+            <span class="pr-lead-mob">bilavasitə və onlayn format.</span>
+            <span class="pr-lead-mob">Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</span>
+            <span class="pr-lead-desk">Hər proqram 1 il — bilavasitə və onlayn format.</span>
+            <span class="pr-lead-desk">Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</span>
+          </p>
         </div>
       </div>
       <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section);">
@@ -926,9 +948,64 @@
       line.style.fontSize=Math.floor(lo2)+'px';line.style.display='block';line.style.whiteSpace='';
     });
   }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fitTehsil);}
-  else{fitTehsil();}
-  window.addEventListener('resize',fitTehsil,{passive:true});
+  /* ── Programs section fitting ── */
+  function fitPrograms(){
+    var ph1=document.querySelector('.pr-h2-w1');
+    var ph2=document.querySelector('.pr-h2-w2');
+    var pMob=document.querySelectorAll('.pr-lead-mob');
+    var pDesk=document.querySelectorAll('.pr-lead-desk');
+    if(!ph1||!ph2) return;
+
+    if(window.innerWidth>768){
+      /* Десктоп: H2 одной строкой, subtitle 2 линии подогнать под ширину H2 */
+      pMob.forEach(function(l){l.style.cssText='display:none!important';});
+      ph1.style.cssText=''; ph2.style.cssText='';
+      var progH2=document.getElementById('prog-h');
+      if(progH2&&pDesk.length){
+        var dt=progH2.getBoundingClientRect().width;
+        if(dt){
+          pDesk.forEach(function(line){
+            line.style.display='inline';line.style.whiteSpace='nowrap';
+            var lo=8,hi=22;
+            for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<dt)lo=m;else hi=m;}
+            line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
+          });
+        }
+      }
+      return;
+    }
+
+    /* Мобайл: все к ширине контейнера */
+    pDesk.forEach(function(l){l.style.cssText='display:none!important';});
+    ph1.style.fontSize=''; ph1.style.display=''; ph1.style.whiteSpace='';
+    ph2.style.fontSize=''; ph2.style.display=''; ph2.style.whiteSpace='';
+    pMob.forEach(function(l){l.style.fontSize='';l.style.display='';l.style.whiteSpace='';});
+    var secHdr=document.querySelector('#programs .sec-header');
+    var target=secHdr ? secHdr.getBoundingClientRect().width-32 : window.innerWidth-48;
+    if(!target) return;
+    [ph1,ph2].forEach(function(w){
+      w.style.display='inline';w.style.whiteSpace='nowrap';
+      var lo=10,hi=160;
+      for(var i=0;i<30;i++){var mid=(lo+hi)/2;w.style.fontSize=mid+'px';if(w.getBoundingClientRect().width<target)lo=mid;else hi=mid;}
+      w.style.fontSize=Math.floor(lo)+'px';w.style.display='block';w.style.textAlign='center';w.style.whiteSpace='';
+    });
+    pMob.forEach(function(line){
+      line.style.display='inline';line.style.whiteSpace='nowrap';
+      var lo2=8,hi2=40;
+      for(var j=0;j<30;j++){var m2=(lo2+hi2)/2;line.style.fontSize=m2+'px';if(line.getBoundingClientRect().width<target)lo2=m2;else hi2=m2;}
+      line.style.fontSize=Math.floor(lo2)+'px';line.style.display='block';line.style.whiteSpace='';
+    });
+  }
+
+  function fitAll(){ fitTehsil(); fitPrograms(); }
+
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fitAll);}
+  else{fitAll();}
+  window.addEventListener('resize',fitAll,{passive:true});
+  /* Повторный запуск после загрузки шрифтов — исправляет неравную длину строк */
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ fitAll(); });
+  }
 })();
 </script>
 <script id="site-search-js">
