@@ -204,9 +204,10 @@
       <div class="sec-inner">
         <div class="sec-header">
           <span class="badge on-light">Fəaliyyət Sahələri</span>
-          <h2 class="sec-h2" id="eco-heading">RAGIMOFF EKOSİSTEMİ</h2>
+          <h2 class="sec-h2" id="eco-heading"><span class="eco-h2-w1">RAGIMOFF</span><span class="eco-h2-w2">EKOSİSTEMİ</span></h2>
           <p class="sec-sub eco-sub">
-            <span class="eco-lead-line">Dəqiq struktur, elmi metodlar və 23 illik klinik təcrübə</span>
+            <span class="eco-lead-line">Dəqiq struktur, elmi metodlar</span>
+            <span class="eco-lead-line">və 23 illik klinik təcrübə</span>
             <span class="eco-lead-line">əsasında üç əsas fəaliyyət istiqamətində xidmət edirik.</span>
           </p>
         </div>
@@ -878,30 +879,34 @@
       line.style.display='block';
       line.style.whiteSpace='';
     });
-    // ── Eco section: fit subtitle lines to heading width ──
+    // ── Eco section: RAGIMOFF / EKOSİSTEMİ + subtitle fit to container width ──
     var ecoH=document.getElementById('eco-heading');
+    var ecoW1=document.querySelector('.eco-h2-w1');
+    var ecoW2=document.querySelector('.eco-h2-w2');
     var ecoLeads=document.querySelectorAll('.eco-lead-line');
+    if(ecoW1){ ecoW1.style.fontSize=''; ecoW1.style.display=''; }
+    if(ecoW2){ ecoW2.style.fontSize=''; ecoW2.style.display=''; }
     ecoLeads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
-    if(ecoH && ecoLeads.length){
-      ecoH.style.display='inline';
-      ecoH.style.whiteSpace='nowrap';
-      var ecoTarget=ecoH.getBoundingClientRect().width;
-      ecoH.style.display='';
-      ecoH.style.whiteSpace='';
+    if(ecoH && ecoW1 && ecoW2){
+      // Target = container (sec-header) width
+      var ecoTarget=ecoH.parentElement.getBoundingClientRect().width;
       if(ecoTarget){
+        // Fit EKOSİSTEMİ (longer) to container width
+        ecoW2.style.display='inline'; ecoW2.style.whiteSpace='nowrap';
+        var lo_e=10,hi_e=160;
+        for(var ie=0;ie<30;ie++){ var me=(lo_e+hi_e)/2; ecoW2.style.fontSize=me+'px'; if(ecoW2.getBoundingClientRect().width<ecoTarget) lo_e=me; else hi_e=me; }
+        ecoW2.style.fontSize=Math.floor(lo_e)+'px'; ecoW2.style.display='block'; ecoW2.style.whiteSpace='';
+        // Fit RAGIMOFF to same target
+        ecoW1.style.display='inline'; ecoW1.style.whiteSpace='nowrap';
+        var lo_r=10,hi_r=160;
+        for(var ir=0;ir<30;ir++){ var mr=(lo_r+hi_r)/2; ecoW1.style.fontSize=mr+'px'; if(ecoW1.getBoundingClientRect().width<ecoTarget) lo_r=mr; else hi_r=mr; }
+        ecoW1.style.fontSize=Math.floor(lo_r)+'px'; ecoW1.style.display='block'; ecoW1.style.whiteSpace='';
+        // Fit subtitle lines to same target
         ecoLeads.forEach(function(line){
-          line.style.display='inline';
-          line.style.whiteSpace='nowrap';
-          var lo3=8, hi3=40;
-          for(var k=0;k<30;k++){
-            var mid3=(lo3+hi3)/2;
-            line.style.fontSize=mid3+'px';
-            if(line.getBoundingClientRect().width < ecoTarget) lo3=mid3;
-            else hi3=mid3;
-          }
-          line.style.fontSize=Math.floor(lo3)+'px';
-          line.style.display='block';
-          line.style.whiteSpace='';
+          line.style.display='inline'; line.style.whiteSpace='nowrap';
+          var lo3=8,hi3=40;
+          for(var k=0;k<30;k++){ var m3=(lo3+hi3)/2; line.style.fontSize=m3+'px'; if(line.getBoundingClientRect().width<ecoTarget) lo3=m3; else hi3=m3; }
+          line.style.fontSize=Math.floor(lo3)+'px'; line.style.display='block'; line.style.whiteSpace='';
         });
       }
     }
