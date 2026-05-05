@@ -584,3 +584,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ═══════════════════════════════════════════════
+//  HERO SEARCH (page-hero-x system) — works on any page
+//  with <input id="hero-si"> + <div id="hero-sd">
+// ═══════════════════════════════════════════════
+(function(){
+  function init(){
+    var si = document.getElementById('hero-si');
+    var sd = document.getElementById('hero-sd');
+    if (!si || !sd) return;
+    if (window.__heroSearchInited) return;
+    window.__heroSearchInited = true;
+    var idx = null, loading = false;
+    function load(cb){
+      if (idx) { cb(idx); return; }
+      if (loading) { setTimeout(function(){ load(cb); }, 80); return; }
+      loading = true;
+      fetch('/search-index.json').then(function(r){ return r.json(); })
+        .then(function(d){ idx = d; loading = false; cb(d); })
+        .catch(function(){ idx = []; loading = false; cb([]); });
+    }
+    function showResults(q, data){
+      var ql = q.toLowerCase();
+      var esc = ql.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      var re = new RegExp(esc, 'gi');
+      function hl(s){ return s ? String(s).replace(re, function(m){ return '<mark>' + m + '</mark>'; }) : ''; }
+      var res = data.filter(function(x){
+        return (x.title + ' ' + (x.text||'')).toLowerCase().indexOf(ql) >= 0;
+      }).slice(0, 15);
+      if (!res.length) {
+        sd.innerHTML = '<div class="ssr"><div class="ssr-title">Nəticə tapılmadı</div></div>';
+        sd.classList.add('on'); return;
+      }
+      sd.innerHTML = res.map(function(r){
+        var snip = ''; var txt = r.text || ''; var lo = txt.toLowerCase(); var i2 = lo.indexOf(ql);
+        if (i2 >= 0) { var s = Math.max(0, i2-50); snip = txt.slice(s, s+120).trim(); }
+        var url = r.url || ((r.page||'') + '.html' + (r.id ? '#' + r.id : ''));
+        return '<div class="ssr" onclick="window.location.href=\'' + url + '\'">'
+             + '<div class="ssr-title">' + hl(r.title) + '</div>'
+             + (snip ? '<div class="ssr-snip">' + hl(snip) + '</div>' : '')
+             + '<div class="ssr-sub">' + (r.sub||'') + '</div></div>';
+      }).join('');
+      sd.classList.add('on');
+    }
+    function closeSD(){ sd.classList.remove('on'); }
+    window.heroSearch = function(){
+      var q = si.value.trim();
+      if (q.length < 2) return;
+      load(function(data){ showResults(q, data); });
+    };
+    si.addEventListener('focus', function(){ load(function(){}); }, { once: true });
+    var tmr;
+    si.addEventListener('input', function(){
+      clearTimeout(tmr);
+      tmr = setTimeout(function(){
+        var q = si.value.trim();
+        if (q.length < 2) { closeSD(); return; }
+        load(function(data){ showResults(q, data); });
+      }, 200);
+    });
+    si.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') { window.heroSearch(); }
+      if (e.key === 'Escape') { si.value = ''; closeSD(); }
+    });
+    document.addEventListener('click', function(e){
+      if (!si.contains(e.target) && !sd.contains(e.target)) closeSD();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

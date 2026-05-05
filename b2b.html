@@ -95,7 +95,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="page-hero-x" data-theme="dark" aria-labelledby="b2b-h1">
+    <section class="page-hero-x" data-theme="dark" style="background-image:url('images/students/korporativ-tehsil.jpg');" aria-labelledby="b2b-h1">
       <div class="page-hero-x-inner">
         <span class="ph-badge">KORPORATİV</span>
         <h1 class="ph-h1" id="b2b-h1">
@@ -109,15 +109,15 @@
           <span class="ph-sub-desk">Komanda treninqləri, stress-menecment, liderlik —</span>
           <span class="ph-sub-desk">şirkətinizin psixoloji sağlamlığı üçün peşəkar yanaşma.</span>
         </p>
-        <div class="ph-search-wrap">
+        <div class="ph-search-wrap hero-search-wrap">
           <div class="hero-search-bar">
-            <input type="text" placeholder="Mövzu, xidmət axtarın..." />
-            <button class="hero-search-btn">AXTAR</button>
+            <input id="hero-si" type="text" placeholder="Mövzu, xidmət axtarın..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>AXTAR</span>
+            </button>
           </div>
-        </div>
-        <div class="hero-btns" style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <a href="#order" class="btn btn-fill">Fərdi Offer Al</a>
-          <a href="https://wa.me/994702200376" target="_blank" class="btn btn-line">WhatsApp</a>
+          <div id="hero-sd"></div>
         </div>
       </div>
     </section>

@@ -146,7 +146,7 @@
 <button class="btn btn-fill" onclick="toggleMenu();openKitabModal()" type="button">KİTABIN SİFARİŞİ</button>
 </nav>
 <!-- HERO -->
-<section aria-labelledby="xid-h1" class="page-hero-x" data-theme="dark">
+<section aria-labelledby="xid-h1" class="page-hero-x" data-theme="dark" style="background-image:url('images/kenan/photo-portal-crop.jpg');">
   <div class="page-hero-x-inner">
     <span class="ph-badge">XİDMƏTLƏR</span>
     <h1 class="ph-h1" id="xid-h1">
@@ -160,11 +160,15 @@
       <span class="ph-sub-desk">Fərdi, ailə və yeniyetmə konsultasiyaları —</span>
       <span class="ph-sub-desk">klinik standartlara uyğun, tam məxfiliklə.</span>
     </p>
-    <div class="ph-search-wrap">
+    <div class="ph-search-wrap hero-search-wrap">
       <div class="hero-search-bar">
-        <input type="text" placeholder="Mövzu, xidmət axtarın..." />
-        <button class="hero-search-btn">AXTAR</button>
+        <input id="hero-si" type="text" placeholder="Mövzu, xidmət axtarın..." autocomplete="off"/>
+        <button class="hero-search-btn" onclick="heroSearch()">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>AXTAR</span>
+        </button>
       </div>
+      <div id="hero-sd"></div>
     </div>
   </div>
 </section>
