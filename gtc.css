@@ -1071,7 +1071,7 @@ body {
 }
 
 .about-content {
-  padding-left: 165px;
+  padding-left: clamp(40px, 12%, 165px);
 }
 
 .about-col-right {
@@ -1299,7 +1299,7 @@ body {
   display: grid;
   grid-template-columns: 384px 1fr;
   gap: 56px;
-  padding: 0 var(--s-section) 0 165px;
+  padding: 0 var(--s-section) 0 clamp(40px, 12%, 165px);
   align-items: baseline;
 }
 
@@ -2671,7 +2671,8 @@ body {
 .video-play {
   width: 52px;
   height: 52px;
-  background: rgba(255, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--gold, #d4af6a);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -3317,4 +3318,101 @@ body {
     padding: 0 20px !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════
+   ── VISUAL AUDIT FIXES ──
+   Безопасные дополнения (design tokens, a11y, lazy-load).
+   Существующие правила выше — не трогаем.
+   ════════════════════════════════════════════════════════ */
+
+:root {
+  /* Type scale tokens (применены только к hero ниже) */
+  --type-h1: clamp(2.4rem, 4vw, 3.4rem);
+  --type-h2: clamp(1.75rem, 3vw, 2.4rem);
+  /* Line-height tokens (доступны для будущих правок) */
+  --lh-tight: 1.5;
+  --lh-read: 1.75;
+  /* Border radius tokens */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  /* Badge padding tokens */
+  --badge-pad-lg: 10px 24px;
+  --badge-pad-sm: 6px 14px;
+  /* Animation duration tokens */
+  --dur-fast: .18s;
+  --dur-base: .3s;
+  --dur-slow: .45s;
+}
+
+/* ── 3. Keyboard focus visible ── */
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--gold, #d4af6a);
+  outline-offset: 2px;
+}
+
+/* ── 7. H1 hero size token (только hero, не глобально) ── */
+.hero-h1,
+.pg-hero h1 {
+  font-size: var(--type-h1) !important;
+}
+
+/* ── 9. Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .btn:hover,
+  .card:hover,
+  .svc-card:hover,
+  .blog-card:hover,
+  .price-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ── 15. Footer grid intermediate breakpoint ── */
+@media (max-width: 1280px) and (min-width: 1101px) {
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+/* ── 18. H2 letter-spacing воздух (только для uppercase H2) ── */
+.sec-h2 {
+  letter-spacing: 0.06em;
+}
+
+/* ── EXTRACTED FROM PAGES: site-search-css ── */
+.site-search-wrap{position:relative;margin-left:12px}
+#site-si{background:rgba(255,255,255,0.1);border:1px solid rgba(181,155,114,0.3);
+  border-radius:4px;color:#fff;font-family:inherit;font-size:13px;
+  padding:6px 34px 6px 12px;width:200px;outline:none;
+  transition:border-color .2s,width .3s,background .2s}
+#site-si:focus{border-color:var(--accent);background:rgba(255,255,255,0.15);width:260px}
+#site-si::placeholder{color:var(--text-muted, rgba(234,236,239,0.5))}
+.site-search-ico{position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,0.45);font-size:14px;pointer-events:none}
+#site-sd{display:none;position:absolute;top:calc(100% + 6px);right:0;width:360px;
+  background:var(--navy);border:1px solid rgba(181,155,114,0.25);border-radius:6px;
+  max-height:400px;overflow-y:auto;z-index:2000;
+  box-shadow:0 16px 48px rgba(0,0,0,0.6)}
+#site-sd.on{display:block}
+.ssr{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);
+  cursor:pointer;transition:background .15s}
+.ssr:last-child{border-bottom:none}
+.ssr:hover{background:rgba(255,255,255,0.06)}
+.ssr-title{font-size:13px;font-weight:600;color:#e0e0e0;margin-bottom:2px}
+.ssr-snip{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.5}
+.ssr-sub{font-size:10px;color:var(--accent);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.ssr mark{background:rgba(212,175,106,0.35);color:#fff;border-radius:2px}
+@media(max-width:900px){.site-search-wrap{display:none}}
 
