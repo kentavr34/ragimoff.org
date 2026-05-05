@@ -3415,3 +3415,85 @@ select:focus-visible,
 .ssr mark{background:rgba(212,175,106,0.35);color:#fff;border-radius:2px}
 @media(max-width:900px){.site-search-wrap{display:none}}
 
+
+/* ── PAGE HERO SYSTEM (стиль шапки страницы) ── */
+/* Универсальная система заголовка страницы.
+   HTML: <section class="page-hero-x">
+           <div class="page-hero-x-inner">
+             <span class="ph-badge">Категория</span>
+             <h1 class="ph-h1"><span class="ph-h1-w1">...</span> <span class="ph-h1-w2">...</span></h1>
+             <p class="ph-sub">
+               <span class="ph-sub-mob">мобильная строка 1</span>
+               <span class="ph-sub-mob">мобильная строка 2</span>
+               <span class="ph-sub-desk">десктоп строка 1</span>
+               <span class="ph-sub-desk">десктоп строка 2</span>
+             </p>
+             <div class="ph-search-wrap">...</div>
+           </div>
+         </section>
+*/
+.page-hero-x {
+  background: linear-gradient(135deg, #0B0E11 0%, #161B22 100%);
+  padding: 0;
+}
+.page-hero-x-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 50px 24px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ph-badge {
+  background: var(--bnb-gold-bg, rgba(212,175,106,0.12));
+  color: var(--bnb-gold, #D4AF6A);
+  padding: var(--badge-pad-lg, 10px 24px);
+  border: 1px solid var(--badge-border, rgba(212,175,106,0.35));
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+.ph-h1 {
+  font-family: var(--type-h-family, 'Playfair Display', Georgia, serif);
+  color: var(--bnb-gold, #D4AF6A);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  margin: 0 0 30px 0;
+  font-weight: 800;
+}
+.ph-h1-w1, .ph-h1-w2 { white-space: nowrap; }
+@media (min-width: 769px) {
+  .ph-h1-w1, .ph-h1-w2 { display: inline; }
+}
+@media (max-width: 768px) {
+  .ph-h1-w1, .ph-h1-w2 { display: block; text-align: center; }
+}
+.ph-sub {
+  color: rgba(234, 236, 239, 0.88);
+  line-height: 1.5;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+@media (min-width: 769px) {
+  .ph-sub-mob { display: none; }
+  .ph-sub-desk { display: block; white-space: nowrap; }
+}
+@media (max-width: 768px) {
+  .ph-sub-mob { display: block; text-align: center; }
+  .ph-sub-desk { display: none; }
+}
+.ph-search-wrap {
+  width: 620px;
+  max-width: 100%;
+  margin-top: 0;
+}
+@media (max-width: 768px) {
+  .page-hero-x-inner { padding: 40px 20px 60px; align-items: center; }
+  .ph-search-wrap { width: 100%; }
+  .ph-badge { margin-bottom: 30px; }
+  .ph-h1 { margin-bottom: 24px; text-align: center; }
+}
