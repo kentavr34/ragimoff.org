@@ -103,7 +103,7 @@
   --btn-padding-v:         14px;
   --btn-padding-h:         32px;
   --btn-radius:            0;
-  --btn-transition:        all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --btn-transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
   /* Filled (gold) */
   --btn-fill-bg:           var(--gold);
   --btn-fill-color:        var(--navy);
@@ -185,7 +185,7 @@ p, blockquote {
 
 a {
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 ul {
@@ -302,7 +302,7 @@ body {
   width: 0;
   height: 3px;
   background: var(--gold);
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: width var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .desktop-nav a:hover {
@@ -334,7 +334,7 @@ body {
   display: flex; flex-wrap: nowrap; gap: 0;
   justify-content: center; align-items: center;
   opacity: 0; visibility: hidden;
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  transition: opacity var(--dur-fast) ease, transform var(--dur-fast) ease, visibility var(--dur-fast);
   white-space: nowrap;
 }
 .desktop-nav .nav-dropdown li:not(:last-child) {
@@ -378,7 +378,7 @@ body {
   display: inline-flex;
   align-items: center;
   margin-left: 8px;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .desktop-nav .nav-cta::after {
@@ -403,7 +403,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 3px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all var(--dur-fast) ease;
 }
 .desktop-nav .lang-switch:hover { color: var(--gold); border-color: var(--gold); }
 .desktop-nav .lang-switch.lang-active { color: var(--navy); background: var(--gold); border-color: var(--gold); pointer-events: none; }
@@ -590,7 +590,7 @@ body {
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mobile-nav.open {
@@ -605,7 +605,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-decoration: none;
   display: block;
-  transition: color 0.2s ease;
+  transition: color var(--dur-fast) ease;
 }
 
 .mobile-nav a:hover {
@@ -707,7 +707,7 @@ body {
   align-items:    center;
   border-radius:  0;
   margin-bottom:  var(--s-gap-tag-hero);
-  transition:     all 0.3s ease;
+  transition: all var(--dur-base) ease;
 }
 
 .badge:hover {
@@ -789,7 +789,7 @@ body {
   letter-spacing: var(--btn-spacing);
   padding:        var(--btn-padding-v) var(--btn-padding-h);
   border-radius:  var(--btn-radius);
-  transition:     var(--btn-transition);
+  transition: var(--btn-transition);
   border:         none;
   cursor:         pointer;
   text-decoration: none;
@@ -1036,14 +1036,14 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
   text-decoration: none;
 }
 
 .card-link::after {
   content: "\2192";
   display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:hover .card-link {
@@ -1129,9 +1129,9 @@ body {
   border-bottom: none;
   font-size: var(--t-body);
   color: var(--clr-text);
-  line-height: 1.75;
+  line-height: var(--lh-read);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--dur-base) ease;
 }
 
 .timeline-list li:last-child {
@@ -1148,7 +1148,7 @@ body {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--clr-bg);
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform var(--dur-base) ease, background var(--dur-base) ease;
 }
 
 .timeline-list li:hover::before {
@@ -1172,7 +1172,7 @@ body {
   font-size: var(--t-sm);
   color: var(--clr-text-muted);
   line-height: 1.7;
-  transition: color 0.3s ease;
+  transition: color var(--dur-base) ease;
 }
 
 .timeline-list li:hover span {
@@ -1350,7 +1350,7 @@ body {
   overflow: hidden;
   position: relative;
   background: rgba(255, 255, 255, 0.03);
-  transition: opacity 0.2s;
+  transition: opacity var(--dur-fast);
 }
 .dg-main-item:hover { opacity: 0.82; }
 
@@ -1376,7 +1376,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.03);
-  transition: opacity 0.2s;
+  transition: opacity var(--dur-fast);
 }
 .dg-thumb:hover { opacity: 0.75; }
 
@@ -1428,7 +1428,7 @@ body {
   line-height: 1;
   cursor: pointer;
   z-index: 9001;
-  transition: color 0.2s;
+  transition: color var(--dur-fast);
   padding: 4px 8px;
 }
 .dg-lb-close:hover { color: var(--gold); }
@@ -1447,7 +1447,7 @@ body {
   z-index: 9001;
   padding: 14px 18px;
   border-radius: 2px;
-  transition: all 0.2s;
+  transition: all var(--dur-fast);
 }
 .dg-lb-prev { left: 20px; }
 .dg-lb-next { right: 20px; }
@@ -1492,7 +1492,7 @@ body {
   padding: 32px 24px;
   text-decoration: none;
   color: var(--clr-text);
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 0;
   text-align: left;
   display: block;
@@ -1591,7 +1591,7 @@ body {
   text-decoration: none;
   border-radius: 0;
   letter-spacing: 0.05em;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
   font-family: "Montserrat", sans-serif;
 }
 
@@ -1665,7 +1665,7 @@ body {
   z-index: 9000;
   box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
   text-decoration: none;
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .wa-float:hover {
@@ -2031,7 +2031,7 @@ body {
 .hero-lead {
   font-size: var(--type-sub-size);
   color: rgba(255, 255, 255, 0.72);
-  line-height: 1.75;
+  line-height: var(--lh-read);
   max-width: 680px;
   margin-bottom: 32px;
 }
@@ -2052,7 +2052,7 @@ body {
   padding: 36px 28px;
   position: relative;
   overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  transition: transform var(--dur-base) cubic-bezier(0.22, 1, 0.36, 1), box-shadow var(--dur-base);
   border: 1px solid rgba(181, 155, 114, 0.1);
 }
 
@@ -2162,7 +2162,7 @@ body {
   background: var(--clr-bg-surface);
   border: 1px solid var(--clr-border);
   border-top: 3px solid var(--clr-heading);
-  transition: border-top-color 0.3s, transform 0.3s;
+  transition: border-top-color var(--dur-base), transform var(--dur-base);
 }
 
 .feat-card:hover {
@@ -2292,7 +2292,7 @@ body {
   font-family: var(--font);
   font-size: var(--t-body);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color var(--dur-fast);
   width: 100%;
   box-sizing: border-box;
   border-radius: 0;
@@ -2351,7 +2351,7 @@ body {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 600;
   text-align: center;
-  transition: all 0.2s;
+  transition: all var(--dur-fast);
   user-select: none;
   line-height: 1.4;
 }
@@ -2395,7 +2395,7 @@ body {
   font-size: var(--t-sm);
   font-family: var(--font);
   cursor: pointer;
-  transition: border-color 0.2s;
+  transition: border-color var(--dur-fast);
   width: 100%;
   box-sizing: border-box;
 }
@@ -2452,7 +2452,7 @@ body {
   background: var(--clr-bg-surface);
   border: 1px solid var(--clr-border);
   overflow: hidden;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  transition: box-shadow var(--dur-base), transform var(--dur-base), border-color var(--dur-base);
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -2566,7 +2566,7 @@ body {
   cursor: pointer;
   white-space: nowrap;
   border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
   font-family: var(--font);
   text-transform: uppercase;
 }
@@ -2677,7 +2677,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s;
+  transition: transform var(--dur-fast);
 }
 
 .video-card:hover .video-play {
@@ -2756,7 +2756,7 @@ body {
   color: rgba(255, 255, 255, 0.65);
   margin: 0;
   max-width: 640px;
-  line-height: 1.75;
+  line-height: var(--lh-read);
 }
 
 /* ─────────────────────────────────────────────
@@ -2780,7 +2780,7 @@ body {
 .article-body p {
   font-size: var(--t-body);
   color: var(--clr-text);
-  line-height: 1.85;
+  line-height: var(--lh-read);
   margin-bottom: 20px;
 }
 
@@ -2793,7 +2793,7 @@ body {
 .article-body ul li {
   font-size: var(--t-body);
   color: var(--clr-text);
-  line-height: 1.75;
+  line-height: var(--lh-read);
   margin-bottom: 8px;
 }
 
@@ -2847,7 +2847,7 @@ body {
   padding: 40px 32px 36px;
   display: flex;
   flex-direction: column;
-  transition: border-top-color 0.3s, transform 0.3s;
+  transition: border-top-color var(--dur-base), transform var(--dur-base);
 }
 
 .dir-card:hover {
@@ -3143,7 +3143,7 @@ body {
 .blog-featured-excerpt {
   font-size: var(--t-sm);
   color: var(--clr-text-muted);
-  line-height: 1.75;
+  line-height: var(--lh-read);
   margin-bottom: 20px;
 }
 
@@ -3396,7 +3396,7 @@ select:focus-visible,
 #site-si{background:rgba(255,255,255,0.1);border:1px solid rgba(181,155,114,0.3);
   border-radius:4px;color:#fff;font-family:inherit;font-size:13px;
   padding:6px 34px 6px 12px;width:200px;outline:none;
-  transition:border-color .2s,width .3s,background .2s}
+  transition: border-color .2s,width .3s,background .2s}
 #site-si:focus{border-color:var(--accent);background:rgba(255,255,255,0.15);width:260px}
 #site-si::placeholder{color:var(--text-muted, rgba(234,236,239,0.5))}
 .site-search-ico{position:absolute;right:10px;top:50%;transform:translateY(-50%);
@@ -3407,7 +3407,7 @@ select:focus-visible,
   box-shadow:0 16px 48px rgba(0,0,0,0.6)}
 #site-sd.on{display:block}
 .ssr{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);
-  cursor:pointer;transition:background .15s}
+  cursor:pointer;transition: background .15s}
 .ssr:last-child{border-bottom:none}
 .ssr:hover{background:rgba(255,255,255,0.06)}
 .ssr-title{font-size:13px;font-weight:600;color:#e0e0e0;margin-bottom:2px}
