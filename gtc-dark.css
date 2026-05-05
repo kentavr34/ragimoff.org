@@ -777,3 +777,11 @@ section[style], div[style] {
   margin: 8px 0 0;
   line-height: 1.5;
 }
+
+/* ─── Mobile hero photo: ensure good framing without transform crop ─── */
+@media (max-width: 768px) {
+  .photo-col img {
+    object-fit: cover !important;
+    object-position: top center !important;
+  }
+}
