@@ -739,8 +739,25 @@ hr {
   /* Force about section dark */
   .sec-2col { background: var(--bnb-surface) !important; }
 
-  /* Hero photo mobile */
-  .photo-col img { max-width: 296px !important; width: 296px !important; }
+  /* Hero photo mobile — заполнить колонку, прижать к низу полоски */
+  .photo-col {
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+    max-height: 380px !important;
+  }
+  .photo-col img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: 380px !important;
+    margin-bottom: 0 !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+  }
 
   /* Timeline on mobile */
   .about-content { padding-left: 0 !important; }
