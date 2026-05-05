@@ -244,22 +244,32 @@
     </nav>
 
     <!-- HERO -->
-    <div class="en-hero">
-      <div class="en-hero-inner">
-        <div>
-          <span class="badge" style="margin-bottom:24px;">Child Psychology &middot; </span>
-          <h1 class="hero-h1" style="color:var(--white);max-width:580px;">Nocturnal <em>Enuresis Treatment</em></h1>
-          <p class="hero-lead" style="max-width:500px;">1,000+ children over 23 years. Without a single medication.<br>Therapy only, following international protocols.</p>
-          <div class="hero-btns" style="justify-content:flex-start;">
-            <a href="#registration" class="btn btn-fill">Book an Appointment</a>
-            <a href="https://wa.me/994702200376?text=Hello%2C+I+would+like+to+learn+about+enuresis+treatment." target="_blank" class="btn btn-line">WhatsApp</a>
+    <section class="page-hero-x" data-theme="dark" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">CHILD PSYCHOLOGY &MIDDOT;</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Nocturnal</span>
+          <span class="ph-h1-w2">Enuresis Treatment</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">1,000+ children over 23 years.</span>
+          <span class="ph-sub-mob">Without a single medication.</span>
+          <span class="ph-sub-mob">Therapy only, following</span>
+          <span class="ph-sub-desk">1,000+ children over 23 years. Without a single medication. Therapy</span>
+          <span class="ph-sub-desk">only, following international protocols.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Search..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>SEARCH</span>
+            </button>
           </div>
-        </div>
-        <div class="en-hero-photo">
-          <img src="../images/kenan/enurez-mualice.jpg" alt="Dr. Kenan Ragimov" loading="lazy" />
+          <div id="hero-sd"></div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- STATS -->
     <div class="en-stats">
@@ -740,5 +750,6 @@
         btn.style.display = 'none';
       });
     </script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

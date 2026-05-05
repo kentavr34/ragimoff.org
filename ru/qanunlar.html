@@ -170,16 +170,29 @@
     </nav>
 
     <!-- HERO -->
-    <section class="pg-hero" data-theme="dark" aria-labelledby="qanunlar-h1">
-      <div class="pg-hero-inner">
-        <span class="badge">ЮРИДИЧЕСКИЕ ДОКУМЕНТЫ</span>
-        <h1 class="hero-h1" id="qanunlar-h1">Юридические основы <em>деятельности</em></h1>
-        <p class="hero-lead">С дипломом ДПО российского учебного заведения работать психологом в Азербайджане полностью законно. Четыре официальных документа, подтверждающих это.</p>
-        <div class="trust-pills">
-          <div class="trust-pill"><span class="dot">•</span>Закон Азербайджанской Республики</div>
-          <div class="trust-pill"><span class="dot">•</span>Российско-азербайджанское соглашение</div>
-          <div class="trust-pill"><span class="dot">•</span>Лицензия Рособрнадзора</div>
-          <div class="trust-pill"><span class="dot">•</span>Проверяется онлайн</div>
+    <section class="page-hero-x" data-theme="dark" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">ЮРИДИЧЕСКИЕ ДОКУМЕНТЫ</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Юридические</span>
+          <span class="ph-h1-w2">основы деятельности</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">С дипломом ДПО российского учебного</span>
+          <span class="ph-sub-mob">заведения работать психологом в</span>
+          <span class="ph-sub-mob">Азербайджане полностью законно.</span>
+          <span class="ph-sub-desk">С дипломом ДПО российского учебного заведения работать психологом в</span>
+          <span class="ph-sub-desk">Азербайджане полностью законно. Четыре официальных документа,</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
         </div>
       </div>
     </section>
@@ -547,5 +560,6 @@
       if (success) { success.style.display = 'block'; success.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
     });
     </script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

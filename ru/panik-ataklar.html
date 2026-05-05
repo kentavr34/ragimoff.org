@@ -83,11 +83,30 @@
     </nav>
 
     <!-- HERO -->
-    <section class="pg-hero" data-theme="dark" style="background-image:url('../images/kenan/panik-ataklar.jpg')">
-      <div class="pg-hero-inner">
-        <span class="badge">КЛИНИЧЕСКАЯ ТЕРАПИЯ</span>
-        <h1 class="hero-h1">Панические <em>атаки</em></h1>
-        <p class="hero-lead">Паническое расстройство, внезапные приступы страха<br>и избегающее поведение — клиническое психотерапевтическое лечение</p>
+    <section class="page-hero-x" data-theme="dark" style="background-image:url('../images/kenan/panik-ataklar.jpg');" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">КЛИНИЧЕСКАЯ ТЕРАПИЯ</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Панические</span>
+          <span class="ph-h1-w2">атаки</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">Паническое расстройство, внезапные</span>
+          <span class="ph-sub-mob">приступы страха и избегающее</span>
+          <span class="ph-sub-mob">поведение — клиническое</span>
+          <span class="ph-sub-desk">Паническое расстройство, внезапные приступы страха и избегающее</span>
+          <span class="ph-sub-desk">поведение — клиническое психотерапевтическое лечение</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
+        </div>
       </div>
     </section>
 
@@ -321,5 +340,6 @@
     </a>
 
     <script src="../shared.js"></script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

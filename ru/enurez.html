@@ -245,22 +245,32 @@
     </nav>
 
     <!-- HERO -->
-    <div class="en-hero">
-      <div class="en-hero-inner">
-        <div>
-          <span class="badge" style="margin-bottom:24px;">Детская психология &middot; </span>
-          <h1 class="hero-h1" style="color:var(--white);max-width:580px;">Лечение <em>ночного энуреза</em></h1>
-          <p class="hero-lead" style="max-width:500px;">1 000+ детей за 23 года. Без единого медикамента.<br>Только терапия по международным протоколам.</p>
-          <div class="hero-btns" style="justify-content:flex-start;">
-            <a href="#registration" class="btn btn-fill">Записаться на приём</a>
-            <a href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%BE+%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B8+%D1%8D%D0%BD%D1%83%D1%80%D0%B5%D0%B7%D0%B0." target="_blank" class="btn btn-line">WhatsApp</a>
+    <section class="page-hero-x" data-theme="dark" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">ДЕТСКАЯ ПСИХОЛОГИЯ &MIDDOT;</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Лечение</span>
+          <span class="ph-h1-w2">ночного энуреза</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">1 000+ детей за 23 года. Без</span>
+          <span class="ph-sub-mob">единого медикамента. Только терапия</span>
+          <span class="ph-sub-mob">по международным протоколам.</span>
+          <span class="ph-sub-desk">1 000+ детей за 23 года. Без единого медикамента. Только терапия по</span>
+          <span class="ph-sub-desk">международным протоколам.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
           </div>
-        </div>
-        <div class="en-hero-photo">
-          <img src="../images/kenan/enurez-mualice.jpg" alt="Dr. Kənan Rəhimov" loading="lazy" />
+          <div id="hero-sd"></div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- STATS -->
     <div class="en-stats">
@@ -741,5 +751,6 @@
         btn.style.display = 'none';
       });
     </script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

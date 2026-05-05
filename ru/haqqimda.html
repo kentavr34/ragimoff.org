@@ -96,11 +96,30 @@
     </nav>
 
     <!-- HERO -->
-    <section class="pg-hero pg-hero-plain" data-theme="dark" aria-labelledby="bio-h1">
-      <div class="pg-hero-inner">
-        <span class="badge">О СПЕЦИАЛИСТЕ</span>
-        <h1 class="hero-h1" id="bio-h1">Кенан <em>Рагимов</em></h1>
-        <p class="hero-lead">Амбассадор IPAS · Врач-психотерапевт · Выпускник Бехтерева.<br>23 года клинической психотерапии в Азербайджане.</p>
+    <section class="page-hero-x" data-theme="dark" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">О СПЕЦИАЛИСТЕ</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Кенан</span>
+          <span class="ph-h1-w2">Рагимов</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">Амбассадор IPAS ·</span>
+          <span class="ph-sub-mob">Врач-психотерапевт · Выпускник</span>
+          <span class="ph-sub-mob">Бехтерева. 23 года клинической</span>
+          <span class="ph-sub-desk">Амбассадор IPAS · Врач-психотерапевт · Выпускник Бехтерева. 23 года</span>
+          <span class="ph-sub-desk">клинической психотерапии в Азербайджане.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
+        </div>
       </div>
     </section>
 
@@ -344,5 +363,6 @@
       document.addEventListener('keydown', function(e){ if (!lb.classList.contains('active')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') { show(current - 1); startAuto(); } if (e.key === 'ArrowRight') { show(current + 1); startAuto(); } });
     })();
     </script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

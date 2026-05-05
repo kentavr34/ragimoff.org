@@ -79,14 +79,29 @@
     </nav>
 
     <!-- HERO -->
-    <section class="pg-hero" data-theme="dark" style="background-image:url('../images/students/korporativ-tehsil.jpg');" aria-labelledby="b2b-h1">
-      <div class="pg-hero-inner">
-        <span class="badge">КОРПОРАТИВНОЕ</span>
-        <h1 class="hero-h1" id="b2b-h1">Психологические решения <em>для бизнеса</em></h1>
-        <p class="hero-lead">Продажи, лидерство, HR — корпоративная психология на научной основе.<br>Индивидуальная программа под потребности вашей компании.</p>
-        <div class="hero-btns">
-          <a href="#order" class="btn btn-fill">Получить индивидуальное предложение</a>
-          <a href="https://wa.me/994702200376" target="_blank" class="btn btn-line">WhatsApp</a>
+    <section class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/korporativ-tehsil.jpg');" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">КОРПОРАТИВНОЕ</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Психологические решения</span>
+          <span class="ph-h1-w2">для бизнеса</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">Продажи, лидерство, HR —</span>
+          <span class="ph-sub-mob">корпоративная психология на научной</span>
+          <span class="ph-sub-mob">основе. Индивидуальная программа</span>
+          <span class="ph-sub-desk">Продажи, лидерство, HR — корпоративная психология на научной основе.</span>
+          <span class="ph-sub-desk">Индивидуальная программа под потребности вашей компании.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
         </div>
       </div>
     </section>
@@ -279,5 +294,6 @@
         btn.disabled = true;
       }
     </script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>

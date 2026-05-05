@@ -132,11 +132,30 @@
     </nav>
 
     <!-- HERO -->
-    <section class="pg-hero" data-theme="dark" style="background-image:url('../images/kenan/photo-portal-crop.jpg');" aria-labelledby="xid-h1">
-      <div class="pg-hero-inner">
-        <span class="badge">КЛИНИЧЕСКАЯ ПСИХОТЕРАПИЯ</span>
-        <h1 class="hero-h1" id="xid-h1">Не приговор <em>судьбы</em></h1>
-        <p class="hero-lead">Депрессия, паника, фобия — не слабость характера, а клинический диагноз. У каждого из них есть решение.</p>
+    <section class="page-hero-x" data-theme="dark" style="background-image:url('../images/kenan/photo-portal-crop.jpg');" aria-labelledby="page-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">КЛИНИЧЕСКАЯ ПСИХОТЕРАПИЯ</span>
+        <h1 class="ph-h1" id="page-h1">
+          <span class="ph-h1-w1">Не</span>
+          <span class="ph-h1-w2">приговор судьбы</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">Депрессия, паника, фобия — не</span>
+          <span class="ph-sub-mob">слабость характера, а клинический</span>
+          <span class="ph-sub-mob">диагноз. У каждого из них есть</span>
+          <span class="ph-sub-desk">Депрессия, паника, фобия — не слабость характера, а клинический</span>
+          <span class="ph-sub-desk">диагноз. У каждого из них есть решение.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
+        </div>
       </div>
     </section>
 
@@ -388,5 +407,6 @@
     </a>
 
     <script src="../shared.js"></script>
-  </body>
+  <script src="../js-hero-fit.js"></script>
+</body>
 </html>
