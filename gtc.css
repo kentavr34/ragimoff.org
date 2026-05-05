@@ -3356,18 +3356,17 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
-/* ── 7. H1 hero size token (только hero, не глобально) ── */
-.hero-h1,
-.pg-hero h1 {
-  font-size: var(--type-h1) !important;
-}
+/* ── 7. H1 hero size token УДАЛЁН — конфликтовал с JS binary-search fitting.
+   Токен --type-h1 оставлен в :root для будущих компонентов без JS-fitting. */
 
-/* ── 9. Reduced motion ── */
+/* ── 9. Reduced motion ──
+   ВАЖНО: НЕ использовать transition-duration: 0.01ms на * — Chrome возвращает
+   несвежие значения через getComputedStyle во время мгновенных транзишенов,
+   что ломает binary-search font-fitting. Используем transition: none. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
   .btn:hover,
   .card:hover,
