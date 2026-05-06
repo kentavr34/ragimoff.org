@@ -746,6 +746,7 @@ hr {
     justify-content: center !important;
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+    margin-top: -30px !important; /* уменьшить gap над головой вдвое */
     overflow: hidden !important;
     max-height: 380px !important;
   }
@@ -756,7 +757,15 @@ hr {
     margin-bottom: 0 !important;
     display: block !important;
     object-fit: cover !important;
-    object-position: top center !important;
+    object-position: center -20px !important; /* сдвинуть фото вверх — голова ближе к верху */
+  }
+  /* Убрать gap под фото до stats-strip */
+  .page-hero {
+    padding-bottom: 0 !important;
+  }
+  /* hero-text не должен создавать промежуток до фото */
+  .hero-text {
+    padding-bottom: 0 !important;
   }
 
   /* Timeline on mobile */
