@@ -1,0 +1,48 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{home_href}}" class="logo-box">
+      <span class="logo-text">RAGIMOFF<em>.</em></span>
+      <span class="logo-sub">{{logo_sub}}</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <div class="nav-item">
+        <a href="{{home_href}}"{{cls_home}}>{{home}}</a>
+        <ul class="nav-dropdown">
+          <li><a href="haqqimda.html">{{about}}</a></li>
+          <li><a href="/klinik-psixiatriya/">{{clinical_psychiatry}}</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="tehsil.html"{{cls_tehsil}}>{{education}}</a>
+        <ul class="nav-dropdown">
+          <li><a href="program-umumi.html">{{program_general}}</a></li>
+          <li><a href="program-klinik.html">{{program_clinical}}</a></li>
+          <li><a href="program-praktikum.html">{{program_practicum}}</a></li>
+          <li><a href="qanunlar.html">{{legal}}</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="xidmetler.html"{{cls_xidmetler}}>{{consultation}}</a>
+        <ul class="nav-dropdown">
+          <li><a href="aile-terapiyasi.html">{{family_therapy}}</a></li>
+          <li><a href="aile-terapiyasi-usaq.html">{{child_therapy}}</a></li>
+          <li><a href="depressiya.html">{{depression}}</a></li>
+          <li><a href="panik-ataklar.html">{{panic}}</a></li>
+          <li><a href="sosial-fobiya.html">{{social_phobia}}</a></li>
+          <li><a href="enurez.html">{{enuresis}}</a></li>
+        </ul>
+      </div>
+      <a href="b2b.html"{{cls_b2b}}>{{corporate}}</a>
+      <a href="blog.html"{{cls_blog}}>{{blog}}</a>
+      {{lang_switches}}
+      <a href="#" class="nav-cta" onclick="openKitabModal();return false;">{{book_btn}}</a>
+    </nav>
+
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="{{menu_label}}">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+    </button>
+  </div>
+</header>

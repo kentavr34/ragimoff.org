@@ -1,0 +1,48 @@
+<nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="{{mobile_menu_label}}">
+  <button class="mobile-nav-close" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+  </button>
+
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="{{home_href}}" onclick="toggleMenu()">{{home}}</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="{{toggle_label}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="haqqimda.html" onclick="toggleMenu()">{{about}}</a>
+      <a href="/klinik-psixiatriya/" onclick="toggleMenu()">{{clinical_psychiatry}}</a>
+    </div>
+  </div>
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="tehsil.html" onclick="toggleMenu()">{{education}}</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="{{toggle_label}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="program-umumi.html" onclick="toggleMenu()">{{program_general}}</a>
+      <a href="program-klinik.html" onclick="toggleMenu()">{{program_clinical}}</a>
+      <a href="program-praktikum.html" onclick="toggleMenu()">{{program_practicum}}</a>
+      <a href="qanunlar.html" onclick="toggleMenu()">{{legal}}</a>
+    </div>
+  </div>
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="xidmetler.html" onclick="toggleMenu()">{{consultation}}</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="{{toggle_label}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="aile-terapiyasi.html" onclick="toggleMenu()">{{family_therapy}}</a>
+      <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">{{child_therapy}}</a>
+      <a href="depressiya.html" onclick="toggleMenu()">{{depression}}</a>
+      <a href="panik-ataklar.html" onclick="toggleMenu()">{{panic}}</a>
+      <a href="sosial-fobiya.html" onclick="toggleMenu()">{{social_phobia}}</a>
+      <a href="enurez.html" onclick="toggleMenu()">{{enuresis}}</a>
+    </div>
+  </div>
+  <a href="b2b.html" onclick="toggleMenu()">{{corporate}}</a>
+  <a href="blog.html" onclick="toggleMenu()">{{blog}}</a>
+  {{mobile_lang_switches}}
+  <a href="#" class="btn btn-fill" onclick="toggleMenu();openKitabModal();return false;">{{book_btn}}</a>
+</nav>
