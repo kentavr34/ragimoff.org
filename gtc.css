@@ -3517,16 +3517,28 @@ select:focus-visible,
 }
 
 /* ═══════════════════════════════════════════════
-   PAGE-HERO-X — УНИФИКАЦИЯ ДЕСКТОП
-   1. Одинаковая высота полосы (min-height)
-   2. Одинаковый размер H1 на всех страницах (фиксированный шрифт)
-   3. Подзаголовок макс. 2 строки + не шире H1
+   PAGE-HERO-X — СТАНДАРТЫ С ГЛАВНОЙ СТРАНИЦЫ
+   Эталон: index.html (.page-hero) — H1: 32px, subtitle: 18px, padding 50/100
+   1. Та же высота полосы (~532px)
+   2. Тот же размер шрифта H1 (32px)
+   3. Та же ширина и шрифт subtitle, max 2 строки
+   4. Те же отступы между элементами (badge 50, h1 30, sub 10)
    ═══════════════════════════════════════════════ */
 @media (min-width: 769px) {
-  .page-hero-x { min-height: 540px; display: flex; align-items: center; }
-  .page-hero-x-inner { width: 100%; }
+  .page-hero-x {
+    min-height: 532px;
+    display: flex;
+    align-items: center;
+  }
+  .page-hero-x-inner {
+    width: 100%;
+    padding: 50px 24px 100px !important;
+  }
+  .page-hero-x .ph-badge {
+    margin: 0 0 50px 0 !important;
+  }
   .page-hero-x .ph-h1 {
-    font-size: 48px !important;
+    font-size: 32px !important;
     line-height: 1.15 !important;
     margin: 0 0 30px 0 !important;
     width: auto !important;
@@ -3538,11 +3550,12 @@ select:focus-visible,
     white-space: normal !important;
   }
   .page-hero-x .ph-sub {
-    font-size: 17px !important;
+    font-size: 18px !important;
     line-height: 1.5 !important;
     max-width: 720px !important;
     width: auto !important;
-    margin: 0 0 40px 0 !important;
+    margin: 0 0 10px 0 !important;
+    color: rgba(234, 236, 239, 0.88) !important;
     display: -webkit-box !important;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -3553,7 +3566,12 @@ select:focus-visible,
     white-space: normal !important;
     display: inline !important;
   }
-  /* JS-фиттинг (js-hero-fit.js) больше не должен менять размеры — !important его перебивает */
+  .page-hero-x .ph-search-wrap {
+    margin-top: 0 !important;
+    width: 620px !important;
+    max-width: none !important;
+  }
+  /* JS-фиттинг (js-hero-fit.js) перебит !important */
 }
 
 /* ═══════════════════════════════════════════════
