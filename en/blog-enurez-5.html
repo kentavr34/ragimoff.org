@@ -71,12 +71,45 @@
     </header>
     <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile menu">
       <button class="mobile-nav-close" onclick="toggleMenu()"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg></button>
-      <a href="index.html" onclick="toggleMenu()">Home</a>
-      <a href="tehsil.html" onclick="toggleMenu()">Education</a>
-      <a href="xidmetler.html" onclick="toggleMenu()">Consultation</a>
-      <a href="b2b.html" onclick="toggleMenu()">Corporate</a>
-      <a href="blog.html" onclick="toggleMenu()">Blog</a>
-      <a href="../blog-enurez-5.html" class="mobile-lang">Azərbaycan dili</a>
+      
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="index.html" onclick="toggleMenu()">Home</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="haqqimda.html" onclick="toggleMenu()">About Me</a>
+        <a href="/klinik-psixiatriya/" onclick="toggleMenu()">Clinical Psychiatry</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="tehsil.html" onclick="toggleMenu()">Education</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="program-umumi.html" onclick="toggleMenu()">General Psychology</a>
+        <a href="program-klinik.html" onclick="toggleMenu()">Clinical Psychology CPD</a>
+        <a href="program-praktikum.html" onclick="toggleMenu()">Psychotherapy Practicum</a>
+        <a href="qanunlar.html" onclick="toggleMenu()">Legal Information</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="xidmetler.html" onclick="toggleMenu()">Consultation</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="aile-terapiyasi.html" onclick="toggleMenu()">Family Therapy</a>
+        <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">Family-Child Therapy</a>
+        <a href="depressiya.html" onclick="toggleMenu()">Depression</a>
+        <a href="panik-ataklar.html" onclick="toggleMenu()">Panic Attacks</a>
+        <a href="sosial-fobiya.html" onclick="toggleMenu()">Social Phobia</a>
+        <a href="enurez.html" onclick="toggleMenu()">Nocturnal Enuresis</a>
+      </div>
+    </div>
+    <a href="b2b.html" onclick="toggleMenu()">Corporate</a>
+    <a href="blog.html" onclick="toggleMenu()">Blog</a><a href="../blog-enurez-5.html" class="mobile-lang">Azərbaycan dili</a>
       <a href="../ru/blog-enurez-5.html" class="mobile-lang">Русский</a>
       <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">BOOK</a>
     </nav>
@@ -255,7 +288,8 @@
         <div>
           <a href="index.html" class="logo-box footer-logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Psychology School</span></a>
           <p class="footer-desc">Kenan Ragimov — Psychiatrist, psychotherapist. 23 years of clinical practice. Baku, Azerbaijan.</p>
-          <div class="social-links">
+              <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=Caspian+Business+Center+Baku+AZ1065" target="_blank" rel="noopener" aria-label="Open in maps and get directions"><svg class="fa-pin" width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold,#E6B44A)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="fa-text">AZ1065, Baku, Caspian Business Center, 9th floor</span><svg class="fa-dir" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 8-6 8M20 12H4"/></svg></a>
+              <div class="social-links">
             <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
             <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
             <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>

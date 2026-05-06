@@ -234,13 +234,45 @@
       <button class="mobile-nav-close" onclick="toggleMenu()">
         <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" /></svg>
       </button>
-      <a href="index.html" onclick="toggleMenu()">Главная</a>
-      <a href="/klinik-psixiatriya/" onclick="toggleMenu()">Клиническая Психиатрия</a>
-      <a href="tehsil.html" onclick="toggleMenu()">Обучение</a>
-      <a href="xidmetler.html" onclick="toggleMenu()">Консультация</a>
-      <a href="b2b.html" onclick="toggleMenu()">Корпоративное</a>
-      <a href="blog.html" onclick="toggleMenu()">Блог</a>
-      <a href="../enurez.html" class="mobile-lang">Azərbaycan dili</a>
+      
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="index.html" onclick="toggleMenu()">Главная</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="haqqimda.html" onclick="toggleMenu()">Обо мне</a>
+        <a href="/klinik-psixiatriya/" onclick="toggleMenu()">Клиническая Психиатрия</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="tehsil.html" onclick="toggleMenu()">Обучение</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="program-umumi.html" onclick="toggleMenu()">Общая Психология</a>
+        <a href="program-klinik.html" onclick="toggleMenu()">Клиническая Психология DPO</a>
+        <a href="program-praktikum.html" onclick="toggleMenu()">Психотерапия Практикум</a>
+        <a href="qanunlar.html" onclick="toggleMenu()">Правовая Информация</a>
+      </div>
+    </div>
+    <div class="mobile-nav-group">
+      <div class="mn-head">
+        <a href="xidmetler.html" onclick="toggleMenu()">Консультация</a>
+        <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mn-sub">
+        <a href="aile-terapiyasi.html" onclick="toggleMenu()">Семейная Терапия</a>
+        <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">Семейно-Детская Терапия</a>
+        <a href="depressiya.html" onclick="toggleMenu()">Депрессия</a>
+        <a href="panik-ataklar.html" onclick="toggleMenu()">Панические Атаки</a>
+        <a href="sosial-fobiya.html" onclick="toggleMenu()">Социофобия</a>
+        <a href="enurez.html" onclick="toggleMenu()">Ночной Энурез</a>
+      </div>
+    </div>
+    <a href="b2b.html" onclick="toggleMenu()">Корпоративное</a>
+    <a href="blog.html" onclick="toggleMenu()">Блог</a><a href="../enurez.html" class="mobile-lang">Azərbaycan dili</a>
       <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">ЗАПИСЬ</a>
     </nav>
 
@@ -653,7 +685,8 @@
               <span class="logo-sub">Школа психологии</span>
             </a>
             <p class="footer-desc">Кенан Рагимов — Врач-психиатр, психотерапевт. 23 года клинической практики. Баку, Азербайджан.</p>
-            <div class="social-links">
+              <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=Caspian+Business+Center+Baku+AZ1065" target="_blank" rel="noopener" aria-label="Открыть на карте и проложить маршрут"><svg class="fa-pin" width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold,#E6B44A)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="fa-text">AZ1065, г. Баку, Caspian Business Center, 9 этаж</span><svg class="fa-dir" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 8-6 8M20 12H4"/></svg></a>
+              <div class="social-links">
               <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
               <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
               <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>

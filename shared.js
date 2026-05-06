@@ -189,6 +189,12 @@ function toggleMenu() {
 function closeMenu() {
   document.getElementById('mobileNav')?.classList.remove('open');
 }
+// Mobile nav — submenu expand/collapse
+function toggleSubMenu(btn) {
+  const group = btn.closest('.mobile-nav-group');
+  if (group) group.classList.toggle('is-open');
+}
+window.toggleSubMenu = toggleSubMenu;
 
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
