@@ -3711,16 +3711,9 @@ select:focus-visible,
 #hero-sd .ssr-sub { font-size: 11px; color: var(--bnb-gold, #E6B44A); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 #hero-sd .ssr mark { background: rgba(230, 180, 74, 0.35); color: #fff; border-radius: 2px; }
 
-/* Также для search-results на главной (dropdown под полосой hero) */
-.page-hero, .page-hero-x {
-  z-index: 5;
-  position: relative;
-}
-.page-hero ~ section, .page-hero-x ~ section,
-.page-hero ~ div, .page-hero-x ~ div {
-  position: relative;
-  z-index: 1;
-}
+/* УДАЛЕНО: правило поднимало page-hero над stats-strip → числа 23+/3000+
+   спрятались за фото. #hero-sd сам имеет z-index:1001, не нужен parent.
+   stats-strip уже имеет z-index:1; position:relative из gtc-dark.css. */
 
 /* ═══════════════════════════════════════════════
    FIX 2: осветлить тёмный текст на тёмном фоне
