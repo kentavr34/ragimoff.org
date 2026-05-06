@@ -3517,6 +3517,46 @@ select:focus-visible,
 }
 
 /* ═══════════════════════════════════════════════
+   PAGE-HERO-X — УНИФИКАЦИЯ ДЕСКТОП
+   1. Одинаковая высота полосы (min-height)
+   2. Одинаковый размер H1 на всех страницах (фиксированный шрифт)
+   3. Подзаголовок макс. 2 строки + не шире H1
+   ═══════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .page-hero-x { min-height: 540px; display: flex; align-items: center; }
+  .page-hero-x-inner { width: 100%; }
+  .page-hero-x .ph-h1 {
+    font-size: 48px !important;
+    line-height: 1.15 !important;
+    margin: 0 0 30px 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+  .page-hero-x .ph-h1-w1,
+  .page-hero-x .ph-h1-w2 {
+    font-size: inherit !important;
+    white-space: normal !important;
+  }
+  .page-hero-x .ph-sub {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    max-width: 720px !important;
+    width: auto !important;
+    margin: 0 0 40px 0 !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .page-hero-x .ph-sub-desk {
+    font-size: inherit !important;
+    white-space: normal !important;
+    display: inline !important;
+  }
+  /* JS-фиттинг (js-hero-fit.js) больше не должен менять размеры — !important его перебивает */
+}
+
+/* ═══════════════════════════════════════════════
    FOOTER ADDRESS — кликабельный адрес с map-icon
    ═══════════════════════════════════════════════ */
 .footer-address {
