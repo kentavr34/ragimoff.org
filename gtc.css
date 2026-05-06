@@ -3613,3 +3613,99 @@ select:focus-visible,
 .mobile-nav-group .mn-sub a:hover {
   color: var(--bnb-gold, #E6B44A) !important;
 }
+
+/* ═══════════════════════════════════════════════
+   FIX 4: nav-dropdown — мост между parent и dropdown
+   убирает мгновенное скрытие при наведении
+   ═══════════════════════════════════════════════ */
+.desktop-nav .nav-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+/* Задержка скрытия dropdown — 0.6 секунды */
+.desktop-nav .nav-item .nav-dropdown {
+  transition: opacity 0.2s ease, visibility 0s linear 0.6s, transform 0.2s ease 0s !important;
+}
+.desktop-nav .nav-item:hover .nav-dropdown,
+.desktop-nav .nav-item:focus-within .nav-dropdown {
+  transition: opacity 0.2s ease, visibility 0s linear 0s, transform 0.2s ease 0s !important;
+}
+
+/* ═══════════════════════════════════════════════
+   FIX 5: search dropdown поверх всех слоёв
+   ═══════════════════════════════════════════════ */
+.hero-search-wrap {
+  position: relative;
+  z-index: 1000;
+}
+#hero-sd {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: #1a1d27;
+  border: 1px solid rgba(230, 180, 74, 0.25);
+  border-radius: 6px;
+  max-height: 480px;
+  overflow-y: auto;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  display: none;
+}
+#hero-sd.on { display: block; }
+#hero-sd .ssr {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#hero-sd .ssr:last-child { border-bottom: none; }
+#hero-sd .ssr:hover { background: rgba(255, 255, 255, 0.06); }
+#hero-sd .ssr-title { font-size: 14px; font-weight: 600; color: #e0e0e0; margin-bottom: 3px; }
+#hero-sd .ssr-snip { font-size: 12px; color: rgba(255, 255, 255, 0.55); line-height: 1.5; }
+#hero-sd .ssr-sub { font-size: 11px; color: var(--bnb-gold, #E6B44A); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+#hero-sd .ssr mark { background: rgba(230, 180, 74, 0.35); color: #fff; border-radius: 2px; }
+
+/* Также для search-results на главной (dropdown под полосой hero) */
+.page-hero, .page-hero-x {
+  z-index: 5;
+  position: relative;
+}
+.page-hero ~ section, .page-hero-x ~ section,
+.page-hero ~ div, .page-hero-x ~ div {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════
+   FIX 2: осветлить тёмный текст на тёмном фоне
+   ═══════════════════════════════════════════════ */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] .sec-sub,
+[data-theme="dark"] .footer-desc,
+[data-theme="dark"] .footer-links a,
+[data-theme="dark"] .footer-bottom,
+section[data-theme="dark"] *:not(h1):not(h2):not(h3):not(.badge):not(.btn):not(.nav-cta):not(svg):not(path):not(circle):not(line):not(.ph-h1):not(.ph-h1-w1):not(.ph-h1-w2) {
+  color: rgba(234, 236, 239, 0.85);
+}
+.footer-desc, footer p {
+  color: rgba(234, 236, 239, 0.75) !important;
+}
+.footer-bottom, .footer-bottom p {
+  color: rgba(234, 236, 239, 0.55) !important;
+}
+.footer-col-title {
+  color: rgba(234, 236, 239, 0.95) !important;
+}
+.footer-links a {
+  color: rgba(234, 236, 239, 0.65) !important;
+}
+.footer-links a:hover {
+  color: var(--bnb-gold, #E6B44A) !important;
+}
