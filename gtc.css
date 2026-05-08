@@ -3458,10 +3458,8 @@ select:focus-visible,
   flex-direction: column;
   align-items: flex-start;
 }
-/* Унификация visual gap между search bar и следующей секцией.
-   Index использует .page-hero (с photo-col) — там gap ~89px от photo.
-   .page-hero-x не имеет photo-col, поэтому отменяем stats-strip margin-top: -80px. */
-.page-hero-x + .stats-strip { margin-top: 0 !important; }
+/* Stats strip after .page-hero-x наследует глобальный margin-top:-80px
+   (как на index с .page-hero), чтобы низ hero визуально совпадал. */
 .ph-badge {
   background: var(--bnb-gold-bg, rgba(212,175,106,0.12));
   color: var(--bnb-gold, #D4AF6A);
