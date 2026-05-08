@@ -3698,8 +3698,9 @@ html, body {
     overflow: visible;
   }
   .page-hero-x .ph-sub-desk {
-    /* каждая desk-строка — своим блоком с nowrap, как .desk-lead-line */
-    font-size: inherit !important;
+    /* каждая desk-строка — своим блоком с nowrap, как .desk-lead-line.
+       НЕ ставим font-size с !important — js-hero-fit.js должен иметь
+       возможность через inline style увеличить размер до ширины 620px. */
     display: block !important;
     white-space: nowrap !important;
     line-height: 1.5;
