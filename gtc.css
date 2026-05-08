@@ -3484,14 +3484,17 @@ select:focus-visible,
   border-color: #E6B44A !important;
   transform:    translateY(-2px);
 }
+/* .ph-h1 — зеркаль .hero-h1 (gtc.css 724-733) через те же дизайн-токены.
+   На dark .hero-h1 принудительно gold (gtc-dark.css 364-367) — задаём явно. */
 .ph-h1 {
-  font-family: var(--type-h-family, 'Playfair Display', Georgia, serif);
-  color: var(--bnb-gold, #D4AF6A);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
-  margin: 0 0 30px 0;
-  font-weight: 800;
+  font-family:    var(--type-h-family);
+  font-size:      var(--type-h-size);
+  font-weight:    var(--type-h-weight);
+  text-transform: var(--type-h-transform);
+  letter-spacing: var(--type-h-spacing);
+  line-height:    var(--type-h-line);
+  color:          var(--bnb-gold, #E6B44A);
+  margin:         0 0 var(--s-gap-title, 16px) 0;
 }
 .ph-h1-w1, .ph-h1-w2 { white-space: nowrap; }
 @media (min-width: 769px) {
@@ -3500,11 +3503,18 @@ select:focus-visible,
 @media (max-width: 768px) {
   .ph-h1-w1, .ph-h1-w2 { display: block; text-align: center; }
 }
+/* .ph-sub — зеркаль .hero-lead (gtc.css 740-750) через те же дизайн-токены. */
 .ph-sub {
-  color: rgba(234, 236, 239, 0.88);
-  line-height: 1.5;
-  margin: 0 0 30px 0;
-  padding: 0;
+  font-family:    var(--type-sub-family);
+  font-size:      var(--type-sub-size);
+  font-weight:    var(--type-sub-weight);
+  text-transform: var(--type-sub-transform);
+  letter-spacing: var(--type-sub-spacing);
+  line-height:    var(--type-sub-line);
+  color:          var(--clr-text);
+  max-width:      684px;
+  margin:         0 0 var(--s-gap-sub, 30px) 0;
+  padding:        0;
 }
 @media (min-width: 769px) {
   .ph-sub-mob { display: none; }
