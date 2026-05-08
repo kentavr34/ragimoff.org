@@ -3530,10 +3530,60 @@ select:focus-visible,
   margin-top: 0;
 }
 @media (max-width: 768px) {
-  .page-hero-x-inner { padding: 40px 20px 60px; align-items: center; }
-  .ph-search-wrap { width: 100%; }
-  .ph-badge { margin-bottom: 30px; }
-  .ph-h1 { margin-bottom: 24px; text-align: center; }
+  /* Зеркаль .page-hero на мобильном (gtc.css + gtc-dark.css 660-734).
+     Эталон: hero pad 24/20/0, content центрирован, badge 14/mt8/mb10,
+     h1 20/mt15/mb16/lh1.15, sub 15/mt20/mb32/lh1.6, search 100%. */
+  .page-hero-x {
+    padding: 24px 20px 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+  .page-hero-x-inner {
+    padding: 0 !important;
+    margin: 0 auto;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .ph-badge {
+    margin: 8px 0 10px 0 !important;
+    align-self: center;
+  }
+  .ph-h1 {
+    font-size: 20px !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.4px !important;
+    margin: 15px 0 16px 0 !important;
+    text-align: center !important;
+  }
+  .ph-h1-w1, .ph-h1-w2 {
+    display: block;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .ph-h1-w1 { margin-bottom: 16px; }
+  .ph-sub {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: rgba(234, 236, 239, 0.88) !important;
+    margin: 20px 0 32px 0 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+  .ph-sub-mob {
+    display: block;
+    text-align: center;
+  }
+  .ph-search-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════
