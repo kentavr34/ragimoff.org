@@ -3578,12 +3578,22 @@ html, body {
     /* Внешний паддинг — как у .page-hero (45px сверху, --s-section по бокам).
        На dark гор-паддинг top/bot обнулён — компенсируем во .page-hero-x-inner. */
     padding: 0 var(--s-section) !important;
-    min-height: 532px !important;
+    /* По умолчанию 452px (= 532 - 80). Когда сразу после идёт .stats-strip,
+       та "съедает" 80px overlap-ом (margin-top:-80px), и эффективная зона
+       hero до следующего блока = 452px. Если stats-strip нет (b2b/blog/...),
+       hero сам должен быть 452, чтобы следующая секция начиналась на той же
+       визуальной отметке. */
+    min-height: 452px !important;
     height: auto !important;
     max-height: none !important;
     display: flex !important;
     align-items: stretch !important;
     overflow: hidden;
+  }
+  /* Когда сразу следом идёт stats-strip — даём hero полные 532, потому что
+     stats покрывает нижние 80px overlap-ом. */
+  .page-hero-x:has(+ .stats-strip) {
+    min-height: 532px !important;
   }
   .page-hero-x-inner {
     max-width: var(--container-max) !important;
