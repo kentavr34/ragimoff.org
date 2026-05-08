@@ -3586,14 +3586,24 @@ html, body {
     min-height: 452px !important;
     height: auto !important;
     max-height: none !important;
+    /* как .page-hero: flex column + content прижат к низу */
     display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
     align-items: stretch !important;
     overflow: hidden;
   }
-  /* Когда сразу следом идёт stats-strip — даём hero полные 532, потому что
-     stats покрывает нижние 80px overlap-ом. */
-  .page-hero-x:has(+ .stats-strip) {
+  /* Когда сразу следом идёт stats-strip ИЛИ en-stats — даём hero полные 532,
+     потому что stats покрывает нижние 80px overlap-ом. */
+  .page-hero-x:has(+ .stats-strip),
+  .page-hero-x:has(+ .en-stats) {
     min-height: 532px !important;
+  }
+  /* en-stats overlap в hero — как у глобального .stats-strip на dark. */
+  .page-hero-x + .en-stats {
+    margin-top: -80px !important;
+    position: relative;
+    z-index: 1;
   }
   .page-hero-x-inner {
     max-width: var(--container-max) !important;
