@@ -3461,16 +3461,28 @@ select:focus-visible,
 /* Stats strip after .page-hero-x наследует глобальный margin-top:-80px
    (как на index с .page-hero), чтобы низ hero визуально совпадал. */
 .ph-badge {
-  background: var(--bnb-gold-bg, rgba(212,175,106,0.12));
-  color: var(--bnb-gold, #D4AF6A);
-  padding: var(--badge-pad-lg, 10px 24px);
-  border: 1px solid var(--badge-border, rgba(212,175,106,0.35));
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  /* Идентично .badge на dark (gtc-dark.css 384-386).
+     Прямые значения, т.к. родитель .page-hero-x имеет data-theme="dark",
+     что в gtc.css перезаписывает --badge-* в белый. */
+  background:     rgba(230,180,74,0.10) !important;
+  color:          #E6B44A !important;
+  border:         1px solid rgba(230,180,74,0.25) !important;
+  padding:        10px 24px;
+  border-radius:  0;
+  font-size:      14px;
+  font-weight:    700;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 50px;
+  display:        inline-flex;
+  align-items:    center;
+  margin-bottom:  50px;
+  transition:     all 0.2s ease;
+}
+.ph-badge:hover {
+  background:   #E6B44A !important;
+  color:        #0B0E11 !important;
+  border-color: #E6B44A !important;
+  transform:    translateY(-2px);
 }
 .ph-h1 {
   font-family: var(--type-h-family, 'Playfair Display', Georgia, serif);
