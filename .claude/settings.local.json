@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import pandas as pd; d=pd.read_excel\\(r'C:\\\\Users\\\\SAM\\\\Desktop\\\\sayt2\\\\klinik-psixiatriya\\\\basliqlar_resmi_yoxlama.xlsx', sheet_name=None\\); [print\\('===',n,'===\\\\n',df.to_string\\(\\)\\) for n,df in d.items\\(\\)]\")",
+      "PowerShell($env:PYTHONIOENCODING='utf-8'; $env:PYTHONUTF8='1'; python -c \"from openpyxl import load_workbook; wb=load_workbook\\(r'C:\\\\Users\\\\SAM\\\\Desktop\\\\sayt2\\\\klinik-psixiatriya\\\\basliqlar_resmi_yoxlama.xlsx', data_only=True\\)`nfor n in wb.sheetnames:`n    print\\('===',n,'==='\\)`n    for r in wb[n].iter_rows\\(values_only=True\\):`n        print\\('|'.join\\('' if v is None else str\\(v\\) for v in r\\)\\)\" 2>&1 | Out-File -Encoding utf8 C:\\\\Users\\\\SAM\\\\Desktop\\\\sayt2\\\\.claude\\\\worktrees\\\\stupefied-cori-5b6e4a\\\\_xlsx_dump.txt; Get-Content C:\\\\Users\\\\SAM\\\\Desktop\\\\sayt2\\\\.claude\\\\worktrees\\\\stupefied-cori-5b6e4a\\\\_xlsx_dump.txt -Encoding utf8)",
+      "WebFetch(domain:ragimoff.org)",
+      "Bash(find C:/Users/SAM/Desktop/sayt2 -maxdepth 4 -iname \"*.docx\" -o -iname \"*.doc\" 2>/dev/null | head -20)",
+      "Bash(git add *)",
+      "Bash(python -c \"import docx\")",
+      "Bash(python -m pip install python-docx --quiet)",
+      "Bash(git check-ignore *)",
+      "Bash(git fetch *)"
+    ]
+  }
+}
