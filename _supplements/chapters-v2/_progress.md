@@ -93,10 +93,10 @@
 | 6D82 | Lewy Cisimcikləri Demensiyası | DONE |
 | 6D83 | Frontotemporal Demensiya | DONE |
 | 6E20 | Postnatal Depressiya | DONE |
-| 6E21 | Postnatal Psixoz | TODO |
-| 6E40 | Digər Xəstəliklərə Təsir Edən Psixoloji Amillər | TODO |
-| 6E60 | İkincili Psixotik Sindrom | TODO |
-| 6E61 | İkincili Affektiv Sindrom | TODO |
+| 6E21 | Postnatal Psixoz | DONE |
+| 6E40 | Digər Xəstəliklərə Təsir Edən Psixoloji Amillər | DONE |
+| 6E60 | İkincili Psixotik Sindrom | DONE |
+| 6E61 | İkincili Affektiv Sindrom | DONE |
 | 6E62 | İkincili Narahatlıq Sindromu | TODO |
 | 7A00 | İnsomniya | TODO |
 | 7A20 | Obstruktiv Yuxu Apnesi | TODO |
