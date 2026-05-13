@@ -9,10 +9,10 @@
 | 6A00 | İntellektual İnkişaf Pozuntusu | DONE |
 | 6A01 | İnkişaf Nitq və Dil Pozuntuları | DONE |
 | 6A02 | Autizm Spektri Pozuntusu | DONE |
-| 6A03 | Spesifik Öyrənmə Pozuntusu | TODO |
-| 6A04 | İnkişaf Hərəki Koordinasiya Pozuntusu (DCD) | TODO |
-| 6A05 | Diqqət Defisiti və Hiperaktivlik Pozuntusu (DDHP) | TODO |
-| 6A06 | Stereotipik Hərəkət Pozuntusu | TODO |
+| 6A03 | Spesifik Öyrənmə Pozuntusu | DONE |
+| 6A04 | İnkişaf Hərəki Koordinasiya Pozuntusu (DCD) | DONE |
+| 6A05 | Diqqət Defisiti və Hiperaktivlik Pozuntusu (DDHP) | DONE |
+| 6A06 | Stereotipik Hərəkət Pozuntusu | DONE |
 | 6A07 | Tikli Pozuntular (Tourette Sindromu) | TODO |
 | 6A20 | Şizofreniya | DONE |
 | 6A21 | Şizoaffektiv Pozuntu | TODO |
