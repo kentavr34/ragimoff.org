@@ -45,10 +45,10 @@
 | 6B41 | PTSP | DONE |
 | 6B42 | Kompleks PTSP | DONE |
 | 6B43 | Uzanmış Yas Pozuntusu | DONE |
-| 6B44 | Reaktiv Bağlanma Pozuntusu | TODO |
-| 6B45 | Disinhibe Sosial Cəlbedicilik | TODO |
-| 6B60 | Dissosiativ İdentifikasiya Pozuntusu | TODO |
-| 6B61 | Parsial Dissosiativ İdentifikasiya | TODO |
+| 6B44 | Reaktiv Bağlanma Pozuntusu | DONE |
+| 6B45 | Disinhibe Sosial Cəlbedicilik | DONE |
+| 6B60 | Dissosiativ İdentifikasiya Pozuntusu | DONE |
+| 6B61 | Parsial Dissosiativ İdentifikasiya | DONE |
 | 6B62 | Depersonalizasiya-Derealizasiya | TODO |
 | 6B63 | Dissosiativ Nevroloji Simptom | TODO |
 | 6B64 | Dissosiativ Amneziya | TODO |
