@@ -97,10 +97,10 @@
 | 6E40 | Digər Xəstəliklərə Təsir Edən Psixoloji Amillər | DONE |
 | 6E60 | İkincili Psixotik Sindrom | DONE |
 | 6E61 | İkincili Affektiv Sindrom | DONE |
-| 6E62 | İkincili Narahatlıq Sindromu | TODO |
-| 7A00 | İnsomniya | TODO |
-| 7A20 | Obstruktiv Yuxu Apnesi | TODO |
-| 7A40 | Sirkadian Ritm Yuxu-Oyanma Pozuntuları | TODO |
+| 6E62 | İkincili Narahatlıq Sindromu | DONE |
+| 7A00 | İnsomniya | DONE |
+| 7A20 | Obstruktiv Yuxu Apnesi | DONE |
+| 7A40 | Sirkadian Ritm Yuxu-Oyanma Pozuntuları | DONE |
 | 7A60 | Hipersomniya | TODO |
 | 7A80 | Narkolepsiya | TODO |
 | HA00 | Erektil Disfunksiya | TODO |
