@@ -105,10 +105,10 @@
 | 7A80 | Narkolepsiya | DONE |
 | HA00 | Erektil Disfunksiya | DONE |
 | HA01 | Premature Ejakulyasiya | DONE |
-| HA02 | Hipoaktiv Cinsi İstək (HSDD) | TODO |
-| HA03 | Anorgasmiya | TODO |
-| HA04 | Vaginismus | TODO |
-| HA05 | Disparoniya | TODO |
+| HA02 | Hipoaktiv Cinsi İstək (HSDD) | DONE |
+| HA03 | Anorgasmiya | DONE |
+| HA04 | Vaginismus | DONE |
+| HA05 | Disparoniya | DONE |
 
 ## Process
 
