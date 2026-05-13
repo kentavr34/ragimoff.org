@@ -33,10 +33,10 @@
 | 6B02 | Aqorafobiya | DONE |
 | 6B03 | Spesifik Fobiya | DONE |
 | 6B04 | Sosial Narahatlıq Pozuntusu | DONE |
-| 6B05 | Ayrılma Narahatlığı | TODO |
-| 6B06 | Selektiv Mutizm | TODO |
-| 6B20 | OKP | TODO |
-| 6B21 | Bədən Dismorfik Pozuntusu | TODO |
+| 6B05 | Ayrılma Narahatlığı | DONE |
+| 6B06 | Selektiv Mutizm | DONE |
+| 6B20 | OKP | DONE |
+| 6B21 | Bədən Dismorfik Pozuntusu | DONE |
 | 6B22 | İy Referans Pozuntusu | TODO |
 | 6B23 | Hipoxondria | TODO |
 | 6B24 | Toplama (Hoarding) | TODO |
