@@ -65,10 +65,10 @@
 | 6C41 | Opioid İstifadəsi | DONE |
 | 6C42 | Kannabis İstifadəsi | DONE |
 | 6C43 | Sedativ/Hipnotik İstifadəsi | DONE |
-| 6C44 | Kokain İstifadəsi | TODO |
-| 6C45 | Stimulyant İstifadəsi | TODO |
-| 6C46 | Halüsinogen İstifadəsi | TODO |
-| 6C47 | Niktinin İstifadəsi | TODO |
+| 6C44 | Kokain İstifadəsi | DONE |
+| 6C45 | Stimulyant İstifadəsi | DONE |
+| 6C46 | Halüsinogen İstifadəsi | DONE |
+| 6C47 | Niktinin İstifadəsi | DONE |
 | 6C50 | Davranış Asılılıqları (qumar, oyun) | TODO |
 | 6C70 | Pyromaniya | TODO |
 | 6C71 | Kleptomaniya | TODO |
