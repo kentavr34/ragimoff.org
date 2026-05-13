@@ -69,10 +69,10 @@
 | 6C45 | Stimulyant İstifadəsi | DONE |
 | 6C46 | Halüsinogen İstifadəsi | DONE |
 | 6C47 | Niktinin İstifadəsi | DONE |
-| 6C50 | Davranış Asılılıqları (qumar, oyun) | TODO |
-| 6C70 | Pyromaniya | TODO |
-| 6C71 | Kleptomaniya | TODO |
-| 6C72 | Kompulsiv Cinsi Davranış | TODO |
+| 6C50 | Davranış Asılılıqları (qumar, oyun) | DONE |
+| 6C70 | Pyromaniya | DONE |
+| 6C71 | Kleptomaniya | DONE |
+| 6C72 | Kompulsiv Cinsi Davranış | DONE |
 | 6C73 | Aralıqlı Patlayıcı Pozuntu (IED) | TODO |
 | 6C90 | Davranış Pozuntusu (CD) | TODO |
 | 6C91 | Oppozisional Defiant Pozuntu (ODD) | TODO |
