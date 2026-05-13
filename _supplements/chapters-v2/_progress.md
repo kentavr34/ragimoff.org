@@ -85,10 +85,10 @@
 | 6D34 | Frotteurizm | DONE |
 | 6D50 | Özünə Tətbiq Edilmiş Faktitioz Pozuntu | DONE |
 | 6D51 | Başqasına Tətbiq Edilmiş Faktitioz Pozuntu | DONE |
-| 6D70 | Delirium | TODO |
-| 6D71 | Yüngül Neyrokoqnitiv Pozuntu | TODO |
-| 6D72 | Amnestik Pozuntu | TODO |
-| 6D80 | Demensiya (Alzheimer) | TODO |
+| 6D70 | Delirium | DONE |
+| 6D71 | Yüngül Neyrokoqnitiv Pozuntu | DONE |
+| 6D72 | Amnestik Pozuntu | DONE |
+| 6D80 | Demensiya (Alzheimer) | DONE |
 | 6D81 | Damar Demensiyası | TODO |
 | 6D82 | Lewy Cisimcikləri Demensiyası | TODO |
 | 6D83 | Frontotemporal Demensiya | TODO |
