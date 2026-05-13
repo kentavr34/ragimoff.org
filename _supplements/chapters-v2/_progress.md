@@ -29,10 +29,10 @@
 | 6A72 | Distimik Pozuntu | DONE |
 | 6A73 | Premenstrual Disforik Pozuntu | DONE |
 | 6B00 | Generalizə Olunmuş Narahatlıq Pozuntusu | DONE |
-| 6B01 | Panik Pozuntu | TODO |
-| 6B02 | Aqorafobiya | TODO |
-| 6B03 | Spesifik Fobiya | TODO |
-| 6B04 | Sosial Narahatlıq Pozuntusu | TODO |
+| 6B01 | Panik Pozuntu | DONE |
+| 6B02 | Aqorafobiya | DONE |
+| 6B03 | Spesifik Fobiya | DONE |
+| 6B04 | Sosial Narahatlıq Pozuntusu | DONE |
 | 6B05 | Ayrılma Narahatlığı | TODO |
 | 6B06 | Selektiv Mutizm | TODO |
 | 6B20 | OKP | TODO |
