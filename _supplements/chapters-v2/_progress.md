@@ -81,10 +81,10 @@
 | 6D30 | Ekshibisionizm | DONE |
 | 6D31 | Voyerizm | DONE |
 | 6D32 | Pedofilik Pozuntu | DONE |
-| 6D33 | Sadistik Cinsi Pozuntu | TODO |
-| 6D34 | Frotteurizm | TODO |
-| 6D50 | Özünə Tətbiq Edilmiş Faktitioz Pozuntu | TODO |
-| 6D51 | Başqasına Tətbiq Edilmiş Faktitioz Pozuntu | TODO |
+| 6D33 | Sadistik Cinsi Pozuntu | DONE |
+| 6D34 | Frotteurizm | DONE |
+| 6D50 | Özünə Tətbiq Edilmiş Faktitioz Pozuntu | DONE |
+| 6D51 | Başqasına Tətbiq Edilmiş Faktitioz Pozuntu | DONE |
 | 6D70 | Delirium | TODO |
 | 6D71 | Yüngül Neyrokoqnitiv Pozuntu | TODO |
 | 6D72 | Amnestik Pozuntu | TODO |
