@@ -4,7 +4,7 @@
 */
 (function(){
   "use strict";
-  const ENDPOINT = "__DUZELIS_ENDPOINT__"; // <-- replace after deploy
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbzS9vijozxUyEB3pWJcQY09y4MzmSmk_wvE-3w9ThYTLnqG79yWwhQggfRNW3roLv2m2A/exec";
   const MAX_SAMPLE_LEN = 280;
   const MIN_SAMPLE_LEN = 30;
 
