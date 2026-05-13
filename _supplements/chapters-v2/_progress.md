@@ -49,10 +49,10 @@
 | 6B45 | Disinhibe Sosial Cəlbedicilik | DONE |
 | 6B60 | Dissosiativ İdentifikasiya Pozuntusu | DONE |
 | 6B61 | Parsial Dissosiativ İdentifikasiya | DONE |
-| 6B62 | Depersonalizasiya-Derealizasiya | TODO |
-| 6B63 | Dissosiativ Nevroloji Simptom | TODO |
-| 6B64 | Dissosiativ Amneziya | TODO |
-| 6B80 | Anorexia Nervosa | TODO |
+| 6B62 | Depersonalizasiya-Derealizasiya | DONE |
+| 6B63 | Dissosiativ Nevroloji Simptom | DONE |
+| 6B64 | Dissosiativ Amneziya | DONE |
+| 6B80 | Anorexia Nervosa | DONE |
 | 6B81 | Bulimia Nervosa | TODO |
 | 6B82 | Binge-Eating Pozuntusu | TODO |
 | 6B83 | Pika | TODO |
