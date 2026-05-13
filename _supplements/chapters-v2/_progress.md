@@ -101,10 +101,10 @@
 | 7A00 | İnsomniya | DONE |
 | 7A20 | Obstruktiv Yuxu Apnesi | DONE |
 | 7A40 | Sirkadian Ritm Yuxu-Oyanma Pozuntuları | DONE |
-| 7A60 | Hipersomniya | TODO |
-| 7A80 | Narkolepsiya | TODO |
-| HA00 | Erektil Disfunksiya | TODO |
-| HA01 | Premature Ejakulyasiya | TODO |
+| 7A60 | Hipersomniya | DONE |
+| 7A80 | Narkolepsiya | DONE |
+| HA00 | Erektil Disfunksiya | DONE |
+| HA01 | Premature Ejakulyasiya | DONE |
 | HA02 | Hipoaktiv Cinsi İstək (HSDD) | TODO |
 | HA03 | Anorgasmiya | TODO |
 | HA04 | Vaginismus | TODO |
