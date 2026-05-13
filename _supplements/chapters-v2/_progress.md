@@ -53,10 +53,10 @@
 | 6B63 | Dissosiativ Nevroloji Simptom | DONE |
 | 6B64 | Dissosiativ Amneziya | DONE |
 | 6B80 | Anorexia Nervosa | DONE |
-| 6B81 | Bulimia Nervosa | TODO |
-| 6B82 | Binge-Eating Pozuntusu | TODO |
-| 6B83 | Pika | TODO |
-| 6B84 | Ruminasiya-Geri Qaytarma | TODO |
+| 6B81 | Bulimia Nervosa | DONE |
+| 6B82 | Binge-Eating Pozuntusu | DONE |
+| 6B83 | Pika | DONE |
+| 6B84 | Ruminasiya-Geri Qaytarma | DONE |
 | 6B85 | Avoidant/Restriktiv Qida Qəbulu | TODO |
 | 6C00 | Enurez | TODO |
 | 6C01 | Enkoprez | TODO |
