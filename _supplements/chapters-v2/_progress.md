@@ -61,10 +61,10 @@
 | 6C00 | Enurez | DONE |
 | 6C01 | Enkoprez | DONE |
 | 6C20 | Somatik Simptom Pozuntusu (BDS / Bodily Distress) | DONE |
-| 6C40 | Alkohol İstifadəsi Pozuntuları | TODO |
-| 6C41 | Opioid İstifadəsi | TODO |
-| 6C42 | Kannabis İstifadəsi | TODO |
-| 6C43 | Sedativ/Hipnotik İstifadəsi | TODO |
+| 6C40 | Alkohol İstifadəsi Pozuntuları | DONE |
+| 6C41 | Opioid İstifadəsi | DONE |
+| 6C42 | Kannabis İstifadəsi | DONE |
+| 6C43 | Sedativ/Hipnotik İstifadəsi | DONE |
 | 6C44 | Kokain İstifadəsi | TODO |
 | 6C45 | Stimulyant İstifadəsi | TODO |
 | 6C46 | Halüsinogen İstifadəsi | TODO |
