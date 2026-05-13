@@ -21,10 +21,10 @@
 | 6A24 | Sayıqlama Pozuntusu | DONE |
 | 6A25 | İlkin Psixotik Pozuntuların Simptom Domenləri | DONE |
 | 6A40 | Katatoniya — Ümumi Prinsiplər | DONE |
-| 6A60 | Bipolyar Pozuntu Tip I | TODO |
-| 6A61 | Bipolyar Pozuntu Tip II | TODO |
-| 6A62 | Sikletimik Pozuntu | TODO |
-| 6A70 | Tək Epizodlu Depresiv Pozuntu | TODO |
+| 6A60 | Bipolyar Pozuntu Tip I | DONE |
+| 6A61 | Bipolyar Pozuntu Tip II | DONE |
+| 6A62 | Sikletimik Pozuntu | DONE |
+| 6A70 | Tək Epizodlu Depresiv Pozuntu | DONE |
 | 6A71 | Residiv Depresiv Pozuntu | TODO |
 | 6A72 | Distimik Pozuntu | TODO |
 | 6A73 | Premenstrual Disforik Pozuntu | TODO |
