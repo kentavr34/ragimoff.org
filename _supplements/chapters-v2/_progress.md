@@ -18,9 +18,9 @@
 | 6A21 | Şizoaffektiv Pozuntu | DONE |
 | 6A22 | Şizotipik Pozuntu | DONE |
 | 6A23 | Kəskin və Keçici Psixotik Pozuntu | DONE |
-| 6A24 | Sayıqlama Pozuntusu | TODO |
-| 6A25 | İlkin Psixotik Pozuntuların Simptom Domenləri | TODO |
-| 6A40 | Katatoniya — Ümumi Prinsiplər | TODO |
+| 6A24 | Sayıqlama Pozuntusu | DONE |
+| 6A25 | İlkin Psixotik Pozuntuların Simptom Domenləri | DONE |
+| 6A40 | Katatoniya — Ümumi Prinsiplər | DONE |
 | 6A60 | Bipolyar Pozuntu Tip I | TODO |
 | 6A61 | Bipolyar Pozuntu Tip II | TODO |
 | 6A62 | Sikletimik Pozuntu | TODO |
