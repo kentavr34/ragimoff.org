@@ -73,10 +73,10 @@
 | 6C70 | Pyromaniya | DONE |
 | 6C71 | Kleptomaniya | DONE |
 | 6C72 | Kompulsiv Cinsi Davranış | DONE |
-| 6C73 | Aralıqlı Patlayıcı Pozuntu (IED) | TODO |
-| 6C90 | Davranış Pozuntusu (CD) | TODO |
-| 6C91 | Oppozisional Defiant Pozuntu (ODD) | TODO |
-| 6D10 | Şəxsiyyət Pozuntusu (XBT-11 vahid) | TODO |
+| 6C73 | Aralıqlı Patlayıcı Pozuntu (IED) | DONE |
+| 6C90 | Davranış Pozuntusu (CD) | DONE |
+| 6C91 | Oppozisional Defiant Pozuntu (ODD) | DONE |
+| 6D10 | Şəxsiyyət Pozuntusu (XBT-11 vahid) | DONE |
 | 6D11 | Şəxsiyyət Çətinliyi | TODO |
 | 6D30 | Ekshibisionizm | TODO |
 | 6D31 | Voyerizm | TODO |
