@@ -37,10 +37,10 @@
 | 6B06 | Selektiv Mutizm | DONE |
 | 6B20 | OKP | DONE |
 | 6B21 | Bədən Dismorfik Pozuntusu | DONE |
-| 6B22 | İy Referans Pozuntusu | TODO |
-| 6B23 | Hipoxondria | TODO |
-| 6B24 | Toplama (Hoarding) | TODO |
-| 6B25 | Bədənə Yönəlmiş Təkrar Davranışlar | TODO |
+| 6B22 | İy Referans Pozuntusu | DONE |
+| 6B23 | Hipoxondria | DONE |
+| 6B24 | Toplama (Hoarding) | DONE |
+| 6B25 | Bədənə Yönəlmiş Təkrar Davranışlar | DONE |
 | 6B40 | Adaptasiya Pozuntusu | TODO |
 | 6B41 | PTSP | TODO |
 | 6B42 | Kompleks PTSP | TODO |
