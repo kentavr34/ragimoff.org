@@ -89,10 +89,10 @@
 | 6D71 | Yüngül Neyrokoqnitiv Pozuntu | DONE |
 | 6D72 | Amnestik Pozuntu | DONE |
 | 6D80 | Demensiya (Alzheimer) | DONE |
-| 6D81 | Damar Demensiyası | TODO |
-| 6D82 | Lewy Cisimcikləri Demensiyası | TODO |
-| 6D83 | Frontotemporal Demensiya | TODO |
-| 6E20 | Postnatal Depressiya | TODO |
+| 6D81 | Damar Demensiyası | DONE |
+| 6D82 | Lewy Cisimcikləri Demensiyası | DONE |
+| 6D83 | Frontotemporal Demensiya | DONE |
+| 6E20 | Postnatal Depressiya | DONE |
 | 6E21 | Postnatal Psixoz | TODO |
 | 6E40 | Digər Xəstəliklərə Təsir Edən Psixoloji Amillər | TODO |
 | 6E60 | İkincili Psixotik Sindrom | TODO |
