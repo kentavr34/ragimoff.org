@@ -77,10 +77,10 @@
 | 6C90 | Davranış Pozuntusu (CD) | DONE |
 | 6C91 | Oppozisional Defiant Pozuntu (ODD) | DONE |
 | 6D10 | Şəxsiyyət Pozuntusu (XBT-11 vahid) | DONE |
-| 6D11 | Şəxsiyyət Çətinliyi | TODO |
-| 6D30 | Ekshibisionizm | TODO |
-| 6D31 | Voyerizm | TODO |
-| 6D32 | Pedofilik Pozuntu | TODO |
+| 6D11 | Şəxsiyyət Çətinliyi | DONE |
+| 6D30 | Ekshibisionizm | DONE |
+| 6D31 | Voyerizm | DONE |
+| 6D32 | Pedofilik Pozuntu | DONE |
 | 6D33 | Sadistik Cinsi Pozuntu | TODO |
 | 6D34 | Frotteurizm | TODO |
 | 6D50 | Özünə Tətbiq Edilmiş Faktitioz Pozuntu | TODO |
