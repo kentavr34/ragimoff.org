@@ -41,10 +41,10 @@
 | 6B23 | Hipoxondria | DONE |
 | 6B24 | Toplama (Hoarding) | DONE |
 | 6B25 | Bədənə Yönəlmiş Təkrar Davranışlar | DONE |
-| 6B40 | Adaptasiya Pozuntusu | TODO |
-| 6B41 | PTSP | TODO |
-| 6B42 | Kompleks PTSP | TODO |
-| 6B43 | Uzanmış Yas Pozuntusu | TODO |
+| 6B40 | Adaptasiya Pozuntusu | DONE |
+| 6B41 | PTSP | DONE |
+| 6B42 | Kompleks PTSP | DONE |
+| 6B43 | Uzanmış Yas Pozuntusu | DONE |
 | 6B44 | Reaktiv Bağlanma Pozuntusu | TODO |
 | 6B45 | Disinhibe Sosial Cəlbedicilik | TODO |
 | 6B60 | Dissosiativ İdentifikasiya Pozuntusu | TODO |
