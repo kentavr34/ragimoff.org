@@ -13,11 +13,11 @@
 | 6A04 | İnkişaf Hərəki Koordinasiya Pozuntusu (DCD) | DONE |
 | 6A05 | Diqqət Defisiti və Hiperaktivlik Pozuntusu (DDHP) | DONE |
 | 6A06 | Stereotipik Hərəkət Pozuntusu | DONE |
-| 6A07 | Tikli Pozuntular (Tourette Sindromu) | TODO |
+| 6A07 | Tikli Pozuntular (Tourette Sindromu) | DONE |
 | 6A20 | Şizofreniya | DONE |
-| 6A21 | Şizoaffektiv Pozuntu | TODO |
-| 6A22 | Şizotipik Pozuntu | TODO |
-| 6A23 | Kəskin və Keçici Psixotik Pozuntu | TODO |
+| 6A21 | Şizoaffektiv Pozuntu | DONE |
+| 6A22 | Şizotipik Pozuntu | DONE |
+| 6A23 | Kəskin və Keçici Psixotik Pozuntu | DONE |
 | 6A24 | Sayıqlama Pozuntusu | TODO |
 | 6A25 | İlkin Psixotik Pozuntuların Simptom Domenləri | TODO |
 | 6A40 | Katatoniya — Ümumi Prinsiplər | TODO |
