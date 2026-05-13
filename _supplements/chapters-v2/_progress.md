@@ -57,10 +57,10 @@
 | 6B82 | Binge-Eating Pozuntusu | DONE |
 | 6B83 | Pika | DONE |
 | 6B84 | Ruminasiya-Geri Qaytarma | DONE |
-| 6B85 | Avoidant/Restriktiv Qida Qəbulu | TODO |
-| 6C00 | Enurez | TODO |
-| 6C01 | Enkoprez | TODO |
-| 6C20 | Somatik Simptom Pozuntusu (BDS / Bodily Distress) | TODO |
+| 6B85 | Avoidant/Restriktiv Qida Qəbulu | DONE |
+| 6C00 | Enurez | DONE |
+| 6C01 | Enkoprez | DONE |
+| 6C20 | Somatik Simptom Pozuntusu (BDS / Bodily Distress) | DONE |
 | 6C40 | Alkohol İstifadəsi Pozuntuları | TODO |
 | 6C41 | Opioid İstifadəsi | TODO |
 | 6C42 | Kannabis İstifadəsi | TODO |
