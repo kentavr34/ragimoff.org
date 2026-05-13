@@ -25,10 +25,10 @@
 | 6A61 | Bipolyar Pozuntu Tip II | DONE |
 | 6A62 | Sikletimik Pozuntu | DONE |
 | 6A70 | Tək Epizodlu Depresiv Pozuntu | DONE |
-| 6A71 | Residiv Depresiv Pozuntu | TODO |
-| 6A72 | Distimik Pozuntu | TODO |
-| 6A73 | Premenstrual Disforik Pozuntu | TODO |
-| 6B00 | Generalizə Olunmuş Narahatlıq Pozuntusu | TODO |
+| 6A71 | Residiv Depresiv Pozuntu | DONE |
+| 6A72 | Distimik Pozuntu | DONE |
+| 6A73 | Premenstrual Disforik Pozuntu | DONE |
+| 6B00 | Generalizə Olunmuş Narahatlıq Pozuntusu | DONE |
 | 6B01 | Panik Pozuntu | TODO |
 | 6B02 | Aqorafobiya | TODO |
 | 6B03 | Spesifik Fobiya | TODO |
