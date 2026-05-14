@@ -258,8 +258,15 @@ h1.h-disorder{
   font-family:'Montserrat',sans-serif;
 }
 h1.h-section{
-  font-size:22px;font-weight:700;color:var(--gold);margin:32px 0 18px;
+  font-size:22px;font-weight:700;color:var(--gold);margin:32px 0 6px;
   font-family:var(--font);
+  letter-spacing:.04em;
+}
+.h-section-sub{
+  font-size:15px;font-weight:500;color:var(--text2);
+  margin:0 0 22px 0;
+  letter-spacing:.02em;
+  font-style:italic;
 }
 h2{font-size:16px;font-weight:600;color:var(--text);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border2)}
 h3{font-size:15px;font-weight:600;color:var(--text2);margin:22px 0 10px}
@@ -377,7 +384,7 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 .stat{display:flex;flex-direction:column;gap:3px}
 .stat-v{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--gold)}
 .stat-l{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
-.chapters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:8px}
+.chapters-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:14px;margin-top:8px}
 .ch-card{
   display:flex;gap:14px;padding:16px;
   background:var(--bg2);border:1px solid var(--border);
@@ -388,8 +395,15 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 .ch-card-num{font-family:var(--mono);font-size:11px;color:var(--gold);
   background:var(--gold-bg);padding:4px 8px;border-radius:4px;
   height:fit-content;white-space:nowrap;flex-shrink:0;font-weight:600}
-.ch-card-body{display:flex;flex-direction:column;gap:4px}
-.ch-card-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.4}
+.ch-card-body{display:flex;flex-direction:column;gap:4px;min-width:0;overflow:hidden}
+.ch-card-title{
+  display:block;
+  font-size:13px;font-weight:600;color:var(--text);line-height:1.4;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  min-width:0;
+}
 .ch-card-sub{font-size:12px;color:var(--text3)}
 
 /* Back-to-site link */
