@@ -235,6 +235,19 @@ def fix_docx(path: Path):
     style_heading("Heading 3", 14, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
     style_heading("Heading 4", 12, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
     style_heading("Heading 5", 11, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
+    # Force black on Word's default-blue Heading 6-9 and Hyperlink
+    for name in ("Heading 6", "Heading 7", "Heading 8", "Heading 9"):
+        try:
+            s = doc.styles[name]
+            s.font.color.rgb = RGBColor(0, 0, 0)
+        except KeyError:
+            pass
+    try:
+        s = doc.styles["Hyperlink"]
+        s.font.color.rgb = RGBColor(0, 0, 0)
+        s.font.underline = False  # no underline — looks like body text
+    except KeyError:
+        pass
 
     # Tighten Normal/Body spacing + Russian-academic first-line indent
     try:
@@ -489,6 +502,46 @@ def fix_docx(path: Path):
         # Actually TOC heading uses TOC Heading style, not H1. We just rely
         # on pageBreakBefore on the title's own paragraph being absent and
         # add break to the body's first H1.
+
+    # ── 6. Force black on ALL text runs (TYPOGRAPHY.md rule #X: no blue) ──
+    # Override any inline color set by pandoc or theme. Exception: title-page
+    # grey runs (we preserve their #555555).
+    GREY = '555555'
+    for p in body.findall(qn('w:p')):
+        for r in p.findall(qn('w:r')):
+            rPr = r.find(qn('w:rPr'))
+            if rPr is None:
+                continue
+            col = rPr.find(qn('w:color'))
+            if col is None:
+                continue
+            val = (col.get(qn('w:val')) or '').upper()
+            if val.upper() == GREY.upper():
+                continue  # preserve title-page grey
+            col.set(qn('w:val'), '000000')
+            # Remove any theme-color reference that overrides w:val
+            if col.get(qn('w:themeColor')) is not None:
+                del col.attrib[qn('w:themeColor')]
+            if col.get(qn('w:themeShade')) is not None:
+                del col.attrib[qn('w:themeShade')]
+            if col.get(qn('w:themeTint')) is not None:
+                del col.attrib[qn('w:themeTint')]
+    # Same sweep inside table cells
+    for tbl in doc.tables:
+        for row in tbl.rows:
+            for cell in row.cells:
+                for par in cell.paragraphs:
+                    for r in par._p.findall(qn('w:r')):
+                        rPr = r.find(qn('w:rPr'))
+                        if rPr is None: continue
+                        col = rPr.find(qn('w:color'))
+                        if col is None: continue
+                        if (col.get(qn('w:val')) or '').upper() == GREY.upper():
+                            continue
+                        col.set(qn('w:val'), '000000')
+                        for attr in ('w:themeColor','w:themeShade','w:themeTint'):
+                            if col.get(qn(attr)) is not None:
+                                del col.attrib[qn(attr)]
 
     doc.save(str(path))
 

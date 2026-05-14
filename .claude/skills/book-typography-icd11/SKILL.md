@@ -6,7 +6,17 @@ description: Apply ICD-11 (МКБ-11 РФ 2022) typography style to the Klinik P
 # Klinik Psixiatriya — ICD-11 Style Typography
 
 ## Trigger
-Any layout/verstka work on the book: DOCX rebuild, page-break complaints, heading hierarchy, title page, TOC, headers, chapter starts.
+Any layout/verstka work on the book: DOCX rebuild, page-break complaints, heading hierarchy, title page, TOC, headers, chapter starts, colours.
+
+## HARD COLOUR RULE — black only
+All text is `#000000` (pure black). No blue/cyan/Office accent (`#4F81BD`, `#0563C1`, theme colours). The only allowed non-black is **grey `#555555`** for the title-page sub-slogan and year/city.
+
+Enforced in `build_book.py → fix_docx()`:
+- Heading 1–9 + `Hyperlink` style: `RGBColor(0, 0, 0)`, no underline on links
+- Final sweep over every `<w:color>` element in body + table cells: any value → `000000` (except `555555`)
+- Theme colour attributes (`w:themeColor`, `w:themeShade`, `w:themeTint`) stripped
+
+If the user complains about colour anywhere in the book, re-run the build — the sweep should catch it. Never relax this rule.
 
 ## Reference source (МКБ-11 РФ 2022)
 - Local: `_supplements/ICD-11_RU_2022_reference.pdf` (138×228 mm, 454 pp)
