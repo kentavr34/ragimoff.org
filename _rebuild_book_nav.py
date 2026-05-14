@@ -74,7 +74,7 @@ def build_aside(active_slug: str | None = None) -> str:
     # Top static links — reorganized 2026-05-14 per user's TOC vision:
     # giris-yekun.html was merged into mugeddime.html; melumat.html added at end.
     for ch, label in [
-        ("index.html",        "Önsöz"),
+        ("index.html",        "Mündəricat"),
         ("mugeddime.html",    "Müqəddimə"),
         ("abbreviatur.html",  "Qısaltmalar"),
     ]:
