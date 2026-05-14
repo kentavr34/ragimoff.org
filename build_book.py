@@ -545,6 +545,59 @@ def fix_docx(path: Path):
 
     doc.save(str(path))
 
+    # ── 7. Post-save XML sweep (the python-docx font.color.rgb setter doesn't
+    #       strip w:themeColor attribute, so Word still renders Heading 5-9
+    #       and Hyperlink in theme-accent blue. We need to edit styles.xml
+    #       and theme1.xml directly inside the .docx zip). ──
+    _purge_theme_blue(path)
+
+
+def _purge_theme_blue(path: Path):
+    """Force black on every theme-blue source inside the DOCX zip:
+       - styles.xml: strip w:themeColor/themeShade/themeTint on every <w:color>;
+         set w:val to 000000 (preserve only 555555 grey)
+       - theme1.xml: rewrite accent1 + hlink + folHlink to 000000
+    """
+    import zipfile, shutil, tempfile, re as _re
+    tmp = Path(str(path) + ".tmp.zip")
+    GREY = '555555'
+    NS_W = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"'
+
+    def fix_styles(xml: str) -> str:
+        # Strip themeColor/themeShade/themeTint from every w:color element;
+        # force w:val to 000000 unless it's the preserved grey
+        def repl(m):
+            tag = m.group(0)
+            # Extract current w:val
+            mv = _re.search(r'w:val="([0-9A-Fa-f]+)"', tag)
+            val = (mv.group(1) if mv else '').upper()
+            new_val = val if val == GREY.upper() else '000000'
+            # Rebuild a minimal <w:color w:val="..."/>
+            self_closing = tag.endswith('/>')
+            return f'<w:color w:val="{new_val}"' + ('/>' if self_closing else '>')
+        return _re.sub(r'<w:color\b[^/>]*?/?>', repl, xml)
+
+    def fix_theme(xml: str) -> str:
+        # Force ALL theme color slots to black (handles `<a:srgbClr val="X"/>`,
+        # `<a:srgbClr val="X" />`, and same with whitespace variants).
+        return _re.sub(
+            r'<a:srgbClr\s+val="[0-9A-Fa-f]+"\s*/>',
+            '<a:srgbClr val="000000"/>',
+            xml,
+        )
+
+    with zipfile.ZipFile(str(path), 'r') as zin, \
+         zipfile.ZipFile(str(tmp), 'w', zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.namelist():
+            data = zin.read(item)
+            if item == 'word/styles.xml':
+                data = fix_styles(data.decode('utf-8')).encode('utf-8')
+            elif item == 'word/theme/theme1.xml':
+                data = fix_theme(data.decode('utf-8')).encode('utf-8')
+            zout.writestr(item, data)
+    path.unlink()
+    tmp.rename(path)
+
 
 def build_title_page_xml(doc):
     """Build manual title page paragraphs (in document order).

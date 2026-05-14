@@ -8,6 +8,19 @@ description: Apply ICD-11 (МКБ-11 РФ 2022) typography style to the Klinik P
 ## Trigger
 Any layout/verstka work on the book: DOCX rebuild, page-break complaints, heading hierarchy, title page, TOC, headers, chapter starts, colours.
 
+## Verified disorder name list (canonical)
+The 103 disorder names with WHO ICD-11 2024 codes are listed in `TYPOGRAPHY.md` section 0b. Always check against that table before editing any disorder title. Do NOT revert to old forms (e.g. `OPOZİSİONAL DEFİANT POZUNTU` → must remain `MÜXALİF-İNADKAR POZUNTU`).
+
+## Translation rule (per 994 grammar bible, az.md)
+- **Keep Latinisms** (medical professional vocabulary): şizofreniya, bipolyar, paranoya, depressiya, katatoniya, narkolepsiya, kleptomaniya, pyromaniya, anorgasmiya, hipersomnia, etc.
+- **Do NOT keep English transliterations**: `binge`, `follow-up`, `screening`, `compliance`, `defiant`, `disinhibe`, `premature`, `kültür`. Replace with proper Azerbaijani forms.
+- **Check the WHO ICD-11 browser** (https://icd.who.int/browse/2024-01/mms/en) for exact codes — РФ МКБ-11 PDF may be one version behind.
+- **Reference 994 project** when unsure: `C:\Users\SAM\Desktop\994\grammar_bibles\az.md` (local) or production server `94.156.35.89` (via jump host `185.203.116.131`).
+
+## ICD-11 code drift (already fixed in v14)
+WHO 2024 vs older drafts: 6B40-6B45 were renumbered.
+Current (correct): 6B40 PTSD · 6B41 cPTSD · 6B42 Prolonged Grief · 6B43 Adjustment · 6B44 RAD · 6B45 Disinhibited Social.
+
 ## HARD COLOUR RULE — black only
 All text is `#000000` (pure black). No blue/cyan/Office accent (`#4F81BD`, `#0563C1`, theme colours). The only allowed non-black is **grey `#555555`** for the title-page sub-slogan and year/city.
 

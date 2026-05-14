@@ -4,6 +4,127 @@
 > Эталон стиля: **МКБ-11, русское издание, 2-е, 2022** (138×228 мм, ВОЗ + РОП).
 > Локальный референс PDF: `_supplements/ICD-11_RU_2022_reference.pdf`.
 
+## 0b. Verified disorder name list (WHO ICD-11 2024 + АзПА + 994 grammar bible)
+
+**После любых правок проверять каждое название по этой таблице. Не отступать.**
+
+| ICD | AZ название (canonical) | RU reference (МКБ-11 РФ 2022) |
+|---|---|---|
+| 6A00 | İNTELLEKTUAL İNKİŞAF POZUNTUSU | Нарушения интеллектуального развития |
+| 6A01 | İNKİŞAF NİTQ VƏ DİL POZUNTULARI | Нарушения речевого развития |
+| 6A02 | AUTİZM SPEKTRİ POZUNTUSU (ASP) | Расстройство аутистического спектра |
+| 6A03 | SPESİFİK ÖYRƏNMƏ POZUNTUSU | Нарушение развития учебных навыков |
+| 6A04 | İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD) | Нарушение развития координации движений |
+| 6A05 | DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP) | Синдром дефицита внимания с гиперактивностью |
+| 6A06 | STEREOTİPİK HƏRƏKƏT POZUNTUSU | Расстройство стереотипных движений |
+| 6A07 | TİKLİ POZUNTULAR (TOURETTE SİNDROMU) | Тиковые расстройства |
+| 6A20 | ŞİZOFRENİYA | Шизофрения |
+| 6A21 | ŞİZOAFFEKTİV POZUNTU | Шизоаффективное расстройство |
+| 6A22 | ŞİZOTİPİK POZUNTU | Шизотипическое расстройство |
+| 6A23 | KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU | Острое транзиторное психотическое расстройство |
+| 6A24 | SAYIQLAMA POZUNTUSU | Бредовое расстройство |
+| 6A25 | İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ | Симптоматические проявления |
+| 6A40 | KATATONİYA — ÜMUMİ PRİNSİPLƏR | Кататония |
+| 6A60 | BİPOLYAR POZUNTU TİP I | Биполярное расстройство I типа |
+| 6A61 | BİPOLYAR POZUNTU TİP II | Биполярное расстройство II типа |
+| 6A62 | SİKLETİMİK POZUNTU | Циклотимическое расстройство |
+| 6A70 | TƏK EPİZODLU DEPRESİV POZUNTU | Единичный эпизод депрессивного расстройства |
+| 6A71 | TƏKRARLANAN DEPRESİV POZUNTU | Рекуррентное депрессивное расстройство |
+| 6A72 | DİSTİMİK POZUNTU | Дистимическое расстройство |
+| 6A73 | PREMENSTRUAL DİSFORİK POZUNTU (PMDD) | (зарезервировано) |
+| 6B00 | GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD) | Генерализованное тревожное расстройство |
+| 6B01 | PANİK POZUNTU | Паническое расстройство |
+| 6B02 | AQORAFOBİYA | Агорафобия |
+| 6B03 | SPESİFİK FOBİYA | Специфическая фобия |
+| 6B04 | SOSİAL NARAHATLIQ POZUNTUSU | Социальное тревожное расстройство |
+| 6B05 | AYRILMA NARAHATLIĞI POZUNTUSU | Сепарационное тревожное расстройство |
+| 6B06 | SELEKTİV MUTİZM | Селективный мутизм |
+| 6B20 | OBSESSİV-KOMPULSİV POZUNTU (OKP) | Обсессивно-компульсивное расстройство |
+| 6B21 | BƏDƏN DİSMORFİK POZUNTUSU (BDD) | Дисморфическое расстройство |
+| 6B22 | İY REFERANSI POZUNTUSU (ORS) | Патологическая озабоченность собственным запахом |
+| 6B23 | HİPOXONDRİYA | Ипохондрия |
+| 6B24 | TOPLAMA POZUNTUSU | Патологическое накопительство |
+| 6B25 | BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR | Патологические телесно направленные повторяющиеся действия |
+| **6B40** | POSTTRAVMATİK STRES POZUNTUSU (PTSP) | Посттравматическое стрессовое расстройство |
+| **6B41** | KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP) | Осложненное ПТСР |
+| **6B42** | UZANMIŞ YAS POZUNTUSU | Затяжная патологическая реакция горя |
+| **6B43** | ADAPTASİYA POZUNTUSU | Расстройство адаптации |
+| 6B44 | REAKTİV BAĞLANMA POZUNTUSU | Реактивное расстройство привязанности |
+| 6B45 | DEZİNHİBİSİYALI SOSİAL CƏLBEDİCİLİK POZUNTUSU | Расстройство социализации по расторможенному типу |
+| 6B60 | DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP) | Диссоциативное расстройство идентичности |
+| 6B61 | PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU | Парциальное диссоциативное |
+| 6B62 | DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU | Расстройство деперсонализации-дереализации |
+| 6B63 | DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU | Диссоциативное расстройство с неврологическими симптомами |
+| 6B64 | DİSSOSİATİV AMNEZİYA | Диссоциативная амнезия |
+| **6B80** | SİNİR ANOREKSİYASI | Нервная анорексия |
+| **6B81** | SİNİR BULİMİYASI | Нервная булимия |
+| 6B82 | KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED) | Патологическое переедание |
+| 6B83 | PİKA | Пика |
+| 6B84 | RUMİNASİYA-GERİ QAYTARMA POZUNTUSU | Патологическое пережёвывание и срыгивание |
+| 6B85 | QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID) | Патологическое избирательно-ограничительное |
+| 6C00 | ENUREZ | Энурез |
+| 6C01 | ENKOPREZ | Энкопрез |
+| **6C20** | BƏDƏN DİSSTRES POZUNTUSU | Телесный дистресс |
+| 6C40 | ALKOHOL İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления алкоголя |
+| 6C41 | OPİOİD İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления опиоидов |
+| 6C42 | KANNABİS İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления каннабиса |
+| 6C43 | SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления седативных/снотворных |
+| 6C44 | KOKAİN İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления кокаина |
+| 6C45 | STİMULYANT İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления стимуляторов |
+| 6C46 | HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления галлюциногенов |
+| 6C47 | NİKOTİN İSTİFADƏSİ POZUNTULARI | Расстройства вследствие употребления никотина |
+| 6C50 | DAVRANIŞ ASILILIQLARI (QUMAR, OYUN) | Расстройство вследствие пристрастия (азартные игры и т.п.) |
+| 6C70 | PYROMANİYA | Пиромания |
+| 6C71 | KLEPTOMANİYA | Клептомания |
+| 6C72 | KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU | Компульсивное расстройство сексуального поведения |
+| 6C73 | ARALIQLI PATLAYICI POZUNTU (IED) | Периодическое эксплозивное расстройство |
+| 6C90 | DAVRANIŞ POZUNTUSU | Расстройство поведения |
+| **6C91** | MÜXALİF-İNADKAR POZUNTU (ODD) | Оппозиционно-вызывающее расстройство |
+| 6D10 | ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ) | Расстройство личности |
+| 6D11 | ŞƏXSİYYƏT ÇƏTİNLİYİ | Выраженные личностные черты |
+| 6D30 | EKSHİBİSİONİZM | Патологический эксгибиционизм |
+| 6D31 | VOYERİZM | Патологический вуайеризм |
+| 6D32 | PEDOFİLİK POZUNTU | Педофилическое расстройство |
+| 6D33 | SADİSTİK CİNSİ POZUNTU | Патологический сексуальный садизм |
+| 6D34 | FROTTEURİZM | Патологический фроттеризм |
+| 6D50 | ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN) | Имитированное расстройство в отношении себя |
+| 6D51 | BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU | Имитированное расстройство в отношении другого |
+| 6D70 | DELİRİUM | Делирий |
+| 6D71 | YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI) | Лёгкое нейрокогнитивное расстройство |
+| 6D72 | AMNESTİK POZUNTU | Амнестическое расстройство |
+| 6D80 | ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA | Деменция вследствие болезни Альцгеймера |
+| 6D81 | DAMAR DEMENSİYASI | Деменция вследствие цереброваскулярного заболевания |
+| 6D82 | LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB) | Деменция с тельцами Леви |
+| 6D83 | FRONTOTEMPORAL DEMENSİYA (FTD) | Лобно-височная деменция |
+| 6E20 | POSTNATAL DEPRESSİYA | Послеродовая депрессия |
+| 6E21 | POSTNATAL PSİXOZ | Послеродовый психоз |
+| 6E40 | DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR | Психологические/поведенческие факторы |
+| 6E60 | İKİNCİLİ PSİXOTİK SİNDROM | Вторичный психотический синдром |
+| 6E61 | İKİNCİLİ AFFEKTİV SİNDROM | Вторичный аффективный синдром |
+| 6E62 | İKİNCİLİ NARAHATLIQ SİNDROMU | Вторичный тревожный синдром |
+| 7A00 | İNSOMNİYA | Бессонница |
+| 7A20 | OBSTRUKTİV YUXU APNESİ (OSA) | Обструктивное апноэ сна |
+| 7A40 | SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI | Расстройства циркадного ритма сна |
+| 7A60 | HİPERSOMNİYA | Гиперсомния |
+| 7A80 | NARKOLEPSİYA | Нарколепсия |
+| HA00 | EREKTİL DİSFUNKSİYA (ED) | Эректильная дисфункция |
+| **HA01** | TEZBİR EJAKULYASİYA (PE) | Преждевременная эякуляция |
+| HA02 | HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD) | Гипоактивное расстройство сексуального желания |
+| HA03 | ANORGASMİYA | Аноргазмия |
+| HA04 | GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS) | Расстройство генитально-тазовой боли при проникновении |
+| HA05 | DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR | Другие сексуальные дисфункции |
+
+**Жирным выделено** — то, что было исправлено в раундах 1-5. Не возвращать к старым формам.
+
+### Принципы перевода (закреплены навсегда, не переспрашивать)
+
+1. **Латинизмы оставлять** (per 994 az.md §«Заимствования»): şizofreniya, bipolyar, paranoya, depressiya, katatoniya, narkolepsiya, kleptomaniya и т.п. — это профессиональная лексика.
+2. **Транслитерации с английского НЕ ОСТАВЛЯТЬ**: `binge`, `follow-up`, `screening`, `compliance`, `defiant`, `disinhibe`, `premature`, `kültür` — переводить в азерб.
+3. **Кальки русских/тюркских идиом не давать** (per 994 az.md §«Калька-чек»).
+4. **ICD-11 коды проверять против WHO Browser** (https://icd.who.int/browse/2024-01/mms/en) — у нашего МКБ-11 РФ PDF могут быть устаревшие версии.
+5. **Грамматические правила** см. 994 grammar bible: `C:\Users\SAM\Desktop\994\grammar_bibles\az.md`.
+6. **При сомнении** в термине — обращаться к 994 translator-системе (production-сервер `94.156.35.89`, через jump host `185.203.116.131`).
+
 ## 0a. Цвет текста — ОБЯЗАТЕЛЬНО ЧЁРНЫЙ
 
 **Весь текст в книге — `#000000` (чистый чёрный).** Никакого синего/голубого/blue (`#4F81BD`, `#0563C1` и пр.), никаких тематических акцентов Office, никаких подсветок ссылок.
