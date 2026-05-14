@@ -41,7 +41,7 @@
 | 6B06 | SELEKTİV MUTİZM | Селективный мутизм |
 | 6B20 | OBSESSİV-KOMPULSİV POZUNTU (OKP) | Обсессивно-компульсивное расстройство |
 | 6B21 | BƏDƏN DİSMORFİK POZUNTUSU (BDD) | Дисморфическое расстройство |
-| 6B22 | İY REFERANSI POZUNTUSU (ORS) | Патологическая озабоченность собственным запахом |
+| 6B22 | PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS) | Патологическая озабоченность собственным запахом |
 | 6B23 | HİPOXONDRİYA | Ипохондрия |
 | 6B24 | TOPLAMA POZUNTUSU | Патологическое накопительство |
 | 6B25 | BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR | Патологические телесно направленные повторяющиеся действия |
@@ -50,7 +50,7 @@
 | **6B42** | UZANMIŞ YAS POZUNTUSU | Затяжная патологическая реакция горя |
 | **6B43** | ADAPTASİYA POZUNTUSU | Расстройство адаптации |
 | 6B44 | REAKTİV BAĞLANMA POZUNTUSU | Реактивное расстройство привязанности |
-| 6B45 | DEZİNHİBİSİYALI SOSİAL CƏLBEDİCİLİK POZUNTUSU | Расстройство социализации по расторможенному типу |
+| 6B45 | SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU | Расстройство социализации по расторможенному типу |
 | 6B60 | DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP) | Диссоциативное расстройство идентичности |
 | 6B61 | PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU | Парциальное диссоциативное |
 | 6B62 | DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU | Расстройство деперсонализации-дереализации |
@@ -108,7 +108,7 @@
 | 7A60 | HİPERSOMNİYA | Гиперсомния |
 | 7A80 | NARKOLEPSİYA | Нарколепсия |
 | HA00 | EREKTİL DİSFUNKSİYA (ED) | Эректильная дисфункция |
-| **HA01** | TEZBİR EJAKULYASİYA (PE) | Преждевременная эякуляция |
+| **HA01** | ERKƏN EYAKULYASİYA (PE) | Преждевременная эякуляция |
 | HA02 | HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD) | Гипоактивное расстройство сексуального желания |
 | HA03 | ANORGASMİYA | Аноргазмия |
 | HA04 | GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS) | Расстройство генитально-тазовой боли при проникновении |
