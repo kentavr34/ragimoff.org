@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "updated": "2026-05-14",
+  "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
+  "phases": [
+    {
+      "id": "P0",
+      "date_range": "2026-04-17 .. 2026-04-20",
+      "title": "Project genesis",
+      "summary": "Initial commit of the multilingual static site (AZ + RU + EN), Tehsil section, program pages (klinik / praktikum), course curricula tables, PDF export for programs.",
+      "key_commits": [
+        "e1fa88c — Initial commit — RAGIMOFF Psixologiya Məktəbi sayt2",
+        "d2ccb94 — Add PDF export for programs section on tehsil.html",
+        "868e3d4 — Unified compact dot-leader table CSS across all 3 program pages"
+      ]
+    },
+    {
+      "id": "P1",
+      "date_range": "2026-04-20 .. 2026-04-30",
+      "title": "Content polish — subtitles, table layout, registration flow",
+      "summary": "Subtitle balancing with <br>, fixing typos (ve -> və), removing br-before-və; uniform 800px table widths; registration step blocks; praktikum schedule fixes; discount adjustment (10% -> 20%, 3600 -> 3000 AZN).",
+      "key_commits": [
+        "3962d60 — Balance all long subtitles with br across 7 pages",
+        "a6aa6f2 — Uniform 800px table width on all program pages, PDF button above table",
+        "628236c — Praktikum discount: −10% → −20% (3 600 → 3 000 AZN)"
+      ]
+    },
+    {
+      "id": "P2",
+      "date_range": "2026-04-30 .. 2026-05-04",
+      "title": "Page-hero-x unification (.page-hero-x system)",
+      "summary": "Introduced a unified page hero with binary-search font-fitting (js-hero-fit.js) so badge/H1/subtitle align to 620px search bar width. Rolled out across 9 AZ pages, then blog articles (38), then RU+EN (53+53). Index files preserved as etalon.",
+      "key_commits": [
+        "4681a5a — Phase A+B: page-hero-x on 9 AZ pages",
+        "3d1fd41 — Phase X4: page-hero-x on 38 blog-* article pages",
+        "939895d — Phase X5-X6: page-hero-x on ru/* (53) and en/* (53)",
+        "b57026e — Page hero unification: gap to next section ~90px",
+        "d7fec06 — fix(css): let js-hero-fit.js size .ph-sub-desk lines to match index"
+      ]
+    },
+    {
+      "id": "P3",
+      "date_range": "2026-05-04 .. 2026-05-06",
+      "title": "Footer + navigation cross-cutting fixes",
+      "summary": "Added street 'Cefer Cabbarli kucesi 40' to all 160 pages (AZ/RU/EN) with Google Maps link. Footer address became 2-line with <br/>. Mobile submenus deployed across 141 pages. Lighter text on dark theme. Hero photo anchoring fixes.",
+      "key_commits": [
+        "b0bd9d0 — Footer address: add street on all 160 pages",
+        "5fc0da7 — Mass: footer address (159 pages) + mobile submenus (141 pages)",
+        "8bd5e1e — Multi-fix: 5 issues (footer 2-line, dark theme, ru/en hero, nav-dropdown delay, #hero-sd z-index)"
+      ]
+    },
+    {
+      "id": "P4",
+      "date_range": "2026-05-06 .. 2026-05-08",
+      "title": "Components system + build.py renderer",
+      "summary": "Eliminated ~160 copies of header/mobile-nav/footer/hero-search/kitab-modal. Introduced _partials/*.html + _i18n.json + build.py. Source HTML now contains '<!-- @include NAME -->' directives and auto-regenerated BEGIN/END blocks. Index.html intentionally excluded (etalon, inline header). Backup tag 'backup-before-components-system' pushed.",
+      "key_commits": [
+        "0c597ef — Components system: _partials + build.py + i18n + README",
+        "2e86514 — Add .gitignore for __pycache__/",
+        "d13c92b — Index footer: remove footer-desc text",
+        "39265ab — README: explicit rule about index.html not using partials"
+      ]
+    },
+    {
+      "id": "P5",
+      "date_range": "2026-05-08 .. 2026-05-09",
+      "title": "Klinik Psixiatriya — restructuring and naming",
+      "summary": "Renamed HTML files to NN-ICDcode format, reordered chapters by XBT-11, removed BÖLMƏ labels, applied AZPA terminology. Fixed nav slugs, 6A24 SAYIQLAMA chapter and truncated 6A25; BÖLMƏ 1 anchors.",
+      "key_commits": [
+        "3092b74 — fix(klinik-psixiatriya): nav slugs, 6A24 SAYIQLAMA, truncated 6A25, BOLME 1 anchors",
+        "05cfd09 — restructure: rename HTML files to NN-ICDcode format, reorder by XBT-11, remove BÖLMƏ labels, apply AZPA terminology"
+      ]
+    },
+    {
+      "id": "P6",
+      "date_range": "2026-05-09 .. 2026-05-13",
+      "title": "Klinik Psixiatriya — supplements phase (chapters 1-23)",
+      "summary": "Added evidence-based methodology supplements for ID/autism/ADHD, then iteratively across chapters 1-23. PACT (RAST), EEG neurofeedback debunking, AAP/NICE/AAIDD/WHO direct-quote openings, step-by-step diagnostic and treatment algorithms. Major guideline pulls: NICE CG178/APA 2020/RAISE (schizophrenia), BAP 2023 (catatonia), NICE NG222/APA 2019 (depression), CANMAT 2018 (bipolar), NICE CG113/CG159 (anxiety), NICE CG31 (OCD), VA-DoD 2023/APA 2017 (PTSD), ISSTD 2011 (dissociative), NICE NG69/APA 2023 (eating), ICCS 2020 (elimination), NICE/SAMHSA/WHO (substance), NICE NG70 (impulse/conduct), NICE CG78 (BPD), WFSBP 2020 (paraphilic).",
+      "key_commits": [
+        "231c73f — content: add evidence-based methodology supplements for ID/autism/ADHD",
+        "9310892 — content: rewrite supplement openings as direct quotes from AAP/NICE/AAIDD/WHO; add ADHD and ID step-by-step algorithms",
+        "1b0089a — content(ch2): 6A20 schizophrenia (NICE CG178/APA 2020/RAISE)",
+        "730286b — content(ch3,ch4): catatonia, depression, bipolar (BAP/NICE/APA/CANMAT)",
+        "4487b3a — content(ch5-7): anxiety, OCD, PTSD",
+        "0304c83 — content(ch8,ch9): dissociative, eating disorders",
+        "2ff302f — content(ch10-12): elimination, somatic, substance",
+        "b17a33a — content(ch13-16): impulse, conduct/ODD, BPD, paraphilic",
+        "3763762 — docs(supplements): add chapters 17-23 evidence-based methodology",
+        "3f8f2e1 — content: replace 'Pillə-pillə' with 'Addım-Addım' globally"
+      ]
+    },
+    {
+      "id": "P7",
+      "date_range": "2026-05-13 .. 2026-05-14",
+      "title": "Klinik Psixiatriya — chapters-v2 (12-section unified rewrite)",
+      "summary": "Full rewrite of all 103 disorders in _supplements/chapters-v2/ using a unified 12-section structure with §10 myth-debunking block (5-6 myths per disorder, each: claim -> niyə yayılıb -> bioloji-klinik məntiq -> sübut -> real klinik addım). Etalon: 6A20.html. Strict source whitelist enforced (NICE/APA/WFSBP/Cochrane/DSM-5-TR/XBT-11/AAP/AACAP/FDA/CANMAT/NIMH/ISSTD/ICCS/WPATH/VA-DoD/SAMHSA/AASM/AUA/EAU/ISSWSH/ISSM). Academic Azerbaijani medical terminology enforced site-wide (254x mənzərə -> təzahürlər, etc.). Autonomous wakeup-loop batches of 4 disorders/turn until completion. Final batches: 7A60/7A80/HA00/HA01, then HA02/HA03/HA04/HA05. Done marker: _supplements/chapters-v2/_done.md.",
+      "key_commits": [
+        "0057c68 — docs(chapters-v2): add 7A60, 7A80, HA00, HA01",
+        "85fff99 — docs(chapters-v2): add HA02, HA03, HA04, HA05 — all 103 complete"
+      ],
+      "supporting_tooling": [
+        "_inject_abbr.py — 4166 <abbr title> wrappings, 130+ term dictionary",
+        "_inject_duzelis.py — Düzəliş et feedback widget injection (52 chapter HTMLs)",
+        "klinik-psixiatriya/duzelis.{js,css} + duzelis-gas.txt — Google Apps Script endpoint",
+        "build_book.py — DOCX rebuild with title page, TOC, page breaks"
+      ]
+    },
+    {
+      "id": "P8",
+      "date_range": "2026-05-14",
+      "title": "Session-continuity layer",
+      "summary": "Created cross-session memory files at repo root so future Claude sessions can recover full context: CLAUDE.md (init brief), PROGRESS.md (human session log), PROJECTS.json (per-project state), HISTORY.json (this file).",
+      "key_commits": []
+    },
+    {
+      "id": "P9",
+      "date_range": "2026-05-14",
+      "title": "Book deployed to site + DOCX rebuilt (academic textbook style)",
+      "summary": "All 103 chapters-v2 disorder fragments injected into the 23 live klinik-psixiatriya/NN-*.html chapter files, each wrapped in <section class='disorder' data-icd>. Sidebar nav and book TOC regenerated. Academic CSS added for .disorder and .book-toc. KLINIK_PSIXIATRIYA_6.docx rebuilt with pandoc-generated title page + MUNDARICAT TOC, page break before every chapter and disorder, first heading's page break stripped (no blank leading page). 13,621 paragraphs / 195 tables in the final DOCX. Tooling: _inject_chapters_v2.py + _rebuild_book_nav.py + existing build_book.py.",
+      "key_commits": [
+        "155bebf — book: inject 103 chapters-v2 disorders into site + rebuild TOC/nav + DOCX"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "ts": "2026-05-14",
+      "actor": "claude",
+      "type": "session-init",
+      "note": "Wrote CLAUDE.md, PROJECTS.json, HISTORY.json at user's request. PROGRESS.md created earlier this session. README.md already existed and remains the architecture canon."
+    },
+    {
+      "ts": "2026-05-14",
+      "actor": "claude",
+      "type": "deployment",
+      "note": "Site book + DOCX rebuilt from chapters-v2. 23 chapter HTMLs updated, 27 sidebars regenerated, book index TOC rewritten, KLINIK_PSIXIATRIYA_6.docx regenerated at 700 KB. Commit 155bebf."
+    },
+    {
+      "ts": "2026-05-14",
+      "actor": "claude",
+      "type": "workflow-rule",
+      "note": "Established terminology sync workflow. Düzəlt button on abbreviatur.html (and any book page) → POST to GAS → Google Sheet row. When user marks Status=ok in the sheet, GAS endpoint GET ?action=approved returns approved rows. _term_sync.py at session start fetches & applies them across _supplements/chapters-v2/ + klinik-psixiatriya/ + CANONICAL_TERMS list in _build_abbreviatur.py. Rule: any term rename must update three places at once (master sources + rendered pages + canonical-terms header in abbreviatur). Codified in TYPOGRAPHY.md §0c, CLAUDE.md session-start ritual, and book-typography-icd11 SKILL.md. Commit c38e298 added Fəsil Adları table + 321 Düzəlt buttons + #cari-terminler canonical-terms header section."
+    }
+  ]
+}

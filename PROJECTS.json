@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "updated": "2026-05-14",
+  "root": "C:\\Users\\SAM\\Desktop\\sayt2",
+  "remote": "https://github.com/kentavr34/git/ragimoff.org.git",
+  "domain": "ragimoff.org",
+  "hosting": "GitHub Pages",
+  "active_branch": "claude/stupefied-cori-5b6e4a",
+  "worktree": "C:\\Users\\SAM\\Desktop\\sayt2\\.claude\\worktrees\\stupefied-cori-5b6e4a",
+  "projects": [
+    {
+      "id": "site",
+      "name": "RAGIMOFF main website",
+      "type": "multilingual static site",
+      "languages": ["az", "ru", "en"],
+      "pages_count_approx": {"az": 56, "ru": 54, "en": 53},
+      "renderer": "build.py",
+      "templating": "_partials/*.html + _i18n.json (mustache-style {{var}})",
+      "components": [
+        "header",
+        "mobile-nav",
+        "footer",
+        "hero-search",
+        "kitab-modal"
+      ],
+      "design_tokens": "gtc.css + gtc-dark.css (Binance-inspired palette)",
+      "page_hero_system": ".page-hero-x with js-hero-fit.js binary-search font-fitting (620px desktop)",
+      "etalon_file": "index.html",
+      "etalon_rule": "Never modified by build.py (SKIP_FILES); has inline header/mobile-nav/footer; manual sync required if partials change.",
+      "skip_dirs": ["klinik-psixiatriya/", "backend/", "_partials/", "OLD/", "data/", "images/"],
+      "status": "stable",
+      "open_issues": [
+        "RU/EN pages currently use KITABIN SIFARISI modal globally; conditional swap to ZAPIS' -> tehsil.html#registration still possible if requested.",
+        "klinik-psixiatriya/ has its own header/nav (by design, intentional)."
+      ]
+    },
+    {
+      "id": "book",
+      "name": "Klinik Psixiatriya textbook",
+      "type": "Azerbaijani clinical psychiatry textbook (web + DOCX)",
+      "language": "az",
+      "register": "academic medical Azerbaijani",
+      "web_root": "klinik-psixiatriya/",
+      "sources_root": "_supplements/",
+      "chapters_v2": {
+        "path": "_supplements/chapters-v2/",
+        "disorders_total": 103,
+        "disorders_done": 103,
+        "structure_sections": 12,
+        "structure": [
+          "1. Tərif və nozologiya",
+          "2. Tarixçə",
+          "3. Epidemiologiya",
+          "4. Etiologiya",
+          "5. Klinik təzahürlər",
+          "6. Diaqnoz (6.1 Vahid diaqnostik meyarlar [DSM-5-TR · XBT-11] · 6.2 Mənbə-spesifik · 6.3 Alqoritm · 6.4 Differensial)",
+          "7. Müayinə",
+          "8. Müalicə (8.1 Ümumi prinsiplər · 8.2 Mənbə-spesifik)",
+          "9. Metodikalar",
+          "10. Mif və yanlış inanclar",
+          "11. Proqnoz",
+          "12. Mənbələr"
+        ],
+        "etalon_template": "_supplements/chapters-v2/6A20.html",
+        "progress_file": "_supplements/chapters-v2/_progress.md",
+        "done_marker": "_supplements/chapters-v2/_done.md",
+        "status": "complete"
+      },
+      "tools": {
+        "abbr_tooltips": "_inject_abbr.py (4166 <abbr title> wrappings, 130+ term dictionary)",
+        "feedback_widget": "klinik-psixiatriya/duzelis.{js,css} + duzelis-gas.txt (Google Apps Script endpoint)",
+        "widget_injector": "_inject_duzelis.py (applied to 52 chapter HTMLs)",
+        "docx_builder": "build_book.py (title page + MÜNDƏRİCAT TOC + page breaks)"
+      },
+      "source_whitelist": [
+        "NICE", "APA", "WFSBP", "Cochrane", "DSM-5-TR", "XBT-11 (ICD-11)",
+        "AAP", "AACAP", "FDA", "CANMAT", "NIMH", "ISSTD", "ICCS", "WPATH",
+        "VA-DoD", "SAMHSA", "AASM", "AUA", "EAU", "ISSWSH", "ISSM"
+      ],
+      "terminology_rules": {
+        "klinik təzahürlər": "not mənzərə",
+        "Vahid diaqnostik meyarlar": "not çek-list",
+        "İnstrumental müayinələr": "not Alət",
+        "pasiyent": "not xəstə",
+        "psixi pozuntu": "not ruhi",
+        "metodları": "not üsulları"
+      },
+      "status": "chapters-v2 complete + deployed to live site + DOCX (KLINIK_PSIXIATRIYA_6.docx) rebuilt with academic textbook layout (title page, MUNDARICAT TOC, page break per chapter/disorder, no leading blank page)",
+      "deployment_2026_05_14": {
+        "commit": "155bebf",
+        "site_chapters_updated": 23,
+        "site_disorders_injected": 103,
+        "sidebars_regenerated": 27,
+        "docx_path": "klinik-psixiatriya/KLINIK_PSIXIATRIYA_6.docx",
+        "docx_size_kb": 700,
+        "docx_paragraphs": 13621,
+        "docx_tables": 195,
+        "docx_h1": 15,
+        "docx_h2": 219
+      }
+    }
+  ],
+  "state_files": {
+    "claude_brief": "CLAUDE.md",
+    "session_progress": "PROGRESS.md",
+    "transformation_log": "HISTORY.json",
+    "project_state": "PROJECTS.json",
+    "architecture_guide": "README.md"
+  }
+}
