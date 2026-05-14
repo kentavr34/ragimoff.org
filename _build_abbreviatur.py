@@ -129,9 +129,11 @@ def build_chapters_table() -> str:
                 '<th>Fəsil adı (cari)</th>'
                 '<th style="width:110px">Düzəlt</th></tr>')
     for href, title, code_range in CHAPTERS:
+        # NB: in справочнике/glossary chapter titles are plain text (no <a>)
+        # — это справочник, не оглавление. Навигация — через sidebar.
         rows.append(
             f'<tr><td class="kod-cell">{html.escape(code_range)}</td>'
-            f'<td><a href="{href}">{html.escape(title)}</a></td>'
+            f'<td>{html.escape(title)}</td>'
             f'<td class="rasmi-cell">{edit_btn(title, "chapter")}</td></tr>'
         )
     rows.append('</table></div>')
