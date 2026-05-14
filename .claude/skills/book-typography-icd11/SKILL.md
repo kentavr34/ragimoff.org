@@ -120,6 +120,63 @@ assert intros == 0 and subs == 0
 print(f"OK: {h1} chapter breaks, {disorders} disorder breaks")
 ```
 
+## Design accuracy cases (examples to learn from)
+
+User caught several issues that traced back to bulk-text or double-injection
+artifacts. Patterns to watch for:
+
+### Case 1: Double-injected `<abbr>` tags → leaked title text
+When `_inject_abbr.py` runs twice, abbr terms that already had wrappers get
+re-wrapped — but the title attribute of the OUTER abbr now contains an INNER
+abbr's `<` and `>`, breaking the attribute. Browser parses it as text.
+
+Visible result:
+```
+WHO), 2019, qüvvəyə minmə 2022.">XBT-11 kodu       ← bad
+XBT-11 kodu                                          ← fixed (in <th>)
+WHO, 2019, qüvvəyə minmə 2022 — XBT-11 kodu         ← fixed (in body)
+```
+
+Fix script: `_fix_abbr_leaks.py` — context-aware (in `<th>`: just term;
+in body: readable form with em-dash separator).
+
+### Case 2: TOC dot-leader direction
+User: *"we read left to right"*. TOC entries were rendered as
+`6A00 ......................... NAME`. Fixed by flexbox `order`:
+- `.toc-code` order 1, `.toc-dname` order 2 (next to code), `.toc-dot-leader` order 3 (stretches right).
+
+### Case 3: Section names smaller than sub-section names (broken hierarchy)
+Chapter title in DOCX appeared as `Body Text` while disorders appeared as
+`Heading 2` — chapter LARGER than disorder is the correct hierarchy.
+
+Root cause: `shift_levels()` bug. The function promoted `<h2>` → `<h1>` on
+the opening tag but the closing `</h1>` got demoted to `</h2>` by the second
+pass (which doesn't know about chapter status because close tags carry no
+`data-chapter` attribute). Solution: track `in_chapter_h1` state.
+
+### Case 4: Page header label vs page purpose
+User: *"this page should be called Mündəricat, not Önsöz"*. The book's TOC
+page (index.html) was labelled "Önsöz" (Foreword) — but it actually shows
+the table of contents. Renamed everywhere.
+
+### Case 5: Redundant columns
+User wanted columns dropped from abbreviatur:
+- 'Rəsmi AZ' on disorders table (Düzəlt workflow covers it)
+- 'Русский' on abbreviations table (already in disorders table)
+
+→ implemented as `strip_columns_*_table()` in `_build_abbreviatur.py`.
+
+### Case 6: Modal text invisible (white on white)
+The Düzəliş et modal had light-theme background but inherited page's
+dark-theme text colour. Solution: modal ALWAYS dark, explicit colour
+on every child element.
+
+### General principle
+After any bulk-text operation (replace, inject, transform):
+1. Inspect ONE rendered example (TH, body, modal, etc.)
+2. Don't trust the operation — verify the result visually
+3. Add to this list when a new artifact surfaces
+
 ## Anti-patterns
 - ❌ Pandoc auto title block (4 stacked Title/Subtitle/Author/Date paragraphs)
 - ❌ Page-break-before on every Heading 2 (causes 100+ blank pages)
