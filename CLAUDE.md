@@ -29,7 +29,13 @@ Only authoritative sources are allowed:
 NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM
 
 ## Typography / verstka rules
-**Read `TYPOGRAPHY.md` BEFORE any DOCX or book-HTML layout work.** It covers: title page format, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt), page-break rules (only chapters + disorder ICD-titled H2, never sub-sections), TOC format, terminology blacklist, source whitelist, widget injection. Do not ask the user to repeat these rules — they live in `TYPOGRAPHY.md`.
+**Read `TYPOGRAPHY.md` BEFORE any DOCX or book-HTML layout work.**
+
+The book follows **ICD-11 РФ 2022** visual style (138×228 mm reference, but our pages are A4). Reference PDF: `_supplements/ICD-11_RU_2022_reference.pdf`. Our font stays Times New Roman (professional medical textbook proportions).
+
+Skill: `.claude/skills/book-typography-icd11/SKILL.md` (also mirrored at `~/.claude/skills/book-typography-icd11/SKILL.md`).
+
+Covers: title page, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt > H5 11pt), page-break (only chapters + disorder ICD-titled H2, never sub-sections), TOC depth 2 with dot leaders, alternating page headers/footers, terminology blacklist, source whitelist, Düzəliş et widget. Do not ask the user to repeat these rules.
 
 ## Hard rules
 - `index.html` (root AZ) is the design etalon. Never modify without explicit user permission. `build.py` skips it via `SKIP_FILES`.

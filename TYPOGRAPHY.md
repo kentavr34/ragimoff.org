@@ -1,69 +1,96 @@
-# TYPOGRAPHY.md — Правила вёрстки для книги «Klinik Psixiatriya»
+# TYPOGRAPHY.md — Правила вёрстки книги «Klinik Psixiatriya»
 
-> **AI-агенты: читайте этот файл ПЕРЕД любой правкой DOCX или HTML-вёрстки книги.** Не спрашивайте автора повторно — все правила здесь.
+> **AI-агенты: читайте ПЕРЕД любой правкой вёрстки.** Все правила и эталон — здесь.
+> Эталон стиля: **МКБ-11, русское издание, 2-е, 2022** (138×228 мм, ВОЗ + РОП).
+> Локальный референс PDF: `_supplements/ICD-11_RU_2022_reference.pdf`.
 
-## Применяется к
-- DOCX (`klinik-psixiatriya/KLINIK_PSIXIATRIYA_*.docx`)
-- HTML-главам сайта (`klinik-psixiatriya/NN-*.html`)
-- Книжному index/TOC (`klinik-psixiatriya/index.html`)
+## 0. Эталонный источник стиля
 
-## 1. Титульный лист (DOCX)
+**ICD-11 / МКБ-11, русское издание** (Глава 06: Психические и поведенческие расстройства, 2-е изд. 2022, изд. «КДУ»/«Университетская книга»). Формат **138×228 мм**, сверстано в Adobe InDesign. Дизайн и вёрстка: О.Н. Бугаёва, А.А. Анисимов.
 
-**Только это, ничего лишнего:**
-- **Сверху по центру (большим шрифтом):** название книги — `KLİNİK PSİXİATRİYA`
-- **Под ним (средним шрифтом):** слоган/подзаголовок — `Diaqnostika və terapiya standartları` либо `XBT-11 və DSM-5-TR əsasında klinik bələdçi`
-- **Внизу страницы по центру (или прижато справа):** автор, город, год — `Dr. Kənan Rəhimov · Bakı · 2026`
+Что заимствуем:
+- Иерархия заголовков (титул → глава → блок → расстройство → подкод)
+- Структуру титульного листа (название сверху, выходные данные на отдельной стр.)
+- Формат TOC (имя главы + лидер + номер страницы)
+- Колонтитулы (левая стр. — источник/глава, правая — название книги, наружный номер)
+- Чистую правую полосу для начала каждой главы
 
-Никакой автоматической pandoc-страницы с большим Title + Subtitle + Author + Date в столбик. Это **единый блок** — название/слоган сверху, выходные данные снизу.
+Что **НЕ** заимствуем:
+- Шрифт (МКБ-11 использует Calibri/Arial sans-serif) — **наш шрифт Times New Roman** (профессиональный медицинский учебник)
+- Формат страницы — у нас A4 (более универсально для печати/PDF в Бакы)
 
-## 2. Иерархия заголовков (DOCX)
+## 1. Титульный лист
 
-**Heading 1 (название главы) — самый крупный, самый жирный.** Пример: `NEYROİNKİŞAF POZUNTULARI`.
+**Одна страница, без лишнего.**
 
-```
-Heading 1   28pt   Bold   centered   colour: black or var(--gold)
-Heading 2   20pt   Bold   left       (disorder title с ICD-кодом)
-Heading 3   14pt   Bold   left       (раздел внутри расстройства: Tərif, Tarixçə …)
-Heading 4   12pt   Bold   left       (под-раздел: 6.1 Vahid meyarlar и т.д.)
-Heading 5   11pt   Bold-italic        (Mif N: «…»)
-Normal/Body 11pt   regular
-```
+| Позиция | Содержание | Стиль |
+|---|---|---|
+| ~25% сверху, по центру | `ICD-11 · DSM-5-TR` (мелкая атрибуция, серый) | 11pt, грей |
+| ~30% сверху | `KLİNİK PSİXİATRİYA` (название книги) | 44pt, **bold**, по центру |
+| Сразу под | `Diaqnostika və terapiya standartları` (слоган) | 18pt, italic, по центру |
+| Сразу под | `XBT-11 və DSM-5-TR əsasında klinik bələdçi` (под-слоган) | 14pt, italic, серый |
+| ~80% сверху | пустая зона | — |
+| Снизу по центру | `Dr. Kənan Rəhimov` | 14pt, **bold** |
+| Под ним | `Bakı · 2026` | 12pt, серый |
 
-**Запрещено:** подразделы крупнее или жирнее, чем родительский заголовок.
+**Запрещено:** автогенерируемый pandoc title block с Title/Subtitle/Author/Date в столбик. Используется ручная вёрстка через `build_title_page_xml()`.
 
-## 3. Разрывы страниц (page-break-before)
+## 2. Иерархия заголовков (TYPOGRAPHY proportions, professional textbook)
 
-**Можно начинать с новой страницы:**
-- **Главу** (Heading 1)
-- **Расстройство** (Heading 2, заголовок которого начинается с ICD-кода: `6A00`, `HA00`, и т.д.)
+| Уровень | Размер | Жирность | Выравн. | Сlassname в HTML | Где используется |
+|---|---|---|---|---|---|
+| Heading 1 | **28pt** | Bold | Center | `<h1>` (после shift_levels) | Глава: `NEYROİNKİŞAF POZUNTULARI` |
+| Heading 2 | **20pt** | Bold | Left | `<h1 class="h-disorder">` | Расстройство: `6A00 İNTELLEKTUAL …` |
+| Heading 3 | **14pt** | Bold | Left | `<h2>` | Раздел: `1. Tərif`, `6. Diaqnoz` |
+| Heading 4 | **12pt** | Bold | Left | `<h3>` | Под-раздел: `6.1 Vahid meyarlar` |
+| Heading 5 | **11pt** | Bold-italic | Left | `<h4>` | Миф: `Mif 1: "…"` |
+| Body | 11pt | Regular | Justify | `<p>` | Основной текст |
 
-**Нельзя начинать с новой страницы:**
-- Подразделы расстройства (Tərif, Diaqnoz, Müalicə …)
-- Под-подразделы (6.1, 6.2 …)
-- Параграфы, мифы, таблицы
+**Правило монотонного убывания:** каждый следующий уровень меньше или равен предыдущему, и никогда не жирнее. Подразделы крупнее или жирнее родителя — **запрещено**.
 
-Пустоты сверху/снизу текста — не более 12pt (0.42 см). Никаких 24pt+ отступов между подразделами.
+## 3. Page-break-before
 
-## 4. Оглавление (TOC)
+**Можно (всегда):**
+- Heading 1 (новая глава) — на новой странице
+- Heading 2, если текст начинается с ICD-кода (`^[0-9][A-Z][0-9][0-9A-Z]?\b` или `^HA[0-9]{2}\b`) — новое расстройство
 
-- На отдельной странице сразу после титульного листа.
-- Заголовок: `MÜNDƏRİCAT` (16pt, bold, по центру).
-- Уровень глубины: 2 (главы + расстройства). Под-разделы расстройств в TOC не выводить.
-- Pandoc генерирует автоматически — `--toc --toc-depth=2`.
+**Нельзя:**
+- Любые подразделы (Heading 3/4/5) — flow внутри расстройства
+- Heading 2 интро-главы (`Bu bölmənin tərkibi`, `Konseptual yenilik`)
+- Параграфы, таблицы, мифы, списки
 
-## 5. Сайтовая HTML-вёрстка
+**Первый заголовок книги** — page-break снимается, чтобы не было пустой первой страницы.
 
-CSS уже настроен (`klinik-psixiatriya/style.css`):
-- `section.disorder h1.h-disorder` — 26px, bold, золотой
-- `section.disorder h2` — 19px
-- `section.disorder h3` — 16px
-- `section.disorder h4` (мифы) — 15px, золотой
+## 4. Body text — пропорции профессионального учебника
 
-Если правишь — сохраняй понижение размера на каждом уровне.
+- **Шрифт:** Times New Roman 11pt
+- **Межстрочное:** 1.25 (≈14pt)
+- **Абзац:** отступ первой строки **0.5 см** (русско-академический стиль) — кроме первого абзаца после заголовка
+- **Выравнивание:** по ширине (justify)
+- **`space_before` / `space_after`** для Normal: 0pt / 4pt
+- Расстояние между параграфом и заголовком: фиксируется через `space_before` заголовка (12pt)
 
-## 6. Терминология (язык)
+## 5. TOC — оглавление
 
-Академический азербайджанский, медицинский регистр. Все английские/латинские термины в заголовках расстройств — **только** в азербайджанской транскрипции:
+- Заголовок: `MÜNDƏRİCAT` (28pt, bold, centered) — отдельная страница после титула
+- Глубина: 2 (главы + расстройства). Подразделы расстройств **не** включаются
+- Pandoc-генерация: `--toc --toc-depth=2 --metadata=toc-title:MÜNDƏRİCAT`
+- Между названием главы и номером страницы — точечный лидер (`....`), автогенерируется pandoc
+- Расстройства (Heading 2) — с одним уровнем отступа от глав
+
+## 6. Колонтитулы (header/footer)
+
+| Сторона | Содержание |
+|---|---|
+| Чётная (левая) | Название главы текущей секции |
+| Нечётная (правая) | `KLİNİK PSİXİATRİYA · Diaqnostika və terapiya standartları` |
+| Снизу | Номер страницы (наружный угол: лев. — слева, прав. — справа) |
+
+Реализация: `section.header_distance` + `section.footer_distance` в python-docx.
+
+## 7. Терминология
+
+Академический азербайджанский, медицинский регистр.
 
 | Запрещено | Используем |
 |---|---|
@@ -74,33 +101,49 @@ CSS уже настроен (`klinik-psixiatriya/style.css`):
 | Bulimia Nervosa | Bulimiya Nervoza |
 | Binge-Eating | Keçirtmə ilə yemə |
 | Hipoxondria | Hipoxondriya |
-| (HOARDING DISORDER) | (выкинуть скобку) |
-| (CONDUCT DISORDER) | (выкинуть скобку) |
-| (VASCULAR DEMENTIA) | (выкинуть скобку) |
-| (BODILY DISTRESS) | Bədənsəl disstres |
+| (HOARDING / CONDUCT / VASCULAR DEMENTIA / BODILY DISTRESS) | выкинуть скобку, оставить азерб. термин |
 | xəstə | pasiyent |
 | ruhi | psixi |
 | üsulları | metodları |
 
-## 7. Источники (whitelist)
+Чистка автоматически через `_fix_terminology3.py`.
 
-Только: NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM.
+## 8. Источники (whitelist)
 
-## 8. Düzəliş et widget
+NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM.
 
-На каждой HTML-странице книги должна быть «Düzəliş et» FAB-кнопка (право-низ, z-index 9990). Подключается через `<!-- DUZELIS-WIDGET -->` маркер + `duzelis.css` + `duzelis.js`.
+## 9. Düzəliş et widget (HTML)
 
-Скрипт-инжектор: `_inject_duzelis.py`.
+На каждой HTML-странице книги. Маркер `<!-- DUZELIS-WIDGET -->` + `duzelis.css` + `duzelis.js`. FAB-кнопка фикс. справа-снизу (z-index 9990). Инжектор: `_inject_duzelis.py`.
 
-## 9. Скрипты сборки
+## 10. Скрипты сборки
 
 | Скрипт | Назначение |
 |---|---|
 | `_inject_chapters_v2.py` | Влить chapters-v2 фрагменты в 23 главы |
-| `_rebuild_book_nav.py` | Перегенерировать sidebar + TOC |
-| `_inject_abbr.py` | `<abbr title>` tooltips для аббревиатур |
+| `_rebuild_book_nav.py` | Перегенерировать sidebar + TOC сайта |
+| `_inject_abbr.py` | `<abbr title>` tooltips |
 | `_inject_duzelis.py` | Виджет «Düzəliş et» |
 | `_fix_terminology3.py` | Чистка англ./лат. терминов |
-| `build_book.py` | Сборка DOCX (pandoc + python-docx) |
+| `build_book.py` | DOCX (pandoc + python-docx + manual title page + ICD-11 styling) |
 
-Перезапускать в этом порядке после правок контента.
+Перезапуск в этом порядке после изменения контента.
+
+## 11. Проверка после сборки
+
+```python
+from docx import Document
+from docx.oxml.ns import qn
+import re
+doc = Document('klinik-psixiatriya/KLINIK_PSIXIATRIYA_*.docx')
+ICD = re.compile(r'^\s*([0-9][A-Z][0-9][0-9A-Z]?|HA[0-9]{2})\b')
+intro_h2_pbb = sum(
+    1 for p in doc.element.body.findall(qn('w:p'))
+    if (pPr := p.find(qn('w:pPr'))) is not None
+    and (s := pPr.find(qn('w:pStyle'))) is not None
+    and 'Heading 2' in (s.get(qn('w:val')) or '')
+    and pPr.find(qn('w:pageBreakBefore')) is not None
+    and not ICD.match(''.join(t.text or '' for t in p.iter(qn('w:t'))))
+)
+assert intro_h2_pbb == 0, f"non-ICD H2 has page break: {intro_h2_pbb}"
+```

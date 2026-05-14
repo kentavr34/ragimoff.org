@@ -236,7 +236,7 @@ def fix_docx(path: Path):
     style_heading("Heading 4", 12, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
     style_heading("Heading 5", 11, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
 
-    # Tighten Normal/Body spacing
+    # Tighten Normal/Body spacing + Russian-academic first-line indent
     try:
         n = doc.styles["Normal"]
         n.font.name = "Times New Roman"
@@ -244,8 +244,100 @@ def fix_docx(path: Path):
         n.paragraph_format.space_after = Pt(4)
         n.paragraph_format.space_before = Pt(0)
         n.paragraph_format.line_spacing = 1.25
+        n.paragraph_format.first_line_indent = Cm(0.5)
+        n.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     except KeyError:
         pass
+
+    # First-paragraph-after-heading should NOT be indented (typical textbook
+    # convention). Pandoc tags such paragraphs with 'First Paragraph' style.
+    for sty_name in ("First Paragraph", "FirstParagraph"):
+        try:
+            fp = doc.styles[sty_name]
+            fp.font.name = "Times New Roman"
+            fp.font.size = Pt(11)
+            fp.paragraph_format.first_line_indent = Cm(0)
+            fp.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        except KeyError:
+            pass
+
+    # ── B. Page headers/footers (TYPOGRAPHY.md rule #6) ──
+    # Even (left) page header: chapter title (will be set dynamically by Word
+    # via STYLEREF field). Odd (right) page header: book name. Page numbers
+    # in outer corners via PAGE field.
+    # Enable odd-and-even page headers/footers globally (settings.xml)
+    settings_el = doc.settings.element
+    if settings_el.find(qn('w:evenAndOddHeaders')) is None:
+        settings_el.append(OxmlElement('w:evenAndOddHeaders'))
+
+    for section in doc.sections:
+        section.different_first_page_header_footer = True
+        # Title page: no header/footer
+        section.first_page_header.is_linked_to_previous = False
+        section.first_page_footer.is_linked_to_previous = False
+        # Even-page (left) header — STYLEREF "Heading 1" pulls chapter title
+        eh = section.even_page_header
+        eh.is_linked_to_previous = False
+        ehp = eh.paragraphs[0]
+        ehp.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        ehp.text = ""
+        run = ehp.add_run()
+        run.font.name = "Times New Roman"
+        run.font.size = Pt(9)
+        run.italic = True
+        # Append STYLEREF field
+        fld_begin = OxmlElement('w:r')
+        rPr = OxmlElement('w:rPr')
+        rFonts = OxmlElement('w:rFonts'); rFonts.set(qn('w:ascii'),'Times New Roman'); rFonts.set(qn('w:hAnsi'),'Times New Roman')
+        sz = OxmlElement('w:sz'); sz.set(qn('w:val'),'18')
+        i_el = OxmlElement('w:i')
+        rPr.append(rFonts); rPr.append(sz); rPr.append(i_el)
+        fld_begin.append(rPr)
+        fb = OxmlElement('w:fldChar'); fb.set(qn('w:fldCharType'),'begin')
+        fld_begin.append(fb)
+        ehp._p.append(fld_begin)
+        instr = OxmlElement('w:r')
+        instr.append(rPr)
+        instr_t = OxmlElement('w:instrText'); instr_t.text = ' STYLEREF "Heading 1" \\* MERGEFORMAT '
+        instr_t.set(qn('xml:space'),'preserve')
+        instr.append(instr_t)
+        ehp._p.append(instr)
+        fld_end = OxmlElement('w:r')
+        fld_end.append(rPr)
+        fe = OxmlElement('w:fldChar'); fe.set(qn('w:fldCharType'),'end')
+        fld_end.append(fe)
+        ehp._p.append(fld_end)
+        # Odd-page (right) header — book title
+        oh = section.header
+        oh.is_linked_to_previous = False
+        ohp = oh.paragraphs[0]
+        ohp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        ohp.text = ""
+        r2 = ohp.add_run("KLİNİK PSİXİATRİYA · Diaqnostika və terapiya standartları")
+        r2.font.name = "Times New Roman"
+        r2.font.size = Pt(9)
+        r2.italic = True
+        # Footer page numbers (both pages, outer corners via centered PAGE field)
+        for foot, align in [(section.even_page_footer, WD_ALIGN_PARAGRAPH.LEFT),
+                            (section.footer, WD_ALIGN_PARAGRAPH.RIGHT)]:
+            foot.is_linked_to_previous = False
+            fp = foot.paragraphs[0]
+            fp.alignment = align
+            fp.text = ""
+            r3 = fp.add_run()
+            r3.font.name = "Times New Roman"
+            r3.font.size = Pt(10)
+            # PAGE field
+            fb = OxmlElement('w:r')
+            fbb = OxmlElement('w:fldChar'); fbb.set(qn('w:fldCharType'),'begin')
+            fb.append(fbb); fp._p.append(fb)
+            it = OxmlElement('w:r')
+            itt = OxmlElement('w:instrText'); itt.text = ' PAGE '
+            itt.set(qn('xml:space'),'preserve')
+            it.append(itt); fp._p.append(it)
+            fe = OxmlElement('w:r')
+            fee = OxmlElement('w:fldChar'); fee.set(qn('w:fldCharType'),'end')
+            fe.append(fee); fp._p.append(fe)
 
     # ── 1. Force-clear first-line indent in EVERY table cell paragraph ──
     def kill_indent(par):
