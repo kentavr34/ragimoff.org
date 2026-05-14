@@ -88,7 +88,20 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
   display:none;background:none;border:1px solid var(--border);
   color:var(--text2);border-radius:6px;padding:10px;cursor:pointer;
   flex-shrink:0;
+  position:relative; z-index:1; /* keep above sibling overlays inside header */
+  pointer-events:auto;
 }
+.menu-btn:hover{ border-color:var(--gold); color:var(--gold) }
+.menu-btn:active{ transform:scale(0.96) }
+/* Hard safety: any orphaned overlay should NOT block the header. */
+.site-header{ pointer-events:auto !important; }
+.site-header *{ pointer-events:auto; }
+/* If kitab-overlay or dzl-backdrop is in DOM but no .open / .on class,
+   ensure it cannot intercept clicks. */
+.kitab-overlay:not(.open){ display:none !important; pointer-events:none; }
+.dzl-backdrop:not(.open){ display:none !important; pointer-events:none; }
+#ov:not(.on){ display:none !important; pointer-events:none; }
+#search-drop:not(.on){ display:none !important; pointer-events:none; }
 .menu-btn svg{width:22px;height:22px;display:block}
 
 /* ── KİTAB SİFARİŞİ BUTTON ───────────────────── */

@@ -242,6 +242,34 @@
     return { open };
   }
 
+  // ─── Defensive: panic-close all overlays on ESC + sanity reset ──
+  function panicClose(){
+    // 1. Sidebar
+    const sb = document.getElementById("sb");
+    const ov = document.getElementById("ov");
+    if(sb) sb.classList.remove("on");
+    if(ov) ov.classList.remove("on");
+    // 2. Kitab-modal
+    const km = document.getElementById("kitab-modal");
+    if(km) km.classList.remove("open");
+    // 3. Search dropdown
+    const sd = document.getElementById("search-drop");
+    if(sd) sd.classList.remove("on");
+    // 4. dzl backdrops
+    document.querySelectorAll(".dzl-backdrop.open")
+      .forEach(b => b.classList.remove("open"));
+    // 5. Always restore body scroll
+    document.body.style.overflow = "";
+  }
+  // ESC = panic close
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") panicClose();
+  });
+  // If after a navigation any overlay element somehow got stuck, clean on load
+  window.addEventListener("pageshow", function(e){
+    if(e.persisted) panicClose();   // bfcache restore
+  });
+
   function init(){
     if(document.querySelector(".dzl-fab")) return;
     const fab = el("button",{class:"dzl-fab", type:"button", "aria-label":"Düzəliş et"}, "Düzəliş et");
