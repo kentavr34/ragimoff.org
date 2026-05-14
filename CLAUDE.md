@@ -28,6 +28,13 @@ Academic Azerbaijani medical register. Always use:
 Only authoritative sources are allowed:
 NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM
 
+## Session-start ritual (читай каждый раз)
+В начале сессии, перед любой содержательной работой над книгой:
+1. Прочитать `TYPOGRAPHY.md` (правила, особенно §0c — терминологический синхронизм)
+2. Прочитать `PROGRESS.md` (последняя сессия)
+3. **Запустить `python _term_sync.py`** — подтянуть одобренные правки из Google Sheet (или локального `_terms_approved.json`), применить их по всему сайту/книге, доложить пользователю что было применено.
+4. Если правки применены — выполнить пересборку: `_build_abbreviatur.py` → `_rebuild_book_nav.py` → `build_book.py`.
+
 ## Typography / verstka rules
 **Read `TYPOGRAPHY.md` BEFORE any DOCX or book-HTML layout work.**
 

@@ -125,6 +125,55 @@
 5. **Грамматические правила** см. 994 grammar bible: `C:\Users\SAM\Desktop\994\grammar_bibles\az.md`.
 6. **При сомнении** в термине — обращаться к 994 translator-системе (production-сервер `94.156.35.89`, через jump host `185.203.116.131`).
 
+## 0c. Терминологический синхронизм — обязательный workflow
+
+### Принцип
+
+Любая замена термина или названия расстройства должна происходить **одновременно в трёх местах**:
+
+1. **`_supplements/chapters-v2/*.html`** — мастер-источники глав
+2. **`klinik-psixiatriya/*.html`** — все 23 главы + abbreviatur + index/giris/yekun
+3. **`_build_abbreviatur.py CANONICAL_TERMS`** — список «канонических терминов сайта», который рендерится в шапку `abbreviatur.html`
+
+После любой замены — пересборка:
+```
+python _build_abbreviatur.py     # обновляет шапку «Saytda istifadə olunan terminlər»
+python _rebuild_book_nav.py      # sidebar/TOC
+python build_book.py             # DOCX
+```
+
+### Workflow «Düzəlt → Google Sheet → автоприменение»
+
+1. Пользователь нажимает **✎ Düzəlt** на сайте (любая страница книги или `abbreviatur.html`).
+2. Появляется модалка: текущая форма (readonly) + поле «Düzgün forma» + поле «Mənbə/izah».
+3. Submit → POST в GAS endpoint → новая строка в Google Sheet.
+4. Автор/студент-носитель проверяет в таблице и ставит `Status = ok` (или `approved`/`təsdiq`).
+5. **В начале каждой следующей сессии** агент выполняет:
+   ```
+   python _term_sync.py
+   ```
+   - Скрипт делает GET `?action=approved` к GAS endpoint
+   - Получает только одобренные строки
+   - Применяет замены через `apply_replacement()` с защитой `<ol class="ref-list">` и `<abbr title>`
+   - Сообщает что и сколько заменилось
+6. Затем агент запускает 3 пересборки выше + один DOCX.
+7. Записывает в `HISTORY.json.entries` + `PROGRESS.md` что было применено.
+
+### Локальный fallback
+
+Если интернет/GAS недоступен — можно положить файл `_terms_approved.json` в корень worktree:
+```json
+[
+  {"original": "OPOZİSİONAL DEFİANT POZUNTU", "proposed": "MÜXALİF-İNADKAR POZUNTU", "rowKind": "chapter", "note": "AzPA"},
+  ...
+]
+```
+`_term_sync.py` подхватит его автоматически (приоритет над GAS).
+
+### Шапка abbreviatur.html
+
+В шапке `klinik-psixiatriya/abbreviatur.html` есть секция `#cari-terminler` — «Saytda istifadə olunan adlar və terminlər (cari)». Это **единый источник правды** для канонических форм. Каждая правка термина обновляет этот список через `CANONICAL_TERMS` в `_build_abbreviatur.py`.
+
 ## 0a. Цвет текста — ОБЯЗАТЕЛЬНО ЧЁРНЫЙ
 
 **Весь текст в книге — `#000000` (чистый чёрный).** Никакого синего/голубого/blue (`#4F81BD`, `#0563C1` и пр.), никаких тематических акцентов Office, никаких подсветок ссылок.

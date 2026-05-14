@@ -8,6 +8,32 @@ description: Apply ICD-11 (МКБ-11 РФ 2022) typography style to the Klinik P
 ## Trigger
 Any layout/verstka work on the book: DOCX rebuild, page-break complaints, heading hierarchy, title page, TOC, headers, chapter starts, colours.
 
+## Session-start: term sync
+At the very beginning of each session that touches the book, run:
+```
+python _term_sync.py
+```
+This pulls APPROVED corrections from the Google Sheet (filled by users via the
+'Düzəlt' button on the site) and applies them everywhere. Then rebuild:
+```
+python _build_abbreviatur.py
+python _rebuild_book_nav.py
+python build_book.py
+```
+Record what was applied in PROGRESS.md and HISTORY.json.
+
+## Single source of truth for canonical terms
+`klinik-psixiatriya/abbreviatur.html` has a `#cari-terminler` header section
+listing ALL canonical AZ terms used on the site. The list lives in
+`_build_abbreviatur.py CANONICAL_TERMS` and is rendered into the page header.
+
+**RULE: Any rename of a term MUST update three places at once:**
+1. `_supplements/chapters-v2/*.html` (master content)
+2. `klinik-psixiatriya/*.html` (rendered book + abbreviatur)
+3. `_build_abbreviatur.py CANONICAL_TERMS` list (header)
+
+Otherwise the abbreviatur page header will drift from actual book content.
+
 ## Verified disorder name list (canonical)
 The 103 disorder names with WHO ICD-11 2024 codes are listed in `TYPOGRAPHY.md` section 0b. Always check against that table before editing any disorder title. Do NOT revert to old forms (e.g. `OPOZİSİONAL DEFİANT POZUNTU` → must remain `MÜXALİF-İNADKAR POZUNTU`).
 

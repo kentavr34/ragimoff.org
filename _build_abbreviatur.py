@@ -49,6 +49,75 @@ def edit_btn(term: str, kind: str) -> str:
     )
 
 
+# Canonical site terms — the SINGLE source of truth.
+# Updated together with any rename across the book/site.
+# Format: (current AZ form on site, English/source reference, ICD code)
+CANONICAL_TERMS = [
+    # disorder name corrections from rounds 1-5
+    ("SİNİR ANOREKSİYASI",                   "Anorexia Nervosa (6B80)",                "6B80"),
+    ("SİNİR BULİMİYASI",                     "Bulimia Nervosa (6B81)",                 "6B81"),
+    ("TƏKRARLANAN DEPRESİV POZUNTU",         "Recurrent Depressive Disorder (6A71)",   "6A71"),
+    ("BƏDƏN DİSSTRES POZUNTUSU",             "Bodily Distress Disorder (6C20)",        "6C20"),
+    ("MÜXALİF-İNADKAR POZUNTU",              "Oppositional Defiant Disorder (6C91)",   "6C91"),
+    ("ERKƏN EYAKULYASİYA",                   "Early/Premature Ejaculation (HA01)",     "HA01"),
+    ("SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU",
+        "Disinhibited Social Engagement Disorder (6B45)", "6B45"),
+    ("PATOLOJİ BƏDƏN QOXUSU POZUNTUSU",      "Olfactory Reference Disorder (6B22)",    "6B22"),
+    ("KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU",          "Binge Eating Disorder (6B82)",           "6B82"),
+    ("QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU",
+        "Avoidant/Restrictive Food Intake Disorder (6B85)", "6B85"),
+    # ICD-11 code drift fixes (WHO 2024)
+    ("POSTTRAVMATİK STRES POZUNTUSU",        "Post-Traumatic Stress Disorder (6B40)",  "6B40"),
+    ("KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU","Complex PTSD (6B41)",                   "6B41"),
+    ("UZANMIŞ YAS POZUNTUSU",                "Prolonged Grief Disorder (6B42)",        "6B42"),
+    ("ADAPTASİYA POZUNTUSU",                 "Adjustment Disorder (6B43)",             "6B43"),
+    # general terminology
+    ("Klinik təzahürlər",                    "Clinical manifestations",                "—"),
+    ("Vahid diaqnostik meyarlar",            "Unified diagnostic criteria",            "—"),
+    ("İnstrumental müayinələr",              "Instrumental examinations",              "—"),
+    ("pasiyent",                             "patient (not 'xəstə')",                  "—"),
+    ("psixi pozuntu",                        "psychiatric disorder (not 'ruhi')",      "—"),
+    ("metodları",                            "methods (not 'üsulları')",               "—"),
+    ("Mədəniyyət",                           "Culture (not 'Kültür')",                 "—"),
+    ("kultura",                              "Lab culture (not 'kültür')",             "—"),
+    ("ilkin göstəricilər",                   "baseline indicators",                    "—"),
+    ("obur yemə",                            "binge eating",                           "—"),
+    ("skrinninq",                            "screening",                              "—"),
+    ("təqib",                                "follow-up",                              "—"),
+    ("uyğunluq",                             "compliance",                             "—"),
+    ("təcrid",                               "detachment",                             "—"),
+    ("Dezinhibisiya",                        "Disinhibition (personality trait)",      "—"),
+    ("inadkar",                              "defiant",                                "—"),
+    ("məhdudlaşdırılmamış",                  "disinhibited (adjective)",               "—"),
+    ("meyarlar",                             "criteria (not 'çek-list')",              "—"),
+]
+
+
+def build_canonical_header() -> str:
+    """A page-header section listing canonical site terms with their
+    English equivalents — single source of truth for translators/editors."""
+    rows = ['<section id="cari-terminler" class="cari-box">']
+    rows.append('  <h2>Saytda istifadə olunan adlar və terminlər (cari)</h2>')
+    rows.append('  <p>Bu siyahı — saytın və kitabın <strong>ərəfəyə '
+                'qoyulmuş kanonik terminologiyası</strong>dır. Hər hansı '
+                'sözü bu siyahıda dəyişdirsəniz, dəyişiklik avtomatik '
+                'olaraq kitabın hər səhifəsinə yayılacaq.</p>')
+    rows.append('  <div class="tbl-wrap"><table>')
+    rows.append('    <tr><th>Cari AZ forma</th><th>İzah / qarşılıq</th>'
+                '<th>Kod</th><th style="width:110px">Düzəlt</th></tr>')
+    for az, expl, code in CANONICAL_TERMS:
+        rows.append(
+            f'    <tr><td><strong>{html.escape(az)}</strong></td>'
+            f'<td>{html.escape(expl)}</td>'
+            f'<td class="kod-cell">{html.escape(code)}</td>'
+            f'<td class="rasmi-cell">{edit_btn(az, "canonical")}</td></tr>'
+        )
+    rows.append('  </table></div>')
+    rows.append('</section>')
+    rows.append('<hr>')
+    return "\n".join(rows)
+
+
 def build_chapters_table() -> str:
     rows = []
     rows.append('<h2 id="fesil-adlari">Fəsil Adları</h2>')
@@ -114,6 +183,19 @@ def add_edit_column(html_text: str) -> str:
     return "".join(out)
 
 
+def insert_canonical_header(html_text: str) -> str:
+    """Insert canonical-terms header right after the H1 + first <p>."""
+    marker = '<h1 id="terminoloji-lüğət" class="h-section">TERMİNOLOJİ LÜĞƏT</h1>'
+    if marker not in html_text:
+        return html_text
+    after = html_text.index(marker) + len(marker)
+    m = re.search(r'</p>', html_text[after:])
+    if not m:
+        return html_text
+    insert_at = after + m.end()
+    return html_text[:insert_at] + "\n\n" + build_canonical_header() + "\n" + html_text[insert_at:]
+
+
 def insert_chapters_table(html_text: str) -> str:
     # Insert chapters table right after the intro <p>...</p> following the H1.
     marker = '<h1 id="terminoloji-lüğət" class="h-section">TERMİNOLOJİ LÜĞƏT</h1>'
@@ -133,6 +215,11 @@ def insert_chapters_table(html_text: str) -> str:
 def main():
     text = PAGE.read_text(encoding="utf-8")
 
+    # Strip previously injected canonical-terms header (for idempotent re-run)
+    text = re.sub(
+        r'<section id="cari-terminler"[\s\S]*?</section>\s*<hr>\s*',
+        '', text
+    )
     # Strip previously injected chapters table (for idempotent re-run)
     text = re.sub(
         r'<h2 id="fesil-adlari">[\s\S]*?<hr>\s*',
@@ -148,7 +235,8 @@ def main():
         '</tr>', text
     )
 
-    # Now insert fresh chapters table + edit columns
+    # Now insert canonical-terms header + fresh chapters table + edit columns
+    text = insert_canonical_header(text)
     text = insert_chapters_table(text)
     text = add_edit_column(text)
 

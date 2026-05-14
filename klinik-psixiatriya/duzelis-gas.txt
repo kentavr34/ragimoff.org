@@ -58,3 +58,45 @@ function doPost(e){
    const ENDPOINT = "https://script.google.com/macros/s/.../exec";
 
 5) Kommit edib push edin — düymə bütün səhifələrdə aktiv olacaq.
+
+----------------------------------------------------------------
+ADDITIONAL: GET ?action=approved — return approved rows as JSON
+(used by _term_sync.py at session start)
+----------------------------------------------------------------
+
+Update the Apps Script to also handle GET requests:
+
+function doGet(e){
+  if(e.parameter.action === "approved"){
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
+    const rows = sheet.getDataRange().getValues();
+    const headers = rows.shift();  // ts, kind, url, title, original, proposed, ua, [+ status, rowKind, note]
+    // Find indices of relevant columns
+    const idx = {};
+    headers.forEach((h,i) => idx[String(h).toLowerCase()] = i);
+    // Expect columns: original, proposed, status (manually added; mark 'ok'/'approved')
+    // Also support 'note' and 'rowkind' if added.
+    const out = rows
+      .filter(r => {
+        const s = String(r[idx['status']] || '').toLowerCase().trim();
+        return s === 'ok' || s === 'approved' || s === 'təsdiq' || s === 'tesdiq';
+      })
+      .map(r => ({
+        original: r[idx['original']] || '',
+        proposed: r[idx['proposed']] || '',
+        rowKind:  r[idx['rowkind']]  || '',
+        note:     r[idx['note']]     || '',
+        ts:       r[idx['ts']]       || '',
+      }));
+    return ContentService.createTextOutput(JSON.stringify(out))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput("OK").setMimeType(ContentService.MimeType.TEXT);
+}
+
+SHEET COLUMN ORDER (recommended, after this update):
+  ts | kind | url | title | original | proposed | note | rowKind | ua | status
+
+Add 'status' column manually. To approve a proposal, type 'ok' (or 'approved',
+'təsdiq') into the status cell. The next time _term_sync.py runs it will pick
+it up and apply the change across the book.
