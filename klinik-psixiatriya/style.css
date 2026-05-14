@@ -722,3 +722,25 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   font-size: 12px;
   color: var(--gold);
 }
+
+/* ── abbreviatur: mobile-friendly tables ───────────────────────── */
+@media (max-width: 720px){
+  /* Tables go full-width, smaller font, tighter padding */
+  .tbl-wrap{ margin: 12px -8px; border-radius: 0; border-left: 0; border-right: 0; }
+  .tbl-wrap table{ font-size: 12.5px; }
+  .tbl-wrap th, .tbl-wrap td{ padding: 7px 8px; line-height: 1.35; }
+  .tbl-wrap td.kod-cell{ font-size: 11px; white-space: nowrap; }
+  .tbl-wrap td.rasmi-cell{ padding: 7px 6px; }
+  /* Edit button — compact, no "Düzəlt" text on tight screens */
+  .dzl-row-btn{ padding: 4px 8px; font-size: 11px; gap: 0; }
+  .dzl-row-btn span.dzl-btn-label{ display: none; }
+  /* Cari-terminler header box: narrower padding */
+  .cari-box{ padding: 14px 14px; margin: 18px -4px; border-radius: 4px; }
+  .cari-box h2{ font-size: 17px; }
+  .cari-box p{ font-size: 13px; }
+}
+/* Tablet: keep wider button but a bit smaller */
+@media (max-width: 480px){
+  .tbl-wrap table{ font-size: 12px; }
+  .tbl-wrap th, .tbl-wrap td{ padding: 6px 6px; }
+}

@@ -214,6 +214,75 @@ def insert_chapters_table(html_text: str) -> str:
     return html_text[:insert_at] + "\n\n" + build_chapters_table() + "\n" + html_text[insert_at:]
 
 
+def strip_columns_pozuntular_table(text: str) -> str:
+    """In the disorders table (after #pozuntular-lüğəti), remove the 'Rəsmi AZ'
+    column (the Düzəlt button already covers the correction workflow).
+    The table structure is: Kod | Azərbaycanca | English | Русский | Rəsmi AZ | Düzəlt
+    → after strip:           Kod | Azərbaycanca | English | Русский | Düzəlt"""
+    # Find the disorders table section
+    m_h = text.find('id="pozuntular-lüğəti"')
+    if m_h < 0:
+        return text
+    # Find next <table> after that
+    m_tbl = re.search(r'<table[\s\S]*?</table>', text[m_h:])
+    if not m_tbl:
+        return text
+    table_start = m_h + m_tbl.start()
+    table_end = m_h + m_tbl.end()
+    table = text[table_start:table_end]
+
+    # Strip <th class="col-rasmi">Rəsmi AZ</th> from header
+    table = re.sub(r'<th\s+class="col-rasmi"[^>]*>[^<]*</th>', '', table)
+    # Strip <td class="rasmi-cell">...</td> from EVERY row, EXCEPT the last one
+    # in each row (which is the Düzəlt button we added). The OLD rasmi-cell
+    # was the 5th column (before Düzəlt). We want to keep only the Düzəlt one.
+    # Strategy: count rasmi-cell per row, keep only the LAST.
+    def process_row(m_tr):
+        inner = m_tr.group(1)
+        cells = list(re.finditer(r'<td[^>]*>[\s\S]*?</td>', inner))
+        # Identify all rasmi-cell occurrences
+        rasmi_cells = [c for c in cells if 'rasmi-cell' in c.group(0)]
+        if len(rasmi_cells) <= 1:
+            return m_tr.group(0)
+        # Drop all rasmi-cells except the LAST one (Düzəlt button)
+        to_drop = rasmi_cells[:-1]
+        new_inner = inner
+        for c in reversed(to_drop):
+            new_inner = new_inner[:c.start()] + new_inner[c.end():]
+        return f'<tr>{new_inner}</tr>'
+    table = re.sub(r'<tr>([\s\S]*?)</tr>', process_row, table)
+    return text[:table_start] + table + text[table_end:]
+
+
+def strip_columns_abbr_table(text: str) -> str:
+    """In the abbreviations table (under #abbreviaturalar), drop the Russian
+    column (3rd) — it duplicates info already in the disorders table.
+    Original headers: Abbreviatura | Azərbaycanca | Русский | English | Düzəlt
+    Target:           Abbreviatura | Azərbaycanca | English | Düzəlt """
+    m_h = text.find('id="abbreviaturalar"')
+    if m_h < 0:
+        return text
+    m_tbl = re.search(r'<table[\s\S]*?</table>', text[m_h:])
+    if not m_tbl:
+        return text
+    ts, te = m_h + m_tbl.start(), m_h + m_tbl.end()
+    table = text[ts:te]
+
+    # Header row: drop 3rd <th> (Русский эквивалент)
+    def drop_3rd_in_row(m_tr):
+        inner = m_tr.group(1)
+        # Split into cells (th or td)
+        cells = list(re.finditer(r'<t[hd][^>]*>[\s\S]*?</t[hd]>', inner))
+        if len(cells) < 4:
+            return m_tr.group(0)
+        # Drop 3rd cell (index 2 — Русский)
+        third = cells[2]
+        new_inner = inner[:third.start()] + inner[third.end():]
+        return f'<tr>{new_inner}</tr>'
+    table = re.sub(r'<tr>([\s\S]*?)</tr>', drop_3rd_in_row, table)
+    return text[:ts] + table + text[te:]
+
+
 def main():
     text = PAGE.read_text(encoding="utf-8")
 
@@ -241,6 +310,9 @@ def main():
     text = insert_canonical_header(text)
     text = insert_chapters_table(text)
     text = add_edit_column(text)
+    # Slim down: drop Rəsmi AZ column (disorders) + Russian column (abbreviations)
+    text = strip_columns_pozuntular_table(text)
+    text = strip_columns_abbr_table(text)
 
     PAGE.write_text(text, encoding="utf-8")
     print(f"OK: rebuilt {PAGE}")

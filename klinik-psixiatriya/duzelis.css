@@ -16,32 +16,28 @@
 }
 .dzl-backdrop.open{ display:flex; }
 
+/* Modal — always dark to match the book site (which is dark-theme only). */
 .dzl-modal{
-  background:#fff; color:#111; max-width:640px; width:100%;
+  background:#1c1f24; color:#e8e8e8; max-width:640px; width:100%;
   max-height:90vh; overflow:auto; border-radius:14px;
-  box-shadow:0 16px 48px rgba(0,0,0,.35);
+  box-shadow:0 16px 48px rgba(0,0,0,.55);
   padding:22px 22px 18px;
+  border:1px solid #3a3f48;
 }
-@media (prefers-color-scheme: dark){
-  .dzl-modal{ background:#1c1f24; color:#e8e8e8; }
-  .dzl-modal textarea, .dzl-modal .dzl-readonly{
-    background:#0f1115; color:#e8e8e8; border-color:#3a3f48;
-  }
+.dzl-modal h3{ margin:0 0 12px; font:600 18px/1.3 system-ui,sans-serif; color:#e8e8e8; }
+.dzl-modal p, .dzl-modal label, .dzl-modal li, .dzl-modal span{ color:#e8e8e8; }
+.dzl-modal p.dzl-lead{ margin:0 0 16px; font-size:14px; opacity:.92; color:#cbd0d6; }
+.dzl-modal textarea, .dzl-modal .dzl-readonly{
+  background:#0f1115; color:#e8e8e8; border-color:#3a3f48;
 }
-.dzl-modal h3{ margin:0 0 12px; font:600 18px/1.3 system-ui,sans-serif; }
-.dzl-modal p.dzl-lead{ margin:0 0 16px; font-size:14px; opacity:.85; }
 
 .dzl-choices{ display:grid; gap:10px; }
 .dzl-choice{
-  border:1px solid #ccd1d9; background:#f6f8fb;
+  border:1px solid #3a3f48; background:#252932;
   border-radius:10px; padding:14px 16px; text-align:left;
-  font:500 15px/1.35 system-ui,sans-serif; cursor:pointer; color:inherit;
+  font:500 15px/1.35 system-ui,sans-serif; cursor:pointer; color:#e8e8e8;
 }
-.dzl-choice:hover{ background:#e9eef6; }
-@media (prefers-color-scheme: dark){
-  .dzl-choice{ background:#252932; border-color:#3a3f48; }
-  .dzl-choice:hover{ background:#2c313c; }
-}
+.dzl-choice:hover{ background:#2c313c; }
 .dzl-choice b{ display:block; font-weight:600; margin-bottom:4px; }
 .dzl-choice span{ font-size:13px; opacity:.75; }
 
@@ -91,20 +87,11 @@
   background: var(--gold, #b88a25); color: #fff;
 }
 .dzl-modal .dzl-field input[readonly]{
-  background: #f2f3f5; color: #555; cursor: not-allowed;
-}
-@media (prefers-color-scheme: dark){
-  .dzl-modal .dzl-field input[readonly]{
-    background: #16181c; color: #aaa;
-  }
+  background: #16181c; color: #aaa; cursor: not-allowed;
 }
 .dzl-modal input[type="text"]{
   width: 100%; padding: 9px 11px; box-sizing: border-box;
-  border: 1px solid #c8ccd2; border-radius: 7px;
+  border: 1px solid #3a3f48; border-radius: 7px;
   font: 14px/1.4 system-ui,-apple-system,sans-serif;
-}
-@media (prefers-color-scheme: dark){
-  .dzl-modal input[type="text"]{
-    background: #0f1115; color: #e8e8e8; border-color: #3a3f48;
-  }
+  background: #0f1115; color: #e8e8e8;
 }
