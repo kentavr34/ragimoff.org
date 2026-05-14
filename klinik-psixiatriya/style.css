@@ -453,3 +453,198 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 
 /* Shift chapter link right to make room for toggle */
 .nav-has-sub > .nav-link { padding-right: 28px; }
+
+/* ============================================================
+   CHAPTERS-V2 — disorder fragments (12-section unified structure)
+   Added 2026-05-14 — see _supplements/chapters-v2/*.html
+   ============================================================ */
+section.disorder {
+  margin: 64px 0 0 0;
+  padding: 0;
+  scroll-margin-top: 80px;
+}
+section.disorder + section.disorder {
+  margin-top: 96px;
+  border-top: 1px solid var(--line);
+  padding-top: 48px;
+}
+section.disorder h1.h-disorder {
+  margin: 0 0 28px 0;
+  padding: 0 0 14px 0;
+  border-bottom: 2px solid var(--gold);
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: .01em;
+  color: var(--text);
+}
+section.disorder h1.h-disorder .icd {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold2);
+  background: rgba(230,180,74,0.10);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+  vertical-align: middle;
+  letter-spacing: .04em;
+}
+section.disorder h2 {
+  margin: 36px 0 14px 0;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--text);
+  letter-spacing: .005em;
+}
+section.disorder h3 {
+  margin: 24px 0 10px 0;
+  font-size: 16px;
+  color: var(--text);
+}
+section.disorder h4 {
+  margin: 22px 0 6px 0;
+  font-size: 15px;
+  color: var(--gold2);
+  font-weight: 600;
+}
+section.disorder p { margin: 0 0 12px 0; line-height: 1.65; }
+section.disorder ul, section.disorder ol { margin: 0 0 14px 0; padding-left: 26px; line-height: 1.65; }
+section.disorder li { margin-bottom: 4px; }
+section.disorder li > strong:first-child { color: var(--gold2); }
+
+/* Tables */
+section.disorder .tbl-wrap { overflow-x: auto; margin: 14px 0 18px 0; }
+section.disorder .tbl-wrap table {
+  width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5;
+}
+section.disorder .tbl-wrap th,
+section.disorder .tbl-wrap td {
+  padding: 8px 12px; text-align: left;
+  border: 1px solid var(--line);
+  vertical-align: top;
+}
+section.disorder .tbl-wrap th {
+  background: rgba(230,180,74,0.08);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Definition list — Metodikalar */
+section.disorder dl.method-list { margin: 14px 0 18px 0; }
+section.disorder dl.method-list dt {
+  font-weight: 600;
+  color: var(--gold2);
+  margin: 14px 0 4px 0;
+  font-size: 14.5px;
+}
+section.disorder dl.method-list dd {
+  margin: 0 0 6px 0; padding-left: 16px;
+  line-height: 1.55; font-size: 14px;
+}
+
+/* References */
+section.disorder ol.ref-list {
+  font-size: 13.5px; line-height: 1.55;
+  padding-left: 24px;
+}
+section.disorder ol.ref-list li { margin-bottom: 6px; }
+
+/* Print-friendly — for DOCX/PDF export */
+@media print {
+  section.disorder { page-break-before: always; }
+  section.disorder:first-of-type { page-break-before: avoid; }
+  section.disorder h1.h-disorder { page-break-after: avoid; }
+  section.disorder h2, section.disorder h3 { page-break-after: avoid; }
+}
+
+/* ============================================================
+   BOOK TOC (book-toc) — academic textbook style
+   ============================================================ */
+.book-toc {
+  max-width: 880px;
+  margin: 40px auto 80px auto;
+  padding: 0 20px;
+}
+.book-toc .toc-title {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: .15em;
+  color: var(--gold);
+  margin: 0 0 36px 0;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gold);
+}
+.book-toc .toc-chapter {
+  margin: 22px 0;
+}
+.book-toc .toc-chapter-title {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.book-toc .toc-chapter-title:hover { color: var(--gold2); }
+.book-toc .toc-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold2);
+  letter-spacing: .08em;
+  min-width: 90px;
+}
+.book-toc .toc-name { flex: 1; letter-spacing: .02em; }
+.book-toc .toc-range {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text3);
+}
+.book-toc .toc-disorders {
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding: 0 0 0 24px;
+}
+.book-toc .toc-disorders li {
+  margin: 0;
+  padding: 0;
+}
+.book-toc .toc-disorders a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 14px;
+  padding: 3px 0;
+  line-height: 1.5;
+}
+.book-toc .toc-disorders a:hover { color: var(--gold2); }
+.book-toc .toc-code {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold2);
+  min-width: 56px;
+}
+.book-toc .toc-dot-leader {
+  flex: 1;
+  border-bottom: 1px dotted var(--line);
+  margin: 0 6px;
+  transform: translateY(-3px);
+}
+.book-toc .toc-dname {
+  flex-shrink: 0;
+  max-width: 70%;
+  text-align: right;
+}
+@media (max-width: 720px) {
+  .book-toc .toc-chapter-title { flex-wrap: wrap; gap: 8px; }
+  .book-toc .toc-num { min-width: auto; }
+  .book-toc .toc-range { width: 100%; }
+  .book-toc .toc-disorders a { flex-wrap: wrap; }
+  .book-toc .toc-dot-leader { display: none; }
+  .book-toc .toc-dname { text-align: left; max-width: 100%; }
+}
