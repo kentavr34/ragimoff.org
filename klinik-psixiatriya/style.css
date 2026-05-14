@@ -708,3 +708,17 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   color: var(--gold2);
   border-bottom-color: var(--gold2);
 }
+
+/* ── abbreviatur: hard middle alignment + nowrap code cells ───── */
+.cari-box table td, .cari-box table th,
+#fesil-adlari ~ .tbl-wrap td, #fesil-adlari ~ .tbl-wrap th,
+.tbl-wrap td.kod-cell, .tbl-wrap td.rasmi-cell{
+  vertical-align: middle !important;
+}
+/* Keep ICD-code ranges on one line (no split on em-dash) */
+.tbl-wrap td.kod-cell{
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+}
