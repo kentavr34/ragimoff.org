@@ -63,6 +63,17 @@ def extract_main(html: str) -> str:
     body = re.sub(r'<style\b.*?</style>', '', body, flags=re.DOTALL | re.IGNORECASE)
     # Strip nav blocks (page-nav at the bottom, breadcrumbs, etc.)
     body = re.sub(r'<nav\b.*?</nav>', '', body, flags=re.DOTALL | re.IGNORECASE)
+    # ── Clean up double-injected abbr remnants ──
+    # Iteratively collapse properly-formed <abbr>X</abbr> → X.
+    # Note: leftover title-text leaks (e.g. ', 2019, qüvvəyə minmə 2022.">')
+    # are handled later, per-paragraph, where we have lexical context.
+    prev = None
+    while prev != body:
+        prev = body
+        body = re.sub(
+            r'<abbr\b[^<>]*>([^<]*)</abbr>',
+            r'\1', body, flags=re.IGNORECASE)
+    body = re.sub(r'</?abbr\b[^>]*>', '', body, flags=re.IGNORECASE)
     return body.strip()
 
 
@@ -91,7 +102,12 @@ def strip_inline_bold(html: str) -> str:
 
 
 def shift_levels(html: str) -> str:
-    """Chapter h2 → h1; everything else demoted 1 level."""
+    """Chapter h2 → h1; everything else demoted 1 level.
+
+    Fixed bug: tracks in_chapter_h1 state so that the chapter's </h1> close
+    tag isn't demoted to </h2>. Previous version demoted close tags because
+    they don't carry data-chapter attribute.
+    """
     def chapter_to_h1(m):
         attrs = m.group(1)
         if 'data-chapter' not in attrs:
@@ -103,12 +119,17 @@ def shift_levels(html: str) -> str:
 
     out = []
     i = 0
+    in_chapter_h1 = False
     pat = re.compile(r'<(/?)h([1-5])(\b[^>]*)>', re.IGNORECASE)
     for m in pat.finditer(html2):
         out.append(html2[i:m.start()])
         slash, lvl, attrs = m.group(1), int(m.group(2)), m.group(3)
-        if lvl == 1 and 'data-chapter' in attrs:
-            out.append(f'<{slash}h1{attrs}>')
+        if not slash and lvl == 1 and 'data-chapter' in attrs:
+            in_chapter_h1 = True
+            out.append(f'<h1{attrs}>')
+        elif slash and lvl == 1 and in_chapter_h1:
+            in_chapter_h1 = False
+            out.append('</h1>')
         else:
             new_lvl = min(lvl + 1, 6)
             out.append(f'<{slash}h{new_lvl}{attrs}>')
@@ -230,7 +251,7 @@ def fix_docx(path: Path):
         s.paragraph_format.space_after = Pt(6)
         s.paragraph_format.keep_with_next = True
 
-    style_heading("Heading 1", 28, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.CENTER)
+    style_heading("Heading 1", 36, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.CENTER)
     style_heading("Heading 2", 20, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
     style_heading("Heading 3", 14, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
     style_heading("Heading 4", 12, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
@@ -502,6 +523,81 @@ def fix_docx(path: Path):
         # Actually TOC heading uses TOC Heading style, not H1. We just rely
         # on pageBreakBefore on the title's own paragraph being absent and
         # add break to the body's first H1.
+
+    # ── 5.5. Chapter title-page styling: large H1 + small italic subtitle
+    #         lines (XBT-11/XBT-10/DSM-5-TR) immediately after each Heading 1. ──
+    H1_STYLES_S = {'Heading1', 'Heading 1', 'heading 1'}
+    # Match if the line CONTAINS an XBT/DSM/ICD marker in the first 100 chars
+    # (handles leaked abbr-title prefixes like 'WHO), 2019,...">XBT-11:').
+    XBT_RE = re.compile(r'(XBT-1[01]|DSM-5[-T R]*|ICD-1[01])\s*:', re.IGNORECASE)
+    paragraphs = body.findall(qn('w:p'))
+    for i, p in enumerate(paragraphs):
+        pPr = p.find(qn('w:pPr'))
+        if pPr is None: continue
+        pStyle = pPr.find(qn('w:pStyle'))
+        if pStyle is None: continue
+        sty = pStyle.get(qn('w:val')) or ''
+        if sty not in H1_STYLES_S: continue
+        # Look at the next up to 5 paragraphs; if they start with XBT/DSM-like
+        # marker → style them as chapter subtitles (smaller, italic, centered, grey).
+        for j in range(i+1, min(i+6, len(paragraphs))):
+            np_ = paragraphs[j]
+            np_text = ''.join(t.text or '' for t in np_.iter(qn('w:t'))).strip()
+            if not np_text or not XBT_RE.search(np_text[:200]):
+                break
+            # Clean leaked abbr-title prefix in this paragraph's runs:
+            # everything before the XBT/DSM/ICD marker is leaked junk.
+            m_marker = XBT_RE.search(np_text)
+            if m_marker and m_marker.start() > 0:
+                # Strip leading junk from runs
+                runs = np_.findall(qn('w:r'))
+                # Reconstruct text → find first run that contains the marker
+                cum = 0
+                for r in runs:
+                    r_text = ''.join(t.text or '' for t in r.iter(qn('w:t')))
+                    new_cum = cum + len(r_text)
+                    if cum <= m_marker.start() < new_cum:
+                        # This run contains the marker — trim leading junk
+                        offset = m_marker.start() - cum
+                        first_t = next(iter(r.iter(qn('w:t'))), None)
+                        if first_t is not None:
+                            first_t.text = r_text[offset:]
+                        # Remove all earlier runs
+                        idx = runs.index(r)
+                        for prev_r in runs[:idx]:
+                            np_.remove(prev_r)
+                        break
+                    cum = new_cum
+            # Apply subtitle styling — center + italic + 11pt + grey #555 + small spacing
+            np_pPr = np_.find(qn('w:pPr'))
+            if np_pPr is None:
+                np_pPr = OxmlElement('w:pPr')
+                np_.insert(0, np_pPr)
+            # Set alignment to center
+            for jc in np_pPr.findall(qn('w:jc')): np_pPr.remove(jc)
+            jc = OxmlElement('w:jc'); jc.set(qn('w:val'), 'center')
+            np_pPr.append(jc)
+            # Tight spacing
+            for sp in np_pPr.findall(qn('w:spacing')): np_pPr.remove(sp)
+            sp = OxmlElement('w:spacing')
+            sp.set(qn('w:before'), '0'); sp.set(qn('w:after'), '40')
+            np_pPr.append(sp)
+            # Override every run inside with italic + 11pt + grey
+            for r in np_.findall(qn('w:r')):
+                rPr = r.find(qn('w:rPr'))
+                if rPr is None:
+                    rPr = OxmlElement('w:rPr'); r.insert(0, rPr)
+                # Italic
+                if rPr.find(qn('w:i')) is None: rPr.append(OxmlElement('w:i'))
+                # Size 11pt = 22 half-points
+                for s in rPr.findall(qn('w:sz')): rPr.remove(s)
+                s = OxmlElement('w:sz'); s.set(qn('w:val'), '22'); rPr.append(s)
+                # Grey color
+                for c in rPr.findall(qn('w:color')): rPr.remove(c)
+                c = OxmlElement('w:color'); c.set(qn('w:val'), '555555'); rPr.append(c)
+            # Remove any pageBreakBefore that might have been added
+            for pbb in np_pPr.findall(qn('w:pageBreakBefore')):
+                np_pPr.remove(pbb)
 
     # ── 6. Force black on ALL text runs (TYPOGRAPHY.md rule #X: no blue) ──
     # Override any inline color set by pandoc or theme. Exception: title-page
