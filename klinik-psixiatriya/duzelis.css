@@ -76,3 +76,35 @@
   .dzl-toast.ok{ background:#1e3a26; color:#bce8c8; }
   .dzl-toast.err{ background:#3a1e1e; color:#f0bdbd; }
 }
+
+/* ── Per-term "Düzəlt" row buttons (abbreviatur.html) ──────────── */
+.dzl-row-btn{
+  display: inline-flex; align-items: center; gap: 4px;
+  background: transparent; color: var(--gold, #b88a25);
+  border: 1px solid var(--gold, #b88a25);
+  padding: 3px 9px; border-radius: 4px;
+  font: 500 11.5px/1.2 system-ui,-apple-system,sans-serif;
+  cursor: pointer; white-space: nowrap;
+  transition: background .15s, color .15s;
+}
+.dzl-row-btn:hover{
+  background: var(--gold, #b88a25); color: #fff;
+}
+.dzl-modal .dzl-field input[readonly]{
+  background: #f2f3f5; color: #555; cursor: not-allowed;
+}
+@media (prefers-color-scheme: dark){
+  .dzl-modal .dzl-field input[readonly]{
+    background: #16181c; color: #aaa;
+  }
+}
+.dzl-modal input[type="text"]{
+  width: 100%; padding: 9px 11px; box-sizing: border-box;
+  border: 1px solid #c8ccd2; border-radius: 7px;
+  font: 14px/1.4 system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  .dzl-modal input[type="text"]{
+    background: #0f1115; color: #e8e8e8; border-color: #3a3f48;
+  }
+}
