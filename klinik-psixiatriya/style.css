@@ -657,16 +657,22 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   color: var(--gold2);
   min-width: 56px;
 }
-.book-toc .toc-dot-leader {
+/* Visual order in row: code → name → dot-leader. HTML order is code → leader
+   → name, so we re-order via flexbox `order`. */
+.book-toc .toc-code      { order: 1; }
+.book-toc .toc-dname     {
+  order: 2;
+  text-align: left;
+  flex-shrink: 1;
+  min-width: 0;
+  white-space: normal;
+}
+.book-toc .toc-dot-leader{
+  order: 3;
   flex: 1;
   border-bottom: 1px dotted var(--line);
   margin: 0 6px;
   transform: translateY(-3px);
-}
-.book-toc .toc-dname {
-  flex-shrink: 0;
-  max-width: 70%;
-  text-align: right;
 }
 @media (max-width: 720px) {
   .book-toc .toc-chapter-title { flex-wrap: wrap; gap: 8px; }
@@ -674,7 +680,7 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   .book-toc .toc-range { width: 100%; }
   .book-toc .toc-disorders a { flex-wrap: wrap; }
   .book-toc .toc-dot-leader { display: none; }
-  .book-toc .toc-dname { text-align: left; max-width: 100%; }
+  .book-toc .toc-dname { text-align: left; max-width: 100%; min-width: 0; }
 }
 
 /* ── Canonical terms header on abbreviatur.html ─────────────────── */
