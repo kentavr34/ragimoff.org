@@ -18,8 +18,11 @@ OUT_DOCX = SITE / "KLINIK_PSIXIATRIYA_6.docx"
 REFERENCE_DOCX = SITE / "KLINIK_PSIXIATRIYA_5.docx"
 
 ORDER = [
+    # Front matter — merged into mugeddime.html in user's reading order:
+    # Müqəddimə → Oxucuya müraciət → MÜƏLLİF HAQQINDA → GİRİŞ → YEKUN
+    # TÖVSIYƏLƏR → BU KİTAB NİYƏ → DÜNYADA … → PROTOKOLs → AKKREDİTASİYA.
     "mugeddime.html",
-    "giris-yekun.html",
+    # Chapters
     "01-6A0-neyroinkisaf.html",
     "02-6A2-sizofreniya-spektri.html",
     "03-6A4-katatoniya.html",
@@ -43,9 +46,14 @@ ORDER = [
     "21-6E6-ikincili.html",
     "22-7AB-yuxu.html",
     "23-HA-cinsi-saglamliq.html",
+    # Appendices
     "elave-acde.html",
     "elave-skalalar.html",
     "yekun.html",
+    # End-of-book reference material (moved from mugeddime.html):
+    # TERMİNOLOJİ LÜĞƏT + PSİXOPATOLOGİYAYA GİRİŞ + KLİNİK MÜSAHİBƏ +
+    # HÜQUQİ-ETİK ASPEKTLƏR.
+    "melumat.html",
 ]
 
 MAIN_RE = re.compile(r'<main\b[^>]*>(.*?)</main>', re.DOTALL | re.IGNORECASE)

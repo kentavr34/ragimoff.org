@@ -71,10 +71,10 @@ def build_aside(active_slug: str | None = None) -> str:
                  '<button class="sb-close" onclick="toggleSb()" aria-label="Bağla">✕</button></div>')
     parts.append('    <nav>')
 
-    # Top static links
+    # Top static links — reorganized 2026-05-14 per user's TOC vision:
+    # giris-yekun.html was merged into mugeddime.html; melumat.html added at end.
     for ch, label in [
         ("index.html",        "Önsöz"),
-        ("giris-yekun.html",  "Kitab haqqında"),
         ("mugeddime.html",    "Müqəddimə"),
         ("abbreviatur.html",  "Qısaltmalar"),
     ]:
@@ -103,9 +103,9 @@ def build_aside(active_slug: str | None = None) -> str:
         parts.append('  </div>')
         parts.append('</div>')
 
-    # Terminology link at bottom
-    parts.append('<div class="nav-item" data-slug="terminoloji">')
-    parts.append('  <a href="terminoloji.html" class="nav-link" data-slug="terminoloji"><span>Terminologiya</span></a>')
+    # Appendix: terminology, psychopathology, clinical interview, legal-ethics
+    parts.append('<div class="nav-item" data-slug="melumat">')
+    parts.append('  <a href="melumat.html" class="nav-link" data-slug="melumat"><span>Məlumat bölməsi</span></a>')
     parts.append('</div>')
 
     parts.append('    </nav>')
@@ -118,8 +118,10 @@ ASIDE_RE = re.compile(r'<aside class="sidebar"[\s\S]*?</aside>', re.IGNORECASE)
 
 def rewrite_sidebars():
     base_pages = [
-        "index.html", "giris-yekun.html", "mugeddime.html", "abbreviatur.html",
-        "terminoloji.html",
+        "index.html", "mugeddime.html", "abbreviatur.html",
+        "melumat.html",
+        # legacy redirect (still gets sidebar so it stays consistent if visited)
+        "giris-yekun.html",
     ]
     pages = list(CHAPTER_TITLES.keys()) + base_pages
     count = 0
