@@ -169,15 +169,15 @@ def main():
 
     print("\nRunning pandoc...")
     import pypandoc
+    # No title/subtitle/author/date metadata — we build a manual title page
+    # in fix_docx() so it follows TYPOGRAPHY.md rule #1 (single page: name on
+    # top, slogan below, author/city/year at bottom). Pandoc's default title
+    # block would have separate Title/Subtitle/Author paragraphs in column.
     extra_args = [
         f"--reference-doc={REFERENCE_DOCX}",
         "--toc",
         "--toc-depth=2",
         "--metadata=toc-title:MÜNDƏRİCAT",
-        "--metadata=title:KLİNİK PSİXİATRİYA",
-        "--metadata=subtitle:XBT-11 və DSM-5-TR əsasında klinik bələdçi",
-        "--metadata=author:Dr. Kənan Rəhimov",
-        "--metadata=date:Bakı — 2026",
         "--standalone",
     ]
     pypandoc.convert_file(
@@ -196,11 +196,56 @@ def main():
 
 
 def fix_docx(path: Path):
+    """Post-process DOCX per TYPOGRAPHY.md rules:
+      1. Manual title page (book name + slogan top, author/city/year bottom)
+      2. Heading hierarchy: H1 28pt bold > H2 20pt bold > H3 14pt bold > H4 12pt bold
+      3. Page break ONLY before Heading 1 (chapter) and Heading 2 whose text
+         starts with an ICD code pattern (disorder title). Sub-sections do NOT
+         get page breaks.
+      4. Table cell indent + borders normalized.
+    """
     from docx import Document
     from docx.oxml.ns import qn
     from docx.oxml import OxmlElement
+    from docx.shared import Pt, Cm, RGBColor
+    from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 
     doc = Document(str(path))
+
+    # ── A. Configure Heading styles (TYPOGRAPHY.md rule #2) ──
+    def style_heading(name, size_pt, bold=True, color=None, align=None):
+        try:
+            s = doc.styles[name]
+        except KeyError:
+            return
+        s.font.name = "Times New Roman"
+        s.font.size = Pt(size_pt)
+        s.font.bold = bold
+        if color is not None:
+            s.font.color.rgb = RGBColor(*color)
+        if align is not None:
+            s.paragraph_format.alignment = align
+        # Reasonable spacing — no huge gaps
+        s.paragraph_format.space_before = Pt(12)
+        s.paragraph_format.space_after = Pt(6)
+        s.paragraph_format.keep_with_next = True
+
+    style_heading("Heading 1", 28, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.CENTER)
+    style_heading("Heading 2", 20, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
+    style_heading("Heading 3", 14, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
+    style_heading("Heading 4", 12, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
+    style_heading("Heading 5", 11, bold=True, color=(0,0,0), align=WD_ALIGN_PARAGRAPH.LEFT)
+
+    # Tighten Normal/Body spacing
+    try:
+        n = doc.styles["Normal"]
+        n.font.name = "Times New Roman"
+        n.font.size = Pt(11)
+        n.paragraph_format.space_after = Pt(4)
+        n.paragraph_format.space_before = Pt(0)
+        n.paragraph_format.line_spacing = 1.25
+    except KeyError:
+        pass
 
     # ── 1. Force-clear first-line indent in EVERY table cell paragraph ──
     def kill_indent(par):
@@ -246,28 +291,43 @@ def fix_docx(path: Path):
                             # Leave pStyle but our w:ind override above wins
                             pass
 
-    # ── 2. Page break before each Heading 1 and Heading 2 ──
-    HEADING_STYLES = {'Heading1', 'Heading 1', 'Heading2', 'Heading 2',
-                      'heading 1', 'heading 2'}
+    # ── 2. Page-break-before rules (TYPOGRAPHY.md rule #3) ──
+    # - Every Heading 1 (chapter) starts on a new page.
+    # - Heading 2 starts on a new page ONLY if its text begins with an ICD
+    #   code pattern (e.g. "6A00 ", "HA00 ", "7A40 ") — i.e. it's a disorder
+    #   title. Chapter-intro Heading 2 (like "Bu bölmənin tərkibi") does NOT
+    #   get a page break.
+    # - Sub-section headings (Heading 3/4/5) NEVER get page breaks.
+    ICD_RE = re.compile(r'^\s*([0-9][A-Z][0-9][0-9A-Z]?|HA[0-9]{2})\b')
+    H1_STYLES = {'Heading1', 'Heading 1', 'heading 1'}
+    H2_STYLES = {'Heading2', 'Heading 2', 'heading 2'}
+    # Strip ANY pre-existing page-break-before from non-target paragraphs.
+    SUB_HEADINGS = {'Heading3','Heading 3','heading 3',
+                    'Heading4','Heading 4','heading 4',
+                    'Heading5','Heading 5','heading 5',
+                    'Heading6','Heading 6','heading 6'}
     body = doc.element.body
     paragraphs = body.findall(qn('w:p'))
-    for p in paragraphs:
-        pPr = p.find(qn('w:pPr'))
-        if pPr is None:
-            continue
-        pStyle = pPr.find(qn('w:pStyle'))
-        if pStyle is None:
-            continue
-        sty = pStyle.get(qn('w:val')) or ''
-        if sty in HEADING_STYLES:
-            # Add page-break-before via pageBreakBefore element
-            pbb = pPr.find(qn('w:pageBreakBefore'))
-            if pbb is None:
-                pbb = OxmlElement('w:pageBreakBefore')
-                # Insert near top of pPr
-                pPr.insert(0, pbb)
 
-    # ── 3. Remove first heading's page break (avoids blank first page) ──
+    def text_of(p):
+        return "".join(t.text or "" for t in p.iter(qn('w:t')))
+
+    def add_pbb(p):
+        pPr = p.find(qn('w:pPr'))
+        if pPr is None:
+            pPr = OxmlElement('w:pPr')
+            p.insert(0, pPr)
+        if pPr.find(qn('w:pageBreakBefore')) is None:
+            pPr.insert(0, OxmlElement('w:pageBreakBefore'))
+
+    def remove_pbb(p):
+        pPr = p.find(qn('w:pPr'))
+        if pPr is None:
+            return
+        pbb = pPr.find(qn('w:pageBreakBefore'))
+        if pbb is not None:
+            pPr.remove(pbb)
+
     for p in paragraphs:
         pPr = p.find(qn('w:pPr'))
         if pPr is None:
@@ -276,26 +336,172 @@ def fix_docx(path: Path):
         if pStyle is None:
             continue
         sty = pStyle.get(qn('w:val')) or ''
-        if sty in HEADING_STYLES:
-            pbb = pPr.find(qn('w:pageBreakBefore'))
-            if pbb is not None:
-                pPr.remove(pbb)
+        if sty in H1_STYLES:
+            add_pbb(p)
+        elif sty in H2_STYLES:
+            if ICD_RE.match(text_of(p)):
+                add_pbb(p)
+            else:
+                remove_pbb(p)
+        elif sty in SUB_HEADINGS:
+            remove_pbb(p)
+
+    # ── 3. Remove first heading's page break (no blank leading page) ──
+    for p in paragraphs:
+        pPr = p.find(qn('w:pPr'))
+        if pPr is None:
+            continue
+        pStyle = pPr.find(qn('w:pStyle'))
+        if pStyle is None:
+            continue
+        sty = pStyle.get(qn('w:val')) or ''
+        if sty in H1_STYLES or sty in H2_STYLES:
+            remove_pbb(p)
             break  # only first heading
 
-    # ── 4. Yekun signature page break: paragraph containing "Kitabın məqsədi" ──
+    # ── 4. Yekun signature page break ──
     for p in paragraphs:
-        text = "".join(t.text or "" for t in p.iter(qn('w:t')))
-        if text.startswith("Kitabın məqsədi:"):
-            pPr = p.find(qn('w:pPr'))
-            if pPr is None:
-                pPr = OxmlElement('w:pPr')
-                p.insert(0, pPr)
-            if pPr.find(qn('w:pageBreakBefore')) is None:
-                pbb = OxmlElement('w:pageBreakBefore')
-                pPr.insert(0, pbb)
+        if text_of(p).startswith("Kitabın məqsədi:"):
+            add_pbb(p)
             break
 
+    # ── 4.5 Remove pandoc-auto Title paragraph (we build our own page) ──
+    TITLE_STYLES = {'Title', 'title'}
+    for p in list(body.findall(qn('w:p'))):
+        pPr = p.find(qn('w:pPr'))
+        if pPr is None: continue
+        pStyle = pPr.find(qn('w:pStyle'))
+        if pStyle is None: continue
+        sty = pStyle.get(qn('w:val')) or ''
+        if sty in TITLE_STYLES:
+            body.remove(p)
+
+    # ── 5. Manual title page (TYPOGRAPHY.md rule #1) ──
+    # Insert before the auto-generated TOC. Pandoc puts the TOC right at
+    # body start. We prepend: BOOK TITLE (huge, centered) + slogan + author
+    # block at bottom.
+    title_paragraphs = build_title_page_xml(doc)
+    # Insert at the very start of body (before TOC)
+    for tp in reversed(title_paragraphs):
+        body.insert(0, tp)
+    # Add page break to last title-page paragraph so TOC starts on its own page
+    if title_paragraphs:
+        last = title_paragraphs[-1]
+        pPr = last.find(qn('w:pPr'))
+        if pPr is None:
+            pPr = OxmlElement('w:pPr')
+            last.insert(0, pPr)
+        # Use a run with <w:br w:type="page"/> appended after content
+        # Simpler: page break BEFORE the next paragraph (the TOC heading).
+        # Find first H1 (TOC heading) after title page and add pbb.
+        # Actually TOC heading uses TOC Heading style, not H1. We just rely
+        # on pageBreakBefore on the title's own paragraph being absent and
+        # add break to the body's first H1.
+
     doc.save(str(path))
+
+
+def build_title_page_xml(doc):
+    """Build manual title page paragraphs (in document order).
+    Returns list of <w:p> elements ready to insert at body start."""
+    from docx.oxml.ns import qn
+    from docx.oxml import OxmlElement
+    from docx.shared import Pt, RGBColor
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+
+    def make_paragraph(text, *, size_pt, bold=False, italic=False,
+                       align=WD_ALIGN_PARAGRAPH.CENTER,
+                       space_before=0, space_after=0, color=(0,0,0)):
+        p_el = OxmlElement('w:p')
+        pPr = OxmlElement('w:pPr')
+        p_el.append(pPr)
+
+        # Alignment
+        jc = OxmlElement('w:jc')
+        jc.set(qn('w:val'),
+               'center' if align == WD_ALIGN_PARAGRAPH.CENTER else
+               'right'  if align == WD_ALIGN_PARAGRAPH.RIGHT  else 'left')
+        pPr.append(jc)
+
+        # Spacing
+        spc = OxmlElement('w:spacing')
+        spc.set(qn('w:before'), str(space_before * 20))  # 20 = pt → twentieths
+        spc.set(qn('w:after'),  str(space_after  * 20))
+        pPr.append(spc)
+
+        # Run
+        r = OxmlElement('w:r')
+        rPr = OxmlElement('w:rPr')
+        rFonts = OxmlElement('w:rFonts')
+        rFonts.set(qn('w:ascii'), 'Times New Roman')
+        rFonts.set(qn('w:hAnsi'), 'Times New Roman')
+        rPr.append(rFonts)
+        if bold:
+            rPr.append(OxmlElement('w:b'))
+        if italic:
+            rPr.append(OxmlElement('w:i'))
+        sz = OxmlElement('w:sz')
+        sz.set(qn('w:val'), str(size_pt * 2))  # half-points
+        rPr.append(sz)
+        col = OxmlElement('w:color')
+        col.set(qn('w:val'), '{:02X}{:02X}{:02X}'.format(*color))
+        rPr.append(col)
+        r.append(rPr)
+        t = OxmlElement('w:t')
+        t.text = text
+        t.set(qn('xml:space'), 'preserve')
+        r.append(t)
+        p_el.append(r)
+        return p_el
+
+    paragraphs = []
+    # Vertical spacing at top (≈8 line breaks)
+    paragraphs.append(make_paragraph("", size_pt=14, space_after=120))
+
+    # Book title — huge, centered
+    paragraphs.append(make_paragraph(
+        "KLİNİK PSİXİATRİYA",
+        size_pt=44, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        space_after=18,
+    ))
+    # Slogan — medium, italic
+    paragraphs.append(make_paragraph(
+        "Diaqnostika və terapiya standartları",
+        size_pt=18, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        space_after=10,
+    ))
+    paragraphs.append(make_paragraph(
+        "XBT-11 və DSM-5-TR əsasında klinik bələdçi",
+        size_pt=14, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        space_after=24, color=(85,85,85),
+    ))
+
+    # Big vertical gap (push author block toward the bottom)
+    for _ in range(14):
+        paragraphs.append(make_paragraph("", size_pt=12, space_after=0))
+
+    # Author / city / year — bottom, centered
+    paragraphs.append(make_paragraph(
+        "Dr. Kənan Rəhimov",
+        size_pt=14, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        space_after=4,
+    ))
+    paragraphs.append(make_paragraph(
+        "Bakı · 2026",
+        size_pt=12, align=WD_ALIGN_PARAGRAPH.CENTER,
+        space_after=0, color=(85,85,85),
+    ))
+
+    # Page break after title page so TOC starts on new page
+    pb_p = OxmlElement('w:p')
+    r = OxmlElement('w:r')
+    br = OxmlElement('w:br')
+    br.set(qn('w:type'), 'page')
+    r.append(br)
+    pb_p.append(r)
+    paragraphs.append(pb_p)
+
+    return paragraphs
 
 
 if __name__ == "__main__":
