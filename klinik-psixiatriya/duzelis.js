@@ -8,9 +8,7 @@
   // _corrections/PENDING.json on GitHub.
   // Set up via _workers/corrections-worker.js. Replace this URL with the one
   // shown after deploying the Worker.
-  const ENDPOINT = "__CLOUDFLARE_WORKER_URL__";  // TODO: paste actual URL after deploy
-  // For testing, you can fall back to the old GAS endpoint:
-  // const ENDPOINT = "https://script.google.com/macros/s/AKfycbzS9vijozxUyEB3pWJcQY09y4MzmSmk_wvE-3w9ThYTLnqG79yWwhQggfRNW3roLv2m2A/exec";
+  const ENDPOINT = "https://klinik-corrections.rpm-baku.workers.dev/";
   const MAX_SAMPLE_LEN = 280;
   const MIN_SAMPLE_LEN = 30;
 
