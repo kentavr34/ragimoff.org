@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Düzəliş təklifləri | Klinik Psixiatriya</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { padding: 20px; max-width: 1100px; margin: 0 auto; }
+  h1 { color: var(--gold); border-bottom: 2px solid var(--gold);
+       padding-bottom: 10px; margin-bottom: 18px; font-size: 22px; }
+  .topbar { display: flex; align-items: center; gap: 12px;
+            flex-wrap: wrap; margin-bottom: 18px; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tab { padding: 7px 13px; border: 1px solid var(--border);
+         background: var(--bg2); color: var(--text2);
+         border-radius: 6px; cursor: pointer; font-size: 13px;
+         font-family: var(--mono); transition: all .15s; }
+  .tab:hover { background: var(--bg3); color: var(--text); }
+  .tab.active { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+  .tab .count { opacity: .7; margin-left: 4px; }
+  .refresh-btn { padding: 7px 14px; border: 1px solid var(--gold);
+                 background: transparent; color: var(--gold);
+                 border-radius: 6px; cursor: pointer; font-size: 13px; }
+  .refresh-btn:hover { background: var(--gold); color: var(--bg); }
+  .login-prompt { background: var(--bg2); border: 1px solid var(--gold2);
+                  padding: 24px; border-radius: 8px; margin: 50px 0; }
+  .login-prompt input { width: 100%; padding: 10px; margin: 10px 0;
+                       background: var(--bg3); border: 1px solid var(--border);
+                       color: var(--text); border-radius: 6px;
+                       font-family: var(--mono); }
+  .login-prompt button { padding: 10px 20px; background: var(--gold);
+                       color: var(--bg); border: none; border-radius: 6px;
+                       cursor: pointer; font-weight: 700; font-size: 14px; }
+  .entry { background: var(--bg2); border: 1px solid var(--border);
+           border-radius: 8px; padding: 16px; margin-bottom: 14px;
+           border-left: 4px solid var(--gold2); }
+  .entry.pending  { border-left-color: var(--gold); }
+  .entry.approved { border-left-color: var(--green); }
+  .entry.applied  { border-left-color: var(--blue); }
+  .entry.rejected { border-left-color: var(--red); opacity: .6; }
+  .entry-header { display: flex; justify-content: space-between; align-items: center;
+                  margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+  .status-badge { font-family: var(--mono); font-size: 11px;
+                  padding: 3px 8px; border-radius: 4px; letter-spacing: .05em;
+                  font-weight: 700; text-transform: uppercase; }
+  .status-pending  { background: rgba(230,180,74,.15); color: var(--gold); }
+  .status-approved { background: rgba(63,185,80,.15); color: var(--green); }
+  .status-applied  { background: rgba(88,166,255,.15); color: var(--blue); }
+  .status-rejected { background: rgba(248,81,73,.15); color: var(--red); }
+  .timestamp { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+  .term-pair { display: grid; grid-template-columns: 1fr auto 1fr;
+               gap: 14px; align-items: start; margin: 10px 0; }
+  .term-block { background: var(--bg3); padding: 10px 14px; border-radius: 6px;
+                font-size: 14px; line-height: 1.45; }
+  .term-block .label { font-family: var(--mono); font-size: 10px;
+                       color: var(--text3); text-transform: uppercase;
+                       letter-spacing: .08em; margin-bottom: 6px; }
+  .term-block .value { color: var(--text); }
+  .term-block.original { border-left: 3px solid var(--red); }
+  .term-block.proposed { border-left: 3px solid var(--green); }
+  .arrow { font-size: 20px; color: var(--gold); align-self: center; }
+  .entry-note { font-size: 13px; color: var(--text2);
+                font-style: italic; margin: 8px 0 12px 0;
+                padding-left: 12px; border-left: 2px solid var(--border); }
+  .entry-meta { display: flex; gap: 14px; flex-wrap: wrap;
+                font-size: 11px; color: var(--text3); font-family: var(--mono); }
+  .entry-meta a { color: var(--text3); text-decoration: underline; }
+  .entry-actions { display: flex; gap: 8px; margin-top: 12px;
+                   padding-top: 12px; border-top: 1px solid var(--border); }
+  .btn { padding: 7px 14px; border: none; border-radius: 6px;
+         cursor: pointer; font-size: 13px; font-weight: 600;
+         font-family: var(--mono); letter-spacing: .04em;
+         transition: all .15s; }
+  .btn-approve { background: var(--green); color: #fff; }
+  .btn-approve:hover { background: #2ea043; }
+  .btn-reject { background: var(--red); color: #fff; }
+  .btn-reject:hover { background: #d32f2f; }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .empty { text-align: center; padding: 40px; color: var(--text3); }
+  .toast { position: fixed; bottom: 24px; right: 24px;
+           padding: 12px 18px; border-radius: 8px;
+           font-size: 14px; font-weight: 600;
+           background: var(--bg3); border: 1px solid var(--border);
+           box-shadow: 0 10px 30px rgba(0,0,0,.5);
+           z-index: 99; opacity: 0; transform: translateY(20px);
+           transition: all .2s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.ok { color: var(--green); border-color: var(--green); }
+  .toast.err { color: var(--red); border-color: var(--red); }
+  @media (max-width: 720px) {
+    .term-pair { grid-template-columns: 1fr; }
+    .arrow { transform: rotate(90deg); justify-self: center; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" style="position:relative;height:auto;padding:14px 20px">
+  <a href="https://ragimoff.org" class="hdr-back">← ragimoff.org</a>
+  <a href="index.html" class="hdr-brand" style="margin-left:14px">
+    <div class="hdr-logo">КП</div>
+    <div class="hdr-title">
+      <strong>KLİNİK PSİXİATRİYA</strong>
+      <small>Admin</small>
+    </div>
+  </a>
+</header>
+
+<h1>Düzəliş təklifləri (admin)</h1>
+
+<!-- Login prompt (shown if no admin_token in localStorage) -->
+<div id="login" class="login-prompt" style="display:none">
+  <h2 style="margin-top:0;color:var(--text)">Admin tokeni daxil edin</h2>
+  <p style="color:var(--text2);font-size:14px">
+    Cloudflare Worker üçün konfiqurasiya edilmiş <code>ADMIN_TOKEN</code> dəyəri.
+    Yalnız sizdə olduğu üçün bu səhifə yalnız sizin üçündür.
+  </p>
+  <input type="password" id="admin-token-input" placeholder="ADMIN_TOKEN" autocomplete="off">
+  <button onclick="saveToken()">Daxil ol</button>
+  <button onclick="forgetToken()" style="background:transparent;color:var(--text2);border:1px solid var(--border)">Yadda saxlamağı sıfırla</button>
+</div>
+
+<!-- Main UI -->
+<div id="ui" style="display:none">
+  <div class="topbar">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-filter="pending">Pending <span class="count" id="cnt-pending">0</span></button>
+      <button class="tab" data-filter="approved">Approved <span class="count" id="cnt-approved">0</span></button>
+      <button class="tab" data-filter="applied">Applied <span class="count" id="cnt-applied">0</span></button>
+      <button class="tab" data-filter="rejected">Rejected <span class="count" id="cnt-rejected">0</span></button>
+      <button class="tab" data-filter="all">All <span class="count" id="cnt-all">0</span></button>
+    </div>
+    <button class="refresh-btn" onclick="loadEntries()">↻ Refresh</button>
+    <button class="refresh-btn" onclick="logout()" style="margin-left:auto">Çıxış</button>
+  </div>
+
+  <div id="entries"></div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const ENDPOINT = "https://klinik-corrections.rpm-baku.workers.dev";
+let TOKEN = localStorage.getItem("klinik_admin_token") || "";
+let CURRENT_FILTER = "pending";
+let ENTRIES = [];
+
+function $(id) { return document.getElementById(id); }
+function toast(msg, kind) {
+  const t = $("toast");
+  t.textContent = msg;
+  t.className = "toast show " + (kind || "ok");
+  setTimeout(()=>{ t.className = "toast " + (kind||"ok"); }, 3000);
+}
+
+function saveToken() {
+  const v = $("admin-token-input").value.trim();
+  if (!v) return toast("Token boş ola bilməz", "err");
+  localStorage.setItem("klinik_admin_token", v);
+  TOKEN = v;
+  showUI();
+  loadEntries();
+}
+function forgetToken() {
+  localStorage.removeItem("klinik_admin_token");
+  TOKEN = "";
+  toast("Saxlanmış token silindi", "ok");
+}
+function logout() {
+  forgetToken();
+  showLogin();
+}
+
+function showLogin() { $("login").style.display = "block"; $("ui").style.display = "none"; }
+function showUI() { $("login").style.display = "none"; $("ui").style.display = "block"; }
+
+async function loadEntries() {
+  if (!TOKEN) return showLogin();
+  try {
+    const res = await fetch(`${ENDPOINT}?action=list&admin_token=${encodeURIComponent(TOKEN)}`);
+    const data = await res.json();
+    if (!res.ok || !data.ok) {
+      if (res.status === 401) {
+        toast("Token yanlışdır", "err");
+        forgetToken();
+        showLogin();
+        return;
+      }
+      throw new Error(data.error || "load failed");
+    }
+    ENTRIES = data.entries || [];
+    render();
+  } catch (e) {
+    toast("Yükləmə alınmadı: " + e.message, "err");
+  }
+}
+
+function render() {
+  // Update counts
+  const counts = { pending: 0, approved: 0, applied: 0, rejected: 0, all: ENTRIES.length };
+  for (const e of ENTRIES) {
+    counts[e.status] = (counts[e.status] || 0) + 1;
+  }
+  for (const k of Object.keys(counts)) {
+    const el = $("cnt-" + k); if (el) el.textContent = counts[k];
+  }
+  // Filter
+  let list = CURRENT_FILTER === "all"
+    ? [...ENTRIES]
+    : ENTRIES.filter(e => e.status === CURRENT_FILTER);
+  // Sort by ts desc
+  list.sort((a, b) => (b.ts || "").localeCompare(a.ts || ""));
+  // Render
+  const container = $("entries");
+  if (!list.length) {
+    container.innerHTML = '<div class="empty">Heç bir təklif tapılmadı bu kateqoriyada.</div>';
+    return;
+  }
+  container.innerHTML = list.map(renderEntry).join("");
+}
+
+function renderEntry(e) {
+  const dt = new Date(e.ts);
+  const dtStr = isNaN(dt) ? e.ts : dt.toLocaleString("az-Latn-AZ", {
+    year: "numeric", month: "short", day: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  });
+  const sourcePage = e.url ? new URL(e.url).pathname.split("/").pop() : "—";
+  const note = e.note ? `<div class="entry-note">${escapeHtml(e.note)}</div>` : "";
+  const actions = e.status === "pending" ? `
+    <div class="entry-actions">
+      <button class="btn btn-approve" onclick="action('${e.ts}','approve')">✓ Approve</button>
+      <button class="btn btn-reject" onclick="action('${e.ts}','reject')">✗ Reject</button>
+    </div>
+  ` : "";
+  return `
+    <div class="entry ${e.status}">
+      <div class="entry-header">
+        <span class="status-badge status-${e.status}">${e.status}</span>
+        <span class="timestamp">${dtStr}</span>
+      </div>
+      <div class="term-pair">
+        <div class="term-block original">
+          <div class="label">Cari forma</div>
+          <div class="value">${escapeHtml(e.original)}</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="term-block proposed">
+          <div class="label">Təklif</div>
+          <div class="value">${escapeHtml(e.proposed)}</div>
+        </div>
+      </div>
+      ${note}
+      <div class="entry-meta">
+        <span>kind: ${escapeHtml(e.rowKind || "—")}</span>
+        ${e.url ? `<a href="${escapeHtml(e.url)}" target="_blank">${escapeHtml(sourcePage)} ↗</a>` : ""}
+      </div>
+      ${actions}
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+async function action(ts, kind) {
+  if (!confirm(`${kind === "approve" ? "Approve" : "Reject"} this entry?`)) return;
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ action: kind, ts, admin_token: TOKEN })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.ok) throw new Error(data.error || ("HTTP " + res.status));
+    toast(kind === "approve" ? "Approved" : "Rejected", "ok");
+    setTimeout(loadEntries, 600);
+  } catch (e) {
+    toast("Xəta: " + e.message, "err");
+  }
+}
+
+// Tab clicks
+document.addEventListener("DOMContentLoaded", ()=>{
+  document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", ()=>{
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      CURRENT_FILTER = tab.dataset.filter;
+      render();
+    });
+  });
+  // Enter in token input
+  const inp = $("admin-token-input");
+  if (inp) inp.addEventListener("keydown", e => { if (e.key === "Enter") saveToken(); });
+
+  if (TOKEN) {
+    showUI();
+    loadEntries();
+  } else {
+    showLogin();
+  }
+});
+</script>
+</body>
+</html>
