@@ -1,70 +1,67 @@
-"""Terminology sync — pulls APPROVED corrections from the Google Sheet
-(filled via 'Düzəlt' widget on the site) and applies them everywhere:
-  - _supplements/chapters-v2/*.html
-  - klinik-psixiatriya/*.html (book pages incl. abbreviatur)
-  - _build_abbreviatur.py CANONICAL_TERMS list (so the header stays in sync)
-  - TYPOGRAPHY.md §0b table
+"""Terminology sync — pulls APPROVED corrections from _corrections/PENDING.json
+(written by the Cloudflare Worker, manually approved by you on GitHub).
 
 WORKFLOW
 ========
-1. User submits via 'Düzəlt' button → row appears in Google Sheet
-   (columns: Timestamp · Original · Proposed · Note · Status).
-2. User marks Status = 'ok' (or 'approved') manually in the sheet.
-3. GAS script exposes GET ?action=approved → returns JSON list of rows
-   where Status starts with 'ok'.
-4. Run `python _term_sync.py` at session start.
-5. Script fetches approved rows, applies replacements via
-   _fix_terminology4.py-style protected substitution, rebuilds
-   abbreviatur and book.
-
-Local fallback: if no internet, read from `_terms_approved.json`
-(same format as the GAS response).
+1. Student clicks ✎ Düzəlt on the site → POST to Cloudflare Worker
+   → Worker appends a {status: "pending", original, proposed, note} entry
+     to _corrections/PENDING.json in this repo via the GitHub API.
+2. You open _corrections/PENDING.json on GitHub web UI (pencil icon → Edit).
+3. For each entry you accept, change "status": "pending" → "status": "approved".
+4. Commit.
+5. Next agent session — run `python _term_sync.py`:
+   - Reads _corrections/PENDING.json
+   - For every status="approved" entry: applies the replacement across
+     _supplements/chapters-v2/*.html and klinik-psixiatriya/*.html
+     (protecting <ol class="ref-list"> and <abbr title>).
+   - Marks applied entries as status="applied" and timestamp.
+   - Commits the rewritten PENDING.json back.
 """
 from __future__ import annotations
 import json
+import os
 import re
-import sys
-import urllib.request
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-
-# Same endpoint as duzelis.js (configured in duzelis-gas.txt)
-ENDPOINT = "https://script.google.com/macros/s/AKfycbzS9vijozxUyEB3pWJcQY09y4MzmSmk_wvE-3w9ThYTLnqG79yWwhQggfRNW3roLv2m2A/exec"
-LOCAL_FALLBACK = ROOT / "_terms_approved.json"
+PENDING_FILE = ROOT / "_corrections" / "PENDING.json"
 
 PROTECT_REF  = re.compile(r'<ol class="ref-list">[\s\S]*?</ol>', re.IGNORECASE)
 PROTECT_ATTR = re.compile(r'title="[^"]*"', re.IGNORECASE)
 
 
-def fetch_approved() -> list[dict]:
-    """Fetch approved corrections from GAS. Falls back to local JSON."""
-    # Try local first (offline-friendly)
-    if LOCAL_FALLBACK.exists():
-        print(f"Using local fallback: {LOCAL_FALLBACK}")
-        return json.loads(LOCAL_FALLBACK.read_text(encoding="utf-8"))
+def load_pending():
+    if not PENDING_FILE.exists():
+        return []
+    text = PENDING_FILE.read_text(encoding="utf-8").strip()
+    if not text:
+        return []
     try:
-        url = f"{ENDPOINT}?action=approved"
-        req = urllib.request.Request(url, headers={"Accept": "application/json"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            return json.loads(r.read().decode("utf-8"))
-    except Exception as e:
-        print(f"Could not fetch from GAS ({e}); no local fallback either.")
+        data = json.loads(text)
+        return data if isinstance(data, list) else []
+    except json.JSONDecodeError:
         return []
 
 
-def apply_replacement(orig: str, prop: str, files: list[Path]) -> tuple[int, int]:
-    """Replace orig → prop across files, protecting ref-lists and abbr titles."""
+def save_pending(entries):
+    PENDING_FILE.parent.mkdir(parents=True, exist_ok=True)
+    PENDING_FILE.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n",
+                            encoding="utf-8")
+
+
+def apply_replacement(orig: str, prop: str, files):
+    """Replace orig → prop across given files, protecting ref-lists and
+    <abbr title> attributes. Returns (occurrences_count, files_changed)."""
     if not orig or not prop or orig == prop:
-        return (0, 0)
-    total_files = 0
+        return 0, 0
     total_count = 0
+    total_files = 0
     for p in files:
         try:
             d = p.read_text(encoding="utf-8")
         except Exception:
             continue
-        # Skip protected zones
         stash = []
         def stash_fn(m):
             stash.append(m.group(0))
@@ -75,51 +72,64 @@ def apply_replacement(orig: str, prop: str, files: list[Path]) -> tuple[int, int
             continue
         n = work.count(orig)
         work = work.replace(orig, prop)
-        # Also try common case variants
-        if orig.upper() != orig and orig.upper() in work:
-            work = work.replace(orig.upper(), prop.upper())
-            n += d.count(orig.upper())
         work = re.sub(r'\x00P(\d+)\x00', lambda m: stash[int(m.group(1))], work)
         if work != d:
             p.write_text(work, encoding="utf-8")
-            total_files += 1
             total_count += n
-    return (total_count, total_files)
+            total_files += 1
+    return total_count, total_files
 
 
 def main():
-    approved = fetch_approved()
-    if not approved:
-        print("No approved corrections to apply.")
+    entries = load_pending()
+    if not entries:
+        print("PENDING.json is empty — nothing to do.")
         return
-    print(f"Got {len(approved)} approved corrections.")
 
-    # Gather target files (book content + supplements + abbreviatur)
-    targets = []
+    approved = [e for e in entries if e.get("status") == "approved"]
+    print(f"Total entries: {len(entries)}")
+    print(f"  pending: {sum(1 for e in entries if e.get('status') == 'pending')}")
+    print(f"  approved (to apply): {len(approved)}")
+    print(f"  applied: {sum(1 for e in entries if e.get('status') == 'applied')}")
+    print(f"  rejected: {sum(1 for e in entries if e.get('status') == 'rejected')}")
+
+    if not approved:
+        print("\nNo approved corrections — nothing to apply.")
+        return
+
+    # Gather all book HTML files
+    files = []
     for sub in ("_supplements/chapters-v2", "klinik-psixiatriya"):
         d = ROOT / sub
         if d.exists():
-            for root, _, files in __import__("os").walk(d):
-                for f in files:
+            for root, _, fs in os.walk(d):
+                for f in fs:
                     if f.endswith(".html"):
-                        targets.append(Path(root) / f)
+                        files.append(Path(root) / f)
 
-    grand_total = 0
-    for row in approved:
-        orig = (row.get("original") or "").strip()
-        prop = (row.get("proposed") or "").strip()
+    grand_count = 0
+    grand_files = set()
+    for entry in approved:
+        orig = entry.get("original", "").strip()
+        prop = entry.get("proposed", "").strip()
         if not orig or not prop:
             continue
-        cnt, files = apply_replacement(orig, prop, targets)
+        cnt, n_files = apply_replacement(orig, prop, files)
         if cnt:
-            print(f"  '{orig}' → '{prop}': {cnt} replacements in {files} files")
-            grand_total += cnt
+            print(f"  '{orig[:40]}' → '{prop[:40]}': {cnt} replacements in {n_files} files")
+            grand_count += cnt
+        entry["status"] = "applied"
+        entry["applied_ts"] = datetime.utcnow().isoformat() + "Z"
+        entry["applied_count"] = cnt
 
-    print(f"\nTotal: {grand_total} replacements.")
-    print("\nNow run:")
-    print("  python _build_abbreviatur.py    (regen canonical-terms header)")
-    print("  python _rebuild_book_nav.py     (regen sidebar/TOC)")
-    print("  python build_book.py            (rebuild DOCX)")
+    save_pending(entries)
+    print(f"\nTotal: {grand_count} replacements applied.")
+    print(f"PENDING.json updated — {len(approved)} entries marked as 'applied'.")
+    print("\nNext steps (manual):")
+    print("  python _build_abbreviatur.py    # regen canonical-terms header")
+    print("  python _rebuild_book_nav.py     # regen sidebar/TOC")
+    print("  python build_book.py            # rebuild DOCX")
+    print("  git add . && git commit && git push")
 
 
 if __name__ == "__main__":
