@@ -4,7 +4,13 @@
 */
 (function(){
   "use strict";
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbzS9vijozxUyEB3pWJcQY09y4MzmSmk_wvE-3w9ThYTLnqG79yWwhQggfRNW3roLv2m2A/exec";
+  // Cloudflare Worker endpoint — accepts POST and commits to
+  // _corrections/PENDING.json on GitHub.
+  // Set up via _workers/corrections-worker.js. Replace this URL with the one
+  // shown after deploying the Worker.
+  const ENDPOINT = "__CLOUDFLARE_WORKER_URL__";  // TODO: paste actual URL after deploy
+  // For testing, you can fall back to the old GAS endpoint:
+  // const ENDPOINT = "https://script.google.com/macros/s/AKfycbzS9vijozxUyEB3pWJcQY09y4MzmSmk_wvE-3w9ThYTLnqG79yWwhQggfRNW3roLv2m2A/exec";
   const MAX_SAMPLE_LEN = 280;
   const MIN_SAMPLE_LEN = 30;
 
@@ -130,10 +136,13 @@
         }
         const res = await fetch(ENDPOINT, {
           method:"POST",
-          headers:{"Content-Type":"text/plain;charset=utf-8"}, // avoid CORS preflight to GAS
+          headers:{"Content-Type":"application/json"},
           body: JSON.stringify(payload)
         });
-        if(!res.ok) throw new Error("HTTP "+res.status);
+        const data = await res.json().catch(()=>({}));
+        if(!res.ok || data.ok === false) {
+          throw new Error(data.error || ("HTTP "+res.status));
+        }
         showToast("Təşəkkürlər! Təklifiniz qəbul edildi.", "ok");
         setTimeout(renderChoices, 1400);
       }catch(err){
@@ -218,13 +227,21 @@
         ua: navigator.userAgent,
         ts: new Date().toISOString()
       };
+      if (ENDPOINT === "__CLOUDFLARE_WORKER_URL__") {
+        showToast("Sistem hələ konfiqurasiya edilməyib. Admin ilə əlaqə saxlayın.", "err");
+        btn.disabled = false; btn.textContent = "Təklifi göndər";
+        return;
+      }
       try{
         const res = await fetch(ENDPOINT, {
           method:"POST",
-          headers:{"Content-Type":"text/plain;charset=utf-8"},
+          headers:{"Content-Type":"application/json"},
           body: JSON.stringify(payload)
         });
-        if(!res.ok) throw new Error("HTTP "+res.status);
+        const data = await res.json().catch(()=>({}));
+        if(!res.ok || data.ok === false) {
+          throw new Error(data.error || ("HTTP "+res.status));
+        }
         showToast("Təşəkkürlər! Təklif qeydiyyata alındı.", "ok");
         setTimeout(close, 1500);
       }catch(err){
