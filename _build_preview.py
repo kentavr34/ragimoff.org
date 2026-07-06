@@ -75,23 +75,101 @@ for a, b in [('href="style.css"', 'href="../style.css"'), ('href="duzelis.css"',
              ('src="search.js"', 'src="../search.js"'), ('href="search-index.json"', 'href="../search-index.json"')]:
     top = top.replace(a, b); bottom = bottom.replace(a, b)
 
-# --- новый сайдбар: ссылки на превью-страницы ---
-def code_file(code):
-    return f"{code}.html"
+# ===== ДАННЫЕ трёх классификаций (общие для сайдбара и оглавления) =====
+name_of = {c: n for chp in chapters for c, n in chp["disorders"]}
 
-nav_html = ['<div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Ana səhifə</span></a></div>']
-for ch in chapters:
-    subs = "".join(
-        f'<a href="{code_file(c)}" class="nav-sub-link"><span class="sub-code">{c}</span>'
-        f'<span class="sub-name">{n}</span></a>' for c, n in ch["disorders"])
-    nav_html.append(
-        f'<div class="nav-item nav-has-sub" data-slug="{ch["slug"]}">'
-        f'<a href="{ch["slug"]}.html" class="nav-link is-bolme"><span class="nav-code">{ch["range"]}</span>'
-        f'<span>{ch["title"]}</span></a>'
-        f'<button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button>'
-        f'<div class="nav-sub">{subs}</div></div>')
-NEWNAV = "\n".join(nav_html)
-# заменить содержимое <nav>...</nav> в оболочке
+
+def _icd10(c):
+    return (CODES.get(c, {}) or {}).get("icd10") or ""
+
+
+def _dsm(c):
+    return (CODES.get(c, {}) or {}).get("dsm") or ""
+
+
+def _numkey(code):
+    try:
+        return (0, float(re.sub(r"[^0-9.]", "", code) or 0))
+    except ValueError:
+        return (1, code)
+
+
+# группы XBT-11 — по главам ICD-11: (title, range, slug, [(disp_code, target, name)])
+icd_groups = [(ch["title"], ch["range"], ch["slug"],
+               [(c, c, n) for c, n in ch["disorders"]]) for ch in chapters]
+
+# группы DSM-5-TR — по классам DSM
+_dsm_bucket = {}
+for c in name_of:
+    _dsm_bucket.setdefault(DSM.get("assign", {}).get(c, "other"), []).append(c)
+dsm_groups = []
+for key, title in DSM.get("classes", []):
+    items = _dsm_bucket.get(key)
+    if not items:
+        continue
+    items = sorted(items, key=lambda c: _numkey(_dsm(c)))
+    dsm_groups.append((title, "", None, [(_dsm(c) or "—", c, name_of[c]) for c in items]))
+
+# группы XBT-10 — по F-блокам МКБ-10
+ICD10_BLOCKS = [
+    ("F0", "F00–F09", "Üzvi (simptomatik) psixi pozuntular"),
+    ("F1", "F10–F19", "Psixoaktiv maddələrlə bağlı pozuntular"),
+    ("F2", "F20–F29", "Şizofreniya, şizotipik və sayıqlama pozuntuları"),
+    ("F3", "F30–F39", "Əhval (affektiv) pozuntular"),
+    ("F4", "F40–F48", "Nevrotik, stresslə bağlı və somatoform pozuntular"),
+    ("F5", "F50–F59", "Fizioloji pozuntular və fiziki amillərlə bağlı sindromlar"),
+    ("F6", "F60–F69", "Yetkin şəxsiyyət və davranış pozuntuları"),
+    ("F7", "F70–F79", "Əqli gerilik"),
+    ("F8", "F80–F89", "Psixoloji inkişaf pozuntuları"),
+    ("F9", "F90–F98", "Uşaqlıq və yeniyetməlik pozuntuları"),
+]
+
+
+def _block_key(f):
+    m = re.match(r"(F\d)", f or "")
+    return m.group(1) if m else "other"
+
+
+_icd10_bucket = {}
+for c in name_of:
+    _icd10_bucket.setdefault(_block_key(_icd10(c)), []).append(c)
+icd10_groups = []
+for bkey, rng, title in ICD10_BLOCKS:
+    items = _icd10_bucket.get(bkey)
+    if not items:
+        continue
+    items = sorted(items, key=lambda c: _numkey(_icd10(c)))
+    icd10_groups.append((title, rng, None, [(_icd10(c), c, name_of[c]) for c in items]))
+if _icd10_bucket.get("other"):
+    icd10_groups.append(("XBT-10-da birbaşa uyğunluğu yoxdur", "", None,
+                         [("—", c, name_of[c]) for c in sorted(_icd10_bucket["other"])]))
+
+
+# ===== сайдбар: три дерева классификаций + переключатель =====
+def sidebar_tree(cls, groups, active):
+    rows = ['<div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Ana səhifə</span></a></div>']
+    for title, rng, slug, items in groups:
+        subs = "".join(
+            f'<a href="{t}.html" class="nav-sub-link"><span class="sub-code">{dc}</span>'
+            f'<span class="sub-name">{nm}</span></a>' for dc, t, nm in items)
+        rspan = f'<span class="nav-code">{rng}</span>' if rng else ""
+        head = (f'<a href="{slug}.html" class="nav-link is-bolme">{rspan}<span>{title}</span></a>'
+                if slug else f'<span class="nav-link is-bolme">{rspan}<span>{title}</span></span>')
+        rows.append(f'<div class="nav-item nav-has-sub">{head}'
+                    f'<button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button>'
+                    f'<div class="nav-sub">{subs}</div></div>')
+    hidden = "" if active else " hidden"
+    return f'<div class="cls-tree" data-cls="{cls}"{hidden}>{"".join(rows)}</div>'
+
+
+_side_tabs = ('<div class="cls-tabs cls-tabs-side">'
+              "<button class=\"cls-tab is-active\" data-cls=\"icd\" onclick=\"setCls('icd')\">XBT-11</button>"
+              "<button class=\"cls-tab\" data-cls=\"dsm\" onclick=\"setCls('dsm')\">DSM-5-TR</button>"
+              "<button class=\"cls-tab\" data-cls=\"icd10\" onclick=\"setCls('icd10')\">XBT-10</button></div>")
+NEWNAV = (_side_tabs
+          + sidebar_tree("icd", icd_groups, True)
+          + sidebar_tree("dsm", dsm_groups, False)
+          + sidebar_tree("icd10", icd10_groups, False))
 top = re.sub(r'(<nav>).*?(</nav>)', lambda m: m.group(1) + NEWNAV + m.group(2), top, count=1, flags=re.S)
 
 EXTRA_CSS = """
@@ -165,23 +243,32 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
-/* двойное оглавление: вкладки XBT-11 / DSM-5 */
-.toc-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem}
-.toc-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.15rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
-.toc-tab:hover{color:var(--text);border-color:var(--gold)}
-.toc-tab.is-active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
+[hidden]{display:none !important}
+.cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
+.cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
+.cls-tab:hover{color:var(--text);border-color:var(--gold)}
+.cls-tab.is-active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 .toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
 .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
 .tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
 /* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
    Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
+.sidebar nav .cls-tabs-side{display:flex;gap:.3rem;padding:.15rem 0 .7rem;margin-bottom:.4rem;border-bottom:1px solid var(--border)}
+.sidebar nav .cls-tabs-side .cls-tab{flex:1;padding:.42rem .2rem;font-size:.72rem;text-align:center;margin:0}
 .sidebar nav .nav-link{font-size:.92rem;letter-spacing:0}
-.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.8rem;font-variant-numeric:tabular-nums}
+.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums}
+.sidebar nav .nav-link.is-bolme{cursor:default}
 .sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem}
-.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;min-width:0}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0}
 .sidebar nav .sub-name{color:var(--text2)}
 </style>
-"""
+<script>
+function setCls(k){
+  document.querySelectorAll('.cls-tab').forEach(function(t){t.classList.toggle('is-active',t.getAttribute('data-cls')===k);});
+  document.querySelectorAll('.cls-panel,.cls-tree').forEach(function(p){p.hidden=(p.getAttribute('data-cls')!==k);});
+}
+</script>"""
 
 
 def page(content, title):
@@ -316,21 +403,30 @@ for key, title in DSM.get("classes", []):
                f'<span>{title}</span></div>'
                f'<div class="tc-list">{lst}</div></div>')
 
-tabs = ('<div class="toc-tabs">'
-        '<button class="toc-tab is-active" data-toc="icd" onclick="tocTab(this)">XBT-11</button>'
-        '<button class="toc-tab" data-toc="dsm" onclick="tocTab(this)">DSM-5-TR</button></div>')
-toggle_js = ('<script>function tocTab(b){var k=b.getAttribute("data-toc");'
-             'document.querySelectorAll(".toc-tab").forEach(function(t){t.classList.toggle("is-active",t===b);});'
-             'document.querySelectorAll(".toc-panel").forEach(function(p){p.hidden=(p.getAttribute("data-panel")!==k);});}'
-             '</script>')
+# панель XBT-10 — по F-блокам МКБ-10
+icd10_ch = ""
+for title, rng, slug, items in icd10_groups:
+    lst = "".join(f'<a href="{t}.html"><span class="sc">{dc}</span><span>{nm}</span></a>'
+                  for dc, t, nm in items)
+    rspan = f'<span class="tc-range">{rng}</span>' if rng else ""
+    icd10_ch += (f'<div class="toc-ch"><div class="tc-head">{rspan}<span>{title}</span></div>'
+                 f'<div class="tc-list">{lst}</div></div>')
+
+tabs = ('<div class="cls-tabs">'
+        "<button class=\"cls-tab is-active\" data-cls=\"icd\" onclick=\"setCls('icd')\">XBT-11</button>"
+        "<button class=\"cls-tab\" data-cls=\"dsm\" onclick=\"setCls('dsm')\">DSM-5-TR</button>"
+        "<button class=\"cls-tab\" data-cls=\"icd10\" onclick=\"setCls('icd10')\">XBT-10</button></div>")
 toc = (f'<h1 class="h-chapter">ANA SƏHİFƏ</h1>{tabs}'
-       f'<div class="toc-panel" data-panel="icd">'
+       f'<div class="cls-panel" data-cls="icd">'
        f'<p class="toc-meta">{made_d} pozuntu · {made_c} fəsil</p>'
        f'<div class="toc-preview">{icd_ch}</div></div>'
-       f'<div class="toc-panel" data-panel="dsm" hidden>'
+       f'<div class="cls-panel" data-cls="dsm" hidden>'
        f'<p class="toc-meta">{made_d} pozuntu · {n_class} sinif</p>'
-       f'<div class="toc-preview">{dsm_ch}</div></div>{toggle_js}')
-(OUT / "index.html").write_text(page(toc, "Mündəricat"), encoding="utf-8")
+       f'<div class="toc-preview">{dsm_ch}</div></div>'
+       f'<div class="cls-panel" data-cls="icd10" hidden>'
+       f'<p class="toc-meta">{made_d} pozuntu · {len(icd10_groups)} blok</p>'
+       f'<div class="toc-preview">{icd10_ch}</div></div>')
+(OUT / "index.html").write_text(page(toc, "Ana səhifə"), encoding="utf-8")
 
 print(f"глав: {made_c} | расстройств: {made_d}")
 print("оглавление превью: preview/index.html")
