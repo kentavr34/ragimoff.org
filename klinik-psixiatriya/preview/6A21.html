@@ -30,17 +30,18 @@
 </style>
 
 <style>
+/* новые элементы превью используют ПЕРЕМЕННЫЕ ТЕМЫ сайта (тёмная тема — текст светлый) */
 .chapter-menu{display:flex;flex-direction:column;gap:.5rem;margin:1.5rem 0}
-.ch-disorder{display:flex;align-items:baseline;gap:.8rem;padding:.7rem 1rem;border:1px solid #ddd;border-radius:8px;text-decoration:none;color:#000;transition:.15s}
-.ch-disorder:hover{background:#f5f5f5;border-color:#999}
-.ch-code{font-weight:700;color:#555;min-width:3.2rem}
-.ch-name{font-weight:600}
-.d-nav{display:flex;justify-content:space-between;gap:1rem;margin:1.2rem 0;padding:.6rem 0;border-top:1px solid #eee;border-bottom:1px solid #eee;font-size:.9rem}
-.d-nav a{color:#000;text-decoration:none;padding:.3rem .6rem;border-radius:6px}
-.d-nav a:hover{background:#f0f0f0}
-.d-nav .up{font-weight:600}
-.h-chapter{font-size:1.6rem;text-align:center;margin:1rem 0 .3rem}
-.h-chapter .icd{display:block;color:#555;font-size:1rem;font-weight:600;letter-spacing:.05em}
+.ch-disorder{display:flex;align-items:baseline;gap:.8rem;padding:.75rem 1rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
+.ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
+.ch-code{font-weight:700;color:var(--gold);min-width:3.4rem;font-family:var(--mono,monospace)}
+.ch-name{font-weight:600;color:var(--text)}
+.d-nav{display:flex;justify-content:space-between;gap:1rem;margin:1.2rem 0;padding:.6rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:.9rem}
+.d-nav a{color:var(--text2);text-decoration:none;padding:.3rem .6rem;border-radius:6px}
+.d-nav a:hover{background:var(--bg3);color:var(--text)}
+.d-nav .up{font-weight:600;color:var(--gold)}
+.h-chapter{font-size:1.6rem;text-align:center;margin:1rem 0 .3rem;color:var(--text)}
+.h-chapter .icd{display:block;color:var(--text2);font-size:1rem;font-weight:600;letter-spacing:.05em}
 </style>
 </head>
 <body>
