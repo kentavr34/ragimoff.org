@@ -21,6 +21,33 @@ CODES = json.loads((RG / "_codes_map.json").read_text(encoding="utf-8")) \
 DSM = json.loads((RG / "_dsm_toc.json").read_text(encoding="utf-8")) \
     if (RG / "_dsm_toc.json").exists() else {"classes": [], "assign": {}}
 
+# английские названия глав (стандарт ВОЗ ICD-11) — для головной страницы главы
+CH_EN = {
+    "6A00–6A0Z": "Neurodevelopmental disorders",
+    "6A20–6A2Z": "Schizophrenia or other primary psychotic disorders",
+    "6A40": "Catatonia",
+    "6A60–6A7Z": "Mood disorders",
+    "6B00–6B0Z": "Anxiety or fear-related disorders",
+    "6B20–6B2Z": "Obsessive-compulsive or related disorders",
+    "6B40–6B4Z": "Disorders specifically associated with stress",
+    "6B60–6B6Z": "Dissociative disorders",
+    "6B80–6B8Z": "Feeding or eating disorders",
+    "6C00–6C0Z": "Elimination disorders",
+    "6C20": "Disorders of bodily distress or bodily experience",
+    "6C40–6C5Z": "Disorders due to substance use or addictive behaviours",
+    "6C70–6C7Z": "Impulse control disorders",
+    "6C90–6C9Z": "Disruptive behaviour or dissocial disorders",
+    "6D10–6D1Z": "Personality disorders and related traits",
+    "6D30–6D3Z": "Paraphilic disorders",
+    "6D50–6D5Z": "Factitious disorders",
+    "6D70–6D8Z": "Neurocognitive disorders",
+    "6E20–6E2Z": "Mental or behavioural disorders associated with pregnancy, childbirth or the puerperium",
+    "6E40": "Psychological or behavioural factors affecting disorders classified elsewhere",
+    "6E60–6E6Z": "Secondary mental or behavioural syndromes",
+    "7A00–7A8Z": "Sleep-wake disorders",
+    "HA00–HA0Z": "Conditions related to sexual health",
+}
+
 idx = (SITE / "index.html").read_text(encoding="utf-8")
 
 # --- разбор глав из сайдбар-навигации index.html ---
@@ -52,7 +79,7 @@ for a, b in [('href="style.css"', 'href="../style.css"'), ('href="duzelis.css"',
 def code_file(code):
     return f"{code}.html"
 
-nav_html = ['<div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Mündəricat</span></a></div>']
+nav_html = ['<div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Ana səhifə</span></a></div>']
 for ch in chapters:
     subs = "".join(
         f'<a href="{code_file(c)}" class="nav-sub-link"><span class="sub-code">{c}</span>'
@@ -83,29 +110,41 @@ EXTRA_CSS = """
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
 
-/* ТИТУЛЬНЫЙ БЛОК расстройства — книжная шапка страницы */
-.dh{margin:.1rem 0 1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--gold)}
-.dh-kicker{font-family:var(--mono,monospace);font-size:.78rem;letter-spacing:.09em;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:.4rem}
-.dh h1{font-size:1.6rem;line-height:1.18;margin:0 0 .35rem;letter-spacing:-.01em;color:var(--text)}
-.dh-en{font-style:italic;color:var(--text2);font-size:.96rem;margin:0 0 .8rem;line-height:1.3}
-.dh-codes{display:flex;flex-wrap:wrap;gap:.4rem}
-.dh-c{display:inline-flex;align-items:baseline;gap:.35rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.24rem .55rem}
-.dh-c b{color:var(--text3);font-weight:600;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
-.dh-c i{color:var(--gold);font-style:normal;font-family:var(--mono,monospace);font-weight:700;font-size:.82rem}
+/* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
+table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
+table.dh td{border:0;padding:.24rem .7rem .24rem 0;vertical-align:baseline;text-align:left}
+table.dh td:last-child{padding-right:0;width:100%}
+table.dh .dh-lbl{font-family:var(--mono,monospace);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);white-space:nowrap;font-weight:700}
+table.dh .dh-code{font-family:var(--mono,monospace);font-weight:700;color:var(--gold);white-space:nowrap;font-size:.9rem}
+table.dh .dh-name{color:var(--text2);font-size:.94rem;line-height:1.3}
+table.dh h1{font-size:1.42rem;line-height:1.2;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text)}
+.dh-en{font-style:italic;color:var(--text2);font-size:.9rem;margin-top:.12rem;line-height:1.3;font-weight:400}
+table.dh .dh-main .dh-lbl{color:var(--gold)}
+table.dh .dh-main .dh-code{font-size:1.02rem}
+table.dh .dh-main td{padding-bottom:.7rem}
+table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 
 /* мобайл: комфортная типографика (НИКАКИХ правок шапки сайта) */
 @media(max-width:720px){
   body{font-size:16px;line-height:1.6}
   .content-wrap{padding:.9rem 1rem 5.5rem}
-  .dh h1{font-size:1.4rem}
+  table.dh h1{font-size:1.28rem}
   .content-wrap h2{font-size:1.1rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.98rem}
   .content-wrap p{margin:.66rem 0}
 }
+/* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
+.chap-head{margin:.1rem 0 1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--gold)}
+.chap-h1{font-size:1.5rem;line-height:1.22;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text);display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem}
+.chap-range{font-family:var(--mono,monospace);color:var(--gold);font-size:1.02rem;font-weight:700;white-space:nowrap}
+.chap-en{font-style:italic;color:var(--text2);font-size:.95rem;margin-top:.3rem;line-height:1.3}
+.chap-sub{color:var(--text3);font-size:.88rem;margin:.6rem 0 0}
+@media(max-width:720px){.chap-h1{font-size:1.28rem}.chap-range{font-size:.95rem}}
+/* меню главы — выровнено в 2 колонки (код | название) */
 .chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
-.ch-disorder{display:flex;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
+.ch-disorder{display:grid;grid-template-columns:3.8rem 1fr;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
 .ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
-.ch-code{font-weight:700;color:var(--gold);min-width:3.6rem;font-family:var(--mono,monospace)}
+.ch-code{font-weight:700;color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
 .ch-name{font-weight:600;color:var(--text)}
 /* нижняя навигация — перелистывание (ТОЛЬКО внизу страницы) */
 .d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}
@@ -122,9 +161,10 @@ EXTRA_CSS = """
 .toc-ch>a:hover{color:var(--gold)}
 .toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
 .toc-ch .tc-list{display:flex;flex-direction:column}
-.toc-ch .tc-list a{display:flex;gap:.6rem;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
+/* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
+.toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
-.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);min-width:3.4rem}
+.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
 /* двойное оглавление: вкладки XBT-11 / DSM-5 */
 .toc-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem}
 .toc-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.15rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -133,6 +173,13 @@ EXTRA_CSS = """
 .toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
 .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
 .tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
+/* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
+   Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
+.sidebar nav .nav-link{font-size:.92rem;letter-spacing:0}
+.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.8rem;font-variant-numeric:tabular-nums}
+.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;min-width:0}
+.sidebar nav .sub-name{color:var(--text2)}
 </style>
 """
 
@@ -161,38 +208,41 @@ def crumb(chp):
     return f'<nav class="crumb"><a href="{chp["slug"]}.html">‹ {t}</a></nav>'
 
 
+def crumb_top():
+    return '<nav class="crumb"><a href="index.html">‹ Ana səhifə</a></nav>'
+
+
 def build_dh(frag, code, fallback_name):
-    """Книжная шапка расстройства: кикер XBT-11·код, H1 (AZ), англ. курсивом, строка кодов.
-    H1 берём из фрагмента, англ. название и DSM-код — из первого абзаца; исходный H1 убираем."""
-    m = re.search(r'<h1[^>]*class="h-disorder"[^>]*>(.*?)</h1>', frag, re.S)
-    if m:
-        inner = re.sub(r'<span[^>]*class="icd"[^>]*>.*?</span>', '', m.group(1), flags=re.S)
-        title = re.sub(r'<[^>]+>', '', inner).strip()
-    else:
-        title = ""
-    title = title or fallback_name
-    # английское название международной классификации (после code-span в абзаце "XBT-11: …")
-    en = ""
-    me = re.search(r'XBT-11:\s*<span[^>]*class="icd"[^>]*>[^<]*</span>\s*([^;<)]+)', frag)
-    if me:
-        en = re.sub(r'\s+', " ", me.group(1)).strip().rstrip("/").strip()
-    # коды XBT-10 и DSM — из выверяемой таблицы CODES; DSM запасной — из абзаца
+    """Шапка расстройства = выровненная «невидимая таблица» трёх классификаций,
+    единый стандарт: XBT-11 (главный: код+AZ-имя+англ.курсив), затем XBT-10 и DSM-5-TR —
+    у каждой свой код и своё название в этой классификации. Исходный H1 фрагмента убираем."""
     info = CODES.get(code, {})
-    icd10 = info.get("icd10")
-    dsm = info.get("dsm")
-    if not dsm:
-        md = re.search(r'DSM-5-TR:\s*([0-9][0-9.]*)', frag)
-        if md:
-            dsm = md.group(1)
-    chips = ""
-    if icd10:
-        chips += f'<span class="dh-c"><b>XBT-10</b><i>{icd10}</i></span>'
-    if dsm:
-        chips += f'<span class="dh-c"><b>DSM-5-TR</b><i>{dsm}</i></span>'
-    codes_html = f'<div class="dh-codes">{chips}</div>' if chips else ""
+    az = info.get("name_az") or ""
+    if not az:
+        m = re.search(r'<h1[^>]*class="h-disorder"[^>]*>(.*?)</h1>', frag, re.S)
+        if m:
+            inner = re.sub(r'<span[^>]*class="icd"[^>]*>.*?</span>', '', m.group(1), flags=re.S)
+            az = re.sub(r'<[^>]+>', '', inner).strip()
+    az = az or fallback_name
+    en = info.get("en11") or ""
+    if not en:
+        me = re.search(r'XBT-11:\s*<span[^>]*class="icd"[^>]*>[^<]*</span>\s*([^;<)]+)', frag)
+        if me:
+            en = re.sub(r'\s+', " ", me.group(1)).strip().rstrip("/").strip()
+    i10 = info.get("icd10") or ""
+    dsm = info.get("dsm") or ""
+
+    # итоговое название — азербайджанское, ОДИНАКОВОЕ во всех трёх классификациях; отличаются коды
     en_html = f'<div class="dh-en">{en}</div>' if en else ""
-    dh = (f'<header class="dh"><div class="dh-kicker">XBT-11 · {code}</div>'
-          f'<h1>{title}</h1>{en_html}{codes_html}</header>')
+    rows = [f'<tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">{code}</td>'
+            f'<td class="dh-name"><h1>{az}</h1>{en_html}</td></tr>']
+    if i10:
+        rows.append(f'<tr><td class="dh-lbl">XBT-10</td><td class="dh-code">{i10}</td>'
+                    f'<td class="dh-name">{az}</td></tr>')
+    if dsm:
+        rows.append(f'<tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">{dsm}</td>'
+                    f'<td class="dh-name">{az}</td></tr>')
+    dh = f'<table class="dh"><tbody>{"".join(rows)}</tbody></table>'
     body = re.sub(r'<h1[^>]*class="h-disorder"[^>]*>.*?</h1>', "", frag, count=1, flags=re.S)
     return dh + body
 
@@ -213,8 +263,13 @@ for chp in chapters:
     links = "".join(
         f'<a class="ch-disorder" href="{c}.html"><span class="ch-code">{c}</span>'
         f'<span class="ch-name">{n}</span></a>' for c, n in ds)
-    head = (f'<h1 class="h-chapter"><span class="icd">{chp["range"]} · XBT-11</span>{chp["title"]}</h1>'
-            f'<p style="text-align:center;color:var(--text2)">Bu fəsildəki pozuntular — hər biri ayrıca səhifə:</p>'
+    ch_en = CH_EN.get(chp["range"], "")
+    en_line = f'<div class="chap-en">{ch_en}</div>' if ch_en else ""
+    head = (f'{crumb_top()}'
+            f'<header class="chap-head">'
+            f'<h1 class="chap-h1"><span class="chap-range">{chp["range"]}</span>'
+            f'<span class="chap-title">{chp["title"]}</span></h1>{en_line}'
+            f'<p class="chap-sub">Bu fəsildəki pozuntular — hər biri ayrıca səhifə:</p></header>'
             f'<div class="chapter-menu">{links}</div>')
     (OUT / f'{chp["slug"]}.html').write_text(page(head, chp["title"]), encoding="utf-8")
     made_c += 1
@@ -253,11 +308,12 @@ for key, title in DSM.get("classes", []):
         continue
     n_class += 1
     items = sorted(items, key=dsm_sort)
+    # итоговое название — азербайджанское (одинаковое во всех вкладках); в DSM меняется только код
     lst = "".join(
         f'<a href="{c}.html"><span class="sc">{dsm_code(c) or "—"}</span><span>{name_of[c]}</span></a>'
         for c in items)
     dsm_ch += (f'<div class="toc-ch"><div class="tc-head">'
-               f'<span class="tc-range">DSM-5</span><span>{title}</span></div>'
+               f'<span class="tc-range">DSM-5-TR</span><span>{title}</span></div>'
                f'<div class="tc-list">{lst}</div></div>')
 
 tabs = ('<div class="toc-tabs">'
@@ -267,7 +323,7 @@ toggle_js = ('<script>function tocTab(b){var k=b.getAttribute("data-toc");'
              'document.querySelectorAll(".toc-tab").forEach(function(t){t.classList.toggle("is-active",t===b);});'
              'document.querySelectorAll(".toc-panel").forEach(function(p){p.hidden=(p.getAttribute("data-panel")!==k);});}'
              '</script>')
-toc = (f'<h1 class="h-chapter">MÜNDƏRİCAT</h1>{tabs}'
+toc = (f'<h1 class="h-chapter">ANA SƏHİFƏ</h1>{tabs}'
        f'<div class="toc-panel" data-panel="icd">'
        f'<p class="toc-meta">XBT-11 · {made_d} pozuntu · {made_c} fəsil</p>'
        f'<div class="toc-preview">{icd_ch}</div></div>'

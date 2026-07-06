@@ -44,29 +44,41 @@
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
 
-/* ТИТУЛЬНЫЙ БЛОК расстройства — книжная шапка страницы */
-.dh{margin:.1rem 0 1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--gold)}
-.dh-kicker{font-family:var(--mono,monospace);font-size:.78rem;letter-spacing:.09em;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:.4rem}
-.dh h1{font-size:1.6rem;line-height:1.18;margin:0 0 .35rem;letter-spacing:-.01em;color:var(--text)}
-.dh-en{font-style:italic;color:var(--text2);font-size:.96rem;margin:0 0 .8rem;line-height:1.3}
-.dh-codes{display:flex;flex-wrap:wrap;gap:.4rem}
-.dh-c{display:inline-flex;align-items:baseline;gap:.35rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.24rem .55rem}
-.dh-c b{color:var(--text3);font-weight:600;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
-.dh-c i{color:var(--gold);font-style:normal;font-family:var(--mono,monospace);font-weight:700;font-size:.82rem}
+/* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
+table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
+table.dh td{border:0;padding:.24rem .7rem .24rem 0;vertical-align:baseline;text-align:left}
+table.dh td:last-child{padding-right:0;width:100%}
+table.dh .dh-lbl{font-family:var(--mono,monospace);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text3);white-space:nowrap;font-weight:700}
+table.dh .dh-code{font-family:var(--mono,monospace);font-weight:700;color:var(--gold);white-space:nowrap;font-size:.9rem}
+table.dh .dh-name{color:var(--text2);font-size:.94rem;line-height:1.3}
+table.dh h1{font-size:1.42rem;line-height:1.2;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text)}
+.dh-en{font-style:italic;color:var(--text2);font-size:.9rem;margin-top:.12rem;line-height:1.3;font-weight:400}
+table.dh .dh-main .dh-lbl{color:var(--gold)}
+table.dh .dh-main .dh-code{font-size:1.02rem}
+table.dh .dh-main td{padding-bottom:.7rem}
+table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 
 /* мобайл: комфортная типографика (НИКАКИХ правок шапки сайта) */
 @media(max-width:720px){
   body{font-size:16px;line-height:1.6}
   .content-wrap{padding:.9rem 1rem 5.5rem}
-  .dh h1{font-size:1.4rem}
+  table.dh h1{font-size:1.28rem}
   .content-wrap h2{font-size:1.1rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.98rem}
   .content-wrap p{margin:.66rem 0}
 }
+/* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
+.chap-head{margin:.1rem 0 1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--gold)}
+.chap-h1{font-size:1.5rem;line-height:1.22;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text);display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem}
+.chap-range{font-family:var(--mono,monospace);color:var(--gold);font-size:1.02rem;font-weight:700;white-space:nowrap}
+.chap-en{font-style:italic;color:var(--text2);font-size:.95rem;margin-top:.3rem;line-height:1.3}
+.chap-sub{color:var(--text3);font-size:.88rem;margin:.6rem 0 0}
+@media(max-width:720px){.chap-h1{font-size:1.28rem}.chap-range{font-size:.95rem}}
+/* меню главы — выровнено в 2 колонки (код | название) */
 .chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
-.ch-disorder{display:flex;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
+.ch-disorder{display:grid;grid-template-columns:3.8rem 1fr;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
 .ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
-.ch-code{font-weight:700;color:var(--gold);min-width:3.6rem;font-family:var(--mono,monospace)}
+.ch-code{font-weight:700;color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
 .ch-name{font-weight:600;color:var(--text)}
 /* нижняя навигация — перелистывание (ТОЛЬКО внизу страницы) */
 .d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}
@@ -83,9 +95,10 @@
 .toc-ch>a:hover{color:var(--gold)}
 .toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
 .toc-ch .tc-list{display:flex;flex-direction:column}
-.toc-ch .tc-list a{display:flex;gap:.6rem;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
+/* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
+.toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
-.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);min-width:3.4rem}
+.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
 /* двойное оглавление: вкладки XBT-11 / DSM-5 */
 .toc-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem}
 .toc-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.15rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -94,6 +107,13 @@
 .toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
 .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
 .tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
+/* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
+   Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
+.sidebar nav .nav-link{font-size:.92rem;letter-spacing:0}
+.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.8rem;font-variant-numeric:tabular-nums}
+.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;min-width:0}
+.sidebar nav .sub-name{color:var(--text2)}
 </style>
 </head>
 <body>
@@ -126,7 +146,7 @@
 <div class="site-layout">
   <aside class="sidebar" id="sb">
     <div class="sb-hdr"><h3>📋 Mündəricat</h3><button class="sb-close" onclick="toggleSb()" aria-label="Bağla">✕</button></div>
-    <nav><div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Mündəricat</span></a></div>
+    <nav><div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Ana səhifə</span></a></div>
 <div class="nav-item nav-has-sub" data-slug="01-6A0-neyroinkisaf"><a href="01-6A0-neyroinkisaf.html" class="nav-link is-bolme"><span class="nav-code">6A00–6A0Z</span><span>NEYROİNKİŞAF POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A00.html" class="nav-sub-link"><span class="sub-code">6A00</span><span class="sub-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</span></a><a href="6A01.html" class="nav-sub-link"><span class="sub-code">6A01</span><span class="sub-name">İNKİŞAF NİTQ VƏ DİL POZUNTULARI</span></a><a href="6A02.html" class="nav-sub-link"><span class="sub-code">6A02</span><span class="sub-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</span></a><a href="6A03.html" class="nav-sub-link"><span class="sub-code">6A03</span><span class="sub-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</span></a><a href="6A04.html" class="nav-sub-link"><span class="sub-code">6A04</span><span class="sub-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</span></a><a href="6A05.html" class="nav-sub-link"><span class="sub-code">6A05</span><span class="sub-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</span></a><a href="6A06.html" class="nav-sub-link"><span class="sub-code">6A06</span><span class="sub-name">STEREOTİPİK HƏRƏKƏT POZUNTUSU</span></a><a href="6A07.html" class="nav-sub-link"><span class="sub-code">6A07</span><span class="sub-name">TİKLİ POZUNTULAR (TOURETTE SİNDROMU)</span></a></div></div>
 <div class="nav-item nav-has-sub" data-slug="02-6A2-sizofreniya-spektri"><a href="02-6A2-sizofreniya-spektri.html" class="nav-link is-bolme"><span class="nav-code">6A20–6A2Z</span><span>ŞİZOFRENİYA SPEKTRİ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A20.html" class="nav-sub-link"><span class="sub-code">6A20</span><span class="sub-name">ŞİZOFRENİYA</span></a><a href="6A21.html" class="nav-sub-link"><span class="sub-code">6A21</span><span class="sub-name">ŞİZOAFFEKTİV POZUNTU</span></a><a href="6A22.html" class="nav-sub-link"><span class="sub-code">6A22</span><span class="sub-name">ŞİZOTİPİK POZUNTU</span></a><a href="6A23.html" class="nav-sub-link"><span class="sub-code">6A23</span><span class="sub-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</span></a><a href="6A24.html" class="nav-sub-link"><span class="sub-code">6A24</span><span class="sub-name">SAYIQLAMA POZUNTUSU</span></a><a href="6A25.html" class="nav-sub-link"><span class="sub-code">6A25</span><span class="sub-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</span></a></div></div>
 <div class="nav-item nav-has-sub" data-slug="03-6A4-katatoniya"><a href="03-6A4-katatoniya.html" class="nav-link is-bolme"><span class="nav-code">6A40</span><span>KATATONİYA</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A40.html" class="nav-sub-link"><span class="sub-code">6A40</span><span class="sub-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</span></a></div></div>
@@ -155,7 +175,7 @@
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><header class="dh"><div class="dh-kicker">XBT-11 · 6B62</div><h1>DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</h1><div class="dh-codes"><span class="dh-c"><b>XBT-10</b><i>F44.1</i></span><span class="dh-c"><b>DSM-5-TR</b><i>300.13</i></span></div></header>
+<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B62</td><td class="dh-name"><h1>DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F44.1</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.6</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr></tbody></table>
 
 <h2 id="6b62-1-terif">1. Tərif və nozologiya</h2>
 <p>Depersonalizasiya-Derealizasiya Pozuntusu (XBT-11: <span class="icd">6B62</span>; DSM-5-TR: 300.6) — davamlı və ya təkrarlanan depersonalizasiya (özündən kənarda olmaq, bədəndən və düşüncələrdən qopmaq hissi) və/yaxud derealizasiya (ətrafın qeyri-real, "tutqun film kimi" görünməsi) ilə xarakterizə olunan dissosiativ pozuntudur. Reality testing saxlanılır (pasiyent təcrübənin qeyri-real olduğunu bilir).</p>
