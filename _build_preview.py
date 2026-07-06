@@ -62,35 +62,46 @@ top = re.sub(r'(<nav>).*?(</nav>)', lambda m: m.group(1) + NEWNAV + m.group(2), 
 
 EXTRA_CSS = """
 <style>
-/* ===== ЧИСТЫЙ ЧИТАЮЩИЙ ШАБЛОН (мобайл-first, аккуратные пропорции) ===== */
+/* ===== КНИЖНЫЙ ШАБЛОН — правим ТОЛЬКО контент. Шапку САЙТА не трогаем! ===== */
 .content-wrap{max-width:44rem;margin:0 auto;padding:1.1rem 1.15rem 5.5rem}
-.content-wrap p{margin:.7rem 0}
-.content-wrap ul,.content-wrap ol{margin:.7rem 0;padding-left:1.3rem}
-.content-wrap li{margin:.3rem 0}
-.h-disorder{font-size:1.45rem;line-height:1.25;margin:.4rem 0 1rem;letter-spacing:-.01em}
-.content-wrap h2{font-size:1.18rem;line-height:1.3;margin:1.7rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
-.content-wrap h3{font-size:1.02rem;line-height:1.35;margin:1.1rem 0 .4rem;color:var(--text)}
+.content-wrap p{margin:.72rem 0}
+.content-wrap ul,.content-wrap ol{margin:.72rem 0;padding-left:1.3rem}
+.content-wrap li{margin:.32rem 0}
+.content-wrap h2{font-size:1.18rem;line-height:1.3;margin:1.8rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.02rem;line-height:1.35;margin:1.15rem 0 .4rem;color:var(--text)}
 .content-wrap table{font-size:.92rem}
-/* мобайл: комфортная типографика вместо рыхлой 17/1.8 */
+
+/* хлебная крошка — тихая строка вверху (вместо сиротской полосы-навигации) */
+.crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
+.crumb a{color:var(--text2);text-decoration:none}
+.crumb a:hover{color:var(--gold)}
+
+/* ТИТУЛЬНЫЙ БЛОК расстройства — книжная шапка страницы */
+.dh{margin:.1rem 0 1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--gold)}
+.dh-kicker{font-family:var(--mono,monospace);font-size:.78rem;letter-spacing:.09em;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:.4rem}
+.dh h1{font-size:1.6rem;line-height:1.18;margin:0 0 .35rem;letter-spacing:-.01em;color:var(--text)}
+.dh-en{font-style:italic;color:var(--text2);font-size:.96rem;margin:0 0 .8rem;line-height:1.3}
+.dh-codes{display:flex;flex-wrap:wrap;gap:.4rem}
+.dh-c{display:inline-flex;align-items:baseline;gap:.35rem;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.24rem .55rem}
+.dh-c b{color:var(--text3);font-weight:600;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase}
+.dh-c i{color:var(--gold);font-style:normal;font-family:var(--mono,monospace);font-weight:700;font-size:.82rem}
+
+/* мобайл: комфортная типографика (НИКАКИХ правок шапки сайта) */
 @media(max-width:720px){
   body{font-size:16px;line-height:1.6}
   .content-wrap{padding:.9rem 1rem 5.5rem}
-  .h-disorder{font-size:1.32rem}
-  .content-wrap h2{font-size:1.1rem;margin-top:1.5rem}
+  .dh h1{font-size:1.4rem}
+  .content-wrap h2{font-size:1.1rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.98rem}
-  .content-wrap p{margin:.65rem 0}
-  /* шапка: поиск уходит на отдельную ЧИСТУЮ строку (flex-wrap), кнопки не тесним */
-  .site-header{flex-wrap:wrap;row-gap:.55rem;padding-bottom:.6rem}
-  .hdr-search{order:10;flex-basis:100%;max-width:100%;margin:0}
-  .hdr-brand{order:1} .kitab-btn{order:2;margin-left:auto} .menu-btn{order:3}
+  .content-wrap p{margin:.66rem 0}
 }
 .chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
 .ch-disorder{display:flex;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
 .ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
 .ch-code{font-weight:700;color:var(--gold);min-width:3.6rem;font-family:var(--mono,monospace)}
 .ch-name{font-weight:600;color:var(--text)}
-/* КОМПАКТНАЯ навигация — только коды, мобильно */
-.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:1rem 0;padding:.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+/* нижняя навигация — перелистывание (ТОЛЬКО внизу страницы) */
+.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}
 .d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap}
 .d-nav a:hover{background:var(--bg3);color:var(--gold)}
 .d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}
@@ -129,17 +140,54 @@ def d_nav(chp, i):
     return f'<nav class="d-nav">{l}{up}{r}</nav>'
 
 
+def crumb(chp):
+    t = chp["title"]
+    t = (t[:40] + "…") if len(t) > 41 else t
+    return f'<nav class="crumb"><a href="{chp["slug"]}.html">‹ {t}</a></nav>'
+
+
+def build_dh(frag, code, fallback_name):
+    """Книжная шапка расстройства: кикер XBT-11·код, H1 (AZ), англ. курсивом, строка кодов.
+    H1 берём из фрагмента, англ. название и DSM-код — из первого абзаца; исходный H1 убираем."""
+    m = re.search(r'<h1[^>]*class="h-disorder"[^>]*>(.*?)</h1>', frag, re.S)
+    if m:
+        inner = re.sub(r'<span[^>]*class="icd"[^>]*>.*?</span>', '', m.group(1), flags=re.S)
+        title = re.sub(r'<[^>]+>', '', inner).strip()
+    else:
+        title = ""
+    title = title or fallback_name
+    # английское название международной классификации (после code-span в абзаце "XBT-11: …")
+    en = ""
+    me = re.search(r'XBT-11:\s*<span[^>]*class="icd"[^>]*>[^<]*</span>\s*([^;<)]+)', frag)
+    if me:
+        en = re.sub(r'\s+', " ", me.group(1)).strip().rstrip("/").strip()
+    # DSM-5-TR код из первого абзаца (если указан)
+    dsm = ""
+    md = re.search(r'DSM-5-TR:\s*([0-9][0-9.]*)', frag)
+    if md:
+        dsm = md.group(1)
+    chips = ""
+    if dsm:
+        chips += f'<span class="dh-c"><b>DSM-5-TR</b><i>{dsm}</i></span>'
+    codes_html = f'<div class="dh-codes">{chips}</div>' if chips else ""
+    en_html = f'<div class="dh-en">{en}</div>' if en else ""
+    dh = (f'<header class="dh"><div class="dh-kicker">XBT-11 · {code}</div>'
+          f'<h1>{title}</h1>{en_html}{codes_html}</header>')
+    body = re.sub(r'<h1[^>]*class="h-disorder"[^>]*>.*?</h1>', "", frag, count=1, flags=re.S)
+    return dh + body
+
+
 made_d, made_c = 0, 0
 for chp in chapters:
     ds = chp["disorders"]
-    # страницы расстройств
+    # страницы расстройств: крошка → книжная шапка → контент → нижняя навигация
     for i, (code, name) in enumerate(ds):
         mf = MASTER / f"{code}.html"
         frag = mf.read_text(encoding="utf-8") if mf.exists() else \
             f'<h1 class="h-disorder"><span class="icd">{code}</span> {name}</h1>' \
             f'<p style="color:var(--text2)">Bu bölmə hazırlanır.</p>'
-        nav = d_nav(chp, i)
-        (OUT / f"{code}.html").write_text(page(nav + frag + nav, name), encoding="utf-8")
+        content = crumb(chp) + build_dh(frag, code, name) + d_nav(chp, i)
+        (OUT / f"{code}.html").write_text(page(content, name), encoding="utf-8")
         made_d += 1
     # головная страница главы
     links = "".join(
