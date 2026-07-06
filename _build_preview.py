@@ -313,7 +313,7 @@ for key, title in DSM.get("classes", []):
         f'<a href="{c}.html"><span class="sc">{dsm_code(c) or "—"}</span><span>{name_of[c]}</span></a>'
         for c in items)
     dsm_ch += (f'<div class="toc-ch"><div class="tc-head">'
-               f'<span class="tc-range">DSM-5-TR</span><span>{title}</span></div>'
+               f'<span>{title}</span></div>'
                f'<div class="tc-list">{lst}</div></div>')
 
 tabs = ('<div class="toc-tabs">'
@@ -325,10 +325,10 @@ toggle_js = ('<script>function tocTab(b){var k=b.getAttribute("data-toc");'
              '</script>')
 toc = (f'<h1 class="h-chapter">ANA SƏHİFƏ</h1>{tabs}'
        f'<div class="toc-panel" data-panel="icd">'
-       f'<p class="toc-meta">XBT-11 · {made_d} pozuntu · {made_c} fəsil</p>'
+       f'<p class="toc-meta">{made_d} pozuntu · {made_c} fəsil</p>'
        f'<div class="toc-preview">{icd_ch}</div></div>'
        f'<div class="toc-panel" data-panel="dsm" hidden>'
-       f'<p class="toc-meta">DSM-5-TR · {made_d} pozuntu · {n_class} sinif</p>'
+       f'<p class="toc-meta">{made_d} pozuntu · {n_class} sinif</p>'
        f'<div class="toc-preview">{dsm_ch}</div></div>{toggle_js}')
 (OUT / "index.html").write_text(page(toc, "Mündəricat"), encoding="utf-8")
 
