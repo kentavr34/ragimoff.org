@@ -62,6 +62,26 @@ top = re.sub(r'(<nav>).*?(</nav>)', lambda m: m.group(1) + NEWNAV + m.group(2), 
 
 EXTRA_CSS = """
 <style>
+/* ===== ЧИСТЫЙ ЧИТАЮЩИЙ ШАБЛОН (мобайл-first, аккуратные пропорции) ===== */
+.content-wrap{max-width:44rem;margin:0 auto;padding:1.1rem 1.15rem 5.5rem}
+.content-wrap p{margin:.7rem 0}
+.content-wrap ul,.content-wrap ol{margin:.7rem 0;padding-left:1.3rem}
+.content-wrap li{margin:.3rem 0}
+.h-disorder{font-size:1.45rem;line-height:1.25;margin:.4rem 0 1rem;letter-spacing:-.01em}
+.content-wrap h2{font-size:1.18rem;line-height:1.3;margin:1.7rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.02rem;line-height:1.35;margin:1.1rem 0 .4rem;color:var(--text)}
+.content-wrap table{font-size:.92rem}
+/* мобайл: комфортная типографика вместо рыхлой 17/1.8 */
+@media(max-width:720px){
+  body{font-size:16px;line-height:1.6}
+  .content-wrap{padding:.9rem 1rem 5.5rem}
+  .h-disorder{font-size:1.32rem}
+  .content-wrap h2{font-size:1.1rem;margin-top:1.5rem}
+  .content-wrap h3{font-size:.98rem}
+  .content-wrap p{margin:.65rem 0}
+  /* шапка: поиск на свою строку, не тесним кнопки */
+  .hdr-search{order:9;flex-basis:100%;margin-top:.5rem}
+}
 .chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
 .ch-disorder{display:flex;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
 .ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
