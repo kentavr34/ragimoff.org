@@ -79,8 +79,10 @@ EXTRA_CSS = """
   .content-wrap h2{font-size:1.1rem;margin-top:1.5rem}
   .content-wrap h3{font-size:.98rem}
   .content-wrap p{margin:.65rem 0}
-  /* шапка: поиск на свою строку, не тесним кнопки */
-  .hdr-search{order:9;flex-basis:100%;margin-top:.5rem}
+  /* шапка: поиск уходит на отдельную ЧИСТУЮ строку (flex-wrap), кнопки не тесним */
+  .site-header{flex-wrap:wrap;row-gap:.55rem;padding-bottom:.6rem}
+  .hdr-search{order:10;flex-basis:100%;max-width:100%;margin:0}
+  .hdr-brand{order:1} .kitab-btn{order:2;margin-left:auto} .menu-btn{order:3}
 }
 .chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
 .ch-disorder{display:flex;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
