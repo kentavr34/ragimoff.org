@@ -17,6 +17,9 @@ OUT.mkdir(exist_ok=True)
 # выверяемая таблица кодов XBT-10/DSM (источник — историческая версия f173c21; правится вручную)
 CODES = json.loads((RG / "_codes_map.json").read_text(encoding="utf-8")) \
     if (RG / "_codes_map.json").exists() else {}
+# соответствие расстройств классам DSM-5-TR (для DSM-оглавления; правится вручную)
+DSM = json.loads((RG / "_dsm_toc.json").read_text(encoding="utf-8")) \
+    if (RG / "_dsm_toc.json").exists() else {"classes": [], "assign": {}}
 
 idx = (SITE / "index.html").read_text(encoding="utf-8")
 
@@ -122,6 +125,14 @@ EXTRA_CSS = """
 .toc-ch .tc-list a{display:flex;gap:.6rem;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);min-width:3.4rem}
+/* двойное оглавление: вкладки XBT-11 / DSM-5 */
+.toc-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem}
+.toc-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.15rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
+.toc-tab:hover{color:var(--text);border-color:var(--gold)}
+.toc-tab.is-active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
+.tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
+.tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
 </style>
 """
 
@@ -208,16 +219,61 @@ for chp in chapters:
     (OUT / f'{chp["slug"]}.html').write_text(page(head, chp["title"]), encoding="utf-8")
     made_c += 1
 
-# --- оглавление превью (index.html) ---
-toc_ch = ""
+# --- ДВОЙНОЕ оглавление превью (index.html): XBT-11 по главам + DSM-5 по классам ---
+name_of = {c: n for chp in chapters for c, n in chp["disorders"]}
+
+# панель XBT-11 — по главам
+icd_ch = ""
 for chp in chapters:
     lst = "".join(f'<a href="{c}.html"><span class="sc">{c}</span><span>{n}</span></a>' for c, n in chp["disorders"])
-    toc_ch += (f'<div class="toc-ch"><a href="{chp["slug"]}.html">'
+    icd_ch += (f'<div class="toc-ch"><a href="{chp["slug"]}.html">'
                f'<span class="tc-range">{chp["range"]}</span><span>{chp["title"]}</span></a>'
                f'<div class="tc-list">{lst}</div></div>')
-toc = (f'<h1 class="h-chapter">MÜNDƏRİCAT</h1>'
-       f'<p style="text-align:center;color:var(--text2)">XBT-11 · {made_d} pozuntu · {made_c} fəsil</p>'
-       f'<div class="toc-preview">{toc_ch}</div>')
+
+# панель DSM-5 — по классам DSM
+def dsm_code(c):
+    return (CODES.get(c, {}) or {}).get("dsm") or ""
+
+groups = {}
+for c in name_of:
+    groups.setdefault(DSM.get("assign", {}).get(c, "other"), []).append(c)
+
+def dsm_sort(c):
+    d = dsm_code(c)
+    try:
+        return (0, float(d))
+    except ValueError:
+        return (1, c)
+
+dsm_ch = ""
+n_class = 0
+for key, title in DSM.get("classes", []):
+    items = groups.get(key)
+    if not items:
+        continue
+    n_class += 1
+    items = sorted(items, key=dsm_sort)
+    lst = "".join(
+        f'<a href="{c}.html"><span class="sc">{dsm_code(c) or "—"}</span><span>{name_of[c]}</span></a>'
+        for c in items)
+    dsm_ch += (f'<div class="toc-ch"><div class="tc-head">'
+               f'<span class="tc-range">DSM-5</span><span>{title}</span></div>'
+               f'<div class="tc-list">{lst}</div></div>')
+
+tabs = ('<div class="toc-tabs">'
+        '<button class="toc-tab is-active" data-toc="icd" onclick="tocTab(this)">XBT-11</button>'
+        '<button class="toc-tab" data-toc="dsm" onclick="tocTab(this)">DSM-5-TR</button></div>')
+toggle_js = ('<script>function tocTab(b){var k=b.getAttribute("data-toc");'
+             'document.querySelectorAll(".toc-tab").forEach(function(t){t.classList.toggle("is-active",t===b);});'
+             'document.querySelectorAll(".toc-panel").forEach(function(p){p.hidden=(p.getAttribute("data-panel")!==k);});}'
+             '</script>')
+toc = (f'<h1 class="h-chapter">MÜNDƏRİCAT</h1>{tabs}'
+       f'<div class="toc-panel" data-panel="icd">'
+       f'<p class="toc-meta">XBT-11 · {made_d} pozuntu · {made_c} fəsil</p>'
+       f'<div class="toc-preview">{icd_ch}</div></div>'
+       f'<div class="toc-panel" data-panel="dsm" hidden>'
+       f'<p class="toc-meta">DSM-5-TR · {made_d} pozuntu · {n_class} sinif</p>'
+       f'<div class="toc-preview">{dsm_ch}</div></div>{toggle_js}')
 (OUT / "index.html").write_text(page(toc, "Mündəricat"), encoding="utf-8")
 
 print(f"глав: {made_c} | расстройств: {made_d}")
