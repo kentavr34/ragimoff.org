@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="16-6D3-parafilik.html">‹ PARAFİLİK POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D34</td><td class="dh-name"><h1>FROTTEURİZM</h1><div class="dh-en">Frotteuristic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F65.8</td><td class="dh-name">FROTTEURİZM</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">302.89</td><td class="dh-name">FROTTEURİZM</td></tr></tbody></table>
+<nav class="crumb"><a href="16-6D3-parafilik.html">‹ PARAFİLİK POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D34</td><td class="dh-name"><h1>FROTTEURİZM</h1><div class="dh-en">Frotteuristic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F65.8</td><td class="dh-name">FROTTEURİZM</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">302.89</td><td class="dh-name">FROTTEURİZM</td></tr></tbody></table><nav class="page-toc"><a href="#6d34-1-terif">Tərif və nozologiya</a><a href="#6d34-2-tarixce">Tarixçə</a><a href="#6d34-3-epidemiologiya">Epidemiologiya</a><a href="#6d34-4-etiologiya">Etiologiya və patogenez</a><a href="#6d34-5-klinik">Klinik mənzərə</a><a href="#6d34-6-diaqnoz">Diaqnoz</a><a href="#6d34-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6d34-8-mualice">Müalicə</a><a href="#6d34-9-metodikalar">Müalicə metodikaları</a><a href="#6d34-11-proqnoz">Proqnoz</a><a href="#6d34-10-mifler">Mif və yanlış inanclar</a><a href="#6d34-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6d34-1-terif">1. Tərif və nozologiya</h2>
 <p>Frotteurizm (XBT-11: <span class="icd">6D34</span> Frotteuristic Disorder; DSM-5-TR: 302.89) — razılığı olmayan şəxsə toxunma və ya öz cinsiyyət orqanlarını sürtməkdən davamlı və intensiv cinsi həyəcan. Pasiyent fantaziya icra etmiş və ya əhəmiyyətli distres/funksional pozulma yaşayır. Tipik kontekst — sıxılı ictimai nəqliyyat və izdiham.</p>
@@ -232,13 +243,16 @@ function setCls(k){
   <li>Hüquqi-tibbi koordinasiya.</li>
 </ol>
 
-<h2 id="6d34-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6d34-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>KDT və SSRİ + WFSBP 2020 protokol</dt>
   <dd>6D30/6D31/6D32 ilə eyni pillə-pillə.</dd>
 </dl>
 
-<h2 id="6d34-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6d34-11-proqnoz">10. Proqnoz</h2>
+<p>WFSBP müdaxiləsi ilə residiv azalması.</p>
+
+<h2 id="6d34-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Frotteurizm zərərsizdir"</h4>
 <p><strong>Sübut:</strong> qurban üçün travmadır; cinsi cinayət və hüquqi nəticələr.</p>
@@ -249,9 +263,6 @@ function setCls(k){
 <h4>Mif 3: "Yalnız hüquqi cəza"</h4>
 <p><strong>Sübut:</strong> klinik müdaxilə residiv azaldır.</p>
 
-<h2 id="6d34-11-proqnoz">11. Proqnoz</h2>
-<p>WFSBP müdaxiləsi ilə residiv azalması.</p>
-
 <h2 id="6d34-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6D34 Frotteuristic disorder. 2024.</li>
@@ -259,6 +270,7 @@ function setCls(k){
   <li>Thibaut F. et al. WFSBP. World J Biol Psychiatry 2020.</li>
 </ol>
 <nav class="d-nav"><a href="6D33.html">← 6D33 <span class="dn-name">SADİSTİK CİNSİ POZUNTU</span></a><a class="up" href="16-6D3-parafilik.html">↑ Fəsil</a><span></span></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

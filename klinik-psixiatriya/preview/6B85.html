@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="09-6B8-qida-qebulu.html">‹ QİDA QƏBULU POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B85</td><td class="dh-name"><h1>QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F98.2</td><td class="dh-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">307.59</td><td class="dh-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</td></tr></tbody></table>
+<nav class="crumb"><a href="09-6B8-qida-qebulu.html">‹ QİDA QƏBULU POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B85</td><td class="dh-name"><h1>QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F98.2</td><td class="dh-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">307.59</td><td class="dh-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</td></tr></tbody></table><nav class="page-toc"><a href="#6b85-1-terif">Tərif və nozologiya</a><a href="#6b85-2-tarixce">Tarixçə</a><a href="#6b85-3-epidemiologiya">Epidemiologiya</a><a href="#6b85-4-etiologiya">Etiologiya və patogenez</a><a href="#6b85-5-klinik">Klinik mənzərə</a><a href="#6b85-6-diaqnoz">Diaqnoz</a><a href="#6b85-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b85-8-mualice">Müalicə</a><a href="#6b85-9-metodikalar">Müalicə metodikaları</a><a href="#6b85-11-proqnoz">Proqnoz</a><a href="#6b85-10-mifler">Mif və yanlış inanclar</a><a href="#6b85-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b85-1-terif">1. Tərif və nozologiya</h2>
 <p>Avoidant/Restriktiv Qida Qəbulu Pozuntusu (ARFID; XBT-11: <span class="icd">6B85</span>; DSM-5-TR: 307.59) — qida qəbulundan qaçınma və ya məhdudlaşdırma nəticəsində əhəmiyyətli çəki itkisi, nutrisional çatışmazlıq, enteral qidalanma və ya psixososial pozulma. Bədən imajı pozuntusu və ya çəki artımından qorxu yoxdur (anorexia-dan əsas fərqi).</p>
@@ -262,7 +273,7 @@ function setCls(k){
   <li>Thomas J.J. CBT-AR — yeni sübut bazası.</li>
 </ul>
 
-<h2 id="6b85-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b85-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>CBT-AR (Thomas J.J.)</dt>
   <dd>Manualizə edilmiş; sensor, low interest, qorxu alt-tiplərinə uyğun protokollar.</dd>
@@ -277,7 +288,13 @@ function setCls(k){
   <dd>3 alt-tipi skrining.</dd>
 </dl>
 
-<h2 id="6b85-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b85-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Multidisiplinarlı yanaşma ilə əksər pasiyentlərdə yaxşılaşma.</li>
+  <li>Autizm və OKP fonunda uzunmüddətli izləmə.</li>
+</ul>
+
+<h2 id="6b85-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "ARFID sadəcə "picky eating"-dir"</h4>
 <p><strong>Sübut:</strong> klinik diaqnoz əhəmiyyətli funksional pozulma və ya nutrisional çatışmazlıq tələb edir.</p>
@@ -294,12 +311,6 @@ function setCls(k){
 <h4>Mif 5: "Pasiyent "böyüdükdə keçər""</h4>
 <p><strong>Sübut:</strong> müalicəsiz davam edə bilər; erkən müdaxilə nutrisional komplikasiyaların qarşısını alır.</p>
 
-<h2 id="6b85-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Multidisiplinarlı yanaşma ilə əksər pasiyentlərdə yaxşılaşma.</li>
-  <li>Autizm və OKP fonunda uzunmüddətli izləmə.</li>
-</ul>
-
 <h2 id="6b85-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B85 ARFID. 2024.</li>
@@ -309,6 +320,7 @@ function setCls(k){
   <li>Zickgraf H.F., Ellis J.M. Initial validation of the Nine Item Avoidant/Restrictive Food Intake Disorder Screen (NIAS). Appetite 2018;123:32–42.</li>
 </ol>
 <nav class="d-nav"><a href="6B84.html">← 6B84 <span class="dn-name">RUMİNASİYA-GERİ QAYTAR</span></a><a class="up" href="09-6B8-qida-qebulu.html">↑ Fəsil</a><span></span></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

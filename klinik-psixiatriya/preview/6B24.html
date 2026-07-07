@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="06-6B2-okp.html">‹ OBSESSİV-KOMPULSİV (OKP)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B24</td><td class="dh-name"><h1>TOPLAMA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F63.8</td><td class="dh-name">TOPLAMA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.3</td><td class="dh-name">TOPLAMA POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="06-6B2-okp.html">‹ OBSESSİV-KOMPULSİV (OKP)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B24</td><td class="dh-name"><h1>TOPLAMA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F63.8</td><td class="dh-name">TOPLAMA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.3</td><td class="dh-name">TOPLAMA POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b24-1-terif">Tərif və nozologiya</a><a href="#6b24-2-tarixce">Tarixçə</a><a href="#6b24-3-epidemiologiya">Epidemiologiya</a><a href="#6b24-4-etiologiya">Etiologiya və patogenez</a><a href="#6b24-5-klinik">Klinik mənzərə</a><a href="#6b24-6-diaqnoz">Diaqnoz</a><a href="#6b24-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b24-8-mualice">Müalicə</a><a href="#6b24-9-metodikalar">Müalicə metodikaları</a><a href="#6b24-11-proqnoz">Proqnoz</a><a href="#6b24-10-mifler">Mif və yanlış inanclar</a><a href="#6b24-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b24-1-terif">1. Tərif və nozologiya</h2>
 <p>Toplama pozuntusu (XBT-11: <span class="icd">6B24</span>; DSM-5-TR: 300.3 Hoarding Disorder) — əşyaları əldə etmək və ya saxlamaq tələbatı və onları atmaqdan davamlı çətinlik, bu da yaşayış sahəsinin (otaqların funksional məqsədli istifadə edilə bilməyəcək dərəcədə) tıxanmasına gətirir. OKP spektri kateqoriyasında.</p>
@@ -263,7 +274,7 @@ function setCls(k){
   <li>Saxena S. icmalları — SSRİ-yə cavab OKP-də müşahidə olunandan zəifdir.</li>
 </ul>
 
-<h2 id="6b24-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b24-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>KDT Hoarding üçün (Steketee G., Frost R.O.)</dt>
   <dd>Manualizə edilmiş 26 seans — motivasion müsahibə, qərarvermə təlimi, sortlama məşqi, ev ziyarətləri, koqnitiv yenidən strukturlaşdırma. <a href="https://www.iocdf.org/expert-opinions/expert-opinion-hoarding" target="_blank" rel="noopener">IOCDF</a>.</dd>
@@ -278,7 +289,14 @@ function setCls(k){
   <dd>Qiymət-effektiv format; uzunmüddətli dəstək.</dd>
 </dl>
 
-<h2 id="6b24-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b24-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Xronik gediş, yaşla şiddət artır.</li>
+  <li>KDT ilə əhəmiyyətli yaxşılaşma, lakin tam remisya nadir.</li>
+  <li>Komorbid demensiya pis proqnoz.</li>
+</ul>
+
+<h2 id="6b24-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Toplama — sadəcə "kollekioner" şəxsiyyət xüsusiyyəti və ya tənbəllik"</h4>
 <p><strong>Sübut:</strong> hoarding klinik pozuntudur — Frost & Hartl koqnitiv-davranış modeli; ayrı neyrobioloji patern; funksional pozulma və sağlamlıq riski. Kolleksionerlikdən fərqli olaraq əşyalar sistemləşdirilmiş deyil və yaşayış sahəsini tıxayır.</p>
@@ -298,13 +316,6 @@ function setCls(k){
 <h4>Mif 6: "Bir dəfə təmizləyəndən sonra problem həll olunur"</h4>
 <p><strong>Sübut:</strong> hoarding xronik pozuntudur; uzunmüddətli müalicə və icma dəstəyi tələb olunur.</p>
 
-<h2 id="6b24-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, yaşla şiddət artır.</li>
-  <li>KDT ilə əhəmiyyətli yaxşılaşma, lakin tam remisya nadir.</li>
-  <li>Komorbid demensiya pis proqnoz.</li>
-</ul>
-
 <h2 id="6b24-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B24 Hoarding disorder. 2024.</li>
@@ -315,6 +326,7 @@ function setCls(k){
   <li>Samuels J.F. et al. Prevalence and correlates of hoarding behavior in a community-based sample. Behav Res Ther 2008;46(7):836–844.</li>
 </ol>
 <nav class="d-nav"><a href="6B23.html">← 6B23 <span class="dn-name">HİPOXONDRİYA (XƏSTƏLİK</span></a><a class="up" href="06-6B2-okp.html">↑ Fəsil</a><a href="6B25.html"><span class="dn-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR</span> 6B25 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

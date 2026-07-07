@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="18-6D7-neyrokoqnitiv.html">‹ NEYROKOQNİTİV (DEMENSİYA)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D83</td><td class="dh-name"><h1>FRONTOTEMPORAL DEMENSİYA (FTD)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F02.0</td><td class="dh-name">FRONTOTEMPORAL DEMENSİYA (FTD)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">331.19</td><td class="dh-name">FRONTOTEMPORAL DEMENSİYA (FTD)</td></tr></tbody></table>
+<nav class="crumb"><a href="18-6D7-neyrokoqnitiv.html">‹ NEYROKOQNİTİV (DEMENSİYA)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D83</td><td class="dh-name"><h1>FRONTOTEMPORAL DEMENSİYA (FTD)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F02.0</td><td class="dh-name">FRONTOTEMPORAL DEMENSİYA (FTD)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">331.19</td><td class="dh-name">FRONTOTEMPORAL DEMENSİYA (FTD)</td></tr></tbody></table><nav class="page-toc"><a href="#6d83-1-terif">Tərif və nozologiya</a><a href="#6d83-2-tarixce">Tarixçə</a><a href="#6d83-3-epidemiologiya">Epidemiologiya</a><a href="#6d83-4-etiologiya">Etiologiya və patogenez</a><a href="#6d83-5-klinik">Klinik mənzərə</a><a href="#6d83-6-diaqnoz">Diaqnoz</a><a href="#6d83-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6d83-8-mualice">Müalicə</a><a href="#6d83-9-metodikalar">Müalicə metodikaları</a><a href="#6d83-11-proqnoz">Proqnoz</a><a href="#6d83-10-mifler">Mif və yanlış inanclar</a><a href="#6d83-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6d83-1-terif">1. Tərif və nozologiya</h2>
 <p>Frontotemporal Demensiya (FTD; XBT-11: <span class="icd">6D83</span>; DSM-5-TR: 331.19) — frontal və/və ya temporal lobların atrofiyası nəticəsində inkişaf edən demensiya; tipik 45–65 yaş arası başlanğıc (erkən başlayan demensiyalardan ən sıx). Üç klinik varyant: bvFTD (davranış varyantı) və iki PPA forması (Primary Progressive Aphasia — semantic və non-fluent).</p>
@@ -265,7 +276,7 @@ function setCls(k){
   <li>Lebert F. et al. Dement Geriatr Cogn Disord 2004 — trazodon.</li>
 </ul>
 
-<h2 id="6d83-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6d83-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>SSRİ bvFTD üçün</dt>
   <dd>Citalopram, sertralin — davranış simptomları.</dd>
@@ -283,7 +294,13 @@ function setCls(k){
   <dd>Ailə üzvləri üçün.</dd>
 </dl>
 
-<h2 id="6d83-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6d83-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Diaqnozdan sonra orta gözlənilən ömür 6–11 il; FTD-ALS daha qısa (3 il).</li>
+  <li>Sürətli enmə bəzi mutasiyalarda.</li>
+</ul>
+
+<h2 id="6d83-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "FTD Alzheimer-in alt-tipidir"</h4>
 <p><strong>Sübut:</strong> ayrı patoloji və klinik vahid; tau, TDP-43, FUS patologiyaları; AChEI effektivsiz.</p>
@@ -300,12 +317,6 @@ function setCls(k){
 <h4>Mif 5: "FTD pasiyentin davranışı iradi"</h4>
 <p><strong>Sübut:</strong> davranış dəyişikliyi neyrobioloji — frontal lob disfunksiyası; iradi nəzarət pozulmuş.</p>
 
-<h2 id="6d83-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Diaqnozdan sonra orta gözlənilən ömür 6–11 il; FTD-ALS daha qısa (3 il).</li>
-  <li>Sürətli enmə bəzi mutasiyalarda.</li>
-</ul>
-
 <h2 id="6d83-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6D83 Dementia due to frontotemporal lobar degeneration. 2024.</li>
@@ -316,6 +327,7 @@ function setCls(k){
   <li>Lebert F. et al. Frontotemporal dementia: a randomised, controlled trial with trazodone. Dement Geriatr Cogn Disord 2004;17(4):355–359.</li>
 </ol>
 <nav class="d-nav"><a href="6D82.html">← 6D82 <span class="dn-name">LEWY CİSİMCİKLƏRİ DEME</span></a><a class="up" href="18-6D7-neyrokoqnitiv.html">↑ Fəsil</a><span></span></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

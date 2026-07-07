@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="05-6B0-narahatliq.html">‹ NARAHATLIQ POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B04</td><td class="dh-name"><h1>SOSİAL NARAHATLIQ POZUNTUSU</h1><div class="dh-en">Social Anxiety Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F40.1</td><td class="dh-name">SOSİAL NARAHATLIQ POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.23</td><td class="dh-name">SOSİAL NARAHATLIQ POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="05-6B0-narahatliq.html">‹ NARAHATLIQ POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B04</td><td class="dh-name"><h1>SOSİAL NARAHATLIQ POZUNTUSU</h1><div class="dh-en">Social Anxiety Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F40.1</td><td class="dh-name">SOSİAL NARAHATLIQ POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.23</td><td class="dh-name">SOSİAL NARAHATLIQ POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b04-1-terif">Tərif və nozologiya</a><a href="#6b04-2-tarixce">Tarixçə</a><a href="#6b04-3-epidemiologiya">Epidemiologiya</a><a href="#6b04-4-etiologiya">Etiologiya və patogenez</a><a href="#6b04-5-klinik">Klinik mənzərə</a><a href="#6b04-6-diaqnoz">Diaqnoz</a><a href="#6b04-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b04-8-mualice">Müalicə</a><a href="#6b04-9-metodikalar">Müalicə metodikaları</a><a href="#6b04-11-proqnoz">Proqnoz</a><a href="#6b04-10-mifler">Mif və yanlış inanclar</a><a href="#6b04-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b04-1-terif">1. Tərif və nozologiya</h2>
 <p>Sosial narahatlıq pozuntusu (XBT-11: <span class="icd">6B04</span> Social Anxiety Disorder; DSM-5-TR: 300.23) — sosial situasiyalarda başqaları tərəfindən mənfi qiymətləndirilməkdən və ya rüsvay olmaqdan kəskin və davamlı qorxudur. Pasiyent çıxış, qarşılıqlı təsir və müşahidə altında olmaq kimi situasiyalardan qaçır.</p>
@@ -268,7 +279,7 @@ function setCls(k){
   <li>Mayo-Wilson E. et al. Lancet Psychiatry 2014 network meta-analiz — fərdi KDT ən böyük effekt; SSRİ ikinci.</li>
 </ul>
 
-<h2 id="6b04-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b04-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>Clark KDT Modeli</dt>
   <dd>Sosial narahatlıq üçün xüsusi inkişaf etdirilmiş; özünə fokuslaşdırılmış diqqətin xarici yönləndirilməsi, video feedback (öz performansını başqalarının gözü ilə görmə), davranış eksperimentləri (qorxu inanclarının yoxlanması), in vivo ekspozisiya. Sübut: Clark D.M. et al. J Consult Clin Psychol 2003 RKİ — eksperimental fərdi KDT digər müdaxilələrdən üstün.</dd>
@@ -286,7 +297,14 @@ function setCls(k){
   <dd>17 maddə; qısa skrining.</dd>
 </dl>
 
-<h2 id="6b04-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b04-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Xronik gediş, müalicəsiz residiv yüksək.</li>
+  <li>KDT və SSRİ ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
+  <li>Erkən başlanğıc və avoidant şəxsiyyət komorbid pis proqnoz markeri.</li>
+</ul>
+
+<h2 id="6b04-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Sosial narahatlıq — adi "həyatdan utanma", müalicə tələb etmir"</h4>
 <p><strong>Sübut:</strong> sosial narahatlıq pozuntusu funksional pozulma, akademik və peşə məhdudiyyəti, depresiya və alkohol istifadəsi riski ilə müşayiət olunur; tibbi vəziyyət kimi qiymətləndirilir.</p>
@@ -312,13 +330,6 @@ function setCls(k){
 <h4>Mif 8: "Kannabis (CBD) sosial narahatlıq üçün təhlükəsiz alternativdir"</h4>
 <p><strong>Sübut:</strong> ilkin tədqiqatlar var, lakin klinik tövsiyə üçün kifayət deyil; THC narahatlığı gücləndirə bilər.</p>
 
-<h2 id="6b04-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, müalicəsiz residiv yüksək.</li>
-  <li>KDT və SSRİ ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
-  <li>Erkən başlanğıc və avoidant şəxsiyyət komorbid pis proqnoz markeri.</li>
-</ul>
-
 <h2 id="6b04-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B04 Social anxiety disorder. 2024.</li>
@@ -330,6 +341,7 @@ function setCls(k){
   <li>Liebowitz M.R. Social phobia. Mod Probl Pharmacopsychiatry 1987;22:141–173.</li>
 </ol>
 <nav class="d-nav"><a href="6B03.html">← 6B03 <span class="dn-name">SPESİFİK FOBİYA</span></a><a class="up" href="05-6B0-narahatliq.html">↑ Fəsil</a><a href="6B05.html"><span class="dn-name">AYRILMA NARAHATLIĞI PO</span> 6B05 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

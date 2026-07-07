@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B63</td><td class="dh-name"><h1>DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</h1><div class="dh-en">Dissociative Neurological Symptom Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F44.4</td><td class="dh-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.11</td><td class="dh-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B63</td><td class="dh-name"><h1>DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</h1><div class="dh-en">Dissociative Neurological Symptom Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F44.4</td><td class="dh-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.11</td><td class="dh-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b63-1-terif">Tərif və nozologiya</a><a href="#6b63-2-tarixce">Tarixçə</a><a href="#6b63-3-epidemiologiya">Epidemiologiya</a><a href="#6b63-4-etiologiya">Etiologiya və patogenez</a><a href="#6b63-5-klinik">Klinik mənzərə</a><a href="#6b63-6-diaqnoz">Diaqnoz</a><a href="#6b63-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b63-8-mualice">Müalicə</a><a href="#6b63-9-metodikalar">Müalicə metodikaları</a><a href="#6b63-11-proqnoz">Proqnoz</a><a href="#6b63-10-mifler">Mif və yanlış inanclar</a><a href="#6b63-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b63-1-terif">1. Tərif və nozologiya</h2>
 <p>Dissosiativ Nevroloji Simptom Pozuntusu (XBT-11: <span class="icd">6B63</span> Dissociative Neurological Symptom Disorder; DSM-5-TR: 300.11 Functional Neurological Symptom Disorder / Conversion Disorder) — könüllü idarə altında olan motor, sensor və ya koqnitiv funksiyaların pozulması, neyroloji və ya tibbi xəstəliklə tam izah olunmur. Əvvəlcədən "konversion pozuntu" və ya "isteriya" adlandırılırdı.</p>
@@ -267,7 +278,7 @@ function setCls(k){
   <li>NICE — funksional simptomlar üçün multidisiplinarlı yanaşma.</li>
 </ul>
 
-<h2 id="6b63-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b63-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>Pozitiv klinik diaqnoz təqdimatı (Stone J.)</dt>
   <dd>Diaqnoz "rule-out" deyil, "rule-in"; pasiyentə pozitiv klinik əlamətlər izah olunur (məs. Hoover sign göstərilir).</dd>
@@ -282,7 +293,13 @@ function setCls(k){
   <dd>PNES diaqnozu qızıl standart.</dd>
 </dl>
 
-<h2 id="6b63-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b63-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Erkən düzgün diaqnoz və müdaxilə ilə yaxşılaşma.</li>
+  <li>Geç diaqnoz və polifarmasiya — xronikləşmə.</li>
+</ul>
+
+<h2 id="6b63-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Pasiyent simulyasiya edir / "uydurmadır""</h4>
 <p><strong>Sübut:</strong> funksional pozuntu real klinik vəziyyətdir — sinir sisteminin funksional pozulması; pozitiv klinik əlamətlər sübut edir. Faktitioz pozuntudan və simulyasiyadan fərqlidir.</p>
@@ -299,12 +316,6 @@ function setCls(k){
 <h4>Mif 5: "Funksional simptomlar müalicə olunmur"</h4>
 <p><strong>Sübut:</strong> fizioterapiya, KDT, multidisiplinarlı yanaşma əhəmiyyətli effekt göstərir.</p>
 
-<h2 id="6b63-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Erkən düzgün diaqnoz və müdaxilə ilə yaxşılaşma.</li>
-  <li>Geç diaqnoz və polifarmasiya — xronikləşmə.</li>
-</ul>
-
 <h2 id="6b63-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B63 Dissociative neurological symptom disorder. 2024.</li>
@@ -315,6 +326,7 @@ function setCls(k){
   <li>Edwards M.J., Adams R.A., Brown H., Pareés I., Friston K.J. A Bayesian account of "hysteria". Brain 2012;135(Pt 11):3495–3512.</li>
 </ol>
 <nav class="d-nav"><a href="6B62.html">← 6B62 <span class="dn-name">DEPERSONALİZASİYA-DERE</span></a><a class="up" href="08-6B6-dissosiativ.html">↑ Fəsil</a><a href="6B64.html"><span class="dn-name">DİSSOSİATİV AMNEZİYA</span> 6B64 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

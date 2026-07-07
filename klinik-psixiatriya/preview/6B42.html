@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B42</td><td class="dh-name"><h1>UZANMIŞ YAS POZUNTUSU</h1><div class="dh-en">Prolonged Grief Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F43.8</td><td class="dh-name">UZANMIŞ YAS POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">309.89</td><td class="dh-name">UZANMIŞ YAS POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B42</td><td class="dh-name"><h1>UZANMIŞ YAS POZUNTUSU</h1><div class="dh-en">Prolonged Grief Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F43.8</td><td class="dh-name">UZANMIŞ YAS POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">309.89</td><td class="dh-name">UZANMIŞ YAS POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b42-1-terif">Tərif və nozologiya</a><a href="#6b42-2-tarixce">Tarixçə</a><a href="#6b42-3-epidemiologiya">Epidemiologiya</a><a href="#6b42-4-etiologiya">Etiologiya və patogenez</a><a href="#6b42-5-klinik">Klinik mənzərə</a><a href="#6b42-6-diaqnoz">Diaqnoz</a><a href="#6b42-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b42-8-mualice">Müalicə</a><a href="#6b42-9-metodikalar">Müalicə metodikaları</a><a href="#6b42-11-proqnoz">Proqnoz</a><a href="#6b42-10-mifler">Mif və yanlış inanclar</a><a href="#6b42-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b42-1-terif">1. Tərif və nozologiya</h2>
 <p>Uzanmış yas pozuntusu (XBT-11: <span class="icd">6B42</span> Prolonged Grief Disorder; DSM-5-TR: 309.89 — 2022-ci ildə əlavə edilib) — yaxın şəxsin itkisindən sonra, mədəni və dini gözləntilərdən uzun davam edən və əhəmiyyətli funksional pozulma yaradan kədər və məşğuliyyət pozuntusudur.</p>
@@ -274,7 +285,7 @@ function setCls(k){
   <li>Wittouck C. et al. Clin Psychol Rev 2011 meta-analiz — yas-spesifik müdaxilələr universal yas dəstəyindən üstün uzanmış yasda.</li>
 </ul>
 
-<h2 id="6b42-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b42-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>CGT — Complicated Grief Treatment (Shear M.K.)</dt>
   <dd>16 seanslı manualizə edilmiş protokol; "loss-oriented" + "restoration-oriented" iş; imaginal və situasion ekspozisiya, müsbət xatirələr, gələcəyə yönəliş. Sübut: Shear M.K. et al. JAMA 2005, JAMA Psychiatry 2016 RKİ.</dd>
@@ -289,7 +300,13 @@ function setCls(k){
   <dd>19 maddə.</dd>
 </dl>
 
-<h2 id="6b42-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b42-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>CGT ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
+  <li>Müalicəsiz xronikləşmə və komorbid MDD/PTSP inkişafı.</li>
+</ul>
+
+<h2 id="6b42-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Yas həmişə "5 mərhələdən" keçir — inkar, qəzəb, sövdələşmə, depresiya, qəbul"</h4>
 <p><strong>Sübut:</strong> Kübler-Ross modeli yarımməktəblik konsepsiyasıdır; sistemli sübut bazası yoxdur; yas nonlinear, fərdiləşdirilmiş prosesdir.</p>
@@ -309,12 +326,6 @@ function setCls(k){
 <h4>Mif 6: "Sosial rituallar (ehsan, anma) zərərlidir, pasiyenti gözəl yaddaşdan ayırmır"</h4>
 <p><strong>Sübut:</strong> mədəni və dini rituallar yas prosesinə dəstək olur; klinik müdaxilədə mədəni hörmət vacib komponentdir.</p>
 
-<h2 id="6b42-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>CGT ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
-  <li>Müalicəsiz xronikləşmə və komorbid MDD/PTSP inkişafı.</li>
-</ul>
-
 <h2 id="6b42-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B42 Prolonged grief disorder. 2024.</li>
@@ -326,6 +337,7 @@ function setCls(k){
   <li>Wittouck C. et al. The prevention and treatment of complicated grief: a meta-analysis. Clin Psychol Rev 2011;31(1):69–78.</li>
 </ol>
 <nav class="d-nav"><a href="6B41.html">← 6B41 <span class="dn-name">KOMPLEKS POSTTRAVMATİK</span></a><a class="up" href="07-6B4-stress.html">↑ Fəsil</a><a href="6B43.html"><span class="dn-name">ADAPTASİYA POZUNTUSU</span> 6B43 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B40</td><td class="dh-name"><h1>POSTTRAVMATİK STRES POZUNTUSU (PTSP)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F43.1</td><td class="dh-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">309.81</td><td class="dh-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</td></tr></tbody></table>
+<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B40</td><td class="dh-name"><h1>POSTTRAVMATİK STRES POZUNTUSU (PTSP)</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F43.1</td><td class="dh-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">309.81</td><td class="dh-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</td></tr></tbody></table><nav class="page-toc"><a href="#6b40-1-terif">Tərif və nozologiya</a><a href="#6b40-2-tarixce">Tarixçə</a><a href="#6b40-3-epidemiologiya">Epidemiologiya</a><a href="#6b40-4-etiologiya">Etiologiya və patogenez</a><a href="#6b40-5-klinik">Klinik mənzərə</a><a href="#6b40-6-diaqnoz">Diaqnoz</a><a href="#6b40-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b40-8-mualice">Müalicə</a><a href="#6b40-9-metodikalar">Müalicə metodikaları</a><a href="#6b40-11-proqnoz">Proqnoz</a><a href="#6b40-10-mifler">Mif və yanlış inanclar</a><a href="#6b40-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b40-1-terif">1. Tərif və nozologiya</h2>
 <p>Posttravmatik Stres Pozuntusu (PTSP; XBT-11: <span class="icd">6B40</span>; DSM-5-TR: 309.81) — ölüm və ya ölüm təhlükəsi, ciddi yaralanma və ya cinsi zorakılığa fərdi və ya bilavasitə şahid olduqdan sonra inkişaf edən, üç əsas simptom domeni ilə xarakterizə olunan pozuntudur: <strong>yenidən təcrübə</strong> (intruzivlər), <strong>qaçınma</strong>, <strong>davamlı təhlükə hissi</strong> (XBT-11) / <strong>koqnitiv-əhval dəyişikliklər və hiperarausal</strong> (DSM-5-TR).</p>
@@ -290,7 +301,7 @@ function setCls(k){
   <li><strong>Critical Incident Stress Debriefing (CISD)</strong> — Cochrane (Rose S. et al. 2002) və NICE açıq tövsiyə etmir; bəzi tədqiqatlarda PTSP riskini artırır.</li>
 </ul>
 
-<h2 id="6b40-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b40-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>Prolonged Exposure (PE — Foa E.B.)</dt>
   <dd>Travmatik xatirəyə imaginal ekspozisiya (təkrarlanan, ardıcıl təsvir) + in vivo ekspozisiya (qaçınılan situasiyalara). 10–15 seans. Sübut: Foa E.B. et al. RKİ-ləri; meta-analizlərdə qızıl standart effekt.</dd>
@@ -311,7 +322,14 @@ function setCls(k){
   <dd>20 maddəlik özünüqiymətləndirmə; skrining və izləmə.</dd>
 </dl>
 
-<h2 id="6b40-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b40-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Travma-fokuslu psixoterapiya ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
+  <li>Erkən müdaxiləsiz xronikləşmə.</li>
+  <li>Komorbid MDD, maddə istifadəsi pis proqnoz markerləri.</li>
+</ul>
+
+<h2 id="6b40-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "PTSP yalnız müharibə veteranlarında olur"</h4>
 <p><strong>Sübut:</strong> PTSP istənilən travmatik hadisədən sonra inkişaf edə bilər — cinsi zorakılıq (~50% inkişaf), fiziki hücum, qəzalar, təbii fəlakətlər, tibbi prosedurlar. Veteranlarda yayılma yüksəkdir, lakin populyasiyada da geniş yayılmışdır.</p>
@@ -337,13 +355,6 @@ function setCls(k){
 <h4>Mif 8: "EMDR sübutu zəifdir — sadəcə placebo effekti"</h4>
 <p><strong>Sübut:</strong> Bisson J.I. Cochrane 2013 və APA 2017 — EMDR güclü sübut bazası; KDT və PE ilə müqayisəli effekt.</p>
 
-<h2 id="6b40-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Travma-fokuslu psixoterapiya ilə əksər pasiyentlərdə əhəmiyyətli yaxşılaşma.</li>
-  <li>Erkən müdaxiləsiz xronikləşmə.</li>
-  <li>Komorbid MDD, maddə istifadəsi pis proqnoz markerləri.</li>
-</ul>
-
 <h2 id="6b40-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B40 Post traumatic stress disorder. 2024.</li>
@@ -357,6 +368,7 @@ function setCls(k){
   <li>Rose S., Bisson J., Churchill R., Wessely S. Psychological debriefing for preventing post-traumatic stress disorder. Cochrane Database Syst Rev 2002;(2):CD000560.</li>
 </ol>
 <nav class="d-nav"><span></span><a class="up" href="07-6B4-stress.html">↑ Fəsil</a><a href="6B41.html"><span class="dn-name">KOMPLEKS POSTTRAVMATİK</span> 6B41 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

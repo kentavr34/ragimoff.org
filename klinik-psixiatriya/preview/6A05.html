@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A05</td><td class="dh-name"><h1>DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</h1><div class="dh-en">Attention deficit hyperactivity disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F90.0</td><td class="dh-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">314.0</td><td class="dh-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</td></tr></tbody></table>
+<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A05</td><td class="dh-name"><h1>DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</h1><div class="dh-en">Attention deficit hyperactivity disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F90.0</td><td class="dh-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">314.0</td><td class="dh-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</td></tr></tbody></table><nav class="page-toc"><a href="#6a05-1-terif">Tərif və nozologiya</a><a href="#6a05-2-tarixce">Tarixçə</a><a href="#6a05-3-epidemiologiya">Epidemiologiya</a><a href="#6a05-4-etiologiya">Etiologiya və patogenez</a><a href="#6a05-5-klinik">Klinik mənzərə</a><a href="#6a05-6-diaqnoz">Diaqnoz</a><a href="#6a05-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a05-8-mualice">Müalicə</a><a href="#6a05-9-metodikalar">Müalicə metodikaları</a><a href="#6a05-11-proqnoz">Proqnoz</a><a href="#6a05-10-mifler">Mif və yanlış inanclar</a><a href="#6a05-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a05-1-terif">1. Tərif və nozologiya</h2>
 <p>Diqqət Defisiti və Hiperaktivlik Pozuntusu (DDHP; XBT-11: <span class="icd">6A05</span> Attention deficit hyperactivity disorder; DSM-5-TR: 314.0x ADHD) — erkən inkişaf dövründə (12 yaşa qədər) başlayan, diqqətsizlik, hiperaktivlik və impulsivlikdən ibarət davranış nümunəsi ilə xarakterizə edilən, akademik, sosial və ya peşə fəaliyyətində funksional pozulma yaradan neyroinkişaf pozuntusudur.</p>
@@ -400,7 +411,7 @@ function setCls(k){
   <li><strong>FDA və EMA monitorinq tələbləri:</strong> boy və çəki izləmə, ürək-damar ilkin göstəricilər.</li>
 </ul>
 
-<h2 id="6a05-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a05-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>PCIT — Parent-Child Interaction Therapy (Eyberg S.)</dt>
@@ -437,7 +448,39 @@ function setCls(k){
   <dd>DDHP-də spesifik beyin dalğa patternlərinin (theta/beta nisbəti) öz-tənzimlənmə təlimi. Sübut: Holtmann M. et al. Dev Med Child Neurol 2011 meta-analiz — kiçik effekt ölçüsü; sahə mütəxəssisləri arasında effekti mübahisəli. NICE NG87 — birinci sıra deyil, adjunkt status.</dd>
 </dl>
 
-<h2 id="6a05-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a05-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Erkən identifikasiya və müdaxilə.</li>
+  <li>Yüksək IQ — kompensator strategiyalar.</li>
+  <li>Stabil və dəstəkləyici ailə mühiti.</li>
+  <li>Komorbid pozuntuların aktiv müalicəsi.</li>
+  <li>Stimulyant və davranış müdaxiləsinə yaxşı cavab.</li>
+  <li>Yeniyetməlik və yetkinlikdə adhesiyanın saxlanılması.</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Komorbid davranış pozuntusu, oppozisional davranış pozuntusu.</li>
+  <li>Aşağı sosial-ekonomik dəstək.</li>
+  <li>Maddə istifadəsi inkişafı yeniyetməlikdə.</li>
+  <li>İcra funksiyası defisitinin ağırlığı.</li>
+  <li>Geç identifikasiya.</li>
+  <li>Müdaxilə qeyri-sübutlu metodlarla.</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li>Simptom və funksional nəticə monitoringi (3–6 aylıq).</li>
+  <li>Stimulyantda boy, çəki, qan təzyiqi, ürək nəbzi (3 aylıq).</li>
+  <li>Komorbid narahatlıq, depressiya, maddə istifadəsi skrining.</li>
+  <li>Akademik və peşə nailiyyət dəstəyi.</li>
+  <li>Yeniyetməlikdə risk davranışı (avtomobil sürmə təlim, cinsi sağlamlıq, maddə) müdaxiləsi.</li>
+  <li>Yetkinlikdə peşə uyğunlaşması, münasibətlər, finans planlaşdırması — DDHP-yə uyğunlaşdırılmış KDT.</li>
+</ul>
+
+<h2 id="6a05-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya mifləri</h3>
 
@@ -492,38 +535,6 @@ function setCls(k){
 <h4>Mif 13: "İşıq terapiyası, MUS rangli linzalar DDHP-ni sağaldır"</h4>
 <p><strong>Sübut:</strong> sübut bazası yoxdur. AAP, AAO mövqeyi — sübutlu deyil.</p>
 
-<h2 id="6a05-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Erkən identifikasiya və müdaxilə.</li>
-  <li>Yüksək IQ — kompensator strategiyalar.</li>
-  <li>Stabil və dəstəkləyici ailə mühiti.</li>
-  <li>Komorbid pozuntuların aktiv müalicəsi.</li>
-  <li>Stimulyant və davranış müdaxiləsinə yaxşı cavab.</li>
-  <li>Yeniyetməlik və yetkinlikdə adhesiyanın saxlanılması.</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Komorbid davranış pozuntusu, oppozisional davranış pozuntusu.</li>
-  <li>Aşağı sosial-ekonomik dəstək.</li>
-  <li>Maddə istifadəsi inkişafı yeniyetməlikdə.</li>
-  <li>İcra funksiyası defisitinin ağırlığı.</li>
-  <li>Geç identifikasiya.</li>
-  <li>Müdaxilə qeyri-sübutlu metodlarla.</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li>Simptom və funksional nəticə monitoringi (3–6 aylıq).</li>
-  <li>Stimulyantda boy, çəki, qan təzyiqi, ürək nəbzi (3 aylıq).</li>
-  <li>Komorbid narahatlıq, depressiya, maddə istifadəsi skrining.</li>
-  <li>Akademik və peşə nailiyyət dəstəyi.</li>
-  <li>Yeniyetməlikdə risk davranışı (avtomobil sürmə təlim, cinsi sağlamlıq, maddə) müdaxiləsi.</li>
-  <li>Yetkinlikdə peşə uyğunlaşması, münasibətlər, finans planlaşdırması — DDHP-yə uyğunlaşdırılmış KDT.</li>
-</ul>
-
 <h2 id="6a05-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A05 Attention deficit hyperactivity disorder. 2024.</li>
@@ -549,6 +560,7 @@ function setCls(k){
   <li>Safren S.A., Sprich S., Mimiaga M.J. et al. Cognitive behavioral therapy vs relaxation with educational support for medication-treated adults with ADHD and persistent symptoms: a randomized controlled trial. JAMA 2010;304(8):875–880.</li>
 </ol>
 <nav class="d-nav"><a href="6A04.html">← 6A04 <span class="dn-name">İNKİŞAF HƏRƏKİ KOORDİN</span></a><a class="up" href="01-6A0-neyroinkisaf.html">↑ Fəsil</a><a href="6A06.html"><span class="dn-name">STEREOTİPİK HƏRƏKƏT PO</span> 6A06 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

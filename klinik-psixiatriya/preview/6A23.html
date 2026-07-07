@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A23</td><td class="dh-name"><h1>KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</h1><div class="dh-en">Acute and Transient Psychotic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F23</td><td class="dh-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">298.8</td><td class="dh-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</td></tr></tbody></table>
+<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A23</td><td class="dh-name"><h1>KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</h1><div class="dh-en">Acute and Transient Psychotic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F23</td><td class="dh-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">298.8</td><td class="dh-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</td></tr></tbody></table><nav class="page-toc"><a href="#6a23-1-terif">Tərif və nozologiya</a><a href="#6a23-2-tarixce">Tarixçə</a><a href="#6a23-3-epidemiologiya">Epidemiologiya</a><a href="#6a23-4-etiologiya">Etiologiya və patogenez</a><a href="#6a23-5-klinik">Klinik mənzərə</a><a href="#6a23-6-diaqnoz">Diaqnoz</a><a href="#6a23-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a23-8-mualice">Müalicə</a><a href="#6a23-9-metodikalar">Müalicə metodikaları</a><a href="#6a23-11-proqnoz">Proqnoz</a><a href="#6a23-10-mifler">Mif və yanlış inanclar</a><a href="#6a23-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a23-1-terif">1. Tərif və nozologiya</h2>
 <p>Kəskin və keçici psixotik pozuntu (XBT-11: <span class="icd">6A23</span> Acute and Transient Psychotic Disorder; DSM-5-TR: 298.8 Brief Psychotic Disorder) — sürətli (bir neçə gün-həftə) başlayan, psixotik simptomlar (sayıqlama, halusinasiya, dezorqanizə nitq, qrossal dezorqanizə davranış) ilə xarakterizə olunan, qısamüddətli gediş və premorbid funksional səviyyəyə tam bərpa ilə nəticələnən pozuntudur.</p>
@@ -339,7 +350,7 @@ function setCls(k){
   <li><strong>NICE CG192 (Antenatal and postnatal mental health):</strong> postnatal psixoz tibbi təcili — xəstəxana yatımı, atipik antipsixotik + benzodiazepin, EKT refrakter hallarda.</li>
 </ul>
 
-<h2 id="6a23-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a23-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>Erkən Müdaxilə Xidmətləri (EIP — Early Intervention in Psychosis)</dt>
@@ -358,7 +369,39 @@ function setCls(k){
   <dd>Psixotik şiddətin standartlaşdırılmış qiymətləndirilməsi.</dd>
 </dl>
 
-<h2 id="6a23-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a23-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Çox sürətli başlanğıc və qısa müddət.</li>
+  <li>Aydın stres tetikleyicisi.</li>
+  <li>Premorbid yaxşı funksional səviyyə.</li>
+  <li>Affektiv komponentin mövcudluğu.</li>
+  <li>Polimorf simptomatika (şizofreniya simptomları olmadan).</li>
+  <li>Ailə psixotik tarixçəsi olmaması.</li>
+  <li>Kannabis və ya digər maddə istifadəsi olmaması.</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Şizofreniya kimi simptomlar (Şneyder I dərəcəli).</li>
+  <li>Stres tetikleyicisinin olmaması.</li>
+  <li>Tədricən başlanğıc.</li>
+  <li>Premorbid funksional zəiflik.</li>
+  <li>Ailə tarixçəsində şizofreniya.</li>
+  <li>Maddə istifadəsi.</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li><strong>Uzunmüddətli izləmə kritikdir</strong> — 30–50% şizofreniya, şizoaffektiv və ya bipolyara keçir; ilk il aylıq, sonra rüblük rəsmi izləmə.</li>
+  <li>Residiv markerlərinin tanınması (yuxu pozuntusu, sosial geri çəkilmə, qəribə təcrübələr).</li>
+  <li>Antipsixotik dozanın tədricən azaldılması və kəsilməsi — fərdi qərar (residiv riski vs yan təsir).</li>
+  <li>Komorbid maddə istifadəsi və travma müdaxiləsi.</li>
+  <li>Postpartum hallarda — sonrakı hamiləliklərdə residiv riski yüksəkdir, profilaktik müalicə planlaşdırılır.</li>
+</ul>
+
+<h2 id="6a23-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya və konseptual mifləri</h3>
 
@@ -399,38 +442,6 @@ function setCls(k){
 <h4>Mif 10: "Hipnoterapiya və ya psixoanalitik dərin terapiya kəskin psixozda istifadə edilə bilər"</h4>
 <p><strong>Sübut:</strong> kəskin psixotik epizodda dərin psixoanalitik müdaxilə pasiyenti dezorganize edə bilər; bu mərhələdə supportiv terapiya, struktur və təhlükəsizlik vacibdir, dərin müdaxilə yox.</p>
 
-<h2 id="6a23-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Çox sürətli başlanğıc və qısa müddət.</li>
-  <li>Aydın stres tetikleyicisi.</li>
-  <li>Premorbid yaxşı funksional səviyyə.</li>
-  <li>Affektiv komponentin mövcudluğu.</li>
-  <li>Polimorf simptomatika (şizofreniya simptomları olmadan).</li>
-  <li>Ailə psixotik tarixçəsi olmaması.</li>
-  <li>Kannabis və ya digər maddə istifadəsi olmaması.</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Şizofreniya kimi simptomlar (Şneyder I dərəcəli).</li>
-  <li>Stres tetikleyicisinin olmaması.</li>
-  <li>Tədricən başlanğıc.</li>
-  <li>Premorbid funksional zəiflik.</li>
-  <li>Ailə tarixçəsində şizofreniya.</li>
-  <li>Maddə istifadəsi.</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li><strong>Uzunmüddətli izləmə kritikdir</strong> — 30–50% şizofreniya, şizoaffektiv və ya bipolyara keçir; ilk il aylıq, sonra rüblük rəsmi izləmə.</li>
-  <li>Residiv markerlərinin tanınması (yuxu pozuntusu, sosial geri çəkilmə, qəribə təcrübələr).</li>
-  <li>Antipsixotik dozanın tədricən azaldılması və kəsilməsi — fərdi qərar (residiv riski vs yan təsir).</li>
-  <li>Komorbid maddə istifadəsi və travma müdaxiləsi.</li>
-  <li>Postpartum hallarda — sonrakı hamiləliklərdə residiv riski yüksəkdir, profilaktik müalicə planlaşdırılır.</li>
-</ul>
-
 <h2 id="6a23-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A23 Acute and transient psychotic disorder. 2024.</li>
@@ -446,6 +457,7 @@ function setCls(k){
   <li>NICE Technology Appraisal 59. Guidance on the use of electroconvulsive therapy. 2003 (reviewed).</li>
 </ol>
 <nav class="d-nav"><a href="6A22.html">← 6A22 <span class="dn-name">ŞİZOTİPİK POZUNTU</span></a><a class="up" href="02-6A2-sizofreniya-spektri.html">↑ Fəsil</a><a href="6A24.html"><span class="dn-name">SAYIQLAMA POZUNTUSU</span> 6A24 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

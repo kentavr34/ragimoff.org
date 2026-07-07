@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="06-6B2-okp.html">‹ OBSESSİV-KOMPULSİV (OKP)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B22</td><td class="dh-name"><h1>PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</h1><div class="dh-en">Olfactory Reference Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F45.8</td><td class="dh-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.3</td><td class="dh-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</td></tr></tbody></table>
+<nav class="crumb"><a href="06-6B2-okp.html">‹ OBSESSİV-KOMPULSİV (OKP)</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B22</td><td class="dh-name"><h1>PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</h1><div class="dh-en">Olfactory Reference Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F45.8</td><td class="dh-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.3</td><td class="dh-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</td></tr></tbody></table><nav class="page-toc"><a href="#6b22-1-terif">Tərif və nozologiya</a><a href="#6b22-2-tarixce">Tarixçə</a><a href="#6b22-3-epidemiologiya">Epidemiologiya</a><a href="#6b22-4-etiologiya">Etiologiya və patogenez</a><a href="#6b22-5-klinik">Klinik mənzərə</a><a href="#6b22-6-diaqnoz">Diaqnoz</a><a href="#6b22-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b22-8-mualice">Müalicə</a><a href="#6b22-9-metodikalar">Müalicə metodikaları</a><a href="#6b22-11-proqnoz">Proqnoz</a><a href="#6b22-10-mifler">Mif və yanlış inanclar</a><a href="#6b22-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b22-1-terif">1. Tərif və nozologiya</h2>
 <p>Patoloji Bədən Qoxusu Pozuntusu (ORS) (XBT-11: <span class="icd">6B22</span> Olfactory Reference Disorder; DSM-5-TR: 300.3 OCD spektri daxilində spesifikləşdirilmiş və ya 300.7 BDD ilə əlaqəli) — pasiyentin bədənindən real olmayan və ya həddən artıq qiymətləndirilmiş pis iyə yayılması haqqında obsessiv inamla xarakterizə olunan pozuntudur. Pasiyent başqalarının onu qınamasını və ya rüsvay etməsini düşünür, kompulsiv yuyunma, deodorant istifadəsi, sosial qaçınma davranışı göstərir.</p>
@@ -252,7 +263,7 @@ function setCls(k){
   <li>Suicid riski izlənməsi.</li>
 </ol>
 
-<h2 id="6b22-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b22-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>KDT (OKP/BDD-yə uyğunlaşdırılmış)</dt>
   <dd>Ekspozisiya + ritualların qarşısının alınması + koqnitiv yenidən strukturlaşdırma.</dd>
@@ -261,7 +272,10 @@ function setCls(k){
   <dd>OKP-yə bənzər; 8–12 həftə.</dd>
 </dl>
 
-<h2 id="6b22-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b22-11-proqnoz">10. Proqnoz</h2>
+<p>Sübut bazası məhduddur. SSRİ + KDT ilə yaxşılaşma; suicid riski izlənir.</p>
+
+<h2 id="6b22-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Pasiyent həqiqətən pis iyli ola bilər — əvvəlcə tibbi yoxlama olmadan psixiatrik diaqnoz qoyula bilməz"</h4>
 <p><strong>Sübut:</strong> doğru — tibbi səbəblər (halitoz, hipergidroz, TMAU) mütləq istisna edilməlidir; lakin tibbi səbəb yoxdursa və obsessiv məşğuliyyət davam edirsə, klinik vəziyyət iy referans pozuntusudur.</p>
@@ -275,9 +289,6 @@ function setCls(k){
 <h4>Mif 4: "Yalnız antipsixotik effektivdir, çünki sayıqlamadır"</h4>
 <p><strong>Sübut:</strong> insight dəyişkəndir; SSRİ yüksək doza + KDT birinci sıra; antipsixotik augmentasiya yalnız sayıqlama səviyyəsində.</p>
 
-<h2 id="6b22-11-proqnoz">11. Proqnoz</h2>
-<p>Sübut bazası məhduddur. SSRİ + KDT ilə yaxşılaşma; suicid riski izlənir.</p>
-
 <h2 id="6b22-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B22 Olfactory reference disorder. 2024.</li>
@@ -286,6 +297,7 @@ function setCls(k){
   <li>Pryse-Phillips W. An olfactory reference syndrome. Acta Psychiatr Scand 1971;47(4):484–509.</li>
 </ol>
 <nav class="d-nav"><a href="6B21.html">← 6B21 <span class="dn-name">BƏDƏN DİSMORFİK POZUNT</span></a><a class="up" href="06-6B2-okp.html">↑ Fəsil</a><a href="6B23.html"><span class="dn-name">HİPOXONDRİYA (XƏSTƏLİK</span> 6B23 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

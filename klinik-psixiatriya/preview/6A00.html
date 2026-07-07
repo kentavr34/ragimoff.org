@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A00</td><td class="dh-name"><h1>İNTELLEKTUAL İNKİŞAF POZUNTUSU</h1><div class="dh-en">Disorder of Intellectual Development</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F70</td><td class="dh-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">319</td><td class="dh-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A00</td><td class="dh-name"><h1>İNTELLEKTUAL İNKİŞAF POZUNTUSU</h1><div class="dh-en">Disorder of Intellectual Development</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F70</td><td class="dh-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">319</td><td class="dh-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6a00-1-terif">Tərif və nozologiya</a><a href="#6a00-2-tarixce">Tarixçə</a><a href="#6a00-3-epidemiologiya">Epidemiologiya</a><a href="#6a00-4-etiologiya">Etiologiya və patogenez</a><a href="#6a00-5-klinik">Klinik mənzərə</a><a href="#6a00-6-diaqnoz">Diaqnoz</a><a href="#6a00-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a00-8-mualice">Müalicə</a><a href="#6a00-9-metodikalar">Müalicə metodikaları</a><a href="#6a00-11-proqnoz">Proqnoz</a><a href="#6a00-10-mifler">Mif və yanlış inanclar</a><a href="#6a00-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a00-1-terif">1. Tərif və nozologiya</h2>
 <p>İntellektual inkişaf pozuntusu (XBT-11: <span class="icd">6A00</span> Disorder of Intellectual Development; DSM-5-TR: 319 Intellectual Developmental Disorder / əvvəlki "Mental Retardation") — inkişaf dövründə (qayda olaraq 22 yaşa qədər) başlayan, həm <strong>intellektual funksiyalarda</strong> (təxminən 2 standart kənaraçıxma orta səviyyədən aşağı, standartlaşdırılmış testlərdə qiymət ~70-dən az), həm də <strong>adaptiv davranış</strong>da (konseptual, sosial, praktik domenlərdə) əhəmiyyətli məhdudiyyətlərlə xarakterizə olunan neyroinkişaf pozuntusudur.</p>
@@ -330,7 +341,7 @@ function setCls(k){
   <li><strong>WHO mhGAP Intervention Guide v2.0:</strong> aşağı və orta gəlirli ölkələrdə birinci tibbi yardım səviyyəsində qiymətləndirmə və əsas müdaxilə; ailə təlimi və icma reabilitasiyası vurğulanır.</li>
 </ul>
 
-<h2 id="6a00-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a00-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>Applied Behavior Analysis (ABA)</dt>
@@ -355,7 +366,38 @@ function setCls(k){
   <dd>Dəstək tələbinin intensivliyini ölçən şkala; SIS-A yetkinlər, SIS-C 5–16 yaş üçün. Klinik planlaşdırma və xidmət ayrılması üçün.</dd>
 </dl>
 
-<h2 id="6a00-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a00-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Yüngül severity (~85% bütün İD); intellektual və adaptiv funksiyada yaxın səviyyə.</li>
+  <li>Müalicə oluna bilən etiologiya (PKU, anadangəlmə hipotireoz, qurğuşun) — erkən aşkar.</li>
+  <li>Erkən müdaxilə (&lt;3 yaş).</li>
+  <li>Stabil və dəstəkləyici ailə mühiti.</li>
+  <li>Komorbid psixiatrik və medical durumun aktiv müalicəsi.</li>
+  <li>İcma və məktəb resurslarının əlçatanlığı.</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Dərin və ya ağır severity.</li>
+  <li>Genetik sindrom kompleks fenotiplə (epilepsiya, ürək anomaliyaları, hərəki).</li>
+  <li>Ağır davranış pozuntuları, özü-özünə zərər.</li>
+  <li>Ailə dəstəyinin və icma resurslarının olmaması.</li>
+  <li>İdentifikasiya olunmamış və müalicəsiz komorbidlik (epilepsiya, RAS, ADHD).</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li>Adaptiv inkişafın illik yenidən qiymətləndirilməsi.</li>
+  <li>Tibbi nəzarət — sindrom-spesifik protokollara görə (məs. AAP Down 2022).</li>
+  <li>Komorbid psixiatrik durum (RAS, ADHD, narahatlıq, depressiya) skrining.</li>
+  <li>Davranış pozuntularının funksional analizi və müdaxiləsi.</li>
+  <li>Yetkinlikdə dəstəkli iş və yaşayış variantları üçün keçid planlaması.</li>
+  <li>Ailəyə respite care və peer dəstək təklifi.</li>
+</ul>
+
+<h2 id="6a00-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya mifləri</h3>
 
@@ -405,37 +447,6 @@ function setCls(k){
 <h4>Mif 12: "Valideyn xüsusi pəhriz tətbiq edərsə (qlutensiz, kazeinsiz) İD yaxşılaşar"</h4>
 <p><strong>Sübut:</strong> Hyman S.L. et al. (AAP 2020 Clinical Report on ASD): qarın-bağırsaq problemi olmayan uşaqlarda xüsusi pəhrizlərin koqnitiv funksiyaya təsiri sübut edilməmişdir. Çəlik xəstəliyi sübut edilmişdirsə — qlutensiz pəhriz, lakin İD üçün deyil.</p>
 
-<h2 id="6a00-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Yüngül severity (~85% bütün İD); intellektual və adaptiv funksiyada yaxın səviyyə.</li>
-  <li>Müalicə oluna bilən etiologiya (PKU, anadangəlmə hipotireoz, qurğuşun) — erkən aşkar.</li>
-  <li>Erkən müdaxilə (&lt;3 yaş).</li>
-  <li>Stabil və dəstəkləyici ailə mühiti.</li>
-  <li>Komorbid psixiatrik və medical durumun aktiv müalicəsi.</li>
-  <li>İcma və məktəb resurslarının əlçatanlığı.</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Dərin və ya ağır severity.</li>
-  <li>Genetik sindrom kompleks fenotiplə (epilepsiya, ürək anomaliyaları, hərəki).</li>
-  <li>Ağır davranış pozuntuları, özü-özünə zərər.</li>
-  <li>Ailə dəstəyinin və icma resurslarının olmaması.</li>
-  <li>İdentifikasiya olunmamış və müalicəsiz komorbidlik (epilepsiya, RAS, ADHD).</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li>Adaptiv inkişafın illik yenidən qiymətləndirilməsi.</li>
-  <li>Tibbi nəzarət — sindrom-spesifik protokollara görə (məs. AAP Down 2022).</li>
-  <li>Komorbid psixiatrik durum (RAS, ADHD, narahatlıq, depressiya) skrining.</li>
-  <li>Davranış pozuntularının funksional analizi və müdaxiləsi.</li>
-  <li>Yetkinlikdə dəstəkli iş və yaşayış variantları üçün keçid planlaması.</li>
-  <li>Ailəyə respite care və peer dəstək təklifi.</li>
-</ul>
-
 <h2 id="6a00-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>Schalock R.L., Luckasson R., Tassé M.J. Intellectual Disability: Definition, Diagnosis, Classification, and Systems of Supports, 12th ed. AAIDD; 2021.</li>
@@ -456,6 +467,7 @@ function setCls(k){
   <li>Hyman S.L., Levy S.E., Myers S.M., AAP Council on Children with Disabilities. Identification, Evaluation, and Management of Children With Autism Spectrum Disorder. Pediatrics 2020;145(1):e20193447.</li>
 </ol>
 <nav class="d-nav"><span></span><a class="up" href="01-6A0-neyroinkisaf.html">↑ Fəsil</a><a href="6A01.html"><span class="dn-name">İNKİŞAF NİTQ VƏ DİL PO</span> 6A01 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B62</td><td class="dh-name"><h1>DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F48.1</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.6</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="08-6B6-dissosiativ.html">‹ DİSSOSİATİV POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B62</td><td class="dh-name"><h1>DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F48.1</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">300.6</td><td class="dh-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b62-1-terif">Tərif və nozologiya</a><a href="#6b62-2-tarixce">Tarixçə</a><a href="#6b62-3-epidemiologiya">Epidemiologiya</a><a href="#6b62-4-etiologiya">Etiologiya və patogenez</a><a href="#6b62-5-klinik">Klinik mənzərə</a><a href="#6b62-6-diaqnoz">Diaqnoz</a><a href="#6b62-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b62-8-mualice">Müalicə</a><a href="#6b62-9-metodikalar">Müalicə metodikaları</a><a href="#6b62-11-proqnoz">Proqnoz</a><a href="#6b62-10-mifler">Mif və yanlış inanclar</a><a href="#6b62-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b62-1-terif">1. Tərif və nozologiya</h2>
 <p>Depersonalizasiya-Derealizasiya Pozuntusu (XBT-11: <span class="icd">6B62</span>; DSM-5-TR: 300.6) — davamlı və ya təkrarlanan depersonalizasiya (özündən kənarda olmaq, bədəndən və düşüncələrdən qopmaq hissi) və/yaxud derealizasiya (ətrafın qeyri-real, "tutqun film kimi" görünməsi) ilə xarakterizə olunan dissosiativ pozuntudur. Reality testing saxlanılır (pasiyent təcrübənin qeyri-real olduğunu bilir).</p>
@@ -256,7 +267,7 @@ function setCls(k){
   <li>Specifik FDA təsdiqli preparat yoxdur.</li>
 </ul>
 
-<h2 id="6b62-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b62-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>KDT depersonalizasiya üçün (Hunter E.C., Sierra M.)</dt>
   <dd>Koqnitiv yenidən strukturlaşdırma, ekspozisiya, grounding texnikaları.</dd>
@@ -268,7 +279,12 @@ function setCls(k){
   <dd>5-4-3-2-1 (5 görünən obyekt, 4 səs və s.); sensor diqqət.</dd>
 </dl>
 
-<h2 id="6b62-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b62-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Xronik gediş, lakin KDT ilə əhəmiyyətli yaxşılaşma.</li>
+</ul>
+
+<h2 id="6b62-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Depersonalizasiya psixoz əlamətidir"</h4>
 <p><strong>Sübut:</strong> reality testing saxlanılır; psixotik pozuntudan fərqlidir; antipsixotik effektsizdir.</p>
@@ -285,11 +301,6 @@ function setCls(k){
 <h4>Mif 5: "Yalnız antidepresant effektivdir"</h4>
 <p><strong>Sübut:</strong> KDT birinci sıra; SSRİ komorbid simptomlarda.</p>
 
-<h2 id="6b62-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, lakin KDT ilə əhəmiyyətli yaxşılaşma.</li>
-</ul>
-
 <h2 id="6b62-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B62 Depersonalization-derealization disorder. 2024.</li>
@@ -299,6 +310,7 @@ function setCls(k){
   <li>Simeon D. Depersonalisation disorder: a contemporary overview. CNS Drugs 2004;18(6):343–354.</li>
 </ol>
 <nav class="d-nav"><a href="6B61.html">← 6B61 <span class="dn-name">PARSİAL DİSSOSİATİV İD</span></a><a class="up" href="08-6B6-dissosiativ.html">↑ Fəsil</a><a href="6B63.html"><span class="dn-name">DİSSOSİATİV NEVROLOJİ </span> 6B63 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

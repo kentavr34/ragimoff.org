@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="16-6D3-parafilik.html">‹ PARAFİLİK POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D31</td><td class="dh-name"><h1>VOYERİZM</h1><div class="dh-en">Voyeuristic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F65.3</td><td class="dh-name">VOYERİZM</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">302.82</td><td class="dh-name">VOYERİZM</td></tr></tbody></table>
+<nav class="crumb"><a href="16-6D3-parafilik.html">‹ PARAFİLİK POZUNTULAR</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6D31</td><td class="dh-name"><h1>VOYERİZM</h1><div class="dh-en">Voyeuristic Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F65.3</td><td class="dh-name">VOYERİZM</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">302.82</td><td class="dh-name">VOYERİZM</td></tr></tbody></table><nav class="page-toc"><a href="#6d31-1-terif">Tərif və nozologiya</a><a href="#6d31-2-tarixce">Tarixçə</a><a href="#6d31-3-epidemiologiya">Epidemiologiya</a><a href="#6d31-4-etiologiya">Etiologiya və patogenez</a><a href="#6d31-5-klinik">Klinik mənzərə</a><a href="#6d31-6-diaqnoz">Diaqnoz</a><a href="#6d31-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6d31-8-mualice">Müalicə</a><a href="#6d31-9-metodikalar">Müalicə metodikaları</a><a href="#6d31-11-proqnoz">Proqnoz</a><a href="#6d31-10-mifler">Mif və yanlış inanclar</a><a href="#6d31-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6d31-1-terif">1. Tərif və nozologiya</h2>
 <p>Voyerizm (XBT-11: <span class="icd">6D31</span> Voyeuristic Disorder; DSM-5-TR: 302.82) — razılığı olmayan şəxslərə soyunma, çılpaq olma, cinsi fəaliyyət zamanı gizlin baxmaqdan davamlı və intensiv cinsi həyəcan; pasiyent bu fantaziyalara cavab olaraq distres yaşayır və ya razılığı olmayan insanlarda gerçəkləşdirir.</p>
@@ -236,10 +247,13 @@ function setCls(k){
   <li>Hüquqi-tibbi koordinasiya.</li>
 </ol>
 
-<h2 id="6d31-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6d31-9-metodikalar">9. Müalicə metodikaları</h2>
 <p>6D30 ilə eyni.</p>
 
-<h2 id="6d31-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6d31-11-proqnoz">10. Proqnoz</h2>
+<p>Sübutlu müalicə ilə residiv azalması.</p>
+
+<h2 id="6d31-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Voyerizm zərərsizdir, kurban xəbərsiz qalır"</h4>
 <p><strong>Sübut:</strong> qurban aşkar olduqda travma; razılıq pozulması cinsi cinayət.</p>
@@ -253,9 +267,6 @@ function setCls(k){
 <h4>Mif 4: "Müalicə effektivsizdir"</h4>
 <p><strong>Sübut:</strong> KDT və farmakoterapiya effektivdir.</p>
 
-<h2 id="6d31-11-proqnoz">11. Proqnoz</h2>
-<p>Sübutlu müalicə ilə residiv azalması.</p>
-
 <h2 id="6d31-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6D31 Voyeuristic disorder. 2024.</li>
@@ -263,6 +274,7 @@ function setCls(k){
   <li>Thibaut F. et al. WFSBP. World J Biol Psychiatry 2020.</li>
 </ol>
 <nav class="d-nav"><a href="6D30.html">← 6D30 <span class="dn-name">EKSHİBİSİONİZM</span></a><a class="up" href="16-6D3-parafilik.html">↑ Fəsil</a><a href="6D32.html"><span class="dn-name">PEDOFİLİK POZUNTU</span> 6D32 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

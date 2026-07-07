@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A21</td><td class="dh-name"><h1>ŞİZOAFFEKTİV POZUNTU</h1><div class="dh-en">Schizoaffective Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F25</td><td class="dh-name">ŞİZOAFFEKTİV POZUNTU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">295.70</td><td class="dh-name">ŞİZOAFFEKTİV POZUNTU</td></tr></tbody></table>
+<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A21</td><td class="dh-name"><h1>ŞİZOAFFEKTİV POZUNTU</h1><div class="dh-en">Schizoaffective Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F25</td><td class="dh-name">ŞİZOAFFEKTİV POZUNTU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">295.70</td><td class="dh-name">ŞİZOAFFEKTİV POZUNTU</td></tr></tbody></table><nav class="page-toc"><a href="#6a21-1-terif">Tərif və nozologiya</a><a href="#6a21-2-tarixce">Tarixçə</a><a href="#6a21-3-epidemiologiya">Epidemiologiya</a><a href="#6a21-4-etiologiya">Etiologiya və patogenez</a><a href="#6a21-5-klinik">Klinik mənzərə</a><a href="#6a21-6-diaqnoz">Diaqnoz</a><a href="#6a21-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a21-8-mualice">Müalicə</a><a href="#6a21-9-metodikalar">Müalicə metodikaları</a><a href="#6a21-11-proqnoz">Proqnoz</a><a href="#6a21-10-mifler">Mif və yanlış inanclar</a><a href="#6a21-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a21-1-terif">1. Tərif və nozologiya</h2>
 <p>Şizoaffektiv pozuntu (XBT-11: <span class="icd">6A21</span> Schizoaffective Disorder; DSM-5-TR: 295.70) — psixotik simptomlar (sayıqlama, halusinasiya, dezorqanizə nitq) və affektiv epizod (manik və ya depresiv) eyni klinik epizod ərzində birgə müşahidə edilən, lakin əlavə olaraq <strong>affektiv epizoddan kənar dövrlərdə də psixotik simptomların davam etdiyi</strong> ilkin psixotik pozuntudur.</p>
@@ -340,7 +351,7 @@ function setCls(k){
   <li><strong>CANMAT / ISBD 2018:</strong> bipolyar tip şizoaffektiv pozuntu — bipolyar pozuntu müalicə alqoritmlərinə uyğunlaşdırılır.</li>
 </ul>
 
-<h2 id="6a21-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a21-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>KDTp — Psixoz üçün Koqnitiv-Davranış Terapiyası</dt>
@@ -368,7 +379,39 @@ function setCls(k){
   <dd>Psixotik, depresiv, manik komponentlərin ayrıca standartlaşdırılmış qiymətləndirilməsi.</dd>
 </dl>
 
-<h2 id="6a21-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a21-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Bipolyar tip (depresiv tipdən daha yaxşı proqnoz).</li>
+  <li>Sürətli başlanğıc, aydın affektiv komponent.</li>
+  <li>Premorbid yaxşı funksional səviyyə.</li>
+  <li>Erkən müdaxilə və adhesiya.</li>
+  <li>Sosial dəstək.</li>
+  <li>Komorbid maddə istifadəsinin idarə edilməsi.</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Depresiv tip.</li>
+  <li>Tədricən başlanğıc.</li>
+  <li>Neqativ simptomların üstünlüyü.</li>
+  <li>Komorbid maddə istifadəsi.</li>
+  <li>Suisid cəhdi tarixçəsi.</li>
+  <li>Adhesiyasızlıq.</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li>Psixotik və affektiv simptomların ayrı-ayrı izlənməsi (PANSS, HAM-D, YMRS).</li>
+  <li>Suisid riski (C-SSRS) — xüsusilə depresiv epizodlarda və ilk illərdə.</li>
+  <li>Metabolik monitorinq.</li>
+  <li>Litium alanlarda — TSH, kreatinin, kalsium (6 aylıq).</li>
+  <li>Funksional bərpa, məşğulluq, sosial əlaqələr.</li>
+  <li>Ailə dəstəyi və psixoeducation.</li>
+</ul>
+
+<h2 id="6a21-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya və konseptual mifləri</h3>
 
@@ -412,38 +455,6 @@ function setCls(k){
 <h4>Mif 11: "Aktiv depresiv epizoddan kənar farmakoterapiya tələb olunmur"</h4>
 <p><strong>Sübut:</strong> şizoaffektiv pozuntu meyarına görə psixotik simptomlar affektiv epizoddan kənar dövrlərdə də mövcuddur — antipsixotik dəstəkçi müalicə uzunmüddətli tövsiyə edilir.</p>
 
-<h2 id="6a21-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Bipolyar tip (depresiv tipdən daha yaxşı proqnoz).</li>
-  <li>Sürətli başlanğıc, aydın affektiv komponent.</li>
-  <li>Premorbid yaxşı funksional səviyyə.</li>
-  <li>Erkən müdaxilə və adhesiya.</li>
-  <li>Sosial dəstək.</li>
-  <li>Komorbid maddə istifadəsinin idarə edilməsi.</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Depresiv tip.</li>
-  <li>Tədricən başlanğıc.</li>
-  <li>Neqativ simptomların üstünlüyü.</li>
-  <li>Komorbid maddə istifadəsi.</li>
-  <li>Suisid cəhdi tarixçəsi.</li>
-  <li>Adhesiyasızlıq.</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li>Psixotik və affektiv simptomların ayrı-ayrı izlənməsi (PANSS, HAM-D, YMRS).</li>
-  <li>Suisid riski (C-SSRS) — xüsusilə depresiv epizodlarda və ilk illərdə.</li>
-  <li>Metabolik monitorinq.</li>
-  <li>Litium alanlarda — TSH, kreatinin, kalsium (6 aylıq).</li>
-  <li>Funksional bərpa, məşğulluq, sosial əlaqələr.</li>
-  <li>Ailə dəstəyi və psixoeducation.</li>
-</ul>
-
 <h2 id="6a21-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A21 Schizoaffective disorder. 2024.</li>
@@ -464,6 +475,7 @@ function setCls(k){
   <li>NICE Technology Appraisal 59. Guidance on the use of electroconvulsive therapy. 2003 (reviewed).</li>
 </ol>
 <nav class="d-nav"><a href="6A20.html">← 6A20 <span class="dn-name">ŞİZOFRENİYA</span></a><a class="up" href="02-6A2-sizofreniya-spektri.html">↑ Fəsil</a><a href="6A22.html"><span class="dn-name">ŞİZOTİPİK POZUNTU</span> 6A22 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

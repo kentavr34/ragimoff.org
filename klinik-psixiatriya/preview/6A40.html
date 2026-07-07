@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="03-6A4-katatoniya.html">‹ KATATONİYA</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A40</td><td class="dh-name"><h1>KATATONİYA — ÜMUMİ PRİNSİPLƏR</h1><div class="dh-en">Catatonia Associated with Another Mental Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F06.1</td><td class="dh-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">293.89</td><td class="dh-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</td></tr></tbody></table>
+<nav class="crumb"><a href="03-6A4-katatoniya.html">‹ KATATONİYA</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A40</td><td class="dh-name"><h1>KATATONİYA — ÜMUMİ PRİNSİPLƏR</h1><div class="dh-en">Catatonia Associated with Another Mental Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F06.1</td><td class="dh-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">293.89</td><td class="dh-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</td></tr></tbody></table><nav class="page-toc"><a href="#6a40-1-terif">Tərif və nozologiya</a><a href="#6a40-2-tarixce">Tarixçə</a><a href="#6a40-3-epidemiologiya">Epidemiologiya</a><a href="#6a40-4-etiologiya">Etiologiya və patogenez</a><a href="#6a40-5-klinik">Klinik mənzərə</a><a href="#6a40-6-diaqnoz">Diaqnoz</a><a href="#6a40-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a40-8-mualice">Müalicə</a><a href="#6a40-9-metodikalar">Müalicə metodikaları</a><a href="#6a40-11-proqnoz">Proqnoz</a><a href="#6a40-10-mifler">Mif və yanlış inanclar</a><a href="#6a40-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a40-1-terif">1. Tərif və nozologiya</h2>
 <p>Katatoniya (XBT-11: <span class="icd">6A40</span> Catatonia Associated with Another Mental Disorder; <span class="icd">6A41</span> Catatonia Induced by Substances or Medications; <span class="icd">6E69</span> Secondary Catatonia Syndrome; DSM-5-TR: 293.89 Catatonia) — psixomotor, davranış və autonom funksiyalarda kompleks pozulma sindromudur. Müstəqil pozuntu deyil — başqa psixiatrik və ya tibbi vəziyyət fonunda klinik sindromdur.</p>
@@ -283,7 +294,7 @@ function setCls(k){
   <li><strong>NICE TA59</strong> — EKT katatoniyada açıq tövsiyə.</li>
 </ul>
 
-<h2 id="6a40-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a40-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>Bush-Francis Catatonia Rating Scale (BFCRS)</dt>
   <dd>23 maddəlik şkala; ilk 14 maddə skrining (≥ 2 pozitiv); 23 maddə şiddət. Bush G. et al. Acta Psychiatr Scand 1996.</dd>
@@ -298,7 +309,16 @@ function setCls(k){
   <dd>IV metilprednizolon 1 q/gün × 5 gün → IVIG və/və ya plazmaferez; refrakter hallarda rituksimab, siklofosfamid. Graus F. et al. Lancet Neurol 2016 autoimmun ensefalit protokolu.</dd>
 </dl>
 
-<h2 id="6a40-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a40-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Lorazepam və/və ya EKT-yə cavab — pasiyentlərin əksəriyyətində günlər-həftə ərzində tam bərpa.</li>
+  <li>Etioloji pozuntu müalicə edilməsə residiv yüksək.</li>
+  <li>Komplikasiyalar — uzun stupordan aspirasiya pnevmoniyası, DVT, dehidratasiya, dəri ülserləri.</li>
+  <li>Malign katatoniya — mortalite 10–20% (müalicə olmadıqda).</li>
+  <li>İzləmə — etioloji pozuntu kontekstində; residiv markerlərinin tanınması.</li>
+</ul>
+
+<h2 id="6a40-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: "Katatoniya şizofreniyanın alt-tipidir"</h4>
 <p><strong>Sübut:</strong> DSM-5 (2013) və XBT-11 (2019) — katatoniya transnozoloji sindrom kimi; şizofreniya alt-tipi statusu ləğv edilmişdir. Affektiv pozuntular kontekstində daha sıx (Fink & Taylor 2003).</p>
@@ -321,15 +341,6 @@ function setCls(k){
 <h4>Mif 7: "Pasiyenti danışmağa məcbur etmək lazımdır — psixoloji baryeri qırmaq"</h4>
 <p><strong>Sübut:</strong> mutizm bioloji mənşəlidir, psixoloji "müqavimət" deyil; tələb pasiyentin distresini artırır, terapevtik faydalı deyil.</p>
 
-<h2 id="6a40-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Lorazepam və/və ya EKT-yə cavab — pasiyentlərin əksəriyyətində günlər-həftə ərzində tam bərpa.</li>
-  <li>Etioloji pozuntu müalicə edilməsə residiv yüksək.</li>
-  <li>Komplikasiyalar — uzun stupordan aspirasiya pnevmoniyası, DVT, dehidratasiya, dəri ülserləri.</li>
-  <li>Malign katatoniya — mortalite 10–20% (müalicə olmadıqda).</li>
-  <li>İzləmə — etioloji pozuntu kontekstində; residiv markerlərinin tanınması.</li>
-</ul>
-
 <h2 id="6a40-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6A40 Catatonia. 2024.</li>
@@ -343,6 +354,7 @@ function setCls(k){
   <li>UK ECT Review Group. Lancet 2003;361(9360):799–808.</li>
 </ol>
 <nav class="d-nav"><span></span><a class="up" href="03-6A4-katatoniya.html">↑ Fəsil</a><span></span></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

@@ -202,6 +202,17 @@ EXTRA_CSS = """
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -290,10 +301,14 @@ function setCls(k){
 </script>"""
 
 
+BACKTOP = ('<button class="backtop" onclick="window.scrollTo({top:0,behavior:\'smooth\'})" '
+           'aria-label="Yuxarı qalx" title="Yuxarı">↑</button>')
+
+
 def page(content, title):
     t = top.replace("MÜNDƏRİCAT | KLİNİK PSİXİATRİYA", f"{title} | KLİNİK PSİXİATRİYA")
     t = t.replace("</head>", EXTRA_CSS + "</head>")
-    return t + "\n" + content + "\n" + bottom
+    return t + "\n" + content + "\n" + BACKTOP + "\n" + bottom
 
 
 def d_nav(chp, i):
@@ -350,7 +365,13 @@ def build_dh(frag, code, fallback_name):
                     f'<td class="dh-name">{az}</td></tr>')
     dh = f'<table class="dh"><tbody>{"".join(rows)}</tbody></table>'
     body = re.sub(r'<h1[^>]*class="h-disorder"[^>]*>.*?</h1>', "", frag, count=1, flags=re.S)
-    return dh + body
+    # внутристраничная навигация по разделам (якоря к H2) — как оглавление в Википедии
+    secs = re.findall(r'<h2[^>]*id="([^"]+)"[^>]*>\s*\d+\.\s*(.*?)</h2>', body, re.S)
+    ptoc = ""
+    if secs:
+        chips = "".join(f'<a href="#{sid}">{re.sub(r"<[^>]+>", "", t).strip()}</a>' for sid, t in secs)
+        ptoc = f'<nav class="page-toc">{chips}</nav>'
+    return dh + ptoc + body
 
 
 made_d, made_c = 0, 0

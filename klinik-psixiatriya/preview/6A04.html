@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A04</td><td class="dh-name"><h1>İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</h1><div class="dh-en">Developmental Motor Coordination Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F82</td><td class="dh-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">315.4</td><td class="dh-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</td></tr></tbody></table>
+<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A04</td><td class="dh-name"><h1>İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</h1><div class="dh-en">Developmental Motor Coordination Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F82</td><td class="dh-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">315.4</td><td class="dh-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</td></tr></tbody></table><nav class="page-toc"><a href="#6a04-1-terif">Tərif və nozologiya</a><a href="#6a04-2-tarixce">Tarixçə</a><a href="#6a04-3-epidemiologiya">Epidemiologiya</a><a href="#6a04-4-etiologiya">Etiologiya və patogenez</a><a href="#6a04-5-klinik">Klinik mənzərə</a><a href="#6a04-6-diaqnoz">Diaqnoz</a><a href="#6a04-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a04-8-mualice">Müalicə</a><a href="#6a04-9-metodikalar">Müalicə metodikaları</a><a href="#6a04-11-proqnoz">Proqnoz</a><a href="#6a04-10-mifler">Mif və yanlış inanclar</a><a href="#6a04-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a04-1-terif">1. Tərif və nozologiya</h2>
 <p>İnkişaf hərəki koordinasiya pozuntusu (XBT-11: <span class="icd">6A04</span> Developmental Motor Coordination Disorder; DSM-5-TR: 315.4 Developmental Coordination Disorder, DCD) — uşağın xronoloji yaşı, intellektual səviyyəsi və hərəki bacarıqları öyrənmə imkanları nəzərə alındıqda gözlənilməyən, gündəlik motor bacarıqların əldə edilməsində və icrasında davamlı çətinliklərlə təzahür edən neyroinkişaf pozuntusudur.</p>
@@ -312,7 +323,7 @@ function setCls(k){
   <li><strong>NICE:</strong> ayrıca DCD üzrə klinik göstəriş yoxdur; ümumi neyroinkişaf və SEND çərçivəsi daxilində.</li>
 </ul>
 
-<h2 id="6a04-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a04-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>CO-OP — Cognitive Orientation to daily Occupational Performance (Polatajko H., Mandich A.)</dt>
@@ -337,7 +348,37 @@ function setCls(k){
   <dd>Akademik akkomodasiya — əl yazısı çətinliyini kompensasiya edən köməkçi texnologiya.</dd>
 </dl>
 
-<h2 id="6a04-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a04-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Erkən identifikasiya və müdaxilə.</li>
+  <li>CO-OP və ya NTT əsaslı sübutlu müdaxilə.</li>
+  <li>Komorbid ADHD, öyrənmə pozuntusu, narahatlığın idarə edilməsi.</li>
+  <li>Ailə və məktəb dəstəyi.</li>
+  <li>Normal intellektual səviyyə.</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Çoxsaylı komorbid pozuntular (ADHD + LD + DCD birgə).</li>
+  <li>Sosial təcrid və idman fəaliyyətindən tam qaçınma.</li>
+  <li>İkincili narahatlıq, depressiya, sosial fobiya.</li>
+  <li>Geç identifikasiya.</li>
+  <li>Müdaxilə qeyri-sübutlu metodlarla (Ayres SI tək başına, Dore proqramı, Brain Gym).</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li>Motor funksional məqsədlərin yenidən qiymətləndirilməsi (3–6 aylıq).</li>
+  <li>Akademik nailiyyət və əl yazısı tempi monitoringi.</li>
+  <li>Sosial-emosional sağlamlıq — özünə hörmət, narahatlıq, depressiya skrining (yeniyetməlikdə xüsusilə vacib).</li>
+  <li>Komorbidlik aktiv müalicəsi.</li>
+  <li>Yetkinlikdə peşə uyğunlaşması — motor tələbli iş yerlərindən qaçınma və ya akkomodasiya planlaşdırması.</li>
+  <li>Fiziki aktivlik və spor — sosial uyğunlaşma və ürək-damar sağlamlığı üçün; idman növü pasiyentin maraqlarına uyğunlaşdırılır (üzgüçülük, yoga kimi koordinasiya tələbi az olanlar).</li>
+</ul>
+
+<h2 id="6a04-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya mifləri</h3>
 
@@ -383,36 +424,6 @@ function setCls(k){
 <h4>Mif 11: "Çoxlu spor məşqi (intensiv idman) DCD-ni keçirər"</h4>
 <p><strong>Sübut:</strong> ümumi fiziki aktivlik faydalıdır, lakin DCD-də motor öyrənmə defisiti spesifik strukturlaşdırılmış müdaxilə tələb edir. "Sadəcə daha çox məşq" rejimi pasiyentdə uğursuzluq və ürək sıxıntısı yaradır. CO-OP və NTT kimi strukturlaşdırılmış yanaşmalar əhəmiyyətli üstündür.</p>
 
-<h2 id="6a04-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Erkən identifikasiya və müdaxilə.</li>
-  <li>CO-OP və ya NTT əsaslı sübutlu müdaxilə.</li>
-  <li>Komorbid ADHD, öyrənmə pozuntusu, narahatlığın idarə edilməsi.</li>
-  <li>Ailə və məktəb dəstəyi.</li>
-  <li>Normal intellektual səviyyə.</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Çoxsaylı komorbid pozuntular (ADHD + LD + DCD birgə).</li>
-  <li>Sosial təcrid və idman fəaliyyətindən tam qaçınma.</li>
-  <li>İkincili narahatlıq, depressiya, sosial fobiya.</li>
-  <li>Geç identifikasiya.</li>
-  <li>Müdaxilə qeyri-sübutlu metodlarla (Ayres SI tək başına, Dore proqramı, Brain Gym).</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li>Motor funksional məqsədlərin yenidən qiymətləndirilməsi (3–6 aylıq).</li>
-  <li>Akademik nailiyyət və əl yazısı tempi monitoringi.</li>
-  <li>Sosial-emosional sağlamlıq — özünə hörmət, narahatlıq, depressiya skrining (yeniyetməlikdə xüsusilə vacib).</li>
-  <li>Komorbidlik aktiv müalicəsi.</li>
-  <li>Yetkinlikdə peşə uyğunlaşması — motor tələbli iş yerlərindən qaçınma və ya akkomodasiya planlaşdırması.</li>
-  <li>Fiziki aktivlik və spor — sosial uyğunlaşma və ürək-damar sağlamlığı üçün; idman növü pasiyentin maraqlarına uyğunlaşdırılır (üzgüçülük, yoga kimi koordinasiya tələbi az olanlar).</li>
-</ul>
-
 <h2 id="6a04-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A04 Developmental motor coordination disorder. 2024.</li>
@@ -433,6 +444,7 @@ function setCls(k){
   <li>Edwards J., Berube M., Erlandson K. et al. Developmental coordination disorder in school-aged children born very preterm and/or at very low birth weight: A systematic review. J Dev Behav Pediatr 2011;32(9):678–687.</li>
 </ol>
 <nav class="d-nav"><a href="6A03.html">← 6A03 <span class="dn-name">SPESİFİK ÖYRƏNMƏ POZUN</span></a><a class="up" href="01-6A0-neyroinkisaf.html">↑ Fəsil</a><a href="6A05.html"><span class="dn-name">DİQQƏT DEFİSİTİ VƏ HİP</span> 6A05 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

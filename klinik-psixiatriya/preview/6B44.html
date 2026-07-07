@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B44</td><td class="dh-name"><h1>REAKTİV BAĞLANMA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F94.1</td><td class="dh-name">REAKTİV BAĞLANMA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">313.89</td><td class="dh-name">REAKTİV BAĞLANMA POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="07-6B4-stress.html">‹ STRESS İLƏ ƏLAQƏLİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6B44</td><td class="dh-name"><h1>REAKTİV BAĞLANMA POZUNTUSU</h1></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F94.1</td><td class="dh-name">REAKTİV BAĞLANMA POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">313.89</td><td class="dh-name">REAKTİV BAĞLANMA POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6b44-1-terif">Tərif və nozologiya</a><a href="#6b44-2-tarixce">Tarixçə</a><a href="#6b44-3-epidemiologiya">Epidemiologiya</a><a href="#6b44-4-etiologiya">Etiologiya və patogenez</a><a href="#6b44-5-klinik">Klinik mənzərə</a><a href="#6b44-6-diaqnoz">Diaqnoz</a><a href="#6b44-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6b44-8-mualice">Müalicə</a><a href="#6b44-9-metodikalar">Müalicə metodikaları</a><a href="#6b44-11-proqnoz">Proqnoz</a><a href="#6b44-10-mifler">Mif və yanlış inanclar</a><a href="#6b44-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6b44-1-terif">1. Tərif və nozologiya</h2>
 <p>Reaktiv bağlanma pozuntusu (XBT-11: <span class="icd">6B44</span>; DSM-5-TR: 313.89 Reactive Attachment Disorder) — uşaqlığın erkən mərhələsində ağır psixososial məhrumiyyət və ya qeyri-adekvat qulluq nəticəsində inkişaf edən bağlanma davranışının pozulması; uşaq sıxıntı zamanı qulluqçudan kömək axtarmır və ya bu axtarış kəskin azalmış formada olur.</p>
@@ -259,7 +270,7 @@ function setCls(k){
   <li>Bucharest Early Intervention Project (Nelson Science 2007) — erkən fostering institusional uşaqlarda nəticələri əhəmiyyətli yaxşılaşdırır.</li>
 </ul>
 
-<h2 id="6b44-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6b44-9-metodikalar">9. Müalicə metodikaları</h2>
 <dl class="method-list">
   <dt>ABC — Attachment and Biobehavioral Catch-up (Dozier M.)</dt>
   <dd>Valideyn təlimi 10 seansda; ev-əsaslı; "nurturance" və "synchronous" qarşılıqlı təsirin gücləndirilməsi. Sübut: Dozier M. et al. Dev Psychopathol 2014.</dd>
@@ -274,7 +285,13 @@ function setCls(k){
   <dd>Bucharest Early Intervention Project — institusional uşaqların erkən fostering ilə inkişaf nəticələrinin əhəmiyyətli yaxşılaşması.</dd>
 </dl>
 
-<h2 id="6b44-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6b44-11-proqnoz">10. Proqnoz</h2>
+<ul>
+  <li>Erkən stabil qulluq və müdaxilə ilə əhəmiyyətli yaxşılaşma.</li>
+  <li>Uzunmüddətli institusional məhrumiyyət — qalıq koqnitiv və emosional defisitlər.</li>
+</ul>
+
+<h2 id="6b44-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h4>Mif 1: ""Holding therapy" və "rebirthing" RAD-ı sağaldır"</h4>
 <p><strong>Sübut:</strong> APSAC 2006 — bu metodlar elmi əsaslı deyil, ZƏRƏRLİDİR; Kandese N. (2000) "rebirthing" zamanı ölümü qeyd edilmişdir. AACAP, APSAC qəti qadağa.</p>
@@ -291,12 +308,6 @@ function setCls(k){
 <h4>Mif 5: "Yalnız antipsixotik və ya stimulyantlar RAD üçün effektivdir"</h4>
 <p><strong>Sübut:</strong> RAD üçün spesifik FDA təsdiqli preparat yox; mühit dəyişikliyi və psixososial müdaxilə birinci sıra.</p>
 
-<h2 id="6b44-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Erkən stabil qulluq və müdaxilə ilə əhəmiyyətli yaxşılaşma.</li>
-  <li>Uzunmüddətli institusional məhrumiyyət — qalıq koqnitiv və emosional defisitlər.</li>
-</ul>
-
 <h2 id="6b44-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11. 6B44 Reactive attachment disorder. 2024.</li>
@@ -307,6 +318,7 @@ function setCls(k){
   <li>APSAC Task Force Report on Attachment Therapy, Reactive Attachment Disorder, and Attachment Problems. American Professional Society on the Abuse of Children; 2006.</li>
 </ol>
 <nav class="d-nav"><a href="6B43.html">← 6B43 <span class="dn-name">ADAPTASİYA POZUNTUSU</span></a><a class="up" href="07-6B4-stress.html">↑ Fəsil</a><a href="6B45.html"><span class="dn-name">SOSİAL İŞTİRAKIN MƏHDU</span> 6B45 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

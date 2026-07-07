@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A03</td><td class="dh-name"><h1>SPESİFİK ÖYRƏNMƏ POZUNTUSU</h1><div class="dh-en">Developmental Learning Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F81</td><td class="dh-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">315.00</td><td class="dh-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</td></tr></tbody></table>
+<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A03</td><td class="dh-name"><h1>SPESİFİK ÖYRƏNMƏ POZUNTUSU</h1><div class="dh-en">Developmental Learning Disorder</div></td></tr><tr><td class="dh-lbl">XBT-10</td><td class="dh-code">F81</td><td class="dh-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">315.00</td><td class="dh-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</td></tr></tbody></table><nav class="page-toc"><a href="#6a03-1-terif">Tərif və nozologiya</a><a href="#6a03-2-tarixce">Tarixçə</a><a href="#6a03-3-epidemiologiya">Epidemiologiya</a><a href="#6a03-4-etiologiya">Etiologiya və patogenez</a><a href="#6a03-5-klinik">Klinik mənzərə</a><a href="#6a03-6-diaqnoz">Diaqnoz</a><a href="#6a03-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a03-8-mualice">Müalicə</a><a href="#6a03-9-metodikalar">Müalicə metodikaları</a><a href="#6a03-11-proqnoz">Proqnoz</a><a href="#6a03-10-mifler">Mif və yanlış inanclar</a><a href="#6a03-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a03-1-terif">1. Tərif və nozologiya</h2>
 <p>Spesifik öyrənmə pozuntusu (XBT-11: <span class="icd">6A03</span> Developmental Learning Disorder; DSM-5-TR: 315.00–315.2 Specific Learning Disorder) — pasiyentin yaşı, intellektual səviyyəsi və təhsil imkanları nəzərə alındıqda gözlənilməyən, akademik bacarıqlardan birinin və ya bir neçəsinin əldə edilməsində davamlı və əhəmiyyətli çətinliklərlə təzahür edən neyroinkişaf pozuntusudur.</p>
@@ -354,7 +365,7 @@ function setCls(k){
   <li><strong>NASP (National Association of School Psychologists):</strong> RTI çərçivəsində 3 pillə — universal skrining, hədəfli müdaxilə, intensiv fərdi müdaxilə.</li>
 </ul>
 
-<h2 id="6a03-9-metodikalar">9. Metodikalar</h2>
+<h2 id="6a03-9-metodikalar">9. Müalicə metodikaları</h2>
 
 <dl class="method-list">
   <dt>Orton-Gillingham (OG) yanaşması</dt>
@@ -388,7 +399,36 @@ function setCls(k){
   <dd>Oxuma sürəti, dəqiqliyi və axıcılığının ölçülməsi.</dd>
 </dl>
 
-<h2 id="6a03-10-mifler">10. Mif və yanlış inanclar</h2>
+<h2 id="6a03-11-proqnoz">10. Proqnoz</h2>
+
+<h3>Yaxşı proqnoz amilləri</h3>
+<ul>
+  <li>Erkən identifikasiya (məktəbəqədər və ya erkən məktəb yaşı).</li>
+  <li>Sübutlu Structured Literacy müdaxiləsi.</li>
+  <li>Yüksək IQ — kompensator strategiyaların inkişafı.</li>
+  <li>Stabil ailə dəstəyi və motivasiya.</li>
+  <li>Yalnız bir akademik domenə təsir (məs. tək oxuma, riyaziyyat normal).</li>
+</ul>
+
+<h3>Pis proqnoz amilləri</h3>
+<ul>
+  <li>Geç identifikasiya (məktəb yaşının ortası və ya sonu).</li>
+  <li>Çoxsaylı akademik domenlərə təsir.</li>
+  <li>Komorbid ADHD, dil pozuntusu, narahatlıq.</li>
+  <li>Aşağı sosial-ekonomik dəstək, məhdud təhsil resursları.</li>
+  <li>Müdaxilə qeyri-sübutlu metodlarla (rəngli linzalar, vizual terapiya, Brain Gym).</li>
+</ul>
+
+<h3>İzləmə hədəfləri</h3>
+<ul>
+  <li>Akademik nailiyyət monitoringi — illik standartlaşdırılmış testlər.</li>
+  <li>Sosial-emosional sağlamlıq — özünə hörmət, narahatlıq, depressiya skrining.</li>
+  <li>Komorbid ADHD və dil pozuntusu üçün ayrıca müdaxilə.</li>
+  <li>Yetkinlikdə peşə və akademik akkomodasiya planlaşdırması (ali təhsildə əlilliyə dair imkanlar, iş yerində uyğunlaşma).</li>
+  <li>Köməkçi texnologiya istifadəsinin gücləndirilməsi (text-to-speech, kalkulyator).</li>
+</ul>
+
+<h2 id="6a03-10-mifler">11. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya mifləri</h3>
 
@@ -440,35 +480,6 @@ function setCls(k){
 <h4>Mif 12: "Hiperbarik oksigen kamerası (HBOT) və ya kök hüceyrə injeksiyaları"</h4>
 <p><strong>Sübut:</strong> spesifik öyrənmə pozuntusu üçün effekt sübutu yoxdur; risk profili əhəmiyyətlidir (HBOT — pnevmotoraks; kök hüceyrə — infeksiya, ölüm halları).</p>
 
-<h2 id="6a03-11-proqnoz">11. Proqnoz</h2>
-
-<h3>Yaxşı proqnoz amilləri</h3>
-<ul>
-  <li>Erkən identifikasiya (məktəbəqədər və ya erkən məktəb yaşı).</li>
-  <li>Sübutlu Structured Literacy müdaxiləsi.</li>
-  <li>Yüksək IQ — kompensator strategiyaların inkişafı.</li>
-  <li>Stabil ailə dəstəyi və motivasiya.</li>
-  <li>Yalnız bir akademik domenə təsir (məs. tək oxuma, riyaziyyat normal).</li>
-</ul>
-
-<h3>Pis proqnoz amilləri</h3>
-<ul>
-  <li>Geç identifikasiya (məktəb yaşının ortası və ya sonu).</li>
-  <li>Çoxsaylı akademik domenlərə təsir.</li>
-  <li>Komorbid ADHD, dil pozuntusu, narahatlıq.</li>
-  <li>Aşağı sosial-ekonomik dəstək, məhdud təhsil resursları.</li>
-  <li>Müdaxilə qeyri-sübutlu metodlarla (rəngli linzalar, vizual terapiya, Brain Gym).</li>
-</ul>
-
-<h3>İzləmə hədəfləri</h3>
-<ul>
-  <li>Akademik nailiyyət monitoringi — illik standartlaşdırılmış testlər.</li>
-  <li>Sosial-emosional sağlamlıq — özünə hörmət, narahatlıq, depressiya skrining.</li>
-  <li>Komorbid ADHD və dil pozuntusu üçün ayrıca müdaxilə.</li>
-  <li>Yetkinlikdə peşə və akademik akkomodasiya planlaşdırması (ali təhsildə əlilliyə dair imkanlar, iş yerində uyğunlaşma).</li>
-  <li>Köməkçi texnologiya istifadəsinin gücləndirilməsi (text-to-speech, kalkulyator).</li>
-</ul>
-
 <h2 id="6a03-12-menbeler">12. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A03 Developmental learning disorder. 2024.</li>
@@ -492,6 +503,7 @@ function setCls(k){
   <li>Tan M.L., Ho J.J., Teh K.H. Polyunsaturated fatty acids (PUFAs) for children with specific learning disorders. Cochrane Database Syst Rev 2012;(12):CD009398.</li>
 </ol>
 <nav class="d-nav"><a href="6A02.html">← 6A02 <span class="dn-name">AUTİZM SPEKTRİ POZUNTU</span></a><a class="up" href="01-6A0-neyroinkisaf.html">↑ Fəsil</a><a href="6A04.html"><span class="dn-name">İNKİŞAF HƏRƏKİ KOORDİN</span> 6A04 →</a></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 

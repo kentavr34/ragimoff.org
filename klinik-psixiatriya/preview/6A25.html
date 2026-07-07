@@ -43,6 +43,17 @@
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
 .crumb a{color:var(--text2);text-decoration:none}
 .crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
+.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
+  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
+.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -164,7 +175,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A25</td><td class="dh-name"><h1>İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</h1></td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">298.9</td><td class="dh-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</td></tr></tbody></table>
+<nav class="crumb"><a href="02-6A2-sizofreniya-spektri.html">‹ ŞİZOFRENİYA SPEKTRİ</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-lbl">XBT-11</td><td class="dh-code">6A25</td><td class="dh-name"><h1>İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</h1></td></tr><tr><td class="dh-lbl">DSM-5-TR</td><td class="dh-code">298.9</td><td class="dh-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</td></tr></tbody></table><nav class="page-toc"><a href="#6a25-1-terif">Tərif və nozologiya</a><a href="#6a25-2-tarixce">Tarixçə</a><a href="#6a25-6-mifler">Mif və yanlış inanclar</a><a href="#6a25-7-menbeler">Mənbələr</a><a href="#6a25-3-altı-domen">Altı simptom domeni</a><a href="#6a25-4-istifade">Klinik istifadə</a><a href="#6a25-5-menbe-spesifik">Mənbə-spesifik dəqiqləşdirmələr</a></nav>
 
 <h2 id="6a25-1-terif">1. Tərif və nozologiya</h2>
 <p><span class="icd">6A25</span> XBT-11-də ilkin psixotik pozuntular qrupunun (6A20–6A24) <strong>dimensional alt-strukturu</strong>dur. Ayrıca klinik nozoloji vahid deyil — diaqnozu əsas pozuntu (məsələn, 6A20 Şizofreniya) üzərinə əlavə kvalifikator kimi qoyulur. <strong>Altı simptom domeni</strong>nin hər biri üçün ayrıca şiddət dərəcəsi (yoxdur / yüngül / orta / ağır) qiymətləndirilir.</p>
@@ -179,7 +190,28 @@ function setCls(k){
   <li><strong>XBT-11 (2019)</strong> — <span class="icd">6A25</span> rəsmi dimensional kvalifikator kimi inteqrasiya edilmişdir.</li>
 </ul>
 
-<h2 id="6a25-3-altı-domen">3. Altı simptom domeni</h2>
+<h2 id="6a25-6-mifler">3. Mif və yanlış inanclar</h2>
+
+<h4>Mif 1: "6A25 ayrı pozuntudur, diaqnoz kimi qoyula bilər"</h4>
+<p><strong>Reallıq:</strong> 6A25 ayrı klinik vahid deyil — əsas pozuntunun (6A20–6A24) kvalifikatorudur.</p>
+
+<h4>Mif 2: "Dimensional yanaşma kateqorial diaqnozdan əvvəzdir"</h4>
+<p><strong>Reallıq:</strong> ikisi tamamlayıcıdır — kateqorial diaqnoz nozoloji vahidi, dimensional kvalifikator isə konkret klinik təqdimatı təsvir edir.</p>
+
+<h4>Mif 3: "Neqativ simptomlar antipsixotikin yan təsiridir, "həqiqi" yox"</h4>
+<p><strong>Reallıq:</strong> primer neqativ simptomlar şizofreniyanın əsas xüsusiyyətidir — antipsixotikdən əvvəl də müşahidə olunur. İkincili neqativ simptomlar (sedasiya, EPS, depresiya, müsbət simptom təsiri) ayrıdır və idarə oluna bilər.</p>
+
+<h2 id="6a25-7-menbeler">4. Mənbələr</h2>
+<ol class="ref-list">
+  <li>WHO. ICD-11. 6A25 Symptomatic manifestations of primary psychotic disorders. 2024.</li>
+  <li>APA. DSM-5-TR. 2022.</li>
+  <li>NICE CG178. 2014/2019.</li>
+  <li>Crow T.J. Molecular pathology of schizophrenia: more than one disease process? Br Med J 1980;280(6207):66–68.</li>
+  <li>Liddle P.F. The symptoms of chronic schizophrenia. A re-examination of the positive-negative dichotomy. Br J Psychiatry 1987;151:145–151.</li>
+  <li>Kay S.R., Fiszbein A., Opler L.A. PANSS. Schizophr Bull 1987;13(2):261–276.</li>
+  <li>Wykes T. et al. Am J Psychiatry 2011;168(5):472–485.</li>
+</ol>
+<h2 id="6a25-3-altı-domen">5. Altı simptom domeni</h2>
 
 <h3>3.1 Pozitiv simptomlar</h3>
 <p>Sayıqlama, halusinasiya — qavrayış və düşüncə proseslərində "artırılmış / əlavə" simptomlar. Şiddət: olmasından ağır səviyyəyə qədər (pasiyentin gündəlik fəaliyyətinə təsir dərəcəsinə görə).</p>
@@ -199,7 +231,7 @@ function setCls(k){
 <h3>3.6 Koqnitiv simptomlar</h3>
 <p>İşlək yaddaş, diqqət, icra funksiyası, emal sürəti, sosial koqnisiya. Pasiyentlərin 75–85%-ində mövcuddur; uzunmüddətli funksional səviyyəyə güclü təsir.</p>
 
-<h2 id="6a25-4-istifade">4. Klinik istifadə</h2>
+<h2 id="6a25-4-istifade">6. Klinik istifadə</h2>
 
 <h3>4.1 Qiymətləndirmə vasitələri</h3>
 <ul>
@@ -221,35 +253,15 @@ function setCls(k){
   <li><strong>Koqnitiv komponent</strong> — koqnitiv remediation (Wykes 2011 meta-analiz); supported employment ilə birgə tətbiq edildikdə funksional səviyyəyə təsir.</li>
 </ul>
 
-<h2 id="6a25-5-menbe-spesifik">5. Mənbə-spesifik dəqiqləşdirmələr</h2>
+<h2 id="6a25-5-menbe-spesifik">7. Mənbə-spesifik dəqiqləşdirmələr</h2>
 <ul>
   <li><strong>XBT-11 (6A25):</strong> hər domeni üçün şiddət dərəcəsi xəstəlik gedişində dəyişdiyi üçün periodik yenidən qiymətləndirmə tövsiyə edilir.</li>
   <li><strong>DSM-5-TR:</strong> Section III araşdırma kateqoriyasında "Clinician-Rated Dimensions of Psychosis Symptom Severity" — XBT-11 6A25 ilə paralel; rəsmi diaqnostik kvalifikator deyil, lakin praktikada istifadə oluna bilər.</li>
   <li><strong>NICE CG178:</strong> dimensional qiymətləndirmə klinik yanaşma kimi tövsiyə edilir — müalicənin fərdiləşdirilməsinin əsası.</li>
 </ul>
 
-<h2 id="6a25-6-mifler">6. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "6A25 ayrı pozuntudur, diaqnoz kimi qoyula bilər"</h4>
-<p><strong>Reallıq:</strong> 6A25 ayrı klinik vahid deyil — əsas pozuntunun (6A20–6A24) kvalifikatorudur.</p>
-
-<h4>Mif 2: "Dimensional yanaşma kateqorial diaqnozdan əvvəzdir"</h4>
-<p><strong>Reallıq:</strong> ikisi tamamlayıcıdır — kateqorial diaqnoz nozoloji vahidi, dimensional kvalifikator isə konkret klinik təqdimatı təsvir edir.</p>
-
-<h4>Mif 3: "Neqativ simptomlar antipsixotikin yan təsiridir, "həqiqi" yox"</h4>
-<p><strong>Reallıq:</strong> primer neqativ simptomlar şizofreniyanın əsas xüsusiyyətidir — antipsixotikdən əvvəl də müşahidə olunur. İkincili neqativ simptomlar (sedasiya, EPS, depresiya, müsbət simptom təsiri) ayrıdır və idarə oluna bilər.</p>
-
-<h2 id="6a25-7-menbeler">7. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6A25 Symptomatic manifestations of primary psychotic disorders. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>NICE CG178. 2014/2019.</li>
-  <li>Crow T.J. Molecular pathology of schizophrenia: more than one disease process? Br Med J 1980;280(6207):66–68.</li>
-  <li>Liddle P.F. The symptoms of chronic schizophrenia. A re-examination of the positive-negative dichotomy. Br J Psychiatry 1987;151:145–151.</li>
-  <li>Kay S.R., Fiszbein A., Opler L.A. PANSS. Schizophr Bull 1987;13(2):261–276.</li>
-  <li>Wykes T. et al. Am J Psychiatry 2011;168(5):472–485.</li>
-</ol>
 <nav class="d-nav"><a href="6A24.html">← 6A24 <span class="dn-name">SAYIQLAMA POZUNTUSU</span></a><a class="up" href="02-6A2-sizofreniya-spektri.html">↑ Fəsil</a><span></span></nav>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Yuxarı qalx" title="Yuxarı">↑</button>
   </main>
 </div>
 
