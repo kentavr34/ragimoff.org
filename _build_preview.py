@@ -522,6 +522,10 @@ def src_content(fname, cut_before=None):
     if not m:
         return ""
     inner = re.sub(r"</div>\s*$", "", m.group(1).rstrip())
+    # убрать интерактивные артефакты сайта (кнопки построчного «Düzəlt» и их колонку)
+    inner = re.sub(r'<button[^>]*class="[^"]*dzl-row-btn[^"]*"[^>]*>.*?</button>', "", inner, flags=re.S)
+    inner = re.sub(r'<th[^>]*>\s*Düzəlt\s*</th>', "", inner)
+    inner = re.sub(r'<td[^>]*class="[^"]*dzl[^"]*"[^>]*>.*?</td>', "", inner, flags=re.S)
     if cut_before:
         i = inner.find(cut_before)
         if i > 0:
