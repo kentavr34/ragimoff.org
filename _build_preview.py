@@ -217,6 +217,12 @@ EXTRA_CSS = """
 .method-list dt{font-weight:700;color:var(--text);margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border);line-height:1.35}
 .method-list dt:first-child{margin-top:.4rem;padding-top:0;border-top:0}
 .method-list dd{margin:.45rem 0 0;color:var(--text);line-height:1.6}
+/* объединённые методики: нумерованный список «название — описание» */
+.method-num{margin:1rem 0;padding-left:1.6rem}
+.method-num>li{margin-top:1.1rem;padding-left:.25rem;line-height:1.6;color:var(--text)}
+.method-num>li::marker{color:var(--gold);font-weight:700}
+.method-num>li:first-child{margin-top:.4rem}
+.method-num>li strong{color:var(--text);font-weight:700}
 
 /* хлебная крошка — тихая строка вверху (вместо сиротской полосы-навигации) */
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}

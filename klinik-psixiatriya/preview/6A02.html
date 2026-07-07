@@ -46,6 +46,12 @@
 .method-list dt{font-weight:700;color:var(--text);margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border);line-height:1.35}
 .method-list dt:first-child{margin-top:.4rem;padding-top:0;border-top:0}
 .method-list dd{margin:.45rem 0 0;color:var(--text);line-height:1.6}
+/* объединённые методики: нумерованный список «название — описание» */
+.method-num{margin:1rem 0;padding-left:1.6rem}
+.method-num>li{margin-top:1.1rem;padding-left:.25rem;line-height:1.6;color:var(--text)}
+.method-num>li::marker{color:var(--gold);font-weight:700}
+.method-num>li:first-child{margin-top:.4rem}
+.method-num>li strong{color:var(--text);font-weight:700}
 
 /* хлебная крошка — тихая строка вверху (вместо сиротской полосы-навигации) */
 .crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
@@ -215,7 +221,7 @@ function setCls(k){
 
   <main class="site-main">
     <div class="content-wrap">
-<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-meta"><span class="dh-lbl">XBT-11</span><span class="dh-code">6A02</span></td><td class="dh-name"><h1>AUTİZM SPEKTRİ POZUNTUSU (ASP)</h1></td></tr><tr><td class="dh-meta"><span class="dh-lbl">XBT-10</span><span class="dh-code">F84.0</span></td><td class="dh-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</td></tr><tr><td class="dh-meta"><span class="dh-lbl">DSM-5-TR</span><span class="dh-code">299.00</span></td><td class="dh-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</td></tr></tbody></table><nav class="page-toc"><a href="#6a02-1-terif">Tərif və nozologiya</a><a href="#6a02-2-tarixce">Tarixçə</a><a href="#6a02-3-epidemiologiya">Epidemiologiya</a><a href="#6a02-4-etiologiya">Etiologiya və patogenez</a><a href="#6a02-5-klinik">Klinik mənzərə</a><a href="#6a02-6-diaqnoz">Diaqnoz</a><a href="#6a02-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a02-8-mualice">Müalicə</a><a href="#6a02-9-metodikalar">Müalicə metodikaları</a><a href="#6a02-11-proqnoz">Proqnoz</a><a href="#6a02-10-mifler">Mif və yanlış inanclar</a><a href="#6a02-12-menbeler">Mənbələr</a></nav>
+<nav class="crumb"><a href="01-6A0-neyroinkisaf.html">‹ NEYROİNKİŞAF POZUNTULARI</a></nav><table class="dh"><tbody><tr class="dh-main"><td class="dh-meta"><span class="dh-lbl">XBT-11</span><span class="dh-code">6A02</span></td><td class="dh-name"><h1>AUTİZM SPEKTRİ POZUNTUSU (ASP)</h1></td></tr><tr><td class="dh-meta"><span class="dh-lbl">XBT-10</span><span class="dh-code">F84.0</span></td><td class="dh-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</td></tr><tr><td class="dh-meta"><span class="dh-lbl">DSM-5-TR</span><span class="dh-code">299.00</span></td><td class="dh-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</td></tr></tbody></table><nav class="page-toc"><a href="#6a02-1-terif">Tərif və nozologiya</a><a href="#6a02-2-tarixce">Tarixçə</a><a href="#6a02-3-epidemiologiya">Epidemiologiya</a><a href="#6a02-4-etiologiya">Etiologiya və patogenez</a><a href="#6a02-5-klinik">Klinik mənzərə</a><a href="#6a02-6-diaqnoz">Diaqnoz</a><a href="#6a02-7-muayine">Müayinə və qiymətləndirmə</a><a href="#6a02-8-mualice">Müalicə</a><a href="#6a02-11-proqnoz">Proqnoz</a><a href="#6a02-10-mifler">Mif və yanlış inanclar</a><a href="#6a02-12-menbeler">Mənbələr</a></nav>
 
 <h2 id="6a02-1-terif">1. Tərif və nozologiya</h2>
 <p>Autizm spektri pozuntusu (ASP; XBT-11: <span class="icd">6A02</span>; DSM-5-TR: 299.00 Autism Spectrum Disorder) — erkən inkişaf dövründə başlayan, iki əsas domendə davamlı defisitlərlə müşayiət olunan neyroinkişaf pozuntusudur:</p>
@@ -408,50 +414,24 @@ function setCls(k){
   <li><strong>WHO Caregiver Skills Training (CST):</strong> aşağı və orta gəlirli ölkələr üçün məhdud resurslu valideyn təlimi proqramı; çoxlu ölkədə uyğunlaşdırılır (Salomone E. et al. Autism 2019).</li>
 </ul>
 
-<h2 id="6a02-9-metodikalar">9. Müalicə metodikaları</h2>
+<h3>Müalicə metodikaları</h3>
+<ol class="method-num">
+  <li><strong>Tətbiqi Davranış Analizi (TDA / ABA — Applied Behavior Analysis)</strong> — Davranış prinsipləri əsasında öyrənmə metodu; sosial, kommunikativ və adaptiv bacarıqların formalaşdırılması, çətin davranışın azaldılması. Diskret-keçid təlim (DKT / DTT — Discrete Trial Training) və ya naturalistik formatda tətbiq olunur. Bir hissə yetkin ASP icması TDA-nın klassik formasını tənqid edir (avtonomiya, ürək sıxıntısı).</li>
+  <li><strong>Erkən İntensiv Davranış Müdaxiləsi (EİDM / EIBI — Early Intensive Behavioral Intervention)</strong> — TDA əsasında erkən yaşda strukturlaşdırılmış intensiv müdaxilə (həftədə 25–40 saat); hədəf — sosial, kommunikativ və adaptiv bacarıqlar. Sübut: Reichow B., Hume K., Barton E.E., Boyd B.A. Cochrane 2018 — IQ, dil və adaptiv davranışda kiçik-orta effekt; mövcud iddialardan həssaslıqla yanaşılmalıdır.</li>
+  <li><strong>Erkən Başlanğıc Denver Modeli (EBDM / ESDM — Early Start Denver Model) — Rocers (Rogers S.), Douson (Dawson G.)</strong> — 12–48 ay üçün naturalistik inkişaf-davranış müdaxiləsi; oyun və gündəlik aktivliklər kontekstində öyrənmə. Sübut: Dawson G. et al. Pediatrics 2010 RKİ n=48 — IQ, dil və adaptiv davranışda əhəmiyyətli irəliləyiş, 6 yaşda diaqnoz dəyişikliyi (Dawson G. et al. JAACAP 2012 izləmə). Valideyn versiyası (P-ESDM) Rogers S.J. et al. JAACAP 2012.</li>
+  <li><strong>Birgə Diqqət, Simvolik Oyun, Cəlbolunma və Tənzimləmə (JASPER — Joint Attention, Symbolic Play, Engagement, Regulation) — Kasari (Kasari C.)</strong> — Birgə diqqət və simvolik oyunun inkişafına yönəlmiş müdaxilə; 12–60 ay. Sübut: Kasari C. et al. JAMA Pediatr 2014, J Consult Clin Psychol 2010 — birgə diqqət və ifadəli dildə əhəmiyyətli irəliləyiş.</li>
+  <li><strong>Uşaq Autizmində Kommunikasiya Terapiyası (UAKT / PACT — Paediatric Autism Communication Therapy) — Pikls (Pickles A.), Qrin (Green J.)</strong> — Valideyn-koordinasiyalı kommunikasiya müdaxiləsi; 2–11 yaş. Valideyn-uşaq qarşılıqlı təsirinin video-əsaslı analizi və genişləndirilməsi. Sübut: Pickles A. et al. Lancet 2016 — n=152, 6 il izləmə — autizm şiddət və valideyn sinkronizasiyasında davamlı təkmilləşmə. Resurs məhdud şəraitdə də uyğunlaşdırılır.</li>
+  <li><strong>Açar Reaksiya Terapiyası (ART / PRT — Pivotal Response Treatment) — Kögel (Koegel R.L., Koegel L.K.)</strong> — "Pivot" davranışlara fokuslanma (motivasiya, çoxlu siqnala cavab, özünüidarə, özünə başlama) — bunlar öyrənildikdə dəyişiklik çoxlu sahələrə yayılır. Naturalistik formatda, uşağın seçimləri əsasında.</li>
+  <li><strong>Autizmli və Kommunikasiya Çətinliyi Olan Uşaqların Müalicəsi və Təhsili (TEACCH — Treatment and Education of Autistic and related Communication-handicapped Children) — Şopler (Schopler E.)</strong> — Strukturlaşdırılmış vizual təhsil mühiti — "strukturlaşdırılmış tədris" — vizual cədvəl, iş sistemləri, fərdi keçidlər; ev, məktəb və icma kontekstində. North Carolina mənşəli, dünyaya yayılıb.</li>
+  <li><strong>Şəkil Mübadiləsi ilə Kommunikasiya Sistemi (ŞMKS / PECS — Picture Exchange Communication System) — Bondi (Bondy A.), Frost (Frost L.)</strong> — Minimal verbal pasiyentlər üçün şəkil mübadiləsi əsaslı kommunikasiya təlimi — 6 mərhələdə. Sübut: Howlin P. et al. J Child Psychol Psychiatry 2007 RKİ — kommunikasiyada artma.</li>
+  <li><strong>Münasibət Bacarıqlarının Öyrədilməsi və Zənginləşdirilməsi Proqramı (PEERS — Program for the Education and Enrichment of Relational Skills) — Loqeson (Laugeson E.A., UCLA)</strong> — Yeniyetmələr və gənc yetkin ASP-li şəxslər üçün strukturlaşdırılmış sosial bacarıq qrupu; 16 həftə, valideyn dəstəyi ilə. Sübut: Laugeson E.A. et al. J Autism Dev Disord 2012, 2015.</li>
+  <li><strong>Hanen "More Than Words"</strong> — 2–5 yaşlı ASP-li uşaqların valideynləri üçün 8 qrup seansı + 3 fərdi ev ziyarəti. <a href="https://www.hanen.org" target="_blank" rel="noopener">hanen.org</a>.</li>
+  <li><strong>ÜST-ün Baxıcı Bacarıqları Təlimi (BBT / CST — WHO Caregiver Skills Training)</strong> — WHO-nun aşağı və orta gəlirli ölkələr üçün məhdud resurslu valideyn təlimi; ASD və inkişaf gecikmələri üçün; icmada işləyən qeyri-mütəxəssis trener-fasilitatorlar tərəfindən tətbiq edilir.</li>
+  <li><strong>EEQ Neyrofidbek (EEG Neurofeedback)</strong> — Beyin dalğa modellərinin real vaxtda monitorinqi əsasında istifadəçinin öz beyin aktivliyini tənzimləməsinə yönəlmiş təlim. ASP-də əsas simptomlara təsir bazası məhduddur; Holtmann M. et al. Dev Med Child Neurol 2011 — ADHD-də təvazökar, ASP-də spesifik sübut zəif. <strong>Birinci sıra deyil</strong>, adjunkt status; pasiyent və ailəyə sübut bazasının məhdudluğu izah edilməlidir.</li>
+  <li><strong>Autizm Diaqnostik Müşahidə Cədvəli (ADMC / ADOS-2 — Autism Diagnostic Observation Schedule) və Autizm Diaqnostik Müsahibəsi (ADM / ADI-R — Autism Diagnostic Interview-Revised)</strong> — Diaqnostik qızıl standart vasitələri — ADOS-2 strukturlaşdırılmış oyun-əsaslı müşahidə (5 modul, toddler-yetkin); ADI-R standartlaşdırılmış valideyn müsahibəsi (1,5+ yaş, ~2 saat).</li>
+</ol>
 
-<dl class="method-list">
-  <dt>Tətbiqi Davranış Analizi (TDA / ABA — Applied Behavior Analysis)</dt>
-  <dd>Davranış prinsipləri əsasında öyrənmə metodu; sosial, kommunikativ və adaptiv bacarıqların formalaşdırılması, çətin davranışın azaldılması. Diskret-keçid təlim (DKT / DTT — Discrete Trial Training) və ya naturalistik formatda tətbiq olunur. Bir hissə yetkin ASP icması TDA-nın klassik formasını tənqid edir (avtonomiya, ürək sıxıntısı).</dd>
-
-  <dt>Erkən İntensiv Davranış Müdaxiləsi (EİDM / EIBI — Early Intensive Behavioral Intervention)</dt>
-  <dd>TDA əsasında erkən yaşda strukturlaşdırılmış intensiv müdaxilə (həftədə 25–40 saat); hədəf — sosial, kommunikativ və adaptiv bacarıqlar. Sübut: Reichow B., Hume K., Barton E.E., Boyd B.A. Cochrane 2018 — IQ, dil və adaptiv davranışda kiçik-orta effekt; mövcud iddialardan həssaslıqla yanaşılmalıdır.</dd>
-
-  <dt>Erkən Başlanğıc Denver Modeli (EBDM / ESDM — Early Start Denver Model) — Rocers (Rogers S.), Douson (Dawson G.)</dt>
-  <dd>12–48 ay üçün naturalistik inkişaf-davranış müdaxiləsi; oyun və gündəlik aktivliklər kontekstində öyrənmə. Sübut: Dawson G. et al. Pediatrics 2010 RKİ n=48 — IQ, dil və adaptiv davranışda əhəmiyyətli irəliləyiş, 6 yaşda diaqnoz dəyişikliyi (Dawson G. et al. JAACAP 2012 izləmə). Valideyn versiyası (P-ESDM) Rogers S.J. et al. JAACAP 2012.</dd>
-
-  <dt>Birgə Diqqət, Simvolik Oyun, Cəlbolunma və Tənzimləmə (JASPER — Joint Attention, Symbolic Play, Engagement, Regulation) — Kasari (Kasari C.)</dt>
-  <dd>Birgə diqqət və simvolik oyunun inkişafına yönəlmiş müdaxilə; 12–60 ay. Sübut: Kasari C. et al. JAMA Pediatr 2014, J Consult Clin Psychol 2010 — birgə diqqət və ifadəli dildə əhəmiyyətli irəliləyiş.</dd>
-
-  <dt>Uşaq Autizmində Kommunikasiya Terapiyası (UAKT / PACT — Paediatric Autism Communication Therapy) — Pikls (Pickles A.), Qrin (Green J.)</dt>
-  <dd>Valideyn-koordinasiyalı kommunikasiya müdaxiləsi; 2–11 yaş. Valideyn-uşaq qarşılıqlı təsirinin video-əsaslı analizi və genişləndirilməsi. Sübut: Pickles A. et al. Lancet 2016 — n=152, 6 il izləmə — autizm şiddət və valideyn sinkronizasiyasında davamlı təkmilləşmə. Resurs məhdud şəraitdə də uyğunlaşdırılır.</dd>
-
-  <dt>Açar Reaksiya Terapiyası (ART / PRT — Pivotal Response Treatment) — Kögel (Koegel R.L., Koegel L.K.)</dt>
-  <dd>"Pivot" davranışlara fokuslanma (motivasiya, çoxlu siqnala cavab, özünüidarə, özünə başlama) — bunlar öyrənildikdə dəyişiklik çoxlu sahələrə yayılır. Naturalistik formatda, uşağın seçimləri əsasında.</dd>
-
-  <dt>Autizmli və Kommunikasiya Çətinliyi Olan Uşaqların Müalicəsi və Təhsili (TEACCH — Treatment and Education of Autistic and related Communication-handicapped Children) — Şopler (Schopler E.)</dt>
-  <dd>Strukturlaşdırılmış vizual təhsil mühiti — "strukturlaşdırılmış tədris" — vizual cədvəl, iş sistemləri, fərdi keçidlər; ev, məktəb və icma kontekstində. North Carolina mənşəli, dünyaya yayılıb.</dd>
-
-  <dt>Şəkil Mübadiləsi ilə Kommunikasiya Sistemi (ŞMKS / PECS — Picture Exchange Communication System) — Bondi (Bondy A.), Frost (Frost L.)</dt>
-  <dd>Minimal verbal pasiyentlər üçün şəkil mübadiləsi əsaslı kommunikasiya təlimi — 6 mərhələdə. Sübut: Howlin P. et al. J Child Psychol Psychiatry 2007 RKİ — kommunikasiyada artma.</dd>
-
-  <dt>Münasibət Bacarıqlarının Öyrədilməsi və Zənginləşdirilməsi Proqramı (PEERS — Program for the Education and Enrichment of Relational Skills) — Loqeson (Laugeson E.A., UCLA)</dt>
-  <dd>Yeniyetmələr və gənc yetkin ASP-li şəxslər üçün strukturlaşdırılmış sosial bacarıq qrupu; 16 həftə, valideyn dəstəyi ilə. Sübut: Laugeson E.A. et al. J Autism Dev Disord 2012, 2015.</dd>
-
-  <dt>Hanen "More Than Words"</dt>
-  <dd>2–5 yaşlı ASP-li uşaqların valideynləri üçün 8 qrup seansı + 3 fərdi ev ziyarəti. <a href="https://www.hanen.org" target="_blank" rel="noopener">hanen.org</a>.</dd>
-
-  <dt>ÜST-ün Baxıcı Bacarıqları Təlimi (BBT / CST — WHO Caregiver Skills Training)</dt>
-  <dd>WHO-nun aşağı və orta gəlirli ölkələr üçün məhdud resurslu valideyn təlimi; ASD və inkişaf gecikmələri üçün; icmada işləyən qeyri-mütəxəssis trener-fasilitatorlar tərəfindən tətbiq edilir.</dd>
-
-  <dt>EEQ Neyrofidbek (EEG Neurofeedback)</dt>
-  <dd>Beyin dalğa modellərinin real vaxtda monitorinqi əsasında istifadəçinin öz beyin aktivliyini tənzimləməsinə yönəlmiş təlim. ASP-də əsas simptomlara təsir bazası məhduddur; Holtmann M. et al. Dev Med Child Neurol 2011 — ADHD-də təvazökar, ASP-də spesifik sübut zəif. <strong>Birinci sıra deyil</strong>, adjunkt status; pasiyent və ailəyə sübut bazasının məhdudluğu izah edilməlidir.</dd>
-
-  <dt>Autizm Diaqnostik Müşahidə Cədvəli (ADMC / ADOS-2 — Autism Diagnostic Observation Schedule) və Autizm Diaqnostik Müsahibəsi (ADM / ADI-R — Autism Diagnostic Interview-Revised)</dt>
-  <dd>Diaqnostik qızıl standart vasitələri — ADOS-2 strukturlaşdırılmış oyun-əsaslı müşahidə (5 modul, toddler-yetkin); ADI-R standartlaşdırılmış valideyn müsahibəsi (1,5+ yaş, ~2 saat).</dd>
-</dl>
-
-<h2 id="6a02-11-proqnoz">10. Proqnoz</h2>
+<h2 id="6a02-11-proqnoz">9. Proqnoz</h2>
 
 <h3>Yaxşı proqnoz amilləri</h3>
 <ul>
@@ -482,7 +462,7 @@ function setCls(k){
   <li>Neyrodiversiya yanaşması — pasiyentin güclü tərəflərini gücləndirmək, "tam müalicə" iddiası yox.</li>
 </ul>
 
-<h2 id="6a02-10-mifler">11. Mif və yanlış inanclar</h2>
+<h2 id="6a02-10-mifler">10. Mif və yanlış inanclar</h2>
 
 <h3>10.1 Etiologiya mifləri</h3>
 
@@ -547,7 +527,7 @@ function setCls(k){
 <h4>Mif 15: "Cranio-Sakral Terapiya, refleksoterapiya, homeopatiya"</h4>
 <p><strong>Sübut:</strong> sistemli icmallar (Cochrane və başqaları) — autizm üçün effekt sübutu yoxdur. NICE CG170 — komplementar müdaxilələrə qarşı xəbərdarlıq.</p>
 
-<h2 id="6a02-12-menbeler">12. Mənbələr</h2>
+<h2 id="6a02-12-menbeler">11. Mənbələr</h2>
 <ol class="ref-list">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A02 Autism spectrum disorder. 2024.</li>
   <li>American Psychiatric Association. DSM-5-TR. Washington DC: APA Publishing; 2022.</li>
