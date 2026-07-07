@@ -208,11 +208,8 @@ EXTRA_CSS = """
 .page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
 .page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
 .page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
-/* кнопка «наверх» — фикс. снизу слева (не мешает кнопке Düzəliş et справа) */
-.backtop{position:fixed;left:16px;bottom:16px;z-index:800;width:44px;height:44px;border-radius:50%;
-  background:var(--bg2);color:var(--gold);border:1px solid var(--border);font-size:1.3rem;line-height:1;
-  cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5);transition:.15s}
-.backtop:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+/* «Düzəliş et» — в центр низа (на мобиле перекрывала жёлтую кнопку «наверх» #btt справа) */
+.dzl-fab{left:50% !important;right:auto !important;transform:translateX(-50%)}
 
 /* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
@@ -301,14 +298,10 @@ function setCls(k){
 </script>"""
 
 
-BACKTOP = ('<button class="backtop" onclick="window.scrollTo({top:0,behavior:\'smooth\'})" '
-           'aria-label="Yuxarı qalx" title="Yuxarı">↑</button>')
-
-
 def page(content, title):
     t = top.replace("MÜNDƏRİCAT | KLİNİK PSİXİATRİYA", f"{title} | KLİNİK PSİXİATRİYA")
     t = t.replace("</head>", EXTRA_CSS + "</head>")
-    return t + "\n" + content + "\n" + BACKTOP + "\n" + bottom
+    return t + "\n" + content + "\n" + bottom
 
 
 def d_nav(chp, i):
