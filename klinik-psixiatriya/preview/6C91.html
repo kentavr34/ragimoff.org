@@ -142,12 +142,13 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
    Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
 .sidebar nav .cls-tabs-side{display:flex;gap:.3rem;padding:.15rem 0 .7rem;margin-bottom:.4rem;border-bottom:1px solid var(--border)}
 .sidebar nav .cls-tabs-side .cls-tab{flex:1;padding:.42rem .2rem;font-size:.72rem;text-align:center;margin:0}
-.sidebar nav .nav-link{font-size:.92rem;letter-spacing:0}
-.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums}
-.sidebar nav .nav-link.is-bolme{cursor:default}
-.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem}
-.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0}
-.sidebar nav .sub-name{color:var(--text2)}
+/* сайдбар сведён к концепту оглавления: код — чистое золото (без пилюли), название — светлое */
+.sidebar nav .nav-link{font-size:.92rem;letter-spacing:0;color:var(--text)}
+.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;background:none !important;padding:0 !important;border:0 !important;border-radius:0 !important;color:var(--gold)}
+.sidebar nav .nav-link.is-bolme{cursor:default;color:var(--text);font-weight:700}
+.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem;color:var(--text)}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
+.sidebar nav .sub-name{color:var(--text)}
 .sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
 .sidebar nav .nav-empty{cursor:default}
 </style>
