@@ -233,10 +233,21 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 @media(max-width:720px){
   body{font-size:16px;line-height:1.6}
   .content-wrap{padding:.9rem 1rem 5.5rem}
-  table.dh h1{font-size:1.28rem}
-  .content-wrap h2{font-size:1.1rem;margin-top:1.55rem}
-  .content-wrap h3{font-size:.98rem}
+  /* шапка расстройства — компактнее: меньше H1/имя, уже столбики ярлык/код */
+  table.dh h1{font-size:1.08rem;letter-spacing:-.02em;line-height:1.22}
+  table.dh .dh-name{font-size:.86rem;line-height:1.25}
+  table.dh .dh-lbl{font-size:.56rem}
+  table.dh .dh-code{font-size:.8rem}
+  table.dh td{padding-right:.5rem}
+  table.dh .dh-main .dh-code{font-size:.9rem}
+  .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
+  .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
+  /* оглавление — компактные заголовки групп и уже столбик кода */
+  .toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem .8rem;gap:.55rem}
+  .toc-ch .tc-range{min-width:4rem;font-size:.8rem;white-space:nowrap}
+  .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:3.7rem 1fr;gap:.5rem;padding:.45rem .8rem}
+  .toc-ch .tc-list .sc{white-space:nowrap}
 }
 /* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
 .chap-head{margin:.1rem 0 1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--gold)}
