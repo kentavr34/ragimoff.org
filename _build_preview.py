@@ -110,7 +110,16 @@ for c in name_of:
 dsm_groups = []
 for key, title in DSM.get("classes", []):
     items = sorted(_dsm_bucket.get(key, []), key=lambda c: _numkey(_dsm(c)))
-    dsm_groups.append((az_upper(title), "", None,
+    nums = []
+    for c in items:
+        try:
+            v = int(float(_dsm(c)))
+            if 285 <= v <= 319:  # психиатрический блок ICD-9-CM; внешние кросс-коды (625, 780…) не в диапазон
+                nums.append(v)
+        except ValueError:
+            pass
+    rng = (f"{min(nums)}–{max(nums)}" if min(nums) != max(nums) else f"{nums[0]}") if nums else ""
+    dsm_groups.append((az_upper(title), rng, None,
                        [(_dsm(c) or "—", c, name_of[c]) for c in items]))
 
 # группы XBT-10 — ВСЕ F-блоки главы V МКБ-10 (полная структура классификации)
