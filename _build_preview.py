@@ -94,23 +94,26 @@ def _numkey(code):
         return (1, code)
 
 
-# группы XBT-11 — по главам ICD-11: (title, range, slug, [(disp_code, target, name)])
+# азербайджанский верхний регистр (i→İ, ı→I) — единый КАПС для всех заголовков
+def az_upper(s):
+    return s.translate(str.maketrans("iı", "İI")).upper()
+
+
+# группы XBT-11 — по главам ICD-11 (заголовки уже КАПС из оглавления)
 icd_groups = [(ch["title"], ch["range"], ch["slug"],
                [(c, c, n) for c, n in ch["disorders"]]) for ch in chapters]
 
-# группы DSM-5-TR — по классам DSM
+# группы DSM-5-TR — ВСЕ классы DSM-5-TR (пустые тоже, помечаются «tamamlanır»)
 _dsm_bucket = {}
 for c in name_of:
     _dsm_bucket.setdefault(DSM.get("assign", {}).get(c, "other"), []).append(c)
 dsm_groups = []
 for key, title in DSM.get("classes", []):
-    items = _dsm_bucket.get(key)
-    if not items:
-        continue
-    items = sorted(items, key=lambda c: _numkey(_dsm(c)))
-    dsm_groups.append((title, "", None, [(_dsm(c) or "—", c, name_of[c]) for c in items]))
+    items = sorted(_dsm_bucket.get(key, []), key=lambda c: _numkey(_dsm(c)))
+    dsm_groups.append((az_upper(title), "", None,
+                       [(_dsm(c) or "—", c, name_of[c]) for c in items]))
 
-# группы XBT-10 — по F-блокам МКБ-10
+# группы XBT-10 — ВСЕ F-блоки главы V МКБ-10 (полная структура классификации)
 ICD10_BLOCKS = [
     ("F0", "F00–F09", "Üzvi (simptomatik) psixi pozuntular"),
     ("F1", "F10–F19", "Psixoaktiv maddələrlə bağlı pozuntular"),
@@ -121,11 +124,14 @@ ICD10_BLOCKS = [
     ("F6", "F60–F69", "Yetkin şəxsiyyət və davranış pozuntuları"),
     ("F7", "F70–F79", "Əqli gerilik"),
     ("F8", "F80–F89", "Psixoloji inkişaf pozuntuları"),
-    ("F9", "F90–F98", "Uşaqlıq və yeniyetməlik pozuntuları"),
+    ("F9", "F90–F98", "Uşaqlıq və yeniyetməlik dövründə başlayan pozuntular"),
+    ("F99", "F99", "Dəqiqləşdirilməmiş psixi pozuntu"),
 ]
 
 
 def _block_key(f):
+    if (f or "").upper().startswith("F99"):
+        return "F99"
     m = re.match(r"(F\d)", f or "")
     return m.group(1) if m else "other"
 
@@ -135,13 +141,11 @@ for c in name_of:
     _icd10_bucket.setdefault(_block_key(_icd10(c)), []).append(c)
 icd10_groups = []
 for bkey, rng, title in ICD10_BLOCKS:
-    items = _icd10_bucket.get(bkey)
-    if not items:
-        continue
-    items = sorted(items, key=lambda c: _numkey(_icd10(c)))
-    icd10_groups.append((title, rng, None, [(_icd10(c), c, name_of[c]) for c in items]))
+    items = sorted(_icd10_bucket.get(bkey, []), key=lambda c: _numkey(_icd10(c)))
+    icd10_groups.append((az_upper(title), rng, None,
+                         [(_icd10(c), c, name_of[c]) for c in items]))
 if _icd10_bucket.get("other"):
-    icd10_groups.append(("XBT-10-da birbaşa uyğunluğu yoxdur", "", None,
+    icd10_groups.append((az_upper("XBT-10 kodu təyin olunmamış"), "", None,
                          [("—", c, name_of[c]) for c in sorted(_icd10_bucket["other"])]))
 
 
@@ -152,6 +156,8 @@ def sidebar_tree(cls, groups, active):
         subs = "".join(
             f'<a href="{t}.html" class="nav-sub-link"><span class="sub-code">{dc}</span>'
             f'<span class="sub-name">{nm}</span></a>' for dc, t, nm in items)
+        if not subs:
+            subs = '<span class="nav-sub-link nav-empty"><span class="sub-code"></span><span class="sub-name">tamamlanır</span></span>'
         rspan = f'<span class="nav-code">{rng}</span>' if rng else ""
         head = (f'<a href="{slug}.html" class="nav-link is-bolme">{rspan}<span>{title}</span></a>'
                 if slug else f'<span class="nav-link is-bolme">{rspan}<span>{title}</span></span>')
@@ -235,14 +241,16 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .h-chapter .icd{display:block;color:var(--text2);font-size:.95rem;font-weight:600;letter-spacing:.05em;font-family:var(--mono,monospace)}
 .toc-preview{display:flex;flex-direction:column;gap:1.2rem;margin:1.5rem 0}
 .toc-ch{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg2)}
-.toc-ch>a{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;text-decoration:none;color:var(--text);font-weight:700;background:var(--bg3)}
+/* ЕДИНЫЙ СТАНДАРТ заголовка группы (глава/класс/блок) — одинаково во всех классификациях */
+.toc-ch>a,.toc-ch .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
 .toc-ch>a:hover{color:var(--gold)}
-.toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
+.toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:4.6rem;font-variant-numeric:tabular-nums}
 .toc-ch .tc-list{display:flex;flex-direction:column}
 /* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
-.toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);border-top:1px solid var(--border)}
+.toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
-.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
+.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
+.toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
 /* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
@@ -262,6 +270,8 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem}
 .sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0}
 .sidebar nav .sub-name{color:var(--text2)}
+.sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
+.sidebar nav .nav-empty{cursor:default}
 </style>
 <script>
 function setCls(k){
@@ -361,56 +371,25 @@ for chp in chapters:
     (OUT / f'{chp["slug"]}.html').write_text(page(head, chp["title"]), encoding="utf-8")
     made_c += 1
 
-# --- ДВОЙНОЕ оглавление превью (index.html): XBT-11 по главам + DSM-5 по классам ---
-name_of = {c: n for chp in chapters for c, n in chp["disorders"]}
+# --- ТРОЙНОЕ оглавление (index.html): общий рендер ТЕХ ЖЕ групп, что и сайдбар ---
+def toc_groups_html(groups):
+    out = ""
+    for title, rng, slug, items in groups:
+        lst = "".join(f'<a href="{t}.html"><span class="sc">{dc}</span><span>{nm}</span></a>'
+                      for dc, t, nm in items)
+        if not lst:
+            lst = '<div class="tc-empty">Bu bölmə tamamlanır</div>'
+        rspan = f'<span class="tc-range">{rng}</span>' if rng else ""
+        head = (f'<a href="{slug}.html">{rspan}<span>{title}</span></a>' if slug
+                else f'<div class="tc-head">{rspan}<span>{title}</span></div>')
+        out += f'<div class="toc-ch">{head}<div class="tc-list">{lst}</div></div>'
+    return out
 
-# панель XBT-11 — по главам
-icd_ch = ""
-for chp in chapters:
-    lst = "".join(f'<a href="{c}.html"><span class="sc">{c}</span><span>{n}</span></a>' for c, n in chp["disorders"])
-    icd_ch += (f'<div class="toc-ch"><a href="{chp["slug"]}.html">'
-               f'<span class="tc-range">{chp["range"]}</span><span>{chp["title"]}</span></a>'
-               f'<div class="tc-list">{lst}</div></div>')
 
-# панель DSM-5 — по классам DSM
-def dsm_code(c):
-    return (CODES.get(c, {}) or {}).get("dsm") or ""
-
-groups = {}
-for c in name_of:
-    groups.setdefault(DSM.get("assign", {}).get(c, "other"), []).append(c)
-
-def dsm_sort(c):
-    d = dsm_code(c)
-    try:
-        return (0, float(d))
-    except ValueError:
-        return (1, c)
-
-dsm_ch = ""
-n_class = 0
-for key, title in DSM.get("classes", []):
-    items = groups.get(key)
-    if not items:
-        continue
-    n_class += 1
-    items = sorted(items, key=dsm_sort)
-    # итоговое название — азербайджанское (одинаковое во всех вкладках); в DSM меняется только код
-    lst = "".join(
-        f'<a href="{c}.html"><span class="sc">{dsm_code(c) or "—"}</span><span>{name_of[c]}</span></a>'
-        for c in items)
-    dsm_ch += (f'<div class="toc-ch"><div class="tc-head">'
-               f'<span>{title}</span></div>'
-               f'<div class="tc-list">{lst}</div></div>')
-
-# панель XBT-10 — по F-блокам МКБ-10
-icd10_ch = ""
-for title, rng, slug, items in icd10_groups:
-    lst = "".join(f'<a href="{t}.html"><span class="sc">{dc}</span><span>{nm}</span></a>'
-                  for dc, t, nm in items)
-    rspan = f'<span class="tc-range">{rng}</span>' if rng else ""
-    icd10_ch += (f'<div class="toc-ch"><div class="tc-head">{rspan}<span>{title}</span></div>'
-                 f'<div class="tc-list">{lst}</div></div>')
+icd_ch = toc_groups_html(icd_groups)
+dsm_ch = toc_groups_html(dsm_groups)
+icd10_ch = toc_groups_html(icd10_groups)
+n_class = len(dsm_groups)
 
 tabs = ('<div class="cls-tabs">'
         "<button class=\"cls-tab is-active\" data-cls=\"icd\" onclick=\"setCls('icd')\">XBT-11</button>"
