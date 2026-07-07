@@ -160,7 +160,7 @@ if _icd10_bucket.get("other"):
 
 # ===== сайдбар: три дерева классификаций + переключатель =====
 def sidebar_tree(cls, groups, active):
-    rows = ['<div class="nav-item" data-slug="index"><a href="index.html" class="nav-link"><span>Ana səhifə</span></a></div>']
+    rows = []
     for title, rng, slug, items in groups:
         subs = "".join(
             f'<a href="{t}.html" class="nav-sub-link"><span class="sub-code">{dc}</span>'
@@ -177,11 +177,23 @@ def sidebar_tree(cls, groups, active):
     return f'<div class="cls-tree" data-cls="{cls}"{hidden}>{"".join(rows)}</div>'
 
 
+# вводные ссылки (вверху сайдбара) — до классификации
+FRONT_NAV = [
+    ("index.html", "Ana səhifə"),
+    ("mugeddime.html", "Müqəddimə"),
+    ("kitab-haqqinda.html", "Kitab haqqında"),
+    ("terminoloji-luget.html", "Terminoloji lüğət"),
+    ("mundericat.html", "Mündəricat"),
+]
+_front_links = "".join(
+    f'<div class="nav-item"><a href="{href}" class="nav-link nav-front">{label}</a></div>'
+    for href, label in FRONT_NAV)
+
 _side_tabs = ('<div class="cls-tabs cls-tabs-side">'
               "<button class=\"cls-tab is-active\" data-cls=\"icd\" onclick=\"setCls('icd')\">XBT-11</button>"
               "<button class=\"cls-tab\" data-cls=\"dsm\" onclick=\"setCls('dsm')\">DSM-5-TR</button>"
               "<button class=\"cls-tab\" data-cls=\"icd10\" onclick=\"setCls('icd10')\">XBT-10</button></div>")
-NEWNAV = (_side_tabs
+NEWNAV = (_front_links + _side_tabs
           + sidebar_tree("icd", icd_groups, True)
           + sidebar_tree("dsm", dsm_groups, False)
           + sidebar_tree("icd10", icd10_groups, False))
@@ -310,6 +322,28 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .sidebar nav .sub-name{color:var(--text)}
 .sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
 .sidebar nav .nav-empty{cursor:default}
+/* вводные ссылки сайдбара — светлые, чуть акцентные */
+.sidebar nav .nav-front{color:var(--text);font-weight:600}
+.sidebar nav .nav-front:hover{color:var(--gold)}
+/* ===== ГЛАВНАЯ (Ana səhifə) — титул + карточки-переходы ===== */
+.home-hero{text-align:center;margin:1.5rem 0 1.8rem}
+.home-title{font-size:2rem;line-height:1.1;letter-spacing:-.01em;color:var(--text);margin:0 0 .5rem;font-weight:800}
+.home-sub{color:var(--text2);font-size:1rem;margin:0;line-height:1.4}
+.home-cards{display:flex;flex-direction:column;gap:.7rem;margin:0 auto 2rem;max-width:40rem}
+.home-card{display:flex;flex-direction:column;gap:.2rem;padding:1rem 1.15rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);text-decoration:none;transition:.15s}
+.home-card:hover{background:var(--bg3);border-color:var(--gold)}
+.home-card b{color:var(--gold);font-size:1.05rem;font-weight:700}
+.home-card span{color:var(--text2);font-size:.9rem;line-height:1.35}
+.home-card-main{border-color:var(--gold)}
+@media(max-width:720px){.home-title{font-size:1.5rem}.home-sub{font-size:.92rem}}
+/* ===== ВВОДНЫЕ страницы (Müqəddimə, Kitab haqqında, Terminoloji lüğət) ===== */
+.front-page{max-width:44rem;margin:0 auto}
+.front-page h1{font-size:1.5rem;line-height:1.2;color:var(--text);margin:.3rem 0 1rem;font-weight:800}
+.front-page h2{font-size:1.18rem;line-height:1.3;margin:1.7rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border);color:var(--text)}
+.front-page h3{font-size:1.02rem;margin:1.1rem 0 .4rem;color:var(--text)}
+.front-page p,.front-page li{color:var(--text);line-height:1.6}
+.front-page table{font-size:.92rem;color:var(--text)}
+@media(max-width:720px){.front-page h1{font-size:1.28rem}.front-page h2{font-size:1.08rem}}
 </style>
 <script>
 function setCls(k){
@@ -344,7 +378,7 @@ def crumb(chp):
 
 
 def crumb_top():
-    return '<nav class="crumb"><a href="index.html">‹ Ana səhifə</a></nav>'
+    return '<nav class="crumb"><a href="mundericat.html">‹ Mündəricat</a></nav>'
 
 
 def build_dh(frag, code, fallback_name):
@@ -416,7 +450,7 @@ for chp in chapters:
     (OUT / f'{chp["slug"]}.html').write_text(page(head, chp["title"]), encoding="utf-8")
     made_c += 1
 
-# --- ТРОЙНОЕ оглавление (index.html): общий рендер ТЕХ ЖЕ групп, что и сайдбар ---
+# --- Mündəricat (коды): общий рендер ТЕХ ЖЕ групп, что и сайдбар ---
 def toc_groups_html(groups):
     out = ""
     for title, rng, slug, items in groups:
@@ -440,17 +474,93 @@ tabs = ('<div class="cls-tabs">'
         "<button class=\"cls-tab is-active\" data-cls=\"icd\" onclick=\"setCls('icd')\">XBT-11</button>"
         "<button class=\"cls-tab\" data-cls=\"dsm\" onclick=\"setCls('dsm')\">DSM-5-TR</button>"
         "<button class=\"cls-tab\" data-cls=\"icd10\" onclick=\"setCls('icd10')\">XBT-10</button></div>")
-toc = (f'<h1 class="h-chapter">ANA SƏHİFƏ</h1>{tabs}'
-       f'<div class="cls-panel" data-cls="icd">'
-       f'<p class="toc-meta">{made_d} pozuntu · {made_c} fəsil</p>'
-       f'<div class="toc-preview">{icd_ch}</div></div>'
-       f'<div class="cls-panel" data-cls="dsm" hidden>'
-       f'<p class="toc-meta">{made_d} pozuntu · {n_class} sinif</p>'
-       f'<div class="toc-preview">{dsm_ch}</div></div>'
-       f'<div class="cls-panel" data-cls="icd10" hidden>'
-       f'<p class="toc-meta">{made_d} pozuntu · {len(icd10_groups)} blok</p>'
-       f'<div class="toc-preview">{icd10_ch}</div></div>')
-(OUT / "index.html").write_text(page(toc, "Ana səhifə"), encoding="utf-8")
+mund = (f'<nav class="crumb"><a href="index.html">‹ Ana səhifə</a></nav>'
+        f'<h1 class="h-chapter">MÜNDƏRİCAT</h1>{tabs}'
+        f'<div class="cls-panel" data-cls="icd">'
+        f'<p class="toc-meta">{made_d} pozuntu · {made_c} fəsil</p>'
+        f'<div class="toc-preview">{icd_ch}</div></div>'
+        f'<div class="cls-panel" data-cls="dsm" hidden>'
+        f'<p class="toc-meta">{made_d} pozuntu · {n_class} sinif</p>'
+        f'<div class="toc-preview">{dsm_ch}</div></div>'
+        f'<div class="cls-panel" data-cls="icd10" hidden>'
+        f'<p class="toc-meta">{made_d} pozuntu · {len(icd10_groups)} blok</p>'
+        f'<div class="toc-preview">{icd10_ch}</div></div>')
+(OUT / "mundericat.html").write_text(page(mund, "Mündəricat"), encoding="utf-8")
+
+# ===== ВВОДНЫЕ СТРАНИЦЫ (восстановлены из оригинала, единый стиль) =====
+_slug_i = [0]
+
+
+def _slugify_h2(html):
+    """Добавить id к H2 без id (для внутристраничной навигации) + вернуть [(id,text)]."""
+    secs = []
+
+    def repl(m):
+        attrs, inner = m.group(1), m.group(2)
+        text = re.sub(r"<[^>]+>", "", inner).strip()
+        mid = re.search(r'id="([^"]+)"', attrs)
+        if mid:
+            sid = mid.group(1)
+        else:
+            _slug_i[0] += 1
+            sid = f"s{_slug_i[0]}"
+            attrs += f' id="{sid}"'
+        secs.append((sid, text))
+        return f"<h2{attrs}>{inner}</h2>"
+
+    html = re.sub(r"<h2([^>]*)>(.*?)</h2>", repl, html, flags=re.S)
+    return html, secs
+
+
+def src_content(fname, cut_before=None):
+    """Извлечь inner content-wrap из исходного файла сайта; опц. обрезать перед маркером."""
+    p = SITE / fname
+    if not p.exists():
+        return ""
+    t = p.read_text(encoding="utf-8")
+    m = re.search(r'<div class="content-wrap">(.*?)</main>', t, re.S)
+    if not m:
+        return ""
+    inner = re.sub(r"</div>\s*$", "", m.group(1).rstrip())
+    if cut_before:
+        i = inner.find(cut_before)
+        if i > 0:
+            c = inner.rfind("<h1", 0, i)
+            if c > 0:
+                inner = inner[:c]
+    return inner
+
+
+def front_page(fname, title, slug, cut_before=None):
+    _slug_i[0] = 0
+    raw = src_content(fname, cut_before)
+    raw, secs = _slugify_h2(raw)
+    ptoc = ""
+    if len(secs) > 1:
+        chips = "".join(f'<a href="#{sid}">{t}</a>' for sid, t in secs if t)
+        ptoc = f'<nav class="page-toc">{chips}</nav>'
+    content = (f'<nav class="crumb"><a href="index.html">‹ Ana səhifə</a></nav>'
+               f'{ptoc}<article class="front-page">{raw}</article>')
+    (OUT / slug).write_text(page(content, title), encoding="utf-8")
+
+
+front_page("mugeddime.html", "Müqəddimə", "mugeddime.html", cut_before=">GİRİŞ<")
+front_page("giris.html", "Kitab haqqında", "kitab-haqqinda.html")
+front_page("abbreviatur.html", "Terminoloji lüğət", "terminoloji-luget.html")
+
+# ===== Ana səhifə (титул / главная — книга открывается с неё) =====
+_cards = [
+    ("mugeddime.html", "Müqəddimə", "Redaksiyanın ön sözü, müəllif və kitab haqqında"),
+    ("kitab-haqqinda.html", "Kitab haqqında", "Niyə XBT-11, struktur, istifadə qaydası"),
+    ("terminoloji-luget.html", "Terminoloji lüğət", "Terminlər və abbreviaturalar (3 dildə)"),
+    ("mundericat.html", "Mündəricat", f"Təsnifatlar üzrə keçid — {made_d} pozuntu, {made_c} fəsil"),
+]
+cards_html = "".join(
+    f'<a href="{h}" class="home-card"><b>{tt}</b><span>{d}</span></a>' for h, tt, d in _cards)
+home = (f'<div class="home-hero"><h1 class="home-title">KLİNİK PSİXİATRİYA</h1>'
+        f'<p class="home-sub">XBT-11 · DSM-5-TR · XBT-10 əsasında praktik klinik istinad vəsaiti</p></div>'
+        f'<div class="home-cards">{cards_html}</div>')
+(OUT / "index.html").write_text(page(home, "Ana səhifə"), encoding="utf-8")
 
 print(f"глав: {made_c} | расстройств: {made_d}")
-print("оглавление превью: preview/index.html")
+print("home: index.html | codes: mundericat.html | front: mugeddime/kitab-haqqinda/terminoloji-luget")
