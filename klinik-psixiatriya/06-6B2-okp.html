@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Klinik Psixiatriya — OBSESSİV-KOMPULSİV">
-<title>OBSESSİV-KOMPULSİV | KLİNİK PSİXİATRİYA</title>
+<meta name="description" content="Klinik Psixiatriya — OBSESSİV-KOMPULSİV (OKP)">
+<title>OBSESSİV-KOMPULSİV (OKP) | KLİNİK PSİXİATRİYA</title>
 <link rel="stylesheet" href="style.css">
     <meta name="keywords" content="psixoterapevt, psixoloq, psixiatr, həkim, Kənan Rəhimov, Bakı, psixologiya, psixoterapiya, depressiya, həyəcan, fobiya, OKP, PTSD" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="OBSESSİV-KOMPULSİV | KLİNİK PSİXİATRİYA" />
-    <meta property="og:description" content="Klinik Psixiatriya — OBSESSİV-KOMPULSİV" />
+    <meta property="og:title" content="OBSESSİV-KOMPULSİV (OKP) | KLİNİK PSİXİATRİYA" />
+    <meta property="og:description" content="Klinik Psixiatriya — OBSESSİV-KOMPULSİV (OKP)" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ragimoff.org/klinik-psixiatriya/06-6B2-okp.html" />
+    <meta property="og:url" content="https://ragimoff.org/klinik-psixiatriya/" />
     <meta property="og:locale" content="az_AZ" />
-    <link rel="canonical" href="https://ragimoff.org/klinik-psixiatriya/06-6B2-okp.html" />
+    <link rel="canonical" href="https://ragimoff.org/klinik-psixiatriya/02-6A2-sizofreniya-spektri.html" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Book",
 "name":"Klinik Psixiatriya","inLanguage":"az",
@@ -28,7 +28,164 @@
     <style>/* duzelis-abbr-style */
   abbr[title]{ text-decoration: underline dotted; text-underline-offset: 2px; cursor: help; }
 </style>
-</head>
+
+<style>
+/* приглушённые цвета текста осветлены (тёмно-серый #8B949E/#6E7681 на чёрном плохо читался).
+   Стиль темы сохраняем: золото — акценты, светлый текст — основной; только контраст выше.
+   Область — контент и боковое меню; шапку САЙТА не трогаем. */
+.content-wrap, .sidebar nav{--text2:#C6CDD6; --text3:#AAB2BD}
+/* ===== КНИЖНЫЙ ШАБЛОН — правим ТОЛЬКО контент. Шапку САЙТА не трогаем! ===== */
+.content-wrap{max-width:44rem;margin:0 auto;padding:1.1rem 1.15rem 5.5rem}
+.content-wrap p{margin:.72rem 0}
+.content-wrap ul,.content-wrap ol{margin:.72rem 0;padding-left:1.3rem}
+.content-wrap li{margin:.32rem 0}
+.content-wrap h2{font-size:1.18rem;line-height:1.3;margin:1.8rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.content-wrap h3{font-size:1.02rem;line-height:1.35;margin:1.15rem 0 .4rem;color:var(--text)}
+.content-wrap table{font-size:.92rem}
+/* методики — каждая отдельным блоком с чётким разделителем и воздухом */
+.method-list dt{font-weight:700;color:var(--text);margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border);line-height:1.35}
+.method-list dt:first-child{margin-top:.4rem;padding-top:0;border-top:0}
+.method-list dd{margin:.45rem 0 0;color:var(--text);line-height:1.6}
+/* объединённые методики: нумерованный список «название — описание» */
+.method-num{margin:1rem 0;padding-left:1.6rem}
+.method-num>li{margin-top:1.1rem;padding-left:.25rem;line-height:1.6;color:var(--text)}
+.method-num>li::marker{color:var(--gold);font-weight:700}
+.method-num>li:first-child{margin-top:.4rem}
+.method-num>li strong{color:var(--text);font-weight:700}
+
+/* хлебная крошка — тихая строка вверху (вместо сиротской полосы-навигации) */
+.crumb{font-size:.82rem;margin:.1rem 0 1.1rem}
+.crumb a{color:var(--text2);text-decoration:none}
+.crumb a:hover{color:var(--gold)}
+/* якоря разделов не должны прятаться под фикс-шапкой сайта */
+.content-wrap h2,.content-wrap h3{scroll-margin-top:calc(var(--hdr,64px) + 12px)}
+/* внутристраничная навигация по разделам (как оглавление Википедии) */
+.page-toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:.2rem 0 1.4rem;padding:.7rem .2rem;border-bottom:1px solid var(--border)}
+.page-toc a{font-size:.82rem;color:var(--text2);text-decoration:none;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;transition:.15s;white-space:nowrap}
+.page-toc a:hover{color:var(--bg);background:var(--gold);border-color:var(--gold)}
+/* «Düzəliş et» — в центр низа (на мобиле перекрывала жёлтую кнопку «наверх» #btt справа) */
+.dzl-fab{left:50% !important;right:auto !important;transform:translateX(-50%)}
+
+/* ШАПКА расстройства — выровненная «невидимая таблица» трёх классификаций */
+table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
+table.dh td{border:0;padding:.24rem .7rem .24rem 0;vertical-align:baseline;text-align:left}
+table.dh td:last-child{padding-right:0;width:100%}
+table.dh .dh-meta{white-space:nowrap;vertical-align:baseline;padding:.24rem .9rem .24rem 0}
+table.dh .dh-lbl{display:block;font-family:var(--mono,monospace);font-size:.74rem;letter-spacing:.03em;text-transform:uppercase;color:var(--text3);font-weight:700;line-height:1.25}
+table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;color:var(--gold);font-size:.74rem;line-height:1.25;margin-top:.1rem}
+table.dh .dh-name{color:var(--text2);font-size:.94rem;line-height:1.3}
+table.dh h1{font-size:1.42rem;line-height:1.2;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text)}
+.dh-en{font-style:italic;color:var(--text2);font-size:.9rem;margin-top:.12rem;line-height:1.3;font-weight:400}
+table.dh .dh-main .dh-lbl{color:var(--gold)}
+table.dh .dh-main td{padding-bottom:.7rem}
+table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
+
+/* мобайл: комфортная типографика (НИКАКИХ правок шапки сайта) */
+@media(max-width:720px){
+  body{font-size:16px;line-height:1.6}
+  .content-wrap{padding:.9rem 1rem 5.5rem}
+  /* шапка расстройства — компактнее: меньше H1/имя, уже столбики ярлык/код */
+  table.dh h1{font-size:1.12rem;letter-spacing:-.02em;line-height:1.22}
+  table.dh .dh-name{font-size:.9rem;line-height:1.28}
+  table.dh .dh-lbl,table.dh .dh-code{font-size:.72rem}
+  table.dh .dh-meta{padding-right:.7rem}
+  .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
+  .content-wrap h3{font-size:.96rem}
+  .content-wrap p{margin:.66rem 0}
+  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
+  .cls-tabs{gap:.35rem;flex-wrap:nowrap}
+  .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
+  /* оглавление — компактные заголовки групп и уже столбик кода */
+  .toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem .8rem;gap:.55rem}
+  .toc-ch .tc-range{min-width:4rem;font-size:.8rem;white-space:nowrap}
+  .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:3.7rem 1fr;gap:.5rem;padding:.45rem .8rem}
+  .toc-ch .tc-list .sc{white-space:nowrap}
+}
+/* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
+.chap-head{margin:.1rem 0 1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--gold)}
+.chap-h1{font-size:1.5rem;line-height:1.22;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text);display:flex;flex-wrap:wrap;align-items:baseline;gap:.55rem}
+.chap-range{font-family:var(--mono,monospace);color:var(--gold);font-size:1.02rem;font-weight:700;white-space:nowrap}
+.chap-en{font-style:italic;color:var(--text2);font-size:.95rem;margin-top:.3rem;line-height:1.3}
+.chap-sub{color:var(--text3);font-size:.88rem;margin:.6rem 0 0}
+@media(max-width:720px){.chap-h1{font-size:1.28rem}.chap-range{font-size:.95rem}}
+/* меню главы — выровнено в 2 колонки (код | название) */
+.chapter-menu{display:flex;flex-direction:column;gap:.45rem;margin:1.3rem 0}
+.ch-disorder{display:grid;grid-template-columns:3.8rem 1fr;align-items:baseline;gap:.7rem;padding:.7rem .9rem;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--bg2);transition:.15s}
+.ch-disorder:hover{background:var(--bg3);border-color:var(--gold)}
+.ch-code{font-weight:700;color:var(--gold);font-family:var(--mono,monospace);font-variant-numeric:tabular-nums}
+.ch-name{font-weight:600;color:var(--text)}
+/* нижняя навигация — перелистывание (ТОЛЬКО внизу страницы) */
+.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}
+.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap}
+.d-nav a:hover{background:var(--bg3);color:var(--gold)}
+.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}
+.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}
+@media(max-width:640px){ .d-nav .dn-name{display:none} .d-nav a{padding:.3rem .5rem} }
+.h-chapter{font-size:1.55rem;text-align:center;margin:1rem 0 .3rem;color:var(--text)}
+.h-chapter .icd{display:block;color:var(--text2);font-size:.95rem;font-weight:600;letter-spacing:.05em;font-family:var(--mono,monospace)}
+.toc-preview{display:flex;flex-direction:column;gap:1.2rem;margin:1.5rem 0}
+.toc-ch{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg2)}
+/* ЕДИНЫЙ СТАНДАРТ заголовка группы (глава/класс/блок) — одинаково во всех классификациях */
+.toc-ch>a,.toc-ch .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
+.toc-ch>a:hover{color:var(--gold)}
+.toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:4.6rem;font-variant-numeric:tabular-nums}
+.toc-ch .tc-list{display:flex;flex-direction:column}
+/* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
+.toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
+.toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
+.toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
+.toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
+[hidden]{display:none !important}
+.cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
+.cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
+.cls-tab:hover{color:var(--text);border-color:var(--gold)}
+.cls-tab.is-active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
+.tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
+.tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
+/* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
+   Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
+.sidebar nav .cls-tabs-side{display:flex;gap:.3rem;padding:.15rem 0 .7rem;margin-bottom:.4rem;border-bottom:1px solid var(--border)}
+.sidebar nav .cls-tabs-side .cls-tab{flex:1;padding:.42rem .2rem;font-size:.72rem;text-align:center;margin:0}
+/* сайдбар сведён к концепту оглавления: код — чистое золото (без пилюли), название — светлое */
+.sidebar nav .nav-link{font-size:.92rem;letter-spacing:0;color:var(--text)}
+.sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;background:none !important;padding:0 !important;border:0 !important;border-radius:0 !important;color:var(--gold)}
+.sidebar nav .nav-link.is-bolme{cursor:default;color:var(--text);font-weight:700}
+.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem;color:var(--text)}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
+.sidebar nav .sub-name{color:var(--text)}
+.sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
+.sidebar nav .nav-empty{cursor:default}
+/* вводные ссылки сайдбара — светлые, чуть акцентные */
+.sidebar nav .nav-front{color:var(--text);font-weight:600}
+.sidebar nav .nav-front:hover{color:var(--gold)}
+/* ===== ГЛАВНАЯ (Ana səhifə) — титул + карточки-переходы ===== */
+.home-hero{text-align:center;margin:1.5rem 0 1.8rem}
+.home-title{font-size:2rem;line-height:1.1;letter-spacing:-.01em;color:var(--text);margin:0 0 .5rem;font-weight:800}
+.home-sub{color:var(--text2);font-size:1rem;margin:0;line-height:1.4}
+.home-cards{display:flex;flex-direction:column;gap:.7rem;margin:0 auto 2rem;max-width:40rem}
+.home-card{display:flex;flex-direction:column;gap:.2rem;padding:1rem 1.15rem;border:1px solid var(--border);border-radius:10px;background:var(--bg2);text-decoration:none;transition:.15s}
+.home-card:hover{background:var(--bg3);border-color:var(--gold)}
+.home-card b{color:var(--gold);font-size:1.05rem;font-weight:700}
+.home-card span{color:var(--text2);font-size:.9rem;line-height:1.35}
+.home-card-main{border-color:var(--gold)}
+@media(max-width:720px){.home-title{font-size:1.5rem}.home-sub{font-size:.92rem}}
+/* ===== ВВОДНЫЕ страницы (Müqəddimə, Kitab haqqında, Terminoloji lüğət) ===== */
+.front-page{max-width:44rem;margin:0 auto}
+.front-page h1{font-size:1.5rem;line-height:1.2;color:var(--text);margin:.3rem 0 1rem;font-weight:800}
+.front-page h2{font-size:1.18rem;line-height:1.3;margin:1.7rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border);color:var(--text)}
+.front-page h3{font-size:1.02rem;margin:1.1rem 0 .4rem;color:var(--text)}
+.front-page p,.front-page li{color:var(--text);line-height:1.6}
+.front-page table{font-size:.92rem;color:var(--text)}
+@media(max-width:720px){.front-page h1{font-size:1.28rem}.front-page h2{font-size:1.08rem}}
+</style>
+<script>
+function setCls(k){
+  document.querySelectorAll('.cls-tab').forEach(function(t){t.classList.toggle('is-active',t.getAttribute('data-cls')===k);});
+  document.querySelectorAll('.cls-panel,.cls-tree').forEach(function(p){p.hidden=(p.getAttribute('data-cls')!==k);});
+}
+</script></head>
 <body>
 
 <header class="site-header">
@@ -59,1327 +216,18 @@
 <div class="site-layout">
   <aside class="sidebar" id="sb">
     <div class="sb-hdr"><h3>📋 Mündəricat</h3><button class="sb-close" onclick="toggleSb()" aria-label="Bağla">✕</button></div>
-    <nav>
-<div class="nav-item" data-slug="index">
-  <a href="index.html" class="nav-link" data-slug="index"><span>Mündəricat</span></a>
-</div>
-<div class="nav-item" data-slug="mugeddime">
-  <a href="mugeddime.html" class="nav-link" data-slug="mugeddime"><span>Müqəddimə</span></a>
-</div>
-<div class="nav-item" data-slug="abbreviatur">
-  <a href="abbreviatur.html" class="nav-link" data-slug="abbreviatur"><span>Qısaltmalar</span></a>
-</div>
-<div class="nav-item nav-has-sub" data-slug="01-6A0-neyroinkisaf">
-  <a href="01-6A0-neyroinkisaf.html" class="nav-link is-bolme" data-slug="01-6A0-neyroinkisaf">
-    <span class="nav-code">6A00–6A0Z</span>
-    <span>NEYROİNKİŞAF POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="01-6A0-neyroinkisaf.html#6a00-intellektual-inkisaf-pozuntusu" class="nav-sub-link"><span class="sub-code">6A00</span><span class="sub-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a01-inkisaf-nitq-ve-dil-pozuntulari" class="nav-sub-link"><span class="sub-code">6A01</span><span class="sub-name">İNKİŞAF NİTQ VƏ DİL POZUNTULARI</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a02-autizm-spektri-pozuntusu" class="nav-sub-link"><span class="sub-code">6A02</span><span class="sub-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a03-spesifik-oyrenme-pozuntusu" class="nav-sub-link"><span class="sub-code">6A03</span><span class="sub-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a04-inkisaf-hereki-koordinasiya-pozuntusu" class="nav-sub-link"><span class="sub-code">6A04</span><span class="sub-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a05-diqqet-defisiti-ve-hiperaktivlik-pozuntusu-ddhp" class="nav-sub-link"><span class="sub-code">6A05</span><span class="sub-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a06-stereotipik-hereket-pozuntusu" class="nav-sub-link"><span class="sub-code">6A06</span><span class="sub-name">STEREOTİPİK HƏRƏKƏT POZUNTUSU</span></a>
-    <a href="01-6A0-neyroinkisaf.html#6a07-tikli-pozuntular-tourette" class="nav-sub-link"><span class="sub-code">6A07</span><span class="sub-name">TİKLİ POZUNTULAR (TOURETTE SİNDROMU)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="02-6A2-sizofreniya-spektri">
-  <a href="02-6A2-sizofreniya-spektri.html" class="nav-link is-bolme" data-slug="02-6A2-sizofreniya-spektri">
-    <span class="nav-code">6A20–6A2Z</span>
-    <span>ŞİZOFRENİYA SPEKTRİ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="02-6A2-sizofreniya-spektri.html#6a20-sizofreniya" class="nav-sub-link"><span class="sub-code">6A20</span><span class="sub-name">ŞİZOFRENİYA</span></a>
-    <a href="02-6A2-sizofreniya-spektri.html#6a21-sizoaffektiv-pozuntu" class="nav-sub-link"><span class="sub-code">6A21</span><span class="sub-name">ŞİZOAFFEKTİV POZUNTU</span></a>
-    <a href="02-6A2-sizofreniya-spektri.html#6a22-sizotipik-pozuntu" class="nav-sub-link"><span class="sub-code">6A22</span><span class="sub-name">ŞİZOTİPİK POZUNTU</span></a>
-    <a href="02-6A2-sizofreniya-spektri.html#6a23-keskin-ve-kecici-psixotik-pozuntu" class="nav-sub-link"><span class="sub-code">6A23</span><span class="sub-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</span></a>
-    <a href="02-6A2-sizofreniya-spektri.html#6a24-sayiqlama-pozuntusu" class="nav-sub-link"><span class="sub-code">6A24</span><span class="sub-name">SAYIQLAMA POZUNTUSU</span></a>
-    <a href="02-6A2-sizofreniya-spektri.html#6a25-ilkin-psixotik-pozuntularin-simptom-domenleri" class="nav-sub-link"><span class="sub-code">6A25</span><span class="sub-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="03-6A4-katatoniya">
-  <a href="03-6A4-katatoniya.html" class="nav-link is-bolme" data-slug="03-6A4-katatoniya">
-    <span class="nav-code">6A40</span>
-    <span>KATATONİYA</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="03-6A4-katatoniya.html#6a40-katatoniya" class="nav-sub-link"><span class="sub-code">6A40</span><span class="sub-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="04-6A6-ehval-pozuntulari">
-  <a href="04-6A6-ehval-pozuntulari.html" class="nav-link is-bolme" data-slug="04-6A6-ehval-pozuntulari">
-    <span class="nav-code">6A60–6A7Z</span>
-    <span>ƏHVAL POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="04-6A6-ehval-pozuntulari.html#6a60-bipolyar-pozuntu-tip-i" class="nav-sub-link"><span class="sub-code">6A60</span><span class="sub-name">BİPOLYAR POZUNTU TİP I</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a61-bipolyar-pozuntu-tip-ii" class="nav-sub-link"><span class="sub-code">6A61</span><span class="sub-name">BİPOLYAR POZUNTU TİP II</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a62-sikletimik-pozuntu" class="nav-sub-link"><span class="sub-code">6A62</span><span class="sub-name">SİKLETİMİK POZUNTU</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a70-tek-epizodlu-depresiv-pozuntu" class="nav-sub-link"><span class="sub-code">6A70</span><span class="sub-name">TƏK EPİZODLU DEPRESİV POZUNTU</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a71-tekrarlanan-depresiv-pozuntu" class="nav-sub-link"><span class="sub-code">6A71</span><span class="sub-name">TƏKRARLANAN DEPRESİV POZUNTU</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a72-distimik-pozuntu" class="nav-sub-link"><span class="sub-code">6A72</span><span class="sub-name">DİSTİMİK POZUNTU</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a73-premenstrual-disforik-pozuntu" class="nav-sub-link"><span class="sub-code">6A73</span><span class="sub-name">PREMENSTRUAL DİSFORİK POZUNTU (PMDD)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="05-6B0-narahatliq">
-  <a href="05-6B0-narahatliq.html" class="nav-link is-bolme" data-slug="05-6B0-narahatliq">
-    <span class="nav-code">6B00–6B0Z</span>
-    <span>NARAHATLIQ POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="05-6B0-narahatliq.html#6b00-generalize-olunmus-narahatliq-pozuntusu" class="nav-sub-link"><span class="sub-code">6B00</span><span class="sub-name">GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD)</span></a>
-    <a href="05-6B0-narahatliq.html#6b01-panik-pozuntu" class="nav-sub-link"><span class="sub-code">6B01</span><span class="sub-name">PANİK POZUNTU</span></a>
-    <a href="05-6B0-narahatliq.html#6b02-aqorafobiya" class="nav-sub-link"><span class="sub-code">6B02</span><span class="sub-name">AQORAFOBİYA</span></a>
-    <a href="05-6B0-narahatliq.html#6b03-spesifik-fobiya" class="nav-sub-link"><span class="sub-code">6B03</span><span class="sub-name">SPESİFİK FOBİYA</span></a>
-    <a href="05-6B0-narahatliq.html#6b04-sosial-narahatliq-pozuntusu" class="nav-sub-link"><span class="sub-code">6B04</span><span class="sub-name">SOSİAL NARAHATLIQ POZUNTUSU</span></a>
-    <a href="05-6B0-narahatliq.html#6b05-ayrilma-narahatligi" class="nav-sub-link"><span class="sub-code">6B05</span><span class="sub-name">AYRILMA NARAHATLIĞI POZUNTUSU</span></a>
-    <a href="05-6B0-narahatliq.html#6b06-selektiv-mutizm" class="nav-sub-link"><span class="sub-code">6B06</span><span class="sub-name">SELEKTİV MUTİZM</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="06-6B2-okp">
-  <a href="06-6B2-okp.html" class="nav-link is-bolme is-active" data-slug="06-6B2-okp">
-    <span class="nav-code">6B20–6B2Z</span>
-    <span>OBSESSİV-KOMPULSİV (OKP)</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="06-6B2-okp.html#6b20-okp" class="nav-sub-link"><span class="sub-code">6B20</span><span class="sub-name">OBSESSİV-KOMPULSİV POZUNTU (OKP)</span></a>
-    <a href="06-6B2-okp.html#6b21-beden-dismorfik-pozuntusu" class="nav-sub-link"><span class="sub-code">6B21</span><span class="sub-name">BƏDƏN DİSMORFİK POZUNTUSU (BDD)</span></a>
-    <a href="06-6B2-okp.html#6b22-patoloji-beden-qoxusu-pozuntusu" class="nav-sub-link"><span class="sub-code">6B22</span><span class="sub-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</span></a>
-    <a href="06-6B2-okp.html#6b23-hipoxondriya" class="nav-sub-link"><span class="sub-code">6B23</span><span class="sub-name">HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</span></a>
-    <a href="06-6B2-okp.html#6b24-toplama-hoarding" class="nav-sub-link"><span class="sub-code">6B24</span><span class="sub-name">TOPLAMA POZUNTUSU</span></a>
-    <a href="06-6B2-okp.html#6b25-bedene-yonelmis-tekrar-davranislar" class="nav-sub-link"><span class="sub-code">6B25</span><span class="sub-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="07-6B4-stress">
-  <a href="07-6B4-stress.html" class="nav-link is-bolme" data-slug="07-6B4-stress">
-    <span class="nav-code">6B40–6B4Z</span>
-    <span>STRESS İLƏ ƏLAQƏLİ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="07-6B4-stress.html#6b40-ptsp" class="nav-sub-link"><span class="sub-code">6B40</span><span class="sub-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</span></a>
-    <a href="07-6B4-stress.html#6b41-kompleks-ptsp" class="nav-sub-link"><span class="sub-code">6B41</span><span class="sub-name">KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP)</span></a>
-    <a href="07-6B4-stress.html#6b42-uzanmis-yas-pozuntusu" class="nav-sub-link"><span class="sub-code">6B42</span><span class="sub-name">UZANMIŞ YAS POZUNTUSU</span></a>
-    <a href="07-6B4-stress.html#6b43-adaptasiya-pozuntusu" class="nav-sub-link"><span class="sub-code">6B43</span><span class="sub-name">ADAPTASİYA POZUNTUSU</span></a>
-    <a href="07-6B4-stress.html#6b44-reaktiv-baglanma-pozuntusu" class="nav-sub-link"><span class="sub-code">6B44</span><span class="sub-name">REAKTİV BAĞLANMA POZUNTUSU</span></a>
-    <a href="07-6B4-stress.html#6b45-sosial-istirakin-mehdudlasdirilmasi" class="nav-sub-link"><span class="sub-code">6B45</span><span class="sub-name">SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="08-6B6-dissosiativ">
-  <a href="08-6B6-dissosiativ.html" class="nav-link is-bolme" data-slug="08-6B6-dissosiativ">
-    <span class="nav-code">6B60–6B6Z</span>
-    <span>DİSSOSİATİV POZUNTULAR</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="08-6B6-dissosiativ.html#6b60-dip" class="nav-sub-link"><span class="sub-code">6B60</span><span class="sub-name">DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP)</span></a>
-    <a href="08-6B6-dissosiativ.html#6b61-parsial-dissosiativ-identifikasiya" class="nav-sub-link"><span class="sub-code">6B61</span><span class="sub-name">PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU</span></a>
-    <a href="08-6B6-dissosiativ.html#6b62-depersonalizasiya-derealizasiya" class="nav-sub-link"><span class="sub-code">6B62</span><span class="sub-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</span></a>
-    <a href="08-6B6-dissosiativ.html#6b63-dissosiativ-nevroloji-simptom" class="nav-sub-link"><span class="sub-code">6B63</span><span class="sub-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</span></a>
-    <a href="08-6B6-dissosiativ.html#6b64-dissosiativ-amneziya" class="nav-sub-link"><span class="sub-code">6B64</span><span class="sub-name">DİSSOSİATİV AMNEZİYA</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="09-6B8-qida-qebulu">
-  <a href="09-6B8-qida-qebulu.html" class="nav-link is-bolme" data-slug="09-6B8-qida-qebulu">
-    <span class="nav-code">6B80–6B8Z</span>
-    <span>QİDA QƏBULU POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="09-6B8-qida-qebulu.html#6b80-anorexia-nervosa" class="nav-sub-link"><span class="sub-code">6B80</span><span class="sub-name">SİNİR ANOREKSİYASI</span></a>
-    <a href="09-6B8-qida-qebulu.html#6b81-bulimia-nervosa" class="nav-sub-link"><span class="sub-code">6B81</span><span class="sub-name">SİNİR BULİMİYASI</span></a>
-    <a href="09-6B8-qida-qebulu.html#6b82-keçirtmə ilə yemə-pozuntusu" class="nav-sub-link"><span class="sub-code">6B82</span><span class="sub-name">KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED)</span></a>
-    <a href="09-6B8-qida-qebulu.html#6b83-pika" class="nav-sub-link"><span class="sub-code">6B83</span><span class="sub-name">PİKA</span></a>
-    <a href="09-6B8-qida-qebulu.html#6b84-ruminasiya-geri-qaytarma" class="nav-sub-link"><span class="sub-code">6B84</span><span class="sub-name">RUMİNASİYA-GERİ QAYTARMA POZUNTUSU</span></a>
-    <a href="09-6B8-qida-qebulu.html#6b85-arfid" class="nav-sub-link"><span class="sub-code">6B85</span><span class="sub-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="10-6C0-ifrazat">
-  <a href="10-6C0-ifrazat.html" class="nav-link is-bolme" data-slug="10-6C0-ifrazat">
-    <span class="nav-code">6C00–6C0Z</span>
-    <span>İFRAZAT POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="10-6C0-ifrazat.html#6c00-enurez" class="nav-sub-link"><span class="sub-code">6C00</span><span class="sub-name">ENUREZ</span></a>
-    <a href="10-6C0-ifrazat.html#6c01-enkoprez" class="nav-sub-link"><span class="sub-code">6C01</span><span class="sub-name">ENKOPREZ</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="11-6C2-bedensel-disstres">
-  <a href="11-6C2-bedensel-disstres.html" class="nav-link is-bolme" data-slug="11-6C2-bedensel-disstres">
-    <span class="nav-code">6C20</span>
-    <span>BƏDƏNSƏL DİSTRES</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="11-6C2-bedensel-disstres.html#6c20-somatik-simptom-pozuntusu" class="nav-sub-link"><span class="sub-code">6C20</span><span class="sub-name">BƏDƏN DİSSTRES POZUNTUSU</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="12-6C4-madde-asililiq">
-  <a href="12-6C4-madde-asililiq.html" class="nav-link is-bolme" data-slug="12-6C4-madde-asililiq">
-    <span class="nav-code">6C40–6C5Z</span>
-    <span>MADDƏ İLƏ ƏLAQƏLİ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="12-6C4-madde-asililiq.html#6c40-alkohol-istifadesi-pozuntulari" class="nav-sub-link"><span class="sub-code">6C40</span><span class="sub-name">ALKOHOL İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c41-opioid-istifadesi" class="nav-sub-link"><span class="sub-code">6C41</span><span class="sub-name">OPİOİD İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c42-kannabis-istifadesi" class="nav-sub-link"><span class="sub-code">6C42</span><span class="sub-name">KANNABİS İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c43-sedativ-hipnotik-istifadesi" class="nav-sub-link"><span class="sub-code">6C43</span><span class="sub-name">SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c44-kokain-istifadesi" class="nav-sub-link"><span class="sub-code">6C44</span><span class="sub-name">KOKAİN İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c45-stimulyant-istifadesi" class="nav-sub-link"><span class="sub-code">6C45</span><span class="sub-name">STİMULYANT İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c46-halusinogen-istifadesi" class="nav-sub-link"><span class="sub-code">6C46</span><span class="sub-name">HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c47-nikotin-istifadesi" class="nav-sub-link"><span class="sub-code">6C47</span><span class="sub-name">NİKOTİN İSTİFADƏSİ POZUNTULARI</span></a>
-    <a href="12-6C4-madde-asililiq.html#6c50-davranis-asililiqlari" class="nav-sub-link"><span class="sub-code">6C50</span><span class="sub-name">DAVRANIŞ ASILILIQLARI (QUMAR, OYUN)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="13-6C7-impuls-nezareti">
-  <a href="13-6C7-impuls-nezareti.html" class="nav-link is-bolme" data-slug="13-6C7-impuls-nezareti">
-    <span class="nav-code">6C70–6C7Z</span>
-    <span>İMPULS NƏZARƏTİ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="13-6C7-impuls-nezareti.html#6c70-pyromaniya" class="nav-sub-link"><span class="sub-code">6C70</span><span class="sub-name">PYROMANİYA</span></a>
-    <a href="13-6C7-impuls-nezareti.html#6c71-kleptomaniya" class="nav-sub-link"><span class="sub-code">6C71</span><span class="sub-name">KLEPTOMANİYA</span></a>
-    <a href="13-6C7-impuls-nezareti.html#6c72-kompulsiv-cinsi-davranis" class="nav-sub-link"><span class="sub-code">6C72</span><span class="sub-name">KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU</span></a>
-    <a href="13-6C7-impuls-nezareti.html#6c73-ied" class="nav-sub-link"><span class="sub-code">6C73</span><span class="sub-name">ARALIQLI PATLAYICI POZUNTU (IED)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="14-6C9-pozucu-davranis">
-  <a href="14-6C9-pozucu-davranis.html" class="nav-link is-bolme" data-slug="14-6C9-pozucu-davranis">
-    <span class="nav-code">6C90–6C9Z</span>
-    <span>POZUCU DAVRANIŞ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="14-6C9-pozucu-davranis.html#6c90-davranis-pozuntusu" class="nav-sub-link"><span class="sub-code">6C90</span><span class="sub-name">DAVRANIŞ POZUNTUSU</span></a>
-    <a href="14-6C9-pozucu-davranis.html#6c91-odd" class="nav-sub-link"><span class="sub-code">6C91</span><span class="sub-name">MÜXALİF-İNADKAR POZUNTU (ODD)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="15-6D1-sexsiyyet">
-  <a href="15-6D1-sexsiyyet.html" class="nav-link is-bolme" data-slug="15-6D1-sexsiyyet">
-    <span class="nav-code">6D10–6D1Z</span>
-    <span>ŞƏXSİYYƏT POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="15-6D1-sexsiyyet.html#6d10-sexsiyyet-pozuntusu" class="nav-sub-link"><span class="sub-code">6D10</span><span class="sub-name">ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ)</span></a>
-    <a href="15-6D1-sexsiyyet.html#6d11-sexsiyyet-cetinliyi" class="nav-sub-link"><span class="sub-code">6D11</span><span class="sub-name">ŞƏXSİYYƏT ÇƏTİNLİYİ</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="16-6D3-parafilik">
-  <a href="16-6D3-parafilik.html" class="nav-link is-bolme" data-slug="16-6D3-parafilik">
-    <span class="nav-code">6D30–6D3Z</span>
-    <span>PARAFİLİK POZUNTULAR</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="16-6D3-parafilik.html#6d30-ekshibisionizm" class="nav-sub-link"><span class="sub-code">6D30</span><span class="sub-name">EKSHİBİSİONİZM</span></a>
-    <a href="16-6D3-parafilik.html#6d31-voyerizm" class="nav-sub-link"><span class="sub-code">6D31</span><span class="sub-name">VOYERİZM</span></a>
-    <a href="16-6D3-parafilik.html#6d32-pedofilik-pozuntu" class="nav-sub-link"><span class="sub-code">6D32</span><span class="sub-name">PEDOFİLİK POZUNTU</span></a>
-    <a href="16-6D3-parafilik.html#6d33-sadistik-cinsi-pozuntu" class="nav-sub-link"><span class="sub-code">6D33</span><span class="sub-name">SADİSTİK CİNSİ POZUNTU</span></a>
-    <a href="16-6D3-parafilik.html#6d34-frotteurizm" class="nav-sub-link"><span class="sub-code">6D34</span><span class="sub-name">FROTTEURİZM</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="17-6D5-faktitioz">
-  <a href="17-6D5-faktitioz.html" class="nav-link is-bolme" data-slug="17-6D5-faktitioz">
-    <span class="nav-code">6D50–6D5Z</span>
-    <span>FAKTİTİOZ POZUNTULAR</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="17-6D5-faktitioz.html#6d50-faktitioz-pozuntu-ozune" class="nav-sub-link"><span class="sub-code">6D50</span><span class="sub-name">ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN SİNDROMU)</span></a>
-    <a href="17-6D5-faktitioz.html#6d51-faktitioz-pozuntu-basqasina" class="nav-sub-link"><span class="sub-code">6D51</span><span class="sub-name">BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN BY PROXY)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="18-6D7-neyrokoqnitiv">
-  <a href="18-6D7-neyrokoqnitiv.html" class="nav-link is-bolme" data-slug="18-6D7-neyrokoqnitiv">
-    <span class="nav-code">6D70–6D8Z</span>
-    <span>NEYROKOQNİTİV (DEMENSİYA)</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="18-6D7-neyrokoqnitiv.html#6d70-delirium" class="nav-sub-link"><span class="sub-code">6D70</span><span class="sub-name">DELİRİUM</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d71-yungul-neyrokoqnitiv" class="nav-sub-link"><span class="sub-code">6D71</span><span class="sub-name">YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI)</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d72-amnestik-pozuntu" class="nav-sub-link"><span class="sub-code">6D72</span><span class="sub-name">AMNESTİK POZUNTU</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d80-alzheimer-demensiyasi" class="nav-sub-link"><span class="sub-code">6D80</span><span class="sub-name">ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d81-damar-demensiyasi" class="nav-sub-link"><span class="sub-code">6D81</span><span class="sub-name">DAMAR DEMENSİYASI</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d82-lewy-cisimcikleri-demensiyasi" class="nav-sub-link"><span class="sub-code">6D82</span><span class="sub-name">LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB)</span></a>
-    <a href="18-6D7-neyrokoqnitiv.html#6d83-frontotemporal-demensiya" class="nav-sub-link"><span class="sub-code">6D83</span><span class="sub-name">FRONTOTEMPORAL DEMENSİYA (FTD)</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="19-6E2-perinatal">
-  <a href="19-6E2-perinatal.html" class="nav-link is-bolme" data-slug="19-6E2-perinatal">
-    <span class="nav-code">6E20–6E2Z</span>
-    <span>PERİNATAL POZUNTULAR</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="19-6E2-perinatal.html#6e20-postnatal-depressiya" class="nav-sub-link"><span class="sub-code">6E20</span><span class="sub-name">POSTNATAL DEPRESSİYA</span></a>
-    <a href="19-6E2-perinatal.html#6e21-postnatal-psixoz" class="nav-sub-link"><span class="sub-code">6E21</span><span class="sub-name">POSTNATAL PSİXOZ</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="20-6E4-psixosomatik">
-  <a href="20-6E4-psixosomatik.html" class="nav-link is-bolme" data-slug="20-6E4-psixosomatik">
-    <span class="nav-code">6E40</span>
-    <span>PSİXOSOMATİK FAKTORLAR</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="20-6E4-psixosomatik.html#6e40-psixoloji-amiller" class="nav-sub-link"><span class="sub-code">6E40</span><span class="sub-name">DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="21-6E6-ikincili">
-  <a href="21-6E6-ikincili.html" class="nav-link is-bolme" data-slug="21-6E6-ikincili">
-    <span class="nav-code">6E60–6E6Z</span>
-    <span>İKİNCİLİ PSİXİATRİYA</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="21-6E6-ikincili.html#6e60-ikincili-psixotik" class="nav-sub-link"><span class="sub-code">6E60</span><span class="sub-name">İKİNCİLİ PSİXOTİK SİNDROM</span></a>
-    <a href="21-6E6-ikincili.html#6e61-ikincili-affektiv" class="nav-sub-link"><span class="sub-code">6E61</span><span class="sub-name">İKİNCİLİ AFFEKTİV SİNDROM</span></a>
-    <a href="21-6E6-ikincili.html#6e62-ikincili-narahatliq" class="nav-sub-link"><span class="sub-code">6E62</span><span class="sub-name">İKİNCİLİ NARAHATLIQ SİNDROMU</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="22-7AB-yuxu">
-  <a href="22-7AB-yuxu.html" class="nav-link is-bolme" data-slug="22-7AB-yuxu">
-    <span class="nav-code">7A00–7A8Z</span>
-    <span>YUXU POZUNTULARI</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="22-7AB-yuxu.html#7a00-insomniya" class="nav-sub-link"><span class="sub-code">7A00</span><span class="sub-name">İNSOMNİYA</span></a>
-    <a href="22-7AB-yuxu.html#7a20-osa" class="nav-sub-link"><span class="sub-code">7A20</span><span class="sub-name">OBSTRUKTİV YUXU APNESİ (OSA)</span></a>
-    <a href="22-7AB-yuxu.html#7a40-sirkadian-ritm-yuxu-pozuntulari" class="nav-sub-link"><span class="sub-code">7A40</span><span class="sub-name">SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI</span></a>
-    <a href="22-7AB-yuxu.html#7a60-hipersomniya" class="nav-sub-link"><span class="sub-code">7A60</span><span class="sub-name">HİPERSOMNİYA</span></a>
-    <a href="22-7AB-yuxu.html#7a80-narkolepsiya" class="nav-sub-link"><span class="sub-code">7A80</span><span class="sub-name">NARKOLEPSİYA</span></a>
-  </div>
-</div>
-<div class="nav-item nav-has-sub" data-slug="23-HA-cinsi-saglamliq">
-  <a href="23-HA-cinsi-saglamliq.html" class="nav-link is-bolme" data-slug="23-HA-cinsi-saglamliq">
-    <span class="nav-code">HA00–HA0Z</span>
-    <span>CİNSİ SAĞLAMLIQ</span>
-  </a>
-  <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
-  <div class="nav-sub">
-    <a href="23-HA-cinsi-saglamliq.html#ha00-erektil-disfunksiya" class="nav-sub-link"><span class="sub-code">HA00</span><span class="sub-name">EREKTİL DİSFUNKSİYA (ED)</span></a>
-    <a href="23-HA-cinsi-saglamliq.html#ha01-erken-eyakulyasiya" class="nav-sub-link"><span class="sub-code">HA01</span><span class="sub-name">ERKƏN EYAKULYASİYA (PE)</span></a>
-    <a href="23-HA-cinsi-saglamliq.html#ha02-hipoaktiv-cinsi-istek" class="nav-sub-link"><span class="sub-code">HA02</span><span class="sub-name">HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD)</span></a>
-    <a href="23-HA-cinsi-saglamliq.html#ha03-anorgasmiya" class="nav-sub-link"><span class="sub-code">HA03</span><span class="sub-name">ANORGASMİYA</span></a>
-    <a href="23-HA-cinsi-saglamliq.html#ha04-genito-pelvik-agri-penetrasiya" class="nav-sub-link"><span class="sub-code">HA04</span><span class="sub-name">GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS)</span></a>
-    <a href="23-HA-cinsi-saglamliq.html#ha05-diger-cinsi-disfunksiyalar" class="nav-sub-link"><span class="sub-code">HA05</span><span class="sub-name">DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR</span></a>
-  </div>
-</div>
-<div class="nav-item" data-slug="melumat">
-  <a href="melumat.html" class="nav-link" data-slug="melumat"><span>Məlumat bölməsi</span></a>
-</div>
-    </nav>
+    <nav><div class="nav-item"><a href="index.html" class="nav-link nav-front">Ana səhifə</a></div><div class="nav-item"><a href="mugeddime.html" class="nav-link nav-front">Müqəddimə</a></div><div class="nav-item"><a href="kitab-haqqinda.html" class="nav-link nav-front">Kitab haqqında</a></div><div class="nav-item"><a href="terminoloji-luget.html" class="nav-link nav-front">Terminoloji lüğət</a></div><div class="nav-item"><a href="mundericat.html" class="nav-link nav-front">Mündəricat</a></div><div class="cls-tabs cls-tabs-side"><button class="cls-tab is-active" data-cls="icd" onclick="setCls('icd')">XBT-11</button><button class="cls-tab" data-cls="dsm" onclick="setCls('dsm')">DSM-5-TR</button><button class="cls-tab" data-cls="icd10" onclick="setCls('icd10')">XBT-10</button></div><div class="cls-tree" data-cls="icd"><div class="nav-item nav-has-sub"><a href="01-6A0-neyroinkisaf.html" class="nav-link is-bolme"><span class="nav-code">6A00–6A0Z</span><span>NEYROİNKİŞAF POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A00.html" class="nav-sub-link"><span class="sub-code">6A00</span><span class="sub-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</span></a><a href="6A01.html" class="nav-sub-link"><span class="sub-code">6A01</span><span class="sub-name">İNKİŞAF NİTQ VƏ DİL POZUNTULARI</span></a><a href="6A02.html" class="nav-sub-link"><span class="sub-code">6A02</span><span class="sub-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</span></a><a href="6A03.html" class="nav-sub-link"><span class="sub-code">6A03</span><span class="sub-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</span></a><a href="6A04.html" class="nav-sub-link"><span class="sub-code">6A04</span><span class="sub-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</span></a><a href="6A05.html" class="nav-sub-link"><span class="sub-code">6A05</span><span class="sub-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</span></a><a href="6A06.html" class="nav-sub-link"><span class="sub-code">6A06</span><span class="sub-name">STEREOTİPİK HƏRƏKƏT POZUNTUSU</span></a><a href="6A07.html" class="nav-sub-link"><span class="sub-code">6A07</span><span class="sub-name">TİKLİ POZUNTULAR (TOURETTE SİNDROMU)</span></a></div></div><div class="nav-item nav-has-sub"><a href="02-6A2-sizofreniya-spektri.html" class="nav-link is-bolme"><span class="nav-code">6A20–6A2Z</span><span>ŞİZOFRENİYA SPEKTRİ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A20.html" class="nav-sub-link"><span class="sub-code">6A20</span><span class="sub-name">ŞİZOFRENİYA</span></a><a href="6A21.html" class="nav-sub-link"><span class="sub-code">6A21</span><span class="sub-name">ŞİZOAFFEKTİV POZUNTU</span></a><a href="6A22.html" class="nav-sub-link"><span class="sub-code">6A22</span><span class="sub-name">ŞİZOTİPİK POZUNTU</span></a><a href="6A23.html" class="nav-sub-link"><span class="sub-code">6A23</span><span class="sub-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</span></a><a href="6A24.html" class="nav-sub-link"><span class="sub-code">6A24</span><span class="sub-name">SAYIQLAMA POZUNTUSU</span></a><a href="6A25.html" class="nav-sub-link"><span class="sub-code">6A25</span><span class="sub-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</span></a></div></div><div class="nav-item nav-has-sub"><a href="03-6A4-katatoniya.html" class="nav-link is-bolme"><span class="nav-code">6A40</span><span>KATATONİYA</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A40.html" class="nav-sub-link"><span class="sub-code">6A40</span><span class="sub-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</span></a></div></div><div class="nav-item nav-has-sub"><a href="04-6A6-ehval-pozuntulari.html" class="nav-link is-bolme"><span class="nav-code">6A60–6A7Z</span><span>ƏHVAL POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A60.html" class="nav-sub-link"><span class="sub-code">6A60</span><span class="sub-name">BİPOLYAR POZUNTU TİP I</span></a><a href="6A61.html" class="nav-sub-link"><span class="sub-code">6A61</span><span class="sub-name">BİPOLYAR POZUNTU TİP II</span></a><a href="6A62.html" class="nav-sub-link"><span class="sub-code">6A62</span><span class="sub-name">SİKLETİMİK POZUNTU</span></a><a href="6A70.html" class="nav-sub-link"><span class="sub-code">6A70</span><span class="sub-name">TƏK EPİZODLU DEPRESİV POZUNTU</span></a><a href="6A71.html" class="nav-sub-link"><span class="sub-code">6A71</span><span class="sub-name">TƏKRARLANAN DEPRESİV POZUNTU</span></a><a href="6A72.html" class="nav-sub-link"><span class="sub-code">6A72</span><span class="sub-name">DİSTİMİK POZUNTU</span></a><a href="6A73.html" class="nav-sub-link"><span class="sub-code">6A73</span><span class="sub-name">PREMENSTRUAL DİSFORİK POZUNTU (PMDD)</span></a></div></div><div class="nav-item nav-has-sub"><a href="05-6B0-narahatliq.html" class="nav-link is-bolme"><span class="nav-code">6B00–6B0Z</span><span>NARAHATLIQ POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B00.html" class="nav-sub-link"><span class="sub-code">6B00</span><span class="sub-name">GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD)</span></a><a href="6B01.html" class="nav-sub-link"><span class="sub-code">6B01</span><span class="sub-name">PANİK POZUNTU</span></a><a href="6B02.html" class="nav-sub-link"><span class="sub-code">6B02</span><span class="sub-name">AQORAFOBİYA</span></a><a href="6B03.html" class="nav-sub-link"><span class="sub-code">6B03</span><span class="sub-name">SPESİFİK FOBİYA</span></a><a href="6B04.html" class="nav-sub-link"><span class="sub-code">6B04</span><span class="sub-name">SOSİAL NARAHATLIQ POZUNTUSU</span></a><a href="6B05.html" class="nav-sub-link"><span class="sub-code">6B05</span><span class="sub-name">AYRILMA NARAHATLIĞI POZUNTUSU</span></a><a href="6B06.html" class="nav-sub-link"><span class="sub-code">6B06</span><span class="sub-name">SELEKTİV MUTİZM</span></a></div></div><div class="nav-item nav-has-sub"><a href="06-6B2-okp.html" class="nav-link is-bolme"><span class="nav-code">6B20–6B2Z</span><span>OBSESSİV-KOMPULSİV (OKP)</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B20.html" class="nav-sub-link"><span class="sub-code">6B20</span><span class="sub-name">OBSESSİV-KOMPULSİV POZUNTU (OKP)</span></a><a href="6B21.html" class="nav-sub-link"><span class="sub-code">6B21</span><span class="sub-name">BƏDƏN DİSMORFİK POZUNTUSU (BDD)</span></a><a href="6B22.html" class="nav-sub-link"><span class="sub-code">6B22</span><span class="sub-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</span></a><a href="6B23.html" class="nav-sub-link"><span class="sub-code">6B23</span><span class="sub-name">HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</span></a><a href="6B24.html" class="nav-sub-link"><span class="sub-code">6B24</span><span class="sub-name">TOPLAMA POZUNTUSU</span></a><a href="6B25.html" class="nav-sub-link"><span class="sub-code">6B25</span><span class="sub-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</span></a></div></div><div class="nav-item nav-has-sub"><a href="07-6B4-stress.html" class="nav-link is-bolme"><span class="nav-code">6B40–6B4Z</span><span>STRESS İLƏ ƏLAQƏLİ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B40.html" class="nav-sub-link"><span class="sub-code">6B40</span><span class="sub-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</span></a><a href="6B41.html" class="nav-sub-link"><span class="sub-code">6B41</span><span class="sub-name">KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP)</span></a><a href="6B42.html" class="nav-sub-link"><span class="sub-code">6B42</span><span class="sub-name">UZANMIŞ YAS POZUNTUSU</span></a><a href="6B43.html" class="nav-sub-link"><span class="sub-code">6B43</span><span class="sub-name">ADAPTASİYA POZUNTUSU</span></a><a href="6B44.html" class="nav-sub-link"><span class="sub-code">6B44</span><span class="sub-name">REAKTİV BAĞLANMA POZUNTUSU</span></a><a href="6B45.html" class="nav-sub-link"><span class="sub-code">6B45</span><span class="sub-name">SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><a href="08-6B6-dissosiativ.html" class="nav-link is-bolme"><span class="nav-code">6B60–6B6Z</span><span>DİSSOSİATİV POZUNTULAR</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B60.html" class="nav-sub-link"><span class="sub-code">6B60</span><span class="sub-name">DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP)</span></a><a href="6B61.html" class="nav-sub-link"><span class="sub-code">6B61</span><span class="sub-name">PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU</span></a><a href="6B62.html" class="nav-sub-link"><span class="sub-code">6B62</span><span class="sub-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</span></a><a href="6B63.html" class="nav-sub-link"><span class="sub-code">6B63</span><span class="sub-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</span></a><a href="6B64.html" class="nav-sub-link"><span class="sub-code">6B64</span><span class="sub-name">DİSSOSİATİV AMNEZİYA</span></a></div></div><div class="nav-item nav-has-sub"><a href="09-6B8-qida-qebulu.html" class="nav-link is-bolme"><span class="nav-code">6B80–6B8Z</span><span>QİDA QƏBULU POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B80.html" class="nav-sub-link"><span class="sub-code">6B80</span><span class="sub-name">SİNİR ANOREKSİYASI</span></a><a href="6B81.html" class="nav-sub-link"><span class="sub-code">6B81</span><span class="sub-name">SİNİR BULİMİYASI</span></a><a href="6B82.html" class="nav-sub-link"><span class="sub-code">6B82</span><span class="sub-name">KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED)</span></a><a href="6B83.html" class="nav-sub-link"><span class="sub-code">6B83</span><span class="sub-name">PİKA</span></a><a href="6B84.html" class="nav-sub-link"><span class="sub-code">6B84</span><span class="sub-name">RUMİNASİYA-GERİ QAYTARMA POZUNTUSU</span></a><a href="6B85.html" class="nav-sub-link"><span class="sub-code">6B85</span><span class="sub-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</span></a></div></div><div class="nav-item nav-has-sub"><a href="10-6C0-ifrazat.html" class="nav-link is-bolme"><span class="nav-code">6C00–6C0Z</span><span>İFRAZAT POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C00.html" class="nav-sub-link"><span class="sub-code">6C00</span><span class="sub-name">ENUREZ</span></a><a href="6C01.html" class="nav-sub-link"><span class="sub-code">6C01</span><span class="sub-name">ENKOPREZ</span></a></div></div><div class="nav-item nav-has-sub"><a href="11-6C2-bedensel-disstres.html" class="nav-link is-bolme"><span class="nav-code">6C20</span><span>BƏDƏNSƏL DİSTRES</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C20.html" class="nav-sub-link"><span class="sub-code">6C20</span><span class="sub-name">BƏDƏN DİSSTRES POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><a href="12-6C4-madde-asililiq.html" class="nav-link is-bolme"><span class="nav-code">6C40–6C5Z</span><span>MADDƏ İLƏ ƏLAQƏLİ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C40.html" class="nav-sub-link"><span class="sub-code">6C40</span><span class="sub-name">ALKOHOL İSTİFADƏSİ POZUNTULARI</span></a><a href="6C41.html" class="nav-sub-link"><span class="sub-code">6C41</span><span class="sub-name">OPİOİD İSTİFADƏSİ POZUNTULARI</span></a><a href="6C42.html" class="nav-sub-link"><span class="sub-code">6C42</span><span class="sub-name">KANNABİS İSTİFADƏSİ POZUNTULARI</span></a><a href="6C43.html" class="nav-sub-link"><span class="sub-code">6C43</span><span class="sub-name">SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI</span></a><a href="6C44.html" class="nav-sub-link"><span class="sub-code">6C44</span><span class="sub-name">KOKAİN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C45.html" class="nav-sub-link"><span class="sub-code">6C45</span><span class="sub-name">STİMULYANT İSTİFADƏSİ POZUNTULARI</span></a><a href="6C46.html" class="nav-sub-link"><span class="sub-code">6C46</span><span class="sub-name">HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C47.html" class="nav-sub-link"><span class="sub-code">6C47</span><span class="sub-name">NİKOTİN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C50.html" class="nav-sub-link"><span class="sub-code">6C50</span><span class="sub-name">DAVRANIŞ ASILILIQLARI (QUMAR, OYUN)</span></a></div></div><div class="nav-item nav-has-sub"><a href="13-6C7-impuls-nezareti.html" class="nav-link is-bolme"><span class="nav-code">6C70–6C7Z</span><span>İMPULS NƏZARƏTİ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C70.html" class="nav-sub-link"><span class="sub-code">6C70</span><span class="sub-name">PYROMANİYA</span></a><a href="6C71.html" class="nav-sub-link"><span class="sub-code">6C71</span><span class="sub-name">KLEPTOMANİYA</span></a><a href="6C72.html" class="nav-sub-link"><span class="sub-code">6C72</span><span class="sub-name">KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU</span></a><a href="6C73.html" class="nav-sub-link"><span class="sub-code">6C73</span><span class="sub-name">ARALIQLI PATLAYICI POZUNTU (IED)</span></a></div></div><div class="nav-item nav-has-sub"><a href="14-6C9-pozucu-davranis.html" class="nav-link is-bolme"><span class="nav-code">6C90–6C9Z</span><span>POZUCU DAVRANIŞ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C90.html" class="nav-sub-link"><span class="sub-code">6C90</span><span class="sub-name">DAVRANIŞ POZUNTUSU</span></a><a href="6C91.html" class="nav-sub-link"><span class="sub-code">6C91</span><span class="sub-name">MÜXALİF-İNADKAR POZUNTU (ODD)</span></a></div></div><div class="nav-item nav-has-sub"><a href="15-6D1-sexsiyyet.html" class="nav-link is-bolme"><span class="nav-code">6D10–6D1Z</span><span>ŞƏXSİYYƏT POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D10.html" class="nav-sub-link"><span class="sub-code">6D10</span><span class="sub-name">ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ)</span></a><a href="6D11.html" class="nav-sub-link"><span class="sub-code">6D11</span><span class="sub-name">ŞƏXSİYYƏT ÇƏTİNLİYİ</span></a></div></div><div class="nav-item nav-has-sub"><a href="16-6D3-parafilik.html" class="nav-link is-bolme"><span class="nav-code">6D30–6D3Z</span><span>PARAFİLİK POZUNTULAR</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D30.html" class="nav-sub-link"><span class="sub-code">6D30</span><span class="sub-name">EKSHİBİSİONİZM</span></a><a href="6D31.html" class="nav-sub-link"><span class="sub-code">6D31</span><span class="sub-name">VOYERİZM</span></a><a href="6D32.html" class="nav-sub-link"><span class="sub-code">6D32</span><span class="sub-name">PEDOFİLİK POZUNTU</span></a><a href="6D33.html" class="nav-sub-link"><span class="sub-code">6D33</span><span class="sub-name">SADİSTİK CİNSİ POZUNTU</span></a><a href="6D34.html" class="nav-sub-link"><span class="sub-code">6D34</span><span class="sub-name">FROTTEURİZM</span></a></div></div><div class="nav-item nav-has-sub"><a href="17-6D5-faktitioz.html" class="nav-link is-bolme"><span class="nav-code">6D50–6D5Z</span><span>FAKTİTİOZ POZUNTULAR</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D50.html" class="nav-sub-link"><span class="sub-code">6D50</span><span class="sub-name">ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN SİNDROMU)</span></a><a href="6D51.html" class="nav-sub-link"><span class="sub-code">6D51</span><span class="sub-name">BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN BY PROXY)</span></a></div></div><div class="nav-item nav-has-sub"><a href="18-6D7-neyrokoqnitiv.html" class="nav-link is-bolme"><span class="nav-code">6D70–6D8Z</span><span>NEYROKOQNİTİV (DEMENSİYA)</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D70.html" class="nav-sub-link"><span class="sub-code">6D70</span><span class="sub-name">DELİRİUM</span></a><a href="6D71.html" class="nav-sub-link"><span class="sub-code">6D71</span><span class="sub-name">YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI)</span></a><a href="6D72.html" class="nav-sub-link"><span class="sub-code">6D72</span><span class="sub-name">AMNESTİK POZUNTU</span></a><a href="6D80.html" class="nav-sub-link"><span class="sub-code">6D80</span><span class="sub-name">ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA</span></a><a href="6D81.html" class="nav-sub-link"><span class="sub-code">6D81</span><span class="sub-name">DAMAR DEMENSİYASI</span></a><a href="6D82.html" class="nav-sub-link"><span class="sub-code">6D82</span><span class="sub-name">LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB)</span></a><a href="6D83.html" class="nav-sub-link"><span class="sub-code">6D83</span><span class="sub-name">FRONTOTEMPORAL DEMENSİYA (FTD)</span></a></div></div><div class="nav-item nav-has-sub"><a href="19-6E2-perinatal.html" class="nav-link is-bolme"><span class="nav-code">6E20–6E2Z</span><span>PERİNATAL POZUNTULAR</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6E20.html" class="nav-sub-link"><span class="sub-code">6E20</span><span class="sub-name">POSTNATAL DEPRESSİYA</span></a><a href="6E21.html" class="nav-sub-link"><span class="sub-code">6E21</span><span class="sub-name">POSTNATAL PSİXOZ</span></a></div></div><div class="nav-item nav-has-sub"><a href="20-6E4-psixosomatik.html" class="nav-link is-bolme"><span class="nav-code">6E40</span><span>PSİXOSOMATİK FAKTORLAR</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6E40.html" class="nav-sub-link"><span class="sub-code">6E40</span><span class="sub-name">DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR</span></a></div></div><div class="nav-item nav-has-sub"><a href="21-6E6-ikincili.html" class="nav-link is-bolme"><span class="nav-code">6E60–6E6Z</span><span>İKİNCİLİ PSİXİATRİYA</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6E60.html" class="nav-sub-link"><span class="sub-code">6E60</span><span class="sub-name">İKİNCİLİ PSİXOTİK SİNDROM</span></a><a href="6E61.html" class="nav-sub-link"><span class="sub-code">6E61</span><span class="sub-name">İKİNCİLİ AFFEKTİV SİNDROM</span></a><a href="6E62.html" class="nav-sub-link"><span class="sub-code">6E62</span><span class="sub-name">İKİNCİLİ NARAHATLIQ SİNDROMU</span></a></div></div><div class="nav-item nav-has-sub"><a href="22-7AB-yuxu.html" class="nav-link is-bolme"><span class="nav-code">7A00–7A8Z</span><span>YUXU POZUNTULARI</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="7A00.html" class="nav-sub-link"><span class="sub-code">7A00</span><span class="sub-name">İNSOMNİYA</span></a><a href="7A20.html" class="nav-sub-link"><span class="sub-code">7A20</span><span class="sub-name">OBSTRUKTİV YUXU APNESİ (OSA)</span></a><a href="7A40.html" class="nav-sub-link"><span class="sub-code">7A40</span><span class="sub-name">SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI</span></a><a href="7A60.html" class="nav-sub-link"><span class="sub-code">7A60</span><span class="sub-name">HİPERSOMNİYA</span></a><a href="7A80.html" class="nav-sub-link"><span class="sub-code">7A80</span><span class="sub-name">NARKOLEPSİYA</span></a></div></div><div class="nav-item nav-has-sub"><a href="23-HA-cinsi-saglamliq.html" class="nav-link is-bolme"><span class="nav-code">HA00–HA0Z</span><span>CİNSİ SAĞLAMLIQ</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="HA00.html" class="nav-sub-link"><span class="sub-code">HA00</span><span class="sub-name">EREKTİL DİSFUNKSİYA (ED)</span></a><a href="HA01.html" class="nav-sub-link"><span class="sub-code">HA01</span><span class="sub-name">ERKƏN EYAKULYASİYA (PE)</span></a><a href="HA02.html" class="nav-sub-link"><span class="sub-code">HA02</span><span class="sub-name">HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD)</span></a><a href="HA03.html" class="nav-sub-link"><span class="sub-code">HA03</span><span class="sub-name">ANORGASMİYA</span></a><a href="HA04.html" class="nav-sub-link"><span class="sub-code">HA04</span><span class="sub-name">GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS)</span></a><a href="HA05.html" class="nav-sub-link"><span class="sub-code">HA05</span><span class="sub-name">DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR</span></a></div></div><div class="nav-item nav-has-sub"><a href="melumat.html" class="nav-link is-bolme"><span>Məlumat bölməsi</span></a><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><span class="nav-sub-link nav-empty"><span class="sub-code"></span><span class="sub-name">tamamlanır</span></span></div></div></div><div class="cls-tree" data-cls="dsm" hidden><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">299–319</span><span>NEYROİNKİŞAF POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A02.html" class="nav-sub-link"><span class="sub-code">299.00</span><span class="sub-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</span></a><a href="6A07.html" class="nav-sub-link"><span class="sub-code">307.20</span><span class="sub-name">TİKLİ POZUNTULAR (TOURETTE SİNDROMU)</span></a><a href="6A06.html" class="nav-sub-link"><span class="sub-code">307.3</span><span class="sub-name">STEREOTİPİK HƏRƏKƏT POZUNTUSU</span></a><a href="6A05.html" class="nav-sub-link"><span class="sub-code">314.0</span><span class="sub-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</span></a><a href="6A03.html" class="nav-sub-link"><span class="sub-code">315.00</span><span class="sub-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</span></a><a href="6A01.html" class="nav-sub-link"><span class="sub-code">315.39</span><span class="sub-name">İNKİŞAF NİTQ VƏ DİL POZUNTULARI</span></a><a href="6A04.html" class="nav-sub-link"><span class="sub-code">315.4</span><span class="sub-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</span></a><a href="6A00.html" class="nav-sub-link"><span class="sub-code">319</span><span class="sub-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">293–301</span><span>ŞİZOFRENİYA SPEKTRİ VƏ DİGƏR PSİXOTİK POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A40.html" class="nav-sub-link"><span class="sub-code">293.89</span><span class="sub-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</span></a><a href="6E21.html" class="nav-sub-link"><span class="sub-code">293.89</span><span class="sub-name">POSTNATAL PSİXOZ</span></a><a href="6A21.html" class="nav-sub-link"><span class="sub-code">295.70</span><span class="sub-name">ŞİZOAFFEKTİV POZUNTU</span></a><a href="6A20.html" class="nav-sub-link"><span class="sub-code">295.90</span><span class="sub-name">ŞİZOFRENİYA</span></a><a href="6A24.html" class="nav-sub-link"><span class="sub-code">297.1</span><span class="sub-name">SAYIQLAMA POZUNTUSU</span></a><a href="6A23.html" class="nav-sub-link"><span class="sub-code">298.8</span><span class="sub-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</span></a><a href="6A25.html" class="nav-sub-link"><span class="sub-code">298.9</span><span class="sub-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</span></a><a href="6A22.html" class="nav-sub-link"><span class="sub-code">301.22</span><span class="sub-name">ŞİZOTİPİK POZUNTU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">296–301</span><span>BİPOLYAR VƏ ƏLAQƏLİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A60.html" class="nav-sub-link"><span class="sub-code">296.4</span><span class="sub-name">BİPOLYAR POZUNTU TİP I</span></a><a href="6A61.html" class="nav-sub-link"><span class="sub-code">296.89</span><span class="sub-name">BİPOLYAR POZUNTU TİP II</span></a><a href="6A62.html" class="nav-sub-link"><span class="sub-code">301.13</span><span class="sub-name">SİKLETİMİK POZUNTU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">296–300</span><span>DEPRESSİV POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6E20.html" class="nav-sub-link"><span class="sub-code">296.</span><span class="sub-name">POSTNATAL DEPRESSİYA</span></a><a href="6A70.html" class="nav-sub-link"><span class="sub-code">296.2</span><span class="sub-name">TƏK EPİZODLU DEPRESİV POZUNTU</span></a><a href="6A71.html" class="nav-sub-link"><span class="sub-code">296.3</span><span class="sub-name">TƏKRARLANAN DEPRESİV POZUNTU</span></a><a href="6A72.html" class="nav-sub-link"><span class="sub-code">300.4</span><span class="sub-name">DİSTİMİK POZUNTU</span></a><a href="6A73.html" class="nav-sub-link"><span class="sub-code">625.4</span><span class="sub-name">PREMENSTRUAL DİSFORİK POZUNTU (PMDD)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">300–313</span><span>NARAHATLIQ POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B01.html" class="nav-sub-link"><span class="sub-code">300.01</span><span class="sub-name">PANİK POZUNTU</span></a><a href="6B00.html" class="nav-sub-link"><span class="sub-code">300.02</span><span class="sub-name">GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD)</span></a><a href="6B02.html" class="nav-sub-link"><span class="sub-code">300.22</span><span class="sub-name">AQORAFOBİYA</span></a><a href="6B04.html" class="nav-sub-link"><span class="sub-code">300.23</span><span class="sub-name">SOSİAL NARAHATLIQ POZUNTUSU</span></a><a href="6B03.html" class="nav-sub-link"><span class="sub-code">300.29</span><span class="sub-name">SPESİFİK FOBİYA</span></a><a href="6B05.html" class="nav-sub-link"><span class="sub-code">309.21</span><span class="sub-name">AYRILMA NARAHATLIĞI POZUNTUSU</span></a><a href="6B06.html" class="nav-sub-link"><span class="sub-code">313.23</span><span class="sub-name">SELEKTİV MUTİZM</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">300–312</span><span>OBSESSİV-KOMPULSİV VƏ ƏLAQƏLİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B20.html" class="nav-sub-link"><span class="sub-code">300.3</span><span class="sub-name">OBSESSİV-KOMPULSİV POZUNTU (OKP)</span></a><a href="6B22.html" class="nav-sub-link"><span class="sub-code">300.3</span><span class="sub-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</span></a><a href="6B24.html" class="nav-sub-link"><span class="sub-code">300.3</span><span class="sub-name">TOPLAMA POZUNTUSU</span></a><a href="6B21.html" class="nav-sub-link"><span class="sub-code">300.7</span><span class="sub-name">BƏDƏN DİSMORFİK POZUNTUSU (BDD)</span></a><a href="6B25.html" class="nav-sub-link"><span class="sub-code">312.39</span><span class="sub-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">309–313</span><span>TRAVMA VƏ STRESSLƏ ƏLAQƏLİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B43.html" class="nav-sub-link"><span class="sub-code">309.</span><span class="sub-name">ADAPTASİYA POZUNTUSU</span></a><a href="6B40.html" class="nav-sub-link"><span class="sub-code">309.81</span><span class="sub-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</span></a><a href="6B41.html" class="nav-sub-link"><span class="sub-code">309.81</span><span class="sub-name">KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP)</span></a><a href="6B42.html" class="nav-sub-link"><span class="sub-code">309.89</span><span class="sub-name">UZANMIŞ YAS POZUNTUSU</span></a><a href="6B44.html" class="nav-sub-link"><span class="sub-code">313.89</span><span class="sub-name">REAKTİV BAĞLANMA POZUNTUSU</span></a><a href="6B45.html" class="nav-sub-link"><span class="sub-code">313.89</span><span class="sub-name">SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">300</span><span>DİSSOSİATİV POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B61.html" class="nav-sub-link"><span class="sub-code">300.12</span><span class="sub-name">PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU</span></a><a href="6B64.html" class="nav-sub-link"><span class="sub-code">300.12</span><span class="sub-name">DİSSOSİATİV AMNEZİYA</span></a><a href="6B60.html" class="nav-sub-link"><span class="sub-code">300.14</span><span class="sub-name">DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP)</span></a><a href="6B62.html" class="nav-sub-link"><span class="sub-code">300.6</span><span class="sub-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">300–316</span><span>SOMATİK SİMPTOM VƏ ƏLAQƏLİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B63.html" class="nav-sub-link"><span class="sub-code">300.11</span><span class="sub-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</span></a><a href="6D50.html" class="nav-sub-link"><span class="sub-code">300.19</span><span class="sub-name">ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN SİNDROMU)</span></a><a href="6D51.html" class="nav-sub-link"><span class="sub-code">300.19</span><span class="sub-name">BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN BY PROXY)</span></a><a href="6B23.html" class="nav-sub-link"><span class="sub-code">300.7</span><span class="sub-name">HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</span></a><a href="6C20.html" class="nav-sub-link"><span class="sub-code">300.82</span><span class="sub-name">BƏDƏN DİSSTRES POZUNTUSU</span></a><a href="6E40.html" class="nav-sub-link"><span class="sub-code">316</span><span class="sub-name">DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">307</span><span>QİDALANMA VƏ YEMƏ POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B80.html" class="nav-sub-link"><span class="sub-code">307.1</span><span class="sub-name">SİNİR ANOREKSİYASI</span></a><a href="6B81.html" class="nav-sub-link"><span class="sub-code">307.51</span><span class="sub-name">SİNİR BULİMİYASI</span></a><a href="6B82.html" class="nav-sub-link"><span class="sub-code">307.51</span><span class="sub-name">KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED)</span></a><a href="6B83.html" class="nav-sub-link"><span class="sub-code">307.52</span><span class="sub-name">PİKA</span></a><a href="6B84.html" class="nav-sub-link"><span class="sub-code">307.53</span><span class="sub-name">RUMİNASİYA-GERİ QAYTARMA POZUNTUSU</span></a><a href="6B85.html" class="nav-sub-link"><span class="sub-code">307.59</span><span class="sub-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">307</span><span>İFRAZAT POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C00.html" class="nav-sub-link"><span class="sub-code">307.6</span><span class="sub-name">ENUREZ</span></a><a href="6C01.html" class="nav-sub-link"><span class="sub-code">307.7</span><span class="sub-name">ENKOPREZ</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">307</span><span>YUXU-OYANMA POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="7A40.html" class="nav-sub-link"><span class="sub-code">307.45</span><span class="sub-name">SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI</span></a><a href="7A60.html" class="nav-sub-link"><span class="sub-code">327.10</span><span class="sub-name">HİPERSOMNİYA</span></a><a href="7A20.html" class="nav-sub-link"><span class="sub-code">327.23</span><span class="sub-name">OBSTRUKTİV YUXU APNESİ (OSA)</span></a><a href="7A80.html" class="nav-sub-link"><span class="sub-code">347.0</span><span class="sub-name">NARKOLEPSİYA</span></a><a href="7A00.html" class="nav-sub-link"><span class="sub-code">780.52</span><span class="sub-name">İNSOMNİYA</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">302</span><span>CİNSİ DİSFUNKSİYALAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="HA02.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD)</span></a><a href="HA03.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">ANORGASMİYA</span></a><a href="HA04.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS)</span></a><a href="HA05.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR</span></a><a href="HA00.html" class="nav-sub-link"><span class="sub-code">302.72</span><span class="sub-name">EREKTİL DİSFUNKSİYA (ED)</span></a><a href="HA01.html" class="nav-sub-link"><span class="sub-code">302.75</span><span class="sub-name">ERKƏN EYAKULYASİYA (PE)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">312–313</span><span>DAĞIDICI, İMPULS-NƏZARƏT VƏ DAVRANIŞ POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C71.html" class="nav-sub-link"><span class="sub-code">312.32</span><span class="sub-name">KLEPTOMANİYA</span></a><a href="6C70.html" class="nav-sub-link"><span class="sub-code">312.33</span><span class="sub-name">PYROMANİYA</span></a><a href="6C72.html" class="nav-sub-link"><span class="sub-code">312.34</span><span class="sub-name">KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU</span></a><a href="6C73.html" class="nav-sub-link"><span class="sub-code">312.34</span><span class="sub-name">ARALIQLI PATLAYICI POZUNTU (IED)</span></a><a href="6C90.html" class="nav-sub-link"><span class="sub-code">312.81</span><span class="sub-name">DAVRANIŞ POZUNTUSU</span></a><a href="6C91.html" class="nav-sub-link"><span class="sub-code">313.81</span><span class="sub-name">MÜXALİF-İNADKAR POZUNTU (ODD)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">303–312</span><span>MADDƏ İLƏ ƏLAQƏLİ VƏ ASILILIQ POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C40.html" class="nav-sub-link"><span class="sub-code">303.</span><span class="sub-name">ALKOHOL İSTİFADƏSİ POZUNTULARI</span></a><a href="6C41.html" class="nav-sub-link"><span class="sub-code">304.</span><span class="sub-name">OPİOİD İSTİFADƏSİ POZUNTULARI</span></a><a href="6C43.html" class="nav-sub-link"><span class="sub-code">304.</span><span class="sub-name">SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI</span></a><a href="6C44.html" class="nav-sub-link"><span class="sub-code">304.20</span><span class="sub-name">KOKAİN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C42.html" class="nav-sub-link"><span class="sub-code">304.30</span><span class="sub-name">KANNABİS İSTİFADƏSİ POZUNTULARI</span></a><a href="6C45.html" class="nav-sub-link"><span class="sub-code">304.4</span><span class="sub-name">STİMULYANT İSTİFADƏSİ POZUNTULARI</span></a><a href="6C46.html" class="nav-sub-link"><span class="sub-code">304.5</span><span class="sub-name">HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C47.html" class="nav-sub-link"><span class="sub-code">305.1</span><span class="sub-name">NİKOTİN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C50.html" class="nav-sub-link"><span class="sub-code">312.31</span><span class="sub-name">DAVRANIŞ ASILILIQLARI (QUMAR, OYUN)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">290–294</span><span>NEYROKOQNİTİV POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D81.html" class="nav-sub-link"><span class="sub-code">290.4</span><span class="sub-name">DAMAR DEMENSİYASI</span></a><a href="6D70.html" class="nav-sub-link"><span class="sub-code">293.0</span><span class="sub-name">DELİRİUM</span></a><a href="6D72.html" class="nav-sub-link"><span class="sub-code">294.0</span><span class="sub-name">AMNESTİK POZUNTU</span></a><a href="6D80.html" class="nav-sub-link"><span class="sub-code">294.1</span><span class="sub-name">ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA</span></a><a href="6D83.html" class="nav-sub-link"><span class="sub-code">331.19</span><span class="sub-name">FRONTOTEMPORAL DEMENSİYA (FTD)</span></a><a href="6D82.html" class="nav-sub-link"><span class="sub-code">331.82</span><span class="sub-name">LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB)</span></a><a href="6D71.html" class="nav-sub-link"><span class="sub-code">331.83</span><span class="sub-name">YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">301</span><span>ŞƏXSİYYƏT POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D10.html" class="nav-sub-link"><span class="sub-code">301.</span><span class="sub-name">ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ)</span></a><a href="6D11.html" class="nav-sub-link"><span class="sub-code">301.83</span><span class="sub-name">ŞƏXSİYYƏT ÇƏTİNLİYİ</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">302</span><span>PARAFİLİK POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D32.html" class="nav-sub-link"><span class="sub-code">302.2</span><span class="sub-name">PEDOFİLİK POZUNTU</span></a><a href="6D30.html" class="nav-sub-link"><span class="sub-code">302.4</span><span class="sub-name">EKSHİBİSİONİZM</span></a><a href="6D31.html" class="nav-sub-link"><span class="sub-code">302.82</span><span class="sub-name">VOYERİZM</span></a><a href="6D33.html" class="nav-sub-link"><span class="sub-code">302.84</span><span class="sub-name">SADİSTİK CİNSİ POZUNTU</span></a><a href="6D34.html" class="nav-sub-link"><span class="sub-code">302.89</span><span class="sub-name">FROTTEURİZM</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">293</span><span>DİGƏR PSİXİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6E60.html" class="nav-sub-link"><span class="sub-code">293.81</span><span class="sub-name">İKİNCİLİ PSİXOTİK SİNDROM</span></a><a href="6E61.html" class="nav-sub-link"><span class="sub-code">293.83</span><span class="sub-name">İKİNCİLİ AFFEKTİV SİNDROM</span></a><a href="6E62.html" class="nav-sub-link"><span class="sub-code">293.84</span><span class="sub-name">İKİNCİLİ NARAHATLIQ SİNDROMU</span></a></div></div></div><div class="cls-tree" data-cls="icd10" hidden><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F00–F09</span><span>ÜZVİ (SİMPTOMATİK) PSİXİ POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D80.html" class="nav-sub-link"><span class="sub-code">F00</span><span class="sub-name">ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA</span></a><a href="6D81.html" class="nav-sub-link"><span class="sub-code">F01</span><span class="sub-name">DAMAR DEMENSİYASI</span></a><a href="6D83.html" class="nav-sub-link"><span class="sub-code">F02.0</span><span class="sub-name">FRONTOTEMPORAL DEMENSİYA (FTD)</span></a><a href="6D82.html" class="nav-sub-link"><span class="sub-code">F02.8</span><span class="sub-name">LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB)</span></a><a href="6D72.html" class="nav-sub-link"><span class="sub-code">F04</span><span class="sub-name">AMNESTİK POZUNTU</span></a><a href="6D70.html" class="nav-sub-link"><span class="sub-code">F05</span><span class="sub-name">DELİRİUM</span></a><a href="6A40.html" class="nav-sub-link"><span class="sub-code">F06.1</span><span class="sub-name">KATATONİYA — ÜMUMİ PRİNSİPLƏR</span></a><a href="6E60.html" class="nav-sub-link"><span class="sub-code">F06.2</span><span class="sub-name">İKİNCİLİ PSİXOTİK SİNDROM</span></a><a href="6E61.html" class="nav-sub-link"><span class="sub-code">F06.3</span><span class="sub-name">İKİNCİLİ AFFEKTİV SİNDROM</span></a><a href="6E62.html" class="nav-sub-link"><span class="sub-code">F06.4</span><span class="sub-name">İKİNCİLİ NARAHATLIQ SİNDROMU</span></a><a href="6D71.html" class="nav-sub-link"><span class="sub-code">F06.7</span><span class="sub-name">YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F10–F19</span><span>PSİXOAKTİV MADDƏLƏRLƏ BAĞLI POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6C40.html" class="nav-sub-link"><span class="sub-code">F10</span><span class="sub-name">ALKOHOL İSTİFADƏSİ POZUNTULARI</span></a><a href="6C41.html" class="nav-sub-link"><span class="sub-code">F11</span><span class="sub-name">OPİOİD İSTİFADƏSİ POZUNTULARI</span></a><a href="6C42.html" class="nav-sub-link"><span class="sub-code">F12</span><span class="sub-name">KANNABİS İSTİFADƏSİ POZUNTULARI</span></a><a href="6C43.html" class="nav-sub-link"><span class="sub-code">F13</span><span class="sub-name">SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI</span></a><a href="6C44.html" class="nav-sub-link"><span class="sub-code">F14</span><span class="sub-name">KOKAİN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C45.html" class="nav-sub-link"><span class="sub-code">F15</span><span class="sub-name">STİMULYANT İSTİFADƏSİ POZUNTULARI</span></a><a href="6C46.html" class="nav-sub-link"><span class="sub-code">F16</span><span class="sub-name">HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI</span></a><a href="6C47.html" class="nav-sub-link"><span class="sub-code">F17</span><span class="sub-name">NİKOTİN İSTİFADƏSİ POZUNTULARI</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F20–F29</span><span>ŞİZOFRENİYA, ŞİZOTİPİK VƏ SAYIQLAMA POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A20.html" class="nav-sub-link"><span class="sub-code">F20</span><span class="sub-name">ŞİZOFRENİYA</span></a><a href="6A22.html" class="nav-sub-link"><span class="sub-code">F21</span><span class="sub-name">ŞİZOTİPİK POZUNTU</span></a><a href="6A24.html" class="nav-sub-link"><span class="sub-code">F22</span><span class="sub-name">SAYIQLAMA POZUNTUSU</span></a><a href="6A23.html" class="nav-sub-link"><span class="sub-code">F23</span><span class="sub-name">KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU</span></a><a href="6A21.html" class="nav-sub-link"><span class="sub-code">F25</span><span class="sub-name">ŞİZOAFFEKTİV POZUNTU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F30–F39</span><span>ƏHVAL (AFFEKTİV) POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A60.html" class="nav-sub-link"><span class="sub-code">F31</span><span class="sub-name">BİPOLYAR POZUNTU TİP I</span></a><a href="6A61.html" class="nav-sub-link"><span class="sub-code">F31</span><span class="sub-name">BİPOLYAR POZUNTU TİP II</span></a><a href="6A70.html" class="nav-sub-link"><span class="sub-code">F32</span><span class="sub-name">TƏK EPİZODLU DEPRESİV POZUNTU</span></a><a href="6A71.html" class="nav-sub-link"><span class="sub-code">F33</span><span class="sub-name">TƏKRARLANAN DEPRESİV POZUNTU</span></a><a href="6A62.html" class="nav-sub-link"><span class="sub-code">F34.0</span><span class="sub-name">SİKLETİMİK POZUNTU</span></a><a href="6A72.html" class="nav-sub-link"><span class="sub-code">F34.1</span><span class="sub-name">DİSTİMİK POZUNTU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F40–F48</span><span>NEVROTİK, STRESSLƏ BAĞLI VƏ SOMATOFORM POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B02.html" class="nav-sub-link"><span class="sub-code">F40.0</span><span class="sub-name">AQORAFOBİYA</span></a><a href="6B04.html" class="nav-sub-link"><span class="sub-code">F40.1</span><span class="sub-name">SOSİAL NARAHATLIQ POZUNTUSU</span></a><a href="6B03.html" class="nav-sub-link"><span class="sub-code">F40.2</span><span class="sub-name">SPESİFİK FOBİYA</span></a><a href="6B01.html" class="nav-sub-link"><span class="sub-code">F41.0</span><span class="sub-name">PANİK POZUNTU</span></a><a href="6B00.html" class="nav-sub-link"><span class="sub-code">F41.1</span><span class="sub-name">GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD)</span></a><a href="6B20.html" class="nav-sub-link"><span class="sub-code">F42</span><span class="sub-name">OBSESSİV-KOMPULSİV POZUNTU (OKP)</span></a><a href="6B40.html" class="nav-sub-link"><span class="sub-code">F43.1</span><span class="sub-name">POSTTRAVMATİK STRES POZUNTUSU (PTSP)</span></a><a href="6B41.html" class="nav-sub-link"><span class="sub-code">F43.1</span><span class="sub-name">KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP)</span></a><a href="6B43.html" class="nav-sub-link"><span class="sub-code">F43.2</span><span class="sub-name">ADAPTASİYA POZUNTUSU</span></a><a href="6B42.html" class="nav-sub-link"><span class="sub-code">F43.8</span><span class="sub-name">UZANMIŞ YAS POZUNTUSU</span></a><a href="6B64.html" class="nav-sub-link"><span class="sub-code">F44.0</span><span class="sub-name">DİSSOSİATİV AMNEZİYA</span></a><a href="6B63.html" class="nav-sub-link"><span class="sub-code">F44.4</span><span class="sub-name">DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU</span></a><a href="6B61.html" class="nav-sub-link"><span class="sub-code">F44.8</span><span class="sub-name">PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU</span></a><a href="6B60.html" class="nav-sub-link"><span class="sub-code">F44.81</span><span class="sub-name">DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP)</span></a><a href="6C20.html" class="nav-sub-link"><span class="sub-code">F45.0</span><span class="sub-name">BƏDƏN DİSSTRES POZUNTUSU</span></a><a href="6B21.html" class="nav-sub-link"><span class="sub-code">F45.2</span><span class="sub-name">BƏDƏN DİSMORFİK POZUNTUSU (BDD)</span></a><a href="6B23.html" class="nav-sub-link"><span class="sub-code">F45.2</span><span class="sub-name">HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</span></a><a href="6B22.html" class="nav-sub-link"><span class="sub-code">F45.8</span><span class="sub-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</span></a><a href="6B62.html" class="nav-sub-link"><span class="sub-code">F48.1</span><span class="sub-name">DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F50–F59</span><span>FİZİOLOJİ POZUNTULAR VƏ FİZİKİ AMİLLƏRLƏ BAĞLI SİNDROMLAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6B80.html" class="nav-sub-link"><span class="sub-code">F50.0</span><span class="sub-name">SİNİR ANOREKSİYASI</span></a><a href="6B81.html" class="nav-sub-link"><span class="sub-code">F50.2</span><span class="sub-name">SİNİR BULİMİYASI</span></a><a href="6B82.html" class="nav-sub-link"><span class="sub-code">F50.8</span><span class="sub-name">KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED)</span></a><a href="7A00.html" class="nav-sub-link"><span class="sub-code">F51.0</span><span class="sub-name">İNSOMNİYA</span></a><a href="7A60.html" class="nav-sub-link"><span class="sub-code">F51.1</span><span class="sub-name">HİPERSOMNİYA</span></a><a href="7A40.html" class="nav-sub-link"><span class="sub-code">F51.2</span><span class="sub-name">SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI</span></a><a href="HA02.html" class="nav-sub-link"><span class="sub-code">F52.0</span><span class="sub-name">HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD)</span></a><a href="HA00.html" class="nav-sub-link"><span class="sub-code">F52.2</span><span class="sub-name">EREKTİL DİSFUNKSİYA (ED)</span></a><a href="HA03.html" class="nav-sub-link"><span class="sub-code">F52.3</span><span class="sub-name">ANORGASMİYA</span></a><a href="HA01.html" class="nav-sub-link"><span class="sub-code">F52.4</span><span class="sub-name">ERKƏN EYAKULYASİYA (PE)</span></a><a href="HA04.html" class="nav-sub-link"><span class="sub-code">F52.5</span><span class="sub-name">GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS)</span></a><a href="6C72.html" class="nav-sub-link"><span class="sub-code">F52.7</span><span class="sub-name">KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU</span></a><a href="HA05.html" class="nav-sub-link"><span class="sub-code">F52.8</span><span class="sub-name">DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR</span></a><a href="6E20.html" class="nav-sub-link"><span class="sub-code">F53.0</span><span class="sub-name">POSTNATAL DEPRESSİYA</span></a><a href="6E21.html" class="nav-sub-link"><span class="sub-code">F53.1</span><span class="sub-name">POSTNATAL PSİXOZ</span></a><a href="6E40.html" class="nav-sub-link"><span class="sub-code">F54</span><span class="sub-name">DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F60–F69</span><span>YETKİN ŞƏXSİYYƏT VƏ DAVRANIŞ POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6D10.html" class="nav-sub-link"><span class="sub-code">F60.9</span><span class="sub-name">ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ)</span></a><a href="6C50.html" class="nav-sub-link"><span class="sub-code">F63.0</span><span class="sub-name">DAVRANIŞ ASILILIQLARI (QUMAR, OYUN)</span></a><a href="6C70.html" class="nav-sub-link"><span class="sub-code">F63.1</span><span class="sub-name">PYROMANİYA</span></a><a href="6C71.html" class="nav-sub-link"><span class="sub-code">F63.2</span><span class="sub-name">KLEPTOMANİYA</span></a><a href="6B25.html" class="nav-sub-link"><span class="sub-code">F63.3</span><span class="sub-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</span></a><a href="6B24.html" class="nav-sub-link"><span class="sub-code">F63.8</span><span class="sub-name">TOPLAMA POZUNTUSU</span></a><a href="6C73.html" class="nav-sub-link"><span class="sub-code">F63.8</span><span class="sub-name">ARALIQLI PATLAYICI POZUNTU (IED)</span></a><a href="6D30.html" class="nav-sub-link"><span class="sub-code">F65.2</span><span class="sub-name">EKSHİBİSİONİZM</span></a><a href="6D31.html" class="nav-sub-link"><span class="sub-code">F65.3</span><span class="sub-name">VOYERİZM</span></a><a href="6D32.html" class="nav-sub-link"><span class="sub-code">F65.4</span><span class="sub-name">PEDOFİLİK POZUNTU</span></a><a href="6D33.html" class="nav-sub-link"><span class="sub-code">F65.5</span><span class="sub-name">SADİSTİK CİNSİ POZUNTU</span></a><a href="6D34.html" class="nav-sub-link"><span class="sub-code">F65.8</span><span class="sub-name">FROTTEURİZM</span></a><a href="6D50.html" class="nav-sub-link"><span class="sub-code">F68.1</span><span class="sub-name">ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN SİNDROMU)</span></a><a href="6D51.html" class="nav-sub-link"><span class="sub-code">F68.1</span><span class="sub-name">BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN BY PROXY)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F70–F79</span><span>ƏQLİ GERİLİK</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A00.html" class="nav-sub-link"><span class="sub-code">F70</span><span class="sub-name">İNTELLEKTUAL İNKİŞAF POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F80–F89</span><span>PSİXOLOJİ İNKİŞAF POZUNTULARI</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A01.html" class="nav-sub-link"><span class="sub-code">F80</span><span class="sub-name">İNKİŞAF NİTQ VƏ DİL POZUNTULARI</span></a><a href="6A03.html" class="nav-sub-link"><span class="sub-code">F81</span><span class="sub-name">SPESİFİK ÖYRƏNMƏ POZUNTUSU</span></a><a href="6A04.html" class="nav-sub-link"><span class="sub-code">F82</span><span class="sub-name">İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)</span></a><a href="6A02.html" class="nav-sub-link"><span class="sub-code">F84.0</span><span class="sub-name">AUTİZM SPEKTRİ POZUNTUSU (ASP)</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F90–F98</span><span>UŞAQLIQ VƏ YENİYETMƏLİK DÖVRÜNDƏ BAŞLAYAN POZUNTULAR</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A05.html" class="nav-sub-link"><span class="sub-code">F90.0</span><span class="sub-name">DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)</span></a><a href="6C90.html" class="nav-sub-link"><span class="sub-code">F91.2</span><span class="sub-name">DAVRANIŞ POZUNTUSU</span></a><a href="6C91.html" class="nav-sub-link"><span class="sub-code">F91.3</span><span class="sub-name">MÜXALİF-İNADKAR POZUNTU (ODD)</span></a><a href="6B05.html" class="nav-sub-link"><span class="sub-code">F93.0</span><span class="sub-name">AYRILMA NARAHATLIĞI POZUNTUSU</span></a><a href="6B06.html" class="nav-sub-link"><span class="sub-code">F94.0</span><span class="sub-name">SELEKTİV MUTİZM</span></a><a href="6B44.html" class="nav-sub-link"><span class="sub-code">F94.1</span><span class="sub-name">REAKTİV BAĞLANMA POZUNTUSU</span></a><a href="6B45.html" class="nav-sub-link"><span class="sub-code">F94.2</span><span class="sub-name">SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU</span></a><a href="6A07.html" class="nav-sub-link"><span class="sub-code">F95.2</span><span class="sub-name">TİKLİ POZUNTULAR (TOURETTE SİNDROMU)</span></a><a href="6C00.html" class="nav-sub-link"><span class="sub-code">F98.0</span><span class="sub-name">ENUREZ</span></a><a href="6C01.html" class="nav-sub-link"><span class="sub-code">F98.1</span><span class="sub-name">ENKOPREZ</span></a><a href="6B85.html" class="nav-sub-link"><span class="sub-code">F98.2</span><span class="sub-name">QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)</span></a><a href="6B84.html" class="nav-sub-link"><span class="sub-code">F98.21</span><span class="sub-name">RUMİNASİYA-GERİ QAYTARMA POZUNTUSU</span></a><a href="6B83.html" class="nav-sub-link"><span class="sub-code">F98.3</span><span class="sub-name">PİKA</span></a><a href="6A06.html" class="nav-sub-link"><span class="sub-code">F98.4</span><span class="sub-name">STEREOTİPİK HƏRƏKƏT POZUNTUSU</span></a></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span class="nav-code">F99</span><span>DƏQİQLƏŞDİRİLMƏMİŞ PSİXİ POZUNTU</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><span class="nav-sub-link nav-empty"><span class="sub-code"></span><span class="sub-name">tamamlanır</span></span></div></div><div class="nav-item nav-has-sub"><span class="nav-link is-bolme"><span>XBT-10 KODU TƏYİN OLUNMAMIŞ</span></span><button class="nav-toggle" onclick="toggleSub(this)" tabindex="-1">▶</button><div class="nav-sub"><a href="6A25.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ</span></a><a href="6A73.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">PREMENSTRUAL DİSFORİK POZUNTU (PMDD)</span></a><a href="6D11.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">ŞƏXSİYYƏT ÇƏTİNLİYİ</span></a><a href="7A20.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">OBSTRUKTİV YUXU APNESİ (OSA)</span></a><a href="7A80.html" class="nav-sub-link"><span class="sub-code">—</span><span class="sub-name">NARKOLEPSİYA</span></a></div></div></div></nav>
   </aside>
 
   <main class="site-main">
     <div class="content-wrap">
-      
-      
-      
-      <h2 id="obsessiv-kompulsiv-və-əlaqəli-pozuntular" class="">6B20 – 6B2Z · OBSESSİV-KOMPULSİV VƏ ƏLAQƏLİ POZUNTULAR</h2>
-<div class="xbt-line"><span class="xbt-lbl">WHO, 2019, qüvvəyə minmə 2022 — XBT-11:</span> <span class="icd">6B20</span> – <span class="icd">6B2Z</span> — Obsessive-compulsive or related disorders</div>
-<div class="xbt-line"><span class="xbt-lbl">WHO, 1990 — XBT-10:</span> <span class="icd">F42</span> (OCD); <span class="icd">F45.2</span> (hypochondriasis); <span class="icd">F63.3</span> (trichotillomania) — In separate sections</div>
-<div class="xbt-line"><span class="xbt-lbl">DSM-5-TR:</span> <span class="icd">300</span>, <span class="icd">312</span> — Obsessive-compulsive and related disorders</div>
-<hr>
-<h2 id="bu-bölmənin-tərkibi" class="">Bu bölmənin tərkibi</h2>
-<div class="tbl-wrap"><table>
-<tr><th>XBT-11 kodu</th><th>Pozuntu adı</th><th>Bölmədə yeri</th></tr>
-<tr><td><strong><span class="icd">6B20</span></strong></td><td>Obsessiv-kompulsiv pozuntu (OKP)</td><td>6.1</td></tr>
-<tr><td><strong><span class="icd">6B21</span></strong></td><td>Bədən dismorfik pozuntusu (BDP)</td><td>6.2</td></tr>
-<tr><td><strong><span class="icd">6B22</span></strong></td><td>Olfaktor referans pozuntusu</td><td>6.3</td></tr>
-<tr><td><strong><span class="icd">6B23</span></strong></td><td>Hipoxondriya</td><td>6.4</td></tr>
-<tr><td><strong><span class="icd">6B24</span></strong></td><td>Yığma pozuntusu</td><td>6.5</td></tr>
-<tr><td><strong><span class="icd">6B25</span></strong></td><td>Bədənə yönəlik repetitiv davranış pozuntuları (trixotillomaniya, ekskoriasiya)</td><td>6.6</td></tr>
-<tr><td><strong>6B2Y/Z</strong></td><td>Digər/dəqiqləşdirilməmiş</td><td>—</td></tr>
-</table></div>
-<h2 id="konseptual-yenilik-xbt-11" class="">Konseptual yenilik (XBT-11)</h2>
-<h3 id="yeni-müstəqil-qruplaşdırma" class="">Yeni müstəqil qruplaşdırma</h3>
-<p>XBT-10-da bu pozuntular <strong>müxtəlif bölmələrdə</strong> dağılmışdı:</p>
-<ul>
-<li>OKP → <span class="icd">F42</span> (neyrotik, stress, somatoform)</li>
-<li>Hipoxondriya → <span class="icd">F45.2</span> (somatoform)</li>
-<li>Trixotillomaniya → <span class="icd">F63.3</span> (impuls-nəzarət pozuntuları)</li>
-</ul>
-<p><strong>WHO, 2019, qüvvəyə minmə 2022 — XBT-11 onları bir qrupda birləşdirdi</strong> – ümumi neyrobioloji əsas: <strong>orbitofrontal korteks-stratum dövrəsinin disregulyasiyası</strong>.</p>
-<h3 id="olfaktor-referans-pozuntusu-yeni" class="">Olfaktor referans pozuntusu – yeni</h3>
-<p><strong>WHO, 2019, qüvvəyə minmə 2022 — XBT-11 əlavə etdi</strong> – öz bədəninin &quot;pis qoxuladığı&quot; haqda davamlı məşğulluq; OKP ilə oxşar mexanizm.</p>
-<h3 id="yığma-pozuntusu-müstəqil-diaqnoz" class="">Yığma pozuntusu – müstəqil diaqnoz</h3>
-<p>XBT-10-da yığma OKP simptomlarından biri hesab olunurdu. <strong>WHO, 2019, qüvvəyə minmə 2022 — XBT-11 onu müstəqil diaqnoz etdi</strong> (APA, 2013 — DSM-5 ilə uyğunlaşma) – spesifik neyrobioloji profil, müalicə xüsusiyyətləri.</p>
-<h3 id="insight-spesifikatoru" class="">İnsight spesifikatoru</h3>
-<p>WHO, 2019, qüvvəyə minmə 2022 — XBT-11 OKP, BDP, hipoxondriya üçün <strong>insight (özünü qiymətləndirmə) spesifikatoru</strong> əlavə etdi:</p>
-<ul>
-<li>Yaxşı / normal insight</li>
-<li>Zəif insight</li>
-<li>İnsight yox / delusion-bənzər inanclar</li>
-</ul>
-<p>Bu müalicə planlaşdırmasına birbaşa təsir edir.</p>
-
-<section class="disorder" data-icd="6B20">
-
-<section class="disorder" data-icd="6B20">
-
-<section class="disorder" data-icd="6B20">
-<h1 id="6b20-okp" class="h-disorder"><span class="icd">6B20</span> OBSESSİV-KOMPULSİV POZUNTU (OKP)</h1>
-
-<h2 id="6b20-1-terif">1. Tərif və nozologiya</h2>
-<p>Obsessiv-Kompulsiv Pozuntu (OKP; XBT-11: <span class="icd">6B20</span>; DSM-5-TR: 300.3) — təkrarlanan, eqo-distonik <strong>obsessiyalar</strong> (istənilməyən, müdaxilə edən fikirlər, görüntülər, impulslar) və ya <strong>kompulsiyalar</strong> (təkrarlanan davranış və ya zehni hərəkətlər) ilə xarakterizə olunan pozuntudur. Adətən hər ikisi mövcuddur. Pasiyent narahatlığı azaltmaq və ya qorxulan nəticənin qarşısını almaq üçün kompulsiya icra edir.</p>
-<p>DSM-5 (2013)-də OKP narahatlıq pozuntularından <strong>ayrı</strong> "Obsessive-Compulsive and Related Disorders" kateqoriyasına keçirilmişdir; XBT-11 paralel addım.</p>
-
-<h2 id="6b20-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Esquirol J.E.D. (1838) — "monomanie raisonnante".</li>
-  <li>Janet P. (1903) — "psychasthénie".</li>
-  <li>Freud (1909) — "Rat Man" hadisəsi.</li>
-  <li>Skinner B.F. və Mowrer O.H. (1947) — iki-faktorlu öyrənmə nəzəriyyəsi (klassik şərtləndirmə + operant qaçınma); ERP-nin əsası.</li>
-  <li>Meyer V. (1966) — Exposure and Response Prevention (ERP) ilk klinik tətbiq.</li>
-  <li>DSM-5 (2013) və XBT-11 (2019) — OKP narahatlıq pozuntularından ayrılmış.</li>
-</ul>
-
-<h2 id="6b20-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Ömürlük yayılma: 1,6–2,3% (Ruscio A.M. et al. Mol Psychiatry 2010).</li>
-  <li>Cins: təxminən bərabər; qadınlarda nisbətən sıx yetkinlikdə, kişilərdə uşaqlıqda erkən başlanğıc.</li>
-  <li>Başlanğıc: bimodal — pubertat öncəsi (10–12 yaş, kişilər) və erkən yetkinlik (20–25 yaş).</li>
-  <li>Komorbidlik: MDD ~60%, narahatlıq pozuntuları, tikli pozuntular, autizm, hoarding, BDD.</li>
-</ul>
-
-<h2 id="6b20-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>İrsilik 40–50% (Mataix-Cols D. et al. JAMA Psychiatry 2013).</li>
-  <li>Neyrobioloji — kortiko-striato-talamo-kortikal (CSTC) dövrəsinin hiperaktivliyi (orbitofrontal, cingulate, kaudat); serotonergic disregulasiya (SSRİ effekti); qlutamat disregulasiyası.</li>
-  <li>Genetik araşdırma — SLC1A1 (qlutamat transporter), serotonin geniləri.</li>
-  <li>PANDAS — nadir hallarda streptokokk infeksiyası sonrası OKP başlanğıcı (NIMH 2017).</li>
-  <li>Travma, stres tetikleyici amillər.</li>
-</ul>
-
-<h2 id="6b20-5-klinik">5. Klinik təzahürlər</h2>
-<h3>Tipik simptom domenləri</h3>
-<ul>
-  <li><strong>Çirklənmə / təmizlik</strong> — ən sıx; əl yumaq, dezinfeksiya kompulsiyaları.</li>
-  <li><strong>Şübhə / yoxlama</strong> — qıfıl, plitə, elektrik cihazları.</li>
-  <li><strong>Simmetriya / dəqiqlik / "just right"</strong> — düzlüklə bağlı.</li>
-  <li><strong>Aqressiv / cinsi / dini obsessiyalar</strong> — eqo-distonik, narahatlıq yaradan.</li>
-  <li><strong>Toplama (hoarding)</strong> — XBT-11-də ayrı kateqoriya (6B24).</li>
-</ul>
-
-<h3>Eqo-distoniya</h3>
-<p>Pasiyent obsessiyaların öz fikirləri olduğunu, lakin istənilməyən, irrational və ya qəbuledilməz olduğunu qəbul edir (insight dəyişkəndir — DSM-5-TR insight kvalifikatorları: yaxşı / zəif / yox).</p>
-
-<h2 id="6b20-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar</h3>
-<p><strong>A.</strong> Obsessiya, kompulsiya və ya hər ikisinin mövcudluğu.</p>
-<ul>
-  <li><strong>Obsessiyalar:</strong> təkrarlanan, davamlı, istənilməyən fikirlər/görüntülər/impulslar; narahatlıq yaradır; pasiyent onları yatırmaq və ya başqa fikir/hərəkətlə neytrallaşdırmaq cəhdi.</li>
-  <li><strong>Kompulsiyalar:</strong> obsessiyaya cavab olaraq və ya sərt qaydaya uyğun icra edilən təkrarlanan davranış (əl yuma, yoxlama, sıralama) və ya zehni hərəkət (sayma, dua); narahatlığı azaltmağa yönəlmiş, lakin ya realist yox, ya da həddən artıq.</li>
-</ul>
-<p><strong>B.</strong> Obsessiya/kompulsiyalar gündə > 1 saat çəkir və ya əhəmiyyətli distres/funksional pozulma.</p>
-<p><strong>C.</strong> Maddə və ya tibbi vəziyyət istisnası.</p>
-<p><strong>D.</strong> Başqa psixi pozuntu ilə daha yaxşı izah olunmur.</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>DSM-5-TR — insight kvalifikatorları (yaxşı/orta — zəif — yox / sayıqlama səviyyəsində); tikli ilə əlaqəli alt-tip.</li>
-  <li>XBT-11 — paralel; toplama (6B24), BDD (6B21), iy referans (6B22) ayrı kateqoriyalar.</li>
-  <li>NICE CG31 (2005, 2019 surveillance) — diaqnostika klinik müsahibə + Y-BOCS ilə.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə.</li>
-  <li>SCID-5, Y-BOCS (Yale-Brown Obsessive Compulsive Scale) — qızıl standart şiddət şkalası; CY-BOCS uşaqlarda.</li>
-  <li>OCI-R (Obsessive Compulsive Inventory-Revised) — özünüqiymətləndirmə.</li>
-  <li>Komorbidlik (depressiya, narahatlıq, tikli, autizm, BDD, hoarding).</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>GAD (6B00)</td><td>Real həyat narahatlıqları, kompulsiyalar yox.</td></tr>
-<tr><td>Tikli (6A07)</td><td>Motor/vokal; məqsədli deyil; premonitor hiss.</td></tr>
-<tr><td>BDD (6B21)</td><td>Görünüş əsaslı obsessiyalar.</td></tr>
-<tr><td>Toplama (6B24)</td><td>Əşyaları atmaqdan çətinlik.</td></tr>
-<tr><td>Yemə pozuntuları (6B8x)</td><td>Yemə davranışı əsas.</td></tr>
-<tr><td>Trikotilomania, dermatilomania (6B25.x)</td><td>Bədənə yönəlmiş təkrar davranış.</td></tr>
-<tr><td>Obsessiv-Kompulsiv Şəxsiyyət Pozuntusu (OKŞP)</td><td>Davamlı şəxsiyyət pattern, eqo-sintonik; OKP eqo-distonik.</td></tr>
-<tr><td>Şizofreniya / sayıqlama pozuntusu</td><td>Sayıqlama səviyyəsində insight; OKP-də insight dəyişkəndir.</td></tr>
-<tr><td>Autizm spektri</td><td>Məhdud-təkrarlanan davranış; eqo-sintonik.</td></tr>
-</table></div>
-
-<h2 id="6b20-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>Y-BOCS / CY-BOCS — qızıl standart.</li>
-  <li>OCI-R — özünüqiymətləndirmə.</li>
-  <li>Komorbidlik (depressiya, narahatlıq).</li>
-</ul>
-
-<h2 id="6b20-8-mualice">8. Müalicə</h2>
-<h3>8.1 Ümumi prinsiplər (NICE CG31 · APA · WFSBP)</h3>
-<ol>
-  <li><strong>Birinci sıra psixoterapiya: ERP (Exposure and Response Prevention)</strong> — pasiyent qorxulan obyekt/situasiyaya məruz qalır və kompulsiyanı icra etmir. 12–20 seans. Sübut: Foa E.B. et al. RKİ-ləri; effekt böyük.</li>
-  <li><strong>Birinci sıra farmakoterapiya: SSRİ yüksək dozada</strong> — fluoksetin (40–80 mq), sertralin (200 mq), paroksetin (40–60 mq), fluvoxamin (200–300 mq), esitalopram (20–40 mq). OKP-də standart depressiya dozasından <strong>yüksək doza</strong> tələb olunur; effekt 8–12 həftə (depresiyadan ləng).</li>
-  <li><strong>Kombinasiya KDT/ERP + SSRİ</strong> — orta-ağır OKP-də monoterapiyadan üstün (Foa E.B. et al. Am J Psychiatry 2005).</li>
-  <li><strong>Klomipramin (TCA)</strong> — birinci sıra alternativ; SSRİ-yə cavabsızlıqda; antikolinerjik və kardiyak yan təsirlər.</li>
-  <li><strong>Augmentasiya (SSRİ + atipik antipsixotik aşağı dozada)</strong> — risperidon, aripiprazol; refrakter halda.</li>
-  <li><strong>Refrakter ağır OKP:</strong> Deep Brain Stimulation (DBS — ventral capsule/ventral striatum), neyrocərrahiyə (kapsulotomiya, singulotomiya); EKT effektsiz; ketamin/esketamin sürətli effekt tədqiqatları davam edir.</li>
-  <li><strong>Müalicə müddəti</strong> — uzunmüddətli; remisyadan sonra ≥ 1–2 il, çoxsaylı residiv halda ömürlük.</li>
-</ol>
-
-<h3>8.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>NICE CG31 (2005, 2019 surveillance) — pilləli yanaşma şiddətə görə; ERP birinci sıra; SSRİ orta-ağır.</li>
-  <li>APA Practice Guideline for OCD (2007) — eyni; klomipramin sübut bazasına görə güclü, lakin yan təsirə görə ikinci sıra.</li>
-  <li>WFSBP (Bandelow B. et al. 2008) — SSRİ doza diapazonları və titrasiya.</li>
-  <li>NICE CG31 PANDAS — rutin antibiotik profilaktikası tövsiyə edilmir.</li>
-</ul>
-
-<h2 id="6b20-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>ERP — Exposure and Response Prevention (Meyer V., Foa E.B.)</dt>
-  <dd>Pasiyent qorxulan obyektə (məs. "çirkli" əşya) məruz qalır və kompulsiyanı (əl yumaq) icra etmir; narahatlıq tədricən azalır (habitualization). Standart kurs 12–20 seans, həftədə 1–2 dəfə; daha intensiv format (gündəlik) effektivdir. Sübut: Foa E.B. et al. Am J Psychiatry 2005.</dd>
-
-  <dt>KDT — koqnitiv komponent</dt>
-  <dd>ERP-ya əlavə; obsessiya haqqında düşüncələrin yenidən qiymətləndirilməsi; "thought-action fusion" (TAF) və hiper-məsuliyyət koqnisiyalarına yönəlir.</dd>
-
-  <dt>Y-BOCS — Yale-Brown Obsessive Compulsive Scale (Goodman W.K.)</dt>
-  <dd>10 maddə; 5 obsessiya + 5 kompulsiya; qızıl standart; CY-BOCS uşaqlarda.</dd>
-
-  <dt>SSRİ Yüksək Doza</dt>
-  <dd>OKP-də standart depressiya dozasından əhəmiyyətli yüksək doza tələb olunur; titrasiya 8–12 həftə; cavabsızlıqda doza maksimuma çatdırılır.</dd>
-
-  <dt>Klomipramin (TCA)</dt>
-  <dd>OKP-də sübut güclü (CMI multicenter trial 1991); kardiyak və antikolinerjik yan təsirlər; ikinci sıra.</dd>
-
-  <dt>DBS — Deep Brain Stimulation</dt>
-  <dd>Refrakter ağır OKP-də cərrahi müdaxilə; ventral capsule/ventral striatum hədəfi. Greenberg B.D. et al. Mol Psychiatry 2010.</dd>
-</dl>
-
-<h2 id="6b20-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "OKP — sadəcə təmizlik və düzlüklə bağlı şəxsiyyət xüsusiyyətidir"</h4>
-<p><strong>Sübut:</strong> klinik OKP eqo-distonik, narahatlıq yaradan və funksional pozulma yaradır; obsessiv-kompulsiv şəxsiyyət pozuntusu (OKŞP) eqo-sintonik fərqli pozuntudur. Y-BOCS şiddəti və müddət əsasında klinik diaqnoz.</p>
-
-<h4>Mif 2: "Pasiyent iradi olaraq obsessiyaları "dayandıra bilər""</h4>
-<p><strong>Sübut:</strong> OKP CSTC dövrəsinin disregulasiyasıdır; iradi idarə olunmur; ERP və SSRİ neyrobioloji səviyyədə təsir edir.</p>
-
-<h4>Mif 3: "SSRİ depresiya dozasında OKP-də işləyir"</h4>
-<p><strong>Sübut:</strong> OKP-də SSRİ yüksək dozada (fluoksetin 60–80 mq, sertralin 200 mq) tələb olunur; depresiya dozası (məs. fluoksetin 20 mq) çox vaxt cavab vermir.</p>
-
-<h4>Mif 4: "ERP travma yaradır, çünki pasiyenti qorxulan situasiyada saxlayır"</h4>
-<p><strong>Sübut:</strong> ERP strukturlaşdırılmış, pilləli və pasiyentin razılığı ilə həyata keçirilir; uzunmüddətli sübutlu effektivlik göstərir.</p>
-
-<h4>Mif 5: "PANDAS OKP-nin əsas səbəbidir, hamı antibiotika almalıdır"</h4>
-<p><strong>Sübut:</strong> NIMH 2017 — PANDAS nadir hadisədir; rutin antistreptolizin O testləri və antibiotik profilaktikası tövsiyə edilmir; yalnız klassik klinik tablo varsa.</p>
-
-<h4>Mif 6: "Kompulsiyaları icra etməyə icazə vermək simptomları sakitləşdirir"</h4>
-<p><strong>Sübut:</strong> kompulsiyalara icazə (akkomodasiya) OKP-ni gücləndirir; ailə akkomodasiyasının azaldılması müalicənin vacib komponentidir.</p>
-
-<h4>Mif 7: "Bitki preparatları (St John's Wort, kava, omega-3) OKP-ni sağaldır"</h4>
-<p><strong>Sübut:</strong> heç birinin OKP-də sübutlu effekti yoxdur; St John's Wort SSRİ-yə qarşılıqlı təsir riski.</p>
-
-<h2 id="6b20-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, lakin adekvat müalicə ilə əhəmiyyətli yaxşılaşma.</li>
-  <li>Komorbid depressiya, tikli, autizm pis proqnoz markeri.</li>
-  <li>Erkən başlanğıc və zəif insight — daha çətin müalicə.</li>
-</ul>
-
-<h2 id="6b20-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B20 Obsessive-compulsive disorder. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>NICE CG31. Obsessive-compulsive disorder and body dysmorphic disorder. 2005, 2019 surveillance.</li>
-  <li>APA. Practice Guideline for the Treatment of Patients with Obsessive-Compulsive Disorder. 2007.</li>
-  <li>Bandelow B. et al. WFSBP guidelines for the pharmacological treatment of anxiety, obsessive-compulsive and post-traumatic stress disorders. World J Biol Psychiatry 2008;9(4):248–312.</li>
-  <li>Foa E.B., Liebowitz M.R., Kozak M.J. et al. Randomized, placebo-controlled trial of exposure and ritual prevention, clomipramine, and their combination in the treatment of obsessive-compulsive disorder. Am J Psychiatry 2005;162(1):151–161.</li>
-  <li>Ruscio A.M., Stein D.J., Chiu W.T., Kessler R.C. The epidemiology of obsessive-compulsive disorder in the National Comorbidity Survey Replication. Mol Psychiatry 2010;15(1):53–63.</li>
-  <li>Mataix-Cols D. et al. Familial risks of obsessive-compulsive disorder. JAMA Psychiatry 2013;70(7):709–717.</li>
-  <li>Greenberg B.D. et al. Deep brain stimulation of the ventral internal capsule/ventral striatum for obsessive-compulsive disorder. Mol Psychiatry 2010;15(1):64–79.</li>
-  <li>NIMH. PANDAS/PANS Information for Clinicians. 2017.</li>
-</ol>
-</section>
-
-<section class="disorder" data-icd="6B21">
-<h1 id="6b21-beden-dismorfik-pozuntusu" class="h-disorder"><span class="icd">6B21</span> BƏDƏN DİSMORFİK POZUNTUSU (BDD)</h1>
-
-<h2 id="6b21-1-terif">1. Tərif və nozologiya</h2>
-<p>Bədən Dismorfik Pozuntusu (BDD; XBT-11: <span class="icd">6B21</span>; DSM-5-TR: 300.7) — pasiyentin görünüşündəki real olmayan və ya çox kiçik qüsurla bağlı obsessiv məşğuliyyət; bu məşğuliyyət təkrarlanan davranışlara (güzgüyə baxma, dəri qıdaşdırma, kosmetik prosedurlar axtarışı) və ya zehni hərəkətlərə (müqayisə) gətirir.</p>
-
-<h2 id="6b21-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Morselli E. (1891) — "dysmorphophobia".</li>
-  <li>DSM-III-R (1987) — "Body Dysmorphic Disorder" somatoform pozuntular daxilində.</li>
-  <li>DSM-5 (2013) və XBT-11 — Obsessiv-kompulsiv spektri kateqoriyasına keçirilmişdir.</li>
-</ul>
-
-<h2 id="6b21-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Ümumi populyasiyada yayılma: 1,7–2,4% (Buhlmann U. et al. Psychiatry Res 2010).</li>
-  <li>Kosmetik dermatoloji və plastik cərrahiyə klinikalarında 9–15%.</li>
-  <li>Cins: təxminən bərabər.</li>
-  <li>Başlanğıc: orta 15–16 yaş.</li>
-  <li>Komorbidlik: MDD ~75%, OKP ~30%, sosial narahatlıq ~37%, maddə istifadəsi.</li>
-  <li>Suicid riski yüksək: cəhd ~24–28%, tamamlanma populyasiyadan 45 dəfə yüksək (Phillips K.A. icmalları).</li>
-</ul>
-
-<h2 id="6b21-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>Genetik üst-üstə düşmə OKP ilə.</li>
-  <li>Neyrobioloji — orbitofrontal-striatal dövrə hiperaktivliyi (OKP-yə bənzər); vizual emal pozulması (Feusner J.D. et al. icmalları — pasiyent detallara həddən artıq fokus, ümumi görüntünü inteqrə etmir).</li>
-  <li>Sosial-mədəni — kütləvi mediada idealizə edilmiş görünüş.</li>
-  <li>Uşaqlıq peer viktimizasiyası (rüsvayetmə, "bullying").</li>
-</ul>
-
-<h2 id="6b21-5-klinik">5. Klinik təzahürlər</h2>
-<ul>
-  <li>Görünüşün konkret hissəsinə (üz, dəri, saç, burun, bədən forması) obsessiv fokus.</li>
-  <li>Real qüsur yoxdur və ya başqaları üçün görünməz/əhəmiyyətsizdir.</li>
-  <li>Təkrarlanan davranışlar: güzgüyə baxma, dəri qıdaşdırma, müqayisə, kosmetik prosedur axtarışı, geyim/makyaj/kamuflyaj.</li>
-  <li>Zehni hərəkətlər: özünü başqaları ilə müqayisə.</li>
-  <li>İnsight çox vaxt zəifdir; bəzən sayıqlama səviyyəsində.</li>
-  <li>"Muscle dysmorphia" alt-tipi — kişilərdə əzələnin "kifayət qədər inkişaf etməməsi" obsessiyası; anabolik steroid istifadəsinə gətirir.</li>
-  <li>Yüksək sosial təcrid, akademik və peşə pozulması.</li>
-</ul>
-
-<h2 id="6b21-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar</h3>
-<p><strong>A.</strong> Görünüşdəki qüsur və ya nöqsana məşğuliyyət; başqalarına görünməz və ya kiçik.</p>
-<p><strong>B.</strong> Pasiyent hər hansı bir nöqtədə təkrarlanan davranış (güzgü, dəri qıdaşdırma, ifrat geyim) və ya zehni hərəkət (müqayisə) icra etmişdir.</p>
-<p><strong>C.</strong> Məşğuliyyət əhəmiyyətli distres və ya funksional pozulma yaradır.</p>
-<p><strong>D.</strong> Yemə pozuntusu meyarına çatan bədən imajı məşğuliyyəti olmamalıdır (anorexia/bulimia).</p>
-<p>Kvalifikatorlar: muscle dysmorphia ilə; insight (yaxşı / orta — zəif / yox / sayıqlama).</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>DSM-5-TR / XBT-11 — OKP spektri kateqoriyasında; muscle dysmorphia kvalifikator.</li>
-  <li>NICE CG31 — BDD və OKP birgə tövsiyələr.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə (pasiyent çox vaxt utancdan açıq danışmır).</li>
-  <li>BDDQ (Body Dysmorphic Disorder Questionnaire) — skrining.</li>
-  <li>BDD-YBOCS — şiddət şkalası.</li>
-  <li>Komorbidlik (depressiya, OKP, sosial narahatlıq, suicid riski).</li>
-  <li>Anabolik steroid və ya kosmetik prosedur anamnezi.</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>OKP (6B20)</td><td>Obsessiyalar görünüşlə məhdud deyil.</td></tr>
-<tr><td>Yemə pozuntusu (6B8x)</td><td>Çəki və forma əsas; yemə davranışı pozulmuşdur.</td></tr>
-<tr><td>Sayıqlama pozuntusu (6A24)</td><td>İnsight yox; BDD-də çox vaxt dəyişkəndir.</td></tr>
-<tr><td>Sosial narahatlıq (6B04)</td><td>Sosial qiymətləndirmə geniş; BDD-də spesifik görünüş hissəsinə fokus.</td></tr>
-<tr><td>Trikotilomania (6B25.0)</td><td>Saç çəkmə əsas; görünüş narahatlığı ikincili.</td></tr>
-<tr><td>Olfactory reference disorder (6B22)</td><td>İy əsaslı.</td></tr>
-</table></div>
-
-<h2 id="6b21-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>BDDQ — skrining (Phillips K.A.).</li>
-  <li>BDD-YBOCS — modifikasiyalı OKP şkalası, 12 maddə.</li>
-  <li>C-SSRS — suicid riski (yüksək).</li>
-</ul>
-
-<h2 id="6b21-8-mualice">8. Müalicə</h2>
-<ol>
-  <li>Birinci sıra psixoterapiya: KDT (BDD-yə uyğunlaşdırılmış, Wilhelm S., Phillips K.A.) — koqnitiv yenidən strukturlaşdırma + ekspozisiya + güzgü yenidən təlim + davranış eksperimentləri. 12–22 seans.</li>
-  <li>Birinci sıra farmakoterapiya: SSRİ yüksək dozada — OKP-yə bənzər; fluoksetin (40–80 mq), esitalopram, sertralin.</li>
-  <li>Klomipramin — alternativ.</li>
-  <li>Augmentasiya — atipik antipsixotik (xüsusən sayıqlama səviyyəsində insight).</li>
-  <li>Müalicə müddəti uzun; remisyadan sonra ≥ 1–2 il.</li>
-  <li>Suicid riski izlənməsi.</li>
-  <li><strong>Kosmetik prosedurların qarşısının alınması</strong> — pasiyent dermatoloq/plastik cərrahla əməkdaşlıq; sübut: cərrahi prosedur BDD simptomlarını yaxşılaşdırmır, çox vaxt yeni fokus yaradır (Crerand C.E. et al. Plast Reconstr Surg 2010).</li>
-</ol>
-
-<h3>Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>NICE CG31 — KDT + SSRİ yüksək doza birinci sıra.</li>
-  <li>Phillips K.A. tədqiqatları — SSRİ-lər BDD-də effektiv; yüksək doza, uzunmüddətli.</li>
-</ul>
-
-<h2 id="6b21-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>KDT BDD üçün (Wilhelm S., Phillips K.A.)</dt>
-  <dd>Manualizə edilmiş 22-seanslı protokol — psixoeducation, koqnitiv yenidən strukturlaşdırma, güzgü yenidən təlim (mirror retraining), davranış eksperimentləri, ritüalın qarşısının alınması (ERP), residiv profilaktikası.</dd>
-
-  <dt>BDDQ — Body Dysmorphic Disorder Questionnaire (Phillips K.A.)</dt>
-  <dd>Skrining.</dd>
-
-  <dt>BDD-YBOCS</dt>
-  <dd>OKP üçün Y-BOCS-un BDD-yə uyğunlaşdırılması.</dd>
-
-  <dt>SSRİ Yüksək Doza</dt>
-  <dd>OKP-yə bənzər; cavab 8–12 həftə.</dd>
-</dl>
-
-<h2 id="6b21-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "BDD pasiyenti "həqiqi qüsur"-u var, kosmetik cərrahiyə kömək edər"</h4>
-<p><strong>Sübut:</strong> Crerand C.E. Plast Reconstr Surg 2010 — kosmetik prosedurlar BDD-ni yaxşılaşdırmır; pasiyentlərin əksər hissəsi nəticədən narazıdır və ya yeni fokus inkişaf edir. Cərrahların BDD skrininqi etmələri tövsiyə olunur.</p>
-
-<h4>Mif 2: "BDD pasiyentinin görünüşünü təriflə "rahatlaşdırmaq" lazımdır"</h4>
-<p><strong>Sübut:</strong> təriflər və ya inkar (reassurance) qısamüddətli rahatlıq verir, lakin obsessiyani gücləndirir; ailə akkomodasiyasının azaldılması müalicə komponentidir.</p>
-
-<h4>Mif 3: "BDD adi "özünə inamsızlıq"-dır"</h4>
-<p><strong>Sübut:</strong> BDD funksional pozulma və yüksək suicid riski ilə müşayiət olunur (cəhd 24–28%, populyasiyadan 45 dəfə yüksək); klinik vəziyyət kimi qiymətləndirilir.</p>
-
-<h4>Mif 4: "SSRİ depresiya dozasında BDD-də effektivdir"</h4>
-<p><strong>Sübut:</strong> OKP-yə bənzər — yüksək doza tələb olunur; cavab 8–12 həftə.</p>
-
-<h4>Mif 5: "Muscle dysmorphia qadın pozuntusu deyil, kişilərdə də olmur, sadəcə fitness motivasiyasıdır"</h4>
-<p><strong>Sübut:</strong> muscle dysmorphia kişilərdə yayılmışdır; anabolik steroid istifadəsi, kompulsiv idman, sosial təcrid və depresiya ilə müşayiət olunur; DSM-5-TR-də kvalifikator.</p>
-
-<h4>Mif 6: "Plastik cərrahdan ardıcıl prosedur axtarmaq normaldır"</h4>
-<p><strong>Sübut:</strong> ardıcıl prosedurlar BDD-nin əlamətidir; cərrah BDD skrining edib psixiatriyaya yönəltməlidir.</p>
-
-<h2 id="6b21-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş.</li>
-  <li>Adekvat müalicə ilə əhəmiyyətli yaxşılaşma; remisya mümkündür, lakin uzunmüddətli saxlama tələb olunur.</li>
-  <li>Suicid riski izlənir.</li>
-</ul>
-
-<h2 id="6b21-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B21 Body dysmorphic disorder. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>NICE CG31. 2005, 2019 surveillance.</li>
-  <li>Phillips K.A. The Broken Mirror: Understanding and Treating Body Dysmorphic Disorder. Oxford Univ Press; 2005.</li>
-  <li>Wilhelm S., Phillips K.A., Steketee G. Cognitive-Behavioral Therapy for Body Dysmorphic Disorder: A Treatment Manual. Guilford Press; 2013.</li>
-  <li>Buhlmann U. et al. Updates on the prevalence of body dysmorphic disorder: a population-based survey. Psychiatry Res 2010;178(1):171–175.</li>
-  <li>Crerand C.E., Menard W., Phillips K.A. Surgical and minimally invasive cosmetic procedures among persons with body dysmorphic disorder. Plast Reconstr Surg 2010;126(2):504–510.</li>
-</ol>
-</section>
-
-<section class="disorder" data-icd="6B22">
-<h1 id="6b22-patoloji-beden-qoxusu-pozuntusu" class="h-disorder"><span class="icd">6B22</span> PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</h1>
-
-<h2 id="6b22-1-terif">1. Tərif və nozologiya</h2>
-<p>Patoloji Bədən Qoxusu Pozuntusu (ORS) (XBT-11: <span class="icd">6B22</span> Olfactory Reference Disorder; DSM-5-TR: 300.3 OCD spektri daxilində spesifikləşdirilmiş və ya 300.7 BDD ilə əlaqəli) — pasiyentin bədənindən real olmayan və ya həddən artıq qiymətləndirilmiş pis iyə yayılması haqqında obsessiv inamla xarakterizə olunan pozuntudur. Pasiyent başqalarının onu qınamasını və ya rüsvay etməsini düşünür, kompulsiv yuyunma, deodorant istifadəsi, sosial qaçınma davranışı göstərir.</p>
-
-<h2 id="6b22-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Pryse-Phillips W. (1971) — "olfactory reference syndrome" termini.</li>
-  <li>DSM-IV — ayrı kateqoriya yox idi (Sayıqlama pozuntusu somatik alt-tip kimi).</li>
-  <li>DSM-5 (2013) — OCD spektri qarşılıqlı pozuntu kimi qeyd; lakin ayrı kod təyin edilməyib.</li>
-  <li>XBT-11 (2019) — <strong>ilk dəfə rəsmi diaqnostik kateqoriya</strong> kimi (<span class="icd">6B22</span>).</li>
-</ul>
-
-<h2 id="6b22-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Yayılma: dəqiq epidemioloji məlumat məhdud; klinik və icmal hesabatlarına görə nadir, lakin underdiagnosed (Phillips K.A., Menard W. CNS Spectr 2011).</li>
-  <li>Başlanğıc: erkən yetkinlik (orta 20–25 yaş).</li>
-  <li>Cins: təxminən bərabər.</li>
-  <li>Komorbidlik: MDD, sosial narahatlıq, OKP, BDD, suicid riski yüksək (cəhd ~50%).</li>
-</ul>
-
-<h2 id="6b22-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>Genetik və neyrobioloji üst-üstə düşmə OKP və BDD ilə.</li>
-  <li>İnsight dəyişkəndir — bəzən sayıqlama səviyyəsində.</li>
-  <li>Sosial-mədəni amillər — bədən iyi haqqında sosial stiqma.</li>
-</ul>
-
-<h2 id="6b22-5-klinik">5. Klinik təzahürlər</h2>
-<ul>
-  <li>Bədən iyi (ağız, ayaq qoltuq, genital, ümumi bədən) və ya nəfəs iyi haqqında obsessiv məşğuliyyət.</li>
-  <li>Başqaların reaksiyasını "yanlış olaraq oxuma" (referent fikirlər) — öskürmə, burnu qaşıma, pəncərə açma "iy nəticəsi" kimi şərh olunur.</li>
-  <li>Kompulsiv davranışlar — sıx-sıx yuyunma, paltar dəyişmə, deodorant, ətr, ağız təmizliyi, gum çeynəmə, sıxılı diş yuyulması.</li>
-  <li>Sosial qaçınma — iş və məktəbdən qaçınma, sosial təcrid.</li>
-  <li>Kompensator davranışlar — başqalarından məsafə saxlama.</li>
-</ul>
-
-<h2 id="6b22-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar (XBT-11)</h3>
-<p><strong>A.</strong> Pasiyentin bədənindən pis iy yayıldığı və ya nəfəsdə pis iy olduğu haqqında davamlı məşğuliyyət — başqaları üçün ya görünməz, ya da kiçik.</p>
-<p><strong>B.</strong> Pasiyent obsessiyaya cavab olaraq təkrarlanan davranışlar (yuyunma, qoxu maskalama, dəri yoxlanması) və ya zehni hərəkətlər (özünü başqaları ilə müqayisə) icra edir.</p>
-<p><strong>C.</strong> Məşğuliyyət əhəmiyyətli distres və ya funksional pozulma yaradır.</p>
-<p><strong>D.</strong> Maddə və ya tibbi vəziyyət (real halitoz, hipergidroz, trimetilaminuriya, qoxu maddəsinin metabolik xəstəlikləri) istisnası.</p>
-<p>İnsight kvalifikatoru: yaxşı / orta — zəif / yox-sayıqlama səviyyəsində.</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>XBT-11 — ayrı kateqoriya kimi rəsmiyyət.</li>
-  <li>DSM-5-TR — "Other specified obsessive-compulsive and related disorder" daxilində.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə.</li>
-  <li>Tibbi və otorinolaringoloji müayinə — real halitoz, sinüsit, hipergidroz, mədə-bağırsaq xəstəlikləri istisnası.</li>
-  <li>Trimetilaminuriya (TMAU) — sidikdə trimetilamin testi (nadir genetik metabolik xəstəlik, "balıq iyi sindromu").</li>
-  <li>İnsight səviyyəsi qiymətləndirməsi.</li>
-  <li>Komorbidlik və suicid riski (yüksək!).</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>Real halitoz / hipergidroz / TMAU</td><td>Obyektiv təsdiq olunmuş.</td></tr>
-<tr><td>BDD (6B21)</td><td>Görünüş əsaslı.</td></tr>
-<tr><td>OKP (6B20)</td><td>Çoxsaylı obsessiyalar.</td></tr>
-<tr><td>Sayıqlama pozuntusu (6A24) — somatik</td><td>İnsight yox; klinik təzahürlər üst-üstə düşür.</td></tr>
-<tr><td>Şizofreniya</td><td>Digər psixotik simptomlar.</td></tr>
-<tr><td>Sosial narahatlıq (6B04)</td><td>Sosial qiymətləndirmə qorxusu geniş.</td></tr>
-</table></div>
-
-<h2 id="6b22-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>Tibbi müayinə — stomatoloji, ENT, mədə-bağırsaq.</li>
-  <li>TMAU testi (sidik trimetilamin).</li>
-  <li>Şkala — spesifik yox; Y-BOCS uyğunlaşdırılmış istifadə.</li>
-  <li>C-SSRS (yüksək suicid riski).</li>
-</ul>
-
-<h2 id="6b22-8-mualice">8. Müalicə</h2>
-<ol>
-  <li>KDT — OKP/BDD-yə uyğun yanaşma; ekspozisiya (qoxu yoxlama davranışının dayandırılması, sosial situasiyaya qayıdış), koqnitiv yenidən strukturlaşdırma.</li>
-  <li>SSRİ yüksək dozada — OKP-yə bənzər.</li>
-  <li>Augmentasiya — atipik antipsixotik (sayıqlama səviyyəsində insight).</li>
-  <li>Sosial reabilitasiya.</li>
-  <li>Suicid riski izlənməsi.</li>
-</ol>
-
-<h2 id="6b22-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>KDT (OKP/BDD-yə uyğunlaşdırılmış)</dt>
-  <dd>Ekspozisiya + ritualların qarşısının alınması + koqnitiv yenidən strukturlaşdırma.</dd>
-
-  <dt>SSRİ Yüksək Doza</dt>
-  <dd>OKP-yə bənzər; 8–12 həftə.</dd>
-</dl>
-
-<h2 id="6b22-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "Pasiyent həqiqətən pis iyli ola bilər — əvvəlcə tibbi yoxlama olmadan psixiatrik diaqnoz qoyula bilməz"</h4>
-<p><strong>Sübut:</strong> doğru — tibbi səbəblər (halitoz, hipergidroz, TMAU) mütləq istisna edilməlidir; lakin tibbi səbəb yoxdursa və obsessiv məşğuliyyət davam edirsə, klinik vəziyyət iy referans pozuntusudur.</p>
-
-<h4>Mif 2: "Sıxsıx yuyunma və deodorant istifadəsi məsələni həll edər"</h4>
-<p><strong>Sübut:</strong> kompulsiv davranışlar qısamüddətli rahatlıq verir, lakin pozuntunu gücləndirir; dəri irritasiyası, sosial pozulma artır.</p>
-
-<h4>Mif 3: "Pasiyent sadə özünə qiymət problemi yaşayır"</h4>
-<p><strong>Sübut:</strong> klinik pozuntudur; suicid riski yüksəkdir (~50% cəhd); tibbi müdaxilə tələb olunur.</p>
-
-<h4>Mif 4: "Yalnız antipsixotik effektivdir, çünki sayıqlamadır"</h4>
-<p><strong>Sübut:</strong> insight dəyişkəndir; SSRİ yüksək doza + KDT birinci sıra; antipsixotik augmentasiya yalnız sayıqlama səviyyəsində.</p>
-
-<h2 id="6b22-11-proqnoz">11. Proqnoz</h2>
-<p>Sübut bazası məhduddur. SSRİ + KDT ilə yaxşılaşma; suicid riski izlənir.</p>
-
-<h2 id="6b22-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B22 Olfactory reference disorder. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>Phillips K.A., Menard W. Olfactory reference syndrome. CNS Spectr 2011;16(11):245–251.</li>
-  <li>Pryse-Phillips W. An olfactory reference syndrome. Acta Psychiatr Scand 1971;47(4):484–509.</li>
-</ol>
-</section>
-
-<section class="disorder" data-icd="6B23">
-<h1 id="6b23-hipoxondriya" class="h-disorder"><span class="icd">6B23</span> HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</h1>
-
-<h2 id="6b23-1-terif">1. Tərif və nozologiya</h2>
-<p>Hipoxondriya (XBT-11: <span class="icd">6B23</span> Hypochondriasis; DSM-5-TR: 300.7 Illness Anxiety Disorder — yeni adı, somatik simptom pozuntusundan ayrılaraq) — ciddi tibbi xəstəliyi var və ya inkişaf edir kimi davamlı məşğuliyyət və narahatlıq. Pasiyent təkrarlanan tibbi yoxlamalar (klinik müraciət, internetdə "Dr. Google" axtarışı, dostlardan məsləhət) və ya əksinə tibbi qaçınma davranışı göstərir.</p>
-<p>DSM-5 (2013)-də hipoxondriya diaqnozu iki yeni kateqoriyaya bölünmüşdür:</p>
-<ul>
-  <li><strong>Somatic Symptom Disorder</strong> (300.82) — somatik şikayətlər mövcuddur;</li>
-  <li><strong>Illness Anxiety Disorder</strong> (300.7) — somatik simptomlar minimal və ya yoxdur, narahatlıq dominant.</li>
-</ul>
-<p>XBT-11 (2019) — <strong>hipoxondriya OKP spektri</strong> daxilinə daxil edilmişdir (somatoform pozuntulardan ayrılaraq) — bu konseptual keçid sübut bazasını əks etdirir (OKP-yə bənzər neyrobiologiya və müalicə cavabı).</p>
-
-<h2 id="6b23-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Yunan tibb — "hypochondrium" (qabırğa altı) — qədim humoral nəzəriyyə.</li>
-  <li>DSM-III (1980) — somatoform pozuntular kateqoriyasında.</li>
-  <li>DSM-5 (2013) — illness anxiety disorder və somatic symptom disorder ayrılması.</li>
-  <li>XBT-11 (2019) — OKP spektri kateqoriyasına keçid.</li>
-</ul>
-
-<h2 id="6b23-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Ömürlük yayılma: 1–6% (Bleichhardt G., Hiller W. Compr Psychiatry 2007).</li>
-  <li>Birinci tibbi yardım pasiyentlərində: ~3–10%.</li>
-  <li>Cins: təxminən bərabər.</li>
-  <li>Başlanğıc: erkən-orta yetkinlik.</li>
-  <li>Komorbidlik: MDD, GAD, OKP, panik pozuntu.</li>
-</ul>
-
-<h2 id="6b23-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>Genetik üst-üstə düşmə OKP və narahatlıq pozuntuları ilə.</li>
-  <li>Uşaqlıq travması və ya tibbi xəstəliklər ilə təcrübə.</li>
-  <li>Koqnitiv — bədən sensasiyalarının fəlakətə salınması; selektiv diqqət; "tibbi məlumat axtarışı" (cyberchondria).</li>
-  <li>Modelləşdirmə — ailədə xəstəliyə yüksək həssaslıq.</li>
-</ul>
-
-<h2 id="6b23-5-klinik">5. Klinik təzahürlər</h2>
-<ul>
-  <li>Ciddi xəstəliyin (xərçəng, ürək tutması, müxtəlif xronik xəstəliklər) inkişafından qorxu.</li>
-  <li>Normal bədən sensasiyalarının (ürək döyüntüsü, başağrısı, ləng bağırsaq) ciddi xəstəlik markeri kimi şərh edilməsi.</li>
-  <li>Davranış patternləri (iki polyar):
-    <ul>
-      <li><strong>Care-seeking</strong> — təkrar tibbi yoxlama, çoxsaylı həkim müraciəti ("doctor shopping"), internet axtarışı (cyberchondria), bədən yoxlamaları.</li>
-      <li><strong>Care-avoiding</strong> — tibbi yoxlamalardan qaçınma (qorxu sübutu eşitmək), xəstəxana, tibbi cihazlardan qaçınma.</li>
-    </ul>
-  </li>
-  <li>Tibbi reassurance qısamüddətli rahatlıq verir, sonra narahatlıq qayıdır.</li>
-  <li>Funksional pozulma — işdən qalma, sosial təcrid.</li>
-</ul>
-
-<h2 id="6b23-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar</h3>
-<p><strong>A.</strong> Ciddi xəstəliyi var və ya inkişaf edir məşğuliyyət.</p>
-<p><strong>B.</strong> Somatik simptomlar minimal və ya yoxdur; mövcuddursa, məşğuliyyət şiddətinə uyğun olmayan.</p>
-<p><strong>C.</strong> Sağlamlıqla bağlı yüksək narahatlıq.</p>
-<p><strong>D.</strong> Pasiyent həddən artıq sağlamlıqla bağlı davranışlar göstərir (yoxlama) və ya xəstəlik qaçınması.</p>
-<p><strong>E.</strong> Davam ≥ 6 ay (DSM-5-TR); xəstəliyin tipik məzmunu zaman ərzində dəyişə bilər.</p>
-<p><strong>F.</strong> Başqa psixi pozuntu (MDD, panik, GAD, OKP, BDD, sayıqlama somatik) ilə daha yaxşı izah olunmur.</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>DSM-5-TR — Illness Anxiety Disorder (300.7); care-seeking və care-avoiding alt-tipləri.</li>
-  <li>XBT-11 — OKP spektri kateqoriyasında (6B23); klassik somatoform yerindən fərqli yeni yer.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə.</li>
-  <li>Tibbi qiymətləndirmə — real xəstəliyin istisnası (lakin həddən artıq sınaq qaçınılmalıdır).</li>
-  <li>Şkala — Whiteley Index, SHAI (Short Health Anxiety Inventory).</li>
-  <li>Komorbidlik skrining.</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>Somatik simptom pozuntusu (6C20)</td><td>Somatik şikayətlər dominant.</td></tr>
-<tr><td>Real tibbi xəstəlik</td><td>Klinik və laborator təsdiq.</td></tr>
-<tr><td>OKP (6B20)</td><td>Çoxsaylı obsessiyalar; xəstəlik məhdud deyil.</td></tr>
-<tr><td>GAD (6B00)</td><td>Çoxsaylı narahatlıq sahələri.</td></tr>
-<tr><td>Panik (6B01)</td><td>Atak dövründə "ürək tutması" qorxusu.</td></tr>
-<tr><td>Sayıqlama pozuntusu (6A24) — somatik</td><td>İnsight yox.</td></tr>
-<tr><td>Major depresiv pozuntu — somatik fokus</td><td>Affektiv komponent dominant.</td></tr>
-</table></div>
-
-<h2 id="6b23-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>Whiteley Index (14 maddə), SHAI.</li>
-  <li>Tibbi yoxlama — bir dəfə tam, sonra təkrarlanmır.</li>
-  <li>PHQ-9, GAD-7 komorbidlik.</li>
-</ul>
-
-<h2 id="6b23-8-mualice">8. Müalicə</h2>
-<ol>
-  <li>KDT birinci sıra — koqnitiv yenidən strukturlaşdırma (fəlakətə salma), bədən yoxlama və reassurance axtarışının qarşısının alınması (ekspozisiya + ritual prevention), diqqət təlimi. Effekt: Cooper K. et al. Behav Res Ther 2017 meta-analiz.</li>
-  <li>SSRİ — orta-ağır halda və ya komorbid depresiya/GAD.</li>
-  <li>Tək həkim modeli (single physician) — pasiyent yalnız bir birinci tibbi yardım həkimi ilə işləyir; çoxsaylı yoxlamadan və "doctor shopping"-dən qaçınma.</li>
-  <li>Reassurance limit — həkim narahatlıq cavabında həddən artıq sübut vermir; qısa, ardıcıl mesaj.</li>
-  <li>Mindfulness-əsaslı yanaşma adjunkt.</li>
-</ol>
-
-<h3>Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>Cooper K. et al. Behav Res Ther 2017 meta-analiz — KDT əhəmiyyətli effekt; orta effekt ölçüsü.</li>
-  <li>Greeven A. et al. Am J Psychiatry 2007 RKİ — KDT və paroksetin hər ikisi placebodan üstün.</li>
-</ul>
-
-<h2 id="6b23-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>KDT Hipoxondriya üçün (Salkovskis P., Warwick H.)</dt>
-  <dd>Koqnitiv model — bədən sensasiyalarının "fəlakətə salınması" mərkəzdə. Müdaxilə: psixoeducation, alternativ izahların araşdırılması, bədən yoxlama və reassurance axtarışının davranış eksperimentləri, ekspozisiya. 12–16 seans.</dd>
-
-  <dt>Whiteley Index</dt>
-  <dd>14 maddəlik xəstəlik narahatlığı şkalası — qızıl standart skrining.</dd>
-
-  <dt>SHAI — Short Health Anxiety Inventory (Salkovskis)</dt>
-  <dd>18 maddə; klinik və populyasiya tədqiqatları.</dd>
-
-  <dt>Tək Həkim Modeli (single physician approach)</dt>
-  <dd>Pasiyent yalnız bir həkim ilə işləyir; bütün şikayətlər həmin həkim vasitəsi ilə idarə olunur; çoxsaylı yoxlama və ziddiyyətli rəylərin qarşısı alınır.</dd>
-</dl>
-
-<h2 id="6b23-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "Pasiyent "uydurma" xəstəlik göstərir, oyun oynayır"</h4>
-<p><strong>Sübut:</strong> hipoxondriya klinik psixiatrik pozuntudur; pasiyentin narahatlığı həqiqidir; "oyun" və ya simulyasiya deyil. Faktitioz pozuntudan (6D50) fərqlənir.</p>
-
-<h4>Mif 2: "Tibbi yoxlama nə qədər çox aparılsa, pasiyent o qədər rahatlaşar"</h4>
-<p><strong>Sübut:</strong> təkrar yoxlama qısamüddətli rahatlıq verir, sonra narahatlıq qayıdır; "yoxlama bağımlılığı" inkişaf edir. Tək həkim modeli və yoxlama məhdudlaşdırılması tövsiyə edilir.</p>
-
-<h4>Mif 3: "Reassurance ("sən sağlamsan") müalicə vasitəsidir"</h4>
-<p><strong>Sübut:</strong> təkrar reassurance pozuntunu gücləndirir — pasiyent sübut axtarmağa davam edir. Strukturlaşdırılmış həkim cavabı: bir dəfəlik qiymətləndirmə, sonra qısa standart mesaj.</p>
-
-<h4>Mif 4: "İnternet axtarışı pasiyentin özünə-savadlanmasına kömək edir"</h4>
-<p><strong>Sübut:</strong> "cyberchondria" — internet axtarışı narahatlığı gücləndirir, fəlakətə salma artırır; məhdudlaşdırma və ya strukturlaşdırma tövsiyə edilir.</p>
-
-<h4>Mif 5: "Hipoxondriya yalnız yaşlı pasiyentlərdə baş verir"</h4>
-<p><strong>Sübut:</strong> başlanğıc erkən-orta yetkinlikdə; yaş aralığı geniş.</p>
-
-<h4>Mif 6: "Yalnız antidepresant effektivdir, terapiya köməksizdir"</h4>
-<p><strong>Sübut:</strong> Greeven 2007 — KDT və paroksetin hər ikisi placebodan üstün; KDT birinci sıra (uzunmüddətli effekt SSRİ-yə müqayisəli).</p>
-
-<h2 id="6b23-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>KDT və ya SSRİ ilə əhəmiyyətli yaxşılaşma əksər pasiyentdə.</li>
-  <li>Xronikləşmə müalicəsiz; davamlı tibbi resurs istifadəsi.</li>
-</ul>
-
-<h2 id="6b23-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B23 Hypochondriasis. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>Cooper K. et al. Cognitive behaviour therapy for health anxiety: a systematic review and meta-analysis. Behav Res Ther 2017;90:8–20.</li>
-  <li>Greeven A. et al. Cognitive behavior therapy and paroxetine in the treatment of hypochondriasis: a randomized controlled trial. Am J Psychiatry 2007;164(1):91–99.</li>
-  <li>Salkovskis P.M., Rimes K.A., Warwick H.M. The Health Anxiety Inventory: development and validation of scales for the measurement of health anxiety and hypochondriasis. Psychol Med 2002;32(5):843–853.</li>
-</ol>
-</section>
-
-<section class="disorder" data-icd="6B24">
-<h1 id="6b24-toplama-hoarding" class="h-disorder"><span class="icd">6B24</span> TOPLAMA POZUNTUSU</h1>
-
-<h2 id="6b24-1-terif">1. Tərif və nozologiya</h2>
-<p>Toplama pozuntusu (XBT-11: <span class="icd">6B24</span>; DSM-5-TR: 300.3 Hoarding Disorder) — əşyaları əldə etmək və ya saxlamaq tələbatı və onları atmaqdan davamlı çətinlik, bu da yaşayış sahəsinin (otaqların funksional məqsədli istifadə edilə bilməyəcək dərəcədə) tıxanmasına gətirir. OKP spektri kateqoriyasında.</p>
-
-<h2 id="6b24-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Frost R.O., Hartl T.L. (1996) — hoarding-in koqnitiv-davranış modeli.</li>
-  <li>DSM-IV — OKP-nin alt-tipi kimi qeyd edilirdi.</li>
-  <li>DSM-5 (2013) və XBT-11 — <strong>ayrı diaqnostik kateqoriya</strong> kimi rəsmiyyət (sübut bazası — fərqli klinik təzahürlər, gediş, müalicə cavabı).</li>
-</ul>
-
-<h2 id="6b24-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Ömürlük yayılma: 2–6% (Samuels J.F. et al. Behav Res Ther 2008).</li>
-  <li>Yaşlılarda yayılma daha yüksək (~6%).</li>
-  <li>Cins: təxminən bərabər; klinik nümunələrdə qadınlar üstün.</li>
-  <li>Başlanğıc: yeniyetməlik (orta 11–15 yaş); şiddət yaşla artır.</li>
-  <li>Komorbidlik: MDD ~50%, OKP ~20%, GAD, sosial narahatlıq, ADHD.</li>
-</ul>
-
-<h2 id="6b24-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>İrsilik 50%.</li>
-  <li>Neyrobioloji — frontostriatal dövrə pozulması; OKP-dən fərqli aktivasiya patternləri (Tolin D.F. et al. icmalları).</li>
-  <li>Koqnitiv defisitlər — kateqoriyalaşdırma, qərarvermə, diqqət (Frost & Hartl modeli).</li>
-  <li>Emosional bağlanma əşyalara; itki travma.</li>
-  <li>Yaşlılarda — koqnitiv enmə tetikleyicisi.</li>
-</ul>
-
-<h2 id="6b24-5-klinik">5. Klinik təzahürlər</h2>
-<ul>
-  <li>Əşyaların əldə edilməsi (alış, ödənişsiz əldə etmə, bağışlama) və ya saxlanması üçün davamlı çətinlik.</li>
-  <li>Əşyaları atmaq və ya buraxmaq fikri əhəmiyyətli distres yaradır.</li>
-  <li>Çoxlu əşya yığılmaq və yaşayış sahəsini tutmaq — otaqlar funksional məqsədli istifadə edilə bilməz (yataq otağı yatak üçün, mətbəx yemək üçün və s.).</li>
-  <li>Bəzən "animal hoarding" — heyvanların kütləvi saxlanması.</li>
-  <li>İnsight çox vaxt zəifdir — pasiyent problemi qəbul etmir.</li>
-  <li>Sağlamlıq və təhlükəsizlik riskləri — yanğın, infeksiyalar, yıxılma, sosial təcrid, evdən kənarlaşdırılma.</li>
-</ul>
-
-<h2 id="6b24-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar</h3>
-<p><strong>A.</strong> Əldə edilən əşyaları atmaq və ya buraxmaqda davamlı çətinlik, dəyərindən asılı olmayaraq.</p>
-<p><strong>B.</strong> Bu çətinlik əşyaları saxlamağa davamlı tələbat və atmaqla bağlı distresdən qaynaqlanır.</p>
-<p><strong>C.</strong> Yığılma yaşayış sahəsini tıxayır və otaqların məqsədli istifadəsini əhəmiyyətli dərəcədə pozur.</p>
-<p><strong>D.</strong> Əhəmiyyətli distres və ya funksional pozulma (özünə, ailəyə, başqalarına təhlükəli mühit daxil).</p>
-<p><strong>E.</strong> Tibbi vəziyyət (beyin zədəsi, demensiya) istisnası.</p>
-<p><strong>F.</strong> Başqa psixi pozuntu (OKP "obsessiyaları", MDD "enerji yoxluğu", psixotik pozuntu sayıqlamaları, autizm "məhdud maraqlar") ilə daha yaxşı izah olunmur.</p>
-<p>Kvalifikator: <strong>excessive acquisition</strong> ilə; insight (yaxşı / orta — zəif / yox).</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>DSM-5-TR / XBT-11 — ayrı kateqoriya; insight kvalifikatoru.</li>
-  <li>"Animal hoarding" — ayrı spesifikator olmasa da klinik tanınmış variant; veteriner və ictimai sağlamlıq orqanları ilə əməkdaşlıq tələb olunur.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə.</li>
-  <li>Ev ziyarəti və ya foto sübutu — yaşayış sahəsinin vəziyyəti (Clutter Image Rating).</li>
-  <li>Şkala — Saving Inventory-Revised (SI-R).</li>
-  <li>Komorbidlik və koqnitiv qiymətləndirmə (yaşlılarda demensiya istisnası — MMSE/MoCA).</li>
-  <li>Təhlükəsizlik və sağlamlıq riski qiymətləndirməsi.</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>OKP (6B20)</td><td>Klassik obsessiyalar (təmizlik, simmetriya); hoarding-də əşyalar emosional dəyər.</td></tr>
-<tr><td>MDD (6A70/6A71)</td><td>"Enerji yoxluğu" səbəbi ilə təmizləməmək; aktiv əşya əldə etmə yox.</td></tr>
-<tr><td>Demensiya</td><td>Koqnitiv enmə dominant; sonradan inkişaf etmiş hoarding.</td></tr>
-<tr><td>Autizm spektri (6A02)</td><td>Məhdud maraqlar və əşyalara bağlılıq; sosial-kommunikativ defisit də mövcuddur.</td></tr>
-<tr><td>Şizofreniya / sayıqlama</td><td>Sayıqlama məzmunu (təhlükə, məna).</td></tr>
-<tr><td>Diogenes sindromu (yaşlılarda)</td><td>Özünə qulluq pozulması + hoarding; sosial təcrid; demensiya komorbid sıxdır.</td></tr>
-</table></div>
-
-<h2 id="6b24-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>SI-R (Saving Inventory-Revised), CIR (Clutter Image Rating).</li>
-  <li>Tibbi və koqnitiv müayinə (MMSE/MoCA yaşlılarda).</li>
-  <li>Təhlükəsizlik qiymətləndirməsi.</li>
-</ul>
-
-<h2 id="6b24-8-mualice">8. Müalicə</h2>
-<ol>
-  <li><strong>KDT hoarding üçün (Frost R.O., Tolin D.F., Steketee G.)</strong> — birinci sıra; manualizə edilmiş 26-seanslı protokol — motivasiya artırma, koqnitiv yenidən strukturlaşdırma, qərarvermə təlimi, sortlama və atma məşqləri, ev ziyarətləri. Sübut: Tolin D.F. et al. Depress Anxiety 2015 RKİ — orta-böyük effekt.</li>
-  <li>SSRİ — sübut bazası məhduddur; OKP-də effektiv olan SSRİ hoarding-də daha zəif cavab. Adjunkt rolda.</li>
-  <li>Koqnitiv remediation — diqqət, kateqoriyalaşdırma, qərarvermə təlimi.</li>
-  <li>Buoyancy yanaşması — pasiyentin daxili motivasiyasının dəstəklənməsi; məcburi təmizləmə ilə təkrar tıxanma riski.</li>
-  <li>İcma müdaxiləsi — ictimai sağlamlıq, sosial xidmət, yanğın təhlükəsizliyi.</li>
-  <li>Yaşlılarda — demensiya skrininqi və komorbid müdaxilə.</li>
-</ol>
-
-<h3>Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>Tolin D.F. et al. RKİ-lər — KDT effektivdir; SSRİ məhdud.</li>
-  <li>Saxena S. icmalları — SSRİ-yə cavab OKP-də müşahidə olunandan zəifdir.</li>
-</ul>
-
-<h2 id="6b24-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>KDT Hoarding üçün (Steketee G., Frost R.O.)</dt>
-  <dd>Manualizə edilmiş 26 seans — motivasion müsahibə, qərarvermə təlimi, sortlama məşqi, ev ziyarətləri, koqnitiv yenidən strukturlaşdırma. <a href="https://www.iocdf.org/expert-opinions/expert-opinion-hoarding" target="_blank" rel="noopener">IOCDF</a>.</dd>
-
-  <dt>SI-R — Saving Inventory-Revised (Frost R.O.)</dt>
-  <dd>23 maddə; üç alt-şkala (acquisition, difficulty discarding, clutter).</dd>
-
-  <dt>CIR — Clutter Image Rating</dt>
-  <dd>9-bal şkala; otağın tıxanma dərəcəsinin foto əsasında qiymətləndirilməsi.</dd>
-
-  <dt>Qrup KDT</dt>
-  <dd>Qiymət-effektiv format; uzunmüddətli dəstək.</dd>
-</dl>
-
-<h2 id="6b24-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "Toplama — sadəcə "kollekioner" şəxsiyyət xüsusiyyəti və ya tənbəllik"</h4>
-<p><strong>Sübut:</strong> hoarding klinik pozuntudur — Frost & Hartl koqnitiv-davranış modeli; ayrı neyrobioloji patern; funksional pozulma və sağlamlıq riski. Kolleksionerlikdən fərqli olaraq əşyalar sistemləşdirilmiş deyil və yaşayış sahəsini tıxayır.</p>
-
-<h4>Mif 2: "Pasiyentin evini güclə təmizləmək problemə son qoyar"</h4>
-<p><strong>Sübut:</strong> məcburi təmizləmə pasiyentin razılığı olmadan — kütləvi distres, travma və 12 ay ərzində tıxanmanın yenidən bərpası ilə nəticələnir. Pasiyent iştirakı ilə tədricən sortlama tövsiyə edilir.</p>
-
-<h4>Mif 3: "Hoarding adi OKP-nin alt-tipidir, SSRİ kifayətdir"</h4>
-<p><strong>Sübut:</strong> DSM-5 və XBT-11 ayrı kateqoriya; SSRİ-yə cavab OKP-dən zəifdir; KDT manualizə edilmiş protokol birinci sıra.</p>
-
-<h4>Mif 4: "Heyvanları "kömək niyyəti ilə" çox saxlamaq heyvanlar üçün yaxşıdır"</h4>
-<p><strong>Sübut:</strong> "animal hoarding" — heyvanların zəif gigiyena, qida, tibbi qulluq alması ilə nəticələnir; çoxlu heyvan ölümü, sağ qalanların ağır vəziyyətdə olması; veteriner və ictimai sağlamlıq orqanları müdaxiləsi tələb olunur.</p>
-
-<h4>Mif 5: "Yaşlılarda hoarding "normal yaşlanma"-dır"</h4>
-<p><strong>Sübut:</strong> yaşlılarda hoarding demensiya markeri ola bilər (xüsusilə frontotemporal); koqnitiv qiymətləndirmə tələb olunur.</p>
-
-<h4>Mif 6: "Bir dəfə təmizləyəndən sonra problem həll olunur"</h4>
-<p><strong>Sübut:</strong> hoarding xronik pozuntudur; uzunmüddətli müalicə və icma dəstəyi tələb olunur.</p>
-
-<h2 id="6b24-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, yaşla şiddət artır.</li>
-  <li>KDT ilə əhəmiyyətli yaxşılaşma, lakin tam remisya nadir.</li>
-  <li>Komorbid demensiya pis proqnoz.</li>
-</ul>
-
-<h2 id="6b24-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B24 Hoarding disorder. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>Frost R.O., Hartl T.L. A cognitive-behavioral model of compulsive hoarding. Behav Res Ther 1996;34(4):341–350.</li>
-  <li>Steketee G., Frost R.O. Treatment for Hoarding Disorder: Therapist Guide. Oxford Univ Press; 2014.</li>
-  <li>Tolin D.F., Frost R.O., Steketee G. et al. Cognitive behavioral therapy for hoarding disorder: a meta-analysis. Depress Anxiety 2015;32(3):158–166.</li>
-  <li>Samuels J.F. et al. Prevalence and correlates of hoarding behavior in a community-based sample. Behav Res Ther 2008;46(7):836–844.</li>
-</ol>
-</section>
-
-<section class="disorder" data-icd="6B25">
-<h1 id="6b25-bedene-yonelmis-tekrar-davranislar" class="h-disorder"><span class="icd">6B25</span> BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</h1>
-
-<h2 id="6b25-1-terif">1. Tərif və nozologiya</h2>
-<p>Bədənə yönəlmiş təkrar davranışlar (XBT-11: <span class="icd">6B25</span> Body-focused Repetitive Behaviour Disorders) — pasiyentin öz bədəninə (saç, dəri, dırnaq) təkrarlanan müdaxiləsi ilə xarakterizə olunan pozuntular qrupudur. Əsas alt-tiplər:</p>
-<ul>
-  <li><span class="icd">6B25.0</span> — Trikotilomania (saç çəkmə pozuntusu);</li>
-  <li><span class="icd">6B25.1</span> — Eksoreasiya / Dermatilomania (dəri qıdaşdırma pozuntusu);</li>
-  <li><span class="icd">6B25.2</span> — Digər spesifikləşdirilmiş (dırnaq dişləmə — onikofagiya, dodaq dişləmə, yanaq dişləmə).</li>
-</ul>
-<p>DSM-5-TR-də Trikotilomania (312.39) və Eksoreasiya (698.4) ayrı kodlanır, lakin OKP spektri kateqoriyasında.</p>
-
-<h2 id="6b25-2-tarixce">2. Tarixçə</h2>
-<ul>
-  <li>Hallopeau F.H. (1889) — "trichotillomania" termini.</li>
-  <li>DSM-III-R (1987) — Trikotilomania impuls nəzarət pozuntusu kimi.</li>
-  <li>DSM-5 (2013) — OKP spektri kateqoriyasına keçirilmiş; eksoreasiya ayrı diaqnoz kimi əlavə edilmişdir.</li>
-  <li>XBT-11 (2019) — birgə kateqoriya kimi (6B25 ümbrellası).</li>
-</ul>
-
-<h2 id="6b25-3-epidemiologiya">3. Epidemiologiya</h2>
-<ul>
-  <li>Trikotilomania ömürlük yayılma: 0,5–2%; klinik formada qadınlarda 4:1.</li>
-  <li>Eksoreasiya: 1,4–5,4%; qadınlarda yüksək.</li>
-  <li>Başlanğıc: yeniyetməlik (10–13 yaş).</li>
-  <li>Komorbidlik: MDD, narahatlıq, OKP, BDD, ADHD.</li>
-</ul>
-
-<h2 id="6b25-4-etiologiya">4. Etiologiya</h2>
-<ul>
-  <li>İrsilik 30–40%; ailə tarixçəsi yayğın.</li>
-  <li>Genetik — SAPAP3 (SLITRK1) — siçanlarda hipergrooming fenotipi.</li>
-  <li>Neyrobioloji — OKP-yə bənzər kortiko-striato-talamo-kortikal disregulasiya, lakin fərqli profil.</li>
-  <li>Davranış mexanizmləri: stres reaksiyası, "automatic" (avtomatik, şüursuz) və "focused" (məqsədli, intensiv diqqətlə) alt-tiplər.</li>
-</ul>
-
-<h2 id="6b25-5-klinik">5. Klinik təzahürlər</h2>
-
-<h3>Trikotilomania (6B25.0)</h3>
-<ul>
-  <li>Saç çəkmə — adətən başdan, qaşlardan, kirpiklərdən; bəzən bədənin başqa hissələrindən.</li>
-  <li>Saçın gözlə görünən itkisi.</li>
-  <li>"Pre-pulling tension" və ya "post-pulling relief" — bütün pasiyentlərdə olmaya bilər.</li>
-  <li>Trikofagiya (çəkdiyi saçın yeyilməsi) — 10–20% pasiyentdə; "trikobezoar" — mədə-bağırsaq tıxanması cərrahi tələb edə bilər.</li>
-</ul>
-
-<h3>Eksoreasiya / Dermatilomania (6B25.1)</h3>
-<ul>
-  <li>Dərinin qıdaşdırılması — üz, qol, dərinin pozulmuş sahələri ("acne", həşərat sancması yeri).</li>
-  <li>Yaralanma, qabıq, izlər.</li>
-  <li>İnfeksiya, yara izi, kosmetik nəticələr.</li>
-</ul>
-
-<h3>Ümumi xüsusiyyətlər</h3>
-<ul>
-  <li>Pasiyent davranışı dayandırmağa təkrar uğursuz cəhdlər göstərir.</li>
-  <li>Utancdan sosial təcrid (parikulə, ağzı/qolu örtmək).</li>
-</ul>
-
-<h2 id="6b25-6-diaqnoz">6. Diaqnoz</h2>
-<h3>6.1 Vahid diaqnostik meyarlar</h3>
-<p><strong>A.</strong> Saç çəkmə (trikotilomaniyada) və ya dəri qıdaşdırma (eksoreasiyada) — gözlə görünən saç itkisi və ya dəri zədəsi.</p>
-<p><strong>B.</strong> Pasiyent davranışı dayandırmağa və ya azaltmağa təkrar cəhdlər göstərir.</p>
-<p><strong>C.</strong> Davranış əhəmiyyətli distres və ya funksional pozulma yaradır.</p>
-<p><strong>D.</strong> Tibbi vəziyyət (alopecia areata, dermatoloji xəstəlik) və ya başqa psixi pozuntu (BDD-də görünüş motivli; psixoz sayıqlamada; maddə induksiyalı) istisnası.</p>
-
-<h3>6.2 Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>DSM-5-TR — Trikotilomania (312.39) və Eksoreasiya (698.4) ayrı.</li>
-  <li>XBT-11 — birgə 6B25 ümbrellası; alt-spesifikatorlar.</li>
-</ul>
-
-<h3>6.3 Diaqnostika alqoritmi</h3>
-<ol>
-  <li>Klinik müsahibə (pasiyent çox vaxt utancdan açıq danışmır).</li>
-  <li>Dermatoloji müayinə — saç itkisi və dəri zədəsinin başqa səbəblərinin istisnası (alopecia areata, tinea capitis, ekzema).</li>
-  <li>Şkala — Massachusetts General Hospital Hairpulling Scale (MGH-HPS), Skin Picking Scale.</li>
-  <li>Komorbidlik skrining.</li>
-  <li>Trikofagiya skrininqi — mədə-bağırsaq simptomları varsa.</li>
-</ol>
-
-<h3>6.4 Differensial diaqnostika</h3>
-<div class="tbl-wrap"><table>
-<tr><th>Vəziyyət</th><th>Fərqləndirici</th></tr>
-<tr><td>Alopecia areata</td><td>Autoimmun; sərhədlər dəqiq, "exclamation mark hairs"; saç çəkmə davranışı yoxdur.</td></tr>
-<tr><td>Tinea capitis</td><td>Göbələk infeksiyası; KOH müayinə.</td></tr>
-<tr><td>BDD (6B21)</td><td>Görünüş əsaslı obsessiya; dəri qıdaşdırma kosmetik məqsədli.</td></tr>
-<tr><td>OKP (6B20)</td><td>Çoxsaylı obsessiyalar; saç və dəri davranışı dominant deyil.</td></tr>
-<tr><td>Stereotipik hərəkət pozuntusu (6A06)</td><td>Ritmik təkrarlanan motor; bədənə spesifik müdaxilə yox.</td></tr>
-<tr><td>Faktitioz pozuntu (6D50)</td><td>Tibbi sübut axtarmaq motivasiyası.</td></tr>
-<tr><td>Psixotik sayıqlama (parazit hissi — Ekbom)</td><td>Sayıqlama məzmunu.</td></tr>
-</table></div>
-
-<h2 id="6b25-7-muayine">7. Müayinə</h2>
-<ul>
-  <li>MGH-HPS (trikotilomaniya), Skin Picking Scale-Revised.</li>
-  <li>Dermatoloji müayinə.</li>
-  <li>Trikofagiya halında mədə ultrasəs.</li>
-</ul>
-
-<h2 id="6b25-8-mualice">8. Müalicə</h2>
-<ol>
-  <li><strong>Habit Reversal Training (HRT) birinci sıra</strong> — awareness training, competing response (məs. yumruğu sıxma), motivasiya, sosial dəstək. Sübut: Bloch M.H. et al. Biol Psychiatry 2007 meta-analiz.</li>
-  <li>ACT (Acceptance and Commitment Therapy) — emosional komponentə yönəlir.</li>
-  <li>Comprehensive Behavioral Treatment (ComB, Mansueto) — HRT + multimodal davranış müdaxiləsi.</li>
-  <li>N-asetilsistein (NAC) — sübut bazası inkişaf etməkdə; Grant J.E. et al. Arch Gen Psychiatry 2009 RKİ — trikotilomaniyada effektivlik.</li>
-  <li>SSRİ — sübut bazası məhduddur; OKP-də effektiv olan SSRİ trikotilomaniyada zəif cavab; klomipramin nisbətən üstün.</li>
-  <li>Atipik antipsixotik adjunkt — refrakter halda.</li>
-  <li>Dermatoloji qulluq — yaralanma və infeksiyaların idarə edilməsi.</li>
-</ol>
-
-<h3>Mənbə-spesifik dəqiqləşdirmələr</h3>
-<ul>
-  <li>Bloch M.H. Biol Psychiatry 2007 meta-analiz — HRT trikotilomaniya üçün ən sübutlu.</li>
-  <li>Grant J.E. Arch Gen Psychiatry 2009 — NAC 1200–2400 mq/gün effektivlik.</li>
-</ul>
-
-<h2 id="6b25-9-metodikalar">9. Metodikalar</h2>
-<dl class="method-list">
-  <dt>HRT — Habit Reversal Training (Azrin N.H., Nunn R.G.)</dt>
-  <dd>Beş əsas komponent — awareness training, competing response, motivasiya, sosial dəstək, generalization. Bədənə yönəlmiş təkrar davranışlarda qızıl standart.</dd>
-
-  <dt>ComB — Comprehensive Behavioral Treatment (Mansueto C.S.)</dt>
-  <dd>SCAMP modeli — Sensor, Cognitive, Affective, Motor, Place modalliklərinə görə fərdiləşdirilmiş yanaşma.</dd>
-
-  <dt>ACT — Acceptance and Commitment Therapy</dt>
-  <dd>Emosional komponentə fokus; Woods D.W. et al. Behav Res Ther 2006 RKİ.</dd>
-
-  <dt>NAC — N-asetilsistein</dt>
-  <dd>Qlutamatergic modulator; 1200–2400 mq/gün; Grant J.E. Arch Gen Psychiatry 2009.</dd>
-
-  <dt>MGH-HPS — Massachusetts General Hospital Hairpulling Scale</dt>
-  <dd>7 maddə; tezliyi, intensivliyi.</dd>
-</dl>
-
-<h2 id="6b25-10-mifler">10. Mif və yanlış inanclar</h2>
-
-<h4>Mif 1: "Saç çəkmə və dəri qıdaşdırma "pis vərdiş"-dir, ciddi pozuntu deyil"</h4>
-<p><strong>Sübut:</strong> klinik pozuntudur; funksional pozulma, sosial təcrid, infeksiya və trikobezoar (cərrahi) riskləri.</p>
-
-<h4>Mif 2: "Pasiyent iradi olaraq dayandıra bilər"</h4>
-<p><strong>Sübut:</strong> pasiyent təkrarən cəhd edib uğursuz olur — bu pozuntunun əsas əlamətidir; HRT və ya farmakoterapiya tələb olunur.</p>
-
-<h4>Mif 3: "SSRİ trikotilomaniya üçün effektivdir (OKP kimi)"</h4>
-<p><strong>Sübut:</strong> SSRİ-yə cavab OKP-dən zəifdir; HRT birinci sıra; NAC adjunkt; klomipramin SSRİ-dən nisbətən üstün.</p>
-
-<h4>Mif 4: "Saçın gizlədilməsi (parika, makyaj) həll yoludur"</h4>
-<p><strong>Sübut:</strong> kosmetik kamuflyaj qısamüddətli; əsas davranışa müdaxilə tələb olunur.</p>
-
-<h4>Mif 5: "Yalnız hipnoz və ya psixoanalitik dərin terapiya əsas davranış səbəbini həll edər"</h4>
-<p><strong>Sübut:</strong> sübut bazası məhduddur; HRT əsaslı davranış yanaşmalar üstündür.</p>
-
-<h4>Mif 6: "Dəri qıdaşdırma "akne" və ya kosmetik problemə cavabdır"</h4>
-<p><strong>Sübut:</strong> klinik pozuntu — pasiyent davranışın qarşısını ala bilmir, dəridə yara izi və infeksiya yaradır; klinik müdaxilə tələb olunur.</p>
-
-<h2 id="6b25-11-proqnoz">11. Proqnoz</h2>
-<ul>
-  <li>Xronik gediş, "waxing and waning".</li>
-  <li>HRT ilə əhəmiyyətli yaxşılaşma; komorbidlik müalicəsi vacibdir.</li>
-</ul>
-
-<h2 id="6b25-12-menbeler">12. Mənbələr</h2>
-<ol class="ref-list">
-  <li>WHO. ICD-11. 6B25 Body-focused repetitive behaviour disorders. 2024.</li>
-  <li>APA. DSM-5-TR. 2022.</li>
-  <li>Bloch M.H. et al. Systematic review: pharmacological and behavioral treatment for trichotillomania. Biol Psychiatry 2007;62(8):839–846.</li>
-  <li>Grant J.E. et al. N-acetylcysteine, a glutamate modulator, in the treatment of trichotillomania: a double-blind, placebo-controlled study. Arch Gen Psychiatry 2009;66(7):756–763.</li>
-  <li>Woods D.W., Wetterneck C.T., Flessner C.A. A controlled evaluation of acceptance and commitment therapy plus habit reversal for trichotillomania. Behav Res Ther 2006;44(5):639–656.</li>
-  <li>Mansueto C.S., Goldfinger Golomb R., Thomas A.M., Stemberger R.M.T. A comprehensive model for behavioral treatment of trichotillomania. Cogn Behav Pract 1999;6(1):23–43.</li>
-</ol>
-</section>
-</div>
+<nav class="crumb"><a href="mundericat.html">‹ Mündəricat</a></nav><header class="chap-head"><h1 class="chap-h1"><span class="chap-range">6B20–6B2Z</span><span class="chap-title">OBSESSİV-KOMPULSİV (OKP)</span></h1><div class="chap-en">Obsessive-compulsive or related disorders</div><p class="chap-sub">Bu fəsildəki pozuntular — hər biri ayrıca səhifə:</p></header><div class="chapter-menu"><a class="ch-disorder" href="6B20.html"><span class="ch-code">6B20</span><span class="ch-name">OBSESSİV-KOMPULSİV POZUNTU (OKP)</span></a><a class="ch-disorder" href="6B21.html"><span class="ch-code">6B21</span><span class="ch-name">BƏDƏN DİSMORFİK POZUNTUSU (BDD)</span></a><a class="ch-disorder" href="6B22.html"><span class="ch-code">6B22</span><span class="ch-name">PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)</span></a><a class="ch-disorder" href="6B23.html"><span class="ch-code">6B23</span><span class="ch-name">HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)</span></a><a class="ch-disorder" href="6B24.html"><span class="ch-code">6B24</span><span class="ch-name">TOPLAMA POZUNTUSU</span></a><a class="ch-disorder" href="6B25.html"><span class="ch-code">6B25</span><span class="ch-name">BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR</span></a></div>
   </main>
 </div>
 
 <button id="btt" title="Yuxarı">↑</button>
 <script>
-const CURRENT = "bolme-06";
+const CURRENT = "bolme-02";
 const ALL_PAGES = [{"slug": "index", "title": "\u00d6ns\u00f6z", "code": ""}, {"slug": "giris", "title": "Kitab Haqq\u0131nda", "code": ""}, {"slug": "giris-yekun", "title": "Kitab haqq\u0131nda", "code": ""}, {"slug": "mugeddime", "title": "M\u00fcq\u0259ddim\u0259", "code": ""}, {"slug": "abbreviatur", "title": "TERMİNOLOJİ L\u00dcG\u018eT", "code": ""}, {"slug": "bolme-01", "title": "B\u00d6LM\u018f 1 \u2014 NEYRO\u0130NK\u0130\u015eAF", "code": ""}, {"slug": "bolme-02", "title": "B\u00d6LM\u018f 2 \u2014 \u015e\u0130ZOFREN\u0130YA", "code": ""}, {"slug": "bolme-03", "title": "B\u00d6LM\u018f 3 \u2014 KATATON\u0130YA", "code": ""}, {"slug": "bolme-04", "title": "B\u00d6LM\u018f 4 \u2014 \u018fHVAL", "code": ""}, {"slug": "bolme-05", "title": "B\u00d6LM\u018f 5 \u2014 T\u018f\u015eV\u0130\u015e", "code": ""}, {"slug": "bolme-06", "title": "B\u00d6LM\u018f 6 \u2014 OBSESS\u0130V-KOMPULS\u0130V", "code": ""}, {"slug": "bolme-07", "title": "B\u00d6LM\u018f 7 \u2014 STRESS", "code": ""}, {"slug": "bolme-08", "title": "B\u00d6LM\u018f 8 \u2014 D\u0130SSOS\u0130AT\u0130V", "code": ""}, {"slug": "bolme-09", "title": "B\u00d6LM\u018f 9 \u2014 YEM\u018f", "code": ""}, {"slug": "bolme-10", "title": "B\u00d6LM\u018f 10 \u2014 \u0130FRAZAT", "code": ""}, {"slug": "bolme-11", "title": "B\u00d6LM\u018f 11 \u2014 B\u018fD\u018fNS\u018fL DISSTRES", "code": ""}, {"slug": "bolme-12", "title": "B\u00d6LM\u018f 12 \u2014 MADD\u018f \u0130ST\u0130FAD\u018fS\u0130", "code": ""}, {"slug": "bolme-13", "title": "B\u00d6LM\u018f 13 \u2014 \u0130MPULS N\u018fZAR\u018fT\u0130", "code": ""}, {"slug": "bolme-14", "title": "B\u00d6LM\u018f 14 \u2014 POZUCU DAVRANI\u015e", "code": ""}, {"slug": "bolme-15", "title": "B\u00d6LM\u018f 15 \u2014 \u015e\u018fXS\u0130YY\u018fT", "code": ""}, {"slug": "bolme-16", "title": "B\u00d6LM\u018f 16 \u2014 PARAF\u0130L\u0130K", "code": ""}, {"slug": "bolme-17", "title": "B\u00d6LM\u018f 17 \u2014 S\u00dcN\u0130 POZUNTULAR", "code": ""}, {"slug": "bolme-18", "title": "B\u00d6LM\u018f 18 \u2014 YUXU-OYAQLIQ", "code": ""}, {"slug": "bolme-19", "title": "B\u00d6LM\u018f 19 \u2014 C\u0130NS\u0130 SA\u011eLAMLIQ", "code": ""}, {"slug": "bolme-20", "title": "B\u00d6LM\u018f 20 \u2014 NEYROKOQN\u0130T\u0130V", "code": ""}, {"slug": "bolme-21", "title": "B\u00d6LM\u018f 21 \u2014 HAM\u0130L\u018fL\u0130K", "code": ""}, {"slug": "bolme-22", "title": "B\u00d6LM\u018f 22\u201323 \u2014 \u0130K\u0130NC\u0130L\u0130", "code": ""}, {"slug": "bolme-ps", "title": "PS\u0130XOSOMAT\u0130K", "code": ""}, {"slug": "elave-skalalar", "title": "\u018flav\u0259 \u2014 \u015ekalalar", "code": ""}, {"slug": "elave-acde", "title": "\u018flav\u0259l\u0259r A\u2013E", "code": ""}, {"slug": "yekun", "title": "Yekun \u2014 \u0130stifad\u0259 qaydalar\u0131", "code": ""}];
 
 // Sidebar active
