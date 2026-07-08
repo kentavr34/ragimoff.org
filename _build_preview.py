@@ -178,7 +178,9 @@ def sidebar_tree(cls, groups, active):
             f'<span class="sub-name">{nm}</span></a>' for dc, t, nm in items)
         if not subs:
             subs = '<span class="nav-sub-link nav-empty"><span class="sub-code"></span><span class="sub-name">tamamlanır</span></span>'
-        rspan = f'<span class="nav-code">{rng}</span>' if rng else ""
+        # span кода выводим ВСЕГДА (даже пустой) — иначе grid-строка без кода съезжает
+        # к левому краю и ломает выравнивание заголовков в одну вертикаль
+        rspan = f'<span class="nav-code">{rng}</span>'
         head = (f'<a href="{slug}.html" class="nav-link is-bolme">{rspan}<span>{title}</span></a>'
                 if slug else f'<span class="nav-link is-bolme">{rspan}<span>{title}</span></span>')
         rows.append(f'<div class="nav-item nav-has-sub">{head}'
@@ -208,6 +210,9 @@ NEWNAV = (_front_links + _side_tabs
           + sidebar_tree("icd", icd_groups, True)
           + sidebar_tree("dsm", dsm_groups, False)
           + sidebar_tree("icd10", icd10_groups, False))
+# верхний некликабельный «📋 Mündəricat» в шапке сайдбара лишний (большой блок до классификации
+# на мобиле) — убираем заголовок, кнопку закрытия ✕ оставляем; вводный блок поднимается выше
+top = re.sub(r'(<div class="sb-hdr">)\s*<h3>.*?</h3>', r'\1', top, count=1, flags=re.S)
 top = re.sub(r'(<nav>).*?(</nav>)', lambda m: m.group(1) + NEWNAV + m.group(2), top, count=1, flags=re.S)
 
 EXTRA_CSS = """
@@ -333,7 +338,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 /* сайдбар сведён к концепту оглавления: код — чистое золото (без пилюли), название — светлое */
 .sidebar nav .nav-link{font-size:.92rem;letter-spacing:0;color:var(--text)}
 .sidebar nav .nav-code{font-family:var(--mono,monospace);font-size:.78rem;font-variant-numeric:tabular-nums;background:none !important;padding:0 !important;border:0 !important;border-radius:0 !important;color:var(--gold)}
-.sidebar nav .nav-link.is-bolme{cursor:default;color:var(--text);font-weight:700}
+.sidebar nav .nav-link.is-bolme{display:grid;grid-template-columns:4.9rem 1fr;gap:.4rem;align-items:baseline;cursor:default;color:var(--text);font-weight:700}
 .sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem;color:var(--text)}
 .sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
 .sidebar nav .sub-name{color:var(--text)}
@@ -352,7 +357,9 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .home-card b{color:var(--gold);font-size:1.05rem;font-weight:700}
 .home-card span{color:var(--text2);font-size:.9rem;line-height:1.35}
 .home-card-main{border-color:var(--gold)}
-@media(max-width:720px){.home-title{font-size:1.5rem}.home-sub{font-size:.92rem}}
+/* мобайл: убрать лишнюю пустоту вокруг титула (site style.css даёт .home-hero padding 20/40 —
+   перебиваем; блок до классификации поднимается выше, страница компактнее ~ на треть) */
+@media(max-width:720px){.home-hero{margin:.4rem 0 .8rem;padding:8px 0 22px}.home-title{font-size:1.5rem}.home-sub{font-size:.92rem}}
 /* ===== ВВОДНЫЕ страницы (Müqəddimə, Kitab haqqında, Terminoloji lüğət) ===== */
 .front-page{max-width:44rem;margin:0 auto}
 .front-page h1{font-size:1.5rem;line-height:1.2;color:var(--text);margin:.3rem 0 1rem;font-weight:800}
@@ -555,6 +562,9 @@ def src_content(fname, cut_before=None):
     inner = re.sub(r'<button[^>]*class="[^"]*dzl-row-btn[^"]*"[^>]*>.*?</button>', "", inner, flags=re.S)
     inner = re.sub(r'<th[^>]*>\s*Düzəlt\s*</th>', "", inner)
     inner = re.sub(r'<td[^>]*class="[^"]*dzl[^"]*"[^>]*>.*?</td>', "", inner, flags=re.S)
+    # убрать старую постраничную навигацию (Əvvəlki/Növbəti) — у фронт-страниц своя крошка,
+    # к тому же она ссылается на удалённые старые страницы (giris-yekun.html и т.п.)
+    inner = re.sub(r'<nav class="page-nav">.*?</nav>', "", inner, flags=re.S)
     if cut_before:
         i = inner.find(cut_before)
         if i > 0:
