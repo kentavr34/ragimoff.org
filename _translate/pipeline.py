@@ -33,6 +33,7 @@ JSONLD_KEYS = ('name', 'about', 'description', 'keywords')
 LANG_META = {
     'en': {'lang': 'en', 'locale': 'en_US', 'inlang': 'en'},
     'ru': {'lang': 'ru', 'locale': 'ru_RU', 'inlang': 'ru'},
+    'tr': {'lang': 'tr', 'locale': 'tr_TR', 'inlang': 'tr'},
 }
 
 
