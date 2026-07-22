@@ -92,6 +92,19 @@ Final batch HA02–HA05 completed on 2026-05-14:
 
 ## Session Log
 
+### 2026-07-22 — Book translation EN+RU: pipeline + waves 1-3 (IN PROGRESS, cloud session)
+**Goal:** full copies of the book (161 pages) in English and Russian at `klinik-psixiatriya/en/` and `klinik-psixiatriya/ru/`, identical structure.
+**Branch:** `claude/clinical-psychiatry-menu-mkb-nnz1bt` (recreated from main after menu-PR #2 merge; also in this session: XBT-11 top-level menu item shipped in PR #2).
+**Infrastructure (committed):**
+- `_translate/pipeline.py` — extract / chunk / inject / status. HTML tokenised; agents translate ONLY text segments; markup is byte-identical by construction. `status <lang>` shows todo/invalid chunk ids; `inject <lang>` writes final pages into `klinik-psixiatriya/<lang>/` with localized meta (lang, og:locale, canonical→self under /<lang>/, JSON-LD inLanguage) and copies style.css/duzelis.*.
+- `_translate/glossary_en.md`, `glossary_ru.md` — built by `build_glossary.py` from abbreviatur.html trilingual tables + _codes_map.json (en11) + TYPOGRAPHY.md §0b.
+- `_translate/az/*.json` — 93 493 segments from 160 pages (admin-corrections.html excluded); `chunks/` — 425 chunks × 2 langs; `INSTRUCTIONS_EN.md` / `INSTRUCTIONS_RU.md` — translator-agent instructions (agent prompt = "Прочитай и выполни инструкцию ... для чанков: id1, id2, id3").
+- Translated output goes to `_translate/{en,ru}/out/<chunk-id>.json`.
+**Progress:** EN 41/425 chunks, RU 36/425 (all 23 chapter overviews both langs + 6A00-6A01 partially). Pilot pages injected: `klinik-psixiatriya/en/{index,6C50}.html`, `ru/{index,6C50}.html` — verified.
+**Wave scheme:** 12 background agents per wave (6 EN + 6 RU, 3 chunks each); commit `_translate` after each wave. Waves hit Claude session-limits twice (resets were 11:10 and 16:30 UTC) — resume via `status` (it lists exactly what's missing; nothing is retranslated).
+**PAUSED by owner (16:40 UTC):** owner will upload a file with translations/parallels (994 corpus) to the repo — incorporate it before continuing waves. 994 term DB itself unreachable from cloud (SSH key only on local Windows machine).
+**Next steps:** (1) read owner's parallels file, adapt pipeline; (2) finish waves until `status` = 0 todo both langs; (3) `inject en`, `inject ru`; (4) per-language search-index (adapt `build_search_index.py` BASE), hreflang, commit, draft PR.
+
 ### 2026-05-14 — chapters-v2 finalized
 - Completed final 8 disorders across two autonomous batches:
   - Batch: 7A60, 7A80, HA00, HA01 → commit `0057c68`
