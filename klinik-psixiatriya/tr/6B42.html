@@ -403,7 +403,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});
