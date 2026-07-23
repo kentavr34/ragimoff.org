@@ -15,7 +15,7 @@
     <meta property="og:locale" content="en_US" />
     <link rel="canonical" href="https://ragimoff.org/klinik-psixiatriya/en/en/21-6E6-ikincili.html" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "Book", "name": "Clinical Psychiatry", "inLanguage": "az", "author": {"@type": "Person", "name": "Kənan Rəhimov"}, "about": "A clinical guide to the diagnosis and treatment of psychiatric disorders. ICD-11, DSM-5.", "url": "https://ragimoff.org/klinik-psixiatriya/en/", "keywords": "psychiatry, psychiatrist, diagnosis, ICD-11, DSM-5, clinical protocol"}
+{"@context": "https://schema.org", "@type": "Book", "name": "clinical psychiatry", "inLanguage": "az", "author": {"@type": "Person", "name": "Kənan Rəhimov"}, "about": "A clinical guide to the diagnosis and treatment of psychiatric disorders. ICD-11, DSM-5.", "url": "https://ragimoff.org/klinik-psixiatriya/en/", "keywords": "psychiatry, psychiatrist, diagnosis, ICD-11, DSM-5, clinical protocol"}
 </script>
     <!-- DUZELIS-WIDGET -->
   <link rel="stylesheet" href="duzelis.css">
@@ -188,14 +188,14 @@ function setCls(k){
 <header class="site-header">
   <a href="https://ragimoff.org" class="hdr-back" title="Return to main site">← ragimoff.org</a>
   <a href="index.html" class="hdr-brand">
-    <div class="hdr-logo">КП</div>
+    <div class="hdr-logo">CP</div>
     <div class="hdr-title">
-      <strong>CLINICAL PSYCHIATRY</strong>
+      <strong>clinical psychiatry</strong>
       <small>ICD-11 · K.Rahimov · 2026</small>
     </div>
   </a>
   <div class="hdr-search">
-    <input id="search-input" type="text" placeholder="Search for a diagnosis, drug, code..." autocomplete="off">
+    <input id="search-input" type="text" placeholder="Search for a diagnosis, drug, or code..." autocomplete="off">
     <span class="ico">⌕</span>
     <div id="search-drop"></div>
   </div>
@@ -217,7 +217,7 @@ function setCls(k){
     <div class="sb-hdr"><h3>📋 Contents</h3><button class="sb-close" onclick="toggleSb()" aria-label="Close">✕</button></div>
     <nav>
 <div class="nav-item" data-slug="index">
-  <a href="index.html" class="nav-link" data-slug="index"><span>Contents</span></a>
+  <a href="index.html" class="nav-link" data-slug="index"><span>TABLE OF CONTENTS</span></a>
 </div>
 <div class="nav-item" data-slug="mugeddime">
   <a href="mugeddime.html" class="nav-link" data-slug="mugeddime"><span>Preface</span></a>
@@ -246,7 +246,7 @@ function setCls(k){
 <div class="nav-item nav-has-sub" data-slug="03-6A4-katatoniya">
   <a href="03-6A4-katatoniya.html" class="nav-link is-bolme" data-slug="03-6A4-katatoniya">
     <span class="nav-code">6A40</span>
-    <span>CATATONIA</span>
+    <span>catatonia</span>
   </a>
   <button class="nav-toggle" aria-label="Expand/collapse" onclick="toggleSub(this)" tabindex="-1">▶</button>
   <div class="nav-sub">
@@ -291,7 +291,7 @@ function setCls(k){
 <div class="nav-item nav-has-sub" data-slug="08-6B6-dissosiativ">
   <a href="08-6B6-dissosiativ.html" class="nav-link is-bolme" data-slug="08-6B6-dissosiativ">
     <span class="nav-code">6B60–6B6Z</span>
-    <span>DISSOCIATIVE DISORDERS</span>
+    <span>dissociative disorders</span>
   </a>
   <button class="nav-toggle" aria-label="Expand/collapse" onclick="toggleSub(this)" tabindex="-1">▶</button>
   <div class="nav-sub">
@@ -469,7 +469,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/en/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});
@@ -600,7 +600,7 @@ function toggleSub(btn){
 <div id="kitab-modal" class="kitab-overlay" onclick="if(event.target===this)closeKitabModal()">
   <div class="kitab-box">
     <button class="kitab-close" onclick="closeKitabModal()" aria-label="Close">✕</button>
-    <div class="kitab-logo">КП</div>
+    <div class="kitab-logo">CP</div>
     <h2 class="kitab-title">Order the book</h2>
     <p class="kitab-desc">The book is being prepared for print publication. If you would like to be among the first readers, leave your details — we will contact you as soon as it is published.</p>
     <form id="kitab-form">
@@ -612,7 +612,7 @@ function toggleSub(btn){
         <label for="kitab-phone">Mobile number</label>
         <input id="kitab-phone" name="phone" type="tel" placeholder="+994 XX XXX XX XX" required autocomplete="tel">
       </div>
-      <button type="submit" class="kitab-submit">Place order</button>
+      <button type="submit" class="kitab-submit">Order</button>
     </form>
     <div id="kitab-success" class="kitab-success" style="display:none">
       Thank you!<br>We will contact you as soon as the book is published.

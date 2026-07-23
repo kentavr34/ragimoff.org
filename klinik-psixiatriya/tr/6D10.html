@@ -254,7 +254,7 @@ function setCls(k){
 <h3>5.1 ICD-11 5 özellik alanı</h3>
 <ul>
   <li><strong>Olumsuz duygulanım</strong> — anksiyete, depresyon, değişkenlik.</li>
-  <li><strong>Detachment</strong> — sosyal ve duygusal uzaklık.</li>
+  <li><strong>detachment</strong> — sosyal ve duygusal uzaklık.</li>
   <li><strong>Dissosyallik</strong> — empati yokluğu, benmerkezcilik.</li>
   <li><strong>Dezinhibisiya</strong> — dürtüsellik, sorumsuzluk.</li>
   <li><strong>Anankastik</strong> — mükemmeliyetçilik, kontrol, katı kurallar.</li>
@@ -412,7 +412,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

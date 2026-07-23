@@ -322,7 +322,7 @@ function setCls(k){
 <h3>Tedavi metodolojileri</h3>
 <ol class="method-num">
   <li><strong>Kısa süreli problem çözme terapisi (Problem-Solving Therapy) — Nezu (Nezu A.M.)</strong> — 4–8 seans; somut sorun tanımlama, çözüm seçeneklerinin değerlendirilmesi, davranış uygulaması.</li>
-  <li><strong>Supportiv psixoterapiya</strong> Doğrulama, duygusal ifade, sosyal destek.</li>
+  <li><strong>Supportiv Psixoterapiya</strong> Doğrulama, duygusal ifade, sosyal destek.</li>
   <li><strong>KDT kısa formda.</strong> Bilişsel yeniden yapılandırma + davranış aktivasyonu.</li>
   <li><strong>17. Stres yönetimi ve gevşeme</strong> — Nefes egzersizleri, progresif kas gevşemesi, mindfulness.</li>
 </ol>
@@ -386,7 +386,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

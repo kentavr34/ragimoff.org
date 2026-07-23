@@ -128,8 +128,8 @@
   <button class="nav-toggle" aria-label="Aç/bağla" onclick="toggleSub(this)" tabindex="-1">▶</button>
   <div class="nav-sub">
     <a href="04-6A6-ehval-pozuntulari.html#6a60-depressiv-pozuntular" class="nav-sub-link"><span class="sub-code">6A60</span><span class="sub-name">DEPRESİF BOZUKLUKLAR (DEPRESYON)</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a70-bi̇polyar-i-pozuntu" class="nav-sub-link"><span class="sub-code">6A70</span><span class="sub-name">BİPOLAR I BOZUKLUK</span></a>
-    <a href="04-6A6-ehval-pozuntulari.html#6a71-bi̇polyar-ii-pozuntu" class="nav-sub-link"><span class="sub-code">6A71</span><span class="sub-name">BİPOLAR II BOZUKLUK</span></a>
+    <a href="04-6A6-ehval-pozuntulari.html#6a70-bi̇polyar-i-pozuntu" class="nav-sub-link"><span class="sub-code">6A70</span><span class="sub-name">Bipolyar I Pozuntu</span></a>
+    <a href="04-6A6-ehval-pozuntulari.html#6a71-bi̇polyar-ii-pozuntu" class="nav-sub-link"><span class="sub-code">6A71</span><span class="sub-name">Bipolyar II Pozuntu</span></a>
     <a href="04-6A6-ehval-pozuntulari.html#6a72-si̇kloti̇mi̇k-pozuntu" class="nav-sub-link"><span class="sub-code">6A72</span><span class="sub-name">SİKLOTİMİK BOZUKLUK (SİKLOTİMİ)</span></a>
     <a href="04-6A6-ehval-pozuntulari.html#6a62-di̇sti̇mi̇k-pozuntu" class="nav-sub-link"><span class="sub-code">6A62</span><span class="sub-name">DİSTİMİK BOZUKLUK</span></a>
     <a href="04-6A6-ehval-pozuntulari.html#6a73-qarişiq-depressi̇v-və-təşvi̇ş-pozuntusu" class="nav-sub-link"><span class="sub-code">6A73</span><span class="sub-name">KARIŞIK DEPRESİF-ANKSİYETE BOZUKLUĞU</span></a>
@@ -380,7 +380,7 @@
 <p>Bu anket çocuğunuzun günlük davranışı hakkında 20 sorudan oluşmaktadır. <strong>Ebeveyn veya birincil bakıcı tarafından doldurulur.</strong> Her soruya <strong>EVET</strong> veya <strong>XEYR</strong> Şeklinde yanıt verin – çocuğunuzun <strong>Genellikle</strong> nasıl davrandığı temelinde. Eğer davranışı bir-iki kez gördüyseniz, ancak genel olarak çocuk böyle yapmıyorsa, <strong>XEYR</strong> yanıtlayın.</p>
 <h3 id="suallar" class="">Suallar</h3>
 <div class="tbl-wrap"><table>
-<tr><th>№</th><th>Sual</th><th>EVET</th><th>Xeyr</th></tr>
+<tr><th>№</th><th>Sual</th><th>EVET</th><th>XEYR</th></tr>
 <tr><td>1</td><td>Eğer siz odanın diğer tarafındaki bir şeye bakarsanız, çocuğunuz da oraya bakar mı? (Örneğin, uçan uçağa, büyük hayvana veya oyuncağa)</td><td></td><td></td></tr>
 <tr><td>2</td><td>Hiç çocuğunuzun sağır olduğunu düşündünüz mü?</td><td></td><td></td></tr>
 <tr><td>3</td><td>Çocuğunuz hayali oyunlar oynuyor mu? (Örneğin, boş bir fincandan içmek gibi, telefonla konuşmak gibi, bebeğe yemek vermek gibi)</td><td></td><td></td></tr>
@@ -638,7 +638,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

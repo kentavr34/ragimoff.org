@@ -292,7 +292,7 @@ function setCls(k){
 <div class="tbl-wrap"><table>
 <tr><th>9. Durum</th><th>Ayırt edici belirtiler</th></tr>
 <tr><td>Bipolyar Tip I (6A60)</td><td>≥ 1 manik epizod (fonksiyonel bozulma veya hospitalizasyon gereği).</td></tr>
-<tr><td>Major depresiv pozuntu (6A70/6A71)</td><td>Hipomanik epizod yox.</td></tr>
+<tr><td>Major Depresiv Pozuntu (6A70/6A71)</td><td>Hipomanik epizod yox.</td></tr>
 <tr><td>Sikletimik (6A62)</td><td>Tam majör depresif veya hipomanik epizod yok.</td></tr>
 <tr><td>BPD (6D10.x)</td><td>Duygusal değişkenlik saatler; kimlik bozukluğu; kronik intihar düşünceleri.</td></tr>
 <tr><td>ADHD</td><td>Sürekli; epizodik değil.</td></tr>
@@ -415,7 +415,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

@@ -254,7 +254,7 @@ function setCls(k){
 <h2 id="6b40-5-klinik">5. Klinik tablo</h2>
 <h3>Üç ana alan (ICD-11)</h3>
 <ul>
-  <li><strong>Yeniden deneyimleme</strong> — müdahaleci anılar, flashback, kabuslar; tetikleyicilerle akut sıkıntı ve somatik reaksiyonlar.</li>
+  <li><strong>Yenidən təcrübə</strong> — müdahaleci anılar, flashback, kabuslar; tetikleyicilerle akut sıkıntı ve somatik reaksiyonlar.</li>
   <li><strong>Kaçınma</strong> — travma hakkındaki düşüncelerden, hislerden, hatırlatıcılardan, durumlardan kaçınma.</li>
   <li><strong>Sürekli tehlike hissi (hiperuyarılma).</strong> — hipervijilans, kolay irkilme, uyku bozukluğu, irritabilite.</li>
 </ul>
@@ -430,7 +430,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

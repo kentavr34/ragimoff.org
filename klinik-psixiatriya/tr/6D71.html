@@ -303,7 +303,7 @@ function setCls(k){
   <li><strong>etyolojik tedavi</strong> — değiştirilebilir faktörler (kardiyovasküler risk, B12, tiroid, depresyon, ilaç).</li>
   <li><strong>Yaşam tarzı</strong> — fiziksel aktivite (aerobik), Akdeniz diyeti, bilişsel uyarım, sosyal bağlantılar (FINGER trial Lancet 2015 — multimodal yaklaşım etkili).</li>
   <li><strong>Farmakoterapi MCI için spesifik onay YOKTUR</strong>. Donepezil ve diğer AChEI — kanıt temeli sınırlıdır; rutin önerilmez.</li>
-  <li><strong>Lekanemab, donanemab</strong> — yeni anti-amiloid antikorlar; FDA 2023 onayı Alzheimer prodrom ve hafif demans için; klinik etki orta düzeyde, infüzyon reaksiyonları ve ARIA (Amyloid-Related Imaging Abnormalities) riskli.</li>
+  <li><strong>Lekanemab, Donanemab</strong> — yeni anti-amiloid antikorlar; FDA 2023 onayı Alzheimer prodrom ve hafif demans için; klinik etki orta düzeyde, infüzyon reaksiyonları ve ARIA (Amyloid-Related Imaging Abnormalities) riskli.</li>
   <li>Komorbid depresyon, anksiyete tedavisi (SSRI).</li>
   <li>Demansa geçiş riskinin izlenmesi.</li>
 </ol>
@@ -382,7 +382,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

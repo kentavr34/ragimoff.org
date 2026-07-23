@@ -380,7 +380,7 @@ function setCls(k){
   <li><strong>KDT</strong> — paranoid düşünce, sosyal anksiyete, bilişsel bozulmalar için; gerçeklik testi ve alternatif açıklamalar.</li>
   <li><strong>Sosyal beceri eğitimi</strong> — sosyal izolasyon ve tuhaf davranışların azaltılması.</li>
   <li><strong>Mentalization-based ve supportif yaklaşımlar</strong> — kişilerarası işlevsel düzeyin güçlendirilmesi.</li>
-  <li><strong>Schema therapy</strong> 19. — Kişilik temelli sürekli modeller için.</li>
+  <li><strong>Schema Therapy</strong> 19. — Kişilik temelli sürekli modeller için.</li>
 </ul>
 
 <h3>8.3 Farmakoterapi — spesifik kullanım</h3>
@@ -521,7 +521,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/search-index.json')
+  fetch('/klinik-psixiatriya/tr/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});
