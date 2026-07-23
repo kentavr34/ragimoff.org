@@ -305,7 +305,7 @@ function setCls(k){
       <li>Sitalopram, essitalopram — uygun.</li>
     </ul>
   </li>
-  <li><strong>Refrakter ağır PPD:</strong>
+  <li><strong>Refrakter ağır PPD</strong>
     <ul>
       <li><strong>Brexanolone (Zulresso)</strong> — IV 60 saat infüzyon; FDA 2019 onayı; REMS programı altında klinikte denetim; hızlı etki.</li>
       <li><strong>Zuranolone (Zurzuvae)</strong> — oral 14 gün; FDA 2023 onayı; daha uygun.</li>
@@ -401,7 +401,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/tr/search-index.json')
+  fetch('/klinik-psixiatriya/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

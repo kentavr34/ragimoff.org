@@ -489,7 +489,7 @@ mif arqumentləşdirilir (mexanizm / sübut / klinik nəticə).
 
 <h3>8.5 Akut psikomotor ajitasyonun yönetimi</h3>
 <ul>
-  <li><strong>Oral (üstün):</strong> lorazepam 1–2 mg + olanzapin 5–10 mg oral dağılabilir tablet, veya risperidon 1–2 mg oral çözelti.</li>
+  <li><strong>Oral (üstün)</strong> lorazepam 1–2 mg + olanzapin 5–10 mg oral dağılabilir tablet, veya risperidon 1–2 mg oral çözelti.</li>
   <li><strong>Kas içi:</strong> olanzapin im 10 mg, veya aripiprazol im 9,75 mg, veya haloperidol 5 mg + lorazepam 2 mg im (klasik).</li>
   <li><strong>Dikkat:</strong> olanzapin im + benzodiazepin parenteral — solunum depresyonu riski; eş zamanlı kullanılmamalıdır.</li>
 </ul>
@@ -691,7 +691,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/tr/search-index.json')
+  fetch('/klinik-psixiatriya/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});
