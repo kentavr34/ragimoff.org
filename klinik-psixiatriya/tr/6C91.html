@@ -294,7 +294,7 @@ function setCls(k){
 <ol>
   <li><strong>Ebeveyn eğitimi birinci basamak:</strong>
     <ul>
-      <li>PCIT — 2–7 yaş;</li>
+      <li>PCIT — 2–7 yaş</li>
       <li>39. Incredible Years — 3-8 yaş;</li>
       <li>Ebeveyn Yönetimi Eğitimi (Barkley) — 6+ yaş;</li>
       <li>Triple P.</li>
@@ -381,7 +381,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/tr/search-index.json')
+  fetch('/klinik-psixiatriya/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});

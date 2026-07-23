@@ -508,7 +508,7 @@
 <li>Yalnızlık + öfke;</li>
 <li>Psikoz veya ağır depresyon;</li>
 <li>Yeni başlangıç veya derin hipomania (enerji geri gelir + düşük mood kalır);</li>
-<li>Yetkin kişi + əlillik + alkogol.</li>
+<li>Yetkin kişi + əlillik + alkogol</li>
 </ul>
 <h3 id="i̇darəetmə" class="">Yönetim:</h3>
 <p><strong>Düşük-orta risk:</strong></p>
@@ -908,7 +908,7 @@ function _srLoad(cb){
   if(_srIdx){cb(_srIdx);return;}
   if(_srLoading){setTimeout(()=>_srLoad(cb),80);return;}
   _srLoading=true;
-  fetch('/klinik-psixiatriya/tr/search-index.json')
+  fetch('/klinik-psixiatriya/search-index.json')
     .then(r=>r.json())
     .then(d=>{_srIdx=d;_srLoading=false;cb(d);})
     .catch(()=>{_srIdx=[];_srLoading=false;cb([]);});
