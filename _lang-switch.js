@@ -64,7 +64,7 @@
   function render() {
     injectStyle();
     var info = build();
-    var logos = document.querySelectorAll(".logo");
+    var logos = document.querySelectorAll(".hdr-logo");
     if (logos.length) {
       // заменяем бейдж КП на переключатель; скрываем прежний контейнер справа
       logos.forEach(function (el) { makeSwitcher(el, info); });
