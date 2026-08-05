@@ -1,0 +1,2581 @@
+{
+ "meta": {
+  "purpose": "Эталон кодов и заголовков книги «Klinik Psixiatriya». Единственный источник истины для шапки каждой страницы расстройства (XBT-11 · XBT-10 · DSM-5-TR), реестра abbreviatur.html и оглавления — на 4 языках.",
+  "generated": "2026-08-05",
+  "sources": {
+   "icd11_en": "WHO ICD-11 MMS (официальный английский), сверено через findacode.com — зеркало MMS",
+   "icd11_tr": "WHO ICD-11 официальный турецкий",
+   "icd11_ru": "МКБ-11, Статистическая классификация, глава 06, 2-е изд. 2022, пер. М.А. Кулыгиной под ред. Г.П. Костюка — _supplements/ICD-11_RU_2022_reference.pdf",
+   "az": "Клинические протоколы Минздрава Азербайджана (Təşviş 2013 · Depressiya 2021 · Şizofreniya 2021/2009 · OKP 2015 · Bipolyar 2009 · PTSP 2021 · Demensiya 2021), XBT-10 AZ (isim.az), AzPA, ATU. Протоколы 2021 г. уже используют коды ICD-11 с азербайджанскими названиями — де-факто официальный частичный ХБТ-11 AZ. Свободного полного издания ХБТ-11 на азербайджанском не существует; печатное издание İsmayılov подтвердить не удалось.",
+   "icd10_dsm": "Из карточек книги — проверены выборочно, ошибок не найдено",
+   "icd11_ru_other_chapters": "WHO ICD-11 API, Accept-Language: ru (главы 07/08/16/17) — подтверждено сверкой с нозологическим указателем Vidal"
+  },
+  "rule": "Код и английское имя — из ICD-11 MMS. Русское — из МКБ-11 РФ 2022. Турецкое — из официального турецкого ICD-11. Азербайджанское выводится из этих трёх.",
+  "decisions": {
+   "group_pages": "диапазон кодов в шапке (решение 2026-08-05)",
+   "az_naming": "база — AzPA + Минздрав AZ; выбор между терминологической калькой и смысловым переводом по каждому названию; ориентир — сдвиг EN→RU"
+  },
+  "az_verdicts": {
+   "pozuntu_vs_pozgunluq": {
+    "answer": "POZUNTU",
+    "evidence": "MoH clinical protocols: pozuntu 562 vs pozğunluq 8 (98.6% pozuntu). XBT-10 AZ F-chapter: pozğunluq 544 vs pozuntu 1 (the reverse). ATU psychiatry lectures: pozuntu 35 vs pozğunluq 5.",
+    "explanation": "Two registers exist. POZĞUNLUQ belongs to the older XBT-10 Azerbaijani volume — a literal translation from the Russian МКБ-10, with visible quality problems (typos such as 'həyəçan', 'içtimai', 'aqrofobiya', 'pozğunqluq', archaic 'pasient'). Every Ministry of Health clinical protocol from 2009 onward switched to POZUNTU, and the İSİM primary-care series even re-titles the ICD-10 chapter itself as 'F — Psixi pozuntular və davranış pozuntuları'. Note also that 'pozğunluq' carries a moral/deviance connotation in general Azerbaijani, which is a further reason the clinical literature moved away from it.",
+    "recommendation": "POZUNTU throughout. This already matches the project's CLAUDE.md rule ('psixi pozuntu'). Cite XBT-10's pozğunluq forms only when quoting ICD-10 rubrics verbatim."
+   },
+   "affektiv_vs_ahval": {
+    "answer": "BOTH — but they are not interchangeable: AFFEKTİV in disorder names, ƏHVAL for the mood state itself",
+    "evidence": "MoH protocols: affektiv 51, əhval 54. XBT-10: affektiv 71, əhval 33. XBT-10 heading: 'Əhvali-ruhiyyə pozğunluqları (affektiv pozğunluq) (F30–F39)' and repeatedly 'Əhval pozğunluqları [affektiv pozğunluqlar]' — the Latin term is given as the technical equivalent in brackets.",
+    "explanation": "The official disorder name is BİPOLYAR AFFEKTİV POZUNTU (title of the 2009 MoH protocol). 'Affektiv epizod' is the MoH 2021 term (6A80.x 'Affektiv epizodlar zamanı təşvişin nəzərəçarpan əlamətləri'). Meanwhile 'əhval' / 'əhval-ruhiyyə' is used for the mood state and for mood stabilisers ('əhval ruhiyyə stabilizatorları', MOH_SCH2021).",
+    "recommendation": "Per the author's rule (keep the Latin/international term where it exists in AZ clinical usage): use AFFEKTİV in disorder names — 'Affektiv pozuntular', 'Bipolyar affektiv pozuntu', 'Affektiv epizod'. Use 'əhval' / 'əhval-ruhiyyə' for the mood state in descriptive prose. This mirrors the English→Russian shift (mood disorder → аффективные расстройства)."
+   },
+   "bodily_distress": {
+    "answer": "No attested Azerbaijani term — recommend BƏDƏN DİSSTRESİ POZUNTUSU",
+    "evidence": "ICD-11 6C20 Bodily distress disorder has no Azerbaijani rendering in any source reached. However DİSSTRESS is independently attested in official MoH protocols (9 occurrences, e.g. 'emosional disstress yaradır', MOH_ANX2013), so the Latin root is already naturalised in Azerbaijani clinical register.",
+    "explanation": "The ICD-10-era equivalent in XBT-10 AZ is 'F45 Somatoform pozğunluqlar' → modern MoH register 'Somatoform pozuntular' (13 occurrences in the corpus). The ICD-11 concept itself is new and untranslated.",
+    "recommendation": "Per the author's rule, keep the term: BƏDƏN DİSSTRESİ POZUNTUSU (compare Russian 'расстройство телесного дистресса'). Do not invent a descriptive translation such as 'bədən narahatlığı'. Flag it in the textbook as a new ICD-11 category, with 'somatoform pozuntular' given as the familiar ICD-10 predecessor."
+   },
+   "icd11_azerbaijani_edition": {
+    "answer": "NO free Azerbaijani ICD-11 (XBT-11) exists online — confirmed",
+    "evidence": "The WHO ICD-11 MMS browser (https://icd.who.int/browse/2025-01/mms/en) offers 14 languages: Arabic, Chinese, Czech, English, French, Kazakh, Latin, Portuguese, Russian, Slovak, Spanish, Swedish, Turkish, Uzbek. Azerbaijani is NOT among them. No AZ ICD-11 volume was found on isim.az, sehiyye.gov.az, or psychiatry.az.",
+    "important_nuance": "HOWEVER — Azerbaijani ICD-11 disorder names DO exist officially, embedded inside the Ministry of Health's 2021 clinical protocols. The Depression 2021, Schizophrenia 2021, Dementia 2021 and PTSD 2021 protocols are all built on ICD-11 codes with Azerbaijani names (6A20 Şizofreniya, 6A71 Rekurrent depressiv pozuntu, 6A73 Qarışıq depressiv və təşviş pozuntusu, 6B42 Uzanmış hüzn pozuntusu, 6D80 Alsheymer xəstəliyi nəticəsində demensiya, 6D86.2 Demensiya zamanı təşviş simptomları). These are the closest thing to an official XBT-11 AZ vocabulary that exists, and they are the single most valuable source for this textbook.",
+    "printed_edition_claim": "Could not confirm or refute a printed Azerbaijani ICD-11 by the İsmayılov family. Prof. Nadir İsmayılov chairs AzPA and F.İsmayılov (Psixi Sağlamlıq Mərkəzi director) authored several MoH protocols, so the family is plausibly involved — but no such publication is listed on psychiatry.az or isim.az. I have no evidence either way; treat the printed edition as unverified."
+   }
+  },
+  "az_anxiety_verdict": {
+   "answer": "TƏŞVİŞ",
+   "confidence": "high — settled by official Ministry of Health clinical protocols",
+   "summary": "In Azerbaijani PSYCHIATRIC CLINICAL sources the accepted term for 'anxiety' is TƏŞVİŞ. The Ministry of Health's dedicated anxiety protocol is literally titled 'TƏŞVİŞ POZUNTULARININ DİAQNOSTİKA VƏ MÜALİCƏSİ ÜZRƏ KLİNİK PROTOKOL' (Bakı 2013), and the newest ICD-11-aligned MoH protocols (Depression 2021, Dementia 2021) keep TƏŞVİŞ. NARAHATLIQ is not the disorder term — in the same protocols it means 'worry / unease' (the GAD worry component). HƏYƏCAN is the older ICD-10-volume calque, still used descriptively for autonomic arousal. ANKSİYETE does not occur in any Azerbaijani official source (it is Turkish)."
+  },
+  "az_status": "Коды закрыты. Азербайджанские названия: 14 замен выверены по протоколам Минздрава и внесены; остальные требуют решения автора — автоподбор дал брак и был снят."
+ },
+ "summary": {
+  "total_cards": 103,
+  "need_renumber": 30,
+  "ok": 73,
+  "renumber_list": [
+   "6A07 → 8A05.0",
+   "6A73 → GA34.41",
+   "6B60 → 6B64",
+   "6B61 → 6B65",
+   "6B62 → 6B66",
+   "6B63 → 6B60",
+   "6B64 → 6B61",
+   "6B83 → 6B84",
+   "6B84 → 6B85",
+   "6B85 → 6B83",
+   "6C41 → 6C43",
+   "6C42 → 6C41",
+   "6C43 → 6C44",
+   "6C44 → 6C45",
+   "6C45 → 6C46",
+   "6C46 → 6C49",
+   "6C47 → 6C4A",
+   "6C50 → 6C50",
+   "6C90 → 6C91",
+   "6C91 → 6C90",
+   "7A20 → 7A41",
+   "7A40 → 7A60",
+   "7A60 → 7A21",
+   "7A80 → 7A20",
+   "HA00 → HA01.1",
+   "HA01 → HA03.0",
+   "HA02 → HA00",
+   "HA03 → HA02.0",
+   "HA04 → HA20",
+   "HA05 → ???"
+  ]
+ },
+ "rows": [
+  {
+   "icd11_correct": "6A00",
+   "icd11_in_book": "6A00",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Disorders of intellectual development",
+    "ru": "Нарушения интеллектуального развития",
+    "tr": "Bilişsel gelişim bozuklukları"
+   },
+   "book_headings": {
+    "az": "İNTELLEKTUAL İNKİŞAF POZUNTUSU",
+    "ru": "РАССТРОЙСТВО ИНТЕЛЛЕКТУАЛЬНОГО РАЗВИТИЯ",
+    "en": "INTELLECTUAL DEVELOPMENTAL DISORDER",
+    "tr": "ENTELEKTÜEL GELİŞİM BOZUKLUĞU"
+   },
+   "icd10": "F70",
+   "dsm5tr": "319",
+   "file": "klinik-psixiatriya/6A00.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A01",
+   "icd11_in_book": "6A01",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Developmental speech or language disorders",
+    "ru": "Нарушения речевого развития",
+    "tr": "Gelişimsel konuşma veya dil bozuklukları"
+   },
+   "book_headings": {
+    "az": "İNKİŞAF NİTQ VƏ DİL POZUNTULARI",
+    "ru": "РАССТРОЙСТВА РАЗВИТИЯ РЕЧИ ИЛИ ЯЗЫКА",
+    "en": "DEVELOPMENTAL SPEECH AND LANGUAGE DISORDERS",
+    "tr": "GELİŞİMSEL KONUŞMA VE DİL BOZUKLUKLARI"
+   },
+   "icd10": "F80",
+   "dsm5tr": "315.39",
+   "file": "klinik-psixiatriya/6A01.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A02",
+   "icd11_in_book": "6A02",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Autism spectrum disorder",
+    "ru": "Расстройство аутистического спектра",
+    "tr": "Otizm spektrum bozukluğu"
+   },
+   "book_headings": {
+    "az": "AUTİZM SPEKTRİ POZUNTUSU (ASP)",
+    "ru": "РАССТРОЙСТВО АУТИСТИЧЕСКОГО СПЕКТРА (РАС)",
+    "en": "AUTISM SPECTRUM DISORDER (ASD)",
+    "tr": "OTİZM SPEKTRUM BOZUKLUĞU (OSB)"
+   },
+   "icd10": "F84.0",
+   "dsm5tr": "299.00",
+   "file": "klinik-psixiatriya/6A02.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A03",
+   "icd11_in_book": "6A03",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Developmental learning disorder",
+    "ru": "Нарушение развития учебных навыков",
+    "tr": "Gelişimsel öğrenme bozukluğu"
+   },
+   "book_headings": {
+    "az": "SPESİFİK ÖYRƏNMƏ POZUNTUSU",
+    "ru": "РАССТРОЙСТВО РАЗВИТИЯ ОБУЧЕНИЯ",
+    "en": "DEVELOPMENTAL LEARNING DISORDER",
+    "tr": "SPESİFİK ÖĞRENME BOZUKLUĞU"
+   },
+   "icd10": "F81",
+   "dsm5tr": "315.00",
+   "file": "klinik-psixiatriya/6A03.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A04",
+   "icd11_in_book": "6A04",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Developmental motor coordination disorder",
+    "ru": "Нарушение развития координации движений",
+    "tr": "Gelişimsel motor koordinasyon bozukluğu"
+   },
+   "book_headings": {
+    "az": "İNKİŞAF HƏRƏKİ KOORDİNASİYA POZUNTUSU (DCD)",
+    "ru": "РАССТРОЙСТВО ДВИГАТЕЛЬНОЙ КООРДИНАЦИИ (DCD)",
+    "en": "DEVELOPMENTAL MOTOR COORDINATION DISORDER (DCD)",
+    "tr": "GELİŞİMSEL MOTOR KOORDİNASYON BOZUKLUĞU (DCD)"
+   },
+   "icd10": "F82",
+   "dsm5tr": "315.4",
+   "file": "klinik-psixiatriya/6A04.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A05",
+   "icd11_in_book": "6A05",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Attention deficit hyperactivity disorder",
+    "ru": "Синдром дефицита внимания с гиперактивностью",
+    "tr": "Dikkat eksikliği hiperaktivite bozukluğu"
+   },
+   "book_headings": {
+    "az": "DİQQƏT DEFİSİTİ VƏ HİPERAKTİVLİK POZUNTUSU (DDHP)",
+    "ru": "СИНДРОМ ДЕФИЦИТА ВНИМАНИЯ И ГИПЕРАКТИВНОСТИ (СДВГ)",
+    "en": "ATTENTION-DEFICIT/HYPERACTIVITY DISORDER (ADHD)",
+    "tr": "DIKKAT EKSIKLIĞI VE HIPERAKTIVITE BOZUKLUĞU (DEHB)"
+   },
+   "icd10": "F90.0",
+   "dsm5tr": "314.0",
+   "file": "klinik-psixiatriya/6A05.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A06",
+   "icd11_in_book": "6A06",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Stereotyped movement disorder",
+    "ru": "Расстройство стереотипных движений",
+    "tr": "Basmakalıp hareket bozukluğu"
+   },
+   "book_headings": {
+    "az": "STEREOTİPİK HƏRƏKƏT POZUNTUSU",
+    "ru": "СТЕРЕОТИПНОЕ ДВИГАТЕЛЬНОЕ РАССТРОЙСТВО",
+    "en": "STEREOTYPED MOVEMENT DISORDER",
+    "tr": "STEREOTİPİK HAREKET BOZUKLUĞU"
+   },
+   "icd10": "F98.4",
+   "dsm5tr": "307.3",
+   "file": "klinik-psixiatriya/6A06.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "8A05.0",
+   "icd11_in_book": "6A07",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Primary tics or tic disorders",
+    "ru": "Первичные тики или тикозные расстройства",
+    "tr": "Primer tikler veya tik bozuklukları",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "TİKLİ POZUNTULAR (TOURETTE SİNDROMU)",
+    "ru": "ТИКОЗНЫЕ РАССТРОЙСТВА (СИНДРОМ ТУРЕТТА)",
+    "en": "TIC DISORDERS (TOURETTE SYNDROME)",
+    "tr": "TİK BOZUKLUKLARI (TOURETTE SENDROMU)"
+   },
+   "icd10": "F95.2",
+   "dsm5tr": "307.20",
+   "file": "klinik-psixiatriya/6A07.html (+ ru/ en/ tr/)",
+   "note": "тики в ICD-11 живут в главе 08 (нервная система); 6A07 не существует. В главе 06 есть только перекрёстная ссылка «Coded Elsewhere»",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A20",
+   "icd11_in_book": "6A20",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Schizophrenia",
+    "ru": "Шизофрения",
+    "tr": "Şizofreni"
+   },
+   "book_headings": {
+    "az": "ŞİZOFRENİYA",
+    "ru": "ШИЗОФРЕНИЯ",
+    "en": "SCHIZOPHRENIA",
+    "tr": "ŞIZOFRENI"
+   },
+   "icd10": "F20",
+   "dsm5tr": "295.90",
+   "file": "klinik-psixiatriya/6A20.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A21",
+   "icd11_in_book": "6A21",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Schizoaffective disorder",
+    "ru": "Шизоаффективное расстройство",
+    "tr": "Şizoafektif bozukluk"
+   },
+   "book_headings": {
+    "az": "ŞİZOAFFEKTİV POZUNTU",
+    "ru": "ШИЗОАФФЕКТИВНОЕ РАССТРОЙСТВО",
+    "en": "SCHIZOAFFECTIVE DISORDER",
+    "tr": "ŞIZOAFFEKTIF BOZUKLUK"
+   },
+   "icd10": "F25",
+   "dsm5tr": "295.70",
+   "file": "klinik-psixiatriya/6A21.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A22",
+   "icd11_in_book": "6A22",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Schizotypal disorder",
+    "ru": "Шизотипическое расстройство",
+    "tr": "Şizotipal bozukluk"
+   },
+   "book_headings": {
+    "az": "ŞİZOTİPİK POZUNTU",
+    "ru": "ШИЗОТИПИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "SCHIZOTYPAL DISORDER",
+    "tr": "ŞIZOTIPAL BOZUKLUK"
+   },
+   "icd10": "F21",
+   "dsm5tr": "301.22",
+   "file": "klinik-psixiatriya/6A22.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Şizotipal pozuntu",
+   "az_source": "MoH Şizofreniya protokolu",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6A23",
+   "icd11_in_book": "6A23",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Acute and transient psychotic disorder",
+    "ru": "Острое транзиторное психотическое расстройство",
+    "tr": "Akut ve geçici psikotik bozukluk"
+   },
+   "book_headings": {
+    "az": "KƏSKİN VƏ KEÇİCİ PSİXOTİK POZUNTU",
+    "ru": "ОСТРОЕ И ТРАНЗИТОРНОЕ ПСИХОТИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "ACUTE AND TRANSIENT PSYCHOTIC DISORDER",
+    "tr": "AKUT VE GEÇİCİ PSİKOTİK BOZUKLUK"
+   },
+   "icd10": "F23",
+   "dsm5tr": "298.8",
+   "file": "klinik-psixiatriya/6A23.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A24",
+   "icd11_in_book": "6A24",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Delusional disorder",
+    "ru": "Бредовое расстройство",
+    "tr": "Sanrılı bozukluk"
+   },
+   "book_headings": {
+    "az": "SAYIQLAMA POZUNTUSU",
+    "ru": "БРЕДОВОЕ РАССТРОЙСТВО",
+    "en": "DELUSIONAL DISORDER",
+    "tr": "SAYIQLAMA POZUNTUSU"
+   },
+   "icd10": "F22",
+   "dsm5tr": "297.1",
+   "file": "klinik-psixiatriya/6A24.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A25",
+   "icd11_in_book": "6A25",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Symptomatic manifestations of primary psychotic disorders",
+    "ru": "Симптоматические проявления первичных психотических расстройств",
+    "tr": "Primer psikotik bozuklukların belirtisel görünümleri"
+   },
+   "book_headings": {
+    "az": "İLKİN PSİXOTİK POZUNTULARIN SİMPTOM DOMENLƏRİ",
+    "ru": "СИМПТОМАТИЧЕСКИЕ ДОМЕНЫ ПЕРВИЧНЫХ ПСИХОТИЧЕСКИХ РАССТРОЙСТВ",
+    "en": "SYMPTOM DOMAINS OF PRIMARY PSYCHOTIC DISORDERS",
+    "tr": "BİRİNCİL PSİKOTİK BOZUKLUKLARIN SEMPTOM ALANLARI"
+   },
+   "icd10": "",
+   "dsm5tr": "298.9",
+   "file": "klinik-psixiatriya/6A25.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A40",
+   "icd11_in_book": "6A40",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Catatonia associated with another mental disorder",
+    "ru": "Кататония, связанная с другим психическим расстройством",
+    "tr": "Diğer bir ruhsal bozuklukla ilişkili katatoni"
+   },
+   "book_headings": {
+    "az": "KATATONİYA — ÜMUMİ PRİNSİPLƏR",
+    "ru": "КАТАТОНИЯ — ОБЩИЕ ПРИНЦИПЫ",
+    "en": "CATATONIA — GENERAL PRINCIPLES",
+    "tr": "KATATONİ — GENEL PRENSİPLER"
+   },
+   "icd10": "F06.1",
+   "dsm5tr": "293.89",
+   "file": "klinik-psixiatriya/6A40.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A60",
+   "icd11_in_book": "6A60",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Bipolar type I disorder",
+    "ru": "Биполярное расстройство I типа",
+    "tr": "Bipolar bozukluk tip I"
+   },
+   "book_headings": {
+    "az": "BİPOLYAR POZUNTU TİP I",
+    "ru": "БИПОЛЯРНОЕ РАССТРОЙСТВО I ТИПА",
+    "en": "BIPOLAR TYPE I DISORDER",
+    "tr": "BİPOLAR BOZUKLUK TİP I"
+   },
+   "icd10": "F31",
+   "dsm5tr": "296.4",
+   "file": "klinik-psixiatriya/6A60.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A61",
+   "icd11_in_book": "6A61",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Bipolar type II disorder",
+    "ru": "Биполярное расстройство II типа",
+    "tr": "Bipolar bozukluk tip II"
+   },
+   "book_headings": {
+    "az": "BİPOLYAR POZUNTU TİP II",
+    "ru": "БИПОЛЯРНОЕ РАССТРОЙСТВО II ТИПА",
+    "en": "BIPOLAR TYPE II DISORDER",
+    "tr": "BİPOLAR BOZUKLUK TİP II"
+   },
+   "icd10": "F31",
+   "dsm5tr": "296.89",
+   "file": "klinik-psixiatriya/6A61.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6A62",
+   "icd11_in_book": "6A62",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Cyclothymic disorder",
+    "ru": "Циклотимическое расстройство",
+    "tr": "Siklotimik bozukluk"
+   },
+   "book_headings": {
+    "az": "SİKLETİMİK POZUNTU",
+    "ru": "ЦИКЛОТИМИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "CYCLOTHYMIC DISORDER",
+    "tr": "SİKLETİMİK BOZUKLUK"
+   },
+   "icd10": "F34.0",
+   "dsm5tr": "301.13",
+   "file": "klinik-psixiatriya/6A62.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Siklotimik pozuntu",
+   "az_confidence": "official_curated",
+   "az_source": "исправление опечатки SİKLETİMİK"
+  },
+  {
+   "icd11_correct": "6A70",
+   "icd11_in_book": "6A70",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Single episode depressive disorder",
+    "ru": "Единичный эпизод депрессивного расстройства",
+    "tr": "Tek dönem depresif bozukluk"
+   },
+   "book_headings": {
+    "az": "TƏK EPİZODLU DEPRESİV POZUNTU",
+    "ru": "ДЕПРЕССИВНОЕ РАССТРОЙСТВО С ЕДИНИЧНЫМ ЭПИЗОДОМ",
+    "en": "SINGLE EPISODE DEPRESSIVE DISORDER",
+    "tr": "TEK EPİZODLU DEPRESİF BOZUKLUK"
+   },
+   "icd10": "F32",
+   "dsm5tr": "296.2",
+   "file": "klinik-psixiatriya/6A70.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6A71",
+   "icd11_in_book": "6A71",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Recurrent depressive disorder",
+    "ru": "Рекуррентное депрессивное расстройство",
+    "tr": "Yineleyici depresif bozukluk"
+   },
+   "book_headings": {
+    "az": "TƏKRARLANAN DEPRESİV POZUNTU",
+    "ru": "РЕКУРРЕНТНОЕ ДЕПРЕССИВНОЕ РАССТРОЙСТВО",
+    "en": "RECURRENT DEPRESSIVE DISORDER",
+    "tr": "TEKRARLAYAN DEPRESİF BOZUKLUK"
+   },
+   "icd10": "F33",
+   "dsm5tr": "296.3",
+   "file": "klinik-psixiatriya/6A71.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Rekurrent depressiv pozuntu",
+   "az_source": "MoH Depressiya protokolu 2021 (XBT-11)",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6A72",
+   "icd11_in_book": "6A72",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Dysthymic disorder",
+    "ru": "Дистимическое расстройство",
+    "tr": "Distimik bozukluk"
+   },
+   "book_headings": {
+    "az": "DİSTİMİK POZUNTU",
+    "ru": "ДИСТИМИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "DYSTHYMIC DISORDER",
+    "tr": "DİSTİMİK BOZUKLUK"
+   },
+   "icd10": "F34.1",
+   "dsm5tr": "300.4",
+   "file": "klinik-psixiatriya/6A72.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Distimiya",
+   "az_source": "MoH Depressiya protokolu 2021",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "GA34.41",
+   "icd11_in_book": "6A73",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Premenstrual dysphoric disorder",
+    "ru": "Предменструальное дисфорическое расстройство",
+    "tr": "Premenstrüel disforik bozukluk",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "PREMENSTRUAL DİSFORİK POZUNTU (PMDD)",
+    "ru": "ПРЕДМЕНСТРУАЛЬНОЕ ДИСФОРИЧЕСКОЕ РАССТРОЙСТВО (PMDD)",
+    "en": "PREMENSTRUAL DYSPHORIC DISORDER (PMDD)",
+    "tr": "PREMENSTRUAL DİSFORİK BOZUKLUK (PMDD)"
+   },
+   "icd10": "N94.3",
+   "dsm5tr": "625.4",
+   "file": "klinik-psixiatriya/6A73.html (+ ru/ en/ tr/)",
+   "note": "ПМДР в ICD-11 — глава 16 (мочеполовая). Код 6A73 занят «Смешанным депрессивным и тревожным расстройством», такой карточки в книге нет",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B00",
+   "icd11_in_book": "6B00",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Generalised anxiety disorder",
+    "ru": "Генерализованное тревожное расстройство",
+    "tr": "Yaygın anksiyete bozukluğu"
+   },
+   "book_headings": {
+    "az": "GENERALİZƏ OLUNMUŞ NARAHATLIQ POZUNTUSU (GAD)",
+    "ru": "ГЕНЕРАЛИЗОВАННОЕ ТРЕВОЖНОЕ РАССТРОЙСТВО (ГТР)",
+    "en": "GENERALIZED ANXIETY DISORDER (GAD)",
+    "tr": "YAYGIN ANKSİYETE BOZUKLUĞU (YAB)"
+   },
+   "icd10": "F41.1",
+   "dsm5tr": "300.02",
+   "file": "klinik-psixiatriya/6B00.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Generalizə olunmuş təşviş pozuntusu (GTP)",
+   "az_source": "MoH Təşviş protokolu 2013",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B01",
+   "icd11_in_book": "6B01",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Panic disorder",
+    "ru": "Паническое расстройство",
+    "tr": "Panik bozukluğu"
+   },
+   "book_headings": {
+    "az": "PANİK POZUNTU",
+    "ru": "ПАНИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "PANIC DISORDER",
+    "tr": "PANİK BOZUKLUĞU"
+   },
+   "icd10": "F41.0",
+   "dsm5tr": "300.01",
+   "file": "klinik-psixiatriya/6B01.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B02",
+   "icd11_in_book": "6B02",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Agoraphobia",
+    "ru": "Агорафобия",
+    "tr": "Agorafobi"
+   },
+   "book_headings": {
+    "az": "AQORAFOBİYA",
+    "ru": "АГОРАФОБИЯ",
+    "en": "AGORAPHOBIA",
+    "tr": "AGORAFOBI"
+   },
+   "icd10": "F40.0",
+   "dsm5tr": "300.22",
+   "file": "klinik-psixiatriya/6B02.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B03",
+   "icd11_in_book": "6B03",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Specific phobia",
+    "ru": "Специфическая фобия",
+    "tr": "Özgül fobi"
+   },
+   "book_headings": {
+    "az": "SPESİFİK FOBİYA",
+    "ru": "СПЕЦИФИЧЕСКАЯ ФОБИЯ",
+    "en": "SPECIFIC PHOBIA",
+    "tr": "SPESİFİK FOBİ"
+   },
+   "icd10": "F40.2",
+   "dsm5tr": "300.29",
+   "file": "klinik-psixiatriya/6B03.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B04",
+   "icd11_in_book": "6B04",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Social anxiety disorder",
+    "ru": "Социальное тревожное расстройство",
+    "tr": "Sosyal anksiyete bozukluğu"
+   },
+   "book_headings": {
+    "az": "SOSİAL NARAHATLIQ POZUNTUSU",
+    "ru": "СОЦИАЛЬНОЕ ТРЕВОЖНОЕ РАССТРОЙСТВО",
+    "en": "SOCIAL ANXIETY DISORDER",
+    "tr": "SOSYAL ANKSİYETE BOZUKLUĞU"
+   },
+   "icd10": "F40.1",
+   "dsm5tr": "300.23",
+   "file": "klinik-psixiatriya/6B04.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Sosial təşviş pozuntusu",
+   "az_source": "MoH / İSİM",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B05",
+   "icd11_in_book": "6B05",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Separation anxiety disorder",
+    "ru": "Сепарационное тревожное расстройство",
+    "tr": "Ayrılık anksiyetesi bozukluğu"
+   },
+   "book_headings": {
+    "az": "AYRILMA NARAHATLIĞI POZUNTUSU",
+    "ru": "РАССТРОЙСТВО ТРЕВОГИ РАЗЛУЧЕНИЯ",
+    "en": "SEPARATION ANXIETY DISORDER",
+    "tr": "AYRILMA KAYGISI BOZUKLUĞU"
+   },
+   "icd10": "F93.0",
+   "dsm5tr": "309.21",
+   "file": "klinik-psixiatriya/6B05.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Ayrılıq təşvişi pozuntusu",
+   "az_source": "İSİM",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B06",
+   "icd11_in_book": "6B06",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Selective mutism",
+    "ru": "Селективный мутизм",
+    "tr": "Seçici mutizm"
+   },
+   "book_headings": {
+    "az": "SELEKTİV MUTİZM",
+    "ru": "СЕЛЕКТИВНЫЙ МУТИЗМ",
+    "en": "SELECTIVE MUTISM",
+    "tr": "SEÇICI MUTIZM"
+   },
+   "icd10": "F94.0",
+   "dsm5tr": "313.23",
+   "file": "klinik-psixiatriya/6B06.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B20",
+   "icd11_in_book": "6B20",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Obsessive-compulsive disorder",
+    "ru": "Обсессивно-компульсивное расстройство",
+    "tr": "Obsesif-kompulsif bozukluk"
+   },
+   "book_headings": {
+    "az": "OBSESSİV-KOMPULSİV POZUNTU (OKP)",
+    "ru": "ОБСЕССИВНО-КОМПУЛЬСИВНОЕ РАССТРОЙСТВО (ОКР)",
+    "en": "OBSESSIVE-COMPULSIVE DISORDER (OCD)",
+    "tr": "OBSESİF-KOMPULSİF BOZUKLUK (OKB)"
+   },
+   "icd10": "F42",
+   "dsm5tr": "300.3",
+   "file": "klinik-psixiatriya/6B20.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B21",
+   "icd11_in_book": "6B21",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Body dysmorphic disorder",
+    "ru": "Дисморфическое расстройство",
+    "tr": "Beden dismorfik bozukluğu"
+   },
+   "book_headings": {
+    "az": "BƏDƏN DİSMORFİK POZUNTUSU (BDD)",
+    "ru": "ДИСМОРФИЧЕСКОЕ РАССТРОЙСТВО ТЕЛА (BDD)",
+    "en": "BODY DYSMORPHIC DISORDER (BDD)",
+    "tr": "BEDEN DİSMORFİK BOZUKLUĞU (BDD)"
+   },
+   "icd10": "F45.2",
+   "dsm5tr": "300.7",
+   "file": "klinik-psixiatriya/6B21.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Bədənin dismorfoloji pozuntusu",
+   "az_source": "MoH OKP protokolu 2015",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B22",
+   "icd11_in_book": "6B22",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Olfactory reference disorder",
+    "ru": "Патологическая озабоченность собственным запахом",
+    "tr": "Olfaktör referans bozukluğu"
+   },
+   "book_headings": {
+    "az": "PATOLOJİ BƏDƏN QOXUSU POZUNTUSU (ORS)",
+    "ru": "ОБОНЯТЕЛЬНОЕ РЕФЕРЕНТНОЕ РАССТРОЙСТВО (ORS)",
+    "en": "OLFACTORY REFERENCE DISORDER (ORS)",
+    "tr": "PATOLOJİK VÜCUT KOKUSU BOZUKLUĞU (ORS)"
+   },
+   "icd10": "F45.8",
+   "dsm5tr": "300.3",
+   "file": "klinik-psixiatriya/6B22.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B23",
+   "icd11_in_book": "6B23",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Hypochondriasis",
+    "ru": "Ипохондрия",
+    "tr": "Hipokondriyazis"
+   },
+   "book_headings": {
+    "az": "HİPOXONDRİYA (XƏSTƏLİK NARAHATLIQ POZUNTUSU)",
+    "ru": "ИПОХОНДРИЯ (ТРЕВОГА О ЗДОРОВЬЕ)",
+    "en": "HYPOCHONDRIASIS (ILLNESS ANXIETY DISORDER)",
+    "tr": "HİPOKONDRİ (HASTALIK KAYGI BOZUKLUĞU)"
+   },
+   "icd10": "F45.2",
+   "dsm5tr": "300.7",
+   "file": "klinik-psixiatriya/6B23.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B24",
+   "icd11_in_book": "6B24",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Hoarding disorder",
+    "ru": "Патологическое накопительство",
+    "tr": "İstifleme bozukluğu"
+   },
+   "book_headings": {
+    "az": "TOPLAMA POZUNTUSU",
+    "ru": "РАССТРОЙСТВО НАКОПИТЕЛЬСТВА",
+    "en": "HOARDING DISORDER",
+    "tr": "TOPLAMA POZUNTUSU"
+   },
+   "icd10": "F63.8",
+   "dsm5tr": "300.3",
+   "file": "klinik-psixiatriya/6B24.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Patoloji yığıcılıq",
+   "az_source": "MoH OKP protokolu 2015",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B25",
+   "icd11_in_book": "6B25",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Body-focused repetitive behaviour disorders",
+    "ru": "Патологические телесно направленные повторяющиеся действия",
+    "tr": "Bedene odaklı yineleyici davranış bozuklukları"
+   },
+   "book_headings": {
+    "az": "BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR",
+    "ru": "ПОВТОРЯЮЩЕЕСЯ ПОВЕДЕНИЕ, НАПРАВЛЕННОЕ НА ТЕЛО",
+    "en": "BODY-FOCUSED REPETITIVE BEHAVIOURS",
+    "tr": "BEDENE YÖNELİK TEKRARLAYICI DAVRANIŞLAR"
+   },
+   "icd10": "F63.3",
+   "dsm5tr": "312.39",
+   "file": "klinik-psixiatriya/6B25.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B40",
+   "icd11_in_book": "6B40",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Post traumatic stress disorder",
+    "ru": "Посттравматическое стрессовое расстройство",
+    "tr": "Travma sonrası stres bozukluğu"
+   },
+   "book_headings": {
+    "az": "POSTTRAVMATİK STRES POZUNTUSU (PTSP)",
+    "ru": "ПОСТТРАВМАТИЧЕСКОЕ СТРЕССОВОЕ РАССТРОЙСТВО (ПТСР)",
+    "en": "POST-TRAUMATIC STRESS DISORDER (PTSD)",
+    "tr": "POSTTRAVMATİK STRES BOZUKLUĞU (PTSB)"
+   },
+   "icd10": "F43.1",
+   "dsm5tr": "309.81",
+   "file": "klinik-psixiatriya/6B40.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B41",
+   "icd11_in_book": "6B41",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Complex post traumatic stress disorder",
+    "ru": "Осложненное посттравматическое стрессовое расстройство",
+    "tr": "Karmaşık travma sonrası stres bozukluğu"
+   },
+   "book_headings": {
+    "az": "KOMPLEKS POSTTRAVMATİK STRES POZUNTUSU (cPTSP)",
+    "ru": "Комплексное посттравматическое стрессовое расстройство (к-птср)",
+    "en": "COMPLEX POST-TRAUMATIC STRESS DISORDER (cPTSD)",
+    "tr": "KOMPLEKS POSTTRAVMATİK STRES BOZUKLUĞU (cPTSP)"
+   },
+   "icd10": "F43.1",
+   "dsm5tr": "309.81",
+   "file": "klinik-psixiatriya/6B41.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B42",
+   "icd11_in_book": "6B42",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Prolonged grief disorder",
+    "ru": "Затяжная патологическая реакция горя",
+    "tr": "Uzamış yas bozukluğu"
+   },
+   "book_headings": {
+    "az": "UZANMIŞ YAS POZUNTUSU",
+    "ru": "ПРОЛОНГИРОВАННОЕ РАССТРОЙСТВО ГОРЯ",
+    "en": "PROLONGED GRIEF DISORDER",
+    "tr": "UZAMIŞ YAS BOZUKLUĞU"
+   },
+   "icd10": "F43.8",
+   "dsm5tr": "309.89",
+   "file": "klinik-psixiatriya/6B42.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Uzanmış hüzn pozuntusu",
+   "az_source": "MoH protokol 2021 (XBT-11)",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B43",
+   "icd11_in_book": "6B43",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Adjustment disorder",
+    "ru": "Расстройство адаптации",
+    "tr": "Uyum bozukluğu"
+   },
+   "book_headings": {
+    "az": "ADAPTASİYA POZUNTUSU",
+    "ru": "РАССТРОЙСТВО АДАПТАЦИИ",
+    "en": "ADJUSTMENT DISORDER",
+    "tr": "UYUM BOZUKLUĞU"
+   },
+   "icd10": "F43.2",
+   "dsm5tr": "309.",
+   "file": "klinik-psixiatriya/6B43.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B44",
+   "icd11_in_book": "6B44",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Reactive attachment disorder",
+    "ru": "Реактивное расстройство привязанности",
+    "tr": "Tepkisel bağlanma bozukluğu"
+   },
+   "book_headings": {
+    "az": "REAKTİV BAĞLANMA POZUNTUSU",
+    "ru": "РЕАКТИВНОЕ РАССТРОЙСТВО ПРИВЯЗАННОСТИ",
+    "en": "REACTIVE ATTACHMENT DISORDER",
+    "tr": "REAKTİF BAĞLANMA BOZUKLUĞU"
+   },
+   "icd10": "F94.1",
+   "dsm5tr": "313.89",
+   "file": "klinik-psixiatriya/6B44.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B45",
+   "icd11_in_book": "6B45",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Disinhibited social engagement disorder",
+    "ru": "Расстройство социализации по расторможенному типу",
+    "tr": "Disinhibe sosyal katılım bozukluğu"
+   },
+   "book_headings": {
+    "az": "SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU",
+    "ru": "РАССТРОЙСТВО СОЦИАЛИЗАЦИИ ПО РАСТОРМОЖЕННОМУ ТИПУ",
+    "en": "DISINHIBITED SOCIAL ENGAGEMENT DISORDER",
+    "tr": "SOSYAL KATILIMIN KISITLANMASI BOZUKLUĞU"
+   },
+   "icd10": "F94.2",
+   "dsm5tr": "313.89",
+   "file": "klinik-psixiatriya/6B45.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B64",
+   "icd11_in_book": "6B60",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Dissociative identity disorder",
+    "ru": "Диссоциативное расстройство личностной идентичности",
+    "tr": "Disosiyatif kimlik bozukluğu"
+   },
+   "book_headings": {
+    "az": "DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP)",
+    "ru": "ДИССОЦИАТИВНОЕ РАССТРОЙСТВО ИДЕНТИЧНОСТИ (ДРИ)",
+    "en": "DISSOCIATIVE IDENTITY DISORDER (DID)",
+    "tr": "DİSSOSİYATİF KİMLİK BOZUKLUĞU (DKB)"
+   },
+   "icd10": "F44.81",
+   "dsm5tr": "300.14",
+   "file": "klinik-psixiatriya/6B60.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B65",
+   "icd11_in_book": "6B61",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Partial dissociative identity disorder",
+    "ru": "Частичное диссоциативное расстройство личностной идентичности",
+    "tr": "Kısmi disosiyatif kimlik bozukluğu"
+   },
+   "book_headings": {
+    "az": "PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU",
+    "ru": "ЧАСТИЧНОЕ ДИССОЦИАТИВНОЕ РАССТРОЙСТВО ИДЕНТИЧНОСТИ",
+    "en": "PARTIAL DISSOCIATIVE IDENTITY DISORDER",
+    "tr": "PARSİYEL DİSSOSİYATİF İDENTİFİKASYON BOZUKLUĞU"
+   },
+   "icd10": "F44.8",
+   "dsm5tr": "300.12",
+   "file": "klinik-psixiatriya/6B61.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B66",
+   "icd11_in_book": "6B62",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Depersonalization-derealization disorder",
+    "ru": "Синдром деперсонализации-дереализации",
+    "tr": "Depersonalizasyon-derealizasyon bozukluğu"
+   },
+   "book_headings": {
+    "az": "DEPERSONALİZASİYA-DEREALİZASİYA POZUNTUSU",
+    "ru": "РАССТРОЙСТВО ДЕПЕРСОНАЛИЗАЦИИ-ДЕРЕАЛИЗАЦИИ",
+    "en": "DEPERSONALIZATION-DEREALIZATION DISORDER",
+    "tr": "DEPERSONALİZASYON-DEREALİZASYON BOZUKLUĞU"
+   },
+   "icd10": "F48.1",
+   "dsm5tr": "300.6",
+   "file": "klinik-psixiatriya/6B62.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Depersonalizasiya–derealizasiya sindromu",
+   "az_source": "MoH",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6B60",
+   "icd11_in_book": "6B63",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Dissociative neurological symptom disorder",
+    "ru": "Диссоциативное расстройство с неврологическими симптомами",
+    "tr": "Disosiyatif nörolojik belirti bozukluğu"
+   },
+   "book_headings": {
+    "az": "DİSSOSİATİV NEVROLOJİ SİMPTOM POZUNTUSU",
+    "ru": "ДИССОЦИАТИВНОЕ РАССТРОЙСТВО НЕВРОЛОГИЧЕСКИХ СИМПТОМОВ",
+    "en": "DISSOCIATIVE NEUROLOGICAL SYMPTOM DISORDER",
+    "tr": "DİSSOSİYATİF NÖROLOJİK SEMPTOM BOZUKLUĞU"
+   },
+   "icd10": "F44.4",
+   "dsm5tr": "300.11",
+   "file": "klinik-psixiatriya/6B63.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6B61",
+   "icd11_in_book": "6B64",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Dissociative amnesia",
+    "ru": "Диссоциативная амнезия",
+    "tr": "Disosiyatif amnezi"
+   },
+   "book_headings": {
+    "az": "DİSSOSİATİV AMNEZİYA",
+    "ru": "ДИССОЦИАТИВНАЯ АМНЕЗИЯ",
+    "en": "DISSOCIATIVE AMNESIA",
+    "tr": "DISSOSIYATIF AMNEZI"
+   },
+   "icd10": "F44.0",
+   "dsm5tr": "300.12",
+   "file": "klinik-psixiatriya/6B64.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B80",
+   "icd11_in_book": "6B80",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Anorexia Nervosa",
+    "ru": "Нервная анорексия",
+    "tr": "Anoreksiya Nervoza"
+   },
+   "book_headings": {
+    "az": "SİNİR ANOREKSİYASI",
+    "ru": "НЕРВНАЯ АНОРЕКСИЯ",
+    "en": "ANOREXIA NERVOSA",
+    "tr": "ANOREKSİYA NERVOZA"
+   },
+   "icd10": "F50.0",
+   "dsm5tr": "307.1",
+   "file": "klinik-psixiatriya/6B80.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B81",
+   "icd11_in_book": "6B81",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Bulimia Nervosa",
+    "ru": "Нервная булимия",
+    "tr": "Bulimiya Nervoza"
+   },
+   "book_headings": {
+    "az": "SİNİR BULİMİYASI",
+    "ru": "НЕРВНАЯ БУЛИМИЯ",
+    "en": "BULIMIA NERVOSA",
+    "tr": "BULİMİYA NERVOZA"
+   },
+   "icd10": "F50.2",
+   "dsm5tr": "307.51",
+   "file": "klinik-psixiatriya/6B81.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B82",
+   "icd11_in_book": "6B82",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Binge eating disorder",
+    "ru": "Патологическое переедание",
+    "tr": "Tıkınırcasına yeme bozukluğu"
+   },
+   "book_headings": {
+    "az": "KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU (BED)",
+    "ru": "РАССТРОЙСТВО ПЕРЕЕДАНИЯ (BED)",
+    "en": "BINGE EATING DISORDER (BED)",
+    "tr": "TIKINIRCASINA YEME BOZUKLUĞU (BED)"
+   },
+   "icd10": "F50.8",
+   "dsm5tr": "307.51",
+   "file": "klinik-psixiatriya/6B82.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B84",
+   "icd11_in_book": "6B83",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Pica",
+    "ru": "Пика",
+    "tr": "Pika"
+   },
+   "book_headings": {
+    "az": "PİKA",
+    "ru": "ПИКА",
+    "en": "PICA",
+    "tr": "PİKA"
+   },
+   "icd10": "F98.3",
+   "dsm5tr": "307.52",
+   "file": "klinik-psixiatriya/6B83.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B85",
+   "icd11_in_book": "6B84",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Rumination-regurgitation disorder",
+    "ru": "Патологическое пережевывание и срыгивание",
+    "tr": "Geviş getirme bozukluğu"
+   },
+   "book_headings": {
+    "az": "RUMİNASİYA-GERİ QAYTARMA POZUNTUSU",
+    "ru": "РАССТРОЙСТВО РУМИНАЦИИ-РЕГУРГИТАЦИИ",
+    "en": "RUMINATION-REGURGITATION DISORDER",
+    "tr": "RUMİNASYON-GERİ DÖNÜŞ BOZUKLUĞU"
+   },
+   "icd10": "F98.21",
+   "dsm5tr": "307.53",
+   "file": "klinik-psixiatriya/6B84.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6B83",
+   "icd11_in_book": "6B85",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Avoidant-restrictive food intake disorder",
+    "ru": "Патологическое избирательно-ограничительное потребление пищи",
+    "tr": "Kaçıngan-kısıtlı gıda alım bozukluğu"
+   },
+   "book_headings": {
+    "az": "QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU (ARFID)",
+    "ru": "РАССТРОЙСТВО ИЗБЕГАЮЩЕГО/ОГРАНИЧЕННОГО УПОТРЕБЛЕНИЯ ПИЩИ (ARFID)",
+    "en": "AVOIDANT/RESTRICTIVE FOOD INTAKE DISORDER (ARFID)",
+    "tr": "KAÇINMA/KISITLAYICI YİYECEK ALIMI BOZUKLUĞU (ARFID)"
+   },
+   "icd10": "F98.2",
+   "dsm5tr": "307.59",
+   "file": "klinik-psixiatriya/6B85.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C00",
+   "icd11_in_book": "6C00",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Enuresis",
+    "ru": "Энурез",
+    "tr": "Enürezis"
+   },
+   "book_headings": {
+    "az": "ENUREZ",
+    "ru": "энурез",
+    "en": "enuresis",
+    "tr": "enürezis"
+   },
+   "icd10": "F98.0",
+   "dsm5tr": "307.6",
+   "file": "klinik-psixiatriya/6C00.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C01",
+   "icd11_in_book": "6C01",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Encopresis",
+    "ru": "Энкопрез",
+    "tr": "Enkoprezis"
+   },
+   "book_headings": {
+    "az": "ENKOPREZ",
+    "ru": "энкопрез",
+    "en": "encopresis",
+    "tr": "enkoprezis"
+   },
+   "icd10": "F98.1",
+   "dsm5tr": "307.7",
+   "file": "klinik-psixiatriya/6C01.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C20",
+   "icd11_in_book": "6C20",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Bodily distress disorder",
+    "ru": "Телесный дистресс",
+    "tr": "Bedensel endişe bozukluğu"
+   },
+   "book_headings": {
+    "az": "BƏDƏN DİSSTRES POZUNTUSU",
+    "ru": "РАССТРОЙСТВО ТЕЛЕСНОГО ДИСТРЕССА",
+    "en": "BODILY DISTRESS DISORDER",
+    "tr": "BEDEN DİSTRES BOZUKLUĞU"
+   },
+   "icd10": "F45.0",
+   "dsm5tr": "300.82",
+   "file": "klinik-psixiatriya/6C20.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C40",
+   "icd11_in_book": "6C40",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of alcohol",
+    "ru": "Расстройства вследствие употребления алкоголя",
+    "tr": "Alkol kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "ALKOHOL İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ АЛКОГОЛЯ",
+    "en": "ALCOHOL USE DISORDERS",
+    "tr": "ALKOL KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F10",
+   "dsm5tr": "303.",
+   "file": "klinik-psixiatriya/6C40.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C43",
+   "icd11_in_book": "6C41",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of opioids",
+    "ru": "Расстройства вследствие употребления опиоидов",
+    "tr": "Opiyatların kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "OPİOİD İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ ОПИОИДОВ",
+    "en": "OPIOID USE DISORDERS",
+    "tr": "OPİOİD KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F11",
+   "dsm5tr": "304.",
+   "file": "klinik-psixiatriya/6C41.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6C41",
+   "icd11_in_book": "6C42",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of cannabis",
+    "ru": "Расстройства вследствие употребления каннабиса",
+    "tr": "Kannabis kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "KANNABİS İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ КАННАБИСА",
+    "en": "CANNABIS USE DISORDERS",
+    "tr": "KANNABİS KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F12",
+   "dsm5tr": "304.30",
+   "file": "klinik-psixiatriya/6C42.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C44",
+   "icd11_in_book": "6C43",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of sedatives, hypnotics or anxiolytics",
+    "ru": "Расстройства вследствие употребления седативных и снотворных или анксиолитических средств",
+    "tr": "Sedatif, hipnotik veya anksiyolitiklerin kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "SEDATİV/HİPNOTİK İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ СЕДАТИВНЫХ/СНОТВОРНЫХ СРЕДСТВ",
+    "en": "SEDATIVE/HYPNOTIC USE DISORDERS",
+    "tr": "SEDATİF/HİPNOTİK KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F13",
+   "dsm5tr": "304.",
+   "file": "klinik-psixiatriya/6C43.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6C45",
+   "icd11_in_book": "6C44",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of cocaine",
+    "ru": "Расстройства вследствие употребления кокаина",
+    "tr": "Kokain kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "KOKAİN İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ КОКАИНА",
+    "en": "COCAINE USE DISORDERS",
+    "tr": "KOKAİN KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F14",
+   "dsm5tr": "304.20",
+   "file": "klinik-psixiatriya/6C44.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C46",
+   "icd11_in_book": "6C45",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of stimulants including amphetamines, methamphetamine or methcathinone",
+    "ru": "Расстройства вследствие употребления стимуляторов, включая амфетамины, метамфетамин или меткатинон",
+    "tr": "Amfetaminler, metamfetamin veya metkatinon içeren uyarıcıların kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "STİMULYANT İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ СТИМУЛЯТОРОВ",
+    "en": "STIMULANT USE DISORDERS",
+    "tr": "STİMÜLAN KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F15",
+   "dsm5tr": "304.4",
+   "file": "klinik-psixiatriya/6C45.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6C49",
+   "icd11_in_book": "6C46",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of hallucinogens",
+    "ru": "Расстройства вследствие употребления галлюциногенов",
+    "tr": "Halüsinojenlerin kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "HALÜSİNOGEN İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ ГАЛЛЮЦИНОГЕНОВ",
+    "en": "HALLUCINOGEN USE DISORDERS",
+    "tr": "HALÜSİNOJEN KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F16",
+   "dsm5tr": "304.5",
+   "file": "klinik-psixiatriya/6C46.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6C4A",
+   "icd11_in_book": "6C47",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Disorders due to use of nicotine",
+    "ru": "Расстройства вследствие потребления никотина",
+    "tr": "Nikotin kullanımı nedenli bozukluklar"
+   },
+   "book_headings": {
+    "az": "NİKOTİN İSTİFADƏSİ POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ВСЛЕДСТВИЕ УПОТРЕБЛЕНИЯ НИКОТИНА",
+    "en": "NICOTINE USE DISORDERS",
+    "tr": "NİKOTİN KULLANIM BOZUKLUKLARI"
+   },
+   "icd10": "F17",
+   "dsm5tr": "305.1",
+   "file": "klinik-psixiatriya/6C47.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C50",
+   "icd11_in_book": "6C50",
+   "needs_renumber": true,
+   "split_into": [
+    "6C50",
+    "6C51"
+   ],
+   "official": {
+    "en": "Gambling disorder",
+    "ru": "Расстройство вследствие пристрастия к азартным играм",
+    "tr": "Kumar oynama bozukluğu"
+   },
+   "book_headings": {
+    "az": "DAVRANIŞ ASILILIQLARI (QUMAR, OYUN)",
+    "ru": "ПОВЕДЕНЧЕСКИЕ ЗАВИСИМОСТИ (АЗАРТНЫЕ ИГРЫ, ВИДЕОИГРЫ)",
+    "en": "BEHAVIOURAL ADDICTIONS (GAMBLING, GAMING)",
+    "tr": "DAVRANIŞSAL BAĞIMLILIKLAR (KUMAR, OYUN)"
+   },
+   "icd10": "F63.0",
+   "dsm5tr": "312.31",
+   "file": "klinik-psixiatriya/6C50.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C70",
+   "icd11_in_book": "6C70",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Pyromania",
+    "ru": "Пиромания",
+    "tr": "Piromani"
+   },
+   "book_headings": {
+    "az": "PYROMANİYA",
+    "ru": "ПИРОМАНИЯ",
+    "en": "PYROMANIA",
+    "tr": "PİROMANİ"
+   },
+   "icd10": "F63.1",
+   "dsm5tr": "312.33",
+   "file": "klinik-psixiatriya/6C70.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "Piromaniya",
+   "az_source": "MoH — исправление PYROMANİYA",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6C71",
+   "icd11_in_book": "6C71",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Kleptomania",
+    "ru": "Клептомания",
+    "tr": "Kleptomani"
+   },
+   "book_headings": {
+    "az": "KLEPTOMANİYA",
+    "ru": "КЛЕПТОМАНИЯ",
+    "en": "KLEPTOMANIA",
+    "tr": "KLEPTOMANI"
+   },
+   "icd10": "F63.2",
+   "dsm5tr": "312.32",
+   "file": "klinik-psixiatriya/6C71.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C72",
+   "icd11_in_book": "6C72",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Compulsive sexual behaviour disorder",
+    "ru": "Компульсивное расстройство сексуального поведения",
+    "tr": "Kompulsif cinsel davranış bozukluğu"
+   },
+   "book_headings": {
+    "az": "KOMPULSİV CİNSİ DAVRANIŞ POZUNTUSU",
+    "ru": "КОМПУЛЬСИВНОЕ СЕКСУАЛЬНОЕ РАССТРОЙСТВО ПОВЕДЕНИЯ",
+    "en": "COMPULSIVE SEXUAL BEHAVIOUR DISORDER",
+    "tr": "KOMPULSİF CİNSEL DAVRANIŞ BOZUKLUĞU"
+   },
+   "icd10": "F52.7",
+   "dsm5tr": "312.34",
+   "file": "klinik-psixiatriya/6C72.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C73",
+   "icd11_in_book": "6C73",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Intermittent explosive disorder",
+    "ru": "Периодическое эксплозивное расстройство",
+    "tr": "Aralıklı patlayıcı bozukluk"
+   },
+   "book_headings": {
+    "az": "ARALIQLI PATLAYICI POZUNTU (IED)",
+    "ru": "ИНТЕРМИТТИРУЮЩЕЕ ЭКСПЛОЗИВНОЕ РАССТРОЙСТВО (IED)",
+    "en": "INTERMITTENT EXPLOSIVE DISORDER (IED)",
+    "tr": "ARALIQLI PATLAYICI POZUNTU (IED)"
+   },
+   "icd10": "F63.8",
+   "dsm5tr": "312.34",
+   "file": "klinik-psixiatriya/6C73.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6C91",
+   "icd11_in_book": "6C90",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Conduct-dissocial disorder",
+    "ru": "Диссоциальное поведенческое расстройство",
+    "tr": "Toplum karşıtı davranım bozukluğu"
+   },
+   "book_headings": {
+    "az": "DAVRANIŞ POZUNTUSU",
+    "ru": "РАССТРОЙСТВО ПОВЕДЕНИЯ",
+    "en": "CONDUCT DISORDER",
+    "tr": "DAVRANIŞ BOZUKLUĞU"
+   },
+   "icd10": "F91.2",
+   "dsm5tr": "312.81",
+   "file": "klinik-psixiatriya/6C90.html (+ ru/ en/ tr/)",
+   "note": "книга поменяла местами: 6C90 = Oppositional defiant, 6C91 = Conduct-dissocial",
+   "az_proposed": "Davranış-dissosial pozuntu",
+   "az_source": "MoH / XBT-11",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6C90",
+   "icd11_in_book": "6C91",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Oppositional defiant disorder",
+    "ru": "Оппозиционно-вызывающее расстройство",
+    "tr": "Karşıt olma-karşı gelme bozukluğu"
+   },
+   "book_headings": {
+    "az": "MÜXALİF-İNADKAR POZUNTU (ODD)",
+    "ru": "ОППОЗИЦИОННО-ВЫЗЫВАЮЩЕЕ РАССТРОЙСТВО (ОВР)",
+    "en": "OPPOSITIONAL DEFIANT DISORDER (ODD)",
+    "tr": "KARŞIT OLMA-KARŞI GELME BOZUKLUĞU (ODD)"
+   },
+   "icd10": "F91.3",
+   "dsm5tr": "313.81",
+   "file": "klinik-psixiatriya/6C91.html (+ ru/ en/ tr/)",
+   "note": "книга поменяла местами",
+   "az_proposed": "Opozision-nifaqlı pozuntu",
+   "az_source": "MoH",
+   "az_confidence": "official_curated"
+  },
+  {
+   "icd11_correct": "6D10",
+   "icd11_in_book": "6D10",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Personality disorder",
+    "ru": "Расстройство личности",
+    "tr": "Kişilik bozukluğu"
+   },
+   "book_headings": {
+    "az": "ŞƏXSİYYƏT POZUNTUSU (XBT-11 VAHİD MODELİ)",
+    "ru": "РАССТРОЙСТВО ЛИЧНОСТИ (ЕДИНАЯ МОДЕЛЬ МКБ-11)",
+    "en": "PERSONALITY DISORDER (ICD-11 UNIFIED MODEL)",
+    "tr": "KİŞİLİK BOZUKLUĞU (ICD-11 TEK MODEL)"
+   },
+   "icd10": "F60.9",
+   "dsm5tr": "301.",
+   "file": "klinik-psixiatriya/6D10.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6D11",
+   "icd11_in_book": "6D11",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Prominent personality traits or patterns",
+    "ru": "Выраженные личностные черты и паттерны поведения",
+    "tr": "Belirgin kişilik özellikleri veya örüntüleri"
+   },
+   "book_headings": {
+    "az": "ŞƏXSİYYƏT ÇƏTİNLİYİ",
+    "ru": "ЛИЧНОСТНЫЕ ТРУДНОСТИ",
+    "en": "PERSONALITY DIFFICULTY",
+    "tr": "KİŞİLİK ZORLUĞU"
+   },
+   "icd10": "",
+   "dsm5tr": "301.83",
+   "file": "klinik-psixiatriya/6D11.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D30",
+   "icd11_in_book": "6D30",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Exhibitionistic disorder",
+    "ru": "Патологический эксгибиционизм",
+    "tr": "Teşhircilik bozukluğu"
+   },
+   "book_headings": {
+    "az": "EKSHİBİSİONİZM",
+    "ru": "ПАТОЛОГИЧЕСКИЙ ЭКСГИБИЦИОНИЗМ",
+    "en": "EXHIBITIONISTIC DISORDER",
+    "tr": "EKSHİBİSYONİZM"
+   },
+   "icd10": "F65.2",
+   "dsm5tr": "302.4",
+   "file": "klinik-psixiatriya/6D30.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D31",
+   "icd11_in_book": "6D31",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Voyeuristic disorder",
+    "ru": "Патологический вуайеризм",
+    "tr": "Gözetlemecilik bozukluğu"
+   },
+   "book_headings": {
+    "az": "VOYERİZM",
+    "ru": "ПАТОЛОГИЧЕСКИЙ ВУАЙЕРИЗМ",
+    "en": "VOYEURISTIC DISORDER",
+    "tr": "VOYÖRİZM"
+   },
+   "icd10": "F65.3",
+   "dsm5tr": "302.82",
+   "file": "klinik-psixiatriya/6D31.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D32",
+   "icd11_in_book": "6D32",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Pedophilic disorder",
+    "ru": "Педофилическое расстройство",
+    "tr": "Pedofilik bozukluk"
+   },
+   "book_headings": {
+    "az": "PEDOFİLİK POZUNTU",
+    "ru": "ПЕДОФИЛИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "PEDOPHILIC DISORDER",
+    "tr": "PEDOFİLİK BOZUKLUK"
+   },
+   "icd10": "F65.4",
+   "dsm5tr": "302.2",
+   "file": "klinik-psixiatriya/6D32.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D33",
+   "icd11_in_book": "6D33",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Coercive sexual sadism disorder",
+    "ru": "Патологический принудительный сексуальный садизм",
+    "tr": "Zora dayalı cinsel sadizm bozukluğu"
+   },
+   "book_headings": {
+    "az": "SADİSTİK CİNSİ POZUNTU",
+    "ru": "ПАТОЛОГИЧЕСКИЙ СЕКСУАЛЬНЫЙ САДИЗМ",
+    "en": "COERCIVE SEXUAL SADISM DISORDER",
+    "tr": "SADİSTİK CİNSEL BOZUKLUK"
+   },
+   "icd10": "F65.5",
+   "dsm5tr": "302.84",
+   "file": "klinik-psixiatriya/6D33.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D34",
+   "icd11_in_book": "6D34",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Frotteuristic disorder",
+    "ru": "Патологический фроттеризм",
+    "tr": "Sürtünmecilik bozukluğu"
+   },
+   "book_headings": {
+    "az": "FROTTEURİZM",
+    "ru": "ПАТОЛОГИЧЕСКИЙ ФРОТТЕРИЗМ",
+    "en": "FROTTEURISTIC DISORDER",
+    "tr": "FROTTEURİZM"
+   },
+   "icd10": "F65.8",
+   "dsm5tr": "302.89",
+   "file": "klinik-psixiatriya/6D34.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D50",
+   "icd11_in_book": "6D50",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Factitious disorder imposed on self",
+    "ru": "Имитированное расстройство в отношении себя",
+    "tr": "Yapay bozukluk, kendine yönelik"
+   },
+   "book_headings": {
+    "az": "ÖZÜNƏ TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN SİNDROMU)",
+    "ru": "ИСКУССТВЕННОЕ РАССТРОЙСТВО, ОБРАЩЁННОЕ НА СЕБЯ (СИНДРОМ МЮНХГАУЗЕНА)",
+    "en": "FACTITIOUS DISORDER IMPOSED ON SELF (MUNCHAUSEN SYNDROME)",
+    "tr": "KENDİNE UYGULANMIŞ FAKTİSYON BOZUKLUĞU (MÜNCHAUSEN SENDROMU)"
+   },
+   "icd10": "F68.1",
+   "dsm5tr": "300.19",
+   "file": "klinik-psixiatriya/6D50.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D51",
+   "icd11_in_book": "6D51",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Factitious disorder imposed on another",
+    "ru": "Имитированное расстройство в отношении другого лица",
+    "tr": "Yapay bozukluk, başkasına yönelik"
+   },
+   "book_headings": {
+    "az": "BAŞQASINA TƏTBİQ EDİLMİŞ FAKTİTİOZ POZUNTU (MÜNXAUZEN BY PROXY)",
+    "ru": "ИСКУССТВЕННОЕ РАССТРОЙСТВО, ОБРАЩЁННОЕ НА ДРУГОГО (ДЕЛЕГИРОВАННЫЙ СИНДРОМ МЮНХГАУЗЕНА)",
+    "en": "FACTITIOUS DISORDER IMPOSED ON ANOTHER (MUNCHAUSEN BY PROXY)",
+    "tr": "BAŞKASINA UYGULANAN YAPAY BOZUKLUK (MÜNCHAUSEN BY PROXY)"
+   },
+   "icd10": "F68.1",
+   "dsm5tr": "300.19",
+   "file": "klinik-psixiatriya/6D51.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D70",
+   "icd11_in_book": "6D70",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Delirium",
+    "ru": "Делирий",
+    "tr": "Deliryum"
+   },
+   "book_headings": {
+    "az": "DELİRİUM",
+    "ru": "ДЕЛИРИЙ",
+    "en": "DELIRIUM",
+    "tr": "DELİRYUM"
+   },
+   "icd10": "F05",
+   "dsm5tr": "293.0",
+   "file": "klinik-psixiatriya/6D70.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6D71",
+   "icd11_in_book": "6D71",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Mild neurocognitive disorder",
+    "ru": "Легкое нейрокогнитивное расстройство",
+    "tr": "Hafif nörobilişsel bozukluk"
+   },
+   "book_headings": {
+    "az": "YÜNGÜL NEYROKOQNİTİV POZUNTU (MCI)",
+    "ru": "ЛЁГКОЕ НЕЙРОКОГНИТИВНОЕ РАССТРОЙСТВО (MCI)",
+    "en": "MILD NEUROCOGNITIVE DISORDER (MCI)",
+    "tr": "HAFİF NÖROKOGNİTİF BOZUKLUK (MCI)"
+   },
+   "icd10": "F06.7",
+   "dsm5tr": "331.83",
+   "file": "klinik-psixiatriya/6D71.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6D72",
+   "icd11_in_book": "6D72",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Amnestic disorder",
+    "ru": "Амнестическое расстройство",
+    "tr": "Amnestik bozukluk"
+   },
+   "book_headings": {
+    "az": "AMNESTİK POZUNTU",
+    "ru": "АМНЕСТИЧЕСКОЕ РАССТРОЙСТВО",
+    "en": "AMNESTIC DISORDER",
+    "tr": "AMNESTİK BOZUKLUK"
+   },
+   "icd10": "F04",
+   "dsm5tr": "294.0",
+   "file": "klinik-psixiatriya/6D72.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6D80",
+   "icd11_in_book": "6D80",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Dementia due to Alzheimer disease",
+    "ru": "Деменция вследствие болезни Альцгеймера",
+    "tr": "Alzheimer hastalığı nedenli demans"
+   },
+   "book_headings": {
+    "az": "ALZHEİMER XƏSTƏLİYİNƏ GÖRƏ DEMENSİYA",
+    "ru": "ДЕМЕНЦИЯ ВСЛЕДСТВИЕ БОЛЕЗНИ АЛЬЦГЕЙМЕРА",
+    "en": "DEMENTIA DUE TO ALZHEIMER DISEASE",
+    "tr": "ALZHEIMER HASTALIĞINA BAĞLI DEMANS"
+   },
+   "icd10": "F00",
+   "dsm5tr": "294.1",
+   "file": "klinik-psixiatriya/6D80.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D81",
+   "icd11_in_book": "6D81",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Dementia due to cerebrovascular disease",
+    "ru": "Деменция вследствие цереброваскулярного заболевания",
+    "tr": "Serebrovasküler hastalık nedenli demans"
+   },
+   "book_headings": {
+    "az": "DAMAR DEMENSİYASI",
+    "ru": "ДЕМЕНЦИЯ ВСЛЕДСТВИЕ ЦЕРЕБРОВАСКУЛЯРНОГО ЗАБОЛЕВАНИЯ",
+    "en": "VASCULAR DEMENTIA",
+    "tr": "DAMAR DEMANSI"
+   },
+   "icd10": "F01",
+   "dsm5tr": "290.4",
+   "file": "klinik-psixiatriya/6D81.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D82",
+   "icd11_in_book": "6D82",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Dementia due to Lewy body disease",
+    "ru": "Деменция вследствие болезни телец Леви",
+    "tr": "Lewy cisimciği hastalığı nedenli demans"
+   },
+   "book_headings": {
+    "az": "LEWY CİSİMCİKLƏRİ DEMENSİYASI (DLB)",
+    "ru": "ДЕМЕНЦИЯ С ТЕЛЬЦАМИ ЛЕВИ (DLB)",
+    "en": "LEWY BODY DEMENTIA (DLB)",
+    "tr": "LEWY CİSİMCİKLERİ DEMANSI (DLB)"
+   },
+   "icd10": "F02.8",
+   "dsm5tr": "331.82",
+   "file": "klinik-psixiatriya/6D82.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6D83",
+   "icd11_in_book": "6D83",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Frontotemporal dementia",
+    "ru": "Лобно-височная деменция",
+    "tr": "Frontotemporal demans"
+   },
+   "book_headings": {
+    "az": "FRONTOTEMPORAL DEMENSİYA (FTD)",
+    "ru": "ЛОБНО-ВИСОЧНАЯ ДЕМЕНЦИЯ (FTD)",
+    "en": "FRONTOTEMPORAL DEMENTIA (FTD)",
+    "tr": "FRONTOTEMPORAL DEMANS (FTD)"
+   },
+   "icd10": "F02.0",
+   "dsm5tr": "331.19",
+   "file": "klinik-psixiatriya/6D83.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "6E20",
+   "icd11_in_book": "6E20",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Mental or behavioural disorders associated with pregnancy, childbirth or the puerperium, without psychotic symptoms",
+    "ru": "Психические и поведенческие расстройства, связанные с беременностью, родами или послеродовым периодом, без психотических симптомов",
+    "tr": "Gebelik, doğum veya lohusalık ile ilişkili ruhsal veya davranışsal bozukluklar, psikotik belirtisiz"
+   },
+   "book_headings": {
+    "az": "POSTNATAL DEPRESSİYA",
+    "ru": "ПОСЛЕРОДОВАЯ ДЕПРЕССИЯ",
+    "en": "POSTPARTUM DEPRESSION",
+    "tr": "DOĞUM SONRASI DEPRESYON"
+   },
+   "icd10": "F53.0",
+   "dsm5tr": "296.",
+   "file": "klinik-psixiatriya/6E20.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6E21",
+   "icd11_in_book": "6E21",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Mental or behavioural disorders associated with pregnancy, childbirth or the puerperium, with psychotic symptoms",
+    "ru": "Психические или поведенческие расстройства, связанные с беременностью, родами или послеродовым периодом, с психотическими симптомами",
+    "tr": "Gebelik, doğum veya lohusalık ile ilişkili ruhsal ve davranşsal bozukluklar, psikotik belirtili"
+   },
+   "book_headings": {
+    "az": "POSTNATAL PSİXOZ",
+    "ru": "ПОСЛЕРОДОВОЙ ПСИХОЗ",
+    "en": "POSTPARTUM PSYCHOSIS",
+    "tr": "POSTNATAL PSIKOZ"
+   },
+   "icd10": "F53.1",
+   "dsm5tr": "293.89",
+   "file": "klinik-psixiatriya/6E21.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6E40",
+   "icd11_in_book": "6E40",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Psychological or behavioural factors affecting disorders or diseases classified elsewhere",
+    "ru": "Некоторые психологические и поведенческие факторы могут ока - зывать негативное влияние на появление, лечение или течение за- болеваний и состояний, классифицированных в других главах МКБ. Данные факторы могут вызывать негативные последствия, нарушая приверженность лечению и препятствуя поиску помощи; создавая дополнительные риски для здоровья; воздействуя на патофизиоло- гические процессы основного заболевания за счет провоцирования или усугубления его симптомов, или требовать медицинского вме- шательства иным образом. Такой диагноз должен ставиться, толь- ко когда эти факторы увеличивают риск утяжеления состояния, ин- валидности или смерти и находятся фокусе внимания медицинских специалистов, и при этом он ставится вместе с диагнозом, соответ- ствующим исходному состоянию. Включается:",
+    "tr": "Başka yerde sınıflandırılmış bozuklukları veya hastalıkları etkileyen psikolojik veya davranışsal etmenler"
+   },
+   "book_headings": {
+    "az": "DİGƏR XƏSTƏLİKLƏRƏ TƏSİR EDƏN PSİXOLOJİ AMİLLƏR",
+    "ru": "ПСИХОЛОГИЧЕСКИЕ ФАКТОРЫ, ВЛИЯЮЩИЕ НА ДРУГИЕ ЗАБОЛЕВАНИЯ",
+    "en": "PSYCHOLOGICAL FACTORS AFFECTING DISORDERS OR DISEASES CLASSIFIED ELSEWHERE",
+    "tr": "DİĞER HASTALIKLARI ETKİLEYEN PSİKOLOJİK FAKTÖRLER"
+   },
+   "icd10": "F54",
+   "dsm5tr": "316",
+   "file": "klinik-psixiatriya/6E40.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6E60",
+   "icd11_in_book": "6E60",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Secondary neurodevelopmental syndrome",
+    "ru": "Вторичное нарушение нейропсихического развития",
+    "tr": "Sekonder nörogelişimsel sendrom"
+   },
+   "book_headings": {
+    "az": "İKİNCİLİ PSİXOTİK SİNDROM",
+    "ru": "ВТОРИЧНЫЙ ПСИХОТИЧЕСКИЙ СИНДРОМ",
+    "en": "SECONDARY PSYCHOTIC SYNDROME",
+    "tr": "İKİNCİL PSİKOTİK SENDROM"
+   },
+   "icd10": "F06.2",
+   "dsm5tr": "293.81",
+   "file": "klinik-psixiatriya/6E60.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6E61",
+   "icd11_in_book": "6E61",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Secondary psychotic syndrome",
+    "ru": "Вторичный психотический синдром Данное нарушение характеризуется наличием выраженных прояв- лений галлюцинаций или бреда, которые на основании достоверных данных анамнеза, медицинского осмотра или лабораторных иссле- дований могут считаться прямым патофизиологическим следствием нарушения состояния здоровья, не классифицированного как пси- хические и поведенческие расстройства. Симптомы не объясняют- ся делирием или другим психическим и поведенческим расстрой- ством и не являются психологически понятной реакцией на тяжелое нарушение состояния здоровья (напр., острая стрессовая реакция в связи с диагнозом жизнеугрожающего заболевания). Данная ка- тегория должна использоваться как дополнение к основному диа- гнозу предполагаемого исходного расстройства или заболевания, когда производные психотические симптомы настолько выражены, что требуют особого внимания медицинских специалистов. Примечание для кодирования: кодируется также исходное состояние Исключается:",
+    "tr": "Sekonder psikotik sendrom"
+   },
+   "book_headings": {
+    "az": "İKİNCİLİ AFFEKTİV SİNDROM",
+    "ru": "ВТОРИЧНЫЙ АФФЕКТИВНЫЙ СИНДРОМ",
+    "en": "SECONDARY MOOD SYNDROME",
+    "tr": "İKİNCİL AFFEKTİF SENDROM"
+   },
+   "icd10": "F06.3",
+   "dsm5tr": "293.83",
+   "file": "klinik-psixiatriya/6E61.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "6E62",
+   "icd11_in_book": "6E62",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Secondary mood syndrome",
+    "ru": "Вторичный аффективный синдром Данное нарушение характеризуется наличием выраженных аффек- тивных симптомов (т. е., депрессии, повышенного настроения, раз- дражительности), которые на основании достоверных данных анам- неза, медицинского осмотра или лабораторных исследований могут считаться прямым патофизиологическим следствием нарушения со- стояния здоровья, не классифицированного как психические и пове- денческие расстройства. Симптомы не объясняются делирием или другим психическим и поведенческим расстройством и не являются психологически понятной реакцией на тяжелое нарушение состоя- ния здоровья (напр., депрессивное реагирование в связи с диагно- зом жизнеугрожающего заболевания). Данная категория должна использоваться как дополнение к основному диагнозу предполага- емого исходного расстройства или заболевания, когда производные аффективные симптомы настолько выражены, что требуют особого внимания медицинских специалистов. Примечание для кодирования: кодируется также исходное состояние Исключается:",
+    "tr": "Sekonder duygudurum sendromu"
+   },
+   "book_headings": {
+    "az": "İKİNCİLİ NARAHATLIQ SİNDROMU",
+    "ru": "ВТОРИЧНЫЙ ТРЕВОЖНЫЙ СИНДРОМ",
+    "en": "SECONDARY ANXIETY SYNDROME",
+    "tr": "İKİNCİL ANKSİYETE SENDROMU"
+   },
+   "icd10": "F06.4",
+   "dsm5tr": "293.84",
+   "file": "klinik-psixiatriya/6E62.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "7A00",
+   "icd11_in_book": "7A00",
+   "needs_renumber": false,
+   "split_into": null,
+   "official": {
+    "en": "Chronic insomnia",
+    "ru": "Хроническая инсомния",
+    "tr": "Kronik insomnia",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "İNSOMNİYA",
+    "ru": "БЕССОННИЦА",
+    "en": "INSOMNIA",
+    "tr": "İNSOMNİYA"
+   },
+   "icd10": "F51.0",
+   "dsm5tr": "780.52",
+   "file": "klinik-psixiatriya/7A00.html (+ ru/ en/ tr/)",
+   "note": "",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "7A41",
+   "icd11_in_book": "7A20",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Obstructive sleep apnoea",
+    "ru": "Обструктивное апноэ во сне",
+    "tr": "Obstrüktif uyku apnesi",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "OBSTRUKTİV YUXU APNESİ (OSA)",
+    "ru": "ОБСТРУКТИВНОЕ АПНОЭ СНА (OSA)",
+    "en": "OBSTRUCTIVE SLEEP APNOEA (OSA)",
+    "tr": "OBSTRÜKTİF UYKU APNESİ (OSA)"
+   },
+   "icd10": "G47.3",
+   "dsm5tr": "327.23",
+   "file": "klinik-psixiatriya/7A20.html (+ ru/ en/ tr/)",
+   "note": "обструктивное апноэ; 7A20 официально = нарколепсия",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "7A60-7A65",
+   "icd11_in_book": "7A40",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Delayed sleep-wake phase disorder",
+    "ru": "Расстройство циркадианного ритма сон-бодрствование, запаздывающий тип",
+    "tr": "Gecikmiş uyku-uyanıklık faz bozukluğu",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "SİRKADİAN RİTM YUXU-OYANMA POZUNTULARI",
+    "ru": "РАССТРОЙСТВА ЦИРКАДНОГО РИТМА СНА",
+    "en": "CIRCADIAN RHYTHM SLEEP-WAKE DISORDERS",
+    "tr": "SİRKADİYEN RİTM UYKU-UYANIKLIK BOZUKLUKLARI"
+   },
+   "icd10": "F51.2",
+   "dsm5tr": "307.45",
+   "file": "klinik-psixiatriya/7A40.html (+ ru/ en/ tr/)",
+   "note": "РЕШЕНИЕ КЕНАНА: обзорная страница группы — в шапке диапазон кодов, как на страницах глав",
+   "is_range": true,
+   "range_label_ru": "Расстройства циркадианного ритма сон-бодрствование (группа)",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "7A21-7A26",
+   "icd11_in_book": "7A60",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Idiopathic hypersomnia",
+    "ru": "Идиопатическая гиперсомния",
+    "tr": "İdiyopatik hipersomnia",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "HİPERSOMNİYA",
+    "ru": "ГИПЕРСОМНИЯ",
+    "en": "HYPERSOMNIA",
+    "tr": "HIPERSOMNI"
+   },
+   "icd10": "F51.1",
+   "dsm5tr": "327.10",
+   "file": "klinik-psixiatriya/7A60.html (+ ru/ en/ tr/)",
+   "note": "РЕШЕНИЕ КЕНАНА: обзорная страница группы — в шапке диапазон кодов, как на страницах глав",
+   "is_range": true,
+   "range_label_ru": "Гиперсомнии (группа)",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "7A20",
+   "icd11_in_book": "7A80",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Narcolepsy",
+    "ru": "Нарколепсия",
+    "tr": "Narkolepsi",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "NARKOLEPSİYA",
+    "ru": "НАРКОЛЕПСИЯ",
+    "en": "NARCOLEPSY",
+    "tr": "NARKOLEPSI"
+   },
+   "icd10": "G47.4",
+   "dsm5tr": "347.0",
+   "file": "klinik-psixiatriya/7A80.html (+ ru/ en/ tr/)",
+   "note": "нарколепсия; 7A80 официально = синдром беспокойных ног",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "HA01.1",
+   "icd11_in_book": "HA00",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Male erectile dysfunction",
+    "ru": "Эректильная дисфункция у мужчин",
+    "tr": "Erkek ereksiyon bozukluğu",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "EREKTİL DİSFUNKSİYA (ED)",
+    "ru": "ЭРЕКТИЛЬНАЯ ДИСФУНКЦИЯ (ED)",
+    "en": "ERECTILE DYSFUNCTION (ED)",
+    "tr": "EREKTİL DİSFONKSİYON (ED)"
+   },
+   "icd10": "F52.2",
+   "dsm5tr": "302.72",
+   "file": "klinik-psixiatriya/HA00.html (+ ru/ en/ tr/)",
+   "note": "эректильная дисфункция = подкод HA01.1; HA00 официально = гипоактивное сексуальное желание",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "HA03.0",
+   "icd11_in_book": "HA01",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Male early ejaculation",
+    "ru": "Преждевременная эякуляция у мужчин",
+    "tr": "Erkek erken ejekülasyonu",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "ERKƏN EYAKULYASİYA (PE)",
+    "ru": "ПРЕЖДЕВРЕМЕННАЯ ЭЯКУЛЯЦИЯ (PE)",
+    "en": "EARLY EJACULATION (PE)",
+    "tr": "ERKEN BOŞALMA (PE)"
+   },
+   "icd10": "F52.4",
+   "dsm5tr": "302.75",
+   "file": "klinik-psixiatriya/HA01.html (+ ru/ en/ tr/)",
+   "note": "преждевременная эякуляция = HA03.0 Male early ejaculation",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "HA00",
+   "icd11_in_book": "HA02",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Hypoactive sexual desire dysfunction",
+    "ru": "Снижение сексуального желания",
+    "tr": "Hipoaktif cinsel istek bozukluğu",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "HİPOAKTİV CİNSİ İSTƏK POZUNTUSU (HSDD)",
+    "ru": "ГИПОАКТИВНОЕ РАССТРОЙСТВО СЕКСУАЛЬНОГО ЖЕЛАНИЯ (HSDD)",
+    "en": "HYPOACTIVE SEXUAL DESIRE DISORDER (HSDD)",
+    "tr": "HİPOAKTİF CİNSEL İSTEK BOZUKLUĞU (HSDD)"
+   },
+   "icd10": "F52.0",
+   "dsm5tr": "",
+   "file": "klinik-psixiatriya/HA02.html (+ ru/ en/ tr/)",
+   "note": "гипоактивное сексуальное желание",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "HA02.0",
+   "icd11_in_book": "HA03",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Anorgasmia",
+    "ru": "Аноргазмия",
+    "tr": "Anorgazmi",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "ANORGASMİYA",
+    "ru": "АНОРГАЗМИЯ",
+    "en": "ANORGASMIA",
+    "tr": "ANORGASMİ"
+   },
+   "icd10": "F52.3",
+   "dsm5tr": "",
+   "file": "klinik-psixiatriya/HA03.html (+ ru/ en/ tr/)",
+   "note": "аноргазмия = подкод HA02.0",
+   "az_proposed": "",
+   "az_source": "",
+   "az_confidence": "needs_author_decision"
+  },
+  {
+   "icd11_correct": "HA20",
+   "icd11_in_book": "HA04",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "Sexual pain-penetration disorder",
+    "ru": "Сексуальное расстройство болезненной пенетрации",
+    "tr": "Cinsel ağrı-penetrasyon bozukluğu",
+    "ru_source": "official_icd11"
+   },
+   "book_headings": {
+    "az": "GENİTO-PELVİK AĞRI / PENETRASİYA POZUNTUSU (VAGİNİSMUS)",
+    "ru": "РАССТРОЙСТВО ГЕНИТАЛЬНО-ТАЗОВОЙ БОЛИ ПРИ ПРОНИКНОВЕНИИ (ВАГИНИЗМ)",
+    "en": "GENITO-PELVIC PAIN / PENETRATION DISORDER (VAGINISMUS)",
+    "tr": "GENİTO-PELVİK AĞRI / PENETRASYON BOZUKLUĞU (VAGİNİSMUS)"
+   },
+   "icd10": "F52.5",
+   "dsm5tr": "",
+   "file": "klinik-psixiatriya/HA04.html (+ ru/ en/ tr/)",
+   "note": "генито-пельвикальная боль/пенетрация = HA20, отдельный блок",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  },
+  {
+   "icd11_correct": "HA40",
+   "icd11_in_book": "HA05",
+   "needs_renumber": true,
+   "split_into": null,
+   "official": {
+    "en": "",
+    "ru": "",
+    "tr": ""
+   },
+   "book_headings": {
+    "az": "DİGƏR XƏSTƏLİK VƏ POZUNTU İLƏ ƏLAQƏLİ CİNSİ DİSFUNKSİYALAR",
+    "ru": "СЕКСУАЛЬНЫЕ ДИСФУНКЦИИ, СВЯЗАННЫЕ С ДРУГИМИ ЗАБОЛЕВАНИЯМИ И РАССТРОЙСТВАМИ",
+    "en": "SEXUAL DYSFUNCTIONS ASSOCIATED WITH OTHER DISEASES AND DISORDERS",
+    "tr": "DİĞER HASTALIK VE BOZUKLUK İLE İLİŞKİLİ CİNSEL İŞLEV BOZUKLUKLARI"
+   },
+   "icd10": "F52.8",
+   "dsm5tr": "",
+   "file": "klinik-psixiatriya/HA05.html (+ ru/ en/ tr/)",
+   "note": "HA40 Aetiological considerations in sexual dysfunctions and sexual pain disorders; HA40.0 — связанные с соматическим заболеванием, HA40.2 — с приёмом веществ/лекарств (покрывает СИОЗС-индуцированную дисфункцию)",
+   "az_proposed": "",
+   "az_confidence": "needs_author_decision",
+   "az_source": ""
+  }
+ ]
+}
