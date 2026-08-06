@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы ICD-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки ICD-11 / DSM-5-TR / ICD-10 */
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -306,13 +306,15 @@ function setCls(k){
 </ul>
 
 <h2 id="6b04-8-mualice">8. Tedavi</h2>
-<h3>8.1 Tedavi yaklaşımları (NICE CG159 · CANMAT 2014)</h3><ul><li><strong>Bireysel BDT (Clark D.M. modeli) birinci basamak</strong> — kendine odaklanmış dikkatin yeniden yönlendirilmesi, video geri bildirim, davranış deneyleri, bilişsel yeniden yapılandırma, in vivo maruz bırakma. 12–16 seans. NICE CG159 — bireysel BDT grup BDT'den üstün.</li><li><strong>SSRI ve SNRI birinci basamak farmakoterapi</strong> — esitalopram, sertralin, paroksetin (FDA onaylı), venlafaksin (FDA onaylı).</li><li><strong>İkinci sıra</strong> — moklobemid (RIMA, Avrupa'da onaylı), pregabalin (kanıt sınırlı), gabapentin.</li><li><strong>benzodiazepin</strong> — yalnızca belirli durum için (örn. konuşma öncesi) kısa süreli; sürekli değil.</li><li><strong>β-bloker (propranolol)</strong> — performans alt tipinde, çıkış öncesi 1–2 saat; sosyal etkileşimde etkisiz.</li><li><strong>Tedavi süresi</strong> — remisyondan sonra ≥ 12 ay.</li><li><strong>Alkol kullanımı</strong> — kendi kendine tedavi şeklinde; özel dikkat ve paralel müdahale.</li></ul>
-<ol class="method-num">
-  <li><strong>Klark KDT Modeli (Clark)</strong> — Sosyal kaygı için özel geliştirilmiş; kendine odaklanmış dikkatin dışa yönlendirilmesi, video geri bildirim (kendi performansını başkalarının gözüyle görme), davranış deneyleri (korku inançlarının test edilmesi), in vivo maruz bırakma. Kanıt: Clark D.M. ve ark. J Consult Clin Psychol 2003 RÇT — deneysel bireysel BDT diğer müdahalelerden üstün.</li>
-  <li><strong>Haymberq Qrup KDT (Heimberg)</strong> — 12 seanslı grup formatı; Heimberg R.G. modeli. Etkili, ancak bireysel BDT'den nispeten zayıf (NICE CG159).</li>
-  <li><strong>İnternet-temelli BDT (iCBT — internet-based CBT)</strong> — Andersson G. et al. RKT’leri — terapist destekli iCBT bireysel BDT’ye kıyasla.</li>
-  <li><strong>Libovits Sosyal Anksiyete Ölçeği (LSAS — Liebowitz Social Anxiety Scale)</strong> — 24 madde (12 etkileşim + 12 performans); altın standart.</li>
-  <li><strong>Sosyal Fobi Anketi (SPIN — Social Phobia Inventory)</strong> — 17 madde; kısa tarama.</li>
+<h3>8.1 Genel Prensipler (NICE CG159 · CANMAT 2014)</h3>
+<ol>
+  <li><strong>Bireysel BDT (Clark D.M. modeli) birinci basamak</strong> — kendine odaklanmış dikkatin yeniden yönlendirilmesi, video geri bildirim, davranış deneyleri, bilişsel yeniden yapılandırma, in vivo maruz bırakma. 12–16 seans. NICE CG159 — bireysel BDT grup BDT'den üstün.</li>
+  <li><strong>SSRI ve SNRI birinci basamak farmakoterapi</strong> — esitalopram, sertralin, paroksetin (FDA onaylı), venlafaksin (FDA onaylı).</li>
+  <li><strong>İkinci sıra</strong> — moklobemid (RIMA, Avrupa'da onaylı), pregabalin (kanıt sınırlı), gabapentin.</li>
+  <li><strong>benzodiazepin</strong> — yalnızca belirli durum için (örn. konuşma öncesi) kısa süreli; sürekli değil.</li>
+  <li><strong>β-bloker (propranolol)</strong> — performans alt tipinde, çıkış öncesi 1–2 saat; sosyal etkileşimde etkisiz.</li>
+  <li><strong>Tedavi süresi</strong> — remisyondan sonra ≥ 12 ay.</li>
+  <li><strong>Alkol kullanımı</strong> — kendi kendine tedavi şeklinde; özel dikkat ve paralel müdahale.</li>
 </ol>
 
 <h3>8.2 Kaynağa özgü detaylandırmalar</h3>

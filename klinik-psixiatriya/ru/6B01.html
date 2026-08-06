@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы МКБ-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки МКБ-11 / DSM-5-TR / МКБ-10 */
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -317,12 +317,13 @@ function setCls(k){
 </ul>
 
 <h2 id="6b01-8-mualice">8. Лечение</h2>
-<h3>8.1 Подходы к лечению (NICE CG113 · CANMAT 2014)</h3><ul><li>КПТ при паническом расстройстве — психообразование, интероцептивная экспозиция (переносимость телесных сигналов без катастрофизации), экспозиция in vivo (избегаемые ситуации), когнитивная реструктуризация. 12–16 сессий. Доказательства: обзоры Cuijpers P. et al. — большой эффект.</li><li>Фармакотерапия: СИОЗС (сертралин, эсциталопрам, пароксетин — FDA) или СИОЗСН (венлафаксин) — первая линия. Начало с низкой дозы (дрожь, эффект «активации» может усилить панику).</li><li>Бензодиазепин (клоназепам, лоразепам) — краткосрочная начальная стабилизация; ≤ 4 недели; потенциал зависимости.</li><li>Длительность лечения — ≥ 12 месяцев после ремиссии.</li><li>Ограничение кофеина, алкоголя, марихуаны.</li></ul>
-<ol class="method-num">
-  <li><strong>КПТ для паники — Кларк (Clark D.M.), Барлоу (Barlow D.)</strong> — Интероцептивная экспозиция (преднамеренное создание телесных ощущений — гипервентиляция, вращение, кофеин) + экспозиция in vivo + когнитивная реструктуризация. Доказательства: РКИ Barlow D.H. et al. JAMA 2000.</li>
-  <li><strong>Терапия контроля паники (PCT — Panic Control Treatment) — Барлоу (Barlow D.)</strong> — Мануализированный протокол из 11 сессий; широко используется в США.</li>
-  <li><strong>Шкала тяжести панического расстройства (PDSS — Panic Disorder Severity Scale) — Шир (Shear M.K.)</strong> — 7 пунктов; начальные показатели и наблюдение.</li>
-  <li><strong>Интернет-основанная КПТ (iCBT — internet-based CBT)</strong> — РКИ Andersson G. et al. — показали сравнительную эффективность с индивидуальной КПТ.</li>
+<h3>8.1 Общие принципы (NICE CG113 · CANMAT 2014)</h3>
+<ol>
+  <li>КПТ при паническом расстройстве — психообразование, интероцептивная экспозиция (переносимость телесных сигналов без катастрофизации), экспозиция in vivo (избегаемые ситуации), когнитивная реструктуризация. 12–16 сессий. Доказательства: обзоры Cuijpers P. et al. — большой эффект.</li>
+  <li>Фармакотерапия: СИОЗС (сертралин, эсциталопрам, пароксетин — FDA) или СИОЗСН (венлафаксин) — первая линия. Начало с низкой дозы (дрожь, эффект «активации» может усилить панику).</li>
+  <li>Бензодиазепин (клоназепам, лоразепам) — краткосрочная начальная стабилизация; ≤ 4 недели; потенциал зависимости.</li>
+  <li>Длительность лечения — ≥ 12 месяцев после ремиссии.</li>
+  <li>Ограничение кофеина, алкоголя, марихуаны.</li>
 </ol>
 
 <h3>8.2 Уточнения по источникам</h3>
@@ -331,6 +332,14 @@ function setCls(k){
   <li>Рекомендации APA по тревоге — КПТ и фармакотерапия одинаково эффективны.</li>
   <li>Mitte K. J Affect Disord 2005 мета-анализ — КПТ превосходит плацебо и лист ожидания.</li>
 </ul>
+
+<h3>Методики лечения</h3>
+<ol class="method-num">
+  <li><strong>КПТ для паники — Кларк (Clark D.M.), Барлоу (Barlow D.)</strong> — Интероцептивная экспозиция (преднамеренное создание телесных ощущений — гипервентиляция, вращение, кофеин) + экспозиция in vivo + когнитивная реструктуризация. Доказательства: РКИ Barlow D.H. et al. JAMA 2000.</li>
+  <li><strong>Терапия контроля паники (PCT — Panic Control Treatment) — Барлоу (Barlow D.)</strong> — Мануализированный протокол из 11 сессий; широко используется в США.</li>
+  <li><strong>Шкала тяжести панического расстройства (PDSS — Panic Disorder Severity Scale) — Шир (Shear M.K.)</strong> — 7 пунктов; начальные показатели и наблюдение.</li>
+  <li><strong>Интернет-основанная КПТ (iCBT — internet-based CBT)</strong> — РКИ Andersson G. et al. — показали сравнительную эффективность с индивидуальной КПТ.</li>
+</ol>
 
 <h2 id="6b01-9-proqnoz">9. Прогноз</h2>
 <ul>

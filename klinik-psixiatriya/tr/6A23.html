@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы ICD-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки ICD-11 / DSM-5-TR / ICD-10 */
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -376,13 +376,16 @@ function setCls(k){
 
 <h2 id="6a23-8-mualice">8. Tedavi</h2>
 
-<h3>8.1 Tedavi yaklaşımları</h3><ul><li><strong>Acil değerlendirme ve gerektiğinde yatak yatışı</strong> — hastanın veya başkalarının güvenliği için.</li><li><strong>Birinci sıra: atipik antipsikotik düşük dozda</strong> — risperidon 1–4 mg, olanzapin 5–15 mg, ketiapin 200–600 mg, aripiprazol 5–15 mg.</li><li><strong>Akut ajitasyonda</strong> — oral lorazepam 1–2 mg + olanzapin oral dağılan 5–10 mg; intramüsküler — olanzapin 10 mg im veya aripiprazol 9,75 mg im, gerekirse haloperidol 5 mg + lorazepam 2 mg im (klasik).</li><li><strong>süre, zaman</strong> — Antipsikotik tipik 3–6 ay (remisyondan sonra), ardından kademeli azaltma ve izlem; ilk epizod temelli kesme standart değildir — bireysel değerlendirme.</li><li><strong>Stres-induksiyonlu bağlamda</strong> — psikososyal destek, BDT-temelli stres yönetimi.</li><li><strong>Postpartum başlangıçta</strong> — tıbbi acil durum olarak; çocuk öldürme ve intihar riski yüksektir; hastaneye yatış, anne-bebek ortak yatış koşulları varsa tercih edilir; bkz. 6E20 bölümü.</li><li><strong>EKT</strong> — refrakter ağır vakalarda, katatonik özelliklerle, gebelikte en güvenli seçenek.</li><li><strong>Uzun süreli izlem</strong> — %30–50 hasta uzun süreli psikotik bozukluğa geçer; ilk yıl aylık, sonra üç aylık.</li></ul>
-<ol class="method-num">
-  <li><strong>Erken Müdahale Hizmetleri (EIP — Early Intervention in Psychosis)</strong> — İlk psikotik epizod için multidisipliner bakım 3 yıl boyunca — düşük doz farmakoterapi, BDTp, aile müdahalesi, istihdam desteği. RAISE (Kane J.M. et al. Am J Psychiatry 2016) RKT. Akut ve geçici hastalar da EIP programlarına dahil edilir.</li>
-  <li><strong>Psikoz için Bilişsel-Davranışçı Terapi (BDTp / CBTp — Cognitive Behavioural Therapy for psychosis)</strong> — Psikotik semptomları 'düşünce–duygu–davranış' formülasyonunda yeniden değerlendirme. NICE CG178 §1.3.7.1.</li>
-  <li><strong>Aile Psikoeğitimi (Family Psychoeducation)</strong> — Hastanın epizod sonrası desteği, nüks erken belirteçlerinin tanınması, aile iletişim eğitimi. Pharoah Cochrane 2010.</li>
-  <li><strong>Elektrokonvulsif Terapi (EKT — Electroconvulsive Therapy)</strong> — Katatonik özelliklerle, ağır farmakoterapi yanıtsızlığında, gebelikte. NICE TA59. UK ECT Review Group Lancet 2003.</li>
-  <li><strong>PANSS, BPRS</strong> — Psikotik şiddetin standardize değerlendirilmesi.</li>
+<h3>8.1 Genel prensipler</h3>
+<ol>
+  <li><strong>Acil değerlendirme ve gerektiğinde yatak yatışı</strong> — hastanın veya başkalarının güvenliği için.</li>
+  <li><strong>Birinci sıra: atipik antipsikotik düşük dozda</strong> — risperidon 1–4 mg, olanzapin 5–15 mg, ketiapin 200–600 mg, aripiprazol 5–15 mg.</li>
+  <li><strong>Akut ajitasyonda</strong> — oral lorazepam 1–2 mg + olanzapin oral dağılan 5–10 mg; intramüsküler — olanzapin 10 mg im veya aripiprazol 9,75 mg im, gerekirse haloperidol 5 mg + lorazepam 2 mg im (klasik).</li>
+  <li><strong>süre, zaman</strong> — Antipsikotik tipik 3–6 ay (remisyondan sonra), ardından kademeli azaltma ve izlem; ilk epizod temelli kesme standart değildir — bireysel değerlendirme.</li>
+  <li><strong>Stres-induksiyonlu bağlamda</strong> — psikososyal destek, BDT-temelli stres yönetimi.</li>
+  <li><strong>Postpartum başlangıçta</strong> — tıbbi acil durum olarak; çocuk öldürme ve intihar riski yüksektir; hastaneye yatış, anne-bebek ortak yatış koşulları varsa tercih edilir; bkz. 6E20 bölümü.</li>
+  <li><strong>EKT</strong> — refrakter ağır vakalarda, katatonik özelliklerle, gebelikte en güvenli seçenek.</li>
+  <li><strong>Uzun süreli izlem</strong> — %30–50 hasta uzun süreli psikotik bozukluğa geçer; ilk yıl aylık, sonra üç aylık.</li>
 </ol>
 
 <h3>8.2 Kaynağa özgü detaylandırmalar</h3>

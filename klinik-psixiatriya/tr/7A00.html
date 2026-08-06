@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы ICD-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки ICD-11 / DSM-5-TR / ICD-10 */
+/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -297,17 +297,29 @@ function setCls(k){
 </ul>
 
 <h2 id="7a00-8-mualice">8. Tedavi</h2>
-<h3>8.1 Tedavi yaklaşımları (AASM 2021 · European Insomnia Guideline 2023 · NICE 2025)</h3><ul><li><strong>CBT-I — Cognitive Behavioral Therapy for Insomnia BİRİNCİ BASAMAK</strong> — kronik insomnide altın standart; farmakoterapiden üstün uzun dönem etkinlikte (Mitchell M.D. BMC Fam Pract 2012 meta-analizi). 5 temel bileşen:
+<h3>8.1 Genel prensipler (AASM 2021 · European Insomnia Guideline 2023 · NICE 2025)</h3>
+<ol>
+  <li><strong>CBT-I — Cognitive Behavioral Therapy for Insomnia BİRİNCİ BASAMAK</strong> — kronik insomnide altın standart; farmakoterapiden üstün uzun dönem etkinlikte (Mitchell M.D. BMC Fam Pract 2012 meta-analizi). 5 temel bileşen:
     <ul>
-      <li>Stimülasyon kontrolü (Bootzin) — yatak yalnızca uyku için;</li><li>Uyku kısıtlaması (Spielman) — yatakta kalma süresinin uyku süresine eşit olarak sınırlandırılması;</li><li>Bilişsel terapi — uyku hakkında felaket düşünceleri;</li><li>Uyku hijyeni;</li><li>Rahatlama eğitimi.</li><li>Dijital CBT-I (Sleepio, SHUTi) — klinik formata yakın etki; NICE 2025 — maliyet-etkin alternatif.</li><li><strong>Farmakoterapi — kısa süreli (2–4 hafta), BDT-I yanıt vermediğinde veya ulaşılabilir olmadığında:</strong>
+      <li>Stimülasyon kontrolü (Bootzin) — yatak yalnızca uyku için;</li>
+      <li>Uyku kısıtlaması (Spielman) — yatakta kalma süresinin uyku süresine eşit olarak sınırlandırılması;</li>
+      <li>Bilişsel terapi — uyku hakkında felaket düşünceleri;</li>
+      <li>Uyku hijyeni;</li>
+      <li>Rahatlama eğitimi.</li>
+    </ul>
+  </li>
+  <li>Dijital CBT-I (Sleepio, SHUTi) — klinik formata yakın etki; NICE 2025 — maliyet-etkin alternatif.</li>
+  <li><strong>Farmakoterapi — kısa süreli (2–4 hafta), BDT-I yanıt vermediğinde veya ulaşılabilir olmadığında:</strong>
     <ul>
-      <li>Z-ilaçları (zolpidem, zopiklon, eszopiklon);</li><li>Benzodiazepin (temazepam) — tolerans, bağımlılık riski;</li><li>Daha yeni — suvoreksant, lemboreksant (oreksin antagonistleri) — daha az bağımlılık;</li><li>Doksepin düşük dozda (3–6 mg);</li><li>Melatonin — sirkadiyen bileşende veya yaşlılarda; ramelteon (melatonin agonisti).</li><li>Yaşlılarda — Beers Kriterleri; benzodiazepin ve antihistaminik (diphenhydramine) kaçınma.</li><li>Komorbid depresyon — sedatif antidepresan (mirtazapin, trazodon) — uzun süreli kullanım için yan etkiler dikkate alınmalıdır.</li></ul>
-<ol class="method-num">
-  <li><strong>Uykusuzluk için BDT (CBT-I — Cognitive Behavioral Therapy for Insomnia), 5 bileşen</strong> — Uyaran kontrolü, uyku kısıtlaması, bilişsel terapi, uyku hijyeni, gevşeme.</li>
-  <li><strong>Dijital CBT-I (Digital)</strong> — Sleepio, SHUTi — internet tabanlı.</li>
-  <li><strong>Oreksin Antagonistleri</strong> — Suvoreksant, lemboreksant — daha az bağımlılık potansiyeli.</li>
-  <li><strong>Uykusuzluk Şiddet İndeksi (ISI — Insomnia Severity Index)</strong> — 7 maddelik tarama.</li>
-  <li><strong>Uyku Günlüğü</strong> — 1–2 hafta başlangıç göstergeleri.</li>
+      <li>Z-ilaçları (zolpidem, zopiklon, eszopiklon);</li>
+      <li>Benzodiazepin (temazepam) — tolerans, bağımlılık riski;</li>
+      <li>Daha yeni — suvoreksant, lemboreksant (oreksin antagonistleri) — daha az bağımlılık;</li>
+      <li>Doksepin düşük dozda (3–6 mg);</li>
+      <li>Melatonin — sirkadiyen bileşende veya yaşlılarda; ramelteon (melatonin agonisti).</li>
+    </ul>
+  </li>
+  <li>Yaşlılarda — Beers Kriterleri; benzodiazepin ve antihistaminik (diphenhydramine) kaçınma.</li>
+  <li>Komorbid depresyon — sedatif antidepresan (mirtazapin, trazodon) — uzun süreli kullanım için yan etkiler dikkate alınmalıdır.</li>
 </ol>
 
 <h3>8.2 Kaynağa özgü detaylandırmalar</h3>
