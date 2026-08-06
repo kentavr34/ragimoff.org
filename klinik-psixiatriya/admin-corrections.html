@@ -115,10 +115,8 @@
 <!-- Login prompt (shown if no admin_token in localStorage) -->
 <div id="login" class="login-prompt" style="display:none">
   <h2 style="margin-top:0;color:var(--text)">Admin tokeni daxil edin</h2>
-  <p style="color:var(--text2);font-size:14px">
-    Cloudflare Worker üçün konfiqurasiya edilmiş <code>ADMIN_TOKEN</code> dəyəri.
-    Yalnız sizdə olduğu üçün bu səhifə yalnız sizin üçündür.
-  </p>
+  <p style="color:var(--text2);font-size:14px">**<code>ADMIN_TOKEN</code>** dəyəri Cloudflare Worker üçün konfiqurasiya edilmişdir.
+Bu səhifə yalnız sizin üçündür, çünki ADMIN_TOKEN yalnız sizdə mövcuddur.</p>
   <input type="password" id="admin-token-input" placeholder="ADMIN_TOKEN" autocomplete="off">
   <button onclick="saveToken()">Daxil ol</button>
   <button onclick="forgetToken()" style="background:transparent;color:var(--text2);border:1px solid var(--border)">Yadda saxlamağı sıfırla</button>

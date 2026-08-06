@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы ICD-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
+/* переключатель классификаций: вкладки ICD-11 / DSM-5-TR / ICD-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -234,10 +234,10 @@ function setCls(k){
 
 <h2 id="6d10-3-epidemiologiya">3. Epidemiology</h2>
 <ul>
-  <li>Lifetime prevalence: ~9% (Lenzenweger M.F. et al. Biol Psychiatry 2007); BPD ~1.4%, ASPD ~1%, schizoid 3%.</li>
-  <li>Sex: BPD higher in females in clinical populations; ASPD higher in males.</li>
+  <li>Lifetime prevalence: ~9% (Lenzenweger M.F. et al. Biol Psychiatry 2007); BPD ~1.4%, ASDD ~1%, schizoid 3%.</li>
+  <li>Sex: BPD higher in females in clinical populations; ASDD higher in males.</li>
   <li>Onset: adolescence and early adulthood.</li>
-  <li>Mortality: in BPD, suicide 8–10% lifetime; in ASPD, violent death.</li>
+  <li>Mortality: in BPD, suicide 8–10% lifetime; in ASDD, violent death.</li>
   <li>Comorbidity: MDD, anxiety, substance use, eating disorders.</li>
 </ul>
 
@@ -280,7 +280,7 @@ function setCls(k){
 <ul>
   <li><strong>ICD-11:</strong> Radical change to categorical system; requires training in clinical practice.</li>
   <li><strong>DSM-5-TR:</strong> 10 categorical diagnoses retained; Section III alternative model.</li>
-  <li><strong>NICE CG78 (BPD), CG77 (ASPD):</strong> Separate clinical guidelines for BPD and ASPD.</li>
+  <li><strong>NICE CG78 (BPD), CG77 (ASDD):</strong> Separate clinical guidelines for BPD and ASDD.</li>
 </ul>
 
 <h3>6.3 Diagnostic algorithm</h3>
@@ -310,32 +310,9 @@ function setCls(k){
 </ul>
 
 <h2 id="6d10-8-mualice">8. Treatment</h2>
-<h3>8.1 General Principles (NICE CG78 (BPD), CG77 (ASPD); APA 2001 (BPD))</h3>
-<ol>
-  <li><strong>Psychotherapy first line</strong> — Gold standard in personality disorders.</li>
-  <li><strong>Evidence-based approaches for BPD (5):</strong>
+<h3>8.1 Treatment approaches (NICE CG78 (BPD)</h3><ul><li><strong>Psychotherapy first line</strong> — Gold standard in personality disorders.</li><li><strong>Evidence-based approaches for BPD (5):</strong>
     <ul>
-      <li><strong>DBT</strong> (Dialectical Behavior Therapy, Linehan M.) — emotional regulation, distress tolerance, social skills, mindfulness; standard 12 months;</li>
-      <li><strong>MBT</strong> (Mentalization-Based Treatment, Bateman A., Fonagy P.)</li>
-      <li><strong>Schema Therapy</strong> (Young J.)</li>
-      <li><strong>TFP</strong> (Transference-Focused Psychotherapy, Kernberg O.)</li>
-      <li><strong>STEPPS</strong> (Systems Training for Emotional Predictability and Problem Solving).</li>
-    </ul>
-  </li>
-  <li>For ASPD — therapeutic limitation; CBT in structured, motivated patient.</li>
-  <li>Pharmacotherapy — no specific approval for personality disorder itself; for comorbid symptoms (impulsivity, depression, anxiety, psychosis-like) — SSRIs, mood stabilizers, low-dose atypical antipsychotics.</li>
-  <li>Crisis management — DBT skills, short-term inpatient stay.</li>
-  <li>Long-term treatment (years).</li>
-</ol>
-
-<h3>8.2 Source-specific clarifications</h3>
-<ul>
-  <li>NICE CG78 (BPD, 2009) — DBT, MBT, and similar structured approaches; pharmacotherapy not routinely recommended for BPD itself.</li>
-  <li>NICE CG77 (ASPD, 2009).</li>
-  <li>APA Practice Guideline for BPD (2001).</li>
-</ul>
-
-<h3>Treatment methods</h3>
+      <li><strong>DBT</strong> (Dialectical Behavior Therapy, Linehan M.) — emotional regulation, distress tolerance, social skills, mindfulness; standard 12 months;</li><li><strong>MBT</strong> (Mentalization-Based Treatment, Bateman A., Fonagy P.)</li><li><strong>Schema Therapy</strong> (Young J.)</li><li><strong>TFP</strong> (Transference-Focused Psychotherapy, Kernberg O.)</li><li><strong>STEPPS</strong> (Systems Training for Emotional Predictability and Problem Solving).</li><li>For ASDD — therapeutic limitation; CBT in structured, motivated patient.</li><li>Pharmacotherapy — no specific approval for personality disorder itself; for comorbid symptoms (impulsivity, depression, anxiety, psychosis-like) — SSRIs, mood stabilizers, low-dose atypical antipsychotics.</li><li>Crisis management — DBT skills, short-term inpatient stay.</li><li>Long-term treatment (years).</li></ul>
 <ol class="method-num">
   <li><strong>Dialectical Behavior Therapy (DBT) — Linehan (Linehan M.)</strong> 4 modules (mindfulness, distress tolerance, emotional regulation, social skills); individual + group + telephone coaching + therapist consultation. 12-month standard. Evidence: Linehan M.M. JAMA Psychiatry 2015.</li>
   <li><strong>Mentalization-Based Therapy (MBT) — Bateman A., Fonagy P.</strong> Mentalization — recognition of one's own and others' mental states; based on psychodynamic roots. Bateman A. Am J Psychiatry 2009.</li>
@@ -345,10 +322,17 @@ function setCls(k){
   <li><strong>Structured Clinical Interview for Personality Disorders (SCID-5-PD)</strong> DSM-5 categorical diagnosis.</li>
 </ol>
 
+<h3>8.2 Source-specific clarifications</h3>
+<ul>
+  <li>NICE CG78 (BPD, 2009) — DBT, MBT, and similar structured approaches; pharmacotherapy not routinely recommended for BPD itself.</li>
+  <li>NICE CG77 (ASDD, 2009).</li>
+  <li>APA Practice Guideline for BPD (2001).</li>
+</ul>
+
 <h2 id="6d10-9-proqnoz">9. Prognosis</h2>
 <ul>
   <li>BPD — 50%+ remission at 10-year follow-up (Zanarini M.C. reviews).</li>
-  <li>ASPD — worst prognosis; but aggression decreases with age.</li>
+  <li>ASDD — worst prognosis; but aggression decreases with age.</li>
   <li>Treatment prognosis significantly improves.</li>
 </ul>
 

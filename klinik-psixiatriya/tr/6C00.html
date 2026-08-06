@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы ICD-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
+/* переключатель классификаций: вкладки ICD-11 / DSM-5-TR / ICD-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -315,28 +315,19 @@ function setCls(k){
 </ul>
 
 <h2 id="6c00-8-mualice">8. Tedavi</h2>
-<h3>8.1 Genel prensipler (ICCS 2020 · NICE CG111)</h3>
-<ol>
-  <li><strong>Davranış müdahalesi:</strong>
+<h3>8.1 Tedavi yaklaşımları (ICCS 2020 · NICE CG111)</h3><ul><li><strong>Davranış müdahalesi:</strong>
     <ul>
-      <li>Konservatif öneriler — yatmadan önce sıvı alımının azaltılması, gündüz yeterli su tüketimi, düzenli idrar yapma, konstipasyonun çözümü.</li>
-      <li>Olumlu pekiştirme (yıldız çizelgesi) — kuru geceler için.</li>
-    </ul>
-  </li>
-  <li><strong>Birinci basamak spesifik müdahale:</strong>
+      <li>Konservatif öneriler — yatmadan önce sıvı alımının azaltılması, gündüz yeterli su tüketimi, düzenli idrar yapma, konstipasyonun çözümü.</li><li>Olumlu pekiştirme (yıldız çizelgesi) — kuru geceler için.</li><li><strong>Birinci basamak spesifik müdahale:</strong>
     <ul>
-      <li><strong>Enürezis alarmı (alarm)</strong> — pad-and-bell; ≥ 6 yaş, motivasyon varsa; uzun vadeli iyi sonuç; %65–75 etkili. Kanıt: Caldwell P.H. Cochrane 2020.</li>
-      <li><strong>Desmopressin</strong> — sentetik ADH analogu; hızlı etki, ancak kesildiğinde yüksek nüks. ≥ 6–7 yaş.</li>
-    </ul>
-  </li>
-  <li><strong>İkinci sıra:</strong>
+      <li><strong>Enürezis alarmı (alarm)</strong> — pad-and-bell; ≥ 6 yaş, motivasyon varsa; uzun vadeli iyi sonuç; %65–75 etkili. Kanıt: Caldwell P.H. Cochrane 2020.</li><li><strong>Desmopressin</strong> — sentetik ADH analogu; hızlı etki, ancak kesildiğinde yüksek nüks. ≥ 6–7 yaş.</li><li><strong>İkinci sıra:</strong>
     <ul>
-      <li>Alarm + desmopressin kombinasyonu;</li>
-      <li>Antikolinerjik (oksibutinin) — non-monosemptomatik over-active bladder bağlamında.</li>
-    </ul>
-  </li>
-  <li><strong>Refrakter:</strong> imipramine (TCA) — kardiyak monitorizasyon; dikkatle, aşırı doz toksisite.</li>
-  <li><strong>Konstipasyonun çözümü</strong> — PEG (polietilen glikol) ilk sıra; non-monosemptomatik veya komorbid enkoprezis bağlamında.</li>
+      <li>Alarm + desmopressin kombinasyonu;</li><li>Antikolinerjik (oksibutinin) — non-monosemptomatik over-active bladder bağlamında.</li><li><strong>Refrakter:</strong> imipramine (TCA) — kardiyak monitorizasyon; dikkatle, aşırı doz toksisite.</li><li><strong>Konstipasyonun çözümü</strong> — PEG (polietilen glikol) ilk sıra; non-monosemptomatik veya komorbid enkoprezis bağlamında.</li></ul>
+<ol class="method-num">
+  <li><strong>Enürezis Alarmı — Mowrer (Mowrer)</strong> Yatak alarmı veya giysi alarmı (nem sensörü); ≥ 4 hafta sürekli kullanım; tipik kullanım 12-16 hafta. Cochrane meta-analizi — en kanıtlı uzun süreli yöntem.</li>
+  <li><strong>Desmopressin</strong> — Oral 0,2–0,4 mg veya sublingual; yatmadan önce 1 saat; yatmadan önce sıvı kısıtlaması önemlidir (hiponatremi riski).</li>
+  <li><strong>Voiding ve Konstipasyon Günlüğü</strong> — 3 günlük; sıklık, hacim, mesane kapasitesi, gündüz semptomları, dışkılama sıklığı.</li>
+  <li><strong>Antikolinerjik (Oksibutinin)</strong> — Over-active bladder zemininde; gündüz semptomları varsa.</li>
+  <li><strong>PEG (Konstipasyon düzeltmesi)</strong> — İlk basamak; enkopreziste de kullanılır.</li>
 </ol>
 
 <h3>8.2 Kaynağa özgü detaylandırmalar</h3>

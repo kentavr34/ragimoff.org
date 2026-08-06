@@ -87,7 +87,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
   .content-wrap h3{font-size:.96rem}
   .content-wrap p{margin:.66rem 0}
-  /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
+  /* вкладки классификаций — все 3 в одну строку (были переносы МКБ-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
@@ -130,7 +130,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
-/* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
+/* переключатель классификаций: вкладки МКБ-11 / DSM-5-TR / МКБ-10 */
 [hidden]{display:none !important}
 .cls-tabs{display:flex;gap:.5rem;justify-content:center;margin:1rem 0 .4rem;flex-wrap:wrap}
 .cls-tab{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:.5rem 1.1rem;font-weight:700;font-size:.92rem;cursor:pointer;font-family:var(--mono,monospace);letter-spacing:.02em;transition:.15s}
@@ -306,15 +306,13 @@ function setCls(k){
 </ul>
 
 <h2 id="6b04-8-mualice">8. Лечение</h2>
-<h3>8.1 Общие принципы (NICE CG159 · CANMAT 2014)</h3>
-<ol>
-  <li><strong>Индивидуальная КПТ (модель Clark D.M.) первой линии</strong> — Перенаправление сфокусированного на себе внимания, видеообратная связь, поведенческие эксперименты, когнитивная реструктуризация, экспозиция in vivo. 12–16 сеансов. NICE CG159 — индивидуальная КПТ превосходит групповую КПТ.</li>
-  <li><strong>СИОЗС и СИОЗСН — фармакотерапия первой линии</strong> — эсциталопрам, сертралин, пароксетин (одобрены FDA), венлафаксин (одобрен FDA).</li>
-  <li><strong>Вторая линия</strong> — моклобемид (RIMA, одобрен в Европе), прегабалин (ограниченные доказательства), габапентин.</li>
-  <li><strong>бензодиазепин</strong> — только для конкретной ситуации (например, перед выступлением) краткосрочно; не постоянно.</li>
-  <li><strong>β-блокатор (пропранолол)</strong> — при подтипе «выступление» за 1–2 часа до выхода; неэффективно при социальном взаимодействии.</li>
-  <li><strong>Длительность лечения</strong> — ≥ 12 месяцев после ремиссии.</li>
-  <li><strong>Употребление алкоголя</strong> — В форме самолечения; особое внимание и параллельное вмешательство.</li>
+<h3>8.1 Подходы к лечению (NICE CG159 · CANMAT 2014)</h3><ul><li><strong>Индивидуальная КПТ (модель Clark D.M.) первой линии</strong> — Перенаправление сфокусированного на себе внимания, видеообратная связь, поведенческие эксперименты, когнитивная реструктуризация, экспозиция in vivo. 12–16 сеансов. NICE CG159 — индивидуальная КПТ превосходит групповую КПТ.</li><li><strong>СИОЗС и СИОЗСН — фармакотерапия первой линии</strong> — эсциталопрам, сертралин, пароксетин (одобрены FDA), венлафаксин (одобрен FDA).</li><li><strong>Вторая линия</strong> — моклобемид (RIMA, одобрен в Европе), прегабалин (ограниченные доказательства), габапентин.</li><li><strong>бензодиазепин</strong> — только для конкретной ситуации (например, перед выступлением) краткосрочно; не постоянно.</li><li><strong>β-блокатор (пропранолол)</strong> — при подтипе «выступление» за 1–2 часа до выхода; неэффективно при социальном взаимодействии.</li><li><strong>Длительность лечения</strong> — ≥ 12 месяцев после ремиссии.</li><li><strong>Употребление алкоголя</strong> — В форме самолечения; особое внимание и параллельное вмешательство.</li></ul>
+<ol class="method-num">
+  <li><strong>Klark KDT Modeli (Clark)</strong> — Специально разработано для социальной тревоги; внешнее перенаправление самофокусированного внимания, видеообратная связь (видение собственной производительности глазами других), поведенческие эксперименты (проверка страховых убеждений), экспозиция in vivo. Доказательства: Clark D.M. et al. J Consult Clin Psychol 2003 РКИ — экспериментальная индивидуальная КПТ превосходит другие вмешательства.</li>
+  <li><strong>Haymberq Qrup KDT (Heimberg)</strong> — Групповой формат из 12 сессий; модель Heimberg R.G. Эффективно, но относительно слабее индивидуальной КПТ (NICE CG159).</li>
+  <li><strong>Интернет-основанная КПТ (iCBT — internet-based CBT)</strong> — РКИ Andersson G. et al. — iCBT с поддержкой терапевта сопоставима с индивидуальной КПТ.</li>
+  <li><strong>Шкала социальной тревоги Либовица (LSAS — Liebowitz Social Anxiety Scale)</strong> — 24 пункта (12 взаимодействие + 12 производительность); золотой стандарт.</li>
+  <li><strong>Опросник социальной фобии (SPIN — Social Phobia Inventory)</strong> — 17 пунктов; краткий скрининг.</li>
 </ol>
 
 <h3>8.2 Уточнения по источникам</h3>
