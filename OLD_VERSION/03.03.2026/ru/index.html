@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Кенан Рагимов — Врач-Психотерапевт, Клинический Психолог. Психотерапия, семейная терапия, лечение энуреза, профессиональное образование. Баку."/>
+  <title>Кенан Рагимов | Врач-Психотерапевт | Баку</title>
+  
+  <!-- Google Fonts с поддержкой латиницы и кириллицы -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans:wght@300;400;500;700&display=swap&subset=latin,cyrillic" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="shared.css"/>
+  
+  <style>
+    /* ===== BASE & TYPOGRAPHY ===== */
+    :root {
+      --navy: #0d1b3e;
+      --blue: #1a3a6d;
+      --accent: #c8a96e;
+      --white: #ffffff;
+      --light: #f8f9fa;
+      --gray: #5a6b82;
+      --text: #2d3748;
+      --border: #e2e8f0;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    h1, h2, h3, h4, .svc-title, .edu-title, .spec-title, .stat-num, .pb-price, .modal h3 {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+    
+    /* ===== HERO SECTION ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #162d58 55%, #1e4080 100%);
+      display: flex;
+      align-items: center;
+      padding: 100px 32px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -15%;
+      right: -8%;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.11) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    
+    .hero-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(200,169,110,0.45);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+    
+    .hero h1 em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    
+    .hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 8px;
+      font-weight: 300;
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    
+    .hero-creds {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 28px;
+    }
+    
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 16px;
+      padding: 36px;
+      backdrop-filter: blur(12px);
+    }
+    
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    .stat-num {
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    
+    .stat-lbl {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.52);
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    
+    .hero-div {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 20px 0;
+    }
+    
+    .cert-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 11px;
+    }
+    
+    .cert-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    
+    .cert-txt {
+      font-size: 0.79rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    
+    /* ===== HERO PHOTO FIX ===== */
+   .hero-photo-wrap {
+  margin: 0 auto 10px;
+  max-width: 400px;
+  width: 100%;
+   }
+
+   .hero-photo {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  aspect-ratio: 3/4;
+}
+    
+    /* ===== ABOUT ===== */
+    #about { background: var(--light); }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    
+    .photo-wrap { position: relative; }
+    .photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: -16px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      z-index: 0;
+    }
+    
+    .photo-ph {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.76rem;
+      letter-spacing: 1px;
+      gap: 10px;
+    }
+    
+    .lead-p {
+      font-size: 1.03rem;
+      font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 18px;
+      line-height: 1.85;
+    }
+    
+    .body-p {
+      color: var(--gray);
+      margin-bottom: 13px;
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+    
+    .timeline {
+      margin-top: 30px;
+      border-left: 2px solid var(--border);
+      padding-left: 22px;
+    }
+    
+    .tl-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--light);
+    }
+    
+    .tl-yr {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    
+    .tl-txt {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    
+    /* ===== SERVICES ===== */
+    #services { background: var(--white); }
+    
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .svc-card {
+      padding: 26px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    
+    .svc-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 10px 32px rgba(13,27,62,0.09);
+      transform: translateY(-3px);
+    }
+    
+    .svc-card:hover::before { opacity: 1; }
+    
+    .svc-lbl {
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 7px;
+      display: block;
+    }
+    
+    .svc-title {
+      font-size: 1.03rem;
+      color: var(--navy);
+      margin-bottom: 7px;
+      line-height: 1.3;
+    }
+    
+    .svc-desc {
+      font-size: 0.83rem;
+      color: var(--gray);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    
+    .svc-price {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .svc-arrow {
+      color: var(--border);
+      transition: color .2s, transform .2s;
+    }
+    
+    .svc-card:hover .svc-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+    
+    /* price bar */
+    .price-bar {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+    }
+    
+    .pb-item {
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .pb-price {
+      font-size: 1.75rem;
+      color: var(--accent);
+    }
+    
+    .pb-unit {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.38);
+      margin-top: 3px;
+    }
+    
+    .pb-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 7px;
+      line-height: 1.4;
+    }
+    
+    /* ===== SPECIALTIES ===== */
+    #specialties { background: var(--light); }
+    
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    
+    .spec-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 30px 26px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      display: block;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+    }
+    
+    .spec-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(13,27,62,0.10);
+      transform: translateY(-4px);
+    }
+    
+    .spec-emoji {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    
+    .spec-title {
+      font-size: 1.05rem;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+    
+    .spec-desc {
+      font-size: 0.83rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    
+    .spec-cta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    /* ===== EDUCATION ===== */
+    #education { background: var(--navy); }
+    
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    
+    .edu-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px;
+      padding: 34px;
+      transition: background .25s, border-color .25s;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .edu-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(200,169,110,0.4);
+    }
+    
+    .edu-badge {
+      display: inline-block;
+      background: rgba(200,169,110,0.18);
+      color: var(--accent);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .edu-title {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 9px;
+      line-height: 1.3;
+    }
+    
+    .edu-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    
+    .edu-price {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .edu-price span {
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.38);
+      display: block;
+      margin-top: 2px;
+    }
+    
+    .edu-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.5px;
+    }
+    
+    .edu-card:hover .edu-link { color: var(--accent); }
+    
+    /* ===== REVIEWS ===== */
+    #reviews { background: var(--light); }
+    
+    .rev-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    
+    .rev-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    
+    .rev-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--accent);
+      opacity: 0.14;
+      position: absolute;
+      top: 4px;
+      left: 14px;
+      line-height: 1;
+    }
+    
+    .rev-stars {
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-bottom: 9px;
+      letter-spacing: 2px;
+    }
+    
+    .rev-text {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    
+    .rev-author {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    
+    .rev-date {
+      font-size: 0.7rem;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    
+    /* ===== DIPLOMA GALLERY ===== */
+    #dipGallery button img {
+      aspect-ratio: 4/3 !important;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+    
+    /* ===== LIGHTBOX ===== */
+    #lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 900;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    
+    #lb.show { display: flex; }
+    
+    #lb-img {
+      max-width: 88vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+    }
+    
+    #lb-close, #lb-prev, #lb-next {
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 1.4rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background .2s;
+    }
+    
+    #lb-close:hover, #lb-prev:hover, #lb-next:hover {
+      background: rgba(255,255,255,0.32);
+    }
+    
+    #lb-close { position: fixed; top: 16px; right: 20px; }
+    #lb-prev { position: fixed; left: 16px; top: 50%; transform: translateY(-50%); }
+    #lb-next { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); }
+    
+    #lb-caption {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.65);
+      font-size: 0.8rem;
+      text-align: center;
+      pointer-events: none;
+      background: rgba(0,0,0,0.4);
+      padding: 6px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    
+    /* ===== BOOKING ===== */
+    #booking { background: var(--white); }
+    
+    .bk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    
+    .bk-info p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+      line-height: 1.8;
+    }
+    
+    .contact-list { list-style: none; }
+    
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    
+    .contact-list li:last-child { border-bottom: none; }
+    
+    .c-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    
+    .contact-list a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    
+    .contact-list a:hover { color: var(--accent); }
+    
+    .bk-form {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 36px;
+    }
+    
+    .form-note {
+      font-size: 0.74rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-overlay.show { display: flex; }
+    
+    .modal {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 44px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+    
+    .modal-icon { font-size: 2.6rem; margin-bottom: 12px; }
+    .modal h3 { font-size: 1.35rem; margin-bottom: 8px; }
+    .modal p {
+      color: var(--gray);
+      font-size: 0.87rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .modal-close {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 10px 26px;
+      border-radius: 6px;
+      font-size: 0.87rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 0.87rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all .25s;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: var(--navy);
+    }
+    
+    .btn-primary:hover {
+      background: #b89a5e;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+    }
+    
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+    
+    .btn-navy:hover {
+      background: #1a2a5e;
+      transform: translateY(-2px);
+    }
+    
+    /* ===== FORM ===== */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    
+    .form-group { margin-bottom: 14px; }
+    
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200,169,110,0.15);
+    }
+    
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    
+    /* ===== HEADER & NAV ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(13,27,62,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    
+    .logo span { color: var(--accent); }
+    
+    nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.87rem;
+      font-weight: 400;
+      transition: color .2s;
+    }
+    
+    nav a:hover { color: var(--accent); }
+    
+    .nav-cta {
+      background: var(--accent);
+      color: var(--navy) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+    
+    .nav-cta:hover {
+      background: #b89a5e;
+      transform: translateY(-1px);
+    }
+    
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    
+    .burger span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+<<<<<<< HEAD
+      bottom: 0;
+=======
+>>>>>>> 0ffe5554457445a2e1521c38986e7992a05c134b
+      background: var(--navy);
+      padding: 20px 32px;
+      flex-direction: column;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 99;
+<<<<<<< HEAD
+      max-width: 100vw;
+      overflow-y: auto;
+      overflow-x: hidden;
+=======
+>>>>>>> 0ffe5554457445a2e1521c38986e7992a05c134b
+    }
+    
+    .mobile-nav.show { display: flex; }
+    
+    .mobile-nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .mobile-nav a:last-child { border-bottom: none; }
+    
+    .mob-cta {
+      background: var(--accent);
+      color: var(--navy) !important;
+      text-align: center;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+    
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.65);
+      padding: 60px 32px 24px;
+      font-size: 0.85rem;
+    }
+    
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-brand .logo {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+    
+    .footer-brand p {
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .social-link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      transition: all .2s;
+    }
+    
+    .social-link:hover {
+      background: var(--accent);
+      color: var(--navy);
+      border-color: var(--accent);
+    }
+    
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    
+    .footer-col ul { list-style: none; }
+    
+    .footer-col li { margin-bottom: 10px; }
+    
+    .footer-col a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    
+    .footer-col a:hover { color: var(--accent); }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .footer-bottom a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    /* ===== FLOATING WA BUTTON ===== */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      z-index: 80;
+      transition: transform .25s, box-shadow .25s;
+    }
+    
+    .wa-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+    
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+    
+    /* ===== UTILS ===== */
+    .section-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 80px 32px;
+    }
+    
+    .tag {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    
+    .h2 {
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      margin-bottom: 14px;
+    }
+    
+    .h3 {
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+    
+    .lead {
+      font-size: 1.03rem;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.75;
+    }
+    
+    .fi { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .fi.show { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .hero-btns { justify-content: center; }
+      .hero-card { max-width: 440px; margin: 0 auto; }
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+      .spec-grid { grid-template-columns: 1fr 1fr; }
+      .price-bar { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      nav { display: none; }
+<<<<<<< HEAD
+      .mobile-nav { padding: 20px 20px; }
+=======
+>>>>>>> 0ffe5554457445a2e1521c38986e7992a05c134b
+      
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .photo-wrap { max-width: 240px; margin: 0 auto 24px; }
+      .timeline { text-align: left; }
+      
+      .svc-grid, .spec-grid, .edu-grid, .rev-grid { grid-template-columns: 1fr; }
+      .bk-grid { grid-template-columns: 1fr; gap: 36px; }
+      .form-row { grid-template-columns: 1fr; }
+      
+      .hero { padding: 100px 20px 56px; }
+      .section-inner { padding: 60px 20px; }
+      
+      .footer-grid { grid-template-columns: 1fr; text-align: center; }
+      .footer-socials { justify-content: center; }
+      .footer-bottom { justify-content: center; }
+    }
+    
+    @media (max-width: 480px) {
+      .price-bar { grid-template-columns: 1fr 1fr; padding: 24px 16px; gap: 12px; }
+      .pb-price { font-size: 1.4rem; }
+      .hero h1 { font-size: 2rem; }
+    }
+    
+    /* ===== FOCUS STATES FOR ACCESSIBILITY ===== */
+    a:focus, button:focus, input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      header, footer, .wa-float, #booking { display: none !important; }
+      body { background: white; color: black; }
+      .hero { min-height: auto; padding: 20px; background: white !important; }
+      .hero h1, .hero-sub, .hero-creds { color: black !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа Психологии</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="#about">Обо мне</a>
+      <a href="#services">Услуги</a>
+      <a href="../tehsil.html">Образование</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="../blog.html">Блог</a>
+      <a href="#booking" class="nav-cta">Запись</a>
+      <a href="../index.html" style="font-weight:700; color:var(--accent);">AZ</a>
+    </nav>
+    <div class="burger" onclick="toggleMenu()" aria-label="Меню" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Мобильное меню">
+  <a href="#about" onclick="closeMenu()">Обо мне</a>
+  <a href="#services" onclick="closeMenu()">Услуги</a>
+  <a href="../tehsil.html" onclick="closeMenu()">Образование</a>
+  <a href="#reviews" onclick="closeMenu()">Отзывы</a>
+  <a href="../blog.html" onclick="closeMenu()">Блог</a>
+  <a href="#booking" onclick="closeMenu()" class="mob-cta">Запись</a>
+  <a href="../index.html" onclick="closeMenu()" style="text-align:center; font-weight:700; color:var(--accent);">AZ (Azərbaycanca)</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Bakı · Azərbaycan</div>
+      <h1>Həkim <em>Psixoterapevt</em><br/>Kənan Rəhimov</h1>
+      <p class="hero-sub">Klinik psixoterapiya · Ailə terapiyası · Enurez müalicəsi · Peşəkar psixoloji təhsil</p>
+      <p class="hero-creds">IPAS Ambassador · Sertifikat A № 2139298 · Bexterev İnstitutu</p>
+
+      <!-- Specialties pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px;justify-content:center;">
+        <span style="background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:rgba(255,255,255,0.85);font-size:0.74rem;padding:5px 12px;border-radius:20px;white-space:nowrap;"> Ailə terapiyası</span>
+        <span style="background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:rgba(255,255,255,0.85);font-size:0.74rem;padding:5px 12px;border-radius:20px;white-space:nowrap;"> Panik ataklar</span>
+        <span style="background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:rgba(255,255,255,0.85);font-size:0.74rem;padding:5px 12px;border-radius:20px;white-space:nowrap;">️ Depressiya</span>
+        <span style="background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:rgba(255,255,255,0.85);font-size:0.74rem;padding:5px 12px;border-radius:20px;white-space:nowrap;"> Sosial fobiya</span>
+        <span style="background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:rgba(255,255,255,0.85);font-size:0.74rem;padding:5px 12px;border-radius:20px;white-space:nowrap;"> Peşəkar təhsil</span>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#booking" class="btn btn-primary">Konsultasiya üçün yazıl</a>
+        <a href="#services" class="btn btn-outline">Xidmətlər </a>
+      </div>
+    </div>
+
+    <!-- HERO RIGHT: Photo + Stats -->
+    <div>
+      <!-- Photo - ИСПРАВЛЕНО -->
+      <div class="hero-photo-wrap">
+        <img src="images/photo-hero-suit.jpg" 
+             alt="Dr. Kənan Rəhimov — Həkim Psixoterapevt"
+             class="hero-photo"
+             loading="eager"/>
+      </div>
+      
+      <!-- Stats grid 2x2 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:8px;padding:14px;text-align:center;">
+          <div class="stat-num">22+</div>
+          <div class="stat-lbl">İl klinik təcrübə</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:8px;padding:14px;text-align:center;">
+          <div class="stat-num">250+</div>
+          <div class="stat-lbl">Enurez müalicəsi (2025)</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:8px;padding:14px;text-align:center;">
+          <div class="stat-num">300+</div>
+          <div class="stat-lbl">Video dərs arxivi</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:8px;padding:14px;text-align:center;">
+          <div class="stat-num">3000+</div>
+          <div class="stat-lbl">Təlim iştirakçısı</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="photo-wrap fi">
+        <img src="images/photo-portal-crop.jpg" 
+             alt="Dr. Kənan Rəhimov — Həkim Psixoterapevt, Klinik Psixoloq" 
+             style="position:relative;z-index:1;width:100%;border-radius:8px;display:block;object-fit:cover;object-position:center top;aspect-ratio:3/4;" 
+             loading="lazy"/>
+      </div>
+      <div>
+        <span class="tag fi">Mütəxəssis haqqında</span>
+        <h2 class="h2 fi">Kənan Rəhimov</h2>
+        <p class="lead-p fi">Həkim psixoterapevt, klinik psixoloq, biznes-psixologiya üzrə ekspert. 22 ildən artıq klinik təcrübə.</p>
+        <p class="body-p fi">Rusiya Federasiyasının Baş Psixoterapevti B.D.Karvasarski tərəfindən bilavasitə hazırlanmış, psixoanalitik V.D.Vidin rəhbərliyi altında çalışmışdır. Bexterev adına İnstitut tərəfindən Fərqlənmə Diplomu ilə təltif olunmuşdur.</p>
+        <p class="body-p fi">Hazırda yalnız psixoterapevtik müalicə ilə məşğul olur. Dərman terapiyası lazım gəldikdə müvafiq ixtisas mütəxəssislərinə yönləndirir.</p>
+        
+        <div class="timeline fi">
+          <div class="tl-item"><div class="tl-yr">2022</div><div class="tl-txt">IPAS — Beynəlxalq Psixoterapiya Assosiasiyasının Ambassadoru</div></div>
+          <div class="tl-item"><div class="tl-yr">2021</div><div class="tl-txt">B.D.Karvasarski adına İnstitutun Azərbaycanda nümayəndəliyi</div></div>
+          <div class="tl-item"><div class="tl-yr">2008</div><div class="tl-txt">Global Training and Consulting — HR Məktəbi, Satış Məktəbi</div></div>
+          <div class="tl-item"><div class="tl-yr">2003</div><div class="tl-txt">Bexterev adına İnstitut — Fərqlənmə Diplomu, Sankt-Peterburq</div></div>
+          <div class="tl-item"><div class="tl-yr">1994</div><div class="tl-txt">ADTU — Həkim-psixiatr ixtisası</div></div>
+        </div>
+
+        <!-- Diploma mini gallery -->
+        <div style="margin-top:28px;" class="fi">
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Diplomlar və Sertifikatlar</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;" id="dipGallery">
+            <button onclick="openLb(0)" style="all:unset;cursor:zoom-in;display:block;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+              <img src="images/diplomas/ipas-ambassador-2022.jpg" alt="IPAS 2022" loading="lazy"/>
+            </button>
+            <button onclick="openLb(1)" style="all:unset;cursor:zoom-in;display:block;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+              <img src="images/diplomas/bekhterev-udost.jpg" alt="Bexterev" loading="lazy"/>
+            </button>
+            <button onclick="openLb(2)" style="all:unset;cursor:zoom-in;display:block;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+              <img src="images/diplomas/sert-a2139298.jpg" alt="Sertifikat" loading="lazy"/>
+            </button>
+            <button onclick="openLb(3)" style="all:unset;cursor:zoom-in;display:block;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+              <img src="images/diplomas/adtu-diplom-2000.jpg" alt="ADTU" loading="lazy"/>
+            </button>
+          </div>
+          <a href="haqqimda.html#diplomas" style="font-size:0.78rem;font-weight:700;color:var(--accent);text-decoration:none;display:block;margin-top:8px;">Bütün diplomlara bax </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="section-inner">
+    <span class="tag fi">Xidmətlər</span>
+    <h2 class="h2 fi">Nə ilə kömək edə bilərəm?</h2>
+    <p class="lead fi" style="max-width:560px;">Hər müraciətçiyə fərdi yanaşma. Ətraflı məlumat üçün karta klikləyin.</p>
+    
+    <div class="svc-grid">
+      <a href="aile-terapiyasi.html" class="svc-card fi">
+        <span class="svc-lbl">Ailə terapiyası</span>
+        <div class="svc-title">Cütlük Terapiyası</div>
+        <div class="svc-desc">Boşanma astanasındakı cütlüklər. Həftədə 3 format sessiya. Ortalama 2–3 ayda nəticə.</div>
+        <div class="svc-price"><span>Qiymət  ətraflı</span><span class="svc-arrow"></span></div>
+      </a>
+      <a href="aile-terapiyasi-usaq.html" class="svc-card fi d1">
+        <span class="svc-lbl">Ailə terapiyası</span>
+        <div class="svc-title">Valideyn – Yeniyetmə</div>
+        <div class="svc-desc">Yeniyetmə depressiyası, qapalılıq, müqavimət. Sistematik 3 aylıq müdaxilə.</div>
+        <div class="svc-price"><span>Qiymət  ətraflı</span><span class="svc-arrow"></span></div>
+      </a>
+      <a href="enurez.html" class="svc-card fi d2">
+        <span class="svc-lbl">Uşaq terapiyası</span>
+        <div class="svc-title">Enurez Müalicəsi </div>
+        <div class="svc-desc">8–12 həftə. Enürez alarm + motivasiya sistemi + kompleks müalicə. 2025-ci ildə 250+ uşaq. Effektivlik 80%+.</div>
+        <div class="svc-price"><span>İlk görüş: 50 AZN</span><span class="svc-arrow"></span></div>
+      </a>
+      <a href="panik-ataklar.html" class="svc-card fi d1">
+        <span class="svc-lbl">Klinik</span>
+        <div class="svc-title">Panik Ataklar / Narahatlıq</div>
+        <div class="svc-desc">KBT metodları ilə panik pozuntunun psixoterapevtik müalicəsi. Dərmansız.</div>
+        <div class="svc-price"><span>Canlı 200 · Online 100 AZN</span><span class="svc-arrow"></span></div>
+      </a>
+      <a href="depressiya.html" class="svc-card fi d2">
+        <span class="svc-lbl">Klinik</span>
+        <div class="svc-title">Depressiya</div>
+        <div class="svc-desc">Depressiv epizodlar, motivasiyanın itirilməsi, günlük fəaliyyətin pozulması.</div>
+        <div class="svc-price"><span>Canlı 200 · Online 100 AZN</span><span class="svc-arrow"></span></div>
+      </a>
+      <a href="sosial-fobiya.html" class="svc-card fi d3">
+        <span class="svc-lbl">Klinik</span>
+        <div class="svc-title">Sosial Fobiya / Trevoga</div>
+        <div class="svc-desc">İctimai qorxu, ünsiyyətdən çəkinmə, mühakimə edilmə narahatlığı.</div>
+        <div class="svc-price"><span>Canlı 200 · Online 100 AZN</span><span class="svc-arrow"></span></div>
+      </a>
+    </div>
+    
+    <div class="price-bar fi">
+      <div class="pb-item"><div class="pb-price">200</div><div class="pb-unit">AZN</div><div class="pb-label">Canlı sessiya<br/>(1 saat)</div></div>
+      <div class="pb-item"><div class="pb-price">1000</div><div class="pb-unit">AZN/ay</div><div class="pb-label">Canlı paket<br/>(4 sessiya + WhatsApp)</div></div>
+      <div class="pb-item"><div class="pb-price">100</div><div class="pb-unit">AZN</div><div class="pb-label">Online sessiya<br/>(1 saat)</div></div>
+      <div class="pb-item"><div class="pb-price">500</div><div class="pb-unit">AZN/ay</div><div class="pb-label">Online paket<br/>(4 sessiya + WhatsApp)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="section-inner">
+    <span class="tag fi" style="color:var(--accent)">Peşəkar Təhsil</span>
+    <h2 class="h2 fi" style="color:var(--white);margin-bottom:12px;">Psixologiyada karyera qurun</h2>
+    <p class="lead fi" style="color:rgba(255,255,255,0.58);margin-bottom:44px;max-width:540px;">Rəsmi diplom üçün yenidənhazırlanma, real bacarıq üçün praktikum.</p>
+    
+    <div class="edu-grid">
+      <a href="tehsil.html" class="edu-card fi">
+        <span class="edu-badge">Diplom · 24 ay</span>
+        <div class="edu-title">Klinik Psixoloq — Əlavə Təhsil Diplomu</div>
+        <div class="edu-desc">Sankt-Peterburq DPO İnstitutunun dövlət tanınan diplomu. IPAS beynəlxalq üzvlüyü. Azərbaycan dilində, onlayn + offline.</div>
+        <div class="edu-price">6 000 AZN<span>və ya ayda 300 AZN × 24 ay</span></div>
+        <div class="edu-link">Proqrama bax </div>
+      </a>
+      <a href="tehsil.html" class="edu-card fi d2">
+        <span class="edu-badge">Sertifikat · 12 ay</span>
+        <div class="edu-title">Psixoterapiya Praktikumu</div>
+        <div class="edu-desc">Real klinik bacarıqlar. 3+ illik video arxivi, həftədə 2 canlı dərs, qapalı Telegram, ömürlük dəstək. Praktik psixoloq olmaq üçün ən sürətli yol.</div>
+        <div class="edu-price">3 000 AZN<span>və ya ayda 300 AZN × 12 ay</span></div>
+        <div class="edu-link">Proqrama bax </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <div class="section-inner">
+    <span class="tag fi">Rəylər</span>
+    <h2 class="h2 fi" style="margin-bottom:10px;">Vətəndaşlarımız nə deyir?</h2>
+    <p class="lead fi" style="margin-bottom:36px;max-width:540px;">Real insanlar, real nəticələr.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;" class="fi">
+      <!-- 9 отзывов как в оригинале -->
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Panik ataklarımdan 3 ildir əziyyət çəkirdim. Kənan müəllim ilə terapiyadan sonra həyatım tamamilə dəyişdi. İlk seansdan sonra belə fərq hiss etdim.</p>
+        <div class="rev-author">Aytən M.</div><div class="rev-date">Bakı · Panik ataklar · 2024</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Oğlumun enurez problemi 8 ildir davam edirdi. 10 həftəlik müalicədən sonra tam sağaldı. Heç bir dərman olmadan. Ailə olaraq çox minnətdarıq.</p>
+        <div class="rev-author">Rauf K. (valideyn)</div><div class="rev-date">Bakı · Enurez müalicəsi · 2025</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Praktikumu bitirdikdən sonra öz kabinetime açdım. Kənan müəllimin metodikası — real bacarıq. Nəzəriyyə ilə praktika arasındakı uçurumu bağladı.</p>
+        <div class="rev-author">Leyla H. (psixoloq)</div><div class="rev-date">Bakı · Praktikum · 2024</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Ərim ilə münasibətimiz çox gərgin idi, boşanma haqqında danışırdıq. Cütlük terapiyasından sonra hər şey yenidən quruldu. İnanmazdım amma oldu.</p>
+        <div class="rev-author">Nigar Ə.</div><div class="rev-date">Bakı · Ailə terapiyası · 2024</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Qızım 12 yaşında idi, bizimlə danışmırdı, məktəbdən qaçırdı. 3 aylıq valideyn-yeniyetmə terapiyasından sonra evimizin mühiti tamam dəyişdi.</p>
+        <div class="rev-author">Sevinc N. (ana)</div><div class="rev-date">Bakı · Valideyn-yeniyetmə · 2025</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Sosial fobiyam o qədər güclü idi ki, nə işə gedə, nə də metroya minə bilirdim. İndi insanlarla ünsiyyətdə heç bir problem yaşamıram. Sağ olun.</p>
+        <div class="rev-author">Tural B.</div><div class="rev-date">Bakı · Sosial fobiya · 2024</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">İqtisadiyyat üzrə diplom var, uzun müddətdir psixoloq olmaq istəyirdim. ƏTD proqramından sonra artıq öz vətəndaşlarımla çalışıram. Tamamilə qanuni.</p>
+        <div class="rev-author">Samirə Q. (psixoloq)</div><div class="rev-date">Bakı · Klinik Psixologiya Diplomu · 2024</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Depressiya üçün müraciət etdim. İlk seans qorxu ilə keçdi, amma müəllim çox sakit dinlədi. 4 ayda həyata baxışım dəyişdi. Tövsiyə edirəm.</p>
+        <div class="rev-author">Həsən M.</div><div class="rev-date">Gəncə · Online · Depressiya · 2025</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars"></div>
+        <p class="rev-text">Uşağımın enurezini 5 il «özü keçər» deyib gözlədik. Müalicədən 7 həftə sonra problem bitdi. Bu müddəti gözlədiyimizə peşmanam.</p>
+        <div class="rev-author">Könül İ. (ana)</div><div class="rev-date">Bakı · Enurez · 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section id="booking">
+  <div class="section-inner">
+    <div class="bk-grid">
+      <div class="bk-info fi">
+        <span class="tag">Əlaqə</span>
+        <h2 class="h2" style="margin-bottom:12px;">Konsultasiya üçün yazılın</h2>
+        <p>Formanı doldurun — 24 saat ərzində əlaqə saxlayırıq. Zəng etməkdən çəkinirsinizsə, WhatsApp üzərindən yazın — üstünlük verilən əlaqə üsuludur.</p>
+        <ul class="contact-list">
+          <li><div class="c-icon"></div>Cəfər Cabbarlı 40, Caspian Business Center, 9-cu mərtəbə</li>
+          <li><div class="c-icon"></div><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+          <li><div class="c-icon"></div><a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp — üstünlük verilən üsul</a></li>
+          <li><div class="c-icon">️</div><a href="https://t.me/dockenan" target="_blank" rel="noopener">Telegram: @dockenan</a></li>
+        </ul>
+      </div>
+      
+      <div class="bk-form fi d2">
+        <h3 class="h3" style="margin-bottom:20px;">Müraciət forması</h3>
+        <div class="form-row">
+          <div class="form-group"><label for="fname">Ad</label><input type="text" id="fname" placeholder="Adınız"/></div>
+          <div class="form-group"><label for="lname">Soyad</label><input type="text" id="lname" placeholder="Soyadınız"/></div>
+        </div>
+        <div class="form-group"><label for="phone">Telefon / WhatsApp</label><input type="tel" id="phone" placeholder="+994 __ ___ __ __"/></div>
+        <div class="form-group"><label for="service">Xidmət</label>
+          <select id="service">
+            <option value="">Seçin...</option>
+            <optgroup label=" Canlı konsultasiya">
+              <option>Canlı sessiya — 1 saat (200 AZN)</option>
+              <option>Canlı aylıq paket — 4 sessiya + WhatsApp (1000 AZN)</option>
+            </optgroup>
+            <optgroup label=" Online konsultasiya">
+              <option>Online sessiya — 1 saat (100 AZN)</option>
+              <option>Online aylıq paket — 4 sessiya + WhatsApp (500 AZN)</option>
+            </optgroup>
+            <optgroup label="‍‍ Ailə terapiyası">
+              <option>Cütlük terapiyası</option>
+              <option>Valideyn-yeniyetmə terapiyası</option>
+            </optgroup>
+            <optgroup label=" Enurez müalicəsi">
+              <option>Enurez — ilk qiymətləndirmə (50 AZN)</option>
+              <option>Enurez — müalicə kursu (300 AZN + 100 AZN/ay)</option>
+            </optgroup>
+            <optgroup label=" Təhsil proqramları">
+              <option>Psixoterapiya Praktikumu (3000 AZN)</option>
+              <option>Klinik Psixologiya Diplomu (6000 AZN)</option>
+            </optgroup>
+            <optgroup label=" Peşəkarlar üçün">
+              <option>Superviziya</option>
+              <option>Biznes psixologiyası / korporativ</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group"><label for="note">Qeyd</label><textarea id="note" placeholder="Qısa məlumat..."></textarea></div>
+        <button class="btn btn-navy" style="width:100%;padding:14px;font-size:0.88rem;letter-spacing:0.8px;text-transform:uppercase;" onclick="submitBooking('info@ragimoff.org')">Müraciəti Göndər </button>
+        <p class="form-note"> Məlumatlarınız üçüncü şəxslərə ötürülmür</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа Психологии</span></a>
+        <p>Kənan Rəhimov — Həkim Psixoterapevt, Klinik Psixoloq. 22+ il klinik təcrübə. Bakı, Azərbaycan.</p>
+        <div class="footer-socials">
+          <a href="https://t.me/ragimoff" class="social-link" target="_blank" rel="noopener">TG</a>
+          <a href="https://www.facebook.com/Ragimoff.az" class="social-link" target="_blank" rel="noopener">FB</a>
+          <a href="https://www.linkedin.com/in/kenanragimoff" class="social-link" target="_blank" rel="noopener">LI</a>
+          <a href="https://www.instagram.com/dr.ragimoff" class="social-link" target="_blank" rel="noopener">IG</a>
+          <a href="https://youtube.com/@kragimoff" class="social-link" target="_blank" rel="noopener">YT</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Terapiya</h4><ul>
+        <li><a href="aile-terapiyasi.html">Ailə terapiyası (cütlük)</a></li>
+        <li><a href="aile-terapiyasi-usaq.html">Valideyn–Yeniyetmə</a></li>
+        <li><a href="enurez.html">Enurez müalicəsi</a></li>
+        <li><a href="panik-ataklar.html">Panik ataklar</a></li>
+        <li><a href="depressiya.html">Depressiya</a></li>
+        <li><a href="sosial-fobiya.html">Sosial fobiya</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Təhsil</h4><ul>
+        <li><a href="tehsil.html">Klinik Psixologiya Diplomu</a></li>
+        <li><a href="tehsil.html">Psixoterapiya Praktikumu</a></li>
+        <li><a href="tehsil.html">HR Məktəbi</a></li>
+        <li><a href="tehsil.html">Korporativ Təlimlər</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Əlaqə</h4><ul>
+        <li><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+        <li><a href="https://wa.me/994702200376">WhatsApp</a></li>
+        <li><a href="https://t.me/dockenan">Telegram</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 RAGIMOFF. Bütün hüquqlar qorunur.</p>
+      <a href="https://www.ragimoff.org/ru" target="_blank" rel="noopener">RU </a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/994702200376" class="wa-float" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-icon"></div>
+    <h3>Müraciətiniz qəbul edildi!</h3>
+    <p>24 saat ərzində sizinlə əlaqə saxlayacağıq. WhatsApp üzərindən də yaza bilərsiniz.</p>
+    <button class="modal-close" onclick="closeModal()">Bağla</button>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lb" onclick="if(event.target===this)closeLb()">
+  <button id="lb-close" onclick="closeLb()" aria-label="Закрыть"></button>
+  <button id="lb-prev" onclick="lbNav(-1)" aria-label="Предыдущее">‹</button>
+  <img id="lb-img" src="" alt=""/>
+  <button id="lb-next" onclick="lbNav(1)" aria-label="Следующее">›</button>
+  <div id="lb-caption"></div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="shared.js"></script>
+<script>
+/* ===== Lightbox Logic ===== */
+const lbImages = [
+  {src:'images/diplomas/ipas-ambassador-2022.jpg', cap:'IPAS Ambassador 2022'},
+  {src:'images/diplomas/bekhterev-udost.jpg', cap:'Bexterev İnstitutu 2003'},
+  {src:'images/diplomas/sert-a2139298.jpg', cap:'Sertifikat A №2139298 — Həkim Psixoterapevt'},
+  {src:'images/diplomas/adtu-diplom-2000.jpg', cap:'ADTU Diplomu 2000'},
+  {src:'images/diplomas/nlp-diploma-1999.jpg', cap:'NLP Master Practitioner 1999'},
+  {src:'images/diplomas/ptsd-apa-2000.jpg', cap:'Travma Psixologiyası — APA 2000'},
+];
+let lbIdx = 0;
+
+function openLb(idx) {
+  lbIdx = idx;
+  const im = lbImages[lbIdx];
+  document.getElementById('lb-img').src = im.src;
+  document.getElementById('lb-img').alt = im.cap;
+  document.getElementById('lb-caption').textContent = im.cap;
+  document.getElementById('lb').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+  const im = lbImages[lbIdx];
+  document.getElementById('lb-img').src = im.src;
+  document.getElementById('lb-img').alt = im.cap;
+  document.getElementById('lb-caption').textContent = im.cap;
+}
+
+function closeLb() {
+  document.getElementById('lb').classList.remove('show');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeLb();
+  if(e.key === 'ArrowRight') lbNav(1);
+  if(e.key === 'ArrowLeft') lbNav(-1);
+});
+
+/* ===== Mobile Menu ===== */
+function toggleMenu() {
+  const nav = document.getElementById('mobileNav');
+  nav.classList.toggle('show');
+  document.body.style.overflow = nav.classList.contains('show') ? 'hidden' : '';
+}
+
+function closeMenu() {
+  document.getElementById('mobileNav').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+/* ===== Modal ===== */
+function closeModal() {
+  document.getElementById('successModal').classList.remove('show');
+}
+
+function submitBooking(email) {
+  // Простая валидация
+  const phone = document.getElementById('phone').value;
+  if (!phone || phone.length < 12) {
+    alert('Zəhmət olmasa, düzgün telefon nömrəsi daxil edin.');
+    return;
+  }
+  // Здесь можно добавить fetch() для отправки на сервер
+  document.getElementById('successModal').classList.add('show');
+  document.querySelector('.bk-form').reset();
+}
+
+/* ===== Fade-in on Scroll ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+</script>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Kənan Rəhimov",
+  "jobTitle": "Həkim Psixoterapevt, Klinik Psixoloq",
+  "medicalSpecialty": ["Psychotherapy", "ClinicalPsychology", "FamilyTherapy"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Cəfər Cabbarlı 40, Caspian Business Center, 9-cu mərtəbə",
+    "addressLocality": "Bakı",
+    "addressCountry": "AZ"
+  },
+  "telephone": "+994702200376",
+  "url": "https://ragimoff.org",
+  "sameAs": [
+    "https://t.me/dockenan",
+    "https://www.instagram.com/dr.ragimoff",
+    "https://www.linkedin.com/in/kenanragimoff"
+  ],
+  "priceRange": "50-200 AZN",
+  "availableLanguage": ["az", "ru", "en"]
+}
+</script>
+
+</body>
+</html>

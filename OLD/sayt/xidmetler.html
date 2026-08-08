@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kənan Rəhimov — psixoterapiya xidmətləri və qiymətlər. Fərdi konsultasiya, ailə terapiyası, depressiya, panik ataklar, sosial fobiya, enurez müalicəsi. Bakı, Azərbaycan."/>
+  <title>Xidmətlər və Qiymətlər | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+
+  <style>
+
+    /* ─── HERO ─────────────────────────────────── */
+    .xid-hero {
+      background: linear-gradient(160deg, var(--navy) 0%, #0d2240 100%);
+      padding: 55px 55px 80px;
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .xid-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -8%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,155,114,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .xid-hero-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 48px;
+      align-items: center;
+    }
+    .xid-hero-photo {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .xid-hero-photo img {
+      width: 440px;
+      height: 400px;
+      object-fit: cover;
+      object-position: center 15%;
+      border-radius: 0 !important;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.45);
+      border: 1px solid rgba(181,155,114,0.15);
+      display: block;
+    }
+    .xid-hero-tag {
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0 0 25px 0;
+      display: inline-flex;
+      border-radius: 0 !important;
+      text-transform: uppercase;
+    }
+    .xid-hero h1 {
+      font-size: var(--text-5xl);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .xid-hero h1 em { color: var(--accent); font-style: normal; }
+    .xid-hero p {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    /* ─── STATS STRIP ───────────────────────────── */
+    .stats-strip { background: var(--navy); border-top: 1px solid rgba(181,155,114,0.15); border-bottom: 1px solid rgba(181,155,114,0.15); padding: 0 55px; }
+    .stats-inner { max-width: var(--container-max); margin: 0 auto; display: flex; align-items: stretch; }
+    .stat-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 16px; gap: 6px; }
+    .stat-num { font-family: 'Inter'; font-size: 2.25rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.12em; text-align: center; }
+    .stat-divider { width: 1px; background: rgba(181,155,114,0.15); margin: 16px 0; }
+
+    /* ─── SECTIONS BASE ─────────────────────────── */
+    .ps { padding: 55px 55px; }
+    .ps-inner { max-width: var(--container-max); margin: 0 auto; }
+
+    /* ─── SECTION HEADER ────────────────────────── */
+    .sec-head { margin-bottom: 55px; }
+    .sec-head h2 { font-size: var(--text-4xl); font-weight: 800; color: var(--navy); margin-bottom: 16px; line-height: 1.15; }
+    .sec-head p { font-size: var(--text-base); color: var(--gray); max-width: 640px; line-height: 1.75; }
+
+    /* ─── INDIVIDUAL CARD (featured, full-width) ── */
+    .ind-card {
+      background: var(--navy);
+      border-top: 4px solid var(--accent);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 0;
+    }
+    .ind-card-text .eco-label { margin-bottom: 16px; }
+    .ind-card-text h3 { font-size: var(--text-3xl); font-weight: 800; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+    .ind-card-text p { font-size: var(--text-sm); color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 24px; max-width: 560px; }
+    .ind-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+    .ind-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .ind-meta-label { font-size: var(--text-xs); font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+    .ind-meta-val { font-size: var(--text-sm); font-weight: 700; color: var(--white); }
+
+    .ind-price-block { display: flex; flex-direction: column; gap: 12px; min-width: 200px; }
+    .ind-price-option {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(181,155,114,0.2);
+      border-radius: 0 !important;
+      padding: 20px 24px;
+    }
+    .ind-price-type { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+    .ind-price-amt { font-size: var(--text-2xl); font-weight: 800; color: var(--accent); font-family: 'Inter'; }
+    .ind-price-sub { font-size: var(--text-xs); color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    /* ─── PROGRAM GRID ──────────────────────────── */
+    .prog-outer { border: 1px solid var(--border); border-top: none; }
+    .prog-row { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .prog-row + .prog-row { border-top: 1px solid var(--border); }
+
+    .xid-card {
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      border-top: 4px solid var(--navy);
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: border-top-color 0.3s, transform 0.3s;
+    }
+    .xid-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
+    .xid-card:last-child { border-right: none; }
+    .xid-card .eco-label { margin-bottom: 12px; }
+    .xid-card h4 { font-size: var(--text-lg); font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.25; }
+    .xid-card p { font-size: var(--text-sm); color: var(--gray); line-height: 1.65; margin-bottom: auto; padding-bottom: 24px; }
+
+    .xid-price-block {
+      background: var(--light);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .xid-price-col { display: flex; flex-direction: column; gap: 2px; }
+    .xid-price-label { font-size: var(--text-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+    .xid-price-val { font-size: var(--text-xl); font-weight: 800; color: var(--navy); font-family: 'Inter'; }
+    .xid-price-note { font-size: var(--text-xs); color: var(--gray); }
+
+    .xid-card-link { display: inline-flex; align-items: center; gap: 6px; font-size: var(--text-xs); font-weight: 700; color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; transition: gap 0.2s; }
+    .xid-card-link:hover { gap: 10px; }
+    .xid-card-link::after { content: '→'; }
+
+    /* ─── PAYMENT BLOCK ─────────────────────────── */
+    .pay-block { background: var(--navy); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; border-top: 4px solid var(--accent); }
+    .pay-block h3 { font-size: var(--text-2xl); font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .pay-block p { font-size: var(--text-sm); color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 24px; }
+    .pay-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pay-tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(181,155,114,0.2); border-radius: 0 !important; padding: 7px 14px; font-size: var(--text-xs); font-weight: 700; color: rgba(255,255,255,0.7); }
+    .discount-box { background: rgba(181,155,114,0.1); border: 1px solid rgba(181,155,114,0.3); border-radius: 0 !important; padding: 24px; }
+    .discount-box h4 { font-size: var(--text-base); font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+    .discount-box p { font-size: var(--text-sm); color: rgba(255,255,255,0.65); line-height: 1.7; margin: 0; }
+    .discount-pct { font-size: var(--text-4xl); font-weight: 800; color: var(--accent); font-family: 'Inter'; line-height: 1; margin-bottom: 8px; }
+
+    /* ─── PROCESS ───────────────────────────────── */
+    .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); }
+    .proc-step { padding: 32px 28px; border-right: 1px solid var(--border); }
+    .proc-step:last-child { border-right: none; }
+    .proc-num { font-size: var(--text-3xl); font-weight: 800; color: var(--accent); opacity: 0.5; line-height: 1; margin-bottom: 16px; font-family: 'Inter'; }
+    .proc-step h4 { font-size: var(--text-base); font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .proc-step p { font-size: var(--text-sm); color: var(--gray); line-height: 1.65; margin: 0; }
+
+    /* ─── CTA BAND ──────────────────────────────── */
+    .cta-band { background: var(--accent); padding: 48px 55px; display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+    .cta-band h3 { font-size: var(--text-2xl); font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+    .cta-band p { font-size: var(--text-sm); color: rgba(6,24,38,0.7); line-height: 1.7; max-width: 520px; margin: 0; }
+    .cta-band-btns { display: flex; gap: 12px; flex-shrink: 0; }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 64px; }
+    .footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 280px; }
+    .social-links { display: flex; gap: 8px; margin-top: 24px; }
+    .social-btn { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 8px 16px; font-size: 0.75rem; font-weight: 700; text-decoration: none; border-radius: 0 !important; letter-spacing: 0; transition: background 0.2s, color 0.2s; }
+    .social-btn:hover { background: var(--accent); color: var(--navy); }
+    .footer-heading { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+    .footer-links { list-style: none; padding: 0; display: grid; gap: 10px; }
+    .footer-link { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: all 0.25s; display: inline-block; }
+    .footer-link:hover { color: var(--accent); transform: translateX(4px); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { font-size: 0.875rem; color: rgba(255,255,255,0.35); margin: 0; }
+
+    /* ─── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 1100px) {
+      .prog-row { grid-template-columns: 1fr 1fr; }
+      .proc-grid { grid-template-columns: 1fr 1fr; }
+      .proc-step { border-bottom: 1px solid var(--border); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .xid-hero, .ps { padding-left: 24px; padding-right: 24px; }
+      .xid-hero h1 { font-size: var(--text-3xl); }
+      .xid-hero-inner { grid-template-columns: 1fr; }
+      .xid-hero-photo { display: none; }
+      .ind-card { grid-template-columns: 1fr; padding: 32px 24px; }
+      .prog-row { grid-template-columns: 1fr; }
+      .xid-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .pay-block { grid-template-columns: 1fr; padding: 32px 24px; }
+      .proc-grid { grid-template-columns: 1fr; }
+      .cta-band { flex-direction: column; padding: 40px 24px; }
+      .cta-band-btns { flex-direction: column; width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .stats-strip { padding: 0 24px; }
+    }
+
+  </style>
+</head>
+<body>
+
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"
+          ><span class="logo-text">RAGIMOFF<em>.</em></span
+          ><span class="logo-sub">Psixologiya Məktəbi</span></a
+        >
+
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+
+          <a href="tehsil.html">Təhsil</a>
+
+          <a href="xidmetler.html" class="active">Konsultasiya</a>
+
+          <a href="b2b.html">Korporativ</a>
+
+          <a href="blog.html">Blog</a>
+
+          <a href="tehsil.html#registration" class="btn nav-cta">QEYDİYYAT</a>
+        </nav>
+
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </button>
+
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+
+      <a href="xidmetler.html" class="active" onclick="toggleMenu()">Konsultasiya</a>
+
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+
+      <
+        href="tehsil.html#registration"
+        class="btn btn-primary"
+        onclick="toggleMenu()"
+        >QEYDİYYAT</a
+      >
+    </nav>
+
+  <!-- HERO -->
+  <div class="xid-hero">
+    <div class="xid-hero-inner">
+      <div>
+        <div class="xid-hero-tag">Psixoterapiya</div>
+        <h1>Psixoloji <em>Xidmətlər</em><br/>və Qiymətlər</h1>
+        <p>Fərdi konsultasiya, ailə terapiyası, xüsusi proqramlar.<br/>Online və ya ofisdə. Qiymətlər şəffafdır — gizli artım yoxdur.</p>
+      </div>
+      <div class="xid-hero-photo">
+        <img src="images/kenan/photo-portal-crop.jpg" alt="Dr. Kənan Rəhimov" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num">23+</span>
+        <span class="stat-label">Il Klinik<br/>Təcrübə</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">3000+</span>
+        <span class="stat-label">Uğurlu<br/>Pasiyent</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">100+</span>
+        <span class="stat-label">Beynəlxalq<br/>Metodika</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">1-ci</span>
+        <span class="stat-label">Seansdan<br/>Aydın Nəticə</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL CONSULTATION + PROGRAMS -->
+  <section class="ps" style="background:var(--light);">
+    <div class="ps-inner">
+
+      <div class="sec-head fi">
+        <span class="tag-premium dark-text">Xidmətlər</span>
+        <h2>Bütün Xidmətlər<br/>və Qiymətlər</h2>
+        <p>Hər sessiya 50 dəqiqədir. Paket proqramlar müddəti boyunca həftəlik görüşlər nəzərdə tutur — nəticə məhz ardıcıllıqdan gəlir.</p>
+      </div>
+
+      <!-- FEATURED: Fərdi Konsultasiya -->
+      <div class="ind-card fi">
+        <div class="ind-card-text">
+          <div class="eco-label">Ən Tez Başlanğıc</div>
+          <h3>Fərdi Konsultasiya</h3>
+          <p>İlk sessiya — problemin mahiyyətini müəyyənləşdirmək, iş planını qurmaq. Müstəqil məsələlər, narahatlıq, stress, qərar qəbulu, ailə münasibətləri. Tək sessiya kimi keçirilə bilər və ya uzunmüddətli prosesə başlanğıc ola bilər.</p>
+          <div class="ind-meta">
+            <div class="ind-meta-item">
+              <span class="ind-meta-label">Format</span>
+              <span class="ind-meta-val">Online / Ofis</span>
+            </div>
+            <div class="ind-meta-item">
+              <span class="ind-meta-label">Müddət</span>
+              <span class="ind-meta-val">50 dəqiqə</span>
+            </div>
+            <div class="ind-meta-item">
+              <span class="ind-meta-label">Ödəniş</span>
+              <span class="ind-meta-val">Seansdan əvvəl</span>
+            </div>
+          </div>
+        </div>
+        <div class="ind-price-block">
+          <div class="ind-price-option">
+            <div class="ind-price-type">Online</div>
+            <div class="ind-price-amt">100 AZN</div>
+            <div class="ind-price-sub">50 dəq · Zoom/WhatsApp</div>
+          </div>
+          <div class="ind-price-option">
+            <div class="ind-price-type">Ofisdə</div>
+            <div class="ind-price-amt">200 AZN</div>
+            <div class="ind-price-sub">50 dəq · Bakı, ofis</div>
+          </div>
+          <a href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank" class="btn btn-primary" style="text-align:center;">Qeydiyyat</a>
+        </div>
+      </div>
+
+      <!-- 5-SESSION PROGRAMS -->
+      <div class="prog-outer">
+        <div class="prog-row">
+
+          <!-- Ailə Terapiyası -->
+          <div class="xid-card fi">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Ailə Terapiyası</h4>
+            <p>Cütlük böhranları, ünsiyyət problemləri, boşanma astanası. Həftəlik 3 sessiya formatı. Ortalama 2–3 ayda nəticə.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="aile-terapiyasi.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+          <!-- Uşaqla Ailə Terapiyası -->
+          <div class="xid-card fi" style="transition-delay:0.1s">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Uşaqla Ailə Terapiyası</h4>
+            <p>Valideyn-uşaq münasibətlərindəki gərginlik, davranış problemləri, məktəb uyğunlaşması. Bütün ailə iştirak edir.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="aile-terapiyasi-usaq.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+          <!-- Enurez Müalicəsi -->
+          <div class="xid-card fi" style="transition-delay:0.2s">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Enurez Müalicəsi</h4>
+            <p>Uşaqlarda gecə enurezinin psixoloji terapiyası. Somatik səbəb istisna edildikdən sonra. Valideyn iştirakı tələb olunur.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="enurez.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+        </div>
+        <div class="prog-row">
+
+          <!-- Panik Ataklar -->
+          <div class="xid-card fi">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Panik Ataklar</h4>
+            <p>Narahatlıq pozğunluqları, panik ataklar, veqetovaskulyar distoni simptomları. KBT əsaslı protokol. Dəstin 80%+ hallarda nəticə verir.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="panik-ataklar.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+          <!-- Depressiya -->
+          <div class="xid-card fi" style="transition-delay:0.1s">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Depressiya</h4>
+            <p>Yüngül-orta dərəcəli depressiv epizodlar, həyat enerjisinin itirilməsi, anhedonia. Psixoterapiya + lazım gələrsə psixiatr yönləndirilməsi.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="depressiya.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+          <!-- Sosial Fobiya -->
+          <div class="xid-card fi" style="transition-delay:0.2s">
+            <div class="eco-label">5 Sessiya</div>
+            <h4>Sosial Fobiya</h4>
+            <p>İctimai danışmaqdan qorxu, sosial narahatlıq, özünüizolyasiya. Ekspozisiya terapiyası ilə sosial bacarıqların bərpası.</p>
+            <div class="xid-price-block">
+              <div class="xid-price-col">
+                <span class="xid-price-label">Online</span>
+                <span class="xid-price-val">450</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+              <div class="xid-price-col">
+                <span class="xid-price-label">Ofisdə</span>
+                <span class="xid-price-val">900</span>
+                <span class="xid-price-note">AZN / 5 sess.</span>
+              </div>
+            </div>
+            <a href="sosial-fobiya.html" class="xid-card-link">Ətraflı</a>
+          </div>
+
+        </div>
+      </div><!-- /prog-outer -->
+
+    </div>
+  </section>
+
+  <!-- PAYMENT & DISCOUNT -->
+  <section class="ps" style="background:var(--navy);padding-top:0;">
+    <div class="ps-inner">
+      <div class="pay-block fi">
+        <div>
+          <h3>Ödəniş Şərtləri</h3>
+          <p>Ödəniş sessiyanın əvvəlindən aparılır. Bütün əsas Azərbaycan bank kartları qəbul edilir. Kredit kartı ilə taksit imkanı mövcuddur.</p>
+          <div class="pay-tags">
+            <span class="pay-tag">BirBank</span>
+            <span class="pay-tag">TamKart</span>
+            <span class="pay-tag">BolKart</span>
+            <span class="pay-tag">WorldKart</span>
+            <span class="pay-tag">Bank köçürməsi</span>
+          </div>
+        </div>
+        <div>
+          <div class="discount-box fi" style="transition-delay:0.15s">
+            <div class="discount-pct">10%</div>
+            <h4>100% Ön Ödəmə Endirim</h4>
+            <p>5 sessiyalıq paket proqramı tam ödədikdə 10% endirim tətbiq olunur. Bu şərt bütün istiqamətlər üçün keçərlidir.<br/>Online: <strong>405 AZN</strong> · Ofis: <strong>810 AZN</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="ps" style="background:var(--white);">
+    <div class="ps-inner">
+      <div class="sec-head fi">
+        <span class="tag-premium dark-text">Necə İşləyir</span>
+        <h2>Qeydiyyatdan Sessiyaya<br/>4 Addım</h2>
+      </div>
+      <div class="proc-grid fi">
+        <div class="proc-step">
+          <div class="proc-num">01</div>
+          <h4>WhatsApp ilə Əlaqə</h4>
+          <p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">02</div>
+          <h4>Format Seçimi</h4>
+          <p>Online (Zoom/WhatsApp video) və ya ofisdə görüş — sizə uyğun olanı seçin.</p>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">03</div>
+          <h4>Vaxt Razılaşması</h4>
+          <p>Sizə uyğun gün və vaxt müəyyənləşdirilir. Cədvəl çevikdir — axşam saatları mövcuddur.</p>
+        </div>
+        <div class="proc-step">
+          <div class="proc-num">04</div>
+          <h4>Sessiya</h4>
+          <p>50 dəqiqəlik sessiya. İlk görüşdə məqsəd, gözlənti və iş planı müzakirə olunur.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band fi">
+    <div>
+      <h3>Sual var? Yazın — bu gün cavablandırılır.</h3>
+      <p>Hansı istiqamətin sizə uyğun olduğunu bilmirsinizsə — ilk fərdi konsultasiyada birlikdə müəyyənləşdirərik.</p>
+    </div>
+    <div class="cta-band-btns">
+      <a href="https://wa.me/994702200376?text=Salam%2C+xidm%C9%99tl%C9%99r+haqq%C4%B1nda+sual+vermək+istəyirəm" target="_blank" class="btn btn-navy">WhatsApp</a>
+      <a href="tel:+994702200376" class="btn btn-navy">Zəng et</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner" style="max-width:var(--container-max);margin:0 auto;padding:80px 55px 56px;">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo-box" style="display:inline-flex;margin-bottom:24px;">
+            <span class="logo-text">RAGIMOFF<em>.</em></span>
+            <span class="logo-sub">Psixologiya Məktəbi</span>
+          </a>
+          <p class="footer-desc">Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə. Bakı, Azərbaycan.</p>
+          <div class="social-links">
+            <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+            <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+            <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+            <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Terapiya</h4>
+          <ul class="footer-links">
+            <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+            <li><a href="enurez.html" class="footer-link">Enurez Müalicəsi</a></li>
+            <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+            <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+            <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Təhsil</h4>
+          <ul class="footer-links">
+            <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+            <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+            <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+            <li><a href="blog.html" class="footer-link">Psixologiya Blogu</a></li>
+            <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Əlaqə</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+            <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+            <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+            <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+            <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+        <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="shared.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Psixoterapiya Praktikumu proqramının tam təsviri. IPAS/BPA beynəlxalq sertifikat, 40 saat canlı məşq, superviziya. Dr. Kənan Rəhimov, RAGIMOFF Psixologiya Məktəbi, Bakı."/>
+  <title>Psixoterapiya Praktikumu | RAGIMOFF Psixologiya Məktəbi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── HERO ── */
+    .prog-hero { background: var(--navy); padding: 55px 55px 80px; border-bottom: 1px solid rgba(181,155,114,0.15); min-height: 480px; display: flex; flex-direction: column; justify-content: center; }
+    .prog-hero-inner { max-width: 1240px; margin: 0 auto; }
+    .prog-h1 { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+    .prog-h1 em { color: var(--accent); font-style: normal; }
+    .prog-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.7); max-width: 620px; line-height: 1.7; margin-bottom: 32px; font-weight: 300; }
+
+    /* ── STATS STRIP ── */
+    .stats-strip { background: var(--accent); padding: 0 55px; }
+    .stats-row { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-cell { padding: 24px 0; text-align: center; border-right: 1px solid rgba(6,24,38,0.15); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell .num { display: block; font-size: 1.75rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .stat-cell .lbl { display: block; font-size: 0.6875rem; font-weight: 700; color: rgba(6,24,38,0.65); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* ── SECTION ── */
+    .prog-section { padding: 55px 55px; }
+    .prog-inner { max-width: 1240px; margin: 0 auto; }
+    .prog-section.dark { background: var(--navy); }
+    .prog-section.light { background: var(--light); }
+    .prog-section.white { background: var(--white); }
+
+    /* ── SCHEDULE TABLE ── */
+    .cur-wrap {
+      max-width: 960px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .cur-group { margin-bottom: 0; }
+    .cur-group-title {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); padding: 12px 120px; margin-bottom: 0;
+      border-bottom: 2px solid rgba(181,155,114,0.3);
+      background: rgba(181,155,114,0.04);
+    }
+    .cur-row {
+      display: grid; grid-template-columns: 1fr 160px;
+      border-bottom: 1px solid var(--border);
+      padding: 11px 120px;
+      align-items: center;
+    }
+    .cur-row:last-child { border-bottom: none; }
+    .cur-row:hover { background: rgba(181,155,114,0.04); }
+    .cur-num { font-size: 0.6875rem; color: rgba(6,24,38,0.3); font-weight: 700; margin-right: 10px; }
+    .cur-name { font-size: 0.9375rem; color: var(--navy); }
+    .cur-hours { font-size: 0.9375rem; font-weight: 700; color: var(--navy); text-align: right; }
+    .cur-hours span { font-size: 0.6875rem; font-weight: 400; color: var(--gray); margin-left: 2px; }
+
+    .cur-total {
+      display: grid; grid-template-columns: 1fr 160px;
+      background: var(--navy); padding: 18px 120px;
+      align-items: center;
+    }
+    .cur-total .tl { font-size: 0.875rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+    .cur-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); text-align: right; }
+
+    .pdf-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--light); border: 1px solid var(--border);
+      color: var(--navy); padding: 10px 20px; font-size: 0.8125rem; font-weight: 700;
+      cursor: pointer; font-family: 'Inter', sans-serif; text-transform: uppercase;
+      letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none;
+    }
+    .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* ── FORMAT GRID ── */
+    .fmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(181,155,114,0.2); }
+    .fmt-card { padding: 32px; border-right: 1px solid rgba(181,155,114,0.2); }
+    .fmt-card:last-child { border-right: none; }
+    .fmt-card:nth-child(4) { border-right: 1px solid rgba(181,155,114,0.2); border-top: 1px solid rgba(181,155,114,0.2); }
+    .fmt-card:nth-child(5) { border-top: 1px solid rgba(181,155,114,0.2); border-right: none; }
+    .fmt-num { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .fmt-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .fmt-body { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+    /* ── OPPORTUNITY SECTION ── */
+    .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); }
+    .opp-card { padding: 40px; border-right: 1px solid var(--border); }
+    .opp-card:last-child { border-right: none; }
+    .opp-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; display: block; border-left: 3px solid var(--accent); padding-left: 10px; }
+    .opp-title { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+    .opp-body { font-size: 0.9375rem; color: var(--gray); line-height: 1.75; }
+
+    /* ── TELEGRAM BAND ── */
+    .tg-band { background: var(--navy); padding: 55px 55px; border-top: 1px solid rgba(181,155,114,0.15); }
+    .tg-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .tg-text h2 { font-size: var(--text-3xl); color: var(--white); margin-bottom: 12px; }
+    .tg-text p { font-size: 0.9375rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 560px; }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: var(--accent); padding: 55px 55px; }
+    .cta-band-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .cta-band h2 { font-size: var(--text-3xl); font-weight: 800; color: var(--navy); }
+    .cta-band p { font-size: 0.9375rem; color: rgba(6,24,38,0.65); margin-top: 8px; }
+
+    /* ── REGISTRATION FORM ── */
+    .reg-section { background: var(--navy); padding: 55px 55px; border-top: 1px solid rgba(181,155,114,0.15); }
+    .reg-inner { max-width: 1240px; margin: 0 auto; }
+    .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
+    .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(181,155,114,0.2); }
+    .reg-path-step:last-child { border-right: none; }
+    .reg-path-num { font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
+    .reg-path-step h4 { font-size: 0.875rem; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+    .reg-path-step p { font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+    .reg-discount { background: rgba(181,155,114,0.06); border: 1px solid rgba(181,155,114,0.25); border-left: 4px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
+    .reg-discount strong { font-size: 0.9375rem; font-weight: 800; color: var(--white); display: block; margin-bottom: 6px; }
+    .reg-discount p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
+    .reg-form { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
+    .reg-form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .reg-field { display: flex; flex-direction: column; gap: 8px; }
+    .reg-field > label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+    .reg-field input[type="text"], .reg-field input[type="tel"], .reg-field input[type="email"], .reg-field textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+    .reg-field input:focus, .reg-field textarea:focus { border-color: var(--accent); }
+    .reg-field input::placeholder, .reg-field textarea::placeholder { color: rgba(255,255,255,0.18); }
+    .reg-tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
+    .reg-tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
+    .reg-tile-opt { display: none; }
+    .reg-tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: 0.8125rem; color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; }
+    .reg-tile-opt:checked + .reg-tile-lbl { background: var(--accent); color: var(--navy); }
+    .reg-tile-lbl:hover { background: rgba(181,155,114,0.1); color: var(--white); }
+    .reg-upload-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 4px; }
+    .reg-upload-item { display: flex; flex-direction: column; gap: 6px; }
+    .ulbl { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .reg-upload-item input[type="file"] { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); padding: 12px 14px; font-size: 0.8125rem; font-family: 'Inter', sans-serif; cursor: pointer; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+    .reg-upload-item input[type="file"]:hover { border-color: var(--accent); }
+    .reg-upload-hint { font-size: 0.6875rem; color: rgba(255,255,255,0.25); }
+    .reg-form-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
+    .reg-form-note { font-size: 0.8125rem; color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 400px; }
+    .reg-success { display: none; padding: 24px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.35); text-align: center; margin-top: 16px; }
+    .reg-success p { color: var(--accent); font-weight: 700; font-size: 0.9375rem; margin: 0; }
+
+    @media print {
+      header, .mobile-nav, footer, .wa-float, .prog-hero, .stats-strip,
+      .prog-section.dark, .prog-section.light, .tg-band, .cta-band, .reg-section { display: none !important; }
+      .prog-section.white { padding: 24px !important; }
+      body { padding-top: 0 !important; }
+      .cur-wrap { border: 1px solid #ccc !important; }
+      .pdf-btn { display: none !important; }
+    }
+    @media (max-width: 900px) {
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .fmt-grid { grid-template-columns: 1fr; }
+      .fmt-card { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+      .fmt-card:last-child { border-bottom: none; }
+      .fmt-card:nth-child(4), .fmt-card:nth-child(5) { border-right: none; }
+      .opp-grid { grid-template-columns: 1fr; }
+      .opp-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .opp-card:last-child { border-bottom: none; }
+      .tg-inner, .cta-band-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .cur-group-title, .cur-row, .cur-total { padding-left: 20px; padding-right: 20px; }
+    }
+    @media (max-width: 640px) {
+      .prog-hero, .prog-section, .stats-strip, .tg-band, .cta-band { padding-left: 24px; padding-right: 24px; }
+      .prog-hero { padding-top: 104px; }
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"
+          ><span class="logo-text">RAGIMOFF<em>.</em></span
+          ><span class="logo-sub">Psixologiya Məktəbi</span></a
+        >
+
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+
+          <a href="tehsil.html" class="active">Təhsil</a>
+
+          <a href="xidmetler.html">Konsultasiya</a>
+
+          <a href="b2b.html">Korporativ</a>
+
+          <a href="blog.html">Blog</a>
+
+          <a href="tehsil.html#registration" class="btn nav-cta">QEYDİYYAT</a>
+        </nav>
+
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </button>
+
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+
+      <a href="tehsil.html" class="active" onclick="toggleMenu()">Təhsil</a>
+
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+
+      <a
+        href="tehsil.html#registration"
+        class="btn btn-primary"
+        onclick="toggleMenu()"
+        >QEYDİYYAT</a
+      >
+    </nav>
+
+<!-- HERO -->
+<div class="prog-hero">
+  <div class="prog-hero-inner">
+    <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">IPAS/BPA Sertifikat &middot; 40 Akademik Saat</span>
+    <h1 class="prog-h1">Psixoterapiya <em>Praktikumu</em></h1>
+    <p class="prog-sub">Canlı məşqlər, real keyslərin superviziyası, konsilium formatı.<br/>QR-kodla yoxlanılan beynəlxalq IPAS/BPA sertifikatı.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="#registration" class="btn btn-primary">Qeydiyyata Yazıl</a>
+      <a href="tehsil.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">Bütün Proqramlar</a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-row">
+    <div class="stat-cell"><span class="num">40</span><span class="lbl">Akademik Saat</span></div>
+    <div class="stat-cell"><span class="num">12</span><span class="lbl">Aylıq Məşq</span></div>
+    <div class="stat-cell"><span class="num">5</span><span class="lbl">Praktika Formatı</span></div>
+    <div class="stat-cell"><span class="num">IPAS</span><span class="lbl">Beynəlxalq Sertifikat</span></div>
+  </div>
+</div>
+
+<!-- SCHEDULE TABLE -->
+<section class="prog-section white">
+  <div class="prog-inner">
+    <div style="margin-bottom:40px;">
+      <span class="tag-premium dark-text" style="display:inline-block;margin-bottom:25px;">2026 Cədvəli</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--navy);margin-bottom:12px;">Aylıq Proqram Cədvəli</h2>
+      <p style="font-size:0.9375rem;color:var(--gray);max-width:560px;">Hər ay bir mövzu bloku. Dərslər online/offline formatda keçirilir. Canlı iştirak mümkün olmadıqda video arxivdən izlənilir.</p>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+      <button onclick="window.print()" class="pdf-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 17h8v1H8v-1zm0-3h8v1H8v-1zm0-3h5v1H8v-1z"/></svg>
+        PDF Yüklə
+      </button>
+    </div>
+
+    <div class="cur-wrap">
+
+      <div class="cur-group">
+        <p class="cur-group-title">I Rüb &mdash; Yanvar &ndash; Mart 2026</p>
+        <div class="cur-row"><div><span class="cur-num">01</span><span class="cur-name">Yanvar — İlkin qiymətləndirmə və anamnez toplama</span></div><div class="cur-hours">Yanvar <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">02</span><span class="cur-name">Fevral — Psixodiaqnostika: test batareyası praktikası</span></div><div class="cur-hours">Fevral <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">03</span><span class="cur-name">Mart — Uyğunlaşma pozuntularında ilk seans</span></div><div class="cur-hours">Mart <span>2026</span></div></div>
+      </div>
+
+      <div class="cur-group">
+        <p class="cur-group-title">II Rüb &mdash; Aprel &ndash; İyun 2026</p>
+        <div class="cur-row"><div><span class="cur-num">04</span><span class="cur-name">Aprel — Depressiya və əhval pozuntularında iş</span></div><div class="cur-hours">Aprel <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">05</span><span class="cur-name">May — Narahatlıq və panik ataklar: ekspoziyon texnikaları</span></div><div class="cur-hours">May <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">06</span><span class="cur-name">İyun — Travma: stabilizasiya mərhələsi</span></div><div class="cur-hours">İyun <span>2026</span></div></div>
+      </div>
+
+      <div class="cur-group">
+        <p class="cur-group-title">III Rüb &mdash; İyul &ndash; Sentyabr 2026</p>
+        <div class="cur-row"><div><span class="cur-num">07</span><span class="cur-name">İyul — Ailə dinamikası: sistem yanaşması</span></div><div class="cur-hours">İyul <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">08</span><span class="cur-name">Avqust — Uşaq psixologiyası: inkişaf pozuntuları</span></div><div class="cur-hours">Avqust <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">09</span><span class="cur-name">Sentyabr — Şəxsiyyət pozuntuları: uzunmüddətli iş</span></div><div class="cur-hours">Sentyabr <span>2026</span></div></div>
+      </div>
+
+      <div class="cur-group">
+        <p class="cur-group-title">IV Rüb &mdash; Oktyabr &ndash; Dekabr 2026</p>
+        <div class="cur-row"><div><span class="cur-num">10</span><span class="cur-name">Oktyabr — Psixosomatika: bədən ilə iş</span></div><div class="cur-hours">Oktyabr <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">11</span><span class="cur-name">Noyabr — Superviziya: mürəkkəb keyslərin müzakirəsi</span></div><div class="cur-hours">Noyabr <span>2026</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">12</span><span class="cur-name">Dekabr — Yekun attestasiya: real keys təhlili</span></div><div class="cur-hours">Dekabr <span>2026</span></div></div>
+      </div>
+
+      <div class="cur-total">
+        <span class="tl">Cəmi</span>
+        <span class="tv">40 saat</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE FORMATS -->
+<section class="prog-section dark">
+  <div class="prog-inner">
+    <div style="margin-bottom:40px;">
+      <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">Praktika Formatları</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--white);margin-bottom:12px;">5 Fərqli Məşq Formatı</h2>
+      <p style="font-size:0.9375rem;color:rgba(255,255,255,0.55);max-width:560px;">Hər format müstəqil klinik bacarıqların formalaşmasına yönəlmişdir.</p>
+    </div>
+    <div class="fmt-grid">
+      <div class="fmt-card">
+        <span class="fmt-num">Format 01</span>
+        <h3 class="fmt-title">Rol Oyunları</h3>
+        <p class="fmt-body">İştirakçılar növbəli olaraq psixoloq və pasiyent rollarını oynayır. Supervizor canlı feedback verir. Real seans dinamikasını məşq etmək üçün ən effektiv format.</p>
+      </div>
+      <div class="fmt-card">
+        <span class="fmt-num">Format 02</span>
+        <h3 class="fmt-title">Keys Müzakirəsi</h3>
+        <p class="fmt-body">Həqiqi (anonimləşdirilmiş) klinik keyslərin qrup şəklində müzakirəsi. Diaqnostik düşüncə, müalicə planlaması və alternativ yanaşmaların araşdırılması.</p>
+      </div>
+      <div class="fmt-card">
+        <span class="fmt-num">Format 03</span>
+        <h3 class="fmt-title">Konsilium</h3>
+        <p class="fmt-body">Mürəkkəb keyslərin multidisiplinar müzakirəsi. Psixiatr, psixoloq, psixoterapevt nöqteyi-nəzərindən baxış. Komanda qərarı qəbul etmə bacarığı.</p>
+      </div>
+      <div class="fmt-card" style="border-top:1px solid rgba(181,155,114,0.2);">
+        <span class="fmt-num">Format 04</span>
+        <h3 class="fmt-title">Video Arxiv</h3>
+        <p class="fmt-body">100+ real seans yazısına çıxış. Müxtəlif psixoterapevtik yanaşmaların əməldə necə göründüyünü müşahidə etmək. Özünümüstəqil öyrənmə üçün.</p>
+      </div>
+      <div class="fmt-card" style="border-top:1px solid rgba(181,155,114,0.2);border-right:none;">
+        <span class="fmt-num">Format 05</span>
+        <h3 class="fmt-title">Yekun Attestasiya</h3>
+        <p class="fmt-body">Komissiya qarşısında real keys üzərində 30 dəqiqəlik iş. Anamnez, diaqnoz, müalicə planı, proqnoz. Uğurlu keçənlərə IPAS/BPA sertifikatı verilir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE & VIDEO -->
+<section class="prog-section light">
+  <div class="prog-inner">
+    <div class="opp-grid">
+      <div class="opp-card">
+        <span class="opp-label">Beynəlxalq Sertifikat</span>
+        <h3 class="opp-title">IPAS/BPA &mdash; QR-kodla Yoxlanılan</h3>
+        <p class="opp-body">Proqramı uğurla bitirən iştirakçılara IPAS (International Psychotherapy Accreditation Society) və BPA tərəfindən sertifikat verilir. Sertifikat QR-kod vasitəsilə onlayn yoxlanıla bilər. AR Təhsil Nazirliyinin FRDO dövlət reyestrinə daxil edilmiş proqram çərçivəsində verilir.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-label">Video Arxiv</span>
+        <h3 class="opp-title">100+ Seans Yazısı &mdash; Ömürlük Çıxış</h3>
+        <p class="opp-body">Qeydiyyatdan keçən iştirakçılar 100-dən çox real seans videosuna ömürlük çıxış əldə edir. Arxiv müntəzəm yenilənir. Keçirilən hər praktikum sessiyası da yazılır və arxivə əlavə edilir — öyrənmə prosesi bitmir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELEGRAM BAND -->
+<div class="tg-band">
+  <div class="tg-inner">
+    <div class="tg-text">
+      <h2>Praktikum Telegram Qrupu</h2>
+      <p>Bütün iştirakçılar qapalı Telegram qrupuna daxil edilir. Növbəti seans xatırlatmaları, materiallar, supervizor sualları — hamısı bir yerdə. Qrup yalnız aktiv iştirakçılar üçündür.</p>
+    </div>
+    <a href="https://t.me/ragimoff" target="_blank" class="btn btn-primary" style="white-space:nowrap;">Telegram &rarr;</a>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <div>
+      <h2>Praktikuma Başla</h2>
+      <p>3 600 AZN &middot; 12 ay rəssite — 300 AZN/ay &middot; 24 ay rəssite — 175 AZN/ay</p>
+    </div>
+    <a href="#registration" class="btn" style="background:var(--navy);color:var(--white);padding:16px 32px;font-weight:700;text-decoration:none;white-space:nowrap;">Qeydiyyata Yazıl</a>
+  </div>
+</div>
+
+<!-- REGISTRATION -->
+<section class="reg-section" id="registration">
+  <div class="reg-inner">
+    <div style="margin-bottom:40px;">
+      <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">Qeydiyyat</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--white);margin-bottom:12px;">Müraciət Formu</h2>
+      <p style="font-size:0.9375rem;color:rgba(255,255,255,0.55);max-width:560px;">Formu doldurun — 24 saat ərzində əlaqə saxlayırıq.</p>
+    </div>
+
+    <div class="reg-path">
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 01</span>
+        <h4>Müraciət</h4>
+        <p>Formu doldurun, sənədləri əlavə edin</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 02</span>
+        <h4>Zəng</h4>
+        <p>Koordinator 24 saat ərzində əlaqə saxlayır</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 03</span>
+        <h4>Ödəniş</h4>
+        <p>Tam ödəniş və ya rəssite planı seçilir</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 04</span>
+        <h4>Başlanğıc</h4>
+        <p>Telegram qrupuna daxil olursunuz</p>
+      </div>
+    </div>
+
+    <div class="reg-discount">
+      <strong>Əvvəlki sertifikatlarınız üçün endirim</strong>
+      <p>RAGIMOFF və ya digər akkreditasiya olunmuş mərkəzlərin sertifikatları varsa — koordinatora bildirin. Endirim imkanları fərdi nəzərdən keçirilir.</p>
+    </div>
+
+    <form class="reg-form" id="regForm" enctype="multipart/form-data">
+      <div class="reg-form-2col" style="margin-bottom:20px;">
+        <div class="reg-field">
+          <label for="rf-name">Ad Soyad</label>
+          <input type="text" id="rf-name" name="name" placeholder="Kənan Rəhimov" required/>
+        </div>
+        <div class="reg-field">
+          <label for="rf-phone">Telefon</label>
+          <input type="tel" id="rf-phone" name="phone" placeholder="+994 XX XXX XX XX" required/>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-bottom:20px;">
+        <label for="rf-email">E-poçt</label>
+        <input type="email" id="rf-email" name="email" placeholder="email@example.com"/>
+      </div>
+
+      <div class="reg-field" style="margin-bottom:20px;">
+        <label>Proqram</label>
+        <div class="reg-tile-group cols3">
+          <input class="reg-tile-opt" type="radio" name="program" id="p1" value="Umumi Psixologiya"/>
+          <label class="reg-tile-lbl" for="p1">Ümumi Psixologiya</label>
+          <input class="reg-tile-opt" type="radio" name="program" id="p2" value="Klinik Psixologiya"/>
+          <label class="reg-tile-lbl" for="p2">Klinik Psixologiya</label>
+          <input class="reg-tile-opt" type="radio" name="program" id="p3" value="Psixoterapiya Praktikumu" checked/>
+          <label class="reg-tile-lbl" for="p3">Psixoterapiya Praktikumu</label>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-bottom:20px;">
+        <label>Ödəniş Üsulu</label>
+        <div class="reg-tile-group cols3">
+          <input class="reg-tile-opt" type="radio" name="payment" id="pay1" value="Tam ödəniş (−10%)"/>
+          <label class="reg-tile-lbl" for="pay1">Tam ödəniş (−10%)</label>
+          <input class="reg-tile-opt" type="radio" name="payment" id="pay2" value="Rəssite 12 ay"/>
+          <label class="reg-tile-lbl" for="pay2">Rəssite 12 ay</label>
+          <input class="reg-tile-opt" type="radio" name="payment" id="pay3" value="Rəssite 24 ay" checked/>
+          <label class="reg-tile-lbl" for="pay3">Rəssite 24 ay</label>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-bottom:20px;">
+        <label>Sənədlər</label>
+        <div class="reg-upload-grid">
+          <div class="reg-upload-item">
+            <span class="ulbl">Diplom</span>
+            <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png"/>
+            <span class="reg-upload-hint">PDF, JPG — maks. 5 MB</span>
+          </div>
+          <div class="reg-upload-item">
+            <span class="ulbl">Şəxsiyyət vəsiqəsi</span>
+            <input type="file" name="id_card" accept=".pdf,.jpg,.jpeg,.png"/>
+            <span class="reg-upload-hint">PDF, JPG — maks. 5 MB</span>
+          </div>
+          <div class="reg-upload-item">
+            <span class="ulbl">Sertifikatlar (əgər varsa)</span>
+            <input type="file" name="certs" accept=".pdf,.jpg,.jpeg,.png" multiple/>
+            <span class="reg-upload-hint">Bir neçə fayl seçə bilərsiniz</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-bottom:20px;">
+        <label for="rf-note">Qeyd (istəyə bağlı)</label>
+        <textarea id="rf-note" name="note" rows="3" placeholder="Suallarınız, xüsusi şərtlər..."></textarea>
+      </div>
+
+      <div class="reg-form-footer">
+        <p class="reg-form-note">Məlumatlarınız üçüncü şəxslərə ötürülmür. Sənədlər yalnız qeydiyyat üçün istifadə olunur.</p>
+        <button type="submit" class="btn btn-primary" style="padding:16px 40px;font-size:0.9375rem;">Müraciət Göndər</button>
+      </div>
+      <div class="reg-success" id="regSuccess">
+        <p>Müraciətiniz qəbul edildi. 24 saat ərzində əlaqə saxlayacağıq.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+    <footer>
+      <div
+        class="footer-inner"
+        style="max-width: var(--container-max); margin: 0 auto; padding: 80px 55px 56px"
+      >
+        <div class="footer-grid">
+          <!-- Brand -->
+          <div>
+            <a
+              href="index.html"
+              class="logo-box"
+              style="display: inline-flex; margin-bottom: 24px"
+            >
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psixologiya Məktəbi</span>
+            </a>
+            <p class="footer-desc">
+              Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik
+              təcrübə. Bakı, Azərbaycan.
+            </p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <!-- Terapiya -->
+          <div>
+            <h4 class="footer-heading">Terapiya</h4>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Enurez Müalicəsi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+          <!-- Təhsil -->
+          <div>
+            <h4 class="footer-heading">Təhsil</h4>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Blogu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+          <!-- Əlaqə -->
+          <div>
+            <h4 class="footer-heading">Əlaqə</h4>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+          <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <script src="shared.js"></script>
+    <script>
+      const GAS_ENDPOINT = '';
+      document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('[type="submit"]');
+        btn.textContent = 'Göndərilir...';
+        btn.disabled = true;
+        if (GAS_ENDPOINT) {
+          const fd = new FormData(this);
+          fetch(GAS_ENDPOINT, { method: 'POST', body: fd })
+            .then(() => showSuccess())
+            .catch(() => showSuccess());
+        } else {
+          setTimeout(showSuccess, 800);
+        }
+        function showSuccess() {
+          document.getElementById('regSuccess').style.display = 'block';
+          btn.style.display = 'none';
+        }
+      });
+    </script>
+</body>
+</html>

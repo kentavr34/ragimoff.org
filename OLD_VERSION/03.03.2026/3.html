@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Klinik Psixologiya üzrə rəsmi ƏTD Diplomu — 1 ildə. Azərbaycan qanunvericiliyi ilə tam uyğun. Peşəkar psixoloji fəaliyyət üçün lazım olan yeganə sənəd. Dr. Kənan Rəhimov, Bakı."/>
+  <title>Klinik Psixologiya Diplomu | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Lato:wght@300;400;700&family=Noto+Sans:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* HERO */
+    .pg-hero { background: linear-gradient(135deg, #0d1b3e 0%, #1a3a6e 100%); padding: 120px 32px 72px; position: relative; overflow: hidden; }
+    .pg-hero::before { content:''; position:absolute; top:-20%; right:-10%; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 68%); pointer-events:none; }
+    .pg-hero-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 360px; gap:56px; align-items:center; }
+    .pg-hero h1 { font-family:'Inter',-apple-system,sans-serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:700; color:#fff; line-height:1.2; margin-bottom:16px; }
+    .pg-hero h1 em { color:var(--accent); font-style:normal; }
+    .pg-hero p { color:rgba(255,255,255,0.72); font-size:1rem; max-width:540px; line-height:1.85; margin-bottom:20px; font-weight:300; }
+    .hero-badge-row { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+    .hbadge { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.8); font-size:0.78rem; padding:6px 14px; border-radius:20px; }
+    .hbadge strong { color:var(--accent); }
+    /* hero card */
+    .hero-cta-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:30px; }
+    .hero-cta-card h3 { font-family:'Inter',-apple-system,sans-serif; font-size:1.15rem; color:#fff; margin-bottom:16px; }
+    .price-row-hero { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); }
+    .price-row-hero:last-of-type { border-bottom:none; margin-bottom:18px; }
+    .prl { font-size:0.82rem; color:rgba(255,255,255,0.65); }
+    .prv { font-family:'Inter',-apple-system,sans-serif; font-size:1rem; font-weight:700; color:var(--accent); }
+
+    /* SECTIONS */
+    section { padding:72px 32px; }
+    .sec { max-width:1240px; margin:0 auto; }
+    .sec-2col { display:grid; grid-template-columns:1fr 380px; gap:56px; align-items:start; }
+    .sticky-col { position:sticky; top:88px; }
+
+    /* PAIN BLOCK */
+    .pain-block { background:var(--light); border-radius:12px; padding:28px 30px; margin-bottom:28px; }
+    .pain-block h3 { font-family:'Inter',-apple-system,sans-serif; font-size:1.15rem; color:var(--navy); margin-bottom:14px; }
+    .pain-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; font-size:0.9rem; color:var(--text); line-height:1.7; }
+    .pain-x { width:22px; height:22px; border-radius:50%; background:#e8f0e8; color:#1a5c38; font-weight:700; font-size:0.75rem; display:flex; align-items:center;justify-content:center; flex-shrink:0; margin-top:2px; }
+    .pain-x.red { background:#fde8e8; color:#8b1a1a; }
+
+    /* ANSWER BLOCK */
+    .answer-box { background:linear-gradient(135deg,rgba(200,169,110,0.09),rgba(13,27,62,0.04)); border:1.5px solid rgba(200,169,110,0.35); border-radius:10px; padding:22px 26px; margin:20px 0; }
+    .answer-box p { font-size:0.93rem; color:var(--navy); line-height:1.85; margin:0; }
+
+    /* LAW ITEMS */
+    .law-item { border:1px solid var(--border); border-radius:10px; margin-bottom:14px; overflow:hidden; }
+    .law-head { display:flex; align-items:center; gap:14px; padding:16px 20px; cursor:pointer; background:var(--white); transition:background .2s; }
+    .law-head:hover { background:var(--light); }
+    .law-num { width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Inter',-apple-system,sans-serif; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .law-htitle { flex:1; }
+    .law-src { font-size:0.65rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); }
+    .law-name { font-weight:700; font-size:0.9rem; color:var(--navy); margin-top:2px; }
+    .law-arr { color:var(--gray); font-size:1.1rem; transition:transform .3s; }
+    .law-item.open .law-arr { transform:rotate(180deg); }
+    .law-body { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+    .law-body-in { padding:0 20px 18px; border-top:1px solid var(--border); }
+    .law-quote { background:var(--light); border-left:4px solid var(--accent); border-radius:0 6px 6px 0; padding:12px 16px; margin:12px 0; font-size:0.87rem; color:var(--text); line-height:1.8; }
+    .law-link { font-size:0.78rem; font-weight:700; color:var(--blue); text-decoration:none; }
+    .law-link:hover { color:var(--accent); }
+
+    /* OBJECTIONS */
+    .obj-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:24px 0; }
+    .obj-card { border-radius:10px; padding:22px 20px; }
+    .obj-card.red { background:#fdf4f4; border:1px solid #f0d0d0; }
+    .obj-card.green { background:#f4fdf4; border:1px solid #c0e0c0; }
+    .obj-icon { font-size:1.4rem; margin-bottom:10px; display:block; }
+    .obj-title { font-weight:700; font-size:0.9rem; margin-bottom:6px; }
+    .obj-card.red .obj-title { color:#8b1a1a; }
+    .obj-card.green .obj-title { color:#1a5c38; }
+    .obj-text { font-size:0.83rem; line-height:1.7; }
+    .obj-card.red .obj-text { color:#7a3030; }
+    .obj-card.green .obj-text { color:#1e4a1e; }
+
+    /* SOCIAL PROOF */
+    .proof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+    .proof-card { background:var(--light); border-radius:10px; padding:20px 18px; text-align:center; border:1px solid var(--border); }
+    .proof-num { font-family:'Inter',-apple-system,sans-serif; font-size:1.8rem; font-weight:700; color:var(--accent); }
+    .proof-label { font-size:0.78rem; color:var(--gray); margin-top:4px; line-height:1.5; }
+
+    /* WHAT YOU GET */
+    .get-list { list-style:none; margin:16px 0; }
+    .get-list li { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--border); font-size:0.9rem; color:var(--text); line-height:1.7; }
+    .get-list li:last-child { border-bottom:none; }
+    .get-check { color:var(--accent); font-weight:700; flex-shrink:0; font-size:1.1rem; margin-top:1px; }
+
+    /* CTA FINAL */
+    .cta-final { background:var(--navy); border-radius:16px; padding:44px; text-align:center; margin-top:48px; }
+    .cta-final h2 { font-family:'Inter',-apple-system,sans-serif; font-size:1.8rem; color:#fff; margin-bottom:14px; }
+    .cta-final p { color:rgba(255,255,255,0.68); font-size:0.95rem; max-width:520px; margin:0 auto 28px; line-height:1.8; }
+    .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    /* SIDEBAR CARD */
+    .s-card { background:var(--light); border:1px solid var(--border); border-radius:10px; padding:24px; margin-bottom:16px; }
+    .s-card h4 { font-family:'Inter',-apple-system,sans-serif; font-size:1rem; color:var(--navy); margin-bottom:12px; }
+    .s-card p { font-size:0.83rem; color:var(--gray); line-height:1.7; margin-bottom:14px; }
+    .s-dark { background:var(--navy); border-color:transparent; }
+    .s-dark h4 { color:#fff; }
+    .s-dark p { color:rgba(255,255,255,0.6); }
+
+    /* PARTNER BLOCK */
+    .partner-block { background:var(--light); border:1px solid var(--border); border-radius:12px; padding:26px; display:flex; gap:18px; align-items:flex-start; margin:24px 0; }
+    .partner-logo { width:100px; flex-shrink:0; border-radius:6px; border:1px solid var(--border); }
+    .partner-text h4 { font-family:'Inter',-apple-system,sans-serif; font-size:1rem; color:var(--navy); margin-bottom:8px; }
+    .partner-text p { font-size:0.83rem; color:var(--gray); line-height:1.75; margin-bottom:12px; }
+    .partner-links { display:flex; gap:10px; flex-wrap:wrap; }
+    .pl-link { font-size:0.75rem; font-weight:700; color:var(--blue); text-decoration:none; }
+    .pl-link:hover { color:var(--accent); }
+
+    /* CERT SAMPLES */
+    .cert-samples { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+    .cert-sample { border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+    .cert-sample img { width:100%; display:block; }
+    .cert-sample-label { padding:9px 12px; font-size:0.76rem; color:var(--gray); background:#fff; }
+    .cert-sample-label strong { color:var(--navy); display:block; }
+
+    /* MODAL */
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:500; align-items:center; justify-content:center; padding:20px; }
+    .modal-overlay.show { display:flex; }
+    .modal-box { background:#fff; border-radius:14px; max-width:680px; width:100%; max-height:88vh; overflow-y:auto; }
+
+    @media(max-width:1024px) { .pg-hero-inner,.sec-2col { grid-template-columns:1fr; } .sticky-col { position:static; } .pg-hero-inner .hero-cta-card { max-width:440px; } }
+    @media(max-width:768px) { .obj-grid { grid-template-columns:1fr; } .proof-grid { grid-template-columns:1fr 1fr; } .cert-samples { grid-template-columns:1fr; } .pg-hero,.section { padding-left:20px; padding-right:20px; } section { padding-left:20px; padding-right:20px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа Психологии</span></a>
+    <nav>
+      <a href="index.html">Ana səhifə</a>
+      <a href="5.html">Praktikum</a>
+      <a href="haqqimda.html">Haqqımda</a>
+      <a href="qanunlar.html">Qanuni əsaslar</a>
+      <a href="index.html#booking" class="nav-cta">Qeydiyyat</a>
+    </nav>
+    <div class="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" onclick="closeMenu()">Ana səhifə</a>
+  <a href="5.html" onclick="closeMenu()">Praktikum</a>
+  <a href="haqqimda.html" onclick="closeMenu()">Haqqımda</a>
+  <a href="index.html#booking" onclick="closeMenu()" class="mob-cta">Qeydiyyat</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="pg-hero">
+  <div style="max-width:1240px;margin:0 auto;">
+    <div style="font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:16px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.45);text-decoration:none;">Ana səhifə</a>  Klinik Psixologiya
+    </div>
+  </div>
+  <div class="pg-hero-inner">
+    <div>
+      <span class="tag" style="color:var(--accent)">Əlavə Peşə Təhsili · 1 il</span>
+      <h1>Klinik Psixologiya —<br/><em>1 ildə rəsmi diplom</em></h1>
+      <p>Başqa sahədə ali təhsiliniz varsa — psixologiya üzrə əlavə peşə təhsili alaraq <strong style="color:#fff;">qanuni şəkildə psixoloji fəaliyyət</strong> göstərə bilərsiniz. Bu Azərbaycan qanunu ilə rəsmi şəkildə təsdiqlənib.</p>
+      <div class="hero-badge-row">
+        <span class="hbadge"><strong></strong> AR Qanunu ilə rəsmi</span>
+        <span class="hbadge"><strong></strong> 1 il — tam distant</span>
+        <span class="hbadge"><strong></strong> Azərbaycan dilində</span>
+        <span class="hbadge"><strong></strong> SPb IDPO Diplomu</span>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="#qeydiyyat" class="btn btn-primary" style="font-size:1rem;padding:15px 32px;">İndi qeydiyyatdan keç </a>
+        <button onclick="openLawModal()" class="btn btn-outline" style="font-size:0.9rem;">️ Qanuni əsaslar</button>
+      </div>
+    </div>
+    <div class="hero-cta-card">
+      <h3>Proqram xülasəsi</h3>
+      <div class="price-row-hero"><span class="prl">Müddət</span><span class="prv">1 il (24 ay seçimi var)</span></div>
+      <div class="price-row-hero"><span class="prl">Həcm</span><span class="prv">1528 saat</span></div>
+      <div class="price-row-hero"><span class="prl">Diplom</span><span class="prv">SPb IDPO + IPAS</span></div>
+      <div class="price-row-hero"><span class="prl">Qiymət</span><span class="prv">6 000 AZN</span></div>
+      <div class="price-row-hero"><span class="prl">Hissə-hissə</span><span class="prv">300 AZN/ay (24 ay)</span></div>
+      <a href="#qeydiyyat" class="btn btn-primary" style="display:block;text-align:center;margin-top:18px;">Qeydiyyatdan keç </a>
+      <a href="https://wa.me/994702200376?text=Salam%2C+Klinik+Psixologiya+Diplomu+bar%C9%99d%C9%99+m%C9%99lumat+almaq+ist%C9%99yir%C9%99m" target="_blank" 
+         class="btn btn-wa" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;">WhatsApp ilə soruş</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SECTION 1: CAVAB VER — QANUNIDIRMI? ══ -->
+<section style="background:var(--white);">
+  <div class="sec sec-2col">
+    <div>
+
+      <!-- PAIN: Ən çox soruşulan sual -->
+      <span class="tag fi">Ən çox soruşulan sual</span>
+      <h2 class="h2 fi">«Bu diplom dövlət tərəfindən<br/>təsdiqlənirmi?»</h2>
+
+      <div class="pain-block fi">
+        <h3>Bu sualın arxasında nə var?</h3>
+        <div class="pain-item"><div class="pain-x red"></div><div>«Bir ilə diplom alınmaz» — alınır. Əlavə peşə təhsili bu üçün yaradılıb.</div></div>
+        <div class="pain-item"><div class="pain-x red"></div><div>«Dövlət təsdiqləməsə işləyə bilmərəm» — ƏTD-yə <strong>ayrıca təsdiq tələb edilmir.</strong> Diplomu aldın — işləyirsən.</div></div>
+        <div class="pain-item"><div class="pain-x red"></div><div>«Klinik psixologiya tibb sahəsidir, həkim olmaq lazımdır» — <strong>Yox.</strong> Klinik psixologiya humanitar elmdir. Tibb deyil.</div></div>
+        <div class="pain-item"><div class="pain-x" style="background:#e8f0e8;color:#1a5c38;"></div><div>Azərbaycan Respublikasının üç qanunu ƏTD diplomu ilə psixoloji fəaliyyəti açıq şəkildə rəsmiləşdirir.</div></div>
+      </div>
+
+      <div class="answer-box fi">
+        <p>
+          <strong>Qısa cavab:</strong> Əlavə Peşə Təhsili diplomu (ƏTD) Azərbaycan Respublikasının «Psixoloji Yardım Haqqında» Qanunu ilə birbaşa nəzərdə tutulmuş, <strong>qanuni diplom növüdür.</strong> Buna görə ayrıca Nazirlər Kabinetinin, Təhsil Nazirliyinin və ya başqa qurumun əlavə icazəsi tələb olunmur. Diplomu aldın — qanuni psixoloqsan.
+        </p>
+      </div>
+
+      <!-- LAWS accordion -->
+      <h3 class="h3 fi" style="margin-top:32px;">Bu fikri təsdiq edən 3 qanun:</h3>
+
+      <div class="law-item fi" id="l1">
+        <div class="law-head" onclick="toggleLaw('l1')">
+          <div class="law-num">1</div>
+          <div class="law-htitle">
+            <div class="law-src">AR Qanunu</div>
+            <div class="law-name">«Psixoloji Yardım Haqqında» — Maddə 1.0.2</div>
+          </div>
+          <span class="law-arr">▾</span>
+        </div>
+        <div class="law-body" id="l1-body">
+          <div class="law-body-in">
+            <p class="law-quote">«Psixoloq — psixoloq ixtisası üzrə ali təhsil almış <strong>və ya «Təhsil haqqında» Azərbaycan Respublikasının Qanununa uyğun olaraq əlavə təhsil alma formasında psixoloq ixtisasını əldə etmiş</strong> və psixoloji yardım göstərmək hüququ olan şəxs»</p>
+            <p style="font-size:0.83rem;color:var(--gray);line-height:1.7;margin-bottom:10px;">
+              Yəni: <strong>biri bakalavrla</strong> psixoloq olur, <strong>digəri ƏTD ilə.</strong> Hər ikisi bərabər hüquqludur. Qanun bunu açıq yazır.
+            </p>
+            <a href="https://e-qanun.az/framework/41280" target="_blank" class="law-link">️ e-qanun.az-da tam mətni oxu </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="law-item fi" id="l2">
+        <div class="law-head" onclick="toggleLaw('l2')">
+          <div class="law-num">2</div>
+          <div class="law-htitle">
+            <div class="law-src">AR Qanunu</div>
+            <div class="law-name">«Təhsil Haqqında» — Maddə 24</div>
+          </div>
+          <span class="law-arr">▾</span>
+        </div>
+        <div class="law-body" id="l2-body">
+          <div class="law-body-in">
+            <p class="law-quote">«Əlavə təhsil — vətəndaşların hərtərəfli təhsil tələbatını ödəmək məqsədi ilə <strong>əlavə təhsil proqramları əsasında verilən təhsil</strong>»</p>
+            <p style="font-size:0.83rem;color:var(--gray);line-height:1.7;margin-bottom:10px;">
+              ƏTD — qanunun özündə ayrıca təhsil forması kimi tanınır. Bu, «kurs» deyil — rəsmi <strong>peşə təhsili</strong> formasıdır.
+            </p>
+            <a href="https://e-qanun.az/framework/18343" target="_blank" class="law-link">️ e-qanun.az-da tam mətni oxu </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="law-item fi" id="l3">
+        <div class="law-head" onclick="toggleLaw('l3')">
+          <div class="law-num">3</div>
+          <div class="law-htitle">
+            <div class="law-src">AR Nazirlər Kabineti · Qərar №163</div>
+            <div class="law-name">Yenidənhazırlanma Qaydası — Bənd 3.1.1</div>
+          </div>
+          <span class="law-arr">▾</span>
+        </div>
+        <div class="law-body" id="l3-body">
+          <div class="law-body-in">
+            <p class="law-quote">«Yenidənhazırlanma təhsili — başqa sahədə ali təhsili olan hər bir vətəndaşın <strong>müvafiq sahə üzrə yeni peşə və ixtisasa yiyələnmək istəyini həyata keçirən əlavə təhsil formasıdır.</strong> Proqramlar arasındakı fərq yenidənhazırlanma verən müəssisə tərəfindən müəyyən edilir.»</p>
+            <p style="font-size:0.83rem;color:var(--gray);line-height:1.7;margin-bottom:10px;">
+              Nazirlər Kabinetinin qərarı ilə: başqa ixtisasda ali diplom olan şəxs psixologiya üzrə yenidənhazırlanma keçib <strong>tam hüquqlu psixoloq diplomu</strong> ala bilər.
+            </p>
+            <a href="https://e-qanun.az/framework/20045" target="_blank" class="law-link">️ e-qanun.az-da tam mətni oxu </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONCLUSION BOX -->
+      <div style="background:var(--navy);border-radius:12px;padding:28px;margin-top:24px;" class="fi">
+        <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;"> Yekun nəticə — sadə dillə</div>
+        <p style="font-size:0.95rem;color:#fff;line-height:1.85;margin-bottom:12px;">
+          Başqa sahədə bakalavr və ya magistr dərəcəsi olan mütəxəssis — 1 il ərzində psixologiya üzrə yenidənhazırlanma keçib ƏTD Diplomu alaraq — <strong style="color:var(--accent);">Azərbaycan Respublikasında qanuni olaraq psixoloji xidmət göstərə bilər.</strong>
+        </p>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.8;margin:0;">
+          ƏTD Diplomuna ayrıca təsdiqetmə, icazə və ya reyestr proseduru tələb edilmir. Diplomu aldıqdan sonra birbaşa fəaliyyətə başlaya bilərsiniz — özəl kabinet, özəl mərkəz, fərdi fəaliyyət.
+        </p>
+      </div>
+
+    </div><!-- /main -->
+
+    <!-- SIDEBAR -->
+    <div class="sticky-col fi d2">
+      <!-- Partner block -->
+      <div class="partner-block">
+        <img src="images/institute/diplom-spb-idpo.jpg" alt="SPb IDPO" class="partner-logo" loading="lazy"/>
+        <div class="partner-text">
+          <h4>Tərəfdaşlıq — SPb IDPO</h4>
+          <p>Psixologiya üzrə mütəxəssis hazırlanması üzrə birgə fəaliyyət müqaviləsi əsasında əməkdaşlıq.</p>
+          <div class="partner-links">
+            <a href="https://education-psy.ru" target="_blank" class="pl-link"> education-psy.ru</a>
+            <a href="https://islod.obrnadzor.gov.ru/rlic/details/48ebc176-cfa7-8531-08a6-bc5b3b43459b/" target="_blank" class="pl-link"> Lisenziya</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert samples -->
+      <div class="s-card">
+        <h4>Alacağınız sənədlər</h4>
+        <div class="cert-samples">
+          <div class="cert-sample">
+            <img src="images/sample-cert-ipas-klinik.jpg" alt="IPAS Sertifikat" loading="lazy"/>
+            <div class="cert-sample-label"><strong>IPAS Beynəlxalq</strong>QR kodla yoxlanılır</div>
+          </div>
+          <div class="cert-sample">
+            <img src="images/institute/diplom-spb-idpo.jpg" alt="SPb IDPO Diplom" loading="lazy"/>
+            <div class="cert-sample-label"><strong>SPb IDPO Diplom</strong>Peşəkar yenidənhazırlanma</div>
+          </div>
+        </div>
+        <a href="images/institute/diplom-predmety.jpg" target="_blank" 
+           style="font-size:0.78rem;font-weight:700;color:var(--accent);text-decoration:none;display:block;margin-top:10px;"> 31 fənn + qiymətlər </a>
+      </div>
+
+      <div class="s-card s-dark">
+        <h4>Sualınız var?</h4>
+        <p>Hər hansı sualı WhatsApp üzərindən soruşa bilərsiniz. 24 saat ərzində cavab veririk.</p>
+        <a href="https://wa.me/994702200376?text=Salam%2C+Klinik+Psixologiya+Diplomu+bar%C9%99d%C9%99+sualim+var" target="_blank" 
+           class="btn btn-wa" style="display:flex;align-items:center;justify-content:center;gap:8px;">WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SECTION 2: ETİRAZLARA CAVAB ══ -->
+<section style="background:var(--light);">
+  <div class="sec">
+    <span class="tag fi">Tez-tez verilən suallar</span>
+    <h2 class="h2 fi" style="margin-bottom:12px;">Şübhələrə dürüst cavab</h2>
+    <p class="lead fi" style="margin-bottom:36px;max-width:580px;">Bu suallar çoxunun ağlına gəlir. Gəlin açıq danışaq.</p>
+
+    <div class="obj-grid fi">
+      <div class="obj-card red">
+        <span class="obj-icon">️</span>
+        <div class="obj-title">«Dövlət qurumunda işləyə bilərəmmi?»</div>
+        <p class="obj-text">Dövlət qurumlarının <strong>çoxu magistr dərəcəsi tələb edir.</strong> ƏTD diplomunuz varsa — dövlət qurumunda iş yeri tapmaq çətin ola bilər. Bu barədə açıq danışırıq.</p>
+      </div>
+      <div class="obj-card green">
+        <span class="obj-icon"></span>
+        <div class="obj-title">«Özəl sektorda tamamilə azaddır»</div>
+        <p class="obj-text">Özəl klinikalar, özəl mərkəzlər, fərdi kabinet, öz mərkəzinizi açmaq — <strong>heç bir əlavə məhdudiyyət yoxdur.</strong> Hazırda yüzlərlə mütəxəssis ƏTD ilə özəl sektorda qanuni işləyir.</p>
+      </div>
+      <div class="obj-card red">
+        <span class="obj-icon"></span>
+        <div class="obj-title">«Klinik psixologiya tibb deyilmi?»</div>
+        <p class="obj-text">Xeyr. Klinik psixologiya <strong>humanitar elmdir, tibb deyil.</strong> Həkim olmaq tələb edilmir. Psixoloq söz vasitəsilə kömək edir — dərman yazmır.</p>
+      </div>
+      <div class="obj-card green">
+        <span class="obj-icon"></span>
+        <div class="obj-title">«Psixologiya tibbdən fərqli olaraq...»</div>
+        <p class="obj-text">İnsanın emosional, davranış və psixoloji problemlərini həll etmək psixoloqun işidir. Dərman lazım olduqda <strong>psixiatrla birgə işlənir</strong> — lakin psixoloq özü dərman yazmır.</p>
+      </div>
+    </div>
+
+    <!-- Social proof -->
+    <h3 class="h3 fi" style="margin-top:40px;margin-bottom:20px;">Kim işləyir ƏTD ilə?</h3>
+    <div class="proof-grid fi">
+      <div class="proof-card"><div class="proof-num">1000+</div><div class="proof-label">Azərbaycanda ƏTD ilə çalışan psixoloq</div></div>
+      <div class="proof-card"><div class="proof-num">100%</div><div class="proof-label">Özəl sektorda heç bir qanuni maneə yoxdur</div></div>
+      <div class="proof-card"><div class="proof-num">3 qanun</div><div class="proof-label">AR qanunvericiliyi ilə birbaşa dəstəklənir</div></div>
+    </div>
+
+    <div class="answer-box fi" style="margin-top:24px;">
+      <p>
+        <strong>Mühüm qeyd:</strong> Azərbaycanda hazırda <strong>ƏTD diplomu ilə magistraturaya daxil olmaq mümkün deyil</strong> (magistratura psixologiya üzrə baza bakalavr tələb edir). Əgər magistratura hədəfinizdirsə — bu proqram bunun üçün uyğun deyil. Lakin <strong>Rusiya, ABŞ, İsrail</strong> kimi ölkələrdə ƏTD ilə magistraturaya daxil olmaq mümkündür.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 3: NƏ ALIRSAN ══ -->
+<section style="background:var(--white);">
+  <div class="sec">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;">
+      <div>
+        <span class="tag fi">Proqramın məzmunu</span>
+        <h2 class="h2 fi">Nə alırsınız?</h2>
+        <ul class="get-list fi">
+          <li><span class="get-check"></span><div><strong>SPb IDPO Diplomu</strong> — «Klinik Psixolog» kvalifikasiyası. 1528 saat, 31 fənn.</div></li>
+          <li><span class="get-check"></span><div><strong>IPAS Beynəlxalq Sertifikat</strong> — QR kodla yoxlanılır. Azərbaycanda və xaricdə tanınır.</div></li>
+          <li><span class="get-check"></span><div><strong>Praktikum daxildir</strong> — həftədə 2 dəfə canlı Zoom dərsləri + 3+ illik video arxiv.</div></li>
+          <li><span class="get-check"></span><div><strong>Azərbaycan dilində</strong> — bütün materiallar, dərslər, superviziya.</div></li>
+          <li><span class="get-check"></span><div><strong>Qapalı Telegram qrupu</strong> — ömürlük üzv, daimi peşəkar dəstək.</div></li>
+          <li><span class="get-check"></span><div><strong>Superviziya 50% endirimli</strong> — hər zaman doktorla konsultasiya imkanı.</div></li>
+        </ul>
+        <div style="margin-top:28px;">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Tədris aparanlar</div>
+          <div style="font-size:0.88rem;color:var(--text);line-height:1.85;">
+            <div style="margin-bottom:8px;">‍️ <strong>Dr. Kənan Rəhimov</strong> — Psixodiaqnostika, Ailə Terapiyası, Ümumi Psixoterapiya</div>
+            <div style="margin-bottom:8px;">‍️ <strong>Tamilla Süleymanova</strong> — Koqnitiv-Davranış Terapiyası</div>
+            <div>‍️ <strong>Samirə Rəhimova</strong> — Ailə Terapiyası, sistemik yanaşma</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="tag fi">Qiymət</span>
+        <h2 class="h2 fi" style="margin-bottom:20px;">Ödəniş variantları</h2>
+        <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;" class="fi">
+          <div style="background:var(--navy);padding:20px 24px;">
+            <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(200,169,110,0.8);margin-bottom:8px;">Birdəfəlik ödəniş</div>
+            <div style="font-family:'Inter',-apple-system,sans-serif;font-size:2.4rem;font-weight:700;color:var(--accent);">6 000 <span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,0.5);">AZN</span></div>
+          </div>
+          <div style="padding:20px 24px;border-bottom:1px solid var(--border);">
+            <div style="font-size:0.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Hissə-hissə ödəniş</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.87rem;"><span style="color:var(--gray);">12 ay × 550 AZN</span><strong>= 6 600 AZN</strong></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:0.87rem;"><span style="color:var(--gray);">18 ay × 385 AZN</span><strong>= 6 930 AZN</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.87rem;"><span style="color:var(--gray);">24 ay × 300 AZN</span><strong>= 7 200 AZN</strong></div>
+          </div>
+          <div style="padding:16px 24px;">
+            <a href="proqram.html" style="display:block;text-align:center;background:var(--light);color:var(--navy);font-size:0.85rem;font-weight:700;padding:12px;border-radius:6px;text-decoration:none;margin-bottom:10px;border:1px solid var(--border);"> Tam tədris proqramına bax </a>
+          <a href="https://pay.pulpal.az/preview?uniqueCode=94611426" target="_blank"
+               style="display:block;text-align:center;background:#f5f5f5;color:var(--navy);font-size:0.82rem;font-weight:700;padding:11px;border-radius:6px;text-decoration:none;margin-bottom:8px;">
+               BirBank · TamKart · BolKart ilə taksitlə
+            </a>
+            <p style="font-size:0.74rem;color:var(--gray);text-align:center;margin:0;">Kartla hissə-hissə ödəniş imkanı mövcuddur</p>
+          </div>
+        </div>
+
+        <!-- Graduate photos -->
+        <div style="margin-top:20px;" class="fi d2">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;">Məzunlarımız</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <img src="images/cert-5.jpg" alt="Sertifikat mərasimi" style="width:100%;border-radius:8px;aspect-ratio:3/4;object-fit:cover;background:#e8edf5;" loading="lazy"/>
+            <img src="images/cert-6.jpg" alt="Sertifikat mərasimi" style="width:100%;border-radius:8px;aspect-ratio:3/4;object-fit:cover;background:#e8edf5;" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section style="background:var(--light);padding:56px 32px;" id="qeydiyyat">
+  <div class="sec">
+    <div class="cta-final">
+      <h2>İndi addım atın</h2>
+      <p>Hər il bu proqramdan keçən onlarca mütəxəssis özəl psixoloji fəaliyyətə başlayır. Növbəti addımı götürün.</p>
+      <div class="cta-btns">
+        <a href="index.html#booking" class="btn btn-primary" style="font-size:1rem;padding:15px 36px;">Qeydiyyat forması </a>
+        <a href="https://wa.me/994702200376?text=Salam%2C+Klinik+Psixologiya+Diplomu+bar%C9%99d%C9%99+m%C9%99lumat+almaq+ist%C9%99yir%C9%99m" 
+           target="_blank" class="btn btn-wa" style="font-size:1rem;padding:15px 28px;">WhatsApp</a>
+      </div>
+      <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-top:16px;">24 saat ərzində cavab veririk · Öhdəlik yoxdur</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Школа Психологии</span></a>
+        <p>Kənan Rəhimov — Həkim Psixoterapevt. 22+ il klinik təcrübə. Bakı.</p>
+        <div class="footer-socials">
+          <a href="https://t.me/ragimoff" class="social-link" target="_blank">TG</a>
+          <a href="https://www.instagram.com/dr.ragimoff" class="social-link" target="_blank">IG</a>
+          <a href="https://youtube.com/@kragimoff" class="social-link" target="_blank">YT</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Təhsil</h4><ul>
+        <li><a href="3.html">Klinik Psixologiya Diplomu</a></li>
+        <li><a href="5.html">Psixoterapiya Praktikumu</a></li>
+        <li><a href="qanunlar.html">Qanuni əsaslar</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Terapiya</h4><ul>
+        <li><a href="aile-terapiyasi.html">Ailə terapiyası</a></li>
+        <li><a href="enurez.html">Enurez müalicəsi</a></li>
+        <li><a href="panik-ataklar.html">Panik ataklar</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Əlaqə</h4><ul>
+        <li><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+        <li><a href="https://wa.me/994702200376">WhatsApp</a></li>
+        <li><a href="https://t.me/dockenan">Telegram</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RAGIMOFF. Bütün hüquqlar qorunur.</p>
+      <a href="https://www.psychotherapyru.com" target="_blank">Русская версия </a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="shared.js"></script>
+<script>
+function toggleLaw(id) {
+  const item = document.getElementById(id);
+  const body = document.getElementById(id + '-body');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.law-item').forEach(i => {
+    i.classList.remove('open');
+    const b = document.getElementById(i.id + '-body');
+    if (b) b.style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+function openLawModal() {
+  // Scroll to law section
+  document.getElementById('l1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(() => toggleLaw('l1'), 500);
+}
+</script>
+</body>
+</html>

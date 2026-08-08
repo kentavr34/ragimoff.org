@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sertifikat Yoxlanışı | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    :root {
+      --navy: var(--navy);
+      --accent: #c8a96e;
+      --white: var(--white);
+      --light: var(--light);
+      --gray: #6b7280;
+    }
+    body {  color: #2d3748; background: var(--light); padding-top: 64px; }
+    h1, h2, h3 {  color: var(--navy); }
+    
+    header { background: var(--navy); position: fixed; top: 0; width: 100%; z-index: 100; }
+    .header-inner {  margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 32px; }
+    .logo {  font-size: 1.25rem; font-weight: 700; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 8px; }
+    nav a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; padding: 8px 16px; border-radius: 8px; transition: 0.2s; }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .cert-section {  margin: 80px auto; padding: 40px 32px; text-align: center; background: var(--white); border-radius: 8px; box-shadow: 0 8px 32px rgba(13,27,62,0.05); }
+    .cert-section h1 { font-size: 1.875rem; margin-bottom: 24px; }
+    .cert-section p { color: var(--gray); margin-bottom: 32px; }
+
+    .cert-form input { width: 100%; padding: 16px; border: 0px solid var(--border); border-radius: 8px; font-size: 1rem; margin-bottom: 24px; font-family: 'Inter', sans-serif; }
+    .cert-form button { width: 100%; background: var(--navy); color: var(--white); border: none; padding: 16px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; }
+    .cert-form button:hover { background: var(--accent); }
+
+    footer { background: var(--navy); color: rgba(255, 255, 255, 0.7); padding: 40px 32px; text-align: center; font-size: 0.875rem; margin-top: 80px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><span class="logo-text">RAGIMOFF<em>.</em></span><span class="logo-sub">Psixologiya Məktəbi</span></a>
+    <nav class="desktop-nav">
+      <a href="index.html">Ana Səhifə</a>
+      <a href="tehsil.html">Təhsil</a>
+      <a href="index.html#services">Konsultasiya</a>
+      <a href="b2b.html">Korporativ</a>
+      <a href="cert.html" class="active" style="color:var(--accent);">Sertifikat</a>
+      <a href="tehsil.html#registration" class="btn nav-cta btn-sm" style="margin-left:16px; background:var(--accent); color:var(--navy); padding: 8px 16px;">Qeydiyyat</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cert-section">
+  <h1 style="text-wrap: balance;">Sertifikat Yoxlanışı</h1>
+  <p>Təlim iştirakçısının sertifikat nömrəsini daxil edərək yoxlayın.</p>
+  
+  <div class="cert-form">
+    <input type="text" placeholder="Sertifikat Nömrəsi (Məs: GTC-2026-001)" id="certInput">
+    <button onclick="alert('Google Apps Script inteqrasiyası hazirlanir...')">Yoxla</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 RAGIMOFF.org. Bütün hüquqlar qorunur.</p>
+</footer>
+
+</body>
+</html>

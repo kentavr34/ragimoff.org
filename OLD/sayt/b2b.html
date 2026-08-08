@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Korporativ psixologiya təlimləri — Satış Məktəbi, Liderlik Psixologiyası, HR və Kadr Qiymətləndirməsi. Şirkətiniz üçün fərdi offer hazırlayırıq."/>
+  <title>Korporativ Təlimlər | Ragimoff.org</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+
+  <style>
+
+    /* ─── HERO ─────────────────────────────────── */
+    .b2b-hero {
+      background: linear-gradient(160deg, var(--navy) 0%, #0d2240 100%);
+      padding: 55px 55px 80px;
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .b2b-hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -8%;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,155,114,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .b2b-hero-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 48px;
+      align-items: center;
+    }
+    .b2b-hero-photo {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .b2b-hero-photo img {
+      width: 440px;
+      height: 400px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 0 !important;
+      box-shadow: 0 24px 56px rgba(0,0,0,0.45);
+      border: 1px solid rgba(181,155,114,0.15);
+      display: block;
+    }
+    .b2b-tag {
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0 0 25px 0;
+      display: inline-flex;
+      border-radius: 0 !important;
+      text-transform: uppercase;
+    }
+    .b2b-hero h1 {
+      font-size: var(--text-5xl);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .b2b-hero h1 em { color: var(--accent); font-style: normal; }
+    .b2b-hero p {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    /* ─── SECTIONS BASE ─────────────────────────── */
+    .ps { padding: 55px 55px; }
+    .ps-inner { max-width: var(--container-max); margin: 0 auto; }
+
+    .sec-head { margin-bottom: 55px; }
+    .sec-head h2 { font-size: var(--text-4xl); font-weight: 800; color: var(--navy); margin-bottom: 16px; line-height: 1.15; }
+    .sec-head p { font-size: var(--text-base); color: var(--gray); max-width: 640px; line-height: 1.75; }
+
+    /* ─── DIRECTION CARDS ───────────────────────── */
+    .dir-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); }
+    .dir-card {
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      border-top: 4px solid var(--navy);
+      padding: 40px 32px 36px;
+      display: flex;
+      flex-direction: column;
+      transition: border-top-color 0.3s, transform 0.3s;
+    }
+    .dir-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
+    .dir-card:last-child { border-right: none; }
+    .dir-num { font-size: var(--text-3xl); font-weight: 800; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 20px; font-family: 'Inter'; }
+    .dir-card .eco-label { margin-bottom: 12px; }
+    .dir-card h3 { font-size: var(--text-lg); font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+    .dir-card p { font-size: var(--text-sm); color: var(--gray); line-height: 1.65; margin-bottom: 24px; flex: 1; }
+    .dir-topics { list-style: none; padding: 0; display: grid; gap: 8px; margin-top: auto; }
+    .dir-topics li { font-size: var(--text-xs); color: var(--gray); padding-left: 16px; position: relative; line-height: 1.5; }
+    .dir-topics li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+    /* ─── FORMAT BLOCK ──────────────────────────── */
+    .fmt-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); border-top: none; }
+    .fmt-item { padding: 28px 24px; border-right: 1px solid var(--border); }
+    .fmt-item:last-child { border-right: none; }
+    .fmt-label { font-size: var(--text-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .fmt-val { font-size: var(--text-base); font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .fmt-note { font-size: var(--text-xs); color: var(--gray); }
+
+    /* ─── APPLICATION FORM ──────────────────────── */
+    .form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      padding: 48px;
+    }
+    .form-head { margin-bottom: 40px; }
+    .form-head h2 { font-size: var(--text-3xl); font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+    .form-head p { font-size: var(--text-sm); color: var(--gray); line-height: 1.75; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .form-full { grid-column: span 2; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-size: var(--text-xs); font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.08em; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 0 !important;
+      font-size: var(--text-sm);
+      color: var(--navy);
+      background: var(--white);
+      font-family: 'Manrope', sans-serif;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .btn-submit {
+      background: var(--accent);
+      color: var(--navy);
+      font-weight: 800;
+      padding: 16px 32px;
+      border: none;
+      border-radius: 0 !important;
+      cursor: pointer;
+      font-size: var(--text-sm);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--gold); }
+
+    /* ─── WHY BLOCK ─────────────────────────────── */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); }
+    .why-item { padding: 32px 28px; border-right: 1px solid var(--border); }
+    .why-item:last-child { border-right: none; }
+    .why-num { font-size: var(--text-3xl); font-weight: 800; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 16px; font-family: 'Inter'; }
+    .why-item h4 { font-size: var(--text-base); font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .why-item p { font-size: var(--text-sm); color: var(--gray); line-height: 1.65; margin: 0; }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 64px; }
+    .footer-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 280px; }
+    .social-links { display: flex; gap: 8px; margin-top: 24px; }
+    .social-btn { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 8px 16px; font-size: 0.75rem; font-weight: 700; text-decoration: none; border-radius: 0 !important; transition: background 0.2s, color 0.2s; }
+    .social-btn:hover { background: var(--accent); color: var(--navy); }
+    .footer-heading { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+    .footer-links { list-style: none; padding: 0; display: grid; gap: 10px; }
+    .footer-link { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: all 0.25s; display: inline-block; }
+    .footer-link:hover { color: var(--accent); transform: translateX(4px); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-bottom p { font-size: 0.875rem; color: rgba(255,255,255,0.35); margin: 0; }
+
+    /* ─── RESPONSIVE ────────────────────────────── */
+    @media (max-width: 1100px) {
+      .dir-grid { grid-template-columns: 1fr; }
+      .dir-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .dir-card:last-child { border-bottom: none; }
+      .fmt-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .b2b-hero, .ps { padding-left: 24px; padding-right: 24px; }
+      .b2b-hero h1 { font-size: var(--text-3xl); }
+      .b2b-hero-inner { grid-template-columns: 1fr; }
+      .b2b-hero-photo { display: none; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-full { grid-column: span 1; }
+      .form-wrap { padding: 32px 24px; }
+      .fmt-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+  </style>
+</head>
+<body>
+
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"
+          ><span class="logo-text">RAGIMOFF<em>.</em></span
+          ><span class="logo-sub">Psixologiya Məktəbi</span></a
+        >
+
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+
+          <a href="tehsil.html">Təhsil</a>
+
+          <a href="xidmetler.html">Konsultasiya</a>
+
+          <a href="b2b.html" class="active">Korporativ</a>
+
+          <a href="blog.html">Blog</a>
+
+          <a href="tehsil.html#registration" class="btn nav-cta">QEYDİYYAT</a>
+        </nav>
+
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </button>
+
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+
+      <a href="tehsil.html" onclick="toggleMenu()">Təhsil</a>
+
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+
+      <a href="b2b.html" class="active" onclick="toggleMenu()">Korporativ</a>
+
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+
+      <a
+        href="tehsil.html#registration"
+        class="btn btn-primary"
+        onclick="toggleMenu()"
+        >QEYDİYYAT</a
+      >
+    </nav>
+
+  <!-- HERO -->
+  <div class="b2b-hero">
+    <div class="b2b-hero-inner">
+      <div>
+        <div class="b2b-tag">Korporativ Psixologiya</div>
+        <h1>Biznesiniz üçün<br/><em>Psixologiya Həlləri</em></h1>
+        <p>Satış, liderlik, HR — elmi əsaslı korporativ psixologiya.<br/>Şirkətinizin ehtiyacına uyğun fərdi proqram.</p>
+        <a href="#order" class="btn btn-primary">Fərdi Offer Al</a>
+      </div>
+      <div class="b2b-hero-photo">
+        <img src="images/students/group-training.jpg" alt="Korporativ treninq" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECTIONS -->
+  <section class="ps" style="background:var(--light);">
+    <div class="ps-inner">
+      <div class="sec-head fi">
+        <span class="tag-premium dark-text">İstiqamətlər</span>
+        <h2>3 Korporativ<br/>Proqram</h2>
+        <p>Hər proqram şirkətin spesifik ehtiyacına uyğun hazırlanır. Oflayn format — şirkətinizdə və ya konfrans zalında.</p>
+      </div>
+
+      <div class="dir-grid">
+
+        <!-- 01 Satış Məktəbi -->
+        <div class="dir-card fi">
+          <div class="dir-num">01</div>
+          <div class="eco-label">Satış</div>
+          <h3>Satış Məktəbi</h3>
+          <p>Müştəri psixologiyası, NLP texnikaları, etirazlarla iş və bağlama strategiyaları. Komandanızın satış göstəricilərini artırmaq üçün intensiv, fərdiləşdirilmiş proqram.</p>
+          <ul class="dir-topics">
+            <li>Müştəri davranışı psixologiyası</li>
+            <li>NLP ilə etirazların həlli</li>
+            <li>Satışın bağlanması texnikaları</li>
+            <li>Emosional intellekt satışda</li>
+            <li>Stres idarəetməsi sahə işçiləri üçün</li>
+          </ul>
+        </div>
+
+        <!-- 02 Liderlik -->
+        <div class="dir-card fi" style="transition-delay:0.1s">
+          <div class="dir-num">02</div>
+          <div class="eco-label">Liderlik</div>
+          <h3>Liderlik Psixologiyası</h3>
+          <p>Rəhbər şəxslər üçün komanda idarəetməsi, böhran şəraitində qərar qəbuletmə, motivasiya sistemləri və münaqişə menecmenti.</p>
+          <ul class="dir-topics">
+            <li>Komanda dinamikası və rollar</li>
+            <li>Böhran vəziyyətlərində liderlik</li>
+            <li>Motivasiya psixologiyası</li>
+            <li>Münaqişənin konstruktiv həlli</li>
+            <li>Emosional tarazlıq və performans</li>
+          </ul>
+        </div>
+
+        <!-- 03 HR -->
+        <div class="dir-card fi" style="transition-delay:0.2s">
+          <div class="dir-num">03</div>
+          <div class="eco-label">HR</div>
+          <h3>HR və Kadr Qiymətləndirmə</h3>
+          <p>Kadr seçimi metodologiyası, işçinin psixoloji portretinin müəyyənləşdirilməsi, komanda daxili münasibətlərin optimallaşdırılması.</p>
+          <ul class="dir-topics">
+            <li>Müsahibə psixologiyası</li>
+            <li>Psixoloji profil metodu</li>
+            <li>Komanda uyğunluğu analizi</li>
+            <li>Burn-out profilaktikası</li>
+            <li>Onboarding psixologiyası</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- FORMAT ROW -->
+      <div class="fmt-grid fi">
+        <div class="fmt-item">
+          <div class="fmt-label">Format</div>
+          <div class="fmt-val">Oflayn / Online</div>
+          <div class="fmt-note">Şirkətdə, konfrans zalında və ya Zoom</div>
+        </div>
+        <div class="fmt-item">
+          <div class="fmt-label">Müddət</div>
+          <div class="fmt-val">1–3 gün</div>
+          <div class="fmt-note">Standart: 1 gün × 6 saat; intensiv: 3 gün</div>
+        </div>
+        <div class="fmt-item">
+          <div class="fmt-label">İştirakçı</div>
+          <div class="fmt-val">5–30 nəfər</div>
+          <div class="fmt-note">Optimal: 8–15 nəfərlik qrup</div>
+        </div>
+        <div class="fmt-item">
+          <div class="fmt-label">Qiymət</div>
+          <div class="fmt-val">Fərdi offer</div>
+          <div class="fmt-note">Proqrama, müddətə və iştirakçı sayına görə</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="ps" style="background:var(--white);">
+    <div class="ps-inner">
+      <div class="sec-head fi">
+        <span class="tag-premium dark-text">Niyə Biz</span>
+        <h2>23 il Təcrübə —<br/>Nəticəyə Fokus</h2>
+      </div>
+      <div class="why-grid fi">
+        <div class="why-item">
+          <div class="why-num">23+</div>
+          <h4>İl Klinik Təcrübə</h4>
+          <p>Həkim-Psixiatr, Psixoterapevt. Korporativ mühitdə insan davranışını klinik dəqiqliklə anlayan mütəxəssis.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-num">100%</div>
+          <h4>Fərdiləşdirilmiş Proqram</h4>
+          <p>Şirkətin sahəsi, komanda ölçüsü və konkret problemindən asılı olaraq hər proqram sıfırdan qurulur.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-num">IPAS</div>
+          <h4>Beynəlxalq Sertifikat</h4>
+          <p>IPAS/BPA sertifikatlı mütəxəssis. Metodologiya: KBT, NLP, sistem-ailə terapiyası — iş mühitinə adaptasiya edilmiş.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="ps" id="order" style="background:var(--light);">
+    <div class="ps-inner">
+      <div class="form-wrap fi">
+        <div class="form-head">
+          <span class="tag-premium dark-text" style="display:inline-block;margin-bottom:25px;">Müraciət</span>
+          <h2>Fərdi Offer Sifariş Et</h2>
+          <p>Tələblərinizi göndərin — 24 saat ərzində şirkətiniz üçün fərdi qiymət paketi (offer) hazırlayıb göndərəcəyik.</p>
+        </div>
+
+        <form onsubmit="handleB2BForm(event)">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label>Şirkətin Adı *</label>
+              <input type="text" required placeholder="Məsələn: TechMMC LLC"/>
+            </div>
+
+            <div class="form-group">
+              <label>Əlaqədar Şəxs *</label>
+              <input type="text" required placeholder="Ad Soyad"/>
+            </div>
+
+            <div class="form-group">
+              <label>Telefon *</label>
+              <input type="tel" required placeholder="+994 XX XXX XX XX"/>
+            </div>
+
+            <div class="form-group">
+              <label>E-mail *</label>
+              <input type="email" required placeholder="Offer faylı bu ünvana göndəriləcək"/>
+            </div>
+
+            <div class="form-group form-full">
+              <label>Hansı istiqamət sizi maraqlandırır? *</label>
+              <select required>
+                <option value="" disabled selected>Seçin</option>
+                <option value="sales">Satış Məktəbi</option>
+                <option value="leadership">Liderlik Psixologiyası</option>
+                <option value="hr">HR və Kadr Qiymətləndirmə</option>
+                <option value="combined">Kombinə proqram (bir neçə istiqamət)</option>
+                <option value="other">Digər (aşağıda izah edin)</option>
+              </select>
+            </div>
+
+            <div class="form-group form-full">
+              <label>Komanda ölçüsü və vaxt çərçivəsi</label>
+              <input type="text" placeholder="Məsələn: 12 nəfər, oktyabrın əvvəli, 2 günlük intensiv"/>
+            </div>
+
+            <div class="form-group form-full">
+              <label>Hansı nəticəni gözləyirsiniz?</label>
+              <textarea placeholder="Komandanızdakı mövcud problem, gözlənti və ya xüsusi istəkləriniz..."></textarea>
+            </div>
+
+          </div>
+          <button type="submit" class="btn-submit">Fərdi Offer Al &rarr;</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner" style="max-width:var(--container-max);margin:0 auto;padding:80px 55px 56px;">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="logo-box" style="display:inline-flex;margin-bottom:24px;">
+            <span class="logo-text">RAGIMOFF<em>.</em></span>
+            <span class="logo-sub">Psixologiya Məktəbi</span>
+          </a>
+          <p class="footer-desc">Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik təcrübə. Bakı, Azərbaycan.</p>
+          <div class="social-links">
+            <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+            <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+            <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+            <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Terapiya</h4>
+          <ul class="footer-links">
+            <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+            <li><a href="enurez.html" class="footer-link">Enurez Müalicəsi</a></li>
+            <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+            <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+            <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Təhsil</h4>
+          <ul class="footer-links">
+            <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+            <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+            <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+            <li><a href="blog.html" class="footer-link">Psixologiya Blogu</a></li>
+            <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Əlaqə</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+            <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+            <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+            <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+            <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+        <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="shared.js"></script>
+  <script>
+    function handleB2BForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = 'Göndərildi. Tezliklə əlaqə saxlayacağıq.';
+      btn.style.background = 'var(--navy)';
+      btn.style.color = 'var(--white)';
+      btn.disabled = true;
+    }
+  </script>
+
+</body>
+</html>

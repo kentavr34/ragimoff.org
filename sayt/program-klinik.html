@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Klinik Psixologiya DPO Diplom proqramının tam tədris planı. 1 528 akademik saat. Dr. Kənan Rəhimov, RAGIMOFF Psixologiya Məktəbi, Bakı."/>
+  <title>Klinik Psixologiya Tədris Proqramı | RAGIMOFF Psixologiya Məktəbi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── HERO ── */
+    .prog-hero { background: var(--navy); padding: 55px 55px 80px; border-bottom: 1px solid rgba(181,155,114,0.15); min-height: 480px; display: flex; flex-direction: column; justify-content: center; }
+    .prog-hero-inner { max-width: 1240px; margin: 0 auto; }
+    .prog-h1 { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+    .prog-h1 em { color: var(--accent); font-style: normal; }
+    .prog-sub { font-size: 1.0625rem; color: rgba(255,255,255,0.7); max-width: 620px; line-height: 1.7; margin-bottom: 32px; font-weight: 300; }
+/* ── STATS STRIP ── */
+    .stats-strip { background: var(--accent); padding: 0 55px; }
+    .stats-row { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-cell { padding: 24px 0; text-align: center; border-right: 1px solid rgba(6,24,38,0.15); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell .num { display: block; font-size: 1.75rem; font-weight: 800; color: var(--navy); line-height: 1; }
+    .stat-cell .lbl { display: block; font-size: 0.6875rem; font-weight: 700; color: rgba(6,24,38,0.65); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* ── SECTION ── */
+    .prog-section { padding: 55px 55px; }
+    .prog-inner { max-width: 1240px; margin: 0 auto; }
+    .prog-section.dark { background: var(--navy); }
+    .prog-section.light { background: var(--light); }
+    .prog-section.white { background: var(--white); }
+
+    /* ── CURRICULUM TABLE ── */
+    .cur-wrap {
+      max-width: 960px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      overflow: hidden;
+    }
+    .cur-group { margin-bottom: 0; }
+    .cur-group-title {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); padding: 12px 120px; margin-bottom: 0;
+      border-bottom: 2px solid rgba(181,155,114,0.3);
+      background: rgba(181,155,114,0.04);
+    }
+    .cur-row {
+      display: grid; grid-template-columns: 1fr 100px;
+      border-bottom: 1px solid var(--border);
+      padding: 11px 120px;
+      align-items: center;
+    }
+    .cur-row:last-child { border-bottom: none; }
+    .cur-row:hover { background: rgba(181,155,114,0.04); }
+    .cur-num { font-size: 0.6875rem; color: rgba(6,24,38,0.3); font-weight: 700; margin-right: 10px; }
+    .cur-name { font-size: 0.9375rem; color: var(--navy); }
+    .cur-hours { font-size: 0.9375rem; font-weight: 700; color: var(--navy); text-align: right; }
+    .cur-hours span { font-size: 0.6875rem; font-weight: 400; color: var(--gray); margin-left: 2px; }
+
+    .cur-total {
+      display: grid; grid-template-columns: 1fr 100px;
+      background: var(--navy); padding: 18px 120px;
+      align-items: center;
+    }
+    .cur-total .tl { font-size: 0.875rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+    .cur-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); text-align: right; }
+
+    .pdf-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--light); border: 1px solid var(--border);
+      color: var(--navy); padding: 10px 20px; font-size: 0.8125rem; font-weight: 700;
+      cursor: pointer; font-family: 'Inter', sans-serif; text-transform: uppercase;
+      letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none;
+    }
+    .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    @media print {
+      header, .mobile-nav, footer, .wa-float, .prog-hero, .stats-strip,
+      .prog-section.dark, .prog-section.light, .tg-band, .cta-band, .reg-section { display: none !important; }
+      .prog-section.white { padding: 24px !important; }
+      body { padding-top: 0 !important; }
+      .cur-wrap { border: 1px solid #ccc !important; }
+      .pdf-btn { display: none !important; }
+    }
+    @media (max-width: 768px) {
+      .cur-group-title, .cur-row, .cur-total { padding-left: 20px; padding-right: 20px; }
+    }
+
+    /* ── ADVANTAGE BLOCKS ── */
+    .adv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(181,155,114,0.2); }
+    .adv-card { padding: 32px; border-right: 1px solid rgba(181,155,114,0.2); }
+    .adv-card:last-child { border-right: none; }
+    .adv-num { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .adv-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+    .adv-body { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+    /* ── OPPORTUNITY SECTION ── */
+    .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); }
+    .opp-card { padding: 40px; border-right: 1px solid var(--border); }
+    .opp-card:last-child { border-right: none; }
+    .opp-label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; display: block; border-left: 3px solid var(--accent); padding-left: 10px; }
+    .opp-title { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+    .opp-body { font-size: 0.9375rem; color: var(--gray); line-height: 1.75; }
+
+    /* ── REVIEWS ── */
+    .tg-band { background: var(--navy); padding: 55px 55px; border-top: 1px solid rgba(181,155,114,0.15); }
+    .tg-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .tg-text h2 { font-size: var(--text-3xl); color: var(--white); margin-bottom: 12px; }
+    .tg-text p { font-size: 0.9375rem; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 560px; }
+
+    /* ── CTA BAND ── */
+    .cta-band { background: var(--accent); padding: 55px 55px; }
+    .cta-band-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .cta-band h2 { font-size: var(--text-3xl); font-weight: 800; color: var(--navy); }
+    .cta-band p { font-size: 0.9375rem; color: rgba(6,24,38,0.65); margin-top: 8px; }
+
+    /* ── REGISTRATION FORM ── */
+    .reg-section { background: var(--navy); padding: 55px 55px; border-top: 1px solid rgba(181,155,114,0.15); }
+    .reg-inner { max-width: 1240px; margin: 0 auto; }
+    .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
+    .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(181,155,114,0.2); }
+    .reg-path-step:last-child { border-right: none; }
+    .reg-path-num { font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
+    .reg-path-step h4 { font-size: 0.875rem; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+    .reg-path-step p { font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
+    .reg-discount { background: rgba(181,155,114,0.06); border: 1px solid rgba(181,155,114,0.25); border-left: 4px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
+    .reg-discount strong { font-size: 0.9375rem; font-weight: 800; color: var(--white); display: block; margin-bottom: 6px; }
+    .reg-discount p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
+    .reg-form { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
+    .reg-form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .reg-field { display: flex; flex-direction: column; gap: 8px; }
+    .reg-field > label { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
+    .reg-field input[type="text"], .reg-field input[type="tel"], .reg-field input[type="email"], .reg-field textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+    .reg-field input:focus, .reg-field textarea:focus { border-color: var(--accent); }
+    .reg-field input::placeholder, .reg-field textarea::placeholder { color: rgba(255,255,255,0.18); }
+    .reg-tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
+    .reg-tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
+    .reg-tile-opt { display: none; }
+    .reg-tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: 0.8125rem; color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; }
+    .reg-tile-opt:checked + .reg-tile-lbl { background: var(--accent); color: var(--navy); }
+    .reg-tile-lbl:hover { background: rgba(181,155,114,0.1); color: var(--white); }
+    .reg-upload-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 4px; }
+    .reg-upload-item { display: flex; flex-direction: column; gap: 6px; }
+    .ulbl { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .reg-upload-item input[type="file"] { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); padding: 12px 14px; font-size: 0.8125rem; font-family: 'Inter', sans-serif; cursor: pointer; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
+    .reg-upload-item input[type="file"]:hover { border-color: var(--accent); }
+    .reg-upload-hint { font-size: 0.6875rem; color: rgba(255,255,255,0.25); }
+    .reg-form-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
+    .reg-form-note { font-size: 0.8125rem; color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 400px; }
+    .reg-success { display: none; padding: 24px; background: rgba(181,155,114,0.08); border: 1px solid rgba(181,155,114,0.35); text-align: center; margin-top: 16px; }
+    .reg-success p { color: var(--accent); font-weight: 700; font-size: 0.9375rem; margin: 0; }
+
+    @media (max-width: 900px) {
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .adv-grid { grid-template-columns: 1fr; }
+      .adv-card { border-right: none; border-bottom: 1px solid rgba(181,155,114,0.2); }
+      .adv-card:last-child { border-bottom: none; }
+      .opp-grid { grid-template-columns: 1fr; }
+      .opp-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .opp-card:last-child { border-bottom: none; }
+      .tg-inner, .cta-band-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .prog-hero, .prog-section, .stats-strip, .tg-band, .cta-band { padding-left: 24px; padding-right: 24px; }
+      .prog-hero { padding-top: 104px; }
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo-box"
+          ><span class="logo-text">RAGIMOFF<em>.</em></span
+          ><span class="logo-sub">Psixologiya Məktəbi</span></a
+        >
+
+        <nav class="desktop-nav">
+          <a href="index.html">Ana Səhifə</a>
+
+          <a href="tehsil.html" class="active">Təhsil</a>
+
+          <a href="xidmetler.html">Konsultasiya</a>
+
+          <a href="b2b.html">Korporativ</a>
+
+          <a href="blog.html">Blog</a>
+
+          <a href="tehsil.html#registration" class="btn nav-cta">QEYDİYYAT</a>
+        </nav>
+
+        <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
+      <button class="mobile-nav-close" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </button>
+
+      <a href="index.html" onclick="toggleMenu()">Ana Səhifə</a>
+
+      <a href="tehsil.html" class="active" onclick="toggleMenu()">Təhsil</a>
+
+      <a href="xidmetler.html" onclick="toggleMenu()">Konsultasiya</a>
+
+      <a href="b2b.html" onclick="toggleMenu()">Korporativ</a>
+
+      <a href="blog.html" onclick="toggleMenu()">Blog</a>
+
+      <a
+        href="tehsil.html#registration"
+        class="btn btn-primary"
+        onclick="toggleMenu()"
+        >QEYDİYYAT</a
+      >
+    </nav>
+
+<div class="prog-hero">
+  <div class="prog-hero-inner">
+    <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">DPO Diplom &middot; 1 528 Akademik Saat</span>
+    <h1 class="prog-h1">Klinik <em>Psixologiya</em></h1>
+    <p class="prog-sub">Mürəkkəb klinik hallar üzərində müstəqil fəaliyyət hüququ.<br/>FRDO dövlət reyestri diplomu və IPAS beynəlxalq sertifikatı.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="tehsil.html#registration" class="btn btn-primary">Qeydiyyata Yazıl</a>
+      <a href="tehsil.html" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">Bütün Proqramlar</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stats-row">
+    <div class="stat-cell"><span class="num">1 528</span><span class="lbl">Akademik Saat</span></div>
+    <div class="stat-cell"><span class="num">23</span><span class="lbl">Fənn &amp; Modul</span></div>
+    <div class="stat-cell"><span class="num">1 il</span><span class="lbl">Tədris Müddəti</span></div>
+    <div class="stat-cell"><span class="num">DPO</span><span class="lbl">Dövlət Diplomu</span></div>
+  </div>
+</div>
+
+<!-- CURRICULUM TABLE -->
+<section class="prog-section white">
+  <div class="prog-inner">
+    <div class="sh fi" style="margin-bottom:40px;">
+      <span class="tag-premium dark-text" style="display:inline-block;margin-bottom:25px;">Tədris Planı</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--navy);margin-bottom:12px;">Fənnlər Siyahısı</h2>
+      <p style="font-size:0.9375rem;color:var(--gray);max-width:560px;">Proqram 4 blokdan ibarətdir: nəzəri baza, əlavə klinik modullar, praktikum və yekun attestasiya.</p>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+      <button onclick="window.print()" class="pdf-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+        PDF Yüklə
+      </button>
+    </div>
+
+    <div class="cur-wrap fi">
+
+      <!-- Blok 1 -->
+      <div class="cur-group">
+        <p class="cur-group-title">Blok I &mdash; Neyroloji və Fiziologiya Əsasları</p>
+        <div class="cur-row"><div><span class="cur-num">01</span><span class="cur-name">Mərkəzi sinir sisteminin anatomiyası</span></div><div class="cur-hours">52 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">02</span><span class="cur-name">Mərkəzi sinir sisteminin fiziologiyası</span></div><div class="cur-hours">47 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">03</span><span class="cur-name">Psixofiziologiya</span></div><div class="cur-hours">48 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">04</span><span class="cur-name">Neyropsiologiya</span></div><div class="cur-hours">56 <span>saat</span></div></div>
+      </div>
+
+      <!-- Blok 2 -->
+      <div class="cur-group">
+        <p class="cur-group-title">Blok II &mdash; Klinik Psixologiyanın Nəzəri Əsasları</p>
+        <div class="cur-row"><div><span class="cur-num">05</span><span class="cur-name">Patopsiologiya</span></div><div class="cur-hours">53 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">06</span><span class="cur-name">Klinik psixologiyaya giriş</span></div><div class="cur-hours">47 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">07</span><span class="cur-name">Psixosomatika və bədən psixologiyası</span></div><div class="cur-hours">94 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">08</span><span class="cur-name">Psixoterapiya: nəzəriyyə və praktika</span></div><div class="cur-hours">66 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">09</span><span class="cur-name">Diferensial psixologiya</span></div><div class="cur-hours">47 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">10</span><span class="cur-name">Klinik psixologiyada şəxsiyyət nəzəriyyələri</span></div><div class="cur-hours">11 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">11</span><span class="cur-name">Psixodiaqnostika</span></div><div class="cur-hours">67 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">12</span><span class="cur-name">Psixoloji konsultasiyanın əsasları</span></div><div class="cur-hours">30 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">13</span><span class="cur-name">Psixoloji inkişaf pozuntuları</span></div><div class="cur-hours">104 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">14</span><span class="cur-name">Gerontologiyada klinik psixologiya</span></div><div class="cur-hours">63 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">15</span><span class="cur-name">Deviantologiya</span></div><div class="cur-hours">50 <span>saat</span></div></div>
+      </div>
+
+      <!-- Blok 3 -->
+      <div class="cur-group">
+        <p class="cur-group-title">Blok III &mdash; Əlavə Klinik Modullar</p>
+        <div class="cur-row"><div><span class="cur-num">16</span><span class="cur-name">Psixiatriyanın əsasları</span></div><div class="cur-hours">100 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">17</span><span class="cur-name">Böhran psixologiyası (PTSS)</span></div><div class="cur-hours">80 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">18</span><span class="cur-name">Asılılıq psixologiyası</span></div><div class="cur-hours">63 <span>saat</span></div></div>
+      </div>
+
+      <!-- Blok 4 -->
+      <div class="cur-group">
+        <p class="cur-group-title">Blok IV &mdash; Praktikum</p>
+        <div class="cur-row"><div><span class="cur-num">19</span><span class="cur-name">Neyropsiologiya praktikumu</span></div><div class="cur-hours">112 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">20</span><span class="cur-name">Patopsiologiya praktikumu</span></div><div class="cur-hours">161 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">21</span><span class="cur-name">Psixodiaqnostika praktikumu</span></div><div class="cur-hours">105 <span>saat</span></div></div>
+        <div class="cur-row"><div><span class="cur-num">22</span><span class="cur-name">Uşaq klinik psixologiyası praktikumu</span></div><div class="cur-hours">60 <span>saat</span></div></div>
+      </div>
+
+      <!-- Blok 5 -->
+      <div class="cur-group">
+        <p class="cur-group-title">Blok V &mdash; Yekun Attestasiya</p>
+        <div class="cur-row"><div><span class="cur-num">23</span><span class="cur-name">Yekun fənlərarası imtahan</span></div><div class="cur-hours">12 <span>saat</span></div></div>
+      </div>
+
+      <div class="cur-total">
+        <span class="tl">Ümumi Saat</span>
+        <span class="tv">1 528 saat</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM ADVANTAGES -->
+<section class="prog-section dark">
+  <div class="prog-inner">
+    <div class="sh fi" style="margin-bottom:40px;">
+      <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">Proqramın Üstünlükləri</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--white);margin-bottom:12px;">Sizi Nə Gözləyir</h2>
+    </div>
+    <div class="adv-grid fi">
+      <div class="adv-card">
+        <span class="adv-num">01 &mdash; Nəzəri Baza</span>
+        <h3 class="adv-title">Video Dərslər + Ədəbiyyat</h3>
+        <p class="adv-body">Hər fənn üzrə Dr. Rəhimovun keçdiyi dərslərin video yazıları mövcuddur. Siz onları istənilən vaxt, istənilən yerdən — tələbə kabinəsi vasitəsilə izləyə bilərsiniz. Əlavə olaraq tövsiyə edilmiş peşəkar ədəbiyyat siyahısı verilir.</p>
+      </div>
+      <div class="adv-card">
+        <span class="adv-num">02 &mdash; Praktikum</span>
+        <h3 class="adv-title">Dr. Rəhimovla Canlı Praktika</h3>
+        <p class="adv-body">Hər həftə canlı nümayiş sessiyaları keçirilir: real klinik materiallar, superviziya, hal müzakirəsi. Nəzəriyyəni öyrənmək azmaz — klinik düşüncəni inkişaf etdirmək üçün mütəxəssislə birlikdə iş vacibdir. Bu proqram sizi yalnız "bilirik" deyil, "bacarıram" sferasına aparır.</p>
+      </div>
+      <div class="adv-card">
+        <span class="adv-num">03 &mdash; Rəsmi Status</span>
+        <h3 class="adv-title">DPO Diplom + IPAS Sertifikat</h3>
+        <p class="adv-body">AR qanunvericiliyinə uyğun FRDO dövlət reyestrinə daxil edilən DPO diplomu verilir. Diplom nostrifikasiya tələb etmir. FİS FRDO reyestri vasitəsilə işəgötürən yoxlaması mümkündür. Paralel olaraq beynəlxalq IPAS/BPA sertifikatı da qazanılır.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK OPPORTUNITY -->
+<section class="prog-section light">
+  <div class="prog-inner">
+    <div class="sh fi" style="margin-bottom:40px;">
+      <span class="tag-premium dark-text" style="display:inline-block;margin-bottom:25px;">Karyera</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--navy);margin-bottom:12px;">Bitirdikdən Sonra Nə Olur?</h2>
+      <p style="font-size:0.9375rem;color:var(--gray);max-width:600px;">Proqramı bitirən tələbələr yalnız diplom deyil, real iş bacarıqları da qazanır. Sonrakı addımlar belədir:</p>
+    </div>
+    <div class="opp-grid fi">
+      <div class="opp-card">
+        <span class="opp-label">RAGIMOFF Mərkəzi</span>
+        <h3 class="opp-title">Mərkəzimizdə Qəbul İmkanı</h3>
+        <p class="opp-body">Proqramu bitirən yeni psixoloqlar üçün xüsusi imkan: Dr. Rəhimovun mərkəzinin bazasında öz pasiyentlərini qəbul etmək. Həm ofis formatında, həm onlayn. Bu ilk qəbullar üçün əsas ehtiyacı aradan qaldırır — öz yerini tapmaq üçün ilk addım mərkəzimizdən keçir.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-label">Öz Praktikanız</span>
+        <h3 class="opp-title">Müstəqil Psixoloji Praktika</h3>
+        <p class="opp-body">Məzunlarımızın böyük hissəsi bir-iki il ərzində öz fərdi kabinetlərini, bəziləri isə öz psixologiya mərkəzlərini açmışlar. Onların arasında bu gün uğurla fəaliyyət göstərən rəhbər psixoloqlar var — keçmişdə Dr. Rəhimovun tələbələri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS / TELEGRAM -->
+<div class="tg-band">
+  <div class="tg-inner fi">
+    <div class="tg-text">
+      <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">Mezunların Rəyləri</span>
+      <h2>Tələbələr Nə Deyir?</h2>
+      <p style="margin-top:12px;">Proqramu tamamlamış yüzlərlə tələbənin rəylərini oxumaq istəyirsinizsə — Telegram kanalımıza keçin. Orada real rəylər, mezun hekayələri və aktual məlumatlar paylaşılır.</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;">
+        <a href="https://t.me/ragimoff" target="_blank" class="btn btn-primary">Telegram Kanalı</a>
+        <a href="tehsil.html#registration" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">Qeydiyyata Yazıl</a>
+      </div>
+    </div>
+    <div style="display:grid;gap:16px;min-width:280px;">
+      <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--accent);padding:20px 24px;">
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:10px;">"Bu proqram mənim həyatımı dəyişdi. İndi öz kabinetim var, pasiyentlərim var."</p>
+        <span style="font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;">Tələbə — 2024</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.06);border-left:3px solid var(--accent);padding:20px 24px;">
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:10px;">"Dr. Rəhimovla praktikum keçmək fərqli bir təcrübədir. Nəzəriyyə canlı hala gəlir."</p>
+        <span style="font-size:0.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;">Tələbə — 2023</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner fi">
+    <div>
+      <h2>Qeydiyyata Başlayın</h2>
+      <p>1 528 saatlıq klinik psixologiya proqramına yazılın. 24 aya qədər rəssite imkanı.</p>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="tehsil.html#registration" class="btn btn-navy">Qeydiyyat</a>
+      <a href="https://wa.me/994702200376?text=Salam%2C%20Klinik%20Psixologiya%20proqram%C4%B1%20bar%C9%99d%C9%99%20m%C9%99lumat%20almaq%20ist%C9%99yir%C9%99m." target="_blank" class="btn btn-outline" style="border-color:var(--navy);color:var(--navy);">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<section class="reg-section" id="registration">
+  <div class="reg-inner">
+
+    <div style="margin-bottom:40px;">
+      <span class="tag-premium" style="display:inline-block;margin-bottom:25px;">Qeydiyyat</span>
+      <h2 style="font-size:var(--text-4xl);color:var(--white);margin-bottom:12px;">Proqrama Qoşulun</h2>
+      <p style="font-size:0.9375rem;color:rgba(255,255,255,0.6);max-width:520px;">Formanı doldurun — komandamız 24 saat ərzində sizinlə əlaqə saxlayacaq.</p>
+    </div>
+
+    <div class="reg-path">
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 01</span>
+        <h4>Sənədləri hazırlayın</h4>
+        <p>Ali təhsil diplomunuzun və şəxsiyyət vəsiqənizin fotosu. Əvvəlki sertifikatlar varsa — onları da tapın.</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 02</span>
+        <h4>Formanı doldurun</h4>
+        <p>Ad, əlaqə məlumatı, ödəniş seçimi və sənədlər. 3 dəqiqə çəkir.</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 03</span>
+        <h4>Ödəniş üsulunu seçin</h4>
+        <p>Tam ödəniş (−10% endirim), 12 aylıq və ya 24 aylıq rəssite.</p>
+      </div>
+      <div class="reg-path-step">
+        <span class="reg-path-num">Addım 04</span>
+        <h4>Başlayın</h4>
+        <p>Yeriniz təsdiqlənir, Telegram qrupuna əlavə edilirsiniz. Video arxivinə giriş açılır.</p>
+      </div>
+    </div>
+
+    <div class="reg-discount">
+      <strong>Daha əvvəl psixologiya kursları keçmisinizmi?</strong>
+      <p>Əvvəlki kursların sertifikatlarını formaya əlavə edin — əlavə endirimə səbəb ola bilər. Tələbələrimizin bir hissəsi bu yolla 600–1 200 AZN qənaət edir.</p>
+    </div>
+
+    <form class="reg-form" id="regForm" enctype="multipart/form-data">
+      <div class="reg-form-2col">
+        <div class="reg-field"><label>Ad *</label><input type="text" name="ad" required placeholder="Adınız"></div>
+        <div class="reg-field"><label>Soyad *</label><input type="text" name="soyad" required placeholder="Soyadınız"></div>
+        <div class="reg-field"><label>Telefon *</label><input type="tel" name="telefon" required placeholder="+994 XX XXX XX XX"></div>
+        <div class="reg-field"><label>E-poçt</label><input type="email" name="email" placeholder="email@example.com"></div>
+      </div>
+
+      <div class="reg-field" style="margin-top:24px;">
+        <label>Proqram</label>
+        <div class="reg-tile-group cols3">
+          <input type="radio" name="proqram" id="p1" value="Ümumi Psixologiya" class="reg-tile-opt">
+          <label for="p1" class="reg-tile-lbl">Ümumi Psixologiya<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 saat · DPO</span></label>
+          <input type="radio" name="proqram" id="p2" value="Klinik Psixologiya" class="reg-tile-opt" checked>
+          <label for="p2" class="reg-tile-lbl">Klinik Psixologiya<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 saat · DPO</span></label>
+          <input type="radio" name="proqram" id="p3" value="Psixoterapiya Praktikumu" class="reg-tile-opt">
+          <label for="p3" class="reg-tile-lbl">Praktikum<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">40 saat · IPAS</span></label>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-top:20px;">
+        <label>Ödəniş üstünlüyü</label>
+        <div class="reg-tile-group cols3">
+          <input type="radio" name="odenis" id="o1" value="Tam ödəniş (−10%)" class="reg-tile-opt">
+          <label for="o1" class="reg-tile-lbl">Tam ödəniş<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">−10% endirim</span></label>
+          <input type="radio" name="odenis" id="o2" value="12 ay rəssite" class="reg-tile-opt">
+          <label for="o2" class="reg-tile-lbl">12 aylıq rəssite</label>
+          <input type="radio" name="odenis" id="o3" value="24 ay rəssite" class="reg-tile-opt">
+          <label for="o3" class="reg-tile-lbl">24 aylıq rəssite</label>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-top:24px;">
+        <label>Sənədlər</label>
+        <div class="reg-upload-grid">
+          <div class="reg-upload-item">
+            <span class="ulbl">Ali Təhsil Diplomu *</span>
+            <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png">
+            <span class="reg-upload-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+          </div>
+          <div class="reg-upload-item">
+            <span class="ulbl">Şəxsiyyət Vəsiqəsi *</span>
+            <input type="file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png">
+            <span class="reg-upload-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+          </div>
+          <div class="reg-upload-item">
+            <span class="ulbl">Əvvəlki Sertifikatlar</span>
+            <input type="file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple>
+            <span class="reg-upload-hint">Endirim üçün — bir neçə fayl</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reg-field" style="margin-top:20px;">
+        <label>Əlavə qeyd</label>
+        <textarea name="qeyd" rows="3" placeholder="Sualınız və ya xüsusi vəziyyətiniz..."></textarea>
+      </div>
+
+      <div class="reg-form-footer">
+        <p class="reg-form-note">Sənədlər yalnız qeydiyyat məqsədilə qəbul edilir. Üçüncü şəxslərə ötürülmür.</p>
+        <button type="submit" class="btn btn-primary" style="min-width:240px;padding:16px 32px;">Qeydiyyat Formasını Göndər</button>
+      </div>
+      <div class="reg-success" id="regSuccess">
+        <p>Sorğunuz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.</p>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+    <footer>
+      <div
+        class="footer-inner"
+        style="max-width: var(--container-max); margin: 0 auto; padding: 80px 55px 56px"
+      >
+        <div class="footer-grid">
+          <!-- Brand -->
+          <div>
+            <a
+              href="index.html"
+              class="logo-box"
+              style="display: inline-flex; margin-bottom: 24px"
+            >
+              <span class="logo-text">RAGIMOFF<em>.</em></span>
+              <span class="logo-sub">Psixologiya Məktəbi</span>
+            </a>
+            <p class="footer-desc">
+              Kənan Rəhimov — Həkim-Psixiatr, Psixoterapevt. 23 il klinik
+              təcrübə. Bakı, Azərbaycan.
+            </p>
+            <div class="social-links">
+              <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+            </div>
+          </div>
+          <!-- Terapiya -->
+          <div>
+            <h4 class="footer-heading">Terapiya</h4>
+            <ul class="footer-links">
+              <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html" class="footer-link">Enurez Müalicəsi</a></li>
+              <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
+              <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html" class="footer-link">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+          <!-- Təhsil -->
+          <div>
+            <h4 class="footer-heading">Təhsil</h4>
+            <ul class="footer-links">
+              <li><a href="tehsil.html" class="footer-link">Ümumi Psixologiya</a></li>
+              <li><a href="tehsil.html" class="footer-link">Klinik Psixologiya DPO</a></li>
+              <li><a href="tehsil.html" class="footer-link">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html" class="footer-link">Psixologiya Blogu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+          <!-- Əlaqə -->
+          <div>
+            <h4 class="footer-heading">Əlaqə</h4>
+            <ul class="footer-links">
+              <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</p>
+          <a href="https://www.psychotherapyru.com" target="_blank" class="footer-link">Русская версия</a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+<script src="shared.js"></script>
+<script>
+  const GAS_ENDPOINT = '';
+  document.getElementById('regForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    const success = document.getElementById('regSuccess');
+    btn.textContent = 'Göndərilir...';
+    btn.disabled = true;
+    if (!GAS_ENDPOINT) {
+      setTimeout(() => {
+        this.style.opacity = '0.5';
+        this.style.pointerEvents = 'none';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 800);
+      return;
+    }
+    fetch(GAS_ENDPOINT, { method: 'POST', body: new FormData(this) })
+      .then(r => r.json())
+      .then(() => {
+        this.style.opacity = '0.5';
+        this.style.pointerEvents = 'none';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      })
+      .catch(() => { btn.textContent = 'Xəta baş verdi. Yenidən cəhd edin.'; btn.disabled = false; });
+  });
+</script>
+</body>
+</html>
