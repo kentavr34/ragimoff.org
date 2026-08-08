@@ -29,7 +29,7 @@
 | 6A | 21 | сверен полностью — 3 отчёта, 121 правка |
 | 6B | 30 | сверен полностью — 4 отчёта, 418 правок |
 | 6C | 21 | сверен полностью — 2 отчёта, 21 карточка |
-| 6D | 16 | сверен, кроме 6D81 и 6D83 |
+| 6D | 16 | сверен полностью — 6D81 и 6D83 дочитаны отдельно |
 | 6E | 7 | сверен полностью |
 | 7A | 7 | сверен полностью |
 | 8A | 1 | сверен полностью |
@@ -91,12 +91,12 @@
 | 6B83 | QAÇINAN-MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU | 28 | ✓✓✓✓ |
 | 6B84 | PİKA | 28 | ✓✓✓✓ |
 | 6B85 | RUMİNASİYA-REQURGİTASİYA POZUNTUSU | 29 | ✓✓✓✓ |
-| 6C00 | ENUREZ | 27 | ✓✓✓✓ |
+| 6C00 | ENUREZ | 28 | ✓✓✓✓ |
 | 6C01 | ENKOPREZ | 28 | ✓✓✓✓ |
 | 6C20 | BƏDƏN DİSSTRESİ POZUNTUSU | 27 | ✓✓✓✓ |
-| 6C40 | ALKOQOL QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 30 | ✓✓✓✓ |
-| 6C41 | KANNABİNOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 31 | ✓✓✓✓ |
-| 6C42 | KANNABİS İSTİFADƏSİ POZUNTULARI | 12 | ✓✓✓✓ |
+| 6C40 | ALKOQOL QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 31 | ✓✓✓✓ |
+| 6C41 | KANNABİNOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 32 | ✓✓✓✓ |
+| 6C42 | KANNABİS İSTİFADƏSİ POZUNTULARI | 13 | ✓✓✓✓ |
 | 6C43 | OPİOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 28 | ✓✓✓✓ |
 | 6C44 | SAKİTLƏŞDİRİCİ, HİPNOTİK VƏ YA ANKSİYOLİTİKLƏRİN QƏB | 28 | ✓✓✓✓ |
 | 6C45 | KOKAİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 27 | ✓✓✓✓ |
