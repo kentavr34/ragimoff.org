@@ -4,7 +4,7 @@
 
 ## Что закрыто по всей книге
 
-Проверяется автоматически, `python checkup.py` — девять проверок:
+Проверяется автоматически, `python checkup.py` — десять проверок:
 
 | Ось | Состояние |
 |---|---|
@@ -16,6 +16,7 @@
 | межъязыковое загрязнение | чисто |
 | известные ложные друзья | чисто |
 | типографика | чисто |
+| разделитель после </strong> | чисто |
 | наличие источников | чисто |
 
 Шапки и структура разделов собираются из `_codes_canon.json`; обе сборки идемпотентны — повторный прогон не меняет ни байта. Это и есть доказательство, что данные и страницы совпадают.
@@ -125,9 +126,9 @@
 | 6D71 | YÜNGÜL NEYROKOQNİTİV POZUNTU | 26 | ✓✓✓✓ |
 | 6D72 | AMNESTİK POZUNTU | 28 | ✓✓✓✓ |
 | 6D80 | ALZHEİMER XƏSTƏLİYİ NƏTİCƏSİNDƏ DEMENSİYA | 26 | ✓✓✓✓ |
-| 6D81 | SEREBROVASKULYAR XƏSTƏLİK NƏTİCƏSİNDƏ DEMENSİYA | 25 | ✓✓✓✓ |
+| 6D81 | SEREBROVASKULYAR XƏSTƏLİK NƏTİCƏSİNDƏ DEMENSİYA | 26 | ✓✓✓✓ |
 | 6D82 | LEVİ CİSİMCİKLƏRİ XƏSTƏLİYİ NƏTİCƏSİNDƏ DEMENSİYA | 26 | ✓✓✓✓ |
-| 6D83 | FRONTOTEMPORAL DEMENSİYA (FTD) | 25 | ✓✓✓✓ |
+| 6D83 | FRONTOTEMPORAL DEMENSİYA (FTD) | 26 | ✓✓✓✓ |
 | 6E20 | HAMİLƏLİK, DOĞUŞ VƏ YA ZAHILIQ DÖVRÜ İLƏ ƏLAQƏLİ PSİ | 31 | ✓✓✓✓ |
 | 6E21 | HAMİLƏLİK, DOĞUŞ VƏ YA ZAHILIQ DÖVRÜ İLƏ ƏLAQƏLİ PSİ | 29 | ✓✓✓✓ |
 | 6E40 | BAŞQA YERDƏ TƏSNİF EDİLƏN POZUNTULARA VƏ YA XƏSTƏLİK | 25 | ✓✓✓✓ |
