@@ -195,7 +195,21 @@ def main() -> int:
                 typo.append(f'{lg}/{fp.stem}: перевёрнутая вложенная кавычка ×{n2}')
     check('типографика', typo)
 
-    # 9. источники: у каждой карточки есть список литературы
+    # 9. слипшийся </strong>: жирная метка вплотную к заглавной букве или цифре
+    # («<strong>Probable DLB</strong>2+ core features»). Аффикс после тега —
+    # законная тюркская типографика («</strong>dır», «</strong>nda»), поэтому
+    # строчная буква нарушением НЕ считается; подробности в fix_strong.py
+    GLUED = re.compile(r'</strong>(?=[A-ZÀ-ÖØ-ÞĞİÖŞÜÇƏА-ЯЁ0-9])')
+    glued = []
+    for lg, d in DIRS.items():
+        for fp in sorted(d.glob('*.html')):
+            m = re.search(r'<main[\s\S]*?</main>', raw(fp), re.I)
+            n = len(GLUED.findall(m.group(0) if m else raw(fp)))
+            if n:
+                glued.append(f'{lg}/{fp.stem}: слипшийся </strong> ×{n}')
+    check('разделитель_после_strong', glued)
+
+    # 10. источники: у каждой карточки есть список литературы
     refs = []
     for c in codes:
         for lg, d in DIRS.items():
