@@ -64,6 +64,10 @@ FOREIGN = {                       # чужой рисунок кавычек в�
 # открывающий стоит после пробела или скобки, закрывающий — перед
 # пробелом или знаком препинания.
 STRAIGHT = re.compile(r"(?<=[\s“«(—])'([^'’<>\n]{2,80}?)'(?=[\s.,;:!?)»”—]|$)")
+# дефис между кавычкой и аффиксом: „alt-tipi“-dir. По азербайджанской
+# орфографии дефис ставится после аббревиатур и числительных (DSM-5-in,
+# 1990-cı), но не после кавычек — там аффикс присоединяется вплотную.
+HYPHEN = re.compile(r'([»“”])-([a-zçəğıöşü]{1,6})\b')
 PRIMARY = {'az': '«»', 'ru': '«»', 'en': '“”', 'tr': '“”'}
 SCRIPT = re.compile(r'<(script|style)\b[\s\S]*?</\1>', re.I)
 
@@ -119,6 +123,9 @@ def main() -> int:
                     if not any(s <= start < e for s, e in skip):
                         chunk, k = STRAIGHT.subn(f'{op}\\1{cl}', chunk)
                         b += k
+                        if lg in ('az', 'tr'):
+                            chunk, k = HYPHEN.subn(r'\1\2', chunk)
+                            b += k
                     chunk, k = foreign.subn(repl, chunk)
                     b += k
                     if lg in ('az', 'ru'):

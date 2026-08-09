@@ -230,6 +230,29 @@ def main() -> int:
                 refs.append(f'{lg}/{c}: источников 0')
     check('источники_есть', refs)
 
+    # 12. кавычки: закрывающая не должна слипаться со следующим словом.
+    # Ловушка языка: в азербайджанском и русском второй уровень — „…“,
+    # то есть “ ЗАКРЫВАЕТ, а в английском и турецком тот же знак открывает.
+    # Пока fix_space.py этого не различал, он снимал пробел, который ставил
+    # fix_quotes.py, и обе правки молча отменяли друг друга при каждом прогоне.
+    CLOSE = {'az': '»“', 'ru': '»“', 'en': '”', 'tr': '”'}
+    AFFIX = (r'(?:n?[ıiuü]n|n?[ıiuü]|[yn]?[aeə]|d[aeə]|nd[aeə]|d[aeə]n|nd[aeə]n|'
+             r'[dt][ıiuü]r|[dt][ıiuü]rl[aeə]r|l[aeə]r|l[aeə]r[ıi]|l[aeə]rd[aeə]|'
+             r's[ıiuü]|[yi]l[aeə]|d[aeə]k[ıi]|ç[ıi]|l[ıi]|s[aeə])')
+    UP = r'[A-ZÀ-ÖØ-ÞĞİÖŞÜÇƏА-ЯЁ0-9«„]'
+    quotes = []
+    for lg, d in DIRS.items():
+        if lg in ('az', 'tr'):      # строчная может быть падежным аффиксом
+            pat = re.compile(f'([{CLOSE[lg]}])(?={UP}|(?!{AFFIX}(?![a-zçəğıöşü]))[a-zçəğıöşü])')
+        else:
+            pat = re.compile(f'([{CLOSE[lg]}])(?={UP}|[a-zа-яё])')
+        for fp in sorted(d.glob('*.html')):
+            m = re.search(r'<main[\s\S]*?</main>', raw(fp), re.I)
+            n = len(pat.findall(m.group(0) if m else ''))
+            if n:
+                quotes.append(f'{lg}/{fp.stem}: кавычка слиплась со словом ×{n}')
+    check('кавычки_отбиты', quotes)
+
     # 10. сборка из данных идемпотентна (шапки и разделы совпадают с _codes_canon.json)
     # проверяется отдельными скриптами; здесь только напоминание в отчёте
     report['напоминание'] = 'после правок прогнать build_headers.py и build_sections.py — оба должны показать 0 изменений'

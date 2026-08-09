@@ -27,13 +27,24 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 APPLY = '--apply' in sys.argv
 
 BEFORE = re.compile(r'[  ]+([,.;!?)\]»”])')
-AFTER = re.compile(r'([(\[«“])[  ]+')
+# Открывающая кавычка зависит от языка: в азербайджанском и русском
+# второй уровень — „…“, то есть „ открывает, а “ ЗАКРЫВАЕТ; в английском
+# и турецком тот же знак “ открывает. Без этого различия инструмент снимал
+# пробел, который fix_quotes.py законно ставит после закрывающей кавычки,
+# и две правки отменяли друг друга при каждом прогоне.
+AFTER = {
+    'az': re.compile(r'([(\[«„])[  ]+'),
+    'ru': re.compile(r'([(\[«„])[  ]+'),
+    'en': re.compile(r'([(\[“‘])[  ]+'),
+    'tr': re.compile(r'([(\[“‘])[  ]+'),
+}
 
 
 def main() -> int:
     total = {lg: 0 for lg in DIRS}
     files = 0
     for lg, d in DIRS.items():
+        after = AFTER[lg]
         for fp in sorted(d.glob('*.html')):
             raw = fp.read_bytes().decode('utf-8')
             crlf = raw.count('\r\n') > raw.count('\n') // 2
@@ -45,12 +56,12 @@ def main() -> int:
             for tag in re.finditer(r'<[^>]*>', body):
                 chunk = body[pos:tag.start()]
                 chunk, a = BEFORE.subn(r'\1', chunk)
-                chunk, b = AFTER.subn(r'\1', chunk)
+                chunk, b = after.subn(r'\1',chunk)
                 cnt += a + b
                 out.append(chunk); out.append(tag.group(0)); pos = tag.end()
             tail = body[pos:]
             tail, a = BEFORE.subn(r'\1', tail)
-            tail, b = AFTER.subn(r'\1', tail)
+            tail, b = after.subn(r'\1',tail)
             cnt += a + b
             out.append(tail)
             if not cnt:
