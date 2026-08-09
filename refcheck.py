@@ -42,7 +42,19 @@ STOP = {
     'Guideline', 'Guidelines', 'Trial', 'Study', 'Group', 'Report',
     'Section', 'Level', 'Type', 'Scale', 'Test', 'Score', 'Index',
     'Sindromu', 'Birliyi', 'Nazirliyi', 'Respublikası', 'Xəstəlik',
+    # обрывки названий журналов и организаций, попадающие под шаблон фамилии
+    'Nature', 'Science', 'Neurol', 'Perspect', 'Genet', 'Educ', 'Court',
+    'Otorhinolaryngol', 'JAACAP', 'JAMA', 'Statement', 'Position', 'Practice',
+    'Guidelines', 'Commun', 'Pathol', 'Speech', 'Fluency', 'Autism', 'Pediatr',
+    'Pediatrics', 'Remedial', 'Environ', 'Augment', 'Altern', 'Disord', 'Lang',
+    'Psychiatr', 'Epidemiol', 'Bulletin', 'Medicine', 'Journal', 'Review',
+    'Consensus', 'Committee', 'Academy', 'Society', 'College', 'Federation',
+    'Madagaskarda', 'Danimarka', 'Supreme',
 }
+
+# работа, у которой рядом в тексте стоит год (и обычно журнал), проверяема
+# без списка литературы — таких не считаем пропуском
+NEARYEAR = re.compile(r'(?:19|20)\d{2}')
 
 
 def parts(fp: Path):
@@ -70,11 +82,11 @@ def parts(fp: Path):
 
 
 def surnames(text):
+    """Фамилии, названные БЕЗ года рядом — то есть непроверяемые по тексту."""
     out = set()
     for m in NAME.finditer(text):
-        out.add(m.group(1))
-    for m in NAMEYEAR.finditer(text):
-        out.add(m.group(1))
+        if not NEARYEAR.search(text[m.end():m.end() + 70]):
+            out.add(m.group(1))
     return {s for s in out if s not in STOP}
 
 
