@@ -1,6 +1,6 @@
 # ragimoff.org — Working Notes & Session Progress
 
-**Working directory:** `C:\Users\SAM\Desktop\sayt2`
+**Working directory:** `D:\Документы\ragimoff` (ветка `main`)
 **Active branch (worktree):** `claude/stupefied-cori-5b6e4a`
 **Worktree path:** `C:\Users\SAM\Desktop\sayt2\.claude\worktrees\stupefied-cori-5b6e4a`
 **Remote:** `https://github.com/kentavr34/ragimoff.org.git`
@@ -27,7 +27,7 @@ Academic Azerbaijani medical register. Use:
 ## Approved Source Whitelist
 
 Only these authoritative sources may be cited:
-NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM
+NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · EMA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM · ACOG · USPSTF · RCPsych · AGS (Beers) · ISPMD
 
 ---
 
@@ -132,3 +132,56 @@ Final batch HA02–HA05 completed on 2026-05-14:
   - 13,621 paragraphs, 195 tables, 15 Heading 1, 219 Heading 2, 1467 Heading 3
 - `.gitignore` updated to exclude `_build/` and `pandoc-*.msi`.
 - Commit `155bebf` pushed to `claude/stupefied-cori-5b6e4a`.
+
+---
+
+## Сессия 2026-08-09 — сплошная сверка книги и мобильная вёрстка
+
+**Состояние:** 104 карточки × 4 языка. `python checkup.py` — 0 сбоев из 11.
+`build_headers.py` и `build_sections.py` идемпотентны на 416 файлах.
+
+### Инструменты (в корне репозитория)
+
+| Файл | Что делает |
+|---|---|
+| `checkup.py` | 11 проверок: полнота, параллельность, навигация, три классификации, канон az, межъязыковое загрязнение, ложные друзья, типографика, разделитель после `</strong>`, турецкий процент, наличие источников |
+| `refcheck.py` | кого текст цитирует как доказательство, а в §11 нет (только упоминания без года — остальные проверяемы по самому тексту) |
+| `fix_strong.py` | восстанавливает потерянный разделитель после `</strong>`; НЕ трогает тюркский аффикс и английское множественное |
+| `fix_punct.py` | точка в конце пункта, потерянная в переводе; решение по большинству языков |
+| `progress_map.py` | `PROGRESS_MAP.md` из фактического состояния файлов и истории git |
+| `apply_fixes.py`, `apply_global.py` | применение списков правок по карточкам / по всему дереву |
+
+### Что закрыто
+
+- **Восемь осиротевших карточек удалены** (48 файлов): 6A07, 6C42, 6C47, 6E60,
+  7A40, 7A80, HA04, HA05 — дубликаты под кодами, которые МКБ-11 отдала другим
+  расстройствам, со сфабрикованной ссылкой на ВОЗ.
+- **Столбец DSM-5-TR**: восемь строк указывали на чужое расстройство, 262 имени
+  пустовали в азербайджанском и русском изданиях. Коды переведены с ICD-9-CM
+  на ICD-10-CM — 100 в шапке и 31 206 в тексте и навигации.
+- **Столбец МКБ-10**: диапазоны вместо одной подрубрики (6A00 F70 → F70–F79,
+  6B60, 6C91), пустые ячейки закрыты.
+- **6D11 переписана** — описывала personality difficulty (QE50.7) вместо того,
+  что заявлено её кодом; добавлен отсутствовавший домен 6D11.5.
+- **6D82** — McKeith 2017: четыре основных признака, а не три; РПБДГ перенесён
+  в основные, чувствительность к антипсихотикам — в поддерживающие.
+- Сверены по первоисточникам: Lancet Commission 45%, Freeman n=597,
+  Verhulst 49%, Caldwell ~50%, Marconi дозозависимо, ВОЗ 2,6 млн,
+  ОВР 1–11%, расстройство поведения 2–10%, Scared Straight ОШ 1,68,
+  педофилия 3–5%, фроттеризм 30% / 10–14%.
+- Сфабрикованные ссылки заменены: TACT, Montejo, Davis, WFSBP 2020, Linehan,
+  Leckman, химера Roessner.
+- **Турецкое издание**: 108 азербайджанских форм, PTSB → TSSB ×34, порядок слов
+  в рубриках МКБ-10, 52 нарушения правила процента.
+- 642 потерянных разделителя после `</strong>`, 98 пропавших точек,
+  432 сломанных canonical.
+- **Мобильная вёрстка**: иерархия заголовков (было 17,9 / 17,0 / 15,4 px при
+  тексте 16 px → стало 24 / 19,2 / 16,6), зоны нажатия 44 px в навигации книги,
+  оглавлении и хлебной крошке. Шапка сайта не тронута — так помечено в коде.
+
+### Что осталось
+
+`refcheck.py` — 14 упоминаний в 11 карточках, названных фамилией без года.
+Выходные данные надо брать из того издания, которым пользовался автор,
+иначе ссылка окажется такой же ложной, как была «Montejo J Sex Marital Ther
+2018». Подробности — `BLOCKERS.md`.
