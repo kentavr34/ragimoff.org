@@ -71,7 +71,6 @@ def main() -> int:
         if not ma:
             continue
         az = [x.group(1) for x in LABEL.finditer(ma.group(0))]
-        az_tail = [ma.group(0)[x.end(1):x.end(1) + 24] for x in LABEL.finditer(ma.group(0))]
         for lg in ('ru', 'en', 'tr'):
             fp = DIRS[lg] / f'{c}.html'
             if not fp.exists():
@@ -90,7 +89,9 @@ def main() -> int:
                 if (ch in UPPER) == (want in UPPER):
                     continue
                 after = b[x.end(1):x.end(1) + 24]
-                if KEEP.match(ch + after):
+                if KEEP.match(ch + after) or not want.isalpha() or not ch.isalpha():
+                    # аббревиатура, имя собственное или цифра с любой стороны —
+                    # регистр здесь не наша забота
                     continue
                 pos = x.start(1) + shift
                 out = out[:pos] + (ch.lower() if want not in UPPER else ch.upper()) + out[pos + 1:]
