@@ -85,13 +85,16 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   body{font-size:16px;line-height:1.6}
   .content-wrap{padding:.9rem 1rem 5.5rem}
   /* шапка расстройства — компактнее: меньше H1/имя, уже столбики ярлык/код */
-  table.dh h1{font-size:1.12rem;letter-spacing:-.02em;line-height:1.22}
+  table.dh h1{font-size:1.5rem;letter-spacing:-.015em;line-height:1.2}
   table.dh .dh-name{font-size:.9rem;line-height:1.28}
   table.dh .dh-lbl,table.dh .dh-code{font-size:.72rem}
   table.dh .dh-meta{padding-right:.7rem}
-  .content-wrap h2{font-size:1.06rem;margin-top:1.55rem}
-  .content-wrap h3{font-size:.96rem}
+  .content-wrap h2{font-size:1.2rem;margin-top:2rem;padding-bottom:.35rem}
+  .content-wrap h3{font-size:1.04rem;margin-top:1.35rem}
   .content-wrap p{margin:.66rem 0}
+  /* зона нажатия в навигации книги — не меньше 44 px (WCAG 2.5.8) */
+  .nav-link,.nav-sub-link,.d-nav a,.toc-ch>a,.page-toc a{min-height:44px;display:flex;align-items:center}
+  .sb-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
   /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
