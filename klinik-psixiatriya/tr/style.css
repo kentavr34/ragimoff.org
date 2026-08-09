@@ -331,7 +331,10 @@ pre{margin:16px 0;background:var(--bg3);border:1px solid var(--border);border-ra
 pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;color:var(--text);background:none;border:none}
 
 /* PROGRESS */
-.prog-bar{position:fixed;top:var(--hdr);left:0;right:0;height:2px;background:var(--border);z-index:999}
+/* Полоса прогресса должна лежать ПОД шапкой: раскрытая языковая панель
+   живёт внутри шапки и поднять её выше собственного z-index шапки нельзя,
+   поэтому при z-index:999 полоска перерезала открытое меню языков. */
+.prog-bar{position:fixed;top:var(--hdr);left:0;right:0;height:2px;background:var(--border);z-index:800}
 .prog-fill{height:100%;background:var(--gold);width:0%;transition:width .1s;box-shadow:0 0 6px var(--gold)}
 
 /* BACK TO TOP */
