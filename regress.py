@@ -55,6 +55,20 @@ GONE = {
     'sürətli sikllaşma', 'klinik utility', 'kontrindikasiyadır',
     'Underdiagnosis', 'overdiagnosis-dan', 'General Medical Council məlumatlandırması',
     'YOXDUR', 'MÜTLƏQDİR', 'HƏR İKİ',
+    # §7–§9 «Обследование · Лечение · Прогноз»
+    'böy,', 'çocluqluq', 'interocaeptiv',
+    'psixoeducation', 'psikoeducational', 'Specifik',
+    'psixoedukation', 'hospitalize', 'Phase-oriented (üç fazalı)',
+    'self-harm', 'Pillə 2: guided self-help',
+    'housebound', 'wait-list', 'Lisdexamfetamine',
+    'D-cycloserine', 'Diaphragmatic breathing', 'Nutrisional',
+    'sodium oxybate', 'Wakefulness-promoting', 'diphenhydramine',
+    'felaket', 'kardiyak', 'İnteqrə ',
+    'psixosocial', 'multidisiplinarlı', 'öz-öz idarə',
+    'BİRİNCİ SIRA', 'yatak öncəsi', 'yulduz çartı',
+    'obscene', 'serotonergic', 'stroke,',
+    'Koksu yağı', 'alternative izah', 'magic',
+    '1-bir-bir',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -67,6 +81,9 @@ GONE = {
     # §10 «Мифы»: сплошное чтение 104 карточек
     'при митозе', 'постельный режим или круглосуточное', 'воспроизводить точно',
     'гиподиагностика', 'ИР НЕТ',
+    # §7–§9 «Обследование · Лечение · Прогноз»
+    'ПЕРВАЯ ЛИНИЯ', 'ОБЯЗАТЕЛЬНЫ.', 'housebound',
+    'Lisdexamfetamine',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -78,6 +95,8 @@ GONE = {
     # §10 «Мифы»: сплошное чтение 104 карточек
     'nondisjunction in mitosis', 'Bed rest or 24/7', 'occupational safety is challenging',
     'should be reproduced exactly', 'problem than.', 'there is NO association',
+    # §7–§9 «Обследование · Лечение · Прогноз»
+    'FIRST LINE',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -88,6 +107,9 @@ GONE = {
     'mitozda T21', 'Yatak istirahati', 'underdiagnosed sendromdur',
     'birebir korunmalıdır', 'bilgilendirmesi', 'overdiagnosis',
     'ilişki YOKTUR',
+    # §7–§9 «Обследование · Лечение · Прогноз»
+    'housebound', 'self-harm',
+    'Wakefulness-promoting', 'obscene',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
