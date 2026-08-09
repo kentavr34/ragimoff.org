@@ -26,7 +26,7 @@ Academic Azerbaijani medical register. Always use:
 
 ## Source whitelist (textbook citations)
 Only authoritative sources are allowed:
-NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM
+NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · EMA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM · ACOG · USPSTF · RCPsych · AGS (Beers) · ISPMD
 
 ## Session-start ritual (читай каждый раз)
 В начале сессии, перед любой содержательной работой над книгой:
