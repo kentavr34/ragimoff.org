@@ -69,6 +69,14 @@ GONE = {
     'obscene', 'serotonergic', 'stroke,',
     'Koksu yağı', 'alternative izah', 'magic',
     '1-bir-bir',
+    # справочные страницы: список сокращений и глоссарий
+    'skrinninq', 'skrining',
+    'Atipik (İkinci Nəsil) Antipsixotiklər', '<td>MDP</td>',
+    'ARFİD', 'Huzursuz Bacaq',
+    'Tip Iı', 'Oppositional Defiant Disorder (6C91)',
+    'Early/Premature Ejaculation (HA01)', 'Avoidant/Restrictive Food Intake Disorder (6B85)',
+    '6B64–6B6Z', '6C91–6C9Z',
+    '6E61–6E6Z', 'HA01–HA0Z',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -84,6 +92,9 @@ GONE = {
     # §7–§9 «Обследование · Лечение · Прогноз»
     'ПЕРВАЯ ЛИНИЯ', 'ОБЯЗАТЕЛЬНЫ.', 'housebound',
     'Lisdexamfetamine',
+    # справочные страницы: список сокращений и глоссарий
+    'Атипичные (второго поколения) антипсихотики', '6B64–6B6Z',
+    'HA01–HA0Z',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -97,6 +108,9 @@ GONE = {
     'should be reproduced exactly', 'problem than.', 'there is NO association',
     # §7–§9 «Обследование · Лечение · Прогноз»
     'FIRST LINE',
+    # справочные страницы: список сокращений и глоссарий
+    'Atypical (Second Generation) Antipsychotics', 'patient (not ‘patient’)',
+    '6B64–6B6Z', 'Bipolyar I Pozuntu',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -110,6 +124,9 @@ GONE = {
     # §7–§9 «Обследование · Лечение · Прогноз»
     'housebound', 'self-harm',
     'Wakefulness-promoting', 'obscene',
+    # справочные страницы: список сокращений и глоссарий
+    'Atipik (İkinci Kuşak) Antipsikotikler', 'ARFİD',
+    '6B64–6B6Z', 'hasta (not ',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
