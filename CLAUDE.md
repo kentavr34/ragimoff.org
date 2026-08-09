@@ -3,7 +3,11 @@
 > **First action in any new session:** read this file, then `PROGRESS.md`, then `README.md`, then `HISTORY.json`, then `PROJECTS.json`. Only after that, touch code.
 
 ## Working directory
-`C:\Users\SAM\Desktop\sayt2` — always operate from here. Active long-running work happens inside the git worktree at `.claude\worktrees\stupefied-cori-5b6e4a` on branch `claude/stupefied-cori-5b6e4a`.
+`D:\Документы\ragimoff` — always operate from here.
+
+The old path `C:\Users\SAM\Desktop\sayt2` no longer exists. 41 legacy scripts still
+hardcode it and will fail if run; the live toolchain resolves paths from
+`Path(__file__).parent`. See "Script inventory" below before running anything.
 
 ## Owner
 Dr. Kənan Rəhimov — clinical psychiatrist. The repository serves his practice site (`ragimoff.org`) and his Azerbaijani-language Clinical Psychiatry textbook ("Klinik Psixiatriya").
@@ -32,8 +36,39 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 В начале сессии, перед любой содержательной работой над книгой:
 1. Прочитать `TYPOGRAPHY.md` (правила, особенно §0c — терминологический синхронизм)
 2. Прочитать `PROGRESS.md` (последняя сессия)
-3. **Запустить `python _term_sync.py`** — подтянуть одобренные правки из Google Sheet (или локального `_terms_approved.json`), применить их по всему сайту/книге, доложить пользователю что было применено.
+3. **Запустить `python _term_sync.py`** — подтянуть одобренные правки из `_corrections/PENDING.json` (статус `approved`), применить их, доложить пользователю что было применено. Без `--apply` скрипт ничего не пишет.
 4. Если правки применены — выполнить пересборку: `_build_abbreviatur.py` → `_rebuild_book_nav.py` → `build_book.py`.
+5. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `build_headers.py` и `build_sections.py` (должны показать 0 изменений).
+
+## Script inventory (2026-08-09)
+74 скрипта в корне. Прежде чем запускать любой — посмотрите, в какую группу он входит.
+
+**Живые, идемпотентные — можно запускать всегда:**
+`checkup.py`, `regress.py`, `refcheck.py`, `wordcheck.py`, `progress_map.py`,
+`build_headers.py`, `build_sections.py`, `apply_global.py`, `apply_fixes.py`,
+`fix_quotes.py`, `fix_space.py`, `fix_dash.py`, `fix_punct.py`, `fix_strong.py`,
+`fix_glossary.py`, `_build_abbreviatur.py`, `_rebuild_book_nav.py`, `_term_sync.py`.
+
+**Мёртвые — путь `C:\Users\SAM\Desktop\sayt2` не существует (41 шт.):**
+все `fix_dsm_*`, `fix_xbt_*`, `fix_nav_*`, `fix_search_*`, `add_*`, `build_terminoloji.py`,
+`build_search_index.py`, `merge_qisaltmalar.py`, `update_docx.py`, `read_docx.py` и др.
+Запуск завершится ошибкой пути — это единственное, что защищает данные.
+
+**Одноразовые и опасные — НЕ запускать (проверено в изолированном worktree):**
+| скрипт | что сделает при запуске |
+|---|---|
+| `_fix_terminology3.py` | 1310 замен в 228 файлах |
+| `_inject_abbr.py` | обернёт 4215 сокращений в `<abbr>` |
+| `_unwrap_abbr.py` | снимет их обратно в 160 файлах |
+| `_replace_pille.py` | 10 файлов |
+| `_sync_17_23.py` | перезапишет 7 страниц глав из `_supplements` |
+| `_fix_terminology4.py` | 7 файлов; именно он когда-то ввёл опечатку `skrinninq` |
+| `_fix_all_v5.py` | 4 файла |
+| `_reorder_front.py` | переставит вводные страницы |
+
+**Конфликт генераторов:** `abbreviatur.html` умеют перезаписывать девять скриптов;
+источник истины — `_build_abbreviatur.py`. `build_terminoloji.py` — его старый
+конкурент с другими данными (в нём AAP всё ещё «атипичные антипсихотики»).
 
 ## Typography / verstka rules
 **Read `TYPOGRAPHY.md` BEFORE any DOCX or book-HTML layout work.**

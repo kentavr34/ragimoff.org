@@ -4,13 +4,16 @@ import sys, io, json
 from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 B = Path('klinik-psixiatriya')
+# preview/ — производная сборка: ни одна страница на неё не ссылается,
+# а все 92 карточки в ней разошлись с изданными. _term_sync.py её
+# намеренно не трогает; здесь та же политика.
 T = {
-    'az': [B, B / 'preview', Path('_supplements/chapters-v2')],
+    'az': [B, Path('_supplements/chapters-v2')],
     'ru': [B / 'ru'],
     'en': [B / 'en'],
     'tr': [B / 'tr'],
 }
-T['*'] = [B, B / 'ru', B / 'en', B / 'tr', B / 'preview', Path('_supplements/chapters-v2')]
+T['*'] = [B, B / 'ru', B / 'en', B / 'tr', Path('_supplements/chapters-v2')]
 
 data = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
 ok = miss = 0

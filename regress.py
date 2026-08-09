@@ -110,7 +110,7 @@ GONE = {
     'FIRST LINE',
     # справочные страницы: список сокращений и глоссарий
     'Atypical (Second Generation) Antipsychotics', 'patient (not ‘patient’)',
-    '6B64–6B6Z', 'Bipolyar I Pozuntu',
+    '6B64–6B6Z', '"kod-cell">6A70</td><td>Bipolyar I',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
