@@ -26,12 +26,11 @@
 
 ## Остаток по источникам
 
-`python refcheck.py` — 14 упоминаний в 11 карточках, названных одной
-фамилией без года: Green и Storch (6A02), Reynolds и Nicolson (6A03),
-Ernst (6A20), Andreasen (6A60), Jacobson (6A70), Botella (6B03), Eisma
-и O'Connor (6B42), Smyke (6B44), Bayoumi (6C00), Lustyk (GA34).
-
-Это не выдумки — каждая работа существует, но выходные данные нужно
-взять из того издания, которым пользовался автор, иначе ссылка окажется
-такой же ложной, как «Montejo J Sex Marital Ther 2018». Инструмент держит
-их на виду; закрывать по мере сверки.
+Закрыт 2026-08-09. `python refcheck.py` — 0 пропусков. Последние 14
+упоминаний сверены по первоисточникам: Bayoumi (J Psychosom Res 2006),
+Lustyk (Arch Womens Ment Health 2009), Reynolds/Nicolson (Dyslexia 2003)
+вместе с критикой Snowling & Hulme, Storch (JAACAP 2013), Pickles/Green
+(Lancet 2016), Ernst (Br J Clin Pharmacol 2002), Andreasen (Am J Psychiatry
+1987), Jacobson (J Consult Clin Psychol 1996), Botella (Curr Psychiatry Rep
+2017), Eisma (Psychiatry Res 2020), Smyke (JAACAP 2002), Coccaro
+(J Clin Psychiatry 2009), O'Connor (Neuroimage 2008).
