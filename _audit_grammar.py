@@ -1,6 +1,6 @@
 """Site-wide grammar/spelling/typo audit for the Klinik Psixiatriya book.
 
-Targets: klinik-psixiatriya/ + _supplements/chapters-v2/.
+Targets: klinik-psixiatriya/ (единственный источник истины).
 
 Checks:
   1. Double spaces inside text (sloppy formatting).
@@ -165,7 +165,7 @@ def audit_file(path: str) -> dict:
 
 def main():
     targets = []
-    for sub in ('klinik-psixiatriya', '_supplements/chapters-v2'):
+    for sub in ('klinik-psixiatriya',):
         full = os.path.join(ROOT, sub)
         if not os.path.exists(full):
             continue

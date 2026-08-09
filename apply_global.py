@@ -4,16 +4,16 @@ import sys, io, json
 from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 B = Path('klinik-psixiatriya')
-# preview/ — производная сборка: ни одна страница на неё не ссылается,
-# а все 92 карточки в ней разошлись с изданными. _term_sync.py её
-# намеренно не трогает; здесь та же политика.
+# Изданные деревья — единственный источник истины. preview/ и
+# _supplements/chapters-v2 были производными копиями со старой привязкой
+# кодов (6C90↔6C91, 6C41=опиоиды, 6B60=ДРИ) и удалены 2026-08-09.
 T = {
-    'az': [B, Path('_supplements/chapters-v2')],
+    'az': [B],
     'ru': [B / 'ru'],
     'en': [B / 'en'],
     'tr': [B / 'tr'],
 }
-T['*'] = [B, B / 'ru', B / 'en', B / 'tr', Path('_supplements/chapters-v2')]
+T['*'] = [B, B / 'ru', B / 'en', B / 'tr']
 
 data = json.loads(Path(sys.argv[1]).read_text(encoding='utf-8'))
 ok = miss = 0

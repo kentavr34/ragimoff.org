@@ -34,7 +34,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 ROOT = Path(__file__).parent
 BOOK = ROOT / 'klinik-psixiatriya'
 TREES = {
-    'az': [BOOK, BOOK / 'preview', ROOT / '_supplements' / 'chapters-v2'],
+    'az': [BOOK],
     'ru': [BOOK / 'ru'],
     'en': [BOOK / 'en'],
     'tr': [BOOK / 'tr'],

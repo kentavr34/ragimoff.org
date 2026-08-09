@@ -37,9 +37,10 @@ ROOT = Path(__file__).parent
 PENDING_FILE = ROOT / "_corrections" / "PENDING.json"
 BOOK = ROOT / "klinik-psixiatriya"
 
-# каталог каждого языка; preview/ намеренно отсутствует — это сборка, не источник
+# каталог каждого языка; производных копий (preview/, chapters-v2) больше нет —
+# удалены 2026-08-09 вместе со старой привязкой кодов
 LANG_DIRS = {
-    "az": [BOOK, ROOT / "_supplements" / "chapters-v2"],
+    "az": [BOOK],
     "ru": [BOOK / "ru"],
     "en": [BOOK / "en"],
     "tr": [BOOK / "tr"],
