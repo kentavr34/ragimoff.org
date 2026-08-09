@@ -45,6 +45,16 @@ GONE = {
     # служебные пометки редактора
     'dəqiq şəkildə təkrarlanmalıdır', 'Source-whitelist bodies',
     'to be completed from the indexed record',
+    # §10 «Мифы»: сплошное чтение 104 карточек
+    'magic təfəkkür', 'supersitsiyalar', '«günah ifa edən övlad»',
+    'mitozda T21 nondisjunction', 'qıtlığa nəzarətli', 'qabaqlanan səbəb',
+    'ön-qabaqlanan', 'komada-dır', 'underdiagnosed sindromdur',
+    'psixoloji break-down', 'kötukdür', 'illüzionukdur',
+    'Yatak yatma', 'məşgəliyyat təhlükəsizliyi', 'reality testing pozulmuş',
+    'ruhani uyanış', 'duhalıq', 'dühalıq',
+    'sürətli sikllaşma', 'klinik utility', 'kontrindikasiyadır',
+    'Underdiagnosis', 'overdiagnosis-dan', 'General Medical Council məlumatlandırması',
+    'YOXDUR', 'MÜTLƏQDİR', 'HƏR İKİ',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -54,6 +64,9 @@ GONE = {
     'Источники', 'КТТД', 'гиппокампотомии', 'Kraft-Ebing',
     'Source-whitelist bodies', 'to be completed from the indexed record',
     'ПРИЛОЖЕНИЕ В', 'ПРИЛОЖЕНИЕ Б', 'сонная одурь', 'Шкала насилия',
+    # §10 «Мифы»: сплошное чтение 104 карточек
+    'при митозе', 'постельный режим или круглосуточное', 'воспроизводить точно',
+    'гиподиагностика', 'ИР НЕТ',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -62,12 +75,19 @@ GONE = {
     'hippocampotomy', 'Kraft-Ebing', 'Source-whitelist bodies',
     'to be completed from the indexed record', 'SAMHSA TYPE', 'Soviet Union +',
     'EXTRAORDINARY', 'Violence scale', 'Antidepressant reduces symptoms, does not',
+    # §10 «Мифы»: сплошное чтение 104 карточек
+    'nondisjunction in mitosis', 'Bed rest or 24/7', 'occupational safety is challenging',
+    'should be reproduced exactly', 'problem than.', 'there is NO association',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
     'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
     'Kraft-Ebing', 'Source-whitelist bodies', 'Stepwise inme',
+    # §10 «Мифы»: сплошное чтение 104 карточек
+    'mitozda T21', 'Yatak istirahati', 'underdiagnosed sendromdur',
+    'birebir korunmalıdır', 'bilgilendirmesi', 'overdiagnosis',
+    'ilişki YOKTUR',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
