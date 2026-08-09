@@ -1,6 +1,6 @@
 """Rebuild klinik-psixiatriya/abbreviatur.html:
    1. Insert 'Fəsil adları' (chapter names) table at top — 23 chapters.
-   2. Add 'Düzəlt' column with edit buttons to all existing tables.
+   2. Колонка «Düzəlt» больше не добавляется — виджет снят 2026-08-09.
    Buttons are wired to duzelis.js per-term editor (see duzelis.js v2).
 """
 from __future__ import annotations
@@ -40,13 +40,11 @@ CHAPTERS = [
 
 
 def edit_btn(term: str, kind: str) -> str:
-    """Render an inline edit button. term carried via data-az attribute."""
-    safe = html.escape(term, quote=True)
-    return (
-        f'<button class="dzl-row-btn" type="button" '
-        f'data-row-kind="{kind}" data-az="{safe}" '
-        f'aria-label="Düzəlt: {safe}">✎ Düzəlt</button>'
-    )
+    """Виджет «Düzəliş et» снят со страниц книги 2026-08-09 по решению Кенана.
+
+    Функция сохранена, чтобы не переписывать все вызовы ниже: она возвращает
+    пустую строку, и колонка правки в таблицах просто не появляется."""
+    return ''
 
 
 # Canonical site terms — the SINGLE source of truth.
@@ -98,19 +96,18 @@ def build_canonical_header() -> str:
     English equivalents — single source of truth for translators/editors."""
     rows = ['<section id="cari-terminler" class="cari-box">']
     rows.append('  <h2>Saytda istifadə olunan adlar və terminlər (cari)</h2>')
-    rows.append('  <p>Bu siyahı — saytın və kitabın <strong>ərəfəyə '
-                'qoyulmuş kanonik terminologiyası</strong>dır. Hər hansı '
-                'sözü bu siyahıda dəyişdirsəniz, dəyişiklik avtomatik '
-                'olaraq kitabın hər səhifəsinə yayılacaq.</p>')
+    rows.append('  <p>Bu siyahı — saytın və kitabın <strong>vahid kanonik '
+                'terminologiyasıdır</strong>: hər termin kitabın bütün '
+                'səhifələrində eyni formada işlənir.</p>')
     rows.append('  <div class="tbl-wrap"><table>')
     rows.append('    <tr><th>Cari AZ forma</th><th>İzah / qarşılıq</th>'
-                '<th>Kod</th><th style="width:110px">Düzəlt</th></tr>')
+                '<th>Kod</th></tr>')
     for az, expl, code in CANONICAL_TERMS:
         rows.append(
             f'    <tr><td><strong>{html.escape(az)}</strong></td>'
             f'<td>{html.escape(expl)}</td>'
             f'<td class="kod-cell">{html.escape(code)}</td>'
-            f'<td class="rasmi-cell">{edit_btn(az, "canonical")}</td></tr>'
+            '</tr>'
         )
     rows.append('  </table></div>')
     rows.append('</section>')
@@ -121,20 +118,18 @@ def build_canonical_header() -> str:
 def build_chapters_table() -> str:
     rows = []
     rows.append('<h2 id="fesil-adlari">Fəsil Adları</h2>')
-    rows.append('<p>Kitabın 23 fəsli — XBT-11 koduna görə düzülmüş. '
-                'Hər sətrin yanında <strong>Düzəlt</strong> düyməsinə basaraq '
-                'düzgün adı təklif edə bilərsiniz.</p>')
+    rows.append('<p>Kitabın 23 fəsli — XBT-11 koduna görə düzülmüşdür.</p>')
     rows.append('<div class="tbl-wrap"><table>')
     rows.append('<tr><th style="width:90px">Kod</th>'
                 '<th>Fəsil adı (cari)</th>'
-                '<th style="width:110px">Düzəlt</th></tr>')
+                '</tr>')
     for href, title, code_range in CHAPTERS:
         # NB: in справочнике/glossary chapter titles are plain text (no <a>)
         # — это справочник, не оглавление. Навигация — через sidebar.
         rows.append(
             f'<tr><td class="kod-cell">{html.escape(code_range)}</td>'
             f'<td>{html.escape(title)}</td>'
-            f'<td class="rasmi-cell">{edit_btn(title, "chapter")}</td></tr>'
+            '</tr>'
         )
     rows.append('</table></div>')
     rows.append('<hr>')
@@ -159,7 +154,7 @@ def add_edit_column(html_text: str) -> str:
         # Insert <th>Düzəlt</th> at end of FIRST <tr> (header row)
         def header_repl(m_tr):
             inner = m_tr.group(1)
-            return f'<tr>{inner}<th style="width:110px">Düzəlt</th></tr>'
+            return f'<tr>{inner}</tr>'
         # Match only the FIRST <tr>
         first_tr_re = re.compile(r'<tr>([\s\S]*?)</tr>', re.IGNORECASE)
         m_first = first_tr_re.search(table)
@@ -177,7 +172,7 @@ def add_edit_column(html_text: str) -> str:
             term_raw = m_td.group(1) if m_td else ''
             # Strip nested <abbr>/<a>/tags
             term_clean = re.sub(r'<[^>]+>', '', term_raw).strip()
-            return f'<tr>{inner}<td class="rasmi-cell">{edit_btn(term_clean, "term")}</td></tr>'
+            return f'<tr>{inner}</tr>'
         new_table = first_tr_re.sub(row_repl, new_table)
         out.append(new_table)
         pos = m.end()
