@@ -9,9 +9,8 @@ remove_duzelis.py — снимает виджет «Düzəliş et» со стр�
   * колонка «Düzəlt» с кнопкой ✎ в каждой строке справочных таблиц
     (abbreviatur и terminoloji-luget, 8 страниц, 2007 кнопок).
 
-Убирается и то, и другое. Сами duzelis.js / duzelis.css остаются в
-репозитории, и admin-corrections.html — страница разбора предложений —
-не затрагивается: она виджетом не пользуется.
+Убирается и то, и другое. Сами duzelis.js / duzelis.css пока остаются в репозитории.
+admin-corrections.html удалена 2026-08-10 по решению Кенана.
 
     python remove_duzelis.py            # отчёт
     python remove_duzelis.py --apply
@@ -24,7 +23,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 ROOT = Path(__file__).parent
 BOOK = ROOT / 'klinik-psixiatriya'
 APPLY = '--apply' in sys.argv
-KEEP = {'admin-corrections'}
+KEEP: set[str] = set()   # admin-corrections.html удалена 2026-08-10
 
 # подключение виджета в <head>
 HEAD = re.compile(r'[ \t]*<!-- DUZELIS-WIDGET -->\s*'
