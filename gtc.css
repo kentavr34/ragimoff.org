@@ -584,7 +584,9 @@ body {
   height: 100vh;
   background: var(--navy);
   z-index: 999;
-  padding: 80px 32px 32px;
+  /* было 80px при --header-height:96px — первый пункт «Ana Səhifə»
+     оказывался под шапкой и обрезался */
+  padding: calc(var(--header-height) + 18px) 32px 32px;
   flex-direction: column;
   gap: 0;
   box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
@@ -3756,6 +3758,11 @@ html, body {
 .mobile-nav-group {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
+/* Строку языков собирает shared.js и вставляет перед кнопкой заказа;
+   у ссылки прямо над ней оставалась своя нижняя граница, и рядом с
+   верхней границей строки языков получалась двойная полоска. */
+.mobile-nav > a:has(+ .mobile-lang-row) { border-bottom: none; }
+.mobile-nav-group:last-of-type { border-bottom: none; }
 .mobile-nav-group .mn-head {
   display: flex;
   align-items: center;

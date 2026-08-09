@@ -90,12 +90,12 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
   /* оглавление — компактные заголовки групп и уже столбик кода */
-  .toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem .8rem;gap:.55rem}
-  .toc-ch .tc-range{min-width:4rem;font-size:.8rem;white-space:nowrap;flex-shrink:0}
+  .toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem .8rem;gap:.55rem;align-items:flex-start}
+  .toc-ch .tc-range{flex:0 0 5.4rem;width:5.4rem;font-size:.8rem;white-space:normal;overflow-wrap:anywhere}
   .toc-ch /* Колонка кода была фиксированной, и длинный код (F90.0–F90.2,
    F63.3 / F42.4) вылезал на название расстройства. */
-.tc-list a{font-size:.82rem;grid-template-columns:minmax(3.7rem,max-content) 1fr;gap:.5rem;padding:.45rem .8rem}
-  .toc-ch .tc-list .sc{white-space:nowrap;overflow-wrap:anywhere}
+.tc-list a{font-size:.82rem;grid-template-columns:4.6rem 1fr;gap:.5rem;padding:.45rem .8rem}
+  .toc-ch .tc-list .sc{white-space:normal;overflow-wrap:anywhere}
 }
 /* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
 .chap-head{margin:.1rem 0 1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--gold)}
@@ -127,7 +127,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:4.6rem;font-variant-numeric:tabular-nums}
 .toc-ch .tc-list{display:flex;flex-direction:column}
 /* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
-.toc-ch .tc-list a{display:grid;grid-template-columns:minmax(4.2rem,max-content) 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
+.toc-ch .tc-list a{display:grid;grid-template-columns:5.4rem 1fr;align-items:start;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
 .toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
@@ -151,9 +151,9 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .sidebar nav /* Колонка кода была ровно 3.7rem, и длинный код — F90.0–F90.2,
    F63.3 / F42.4 — вылезал за неё и налезал на название расстройства.
    minmax даёт колонке вырасти под содержимое, не ломая выравнивание. */
-.nav-sub-link{display:grid;grid-template-columns:minmax(3.7rem,max-content) 1fr;gap:.5rem;align-items:baseline;font-size:.85rem;color:var(--text)}
+.nav-sub-link{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:start;font-size:.85rem;color:var(--text)}
 .sub-code,.nav-code{overflow-wrap:anywhere}
-.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;white-space:normal;overflow-wrap:anywhere;background:none !important;padding:0 !important}
 .sidebar nav .sub-name{color:var(--text)}
 .sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
 .sidebar nav .nav-empty{cursor:default}

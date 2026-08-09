@@ -202,7 +202,7 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 /* Nav items */
 .nav-item{border-bottom:1px solid var(--border2)}
 .nav-link{
-  display:flex;align-items:center;gap:10px;
+  display:flex;align-items:flex-start;gap:10px;
   padding:10px 18px;
   color:var(--text2);text-decoration:none;font-size:13px;
   transition:background .15s,color .15s,border-color .15s;
@@ -213,10 +213,16 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 .nav-link.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}
 .nav-link.is-bolme{font-weight:600;color:var(--text);font-size:12.5px}
 .nav-link.is-bolme:hover,.nav-link.is-bolme.active{color:var(--gold)}
+/* Колонка кода — фиксированной ширины и с переносом внутри себя.
+   Раньше код шёл nowrap без ограничения: длинный код (F32–F34 · N94,
+   F90.0–F90.2) наезжал на название, а ширина колонки у каждой строки
+   получалась своя — названия не вставали на одну вертикаль.
+   Выравнивание по верху: код держится первой строки названия. */
 .nav-code{
   font-family:var(--mono);font-size:9.5px;color:var(--gold);
   background:rgba(230,180,74,.1);padding:2px 5px;border-radius:3px;
-  flex-shrink:0;white-space:nowrap;
+  flex:0 0 78px;width:78px;white-space:normal;overflow-wrap:anywhere;
+  text-align:left;
 }
 .nav-num{font-family:var(--mono);font-size:10px;color:var(--gold2);flex-shrink:0}
 
@@ -459,7 +465,7 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 .nav-has-sub.open .nav-sub { display: block; }
 
 .nav-sub-link {
-  display: flex; align-items: baseline; gap: 7px;
+  display: flex; align-items: flex-start; gap: 7px;
   padding: 5px 14px 5px 22px;
   text-decoration: none;
   color: var(--text2);
@@ -476,9 +482,9 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
 }
 .sub-code {
   font-family: var(--mono); font-size: 10px;
-  color: var(--gold2); flex-shrink: 0;
-  letter-spacing: .03em; white-space: nowrap;
-  margin-right: 4px; /* nav-spacing-fix */
+  color: var(--gold2); flex: 0 0 66px; width: 66px;
+  letter-spacing: .03em; white-space: normal; overflow-wrap: anywhere;
+  margin-right: 4px;
 }
 .sub-name { flex:1; min-width:0; word-break:break-word; overflow-wrap:break-word; }
 
@@ -611,8 +617,8 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
 }
 .book-toc .toc-chapter-title {
   display: flex;
-  align-items: baseline;
-  gap: 18px;
+  align-items: flex-start;
+  gap: 14px;
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
@@ -621,18 +627,20 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   border-bottom: 1px solid var(--line);
 }
 .book-toc .toc-chapter-title:hover { color: var(--gold2); }
-.book-toc .toc-num {
+/* Слово «FƏSİL 01» убрано 2026-08-10: оно занимало строку и не давало
+   аккуратно уместить код с названием. Теперь порядок как везде в книге —
+   код, затем название. Колонка кода фиксированной ширины, чтобы названия
+   глав и названия расстройств стояли на одной вертикали; длинный код
+   переносится внутри своей колонки, а не наезжает на текст. */
+.book-toc .toc-name { order: 1; flex: 1; letter-spacing: .02em; min-width: 0; }
+.book-toc .toc-range {
+  order: 0;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--gold2);
-  letter-spacing: .08em;
-  min-width: 90px;
-}
-.book-toc .toc-name { flex: 1; letter-spacing: .02em; }
-.book-toc .toc-range {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text3);
+  width: 96px;
+  flex: 0 0 96px;
+  overflow-wrap: anywhere;
 }
 .book-toc .toc-disorders {
   list-style: none;
@@ -658,7 +666,9 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   font-family: var(--mono);
   font-size: 12px;
   color: var(--gold2);
-  min-width: 56px;
+  width: 72px;          /* 72 + отступ списка 24 = 96, как у главы */
+  flex: 0 0 72px;
+  overflow-wrap: anywhere;
 }
 /* Visual order in row: code → name → dot-leader. HTML order is code → leader
    → name, so we re-order via flexbox `order`. */
@@ -678,9 +688,10 @@ section.disorder ol.ref-list li { margin-bottom: 6px; }
   transform: translateY(-3px);
 }
 @media (max-width: 720px) {
-  .book-toc .toc-chapter-title { flex-wrap: wrap; gap: 8px; }
-  .book-toc .toc-num { min-width: auto; }
-  .book-toc .toc-range { width: 100%; }
+  .book-toc .toc-chapter-title { gap: 10px; align-items: flex-start; }
+  .book-toc .toc-range { flex: 0 0 82px; width: 82px; }
+  .book-toc .toc-disorders { padding-left: 14px; }
+  .book-toc .toc-code { flex: 0 0 68px; width: 68px; }
   .book-toc .toc-disorders a { flex-wrap: wrap; }
   .book-toc .toc-dot-leader { display: none; }
   .book-toc .toc-dname { text-align: left; max-width: 100%; min-width: 0; }
