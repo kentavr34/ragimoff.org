@@ -4,7 +4,7 @@
 
 ## Что закрыто по всей книге
 
-Проверяется автоматически, `python checkup.py` — десять проверок:
+Проверяется автоматически, `python checkup.py` — одиннадцать проверок:
 
 | Ось | Состояние |
 |---|---|
@@ -17,6 +17,7 @@
 | известные ложные друзья | чисто |
 | типографика | чисто |
 | разделитель после </strong> | чисто |
+| турецкое правило процента | чисто |
 | наличие источников | чисто |
 
 Шапки и структура разделов собираются из `_codes_canon.json`; обе сборки идемпотентны — повторный прогон не меняет ни байта. Это и есть доказательство, что данные и страницы совпадают.
@@ -92,10 +93,10 @@
 | 6B84 | PİKA | 29 | ✓✓✓✓ |
 | 6B85 | RUMİNASİYA-REQURGİTASİYA POZUNTUSU | 30 | ✓✓✓✓ |
 | 6C00 | ENUREZ | 29 | ✓✓✓✓ |
-| 6C01 | ENKOPREZ | 29 | ✓✓✓✓ |
-| 6C20 | BƏDƏN DİSSTRESİ POZUNTUSU | 28 | ✓✓✓✓ |
-| 6C40 | ALKOQOL QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 32 | ✓✓✓✓ |
-| 6C41 | KANNABİNOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 33 | ✓✓✓✓ |
+| 6C01 | ENKOPREZ | 30 | ✓✓✓✓ |
+| 6C20 | BƏDƏN DİSSTRESİ POZUNTUSU | 29 | ✓✓✓✓ |
+| 6C40 | ALKOQOL QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 33 | ✓✓✓✓ |
+| 6C41 | KANNABİNOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 34 | ✓✓✓✓ |
 | 6C43 | OPİOİDLƏRİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 29 | ✓✓✓✓ |
 | 6C44 | SAKİTLƏŞDİRİCİ, HİPNOTİK VƏ YA ANKSİYOLİTİKLƏRİN QƏB | 29 | ✓✓✓✓ |
 | 6C45 | KOKAİN QƏBULUNDAN QAYNAQLANAN POZUNTULAR | 28 | ✓✓✓✓ |
@@ -137,13 +138,13 @@
 | 7A21 | İDİOPATİK HİPERSOMNİYA | 19 | ✓✓✓✓ |
 | 7A41 | OBSTRUKTİV YUXU APNOESİ | 18 | ✓✓✓✓ |
 | 7A60 | GECİKMİŞ TİPLİ YUXU-OYANIQLIQ FAZALARIN POZUNTUSU | 22 | ✓✓✓✓ |
-| 8A05 | İLKİN TİKLƏR VƏ YA TİK POZUNTULARI | 22 | ✓✓✓✓ |
-| GA34 | PREMENSTRUAL DİSFORİK POZUNTU (PMDD) | 19 | ✓✓✓✓ |
+| 8A05 | İLKİN TİKLƏR VƏ YA TİK POZUNTULARI | 23 | ✓✓✓✓ |
+| GA34 | PREMENSTRUAL DİSFORİK POZUNTU (PMDD) | 20 | ✓✓✓✓ |
 | HA00 | HİPOAKTİV CİNSİ İSTƏK DİSFUNKSİYASI | 27 | ✓✓✓✓ |
 | HA01 | KİŞİ EREKTİL DİSFUNKSİYASI | 29 | ✓✓✓✓ |
 | HA02 | ANORQAZMİYA | 28 | ✓✓✓✓ |
 | HA03 | KİŞİLƏRDƏ ERKƏN EYAKULYASİYA | 30 | ✓✓✓✓ |
 | HA20 | AĞRILI PENETRASİYA CİNSƏL POZUNTUSU | 18 | ✓✓✓✓ |
-| HA40 | CİNSİ DİSFUNKSİYALARDA VƏ CİNSİ AĞRI POZUNTULARINDA  | 17 | ✓✓✓✓ |
+| HA40 | CİNSİ DİSFUNKSİYALARDA VƏ CİNSİ AĞRI POZUNTULARINDA  | 18 | ✓✓✓✓ |
 
 Столбец «Языки» — порядок az · ru · en · tr.

@@ -209,7 +209,15 @@ def main() -> int:
                 glued.append(f'{lg}/{fp.stem}: слипшийся </strong> ×{n}')
     check('разделитель_после_strong', glued)
 
-    # 10. источники: у каждой карточки есть список литературы
+    # 10. турецкое правило процента: знак перед числом (%15), а не после
+    pct = []
+    for fp in sorted(DIRS['tr'].glob('*.html')):
+        n = len(re.findall(r'\d+(?:[.,–-]\d+)?%', visible(fp)))
+        if n:
+            pct.append(f'tr/{fp.stem}: процент после числа ×{n}')
+    check('турецкий_процент', pct)
+
+    # 11. источники: у каждой карточки есть список литературы
     refs = []
     for c in codes:
         for lg, d in DIRS.items():
