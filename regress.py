@@ -126,6 +126,8 @@ GONE = {
     # фактчекинг по CDDR ВОЗ 2026-08-11: сроки XBT-11 не равны DSM-5-TR
     'Tezlik: ən azı həftədə 1 dəfə, ≥ 3 ay.', 'XBT-11 — paralel; «atypical bulimia',
     'regurgitasiyası ≥ 1 ay',
+    # аз. орфография: «distres», двойное s только в английских именах
+    'Distress və ya münasibət', 'distress dözümlülüyü', 'Onkoloji distress',
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
     'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
     # орфографические решения владельца 2026-08-10 (fix_orthography.py):
