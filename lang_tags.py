@@ -284,6 +284,39 @@ def mark_gloss(chunk: str, found: list) -> str:
     return GLOSS.sub(rep, chunk)
 
 
+# ── E. русские вставки в остальных деревьях ────────────────────────────────
+# Трёхъязычные таблицы сокращений и глоссария держат русскую колонку на
+# азербайджанской, английской и турецкой страницах. Кириллица опознаётся
+# однозначно — гадать не о чем.
+CYR_RUN = re.compile(r'[А-яЁё][А-яЁё-]*'
+                     r'(?:[  ][А-яЁё][А-яЁё-]*)*')
+
+
+def mark_ru(chunk: str, found: list) -> str:
+    res, last = [], 0
+    for m in CYR_RUN.finditer(chunk):
+        run = m.group(0).strip('- ')
+        if len(run) < 3:
+            continue
+        res.append(chunk[last:m.start()])
+        res.append('<span lang="ru">' + run + '</span>')
+        res.append(m.group(0)[len(run):])
+        found.append(run)
+        last = m.end()
+    res.append(chunk[last:])
+    return ''.join(res)
+
+
+def tag_ru(text: str, found: list) -> str:
+    out, pos = [], 0
+    for skip in SKIP.finditer(text):
+        out.append(mark_ru(text[pos:skip.start()], found))
+        out.append(skip.group(0))
+        pos = skip.end()
+    out.append(mark_ru(text[pos:], found))
+    return ''.join(out)
+
+
 def main() -> int:
     grand, examples = Counter(), []
     for lg, folder in DIRS.items():
@@ -291,7 +324,7 @@ def main() -> int:
             continue
         global EVIDENCE, NATIVE_WORDS
         EVIDENCE, NATIVE_WORDS = build_vocab(folder)
-        cont = inline = files = azn = gln = 0
+        cont = inline = files = azn = gln = run_ = 0
         for fp in sorted(folder.glob('*.html')):
             raw = fp.read_bytes().decode('utf-8')
             crlf = raw.count('\r\n') > raw.count('\n') // 2
@@ -319,6 +352,14 @@ def main() -> int:
                     if gl:
                         new = new[:body.start()] + tagged + new[body.end():]
                         gln += len(gl)
+            if lg != 'ru':
+                body = re.search(r'<main[\s\S]*</main>', new)
+                if body:
+                    ru = []
+                    tagged = tag_ru(body.group(0), ru)
+                    if ru:
+                        new = new[:body.start()] + tagged + new[body.end():]
+                        run_ += len(ru)
             if lg in AZ_MARK:
                 body = re.search(r'<main[\s\S]*</main>', new)
                 if body:
@@ -334,7 +375,7 @@ def main() -> int:
                 fp.write_bytes((new.replace('\n', '\r\n') if crlf else new).encode('utf-8'))
         print(f'  {lg}: файлов {files}, контейнеров {cont}, '
               f'английских оборотов {inline}, глосс {gln}, '
-              f'азербайджанских {azn}')
+              f'азербайджанских {azn}, русских {run_}')
     if SHOW:
         print('\nчто помечено (по убыванию частоты):')
         for k, v in grand.most_common(SHOW):
