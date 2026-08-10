@@ -41,7 +41,7 @@ from collections import Counter
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 ROOT = Path(__file__).parent
 BOOK = ROOT / 'klinik-psixiatriya'
-DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'tr': BOOK / 'tr'}
+DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 APPLY = '--apply' in sys.argv
 SHOW = int(sys.argv[sys.argv.index('--show') + 1]) if '--show' in sys.argv else 0
 
@@ -191,6 +191,45 @@ def mark(chunk: str, found: list) -> str:
     return ''.join(res)
 
 
+# ── C. азербайджанские вставки в переводах ─────────────────────────────────
+# В русском и английском деревьях азербайджанский узнаётся по любой из букв
+# ə ı ş ğ ç ü ö — латиница там сама по себе чужая. В турецком все они, кроме
+# «ə», свои, поэтому там маркер только один. Так помечаются столбцы
+# азербайджанских терминов в справочных таблицах и имя автора.
+# «ü» и «ö» из набора убраны: на них ловились шведская фамилия Öst L.G.,
+# немецкая Wölfling и турецкое слово «kültür», процитированное в глоссарии.
+# Букв ə ı İ ş ğ ç хватает, чтобы узнать азербайджанский, и они не бывают
+# в немецком, шведском и английском.
+AZ_MARK = {'ru': 'əƏıİşŞğĞçÇ', 'en': 'əƏıİşŞğĞçÇ', 'tr': 'əƏ'}
+AZ_RUN = r"[A-Za-zəƏıİşŞğĞçÇüÜöÖ][A-Za-zəƏıİşŞğĞçÇüÜöÖ'’.-]*"
+
+
+def mark_az(chunk: str, marks: str, found: list) -> str:
+    rx = re.compile(AZ_RUN + r'(?:[  ]' + AZ_RUN + r')*')
+    res, last = [], 0
+    for m in rx.finditer(chunk):
+        run = m.group(0).rstrip('.-')
+        if not run or not re.search('[' + marks + ']', run):
+            continue
+        res.append(chunk[last:m.start()])
+        res.append('<span lang="az">' + run + '</span>')
+        res.append(m.group(0)[len(run):])
+        found.append(run)
+        last = m.end()
+    res.append(chunk[last:])
+    return ''.join(res)
+
+
+def tag_az(text: str, marks: str, found: list) -> str:
+    out, pos = [], 0
+    for skip in SKIP.finditer(text):
+        out.append(mark_az(text[pos:skip.start()], marks, found))
+        out.append(skip.group(0))
+        pos = skip.end()
+    out.append(mark_az(text[pos:], marks, found))
+    return ''.join(out)
+
+
 def main() -> int:
     grand, examples = Counter(), []
     for lg, folder in DIRS.items():
@@ -198,7 +237,7 @@ def main() -> int:
             continue
         global EVIDENCE, NATIVE_WORDS
         EVIDENCE, NATIVE_WORDS = build_vocab(folder)
-        cont = inline = files = 0
+        cont = inline = files = azn = 0
         for fp in sorted(folder.glob('*.html')):
             raw = fp.read_bytes().decode('utf-8')
             crlf = raw.count('\r\n') > raw.count('\n') // 2
@@ -207,7 +246,7 @@ def main() -> int:
             for rx, rep in CONTAINERS:
                 new, n = rx.subn(rep, new)
                 cont += n
-            body = re.search(r'<main[\s\S]*</main>', new)
+            body = re.search(r'<main[\s\S]*</main>', new) if lg != 'en' else None
             if body:
                 found = []
                 tagged = tag_inline(body.group(0), found)
@@ -218,12 +257,21 @@ def main() -> int:
                         grand[f] += 1
                     if len(examples) < 400:
                         examples += [(fp.stem, f) for f in found[:4]]
+            if lg in AZ_MARK:
+                body = re.search(r'<main[\s\S]*</main>', new)
+                if body:
+                    az = []
+                    tagged = tag_az(body.group(0), AZ_MARK[lg], az)
+                    if az:
+                        new = new[:body.start()] + tagged + new[body.end():]
+                        azn += len(az)
             if new == t:
                 continue
             files += 1
             if APPLY:
                 fp.write_bytes((new.replace('\n', '\r\n') if crlf else new).encode('utf-8'))
-        print(f'  {lg}: файлов {files}, контейнеров {cont}, оборотов в прозе {inline}')
+        print(f'  {lg}: файлов {files}, контейнеров {cont}, '
+              f'английских оборотов {inline}, азербайджанских {azn}')
     if SHOW:
         print('\nчто помечено (по убыванию частоты):')
         for k, v in grand.most_common(SHOW):

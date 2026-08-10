@@ -637,7 +637,7 @@ mif arqumentləşdirilir (mexanizm / sübut / klinik nəticə).
 <!-- ===================================================================== -->
 <h2 id="6a20-11-menbeler">11. Sources</h2>
 
-<ol class="ref-list">
+<ol class="ref-list" lang="en">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics (Version 2024). 6A20 Schizophrenia. <a href="https://icd.who.int/browse/2024-01/mms/en#1683919430" target="_blank" rel="noopener">icd.who.int</a></li>
   <li>American Psychiatric Association. Diagnostic and Statistical Manual of Mental Disorders, 5th Edition, Text Revision (DSM-5-TR). Washington DC: APA Publishing; 2022.</li>
   <li>NICE Clinical Guideline 178. Psychosis and schizophrenia in adults: prevention and management. 2014, 2019 update. <a href="https://www.nice.org.uk/guidance/cg178" target="_blank" rel="noopener">nice.org.uk/guidance/cg178</a></li>
@@ -713,7 +713,7 @@ if(si&&sd){
         const re=new RegExp(esc,'gi');
         const hl=s=>s?String(s).replace(re,m=>'<mark>'+m+'</mark>'):s;
         const res=idx.filter(x=>(x.title+' '+(x.codes||'')+' '+(x.text||'')).toLowerCase().includes(q)).slice(0,20);
-        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">No results found</div></div>';sd.classList.add('on');return;}
         sd.innerHTML=res.map(r=>{
           let snip='';
           const txt=r.text||'';
@@ -837,7 +837,7 @@ function toggleSub(btn){
       </div>
         <div class="kitab-field">
           <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az">Azərbaycan</option><option value="ru">Русский</option><option value="en" selected>English</option><option value="tr">Türkçe</option></select>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>

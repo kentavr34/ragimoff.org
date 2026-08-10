@@ -361,7 +361,7 @@ function setCls(k){
 <p><strong>Evidence:</strong> In postpartum OCD, intrusive thoughts are <strong>ego-dystonic</strong> — the patient suffers from them and avoids them; in postpartum psychosis they are ego-syntonic and can lead to behavior — different intervention.</p>
 
 <h2 id="6e20-11-menbeler">11. Sources</h2>
-<ol class="ref-list">
+<ol class="ref-list" lang="en">
   <li>WHO. ICD-11. 6E20 Mental and behavioural disorders associated with pregnancy, childbirth and the puerperium. 2024.</li>
   <li>APA. DSM-5-TR. 2022.</li>
   <li>NICE CG192. Antenatal and postnatal mental health. 2014, 2018 update.</li>
@@ -422,7 +422,7 @@ if(si&&sd){
         const re=new RegExp(esc,'gi');
         const hl=s=>s?String(s).replace(re,m=>'<mark>'+m+'</mark>'):s;
         const res=idx.filter(x=>(x.title+' '+(x.codes||'')+' '+(x.text||'')).toLowerCase().includes(q)).slice(0,20);
-        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">No results found</div></div>';sd.classList.add('on');return;}
         sd.innerHTML=res.map(r=>{
           let snip='';
           const txt=r.text||'';
@@ -546,7 +546,7 @@ function toggleSub(btn){
       </div>
         <div class="kitab-field">
           <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az">Azərbaycan</option><option value="ru">Русский</option><option value="en" selected>English</option><option value="tr">Türkçe</option></select>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>

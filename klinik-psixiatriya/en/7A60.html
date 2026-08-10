@@ -320,7 +320,7 @@ function setCls(k){
 <p><strong>Evidence:</strong> 1 day approximately for 1 hour of shift; acceleration with light + melatonin.</p>
 
 <h2 id="7a60-11-menbeler">11. Sources</h2>
-<ol class="ref-list">
+<ol class="ref-list" lang="en">
   <li>WHO. ICD-11. 7A60 Circadian rhythm sleep-wake disorders. 2024.</li>
   <li>APA. DSM-5-TR. 2022.</li>
   <li>Auger R.R. et al. AASM Clinical Practice Guideline for the Treatment of Intrinsic Circadian Rhythm Sleep-Wake Disorders. J Clin Sleep Med 2015;11(10):1199–1236.</li>
@@ -375,7 +375,7 @@ if(si&&sd){
         const re=new RegExp(esc,'gi');
         const hl=s=>s?String(s).replace(re,m=>'<mark>'+m+'</mark>'):s;
         const res=idx.filter(x=>(x.title+' '+(x.codes||'')+' '+(x.text||'')).toLowerCase().includes(q)).slice(0,20);
-        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">No results found</div></div>';sd.classList.add('on');return;}
         sd.innerHTML=res.map(r=>{
           let snip='';
           const txt=r.text||'';
@@ -499,7 +499,7 @@ function toggleSub(btn){
       </div>
         <div class="kitab-field">
           <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az">Azərbaycan</option><option value="ru">Русский</option><option value="en" selected>English</option><option value="tr">Türkçe</option></select>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>

@@ -487,7 +487,7 @@ function setCls(k){
 <p><strong>Evidence:</strong> none have proven efficacy for stereotypical movement disorder.</p>
 
 <h2 id="6a06-11-menbeler">11. Sources</h2>
-<ol class="ref-list">
+<ol class="ref-list" lang="en">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A06 Stereotyped movement disorder. 2024.</li>
   <li>American Psychiatric Association. DSM-5-TR. Washington DC: APA Publishing; 2022.</li>
   <li>Mahone E.M., Bridges D., Prahme C., Singer H.S. Repetitive arm and hand movements (complex motor stereotypies) in children. J Child Neurol 2004;19(5):379–383.</li>
@@ -553,7 +553,7 @@ if(si&&sd){
         const re=new RegExp(esc,'gi');
         const hl=s=>s?String(s).replace(re,m=>'<mark>'+m+'</mark>'):s;
         const res=idx.filter(x=>(x.title+' '+(x.codes||'')+' '+(x.text||'')).toLowerCase().includes(q)).slice(0,20);
-        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">No results found</div></div>';sd.classList.add('on');return;}
         sd.innerHTML=res.map(r=>{
           let snip='';
           const txt=r.text||'';
@@ -677,7 +677,7 @@ function toggleSub(btn){
       </div>
         <div class="kitab-field">
           <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az">Azərbaycan</option><option value="ru">Русский</option><option value="en" selected>English</option><option value="tr">Türkçe</option></select>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>

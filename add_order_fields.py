@@ -43,7 +43,8 @@ SUBMIT = re.compile(r'(\s*)<button type="submit" class="kitab-submit">')
 
 def fields(lg: str) -> str:
     lang_lbl, cls_lbl = L[lg]
-    opts_l = ''.join(f'<option value="{c}"{" selected" if c == lg else ""}>{n}</option>'
+    # lang на каждом варианте: название языка пишется на своём языке
+    opts_l = ''.join(f'<option value="{c}" lang="{c}"{" selected" if c == lg else ""}>{n}</option>'
                      for c, n in LANGS)
     opts_c = ''.join(f'<option value="{v}">{n}</option>' for v, n in CLS)
     return (

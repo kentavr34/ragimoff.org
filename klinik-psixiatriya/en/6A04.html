@@ -455,7 +455,7 @@ function setCls(k){
 <p><strong>Evidence:</strong> General physical activity is beneficial, but in DCD the motor learning deficit requires specific structured intervention. A “just more exercise” regimen creates failure and distress in the patient. Structured approaches such as CO-OP and NTT are significantly superior.</p>
 
 <h2 id="6a04-11-menbeler">11. Sources</h2>
-<ol class="ref-list">
+<ol class="ref-list" lang="en">
   <li>WHO. ICD-11 for Mortality and Morbidity Statistics. 6A04 Developmental motor coordination disorder. 2024.</li>
   <li>American Psychiatric Association. DSM-5-TR. Washington DC: APA Publishing; 2022.</li>
   <li>Blank R., Barnett A.L., Cairney J., Green D., Kirby A., Polatajko H. et al. International clinical practice recommendations on the definition, diagnosis, assessment, intervention, and psychosocial aspects of developmental coordination disorder. Dev Med Child Neurol 2019;61(3):242–285.</li>
@@ -523,7 +523,7 @@ if(si&&sd){
         const re=new RegExp(esc,'gi');
         const hl=s=>s?String(s).replace(re,m=>'<mark>'+m+'</mark>'):s;
         const res=idx.filter(x=>(x.title+' '+(x.codes||'')+' '+(x.text||'')).toLowerCase().includes(q)).slice(0,20);
-        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">Nəticə tapılmadı</div></div>';sd.classList.add('on');return;}
+        if(!res.length){sd.innerHTML='<div class="sr"><div class="sr-title">No results found</div></div>';sd.classList.add('on');return;}
         sd.innerHTML=res.map(r=>{
           let snip='';
           const txt=r.text||'';
@@ -647,7 +647,7 @@ function toggleSub(btn){
       </div>
         <div class="kitab-field">
           <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az">Azərbaycan</option><option value="ru">Русский</option><option value="en" selected>English</option><option value="tr">Türkçe</option></select>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>
