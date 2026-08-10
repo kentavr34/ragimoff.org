@@ -91,6 +91,12 @@ GONE = {
     'qıdaş', '«acne»', 'hipervigilance',
     'asanlıqla startle', 'Self-organization', 'Self-Organization',
     'delayed onset',
+    # контрольная вычитка 2026-08-10, партия 6
+    'gizlin', '\x08dieta\x08', 'hyperphagia',
+    'çatışmazlığılar', 'nutritional supplement', 'Krohn',
+    'Qidalı dəyəri', 'Gain motivasiyası', 'post-prandial',
+    'gastroparesis', 'over-aktiv', 'urinary infection',
+    'holding maneuvers', 'kemping', 'motility tədqiqat',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
