@@ -77,6 +77,12 @@ GONE = {
     'Early/Premature Ejaculation (HA01)', 'Avoidant/Restrictive Food Intake Disorder (6B85)',
     '6B64–6B6Z', '6C91–6C9Z',
     '6E61–6E6Z', 'HA01–HA0Z',
+    # контрольная вычитка 2026-08-10, §1–§6
+    'motorin və nitq', 'məktəb adheziyası', 'ümbrella',
+    'yaşa qədər tutur', 'aşağı, mülayim, ağır, dərin', 'hipotetik təxəyyül',
+    'az-aşkarlanma', '\x08Severity bölgüsü', 'Severity bölgüsü',
+    'DSÖ', 'Qarşısıalan', 'Vilson xəstəliyi',
+    'valideyndə müalicəsiz', 'Valideyndə valproat', 'dementiya',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
