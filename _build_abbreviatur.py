@@ -54,14 +54,14 @@ CANONICAL_TERMS = [
     # disorder name corrections from rounds 1-5
     ("SİNİR ANOREKSİYASI",                   "Anorexia Nervosa (6B80)",                "6B80"),
     ("SİNİR BULİMİYASI",                     "Bulimia Nervosa (6B81)",                 "6B81"),
-    ("TƏKRARLANAN DEPRESİV POZUNTU",         "Recurrent Depressive Disorder (6A71)",   "6A71"),
+    ("TƏKRARLANAN DEPRESSİV POZUNTU",         "Recurrent Depressive Disorder (6A71)",   "6A71"),
     ("BƏDƏN DİSSTRES POZUNTUSU",             "Bodily Distress Disorder (6C20)",        "6C20"),
     ("MÜXALİF-İNADKAR POZUNTU",              "Oppositional Defiant Disorder (6C90)",   "6C90"),
     ("ERKƏN EYAKULYASİYA",                   "Early/Premature Ejaculation (HA03)",     "HA03"),
     ("SOSİAL İŞTİRAKIN MƏHDUDLAŞDIRILMASI POZUNTUSU",
         "Disinhibited Social Engagement Disorder (6B45)", "6B45"),
     ("PATOLOJİ BƏDƏN QOXUSU POZUNTUSU",      "Olfactory Reference Disorder (6B22)",    "6B22"),
-    ("KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU",          "Binge Eating Disorder (6B82)",           "6B82"),
+    ("AŞIRI QİDALANMA POZUNTUSU",          "Binge Eating Disorder (6B82)",           "6B82"),
     ("QAÇINMA/MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU",
         "Avoidant/Restrictive Food Intake Disorder (6B83)", "6B83"),
     # ICD-11 code drift fixes (WHO 2024)

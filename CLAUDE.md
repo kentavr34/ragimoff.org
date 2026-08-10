@@ -51,7 +51,30 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 `build_headers.py`, `build_sections.py`, `build_search_index.py`,
 `apply_global.py`, `apply_fixes.py`, `fix_quotes.py`, `fix_space.py`,
 `fix_dash.py`, `fix_punct.py`, `fix_strong.py`, `fix_glossary.py`,
-`fix_sidebar.py`, `fix_toc_codes.py`, `fix_code_table.py`, `_build_abbreviatur.py`.
+`fix_sidebar.py`, `fix_toc_codes.py`, `fix_code_table.py`, `_build_abbreviatur.py`,
+`fix_orthography.py`.
+
+## Орфографические решения владельца (2026-08-10)
+Пять пар, где книга годами держала обе формы, сведены к одной. Решение Кенана,
+язык от языка разное; закреплено в `fix_orthography.py` (идемпотентен) и в
+`regress.py`:
+
+| | азербайджанский | турецкий |
+|---|---|---|
+| депрессия | `depressiv`, `depressiya`, `antidepressant` (двойное s) | `depresif` (одно s) |
+| апноэ | `apnoe`, `apnoesi` | `apne`, `apnesi` |
+| суффикс | `-ergik` (dopaminergik) | `-erjik` (dopaminerjik) |
+| СДВГ / ПТСР | `DDHP`, `PTSP` | `DEHB`, `TSSB` |
+
+Английский текст сохраняет `ADHD`/`PTSD`, русский — `СДВГ`/`ПТСР`. Аббревиатуру
+НЕ трогают там, где она часть английского имени («Adult ADHD Self-Report Scale»,
+«PTSD Checklist», строка DSM в шапке), в `<meta>` (поисковые запросы пишутся
+международной формой) и на страницах-расшифровщиках `abbreviatur.html` и
+`terminoloji-luget.html`. За этим следит соседнее слово, не окно контекста.
+
+6B82 называется **AŞIRI QİDALANMA POZUNTUSU** — и в каноне, и в заголовке, и в
+`_build_abbreviatur.py`, и в навигации. Старое `KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU`
+снято везде.
 
 **Только локально, на сайт не идёт:** `graphify-out/` — граф знаний по книге,
 регенерируемый артефакт; в `.gitignore`, на GitHub Pages не попадает.

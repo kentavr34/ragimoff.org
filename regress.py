@@ -125,6 +125,11 @@ GONE = {
     # сторожим только форму без перевода.
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
     'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
+    # орфографические решения владельца 2026-08-10 (fix_orthography.py):
+    # азербайджанский пишет двойное s, apnoe и -ergik
+    'DEPRESİV', 'Depresiv', 'depresiv', 'depresiya', 'Depresiya',
+    'antidepresant', 'Antidepresant', 'apnesi', 'apneda', 'hipopnesi',
+    'erjik', 'KEÇİRTMƏ',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -190,6 +195,10 @@ GONE = {
     '(yürüyüş, üriner, kognitif)', 'akciğer X-ray', 'Abdominal X-ray',
     # второй проход: аз. «skrininq» вместо турецкого «tarama»
     'skrining',
+    # орфографические решения владельца 2026-08-10: турецкий держит -erjik,
+    # азербайджанское -ergik сюда попадать не должно. «depressiv» не сторожим:
+    # подстрока входит в английское «depressive» из имён DSM и источников.
+    'ergik',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
