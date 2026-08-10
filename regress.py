@@ -120,6 +120,11 @@ GONE = {
     'və urologic', 'algı pozulması', 'Stranger danger', 'pelvik döşəmə',
     'Deep dispareunia', 'qadağa təhsil', 'cərrahiyyə yara',
     'kannabis xronik', 'xroniki böyrək', 'reflektor tensiyası',
+    # второй проход: английские вставки в аз. прозе вне скобок и кавычек
+    # «habit selection» осталось как пояснение в скобках при аз. термине —
+    # сторожим только форму без перевода.
+    'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
+    'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -183,6 +188,8 @@ GONE = {
     '(indüklenmiş veya yalan)', 'overanxious', 'superimposed on demans',
     'UNDERDIAGNOSED', 'identifikasyon kaybı', 'dudak-yutma',
     '(yürüyüş, üriner, kognitif)', 'akciğer X-ray', 'Abdominal X-ray',
+    # второй проход: аз. «skrininq» вместо турецкого «tarama»
+    'skrining',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
