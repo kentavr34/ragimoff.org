@@ -163,6 +163,16 @@ GONE = {
     'противоречат пациенту', 'лгать на собеседовании', 'индуцированное или ложное',
     'Separation test', 'UNDERDIAGNOSED', 'седация, отмена',
     'потеря идентификации', 'губы-глотание', 'походка, urinary',
+    # числовая сверка и сверка абзацев 2026-08-11
+    'КПТСР', '1830-х годах Пинель', 'DBT против CBT при пограничном',
+    'Параллельное развитие с 6D30',
+    # вычитка русского, партии 1–2
+    'был оставлен международным научным', 'а также адаптивное поведение — это',
+    'под кодом <strong>четыре подтипа</strong> кодируется',
+    '(DLD)</strong> заменён на.', '— Редкое тяжёлое речевое',
+    'в связи базальные ганглии', 'идентичности <strong>вмешивается',
+    'excessive acquisition</strong> с;', 'классификация под;',
+    'представляет стандартные протоколы для.', 'ДИП',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -186,6 +196,9 @@ GONE = {
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Frequency: at least once weekly, ≥ 3 months.',
     'behaviour</strong>(in the conceptual',
+    # вычитка английского, партия 2
+    'conscious function</strong> differs from.', 'Under classification;',
+    'presents standard protocols for it.', 'acquisition</strong> with;',
     '(AUD structure); ICD-11 — parallel',
     'regurgitation of swallowed food ≥ 1 month',
     # числовая сверка 2026-08-11
@@ -222,7 +235,7 @@ GONE = {
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Sıklık: en az haftada 1 kez, ≥ 3 ay<', 'regürjitasyonu ≥ 1 ay',
     # вычитка турецкого, партия 1
-    "Lawa's Law", 'davranış</strong>da (kavramsal',
+    "Lawa's Law", 'davranış</strong>da (kavramsal', 'DİB',
     '(AUD yapısı); ICD-11 — paralel',
     # числовая сверка 2026-08-11
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
