@@ -181,6 +181,7 @@ GONE = {
     '(gait, urinary, cognitive)', 'Impairment umbrella.',
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Frequency: at least once weekly, ≥ 3 months.',
+    '(AUD structure); ICD-11 — parallel',
     'regurgitation of swallowed food ≥ 1 month',
     # числовая сверка 2026-08-11
     'relapse rates of 50–80%', '(2,8%)', '15,2 / 100', '3,9–9,6 / 100',
@@ -215,6 +216,7 @@ GONE = {
     'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Sıklık: en az haftada 1 kez, ≥ 3 ay<', 'regürjitasyonu ≥ 1 ay',
+    '(AUD yapısı); ICD-11 — paralel',
     # числовая сверка 2026-08-11
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
     # сверка абзацев 2026-08-11
