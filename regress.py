@@ -178,6 +178,8 @@ GONE = {
     '(gait, urinary, cognitive)', 'Impairment umbrella.',
     # числовая сверка 2026-08-11
     'relapse rates of 50–80%', '(2,8%)', '15,2 / 100', '3,9–9,6 / 100',
+    # сверка абзацев 2026-08-11: отозванное утверждение уцелело в переводах
+    'In the 1830s, Pinel', 'Comparison of self-help internet-based',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -207,6 +209,8 @@ GONE = {
     'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
     # числовая сверка 2026-08-11
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
+    # сверка абзацев 2026-08-11
+    "1830'larda Pinel", '6D30 eksibisyonizmle paralel gelişim',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
