@@ -73,11 +73,11 @@ CANONICAL_TERMS = [
     ("Klinik təzahürlər",                    "Clinical manifestations",                "—"),
     ("Vahid diaqnostik meyarlar",            "Unified diagnostic criteria",            "—"),
     ("İnstrumental müayinələr",              "Instrumental examinations",              "—"),
-    ("pasiyent",                             "patient (not 'xəstə')",                  "—"),
-    ("psixi pozuntu",                        "psychiatric disorder (not 'ruhi')",      "—"),
-    ("metodları",                            "methods (not 'üsulları')",               "—"),
-    ("Mədəniyyət",                           "Culture (not 'Kültür')",                 "—"),
-    ("kultura",                              "Lab culture (not 'kültür')",             "—"),
+    ("pasiyent",                             "patient (not '{az:xəstə}')",                  "—"),
+    ("psixi pozuntu",                        "psychiatric disorder (not '{az:ruhi}')",      "—"),
+    ("metodları",                            "methods (not '{az:üsulları}')",               "—"),
+    ("Mədəniyyət",                           "Culture (not '{tr:Kültür}')",                 "—"),
+    ("kultura",                              "Lab culture (not '{tr:kültür}')",             "—"),
     ("ilkin göstəricilər",                   "baseline indicators",                    "—"),
     ("obur yemə",                            "binge eating",                           "—"),
     ("skrininq",                             "screening",                              "—"),
@@ -87,8 +87,19 @@ CANONICAL_TERMS = [
     ("Dezinhibisiya",                        "Disinhibition (personality trait)",      "—"),
     ("inadkar",                              "defiant",                                "—"),
     ("məhdudlaşdırılmamış",                  "disinhibited (adjective)",               "—"),
-    ("meyarlar",                             "criteria (not 'çek-list')",              "—"),
+    ("meyarlar",                             "criteria (not '{az:çek-list}')",              "—"),
 ]
+
+
+def lang_spans(escaped: str) -> str:
+    """Раскрывает запись {tr:kültür} в <span lang="tr">kültür</span>.
+
+    Разворачивается уже ПОСЛЕ html.escape, поэтому сам термин остаётся
+    экранированным, а в разметку попадает только метка языка. Так можно
+    пометить процитированное иноязычное слово, не открывая в данные таблицы
+    произвольный HTML.
+    """
+    return re.sub(r'\{([a-z]{2}):([^{}]*)\}', r'<span lang="\1">\2</span>', escaped)
 
 
 def build_canonical_header() -> str:
@@ -105,7 +116,8 @@ def build_canonical_header() -> str:
     for az, expl, code in CANONICAL_TERMS:
         rows.append(
             f'    <tr><td><strong>{html.escape(az)}</strong></td>'
-            f'<td>{html.escape(expl)}</td>'
+            # колонка пояснений — английские эквиваленты, целиком английская
+              f'<td lang="en">{lang_spans(html.escape(expl))}</td>'
             f'<td class="kod-cell">{html.escape(code)}</td>'
             '</tr>'
         )
