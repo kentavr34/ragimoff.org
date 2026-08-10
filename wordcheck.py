@@ -45,7 +45,7 @@ def visible(fp: Path) -> str:
     if not m:
         return ''
     b = m.group(0)
-    r = re.search(r'<ol class="ref-list">[\s\S]*?</ol>', b)
+    r = re.search(r'<ol class="ref-list"[^>]*>[\s\S]*?</ol>', b)
     if r:                      # список литературы — там законно много латиницы
         b = b.replace(r.group(0), ' ')
     b = re.sub(r'<nav[\s\S]*?</nav>', ' ', b, flags=re.I)

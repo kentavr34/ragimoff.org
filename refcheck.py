@@ -68,7 +68,8 @@ def parts(fp: Path):
     t = fp.read_text(encoding='utf-8', errors='ignore')
     m = re.search(r'<main[\s\S]*?</main>', t, re.I)
     t = m.group(0) if m else t
-    r = re.search(r'<ol class="ref-list">[\s\S]*?</ol>', t)
+    # атрибуты у тега допустимы: lang_tags.py ставит lang="en"
+    r = re.search(r'<ol class="ref-list"[^>]*>[\s\S]*?</ol>', t)
     refs = r.group(0) if r else ''
     body = t.replace(refs, ' ') if refs else t
     h2 = re.search(r'<h2[^>]*id="[^"]*-2-[^"]*"[\s\S]*?(?=<h2)', body)

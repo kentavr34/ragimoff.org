@@ -36,7 +36,7 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 В начале сессии, перед любой содержательной работой над книгой:
 1. Прочитать `TYPOGRAPHY.md` (правила, особенно §0c — терминологический синхронизм)
 2. Прочитать `PROGRESS.md` (последняя сессия)
-3. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `build_headers.py`, `build_sections.py`, `fix_orthography.py`, `lang_tags.py` (все должны показать 0 изменений).
+3. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `numcheck.py` (числа между языками) → `paracheck.py` (абзацы) → `xrefcheck.py` (отсылки в тексте) → `build_headers.py`, `build_sections.py`, `fix_orthography.py`, `lang_tags.py` (все должны показать 0 изменений).
 4. Если правились справочные страницы — `_build_abbreviatur.py`; если меню — `fix_sidebar.py`; если коды — `fix_toc_codes.py`. Все три идемпотентны.
 
 Виджета правок «Düzəliş et» и всей его обвязки больше нет: кнопка снята
@@ -52,7 +52,8 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 `apply_global.py`, `apply_fixes.py`, `fix_quotes.py`, `fix_space.py`,
 `fix_dash.py`, `fix_punct.py`, `fix_strong.py`, `fix_glossary.py`,
 `fix_sidebar.py`, `fix_toc_codes.py`, `fix_code_table.py`, `_build_abbreviatur.py`,
-`fix_orthography.py`, `lang_tags.py`.
+`fix_orthography.py`, `lang_tags.py`, `numcheck.py`, `paracheck.py`,
+`xrefcheck.py`.
 
 **Только локально, на сайт не идёт:** `graphify-out/` — граф знаний по книге,
 регенерируемый артефакт; в `.gitignore`, на GitHub Pages не попадает.
@@ -180,6 +181,7 @@ Covers: title page, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt > H
 - CRLF warnings on Windows are expected — do not "fix" them.
 
 ## Active state snapshot (update at end of every session)
+- See `PROOFREADING.md` — живой список правок вычитки: что ждёт, что решено, что сверено с первоисточником. Не терять между сессиями.
 - See `PROGRESS.md` for the human-readable session log.
 - See `HISTORY.json` for the structured transformation log.
 - See `PROJECTS.json` for the per-project status.

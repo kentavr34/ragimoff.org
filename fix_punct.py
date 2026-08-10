@@ -34,7 +34,7 @@ def items(fp: Path):
     if not m:
         return None, None, None, t
     body = m.group(0)
-    r = re.search(r'<ol class="ref-list">[\s\S]*?</ol>', body)
+    r = re.search(r'<ol class="ref-list"[^>]*>[\s\S]*?</ol>', body)
     cut = r.start() if r else len(body)
     out = []
     for li in re.finditer(r'<li>([\s\S]*?)</li>', body):

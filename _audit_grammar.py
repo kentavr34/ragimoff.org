@@ -31,7 +31,7 @@ SIDEBAR_RE = re.compile(r'<aside\b[^>]*>[\s\S]*?</aside>', re.IGNORECASE)
 HEADER_RE = re.compile(r'<header\b[^>]*>[\s\S]*?</header>', re.IGNORECASE)
 KITAB_MODAL_RE = re.compile(r'<div id="kitab-modal"[\s\S]*?</div>\s*</div>', re.IGNORECASE)
 # Skip reference list (English citations)
-REF_LIST_RE = re.compile(r'<ol class="ref-list">[\s\S]*?</ol>', re.IGNORECASE)
+REF_LIST_RE = re.compile(r'<ol class="ref-list"[^>]*>[\s\S]*?</ol>', re.IGNORECASE)
 
 
 def extract_visible_text(html: str) -> str:
