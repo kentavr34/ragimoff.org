@@ -23,7 +23,7 @@ checkup.py — сплошная проверка книги «Klinik Psixiatriya
 дефекты — на этом уже был потерян день.
 """
 from __future__ import annotations
-import re, sys, io, json, html as H
+import re, sys, io, html, json, html as H
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -253,6 +253,38 @@ def main() -> int:
             if n:
                 quotes.append(f'{lg}/{fp.stem}: кавычка слиплась со словом ×{n}')
     check('кавычки_отбиты', quotes)
+
+    # 13. таблица кодов на справочных страницах должна совпадать с каноном.
+    # Она дважды разъезжалась со старой привязкой (6A60↔6A70, 6B83↔6B84↔6B85),
+    # причём в terminoloji-luget.html правка 2026-08-09 её не достала.
+    import json as _json
+    tbl = []
+    canon_path = ROOT / '_codes_canon.json'
+    if canon_path.exists():
+        rows_c = _json.loads(canon_path.read_text(encoding='utf-8'))['header_source']['rows']
+        official = {r['code']: (r.get('icd11_official') or {}).get('en', '') for r in rows_c}
+        cellrx = re.compile(r'<td[^>]*>([\s\S]*?)</td>')
+        for lg, d in DIRS.items():
+            for page in ('abbreviatur.html', 'terminoloji-luget.html'):
+                fp = d / page
+                if not fp.exists():
+                    continue
+                t2 = raw(fp)
+                big = [m.group(0) for m in re.finditer(r'<table[^>]*>[\s\S]*?</table>', t2)
+                       if 'kod-cell' in m.group(0) and len(re.findall(r'<tr>', m.group(0))) > 50]
+                if not big:
+                    continue
+                for r in re.findall(r'<tr>[\s\S]*?</tr>', big[0]):
+                    c = [re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]*>', '', x))).strip()
+                         for x in cellrx.findall(r)]
+                    if len(c) < 3 or not re.fullmatch(r'[0-9][A-Z][0-9A-Z]{2}', c[0]):
+                        continue
+                    ref = official.get(c[0], '')
+                    a = re.sub(r'[^a-z]', '', c[2].lower())
+                    b = re.sub(r'[^a-z]', '', ref.lower())
+                    if ref and a and a[:14] not in b and b[:14] not in a:
+                        tbl.append(f'{lg}/{page} {c[0]}: «{c[2][:40]}»')
+    check('таблица_кодов_по_канону', tbl)
 
     # 10. сборка из данных идемпотентна (шапки и разделы совпадают с _codes_canon.json)
     # проверяется отдельными скриптами; здесь только напоминание в отчёте
