@@ -157,14 +157,23 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
   display:block;font-size:11px;font-weight:700;
   color:var(--text3);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;
 }
-.kitab-field input{
+.kitab-field input,
+.kitab-field select{
   width:100%;background:var(--bg3);
   border:1px solid var(--border);border-radius:6px;
   color:var(--text);font-family:var(--font);font-size:14px;
   padding:10px 13px;outline:none;box-sizing:border-box;
   transition:border-color .2s;
 }
-.kitab-field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+.kitab-field input:focus,
+.kitab-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+/* Язык издания и основная классификация — добавлены в заявку 2026-08-10:
+   без них по заказу нельзя было понять, какое издание человек ждёт. */
+.kitab-field select{cursor:pointer;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--text3) 50%),linear-gradient(135deg,var(--text3) 50%,transparent 50%);
+  background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:34px}
+.kitab-field select option{background:var(--bg2);color:var(--text)}
 .kitab-submit{
   width:100%;background:var(--gold);color:var(--bg);
   border:none;border-radius:6px;padding:13px;
@@ -367,6 +376,16 @@ pre code{display:block;padding:18px 20px;font-family:var(--mono);font-size:13px;
   color:var(--text3);font-size:20px;line-height:1;padding:2px 4px;
   transition:color .15s;
 }
+/* Возврат на основной сайт из шапки бокового меню. Ссылка .hdr-back в
+   шапке страницы скрыта на узких экранах, и на телефоне уйти с книги было
+   некуда — поэтому дублируем её здесь, где место рядом с крестиком пустует. */
+.sb-site{
+  font-family:var(--mono);font-size:11px;color:var(--text3);
+  text-decoration:none;border:1px solid var(--border);border-radius:5px;
+  padding:5px 10px;white-space:nowrap;transition:color .15s,border-color .15s;
+}
+.sb-site:hover{ color:var(--gold); border-color:var(--gold2); }
+
 .sb-close:hover{color:var(--text)}
 @media(max-width:960px){
   .sb-close{display:block}
