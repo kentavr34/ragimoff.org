@@ -181,12 +181,20 @@ def mark(chunk: str, found: list) -> str:
     for m in RUN.finditer(chunk):
         if not is_english(m.group(0)):
             continue
-        res.append(chunk[last:m.start()])
-        run = trim(m.group(0)).rstrip("-'’")
+        whole = m.group(0)
+        run = trim(whole).rstrip("-'’")
         if not is_english(run):
             continue
+        # Два порядка важны. Первый: префикс дописываем ТОЛЬКО когда цепочка
+        # принята, иначе при отбраковке он уходит в вывод, а указатель не
+        # сдвигается — и текст удваивается. Второй: trim() срезает слова и
+        # СЛЕВА, поэтому остаток нельзя брать по длине: «Top Lang Disord»
+        # давало «Lang Disord» + «sord», теряя начало и дублируя хвост.
+        i = whole.find(run)
+        res.append(chunk[last:m.start()])
+        res.append(whole[:i])
         res.append('<span lang="en">' + run + '</span>')
-        res.append(m.group(0)[len(run):])
+        res.append(whole[i + len(run):])
         found.append(run)
         last = m.end()
     res.append(chunk[last:])

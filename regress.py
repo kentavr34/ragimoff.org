@@ -128,6 +128,8 @@ GONE = {
     'regurgitasiyası ≥ 1 ay',
     # аз. орфография: «distres», двойное s только в английских именах
     'Distress və ya münasibət', 'distress dözümlülüyü', 'Onkoloji distress',
+    # порча от lang_tags: срез слева + остаток по длине
+    'Lang Disord</span>sord',
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
     'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
     # орфографические решения владельца 2026-08-10 (fix_orthography.py):
@@ -183,6 +185,7 @@ GONE = {
     '(gait, urinary, cognitive)', 'Impairment umbrella.',
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Frequency: at least once weekly, ≥ 3 months.',
+    'behaviour</strong>(in the conceptual',
     '(AUD structure); ICD-11 — parallel',
     'regurgitation of swallowed food ≥ 1 month',
     # числовая сверка 2026-08-11
@@ -218,6 +221,8 @@ GONE = {
     'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
     # фактчекинг по CDDR ВОЗ 2026-08-11
     'Sıklık: en az haftada 1 kez, ≥ 3 ay<', 'regürjitasyonu ≥ 1 ay',
+    # вычитка турецкого, партия 1
+    "Lawa's Law", 'davranış</strong>da (kavramsal',
     '(AUD yapısı); ICD-11 — paralel',
     # числовая сверка 2026-08-11
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
