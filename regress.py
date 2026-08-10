@@ -124,7 +124,7 @@ GONE = {
     # «habit selection» осталось как пояснение в скобках при аз. термине —
     # сторожим только форму без перевода.
     # фактчекинг по CDDR ВОЗ 2026-08-11: сроки XBT-11 не равны DSM-5-TR
-    'Tezlik: ən azı həftədə 1 dəfə, ≥ 3 ay.', 'XBT-11 — paralel; «atypical',
+    'Tezlik: ən azı həftədə 1 dəfə, ≥ 3 ay.', 'XBT-11 — paralel; «atypical bulimia',
     'regurgitasiyası ≥ 1 ay',
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
     'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
