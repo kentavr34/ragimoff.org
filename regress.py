@@ -123,6 +123,9 @@ GONE = {
     # второй проход: английские вставки в аз. прозе вне скобок и кавычек
     # «habit selection» осталось как пояснение в скобках при аз. термине —
     # сторожим только форму без перевода.
+    # фактчекинг по CDDR ВОЗ 2026-08-11: сроки XBT-11 не равны DSM-5-TR
+    'Tezlik: ən azı həftədə 1 dəfə, ≥ 3 ay.', 'XBT-11 — paralel; «atypical',
+    'regurgitasiyası ≥ 1 ay',
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
     'peer setting', 'toplama-də', 'anorexia-', 'fostering', 'preskripsion',
     # орфографические решения владельца 2026-08-10 (fix_orthography.py):
@@ -176,6 +179,9 @@ GONE = {
     '‘impossible’ or atypical', 'contradict patient', 'may lie in interview',
     'UNDERDIAGNOSED', 'loss of identification', 'lip-swallowing',
     '(gait, urinary, cognitive)', 'Impairment umbrella.',
+    # фактчекинг по CDDR ВОЗ 2026-08-11
+    'Frequency: at least once weekly, ≥ 3 months.',
+    'regurgitation of swallowed food ≥ 1 month',
     # числовая сверка 2026-08-11
     'relapse rates of 50–80%', '(2,8%)', '15,2 / 100', '3,9–9,6 / 100',
     # сверка абзацев 2026-08-11: отозванное утверждение уцелело в переводах
@@ -207,6 +213,8 @@ GONE = {
     # азербайджанское -ergik сюда попадать не должно. «depressiv» не сторожим:
     # подстрока входит в английское «depressive» из имён DSM и источников.
     'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
+    # фактчекинг по CDDR ВОЗ 2026-08-11
+    'Sıklık: en az haftada 1 kez, ≥ 3 ay<', 'regürjitasyonu ≥ 1 ay',
     # числовая сверка 2026-08-11
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
     # сверка абзацев 2026-08-11
