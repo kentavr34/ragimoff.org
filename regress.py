@@ -83,6 +83,14 @@ GONE = {
     'az-aşkarlanma', '\x08Severity bölgüsü', 'Severity bölgüsü',
     'DSÖ', 'Qarşısıalan', 'Vilson xəstəliyi',
     'valideyndə müalicəsiz', 'Valideyndə valproat', 'dementiya',
+    # контрольная вычитка 2026-08-10, партии 3–5
+    'ekstra-eqo', 'hipersəs', 'məhkəmə edən səs',
+    '\x08vaaq\x08', 'Hüzursuzluq', 'bulantı',
+    'overprotection', 'neurotizm', 'noradrenergic',
+    'separation anxiety tarixçəsi', 'irritabəl bağırsaq', 'meydan, çay',
+    'qıdaş', '«acne»', 'hipervigilance',
+    'asanlıqla startle', 'Self-organization', 'Self-Organization',
+    'delayed onset',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
