@@ -130,6 +130,10 @@ GONE = {
     'DEPRESİV', 'Depresiv', 'depresiv', 'depresiya', 'Depresiya',
     'antidepresant', 'Antidepresant', 'apnesi', 'apneda', 'hipopnesi',
     'erjik', 'KEÇİRTMƏ',
+    # аз. «stress» с двойным s; «cPTSP» — форма без своего языка,
+    # карточка 6B41 сама озаглавлена KPTSP. Пробел в начале обязателен:
+    # без него строка ловит законное «distresi», «Disstresi», «distresini».
+    'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -198,7 +202,7 @@ GONE = {
     # орфографические решения владельца 2026-08-10: турецкий держит -erjik,
     # азербайджанское -ergik сюда попадать не должно. «depressiv» не сторожим:
     # подстрока входит в английское «depressive» из имён DSM и источников.
-    'ergik',
+    'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
