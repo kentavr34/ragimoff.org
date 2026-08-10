@@ -97,6 +97,29 @@ GONE = {
     'Qidalı dəyəri', 'Gain motivasiyası', 'post-prandial',
     'gastroparesis', 'over-aktiv', 'urinary infection',
     'holding maneuvers', 'kemping', 'motility tədqiqat',
+    # контрольная вычитка §1–§6: карточки 6C51–HA40
+    'nevroinkişaf', 'klinisist', '«imkansız»', 'neglect', 'sexual abuse',
+    'İnsight', 'komplex', 'Münxauzen', 'tutmalar, apnoea', 'overanxious',
+    'Separation test', 'superimposed on demensiya', 'UNDERDIAGNOSED',
+    'göstəricilər-dan', 'intensive care', 'X-ray', '-1 to -2',
+    'pasiyent əksinə', 'yalan ola bilər', 'induksiyalı və ya yalan',
+    'plakatlar', 'tangllar', 'dudaq-yutma', 'identifikasiya itkisi',
+    'hava çirkliliyi', 'urinary', 'saxlamamazlıq', 'hiperlipidemia',
+    'Hipoperfusiya', 'abulia', 'çətirini', 'ribot qanunu',
+    'uyumsuzluq', 'Klein-Levin', 'hiperinsomniya', 'İskandinaviya',
+    'dezoryentasiya', 'Respirator effort', 'iş çəkənlər', 'clock gen',
+    'zəbtsiz', 'Histaminergic', 'ehkalaliya', 'bazal ganglia',
+    'qəzəbli partlayış', 'tikler', 'somatic urge', 'məktəbdə tutma',
+    'yetişkinlik', 'mediadan kopya', 'labilliyə', 'ovariy', 'süpressiya',
+    # «urologic» стоит с уточнением: подстрока входит в neurological,
+    # «Pelvic» — в официальное имя DSM Genito-Pelvic, «carbohydrate» —
+    # в лабораторный термин carbohydrate-deficient transferrin.
+    'Serotonergic', 'carbohydrate ehtiyacı', 'polikistik over', 'Pelvic ağrı',
+    'Sosial-kulturel', 'göstərilərkən', 'neyrogenic', 'Erektion',
+    'erektion', 'Orgazm', 'delayed eyakulyasiya', 'bilgi çatışmazlığı',
+    'və urologic', 'algı pozulması', 'Stranger danger', 'pelvik döşəmə',
+    'Deep dispareunia', 'qadağa təhsil', 'cərrahiyyə yara',
+    'kannabis xronik', 'xroniki böyrək', 'reflektor tensiyası',
  ],
  'ru': [
     'Освещенный ADA', 'мой двор топят палками', 'завершил(а)', 'В.Д. Видин',
@@ -115,6 +138,10 @@ GONE = {
     # справочные страницы: список сокращений и глоссарий
     'Атипичные (второго поколения) антипсихотики', '6B64–6B6Z',
     'HA01–HA0Z',
+    # контрольная вычитка §1–§6: карточки 6C51–HA40
+    'противоречат пациенту', 'лгать на собеседовании', 'индуцированное или ложное',
+    'Separation test', 'UNDERDIAGNOSED', 'седация, отмена',
+    'потеря идентификации', 'губы-глотание', 'походка, urinary',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -131,6 +158,10 @@ GONE = {
     # справочные страницы: список сокращений и глоссарий
     'Atypical (Second Generation) Antipsychotics', 'patient (not ‘patient’)',
     '6B64–6B6Z', '"kod-cell">6A70</td><td>Bipolyar I',
+    # контрольная вычитка §1–§6: карточки 6C51–HA40
+    '‘impossible’ or atypical', 'contradict patient', 'may lie in interview',
+    'UNDERDIAGNOSED', 'loss of identification', 'lip-swallowing',
+    '(gait, urinary, cognitive)', 'Impairment umbrella.',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -147,6 +178,11 @@ GONE = {
     # справочные страницы: список сокращений и глоссарий
     'Atipik (İkinci Kuşak) Antipsikotikler', 'ARFİD',
     '6B64–6B6Z', 'hasta (not ',
+    # контрольная вычитка §1–§6: карточки 6C51–HA40
+    'hastanın aksini gösteriyor', 'yalan söylüyor olabilir',
+    '(indüklenmiş veya yalan)', 'overanxious', 'superimposed on demans',
+    'UNDERDIAGNOSED', 'identifikasyon kaybı', 'dudak-yutma',
+    '(yürüyüş, üriner, kognitif)', 'akciğer X-ray', 'Abdominal X-ray',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
