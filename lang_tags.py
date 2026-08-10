@@ -230,6 +230,60 @@ def tag_az(text: str, marks: str, found: list) -> str:
     return ''.join(out)
 
 
+# ── D. английский термин, поясняемый в кавычках или скобках ────────────────
+# Кенан описал этот случай прямо: на странице всё на родном языке, а в скобках
+# рядом стоит термин по-английски. Такая глосса опознаётся по обрамлению, а не
+# по форме слов, поэтому правило надёжнее общего разбора прозы и берёт то, что
+# этап B пропускает: строчные обороты («doctor shopping», «wait and see») и
+# одиночные слова («maintenance», «bizarre»).
+#
+# Что сюда НЕ попадает и почему:
+#   «Barkley», «Frank E.», «Azrin N.H.», «Blank et al.» — фамилии авторов;
+#       фамилия не английский текст, помечать её языком неверно;
+#   «EIP», «HBOT», «M-CHAT-R/F» — аббревиатуры, это не проза;
+#   «lupus», «herpes» — латынь, а не английский.
+GLOSS = re.compile("([«“„‘(]\s*)"
+                   "([A-Za-z][A-Za-z ’'./+-]{2,60}?)"
+                   "(\s*[»”“’)])")
+INITIAL = re.compile(r"^[A-Z]\.?(?:[A-Z]\.)?$")
+
+
+def is_gloss(txt: str) -> bool:
+    toks = re.findall(r"[A-Za-z][A-Za-z'’-]*", txt)
+    if not toks or ' et al' in txt.lower():
+        return False
+    if any(INITIAL.match(t) for t in re.findall(r"[A-Za-z]\.?", txt)):
+        return False
+    if all(t.isupper() for t in toks):          # чистая аббревиатура
+        return False
+    if not any(t.islower() for t in toks):      # только имена с заглавной
+        return False
+    # «animal toplama» — половина фразы азербайджанская; целиком английской
+    # её метить нельзя (сама фраза — отдельный дефект, не дело метки)
+    if any(t.lower() in NATIVE_WORDS for t in toks):
+        return False
+    return any(t.lower() in EVIDENCE for t in toks)
+
+
+def tag_gloss(text: str, found: list) -> str:
+    out, pos = [], 0
+    for skip in SKIP.finditer(text):
+        out.append(mark_gloss(text[pos:skip.start()], found))
+        out.append(skip.group(0))
+        pos = skip.end()
+    out.append(mark_gloss(text[pos:], found))
+    return ''.join(out)
+
+
+def mark_gloss(chunk: str, found: list) -> str:
+    def rep(m):
+        if not is_gloss(m.group(2)):
+            return m.group(0)
+        found.append(m.group(2))
+        return m.group(1) + '<span lang="en">' + m.group(2) + '</span>' + m.group(3)
+    return GLOSS.sub(rep, chunk)
+
+
 def main() -> int:
     grand, examples = Counter(), []
     for lg, folder in DIRS.items():
@@ -237,7 +291,7 @@ def main() -> int:
             continue
         global EVIDENCE, NATIVE_WORDS
         EVIDENCE, NATIVE_WORDS = build_vocab(folder)
-        cont = inline = files = azn = 0
+        cont = inline = files = azn = gln = 0
         for fp in sorted(folder.glob('*.html')):
             raw = fp.read_bytes().decode('utf-8')
             crlf = raw.count('\r\n') > raw.count('\n') // 2
@@ -257,6 +311,14 @@ def main() -> int:
                         grand[f] += 1
                     if len(examples) < 400:
                         examples += [(fp.stem, f) for f in found[:4]]
+            if lg != 'en':
+                body = re.search(r'<main[\s\S]*</main>', new)
+                if body:
+                    gl = []
+                    tagged = tag_gloss(body.group(0), gl)
+                    if gl:
+                        new = new[:body.start()] + tagged + new[body.end():]
+                        gln += len(gl)
             if lg in AZ_MARK:
                 body = re.search(r'<main[\s\S]*</main>', new)
                 if body:
@@ -271,7 +333,8 @@ def main() -> int:
             if APPLY:
                 fp.write_bytes((new.replace('\n', '\r\n') if crlf else new).encode('utf-8'))
         print(f'  {lg}: файлов {files}, контейнеров {cont}, '
-              f'английских оборотов {inline}, азербайджанских {azn}')
+              f'английских оборотов {inline}, глосс {gln}, '
+              f'азербайджанских {azn}')
     if SHOW:
         print('\nчто помечено (по убыванию частоты):')
         for k, v in grand.most_common(SHOW):
