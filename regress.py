@@ -176,6 +176,8 @@ GONE = {
     '‘impossible’ or atypical', 'contradict patient', 'may lie in interview',
     'UNDERDIAGNOSED', 'loss of identification', 'lip-swallowing',
     '(gait, urinary, cognitive)', 'Impairment umbrella.',
+    # числовая сверка 2026-08-11
+    'relapse rates of 50–80%', '(2,8%)', '15,2 / 100', '3,9–9,6 / 100',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -203,6 +205,8 @@ GONE = {
     # азербайджанское -ergik сюда попадать не должно. «depressiv» не сторожим:
     # подстрока входит в английское «depressive» из имён DSM и источников.
     'ergik', 'cPTSP', 'KOMPLEKS POSTTRAVMATİK',
+    # числовая сверка 2026-08-11
+    '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
