@@ -224,7 +224,8 @@ def main() -> int:
             fp = d / f'{c}.html'
             if not fp.exists():
                 continue
-            m = re.search(r'<ol class="ref-list">[\s\S]*?</ol>', raw(fp))
+            # атрибуты у тега допустимы: lang_tags.py ставит lang="en"
+            m = re.search(r'<ol class="ref-list"[^>]*>[\s\S]*?</ol>', raw(fp))
             n = len(re.findall(r'<li\b', m.group(0))) if m else 0
             if n == 0:
                 refs.append(f'{lg}/{c}: источников 0')

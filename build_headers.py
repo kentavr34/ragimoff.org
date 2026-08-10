@@ -53,7 +53,9 @@ def render(row: dict, lang: str, labels: dict) -> str:
         f'<span class="dh-lbl">{labels["icd11"][lang]}</span>'
         f'<span class="dh-code">{esc(row["icd11_shown"])}</span></td>'
         f'<td class="dh-name"><h1>{esc(title)}</h1>'
-        + (f'<div class="dh-en">{esc(subtitle)}</div>' if subtitle else "")
+        # lang="en" — английское имя болезни внутри страницы на другом
+        # языке; ставится здесь, чтобы пересборка его не стирала
+        + (f'<div class="dh-en" lang="en">{esc(subtitle)}</div>' if subtitle else "")
         + "</td></tr>"
     )
     # 2. МКБ-10 — своё название
