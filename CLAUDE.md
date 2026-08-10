@@ -36,18 +36,25 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 В начале сессии, перед любой содержательной работой над книгой:
 1. Прочитать `TYPOGRAPHY.md` (правила, особенно §0c — терминологический синхронизм)
 2. Прочитать `PROGRESS.md` (последняя сессия)
-3. **Запустить `python _term_sync.py`** — подтянуть одобренные правки из `_corrections/PENDING.json` (статус `approved`), применить их, доложить пользователю что было применено. Без `--apply` скрипт ничего не пишет.
-4. Если правки применены — выполнить пересборку: `_build_abbreviatur.py` → `_rebuild_book_nav.py` → `build_book.py`.
-5. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `build_headers.py` и `build_sections.py` (должны показать 0 изменений).
+3. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `build_headers.py` и `build_sections.py` (должны показать 0 изменений).
+4. Если правились справочные страницы — `_build_abbreviatur.py`; если меню — `fix_sidebar.py`; если коды — `fix_toc_codes.py`. Все три идемпотентны.
+
+Виджета правок «Düzəliş et» и всей его обвязки больше нет: кнопка снята
+2026-08-09, а конвейер (`duzelis.js/css`, воркер Cloudflare, `PENDING.json`,
+`_term_sync.py`, `admin-corrections.html`) удалён 2026-08-10.
 
 ## Script inventory (2026-08-09)
 74 скрипта в корне. Прежде чем запускать любой — посмотрите, в какую группу он входит.
 
 **Живые, идемпотентные — можно запускать всегда:**
 `checkup.py`, `regress.py`, `refcheck.py`, `wordcheck.py`, `progress_map.py`,
-`build_headers.py`, `build_sections.py`, `apply_global.py`, `apply_fixes.py`,
-`fix_quotes.py`, `fix_space.py`, `fix_dash.py`, `fix_punct.py`, `fix_strong.py`,
-`fix_glossary.py`, `_build_abbreviatur.py`, `_rebuild_book_nav.py`, `_term_sync.py`.
+`build_headers.py`, `build_sections.py`, `build_search_index.py`,
+`apply_global.py`, `apply_fixes.py`, `fix_quotes.py`, `fix_space.py`,
+`fix_dash.py`, `fix_punct.py`, `fix_strong.py`, `fix_glossary.py`,
+`fix_sidebar.py`, `fix_toc_codes.py`, `fix_code_table.py`, `_build_abbreviatur.py`.
+
+**Только локально, на сайт не идёт:** `graphify-out/` — граф знаний по книге,
+регенерируемый артефакт; в `.gitignore`, на GitHub Pages не попадает.
 
 **Мёртвые — путь `C:\Users\SAM\Desktop\sayt2` не существует (41 шт.):**
 все `fix_dsm_*`, `fix_xbt_*`, `fix_nav_*`, `fix_search_*`, `add_*`, `build_terminoloji.py`,

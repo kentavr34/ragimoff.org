@@ -13,7 +13,7 @@ At the very beginning of each session that touches the book, run:
 ```
 python _term_sync.py
 ```
-This pulls APPROVED corrections from the Google Sheet (filled by users via the
+
 'Düzəlt' button on the site) and applies them everywhere. Then rebuild:
 ```
 python _build_abbreviatur.py
@@ -167,7 +167,7 @@ User wanted columns dropped from abbreviatur:
 → implemented as `strip_columns_*_table()` in `_build_abbreviatur.py`.
 
 ### Case 6: Modal text invisible (white on white)
-The Düzəliş et modal had light-theme background but inherited page's
+
 dark-theme text colour. Solution: modal ALWAYS dark, explicit colour
 on every child element.
 

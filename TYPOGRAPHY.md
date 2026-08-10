@@ -296,9 +296,13 @@ python build_book.py             # DOCX
 
 NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM.
 
-## 9. Düzəliş et widget (HTML)
+## 9. Виджет «Düzəliş et» — удалён
 
-На каждой HTML-странице книги. Маркер `<!-- DUZELIS-WIDGET -->` + `duzelis.css` + `duzelis.js`. FAB-кнопка фикс. справа-снизу (z-index 9990). Инжектор: `_inject_duzelis.py`.
+Снят со страниц 2026-08-09, обвязка удалена 2026-08-10: `duzelis.js/css`,
+`_inject_duzelis.py`, воркер Cloudflare, `_corrections/PENDING.json`,
+`_term_sync.py`, `admin-corrections.html`. Предложения правок больше не
+принимаются; последние два разобраны 2026-08-10.
+
 
 ## 10. Скрипты сборки
 
@@ -307,7 +311,7 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 | `_inject_chapters_v2.py` | Влить chapters-v2 фрагменты в 23 главы |
 | `_rebuild_book_nav.py` | Перегенерировать sidebar + TOC сайта |
 | `_inject_abbr.py` | `<abbr title>` tooltips |
-| `_inject_duzelis.py` | Виджет «Düzəliş et» |
+
 | `_fix_terminology3.py` | Чистка англ./лат. терминов |
 | `build_book.py` | DOCX (pandoc + python-docx + manual title page + ICD-11 styling) |
 
