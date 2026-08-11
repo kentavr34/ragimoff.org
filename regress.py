@@ -194,6 +194,11 @@ GONE = {
     '(Cluster A). <strong>и</strong>', '</strong> — Концепция «латентной',
     '</strong> — Термин «шизотип»', '</strong> — Шизотипическое расстройство',
     '</strong> — Датские исследования',
+    # партия 7: 6A62, 6A70, 6A71, 6A40 и добор «ё»
+    '<strong>subthreshold</strong> хроническое', 'рекуррентное, формальность',
+    'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
+    'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
+    'напряженная', 'искаженными',
     # утечки с азербайджанского и фамилии кириллицей вместо латиницы книги
     '2009 icmal', 'lupus paneli', 'ikiz meta-analiz', 'network meta-analiz',
     'Amiloid hipotezi', 'СДВГ + tik', 'Эскироль', 'Кальбаум', 'Крафт-Эбинг',
@@ -262,7 +267,7 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
-    'Amphetamine synthesis by Edeleano',
+    'Amphetamine synthesis by Edeleano', '<strong>Hippokrat</strong>',
     # партия 4: 6A21, 6A22
     'additionally <strong>Continuation of psychotic',
     'affective disorder</strong> On one hand', 'overlap</strong> high genetic',
@@ -271,7 +276,7 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
+    'strömgren', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
     'Kraft-Ebing', 'Source-whitelist bodies', 'Stepwise inme',
     # §10 «Мифы»: сплошное чтение 104 карточек
