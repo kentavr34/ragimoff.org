@@ -184,6 +184,7 @@ GONE = {
     'подход</strong> Применен', 'по сравнению с основными изменениями',
     'в течение течения', 'BMC Med 2004 meta-analiz',
     'и <strong>редкие варианты числа копий',
+    'возраст начала с 7 лет.', '<strong>До 12</strong> повышено',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
