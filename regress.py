@@ -199,6 +199,8 @@ GONE = {
     'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
     'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
     'напряженная', 'искаженными',
+    # партия 13: 6C20 — сказуемое в конце
+    'дистресса</strong> устанавливается (основное',
     # партия 12: незакрытая скобка и код DSM в 6B22 (мастер даёт F42.8)
     'DSM-5-TR: F65.2 — стойкое', 'Movement Disorder</span> — нейроонтогенетическое',
     'DSM-5-TR: F42.2 (специфицированное',
@@ -291,6 +293,8 @@ GONE = {
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
     'Amphetamine synthesis by Edeleano',
+    'Clinical diagnosis. <strong>not based', 'In ICD-11 classification <span',
+    'Tics typically <strong>premonitory urge</strong> (preceded',
     # партия 13: определения §1 английского дерева
     'Manic episode</strong> — It is characterized', 'major depressive</strong> Characterized by episodes',
     "history <strong>only one</strong> A major depressive",
@@ -314,7 +318,8 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', 'Bozukluk (IED; ICD-11)', 'kısıtlılık (CATALISE).',
+    'strömgren', 'kontrol kaybı hissi). <strong>kompansatuvar',
+    '(önlenen tik veya gerilim)', 'bağımlılık, kaynaklı psikotik', 'yaratması veya yalan söylemesi', 'Bozukluk (IED; ICD-11)', 'kısıtlılık (CATALISE).',
     'DSM-5-TR: F42.2 OKB spektrumu', 'Klein-Levin', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
     'olarak resmiyet (komorbid', 'Şeklinde resmiyet', 'resmiyeti.', "DSM-III'ten resmiyet", 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
     'yönetimi</strong>neye', 'alanı</strong>nin', '<strong>Manik epizod</strong>la', 'rehberi</strong>dır', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
