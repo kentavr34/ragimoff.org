@@ -302,6 +302,33 @@ def main() -> int:
                         break
     check('теги_парны_в_блоках', unpaired)
 
+    # 15. служебные данные <head> согласны со страницей.
+    # Их не видно при чтении книги: заголовок вкладки, карточка при пересылке
+    # ссылки и язык документа для поисковика. Разошлись они молча — 79 карточек
+    # держали в <title> старое, доканоническое имя, 158 файлов показывали в
+    # og:title не то, что в <title>, и все 411 переведённых страниц объявляли
+    # себя азербайджанскими.
+    meta = []
+    for lg, d in DIRS.items():
+        for fp in sorted(d.glob('*.html')):
+            t4 = raw(fp)
+            ti = re.search(r'<title>([^<]*)</title>', t4)
+            og = re.search(r'<meta property="og:title" content="([^"]*)"', t4)
+            if ti and og and H.unescape(ti.group(1)).strip() != H.unescape(og.group(1)).strip():
+                meta.append(f'{lg}/{fp.stem} og:title ≠ title')
+            for m in re.finditer(r'"inLanguage":\s*"([a-z-]+)"', t4):
+                if m.group(1) != lg:
+                    meta.append(f'{lg}/{fp.stem} inLanguage={m.group(1)}')
+            if not CARD.fullmatch(fp.stem):
+                continue                # у страниц глав <title> намеренно короче
+            h1 = re.search(r'<h1[^>]*>([\s\S]*?)</h1>', t4)
+            if ti and h1:
+                a = re.sub(r'\s+', ' ', H.unescape(ti.group(1).split('|')[0])).strip()
+                b = re.sub(r'\s+', ' ', H.unescape(re.sub(r'<[^>]*>', ' ', h1.group(1)))).strip()
+                if a != b:
+                    meta.append(f'{lg}/{fp.stem} title ≠ h1')
+    check('шапка_head_согласна', meta)
+
     # 10. сборка из данных идемпотентна (шапки и разделы совпадают с _codes_canon.json)
     # проверяется отдельными скриптами; здесь только напоминание в отчёте
     report['напоминание'] = 'после правок прогнать build_headers.py и build_sections.py — оба должны показать 0 изменений'
