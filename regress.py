@@ -185,6 +185,15 @@ GONE = {
     'в течение течения', 'BMC Med 2004 meta-analiz',
     'и <strong>редкие варианты числа копий',
     'возраст начала с 7 лет.', '<strong>До 12</strong> повышено',
+    # партия 5: 6A21, 6A22 — азербайджанское причастие развернули так, что
+    # сказуемое осталось висеть после придаточного
+    'дополнительно <strong>При котором', 'расстройством</strong> захватывает',
+    'совпадение</strong> Высокая генетическая', '</strong> — Впервые ввел',
+    '</strong> — Шизоаффективное расстройство как', '</strong> — Подспецификации типа',
+    'эпизода</strong> является клиническим', '(психотическая категория). <span',
+    '(Cluster A). <strong>и</strong>', '</strong> — Концепция «латентной',
+    '</strong> — Термин «шизотип»', '</strong> — Шизотипическое расстройство',
+    '</strong> — Датские исследования',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -220,6 +229,11 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
+    # партия 4: 6A21, 6A22
+    'additionally <strong>Continuation of psychotic',
+    'affective disorder</strong> On one hand', 'overlap</strong> high genetic',
+    'not met.</strong> Clinical condition.',
+    '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
