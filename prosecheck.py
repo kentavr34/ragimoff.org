@@ -388,6 +388,52 @@ def check_lostname(lg: str) -> list:
     return hits
 
 
+# ── 7. дефект мастера, уцелевший в переводе ────────────────────────────────
+# `regress.py` помнит строки, вычищенные ИЗ МАСТЕРА, — но перевод мог их
+# сохранить. Так уцелело турецкое «resmiyet» (девять мест), английские
+# «neglect», «fostering», «D-cycloserine» в русском.
+#
+# Английское дерево из проверки исключено: там английское слово на месте.
+# Границы слова обязательны — иначе «tikler» находится внутри
+# «antipsikotikler», а «erjik» внутри законного «serotonerjik».
+AZLET = 'əƏıİşŞğĞçÇöÖüÜ'
+
+
+def gone_latin() -> list[str]:
+    import ast
+    src = (ROOT / 'regress.py').read_text(encoding='utf-8')
+    for node in ast.parse(src).body:
+        if isinstance(node, ast.Assign) and getattr(node.targets[0], 'id', '') == 'GONE':
+            gone = ast.literal_eval(node.value)
+            return [s for s in gone['az']
+                    if re.fullmatch(r"[A-Za-z][A-Za-z '-]{3,}", s)
+                    and not any(ch in AZLET for ch in s)]
+    return []
+
+
+def check_survived(lg: str) -> list:
+    if lg in ('az', 'en'):
+        return []
+    # Строка засчитывается, только если она есть в АНГЛИЙСКОМ дереве, то есть
+    # это настоящий английский, не переведённый. Без этого условия проверка
+    # ловила «apnesi» и «erjik» — формы, которые в азербайджанском запрещены
+    # решением владельца, а в турецком как раз правильны.
+    en = vocab('en')
+    words = [s for s in gone_latin()
+             if all(en[w.lower()] for w in re.findall(r"[A-Za-z'-]+", s))]
+    if not words:
+        return []
+    rx = re.compile(r'(?<![\w-])(' + '|'.join(
+        sorted(map(re.escape, words), key=len, reverse=True)) + r')(?![\w-])')
+    hits = []
+    for fp in pages(lg):
+        v = visible(fp.read_text(encoding='utf-8', errors='ignore'))
+        for m in rx.finditer(v):
+            hits.append((lg + '/' + fp.stem, m.group(1),
+                         v[max(0, m.start() - 55):m.end() + 40]))
+    return hits
+
+
 # ── разобрано и признано нормой ────────────────────────────────────────────
 # Строки, прочитанные глазами и сверенные с мастером. Инструмент должен
 # давать ноль на здоровом дереве: отчёт, где всегда висит десяток известных
@@ -404,6 +450,8 @@ ACCEPTED = {
     'Доказательства: является', 'Доказательства: БДСМ по согласию',
     # «<strong>не</strong> является» — связка относится к выделенному «не»
     'Билингвизм', 'логопедом (SLP)',
+    # имя гена: английский и русский тоже пишут его латиницей
+    'clock gen mutasyonları',
     # обычная речь, а не разрыв согласования
     'связанное с волосами и кожей, не является',
     'именно эта цифра является заглавной', 'не является «излечением»',
@@ -421,6 +469,7 @@ CHECKS = [
     ('yo',    'Ё И Е В ОДНОМ СЛОВЕ', check_yo),
     ('names', 'ФАМИЛИЯ КИРИЛЛИЦЕЙ', check_names),
     ('lostname', 'ИМЯ ЕСТЬ В МАСТЕРЕ И В АНГЛИЙСКОМ, В ПЕРЕВОДЕ НЕТ', check_lostname),
+    ('survived', 'ВЫЧИЩЕНО ИЗ МАСТЕРА, УЦЕЛЕЛО В ПЕРЕВОДЕ', check_survived),
 ]
 
 # Справочная проверка: в общий прогон не входит, запускается по требованию
