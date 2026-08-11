@@ -329,6 +329,21 @@ def main() -> int:
                     meta.append(f'{lg}/{fp.stem} title ≠ h1')
     check('шапка_head_согласна', meta)
 
+    # 16. слово, приросшее к выделению: «two formsclassified with».
+    # Только русский и английский. В азербайджанском и турецком падежный
+    # суффикс примыкает к выделенному слову без пробела по правилу языка
+    # («<strong>manik epizod</strong>la», «<strong>uşaq istismarı</strong>dır»),
+    # и там этот признак не работает: из 29 таких мест дефектов было шесть.
+    glued = []
+    for lg in ('ru', 'en'):
+        for fp in sorted(DIRS[lg].glob('*.html')):
+            m = re.search(r'<main[\s\S]*</main>', raw(fp))
+            if not m:
+                continue
+            for g in re.finditer(r'</strong>([A-Za-zА-Яа-яЁё])', m.group(0)):
+                glued.append(f'{lg}/{fp.stem} …</strong>{g.group(1)}…')
+    check('слово_не_приросло_к_выделению', glued)
+
     # 10. сборка из данных идемпотентна (шапки и разделы совпадают с _codes_canon.json)
     # проверяется отдельными скриптами; здесь только напоминание в отчёте
     report['напоминание'] = 'после правок прогнать build_headers.py и build_sections.py — оба должны показать 0 изменений'

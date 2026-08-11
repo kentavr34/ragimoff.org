@@ -199,6 +199,10 @@ GONE = {
     'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
     'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
     'напряженная', 'искаженными',
+    # партия 8: 6A06, 6A20, 6B20–6B23
+    '<p>нарушение <strong>две формы', '<p><strong>клозапин</strong>',
+    'накопительство, ДТР', 'аутизм, ДТР', '(ТДР; МКБ-11', 'эффективны при ДТР',
+    'ОКР и ДТР', 'ОКР, ДТР,', '<p>обсессивно-компульсивное расстройство',
     # утечки с азербайджанского и фамилии кириллицей вместо латиницы книги
     '2009 icmal', 'lupus paneli', 'ikiz meta-analiz', 'network meta-analiz',
     'Amiloid hipotezi', 'СДВГ + tik', 'Эскироль', 'Кальбаум', 'Крафт-Эбинг',
@@ -267,7 +271,8 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
-    'Amphetamine synthesis by Edeleano', '<strong>Hippokrat</strong>',
+    'Amphetamine synthesis by Edeleano', 'two forms</strong>classified',
+    '<p><strong>clozapine</strong>', '<strong>qualifier</strong>s:', '<strong>Hippokrat</strong>',
     # партия 4: 6A21, 6A22
     'additionally <strong>Continuation of psychotic',
     'affective disorder</strong> On one hand', 'overlap</strong> high genetic',
@@ -276,7 +281,8 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
+    'strömgren', 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
+    'yönetimi</strong>neye', 'alanı</strong>nin', '<strong>Manik epizod</strong>la', 'rehberi</strong>dır', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
     'Kraft-Ebing', 'Source-whitelist bodies', 'Stepwise inme',
     # §10 «Мифы»: сплошное чтение 104 карточек
