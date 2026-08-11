@@ -21,6 +21,10 @@ fix_yo.py — приводит русский перевод к последов
 Замена идёт по видимому тексту внутри <main>, минуя <script> и <style>:
 сплошная замена по файлу однажды уже сломала JavaScript на 137 страницах.
 
+Порядок прогона: `fix_yo.py` правит и книгу, и `_codes_canon.json`; после
+него нужен `fix_meta.py` (заголовок вкладки лежит вне `<main>` и заменой по
+видимому тексту не задевается), и только потом `build_headers.py`.
+
     python fix_yo.py --dry     показать, что будет заменено
     python fix_yo.py           заменить
 """
@@ -59,6 +63,8 @@ MANUAL = {
     'нелеченого': 'нелечёного', 'нелеченом': 'нелечёном', 'нелеченых': 'нелечёных',
     # местоимение и наречие: написания «ее» и «еще» в русском не существует
     'ее': 'её', 'еще': 'ещё',
+    # личные формы на «-ёт»: ударное окончание, «е» здесь невозможно
+    'придет': 'придёт', 'пьет': 'пьёт',
 }
 
 
@@ -101,6 +107,36 @@ def build_map() -> dict[str, str]:
         no = [w for w in variants if 'ё' not in w]
         if len(yo) == 1 and no:
             out[no[0]] = yo[0]
+
+    # Сравнение слово в слово видит только те формы, которые книга написала
+    # обоими способами. «Определённых» в ней есть, а «определенного» осталось
+    # без пары — и прошло бы мимо. Второй проход добирает такие формы через
+    # ОСНОВУ прилагательного: «определённых» без окончания «ых» даёт
+    # «определённ», и по ней получают «ё» все прочие окончания той же основы.
+    #
+    # Основу нельзя обрезать по самой букве «ё» — так уже пробовали, и
+    # «определённых» дало основу «определё», а по ней «определение» стало
+    # «определёнием»: 977 замен, почти все неверные. Основа сохраняется
+    # целиком, отсекается только окончание, поэтому «определённ» и
+    # «определени» больше не пересекаются.
+    END = ('ыми', 'ого', 'ому', 'ими', 'его', 'ему', 'ый', 'ая', 'ое', 'ые',
+           'ым', 'ом', 'ой', 'ую', 'ых', 'ий', 'яя', 'ее', 'ие', 'им', 'ем',
+           'ей', 'юю', 'их')
+    stems = set()
+    for variants in forms.values():
+        for w in variants:
+            for e in END:
+                if w.endswith(e) and 'ё' in w[:-len(e)] and len(w) - len(e) >= 6:
+                    stems.add(w[:-len(e)])
+    for stem in stems:
+        plain = stem.replace('ё', 'е')
+        for variants in forms.values():
+            for w in variants:
+                if 'ё' in w or w in out or not w.startswith(plain) or w == plain:
+                    continue
+                if w[len(plain):] not in END:
+                    continue
+                out[w] = stem + w[len(plain):]
     return out
 
 
@@ -114,6 +150,38 @@ def same_case(src: str, dst: str) -> str:
     if src.isupper() and len(src) > 1:
         return dst.upper()
     return dst[0].upper() + dst[1:] if src[0].isupper() else dst
+
+
+def sync_canon(pairs: dict, dry: bool) -> int:
+    """Канон должен писать те же слова, что и книга.
+
+    Иначе `build_headers.py` возвращает «ОСЛОЖНЕННОЕ» поверх «ОСЛОЖНЁННОЕ»
+    и перестаёт быть идемпотентным — это уже случалось дважды. Шаг стоит
+    здесь, а не отдельным скриптом, именно чтобы его нельзя было забыть.
+    После него нужен `fix_meta.py`: <title> лежит вне <main> и заменой по
+    видимому тексту не задевается."""
+    canon = ROOT / '_codes_canon.json'
+    if not canon.exists() or not pairs:
+        return 0
+    t = canon.read_text(encoding='utf-8')
+    rx = re.compile(BOUND_L + '(' + '|'.join(
+        sorted((re.escape(w) for w in pairs), key=len, reverse=True)) + ')' + BOUND_R,
+        re.IGNORECASE)
+    n = 0
+
+    def rep(m):
+        nonlocal n
+        src = m.group(1)
+        dst = pairs.get(src.lower())
+        if not dst:
+            return src
+        n += 1
+        return same_case(src, dst)
+
+    new = rx.sub(rep, t)
+    if n and not dry:
+        canon.write_bytes(new.encode('utf-8'))
+    return n
 
 
 def main() -> int:
@@ -165,6 +233,10 @@ def main() -> int:
             fp.write_bytes((new.replace('\n', '\r\n') if crlf else new).encode('utf-8'))
 
     print(f'  {"нашлось" if DRY else "заменено"}: {total} в {touched} файлах')
+    ncanon = sync_canon(pairs, DRY)
+    if ncanon:
+        print(f'  в _codes_canon.json: {ncanon} — дальше нужен fix_meta.py,'
+              f' затем build_headers.py')
     for w, n in seen.most_common(20):
         print(f'      {w} → {pairs[w]}  ×{n}')
     if len(seen) > 20:
