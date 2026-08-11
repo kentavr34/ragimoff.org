@@ -199,6 +199,14 @@ GONE = {
     'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
     'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
     'напряженная', 'искаженными',
+    # партия 9: сокращения сведены к латинским, как в мастере
+    'ОКР, ДТД', 'при БДД', 'для БДД', 'признак БДД', 'с БДД)', 'кПТСР',
+    '(РРП) тип', 'не к РРП', 'самого РАД', '«РАД —', 'что и РП,', 'от РАД, ДСЭД',
+    'при ДСЭД', 'РАД и ДСЭД', 'РП, ДРСП', 'переход в РП', 'риск РП/АСРЛ',
+    'гиперарузал', 'как формальность', 'Illness Anxiety Disorder</strong> (F45.22)',
+    'убежденностью пациента', 'клиническим отчетам',
+    'ипохондрия — спектр ОКР</strong> включён внутрь',
+    'консультативно- liaison',
     # партия 8: 6A06, 6A20, 6B20–6B23
     '<p>нарушение <strong>две формы', '<p><strong>клозапин</strong>',
     'накопительство, ДТР', 'аутизм, ДТР', '(ТДР; МКБ-11', 'эффективны при ДТР',
@@ -271,7 +279,7 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
-    'Amphetamine synthesis by Edeleano', 'two forms</strong>classified',
+    'Amphetamine synthesis by Edeleano', 'Illness Anxiety Disorder</strong> (F45.22)', 'two forms</strong>classified',
     '<p><strong>clozapine</strong>', '<strong>qualifier</strong>s:', '<strong>Hippokrat</strong>',
     # партия 4: 6A21, 6A22
     'additionally <strong>Continuation of psychotic',
@@ -281,7 +289,8 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
+    'strömgren', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
+    'olarak resmiyet (komorbid', 'Şeklinde resmiyet', 'resmiyeti.', "DSM-III'ten resmiyet", 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
     'yönetimi</strong>neye', 'alanı</strong>nin', '<strong>Manik epizod</strong>la', 'rehberi</strong>dır', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
     'Kraft-Ebing', 'Source-whitelist bodies', 'Stepwise inme',
