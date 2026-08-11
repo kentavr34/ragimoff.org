@@ -199,6 +199,9 @@ GONE = {
     'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
     'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
     'напряженная', 'искаженными',
+    # партия 12: незакрытая скобка и код DSM в 6B22 (мастер даёт F42.8)
+    'DSM-5-TR: F65.2 — стойкое', 'Movement Disorder</span> — нейроонтогенетическое',
+    'DSM-5-TR: F42.2 (специфицированное',
     # партия 11: «идентификация» вместо «идентичность» (структура личности)
     'нарушение идентификации', 'новую идентификацию', 'Множественные идентификации',
     'Различные идентификации', '«идентификациями», «альтерами»', 'Каждая идентификация',
@@ -287,7 +290,21 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
-    'Amphetamine synthesis by Edeleano', 'Klein-Levin', 'Illness Anxiety Disorder</strong> (F45.22)', 'two forms</strong>classified',
+    'Amphetamine synthesis by Edeleano',
+    # партия 13: определения §1 английского дерева
+    'Manic episode</strong> — It is characterized', 'major depressive</strong> Characterized by episodes',
+    "history <strong>only one</strong> A major depressive",
+    'mental acts) characterized by the disorder', '(DSO)</strong> Added:',
+    'non-dominant identifications', '<strong>Without compensatory behaviors</strong>',
+    'Pathological Body Odor Disturbance (BOD)', '<p>Repeated depressive disorder',
+    'DSM-5-TR — separate diagnosis.', 'characteristic domains</strong> has been modeled',
+    'as categorical diagnosis <strong>has been abolished', 'hallucinations) characterized neuropsychiatric',
+    '<span class="icd">HA20</span>DSM-5-TR',
+    'Specific Learning Disorder — a neurodevelopmental',
+    'Coordination Disorder, DCD — a neurodevelopmental',
+    'Stereotypic Movement Disorder — characterized',
+    'DSM-5-TR: F98.21 — characterized', 'F52.32 in men — persistent',
+    'DSM-5-TR: F42.2 specified within OCD', 'Klein-Levin', 'Illness Anxiety Disorder</strong> (F45.22)', 'two forms</strong>classified',
     '<p><strong>clozapine</strong>', '<strong>qualifier</strong>s:', '<strong>Hippokrat</strong>',
     # партия 4: 6A21, 6A22
     'additionally <strong>Continuation of psychotic',
@@ -297,7 +314,8 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', 'Klein-Levin', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
+    'strömgren', 'Bozukluk (IED; ICD-11)', 'kısıtlılık (CATALISE).',
+    'DSM-5-TR: F42.2 OKB spektrumu', 'Klein-Levin', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
     'olarak resmiyet (komorbid', 'Şeklinde resmiyet', 'resmiyeti.', "DSM-III'ten resmiyet", 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
     'yönetimi</strong>neye', 'alanı</strong>nin', '<strong>Manik epizod</strong>la', 'rehberi</strong>dır', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
