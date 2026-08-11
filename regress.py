@@ -201,6 +201,8 @@ GONE = {
     'Ливингстон Г.', 'Бинсвангер О.',
     # ALL-CAPS, испорченный первой версией fix_yo.py
     'Лёгкое НЕЙРОКОГНИТИВНОЕ', 'РАССТРОЙСТВА Приёма ПИЩИ',
+    'Koccaro', 'Бине и Симон', 'Шнейдер (1959)', 'Кэндес Ньюмейкер',
+    'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -244,7 +246,7 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
+    'strömgren', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
     'Kraft-Ebing', 'Source-whitelist bodies', 'Stepwise inme',
     # §10 «Мифы»: сплошное чтение 104 карточек

@@ -250,13 +250,31 @@ def check_alien(lg: str) -> list:
     if lg in ('az', 'tr'):
         return []
     az, en = vocab('az'), vocab('en')
+    # Мастер сам объявляет, какие латинские слова у него английские: они
+    # стоят в <span lang="en">. «bailout», «Q-tip» — английские термины,
+    # и в переводе им место; азербайджанскими их считать нельзя.
+    az_en = set()
+    for fp in pages('az'):
+        for m in re.finditer(r'<span lang="en"[^>]*>([\s\S]*?)</span>',
+                             fp.read_text(encoding='utf-8', errors='ignore')):
+            az_en |= {w.lower() for w in LATIN_WORD.findall(H.unescape(m.group(1)))}
     hits = []
     for fp in pages(lg):
         raw = fp.read_text(encoding='utf-8', errors='ignore')
         v = visible(raw, keep_marks=True)
-        # выкидываем то, что помечено как иноязычная вставка осознанно
-        v = re.sub(r'\x02[a-z]{2}\x02[\s\S]*?\x03', ' ', v)
-        v = v.replace('\x04', ' ')
+        # Обходится только вставка на СВОЁМ языке: «<span lang="az">» в
+        # русском тексте — осознанный азербайджанский термин.
+        #
+        # Помеченное как английское НЕ обходится. Однажды lang_tags.py принял
+        # азербайджанское «network meta-analiz» за английское и обернул его в
+        # <span lang="en"> — утечка спряталась за меткой и стала невидимой.
+        # Частотный признак ниже (известно аз., неизвестно англ.) отличает
+        # настоящий английский сам, метка ему не нужна.
+        v = re.sub(chr(2) + r'(?!en)[a-z]{2}' + chr(2) + r'[\s\S]*?' + chr(3), ' ', v)
+        # Только сами маркеры. Отдельной заменой «en» на пробел здесь стоять
+        # не может: подстрока «en» сидит внутри слов, и «Impulsiveness»
+        # распадалось на «Impulsiv» и «ess», «Levenson» — на «Lev» и «son».
+        v = re.sub('[' + chr(2) + chr(3) + chr(4) + ']', ' ', v)
         for m in LATIN_WORD.finditer(v):
             tok = m.group(0)
             w = tok.lower()
@@ -264,7 +282,7 @@ def check_alien(lg: str) -> list:
             if len(w) < 3 or tok.isupper() or ROMAN.match(tok):
                 continue
             # известно азербайджанскому и неизвестно английскому — утечка
-            if az[w] >= 2 and en[w] == 0:
+            if az[w] >= 2 and en[w] == 0 and w not in az_en:
                 hits.append((fp.parent.name + '/' + fp.stem, m.group(0),
                              v[max(0, m.start() - 50):m.end() + 30].strip()))
     return hits
@@ -322,6 +340,52 @@ def check_names(lg: str) -> list:
     return hits
 
 
+# ── 6. имя, пропавшее в переводе ───────────────────────────────────────────
+# Проверка выше ловит фамилию, записанную кириллицей С ИНИЦИАЛАМИ. Но
+# «Эскироль (1838)» и «Акискаль — 15–50% конверсия» инициалов не имеют, и
+# шаблон их не видел. Здесь другой признак: латинское слово, которое стоит
+# и в мастере, и в английском переводе на одном и том же месте, а в третьем
+# переводе исчезло. Согласие двух источников делает пропажу однозначной.
+#
+# Именем считается только ЦИТАТНАЯ форма: фамилия с инициалами, с годом или
+# с «et al.». Без этого сужения проверка дала 1521 срабатывание — она ловила
+# всякий английский термин, законно переведённый («Mental Retardation» →
+# «Умственная отсталость»), и эпонимы, которые по-русски и пишутся кириллицей
+# («синдром Дауна», «синдром Эдвардса»). Ни то, ни другое дефектом не является.
+NAMEISH = re.compile(
+    r'(?<![\w-])([A-Z][a-zA-Zöäüéèçß]{3,})'
+    r'(?=\s(?:[A-Z]\.|et al|\(\d{4}))')
+# Обычное английское слово, за которым случайно стоит год: «Guideline (2010)»,
+# «Definition (2002, обновление)», «Schedule I».
+NOT_NAME = {'Diagnostic', 'Clinical', 'International', 'World', 'American',
+            'Definition', 'Commitments', 'Guideline', 'Guidelines', 'Schedule',
+            'Practice', 'Report', 'Update', 'Consensus', 'Statement', 'Edition',
+            'Version', 'Manual', 'Criteria', 'Study', 'Trial', 'Review'}
+
+
+def check_lostname(lg: str) -> list:
+    if lg in ('az', 'en'):
+        return []
+    hits = []
+    for c in cards():
+        fps = [DIRS[x] / f'{c}.html' for x in ('az', 'en', lg)]
+        if not all(f.exists() for f in fps):
+            continue
+        bl = [blocks(f.read_text(encoding='utf-8', errors='ignore')) for f in fps]
+        if len({len(b) for b in bl}) != 1:
+            continue                    # рассинхрон блоков — забота paracheck.py
+        for az_b, en_b, ot_b in zip(*bl):
+            shared = ({m.group(1) for m in NAMEISH.finditer(az_b[0])}
+                      & {m.group(1) for m in NAMEISH.finditer(en_b[0])}) - NOT_NAME
+            for w in sorted(shared):
+                # русская фамилия по-русски и пишется кириллицей — см. NATIVE
+                if lg == 'ru' and w in ('Korsakoff', 'Bekhterev', 'Pavlov'):
+                    continue
+                if w not in ot_b[0]:
+                    hits.append((lg + '/' + c, w, ot_b[0][:120]))
+    return hits
+
+
 CHECKS = [
     ('caps',  'ЗАГЛАВНАЯ ПОСРЕДИ ФРАЗЫ', check_caps),
     ('dash',  'ПОСЛЕ ТИРЕ ЗАГЛАВНАЯ, В МАСТЕРЕ СТРОЧНАЯ', check_dash),
@@ -329,6 +393,7 @@ CHECKS = [
     ('alien', 'ЧУЖОЕ СЛОВО БЕЗ ПЕРЕВОДА', check_alien),
     ('yo',    'Ё И Е В ОДНОМ СЛОВЕ', check_yo),
     ('names', 'ФАМИЛИЯ КИРИЛЛИЦЕЙ', check_names),
+    ('lostname', 'ИМЯ ЕСТЬ В МАСТЕРЕ И В АНГЛИЙСКОМ, В ПЕРЕВОДЕ НЕТ', check_lostname),
 ]
 
 
