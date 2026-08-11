@@ -173,6 +173,11 @@ GONE = {
     'в связи базальные ганглии', 'идентичности <strong>вмешивается',
     'excessive acquisition</strong> с;', 'классификация под;',
     'представляет стандартные протоколы для.', 'ДИП',
+    # вычитка русского, партия 3: инверсия «оставлен» и спутанные корни
+    'оставлены в современной клинической', 'впоследствии оставлен.',
+    'были оставлены из-за отсутствия', 'избегание, прыжки, игры с мячом',
+    'Не терять необходимые вещи', 'Побеги или лазание',
+    'играть в спокойные занятия',
  ],
  'en': [
     'Illuminated ADA', 'in the yard with a...', 'clinical ordinate',
@@ -205,6 +210,9 @@ GONE = {
     'relapse rates of 50–80%', '(2,8%)', '15,2 / 100', '3,9–9,6 / 100',
     # сверка абзацев 2026-08-11: отозванное утверждение уцелело в переводах
     'In the 1830s, Pinel', 'Comparison of self-help internet-based',
+    # вычитка английского, партия 3
+    'Avoid sitting in places that require', 'Inability to work.',
+    'Answer a question that has not been completed',
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
@@ -241,6 +249,8 @@ GONE = {
     '%0,5–6 (geniş aralık', '%75 hastada', 'J Clin Psychiatry 2006',
     # сверка абзацев 2026-08-11
     "1830'larda Pinel", '6D30 eksibisyonizmle paralel gelişim',
+    # вычитка турецкого, партия 3: kaçma (бегство) вместо koşma (бег)
+    'yerlerde kaçma veya tırmanma',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
