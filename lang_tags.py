@@ -327,6 +327,35 @@ def tag_ru(text: str, found: list) -> str:
     return ''.join(out)
 
 
+# ── A2. таблица кодов: три языковые колонки ────────────────────────────────
+# «Kod | Azərbaycanca | English (ICD-11) | Русский (МКБ-11)» — смысл таблицы
+# в том, что колонки на РАЗНЫХ языках, и в каждом издании они одни и те же.
+# Помечаем сразу столбцами: гадать не о чем, шапка сама это объявляет.
+CODE_ROW = re.compile(r'(<tr><td class="kod-cell">[^<]*</td>)'
+                      r'(<td[^>]*>)([\s\S]*?)(</td>)'
+                      r'(<td[^>]*>)([\s\S]*?)(</td>)'
+                      r'(<td[^>]*>)([\s\S]*?)(</td>)')
+
+
+def tag_code_table(text: str) -> tuple[str, int]:
+    n = 0
+
+    def row(m):
+        nonlocal n
+        g = list(m.groups())
+        for idx, lg in ((1, 'az'), (4, 'en'), (7, 'ru')):
+            if 'lang=' not in g[idx]:
+                g[idx] = g[idx][:-1] + f' lang="{lg}">'
+                n += 1
+        return ''.join(g)
+
+    text, k = CODE_ROW.subn(row, text)
+    # ячейка уже несёт язык — вложенная метка того же языка избыточна
+    text = re.sub(r'(<td lang="(\w\w)">)<span lang="\2">((?:(?!</span>)[\s\S])*)</span>(</td>)',
+                  r'\1\3\4', text)
+    return text, n
+
+
 def main() -> int:
     grand, examples = Counter(), []
     for lg, folder in DIRS.items():
@@ -343,6 +372,8 @@ def main() -> int:
             for rx, rep in CONTAINERS:
                 new, n = rx.subn(rep, new)
                 cont += n
+            new, n = tag_code_table(new)
+            cont += n
             body = re.search(r'<main[\s\S]*</main>', new) if lg != 'en' else None
             if body:
                 found = []
