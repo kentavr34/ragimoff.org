@@ -199,6 +199,14 @@ GONE = {
     'Гиппократ</strong> — Термин «меланхолия», IV', 'GABA-ергической',
     'запрещен ', 'нелеченый', 'нелеченая', 'нелеченых', 'раздраженного кишечника',
     'напряженная', 'искаженными',
+    # партия 11: «идентификация» вместо «идентичность» (структура личности)
+    'нарушение идентификации', 'новую идентификацию', 'Множественные идентификации',
+    'Различные идентификации', '«идентификациями», «альтерами»', 'Каждая идентификация',
+    'недоминантные идентификации', 'Не-доминантные идентификации',
+    'Доминантная идентификация', 'доминантной идентификации',
+    'к себе (идентификация, самооценка', '«DIP-NOS»',
+    # партия 10: имя синдрома — Willi Kleine и Max Levin
+    'Клейна-Левина', 'Клейне-Левина',
     # партия 9: сокращения сведены к латинским, как в мастере
     'ОКР, ДТД', 'при БДД', 'для БДД', 'признак БДД', 'с БДД)', 'кПТСР',
     '(РРП) тип', 'не к РРП', 'самого РАД', '«РАД —', 'что и РП,', 'от РАД, ДСЭД',
@@ -279,7 +287,7 @@ GONE = {
     # вычитка английского, партия 3
     'Avoid sitting in places that require', 'Inability to work.',
     'Answer a question that has not been completed',
-    'Amphetamine synthesis by Edeleano', 'Illness Anxiety Disorder</strong> (F45.22)', 'two forms</strong>classified',
+    'Amphetamine synthesis by Edeleano', 'Klein-Levin', 'Illness Anxiety Disorder</strong> (F45.22)', 'two forms</strong>classified',
     '<p><strong>clozapine</strong>', '<strong>qualifier</strong>s:', '<strong>Hippokrat</strong>',
     # партия 4: 6A21, 6A22
     'additionally <strong>Continuation of psychotic',
@@ -289,7 +297,7 @@ GONE = {
  ],
  'tr': [
     'Işıklı ADA', 'heyecanım tabancayla', 'farklılaşma diploması', 'KTTD',
-    'strömgren', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
+    'strömgren', 'Klein-Levin', 'olarak resmiyet.', 'Bozukluk” resmiyet;', 'Recurrent resmiyet.',
     'olarak resmiyet (komorbid', 'Şeklinde resmiyet', 'resmiyeti.', "DSM-III'ten resmiyet", 'iki formu</strong>ile', '<p>ihlal <strong>', '<p><strong>klozapin</strong>',
     'yönetimi</strong>neye', 'alanı</strong>nin', '<strong>Manik epizod</strong>la', 'rehberi</strong>dır', '<strong>Hippokrat</strong>', 'Kənan Rəhimov', 'internatür', 'Kaynağa özgü belirteçler', 'PTSB',
     'Toksikoloji skrining', 'kontenjan yönetimi', 'hipokampotomi',
