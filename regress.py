@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §11 «Источники», 2026-08-12
+    'Coccaro E.F. et al. tədqiqatları',
     # обломки слов
     'həyətəm', 'rağın', 'qıdaşma', 'qıdaşdırma', 'yaşıq,', 'parmaq qılığı',
     'sıxılı', 'tezliyi artım', 'qıçtı', 'çiknə', 'weksloid', 'qaz-zəkam',
@@ -143,6 +145,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §11 «Источники», 2026-08-12
+    'Исследования Coccaro E.F.',
     # §8 «Лечение», 2026-08-12
     'ССР, КПТ, комбинация', 'Manual Taper</span>l Taper', 'Ахэи',
     'Адаптация Y-BOCS для БДР', 'диагноза — Ston (Stone J.)',
@@ -286,6 +290,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §11 «Источники» и навигация, 2026-08-12
+    'Studies by Coccaro', 'DEPRESIVE', '← µ=',
     # §8 «Лечение», 2026-08-12
     'version of ADHD', 'based on ASD at early age', 'intended in self-harm striking',
     'based on ergotherapy', 'the base for influencing core symptoms',
@@ -374,6 +380,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §11 «Источники», 2026-08-12
+    'Coccaro E.F. et al. çalışmaları',
     # §8 «Лечение», 2026-08-12
     'Stimulant + Davranış Bozukluğu', 'OSB temelinde erken yaşta',
     "TDA'nın klasik formunu", 'stimulant veya non-stimulant + CBT',
