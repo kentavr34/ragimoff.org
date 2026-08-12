@@ -20,6 +20,9 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §H часть 2 — вводные страницы, 2026-08-12
+    '«Düzəliş et» düyməsi var', 'Düzəlt düyməsinə basaraq',
+    '103 pozuntu', 'AACE, APA, NICE',
     # §H справочные страницы и навигация, 2026-08-12
     # §G главы 7, 8, 16, 17, 2026-08-12
     'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
@@ -158,6 +161,9 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §H часть 2 — вводные страницы, 2026-08-12
+    'кнопка «Исправить»', 'нажав кнопку',
+    '103 расстройства', '103 нарушения', 'AACE, APA, NICE',
     # §H справочные страницы и навигация, 2026-08-12
     'Полное название на азербайджанском языке',
     'ПАРЦИАЛЬНОЕ ДИССОЦИАТИВНОЕ ИД',
@@ -321,6 +327,9 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §H часть 2 — вводные страницы, 2026-08-12
+    '“Edit” button', 'by pressing the button', '103 disorders',
+    'AACE, APA, NICE', 'context</strong> verilir', '(CBT + ICD-10',
     # §H справочные страницы и навигация, 2026-08-12
     'Full name in Azerbaijani', 'ADHD</td><td>Opioid Use Disorder',
     'Bipolyar II Pozuntu', 'Bipolyar I Pozuntu', 'Major Depressiv Pozuntu',
@@ -433,6 +442,9 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §H часть 2 — вводные страницы, 2026-08-12
+    '“Düzelt” düğmesi var', 'Düzelt düğmesine basarak',
+    '103 bozukluk', 'AACE, APA, NICE',
     # §H справочные страницы и навигация, 2026-08-12
     'Azerbaycan dili tam adı',
     # §G главы 7, 8, 16, 17, 2026-08-12
