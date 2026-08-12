@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §H2 вводные страницы, 2026-08-12
+    '«– OKP üçün).»>ERP',
     # §H часть 2 — вводные страницы, 2026-08-12
     '«Düzəliş et» düyməsi var', 'Düzəlt düyməsinə basaraq',
     '103 pozuntu', 'AACE, APA, NICE',
@@ -161,6 +163,11 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §H2 вводные страницы, 2026-08-12
+    '<strong>Из 11 разделов</strong>', 'с <strong>Где это уместно</strong>',
+    '<strong>из международных правил</strong>', 'Наиболее основные скрининговые',
+    'очень распространено', 'патологического сюжета',
+    'приблизительно-конкретный план', 'Для ОКР: ЭРП',
     # §H часть 2 — вводные страницы, 2026-08-12
     'кнопка «Исправить»', 'нажав кнопку',
     '103 расстройства', '103 нарушения', 'AACE, APA, NICE',
@@ -327,6 +334,15 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §H2 вводные страницы, 2026-08-12
+    '<strong>From 11 sections</strong>', 'in appropriate context</strong> Integrated',
+    'Medication names both', '<strong>In Appendix B</strong> Most used',
+    'terminology systematized in', 'ERP essential for OCD',
+    '<strong>Pharmacotherapy</strong> In many cases', 'definitive minimal effective dose',
+    'medication</strong> It requires caution', '<strong>Somatic presentation</strong> Widespread',
+    'Stigma and isolation', 'avoid pathological subject', 'approximate-definite plan',
+    'Assessment structured using scales like', 'Treatment plan <strong>Should cover',
+    'Individuals at school/workplace', '<strong>High emotional load</strong> It is a profession',
     # §H часть 2 — вводные страницы, 2026-08-12
     '“Edit” button', 'by pressing the button', '103 disorders',
     'AACE, APA, NICE', 'context</strong> verilir', '(CBT + ICD-10',
@@ -442,6 +458,10 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §H2 вводные страницы, 2026-08-12
+    'OKB için). ERP', '<strong>Farmakoterapi</strong> Çoğu durumda',
+    '<strong>Somatik sunum</strong> Çok', 'patolojik örgü olmaması',
+    '<strong>C-SSRS</strong> Şeklinde', "Ek B'de</strong> En sık",
     # §H часть 2 — вводные страницы, 2026-08-12
     '“Düzelt” düğmesi var', 'Düzelt düğmesine basarak',
     '103 bozukluk', 'AACE, APA, NICE',

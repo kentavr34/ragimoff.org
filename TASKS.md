@@ -225,13 +225,33 @@
       **en/kitab-haqqinda**: «XBT-11» превратилось в «CBT» — классификация
       стала психотерапией; азербайджанское «verilir» осталось в английской
       фразе. Оба исправлены. `regress.py` 1001 → 1020 строк.
-      **Осталось:** сплошная вычитка «структуры фразы» на en/tr/ru версиях
-      kitab-haqqinda и yekun — там ещё десятки сломанных фраз того же рода
-      («Each clinical chapter From 11 sections consists of», «The patient has
-      reached the definitive minimal effective dose. ;», «Psychiatric
-      interview – High emotional load It is a profession»). Плюс список
-      «11 разделов главы» в kitab-haqqinda не совпадает с реальными
-      11 разделами карточек — он устарел.
+      **Вторая половина сделана 2026-08-12.** `kitab-haqqinda` и `yekun`
+      прочитаны блок в блок против мастера (75 и 103 блока × 4 языка).
+      Мастер оказался чистым везде, кроме одного места: в `yekun` §ОКР
+      стояло `«– OKP üçün).»>ERP mütləq` — обломок разметки, и оба перевода
+      его добросовестно скопировали. Исправлено во всех четырёх.
+      В переводах 24 сломанные фразы: «Каждая клиническая глава Из 11
+      разделов состоит из», «с Где это уместно интегрирована», «Лечение
+      каждого расстройства из международных правил даются ссылки»,
+      «Соматическая презентация очень распространено», «Наиболее основные
+      скрининговые инструменты»; en «Each clinical chapter From 11 sections
+      consists of», «Medication names both INN, is also given under a brand
+      name», «The patient has reached the definitive minimal effective
+      dose.;», «C-SSRS Assessment structured using scales like»,
+      «Psychiatric interview – High emotional load It is a profession»;
+      tr «Farmakoterapi Çoğu durumda adjuvan», «Somatik sunum Çok yaygındır».
+      Смысловые: en звал §4 «CBT» вместо CDDR (классификация → психотерапия),
+      писал «biopsychosocial approach» там, где мастер говорит «подход
+      Попова и Вида», и «Stigma and isolation» вместо «стигма и
+      приватность». `regress.py` 1020 → 1052 строки.
+      **Осталось от H:** список «11 разделов главы» в kitab-haqqinda не
+      совпадает с реальными 11 разделами карточек — он устарел (это правка
+      содержания, не фразы).
+- [ ] **L. `lang_tags.py` метит фамилию как английскую.** В
+      ru/elave-acde.html он ставит `<span lang="en">Popov Yu</span>` —
+      русская фамилия помечена английским, вопреки правилу в CLAUDE.md
+      («фамилии авторов намеренно не метятся»). Генератор идемпотентен и
+      будет возвращать метку, поэтому чинить надо сам `lang_tags.py`.
 - [ ] **K. Справочники не расшифровывают собственные сокращения.**
       Найдено при H. Таблица сокращений во всех четырёх деревьях —
       латинская и почти целиком общая. Русский читатель ищет «СДВГ»,
