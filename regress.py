@@ -20,6 +20,14 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §E коды против ICD-11 MMS, 2026-08-12
+    'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
+    'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
+    'ICD-11. HA01 Erectile', 'ICD-11. HA02 Anorgasmia', 'ICD-11. HA03 Early',
+    '<span class="icd">8A05</span>', '<span class="icd">GA34</span>',
+    '<span class="icd">HA01</span>', '<span class="icd">HA02</span>',
+    '<span class="icd">HA03</span>', '<span class="icd">7A21</span>',
+    '<span class="icd">7A60</span>',
     # §11 «Источники», 2026-08-12
     'Coccaro E.F. et al. tədqiqatları',
     # обломки слов
@@ -145,6 +153,14 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §E коды против ICD-11 MMS, 2026-08-12
+    'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
+    'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
+    'ICD-11. HA01 Erectile', 'ICD-11. HA02 Anorgasmia', 'ICD-11. HA03 Early',
+    '<span class="icd">8A05</span>', '<span class="icd">GA34</span>',
+    '<span class="icd">HA01</span>', '<span class="icd">HA02</span>',
+    '<span class="icd">HA03</span>', '<span class="icd">7A21</span>',
+    '<span class="icd">7A60</span>',
     # §11 «Источники», 2026-08-12
     'Исследования Coccaro E.F.',
     # §8 «Лечение», 2026-08-12
@@ -290,6 +306,14 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §E коды против ICD-11 MMS, 2026-08-12
+    'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
+    'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
+    'ICD-11. HA01 Erectile', 'ICD-11. HA02 Anorgasmia', 'ICD-11. HA03 Early',
+    '<span class="icd">8A05</span>', '<span class="icd">GA34</span>',
+    '<span class="icd">HA01</span>', '<span class="icd">HA02</span>',
+    '<span class="icd">HA03</span>', '<span class="icd">7A21</span>',
+    '<span class="icd">7A60</span>',
     # §11 «Источники» и навигация, 2026-08-12
     'Studies by Coccaro', 'DEPRESIVE', '← µ=',
     # §8 «Лечение», 2026-08-12
@@ -380,6 +404,15 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §E коды против ICD-11 MMS, 2026-08-12
+    'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
+    'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
+    'ICD-11. HA01 Erectile', 'ICD-11. HA02 Anorgasmia', 'ICD-11. HA03 Early',
+    '<span class="icd">8A05</span>', '<span class="icd">GA34</span>',
+    '<span class="icd">HA01</span>', '<span class="icd">HA02</span>',
+    '<span class="icd">HA03</span>', '<span class="icd">7A21</span>',
+    '<span class="icd">7A60</span>',
+    'KOMPULSİF CİNSEL TOPLUM KARŞITI DAVRANIM',
     # §11 «Источники», 2026-08-12
     'Coccaro E.F. et al. çalışmaları',
     # §8 «Лечение», 2026-08-12
