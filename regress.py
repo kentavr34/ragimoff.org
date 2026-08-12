@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §F 6B80, 2026-08-12
+    'XBT-11 — paralel; «atypical sinir anoreksiyası»',
     # §E коды против ICD-11 MMS, 2026-08-12
     'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
     'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
@@ -153,6 +155,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §F 6B80, 2026-08-12
+    'МКБ-11 — параллельно; «атипичная нервная анорексия»',
     # §E коды против ICD-11 MMS, 2026-08-12
     'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
     'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
@@ -306,6 +310,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §F 6B80, 2026-08-12
+    'atypical nervous anorexia',
     # §E коды против ICD-11 MMS, 2026-08-12
     'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
     'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
@@ -404,6 +410,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §F 6B80, 2026-08-12
+    'ICD-11 — paralel; “atipik anoreksiya nervoza”',
     # §E коды против ICD-11 MMS, 2026-08-12
     'Statistics. 8A05 Primary tics', 'ICD-11. 7A21 Hypersomnolence',
     'ICD-11. 7A60 Circadian', 'ICD-11. GA34 Premenstrual',
