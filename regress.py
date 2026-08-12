@@ -20,6 +20,7 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §H справочные страницы и навигация, 2026-08-12
     # §G главы 7, 8, 16, 17, 2026-08-12
     'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
     # §F 6B80, 2026-08-12
@@ -157,6 +158,9 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §H справочные страницы и навигация, 2026-08-12
+    'Полное название на азербайджанском языке',
+    'ПАРЦИАЛЬНОЕ ДИССОЦИАТИВНОЕ ИД',
     # §G главы 7, 8, 16, 17, 2026-08-12
     'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
     'циркадный ритм не нарушен', 'приступы в школе',
@@ -317,6 +321,12 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §H справочные страницы и навигация, 2026-08-12
+    'Full name in Azerbaijani', 'ADHD</td><td>Opioid Use Disorder',
+    'Bipolyar II Pozuntu', 'Bipolyar I Pozuntu', 'Major Depressiv Pozuntu',
+    'high-functioning ASP', 'rituals in ASP', 'in RAS patients',
+    'Urgent ASP diagnostic', 'Detailed ASP clinical',
+    'DISSOCIATIVE IDENTIFICA',
     # §G главы 7, 8, 16, 17, 2026-08-12
     'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
     'core insomnia', '<strong>1 il</strong>', 'seizure at school',
@@ -423,6 +433,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §H справочные страницы и навигация, 2026-08-12
+    'Azerbaycan dili tam adı',
     # §G главы 7, 8, 16, 17, 2026-08-12
     'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
     '<strong>1 il</strong>', 'okulda tutma', "MDB'de modifikasyon",
