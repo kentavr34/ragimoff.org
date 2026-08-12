@@ -1,11 +1,16 @@
 # ragimoff.org — Working Notes & Session Progress
 
-**Working directory:** `D:\Документы\ragimoff` (ветка `main`)
-**Active branch (worktree):** `claude/stupefied-cori-5b6e4a`
-**Worktree path:** `C:\Users\SAM\Desktop\sayt2\.claude\worktrees\stupefied-cori-5b6e4a`
-**Remote:** `https://github.com/kentavr34/ragimoff.org.git`
+**Рабочая папка:** `D:\Документы\ragimoff`, ветка `main`
+**Удалённый репозиторий:** `https://github.com/kentavr34/ragimoff.org.git`
+**Сайт:** https://ragimoff.org — публикуется GitHub Pages из `main`
 
-> **For future Claude sessions:** Always treat `C:\Users\SAM\Desktop\sayt2` as the working directory. Read this file first to recover context. Update this file at the end of each session.
+> **Порядок чтения в начале сессии:** `CLAUDE.md` → `INVENTORY.md` (что где
+> лежит и кто чем владеет) → этот файл (последняя сессия) → `TASKS.md`
+> (что открыто). Обновлять этот файл в конце каждой сессии.
+>
+> Прежняя шапка вела в `C:\Users\SAM\Desktop\sayt2` — этой папки не
+> существует с начала августа, и worktree `claude/stupefied-cori-5b6e4a`
+> тоже удалён. Исправлено 2026-08-12.
 
 ---
 
@@ -32,6 +37,15 @@ NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP 
 ---
 
 ## Major Completed Work
+
+> **Раздел исторический — читать с поправкой (2026-08-12).** Описанное ниже
+> относится к весне 2026 и с тех пор изменилось:
+> папки `_supplements/chapters-v2/` больше нет (удалена 2026-08-09 вместе с
+> `preview/` и `_translate/` — все три держали старую привязку кодов);
+> виджет «Düzəliş et» снят 2026-08-09, конвейер удалён 2026-08-10;
+> структура карточки — **11 разделов**, а не 12, и порядок другой;
+> расстройств **104**, а не 103.
+> Актуальное состояние — в `INVENTORY.md`.
 
 ### chapters-v2 — 103/103 disorders DONE ✅
 
