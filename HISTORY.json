@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-05-14",
+  "updated": "2026-08-12",
   "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
   "phases": [
     {
@@ -140,6 +140,286 @@
       "actor": "claude",
       "type": "workflow-rule",
       "note": "Established terminology sync workflow. Düzəlt button on abbreviatur.html (and any book page) → POST to GAS → Google Sheet row. When user marks Status=ok in the sheet, GAS endpoint GET ?action=approved returns approved rows. _term_sync.py at session start fetches & applies them across _supplements/chapters-v2/ + klinik-psixiatriya/ + CANONICAL_TERMS list in _build_abbreviatur.py. Rule: any term rename must update three places at once (master sources + rendered pages + canonical-terms header in abbreviatur). Codified in TYPOGRAPHY.md §0c, CLAUDE.md session-start ritual, and book-typography-icd11 SKILL.md. Commit c38e298 added Fəsil Adları table + 321 Düzəlt buttons + #cari-terminler canonical-terms header section."
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "136ee7ee15db134ddddf2c3590aceadc6bd1f9a6",
+      "note": "fix: 7 фамилий и утечка, спрятанная за меткой языка"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "fc131b4fdcdf34c9a25d6722ebcd0cfd8bd3c897",
+      "note": "fix: заголовок вкладки и язык документа — 461 страница"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "98517a0ea91eac2b9086dba91f3340d9fdecdb6a",
+      "note": "fix: 57 развалившихся фраз в русском; 6A70 называла себя рекуррентной"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "bc3ee5553ee79f873c898752f3e0edaf518776ce",
+      "note": "prosecheck: ноль на здоровом дереве; проверка тире — по требованию"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "b9f115af4c1856b11d4144c24e9668f4c5bf7f9d",
+      "note": "fix: партия 7 — 6A62, 6A70, 6A71, 6A40; добор «ё» по правилу"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "063acdb43b520d5a61a2a1e6cb253301068b3ba2",
+      "note": "fix: «ё» через основу слова — 44 формы, которых не было пары"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "d9ea3a0096efcb7e818aa4edf989c8f7f243f0b8",
+      "note": "fix: партия 8 — 6A06 сломана во всех четырёх языках; три сокращения BDD"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "122b4fea38afad73e3b4a49a2388741a69621f5e",
+      "note": "fix: ошибка кода DSM в четырёх языках; «resmiyet» уцелел в турецком"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "757b146383ee80e835cb320ef5b64de60c8c61e0",
+      "note": "fix: дефекты, вычищенные из мастера, но уцелевшие в переводах — 49 мест"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "eb13c840ef6d57a2282cff4bf53f27454ebd6996",
+      "note": "fix: «идентификация» вместо «идентичность» — 19 мест в русском"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "02840d8817d82563292186af23bde01928d2c5aa",
+      "note": "fix: сплошная вычитка §1 английского дерева — 104 определения"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "aefa4e52d79e335e59a8c10a6340f1df7df9138d",
+      "note": "fix: сплошная вычитка §1 турецкого дерева; 6C20 и 8A05 во всех языках"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "58668a70503a56b424749af648b92d6f0d2e7cb8",
+      "note": "fix: одно расстройство шестью именами; сплошная вычитка §1 русского"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "9885a22858f5529599065f2029441f1d1b183067",
+      "note": "prosecheck: снята проверка сокращений — 180 срабатываний, сигнала нет"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "7723c17ce755c37581613d7e7c474583a875e7a9",
+      "note": "fix: все 103 раздела мифов прочитаны; сокращения сведены к мастеру"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "d2d406189808d333bbed7b72d7473c62669e77bc",
+      "note": "docs: журнал сессии — сплошная вычитка переводов 2026-08-11"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "cf74ab77e3f3362dcdcf88611ef253f20db09f44",
+      "note": "docs: снята неверная строка «переводы сплошь не читались»"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "20d0ab4624aed883c40c1032f880bcf4f8b16955",
+      "note": "docs: TASKS.md — один файл задач с галочками"
+    },
+    {
+      "ts": "2026-08-11",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "2f0b8a24a024e35236fd93d0ddb467c09e9e82b4",
+      "note": "fix: задача A — §2 «История» прочитан во всех трёх переводах"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "2cdfa887e0a5c7db37635d199f3cb11d09e6001c",
+      "note": "fix: задача B — §5 «Клинические проявления» во всех трёх переводах"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "f4791948aff6cfc9c9e9caad0ee911afa93c7130",
+      "note": "fix: §8 «Лечение» — первый слой правок (структура, шапки, сокращения)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "3edb6bfe74717ca7f19608cf6534b677f45dd795",
+      "note": "fix: §8 — второй слой (обломки слов, contingency management, капслок вместо выделения)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "449129f2c03592d13ecd40073724ec91b2338ffa",
+      "note": "fix: §8 — сокращения в русском дереве сведены к одной форме"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "c0b22ea8ffbf20da80ef39ae851ce8e2c28a0008",
+      "note": "fix: §8 — русский раздел прочитан целиком (104 карточки)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "4093810c361efdce2805ba839c21efb05fcbf23c",
+      "note": "fix: §8 — английское дерево, первые две части"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "c039eb6553bc25f431b5fc152356345c5b4eb33b",
+      "note": "fix: §8 — английское дерево, части 3-4"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "eece12ef59215d30a5daba20a200e4d99f54facc",
+      "note": "fix: §8 — английское дерево прочитано целиком (104 карточки)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "ebf4d48d7e13b81bc229750ec753fabbce27d5c0",
+      "note": "fix: §8 — турецкое дерево, часть 1"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "8921af6502e5650a9bd15937c19e8da0199f43d8",
+      "note": "fix: §8 — турецкое дерево, часть 2"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "a6182cbf41559edddd19e750eaa94db23cc990f5",
+      "note": "fix: §8 — турецкое дерево, часть 3; GAD → ГТР/YAB"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "001862387060cecd0eb2845e30e6a50d70f2cb94",
+      "note": "fix: §8 — турецкое дерево, часть 4"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "7d6478ff80c1dc6a9cbea5f0e3d36a5ea2b72594",
+      "note": "fix: §8 — турецкое дерево прочитано целиком (104 карточки)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "1d4452d8528cab039b4ec89fd94a7ffaf0d1fe42",
+      "note": "fix: §8 — сторожа regress.py и остаточные места; журнал сессии"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "8563f14d8e03fd55cf8dd2657dbf6a5a548530c6",
+      "note": "fix: §11 «Источники» — восстановлены оригинальные записи (задача D)"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "b1a76839409e85d04a6ef4bad2eca45ce7538002",
+      "note": "fix: задача D — §11 «Источники» во всех четырёх деревьях"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "79df34fa3d601442e8ad3cbd2ac2ad1e6a149daa",
+      "note": "fix: задача E — названия и коды 104 карточек против WHO ICD-11 MMS"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "9e204f6a67b8f6544efe73c1b4090d31baeb1d0c",
+      "note": "fix: задача F — 6B80 «XBT-11 — paralel» неверно уравнивал две классификации"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "f7704c9ff20a151407bb1cfb25a7e4408fb668f5",
+      "note": "fix: задача G — главы 7, 8, 16, 17 против AASM, AAN/ESSTS, ISPMD, ISSWSH/ISSM/AUA/EAU"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "76e82b84e7850fc24fa212e8a5222cda679b1f79",
+      "note": "fix: задача H (часть 1) — нижняя навигация и справочные страницы"
+    },
+    {
+      "ts": "2026-08-12",
+      "actor": "claude",
+      "type": "commit",
+      "commit": "7b6fceaf38828eb7aba5d676ed9a3cfd7949040d",
+      "note": "fix: задача H (часть 2) — вводные страницы: обещания, числа, имена"
     }
   ]
 }
