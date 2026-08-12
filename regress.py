@@ -20,6 +20,10 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
+    'Tepevtik səviyyə', 'Miklowitz D.J. Am J Psychiatry 2003',
+    'reboxetin uyğunlaşmada (acceptability) ən yüksək',
+    'kvetiapin (FDA təsdiqi), lurasidon',
     # очередь 1 §8 глава 02 — Leucht 2012, FDA, Health Affairs, 2026-08-13
     '5 dəfə artırır (Leucht', 'Lancet Psychiatry 2016;3(2):158–169',
     'FDA tərəfindən şizoaffektiv pozuntu üçün xüsusi təsdiq edilmişdir',
@@ -179,6 +183,10 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
+    'Miklowitz D.J. Am J Psychiatry 2003',
+    'ребоксетин имеют наивысшую приемлемость',
+    'кветиапин (одобрение FDA), луразидон',
     # очередь 1 §8 глава 02 — Leucht 2012, FDA, Health Affairs, 2026-08-13
     'в 5 раз (Leucht', 'Lancet Psychiatry 2016;3(2):158–169',
     'специально одобрены FDA для шизоаффективного расстройства',
@@ -367,6 +375,10 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
+    'Miklowitz D.J. Am J Psychiatry 2003',
+    'reboxetine highest in acceptability',
+    'quetiapine (FDA approved), lurasidone',
     # очередь 1 §8 глава 02 — Leucht 2012, FDA, Health Affairs, 2026-08-13
     'relapse risk 5-fold (Leucht', 'Lancet Psychiatry 2016;3(2):158–169',
     'specifically approved by the FDA for schizoaffective disorder',
@@ -506,6 +518,10 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
+    'Miklowitz D.J. Am J Psychiatry 2003',
+    'reboksetin uyumda (acceptability) en yüksek',
+    'ketiapin (FDA onayı), lurasidon',
     # очередь 1 §8 глава 02 — Leucht 2012, FDA, Health Affairs, 2026-08-13
     '5 kat artırır (Leucht', 'Lancet Psychiatry 2016;3(2):158–169',
     'FDA tarafından şizoaffektif bozukluk için özel olarak onaylanmıştır',
