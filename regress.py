@@ -20,6 +20,9 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 01 — сверка с FDA и PubMed, 2026-08-12
+    'FDA 5–17 yaşlı RAS', 'Cortese 2018 meta-analiz İD fonunda effektivliyi təsdiqləyir',
+    'Tourette sindromunda 6–17 yaş', '<td>100–400 mq/gün</td><td>FDA 2021; uşaqlar və yetkinlər',
     # §N «О книге» обещала несуществующую структуру, 2026-08-12
     'Tarixi konsepsiyalar', 'Bölmə 4-ə baxın (KTTD',
     '<li><strong>Monitorinq</strong> — Bölmə 9.</li>',
@@ -173,6 +176,9 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 01 — сверка с FDA и PubMed, 2026-08-12
+    'при РАС у 5–17 лет', 'Cortese 2018 подтверждает эффективность на фоне ИР',
+    'Туретта в возрасте 6–17 лет', '<td>100–400 мг/сут</td><td>FDA 2021; дети и взрослые',
     # §N «О книге» обещала несуществующую структуру, 2026-08-12
     'исторических концепций', 'Исторические концепции',
     'см. раздел 4 (сравнение CDDR',
@@ -355,6 +361,9 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 01 — сверка с FDA и PubMed, 2026-08-12
+    'irritability in ASD aged 5–17', 'confirms efficacy against a background of IDD',
+    'Tourette syndrome, ages 6–17', '<td>100–400 mg/day</td><td>FDA 2021; children and adults',
     # §N «О книге» обещала несуществующую структуру, 2026-08-12
     'Historical concepts', 'see Section 4 (CDDR',
     '<li><strong>Monitoring</strong> — Section 9.</li>',
@@ -488,6 +497,9 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 глава 01 — сверка с FDA и PubMed, 2026-08-12
+    "FDA 5–17 yaşlı OSB'de", 'Cortese 2018 meta-analiz İD fonunda etkililiği doğruluyor',
+    'Tourette sendromunda 6–17 yaş', '<td>100–400 mg/gün</td><td>FDA 2021; çocuklar ve yetişkinler',
     # §N «О книге» обещала несуществующую структуру, 2026-08-12
     'Tarihsel kavramlar', "Bölüm 4'e bakın (CDDR",
     '<li><strong>İzleme</strong> — Bölüm 9.</li>',
