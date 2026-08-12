@@ -20,6 +20,10 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §N «О книге» обещала несуществующую структуру, 2026-08-12
+    'Tarixi konsepsiyalar', 'Bölmə 4-ə baxın (KTTD',
+    '<li><strong>Monitorinq</strong> — Bölmə 9.</li>',
+    'Klinik formalar</strong> (lazım olduqda)',
     # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
     'Tələblər for WHO', 'The development of the WHO, 2019',
     'Reed GM, , Reed GM', 'qüvvəyə minmə 2022 — XBT-11:',
@@ -169,6 +173,10 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §N «О книге» обещала несуществующую структуру, 2026-08-12
+    'исторических концепций', 'Исторические концепции',
+    'см. раздел 4 (сравнение CDDR',
+    '<li><strong>Мониторинг</strong> — Раздел 9.</li>',
     # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
     'требования for WHO', 'Разработка ВОЗ, 2019 г.',
     'вступление в силу 2022 — МКБ-11:', '(ОВР, ВОЗ, 2019, вступление',
@@ -347,6 +355,9 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §N «О книге» обещала несуществующую структуру, 2026-08-12
+    'Historical concepts', 'see Section 4 (CDDR',
+    '<li><strong>Monitoring</strong> — Section 9.</li>',
     # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
     'implementation提议', 'The development of the WHO, 2019',
     'Guidelines for WHO, 2019', 'Disorders (CDDG).</strong> Geneva',
@@ -477,6 +488,9 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §N «О книге» обещала несуществующую структуру, 2026-08-12
+    'Tarihsel kavramlar', "Bölüm 4'e bakın (CDDR",
+    '<li><strong>İzleme</strong> — Bölüm 9.</li>',
     # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
     'Kriterleri for WHO', "WHO'nun geliştirdiği, 2019",
     'Reed GM, , Reed GM', 'yürürlüğe giriş 2022 — ICD-11:',
