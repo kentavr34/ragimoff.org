@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §G главы 7, 8, 16, 17, 2026-08-12
+    'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
     # §F 6B80, 2026-08-12
     'XBT-11 — paralel; «atypical sinir anoreksiyası»',
     # §E коды против ICD-11 MMS, 2026-08-12
@@ -155,6 +157,11 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §G главы 7, 8, 16, 17, 2026-08-12
+    'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
+    'циркадный ритм не нарушен', 'приступы в школе',
+    'модификация при БДР', 'нарастание симптомов</strong> нет',
+    'Не менее <strong>1 год</strong>',
     # §F 6B80, 2026-08-12
     'МКБ-11 — параллельно; «атипичная нервная анорексия»',
     # §E коды против ICD-11 MMS, 2026-08-12
@@ -310,6 +317,12 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §G главы 7, 8, 16, 17, 2026-08-12
+    'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
+    'core insomnia', '<strong>1 il</strong>', 'seizure at school',
+    'modification in MDD', '(finasterid ', 'During pelvic or urologic examination',
+    'Of another psychiatric disorder (MDD, panic, dysthymic)',
+    'HA03.0</span> Premature ejaculation',
     # §F 6B80, 2026-08-12
     'atypical nervous anorexia',
     # §E коды против ICD-11 MMS, 2026-08-12
@@ -410,6 +423,10 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §G главы 7, 8, 16, 17, 2026-08-12
+    'HA40.Z', 'HA40 Sexual dysfunction associated with disorder',
+    '<strong>1 il</strong>', 'okulda tutma', "MDB'de modifikasyon",
+    'bozukluklarında. <strong>önerilmez',
     # §F 6B80, 2026-08-12
     'ICD-11 — paralel; “atipik anoreksiya nervoza”',
     # §E коды против ICD-11 MMS, 2026-08-12
