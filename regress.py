@@ -20,6 +20,10 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
+    'esitalopram, paroksetin — FDA',
+    'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
+    'ekspozisiya farmakoterapiyadan üstün',
     # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
     'Tepevtik səviyyə', 'Miklowitz D.J. Am J Psychiatry 2003',
     'reboxetin uyğunlaşmada (acceptability) ən yüksək',
@@ -183,6 +187,10 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
+    'эсциталопрам, пароксетин — FDA',
+    'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
+    'экспозиция превосходит фармакотерапию',
     # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
     'Miklowitz D.J. Am J Psychiatry 2003',
     'ребоксетин имеют наивысшую приемлемость',
@@ -375,6 +383,10 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
+    'escitalopram, paroxetine — FDA',
+    'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
+    'exposure superior to pharmacotherapy',
     # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
     'Miklowitz D.J. Am J Psychiatry 2003',
     'reboxetine highest in acceptability',
@@ -518,6 +530,10 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
+    'essitalopram, paroksetin — FDA',
+    'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
+    'maruz bırakma farmakoterapiden üstün',
     # очередь 1 §8 главы 03–04 — Cipriani 2018, FDA, Miklowitz, 2026-08-13
     'Miklowitz D.J. Am J Psychiatry 2003',
     'reboksetin uyumda (acceptability) en yüksek',
