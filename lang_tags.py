@@ -162,6 +162,32 @@ def is_english(run: str) -> bool:
     return any(t.lower() in EVIDENCE for t in toks)
 
 
+# «First MB,», «Popov Yu.», «Swanson JM.» — фамилия с инициалами. Помечать её
+# английским неверно: фамилия не английский текст (см. CLAUDE.md). Сторож
+# is_english ловит только однобуквенный инициал («Bohus M.»), а слитный «MB»
+# или транслитерированный «Yu» проходили насквозь.
+INITIALS = re.compile(r"^(?:[A-Z]{2,3}|[A-Z][a-z])$")
+# Фамилия имеет вид имени: заглавная и дальше строчные. Сплошные заглавные —
+# это аббревиатура: «HIV/HCV,» не фамилия и метку сохраняет.
+SURNAME = re.compile(r"^[A-Z][a-z][A-Za-z'’-]*$")
+
+
+def is_author(run: str, tail: str) -> bool:
+    """Ровно два слова: фамилия и инициалы, и сразу за ними точка или запятая.
+
+    Знак препинания вплотную и есть отличие от названия: «Possible AD —»,
+    «Schedule II ABŞ-da», «Wechsler IQ şkalası», «Variable PE</td>» — там
+    после короткого слова идёт пробел или разметка, и они остаются помечены.
+    """
+    if tail not in ('.', ','):
+        return False
+    toks = re.findall(TOKEN, run)
+    if len(toks) != 2:
+        return False
+    first, second = toks
+    return bool(SURNAME.match(first)) and len(first) >= 3 and bool(INITIALS.match(second))
+
+
 def tag_inline(text: str, found: list) -> str:
     """Оборачивает английские цепочки в <span lang="en">, минуя разметку."""
     out, pos = [], 0
@@ -191,6 +217,9 @@ def mark(chunk: str, found: list) -> str:
         # СЛЕВА, поэтому остаток нельзя брать по длине: «Top Lang Disord»
         # давало «Lang Disord» + «sord», теряя начало и дублируя хвост.
         i = whole.find(run)
+        after = whole[i + len(run):]
+        if is_author(run, (after or chunk[m.end():m.end() + 1])[:1]):
+            continue
         res.append(chunk[last:m.start()])
         res.append(whole[:i])
         res.append('<span lang="en">' + run + '</span>')
@@ -331,10 +360,15 @@ def tag_ru(text: str, found: list) -> str:
 # «Kod | Azərbaycanca | English (ICD-11) | Русский (МКБ-11)» — смысл таблицы
 # в том, что колонки на РАЗНЫХ языках, и в каждом издании они одни и те же.
 # Помечаем сразу столбцами: гадать не о чем, шапка сама это объявляет.
+# Содержимое ячейки НЕ может содержать </td>. С ленивым [\s\S]*? совпадение
+# перепрыгивало через </tr><tr>: строка «Kod | Fəsil adı» из соседней таблицы
+# в 23 строки бралась за первую колонку, и три языка доставались не тем
+# ячейкам — русское название оказывалось помечено азербайджанским. 2026-08-12.
+_C = r'((?:(?!</td>)[\s\S])*)'
 CODE_ROW = re.compile(r'(<tr><td class="kod-cell">[^<]*</td>)'
-                      r'(<td[^>]*>)([\s\S]*?)(</td>)'
-                      r'(<td[^>]*>)([\s\S]*?)(</td>)'
-                      r'(<td[^>]*>)([\s\S]*?)(</td>)')
+                      r'(<td[^>]*>)' + _C + r'(</td>)'
+                      r'(<td[^>]*>)' + _C + r'(</td>)'
+                      r'(<td[^>]*>)' + _C + r'(</td>)')
 
 
 def tag_code_table(text: str) -> tuple[str, int]:

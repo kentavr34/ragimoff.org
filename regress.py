@@ -20,6 +20,12 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
+    'Tələblər for WHO', 'The development of the WHO, 2019',
+    'Reed GM, , Reed GM', 'qüvvəyə minmə 2022 — XBT-11:',
+    '(ODD, WHO, 2019, qüvvəyə minmə 2022',
+    '<td lang="en">ŞİZOFRENİYA SPEKTRİ', '<td lang="ru">KATATONİYA',
+    '<span lang="en">First MB</span>', '<span lang="en">Swanson JM</span>',
     # §H2 вводные страницы, 2026-08-12
     '«– OKP üçün).»>ERP',
     # §H часть 2 — вводные страницы, 2026-08-12
@@ -163,6 +169,13 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
+    'требования for WHO', 'Разработка ВОЗ, 2019 г.',
+    'вступление в силу 2022 — МКБ-11:', '(ОВР, ВОЗ, 2019, вступление',
+    '</strong> Указывает на вероятность', '(КОДТ)',
+    '<td lang="az">РАССТРОЙСТВА', '<td lang="en">ТРЕВОЖНЫЕ',
+    '<span lang="en">Popov Yu</span>', '<span lang="en">Hyman SE</span>',
+    '<span lang="en">Kessler RC</span>', '<td lang="ru">Anorexia Nervosa',
     # §H2 вводные страницы, 2026-08-12
     '<strong>Из 11 разделов</strong>', 'с <strong>Где это уместно</strong>',
     '<strong>из международных правил</strong>', 'Наиболее основные скрининговые',
@@ -334,6 +347,12 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
+    'implementation提议', 'The development of the WHO, 2019',
+    'Guidelines for WHO, 2019', 'Disorders (CDDG).</strong> Geneva',
+    '(ODD, WHO, 2019, implementation', '</strong> Indicates possibility',
+    '<td lang="ru">CATATONIA', '<td lang="ru">PERSONALITY DISORDERS',
+    '<td lang="ru">Anorexia Nervosa',
     # §H2 вводные страницы, 2026-08-12
     '<strong>From 11 sections</strong>', 'in appropriate context</strong> Integrated',
     'Medication names both', '<strong>In Appendix B</strong> Most used',
@@ -458,6 +477,12 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # §M вставка вместо названия классификации и метки таблиц, 2026-08-12
+    'Kriterleri for WHO', "WHO'nun geliştirdiği, 2019",
+    'Reed GM, , Reed GM', 'yürürlüğe giriş 2022 — ICD-11:',
+    '(ODD, WHO, 2019, yürürlük 2022', '</strong> Olasılığını gösterir',
+    '<td lang="en">ŞİZOFRENİ SPEKTRUMU', '<td lang="ru">KATATONİ<',
+    '<td lang="ru">Anorexia Nervosa',
     # §H2 вводные страницы, 2026-08-12
     'OKB için). ERP', '<strong>Farmakoterapi</strong> Çoğu durumda',
     '<strong>Somatik sunum</strong> Çok', 'patolojik örgü olmaması',
