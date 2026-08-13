@@ -20,6 +20,9 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
+    'ERP + SSRİ</strong> — orta-ağır OKP-də monoterapiyadan üstün',
+    'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RKİ',
     # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
     'esitalopram, paroksetin — FDA',
     'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
@@ -187,6 +190,9 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
+    'ЭРП + СИОЗС</strong> — превосходит монотерапию',
+    'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 РКИ',
     # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
     'эсциталопрам, пароксетин — FDA',
     'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
@@ -383,6 +389,9 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
+    'ERP + SSRI</strong> — superior to monotherapy',
+    'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RCT',
     # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
     'escitalopram, paroxetine — FDA',
     'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
@@ -530,6 +539,9 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
+    'ERP + SSRI</strong> — orta-ağır OKB',
+    'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RKÇ',
     # очередь 1 §8 глава 05 — FDA, APA, Wolitzky-Taylor, 2026-08-13
     'essitalopram, paroksetin — FDA',
     'APA Clinical Practice Guideline for the Treatment of Anxiety Disorders',
