@@ -81,10 +81,11 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   .content-wrap h3{font-size:1.04rem;margin-top:1.35rem}
   .content-wrap p{margin:.66rem 0}
   /* зона нажатия в навигации книги — не меньше 44 px (WCAG 2.5.8) */
-  .nav-link,.nav-sub-link,.d-nav a,.toc-ch>a,.page-toc a{min-height:44px;display:flex;align-items:center}
+  .nav-link,.nav-sub-link,.d-nav a,.page-toc a{min-height:44px;display:flex;align-items:center}
+  .toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;gap:.5rem;align-items:center}
   .sb-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
   .crumb a{min-height:44px;display:inline-flex;align-items:center}
-  .tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:flex;align-items:center}
+  .tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;gap:.5rem;align-items:center}
   /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
@@ -119,9 +120,9 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-preview{display:flex;flex-direction:column;gap:1.2rem;margin:1.5rem 0}
 .toc-ch{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg2)}
 /* ЕДИНЫЙ СТАНДАРТ заголовка группы (глава/класс/блок) — одинаково во всех классификациях */
-.toc-ch>a,.toc-ch .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
+.toc-ch>a,.toc-ch .tc-head{display:grid;grid-template-columns:5.4rem 1fr;align-items:baseline;gap:.6rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
 .toc-ch>a:hover{color:var(--gold)}
-.toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:4.6rem;font-variant-numeric:tabular-nums}
+.toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:0;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .toc-ch .tc-list{display:flex;flex-direction:column}
 /* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
 .toc-ch .tc-list a{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
@@ -136,7 +137,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .cls-tab.is-active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 .toc-meta{text-align:center;color:var(--text2);margin:.2rem 0 1rem;font-size:.9rem}
 .tc-head{display:flex;align-items:baseline;gap:.7rem;padding:.85rem 1rem;color:var(--text);font-weight:700;background:var(--bg3)}
-.tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:5rem}
+.tc-head .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:0;white-space:normal;overflow-wrap:anywhere}
 /* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
    Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
 .sidebar nav .cls-tabs-side{display:flex;gap:.3rem;padding:.15rem 0 .7rem;margin-bottom:.4rem;border-bottom:1px solid var(--border)}
