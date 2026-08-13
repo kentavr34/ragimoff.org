@@ -71,9 +71,42 @@ PAIRS = [
     ('.toc-ch .tc-range{flex:0 0 5.4rem;width:5.4rem;font-size:.8rem;'
      'white-space:normal;overflow-wrap:anywhere}',
      '.toc-ch .tc-range{font-size:.8rem;white-space:normal;overflow-wrap:anywhere}'),
-    # строка карточки: 4.6rem → 5.4rem, как у заголовка
+    # строка карточки: 4.6rem → 5.4rem, как у заголовка.
+    # Заодно поднята специфичность. Селектор был `.toc-ch .tc-list a` — ровно
+    # такой же, как у настольного правила ниже по файлу, и при равенстве
+    # побеждало то, что позже. Мобильное правило не применялось никогда:
+    # ни gap, ни размер шрифта, ни отступы. Заголовок при этом брал gap из
+    # правила зоны нажатия WCAG (две категории специфичности) и уезжал влево
+    # на 0,1rem. `.toc-preview` в начале селектора возвращает правилу силу.
     ('.tc-list a{font-size:.82rem;grid-template-columns:4.6rem 1fr;gap:.5rem;padding:.45rem .8rem}',
-     '.tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;gap:.5rem;padding:.45rem .8rem}'),
+     '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;'
+     'gap:.5rem;padding:.45rem .8rem}'),
+    # повторный проход по уже поправленным файлам первой версии инструмента
+    ('.tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;gap:.5rem;padding:.45rem .8rem}',
+     '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;'
+     'gap:.5rem;padding:.45rem .8rem}'),
+    # ── единая горизонталь на обеих ширинах ────────────────────────────────
+    # Блок @media стоит в файле ВЫШЕ настольных правил, поэтому при равной
+    # специфичности выигрывает настольное — мобильные отступы не применялись
+    # вовсе. Вместо гонки за специфичностью убираем расхождение: колонка,
+    # gap и левый отступ одинаковы на любой ширине, а мобильная компактность
+    # остаётся в вертикальных отступах и размере шрифта.
+    ('.toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;'
+     'gap:.5rem;align-items:center}',
+     '.toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;'
+     'gap:.6rem;align-items:center}'),
+    ('.tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:grid;'
+     'grid-template-columns:5.4rem 1fr;gap:.5rem;align-items:center}',
+     '.tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:grid;'
+     'grid-template-columns:5.4rem 1fr;gap:.6rem;align-items:center}'),
+    ('.toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem .8rem;gap:.5rem;'
+     'align-items:flex-start}',
+     '.toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem 1rem;gap:.6rem;'
+     'align-items:flex-start}'),
+    ('.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;'
+     'gap:.5rem;padding:.45rem .8rem}',
+     '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:5.4rem 1fr;'
+     'gap:.6rem;padding:.45rem 1rem}'),
 ]
 
 
@@ -86,6 +119,11 @@ def main(apply: bool = False) -> int:
         t = raw.decode('utf-8', 'replace').replace('\r\n', '\n')
         n = 0
         for old, new in PAIRS:
+            # Готовая запись содержит старую как хвост («.toc-preview .toc-ch
+            # .tc-list a» включает «.tc-list a»), поэтому без этой проверки
+            # каждый прогон дописывал бы префикс заново.
+            if new in t:
+                continue
             if old in t:
                 n += t.count(old)
                 t = t.replace(old, new)
