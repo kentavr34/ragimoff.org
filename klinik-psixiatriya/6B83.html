@@ -63,9 +63,9 @@
 table.dh{border-collapse:collapse;width:100%;margin:.2rem 0 1.5rem;border:0;border-bottom:2px solid var(--gold)}
 table.dh td{border:0;padding:.24rem .7rem .24rem 0;vertical-align:baseline;text-align:left}
 table.dh td:last-child{padding-right:0;width:100%}
-table.dh .dh-meta{white-space:nowrap;vertical-align:baseline;padding:.24rem .9rem .24rem 0}
+table.dh .dh-meta{white-space:nowrap;vertical-align:middle;text-align:center;padding:.24rem .9rem .24rem 0}
 table.dh .dh-lbl{display:block;font-family:var(--mono,monospace);font-size:.74rem;letter-spacing:.03em;text-transform:uppercase;color:var(--text3);font-weight:700;line-height:1.25}
-table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;color:var(--gold);font-size:.74rem;line-height:1.25;margin-top:.1rem}
+table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;color:var(--gold);font-size:.95rem;line-height:1.2;margin-top:.06rem}
 table.dh .dh-name{color:var(--text2);font-size:.94rem;line-height:1.3}
 table.dh h1{font-size:1.42rem;line-height:1.2;margin:0;letter-spacing:-.01em;font-weight:800;color:var(--text)}
 .dh-en{font-style:italic;color:var(--text2);font-size:.9rem;margin-top:.12rem;line-height:1.3;font-weight:400}
@@ -80,17 +80,17 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   /* шапка расстройства — компактнее: меньше H1/имя, уже столбики ярлык/код */
   table.dh h1{font-size:1.5rem;letter-spacing:-.015em;line-height:1.2}
   table.dh .dh-name{font-size:.9rem;line-height:1.28}
-  table.dh .dh-lbl,table.dh .dh-code{font-size:.72rem}
+  table.dh .dh-lbl{font-size:.7rem}table.dh .dh-code{font-size:.86rem}
   table.dh .dh-meta{padding-right:.7rem}
   .content-wrap h2{font-size:1.2rem;margin-top:2rem;padding-bottom:.35rem}
   .content-wrap h3{font-size:1.04rem;margin-top:1.35rem}
   .content-wrap p{margin:.66rem 0}
   /* зона нажатия в навигации книги — не меньше 44 px (WCAG 2.5.8) */
   .nav-link,.nav-sub-link,.d-nav a,.page-toc a{min-height:44px;display:flex;align-items:center}
-  .toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;gap:.6rem;align-items:center}
+  .toc-ch>a{min-height:44px;display:grid;grid-template-columns:var(--tc-col) 1fr;gap:.6rem;align-items:center}
   .sb-close{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
   .crumb a{min-height:44px;display:inline-flex;align-items:center}
-  .tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:grid;grid-template-columns:5.4rem 1fr;gap:.6rem;align-items:center}
+  .tc-list>a,.toc-preview .toc-ch>a{min-height:44px;display:grid;grid-template-columns:var(--tc-col) 1fr;gap:.6rem;align-items:center}
   /* вкладки классификаций — все 3 в одну строку (были переносы XBT-10) */
   .cls-tabs{gap:.35rem;flex-wrap:nowrap}
   .cls-tabs .cls-tab{padding:.45rem .55rem;font-size:.8rem;letter-spacing:0;white-space:nowrap}
@@ -125,7 +125,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-preview{display:flex;flex-direction:column;gap:1.2rem;margin:1.5rem 0}
 .toc-ch{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg2)}
 /* ЕДИНЫЙ СТАНДАРТ заголовка группы (глава/класс/блок) — одинаково во всех классификациях */
-.toc-ch>a,.toc-ch .tc-head{display:grid;grid-template-columns:5.4rem 1fr;align-items:baseline;gap:.6rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
+.toc-ch{--tc-col:5.4rem}.cls-panel[data-cls="icd"] .toc-ch{--tc-col:7rem}.cls-panel[data-cls="dsm"] .toc-ch{--tc-col:10.1rem}.cls-panel[data-cls="icd10"] .toc-ch{--tc-col:6.8rem}.toc-ch>a,.toc-ch .tc-head{display:grid;grid-template-columns:var(--tc-col) 1fr;align-items:baseline;gap:.6rem;padding:.8rem 1rem;text-decoration:none;color:var(--text);font-weight:700;font-size:.95rem;letter-spacing:.01em;background:var(--bg3)}
 .toc-ch>a:hover{color:var(--gold)}
 .toc-ch .tc-range{color:var(--gold);font-family:var(--mono,monospace);min-width:0;white-space:normal;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .toc-ch .tc-list{display:flex;flex-direction:column}
