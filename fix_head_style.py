@@ -62,14 +62,34 @@ PAIRS = [
      'gap:.6rem;padding:.45rem 1rem}',
      '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
      'gap:.6rem;padding:.45rem 1rem}'),
-    # ── шапка карточки: код крупнее ярлыка, столбик по центру ячейки ───────
+    # ── шапка карточки: три колонки — ярлык | код | название ───────────────
+    # Ярлык и код стояли стопкой в одной ячейке. Длина у них разная, кегль
+    # разный — при выравнивании влево, по центру и вправо край одинаково
+    # оставался рваным: это лесенка, а не колонка. Решение Кенана 2026-08-14:
+    # у ярлыка и у кода своя вертикаль, строка классификации — одна строка.
+    # Разметку выдаёт build_headers.py, он переведён на три ячейки там же.
     ('table.dh .dh-meta{white-space:nowrap;vertical-align:baseline;padding:.24rem .9rem .24rem 0}',
-     'table.dh .dh-meta{white-space:nowrap;vertical-align:middle;text-align:center;'
+     'table.dh .dh-lbl-c{white-space:nowrap;vertical-align:baseline;text-align:left;'
+     'padding:.24rem .8rem .24rem 0}'
+     'table.dh .dh-code-c{white-space:nowrap;vertical-align:baseline;text-align:left;'
      'padding:.24rem .9rem .24rem 0}'),
+    ('table.dh .dh-meta{white-space:nowrap;vertical-align:middle;text-align:center;'
+     'padding:.24rem .9rem .24rem 0}',
+     'table.dh .dh-lbl-c{white-space:nowrap;vertical-align:baseline;text-align:left;'
+     'padding:.24rem .8rem .24rem 0}'
+     'table.dh .dh-code-c{white-space:nowrap;vertical-align:baseline;text-align:left;'
+     'padding:.24rem .9rem .24rem 0}'),
+    ('table.dh .dh-lbl{display:block;', 'table.dh .dh-lbl{display:inline-block;'),
+    ('table.dh .dh-meta{padding-right:.7rem}',
+     'table.dh .dh-lbl-c{padding-right:.6rem}table.dh .dh-code-c{padding-right:.7rem}'),
     ('table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;'
      'color:var(--gold);font-size:.74rem;line-height:1.25;margin-top:.1rem}',
-     'table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;'
-     'color:var(--gold);font-size:.95rem;line-height:1.2;margin-top:.06rem}'),
+     'table.dh .dh-code{display:inline-block;font-family:var(--mono,monospace);font-weight:700;'
+     'color:var(--gold);font-size:.95rem;line-height:1.2;margin-top:0}'),
+    ('table.dh .dh-code{display:block;font-family:var(--mono,monospace);font-weight:700;'
+     'color:var(--gold);font-size:.95rem;line-height:1.2;margin-top:.06rem}',
+     'table.dh .dh-code{display:inline-block;font-family:var(--mono,monospace);font-weight:700;'
+     'color:var(--gold);font-size:.95rem;line-height:1.2;margin-top:0}'),
     ('table.dh .dh-lbl,table.dh .dh-code{font-size:.72rem}',
      'table.dh .dh-lbl{font-size:.7rem}table.dh .dh-code{font-size:.86rem}'),
 ]
