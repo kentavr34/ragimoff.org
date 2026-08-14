@@ -43,6 +43,16 @@ VARS = ('.toc-ch{--tc-col:5.4rem}'
         '.cls-panel[data-cls="icd10"] .toc-ch{--tc-col:6.8rem}')
 
 PAIRS = [
+    # ── осиротевший селектор, из-за которого правило не работало ───────────
+    # В мобильном блоке остался висячий «.toc-ch» перед комментарием:
+    #     .toc-ch /* … */
+    #   .tc-list a{…}
+    # Комментарий в CSS считается пробелом, поэтому получался потомковый
+    # селектор «.toc-ch .tc-list a» — и это случайно работало, пока следующая
+    # строка начиналась с «.tc-list». Стоило написать полный селектор с
+    # «.content-wrap», как склейка дала «.toc-ch .content-wrap .toc-ch
+    # .tc-list a», который не совпадает ни с чем: правило молча умирало.
+    ('\n  .toc-ch /*', '\n  /*', None),
     # ── оглавление: ширина колонки кода — своя у каждой классификации ──────
     ('.toc-ch>a,.toc-ch .tc-head{display:grid;grid-template-columns:5.4rem 1fr;'
      'align-items:baseline;gap:.6rem;padding:.8rem 1rem;',
@@ -62,6 +72,56 @@ PAIRS = [
      'gap:.6rem;padding:.45rem 1rem}',
      '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
      'gap:.6rem;padding:.45rem 1rem}'),
+    # ── мобильный: тексту больше места ─────────────────────────────────────
+    # Кенан 2026-08-14: «расстояние между кодом и началом текста слишком
+    # большое», «концовка некоторых текстов уходит под край таблицы».
+    # Замер на 375 px: main съедал по 28 px с каждой стороны плюс контейнер
+    # по 16 px — 88 px из 375, а названию оставалось 131 px. Плюс длинные
+    # слова («DEPERSONALİZASİYA-DEREALİZASİYA») не переносились и обрезались
+    # рамкой: у .toc-ch стоит overflow:hidden.
+    ('.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
+     'gap:.6rem;padding:.45rem 1rem}',
+     '.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
+     'gap:.45rem;padding:.45rem .85rem}'
+     # таблица шире: выходит в поля контейнера, проза свои поля сохраняет
+     # .toc-preview ниже по файлу задаёт margin сокращённой записью, а она
+     # обнуляет margin-inline — поэтому здесь нужен префикс, иначе таблица
+     # не расширится.
+     '.content-wrap .toc-preview{margin-inline:-.55rem}'
+     # Префикс .content-wrap обязателен: блок @media стоит в файле ВЫШЕ
+     # настольных правил, и при равной специфичности выигрывает настольное.
+     # Без префикса мобильные значения не применяются вовсе.
+     '.content-wrap .toc-ch .tc-range,.content-wrap .toc-ch .tc-list .sc{font-size:.78rem}'
+     '.content-wrap .cls-panel[data-cls="icd"] .toc-ch{--tc-col:6rem}'
+     '.content-wrap .cls-panel[data-cls="dsm"] .toc-ch{--tc-col:8.7rem}'
+     '.content-wrap .cls-panel[data-cls="icd10"] .toc-ch{--tc-col:5.9rem}'
+     '.content-wrap .toc-ch>a,.content-wrap .toc-ch .tc-head'
+     '{gap:.45rem;padding-left:.85rem;padding-right:.85rem}'),
+    # миграция с первой, неработавшей редакции этих правил
+    ('.toc-ch .tc-range,.toc-ch .tc-list .sc{font-size:.78rem}'
+     '.cls-panel[data-cls="icd"] .toc-ch{--tc-col:6rem}'
+     '.cls-panel[data-cls="dsm"] .toc-ch{--tc-col:8.7rem}'
+     '.cls-panel[data-cls="icd10"] .toc-ch{--tc-col:5.9rem}'
+     '.toc-ch>a,.toc-ch .tc-head{gap:.45rem;padding-left:.85rem;padding-right:.85rem}',
+     '.content-wrap .toc-ch .tc-range,.content-wrap .toc-ch .tc-list .sc{font-size:.78rem}'
+     '.content-wrap .cls-panel[data-cls="icd"] .toc-ch{--tc-col:6rem}'
+     '.content-wrap .cls-panel[data-cls="dsm"] .toc-ch{--tc-col:8.7rem}'
+     '.content-wrap .cls-panel[data-cls="icd10"] .toc-ch{--tc-col:5.9rem}'
+     '.content-wrap .toc-ch>a,.content-wrap .toc-ch .tc-head'
+     '{gap:.45rem;padding-left:.85rem;padding-right:.85rem}'),
+    ('.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
+     'gap:.45rem;padding:.45rem .85rem}',
+     '.content-wrap .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;'
+     'gap:.45rem;padding:.45rem .85rem}'),
+    # длинное слово переносится, а не уезжает под рамку — на любой ширине;
+    # код прижат к правому краю своей колонки, поэтому расстояние до текста
+    # одинаково у всех строк: колонка держит ширину самого длинного кода,
+    # и при выравнивании влево у коротких оставалась дыра
+    ('.toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}',
+     '.toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}'
+     '.toc-ch>a>span:last-child,.toc-ch .tc-head>span:last-child,'
+     '.toc-ch .tc-list a>span:last-child{overflow-wrap:anywhere;min-width:0}'
+     '.toc-ch .tc-range,.toc-ch .tc-list .sc{text-align:right}'),
     # ── шапка карточки: три колонки — ярлык | код | название ───────────────
     # Ярлык и код стояли стопкой в одной ячейке. Длина у них разная, кегль
     # разный — при выравнивании влево, по центру и вправо край одинаково
@@ -103,8 +163,14 @@ def main(apply: bool = False) -> int:
         crlf = raw.count(b'\r\n') > raw.count(b'\n') // 2
         t = raw.decode('utf-8', 'replace').replace('\r\n', '\n')
         n = 0
-        for old, new in PAIRS:
-            if new in t:
+        for pair in PAIRS:
+            old, new = pair[0], pair[1]
+            # Готовая запись обычно содержит старую как хвост, поэтому по
+            # умолчанию сторож — наличие новой. Но когда новая сама является
+            # частью старой (мы что-то удаляем), сторож ложно срабатывает;
+            # такие пары помечены третьим элементом None.
+            guarded = len(pair) < 3
+            if guarded and new in t:
                 continue
             if old in t:
                 n += t.count(old)

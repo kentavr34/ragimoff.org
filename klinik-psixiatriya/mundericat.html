@@ -97,9 +97,9 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
   /* оглавление — компактные заголовки групп и уже столбик кода */
   .toc-ch>a,.toc-ch .tc-head{font-size:.84rem;padding:.65rem 1rem;gap:.6rem;align-items:flex-start}
   .toc-ch .tc-range{font-size:.8rem;white-space:normal;overflow-wrap:anywhere}
-  .toc-ch /* Колонка кода была фиксированной, и длинный код (F90.0–F90.2,
+  /* Колонка кода была фиксированной, и длинный код (F90.0–F90.2,
    F63.3 / F42.4) вылезал на название расстройства. */
-.toc-preview .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;gap:.6rem;padding:.45rem 1rem}
+.content-wrap .toc-ch .tc-list a{font-size:.82rem;grid-template-columns:var(--tc-col) 1fr;gap:.45rem;padding:.45rem .85rem}.content-wrap .toc-preview{margin-inline:-.55rem}.content-wrap .toc-ch .tc-range,.content-wrap .toc-ch .tc-list .sc{font-size:.78rem}.content-wrap .cls-panel[data-cls="icd"] .toc-ch{--tc-col:6rem}.content-wrap .cls-panel[data-cls="dsm"] .toc-ch{--tc-col:8.7rem}.content-wrap .cls-panel[data-cls="icd10"] .toc-ch{--tc-col:5.9rem}.content-wrap .toc-ch>a,.content-wrap .toc-ch .tc-head{gap:.45rem;padding-left:.85rem;padding-right:.85rem}
   .toc-ch .tc-list .sc{white-space:normal;overflow-wrap:anywhere}
 }
 /* ГОЛОВА ГЛАВЫ — одна строка: код + название, англ. ниже, подпись */
@@ -133,7 +133,7 @@ table.dh tr:not(.dh-main) .dh-name{color:var(--text)}
 .toc-ch .tc-list{display:flex;flex-direction:column}
 /* две выровненные колонки (невидимая таблица): код | название по одной вертикали */
 .toc-ch .tc-list a{display:grid;grid-template-columns:var(--tc-col) 1fr;align-items:start;gap:.6rem;align-items:baseline;padding:.5rem 1rem;text-decoration:none;color:var(--text2);font-size:.9rem;font-weight:600;border-top:1px solid var(--border)}
-.toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}
+.toc-ch .tc-list a:hover{background:var(--bg3);color:var(--text)}.toc-ch>a>span:last-child,.toc-ch .tc-head>span:last-child,.toc-ch .tc-list a>span:last-child{overflow-wrap:anywhere;min-width:0}.toc-ch .tc-range,.toc-ch .tc-list .sc{text-align:right}
 .toc-ch .tc-list .sc{color:var(--gold);font-family:var(--mono,monospace);font-weight:700;font-variant-numeric:tabular-nums}
 .toc-ch .tc-empty{padding:.5rem 1rem;color:var(--text3);font-size:.82rem;font-style:italic;border-top:1px solid var(--border)}
 /* переключатель классификаций: вкладки XBT-11 / DSM-5-TR / XBT-10 */
