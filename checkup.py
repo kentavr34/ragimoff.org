@@ -375,6 +375,67 @@ def main() -> int:
                 glue.append(f'{lg}/{fp.stem}: {m.group(0)}')
     check('кавычка_не_склеена_с_тире', glue)
 
+    # 19. аббревиатура рядом с кодом — против канона.
+    # 15 августа 2026 нашлось: приложение со шкалами во всех четырёх деревьях
+    # писало «ОВР (ODD), МКБ-11 6C91», тогда как ОВР это 6C90, а 6C91 —
+    # диссоциальное расстройство поведения. Первый проход не увидел, потому
+    # что регулярка шла по тексту С ТЕГАМИ, а код обёрнут в <span class="icd">.
+    # Поэтому здесь текст берётся уже очищенным: visible() снимает разметку.
+    # Пары «аббревиатура → код» берутся из канона: аббревиатура ищется в
+    # скобках заголовка карточки, код — из icd11_shown.
+    canon_abbr: dict[str, str] = {}
+    try:
+        src = json.loads((ROOT / '_codes_canon.json').read_text(encoding='utf-8'))
+        for row in src.get('header_source', {}).get('rows', []):
+            code = str(row.get('icd11_shown') or '')
+            # аббревиатура живёт в скобках названия карточки: поле «title»,
+            # например «ОППОЗИЦИОННО-ВЫЗЫВАЮЩЕЕ РАССТРОЙСТВО (ОВР)»
+            for lang_title in (row.get('title') or {}).values():
+                for ab in re.findall(r'\(([A-ZА-ЯЁƏİ][A-ZА-ЯЁƏİa-zа-яё-]{1,7})\)', str(lang_title)):
+                    # одна аббревиатура — один код; неоднозначные отбрасываем
+                    if canon_abbr.get(ab, code) != code:
+                        canon_abbr[ab] = ''
+                    else:
+                        canon_abbr[ab] = code
+    except Exception:
+        canon_abbr = {}
+    canon_abbr = {a: c for a, c in canon_abbr.items() if c and len(a) >= 3}
+    wrong_code = []
+    if canon_abbr:
+        joined = '|'.join(sorted(map(re.escape, canon_abbr), key=len, reverse=True))
+        C = r'6[A-E][0-9A-Z]{2}(?:\.[0-9A-Z]+)?|7[AB][0-9A-Z]{2}|8A05(?:\.0)?|HA[0-9A-Z]{2}(?:\.[0-9])?|GA34(?:\.41)?'
+        # Только однозначные формы, где аббревиатура и код заведомо про одно:
+        #   «(ОВР, МКБ-11 6C90)» — оба внутри одних скобок;
+        #   «ODD (6C90)»          — код в скобках сразу после аббревиатуры.
+        # Широкое окно давало 141 ложное срабатывание на страницах глав, где
+        # аббревиатура одной карточки соседствует с кодом следующей строки.
+        # \s* перед закрывающей скобкой обязателен: снятие <span class="icd">
+        # оставляет пробел, и «(ОВР, МКБ-11 6C91 )» иначе не совпадает —
+        # проверка молча возвращала бы ноль на реальном дефекте.
+        rx_in = re.compile(r'\((' + joined + r')[^()]{0,40}?(' + C + r')\s*\)')
+        rx_af = re.compile(r'\b(' + joined + r')\b\s*\(\s*(' + C + r')\s*\)')
+        for lg, d in DIRS.items():
+            for fp in sorted(d.glob('*.html')):
+                if fp.stem.startswith(('abbreviatur', 'terminoloji')):
+                    continue
+                txt = visible(fp)
+                # «Комплексное ПТСР (6B41)» — это своя нозология, а не ПТСР;
+                # без этой отсечки строка ловится как ошибка кода.
+                CPLX = re.compile(r'(?:комплексн|complex|kompleks|karmaşık|kompleks)\w*\s*$', re.I)
+                for rx in (rx_in, rx_af):
+                    for m in rx.finditer(txt):
+                        ab, code = m.group(1), m.group(2)
+                        want = canon_abbr.get(ab)
+                        if not want or code.split('.')[0] == want.split('.')[0]:
+                            continue
+                        if CPLX.search(txt[max(0, m.start() - 14):m.start()]):
+                            continue
+                        # страница вправе называть свой собственный код
+                        if code.split('.')[0] == fp.stem:
+                            continue
+                        wrong_code.append(f'{lg}/{fp.stem}: {ab} → {code}, канон {want}')
+    check('аббревиатура_и_код_совпадают_с_каноном', wrong_code)
+
     # 10. сборка из данных идемпотентна (шапки и разделы совпадают с _codes_canon.json)
     # проверяется отдельными скриптами; здесь только напоминание в отчёте
     report['напоминание'] = 'после правок прогнать build_headers.py и build_sections.py — оба должны показать 0 изменений'
