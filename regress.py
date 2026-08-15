@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 07 — обломки текста, 2026-08-15
+    'göstərənnu', '+ ya da pre-trauma',
     # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
     'ERP + SSRİ</strong> — orta-ağır OKP-də monoterapiyadan üstün',
     'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RKİ',
@@ -190,6 +192,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 07 — обломки текста, 2026-08-15
+    'проверочного поведения ухаживающего лица', '+ или пре-травматическое',
     # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
     'ЭРП + СИОЗС</strong> — превосходит монотерапию',
     'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 РКИ',
@@ -389,6 +393,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 07 — обломки текста, 2026-08-15
+    '+ or pre-trauma phase 1',
     # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
     'ERP + SSRI</strong> — superior to monotherapy',
     'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RCT',
@@ -539,6 +545,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 глава 07 — обломки текста, 2026-08-15
+    '+ ya da travma öncesi faz 1',
     # очередь 1 §8 глава 06 — Foa 2005, Crerand, Tolin, 2026-08-13
     'ERP + SSRI</strong> — orta-ağır OKB',
     'Plast Reconstr Surg 2010', 'Depress Anxiety 2015 RKÇ',
