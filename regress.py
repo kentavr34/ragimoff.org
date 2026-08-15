@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 13 — английские обломки в мастере, 2026-08-15
+    'ood stabilizator', 'Group support (S-Anon',
     # канон первичного звена — «birinci tibbi yardım» (Кенан 2026-08-15);
     # «ilk tibbi yardım» это первая помощь, другое понятие
     'ilkin tibbi yardım', 'birinci yardım səviyyəsində',
