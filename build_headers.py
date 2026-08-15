@@ -49,13 +49,12 @@ def render(row: dict, lang: str, labels: dict) -> str:
     parts = ['<table class="dh"><tbody>']
     # 1. МКБ-11 — заголовок страницы
     parts.append(
-        # Три колонки: ярлык | код | название. Раньше ярлык и код стояли
-        # стопкой в одной ячейке, и при любом выравнивании край получался
-        # рваным — разная длина и разный кегль давали лесенку. Решение
-        # Кенана 2026-08-14: у каждого своя вертикаль.
-        f'<tr class="dh-main"><td class="dh-lbl-c">'
-        f'<span class="dh-lbl">{labels["icd11"][lang]}</span></td>'
-        f'<td class="dh-code-c">'
+        # Ярлык и код — стопкой в одной ячейке, одного кегля и одной
+        # гарнитуры, по левому краю; дальше вертикальная линия и текст.
+        # Решение Кенана 2026-08-15. Разнесение их по двум колонкам
+        # (14 августа) душило название на узком экране — отменено.
+        f'<tr class="dh-main"><td class="dh-meta">'
+        f'<span class="dh-lbl">{labels["icd11"][lang]}</span>'
         f'<span class="dh-code">{esc(row["icd11_shown"])}</span></td>'
         f'<td class="dh-name"><h1>{esc(title)}</h1>'
         # lang="en" — английское имя болезни внутри страницы на другом
@@ -67,16 +66,16 @@ def render(row: dict, lang: str, labels: dict) -> str:
     c10 = row.get("icd10_code") or "—"
     n10 = row["icd10_name"].get(lang) or "—"
     parts.append(
-        f'<tr><td class="dh-lbl-c"><span class="dh-lbl">{labels["icd10"][lang]}</span></td>'
-        f'<td class="dh-code-c"><span class="dh-code">{esc(c10)}</span></td>'
+        f'<tr><td class="dh-meta"><span class="dh-lbl">{labels["icd10"][lang]}</span>'
+        f'<span class="dh-code">{esc(c10)}</span></td>'
         f'<td class="dh-name">{esc(n10)}</td></tr>'
     )
     # 3. DSM-5-TR — своё название (официальный перевод есть не на всех языках)
     cd = row.get("dsm_code") or "—"
     nd = row["dsm_name"].get(lang) or "—"
     parts.append(
-        f'<tr><td class="dh-lbl-c"><span class="dh-lbl">{labels["dsm"]}</span></td>'
-        f'<td class="dh-code-c"><span class="dh-code">{esc(cd)}</span></td>'
+        f'<tr><td class="dh-meta"><span class="dh-lbl">{labels["dsm"]}</span>'
+        f'<span class="dh-code">{esc(cd)}</span></td>'
         f'<td class="dh-name">{esc(nd)}</td></tr>'
     )
     parts.append("</tbody></table>")
