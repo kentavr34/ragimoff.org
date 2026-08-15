@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 11 — 6C20, 2026-08-15
+    'səviyyəsində integrate care', 'Birinci yardım səviyyəsində KDT',
     # очередь 1 §8 глава 10 — обломки в 6C01, 2026-08-15
     'aylıq-illik dozada', 'enemadan üstündür (tövsiyə edilmir',
     # очередь 1 §8 глава 09 — CBT-E, рефидинг, лиздексамфетамин, 2026-08-15
@@ -198,6 +200,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 11 — 6C20, 2026-08-15
+    'на уровне первой помощи',
     # очередь 1 §8 глава 10 — обломки в 6C01, 2026-08-15
     'ежемесячно-годовой дозе', 'предпочтительнее клизмы (не рекомендуется',
     # очередь 1 §8 глава 09 — CBT-E, рефидинг, лиздексамфетамин, 2026-08-15
@@ -403,6 +407,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 11 — 6C20, 2026-08-15
+    'integrate care at the primary care level', 'once comprehensive examination',
     # очередь 1 §8 глава 10 — обломки в 6C01, 2026-08-15
     'monthly-yearly dose', 'oral superior to enema (not recommended',
     # очередь 1 §8 глава 09 — CBT-E, рефидинг, лиздексамфетамин, 2026-08-15
