@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # очередь 1 §8 глава 14 — ОВР был привязан к чужому коду, 2026-08-15
+    '(ODD, XBT-11 <span class="icd">6C91</span>)',
     # очередь 1 §8 глава 13 — английские обломки в мастере, 2026-08-15
     'ood stabilizator', 'Group support (S-Anon',
     # канон первичного звена — «birinci tibbi yardım» (Кенан 2026-08-15);
@@ -207,6 +209,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # очередь 1 §8 глава 14 — ОВР был привязан к чужому коду, 2026-08-15
+    '(ОВР, МКБ-11 <span class="icd">6C91</span>)',
     # очередь 1 §8 глава 12 — NG219 и MacArthur, 2026-08-15
     'NICE CG52, NG219', 'снижает смертность и передачу ВИЧ (MacArthur',
     # очередь 1 §8 глава 11 — 6C20, 2026-08-15
@@ -416,6 +420,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # очередь 1 §8 глава 14 — ОВР был привязан к чужому коду, 2026-08-15
+    '(ODD, ICD-11 <span class="icd">6C91</span>)',
     # очередь 1 §8 глава 12 — NG219 и MacArthur, 2026-08-15
     'NICE CG52, NG219', 'reduces mortality and HIV transmission (MacArthur',
     # очередь 1 §8 глава 11 — 6C20, 2026-08-15
@@ -576,6 +582,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # очередь 1 §8 глава 14 — ОВР был привязан к чужому коду, 2026-08-15
+    '(ODD, ICD-11 <span class="icd">6C91</span>)',
     # очередь 1 §8 глава 12 — NG219 и MacArthur, 2026-08-15
     'NICE CG52, NG219', 'mortalite ve HIV transmisyonunu anlamlı ölçüde azaltır (MacArthur',
     # очередь 1 §8 глава 10 — обломки в 6C01, 2026-08-15
