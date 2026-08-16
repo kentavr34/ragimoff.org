@@ -20,6 +20,8 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
+    'Yumşaq Konfrontasiya',
     # турецкие формы в азербайджанском мастере, 2026-08-16
     'Tetikleyici idarəsi', 'Sınırlı effektiv',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
@@ -213,6 +215,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
+    '«мягкая конфронтация»',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
     'APA Practice Guideline for BPD (2001)',
     # ДРИ это 6B64, не 6B61 (диссоциативная амнезия), 2026-08-15
@@ -428,6 +432,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
+    'Soft confrontation',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
     'APA Practice Guideline for BPD (2001)',
     # DID это 6B64, не 6B61, 2026-08-15
@@ -594,6 +600,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
+    'Yumuşak Konfrontasyon',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
     'APA Practice Guideline for BPD (2001)',
     # DKB это 6B64, не 6B61, 2026-08-15
