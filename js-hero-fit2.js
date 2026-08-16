@@ -248,6 +248,24 @@
     /* Обрезка по нулю тут вредна: трём разделам зазор нужно УМЕНЬШИТЬ, а
        собственный margin у заголовка уже 0 — поправка обязана уходить в
        минус. Проверено: без этого 31.9 не опускалось до 27. */
+    /* Нижний зазор. Кенан: «текст не должен быть прижат к стенке, зазор
+       должен быть пропорционален тому, что выше». Последняя строка текста
+       упиралась прямо в серую полосу следующего блока. Делаем снизу
+       столько же, сколько сверху. Ищем нижнюю границу самого нижнего
+       содержимого, а не последнего ребёнка: он может быть пустым. */
+    sec.style.removeProperty('padding-bottom');
+    var deepest = 0;
+    [].forEach.call(sec.querySelectorAll('*'), function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
+    });
+    if (deepest) {
+      var gapBot = sec.getBoundingClientRect().bottom - deepest;
+      var basePadB = parseFloat(getComputedStyle(sec).paddingBottom) || 0;
+      sec.style.setProperty('padding-bottom',
+        Math.max(0, basePadB + (SEC_TOP - gapBot)).toFixed(1) + 'px', 'important');
+    }
+
     var gapB = h.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(h);
     var baseMT = parseFloat(getComputedStyle(h).marginTop) || 0;
     h.style.setProperty('margin-top',
