@@ -45,6 +45,16 @@
   var LH_SUB = 1.6;      /* line-height лида на главной: 24/15, 19.2/12, 25.6/16 */
   var CAP_H1 = 64;       /* на главной строка 1 = 50px; выше уже давит страницу */
 
+  /* Ритм РАЗДЕЛА. Снят с блока «Mütəxəssis Haqqında» на samira.html — он
+     перенесён с главной страницы и, по словам владельца, единственный на
+     странице выглядит аккуратно: 48px от верхней грани до бейджа и 26.6
+     оптически от бейджа до заголовка. Остальные разделы имели 24 сверху,
+     шапка 36, а разброс «бейдж → заголовок» доходил до 47.9 — отсюда
+     ощущение, что блоки не в одной системе. Приводим ВСЕ разделы к этой
+     паре, включая шапку. */
+  var SEC_TOP = 48;
+  var SEC_BADGE = 27;
+
   /* Ширина именно текста: у display:block элемента getBoundingClientRect
      возвращает ширину контейнера, мерить по нему нельзя. */
   function textWidth(el) {
@@ -171,20 +181,30 @@
        должны быть равны и примерно в полтора раза больше прежних 24;
        перед панелью поиска — меньше, под ней — больше, чтобы панель
        поднялась внутри полосы. */
-    var GAP_TOP = 36;        /* верх шапки → бейдж */
-    var GAP_BADGE = 36;      /* бейдж → заголовок, оптически */
-    var GAP_LEAD_BAR = 30;   /* лид → панель, оптически */
-    var GAP_BAR_BOTTOM = 32; /* панель → низ шапки */
+    var GAP_TOP = SEC_TOP;        /* верх шапки → бейдж, как в разделах */
+    var GAP_BADGE = SEC_BADGE;    /* бейдж → заголовок, оптически */
+    var GAP_LEAD_BAR = 30;        /* лид → панель, оптически */
+    var GAP_BAR_BOTTOM = SEC_TOP; /* панель → низ шапки */
 
     /* important обязателен: в CSS страницы эти же свойства заданы с
        !important, обычный inline-стиль их не перебивает. */
-    hero.style.setProperty('padding-top', GAP_TOP + 'px', 'important');
     hero.style.setProperty('padding-bottom', GAP_BAR_BOTTOM + 'px', 'important');
 
+    /* Как и в разделах — измеряем фактический зазор и правим на разницу:
+       отступ складывается из padding шапки и внутреннего контейнера. */
+    if (badge) {
+      hero.style.removeProperty('padding-top');
+      var gTop = badge.getBoundingClientRect().top - hero.getBoundingClientRect().top;
+      var basePadTop = parseFloat(getComputedStyle(hero).paddingTop) || 0;
+      hero.style.setProperty('padding-top',
+        Math.max(0, basePadTop + (GAP_TOP - gTop)).toFixed(1) + 'px', 'important');
+    }
     if (w1) {
-      var badgeMB = badge ? parseFloat(getComputedStyle(badge).marginBottom) || 0 : 0;
-      var mt = GAP_BADGE - halfLeading(w1) - badgeMB;
-      h1.style.setProperty('margin-top', Math.max(0, mt).toFixed(1) + 'px', 'important');
+      h1.style.removeProperty('margin-top');
+      var gB = w1.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(w1);
+      var baseMT1 = parseFloat(getComputedStyle(h1).marginTop) || 0;
+      h1.style.setProperty('margin-top',
+        Math.max(-40, baseMT1 + (GAP_BADGE - gB)).toFixed(1) + 'px', 'important');
     }
 
     [].forEach.call(subMob, function (line) {
@@ -206,6 +226,34 @@
   /* Заголовок секции и его подпись — перенос блока fitAbout с главной.
      Без него «Samirə Rahimova/Rüstəmova» переносится как попало: одна
      строка короткая, вторая во всю ширину. */
+  /* Ритм раздела: одинаковый для всех блоков страницы.
+
+     Зазор НЕ задаётся напрямую: отступ до бейджа складывается из padding
+     самой секции и padding внутреннего .sec-inner, а у заголовка сверху
+     может стоять свой margin. Слепая установка padding-top: 48 дала 72 —
+     проверено. Поэтому измеряем фактический зазор и правим на разницу. */
+  function sectionRhythm(sec) {
+    var badge = sec.querySelector('.badge');
+    var h = sec.querySelector('h2');
+    if (!badge || !h) return;
+
+    sec.style.removeProperty('padding-top');
+    h.style.removeProperty('margin-top');
+
+    var gapTop = badge.getBoundingClientRect().top - sec.getBoundingClientRect().top;
+    var basePad = parseFloat(getComputedStyle(sec).paddingTop) || 0;
+    sec.style.setProperty('padding-top',
+      Math.max(0, basePad + (SEC_TOP - gapTop)).toFixed(1) + 'px', 'important');
+
+    /* Обрезка по нулю тут вредна: трём разделам зазор нужно УМЕНЬШИТЬ, а
+       собственный margin у заголовка уже 0 — поправка обязана уходить в
+       минус. Проверено: без этого 31.9 не опускалось до 27. */
+    var gapB = h.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(h);
+    var baseMT = parseFloat(getComputedStyle(h).marginTop) || 0;
+    h.style.setProperty('margin-top',
+      Math.max(-40, baseMT + (SEC_BADGE - gapB)).toFixed(1) + 'px', 'important');
+  }
+
   function fitSection(header) {
     if (window.innerWidth > 768) return;
     var h2 = header.querySelector('h2.sec-h2');
@@ -235,9 +283,22 @@
     });
   }
 
-  function fitAll() {
+  /* Ритм и подгонка кегля зависят друг от друга: правка отступа меняет
+     положение строк, а смена кегля меняет полулидинг, от которого считается
+     отступ. Один проход недотягивает — замер показал 23.7 вместо 27 в шапке.
+     Второй проход сходится, третий уже ничего не меняет. */
+  function pass() {
     document.querySelectorAll('.page-hero-x').forEach(fitHero);
     document.querySelectorAll('.sec-header').forEach(fitSection);
+    document.querySelectorAll('section').forEach(function (s) {
+      if (s.classList.contains('page-hero-x')) return;
+      sectionRhythm(s);
+    });
+  }
+
+  function fitAll() {
+    pass();
+    pass();
   }
 
   if (document.readyState === 'loading') {

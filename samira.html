@@ -54,6 +54,12 @@
         letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
       .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
         color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
+      .mod-note { font-size: var(--t-sm) !important; color: var(--clr-text-muted) !important; margin: 0 0 10px !important; }
+      /* Тело текста выравнивается ПО ЛЕВОМУ КРАЮ. По центру — только заголовки
+         и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
+         длины, читать её тяжело. Правило Кенана 2026-08-17. */
+      .mod-foot { max-width: 640px; margin: 28px auto 0; text-align: left;
+        color: rgba(255,255,255,0.62); line-height: 1.75; font-size: var(--t-sm); }
       @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
       /* Шапка приводится к главной. Значения сняты замером с index.html
          на 375px, не назначены. Пока правится по месту: gtc.css общий для
@@ -336,20 +342,21 @@
       <div class="sec-inner" style="padding:var(--s-section)">
         <span class="badge">TƏLİM PROQRAMI</span>
         <h2 class="sec-h2">Sistemli Ailə Terapiyası</h2>
-        <p class="sec-sub">İki modul. Hər modul — 16 dərs, həftədə 2 dəfə, hər dərs 2 saat. Əyani və&nbsp;online.</p>
+        <p class="sec-sub">İki modul. Hər modul 3 ay: 2 ay tədris və&nbsp;praktika, 3-cü ay superviziya. Əyani və&nbsp;online — qiymət eynidir.</p>
 
         <details class="mod-panel">
           <summary>
             <p class="mod-sub">Modul 1</p>
-            <h3>Kişi-Qadın Münasibətləri</h3>
+            <h3>Cütlük Terapiyası</h3>
+            <p class="mod-note">Kişi-qadın münasibətləri</p>
             <p>Cütlük sistemi ilə iş: diaqnostikadan böhran dövrünə qədər. İlkin qəbul, genoqramma, rollar və&nbsp;sərhədlər, patternlər, xəyanət və&nbsp;boşanma ərəfəsində yanaşma.</p>
             <div class="mod-meta">
-              <span class="mod-chip">16 dərs</span>
-              <span class="mod-chip">2 ay</span>
+              <span class="mod-chip">3 ay</span>
+              <span class="mod-chip">16 dərs + superviziya</span>
               <span class="mod-chip">həftədə 2 dəfə</span>
               <span class="mod-chip">hər dərs 2 saat</span>
             </div>
-            <p class="mod-price">200 AZN/ay əyani · 100 AZN/ay online <span>— modul (2 ay): 400 AZN əyani · 200 AZN online</span></p>
+            <p class="mod-price">Cəmi 600 AZN <span>— ayda 200 AZN × 3 ay, yaxud öncədən ödənişlə 500 AZN. Əyani və&nbsp;online üçün qiymət eynidir.</span></p>
             <span class="mod-open">Tam proqrama bax</span>
           </summary>
           <ol class="mod-list">
@@ -375,15 +382,16 @@
         <details class="mod-panel">
           <summary>
             <p class="mod-sub">Modul 2</p>
-            <h3>Uşaq-Valideyn Münasibətləri</h3>
-            <p>Uşağın inkişaf mərhələləri və&nbsp;kritik məqamlar, ailədaxili funksional pozuntular, ünsiyyət modelinin qurulması, oyun terapiyası, qorxular və&nbsp;aqressiya.</p>
+            <h3>Valideyn-Övlad Münasibətləri</h3>
+            <p class="mod-note">Valideynlər üçün ailə terapiyası</p>
+            <p>Övladın inkişaf mərhələləri və&nbsp;kritik məqamlar, ailədaxili funksional pozuntular, ünsiyyət modelinin qurulması, oyun terapiyası, qorxular və&nbsp;aqressiya. Psixoloqlar, pedaqoqlar və&nbsp;valideynlər üçün.</p>
             <div class="mod-meta">
-              <span class="mod-chip">16 dərs</span>
-              <span class="mod-chip">2 ay</span>
+              <span class="mod-chip">3 ay</span>
+              <span class="mod-chip">16 dərs + superviziya</span>
               <span class="mod-chip">həftədə 2 dəfə</span>
               <span class="mod-chip">hər dərs 2 saat</span>
             </div>
-            <p class="mod-price">200 AZN/ay əyani · 100 AZN/ay online <span>— modul (2 ay): 400 AZN əyani · 200 AZN online</span></p>
+            <p class="mod-price">Cəmi 600 AZN <span>— ayda 200 AZN × 3 ay, yaxud öncədən ödənişlə 500 AZN. Əyani və&nbsp;online üçün qiymət eynidir.</span></p>
             <span class="mod-open">Tam proqrama bax</span>
           </summary>
           <ol class="mod-list">
@@ -406,10 +414,7 @@
           </ol>
         </details>
 
-        <p style="max-width:780px;margin:28px auto 0;color:rgba(255,255,255,0.62);line-height:1.8;">
-          Proqram psixoloqlar, məktəb psixoloqları, müəllimlər, koçlar və&nbsp;tələbələr üçün nəzərdə tutulub.
-          Kursun sonunda imtahan keçirilir və&nbsp;Beynəlxalq Psixoterapiya Assosiasiyasının sertifikatı verilir.
-        </p>
+        <p class="mod-foot">Proqram psixoloqlar, məktəb psixoloqları, müəllimlər, koçlar, tələbələr və&nbsp;valideynlər üçündür; ali təhsil tələb olunmur. Kursun sonunda imtahan keçirilir və&nbsp;Beynəlxalq Psixoterapiya Assosiasiyasının sertifikatı verilir.</p>
       </div>
     </section>
 
