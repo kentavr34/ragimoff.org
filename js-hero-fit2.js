@@ -254,8 +254,12 @@
        столько же, сколько сверху. Ищем нижнюю границу самого нижнего
        содержимого, а не последнего ребёнка: он может быть пустым. */
     sec.style.removeProperty('padding-bottom');
+    /* Только ПРЯМЫЕ дети: их рамка уже включает всё содержимое. Обход всех
+       потомков затягивал в расчёт скрытый <ol> внутри закрытого <details> —
+       у раздела программ padding-bottom вырастал до 534px и на странице
+       зияла дыра. */
     var deepest = 0;
-    [].forEach.call(sec.querySelectorAll('*'), function (el) {
+    [].forEach.call(sec.children, function (el) {
       var r = el.getBoundingClientRect();
       if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
     });
@@ -273,11 +277,21 @@
   }
 
   function fitSection(header) {
-    if (window.innerWidth > 768) return;
     var h2 = header.querySelector('h2.sec-h2');
     if (!h2) return;
     var mob = header.querySelectorAll('.ab-lead-mob');
     var desk = header.querySelectorAll('.ab-lead-desk');
+
+    /* Сброс ДО проверки ширины. Раньше выход стоял первой строкой, и при
+       переходе с узкого экрана на широкий инлайн-кегли, выставленные для
+       мобильного, оставались: заголовки разделов застревали на 10px —
+       нижней границе бинарного поиска. Замер на 1366 показал h2 = 10px
+       во всех пяти разделах. */
+    h2.style.removeProperty('font-size');
+    [].forEach.call(mob, function (l) { l.style.cssText = ''; });
+    [].forEach.call(desk, function (l) { l.style.cssText = ''; });
+    if (window.innerWidth > 768) return;
+
     [].forEach.call(desk, function (l) { l.style.cssText = 'display:none!important'; });
 
     var target = header.getBoundingClientRect().width - 32;  /* как на главной */
@@ -305,9 +319,28 @@
      положение строк, а смена кегля меняет полулидинг, от которого считается
      отступ. Один проход недотягивает — замер показал 23.7 вместо 27 в шапке.
      Второй проход сходится, третий уже ничего не меняет. */
+  /* Заголовки разделов — ОДИН кегль на всю страницу.
+     Подгонка каждого под общую ширину даёт разный кегль: «Ailə Terapiyası»
+     (15 знаков) выходил 41px, «Ailə Münasibətləri Haqqında» (27) — 21px.
+     Заголовки одного уровня обязаны быть одного размера, иначе иерархия
+     рассыпается. Берём наименьший из подогнанных и ставим всем: тогда ни
+     один не вылезет за меру. */
+  function levelH2() {
+    if (window.innerWidth > 768) return;
+    var hs = [];
+    document.querySelectorAll('.sec-header h2.sec-h2').forEach(function (h) {
+      var v = parseFloat(h.style.fontSize);
+      if (v) hs.push({ el: h, size: v });
+    });
+    if (hs.length < 2) return;
+    var min = hs.reduce(function (a, b) { return a.size < b.size ? a : b; }).size;
+    hs.forEach(function (x) { setSize(x.el, min); });
+  }
+
   function pass() {
     document.querySelectorAll('.page-hero-x').forEach(fitHero);
     document.querySelectorAll('.sec-header').forEach(fitSection);
+    levelH2();
     document.querySelectorAll('section').forEach(function (s) {
       if (s.classList.contains('page-hero-x')) return;
       sectionRhythm(s);
