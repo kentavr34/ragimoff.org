@@ -265,10 +265,21 @@
     sec.style.removeProperty('padding-top');
     h.style.removeProperty('margin-top');
 
+    /* Отступ сверху создаёт не только сама секция, но и внутренний
+       .sec-inner со своим padding. Когда правка уходит в минус, а padding
+       секции уже 0, Math.max(0,…) её съедает и зазор застревает: три
+       раздела держали 55 вместо 48. Остаток переносим на .sec-inner. */
+    var inner = sec.querySelector('.sec-inner');
+    if (inner) inner.style.removeProperty('padding-top');
     var gapTop = badge.getBoundingClientRect().top - sec.getBoundingClientRect().top;
     var basePad = parseFloat(getComputedStyle(sec).paddingTop) || 0;
-    sec.style.setProperty('padding-top',
-      Math.max(0, basePad + (SEC_TOP - gapTop)).toFixed(1) + 'px', 'important');
+    var wantPad = basePad + (SEC_TOP - gapTop);
+    sec.style.setProperty('padding-top', Math.max(0, wantPad).toFixed(1) + 'px', 'important');
+    if (wantPad < 0 && inner) {
+      var baseIn = parseFloat(getComputedStyle(inner).paddingTop) || 0;
+      inner.style.setProperty('padding-top',
+        Math.max(0, baseIn + wantPad).toFixed(1) + 'px', 'important');
+    }
 
     /* Обрезка по нулю тут вредна: трём разделам зазор нужно УМЕНЬШИТЬ, а
        собственный margin у заголовка уже 0 — поправка обязана уходить в
@@ -283,16 +294,36 @@
        потомков затягивал в расчёт скрытый <ol> внутри закрытого <details> —
        у раздела программ padding-bottom вырастал до 534px и на странице
        зияла дыра. */
+    /* Нижняя граница содержимого — по последнему СОДЕРЖАТЕЛЬНОМУ элементу.
+       Считать по .sec-inner нельзя: его собственный padding добавлялся к
+       зазору, и от кнопки до края раздела выходило 103 вместо 48. Обход
+       всех потомков тоже не годится — затягивает скрытый <ol> внутри
+       закрытого <details>. */
     var deepest = 0;
-    [].forEach.call(sec.children, function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
-    });
+    [].forEach.call(sec.querySelectorAll('p, h1, h2, h3, a, ul, ol, img, .btn, .stat-item, .mod-panel'),
+      function (el) {
+        if (el.closest('details') && !el.closest('details').open) return;
+        var r = el.getBoundingClientRect();
+        if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
+      });
+    if (!deepest) {
+      [].forEach.call(sec.children, function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
+      });
+    }
     if (deepest) {
+      var innerB = sec.querySelector('.sec-inner');
+      if (innerB) innerB.style.removeProperty('padding-bottom');
       var gapBot = sec.getBoundingClientRect().bottom - deepest;
       var basePadB = parseFloat(getComputedStyle(sec).paddingBottom) || 0;
-      sec.style.setProperty('padding-bottom',
-        Math.max(0, basePadB + (SEC_TOP - gapBot)).toFixed(1) + 'px', 'important');
+      var wantB = basePadB + (SEC_TOP - gapBot);
+      sec.style.setProperty('padding-bottom', Math.max(0, wantB).toFixed(1) + 'px', 'important');
+      if (wantB < 0 && innerB) {
+        var baseInB = parseFloat(getComputedStyle(innerB).paddingBottom) || 0;
+        innerB.style.setProperty('padding-bottom',
+          Math.max(0, baseInB + wantB).toFixed(1) + 'px', 'important');
+      }
     }
 
     var gapB = h.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(h);
@@ -414,8 +445,58 @@
     });
   }
 
+  /* ВНУТРЕННИЙ РИТМ РАЗДЕЛА.
+     Замер раздела «Konsultasiya» до правки: подзаголовок → текст 71,
+     текст → кнопка 33, кнопка → низ 103. Большой, маленький, снова
+     большой — блоки не читаются как одна система. Ставим одну единицу
+     между разнородными блоками: 40. Считается оптически, с вычетом
+     полулидинга: у абзаца 14px с интерлиньяжем 24.5 сверху и снизу по
+     5px пустоты, которой не видно в рамках. */
+  var SEC_INNER = 40;
+
+  function innerRhythm(sec) {
+    var sub = sec.querySelector('.sec-sub');
+    var body = sec.querySelector('.sec-body, .mod-foot');
+    var btn = sec.querySelector('.btn');
+    var btnRow = btn ? btn.parentElement : null;
+
+    /* Правило действует, только если текст идёт СРАЗУ за подзаголовком.
+       В разделе программ между ними стоят две панели модулей, и замер
+       давал 743px — попытка «сжать» этот зазор до 40 схлопнула бы панели. */
+    if (sub && body) {
+      body.style.removeProperty('margin-top');
+      var g1 = body.getBoundingClientRect().top - sub.getBoundingClientRect().bottom
+               + halfLeading(sub) + halfLeading(body);
+      if (g1 < 200) {
+        var b1 = parseFloat(getComputedStyle(body).marginTop) || 0;
+        body.style.setProperty('margin-top',
+          Math.max(0, b1 + (SEC_INNER - g1)).toFixed(1) + 'px', 'important');
+      }
+    }
+    if (btnRow && body && btnRow !== body) {
+      btnRow.style.removeProperty('margin-top');
+      var g2 = btn.getBoundingClientRect().top - body.getBoundingClientRect().bottom
+               + halfLeading(body);
+      var b2 = parseFloat(getComputedStyle(btnRow).marginTop) || 0;
+      btnRow.style.setProperty('margin-top',
+        Math.max(0, b2 + (SEC_INNER - g2)).toFixed(1) + 'px', 'important');
+    }
+  }
+
+  function inner() {
+    document.querySelectorAll('section').forEach(function (s) {
+      if (!s.classList.contains('page-hero-x')) innerRhythm(s);
+    });
+  }
+
+  /* Порядок важен: внутренний ритм сдвигает содержимое, значит нижний
+     зазор надо пересчитать ПОСЛЕ него. Раньше цикл кончался на inner(),
+     и от кнопки до края раздела оставалось 55 вместо 48. */
   function fitAll() {
     pass();
+    inner();
+    pass();
+    inner();
     pass();
   }
 
