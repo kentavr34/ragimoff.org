@@ -3,9 +3,27 @@
 //  Принимает формы с сайта → Google Sheets + Telegram
 // ═══════════════════════════════════════════════
 
-const TG_TOKEN   = '8627472656:AAEv9hImWmxwq5HuxuemRWTZywRJEqa63cU';
-const TG_CHAT_ID = '254450353';
-const SHEET_ID   = '1ucYNu6mjcDzUE1g4rVIQi__56qUhaMjcG9r0JorV2rI';
+// ─────────────────────────────────────────────────────────────
+//  ДОСТУПЫ — только из Script Properties, НИКОГДА не в коде.
+//
+//  Здесь раньше стоял токен бота открытым текстом, а этот файл лежит
+//  в ПУБЛИЧНОМ репозитории kentavr34/ragimoff.org. Telegram
+//  автоматически отзывает токены, которые находит в публичных репах
+//  на GitHub — поэтому регистрация и перестала доходить. Это была
+//  утечка, а не взлом.
+//
+//  Куда вписывать новый токен:
+//    Apps Script → шестерёнка «Настройки проекта» →
+//    «Свойства скрипта» → добавить:
+//        TG_TOKEN    — новый токен от @BotFather
+//        TG_CHAT_ID  — 254450353
+//        SHEET_ID    — 1ucYNu6mjcDzUE1g4rVIQi__56qUhaMjcG9r0JorV2rI
+//  В код токен не возвращать ни при каких условиях.
+// ─────────────────────────────────────────────────────────────
+const PROPS      = PropertiesService.getScriptProperties();
+const TG_TOKEN   = PROPS.getProperty('TG_TOKEN');
+const TG_CHAT_ID = PROPS.getProperty('TG_CHAT_ID') || '254450353';
+const SHEET_ID   = PROPS.getProperty('SHEET_ID')   || '1ucYNu6mjcDzUE1g4rVIQi__56qUhaMjcG9r0JorV2rI';
 
 function doPost(e) {
   try {
@@ -84,12 +102,49 @@ function getSheet(name, headers) {
   return sh;
 }
 
+// Ошибка отправки ЗАПИСЫВАЕТСЯ, а не глотается.
+// Раньше стоял голый muteHttpExceptions: true без разбора ответа —
+// Telegram мог отвечать 401 «Unauthorized» на отозванный токен, а
+// скрипт молчал. Заявки при этом падали в таблицу, и со стороны
+// выглядело, будто «всё работает, но бот не пишет».
 function sendTelegram(text) {
-  UrlFetchApp.fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
-    method: 'post',
-    payload: { chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' },
-    muteHttpExceptions: true
-  });
+  if (!TG_TOKEN) {
+    logProblem('TG_TOKEN не задан в свойствах скрипта');
+    return false;
+  }
+  try {
+    const res = UrlFetchApp.fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+      method: 'post',
+      payload: { chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' },
+      muteHttpExceptions: true
+    });
+    const code = res.getResponseCode();
+    if (code !== 200) {
+      logProblem('Telegram ответил ' + code + ': ' + res.getContentText().slice(0, 300));
+      return false;
+    }
+    return true;
+  } catch (err) {
+    logProblem('Сбой запроса к Telegram: ' + String(err));
+    return false;
+  }
+}
+
+// Проблемы доставки видно в самой таблице — отдельный лист «Errors».
+function logProblem(message) {
+  try {
+    const sh = getSheet('Errors', ['Дата', 'Проблема']);
+    sh.appendRow([new Date(), message]);
+  } catch (e) {
+    console.error('logProblem: ' + e);
+  }
+  console.error(message);
+}
+
+// Проверка доставки без заполнения формы: запустить руками из редактора.
+function testTelegram() {
+  const ok = sendTelegram('🔧 Проверка связи с сайтом ragimoff.org');
+  console.log(ok ? 'Telegram принял сообщение' : 'НЕ доставлено — смотри лист «Errors»');
 }
 
 function esc(s) {

@@ -134,14 +134,32 @@
       h1.style.whiteSpace = '';
 
       if (lead) { lead.style.width = dt + 'px'; lead.style.maxWidth = 'none'; }
+      var deskSizes = [];
       [].forEach.call(subDesk, function (line) {
         line.style.display = 'inline';
         line.style.whiteSpace = 'nowrap';
-        var s = fitTo(line, dt, 8, 48, 0);
+        deskSizes.push(fitTo(line, dt, 8, 48, 0));
         line.style.display = 'block';
         line.style.whiteSpace = '';
-        line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
       });
+      /* Интерлиньяж ОДИН на все строки подзаголовка. Считать его от кегля
+         каждой строки нельзя: строки разного кегля (25 и 29) дают 40 и 46.4,
+         и промежутки внутри одного абзаца выходят разными — это видно глазом.
+         Берём по самой крупной строке. */
+      if (deskSizes.length) {
+        var lhD = (Math.max.apply(null, deskSizes) * LH_SUB).toFixed(1) + 'px';
+        [].forEach.call(subDesk, function (line) { line.style.lineHeight = lhD; });
+      }
+
+      /* Зазор бейдж → заголовок нужен и на десктопе: раньше ветка выходила
+         до блока отступов, и в шапке оставалось 26 вместо 40. */
+      if (badge && w1) {
+        h1.style.removeProperty('margin-top');
+        var gD = w1.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(w1);
+        var baseD = parseFloat(getComputedStyle(h1).marginTop) || 0;
+        h1.style.setProperty('margin-top',
+          Math.max(-40, baseD + (40 - gD)).toFixed(1) + 'px', 'important');
+      }
       return;
     }
 
@@ -182,7 +200,10 @@
        перед панелью поиска — меньше, под ней — больше, чтобы панель
        поднялась внутри полосы. */
     var GAP_TOP = SEC_TOP;        /* верх шапки → бейдж, как в разделах */
-    var GAP_BADGE = SEC_BADGE;    /* бейдж → заголовок, оптически */
+    /* В шапке зазор после бейджа БОЛЬШЕ, чем в разделах: заголовок здесь
+       крупный (43px против 40px в разделах и куда крупнее на мобильном),
+       и та же цифра 27 читается как теснота. Кенан 2026-08-17. */
+    var GAP_BADGE = 40;           /* бейдж → заголовок в шапке, оптически */
     var GAP_LEAD_BAR = 30;        /* лид → панель, оптически */
     var GAP_BAR_BOTTOM = SEC_TOP; /* панель → низ шапки */
 
@@ -207,14 +228,18 @@
         Math.max(-40, baseMT1 + (GAP_BADGE - gB)).toFixed(1) + 'px', 'important');
     }
 
+    var mobSizes = [];
     [].forEach.call(subMob, function (line) {
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      var s = fitTo(line, target, 8, 40, 0);
+      mobSizes.push(fitTo(line, target, 8, 40, 0));
       line.style.display = 'block';
       line.style.whiteSpace = '';
-      line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
     });
+    if (mobSizes.length) {
+      var lhM = (Math.max.apply(null, mobSizes) * LH_SUB).toFixed(1) + 'px';
+      [].forEach.call(subMob, function (line) { line.style.lineHeight = lhM; });
+    }
 
     if (lead && subMob.length) {
       var lastLine = subMob[subMob.length - 1];
