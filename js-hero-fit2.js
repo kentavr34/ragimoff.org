@@ -52,6 +52,9 @@
      шапка 36, а разброс «бейдж → заголовок» доходил до 47.9 — отсюда
      ощущение, что блоки не в одной системе. Приводим ВСЕ разделы к этой
      паре, включая шапку. */
+  /* Ниже 13px подзаголовок на телефоне не читается. Замер на 375 без
+     порога давал 9px. */
+  var MIN_SUB = 13;
   var SEC_TOP = 48;
   var SEC_BADGE = 27;
 
@@ -232,7 +235,9 @@
     [].forEach.call(subMob, function (line) {
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      mobSizes.push(fitTo(line, target, 8, 40, 0));
+      var sM = fitTo(line, target, MIN_SUB, 40, 0);
+      if (sM < MIN_SUB) { sM = MIN_SUB; setSize(line, sM); }
+      mobSizes.push(sM);
       line.style.display = 'block';
       line.style.whiteSpace = '';
     });
@@ -394,23 +399,34 @@
        подзаголовок по ширине ≈ заголовку, ±10%. Не по ширине контейнера!
        Замер до правки: 52 / 63 / 78 / 121% — ни один раздел в норму не попадал.
        Мера для строк подзаголовка — ширина ТЕКСТА заголовка после его подгонки. */
-    var subTarget = textWidth(h2);
-    if (!subTarget || subTarget < target * 0.35) subTarget = target * 0.35;
+    /* На МОБИЛЬНОМ мера подзаголовка — контейнер, а не ширина заголовка.
+       Правило «равная ширина» — типографика широкого блока; на 375px
+       заголовок сам сжат, и привязка к нему давала кегль 9–15px, то есть
+       нечитаемо, а в двух разделах подзаголовок всё равно выходил вдвое
+       шире заголовка, упёршись в нижнюю границу поиска. Скилл
+       kenan-design-rules это допускает: на мобайле сохраняется ПОРЯДОК,
+       размеры адаптируются. */
     var subPm = h2.parentElement.querySelector('.sec-sub');
     if (subPm) {
-      subPm.style.setProperty('max-width', Math.ceil(subTarget) + 'px', 'important');
+      subPm.style.removeProperty('max-width');
       subPm.style.setProperty('margin-left', 'auto');
       subPm.style.setProperty('margin-right', 'auto');
     }
+    var mobSubSizes = [];
     [].forEach.call(mob, function (line) {
       line.style.cssText = '';
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      var s = fitTo(line, subTarget, 8, 60, 0);
+      var s = fitTo(line, target, MIN_SUB, 60, 0);
+      if (s < MIN_SUB) { s = MIN_SUB; setSize(line, s); }
+      mobSubSizes.push(s);
       line.style.display = 'block';
-      line.style.whiteSpace = '';
-      line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
+      line.style.whiteSpace = 'normal';
     });
+    if (mobSubSizes.length) {
+      var lhS = (Math.max.apply(null, mobSubSizes) * LH_SUB).toFixed(1) + 'px';
+      [].forEach.call(mob, function (line) { line.style.lineHeight = lhS; });
+    }
   }
 
   /* Ритм и подгонка кегля зависят друг от друга: правка отступа меняет
