@@ -55,12 +55,33 @@
       .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
         color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
       @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
-      /* Черновик единого шаблона шапки. Строка 1 белая, строка 2 золотая —
-         на главной строки заголовка тоже разного цвета, на внутренних
-         страницах обе были золотыми. Пока правится по месту: gtc.css общий
-         для 53 страниц, а образец нужен на двух. */
+      /* Шапка приводится к главной. Значения сняты замером с index.html
+         на 375px, не назначены. Пока правится по месту: gtc.css общий для
+         53 страниц, а образец нужен на двух. */
+      /* объект 1 — бейдж: на главной 14px/700, ls 1px, padding 10/24,
+         рамка .25, фон .1, line-height 14px → высота ровно 36px.
+         На внутренних страницах он выходил 47px из-за своего line-height. */
+      .page-hero-x .ph-badge {
+        font-size: 14px !important; font-weight: 700 !important;
+        letter-spacing: 1px !important; padding: 10px 24px !important;
+        line-height: 14px !important; border-radius: 0 !important;
+        border: 1px solid rgba(230, 180, 74, 0.25) !important;
+        background: rgba(230, 180, 74, 0.1) !important;
+        color: rgb(230, 180, 74) !important;
+        display: inline-flex !important; text-transform: uppercase !important;
+        margin-bottom: 10px !important;
+      }
+      /* объект 2 — заголовок: на главной обе строки белые, золотом выделено
+         одно слово через <em>. Здесь роль <em> играет вторая строка. */
+      /* margin-bottom обнулён намеренно: .page-hero-x-inner — flex-контейнер,
+         а у flex-элементов вертикальные отступы НЕ схлопываются. На главной
+         контейнер не flex, там 16 и 20 схлопываются в 20; здесь они
+         складывались в 36. Зазор задаёт только margin-top лида. */
+      .page-hero-x .ph-h1 { margin: 15px 0 0 0 !important; letter-spacing: 0.4px !important; }
       .page-hero-x .ph-h1 .ph-h1-w1 { color: rgba(234, 236, 239, 0.85) !important; }
       .page-hero-x .ph-h1 .ph-h1-w2 { color: var(--accent) !important; }
+      /* объект 3 — лид: зазоры заголовок→лид 20 и лид→низ 32, как на главной */
+      .page-hero-x .ph-sub { margin: 20px 0 32px 0 !important; color: rgba(234, 236, 239, 0.88) !important; }
     </style>
     <!-- Черновая страница: доступна по прямой ссылке, из меню не видна.
          Снять noindex, когда страница будет готова. -->
@@ -199,9 +220,9 @@
           <span class="ph-h1-w2">Terapiyası</span>
         </h1>
         <p class="ph-sub">
-          <span class="ph-sub-mob">Kişi-qadın və</span>
-          <span class="ph-sub-mob">valideyn-uşaq münasibətləri —</span>
-          <span class="ph-sub-mob">terapiya və təlim.</span>
+          <span class="ph-sub-mob">Kişi-qadın münasibətləri və</span>
+          <span class="ph-sub-mob">valideyn-uşaq bağı üzrə</span>
+          <span class="ph-sub-mob">sistemli ailə terapiyası.</span>
           <span class="ph-sub-desk">Kişi-qadın və valideyn-uşaq münasibətləri —</span>
           <span class="ph-sub-desk">sistemli ailə terapiyası, təlim proqramları və konsultasiya.</span>
         </p>
