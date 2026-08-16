@@ -61,6 +61,15 @@
     el.style.setProperty('font-size', px + 'px', 'important');
   }
 
+  /* Полулидинг: половина разницы интерлиньяжа и кегля. Визуально пустая
+     часть строки сверху и снизу; по рамкам элемента её не видно. */
+  function halfLeading(el) {
+    var cs = getComputedStyle(el);
+    var fs = parseFloat(cs.fontSize), lh = parseFloat(cs.lineHeight);
+    if (!lh || isNaN(lh)) return 0;
+    return (lh - fs) / 2;
+  }
+
   /* Наибольший кегль, при котором текст ещё уже target. */
   function fitTo(el, target, lo, hi, cap) {
     if (!target) return 0;
@@ -79,6 +88,7 @@
     var h1 = hero.querySelector('.ph-h1');
     if (!h1) return;
 
+    var badge = hero.querySelector('.ph-badge');
     var w1 = hero.querySelector('.ph-h1-w1');
     var w2 = hero.querySelector('.ph-h1-w2');
     var lead = hero.querySelector('.ph-sub');
@@ -151,6 +161,32 @@
     });
     if (w1) w1.style.marginBottom = '16px';   /* зазор строка1→строка2 с главной */
 
+    /* ── ОПТИЧЕСКИЕ ЗАЗОРЫ ──
+       Половина разницы интерлиньяжа и кегля — пустое место внутри строки.
+       Глаз видит его как отступ, getBoundingClientRect — нет. Кегль на
+       каждой странице свой (подгоняется), поэтому фиксированный margin даёт
+       РАЗНЫЙ видимый зазор. Считаем от цели и вычитаем полулидинг.
+
+       Цели заданы Кенаном по месту: верхний зазор и зазор бейдж→заголовок
+       должны быть равны и примерно в полтора раза больше прежних 24;
+       перед панелью поиска — меньше, под ней — больше, чтобы панель
+       поднялась внутри полосы. */
+    var GAP_TOP = 36;        /* верх шапки → бейдж */
+    var GAP_BADGE = 36;      /* бейдж → заголовок, оптически */
+    var GAP_LEAD_BAR = 30;   /* лид → панель, оптически */
+    var GAP_BAR_BOTTOM = 32; /* панель → низ шапки */
+
+    /* important обязателен: в CSS страницы эти же свойства заданы с
+       !important, обычный inline-стиль их не перебивает. */
+    hero.style.setProperty('padding-top', GAP_TOP + 'px', 'important');
+    hero.style.setProperty('padding-bottom', GAP_BAR_BOTTOM + 'px', 'important');
+
+    if (w1) {
+      var badgeMB = badge ? parseFloat(getComputedStyle(badge).marginBottom) || 0 : 0;
+      var mt = GAP_BADGE - halfLeading(w1) - badgeMB;
+      h1.style.setProperty('margin-top', Math.max(0, mt).toFixed(1) + 'px', 'important');
+    }
+
     [].forEach.call(subMob, function (line) {
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
@@ -159,6 +195,12 @@
       line.style.whiteSpace = '';
       line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
     });
+
+    if (lead && subMob.length) {
+      var lastLine = subMob[subMob.length - 1];
+      lead.style.setProperty('margin-bottom',
+        Math.max(0, GAP_LEAD_BAR - halfLeading(lastLine)).toFixed(1) + 'px', 'important');
+    }
   }
 
   /* Заголовок секции и его подпись — перенос блока fitAbout с главной.
