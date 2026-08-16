@@ -54,13 +54,32 @@
         letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
       .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
         color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
-      /* Вводный абзац биографии — по левому краю, как всякое тело текста. */
-      .bio-lead { text-align: left; color: var(--clr-text-muted); line-height: 1.75;
-        font-size: var(--t-sm); margin: 0 0 24px; max-width: 640px; }
+      /* Фото поднято на -125px правилом с главной: там заголовок блока
+         короткий («Kənan Rəhimov»), и подъём не мешает. Здесь имя длиннее —
+         «Samirə Rəhimova/Rüstəmova» шириной 769px — и уходило ПОД фото,
+         обрезаясь на «RÜSTƏ». Замер: колонка фото начиналась на y=106,
+         а сетка на y=231. Опускаем фото на уровень сетки. */
+      .sec-2col .about-col-right { margin-top: 0 !important; }
+      /* Хроника: на мобильном подпись и текст ставятся в стопку.
+         В gtc.css `.timeline-list strong` имеет white-space:nowrap и
+         flex-shrink:0, а `li` — flex-строка. На главной подписи короткие
+         («2026», «2022») и это работает; здесь «2021 — BU GÜNƏ QƏDƏR»
+         съедала 230px из 335, тексту оставалось 65 — строки по одному
+         слову, и текст вылезал за правый край. */
+      @media (max-width: 768px) {
+        .sec-2col .timeline-list li { display: block; padding-left: 32px; }
+        .sec-2col .timeline-list strong { display: block; white-space: normal;
+          margin: 0 0 6px; overflow-wrap: anywhere; }
+        .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere; }
+      }
       .mod-note { font-size: var(--t-sm) !important; color: var(--clr-text-muted) !important; margin: 0 0 10px !important; }
       /* Тело текста выравнивается ПО ЛЕВОМУ КРАЮ. По центру — только заголовки
          и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
          длины, читать её тяжело. Правило Кенана 2026-08-17. */
+      /* Тело текста в разделах — по левому краю, как и .mod-foot. */
+      .sec-body { max-width: 640px; margin: 28px auto 0; text-align: left;
+        color: var(--clr-text-muted); line-height: 1.75; font-size: var(--t-sm); }
+      .sec-body a { color: var(--accent); font-weight: 700; }
       .mod-foot { max-width: 640px; margin: 28px auto 0; text-align: left;
         color: rgba(255,255,255,0.62); line-height: 1.75; font-size: var(--t-sm); }
       @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
@@ -297,11 +316,10 @@
 
       <div class="about-grid">
         <div class="about-content">
-          <p class="bio-lead">Səmira Rəhimova psixologiyaya hazır yoldan gəlməyib. Teatr və&nbsp;kino aktrisası ixtisası, Rəssamlıq Akademiyası, on il televiziya efiri və&nbsp;ölkənin ən tanınmış jurnallarından birinin baş redaktorluğu — sonra şəxsi inkişaf təlimçiliyi və&nbsp;nəhayət klinik psixologiya. İnsanla işləmək bacarığı bu yolun hər mərhələsində toplanıb.</p>
           <ul class="timeline-list">
             <li>
-              <strong>2021 — bu günə qədər</strong>
-              <span>Klinik psixoloq. B.D.Karvasarski adına İnstitutda (Sankt-Peterburq) klinik psixologiya üzrə diplom. Fərdi qəbul: cütlük münasibətləri, valideyn-övlad bağı, təşviş pozuntuları</span>
+              <strong>2021</strong>
+              <span>Bu günə qədər — klinik psixoloq. B.D.Karvasarski adına İnstitutda (Sankt-Peterburq) klinik psixologiya üzrə diplom. Fərdi qəbul: cütlük münasibətləri, valideyn-övlad bağı, təşviş pozuntuları</span>
             </li>
             <li>
               <strong>Sertifikat</strong>
@@ -321,11 +339,11 @@
             </li>
             <li>
               <strong>2005 — 2012</strong>
-              <span>«ATV maqazin» jurnalının baş redaktoru — 2012-ci ilin dekabrına qədər</span>
+              <span>«ATV maqazin» jurnalının təsisçisi və&nbsp;baş redaktoru — 2012-ci ilin dekabrına qədər</span>
             </li>
             <li>
               <strong>2003 — 2013</strong>
-              <span>ATV kanalında aparıcı — on il efirdə</span>
+              <span>ATV kanalında «Şarm» verilişinin aparıcısı — on il efirdə</span>
             </li>
             <li>
               <strong>Təhsil</strong>
@@ -438,19 +456,22 @@
       </div>
     </section>
 
-    <!-- KONSULTASİYA — qısa keçid, qiymət cədvəli ailə terapiyası səhifəsindədir -->
+    <!-- KONSULTASİYA -->
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section)">
-        <span class="badge on-light">KONSULTASİYA</span>
-        <h2 class="sec-h2">Qəbula yazılmaq</h2>
-        <p class="sec-sub">Cütlüklə iş birgə qəbulla başlayır, fərdi mərhələ ilə davam edir və&nbsp;yenidən birgə sessiyada birləşir</p>
-        <p style="max-width:760px;margin:32px auto 0;color:var(--clr-text-muted);line-height:1.8;">
-          Ailə terapiyası iki mütəxəssisin birgə apardığı formatda qurulur: kişi tərəflə həkim-psixiatr
-          <a href="haqqimda.html" style="color:var(--accent);font-weight:700;">Kənan Rəhimov</a>,
-          qadın tərəflə klinik psixoloq Samirə Rəhimova işləyir. Prosesin tam təsviri və&nbsp;qiymətlər
-          ayrıca səhifədədir.
-        </p>
-        <div style="margin-top:32px;text-align:center;">
+        <div class="sec-header">
+          <span class="badge on-light">KONSULTASİYA</span>
+          <h2 class="sec-h2">Cütlük Terapiyası</h2>
+          <p class="sec-sub">
+            <span class="ab-lead-mob">İş birgə qəbulla başlayır,</span>
+            <span class="ab-lead-mob">fərdi mərhələ ilə davam edir</span>
+            <span class="ab-lead-mob">və birgə sessiyada birləşir.</span>
+            <span class="ab-lead-desk">İş birgə qəbulla başlayır, fərdi mərhələ ilə</span>
+            <span class="ab-lead-desk">davam edir və birgə sessiyada birləşir.</span>
+          </p>
+        </div>
+        <p class="sec-body">Terapiyanı iki mütəxəssis birlikdə aparır: kişi tərəflə həkim-psixiatr <a href="haqqimda.html">Kənan Rəhimov</a>, qadın tərəflə klinik psixoloq Samirə Rəhimova. Prosesin tam təsviri və&nbsp;qiymətlər ayrıca səhifədədir.</p>
+        <div style="margin-top:28px;text-align:center;">
           <a href="aile-terapiyasi.html" class="btn btn-fill">Format və&nbsp;qiymətlər →</a>
         </div>
       </div>
