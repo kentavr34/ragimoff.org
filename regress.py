@@ -20,6 +20,12 @@ DIRS = {'az': BOOK, 'ru': BOOK / 'ru', 'en': BOOK / 'en', 'tr': BOOK / 'tr'}
 # язык → строки, которых больше быть не должно
 GONE = {
  'az': [
+    # 6A20 беременность: снят рейтинг «наименее тератогенны», 2026-08-16
+    'ən az teratojen profili olan preparatlar',
+    # закрытие отложенных пунктов, 2026-08-16: своя форма книги
+    'Self-help (Gamblers', 'Self-help (SAA', 'Self-help qrupları',
+    'qrup KDT və ya self-help', '(ekspozisiya + ritual prevention)',
+    'ekspozisiya və ritual prevention',
     # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
     'Yumşaq Konfrontasiya',
     # турецкие формы в азербайджанском мастере, 2026-08-16
@@ -215,6 +221,8 @@ GONE = {
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
  ],
  'ru': [
+    # 6A20 беременность: снят рейтинг «наименее тератогенны», 2026-08-16
+    'с наименьшим тератогенным профилем',
     # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
     '«мягкая конфронтация»',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
@@ -432,6 +440,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # 6A20 беременность: снят рейтинг «наименее тератогенны», 2026-08-16
+    'with least teratogenic profile',
     # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
     'Soft confrontation',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
@@ -600,6 +610,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # 6A20 беременность: снят рейтинг «наименее тератогенны», 2026-08-16
+    'en az teratojen profili olan ilaçlar',
     # метод Eisendrath — «без конфронтации», а не «мягкая», 2026-08-16
     'Yumuşak Konfrontasyon',
     # руководство APA по ПРЛ — 2-е издание 2024, не 2001, 2026-08-15
