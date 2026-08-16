@@ -84,6 +84,8 @@ ACTIVE_MAP = {
     "xidmetler.html":      "xidmetler",
     "aile-terapiyasi.html":      "xidmetler",
     "aile-terapiyasi-usaq.html": "xidmetler",
+    "valideyn-mektebi.html":     "xidmetler",
+    "samira.html":               "xidmetler",  # страница семейной терапии / Səmira Rəhimova
     "depressiya.html":     "xidmetler",
     "panik-ataklar.html":  "xidmetler",
     "sosial-fobiya.html":  "xidmetler",
