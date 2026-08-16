@@ -59,6 +59,13 @@
         .pr-lead-desk { display: none !important; }
       }
 
+      /* Программ стало четыре, а сетка на десктопе трёхколоночная —
+         четвёртая карточка оставалась одна в ряду и прижималась влево.
+         Ставим её в среднюю колонку, чтобы ряд читался по центру. */
+      @media (min-width: 769px) {
+        .price-card:nth-child(4) { grid-column: 2; }
+      }
+
       /* ── TEHSIL HERO FITTING ── */
       @media (min-width: 769px) {
         .pg-hero-inner { padding-bottom: 50px !important; }
@@ -369,15 +376,14 @@
 <div class="sec-header">
 <span class="badge">Tədris Proqramları</span>
 <h2 class="sec-h2" id="prog-h">
-<span class="pr-h2-w1">3 Rəsmi Peşə</span>
+<span class="pr-h2-w1">4 Tədris</span>
 <span class="pr-h2-w2">Proqramı</span>
 </h2>
 <p class="sec-sub">
-<span class="pr-lead-mob">Hər proqram 1 il — bilavasitə</span>
-<span class="pr-lead-mob">və onlayn format. Ödəniş 24 aya qədər,</span>
-<span class="pr-lead-mob">diplom tam ödənişdən sonra.</span>
-<span class="pr-lead-desk">Hər proqram 1 il — bilavasitə və onlayn format.</span>
-<span class="pr-lead-desk">Ödəniş 24 aya qədər, diplom tam ödənişdən sonra.</span>
+<span class="pr-lead-mob">Diplom proqramları 1 il,</span>
+<span class="pr-lead-mob">ailə terapiyası 3 ay.</span>
+<span class="pr-lead-desk">Diplom proqramları 1 il, ailə terapiyası 3 ay.</span>
+<span class="pr-lead-desk">Bilavasitə və onlayn format, ödəniş hissə-hissə.</span>
 </p>
 </div>
 </div>
@@ -437,6 +443,23 @@
 <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Qeydiyyat</a>
 <a class="btn btn-line" href="program-praktikum.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı →</a>
 </div>
+<!-- Ailə Terapiyası -->
+<div class="price-card">
+<div class="price-card-head">
+<h4>Ailə Terapiyası</h4>
+<span>IPAS Sertifikat · 2 modul</span>
+</div>
+<p class="price-card-desc">Cütlük terapiyası və&nbsp;valideyn-övlad münasibətləri. Ali təhsil tələb olunmur — psixologiya təhsili olanlara daha geniş imkanlar. Məzunlar mərkəzimizdə məsləhətçilik xidməti göstərə bilər.</p>
+<div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">3 ay</span></div>
+<div class="price-row"><span class="price-row-label">Quruluş</span><span class="price-row-value">2 ay tədris + 1 ay superviziya</span></div>
+<div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">600 AZN</span></div>
+<div class="price-row"><span class="price-row-label">Öncədən ödənişdə</span><span class="price-row-value accent">500 AZN</span></div>
+<div class="price-row"><span class="price-row-label">aylıq ödəniş</span><span class="price-row-value">200 AZN/ay</span></div>
+<div class="price-total"><span class="num">200 AZN</span><span class="lbl">aylıq</span></div>
+<a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Qeydiyyat</a>
+<a class="btn btn-line" href="samira.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı →</a>
+</div>
+
 </div>
 </div>
 </section>
