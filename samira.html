@@ -55,6 +55,12 @@
       .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
         color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
       @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
+      /* Черновик единого шаблона шапки. Строка 1 белая, строка 2 золотая —
+         на главной строки заголовка тоже разного цвета, на внутренних
+         страницах обе были золотыми. Пока правится по месту: gtc.css общий
+         для 53 страниц, а образец нужен на двух. */
+      .page-hero-x .ph-h1 .ph-h1-w1 { color: rgba(234, 236, 239, 0.85) !important; }
+      .page-hero-x .ph-h1 .ph-h1-w2 { color: var(--accent) !important; }
     </style>
     <!-- Черновая страница: доступна по прямой ссылке, из меню не видна.
          Снять noindex, когда страница будет готова. -->
@@ -189,7 +195,7 @@
       <div class="page-hero-x-inner">
         <span class="ph-badge">AİLƏ TERAPİYASI</span>
         <h1 class="ph-h1" id="sam-h1">
-          <span class="ph-h1-w1">Ailə</span>
+          <span class="ph-h1-w1">Sistemli Ailə</span>
           <span class="ph-h1-w2">Terapiyası</span>
         </h1>
         <p class="ph-sub">
