@@ -82,6 +82,14 @@
       .page-hero-x .ph-h1 .ph-h1-w2 { color: var(--accent) !important; }
       /* объект 3 — лид: зазоры заголовок→лид 20 и лид→низ 32, как на главной */
       .page-hero-x .ph-sub { margin: 20px 0 32px 0 !important; color: rgba(234, 236, 239, 0.88) !important; }
+      /* объект 4 — поисковик. На главной под ним стоит фото и даёт 382px
+         воздуха до нижней грани шапки. На внутренних страницах фото нет, и
+         поисковик ложился ВПЛОТНУЮ на границу — замер дал 0. Возвращаем
+         воздух ритмом главной: gap её сетки 32px. */
+      .page-hero-x { padding-bottom: 32px !important; }
+      /* стык шапки со следующим блоком. На главной от полосы буллетов до
+         бейджа 48px, здесь было 20 — бейдж прижимался к верхнему краю. */
+      .stats-strip + section { padding-top: 48px !important; }
     </style>
     <!-- Черновая страница: доступна по прямой ссылке, из меню не видна.
          Снять noindex, когда страница будет готова. -->
@@ -216,18 +224,41 @@
       <div class="page-hero-x-inner">
         <span class="ph-badge">AİLƏ TERAPİYASI</span>
         <h1 class="ph-h1" id="sam-h1">
-          <span class="ph-h1-w1">Sistemli Ailə</span>
-          <span class="ph-h1-w2">Terapiyası</span>
+          <span class="ph-h1-w1">Sistemli</span>
+          <span class="ph-h1-w2">Ailə Terapiyası</span>
         </h1>
         <p class="ph-sub">
-          <span class="ph-sub-mob">Kişi-qadın münasibətləri və</span>
-          <span class="ph-sub-mob">valideyn-uşaq bağı üzrə</span>
-          <span class="ph-sub-mob">sistemli ailə terapiyası.</span>
+          <span class="ph-sub-mob">Kişi-qadın münasibətləri, valideyn-uşaq</span>
+          <span class="ph-sub-mob">bağı və çətin yeniyetmələrlə iş —</span>
+          <span class="ph-sub-mob">sistemli ailə terapiyası və təlim.</span>
           <span class="ph-sub-desk">Kişi-qadın və valideyn-uşaq münasibətləri —</span>
           <span class="ph-sub-desk">sistemli ailə terapiyası, təlim proqramları və konsultasiya.</span>
         </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Mövzu, xidmət axtarın..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>AXTAR</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
+        </div>
       </div>
     </section>
+
+    <div class="stats-strip" data-theme="dark">
+      <div class="stats-inner">
+        <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">İl Klinik Təcrübə</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">3000+</span><span class="stat-label">Uğurlu Pasient</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Peşəkar Məzun</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Video Dərs</span></div>
+      </div>
+    </div>
+
 
     <!-- MÜTƏXƏSSİS HAQQINDA — ana səhifədəki blokun quruluşu -->
     <section class="sec-2col" data-theme="light" aria-labelledby="sam-about">
