@@ -290,7 +290,37 @@
     h2.style.removeProperty('font-size');
     [].forEach.call(mob, function (l) { l.style.cssText = ''; });
     [].forEach.call(desk, function (l) { l.style.cssText = ''; });
-    if (window.innerWidth > 768) return;
+
+    if (window.innerWidth > 768) {
+      /* ДЕСКТОП. Раньше здесь стоял просто return, и подзаголовки разделов
+         не подгонялись вовсе: кегль оставался 18px из CSS, а ширина
+         получалась случайной — замер дал 52 / 63 / 78 / 121% от ширины
+         заголовка вместо нормы ±10%. Заголовок на десктопе не трогаем
+         (40px по CSS, как на главной), а строки подзаголовка сводим к его
+         ширине. */
+      var dTarget = textWidth(h2);
+      if (dTarget) {
+        /* В gtc.css у `.sec-sub` стоит max-width: 650px, а заголовок бывает
+           шире — «Ailə Münasibətləri Haqqında» это 786px. Подогнанная строка
+           в 650 не влезала и переносилась, ширина падала с 786 до 548 и
+           баланс пары рушился. Даём подзаголовку ровно ширину заголовка. */
+        var subP = h2.parentElement.querySelector('.sec-sub');
+        if (subP) {
+          subP.style.setProperty('max-width', Math.ceil(dTarget) + 'px', 'important');
+          subP.style.setProperty('margin-left', 'auto');
+          subP.style.setProperty('margin-right', 'auto');
+        }
+        [].forEach.call(desk, function (line) {
+          line.style.display = 'inline';
+          line.style.whiteSpace = 'nowrap';
+          var s = fitTo(line, dTarget, 8, 48, 0);
+          line.style.display = 'block';
+          line.style.whiteSpace = '';
+          line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
+        });
+      }
+      return;
+    }
 
     [].forEach.call(desk, function (l) { l.style.cssText = 'display:none!important'; });
 
@@ -304,11 +334,23 @@
     h2.style.display = 'block';
     h2.style.whiteSpace = '';
 
+    /* ГЛАВНОЕ ПРАВИЛО ПАРЫ «заголовок ↔ подзаголовок» (скилл kenan-design-rules):
+       подзаголовок по ширине ≈ заголовку, ±10%. Не по ширине контейнера!
+       Замер до правки: 52 / 63 / 78 / 121% — ни один раздел в норму не попадал.
+       Мера для строк подзаголовка — ширина ТЕКСТА заголовка после его подгонки. */
+    var subTarget = textWidth(h2);
+    if (!subTarget || subTarget < target * 0.35) subTarget = target * 0.35;
+    var subPm = h2.parentElement.querySelector('.sec-sub');
+    if (subPm) {
+      subPm.style.setProperty('max-width', Math.ceil(subTarget) + 'px', 'important');
+      subPm.style.setProperty('margin-left', 'auto');
+      subPm.style.setProperty('margin-right', 'auto');
+    }
     [].forEach.call(mob, function (line) {
       line.style.cssText = '';
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      var s = fitTo(line, target, 8, 60, 0);
+      var s = fitTo(line, subTarget, 8, 60, 0);
       line.style.display = 'block';
       line.style.whiteSpace = '';
       line.style.lineHeight = (s * LH_SUB).toFixed(1) + 'px';
