@@ -72,6 +72,15 @@
           margin: 0 0 6px; overflow-wrap: anywhere; }
         .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere; }
       }
+      /* Кнопка в хронике — маленькая, не спорит с текстом записи. */
+      /* flex + fit-content, а не inline-flex: кнопка встаёт на свою строку,
+         а не втискивается в конец абзаца. */
+      .tl-btn { display: flex; width: fit-content; align-items: center; gap: 6px; margin-top: 12px;
+        padding: 6px 12px; border: 1px solid rgba(230, 180, 74, 0.4);
+        color: var(--accent); font-size: var(--t-xs); font-weight: 700;
+        letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+        transition: background .2s, border-color .2s; }
+      .tl-btn:hover { background: rgba(230, 180, 74, 0.12); border-color: var(--accent); }
       .mod-note { font-size: var(--t-sm) !important; color: var(--clr-text-muted) !important; margin: 0 0 10px !important; }
       /* Тело текста выравнивается ПО ЛЕВОМУ КРАЮ. По центру — только заголовки
          и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
@@ -339,7 +348,7 @@
             </li>
             <li>
               <strong>2006</strong>
-              <span>«Kişiləri qoruyun» bədii filmində Ceyran rolu — rejissor Şərif Qurbanəliyev</span>
+              <span>«Kişiləri qoruyun» bədii filmində Ceyran rolu — rejissor Şərif Qurbanəliyev<a class="tl-btn" href="https://www.youtube.com/watch?v=oVHpb3ORQmE" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Filmə bax</a></span>
             </li>
             <li>
               <strong>2005 — 2012</strong>
