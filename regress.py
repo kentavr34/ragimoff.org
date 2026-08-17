@@ -654,6 +654,10 @@ GONE = {
     'autism <strong>Is a neurodevelopmental disorder</strong> — Related to',
     'Dyslexia — <strong>neurobiological</strong> It is a disorder',
     'stereotypy</strong> Typically progresses', 'AACAP, APSAC absolute prohibition',
+    # §10, партия 2 (2026-08-18): жирный блок перенесён из азербайджанского
+    # целиком, слова вокруг переведены — сказуемое и дополнение переставлены
+    'of dyslexia <strong>Not main symptom', 'It should be compared.</strong>',
+    'benzodiazepine <strong>Delirium exacerbates',
  ],
  'tr': [
     # 6B22: обзоры подменены описаниями случаев, 2026-08-18
@@ -805,6 +809,10 @@ GONE = {
     # §10, очередь 3 (2026-08-18): тело звало мифы «Efsane», заголовок раздела
     # во всех 103 карточках — «Mit»; три других языка держат одно слово
     'Efsane 1:', 'Efsane 2:', 'Efsane 3:', 'AACAP, APSAC kesin yasak',
+    # §10, партия 2 (2026-08-18): заглавная в середине фразы и падеж
+    'esnekliğe</strong> Üstün etki', 'Kekemelik <strong>Genetik ve',
+    '<strong>sürekliliğine</strong> etkileyebilir', 'Ancak <strong>Risk faktörleri',
+    'karşılaştırılmalıdır</strong> Ki, tedavisiz',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
