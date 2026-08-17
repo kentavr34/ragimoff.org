@@ -33,7 +33,13 @@ APPLY = '--apply' in sys.argv
 LABEL = re.compile(r'</strong>\s*—\s*(\w)')
 UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯÇĞİÖŞÜƏ'
 # метка-аббревиатура или имя собственное — регистр не трогаем
-KEEP = re.compile(r'^(?:[A-ZА-ЯЁ]{2,}|[A-ZА-ЯЁ]\.|[A-ZА-ЯЁ][a-zа-яё]+\s+[A-ZА-ЯЁ])')
+# Защита имён собственных была СЛЕПА К ДИАКРИТИКЕ: набор строчных не включал
+# ö ü ş ğ ı ç ə å é, и «Strömgren E.» под правило имени не подпадал — скрипт
+# понижал фамилию до «strömgren». Дефект уже правился однажды и вернулся при
+# следующем прогоне; поймал его сторож regress.py. 2026-08-17
+_UP = 'A-ZА-ЯЁÄÖÜÅÉÈÇŞĞİÆØƏ'
+_LO = 'a-zа-яёäöüåéèçşğıəæø'
+KEEP = re.compile(r'^(?:[%s]{2,}|[%s]\.|[%s][%s]+\s+[%s])' % (_UP, _UP, _UP, _LO, _UP))
 
 
 def body(fp: Path):
@@ -62,6 +68,27 @@ def main() -> int:
             dashes += k
             if APPLY:
                 save(fp, t[:m.start()] + b + t[m.end():], crlf)
+
+    # 1б. ДЕФИС-МИНУС в роли тире. Правило 1 чинит короткое тире «–», но не
+    # дефис «-»: в 28 местах (24 в английском, 4 в турецком) между пробелами
+    # стоял именно он — «Scales - PHQ-9», «Personality - anxiety sensitivity».
+    # Условия узкие, чтобы не задеть законный дефис: по бокам пробелы, слева
+    # буква или скобка, справа буква или цифра, и обе стороны — не число
+    # (диапазоны вида «10 - 20» тоже тире, но их правит другое правило).
+    hyphens = 0
+    for lg, d in DIRS.items():
+        for fp in sorted(d.glob('*.html')):
+            raw2, crlf2, t2, m2 = body(fp)
+            if not m2:
+                continue
+            b, k = re.subn(r'(?<=[A-Za-zА-Яа-яƏəÇçĞğİıÖöŞşÜü\)\]]) - (?=[A-Za-zА-Яа-яƏəÇçĞğİıÖöŞşÜü“"«(])',
+                           ' — ', m2.group(0))
+            if not k:
+                continue
+            hyphens += k
+            if APPLY:
+                save(fp, t2[:m2.start()] + b + t2[m2.end():], crlf2)
+    print(f'дефис-минус в роли тире → длинное тире: {hyphens}')
 
     # 2. регистр по мастеру
     codes = sorted({p.stem for p in BOOK.glob('*.html') if CARD.fullmatch(p.stem)})
