@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Самира Рагимова — клинический психолог, специалист по семейной терапии. Терапия пар, связь родителя с ребёнком, обучение специалистов." />
+    <meta property="og:title" content="Семейная терапия | RAGIMOFF" />
+    <meta property="og:description" content="Семейная терапия — конфликты в паре, коммуникационный кризис и восстановление семейной системы. RAGIMOFF Психологический центр." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ragimoff.org/ru/samira.html" />
+    <meta property="og:image" content="https://ragimoff.org/images/kenan/photo-portal-crop-removebg-preview.png" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Самира Рагимова — семейная терапия | RAGIMOFF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../gtc.css" />
+  <link rel="stylesheet" href="../gtc-dark.css" />
+    <style>
+      /* Высоту НЕ задаём: её держит штатное `.about-img img` из gtc.css
+         (520px на десктопе), а на ≤768px gtc-dark.css принудительно ставит
+         height:auto !important — сайт намеренно показывает портрет целиком
+         на телефоне, как на главной. Своё правило тут только кадрирует. */
+      .about-img .portrait-photo { object-fit: cover; object-position: center top;
+        border: 1px solid var(--clr-border); }
+
+      /* Раскрывающаяся программа модуля. В gtc.css компонента нет — заводим здесь. */
+      .mod-panel { border: 1px solid var(--clr-border); border-left: 3px solid var(--accent);
+        background: var(--clr-bg-surface); margin-top: 24px; text-align: left; }
+      .mod-panel > summary { cursor: pointer; list-style: none; padding: 28px;
+        font-family: var(--font); display: block; position: relative; }
+      .mod-panel > summary:hover .mod-open { color: var(--accent); }
+      .mod-panel > summary::-webkit-details-marker { display: none; }
+      .mod-panel > summary::after { content: '+'; position: absolute; top: 26px; right: 28px;
+        color: var(--accent); font-size: 1.6rem; line-height: 1; font-weight: 400; }
+      .mod-panel[open] > summary::after { content: '–'; }
+      .mod-open { display: inline-block; margin-top: 16px; font-size: var(--t-xs); font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase; color: var(--clr-text-muted); }
+      .mod-panel[open] .mod-open { color: var(--accent); }
+      .mod-price { font-size: var(--t-sm); color: var(--clr-heading); font-weight: 700; margin: 14px 0 0; }
+      .mod-price span { color: var(--clr-text-muted); font-weight: 400; }
+      .mod-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .mod-list { margin: 0; padding: 0 24px 24px 48px; counter-reset: mod; }
+      .mod-list li { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7;
+        padding: 7px 0; border-top: 1px solid var(--clr-border); }
+      .mod-list li:first-child { border-top: none; }
+
+      .mod-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+      .mod-chip { font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em;
+        color: var(--accent); border: 1px solid var(--clr-border); padding: 6px 12px; }
+      .mod-panel h3 { font-family: var(--font); font-size: 1.2rem; font-weight: 800;
+        color: var(--clr-heading); margin: 0 0 6px; padding-right: 32px; }
+      .mod-panel .mod-sub { font-size: var(--t-xs); color: var(--accent); font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
+      .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
+        color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
+      /* Фото поднято на -125px правилом с главной: там заголовок блока
+         короткий («Kənan Rəhimov»), и подъём не мешает. Здесь имя длиннее —
+         «Samirə Rəhimova/Rüstəmova» шириной 769px — и уходило ПОД фото,
+         обрезаясь на «RÜSTƏ». Замер: колонка фото начиналась на y=106,
+         а сетка на y=231. Опускаем фото на уровень сетки. */
+      .sec-2col .about-col-right { margin-top: 0 !important; }
+      /* ХРОНИКА — СТОПКОЙ, НА ВСЕХ ШИРИНАХ.
+         Сначала здесь стояла сетка «подпись 130px | текст». Она убирала
+         «ёлочку» (в gtc.css li это flex, а strong имеет ширину по
+         содержимому: 38px у «2021» и 109px у «Müəllimlik» — восемь разных
+         вертикалей, разброс 72px), но платила за это дважды: под короткими
+         подписями зияла пустота, а текст ужимался в остаток колонки.
+         Решение владельца 2026-08-17: жёлтая подпись СВЕРХУ, белый текст под
+         ней во всю ширину. И вертикаль одна, и текст не сжат. */
+      .sec-2col .timeline-list li { display: block !important;
+        padding-left: 34px; padding-bottom: 26px;
+        transition: transform .18s ease, background .18s ease; }
+      .sec-2col .timeline-list strong { display: block; white-space: normal;
+        margin: 0 0 7px !important; overflow-wrap: anywhere;
+        font-size: var(--t-xs); letter-spacing: .12em; }
+      .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere;
+        font-size: var(--t-sm); line-height: 1.75; }
+
+      /* «Ощущение живости реагирования на прикосновение» — слова владельца.
+         В gtc.css при наведении уже растёт точка и светлеет текст; добавляем
+         сдвиг записи и золотую подсветку линии слева. Курсор НЕ меняем на
+         pointer: записи не кликабельны, и курсор-рука обещал бы переход,
+         которого нет. */
+      .sec-2col .timeline-list li { border-radius: 6px; }
+      .sec-2col .timeline-list li:hover { transform: translateX(4px);
+        background: rgba(230,180,74,.055); }
+
+      @media (max-width: 768px) {
+        .sec-2col .timeline-list li { padding-left: 30px; }
+      }
+      /* Кнопка в хронике — маленькая, не спорит с текстом записи. */
+      /* flex + fit-content, а не inline-flex: кнопка встаёт на свою строку,
+         а не втискивается в конец абзаца. */
+      .tl-btn { display: flex; width: fit-content; align-items: center; gap: 6px; margin-top: 12px;
+        padding: 6px 12px; border: 1px solid rgba(230, 180, 74, 0.4);
+        color: var(--accent); font-size: var(--t-xs); font-weight: 700;
+        letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+        transition: background .2s, border-color .2s; }
+      .tl-btn:hover { background: rgba(230, 180, 74, 0.12); border-color: var(--accent); }
+      .mod-note { font-size: var(--t-sm) !important; color: var(--clr-text-muted) !important; margin: 0 0 10px !important; }
+      /* Тело текста выравнивается ПО ЛЕВОМУ КРАЮ. По центру — только заголовки
+         и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
+         длины, читать её тяжело. Правило Кенана 2026-08-17. */
+      /* Тело текста в разделах — по левому краю, как и .mod-foot. */
+      /* Две кнопки подряд. На десктопе они встают в ряд, и без отступа между
+         ними оставалось 4px — читались как одна полоса. На мобильном кнопки
+         переносятся в столбик, и тот же боковой отступ сдвигал вторую на 25px
+         вправо относительно первой: левые границы не совпадали. */
+      .cta-pair .btn + .btn { margin-left: 16px; }
+      @media (max-width: 768px) {
+        /* В столбик кнопки должны быть одной ширины: btn-fill растягивается на
+           контейнер, а btn-line жмётся по тексту — 295 против 261, и левые
+           границы не совпадали. */
+        .cta-pair .btn { display: block; width: 100%; }
+        .cta-pair .btn + .btn { margin-left: 0; margin-top: 12px; }
+      }
+
+      /* Общая строка над модулями: то, что одинаково для обоих. */
+      .mod-intro { max-width: 640px; margin: 0 auto 24px; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      /* Записи тренинга между модулями. Кнопка .tl-btn это flex шириной по
+         содержимому — две подряд встали бы в столбик, поэтому ряд задаём
+         контейнером. */
+      .mod-video { display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+        max-width: 640px; margin: 20px auto; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      .mod-video .tl-btn { margin-top: 0; }
+
+      .sec-body { max-width: 640px; margin: 28px auto 0; text-align: left;
+        color: var(--clr-text-muted); line-height: 1.75; font-size: var(--t-sm); }
+      .sec-body a { color: var(--accent); font-weight: 700; }
+      .mod-foot { max-width: 640px; margin: 28px auto 0; text-align: left;
+        color: rgba(255,255,255,0.62); line-height: 1.75; font-size: var(--t-sm); }
+      @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
+      /* Шапка приводится к главной. Значения сняты замером с index.html
+         на 375px, не назначены. Пока правится по месту: gtc.css общий для
+         53 страниц, а образец нужен на двух. */
+      /* объект 1 — бейдж: на главной 14px/700, ls 1px, padding 10/24,
+         рамка .25, фон .1, line-height 14px → высота ровно 36px.
+         На внутренних страницах он выходил 47px из-за своего line-height. */
+      .page-hero-x .ph-badge {
+        font-size: 14px !important; font-weight: 700 !important;
+        letter-spacing: 1px !important; padding: 10px 24px !important;
+        line-height: 14px !important; border-radius: 0 !important;
+        border: 1px solid rgba(230, 180, 74, 0.25) !important;
+        background: rgba(230, 180, 74, 0.1) !important;
+        color: rgb(230, 180, 74) !important;
+        display: inline-flex !important; text-transform: uppercase !important;
+        margin-bottom: 10px !important;
+        /* на внутренних страницах у бейджа стоял margin-top 8px, на главной 0 —
+           из-за этого верх шапки до бейджа был 32 вместо эталонных 24 */
+        margin-top: 0 !important;
+      }
+      /* объект 2 — заголовок: на главной обе строки белые, золотом выделено
+         одно слово через <em>. Здесь роль <em> играет вторая строка. */
+      /* margin-bottom обнулён намеренно: .page-hero-x-inner — flex-контейнер,
+         а у flex-элементов вертикальные отступы НЕ схлопываются. На главной
+         контейнер не flex, там 16 и 20 схлопываются в 20; здесь они
+         складывались в 36. Зазор задаёт только margin-top лида. */
+      .page-hero-x .ph-h1 { margin: 15px 0 0 0 !important; letter-spacing: 0.4px !important; }
+      .page-hero-x .ph-h1 .ph-h1-w1 { color: rgba(234, 236, 239, 0.85) !important; }
+      .page-hero-x .ph-h1 .ph-h1-w2 { color: var(--accent) !important; }
+      /* объект 3 — лид: зазоры заголовок→лид 20 и лид→низ 32, как на главной */
+      /* Щель вокруг поисковика.
+         Замер вскрыл настоящую причину провала над панелью: у .ph-search-wrap
+         высота 73 при самой панели 45 — внутри обёртки 28px пустоты СВЕРХУ,
+         которых на главной нет (там обёртка равна панели, 45=45). Из-за них
+         зазор над панелью выходил 57.7px оптически против эталонных 36.8.
+         Обнуляем внутренний отступ и возвращаем margin лида к эталонным 32:
+         32 + 5.7 полулидинга = 37.7, то есть ритм главной. */
+      /* Источник провала — margin-top: 28px у самой панели .hero-search-bar;
+         на главной он ноль. Обёртка тут ни при чём, её padding и так 0. */
+      .page-hero-x .ph-search-wrap { padding-top: 0 !important; margin-top: 0 !important; }
+      .page-hero-x .hero-search-bar { margin-top: 0 !important; }
+      .page-hero-x .ph-sub { margin: 20px 0 32px 0 !important; color: rgba(234, 236, 239, 0.88) !important; }
+      /* объект 4 — поисковик. Замер главной: лид →32→ поисковик →2→ фото,
+         низ фото = низ шапки. Без фото поисковик ложился ВПЛОТНУЮ на
+         границу (замер 0). Даём ту же единицу, что и сверху, — 24px. */
+      .page-hero-x { padding-bottom: 24px !important; }
+      /* стык шапки со следующим блоком. На главной от полосы буллетов до
+         бейджа 48px, здесь было 20 — бейдж прижимался к верхнему краю. */
+      .stats-strip + section { padding-top: 48px !important; }
+    </style>
+  <link rel="canonical" href="https://ragimoff.org/ru/samira.html" />
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/aile-terapiyasi.html" />
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/aile-terapiyasi.html" />
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/aile-terapiyasi.html" />
+  <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/aile-terapiyasi.html" />
+</head>
+
+  <body>
+
+    <!-- @include header -->
+<!-- BEGIN: header (auto-generated, do not edit by hand) -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-box">
+      <span class="logo-text">RAGIMOFF<em>.</em></span>
+      <span class="logo-sub">Школа психологии</span>
+    </a>
+
+    <nav class="desktop-nav">
+      <div class="nav-item">
+        <a href="index.html">Главная</a>
+        <ul class="nav-dropdown">
+          <li><a href="haqqimda.html">Обо мне</a></li>
+        </ul>
+      </div>
+      <a href="/klinik-psixiatriya/">МКБ-11</a>
+      <div class="nav-item">
+        <a href="tehsil.html">Обучение</a>
+        <ul class="nav-dropdown">
+          <li><a href="program-umumi.html">Общая Психология</a></li>
+          <li><a href="program-klinik.html">Клиническая Психология ДПО</a></li>
+          <li><a href="program-praktikum.html">Практикум по Психотерапии</a></li>
+          <li><a href="qanunlar.html">Юридические Основы</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="xidmetler.html" class="nav-active">Консультация</a>
+        <ul class="nav-dropdown">
+          <li><a href="aile-terapiyasi.html">Семейная Терапия</a></li>
+          <li><a href="valideyn-mektebi.html">Школа родителей</a></li>
+          <li><a href="aile-terapiyasi-usaq.html">Семейно-Детская Терапия</a></li>
+          <li><a href="depressiya.html">Депрессия</a></li>
+          <li><a href="panik-ataklar.html">Панические Атаки</a></li>
+          <li><a href="sosial-fobiya.html">Социофобия</a></li>
+          <li><a href="enurez.html">Ночной Энурез</a></li>
+        </ul>
+      </div>
+      <a href="b2b.html">Корпоративное</a>
+      <a href="blog.html">Блог</a>
+      <a href="../index.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="index.html" class="lang-switch lang-active" aria-label="Русский">RU</a><a href="../en/index.html" class="lang-switch" aria-label="English">EN</a>
+      <a href="#" class="nav-cta" onclick="openKitabModal();return false;">ЗАКАЗ КНИГИ</a>
+    </nav>
+
+    <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Меню">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+    </button>
+  </div>
+</header>
+<!-- END: header -->
+    <!-- @include mobile-nav -->
+<!-- BEGIN: mobile-nav (auto-generated, do not edit by hand) -->
+<nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Мобильное меню">
+  <button class="mobile-nav-close" onclick="toggleMenu()">
+    <svg viewBox="0 0 24 24">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+  </button>
+
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="index.html" onclick="toggleMenu()">Главная</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Открыть/закрыть"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="haqqimda.html" onclick="toggleMenu()">Обо мне</a>
+    </div>
+  </div>
+  <a href="/klinik-psixiatriya/" onclick="toggleMenu()">МКБ-11</a>
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="tehsil.html" onclick="toggleMenu()">Обучение</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Открыть/закрыть"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="program-umumi.html" onclick="toggleMenu()">Общая Психология</a>
+      <a href="program-klinik.html" onclick="toggleMenu()">Клиническая Психология ДПО</a>
+      <a href="program-praktikum.html" onclick="toggleMenu()">Практикум по Психотерапии</a>
+      <a href="qanunlar.html" onclick="toggleMenu()">Юридические Основы</a>
+    </div>
+  </div>
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="xidmetler.html" onclick="toggleMenu()">Консультация</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Открыть/закрыть"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="aile-terapiyasi.html" onclick="toggleMenu()">Семейная Терапия</a>
+      <a href="valideyn-mektebi.html" onclick="toggleMenu()">Школа родителей</a>
+      <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">Семейно-Детская Терапия</a>
+      <a href="depressiya.html" onclick="toggleMenu()">Депрессия</a>
+      <a href="panik-ataklar.html" onclick="toggleMenu()">Панические Атаки</a>
+      <a href="sosial-fobiya.html" onclick="toggleMenu()">Социофобия</a>
+      <a href="enurez.html" onclick="toggleMenu()">Ночной Энурез</a>
+    </div>
+  </div>
+  <a href="b2b.html" onclick="toggleMenu()">Корпоративное</a>
+  <a href="blog.html" onclick="toggleMenu()">Блог</a>
+  <a href="../index.html" class="mobile-lang">Azərbaycan dili</a>
+  <a href="../en/index.html" class="mobile-lang">English</a>
+  <a href="#" class="btn btn-fill" onclick="toggleMenu();openKitabModal();return false;">ЗАКАЗ КНИГИ</a>
+</nav>
+<!-- END: mobile-nav -->
+    <!-- HERO — mövzu, mütəxəssis deyil -->
+    <section class="page-hero-x" data-theme="dark" style="background-image:url('images/students/aile-terapiyasi.jpg');" aria-labelledby="sam-h1">
+      <div class="page-hero-x-inner">
+        <span class="ph-badge">СЕМЕЙНАЯ ТЕРАПИЯ</span>
+        <h1 class="ph-h1" id="sam-h1">
+          <span class="ph-h1-w1">Системная</span>
+          <span class="ph-h1-w2">Семейная терапия</span>
+        </h1>
+        <p class="ph-sub">
+          <span class="ph-sub-mob">Отношения в паре и связь</span>
+          <span class="ph-sub-mob">родителя с ребёнком.</span>
+          <span class="ph-sub-desk">Отношения в паре, связь родителя с ребёнком и</span>
+          <span class="ph-sub-desk">работа с трудными подростками — терапия и обучение.</span>
+        </p>
+        <div class="ph-search-wrap hero-search-wrap">
+          <div class="hero-search-bar">
+            <input id="hero-si" type="text" placeholder="Тема, услуга..." autocomplete="off"/>
+            <button class="hero-search-btn" onclick="heroSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>ПОИСК</span>
+            </button>
+          </div>
+          <div id="hero-sd"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-strip" data-theme="dark">
+      <div class="stats-inner">
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Лет практики</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">600+</span><span class="stat-label">Пациентов</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">12</span><span class="stat-label">Учебных групп</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">60+</span><span class="stat-label">Видеозаписей</span></div>
+      </div>
+    </div>
+
+
+    <!-- MÜTƏXƏSSİS HAQQINDA — ana səhifədəki blokun quruluşu -->
+    <section class="sec-2col" data-theme="light" aria-labelledby="sam-about">
+      <div class="sec-inner" style="text-align:center;">
+        <div class="sec-header">
+          <span class="badge on-light">О специалисте</span>
+          <h2 class="sec-h2" id="sam-about">Самира Рагимова/Рустамова</h2>
+          <p class="sec-sub">
+            <span class="ab-lead-mob">Клинический психолог · семейный терапевт</span>
+            <span class="ab-lead-desk">Клинический психолог · специалист и преподаватель семейной терапии</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-content">
+          <ul class="timeline-list">
+            <li>
+              <strong>2021</strong>
+              <span>По настоящее время — клинический психолог. Диплом по клинической психологии Института имени Б. Д. Карвасарского (Санкт-Петербург). Личный приём: отношения в паре, связь родителя с ребёнком, тревожные расстройства</span>
+            </li>
+            <li>
+              <strong>Сертификат</strong>
+              <span>Сертификат Международной ассоциации психотерапии (IPAS) по семейной терапии — работа с парами и трудными подростками</span>
+            </li>
+            <li>
+              <strong>Практикум</strong>
+              <span>Практикум по клинической психотерапии в Школе психологии RAGIMOFF</span>
+            </li>
+            <li>
+              <strong>Преподавание</strong>
+              <span>Модули семейной терапии в Санкт-Петербургском институте дополнительного образования; лекции по семейной терапии для студентов Школы психологии RAGIMOFF</span>
+            </li>
+            <li>
+              <strong>2013 — 2021</strong>
+              <span>Тренер личностного роста и коуч. Тренинги по связям с общественностью, коммуникации и публичным выступлениям</span>
+            </li>
+            <li>
+              <strong>2006</strong>
+              <span>Роль Джейран в художественном фильме «Kişiləri qoruyun» — режиссёр Шариф Гурбанальев<a class="tl-btn" href="https://www.youtube.com/watch?v=oVHpb3ORQmE" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Смотреть фильм</a></span>
+            </li>
+            <li>
+              <strong>2005 — 2012</strong>
+              <span>Основатель и главный редактор журнала «ATV maqazin» — до декабря 2012 года</span>
+            </li>
+            <li>
+              <strong>2003 — 2013</strong>
+              <span>Ведущая программы «Şarm» на канале ATV — десять лет в эфире</span>
+            </li>
+            <li>
+              <strong>Второе образование</strong>
+              <span>Академия художеств — специальность художник</span>
+            </li>
+            <li>
+              <strong>Первое образование</strong>
+              <span>Азербайджанский государственный институт искусств, факультет театра и кино — актриса театра и кино</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="about-col-right">
+          <div class="about-img">
+            <img class="portrait-photo" src="images/samira/samira-portret.jpg" alt="Samirə Rəhimova" loading="lazy" />
+          </div>
+          <div class="social-links" style="margin:18px 0;justify-content:center;">
+            <a href="https://www.instagram.com/samira.ragimoff" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">IG</a>
+            <a href="https://t.me/samirablog" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram">TG</a>
+            <a href="https://www.linkedin.com/in/samira-ragimoff-b42b06132" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">IN</a>
+            <a href="https://wa.me/994775395009" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">WA</a>
+          </div>
+          <a href="https://wa.me/994775395009" target="_blank" rel="noopener" class="btn btn-fill about-img-btn">Запись</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TƏLİM PROQRAMLARI -->
+    <section data-theme="dark">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <div class="sec-header">
+          <span class="badge">ПРОГРАММА ОБУЧЕНИЯ</span>
+          <h2 class="sec-h2">Семейная терапия</h2>
+          <p class="sec-sub">
+            <span class="ab-lead-mob">Два модуля, каждый 3 месяца:</span>
+            <span class="ab-lead-mob">теория, практика, супервизия.</span>
+            <span class="ab-lead-desk">Два модуля. Каждый — 3 месяца: 2 месяца теория и практика,</span>
+            <span class="ab-lead-desk">3-й месяц супервизия. Цена очно и онлайн одинакова.</span>
+          </p>
+        </div>
+
+        <p class="mod-intro">Занятия проходят 2&nbsp;раза в неделю, каждое по 2&nbsp;часа.</p>
+
+        <details class="mod-panel">
+          <summary>
+            <p class="mod-sub">Модуль 1</p>
+            <h3>Терапия пары</h3>
+            <p class="mod-note">Отношения мужчины и женщины</p>
+            <p>Работа с системой пары: от диагностики до кризисного периода. Первичный приём, генограмма, роли и границы, паттерны, подход при измене и на пороге развода.</p>
+            <div class="mod-meta">
+              <span class="mod-chip">3 месяца</span>
+              <span class="mod-chip">16 занятий + супервизия</span>
+              <span class="mod-chip">2 раза в неделю × 2 часа</span>
+            </div>
+            <p class="mod-price">Всего 600 AZN <span>— по 200 AZN в месяц × 3 месяца либо 500 AZN при предоплате. Очно и онлайн цена одинакова.</span></p>
+            <span class="mod-open">Смотреть полную программу</span>
+          </summary>
+          <ol class="mod-list">
+            <li>Выявление дисгармонии в семейной системе — диагностика</li>
+            <li>Первичный приём в терапии пары</li>
+            <li>Разбор конфликтной ситуации</li>
+            <li>Генограмма — жизненный цикл семьи</li>
+            <li>Определение ролей в семейной системе и напряжённые границы</li>
+            <li>Психодрама — психотерапевтические техники в модели семьи</li>
+            <li>Неписаные правила — распределение обязанностей и цена их нарушения</li>
+            <li>Выявление паттернов в отношениях</li>
+            <li>Применение методов классических и современных школ семейной терапии</li>
+            <li>Круг задач, которые решает системная семейная терапия</li>
+            <li>Удовлетворение личных потребностей и свобода выбора</li>
+            <li>Методы коммуникации (теория Г. Бейтсона)</li>
+            <li>Психотерапевтические приёмы в семейных отношениях и разбор случаев</li>
+            <li>Работа в критический период (измена, насилие, подход на пороге развода)</li>
+            <li>Разбор отношений с человеком, страдающим зависимостью (алкоголь, наркотики, игра и др.)</li>
+            <li>Поддерживающий этап в семейной терапии</li>
+          </ol>
+        </details>
+
+        <p class="mod-video">Видеозапись тренинга по этой теме:
+          <a class="tl-btn" href="https://www.youtube.com/watch?v=K1n0Cq4LUwE" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>1-я часть</a>
+          <a class="tl-btn" href="https://www.youtube.com/watch?v=1KdbirxNtco" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>2-я часть</a>
+        </p>
+
+        <details class="mod-panel">
+          <summary>
+            <p class="mod-sub">Модуль 2</p>
+            <h3>Отношения родителя и ребёнка</h3>
+            <p class="mod-note">Семейная терапия для родителей</p>
+            <p>Этапы развития ребёнка и критические моменты, внутрисемейные функциональные нарушения, построение модели общения, игровая терапия, страхи и агрессия. Для психологов, педагогов и родителей.</p>
+            <div class="mod-meta">
+              <span class="mod-chip">3 месяца</span>
+              <span class="mod-chip">16 занятий + супервизия</span>
+              <span class="mod-chip">2 раза в неделю × 2 часа</span>
+            </div>
+            <p class="mod-price">Всего 600 AZN <span>— по 200 AZN в месяц × 3 месяца либо 500 AZN при предоплате. Очно и онлайн цена одинакова.</span></p>
+            <span class="mod-open">Смотреть полную программу</span>
+          </summary>
+          <ol class="mod-list">
+            <li>Этапы психофизиологического развития ребёнка</li>
+            <li>Критические моменты этапов развития</li>
+            <li>Диагностика по признакам в семейной терапии</li>
+            <li>Функциональные нарушения внутри семьи</li>
+            <li>Системный разбор семейных историй</li>
+            <li>Построение модели общения с ребёнком</li>
+            <li>Выходы из напряжённых отношений, коррекция родительских методов воспитания</li>
+            <li>Модели поведения детей в проблемных семьях</li>
+            <li>Невротические и поведенческие нарушения у детей</li>
+            <li>Игровая терапия — коррекция модели поведения</li>
+            <li>Агрессивное поведение у детей — модель наказания</li>
+            <li>Детские страхи и практические выходы</li>
+            <li>Проблемы отставания в учёбе</li>
+            <li>Регуляция психики детей в неполной семье</li>
+            <li>Методы полового воспитания в семье</li>
+            <li>Управление семейными отношениями с человеком с особым заболеванием или ограничением поведения</li>
+          </ol>
+        </details>
+
+        <p class="mod-foot">Программа для психологов, школьных психологов, педагогов, коучей, студентов и родителей; высшее образование не требуется. В конце курса — экзамен и сертификат Международной ассоциации психотерапии.</p>
+      </div>
+    </section>
+
+    <!-- КОНСУЛЬТАЦИЯ -->
+    <section data-theme="light">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <div class="sec-header">
+          <span class="badge on-light">КОНСУЛЬТАЦИЯ</span>
+          <h2 class="sec-h2">Терапия пары</h2>
+          <p class="sec-sub">
+            <span class="ab-lead-mob">Совместный приём, затем</span>
+            <span class="ab-lead-mob">индивидуальный этап и снова вместе.</span>
+            <span class="ab-lead-desk">Работа начинается с совместного приёма,</span>
+            <span class="ab-lead-desk">продолжается индивидуально и снова сходится.</span>
+          </p>
+        </div>
+        <p class="sec-body">Терапию ведут два специалиста: с мужской стороной — врач-психиатр <a href="haqqimda.html">Кенан Рагимов</a>, с женской — клинический психолог Самира Рагимова. Работа начинается с совместного первичного приёма: обе стороны выслушиваются в одной комнате, положение оценивается вместе. Затем идёт индивидуальный этап — каждый разбирает свою часть не при партнёре, а в безопасных условиях. На итоговой совместной сессии результаты соединяются и строятся договорённости. Сессия длится 1 час, проходит очно и онлайн. Полное описание процесса и цены — на отдельной странице.</p>
+        <div class="cta-pair" style="margin-top:28px;text-align:center;">
+          <a href="aile-terapiyasi.html" class="btn btn-fill">Формат и цены →</a>
+          <a href="valideyn-mektebi.html" class="btn btn-line">Школа родителей →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band" data-theme="dark">
+      <div class="cta-band-inner">
+        <h2 class="sec-h2">Записаться на приём</h2>
+        <div class="cta-band-btns">
+          <a class="btn btn-fill" href="https://wa.me/994775395009" target="_blank">Написать в WhatsApp</a>
+          <a class="btn btn-line" href="xidmetler.html">Все услуги</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG -->
+    <section data-theme="dark" style="background:#0B0E11">
+      <div class="sec-inner" style="padding:var(--s-section)">
+        <div class="sec-header">
+          <span class="badge">ПОЛЕЗНОЕ ЧТЕНИЕ</span>
+          <h2 class="sec-h2">Об отношениях в семье</h2>
+          <p class="sec-sub">
+            <span class="ab-lead-mob">Научно обоснованные публикации.</span>
+            <span class="ab-lead-desk">Научно обоснованные публикации и практические советы по теме.</span>
+          </p>
+        </div>
+        <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(181,155,114,0.22)">
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)">
+            <a href="blog-aile.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
+              <img alt="" loading="lazy" src="images/blog/aile/art4-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)"/>
+              <span style="flex:1; min-width:0">
+                <span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
+                <span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">5 принципов разрешения семейного конфликта</span>
+              </span>
+              <span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+            </a>
+          </li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)">
+            <a href="blog-aile-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
+              <img alt="" loading="lazy" src="images/blog/aile/art2-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)"/>
+              <span style="flex:1; min-width:0">
+                <span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span>
+                <span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">7 признаков токсичных отношений — распознать и выйти</span>
+              </span>
+              <span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+            </a>
+          </li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)">
+            <a href="blog-aile-usaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
+              <img alt="" loading="lazy" src="images/blog/aile/art3-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)"/>
+              <span style="flex:1; min-width:0">
+                <span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
+                <span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Отношения родителя и ребёнка</span>
+              </span>
+              <span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+            </a>
+          </li>
+          <li style="border-bottom:1px solid rgba(181,155,114,0.22)">
+            <a href="blog-aile-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
+              <img alt="" loading="lazy" src="images/blog/aile/art5-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)"/>
+              <span style="flex:1; min-width:0">
+                <span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
+                <span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Как вернуть утраченное доверие?</span>
+              </span>
+              <span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- @include footer -->
+<!-- BEGIN: footer (auto-generated, do not edit by hand) -->
+<footer class="site-footer" data-theme="dark">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div>
+        <a href="index.html" class="logo-box footer-logo">
+          <span class="logo-text">RAGIMOFF<em>.</em></span>
+          <span class="logo-sub">Школа психологии</span>
+        </a>
+        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=Caspian+Business+Center+Cəfər+Cabbarlı+40+Baku+AZ1065" target="_blank" rel="noopener" aria-label="Открыть на карте и проложить маршрут"><svg class="fa-pin" width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold,#E6B44A)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="fa-text">AZ1065, г. Баку, Джафар Джаббарлы 40,<br/>Caspian Business Center, 9 этаж</span><svg class="fa-dir" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 8-6 8M20 12H4"/></svg></a>
+        <div class="social-links">
+          <a href="https://t.me/ragimoff" target="_blank" class="social-btn">TG</a>
+          <a href="https://www.facebook.com/Ragimoff.az" target="_blank" class="social-btn">FB</a>
+          <a href="https://www.instagram.com/dr.ragimoff" target="_blank" class="social-btn">IG</a>
+          <a href="https://youtube.com/@kragimoff" target="_blank" class="social-btn">YT</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Терапия</span>
+        <ul class="footer-links">
+          <li><a href="aile-terapiyasi.html" class="footer-link">Семейная Терапия</a></li>
+          <li><a href="enurez.html" class="footer-link">Ночной Энурез</a></li>
+          <li><a href="panik-ataklar.html" class="footer-link">Панические Атаки</a></li>
+          <li><a href="depressiya.html" class="footer-link">Депрессия</a></li>
+          <li><a href="sosial-fobiya.html" class="footer-link">Социофобия</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Обучение</span>
+        <ul class="footer-links">
+          <li><a href="tehsil.html" class="footer-link">Общая Психология</a></li>
+          <li><a href="tehsil.html" class="footer-link">Клиническая Психология ДПО</a></li>
+          <li><a href="tehsil.html" class="footer-link">Практикум по Психотерапии</a></li>
+          <li><a href="blog.html" class="footer-link">Блог по психологии</a></li>
+          <li><a href="https://youtube.com/@kragimoff" target="_blank" class="footer-link">Уроки на YouTube</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="footer-col-title">Контакты</span>
+        <ul class="footer-links">
+          <li><a href="tel:+994702200376" class="footer-link">(+994) 70-220-03-76</a></li>
+          <li><a href="mailto:info@ragimoff.org" class="footer-link">info@ragimoff.org</a></li>
+          <li><a href="https://wa.me/994702200376" class="footer-link">WhatsApp</a></li>
+          <li><a href="https://t.me/dockenan" class="footer-link">Telegram</a></li>
+          <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" class="footer-link">Instagram</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 RAGIMOFF — Профессиональная школа психологии. Адрес профессиональной репутации.</p>
+    </div>
+  </div>
+</footer>
+<!-- END: footer -->
+    <a href="https://wa.me/994702200376" class="wa-float" target="_blank" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script src="../shared.js"></script>
+  <script src="../js-hero-fit2.js"></script>
+<!-- @include kitab-modal -->
+<!-- BEGIN: kitab-modal (auto-generated, do not edit by hand) -->
+<!-- Kitabın Sifarişi Modal -->
+<div id="kitab-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:#1a1d27;border:1px solid #2e3245;border-radius:12px;padding:36px 32px 28px;width:100%;max-width:400px;margin:20px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.7);">
+    <button onclick="closeKitabModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#8892aa;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;">&#10005;</button>
+    <div style="width:44px;height:44px;border-radius:8px;background:#E6B44A;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#0f1117;margin-bottom:16px;">КК</div>
+    <h2 style="font-size:20px;font-weight:700;color:#f0f2f8;margin:0 0 10px;font-family:monospace;">Заказ книги</h2>
+    <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:3px solid #c49b2f;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
+    <form id="kitab-form-main">
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
+        <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
+        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+      </div>
+      <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>
+    </form>
+    <div id="km-success" style="display:none;background:rgba(100,200,120,.1);border:1px solid rgba(100,200,120,.3);border-radius:8px;padding:20px;font-size:14px;color:#6dc87e;text-align:center;margin-top:16px;line-height:1.6;">
+      Спасибо!<br>Свяжемся с вами сразу после выхода книги.
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+  window.openKitabModal = function(){
+    var m = document.getElementById('kitab-modal');
+    m.style.display = 'flex'; document.body.style.overflow = 'hidden';
+    setTimeout(function(){ var n=document.getElementById('km-name'); if(n)n.focus(); }, 120);
+  };
+  window.closeKitabModal = function(){
+    document.getElementById('kitab-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  };
+  document.getElementById('kitab-modal').addEventListener('click', function(e){
+    if (e.target === this) closeKitabModal();
+  });
+  document.addEventListener('DOMContentLoaded', function(){
+    var form = document.getElementById('kitab-form-main');
+    if (!form) return;
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var name  = (document.getElementById('km-name').value||'').trim();
+      var phone = (document.getElementById('km-phone').value||'').trim();
+      if (!name||!phone){alert('Пожалуйста, введите имя и телефон.');return;}
+      var parts = name.split(/\s+/);
+      var payload = {type:'registration',fname:parts[0]||'',lname:parts.slice(1).join(' ')||'',
+        phone:phone,service:'Kitab sifarişi',source:'ragimoff.org/kitab-sifarisi'};
+      if(btn){btn.textContent='Отправка...';btn.disabled=true;}
+      try { await fetch(KITAB_API,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }
+      catch(err){console.error(err);}
+      document.getElementById('km-success').style.display='block';
+      form.style.display='none';
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeKitabModal();});
+  });
+})();
+</script>
+<!-- END: kitab-modal -->
+</body>
+</html>

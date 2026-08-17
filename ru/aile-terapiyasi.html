@@ -20,6 +20,149 @@
       .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
       .yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
       @media (max-width: 768px) { .yt-grid { grid-template-columns: 1fr; } }
+
+      /* İki mütəxəssis — foto, ad, qısa arayış açılan panel içində. */
+      .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; text-align: left; }
+      .team-card { border: 1px solid var(--clr-border); border-top: 3px solid var(--accent);
+        background: var(--clr-bg-surface); display: flex; flex-direction: column; }
+      /* Два класса намеренно: в gtc.css на ≤768px стоит
+         img:not([style*="width"]){height:auto} со специфичностью (0,1,1) —
+         одиночный класс она перебивает и роняет высоту фото, отчего карточки
+         выходят разной высоты. */
+      .team-card .team-photo { width: 100%; height: 360px; object-fit: cover;
+        object-position: center top; display: block; }
+      .team-card .team-photo-sr { object-position: center 4%; }
+      .team-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+      .team-role { display: block; font-size: .7rem; font-weight: 700; color: var(--accent);
+        letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+      .team-name { font-family: var(--font); font-size: 1.25rem; font-weight: 800;
+        color: var(--clr-heading); margin: 0 0 10px; }
+      .team-desc { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7; margin: 0 0 16px; }
+      .team-more { border-top: 1px solid var(--clr-border); margin-top: auto; }
+      .team-more > summary { cursor: pointer; list-style: none; padding: 14px 0 0;
+        font-size: var(--t-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+        color: var(--clr-text-muted); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .team-more > summary::-webkit-details-marker { display: none; }
+      .team-more > summary::after { content: '+'; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+      .team-more[open] > summary::after { content: '\2013'; }
+      .team-more > summary:hover { color: var(--accent); }
+      .team-more ul { list-style: none; margin: 14px 0 0; padding: 0; }
+      .team-more li { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65;
+        padding: 8px 0; border-top: 1px solid var(--clr-border); }
+      .team-more li:first-child { border-top: none; }
+      .team-more li strong { display: block; color: var(--clr-heading); font-size: var(--t-xs);
+        letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+      .mod-panel { border: 1px solid var(--clr-border); border-left: 3px solid var(--accent);
+        background: var(--clr-bg-surface); margin-top: 24px; text-align: left; }
+      .mod-panel > summary { cursor: pointer; list-style: none; padding: 28px;
+        font-family: var(--font); display: block; position: relative; }
+      .mod-panel > summary:hover .mod-open { color: var(--accent); }
+      .mod-panel > summary::-webkit-details-marker { display: none; }
+      .mod-panel > summary::after { content: '+'; position: absolute; top: 26px; right: 28px;
+        color: var(--accent); font-size: 1.6rem; line-height: 1; font-weight: 400; }
+      .mod-panel[open] > summary::after { content: '–'; }
+      .mod-open { display: inline-block; margin-top: 16px; font-size: var(--t-xs); font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase; color: var(--clr-text-muted); }
+      .mod-panel[open] .mod-open { color: var(--accent); }
+      .mod-price { font-size: var(--t-sm); color: var(--clr-heading); font-weight: 700; margin: 14px 0 0; }
+      .mod-price span { color: var(--clr-text-muted); font-weight: 400; }
+      .mod-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .mod-list { margin: 0; padding: 0 24px 24px 48px; counter-reset: mod; }
+      .mod-list li { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7;
+        padding: 7px 0; border-top: 1px solid var(--clr-border); }
+      .mod-list li:first-child { border-top: none; }
+
+      .mod-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+      .mod-chip { font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em;
+        color: var(--accent); border: 1px solid var(--clr-border); padding: 6px 12px; }
+      .mod-panel h3 { font-family: var(--font); font-size: 1.2rem; font-weight: 800;
+        color: var(--clr-heading); margin: 0 0 6px; padding-right: 32px; }
+      .mod-panel .mod-sub { font-size: var(--t-xs); color: var(--accent); font-weight: 700;
+        letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
+      .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
+        color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
+      .mod-video { display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+        max-width: 640px; margin: 20px auto; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      .mod-video .tl-btn { margin-top: 0; }
+      .mod-foot { max-width: 640px; margin: 28px auto 0; text-align: left;
+        color: rgba(255,255,255,0.62); line-height: 1.75; font-size: var(--t-sm); }
+      @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
+      /* Шапка приводится к главной. Значения сняты замером с index.html
+         на 375px, не назначены. Пока правится по месту: gtc.css общий для
+         53 страниц, а образец нужен на двух. */
+      /* объект 1 — бейдж: на главной 14px/700, ls 1px, padding 10/24,
+         рамка .25, фон .1, line-height 14px → высота ровно 36px.
+         На внутренних страницах он выходил 47px из-за своего line-height. */
+      /* Кнопка записи тренинга — та же, что в биографии на samira.html. */
+      .tl-btn { display: flex; width: fit-content; align-items: center; gap: 6px; margin-top: 12px;
+        padding: 6px 12px; border: 1px solid rgba(230, 180, 74, 0.4);
+        color: var(--accent); font-size: var(--t-xs); font-weight: 700;
+        letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+        transition: background .2s, border-color .2s; }
+      .tl-btn:hover { background: rgba(230, 180, 74, 0.12); border-color: var(--accent); }
+      /* ВОПРОСЫ-ОТВЕТЫ. Раскрывающиеся строки, а не простыня: читатель ищет
+         свой вопрос глазами, а не вычитывает всё подряд. */
+      .faq-list { max-width: 820px; margin: 40px auto 0; text-align: left; }
+      .faq-item { border-top: 1px solid var(--clr-border); }
+      .faq-item:last-child { border-bottom: 1px solid var(--clr-border); }
+      .faq-item > summary { cursor: pointer; list-style: none; position: relative;
+        padding: 20px 44px 20px 0; font-size: var(--t-body); font-weight: 700;
+        color: var(--clr-heading); line-height: 1.5; }
+      .faq-item > summary::-webkit-details-marker { display: none; }
+      .faq-item > summary::after { content: '+'; position: absolute; right: 6px; top: 16px;
+        color: var(--accent); font-size: 1.5rem; line-height: 1; font-weight: 400;
+        transition: transform .18s ease; }
+      .faq-item[open] > summary::after { content: '\2013'; }
+      .faq-item > summary:hover { color: var(--accent); }
+      .faq-item > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .faq-item p { margin: 0 0 20px; padding-right: 44px; font-size: var(--t-sm);
+        line-height: 1.75; color: var(--clr-text-muted); }
+
+      /* ФОРМА РЕГИСТРАЦИИ. Поля в столбик: на узком экране двухколоночная
+         сетка всё равно схлопывается, а на широком форма шириной во весь
+         контейнер читается тяжелее узкой колонки. */
+      #registration form { max-width: 560px; margin: 40px auto 0; text-align: left;
+        display: flex; flex-direction: column; gap: 18px;
+        background: rgba(255,255,255,0.04); border: 1px solid var(--clr-border);
+        padding: 32px; min-width: 0; }
+      .reg-field { display: flex; flex-direction: column; gap: 7px; }
+      .reg-field label { font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em;
+        text-transform: uppercase; color: var(--clr-text-muted); }
+      .reg-field input, .reg-field select, .reg-field textarea {
+        width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.25);
+        border: 1px solid var(--clr-border); color: var(--clr-heading);
+        font-family: var(--font); font-size: var(--t-sm); padding: 12px 14px; outline: none; }
+      .reg-field input:focus, .reg-field select:focus, .reg-field textarea:focus {
+        border-color: var(--accent); }
+      .reg-field textarea { resize: vertical; }
+      #registration form .btn { margin-top: 4px; text-align: center; justify-content: center; }
+      #atRegSuccess { max-width: 560px; margin: 20px auto 0; text-align: left;
+        border: 1px solid rgba(100,200,120,.35); background: rgba(100,200,120,.08);
+        padding: 18px 20px; }
+      #atRegSuccess p { margin: 0; font-size: var(--t-sm); line-height: 1.7; color: #7FD08F; }
+      .reg-note { max-width: 560px; margin: 18px auto 0; text-align: left;
+        font-size: var(--t-sm); color: var(--clr-text-muted); }
+      .reg-note a { color: var(--accent); font-weight: 700; }
+      @media (max-width: 600px) {
+        #registration form { padding: 20px; }
+      }
+
+      /* Общая строка над карточками модулей: график занятий одинаков для обоих. */
+      /* Цена курса: раздел обучения называл модули, но не условия — читатель
+         уходил на samira.html за цифрой, которая уже известна. */
+      .prog-price { max-width: 640px; margin: 28px auto 0; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      .prog-price strong { color: var(--accent); font-weight: 800; }
+      .prog-intro { max-width: 640px; margin: 28px auto 0; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; text-align: left; }
+      .prog-card { border: 1px solid var(--clr-border); border-left: 3px solid var(--accent);
+        background: var(--clr-bg-surface); padding: 26px 28px; }
+      .prog-card h3 { font-family: var(--font); font-size: 1.1rem; font-weight: 800;
+        color: var(--clr-heading); margin: 0 0 10px; }
+      .prog-card p { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7; margin: 0 0 14px; }
+      @media (max-width: 900px) { .team-grid, .prog-grid { grid-template-columns: 1fr; gap: 24px; } }
     </style>
   <link rel="canonical" href="https://ragimoff.org/ru/aile-terapiyasi.html" />
   <link rel="alternate" hreflang="az" href="https://ragimoff.org/aile-terapiyasi.html" />
@@ -60,6 +203,7 @@
         <a href="xidmetler.html" class="nav-active">Консультация</a>
         <ul class="nav-dropdown">
           <li><a href="aile-terapiyasi.html">Семейная Терапия</a></li>
+          <li><a href="valideyn-mektebi.html">Школа родителей</a></li>
           <li><a href="aile-terapiyasi-usaq.html">Семейно-Детская Терапия</a></li>
           <li><a href="depressiya.html">Депрессия</a></li>
           <li><a href="panik-ataklar.html">Панические Атаки</a></li>
@@ -119,6 +263,7 @@
     </div>
     <div class="mn-sub">
       <a href="aile-terapiyasi.html" onclick="toggleMenu()">Семейная Терапия</a>
+      <a href="valideyn-mektebi.html" onclick="toggleMenu()">Школа родителей</a>
       <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">Семейно-Детская Терапия</a>
       <a href="depressiya.html" onclick="toggleMenu()">Депрессия</a>
       <a href="panik-ataklar.html" onclick="toggleMenu()">Панические Атаки</a>
@@ -162,7 +307,97 @@
     </section>
 
     <!-- КОМУ НУЖНА -->
-    <section data-theme="light">
+    <!-- ОБУЧЕНИЕ PROQRAMLARI -->
+<section data-theme="dark">
+<div class="sec-inner" style="padding:var(--s-section)">
+<span class="badge">ОБУЧЕНИЕ</span>
+<h2 class="sec-h2">Программа обучения для специалистов</h2>
+<p class="sec-sub">
+<span class="ab-lead-mob">Два модуля, по 16 занятий.</span>
+<span class="ab-lead-mob">Ведёт Самира Рагимова.</span>
+<span class="ab-lead-desk">«Системная семейная терапия» — два модуля, по 16 занятий. Ведёт Самира Рагимова.</span>
+</p>
+<p class="prog-intro">Занятия 2&nbsp;раза в неделю по 2&nbsp;часа. Каждый модуль 3&nbsp;месяца: 2&nbsp;месяца теория и практика, 3-й месяц супервизия.</p>
+<details class="mod-panel">
+  <summary>
+    <p class="mod-sub">Модуль 1</p>
+    <h3>Терапия пары</h3>
+    <p class="mod-note">Отношения мужчины и женщины</p>
+    <p>Работа с системой пары: от диагностики до кризисного периода. Первичный приём, генограмма, роли и границы, паттерны, подход при измене и на пороге развода.</p>
+    <div class="mod-meta">
+      <span class="mod-chip">3 месяца</span>
+      <span class="mod-chip">16 занятий + супервизия</span>
+      <span class="mod-chip">2 раза в неделю × 2 часа</span>
+    </div>
+    <p class="mod-price">Всего 600 AZN <span>— по 200 AZN в месяц × 3 месяца либо 500 AZN при предоплате. Очно и онлайн цена одинакова.</span></p>
+    <span class="mod-open">Смотреть полную программу</span>
+  </summary>
+  <ol class="mod-list">
+    <li>Выявление дисгармонии в семейной системе — диагностика</li>
+    <li>Первичный приём в терапии пары</li>
+    <li>Разбор конфликтной ситуации</li>
+    <li>Генограмма — жизненный цикл семьи</li>
+    <li>Определение ролей в семейной системе и напряжённые границы</li>
+    <li>Психодрама — психотерапевтические техники в модели семьи</li>
+    <li>Неписаные правила — распределение обязанностей и цена их нарушения</li>
+    <li>Выявление паттернов в отношениях</li>
+    <li>Применение методов классических и современных школ семейной терапии</li>
+    <li>Круг задач, которые решает системная семейная терапия</li>
+    <li>Удовлетворение личных потребностей и свобода выбора</li>
+    <li>Методы коммуникации (теория Г. Бейтсона)</li>
+    <li>Психотерапевтические приёмы в семейных отношениях и разбор случаев</li>
+    <li>Работа в критический период (измена, насилие, подход на пороге развода)</li>
+    <li>Разбор отношений с человеком, страдающим зависимостью (алкоголь, наркотики, игра и др.)</li>
+    <li>Поддерживающий этап в семейной терапии</li>
+  </ol>
+</details>
+
+<p class="mod-video">Видеозапись тренинга по этой теме:
+  <a class="tl-btn" href="https://www.youtube.com/watch?v=K1n0Cq4LUwE" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>1-я часть</a>
+  <a class="tl-btn" href="https://www.youtube.com/watch?v=1KdbirxNtco" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>2-я часть</a>
+</p>
+
+<details class="mod-panel">
+  <summary>
+    <p class="mod-sub">Модуль 2</p>
+    <h3>Отношения родителя и ребёнка</h3>
+    <p class="mod-note">Семейная терапия для родителей</p>
+    <p>Этапы развития ребёнка и критические моменты, внутрисемейные функциональные нарушения, построение модели общения, игровая терапия, страхи и агрессия. Для психологов, педагогов и родителей.</p>
+    <div class="mod-meta">
+      <span class="mod-chip">3 месяца</span>
+      <span class="mod-chip">16 занятий + супервизия</span>
+      <span class="mod-chip">2 раза в неделю × 2 часа</span>
+    </div>
+    <p class="mod-price">Всего 600 AZN <span>— по 200 AZN в месяц × 3 месяца либо 500 AZN при предоплате. Очно и онлайн цена одинакова.</span></p>
+    <span class="mod-open">Смотреть полную программу</span>
+  </summary>
+  <ol class="mod-list">
+    <li>Этапы психофизиологического развития ребёнка</li>
+    <li>Критические моменты этапов развития</li>
+    <li>Диагностика по признакам в семейной терапии</li>
+    <li>Функциональные нарушения внутри семьи</li>
+    <li>Системный разбор семейных историй</li>
+    <li>Построение модели общения с ребёнком</li>
+    <li>Выходы из напряжённых отношений, коррекция родительских методов воспитания</li>
+    <li>Модели поведения детей в проблемных семьях</li>
+    <li>Невротические и поведенческие нарушения у детей</li>
+    <li>Игровая терапия — коррекция модели поведения</li>
+    <li>Агрессивное поведение у детей — модель наказания</li>
+    <li>Детские страхи и практические выходы</li>
+    <li>Проблемы отставания в учёбе</li>
+    <li>Регуляция психики детей в неполной семье</li>
+    <li>Методы полового воспитания в семье</li>
+    <li>Управление семейными отношениями с человеком с особым заболеванием или ограничением поведения</li>
+  </ol>
+</details>
+<p class="mod-foot">Программа для психологов, школьных психологов, педагогов, коучей, студентов и родителей; высшее образование не требуется. В конце курса — экзамен и сертификат Международной ассоциации психотерапии.</p>
+<p class="prog-price">За каждый модуль всего 600&nbsp;AZN — по 200&nbsp;AZN в месяц × 3&nbsp;месяца либо 500&nbsp;AZN при предоплате. Очно и онлайн цена одинакова.</p>
+<div style="margin-top:28px;text-align:center;">
+<a class="btn btn-line" href="samira.html">О преподавателе →</a>
+</div>
+</div>
+</section>
+<section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section)">
         <span class="badge">РЕШЕНИЕ ПРОБЛЕМ</span>
         <h2 class="sec-h2">Кому нужна эта терапия?</h2>
@@ -354,7 +589,90 @@
     </section>
 
     <!-- CTA -->
-    <div class="cta-band" data-theme="dark">
+    <!-- FAQ -->
+<section data-theme="light">
+<div class="sec-inner" style="padding:var(--s-section)">
+<span class="badge on-light">ВОПРОС-ОТВЕТ</span>
+<h2 class="sec-h2">Частые вопросы</h2>
+<p class="sec-sub">
+<span class="ab-lead-mob">О терапии и обучении —</span>
+<span class="ab-lead-mob">самое частое.</span>
+<span class="ab-lead-desk">Самые частые вопросы о терапии и обучении — и точные ответы на них.</span>
+</p>
+<div class="faq-list">
+<details class="faq-item">
+<summary>Можно прийти одному или обязательно вдвоём?</summary>
+<p>Можно прийти одному. Работа чаще всего и начинается с обращения одной стороны. В системном подходе изменение поведения одного участника приводит в движение всю семейную систему. Партнёр может подключиться позже — это ускоряет процесс, но не является условием.</p>
+</details>
+<details class="faq-item">
+<summary>Сколько нужно сессий?</summary>
+<p>Число этапов определяется после совместного первичного приёма. В кризисных ситуациях первый результат обычно виден через 4–6 сессий; восстановление отношений требует более長 длительной работы. Точное число называется на первичном приёме.</p>
+</details>
+<details class="faq-item">
+<summary>Онлайн так же результативен, как очно?</summary>
+<p>В терапии пары онлайн-формат идёт по тому же протоколу. Разница только в цене — онлайн-сессия дешевле. В программе обучения разницы нет: очно и онлайн цена одинакова.</p>
+</details>
+<details class="faq-item">
+<summary>Останется ли сказанное в тайне?</summary>
+<p>Да. Сказанное на индивидуальном этапе не открывается партнёру автоматически — что именно выносится на совместную сессию, согласуется с вами. Это основное условие индивидуального этапа.</p>
+</details>
+<details class="faq-item">
+<summary>Нужно ли психологическое образование, чтобы учиться?</summary>
+<p>Высшее образование не требуется. Программа для психологов, школьных психологов, педагогов, коучей, студентов и родителей. У тех, кто имеет психологическое образование, возможностей больше: выпускники могут вести консультации в нашем центре.</p>
+</details>
+<details class="faq-item">
+<summary>Какой документ выдаётся в конце обучения?</summary>
+<p>В конце курса проводится экзамен и выдаётся сертификат Международной ассоциации психотерапии (IPAS).</p>
+</details>
+<details class="faq-item">
+<summary>Можно ли платить частями?</summary>
+<p>Да. По 200&nbsp;AZN в месяц × 3&nbsp;месяца либо 500&nbsp;AZN при полной предоплате. Принимаются BirBank, TamKart, BolKart, WorldKart и банковский перевод.</p>
+</details>
+</div>
+</div>
+</section>
+<!-- REGISTRATION -->
+<section aria-labelledby="at-reg-h" data-theme="dark" id="registration" style="background:#0B0E11;padding:var(--s-section) 0;">
+<div class="sec-inner" style="padding:0 var(--s-section)">
+<span class="badge">ЗАПИСЬ</span>
+<h2 class="sec-h2" id="at-reg-h">Запись на консультацию и обучение</h2>
+<p class="sec-sub">
+<span class="ab-lead-mob">Заполните форму или напишите</span>
+<span class="ab-lead-mob">в WhatsApp — ответим сегодня.</span>
+<span class="ab-lead-desk">Заполните форму или напишите в WhatsApp — ответим в тот же день, формат выбираете вы.</span>
+</p>
+<form id="atRegForm">
+<div class="reg-field">
+<label for="at-ad">Имя и фамилия</label>
+<input id="at-ad" name="ad" type="text" placeholder="Имя и фамилия" required/>
+</div>
+<div class="reg-field">
+<label for="at-tel">Телефон</label>
+<input id="at-tel" name="telefon" type="tel" placeholder="+994 XX XXX XX XX" required/>
+</div>
+<div class="reg-field">
+<label for="at-proqram">Что вас интересует?</label>
+<select id="at-proqram" name="proqram">
+<option value="Терапия пары — консультация">Терапия пары — консультация</option>
+<option value="Отношения родителя и ребёнка — консультация">Отношения родителя и ребёнка — консультация</option>
+<option value="Обучение — Модуль 1, терапия пары">Обучение — Модуль 1, терапия пары</option>
+<option value="Обучение — Модуль 2, отношения родителя и ребёнка">Обучение — Модуль 2, отношения родителя и ребёнка</option>
+<option value="Ещё не выбрал(а)">Ещё не выбрал(а)</option>
+</select>
+</div>
+<div class="reg-field">
+<label for="at-qeyd">Короткий комментарий</label>
+<textarea id="at-qeyd" name="qeyd" rows="3" placeholder="В чём нужна помощь?"></textarea>
+</div>
+<button class="btn btn-fill" type="submit">Отправить</button>
+</form>
+<div id="atRegSuccess" style="display:none;">
+<p>Заявка принята. Мы свяжемся с вами в тот же день.</p>
+</div>
+<p class="reg-note">Или напишите напрямую: <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a></p>
+</div>
+</section>
+<div class="cta-band" data-theme="dark">
       <div class="cta-band-inner">
         <h2 class="sec-h2">Записаться на сессию</h2>
         <p class="sec-sub">Свяжитесь с нами напрямую через WhatsApp</p>
@@ -431,7 +749,10 @@
     </a>
 
     <script src="../shared.js"></script>
-  <script src="../js-hero-fit2.js"></script>
+  <script>
+  wireRegForm('atRegForm', 'atRegSuccess', 'ru/aile-terapiyasi.html');
+</script>
+<script src="../js-hero-fit2.js"></script>
 <!-- @include kitab-modal -->
 <!-- BEGIN: kitab-modal (auto-generated, do not edit by hand) -->
 <!-- Kitabın Sifarişi Modal -->
