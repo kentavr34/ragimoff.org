@@ -389,9 +389,23 @@
           note: fd.get('qeyd') || '',
           source: 'xidmetler.html'
         };
+        const btnText = btn.textContent;
         btn.textContent = 'Göndərilir...';
         btn.disabled = true;
-        if (typeof submitToAPI === 'function') await submitToAPI(payload);
+        // Успех показываем только если сервер ПРИНЯЛ заявку. Раньше здесь
+        // стояло безусловное «отправлено»: если submitToAPI не была загружена
+        // или запрос падал, человек уходил уверенным, что записался.
+        const result = typeof submitToAPI === 'function'
+          ? await submitToAPI(payload)
+          : { ok: false, error: 'submitToAPI yüklənməyib' };
+        if (!result.ok) {
+          btn.textContent = btnText;
+          btn.disabled = false;
+          if (typeof showSendError === 'function') showSendError(form);
+          return;
+        }
+        const prevErr = form.querySelector('.form-error');
+        if (prevErr) prevErr.style.display = 'none';
         form.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
         form.style.opacity = '0.6';
         document.getElementById('xidRegSuccess').style.display = 'block';

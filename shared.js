@@ -216,19 +216,58 @@ function waLink(msg) {
 // Backend (Apps Script) — приём форм + Telegram + Google Sheets
 const RAGIMOFF_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
 
+// Раньше здесь стоял mode:'no-cors'. Ответ сервера в этом режиме непрозрачен,
+// поэтому функция всегда возвращала {ok:true} — форма рапортовала «отправлено»
+// и когда заявка терялась. Проверено 2026-08-17: обычный запрос к тому же
+// адресу отдаёт 200 и {"ok":true}, Apps Script чтение ответа разрешает.
+// Повтор при ошибке НЕ делаем: первый запрос мог уйти на сервер даже с
+// исключением, и повтор создал бы вторую заявку на одного человека.
 async function submitToAPI(payload) {
   try {
     const res = await fetch(RAGIMOFF_API, {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
+    if (!res.ok) return { ok: false, error: 'HTTP ' + res.status };
+    try {
+      const data = await res.json();
+      if (data && data.ok === false) return { ok: false, error: data.error || 'server' };
+    } catch (e) {
+      /* тело неJSON — но статус 200, значит запрос принят */
+    }
     return { ok: true };
   } catch (err) {
     console.error('submitToAPI error:', err);
     return { ok: false, error: String(err) };
   }
+}
+
+// Сообщение о неудаче: заявка не ушла, человека нельзя оставлять с ощущением,
+// что всё в порядке. Даём прямой путь — WhatsApp.
+function showSendError(form) {
+  let box = form.querySelector('.form-error');
+  if (!box) {
+    box = document.createElement('p');
+    box.className = 'form-error';
+    box.style.cssText = 'margin:14px 0 0;padding:12px 14px;border:1px solid rgba(220,90,90,.5);' +
+      'background:rgba(220,90,90,.08);color:#E8A0A0;font-size:.875rem;line-height:1.6;';
+    form.appendChild(box);
+  }
+  // Текст на языке страницы: форма живёт в четырёх деревьях, и сообщение об
+  // ошибке на чужом языке читается как сбой сайта, а не как подсказка.
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  var MSG = {
+    az: ['Göndərmək alınmadı. Zəhmət olmasa bir daha cəhd edin və\u00a0ya ', 'WhatsApp ilə yazın'],
+    ru: ['Не удалось отправить. Попробуйте ещё раз или ', 'напишите в WhatsApp'],
+    en: ['Could not send. Please try again or ', 'write to us on WhatsApp'],
+    tr: ['Gönderilemedi. Lütfen tekrar deneyin ya\u00a0da ', 'WhatsApp üzerinden yazın']
+  };
+  var m = MSG[L] || MSG.az;
+  box.innerHTML = m[0] +
+    '<a href="https://wa.me/994702200376" target="_blank" rel="noopener" ' +
+    'style="color:var(--accent);font-weight:700;">' + m[1] + '</a>.';
+  box.style.display = 'block';
 }
 
 // Универсальный обработчик регистрационной формы
@@ -253,8 +292,17 @@ function wireRegForm(formId, successId, source) {
       ].filter(Boolean).join(' | '),
       source: source || location.pathname.replace(/^\//, '') || 'unknown'
     };
+    const btnText = btn ? btn.textContent : '';
     if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
-    await submitToAPI(payload);
+    const result = await submitToAPI(payload);
+    if (!result.ok) {
+      /* Форму НЕ блокируем: человек должен иметь возможность повторить. */
+      if (btn) { btn.textContent = btnText; btn.disabled = false; }
+      showSendError(form);
+      return;
+    }
+    const err = form.querySelector('.form-error');
+    if (err) err.style.display = 'none';
     form.style.opacity = '0.5';
     form.style.pointerEvents = 'none';
     if (success) {

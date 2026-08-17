@@ -608,9 +608,21 @@
         note: [fd.get('odenis') ? 'Оплата: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
         source: 'ru/qanunlar.html'
       };
+      const btnText = btn.textContent;
       btn.textContent = 'Отправляется...';
       btn.disabled = true;
-      if (typeof submitToAPI === 'function') await submitToAPI(payload);
+      // Успех показываем только если сервер ПРИНЯЛ заявку.
+      const result = typeof submitToAPI === 'function'
+        ? await submitToAPI(payload)
+        : { ok: false, error: 'submitToAPI not loaded' };
+      if (!result.ok) {
+        btn.textContent = btnText;
+        btn.disabled = false;
+        if (typeof showSendError === 'function') showSendError(form);
+        return;
+      }
+      const prevErr = form.querySelector('.form-error');
+      if (prevErr) prevErr.style.display = 'none';
       form.style.opacity = '0.5';
       form.style.pointerEvents = 'none';
       if (success) { success.style.display = 'block'; success.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
