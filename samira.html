@@ -109,6 +109,17 @@
         .cta-pair .btn + .btn { margin-left: 0; margin-top: 12px; }
       }
 
+      /* Общая строка над модулями: то, что одинаково для обоих. */
+      .mod-intro { max-width: 640px; margin: 0 auto 24px; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      /* Записи тренинга между модулями. Кнопка .tl-btn это flex шириной по
+         содержимому — две подряд встали бы в столбик, поэтому ряд задаём
+         контейнером. */
+      .mod-video { display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+        max-width: 640px; margin: 20px auto; text-align: left;
+        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
+      .mod-video .tl-btn { margin-top: 0; }
+
       .sec-body { max-width: 640px; margin: 28px auto 0; text-align: left;
         color: var(--clr-text-muted); line-height: 1.75; font-size: var(--t-sm); }
       .sec-body a { color: var(--accent); font-weight: 700; }
@@ -416,6 +427,8 @@
           </p>
         </div>
 
+        <p class="mod-intro">Dərslər həftədə 2&nbsp;dəfə keçirilir, hər dərs 2&nbsp;saat.</p>
+
         <details class="mod-panel">
           <summary>
             <p class="mod-sub">Modul 1</p>
@@ -449,6 +462,11 @@
             <li>Ailə terapiyasında dəstəkləyici mərhələ</li>
           </ol>
         </details>
+
+        <p class="mod-video">Bu mövzuda təlimin videoyazısına baxa bilərsiniz:
+          <a class="tl-btn" href="https://www.youtube.com/watch?v=K1n0Cq4LUwE" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>1-ci hissə</a>
+          <a class="tl-btn" href="https://www.youtube.com/watch?v=1KdbirxNtco" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>2-ci hissə</a>
+        </p>
 
         <details class="mod-panel">
           <summary>
@@ -501,7 +519,7 @@
             <span class="ab-lead-desk">davam edir və birgə sessiyada birləşir.</span>
           </p>
         </div>
-        <p class="sec-body">Terapiyanı iki mütəxəssis birlikdə aparır: kişi tərəflə həkim-psixiatr <a href="haqqimda.html">Kənan Rəhimov</a>, qadın tərəflə klinik psixoloq Samirə Rəhimova. Prosesin tam təsviri və&nbsp;qiymətlər ayrıca səhifədədir.</p>
+        <p class="sec-body">Terapiyanı iki mütəxəssis birlikdə aparır: kişi tərəflə həkim-psixiatr <a href="haqqimda.html">Kənan Rəhimov</a>, qadın tərəflə klinik psixoloq Samirə Rəhimova. İş birgə ilkin qəbulla başlayır: hər iki tərəf eyni otaqda dinlənilir və&nbsp;vəziyyət birlikdə qiymətləndirilir. Sonra fərdi mərhələ gəlir — hər kəs öz payını partnyorun yanında deyil, təhlükəsiz şəraitdə araşdırır. Yekun birgə sessiyada nəticələr birləşdirilir və&nbsp;razılaşmalar qurulur. Bir sessiya 1&nbsp;saat çəkir, əyani və&nbsp;onlayn keçirilir. Prosesin tam təsviri və&nbsp;qiymətlər ayrıca səhifədədir.</p>
         <div class="cta-pair" style="margin-top:28px;text-align:center;">
           <a href="aile-terapiyasi.html" class="btn btn-fill">Format və&nbsp;qiymətlər →</a>
           <a href="valideyn-mektebi.html" class="btn btn-line">Valideyn Məktəbi →</a>
