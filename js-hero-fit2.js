@@ -55,6 +55,14 @@
   /* Ниже 13px подзаголовок на телефоне не читается. Замер на 375 без
      порога давал 9px. */
   var MIN_SUB = 13;
+  /* Нижняя граница кегля заголовка раздела на мобильном. Без неё заголовок
+     сжимается, лишь бы влезть в одну строку, а levelH2 потом раздаёт этот
+     кегль всем заголовкам страницы. На aile-terapiyasi самый длинный —
+     «Ailə Terapiyası Haqqında Məqalələr», 34 знака: замер дал 18px ВСЕМ семи
+     заголовкам при подзаголовке 16px. Иерархия пропадала — заголовок и
+     подзаголовок читались одним уровнем. Заголовку лучше перенестись на две
+     строки, чем сравняться с подзаголовком. */
+  var MIN_H2 = 24;
   var SEC_TOP = 48;
   var SEC_BADGE = 27;
 
@@ -340,8 +348,12 @@
   function fitSection(header) {
     var h2 = header.querySelector('h2.sec-h2');
     if (!h2) return;
-    var mob = header.querySelectorAll('.ab-lead-mob');
-    var desk = header.querySelectorAll('.ab-lead-desk');
+    /* Классы строк подзаголовка исторически именуются по разделу: ab-lead-*
+       на samira, pr-lead-* на tehsil. Скрипт знал только ab-, и на tehsil
+       подгонка молча не срабатывала: замер дал 263 % в разделе программ —
+       подзаголовок втрое шире своего заголовка. Ищем по суффиксу. */
+    var mob = header.querySelectorAll('[class$="-lead-mob"], [class*="-lead-mob "]');
+    var desk = header.querySelectorAll('[class$="-lead-desk"], [class*="-lead-desk "]');
 
     /* Сброс ДО проверки ширины. Раньше выход стоял первой строкой, и при
        переходе с узкого экрана на широкий инлайн-кегли, выставленные для
@@ -374,6 +386,11 @@
         [].forEach.call(desk, function (line) {
           line.style.display = 'inline';
           line.style.whiteSpace = 'nowrap';
+          /* Потолок кегля здесь ставить нельзя. Пробовал 20px, чтобы убрать
+             разброс подзаголовков (17 / 18 / 22 в соседних разделах
+             aile-terapiyasi) — на samira это уронило доли со 100 / 98 / 98 / 100
+             до 66 / 98 / 82 / 82, то есть сломало ГЛАВНОЕ правило владельца
+             ради косметики. Ширина пары важнее одинакового кегля. */
           var s = fitTo(line, dTarget, 8, 48, 0);
           line.style.display = 'block';
           line.style.whiteSpace = '';
@@ -391,7 +408,11 @@
     h2.style.cssText = '';
     h2.style.display = 'inline';
     h2.style.whiteSpace = 'nowrap';
-    fitTo(h2, target, 10, 160, 0);
+    var sH = fitTo(h2, target, MIN_H2, 160, 0);
+    /* Упёрлись в пол — значит в одну строку текст не входит. Снимаем nowrap
+       и отдаём заголовок на перенос: две строки крупным кеглем читаются, одна
+       строка кеглем подзаголовка — нет. */
+    if (sH <= MIN_H2) setSize(h2, MIN_H2);
     h2.style.display = 'block';
     h2.style.whiteSpace = '';
 
@@ -417,7 +438,12 @@
       line.style.cssText = '';
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      var s = fitTo(line, target, MIN_SUB, 60, 0);
+      /* Потолок MIN_H2 - 6. На мобильном мера — контейнер, и короткая строка
+         («İki modul, hər biri 16 dərs.») растягивалась до 27px при заголовке
+         24px: подзаголовок выходил КРУПНЕЕ заголовка, а потом ещё и не влезал
+         и ломался на 4 строки. Здесь потолок безопасен — в отличие от
+         десктопа, где мера это ширина заголовка и потолок ломает правило пары. */
+      var s = fitTo(line, target, MIN_SUB, MIN_H2 - 6, 0);
       if (s < MIN_SUB) { s = MIN_SUB; setSize(line, s); }
       mobSubSizes.push(s);
       line.style.display = 'block';
@@ -442,7 +468,7 @@
   function levelH2() {
     if (window.innerWidth > 768) return;
     var hs = [];
-    document.querySelectorAll('.sec-header h2.sec-h2').forEach(function (h) {
+    document.querySelectorAll('h2.sec-h2').forEach(function (h) {
       var v = parseFloat(h.style.fontSize);
       if (v) hs.push({ el: h, size: v });
     });
@@ -453,7 +479,18 @@
 
   function pass() {
     document.querySelectorAll('.page-hero-x').forEach(fitHero);
-    document.querySelectorAll('.sec-header').forEach(fitSection);
+    /* Заголовочным блоком считается РОДИТЕЛЬ h2.sec-h2, а не только
+       обёртка .sec-header. На samira и tehsil это тот же самый узел —
+       h2 лежит внутри .sec-header. Но на большинстве страниц сайта
+       (aile-terapiyasi и её родня) бейдж, заголовок и подзаголовок лежат
+       прямо в .sec-inner, без обёртки, и подгонка их просто не находила:
+       замер дал 70 / 82 / 61 / 41% вместо нормы ±10%. */
+    var headers = [];
+    document.querySelectorAll('h2.sec-h2').forEach(function (h) {
+      var box = h.closest('.sec-header') || h.parentElement;
+      if (box && headers.indexOf(box) < 0) headers.push(box);
+    });
+    headers.forEach(fitSection);
     levelH2();
     document.querySelectorAll('section').forEach(function (s) {
       if (s.classList.contains('page-hero-x')) return;
