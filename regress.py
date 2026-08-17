@@ -461,6 +461,11 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
     # §10, очередь 3 (2026-08-18): общество даёт противопоказание, не запрет
     'AAP, AACAP — категорический запрет', 'AACAP, APSAC категорически запрещают',
+    # §10, партия 3 (2026-08-18): фраза переведена дважды и склеена;
+    # название журнала потеряно
+    'религиозная практика дополняет лечение. <em>дополнять</em>',
+    'Bishop D.V. Систематическая критика 2007',
+    'на функциональную двигательную активность при DCD',
  ],
  'en': [
     # «icmal» переведено как summary; речь об обзорах, 2026-08-18
@@ -658,6 +663,10 @@ GONE = {
     # целиком, слова вокруг переведены — сказуемое и дополнение переставлены
     'of dyslexia <strong>Not main symptom', 'It should be compared.</strong>',
     'benzodiazepine <strong>Delirium exacerbates',
+    # §10, партия 3 (2026-08-18)
+    'religious practice may affect treatment. <em>complement</em>',
+    '<strong>openly dominant</strong> From', 'DCD — <strong>Is a neurodevelopmental',
+    'children with DCD. <strong>50–70% retain', '(CO-OP, NTT) are the first priority',
  ],
  'tr': [
     # 6B22: обзоры подменены описаниями случаев, 2026-08-18
@@ -813,6 +822,8 @@ GONE = {
     'esnekliğe</strong> Üstün etki', 'Kekemelik <strong>Genetik ve',
     '<strong>sürekliliğine</strong> etkileyebilir', 'Ancak <strong>Risk faktörleri',
     'karşılaştırılmalıdır</strong> Ki, tedavisiz',
+    # §10, партия 3 (2026-08-18): название журнала переведено, лишний глагол
+    'Bishop D.V. Disleksi 2007', 'tamamlayabilir</em> bilir',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
