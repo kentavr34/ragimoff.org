@@ -274,6 +274,11 @@
     var badge = sec.querySelector('.badge');
     var h = sec.querySelector('h2');
     if (!badge || !h) return;
+    /* Скрытые секции пропускаем. У display:none все размеры нулевые, и замер
+       выдаёт мусор: на tehsil форма отзыва (#reviewFormSection) показала
+       зазор 0 вместо 48, и скрипт записывал ей случайную поправку, которая
+       вылезла бы в момент открытия формы. */
+    if (!sec.getClientRects().length) return;
 
     sec.style.removeProperty('padding-top');
     h.style.removeProperty('margin-top');
