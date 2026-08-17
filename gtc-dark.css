@@ -817,8 +817,6 @@ section[style], div[style] {
 /* ── Phase 2: Black text on active yellow buttons (gold backgrounds) ── */
 .desktop-nav .lang-switch.lang-active,
 .desktop-nav .lang-switch.active,
-.lang-drop-panel a.active,
-.lang-drop-panel a.current,
 .btn-fill,
 .btn.btn-fill,
 button[type="submit"].btn-fill,
@@ -833,3 +831,105 @@ button[type="submit"].btn-fill,
 .btn.btn-fill:hover {
   color: #0B0E11 !important;
 }
+
+
+/* ─── Правки доступности 2026-08-18 ─────────────────────────────────────
+   Замеры на живой странице: два провала контраста, 26 тач-целей меньше
+   нормы, текст до 8.8px. Причина обоих провалов контраста одна и та же,
+   зеркальная: правило «чёрный текст на золотом фоне» применялось к пункту
+   выпадающего списка, где фон прозрачный (1.16:1), и НЕ применялось к
+   мобильной кнопке языка, где фон как раз золотой — там цвет перебивал
+   .mobile-nav a { color: var(--bnb-muted) !important }, давая 1.2:1.
+   В обоих случаях нечитаемым оказывался ТЕКУЩИЙ язык — элемент, который
+   обязан быть заметнее прочих. */
+
+/* Текущий язык в выпадающем списке: золотой текст на тёмной панели */
+.lang-drop-panel a.current,
+.lang-drop-item.current {
+  color: var(--bnb-gold) !important;
+}
+
+/* Текущий язык в мобильном меню: фон золотой, значит текст тёмный.
+   Вес селектора поднят до .mobile-nav, иначе общее правило ссылок меню
+   выигрывает по !important. */
+.mobile-nav .mobile-lang-btn.current,
+.mobile-nav a.mobile-lang-btn.current {
+  color: #0B0E11 !important;
+  font-weight: 700 !important;
+}
+
+/* ── Тач-цели: минимум 44×44 (Apple HIG) / 48×48dp (Material).
+   Размер задаётся через min-width/min-height и центрирование, чтобы
+   видимая графика осталась прежней, а выросла только область нажатия. */
+.mobile-toggle,
+.mobile-nav-close {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.mobile-nav-group .mn-toggle {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.social-btn {
+  min-width: 44px !important;
+  min-height: 44px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.hero-search-btn {
+  min-height: 44px !important;
+}
+
+/* ── Кегль: 8.8px у подписи логотипа — вдвое ниже порога читаемости для
+   функционального текста. 11px — нижняя граница, дальше уже подпись под
+   заголовком, а не текст. Трекинг чуть уменьшен, чтобы строка заняла ту же
+   ширину и не разъехалась шапка. */
+.logo-sub {
+  font-size: 11px !important;
+  letter-spacing: 0.11em !important;
+}
+
+
+/* ── Ссылка «к основному содержимому»: первое, что встречает клавиатура.
+   Без стиля она стояла бы видимой строкой над шапкой, поэтому убрана за
+   край экрана и возвращается только при фокусе — приём стандартный. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--bnb-gold);
+  color: #0B0E11;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 0 0 6px 0;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+  outline: 3px solid #0B0E11;
+  outline-offset: -3px;
+}
+
+
+/* ── Ссылки подвала на телефоне: 25px высоты — палец промахивается по
+   соседней строке. Правило только для узкого экрана: на десктопе указывает
+   мышь, и растягивать список там незачем. */
+@media (max-width: 768px) {
+  .footer-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Поле поиска в hero: 43px — на пиксель ниже нормы касания. */
+#hero-si { min-height: 44px; box-sizing: border-box; }

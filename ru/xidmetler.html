@@ -82,6 +82,7 @@
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/xidmetler.html" />
 </head>
   <body>
+    <a class="skip-link" href="#main-content">К основному содержимому</a>
 
     <!-- @include header -->
 <!-- BEGIN: header (auto-generated, do not edit by hand) -->
@@ -189,7 +190,7 @@
 </nav>
 <!-- END: mobile-nav -->
     <!-- HERO -->
-    <section class="page-hero-x" data-theme="dark" style="background-image:url('../images/kenan/photo-portal-crop.jpg');" aria-labelledby="page-h1">
+    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/kenan/photo-portal-crop.jpg');" aria-labelledby="page-h1">
       <div class="page-hero-x-inner">
         <span class="ph-badge">КЛИНИЧЕСКАЯ ПСИХОТЕРАПИЯ</span>
         <h1 class="ph-h1" id="page-h1">
@@ -205,7 +206,7 @@
         </p>
         <div class="ph-search-wrap hero-search-wrap">
           <div class="hero-search-bar">
-            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off" aria-label="Поиск...">
             <button class="hero-search-btn" onclick="heroSearch()">
               <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               <span>ПОИСК</span>
@@ -250,7 +251,7 @@
 
           <div class="xid-card">
             <span class="card-label">Отношения</span>
-            <h4>Семейная терапия</h4>
+            <h4 role="heading" aria-level="3" data-a11y-level>Семейная терапия</h4>
             <p>Пары ссорятся — это говорит не о несовместимости, а об отсутствии инструментов общения. Большая часть конфликтов берёт начало в паттернах, усвоенных в родительской семье. Терапия делает эти паттерны видимыми и изменяет их.</p>
             <a href="aile-terapiyasi.html" class="card-link">Узнать о решении →</a>
           </div>
@@ -320,7 +321,7 @@
           <h2 class="sec-h2" id="proc-h">4 шага от записи до сессии</h2>
         </div>
         <div class="process-grid">
-          <div class="process-step"><span class="process-num">01</span><h4>Контакт через WhatsApp</h4><p>Напишите на номер +994 70 220-03-76. Заявка обрабатывается в тот же день.</p></div>
+          <div class="process-step"><span class="process-num">01</span><h4 role="heading" aria-level="3" data-a11y-level>Контакт через WhatsApp</h4><p>Напишите на номер +994 70 220-03-76. Заявка обрабатывается в тот же день.</p></div>
           <div class="process-step"><span class="process-num">02</span><h4>Выбор формата</h4><p>Онлайн (Zoom / видео WhatsApp) или встреча в офисе — выберите удобный для вас вариант.</p></div>
           <div class="process-step"><span class="process-num">03</span><h4>Согласование времени</h4><p>Определяется удобный для вас день и время. Расписание гибкое — доступны вечерние часы.</p></div>
           <div class="process-step"><span class="process-num">04</span><h4>Сессия</h4><p>50-минутная сессия. На первой встрече обсуждаются цель, ожидания и план работы.</p></div>
@@ -345,16 +346,16 @@
           <!-- Form -->
           <form id="xidRegForm" style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:32px;display:flex;flex-direction:column;gap:16px;">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              <label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
                 Имя *
-                <input type="text" name="ad" required placeholder="Ваше имя" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+                <input type="text" name="ad" required placeholder="Ваше имя" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" aria-label="Ваше имя">
               </label>
-              <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+              <label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
                 Телефон *
-                <input type="tel" name="telefon" required placeholder="+7 XXX XXX XX XX" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" />
+                <input type="tel" name="telefon" required placeholder="+7 XXX XXX XX XX" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;" aria-label="+7 XXX XXX XX XX">
               </label>
             </div>
-            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+            <label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
               Формат
               <select name="proqram" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;">
                 <option value="Индивидуальная консультация — Онлайн">Онлайн (Zoom / видео WhatsApp)</option>
@@ -362,9 +363,9 @@
                 <option value="Ещё не решил">Ещё не решил</option>
               </select>
             </label>
-            <label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+            <label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
               Заметка (необязательно)
-              <textarea name="qeyd" rows="3" placeholder="С каким вопросом нужна помощь?" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;resize:vertical;"></textarea>
+              <textarea name="qeyd" rows="3" placeholder="С каким вопросом нужна помощь?" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);color:#fff;font-family:var(--font);font-size:.95rem;resize:vertical;" aria-label="С каким вопросом нужна помощь?"></textarea>
             </label>
             <button type="submit" class="btn btn-fill" style="margin-top:8px;padding:14px 28px;">Отправить заявку</button>
             <p style="font-size:.75rem;color:rgba(255,255,255,0.45);margin:0;">Ваши данные используются только для связи и не передаются третьим лицам.</p>
@@ -508,11 +509,11 @@
     <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:3px solid #c49b2f;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
     <form id="kitab-form-main">
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
+        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
         <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
+        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
         <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>

@@ -22,6 +22,7 @@
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/b2b.html" />
 </head>
   <body>
+    <a class="skip-link" href="#main-content">К основному содержимому</a>
 
     <!-- @include header -->
 <!-- BEGIN: header (auto-generated, do not edit by hand) -->
@@ -129,7 +130,7 @@
 </nav>
 <!-- END: mobile-nav -->
     <!-- HERO -->
-    <section class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/korporativ-tehsil.jpg');" aria-labelledby="page-h1">
+    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/korporativ-tehsil.jpg');" aria-labelledby="page-h1">
       <div class="page-hero-x-inner">
         <span class="ph-badge">КОРПОРАТИВНОЕ</span>
         <h1 class="ph-h1" id="page-h1">
@@ -145,7 +146,7 @@
         </p>
         <div class="ph-search-wrap hero-search-wrap">
           <div class="hero-search-bar">
-            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off"/>
+            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off" aria-label="Поиск...">
             <button class="hero-search-btn" onclick="heroSearch()">
               <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               <span>ПОИСК</span>
@@ -226,7 +227,7 @@
           <h2 class="sec-h2" id="why-h">23 года опыта — фокус на результат</h2>
         </div>
         <div class="why-grid">
-          <div class="why-item"><div class="why-num">23+</div><h4>Лет клинической практики</h4><p>Врач-психиатр, психотерапевт. Специалист, понимающий поведение человека в корпоративной среде с клинической точностью.</p></div>
+          <div class="why-item"><div class="why-num">23+</div><h4 role="heading" aria-level="3" data-a11y-level>Лет клинической практики</h4><p>Врач-психиатр, психотерапевт. Специалист, понимающий поведение человека в корпоративной среде с клинической точностью.</p></div>
           <div class="why-item"><div class="why-num">100%</div><h4>Персонализированная программа</h4><p>Каждая программа выстраивается с нуля с учётом отрасли компании, размера команды и конкретной проблемы.</p></div>
           <div class="why-item"><div class="why-num">IPAS</div><h4>Международный сертификат</h4><p>Сертифицированный специалист IPAS/BPA. Методология: КБТ, НЛП, системно-семейная терапия — адаптированы для рабочей среды.</p></div>
         </div>
@@ -245,12 +246,12 @@
         </div>
         <form class="form-section light" onsubmit="handleB2BForm(event)" style="max-width:860px;margin:0 auto;">
           <div class="form-grid">
-            <div class="form-group"><label class="form-label" style="color:var(--navy);">Название компании *</label><input class="form-input" type="text" required placeholder="Например: ООО ТехноМаркет" /></div>
-            <div class="form-group"><label class="form-label" style="color:var(--navy);">Контактное лицо *</label><input class="form-input" type="text" required placeholder="Имя Фамилия" /></div>
-            <div class="form-group"><label class="form-label" style="color:var(--navy);">Телефон *</label><input class="form-input" type="tel" required placeholder="+7 XXX XXX XX XX" /></div>
-            <div class="form-group"><label class="form-label" style="color:var(--navy);">E-mail *</label><input class="form-input" type="email" required placeholder="Предложение будет отправлено на этот адрес" /></div>
-            <div class="form-group form-full"><label class="form-label" style="color:var(--navy);">Какое направление вас интересует? *</label>
-              <select class="form-select" required>
+            <div class="form-group"><label for="b2b-f1" class="form-label" style="color:var(--navy);">Название компании *</label><input id="b2b-f1" class="form-input" type="text" required placeholder="Например: ООО ТехноМаркет" aria-label="Например: ООО ТехноМаркет"></div>
+            <div class="form-group"><label for="b2b-f2" class="form-label" style="color:var(--navy);">Контактное лицо *</label><input id="b2b-f2" class="form-input" type="text" required placeholder="Имя Фамилия" aria-label="Имя Фамилия"></div>
+            <div class="form-group"><label for="b2b-f3" class="form-label" style="color:var(--navy);">Телефон *</label><input id="b2b-f3" class="form-input" type="tel" required placeholder="+7 XXX XXX XX XX" aria-label="+7 XXX XXX XX XX"></div>
+            <div class="form-group"><label for="b2b-f4" class="form-label" style="color:var(--navy);">E-mail *</label><input id="b2b-f4" class="form-input" type="email" required placeholder="Предложение будет отправлено на этот адрес" aria-label="Предложение будет отправлено на этот адрес"></div>
+            <div class="form-group form-full"><label for="b2b-f5" class="form-label" style="color:var(--navy);">Какое направление вас интересует? *</label>
+              <select id="b2b-f5" class="form-select" required>
                 <option value="" disabled selected>Выберите</option>
                 <option value="sales">Школа продаж</option>
                 <option value="leadership">Психология лидерства</option>
@@ -259,8 +260,8 @@
                 <option value="other">Другое</option>
               </select>
             </div>
-            <div class="form-group form-full"><label class="form-label" style="color:var(--navy);">Размер команды и временные рамки</label><input class="form-input" type="text" placeholder="Например: 12 человек, начало октября, 2-дневный интенсив" /></div>
-            <div class="form-group form-full"><label class="form-label" style="color:var(--navy);">Какой результат вы ожидаете?</label><textarea class="form-textarea" placeholder="Текущая проблема в команде, ожидания или особые пожелания..."></textarea></div>
+            <div class="form-group form-full"><label for="b2b-f6" class="form-label" style="color:var(--navy);">Размер команды и временные рамки</label><input id="b2b-f6" class="form-input" type="text" placeholder="Например: 12 человек, начало октября, 2-дневный интенсив" aria-label="Например: 12 человек, начало октября, 2-дневный интенсив"></div>
+            <div class="form-group form-full"><label for="b2b-f7" class="form-label" style="color:var(--navy);">Какой результат вы ожидаете?</label><textarea id="b2b-f7" class="form-textarea" placeholder="Текущая проблема в команде, ожидания или особые пожелания..." aria-label="Текущая проблема в команде, ожидания или особые пожелания..."></textarea></div>
           </div>
           <div style="margin-top:24px;">
             <button type="submit" class="btn btn-fill" style="min-width:240px;">Получить индивидуальное предложение &rarr;</button>
@@ -371,11 +372,11 @@
     <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:3px solid #c49b2f;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
     <form id="kitab-form-main">
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
+        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
         <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
+        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
         <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>

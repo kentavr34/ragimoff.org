@@ -98,6 +98,7 @@
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/xidmetler.html" />
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Əsas məzmuna keç</a>
 <!-- @include header -->
 <!-- BEGIN: header (auto-generated, do not edit by hand) -->
 <header class="site-header">
@@ -204,7 +205,7 @@
 </nav>
 <!-- END: mobile-nav -->
 <!-- HERO -->
-<section aria-labelledby="xid-h1" class="page-hero-x" data-theme="dark" style="background-image:url('images/kenan/photo-portal-crop.jpg');">
+<section id="main-content" aria-labelledby="xid-h1" class="page-hero-x" data-theme="dark" style="background-image:url('images/kenan/photo-portal-crop.jpg');">
   <div class="page-hero-x-inner">
     <span class="ph-badge">XİDMƏTLƏR</span>
     <h1 class="ph-h1" id="xid-h1">
@@ -220,7 +221,7 @@
     </p>
     <div class="ph-search-wrap hero-search-wrap">
       <div class="hero-search-bar">
-        <input id="hero-si" type="text" placeholder="Mövzu, xidmət axtarın..." autocomplete="off"/>
+        <input id="hero-si" type="text" placeholder="Mövzu, xidmət axtarın..." autocomplete="off" aria-label="Mövzu, xidmət axtarın...">
         <button class="hero-search-btn" onclick="heroSearch()">
           <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span>AXTAR</span>
@@ -261,7 +262,7 @@
 <div class="svc-prog-grid">
 <div class="xid-card">
 <span class="card-label">Münasibətlər</span>
-<h4>Ailə Terapiyası</h4>
+<h4 role="heading" aria-level="3" data-a11y-level>Ailə Terapiyası</h4>
 <p>Cütlüklər döyüşür — bu onların uyğunsuz olduğunu deyil, ünsiyyət alətlərinin olmamasını göstərir. Münaqişənin çox hissəsi valideyn evindən öyrənilmiş patterndən qaynaqlanır. Terapiya bu patternləri görünür edir və dəyişdirir.</p>
 <a class="card-link" href="aile-terapiyasi.html">Həll yoluna bax →</a>
 </div>
@@ -323,7 +324,7 @@
 <h2 class="sec-h2" id="proc-h">Qeydiyyatdan Sessiyaya 4 Addım</h2>
 </div>
 <div class="process-grid">
-<div class="process-step"><span class="process-num">01</span><h4>WhatsApp ilə Əlaqə</h4><p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p></div>
+<div class="process-step"><span class="process-num">01</span><h4 role="heading" aria-level="3" data-a11y-level>WhatsApp ilə Əlaqə</h4><p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p></div>
 <div class="process-step"><span class="process-num">02</span><h4>Format Seçimi</h4><p>Online (Zoom/WhatsApp video) və ya ofisdə görüş — sizə uyğun olanı seçin.</p></div>
 <div class="process-step"><span class="process-num">03</span><h4>Vaxt Razılaşması</h4><p>Sizə uyğun gün və vaxt müəyyənləşdirilir. Cədvəl çevikdir — axşam saatları mövcuddur.</p></div>
 <div class="process-step"><span class="process-num">04</span><h4>Sessiya</h4><p>50 dəqiqəlik sessiya. İlk görüşdə məqsəd, gözlənti və iş planı müzakirə olunur.</p></div>
@@ -342,16 +343,16 @@
 <!-- Form -->
 <form id="xidRegForm" style="background:rgba(255,255,255,0.04);border:1px solid rgba(181,155,114,0.22);padding:32px;display:flex;flex-direction:column;gap:16px;">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-<label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
                 Ad *
-                <input name="ad" placeholder="Adınız" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem" type="text"/>
+                <input name="ad" placeholder="Adınız" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem" type="text" aria-label="Adınız">
 </label>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
                 Telefon *
-                <input name="telefon" placeholder="+994 XX XXX XX XX" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem" type="tel"/>
+                <input name="telefon" placeholder="+994 XX XXX XX XX" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem" type="tel" aria-label="+994 XX XXX XX XX">
 </label>
 </div>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
               Format
               <select name="proqram" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem">
 <option value="Fərdi Konsultasiya — Online">Online (Zoom / WhatsApp video)</option>
@@ -359,9 +360,9 @@
 <option value="Hələ qərar verməmişəm">Hələ qərar verməmişəm</option>
 </select>
 </label>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
               Qeyd (istəyə bağlı)
-              <textarea name="qeyd" placeholder="Hansı mövzuda kömək lazımdır?" rows="3" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem;resize:vertical"></textarea>
+              <textarea name="qeyd" placeholder="Hansı mövzuda kömək lazımdır?" rows="3" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(181,155,114,0.22);font-family:var(--font);font-size:.95rem;resize:vertical" aria-label="Hansı mövzuda kömək lazımdır?"></textarea>
 </label>
 <button class="btn btn-fill" style="margin-top:8px;padding:14px 28px;" type="submit">Müraciət Göndər</button>
 <p style="font-size:.75rem;color:rgba(255,255,255,0.45);margin:0;">Məlumatlarınız yalnız əlaqə üçün istifadə olunur, üçüncü şəxslərə ötürülmür.</p>
@@ -502,11 +503,11 @@
     <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:3px solid #c49b2f;padding-left:12px;">Kitab çap nəşrinə hazırlanır. İlk oxucular arasında olmaq istəyirsinizsə, məlumatlarınızı buraxın — nəşr olunan kimi dərhal sizinlə əlaqə saxlayacağıq.</p>
     <form id="kitab-form-main">
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Ad Soyad</label>
+        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Ad Soyad</label>
         <input id="km-name" type="text" placeholder="Adınız və soyadınız" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Mobil nömrə</label>
+        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Mobil nömrə</label>
         <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
       </div>
       <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Sifariş et</button>
