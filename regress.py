@@ -453,6 +453,8 @@ GONE = {
     'Эскироль (1838)', 'Акискаль —',
  ],
  'en': [
+    # WMH — World Mental Health surveys, не «summaries», 2026-08-18
+    'WMH summaries',
     # §3: «Gender» вместо «Sex» в эпидемиологии и бессмысленное
     # «mid-20s to 25 years» вместо «в среднем 20–25 лет», 2026-08-17
     '<li>Gender:', 'mid-20s to',
@@ -636,6 +638,8 @@ GONE = {
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
  ],
  'tr': [
+    # азербайджанское «illik» вместо турецкого «yıllık», 2026-08-18
+    'illik ~%2,7',
     # азербайджанское «icmal» вместо турецкого «derleme», 2026-08-17
     '2007 icmal', '2009 icmal',
     # 7A00: расшифровка потеряла скобки, «первая линия» капслоком, 2026-08-17
