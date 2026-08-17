@@ -96,6 +96,19 @@
          и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
          длины, читать её тяжело. Правило Кенана 2026-08-17. */
       /* Тело текста в разделах — по левому краю, как и .mod-foot. */
+      /* Две кнопки подряд. На десктопе они встают в ряд, и без отступа между
+         ними оставалось 4px — читались как одна полоса. На мобильном кнопки
+         переносятся в столбик, и тот же боковой отступ сдвигал вторую на 25px
+         вправо относительно первой: левые границы не совпадали. */
+      .cta-pair .btn + .btn { margin-left: 16px; }
+      @media (max-width: 768px) {
+        /* В столбик кнопки должны быть одной ширины: btn-fill растягивается на
+           контейнер, а btn-line жмётся по тексту — 295 против 261, и левые
+           границы не совпадали. */
+        .cta-pair .btn { display: block; width: 100%; }
+        .cta-pair .btn + .btn { margin-left: 0; margin-top: 12px; }
+      }
+
       .sec-body { max-width: 640px; margin: 28px auto 0; text-align: left;
         color: var(--clr-text-muted); line-height: 1.75; font-size: var(--t-sm); }
       .sec-body a { color: var(--accent); font-weight: 700; }
@@ -489,8 +502,9 @@
           </p>
         </div>
         <p class="sec-body">Terapiyanı iki mütəxəssis birlikdə aparır: kişi tərəflə həkim-psixiatr <a href="haqqimda.html">Kənan Rəhimov</a>, qadın tərəflə klinik psixoloq Samirə Rəhimova. Prosesin tam təsviri və&nbsp;qiymətlər ayrıca səhifədədir.</p>
-        <div style="margin-top:28px;text-align:center;">
+        <div class="cta-pair" style="margin-top:28px;text-align:center;">
           <a href="aile-terapiyasi.html" class="btn btn-fill">Format və&nbsp;qiymətlər →</a>
+          <a href="valideyn-mektebi.html" class="btn btn-line">Valideyn Məktəbi →</a>
         </div>
       </div>
     </section>
