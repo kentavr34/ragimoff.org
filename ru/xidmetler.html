@@ -18,6 +18,13 @@
     <style>
       @media (max-width: 900px) { #registration .reg-grid { grid-template-columns: 1fr !important; } }
       @media (max-width: 600px) { #registration form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
+      /* Форма вылезала на 10px за правый край экрана: она грид-элемент, а у
+         таких min-width по умолчанию auto — ниже ширины содержимого элемент
+         не сжимается. Плюс padding 32px с двух сторон съедал 64 из 375.
+         Замер на 375: форма 365 внутри колонки 335, правый край обрезан. */
+      @media (max-width: 600px) {
+        #xidRegForm { min-width: 0; padding: 20px !important; }
+      }
     </style>
     <style>
       .ind-card { background: var(--navy); border-top: 4px solid var(--accent); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }

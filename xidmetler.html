@@ -19,6 +19,13 @@
 <style>
       @media (max-width: 900px) { #registration .reg-grid { grid-template-columns: 1fr !important; } }
       @media (max-width: 600px) { #registration form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
+      /* Форма вылезала на 10px за правый край экрана: она грид-элемент, а у
+         таких min-width по умолчанию auto — ниже ширины содержимого элемент
+         не сжимается. Плюс padding 32px с двух сторон съедал 64 из 375.
+         Замер на 375: форма 365 внутри колонки 335, правый край обрезан. */
+      @media (max-width: 600px) {
+        #xidRegForm { min-width: 0; padding: 20px !important; }
+      }
     </style>
 <style>
       .ind-card { background: var(--navy); border-top: 4px solid var(--accent); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
@@ -239,7 +246,12 @@
 <div class="sec-header">
 <span class="badge">Klinik Psixoterapiya</span>
 <h2 class="sec-h2" id="svc-h">Xarakter Deyil — Diaqnozdur</h2>
-<p class="sec-sub">Psixologiya bunu xarakter deyil, öyrənilmiş vəziyyət adlandırır.<br/>Hər bir münasibət klinik və ya klinik durumun dəqiq həll yolu var.</p>
+<p class="sec-sub">
+<span class="ab-lead-mob">Xarakter yox — öyrənilmiş vəziyyət.</span>
+<span class="ab-lead-mob">Hər birinin dəqiq həll yolu var.</span>
+<span class="ab-lead-desk">Psixologiya bunu xarakter deyil, öyrənilmiş vəziyyət sayır.</span>
+<span class="ab-lead-desk">Hər bir klinik vəziyyətin dəqiq və sınanmış həll yolu var.</span>
+</p>
 </div>
 </div>
 <!-- 6 problem cards — no prices -->
@@ -322,7 +334,7 @@
 <div class="sec-header">
 <span class="badge">Konsultasiya Qeydiyyatı</span>
 <h2 class="sec-h2" id="reg-h">Konsultasiyaya Yazılın</h2>
-<p class="sec-sub">Formu doldurun və ya WhatsApp ilə yazın — həmin gün cavablandırılır.</p>
+<p class="sec-sub">Formu doldurun və ya WhatsApp yazın — cavab həmin gün.</p>
 </div>
 <div class="reg-grid" style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;margin-top:40px;">
 <!-- Form -->
@@ -586,6 +598,6 @@
   si.addEventListener('keydown',function(e){if(e.key==='Escape'){si.value='';sd.classList.remove('on');}});
 })();
 </script>
-<script src="js-hero-fit.js"></script>
+<script src="js-hero-fit2.js"></script>
 </body>
 </html>
