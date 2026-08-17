@@ -223,6 +223,9 @@ GONE = {
     # карточка 6B41 сама озаглавлена KPTSP. Пробел в начале обязателен:
     # без него строка ловит законное «distresi», «Disstresi», «distresini».
     'cPTSP', ' stresli', ' stresor', ' stresin', ' stresə', ' stresi',
+    # §10, очередь 3 (2026-08-18): опечатка «баротравма»; полномочия
+    # профессионального общества — AAP/AACAP не запрещают, а противопоказывают
+    'qulaq baroyrokması', 'AAP, AACAP — qəti qadağa', 'AACAP, APSAC qəti qadağa',
  ],
  'ru': [
     # 6D34: потеряна верхняя граница — «у 30 %» вместо «до 30 %», 2026-08-18
@@ -456,6 +459,8 @@ GONE = {
     'Лёгкое НЕЙРОКОГНИТИВНОЕ', 'РАССТРОЙСТВА Приёма ПИЩИ',
     'Koccaro', 'Бине и Симон', 'Шнейдер (1959)', 'Кэндес Ньюмейкер',
     'Эскироль (1838)', 'Акискаль —',
+    # §10, очередь 3 (2026-08-18): общество даёт противопоказание, не запрет
+    'AAP, AACAP — категорический запрет', 'AACAP, APSAC категорически запрещают',
  ],
  'en': [
     # «icmal» переведено как summary; речь об обзорах, 2026-08-18
@@ -643,6 +648,12 @@ GONE = {
     'affective disorder</strong> On one hand', 'overlap</strong> high genetic',
     'not met.</strong> Clinical condition.',
     '(psychotic category) <span', '(Cluster A) <strong>and</strong>',
+    # §10, очередь 3 (2026-08-18): кальки с азербайджанского порядка слов
+    # и запрет вместо противопоказания
+    'Primary etiology of autism. <strong>is genetic',
+    'autism <strong>Is a neurodevelopmental disorder</strong> — Related to',
+    'Dyslexia — <strong>neurobiological</strong> It is a disorder',
+    'stereotypy</strong> Typically progresses', 'AACAP, APSAC absolute prohibition',
  ],
  'tr': [
     # 6B22: обзоры подменены описаниями случаев, 2026-08-18
@@ -791,6 +802,9 @@ GONE = {
     "1830'larda Pinel", '6D30 eksibisyonizmle paralel gelişim',
     # вычитка турецкого, партия 3: kaçma (бегство) вместо koşma (бег)
     'yerlerde kaçma veya tırmanma',
+    # §10, очередь 3 (2026-08-18): тело звало мифы «Efsane», заголовок раздела
+    # во всех 103 карточках — «Mit»; три других языка держат одно слово
+    'Efsane 1:', 'Efsane 2:', 'Efsane 3:', 'AACAP, APSAC kesin yasak',
  ],
 }
 # Ложные срабатывания, снятые после разбора:
