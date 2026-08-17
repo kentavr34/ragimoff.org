@@ -60,27 +60,34 @@
          обрезаясь на «RÜSTƏ». Замер: колонка фото начиналась на y=106,
          а сетка на y=231. Опускаем фото на уровень сетки. */
       .sec-2col .about-col-right { margin-top: 0 !important; }
-      /* ЁЛОЧКА. В gtc.css `.timeline-list li` — flex-строка, а подпись
-         `strong` имеет flex-shrink:0 и ширину по содержимому: 38px у «2021»
-         и 109px у «Müəllimlik». Текст каждой записи начинался там, где
-         кончилась подпись — замер дал ВОСЕМЬ разных X, разброс 72px.
-         Ставим сетку с фиксированной колонкой: все записи стартуют с одной
-         вертикали. Ширина колонки 130px — самая длинная подпись 109px. */
-      .sec-2col .timeline-list li { display: grid !important;
-        grid-template-columns: 130px 1fr; align-items: baseline; column-gap: 20px; }
-      .sec-2col .timeline-list strong { margin-right: 0 !important; }
+      /* ХРОНИКА — СТОПКОЙ, НА ВСЕХ ШИРИНАХ.
+         Сначала здесь стояла сетка «подпись 130px | текст». Она убирала
+         «ёлочку» (в gtc.css li это flex, а strong имеет ширину по
+         содержимому: 38px у «2021» и 109px у «Müəllimlik» — восемь разных
+         вертикалей, разброс 72px), но платила за это дважды: под короткими
+         подписями зияла пустота, а текст ужимался в остаток колонки.
+         Решение владельца 2026-08-17: жёлтая подпись СВЕРХУ, белый текст под
+         ней во всю ширину. И вертикаль одна, и текст не сжат. */
+      .sec-2col .timeline-list li { display: block !important;
+        padding-left: 34px; padding-bottom: 26px;
+        transition: transform .18s ease, background .18s ease; }
+      .sec-2col .timeline-list strong { display: block; white-space: normal;
+        margin: 0 0 7px !important; overflow-wrap: anywhere;
+        font-size: var(--t-xs); letter-spacing: .12em; }
+      .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere;
+        font-size: var(--t-sm); line-height: 1.75; }
 
-      /* Хроника: на мобильном подпись и текст ставятся в стопку.
-         В gtc.css `.timeline-list strong` имеет white-space:nowrap и
-         flex-shrink:0, а `li` — flex-строка. На главной подписи короткие
-         («2026», «2022») и это работает; здесь «2021 — BU GÜNƏ QƏDƏR»
-         съедала 230px из 335, тексту оставалось 65 — строки по одному
-         слову, и текст вылезал за правый край. */
+      /* «Ощущение живости реагирования на прикосновение» — слова владельца.
+         В gtc.css при наведении уже растёт точка и светлеет текст; добавляем
+         сдвиг записи и золотую подсветку линии слева. Курсор НЕ меняем на
+         pointer: записи не кликабельны, и курсор-рука обещал бы переход,
+         которого нет. */
+      .sec-2col .timeline-list li { border-radius: 6px; }
+      .sec-2col .timeline-list li:hover { transform: translateX(4px);
+        background: rgba(230,180,74,.055); }
+
       @media (max-width: 768px) {
-        .sec-2col .timeline-list li { display: block; padding-left: 32px; }
-        .sec-2col .timeline-list strong { display: block; white-space: normal;
-          margin: 0 0 6px; overflow-wrap: anywhere; }
-        .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere; }
+        .sec-2col .timeline-list li { padding-left: 30px; }
       }
       /* Кнопка в хронике — маленькая, не спорит с текстом записи. */
       /* flex + fit-content, а не inline-flex: кнопка встаёт на свою строку,
@@ -392,8 +399,12 @@
               <span>ATV kanalında «Şarm» verilişinin aparıcısı — on il efirdə</span>
             </li>
             <li>
-              <strong>Təhsil</strong>
-              <span>Rəssamlıq Akademiyası · Teatr və&nbsp;kino aktrisası ixtisası</span>
+              <strong>İkinci təhsil</strong>
+              <span>Rəssamlıq Akademiyası</span>
+            </li>
+            <li>
+              <strong>İlk təhsil</strong>
+              <span>Ali təhsil — teatr fakültəsi, teatr və&nbsp;kino aktrisası ixtisası</span>
             </li>
           </ul>
         </div>
