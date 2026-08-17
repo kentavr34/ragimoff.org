@@ -30,7 +30,7 @@ SKIP_DIRS = {'klinik-psixiatriya', '_supplements', '_partials', 'graphify-out', 
 # Тег ищется С АТРИБУТАМИ: у части абзацев есть inline style, и правило
 # «ровно <p class="sec-sub">» их не видело — именно там и сидели склейки
 # «komandamız24 saat».
-SUB = re.compile(r'(<p[^>]*class="[^"]*sec-sub[^"]*"[^>]*>)(.*?)(</p>)', re.S)
+SUB = re.compile(r'(<p[^>]*class="[^"]*sec-sub[^"]*"[^>]*>)(.*?)(</p>)', re.S)
 BR = re.compile(r'\s*<br\s*/?>\s*', re.I)
 
 # Слипшиеся слова. Часть склеек была не от <br>, а прямо в тексте — там, где
