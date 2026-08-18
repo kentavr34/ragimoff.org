@@ -117,7 +117,9 @@
       }
 
       /* ── STUDENTS GALLERY ── */
-      .students-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+      /* Плиток стало четыре: в трёх колонках последний ряд оставался бы
+         одиночным. Две колонки дают ровный квадрат 2×2. */
+      .students-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; max-width: 860px; margin-left: auto; margin-right: auto; }
       .students-item { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; border: 1px solid var(--clr-border); }
       .students-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; display: block; }
       .students-item:hover img { transform: scale(1.05); }
@@ -544,13 +546,8 @@
 <div class="students-grid" id="studentsGallery">
 <div class="students-item" data-idx="0"><img alt="Qrup təlimi" loading="lazy" src="images/students/group-training.jpg" width="800" height="450" /></div>
 <div class="students-item" data-idx="1"><img alt="Psixoterapiya Praktikumu" loading="lazy" src="images/students/psixoterapiya-praktikum.jpg" width="600" height="276" /></div>
-<div class="students-item" data-idx="2"><img alt="Klinik Psixologiya qrupu" loading="lazy" src="images/students/klinik-psixologiya-program.jpg" width="800" height="450" /></div>
-<div class="students-item" data-idx="3"><img alt="Ümumi Psixologiya qrupu" loading="lazy" src="images/students/umumi-psixologiya-program.jpg" width="800" height="450" /></div>
-<div class="students-item" data-idx="4"><img alt="Praktikum sessiyası" loading="lazy" src="images/students/psixoterapiya-praktikum1.jpg" width="800" height="450" /></div>
-<div class="students-item" data-idx="5"><img alt="Tələbə qrupu — açıq hava" loading="lazy" src="images/students/group-outdoor.jpg" width="799" height="600" /></div>
-<div class="students-item" data-idx="6"><img alt="Psixologiya Məktəbi" loading="lazy" src="images/students/psixologiya-mekteb.jpg" width="985" height="358" /></div>
-<div class="students-item" data-idx="7"><img alt="Tədris mərkəzi" loading="lazy" src="images/students/psixologiya-mekteb1.jpg" width="800" height="450" /></div>
-<div class="students-item" data-idx="8"><img alt="Korporativ qrup təlimi" loading="lazy" src="images/students/korporativ-grup.jpg" width="800" height="450" /></div>
+<div class="students-item" data-idx="2"><img alt="Tələbə qrupu — açıq hava" loading="lazy" src="images/students/group-outdoor.jpg" width="799" height="600" /></div>
+<div class="students-item" data-idx="3"><img alt="Psixologiya Məktəbi" loading="lazy" src="images/students/psixologiya-mekteb.jpg" width="985" height="358" /></div>
 </div>
 </div>
 </section>
