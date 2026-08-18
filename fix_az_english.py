@@ -63,6 +63,20 @@ ORGS = {
     'Parent Management Training': 'Valideyn idarəetmə təlimi',
     'Parent-Child Interaction Therapy': 'Valideyn-uşaq qarşılıqlı əlaqə terapiyası',
     'Mindfulness-Based Cognitive Therapy': 'Mayndfulnes əsaslı koqnitiv terapiya',
+    'Auditory Integration Training': 'Eşitmə inteqrasiyası təlimi',
+    'Parent Management Training': 'Valideyn idarəetmə təlimi',
+    'Cognitive Behavioral Therapy': 'Koqnitiv-davranış terapiyası',
+    'Dialectical Behavior Therapy': 'Dialektik davranış terapiyası',
+    'Interpersonal Psychotherapy': 'Şəxsiyyətlərarası psixoterapiya',
+    'Transcranial Magnetic Stimulation': 'Transkranial maqnit stimulyasiyası',
+    'Motivational Interviewing': 'Motivasiya müsahibəsi',
+    'Contingency Management': 'Şərti mükafat idarəetməsi',
+    'Habit Reversal Training': 'Vərdişin əvəzlənməsi təlimi',
+    'Comprehensive Behavioral Intervention': 'Kompleks davranış müdaxiləsi',
+    'Family-Based Treatment': 'Ailə əsaslı müalicə',
+    'Light Therapy': 'İşıq terapiyası',
+    'Sleep Restriction': 'Yuxunun məhdudlaşdırılması',
+    'Stimulus Control': 'Stimul nəzarəti',
 }
 
 changed_files = 0
