@@ -158,8 +158,16 @@
          и промежутки внутри одного абзаца выходят разными — это видно глазом.
          Берём по самой крупной строке. */
       if (deskSizes.length) {
-        var lhD = (Math.max.apply(null, deskSizes) * LH_SUB).toFixed(1) + 'px';
-        [].forEach.call(subDesk, function (line) { line.style.lineHeight = lhD; });
+        /* Единый кегль на весь абзац — по той же причине, что и на
+           мобильном. Наименьший из подогнанных: длинная строка обязана
+           влезть, короткая просто не дотянется до края, и это нормально
+           для прозы. */
+        var sizeD = Math.max(8, Math.min.apply(null, deskSizes));
+        var lhD = (sizeD * LH_SUB).toFixed(1) + 'px';
+        [].forEach.call(subDesk, function (line) {
+          setSize(line, sizeD);
+          line.style.lineHeight = lhD;
+        });
       }
 
       /* Зазор бейдж → заголовок нужен и на десктопе: раньше ветка выходила
@@ -249,9 +257,20 @@
       line.style.display = 'block';
       line.style.whiteSpace = '';
     });
+    /* Абзац прозы набирается ОДНИМ кеглем. Подгонять каждую строку под
+       общую ширину — приём для заголовка, где слова стоят столбиком; в
+       подзаголовке он давал «Qəfil narahatlıq,» 32px и «panik
+       bozğunluğunun müalicəsi.» 15px в одном предложении, а интерлиньяж
+       считался по самой крупной строке и на мелкой выглядел провалом
+       (51px при кегле 15). Берём наименьший из подогнанных: он
+       гарантирует, что самая длинная строка помещается по ширине. */
     if (mobSizes.length) {
-      var lhM = (Math.max.apply(null, mobSizes) * LH_SUB).toFixed(1) + 'px';
-      [].forEach.call(subMob, function (line) { line.style.lineHeight = lhM; });
+      var sizeM = Math.max(MIN_SUB, Math.min.apply(null, mobSizes));
+      var lhM = (sizeM * LH_SUB).toFixed(1) + 'px';
+      [].forEach.call(subMob, function (line) {
+        setSize(line, sizeM);
+        line.style.lineHeight = lhM;
+      });
     }
 
     if (lead && subMob.length) {
