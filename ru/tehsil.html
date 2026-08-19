@@ -608,24 +608,30 @@
 
           <div class="form-group" style="margin-top:24px;">
             <label class="form-label">Выберите программу *</label>
-            <div class="form-radio-group cols3">
+            <div class="form-radio-group cols2">
               <input type="radio" name="proqram" id="p1" value="Общая психология" class="form-radio-tile" required />
               <label for="p2" class="form-radio-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ч · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p2" value="Klinik Psixologiya" class="form-radio-tile" />
               <label for="p3" class="form-radio-lbl">Клиническая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ч · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="form-radio-tile" />
               <label for="p3" class="form-radio-lbl">Практикум по психотерапии<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ч · Сертификат IPAS</span></label>
-            </div>
+            <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Ailə Terapiyası"/>
+<label for="p4" class="form-radio-lbl">Ailə Terapiyası<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">IPAS Sertifikat · 2 modul</span></label>
+</div>
           </div>
 
           <div class="form-group" style="margin-top:20px;">
             <label for="o2" class="form-label">Предпочтительный способ оплаты</label>
             <div class="form-radio-group cols3">
-              <input type="radio" name="odenis" id="o1" value="Tam ödəniş" class="form-radio-tile" />
-              <label for="o2" class="form-radio-lbl">Полная оплата<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">скидка −10%</span></label>
-              <input type="radio" name="odenis" id="o2" value="12 ay rəssite" class="form-radio-tile" />
-              <label for="o3" class="form-radio-lbl">Рассрочка 12 мес.</label>
-              <input type="radio" name="odenis" id="o3" value="24 ay rəssite" class="form-radio-tile" />
+              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Tam ödəniş"/>
+<label for="o1" class="form-radio-lbl" data-pay="full">Tam ödəniş<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12 ay taksit"/>
+<label for="o2" class="form-radio-lbl" data-pay="m12">12 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24 ay taksit"/>
+<label for="o3" class="form-radio-lbl" data-pay="m24">24 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3 ay taksit"/>
+<label for="o4" class="form-radio-lbl" data-pay="m3">3 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input type="radio" name="odenis" id="o3" value="24 ay rəssite" class="form-radio-tile" />
               <label for="o3" class="form-radio-lbl">Рассрочка 24 мес.</label>
             </div>
           </div>
@@ -938,5 +944,42 @@
 })();
 </script>
 <!-- END: kitab-modal -->
+
+<script>
+  /* Прайс из карточек этой же страницы. Варианты оплаты у программ разные:
+     у семейной терапии рассрочка только на три месяца, у остальных — на
+     12 или 24. Показываем лишь то, что существует, и сразу с суммой, чтобы
+     человек не считал в уме и не выбирал несуществующее условие. */
+  (function () {
+    var PRICE = {
+      'Ümumi Psixologiya':       { full: '3 800 AZN (100% ödənişdə −10%)', m12: '350 AZN/ay', m24: '200 AZN/ay' },
+      'Klinik Psixologiya':      { full: '6 000 AZN (100% ödənişdə −10%)', m12: '550 AZN/ay', m24: '300 AZN/ay' },
+      'Psixoterapiya Praktikumu':{ full: '3 000 AZN (100% ödənişdə −20%)', m12: '300 AZN/ay', m24: '175 AZN/ay' },
+      'Ailə Terapiyası':         { full: '500 AZN (öncədən ödənişdə)',     m3:  '200 AZN/ay · 3 ay' }
+    };
+    var form = document.getElementById('regForm');
+    if (!form) return;
+    function refresh() {
+      var chosen = form.querySelector('input[name="proqram"]:checked');
+      var price = chosen ? PRICE[chosen.value] : null;
+      form.querySelectorAll('label[data-pay]').forEach(function (lbl) {
+        var key = lbl.getAttribute('data-pay');
+        var input = document.getElementById(lbl.getAttribute('for'));
+        var has = price && price[key];
+        lbl.style.display = has ? '' : 'none';
+        if (input) {
+          input.disabled = !has;
+          if (!has && input.checked) input.checked = false;
+        }
+        var sum = lbl.querySelector('.pay-sum');
+        if (sum) sum.textContent = has ? price[key] : '';
+      });
+    }
+    form.querySelectorAll('input[name="proqram"]').forEach(function (r) {
+      r.addEventListener('change', refresh);
+    });
+    refresh();
+  })();
+</script>
 </body>
 </html>
