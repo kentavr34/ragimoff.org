@@ -68,10 +68,35 @@
 
   /* Ширина именно текста: у display:block элемента getBoundingClientRect
      возвращает ширину контейнера, мерить по нему нельзя. */
+  /* Ширина ТЕКСТА, а не блока. Для одной строки достаточно объединяющего
+     прямоугольника. Для текста, разложенного на несколько строк, этот
+     прямоугольник равен ширине контейнера и врёт: заголовок «Samirə
+     Rəhimova/Rüstəmova» на 375px мерился как 343px, хотя длиннейшая его
+     строка занимает заметно меньше. В таком случае берём максимум по
+     строкам — но только тогда, иначе на однострочном элементе с вложенными
+     span максимум вернёт ширину одного span (проверено: 263% против
+     реальных 99%). */
   function textWidth(el) {
     var r = document.createRange();
     r.selectNodeContents(el);
-    return r.getBoundingClientRect().width;
+    var box = r.getBoundingClientRect();
+    var rects = r.getClientRects();
+    if (rects.length < 2) return box.width;
+    var tops = [], i;
+    for (i = 0; i < rects.length; i++) {
+      var top = Math.round(rects[i].top);
+      if (tops.indexOf(top) < 0) tops.push(top);
+    }
+    if (tops.length < 2) return box.width;      /* один ряд — блок и есть текст */
+    var widest = 0;
+    for (i = 0; i < tops.length; i++) {
+      var lineW = 0, j;
+      for (j = 0; j < rects.length; j++) {
+        if (Math.round(rects[j].top) === tops[i]) lineW += rects[j].width;
+      }
+      if (lineW > widest) widest = lineW;
+    }
+    return widest || box.width;
   }
 
   /* Кегль ставится с приоритетом important: в gtc.css у .ph-h1 задано
@@ -466,11 +491,41 @@
        шире заголовка, упёршись в нижнюю границу поиска. Скилл
        kenan-design-rules это допускает: на мобайле сохраняется ПОРЯДОК,
        размеры адаптируются. */
+    /* Пара выравнивается и на мобильном — по требованию владельца. Но
+       мерой служит НЕ кегль, а ширина блока: подзаголовок секции обычно не
+       разбит на строки вручную и переносится сам, поэтому достаточно
+       ограничить его max-width шириной заголовка. Кегль остаётся читаемым,
+       а правый край блока совпадает с заголовком.
+
+       Нижняя граница 78% контейнера: у короткого заголовка («Kənan
+       Rəhimov») привязка один в один сжала бы текст в узкую колонку из
+       обрывков. Ширина заголовка при этом остаётся потолком. */
     var subPm = h2.parentElement.querySelector('.sec-sub');
+    var h2w = textWidth(h2);
+    var subTarget = Math.min(target, Math.max(h2w, target * 0.78));
     if (subPm) {
-      subPm.style.removeProperty('max-width');
+      subPm.style.setProperty('max-width', Math.ceil(subTarget) + 'px', 'important');
       subPm.style.setProperty('margin-left', 'auto');
       subPm.style.setProperty('margin-right', 'auto');
+    }
+
+    /* max-width только ограничивает — короткий подзаголовок так и остаётся
+       уже заголовка. Если текст помещается в одну строку, подтягиваем его
+       кеглем до той же меры: пара выравнивается с обеих сторон, а не
+       только сверху. Потолок MIN_H2 - 4 держит подзаголовок мельче
+       заголовка, как и требует правило. */
+    if (subPm && !mob.length) {
+      var probe = subPm.cloneNode(true);
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;' +
+                            'max-width:none;display:inline-block;left:-9999px';
+      subPm.parentNode.appendChild(probe);
+      var oneLine = probe.getBoundingClientRect().width;
+      probe.parentNode.removeChild(probe);
+      if (oneLine && oneLine <= subTarget * 1.05) {
+        subPm.style.setProperty('white-space', 'nowrap');
+        fitTo(subPm, subTarget, MIN_SUB, MIN_H2 - 4, 0);
+        subPm.style.removeProperty('white-space');
+      }
     }
     var mobSubSizes = [];
     [].forEach.call(mob, function (line) {
@@ -482,7 +537,7 @@
          24px: подзаголовок выходил КРУПНЕЕ заголовка, а потом ещё и не влезал
          и ломался на 4 строки. Здесь потолок безопасен — в отличие от
          десктопа, где мера это ширина заголовка и потолок ломает правило пары. */
-      var s = fitTo(line, target, MIN_SUB, MIN_H2 - 6, 0);
+      var s = fitTo(line, subTarget, MIN_SUB, MIN_H2 - 6, 0);
       if (s < MIN_SUB) { s = MIN_SUB; setSize(line, s); }
       mobSubSizes.push(s);
       line.style.display = 'block';
