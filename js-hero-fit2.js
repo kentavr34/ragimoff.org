@@ -157,18 +157,12 @@
          каждой строки нельзя: строки разного кегля (25 и 29) дают 40 и 46.4,
          и промежутки внутри одного абзаца выходят разными — это видно глазом.
          Берём по самой крупной строке. */
-      if (deskSizes.length) {
-        /* Единый кегль на весь абзац — по той же причине, что и на
-           мобильном. Наименьший из подогнанных: длинная строка обязана
-           влезть, короткая просто не дотянется до края, и это нормально
-           для прозы. */
-        var sizeD = Math.max(8, Math.min.apply(null, deskSizes));
-        var lhD = (sizeD * LH_SUB).toFixed(1) + 'px';
-        [].forEach.call(subDesk, function (line) {
-          setSize(line, sizeD);
-          line.style.lineHeight = lhD;
-        });
-      }
+      /* Как и на мобильном: ширины равны, интерлиньяж — от кегля своей
+         строки. */
+      [].forEach.call(subDesk, function (line) {
+        var szD = parseFloat(getComputedStyle(line).fontSize) || 8;
+        line.style.lineHeight = (szD * LH_SUB).toFixed(1) + 'px';
+      });
 
       /* Зазор бейдж → заголовок нужен и на десктопе: раньше ветка выходила
          до блока отступов, и в шапке оставалось 26 вместо 40. */
@@ -247,11 +241,26 @@
         Math.max(-40, baseMT1 + (GAP_BADGE - gB)).toFixed(1) + 'px', 'important');
     }
 
+    /* Мера блока берётся в два прохода. Сначала каждая строка подгоняется
+       под расчётную ширину; если самая длинная не влезает даже на нижнем
+       кегле, она сама и задаёт меру — иначе она осталась бы шире прочих и
+       правый край всё равно был бы рваным. Вторым проходом остальные
+       строки подтягиваются к этой мере. */
     var mobSizes = [];
+    var natural = target;
     [].forEach.call(subMob, function (line) {
       line.style.display = 'inline';
       line.style.whiteSpace = 'nowrap';
-      var sM = fitTo(line, target, MIN_SUB, 40, 0);
+      setSize(line, MIN_SUB);
+      var atMin = textWidth(line);
+      if (atMin > natural) natural = atMin;
+      line.style.display = 'block';
+      line.style.whiteSpace = '';
+    });
+    [].forEach.call(subMob, function (line) {
+      line.style.display = 'inline';
+      line.style.whiteSpace = 'nowrap';
+      var sM = fitTo(line, natural, MIN_SUB, 40, 0);
       if (sM < MIN_SUB) { sM = MIN_SUB; setSize(line, sM); }
       mobSizes.push(sM);
       line.style.display = 'block';
@@ -264,14 +273,20 @@
        считался по самой крупной строке и на мелкой выглядел провалом
        (51px при кегле 15). Берём наименьший из подогнанных: он
        гарантирует, что самая длинная строка помещается по ширине. */
-    if (mobSizes.length) {
-      var sizeM = Math.max(MIN_SUB, Math.min.apply(null, mobSizes));
-      var lhM = (sizeM * LH_SUB).toFixed(1) + 'px';
-      [].forEach.call(subMob, function (line) {
-        setSize(line, sizeM);
-        line.style.lineHeight = lhM;
-      });
-    }
+    /* Строки подзаголовка выравниваются ПО ШИРИНЕ, а не по кеглю: короткая
+       строка набирается крупнее, длинная мельче, и правый край блока
+       становится ровным — тот же приём, что уже работает у заголовка
+       (28 и 21px дают 250 и 245px). Это канон владельца.
+
+       Интерлиньяж при этом считается от кегля СВОЕЙ строки. Раньше он
+       брался по самой крупной, и на мелкой строке выходило 51px при кегле
+       15 — множитель 3.4 вместо 1.6, что и читалось как «слишком большой
+       интервал». Разброс кеглей сам по себе не порок; порок — интервал,
+       посчитанный не от той строки. */
+    [].forEach.call(subMob, function (line) {
+      var sz = parseFloat(getComputedStyle(line).fontSize) || MIN_SUB;
+      line.style.lineHeight = (sz * LH_SUB).toFixed(1) + 'px';
+    });
 
     if (lead && subMob.length) {
       var lastLine = subMob[subMob.length - 1];
