@@ -939,3 +939,15 @@ button[type="submit"].btn-fill,
    ровно 11px: читаемо и не спорит с крупной цифрой над ними. */
 .stat-label { font-size: 11px !important; }
 .book-card-tag { font-size: 11px !important; }
+
+
+/* ── Строки подзаголовка раздела услуг. Тот же приём, что у ab-lead-*:
+   на широком экране одна цельная строка, на телефоне — разбивка,
+   заданная вручную, чтобы обе строки вышли почти равной длины и
+   правый край совпал с заголовком. */
+.svc-lead-mob  { display: none; }
+.svc-lead-desk { display: block; }
+@media (max-width: 768px) {
+  .svc-lead-desk { display: none !important; }
+  .svc-lead-mob  { display: block; text-align: center; }
+}
