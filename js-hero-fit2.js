@@ -291,6 +291,23 @@
       line.style.display = 'block';
       line.style.whiteSpace = '';
     });
+
+    /* Заголовок подтягивается к ТОЙ ЖЕ мере, что и подзаголовок. Иначе
+       выходило 250/245 у заголовка против 293/287/282 у подзаголовка:
+       строки внутри каждого блока ровные, а блоки между собой нет, и
+       правый край пары всё равно рваный. Меру задаёт самая длинная строка
+       пары, и к ней тянутся оба. */
+    if (natural > target + 1) {
+      [w2, w1].forEach(function (line) {
+        if (!line) return;
+        line.style.display = 'inline';
+        line.style.whiteSpace = 'nowrap';
+        var sT = fitTo(line, natural, 10, 140, CAP_H1);
+        line.style.display = 'block';
+        line.style.textAlign = 'center';
+        line.style.lineHeight = (sT * LH_H1).toFixed(1) + 'px';
+      });
+    }
     /* Абзац прозы набирается ОДНИМ кеглем. Подгонять каждую строку под
        общую ширину — приём для заголовка, где слова стоят столбиком; в
        подзаголовке он давал «Qəfil narahatlıq,» 32px и «panik
