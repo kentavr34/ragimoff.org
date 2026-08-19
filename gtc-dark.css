@@ -239,7 +239,7 @@ div[style*="background: #fff"] {
 .cur-wrap .cur-name                              { color: #e0e3ec !important; }
 .cur-wrap .cur-hours                             { color: #e0e3ec !important; }
 .cur-wrap .cur-hours span                        { color: rgba(224,227,236,0.5) !important; }
-.cur-wrap .cur-num                               { color: rgba(224,227,236,0.32) !important; }
+.cur-wrap .cur-num                               { color: rgba(224,227,236,0.62) !important; }
 .cur-wrap .cur-date                              { color: rgba(224,227,236,0.45) !important; }
 .cur-wrap .cur-row                               { border-bottom-color: rgba(224,227,236,0.07) !important; }
 .cur-wrap .cur-row > div:first-child::after,
@@ -951,3 +951,58 @@ button[type="submit"].btn-fill,
   .svc-lead-desk { display: none !important; }
   .svc-lead-mob  { display: block; text-align: center; }
 }
+
+
+/* ── Тёмный текст на тёмном фоне — исправление 2026-08-19 ──────────────
+   Правило «чёрный текст на золотых кнопках» задавало ТОЛЬКО цвет буквы и
+   молча полагалось на то, что фон окажется золотым. Где фон перебивался
+   тёмным, кнопка исчезала: «Qeydiyyat» на странице обучения давала
+   контраст 1.0 — чёрное на чёрном. Замер по восьми страницам нашёл
+   64 таких места.
+
+   Теперь пара «фон + буква» задаётся вместе: заливка не может остаться
+   без своего цвета текста, а контурная кнопка — без своего. */
+.btn-fill,
+.btn.btn-fill,
+a.btn-fill,
+button.btn-fill,
+button[type="submit"].btn-fill,
+.kitabin-sifarisi-btn,
+.about-img-btn {
+  background: var(--bnb-gold) !important;
+  color: #0B0E11 !important;
+  border-color: var(--bnb-gold) !important;
+}
+.btn-line,
+.btn.btn-line,
+a.btn-line {
+  color: var(--bnb-gold) !important;
+  border-color: rgba(230, 180, 74, 0.5) !important;
+}
+.btn-line:hover,
+.btn.btn-line:hover {
+  background: var(--bnb-gold) !important;
+  color: #0B0E11 !important;
+}
+
+/* Подписи, унаследовавшие тёмный цвет от светлой темы. Читаемость важнее
+   единообразия оттенка: где текст служебный — приглушённый серый, где это
+   заголовок шага — основной светлый. */
+.rv-meta      { color: var(--bnb-muted) !important; }
+.step-title   { color: var(--bnb-text) !important; }
+.def-code     { color: var(--bnb-gold) !important; }
+.tile-lbl     { color: #0B0E11 !important; }
+
+/* Предупреждающий красный: #8b0000 на почти чёрном давал 1.9. Берём
+   светлый оттенок — он и тревожен, и читается. */
+.tl-pill.red,
+.tl-pill.red * { color: #ff6b6b !important; }
+
+/* Второй заход по контрасту: остатки, найденные тем же замером. */
+.cur-wrap .cur-num,
+.cur-num    { color: rgba(224,227,236,0.62) !important; }  /* номер шага: было 2.5 */
+.tile-lbl   { color: var(--bnb-text) !important; }      /* подпись плитки на тёмной, не золотой */
+.form-label { color: var(--bnb-muted) !important; }     /* светлая тема формы внутри тёмной страницы */
+strong      { color: inherit; }
+.tl-pill.red strong,
+strong[style*="8b0000"] { color: #ff6b6b !important; }
