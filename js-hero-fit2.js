@@ -657,4 +657,70 @@
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(fitAll);
   }
+
+  /* ── СТОРОЖ КОНТРАСТА ──────────────────────────────────────────────────
+     Тёмная буква на тёмном фоне встречалась на сайте 64 раза, и правилами
+     CSS её вывести не удалось: признак темы у секции говорит «светлая», а
+     фон задан тёмным инлайн-стилем, поэтому привязка к атрибуту лишь
+     переставляла дефект с места на место.
+
+     Здесь дефект определяется по факту: считается настоящий контраст с
+     учётом полупрозрачных слоёв, и если он ниже 3:1 — текст перекрашивается
+     в читаемый. Светлый на тёмном, тёмный на светлом; ничего иного сторож
+     не трогает, поэтому задуманная палитра остаётся на месте везде, где
+     она читается. */
+  function relLum(c) {
+    var f = function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]);
+  }
+  function parseColor(s) {
+    var m = String(s).match(/[\d.]+/g);
+    return m ? m.map(Number) : [0, 0, 0, 1];
+  }
+  /* Фон складывается по слоям: полупрозрачная подложка сама по себе цвет
+     не задаёт, и без композитинга rgba читается как сплошная заливка. */
+  function backdrop(el) {
+    var layers = [], n = el;
+    while (n && n.nodeType === 1) {
+      var c = parseColor(getComputedStyle(n).backgroundColor);
+      var a = c.length > 3 ? c[3] : 1;
+      if (a > 0) { layers.push([c[0], c[1], c[2], a]); if (a >= 1) break; }
+      n = n.parentElement;
+    }
+    if (!layers.length) return [11, 14, 17];
+    var base = layers[layers.length - 1].slice(0, 3);
+    for (var i = layers.length - 2; i >= 0; i--) {
+      var l = layers[i];
+      base = [l[0] * l[3] + base[0] * (1 - l[3]),
+              l[1] * l[3] + base[1] * (1 - l[3]),
+              l[2] * l[3] + base[2] * (1 - l[3])];
+    }
+    return base;
+  }
+  function ratio(a, b) {
+    var l1 = relLum(a), l2 = relLum(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+  function guardContrast() {
+    var nodes = document.querySelectorAll('body *');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i], own = false;
+      for (var k = 0; k < el.childNodes.length; k++) {
+        if (el.childNodes[k].nodeType === 3 && el.childNodes[k].textContent.trim()) { own = true; break; }
+      }
+      if (!own) continue;
+      var cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+      if (!el.getClientRects().length) continue;
+      var f = parseColor(cs.color), fa = f.length > 3 ? f[3] : 1;
+      var bg = backdrop(el);
+      var fg = [f[0] * fa + bg[0] * (1 - fa), f[1] * fa + bg[1] * (1 - fa), f[2] * fa + bg[2] * (1 - fa)];
+      if (ratio(fg, bg) >= 3) continue;
+      /* тёмный фон — светлая буква, светлый фон — тёмная */
+      el.style.setProperty('color', relLum(bg) < 0.25 ? '#EAECEF' : '#0B0E11', 'important');
+    }
+  }
+  window.addEventListener('load', guardContrast);
+  setTimeout(guardContrast, 1200);
+
 })();
