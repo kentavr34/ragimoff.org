@@ -486,7 +486,43 @@
     var target = header.getBoundingClientRect().width - 32;  /* как на главной */
     if (!target) return;
 
+    /* Заголовок раздела теперь разбит на строки-спаны (.sh-line), как в
+       шапке. Если они есть — равняем КАЖДУЮ по общей мере: именно этого не
+       хватало, чтобы пара сходилась. Ширина многострочного заголовка это
+       длиннейшая строка, а не блок, и без разбивки подзаголовок всегда
+       перетягивал. */
+    var hLines = h2.querySelectorAll('.sh-line');
     h2.style.cssText = '';
+    if (hLines.length > 1) {
+      var hSizes = [];
+      [].forEach.call(hLines, function (line) {
+        line.style.cssText = '';
+        line.style.display = 'inline';
+        line.style.whiteSpace = 'nowrap';
+        var sL = fitTo(line, target, MIN_H2 - 6, 160, 0);
+        hSizes.push(sL);
+        line.style.display = 'block';
+        line.style.whiteSpace = '';
+        line.style.lineHeight = (sL * LH_H1).toFixed(1) + 'px';
+      });
+      var sH = Math.max.apply(null, hSizes);
+      var subPmL = h2.parentElement.querySelector('.sec-sub');
+      if (subPmL) {
+        subPmL.style.setProperty('max-width', Math.ceil(target) + 'px', 'important');
+        subPmL.style.setProperty('margin-left', 'auto');
+        subPmL.style.setProperty('margin-right', 'auto');
+      }
+      [].forEach.call(mob, function (line) {
+        line.style.cssText = '';
+        line.style.display = 'inline';
+        line.style.whiteSpace = 'nowrap';
+        var s2 = fitTo(line, target, MIN_SUB, Math.max(MIN_SUB + 1, sH - 2), 0);
+        line.style.display = 'block';
+        line.style.whiteSpace = 'normal';
+        line.style.lineHeight = (s2 * LH_SUB).toFixed(1) + 'px';
+      });
+      return;
+    }
     h2.style.display = 'inline';
     h2.style.whiteSpace = 'nowrap';
     var sH = fitTo(h2, target, MIN_H2, 160, 0);

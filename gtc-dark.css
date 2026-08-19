@@ -1007,6 +1007,10 @@ strong      { color: inherit; }
 .tl-pill.red strong,
 strong[style*="8b0000"] { color: #ff6b6b !important; }
 
-
-
-
+/* Строки заголовка раздела. На широком экране заголовок читается одной
+   строкой и переносы не нужны; на телефоне каждая строка становится
+   блоком, и скрипт равняет их по ширине — как в шапке страницы. */
+.sh-line { display: inline; }
+@media (max-width: 768px) {
+  .sh-line { display: block; }
+}
