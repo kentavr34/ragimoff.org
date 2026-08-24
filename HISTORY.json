@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-12",
+  "updated": "2026-08-24",
   "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
   "phases": [
     {
@@ -119,6 +119,23 @@
       "summary": "All 103 chapters-v2 disorder fragments injected into the 23 live klinik-psixiatriya/NN-*.html chapter files, each wrapped in <section class='disorder' data-icd>. Sidebar nav and book TOC regenerated. Academic CSS added for .disorder and .book-toc. KLINIK_PSIXIATRIYA_6.docx rebuilt with pandoc-generated title page + MUNDARICAT TOC, page break before every chapter and disorder, first heading's page break stripped (no blank leading page). 13,621 paragraphs / 195 tables in the final DOCX. Tooling: _inject_chapters_v2.py + _rebuild_book_nav.py + existing build_book.py.",
       "key_commits": [
         "155bebf — book: inject 103 chapters-v2 disorders into site + rebuild TOC/nav + DOCX"
+      ]
+    },
+    {
+      "id": "P10",
+      "date_range": "2026-08-12 .. 2026-08-24",
+      "title": "Book: fact-check against primary sources (queues 1-2 of 4) + Site: rhythm/spacing canon and registration forms",
+      "summary": "Two parallel tracks, ~380 commits (per-commit detail in git log, not restated here). BOOK: TASKS.md 92-item plan approved by owner 2026-08-12, order set by clinical cost of error — §8 Treatment → §3 Epidemiology → §10 Myths → §2 History. This is distinct from the April/May translation-vs-master proofreading: here the az master itself is checked against the primary source each card names (NICE/APA/WFSBP/FDA/PubMed/WHO ICD-11 MMS browser), a defect class earlier passes couldn't see because they only compared languages to each other. Queue 1 (§8, 23 chapters/104 cards) closed 2026-08-17. Queue 2 (§3, same scope) closed 2026-08-18, 12 discrepancies incl. one false claim (ru/6B65 compared partial DID to BPD instead of full DID). Also closed: task D (§11 bibliography, 76 entries restored across trees, one wrong citation replaced after PubMed check), task E (103/104 az titles and codes verified against the live WHO ICD-11 MMS browser — tr/6C72 had drifted to a different disorder's title in 417 places), task F/I (26 'DSM-parallel/same' claims read, 14 were false and rewritten), branch cleanup (repo had 4 branches, 2 unmergeable without reverting later fixes — tagged as archive/* and deleted, one main branch remains), az-tree structural pass (§8 unified across 4 trees, English purged from az prose, table-header defects). Still open: queue 3 (§10 Myths, 23/23 chapters), queue 4 (§2 History, 23/23), continuous read of §6/§1/§4/§7/§9 (§6 15/104 cards done), task R (7 citations in §3 with no §11 entry, needs PubMed lookup). SITE: badge→heading→subheading vertical rhythm standardized on --s-gap-* CSS variables (fix_rhythm.py strips manual inline margin overrides — was written 2026-08-19 but never committed until 2026-08-24, so 30 pages carried the old spacing on prod for 5 days after the canon was set); Samira family-therapy page consolidated as the landing target for all family-therapy entry points; a fourth training-program tier and registration-by-current-price added; WhatsApp numbers split per page owner; a runtime dark-text-on-dark-background guard added (js-hero-fit2.js) because data-theme on a section and its own inline background could disagree.",
+      "key_commits": [
+        "f7704c9 — fix: задача G — главы 7, 8, 16, 17 против AASM, AAN/ESSTS, ISPMD, ISSWSH/ISSM/AUA/EAU",
+        "9e1a95c — fix: задача I — восемь утверждений «parallel/same» оказались неверны",
+        "82cd741 — fix: блоки 6C, 6D, 6E–HA — сверка содержания по первоисточникам",
+        "f33e6df — docs: журнал — на GitHub осталась одна ветка main",
+        "b1d158e — fix: очередь 1, глава 02 — §8 против PubMed и FDA, 3 расхождения",
+        "06e4b38 — book: 3·01 нейроразвитие — начата очередь 2, §3 «Эпидемиология»",
+        "6d3aba8 — fix: строки подзаголовка выравниваются по ширине — канон владельца",
+        "3ab62f5 — docs: канон выравнивания строк по ширине заменил прежнее правило",
+        "26b3fb9 — fix: ритм разделов доведён до нуля на последних 30 страницах"
       ]
     }
   ],

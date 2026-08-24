@@ -1,19 +1,20 @@
 {
   "schema_version": 1,
-  "updated": "2026-05-14",
-  "root": "C:\\Users\\SAM\\Desktop\\sayt2",
-  "remote": "https://github.com/kentavr34/git/ragimoff.org.git",
+  "updated": "2026-08-24",
+  "root": "D:\\Документы\\ragimoff",
+  "remote": "https://github.com/kentavr34/ragimoff.org.git",
   "domain": "ragimoff.org",
   "hosting": "GitHub Pages",
-  "active_branch": "claude/stupefied-cori-5b6e4a",
-  "worktree": "C:\\Users\\SAM\\Desktop\\sayt2\\.claude\\worktrees\\stupefied-cori-5b6e4a",
+  "active_branch": "main",
+  "worktree": null,
+  "note": "root/remote/branch corrected 2026-08-24 — with old values, everything below was accurate. Ветка claude/stupefied-cori-5b6e4a и её worktree удалены 2026-08-13 (см. PROGRESS.md); на GitHub осталась одна ветка main.",
   "projects": [
     {
       "id": "site",
       "name": "RAGIMOFF main website",
       "type": "multilingual static site",
       "languages": ["az", "ru", "en"],
-      "pages_count_approx": {"az": 56, "ru": 54, "en": 53},
+      "pages_count_approx": {"az": 60, "ru": 55, "en": 56},
       "renderer": "build.py",
       "templating": "_partials/*.html + _i18n.json (mustache-style {{var}})",
       "components": [
@@ -25,9 +26,10 @@
       ],
       "design_tokens": "gtc.css + gtc-dark.css (Binance-inspired palette)",
       "page_hero_system": ".page-hero-x with js-hero-fit.js binary-search font-fitting (620px desktop)",
+      "spacing_canon": "переменные --s-gap-tag-hero/--s-gap-tag-sec/--s-gap-title/--s-gap-sub задают ритм бейдж→заголовок→подзаголовок на всех страницах; fix_rhythm.py (в репо с 2026-08-24) снимает ручные inline margin, которые его перебивают — идемпотентен, 0 страниц осталось на 2026-08-24",
       "etalon_file": "index.html",
       "etalon_rule": "Never modified by build.py (SKIP_FILES); has inline header/mobile-nav/footer; manual sync required if partials change.",
-      "skip_dirs": ["klinik-psixiatriya/", "backend/", "_partials/", "OLD/", "data/", "images/"],
+      "skip_dirs": ["klinik-psixiatriya/", "backend/", "_partials/", "data/", "images/"],
       "status": "stable",
       "open_issues": [
         "RU/EN pages currently use KITABIN SIFARISI modal globally; conditional swap to ZAPIS' -> tehsil.html#registration still possible if requested.",
@@ -85,7 +87,7 @@
         "psixi pozuntu": "not ruhi",
         "metodları": "not üsulları"
       },
-      "status": "chapters-v2 complete + deployed to live site + DOCX (KLINIK_PSIXIATRIYA_6.docx) rebuilt with academic textbook layout (title page, MUNDARICAT TOC, page break per chapter/disorder, no leading blank page)",
+      "status": "chapters-v2 complete + deployed to live site + DOCX (KLINIK_PSIXIATRIYA_6.docx) rebuilt; с 2026-08-12 идёт сверка содержания САМОГО текста (не переводов) с первоисточниками, названными в самих карточках — см. fact_check_2026_08 ниже. TASKS.md — рабочий список, BLOCKERS.md — открытые вопросы (сейчас пусто), regress.py — сторож 1263+ зафиксированных дефектов.",
       "deployment_2026_05_14": {
         "commit": "155bebf",
         "site_chapters_updated": 23,
@@ -97,6 +99,19 @@
         "docx_tables": 195,
         "docx_h1": 15,
         "docx_h2": 219
+      },
+      "fact_check_2026_08": {
+        "plan_owner": "Кенан, утверждён 2026-08-12 — порядок по клинической цене ошибки",
+        "order": ["§8 Лечение", "§3 Эпидемиология", "§10 Мифы", "§2 История"],
+        "queue_1_section8": "закрыта 2026-08-17 — 23 главы, 104 карточки",
+        "queue_2_section3": "закрыта 2026-08-18 — 23 главы, 104 карточки, 12 расхождений",
+        "queue_3_section10": "не начата — 23 главы, 104 карточки (TASKS.md 10·01–10·23)",
+        "queue_4_section2": "не начата — 23 главы, 104 карточки",
+        "parallel_az_reading": {
+          "section6_diagnosis": "начато 2026-08-19, прочитано 15/104 карточек (TASKS.md 9б)",
+          "sections_1_4_7_9": "не начато (TASKS.md 9в)"
+        },
+        "task_R": "7 имён в §3 без записи в §11 — нужна сверка PubMed, не начата (TASKS.md 11)"
       }
     }
   ],
