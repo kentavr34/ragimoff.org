@@ -554,7 +554,22 @@
       2·01–2·23 выше.
       **ВСЕ ЧЕТЫРЕ ОЧЕРЕДИ ПЛАНА СВЕРКИ С ПЕРВОИСТОЧНИКАМИ (утверждён
       Кенаном 2026-08-12) ЗАКРЫТЫ.**
-- [ ] **11. Задача R** — 7 имён в §3 без записи в §11, нужна сверка PubMed.
+- [x] **11. Задача R — СДЕЛАНО 2026-08-24.** Все 7 имён сверены по PubMed
+      (том/выпуск/страницы) и записаны в §11 всех четырёх деревьев:
+      · 6A01 Shriberg L.D. et al. J Speech Lang Hear Res 1999;42(6):1461–1481
+      · 6A20 Aleman A. et al. Arch Gen Psychiatry 2003;60(6):565–571
+      · 6A20 Olfson M. et al. JAMA Psychiatry 2015;72(12):1172–1181
+      · 6B23 Bleichhardt G., Hiller W. Br J Health Psychol 2007;12(Pt 4):511–523
+      · 6B44 Gleason M.M. et al. J Am Acad Child Adolesc Psychiatry 2011;50(3):216–231
+      · 6D10 Lenzenweger M.F. et al. Biol Psychiatry 2007;62(6):553–564
+      · 6D31 Långström N., Seto M.C. Arch Sex Behav 2006;35(4):427–435
+      **Побочная находка:** 6B23 в тексте (§3) указывал журнал
+      «Compr Psychiatry» — у настоящей статьи Bleichhardt & Hiller 2007
+      журнал «Br J Health Psychol» (двумя независимыми поисками
+      подтверждено, ни разу не нашёлся Comprehensive Psychiatry для
+      этой темы/авторов/года). Исправлено в тексте и в записи.
+      После правки: checkup 0/19 · regress 1295 чисто · refcheck 0 ·
+      numcheck 0/312 · xrefcheck 0.
 
 ## План сверки содержания с первоисточниками (утверждён Кенаном 2026-08-12)
 
