@@ -13,8 +13,16 @@
       "id": "site",
       "name": "RAGIMOFF main website",
       "type": "multilingual static site",
-      "languages": ["az", "ru", "en"],
-      "pages_count_approx": {"az": 60, "ru": 55, "en": 56},
+      "languages": [
+        "az",
+        "ru",
+        "en"
+      ],
+      "pages_count_approx": {
+        "az": 60,
+        "ru": 55,
+        "en": 56
+      },
       "renderer": "build.py",
       "templating": "_partials/*.html + _i18n.json (mustache-style {{var}})",
       "components": [
@@ -29,7 +37,13 @@
       "spacing_canon": "переменные --s-gap-tag-hero/--s-gap-tag-sec/--s-gap-title/--s-gap-sub задают ритм бейдж→заголовок→подзаголовок на всех страницах; fix_rhythm.py (в репо с 2026-08-24) снимает ручные inline margin, которые его перебивают — идемпотентен, 0 страниц осталось на 2026-08-24",
       "etalon_file": "index.html",
       "etalon_rule": "Never modified by build.py (SKIP_FILES); has inline header/mobile-nav/footer; manual sync required if partials change.",
-      "skip_dirs": ["klinik-psixiatriya/", "backend/", "_partials/", "data/", "images/"],
+      "skip_dirs": [
+        "klinik-psixiatriya/",
+        "backend/",
+        "_partials/",
+        "data/",
+        "images/"
+      ],
       "status": "stable",
       "open_issues": [
         "RU/EN pages currently use KITABIN SIFARISI modal globally; conditional swap to ZAPIS' -> tehsil.html#registration still possible if requested.",
@@ -48,7 +62,7 @@
         "path": "_supplements/chapters-v2/",
         "disorders_total": 103,
         "disorders_done": 103,
-        "structure_sections": 12,
+        "structure_sections": 11,
         "structure": [
           "1. Tərif və nozologiya",
           "2. Tarixçə",
@@ -58,15 +72,15 @@
           "6. Diaqnoz (6.1 Vahid diaqnostik meyarlar [DSM-5-TR · XBT-11] · 6.2 Mənbə-spesifik · 6.3 Alqoritm · 6.4 Differensial)",
           "7. Müayinə",
           "8. Müalicə (8.1 Ümumi prinsiplər · 8.2 Mənbə-spesifik)",
-          "9. Metodikalar",
+          "9. Proqnoz",
           "10. Mif və yanlış inanclar",
-          "11. Proqnoz",
-          "12. Mənbələr"
+          "11. Mənbələr"
         ],
         "etalon_template": "_supplements/chapters-v2/6A20.html",
         "progress_file": "_supplements/chapters-v2/_progress.md",
         "done_marker": "_supplements/chapters-v2/_done.md",
-        "status": "complete"
+        "status": "complete",
+        "note": "Исправлено 2026-08-24: было ошибочно 12 разделов с несуществующим «9. Metodikalar» — реальный шаблон карточки всегда 11 разделов, §9 = Proqnoz. Проверено на 5 карточках из разных глав."
       },
       "tools": {
         "abbr_tooltips": "_inject_abbr.py (4166 <abbr title> wrappings, 130+ term dictionary)",
@@ -75,9 +89,27 @@
         "docx_builder": "build_book.py (title page + MÜNDƏRİCAT TOC + page breaks)"
       },
       "source_whitelist": [
-        "NICE", "APA", "WFSBP", "Cochrane", "DSM-5-TR", "XBT-11 (ICD-11)",
-        "AAP", "AACAP", "FDA", "CANMAT", "NIMH", "ISSTD", "ICCS", "WPATH",
-        "VA-DoD", "SAMHSA", "AASM", "AUA", "EAU", "ISSWSH", "ISSM"
+        "NICE",
+        "APA",
+        "WFSBP",
+        "Cochrane",
+        "DSM-5-TR",
+        "XBT-11 (ICD-11)",
+        "AAP",
+        "AACAP",
+        "FDA",
+        "CANMAT",
+        "NIMH",
+        "ISSTD",
+        "ICCS",
+        "WPATH",
+        "VA-DoD",
+        "SAMHSA",
+        "AASM",
+        "AUA",
+        "EAU",
+        "ISSWSH",
+        "ISSM"
       ],
       "terminology_rules": {
         "klinik təzahürlər": "not mənzərə",
@@ -102,16 +134,22 @@
       },
       "fact_check_2026_08": {
         "plan_owner": "Кенан, утверждён 2026-08-12 — порядок по клинической цене ошибки",
-        "order": ["§8 Лечение", "§3 Эпидемиология", "§10 Мифы", "§2 История"],
+        "order": [
+          "§8 Лечение",
+          "§3 Эпидемиология",
+          "§10 Мифы",
+          "§2 История"
+        ],
         "queue_1_section8": "закрыта 2026-08-17 — 23 главы, 104 карточки",
         "queue_2_section3": "закрыта 2026-08-18 — 23 главы, 104 карточки, 12 расхождений",
-        "queue_3_section10": "не начата — 23 главы, 104 карточки (TASKS.md 10·01–10·23)",
-        "queue_4_section2": "не начата — 23 главы, 104 карточки",
+        "queue_3_section10": "закрыта 2026-08-24 — 23 главы, 104 карточки, 6 расхождений (5 карточек)",
+        "queue_4_section2": "закрыта 2026-08-24 — 23 главы, 104 карточки, 5 расхождений (3 карточки)",
         "parallel_az_reading": {
-          "section6_diagnosis": "начато 2026-08-19, прочитано 15/104 карточек (TASKS.md 9б)",
-          "sections_1_4_7_9": "не начато (TASKS.md 9в)"
+          "section6_diagnosis": "закрыто — 104/104 карточки",
+          "sections_1_4_7_9": "закрыто 2026-08-24 (Linear KEN-7) — 416 карточко-разделов, 2 дефекта (6B02 §4, 6A40 §9)"
         },
-        "task_R": "7 имён в §3 без записи в §11 — нужна сверка PubMed, не начата (TASKS.md 11)"
+        "task_R": "закрыта — все 7 ссылок вставлены в §11 шести карточек (6A01, 6A20, 6B23, 6B44, 6D10, 6D31)",
+        "status_2026_08_24": "Все 4 очереди фактчекинга + сплошное чтение §1/§4/§6/§7/§9 + задача R завершены. Дополнительно: коды/названия 104 карточек против WHO ICD-11 сверены, главы 7/8/16/17 против профильных гайдлайнов сверены (найден и исправлен 1 дефект — 7A41 CPAP/смертность), 6 справочных страниц прочитаны прицелом «структура фразы» (найдено и исправлено 3 дефекта). PROOFREADING.md полностью закрыт, кроме 9 пунктов [?], ждущих решения владельца."
       }
     }
   ],
