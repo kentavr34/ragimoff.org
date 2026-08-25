@@ -208,8 +208,12 @@ GONE = {
     # фактчекинг по CDDR ВОЗ 2026-08-11: сроки XBT-11 не равны DSM-5-TR
     'Tezlik: ən azı həftədə 1 dəfə, ≥ 3 ay.', 'XBT-11 — paralel; «atypical bulimia',
     'regurgitasiyası ≥ 1 ay',
-    # аз. орфография: «distres», двойное s только в английских именах
-    'Distress və ya münasibət', 'distress dözümlülüyü', 'Onkoloji distress',
+    # аз. орфография «distres» → «distress»: решение владельца изменено
+    # 2026-08-25 (было «distres» с 2026-08-10 — см. PROOFREADING.md §2 п.11,
+    # fix_distress.py/fix_distress2.py). Старые три сторожевые строки сняты:
+    # «distres» — буквальный префикс «distress», substring-проверка не может
+    # их различить (тот же класс ловушки, что и с именем файла disstres —
+    # см. §6 «Ошибки инструментов» в PROOFREADING.md).
     # порча от lang_tags: срез слева + остаток по длине
     'Lang Disord</span>sord',
     'gestasion', 'İnternal modelling', 'habit selection və', 'inflamasion',
