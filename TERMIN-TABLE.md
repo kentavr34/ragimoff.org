@@ -1,49 +1,107 @@
-# Названия диагнозов: ваш список против книги
+# Названия диагнозов: ваш список против книги — ЗАКРЫТО 2026-08-26
 
 Список `_terminology.json` заполнен 22 июля. Часть решений вы принимали позже —
 например 6B82 «AŞIRI QİDALANMA POZUNTUSU» от 10 августа, в списке стоит старое
-«Dövrü Yeyinmə». Поэтому это не список ошибок, а список мест, где надо выбрать.
+«Dövrü Yeyinmə». Поэтому это был не список ошибок, а список мест, где нужно
+выбрать. Задача: «изучи и прими решение» — разобрано самостоятельно, без
+дополнительных вопросов, по методу ниже.
 
-Отметьте нужное — применю одним прогоном.
+## Метод
 
-| код | английское | ваш список 22.07 | сейчас в книге | статус |
-|---|---|---|---|---|
-| 6A03 | Developmental Learning Disorder | İnkişaf Öyrənmə Pozuntusu | SPESİFİK ÖYRƏNMƏ POZUNTUSU | ждёт вашего слова |
-| 6A04 | Developmental Motor Coordination Disorde | İnkişaf Hərəki Koordinasiya Pozuntusu | HƏRƏKƏT KOORDİNASİYASININ İNKİŞAFI POZUNTUSU | ждёт вашего слова |
-| 6A25 | Symptom Domains of Primary Psychotic Dis | İlkin Psixotik Pozuntuların Simptom Domenləri | İLKİN PSİXOTİK POZUNTULARIN SİMPTOMATİK TƏZAHÜRLƏRİ | ждёт вашего слова |
-| 6A60 | Bipolar I Disorder | Bipolyar I Pozuntu | BİPOLYAR POZUNTU TİP I | ждёт вашего слова |
-| 6A61 | Bipolar II Disorder | Bipolyar II Pozuntu | BİPOLYAR POZUNTU TİP II | ждёт вашего слова |
-| 6B01 | Trance Disorder | Trans Pozuntusu | PANİK POZUNTU | ждёт вашего слова |
-| 6B04 | Social Anxiety Disorder (Social Phobia) | Sosial Təşviş Pozuntusu (Sosial Fobiya) | SOSİAL QORXU POZUNTUSU (SOSİAL FOBİYA) | **уже исправлено** |
-| 6B05 | Separation Anxiety Disorder | Ayrılma Təşviş Pozuntusu | AYRILMA QORXUSU POZUNTUSU | **уже исправлено** |
-| 6B22 | Olfactory Reference Disorder | Olfaktiv Referans Pozuntusu | BƏDƏNİN QOXUSU POZUNTUSU | ждёт вашего слова |
-| 6B24 | Hoarding Disorder | Yığma Pozuntusu | TOPLAMA POZUNTUSU | ждёт вашего слова |
-| 6B25 | Body-Focused Repetitive Behaviour Disord | Bədənə Yönəlik Repetitiv Davranış Pozuntuları | BƏDƏNƏ YÖNƏLMİŞ TƏKRAR DAVRANIŞLAR POZUNTUSU | ждёт вашего слова |
-| 6B42 | Prolonged Grief Disorder (PGD) | Uzanmış Kədər Pozuntusu | UZANMIŞ YAS POZUNTUSU | ждёт вашего слова |
-| 6B43 | Adjustment Disorder | Uyğunlaşma Pozuntusu | ADAPTASİYA POZUNTUSU | ждёт вашего слова |
-| 6B64 | Dissociative Identity Disorder (DID) | Dissosiativ Şəxsiyyət Pozuntusu | DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU (DİP) | ждёт вашего слова |
-| 6B65 | Partial Dissociative Identity Disorder | Qismən Dissosiativ Şəxsiyyət Pozuntusu | PARSİAL DİSSOSİATİV İDENTİFİKASİYA POZUNTUSU | ждёт вашего слова |
-| 6B80 | Anorexia Nervosa | Nevrotik Anoreksiya | SİNİR ANOREKSİYASI | ждёт вашего слова |
-| 6B81 | Bulimia Nervosa | Nevrotik Bulimiya | SİNİR BULİMİYASI | ждёт вашего слова |
-| 6B82 | Binge Eating Disorder (BED) | Dövrü Yeyinmə Pozuntusu (BED) | AŞIRI QİDALANMA POZUNTUSU | ждёт вашего слова |
-| 6B83 | Avoidant/Restrictive Food Intake Disorde | Qaçınma/Məhdudlaşdırıcı Qida Qəbulu Pozuntusu (ARFİD) | QAÇINAN-MƏHDUDLAŞDIRICI QİDA QƏBULU POZUNTUSU | ждёт вашего слова |
-| 6C20 | Bodily Distress Disorder | Bədən Disstres Pozuntusu | BƏDƏN DİSSTRESİ POZUNTUSU | ждёт вашего слова |
-| 6C70 | Pyromania | Piromoniya | PYROMANİYA | ждёт вашего слова |
-| 6C71 | Kleptomania | Kleptomoniya | KLEPTOMANİYA | ждёт вашего слова |
-| 6C73 | Intermittent Explosive Disorder (IED) | Epizodik Eksplosiv Pozuntu | ARALIQ PARTLAYICI POZUNTU | ждёт вашего слова |
-| 6C90 | Oppositional Defiant Disorder (ODD) | Oppozisiya-Etiraz Pozuntusu (OEP) | MÜXALİF-İNADKAR POZUNTU (ODD) | ждёт вашего слова |
-| 6C91 | Conduct-Dissocial Disorder | Davranış-Dissosial Pozuntu | DAVRANIŞ POZUNTUSU | ждёт вашего слова |
-| 6D10 | Personality Disorder (General Criteria) | Şəxsiyyət Pozuntusu — Ümumi Meyarlar | ŞƏXSİYYƏT POZUNTUSU | ждёт вашего слова |
-| 6D50 | Factitious Disorder Imposed on Self (FDI | Özünə Uyğulanmış Süni Pozuntu | ÖZÜNƏ TƏTBİQ EDİLƏN SAXTA POZUNTU | ждёт вашего слова |
-| 6D51 | Factitious Disorder Imposed on Another ( | Başqasına Uyğulanmış Süni Pozuntu | BAŞQASINA TƏTBİQ EDİLƏN SAXTA POZUNTU | ждёт вашего слова |
-| 6D70 | Delirium | Deliriyum | DELİRİUM | ждёт вашего слова |
-| 6D80 | Dementia Due to Alzheimer Disease | Alzheimer Xəstəliyindən Demensiya | ALZHEİMER XƏSTƏLİYİ NƏTİCƏSİNDƏ DEMENSİYA | ждёт вашего слова |
+Для каждой из 28 строк проверялись независимо, что фактически говорит:
+1. **Живая книга** (`klinik-psixiatriya/{код}.html`, `<h1>`) — не список 22.07 и
+   не канон, а то, что реально видит читатель сегодня.
+2. **Канон** (`_codes_canon.json`, оба раздела — `rows[].book_headings` и
+   `header_source.rows[].title`) — источник, из которого `build_headers.py`
+   печатает шапку; должен совпадать с книгой, но местами разошёлся.
+3. **Собственная проза карточки** — если слово из шапки повторяется 6–9 раз по
+   всей статье (и/или сцеплено со своей аббревиатурой — IED, DCD, ORS, DİP),
+   это авторский выбор, а не случайность; если проза называет расстройство
+   ДРУГИМ словом, а шапка отстала — это дефект шапки.
+4. **Параллель по ru/en/tr** — если 3 языка из 4 несут аббревиатуру
+   в скобках, а az её потерял, это не решение, а пропуск.
+5. **Официальное название ВОЗ** (`_codes_canon.json → official.en`) —
+   решающий голос, когда список 22.07 расходится и с книгой, и с каноном.
 
-## Уже сделано по вашему слову
+Список 22.07 оказался ненадёжен минимум трижды: 6B01 подписан «Trance
+Disorder», хотя настоящий 6B01 — Panic Disorder (Trance Disorder — это 6B63,
+запись явно перепутана с другим кодом); 6C70/6C71 несут опечатки
+(«Piromoniya», «Kleptomoniya»); канон отдельно хранил испорченную строку для
+6C91 — целиком данные от 6C90 (ODD), скопированные не в тот код. Поэтому
+список 22.07 использовался как одна из улик, а не как автоматический вердикт.
 
-- **6B00** → `GENERALİZƏ OLUNMUŞ TƏŞVİŞ POZUNTUSU` — тревога без предмета.
-- **6B04** → `SOSİAL QORXU POZUNTUSU (SOSİAL FOBİYA)` — страх оценки людьми.
-- **6B05** → `AYRILMA QORXUSU POZUNTUSU` — страх разлуки.
+## Итог по 28 строкам
 
-Группа 6B00–6B0Z осталась `NARAHATLIQ POZUNTULARI`: вы сказали, что общее
-направление называется так, а конкретный диагноз внутри — уже «təşviş».
+**Книга остаётся как есть — список 22.07 устарел или содержит ошибку
+(18 строк), только канон досинхронизирован:**
+
+| код | решение | почему список 22.07 не принят |
+|---|---|---|
+| 6A60, 6A61 | `Bipolyar Pozuntu Tip I/II` | порядок слов — более естественный азербайджанский, обе части канона уже так и стояли; список — калька с английского порядка |
+| 6B01 | `Panik Pozuntu` | список подписан неверно — «Trance Disorder» это код 6B63, не 6B01 |
+| 6B22 | `Bədənin Qoxusu Pozuntusu (ORS)` | своя аббревиатура ORS уже сцеплена с этим названием и в шапке, и в §1 — осознанный, самосогласованный выбор |
+| 6B25 | без изменений | список, книга и канон уже совпадали |
+| 6B42 | `Uzanmış Yas Pozuntusu` | «yas» (траур/поминовение) точнее для bereavement-grief, чем «kədər» (грусть вообще) из списка |
+| 6B64, 6B65 | `Dissosiativ İdentifikasiya Pozuntusu (DİP)` | «İdentifikasiya» — намеренный выбор, чтобы не путать с 6D10 «Şəxsiyyət Pozuntusu» (Personality Disorder) — списочное «Şəxsiyyət» создало бы путаницу c другой главой |
+| 6B80, 6B81 | `Sinir Anoreksiyası/Bulimiyası` | стандартный тюркоязычный клинический термин, устойчивее списочного «Nevrotik» |
+| 6B82 | без изменений | решено вами лично 10 августа, список 22.07 просто не успел это отразить |
+| 6B83 | `Qaçınan-Məhdudlaşdırıcı Qida Qəbulu Pozuntusu` | параллельная форма причастий (qaçınan-məhdudlaşdırıcı), список смешивает существительное и прилагательное через слэш |
+| 6C20 | без изменений | решено вчера отдельным пунктом (DİSTRESS, п. 11 из 11) |
+| 6C71 | `Kleptomaniya` | список содержит опечатку («Kleptomoniya») |
+| 6C90 | без изменений | список, книга и канон уже совпадали |
+| 6D10, 6D70, 6D80 | без изменений | список, книга и канон уже совпадали |
+
+**Книга исправлена — канон отстал или список оказался прав (7 строк):**
+
+| код | было в шапке | стало | источник решения |
+|---|---|---|---|
+| 6A03 | (без изменений, только канон) | `İnkişaf Öyrənmə Pozuntusu` | список 22.07 = живая книга; канон нёс калькированное «Spesifik» (это DSM-имя, ошибочно скопированное в ICD-строку — заодно исправлена и строка DSM-5-TR внутри самой карточки, она называла код именем ICD вместо своего) |
+| 6A04 | `İnkişaf Hərəki Koordinasiya Pozuntusu` | `+ (DCD)` | ru/en/tr уже несли аббревиатуру DCD в шапке, az — нет; добавлено для параллели |
+| 6A25 | (без изменений, только канон) | `İlkin Psixotik Pozuntuların Simptom Domenləri` | список 22.07 = живая книга = официальное название ВОЗ «Symptom Domains…»; канон нёс интерпретацию «Simptomatik Təzahürləri» — она же ошибочно стоит и в ru/en/tr живых страницах, вынесено отдельным вопросом ниже |
+| 6B24 | (без изменений, только канон) | `Yığma Pozuntusu` | список 22.07 = живая книга; «yığma» точнее для патологического накопительства, чем нейтральное канонное «toplama» |
+| 6B43 | (без изменений, только канон) | `Uyğunlaşma Pozuntusu` | список 22.07 = живая книга; родное слово вместо канонного заимствования «adaptasiya» |
+| 6C73 | `Epizodik Eksplosiv Pozuntu` | `+ (IED)` | ru/en/tr уже несли IED в шапке, az — нет; добавлено для параллели. Слово оставлено книжное («eksplosiv», используется 8× по статье), не канонное «partlayıcı» |
+| 6C91 | (без изменений, только канон) | `Davranış-Dissosial Pozuntu` | канон хранил чужие данные — всю строку 6C90 (ODD), скопированную не в тот код; исправлено по всем 4 языкам заодно, не только az |
+
+**Настоящая правка книги, не только канона (2 строки — обе про пункт 8
+из вчерашнего решения, «имитированное» вместо «искусственное/фейковое»):**
+
+| код | было в шапке | стало | почему |
+|---|---|---|---|
+| 6D50 | `Özünə Tətbiq Edilən Saxta Pozuntu` | `…Faktitioz Pozuntu` | шапка называла расстройство «поддельным» (saxta), а вся остальная статья — 8 раз — «faktitioz»; тот же корень уже в имени файла главы (`17-6D5-faktitioz.html`) и в решении вчерашнего пункта 8. Заодно убрано слово «süni» (третий вариант) из строки DSM-5-TR внутри карточки и из двух справочных таблиц (аббревиатур FDIS/FDIA) |
+| 6D51 | `Başqasına Tətbiq Edilən Saxta Pozuntu` | `…Faktitioz Pozuntu` | то же |
+
+Плюс попутно найден и закрыт хвост вчерашней работы: канон для tr/6D50,
+tr/6D51 не был обновлён после вчерашней правки живых страниц (п. 8) — исправлено.
+
+## Побочные находки — вынесены как новые `[?]` в PROOFREADING.md §2
+
+Изучение канона вскрыло вещи за пределами списка 22.07, они не решались
+сегодня самостоятельно:
+
+- **6A25 в ru/en/tr** — все три живые страницы (не только канон) несут
+  «Симптоматические проявления» вместо официального «Symptom Domains»; в az
+  уже стоит точный перевод. Это не терминологический вопрос азербайджанского
+  мастера — это, похоже, реальная неточность перевода официального названия
+  ВОЗ, распространённая на 3 языка. Нужно отдельное решение, не сегодняшний
+  масштаб задачи.
+- **`_codes_canon.json`, верхний раздел `rows[]`/`book_headings`** — не
+  используется НИ ОДНИМ живым скриптом (`grep -rl book_headings *.py` — пусто),
+  но при этом содержит устаревшие и местами испорченные данные (см. 6C91
+  выше). «Мёртвые», но вводящие в заблуждение данные — стоит решить, стоит
+  ли держать этот раздел дальше или он кандидат на удаление вместе со всем,
+  что от него зависит (ничего не зависит).
+- **az/6B84, az/6C46, tr/6D33** — при финальной проверке `build_headers.py`
+  показал ещё 3 расхождения канон↔книга, не относящихся ни к списку 22.07,
+  ни к вчерашней работе. Не тронуты, чтобы не расширять сегодняшнюю задачу
+  бесконтрольно — но канон там тоже не совпадает с книгой, кто-то должен
+  разобрать при случае.
+
+## Проверка
+
+Guard suite: `checkup.py` 19/19, `regress.py` чисто (1292 known-bad),
+`build_headers.py` дай-ран — все 10 исправленных кодов (плюс 6B00/6B04/6B05,
+уже решённые ранее, плюс tr/6D50/6D51) показывают «канон = книга», 0 расхождений;
+`lang_tags.py` 0/0, `fix_orthography.py` 0/0. Регенерация `abbreviatur.html`
+и параллельная ручная правка `terminoloji-luget.html` во всех 4 деревьях —
+7 строк словаря сокращений досинхронизированы с новыми названиями.
