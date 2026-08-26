@@ -474,7 +474,7 @@ function toggleSub(btn){
     <button class="kitab-close" onclick="closeKitabModal()" aria-label="Закрыть">✕</button>
     <div class="kitab-logo">КП</div>
     <h2 class="kitab-title">Заказ книги</h2>
-    <p class="kitab-desc">Книга готовится к печатному изданию. Если вы хотите быть в числе первых читателей, оставьте свои данные — мы свяжемся с вами сразу после выхода книги.</p>
+    <p class="kitab-desc">Книга уже издана, печатный экземпляр готов к отправке. Заказанный экземпляр я подпишу лично и отправлю почтой по любому адресу. Ориентировочная стоимость — 100&nbsp;$; если она вам не по силам, ниже можно отправить запрос на скидку.</p>
     <form id="kitab-form">
       <div class="kitab-field">
         <label for="kitab-name">Имя Фамилия</label>
@@ -490,13 +490,20 @@ function toggleSub(btn){
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Основная классификация</label>
-          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select>
+          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
+        <div class="kitab-field">
+          <label for="kitab-address">Адрес доставки</label>
+          <textarea id="kitab-address" name="address" rows="2" placeholder="Страна, город, полный адрес" required></textarea>
+        </div>
+        <div class="kitab-field">
+          <label for="kitab-discount">Скидка (по желанию)</label>
+          <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
         </div>
 
       <button type="submit" class="kitab-submit">Заказать</button>
     </form>
     <div id="kitab-success" class="kitab-success" style="display:none">
-      Благодарим вас!<br>Мы свяжемся с вами, как только книга будет опубликована.
+      Благодарим вас!<br>Мы свяжемся с вами в ближайшее время, чтобы уточнить детали доставки.
     </div>
   </div>
 </div>
@@ -520,12 +527,16 @@ function toggleSub(btn){
       var btn = form.querySelector('button[type="submit"]');
       var name  = (document.getElementById('kitab-name').value || '').trim();
       var phone = (document.getElementById('kitab-phone').value || '').trim();
+
+        var address = (document.getElementById('kitab-address').value || '').trim();
+
+        var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
         var langEl = document.getElementById('kitab-lang');
         var clsEl  = document.getElementById('kitab-cls');
         var lang = langEl ? langEl.value : '';
         var langName = langEl ? langEl.options[langEl.selectedIndex].text : '';
         var cls  = clsEl ? clsEl.value : '';
-      if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+      if (!name || !phone || !address) { alert('Пожалуйста, укажите Имя Фамилию, Телефон и Адрес.'); return; }
       var parts = name.split(/\s+/);
       var payload = {
         type: 'registration',
@@ -535,7 +546,11 @@ function toggleSub(btn){
         service: 'Kitab sifarişi — ' + langName + ' / ' + cls,
           lang: lang,
           classification: cls,
-        source: 'klinik-psixiatriya/kitab-sifarisi'
+        source: 'klinik-psixiatriya/kitab-sifarisi',
+
+          address: address,
+
+          discount: discount
       };
       if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
       try {
@@ -543,7 +558,11 @@ function toggleSub(btn){
           headers:{'Content-Type':'text/plain;charset=utf-8'},
           body: JSON.stringify(payload) });
       } catch(err) { console.error(err); }
-      document.getElementById('kitab-success').style.display = 'block';
+      var waMsg = '📚 Заказ книги\nИмя: ' + name + '\nТелефон: ' + phone + '\nЯзык: ' + langName + '\nКлассификация: ' + cls + '\nАдрес: ' + address + '\nСкидка: ' + discount;
+
+        window.open('https://wa.me/994702200376?text=' + encodeURIComponent(waMsg), '_blank');
+
+        document.getElementById('kitab-success').style.display = 'block';
       form.style.display = 'none';
     });
     // ESC закрывает

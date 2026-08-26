@@ -353,6 +353,22 @@ table.dh tr:last-child td{padding-bottom:.8rem}
 
 @media(max-width:720px){.front-page h1{font-size:1.28rem}.front-page h2{font-size:1.08rem}}
 
+/* ===== Yazarın hitabı ===== */
+
+.author-note{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:1.3rem 1.4rem;margin:1.4rem 0 1.8rem}
+
+.author-note-title{font-size:1.05rem;margin:0 0 .7rem;color:var(--gold);border:0;padding:0}
+
+.author-note p{color:var(--text2);line-height:1.65;margin:.7rem 0}
+
+.author-note-sign{color:var(--text);font-style:italic;margin-top:1rem!important}
+
+.btn-order{display:inline-block;margin-top:1rem;background:var(--gold);color:#000;border:0;border-radius:6px;padding:.7rem 1.4rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit}
+
+.btn-order:hover{opacity:.9}
+
+@media(max-width:720px){.author-note{padding:1.1rem 1.15rem}}
+
 </style>
 
 <script>
@@ -455,7 +471,17 @@ function setCls(k){
 
  <div class="content-wrap">
 
-<div class="home-hero"><h1 class="home-title">KLİNİK PSİKİYATRİ</h1><p class="home-sub">ICD-11 · DSM-5-TR · ICD-10 temelinde pratik klinik başvuru kaynağı</p></div><div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Giriş</b><span>Redaksiyonun ön sözü, yazar ve kitap hakkında</span></a><a href="kitab-haqqinda.html" class="home-card"><b>Kitap hakkında</b><span>Neden ICD-11, yapı, kullanım kılavuzu</span></a><a href="terminoloji-luget.html" class="home-card"><b>Terminoloji sözlük</b><span>Terimler ve kısaltmalar (3 dilde)</span></a><a href="mundericat.html" class="home-card"><b>İçindekiler</b><span>Sınıflandırmalar arası geçiş — 104 bozukluk, 23 bölüm</span></a></div>
+<div class="home-hero"><h1 class="home-title">KLİNİK PSİKİYATRİ</h1><p class="home-sub">ICD-11 · DSM-5-TR · ICD-10 temelinde pratik klinik başvuru kaynağı</p></div>
+
+<section class="author-note">
+<h2 class="author-note-title">Yazarın hitabı</h2>
+<p>Bu kitap ücretsiz olarak derlenmiş ve ücretsiz olarak dağıtılmaktadır — ruh sağlığı alanında eğitim gören veya çalışanlar için, ayrıca konuyu kendisi için anlamak isteyen herkes için. Amaç basit: herhangi bir bozukluğun sayfasını açan kişi, sosyal medyadaki bir görüş değil, güncel uluslararası kaynaklara dayanan — tanı, tedavi ve en yaygın yanlış kanıların ele alındığı — doğrulanmış bir kılavuz bulsun; her iddianın nereden alındığı belirtilerek.</p>
+<p>Elektronik sürümü herhangi bir yükümlülük olmadan serbestçe kullanabilirsiniz — bugüne kadar böyleydi, bundan sonra da böyle olacak. Ama kitap size yararlı olduysa ve bu çalışmanın devamını desteklemek isterseniz, istediğiniz dilde basılı bir nüsha sipariş edebilirsiniz — onu şahsen imzalayıp, nerede olursanız olun size göndereceğim. Önerilen fiyat 100&nbsp;$'dır, ama bu sizin için ağırsa, yazın yeter — bir indirim üzerinde konuşuruz.</p>
+<p class="author-note-sign">Dr. Kenan Rağimov</p>
+<button type="button" class="btn-order" onclick="openKitabModal()">Kitabı sipariş et</button>
+</section>
+
+<div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Giriş</b><span>Redaksiyonun ön sözü, yazar ve kitap hakkında</span></a><a href="kitab-haqqinda.html" class="home-card"><b>Kitap hakkında</b><span>Neden ICD-11, yapı, kullanım kılavuzu</span></a><a href="terminoloji-luget.html" class="home-card"><b>Terminoloji sözlük</b><span>Terimler ve kısaltmalar (3 dilde)</span></a><a href="mundericat.html" class="home-card"><b>İçindekiler</b><span>Sınıflandırmalar arası geçiş — 104 bozukluk, 23 bölüm</span></a></div>
 
  <!-- BOOK-TOC:START -->
 
@@ -927,7 +953,7 @@ function toggleSub(btn){
 
  <h2 class="kitab-title">Kitabın siparişi</h2>
 
- <p class="kitab-desc">Kitap basılı yayına hazırlanıyor. İlk okuyucular arasında olmak istiyorsanız bilgilerinizi bırakın — yayınlandığı anda hemen sizinle iletişime geçeceğiz.</p>
+ <p class="kitab-desc">Kitap yayımlandı, basılı nüsha göndermeye hazır. Sipariş ettiğiniz nüshayı şahsen imzalayıp, istediğiniz adrese posta ile göndereceğim. Önerilen fiyat 100&nbsp;$; sizin için ağırsa, aşağıdan indirim talebinde bulunabilirsiniz.</p>
 
  <form id="kitab-form">
 
@@ -959,8 +985,14 @@ function toggleSub(btn){
 
           <label for="kitab-cls">Temel sınıflandırma</label>
 
-          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select>
-
+          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
+        <div class="kitab-field">
+          <label for="kitab-address">Teslimat adresi</label>
+          <textarea id="kitab-address" name="address" rows="2" placeholder="Ülke, şehir, tam adres" required></textarea>
+        </div>
+        <div class="kitab-field">
+          <label for="kitab-discount">İndirim talebi (isteğe bağlı)</label>
+          <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
         </div>
 
 
@@ -971,7 +1003,7 @@ function toggleSub(btn){
 
  <div id="kitab-success" class="kitab-success" style="display:none">
 
- Teşekkür ederiz!<br>Kitap yayınlandığı anda sizinle iletişime geçeceğiz.
+ Teşekkür ederiz!<br>Teslimat detaylarını netleştirmek için en kısa sürede sizinle iletişime geçeceğiz.
 
  </div>
 
@@ -1019,6 +1051,10 @@ function toggleSub(btn){
 
  var phone = (document.getElementById('kitab-phone').value || '').trim();
 
+        var address = (document.getElementById('kitab-address').value || '').trim();
+
+        var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
+
         var langEl = document.getElementById('kitab-lang');
 
         var clsEl  = document.getElementById('kitab-cls');
@@ -1029,7 +1065,7 @@ function toggleSub(btn){
 
         var cls  = clsEl ? clsEl.value : '';
 
- if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+ if (!name || !phone || !address) { alert('Lütfen Ad Soyad, Telefon ve Adres girin.'); return; }
 
  var parts = name.split(/\s+/);
 
@@ -1049,7 +1085,11 @@ function toggleSub(btn){
 
           classification: cls,
 
- source: 'klinik-psixiatriya/kitab-sifarisi'
+ source: 'klinik-psixiatriya/kitab-sifarisi',
+
+          address: address,
+
+          discount: discount
 
  };
 
@@ -1065,7 +1105,11 @@ function toggleSub(btn){
 
  } catch(err) { console.error(err); }
 
- document.getElementById('kitab-success').style.display = 'block';
+ var waMsg = '📚 Kitap siparişi\nAd: ' + name + '\nTelefon: ' + phone + '\nDil: ' + langName + '\nSınıflandırma: ' + cls + '\nAdres: ' + address + '\nİndirim: ' + discount;
+
+        window.open('https://wa.me/994702200376?text=' + encodeURIComponent(waMsg), '_blank');
+
+        document.getElementById('kitab-success').style.display = 'block';
 
  form.style.display = 'none';
 

@@ -176,6 +176,14 @@ table.dh tr:last-child td{padding-bottom:.8rem}
 .front-page p,.front-page li{color:var(--text);line-height:1.6}
 .front-page table{font-size:.92rem;color:var(--text)}
 @media(max-width:720px){.front-page h1{font-size:1.28rem}.front-page h2{font-size:1.08rem}}
+/* ===== Author's address ===== */
+.author-note{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:1.3rem 1.4rem;margin:1.4rem 0 1.8rem}
+.author-note-title{font-size:1.05rem;margin:0 0 .7rem;color:var(--gold);border:0;padding:0}
+.author-note p{color:var(--text2);line-height:1.65;margin:.7rem 0}
+.author-note-sign{color:var(--text);font-style:italic;margin-top:1rem!important}
+.btn-order{display:inline-block;margin-top:1rem;background:var(--gold);color:#000;border:0;border-radius:6px;padding:.7rem 1.4rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit}
+.btn-order:hover{opacity:.9}
+@media(max-width:720px){.author-note{padding:1.1rem 1.15rem}}
 </style>
 <script>
 function setCls(k){
@@ -227,7 +235,17 @@ function setCls(k){
 
  <main class="site-main">
  <div class="content-wrap">
-<div class="home-hero"><h1 class="home-title">CLINICAL PSYCHIATRY</h1><p class="home-sub">A practical clinical reference based on ICD-11 · DSM-5-TR · ICD-10</p></div><div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Preface</b><span>Editorial foreword, about the author and the book</span></a><a href="kitab-haqqinda.html" class="home-card"><b>About the book</b><span>Why ICD-11, structure, how to use</span></a><a href="terminoloji-luget.html" class="home-card"><b>Terminology glossary</b><span>Terms and abbreviations (in 3 languages)</span></a><a href="mundericat.html" class="home-card"><b>Table of contents</b><span>Navigate by classification — 104 disorders, 23 chapters</span></a></div>
+<div class="home-hero"><h1 class="home-title">CLINICAL PSYCHIATRY</h1><p class="home-sub">A practical clinical reference based on ICD-11 · DSM-5-TR · ICD-10</p></div>
+
+<section class="author-note">
+<h2 class="author-note-title">A word from the author</h2>
+<p>This book was compiled and is distributed free of charge — for those studying or working in mental health, and for anyone who simply wants to understand a topic for themselves. The goal is simple: when you open any disorder's page, you should find not an opinion from social media, but a verified guide — diagnosis, treatment, and a review of the most common misconceptions — drawn from current international sources, each claim traceable to where it came from.</p>
+<p>The online edition is free to use, with no obligation of any kind — that has always been true and always will be. But if the book has been useful to you and you would like to support its continued development, you can order a printed copy in your language — I will personally sign and mail it to you, wherever you are. The suggested price is $100, but if that is more than you can manage, just write to me — we will work out a discount.</p>
+<p class="author-note-sign">Dr. Kanan Ragimov</p>
+<button type="button" class="btn-order" onclick="openKitabModal()">Order the book</button>
+</section>
+
+<div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Preface</b><span>Editorial foreword, about the author and the book</span></a><a href="kitab-haqqinda.html" class="home-card"><b>About the book</b><span>Why ICD-11, structure, how to use</span></a><a href="terminoloji-luget.html" class="home-card"><b>Terminology glossary</b><span>Terms and abbreviations (in 3 languages)</span></a><a href="mundericat.html" class="home-card"><b>Table of contents</b><span>Navigate by classification — 104 disorders, 23 chapters</span></a></div>
  <!-- BOOK-TOC:START -->
  <section class="book-toc">
  <h2 class="toc-title">TABLE OF CONTENTS</h2>
@@ -463,7 +481,7 @@ function toggleSub(btn){
  <button class="kitab-close" onclick="closeKitabModal()" aria-label="Close">✕</button>
  <div class="kitab-logo">CP</div>
  <h2 class="kitab-title">Order the book</h2>
- <p class="kitab-desc">The book is being prepared for print publication. If you would like to be among the first readers, leave your details — we will contact you as soon as it is published.</p>
+ <p class="kitab-desc">The book is published and the print edition is ready. I will personally sign your copy and mail it to any address. The suggested price is $100; if that is more than you can manage, you can request a discount below.</p>
  <form id="kitab-form">
  <div class="kitab-field">
  <label for="kitab-name">Full Name</label>
@@ -479,13 +497,20 @@ function toggleSub(btn){
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Primary classification</label>
-          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select>
+          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
+        <div class="kitab-field">
+          <label for="kitab-address">Delivery address</label>
+          <textarea id="kitab-address" name="address" rows="2" placeholder="Country, city, full address" required></textarea>
+        </div>
+        <div class="kitab-field">
+          <label for="kitab-discount">Discount request (optional)</label>
+          <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
         </div>
 
  <button type="submit" class="kitab-submit">Order</button>
  </form>
  <div id="kitab-success" class="kitab-success" style="display:none">
- Thank you!<br>We will contact you as soon as the book is published.
+ Thank you!<br>We will contact you shortly to confirm delivery details.
  </div>
  </div>
 </div>
@@ -509,12 +534,16 @@ function toggleSub(btn){
  var btn = form.querySelector('button[type="submit"]');
  var name = (document.getElementById('kitab-name').value || '').trim();
  var phone = (document.getElementById('kitab-phone').value || '').trim();
+
+        var address = (document.getElementById('kitab-address').value || '').trim();
+
+        var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
         var langEl = document.getElementById('kitab-lang');
         var clsEl  = document.getElementById('kitab-cls');
         var lang = langEl ? langEl.value : '';
         var langName = langEl ? langEl.options[langEl.selectedIndex].text : '';
         var cls  = clsEl ? clsEl.value : '';
- if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+ if (!name || !phone || !address) { alert('Please enter your Full Name, Phone, and Address.'); return; }
  var parts = name.split(/\s+/);
  var payload = {
  type: 'registration',
@@ -524,7 +553,11 @@ function toggleSub(btn){
  service: 'Kitab sifarişi — ' + langName + ' / ' + cls,
           lang: lang,
           classification: cls,
- source: 'klinik-psixiatriya/kitab-sifarisi'
+ source: 'klinik-psixiatriya/kitab-sifarisi',
+
+          address: address,
+
+          discount: discount
  };
  if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
  try {
@@ -532,7 +565,11 @@ function toggleSub(btn){
  headers:{'Content-Type':'text/plain;charset=utf-8'},
  body: JSON.stringify(payload) });
  } catch(err) { console.error(err); }
- document.getElementById('kitab-success').style.display = 'block';
+ var waMsg = '📚 Book order\nName: ' + name + '\nPhone: ' + phone + '\nLanguage: ' + langName + '\nClassification: ' + cls + '\nAddress: ' + address + '\nDiscount: ' + discount;
+
+        window.open('https://wa.me/994702200376?text=' + encodeURIComponent(waMsg), '_blank');
+
+        document.getElementById('kitab-success').style.display = 'block';
  form.style.display = 'none';
  });
  // ESC закрывает

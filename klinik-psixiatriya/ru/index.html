@@ -176,6 +176,14 @@ table.dh tr:last-child td{padding-bottom:.8rem}
 .front-page p,.front-page li{color:var(--text);line-height:1.6}
 .front-page table{font-size:.92rem;color:var(--text)}
 @media(max-width:720px){.front-page h1{font-size:1.28rem}.front-page h2{font-size:1.08rem}}
+/* ===== Обращение автора ===== */
+.author-note{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:1.3rem 1.4rem;margin:1.4rem 0 1.8rem}
+.author-note-title{font-size:1.05rem;margin:0 0 .7rem;color:var(--gold);border:0;padding:0}
+.author-note p{color:var(--text2);line-height:1.65;margin:.7rem 0}
+.author-note-sign{color:var(--text);font-style:italic;margin-top:1rem!important}
+.btn-order{display:inline-block;margin-top:1rem;background:var(--gold);color:#000;border:0;border-radius:6px;padding:.7rem 1.4rem;font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit}
+.btn-order:hover{opacity:.9}
+@media(max-width:720px){.author-note{padding:1.1rem 1.15rem}}
 </style>
 <script>
 function setCls(k){
@@ -227,7 +235,17 @@ function setCls(k){
 
  <main class="site-main">
  <div class="content-wrap">
-<div class="home-hero"><h1 class="home-title">КЛИНИЧЕСКАЯ ПСИХИАТРИЯ</h1><p class="home-sub">Практическое клиническое справочное руководство на основе МКБ-11 · DSM-5-TR · МКБ-10</p></div><div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Предисловие</b><span>Предисловие редакции, об авторе и о книге</span></a><a href="kitab-haqqinda.html" class="home-card"><b>О книге</b><span>Почему МКБ-11, структура, порядок использования</span></a><a href="terminoloji-luget.html" class="home-card"><b>Терминологический словарь</b><span>Термины и аббревиатуры (на 3 языках)</span></a><a href="mundericat.html" class="home-card"><b>Содержание</b><span>Навигация по классификациям — 104 расстройства, 23 главы</span></a></div>
+<div class="home-hero"><h1 class="home-title">КЛИНИЧЕСКАЯ ПСИХИАТРИЯ</h1><p class="home-sub">Практическое клиническое справочное руководство на основе МКБ-11 · DSM-5-TR · МКБ-10</p></div>
+
+<section class="author-note">
+<h2 class="author-note-title">Обращение автора</h2>
+<p>Эта книга собрана и распространяется бесплатно — для тех, кто учится или работает в сфере психического здоровья, и для тех, кто просто хочет разобраться в вопросе для себя. Цель проста: чтобы, открыв страницу любого расстройства, человек получал не мнение из социальных сетей, а выверенную инструкцию — диагностику, лечение и разбор самых частых заблуждений — по актуальным международным источникам, с указанием, откуда взято каждое утверждение.</p>
+<p>Пользоваться электронной версией можно свободно и без каких-либо обязательств — так было и будет всегда. Но если книга оказалась вам полезна и вы хотите поддержать продолжение этой работы, вы можете заказать печатный экземпляр на нужном вам языке — я подпишу и отправлю его лично, куда бы вам ни было удобно. Ориентировочная стоимость — 100&nbsp;$, но если она вам не по силам, просто напишите — обсудим скидку.</p>
+<p class="author-note-sign">Д-р Кенан Рагимов</p>
+<button type="button" class="btn-order" onclick="openKitabModal()">Заказать книгу</button>
+</section>
+
+<div class="home-cards"><a href="mugeddime.html" class="home-card"><b>Предисловие</b><span>Предисловие редакции, об авторе и о книге</span></a><a href="kitab-haqqinda.html" class="home-card"><b>О книге</b><span>Почему МКБ-11, структура, порядок использования</span></a><a href="terminoloji-luget.html" class="home-card"><b>Терминологический словарь</b><span>Термины и аббревиатуры (на 3 языках)</span></a><a href="mundericat.html" class="home-card"><b>Содержание</b><span>Навигация по классификациям — 104 расстройства, 23 главы</span></a></div>
  <!-- BOOK-TOC:START -->
  <section class="book-toc">
  <h2 class="toc-title">СОДЕРЖАНИЕ</h2>
@@ -463,7 +481,7 @@ function toggleSub(btn){
  <button class="kitab-close" onclick="closeKitabModal()" aria-label="Закрыть">✕</button>
  <div class="kitab-logo">КП</div>
  <h2 class="kitab-title">Заказ книги</h2>
- <p class="kitab-desc">Книга готовится к печатному изданию. Если вы хотите быть в числе первых читателей, оставьте свои данные — мы свяжемся с вами сразу после выхода книги.</p>
+ <p class="kitab-desc">Книга уже издана, печатный экземпляр готов к отправке. Заказанный экземпляр я подпишу лично и отправлю почтой по любому адресу. Ориентировочная стоимость — 100&nbsp;$; если она вам не по силам, ниже можно отправить запрос на скидку.</p>
  <form id="kitab-form">
  <div class="kitab-field">
  <label for="kitab-name">Имя Фамилия</label>
@@ -479,13 +497,20 @@ function toggleSub(btn){
         </div>
         <div class="kitab-field">
           <label for="kitab-cls">Основная классификация</label>
-          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select>
+          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
+        <div class="kitab-field">
+          <label for="kitab-address">Адрес доставки</label>
+          <textarea id="kitab-address" name="address" rows="2" placeholder="Страна, город, полный адрес" required></textarea>
+        </div>
+        <div class="kitab-field">
+          <label for="kitab-discount">Скидка (по желанию)</label>
+          <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
         </div>
 
  <button type="submit" class="kitab-submit">Заказать</button>
  </form>
  <div id="kitab-success" class="kitab-success" style="display:none">
- Благодарим вас!<br>Мы свяжемся с вами, как только книга будет опубликована.
+ Благодарим вас!<br>Мы свяжемся с вами в ближайшее время, чтобы уточнить детали доставки.
  </div>
  </div>
 </div>
@@ -509,12 +534,16 @@ function toggleSub(btn){
  var btn = form.querySelector('button[type="submit"]');
  var name = (document.getElementById('kitab-name').value || '').trim();
  var phone = (document.getElementById('kitab-phone').value || '').trim();
+
+        var address = (document.getElementById('kitab-address').value || '').trim();
+
+        var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
         var langEl = document.getElementById('kitab-lang');
         var clsEl  = document.getElementById('kitab-cls');
         var lang = langEl ? langEl.value : '';
         var langName = langEl ? langEl.options[langEl.selectedIndex].text : '';
         var cls  = clsEl ? clsEl.value : '';
- if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+ if (!name || !phone || !address) { alert('Пожалуйста, укажите Имя Фамилию, Телефон и Адрес.'); return; }
  var parts = name.split(/\s+/);
  var payload = {
  type: 'registration',
@@ -524,7 +553,11 @@ function toggleSub(btn){
  service: 'Kitab sifarişi — ' + langName + ' / ' + cls,
           lang: lang,
           classification: cls,
- source: 'klinik-psixiatriya/kitab-sifarisi'
+ source: 'klinik-psixiatriya/kitab-sifarisi',
+
+          address: address,
+
+          discount: discount
  };
  if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
  try {
@@ -532,7 +565,11 @@ function toggleSub(btn){
  headers:{'Content-Type':'text/plain;charset=utf-8'},
  body: JSON.stringify(payload) });
  } catch(err) { console.error(err); }
- document.getElementById('kitab-success').style.display = 'block';
+ var waMsg = '📚 Заказ книги\nИмя: ' + name + '\nТелефон: ' + phone + '\nЯзык: ' + langName + '\nКлассификация: ' + cls + '\nАдрес: ' + address + '\nСкидка: ' + discount;
+
+        window.open('https://wa.me/994702200376?text=' + encodeURIComponent(waMsg), '_blank');
+
+        document.getElementById('kitab-success').style.display = 'block';
  form.style.display = 'none';
  });
  // ESC закрывает
