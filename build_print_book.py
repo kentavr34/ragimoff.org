@@ -353,15 +353,10 @@ def build_book_parts(lang: str) -> tuple[list[str], list[dict]]:
                    for m in re.finditer(r'<h1[^>]*>(.*?)</h1>', body)]
         add_part_needing_injection(body, entries)
 
-    # Abbreviations — appended last, own h1 stays; long table, no need to
-    # list every row in the TOC, just the page it starts on.
-    abbr_body = gather_frontback(lang, "abbreviatur.html")
-    m = re.search(r'<h1[^>]*>(.*?)</h1>', abbr_body)
-    entries = []
-    if m:
-        text = _clean(m.group(1))
-        entries.append({"level": "chapter", "text": text, "anchor": text})
-    add_part_needing_injection(abbr_body, entries)
+    # Abbreviations glossary intentionally dropped from the print book —
+    # owner's decision 2026-08-28: distracts, adds no clinical value,
+    # trims ~20 pages. Kept on disk as abbreviatur.html/terminoloji-luget.html
+    # (unlinked from site nav) purely as a local reference file.
 
     return parts, toc
 
