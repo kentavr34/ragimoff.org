@@ -159,7 +159,7 @@
       <a href="b2b.html">Корпоративное</a>
       <a href="blog.html">Блог</a>
       <a href="../index.html" class="lang-switch" aria-label="Azərbaycan dili">AZ</a><a href="index.html" class="lang-switch lang-active" aria-label="Русский">RU</a><a href="../en/index.html" class="lang-switch" aria-label="English">EN</a>
-      <a href="#" class="nav-cta" onclick="openKitabModal();return false;">ЗАКАЗ КНИГИ</a>
+      <a href="tehsil.html#registration" class="nav-cta">РЕГИСТРАЦИЯ</a>
     </nav>
 
     <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Меню">
@@ -221,7 +221,7 @@
   <a href="blog.html" onclick="toggleMenu()">Блог</a>
   <a href="../index.html" class="mobile-lang">Azərbaycan dili</a>
   <a href="../en/index.html" class="mobile-lang">English</a>
-  <a href="#" class="btn btn-fill" onclick="toggleMenu();openKitabModal();return false;">ЗАКАЗ КНИГИ</a>
+  <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">РЕГИСТРАЦИЯ</a>
 </nav>
 <!-- END: mobile-nav -->
     <!-- HERO -->
@@ -606,6 +606,7 @@
             <div class="form-group"><label for="tehsil-f2" class="form-label">Фамилия *</label><input id="tehsil-f2" class="form-input" type="text" name="soyad" required placeholder="Ваша фамилия" aria-label="Ваша фамилия"></div>
             <div class="form-group"><label for="tehsil-f3" class="form-label">Телефон *</label><input id="tehsil-f3" class="form-input" type="tel" name="telefon" required placeholder="+7 XXX XXX XX XX" aria-label="+7 XXX XXX XX XX"></div>
             <div class="form-group"><label for="tehsil-f4" class="form-label">E-mail</label><input id="tehsil-f4" class="form-input" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
+<div class="form-group"><label for="tehsil-f6" class="form-label">Адрес проживания</label><input id="tehsil-f6" class="form-input" type="text" name="unvan" placeholder="Город, улица, дом" aria-label="Адрес проживания"></div>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -643,17 +644,20 @@
             <div class="form-file-grid">
               <div class="form-file-item">
                 <span class="form-file-lbl">Диплом о высшем образовании *</span>
-                <input type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="form-file-hint">PDF, JPG или PNG — макс. 5 МБ</span>
+                <input multiple="" type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
+<div class="form-file-list" data-for="diplom" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+                <span class="form-file-hint">Обе стороны — отдельными файлами (PDF/JPG/PNG, до 5 МБ)</span>
               </div>
               <div class="form-file-item">
                 <span class="form-file-lbl">Удостоверение личности *</span>
-                <input type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="form-file-hint">PDF, JPG или PNG — макс. 5 МБ</span>
+                <input multiple="" type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
+<div class="form-file-list" data-for="shexsiyyet" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+                <span class="form-file-hint">Лицевая и обратная сторона — два файла (PDF/JPG/PNG, до 5 МБ)</span>
               </div>
               <div class="form-file-item">
                 <span class="form-file-lbl">Предыдущие сертификаты</span>
                 <input type="file" class="form-file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
+<div class="form-file-list" data-for="sertifikatlar" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
                 <span class="form-file-hint">Для скидки — можно прикрепить несколько файлов</span>
               </div>
             </div>
@@ -820,6 +824,41 @@
     <script>
       // Файлы уходят в payload как base64 — раньше обработчик их не читал,
       // и приложенные документы терялись молча.
+      // Накопительное прикрепление: выбранный файл попадает в список под
+      // полем, input очищается и остаётся активным — можно добавить ещё
+      // (обе стороны диплома, лицевую и обратную сторону удостоверения).
+      window.regFilePool = {};
+      (function () {
+        const form = document.getElementById('regForm');
+        if (!form) return;
+        function render(name) {
+          const box = form.querySelector('.form-file-list[data-for="' + name + '"]');
+          if (!box) return;
+          box.innerHTML = '';
+          window.regFilePool[name].forEach(function (f, i) {
+            const chip = document.createElement('span');
+            chip.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid rgba(181,155,114,0.45);background:rgba(181,155,114,0.08);font-size:0.75rem;line-height:1.6;word-break:break-all;';
+            chip.textContent = f.name + ' (' + Math.max(1, Math.round(f.size / 1024)) + ' KB)';
+            const x = document.createElement('button');
+            x.type = 'button';
+            x.textContent = '✕';
+            x.setAttribute('aria-label', 'remove file');
+            x.style.cssText = 'border:0;background:none;cursor:pointer;color:inherit;font-size:0.75rem;padding:0;';
+            x.addEventListener('click', function () { window.regFilePool[name].splice(i, 1); render(name); });
+            chip.appendChild(x);
+            box.appendChild(chip);
+          });
+        }
+        form.querySelectorAll('input[type="file"]').forEach(function (inp) {
+          window.regFilePool[inp.name] = [];
+          inp.addEventListener('change', function () {
+            for (const f of inp.files) window.regFilePool[inp.name].push(f);
+            inp.value = '';
+            render(inp.name);
+          });
+        });
+      })();
+
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = this;
@@ -830,13 +869,13 @@
 
         const MAX_FILE = 5 * 1024 * 1024;
         const picked = [];
-        for (const inp of form.querySelectorAll('input[type="file"]')) {
-          for (const f of inp.files) {
+        for (const fieldName in window.regFilePool) {
+          for (const f of window.regFilePool[fieldName]) {
             if (f.size > MAX_FILE) {
               alert('«' + f.name + '» больше 5 МБ. Пожалуйста, уменьшите файл и попробуйте снова.');
               return;
             }
-            picked.push({ field: inp.name, file: f });
+            picked.push({ field: fieldName, file: f });
           }
         }
 
@@ -860,6 +899,7 @@
           lname: fd.get('soyad') || '',
           phone: fd.get('telefon') || '',
           email: fd.get('email') || '',
+          address: fd.get('unvan') || '',
           service: fd.get('proqram') || '',
           note: [fd.get('odenis') ? 'Оплата: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
           source: 'ru/tehsil.html',

@@ -273,7 +273,7 @@
       <a href="b2b.html">Korporativ</a>
       <a href="blog.html">Blog</a>
       <a href="index.html" class="lang-switch lang-active" aria-label="Azərbaycan dili">AZ</a><a href="ru/index.html" class="lang-switch" aria-label="Русский">RU</a><a href="en/index.html" class="lang-switch" aria-label="English">EN</a>
-      <a href="#" class="nav-cta" onclick="openKitabModal();return false;">KİTABIN SİFARİŞİ</a>
+      <a href="tehsil.html#registration" class="nav-cta">QEYDİYYAT</a>
     </nav>
 
     <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
@@ -335,7 +335,7 @@
   <a href="blog.html" onclick="toggleMenu()">Blog</a>
   <a href="ru/index.html" class="mobile-lang">Русский</a>
   <a href="en/index.html" class="mobile-lang">English</a>
-  <a href="#" class="btn btn-fill" onclick="toggleMenu();openKitabModal();return false;">KİTABIN SİFARİŞİ</a>
+  <a href="tehsil.html#registration" class="btn btn-fill" onclick="toggleMenu()">QEYDİYYAT</a>
 </nav>
 <!-- END: mobile-nav -->
 <!-- HERO -->
@@ -702,6 +702,7 @@
 <div class="form-group"><label for="tehsil-f2" class="form-label">Soyad *</label><input id="tehsil-f2" class="form-input" name="soyad" placeholder="Soyadınız" required="" type="text" aria-label="Soyadınız"></div>
 <div class="form-group"><label for="tehsil-f3" class="form-label">Telefon *</label><input id="tehsil-f3" class="form-input" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel" aria-label="+994 XX XXX XX XX"></div>
 <div class="form-group"><label for="tehsil-f4" class="form-label">E-poçt</label><input id="tehsil-f4" class="form-input" name="email" placeholder="email@example.com" type="email" aria-label="email@example.com"></div>
+<div class="form-group"><label for="tehsil-f6" class="form-label">Yaşayış ünvanı</label><input id="tehsil-f6" class="form-input" type="text" name="unvan" placeholder="Şəhər, küçə, ev" aria-label="Yaşayış ünvanı"></div>
 </div>
 <div class="form-group" style="margin-top:24px;">
 <label class="form-label">Proqram seçin *</label>
@@ -736,17 +737,20 @@
 <div class="form-file-grid">
 <div class="form-file-item">
 <span class="form-file-lbl">Ali Təhsil Diplomu *</span>
-<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" name="diplom" type="file"/>
-<span class="form-file-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" name="diplom" multiple="" type="file"/>
+<div class="form-file-list" data-for="diplom" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+<span class="form-file-hint">Hər iki üzü ayrı-ayrı fayl kimi əlavə edin — PDF/JPG/PNG, maks. 5 MB</span>
 </div>
 <div class="form-file-item">
 <span class="form-file-lbl">Şəxsiyyət Vəsiqəsi *</span>
-<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" name="shexsiyyet" type="file"/>
-<span class="form-file-hint">PDF, JPG və ya PNG — maks. 5 MB</span>
+<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" name="shexsiyyet" multiple="" type="file"/>
+<div class="form-file-list" data-for="shexsiyyet" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+<span class="form-file-hint">Ön və arxa tərəf — iki ayrı fayl (PDF/JPG/PNG, maks. 5 MB)</span>
 </div>
 <div class="form-file-item">
 <span class="form-file-lbl">Əvvəlki Sertifikatlar</span>
 <input accept=".pdf,.jpg,.jpeg,.png" class="form-file" multiple="" name="sertifikatlar" type="file"/>
+<div class="form-file-list" data-for="sertifikatlar" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
 <span class="form-file-hint">Endirim üçün — bir neçə fayl əlavə edə bilərsiniz</span>
 </div>
 </div>
@@ -908,6 +912,41 @@
 <script>
       // Регистрация. Файлы уходят в payload как base64 — раньше обработчик их
       // вообще не читал, и приложенные документы терялись молча.
+      // Накопительное прикрепление: выбранный файл попадает в список под
+      // полем, input очищается и остаётся активным — можно добавить ещё
+      // (обе стороны диплома, лицевую и обратную сторону удостоверения).
+      window.regFilePool = {};
+      (function () {
+        const form = document.getElementById('regForm');
+        if (!form) return;
+        function render(name) {
+          const box = form.querySelector('.form-file-list[data-for="' + name + '"]');
+          if (!box) return;
+          box.innerHTML = '';
+          window.regFilePool[name].forEach(function (f, i) {
+            const chip = document.createElement('span');
+            chip.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid rgba(181,155,114,0.45);background:rgba(181,155,114,0.08);font-size:0.75rem;line-height:1.6;word-break:break-all;';
+            chip.textContent = f.name + ' (' + Math.max(1, Math.round(f.size / 1024)) + ' KB)';
+            const x = document.createElement('button');
+            x.type = 'button';
+            x.textContent = '✕';
+            x.setAttribute('aria-label', 'remove file');
+            x.style.cssText = 'border:0;background:none;cursor:pointer;color:inherit;font-size:0.75rem;padding:0;';
+            x.addEventListener('click', function () { window.regFilePool[name].splice(i, 1); render(name); });
+            chip.appendChild(x);
+            box.appendChild(chip);
+          });
+        }
+        form.querySelectorAll('input[type="file"]').forEach(function (inp) {
+          window.regFilePool[inp.name] = [];
+          inp.addEventListener('change', function () {
+            for (const f of inp.files) window.regFilePool[inp.name].push(f);
+            inp.value = '';
+            render(inp.name);
+          });
+        });
+      })();
+
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = this;
@@ -918,13 +957,13 @@
 
         const MAX_FILE = 5 * 1024 * 1024;
         const picked = [];
-        for (const inp of form.querySelectorAll('input[type="file"]')) {
-          for (const f of inp.files) {
+        for (const fieldName in window.regFilePool) {
+          for (const f of window.regFilePool[fieldName]) {
             if (f.size > MAX_FILE) {
               alert('"' + f.name + '" 5 MB-dan böyükdür. Zəhmət olmasa faylı kiçildib yenidən cəhd edin.');
               return;
             }
-            picked.push({ field: inp.name, file: f });
+            picked.push({ field: fieldName, file: f });
           }
         }
 
@@ -948,6 +987,7 @@
           lname: fd.get('soyad') || '',
           phone: fd.get('telefon') || '',
           email: fd.get('email') || '',
+          address: fd.get('unvan') || '',
           service: fd.get('proqram') || '',
           note: [fd.get('odenis') ? 'Ödəniş: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
           source: 'tehsil.html',
