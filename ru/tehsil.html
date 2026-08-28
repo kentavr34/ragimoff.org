@@ -591,7 +591,7 @@
         <div class="reg-path">
           <div class="reg-path-step"><span class="reg-path-num">Шаг 01</span><h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4><p>Фото диплома о высшем образовании и удостоверения личности. Если есть предыдущие сертификаты по психологии — найдите их тоже.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 02</span><h4>Заполните форму</h4><p>Имя, контактные данные, выбор программы и документы. Занимает 3 минуты.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Выберите способ оплаты</h4><p>Полная оплата (−10% скидка), 12- или 24-месячная рассрочка. Решение принимается до отправки формы.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Выберите способ оплаты</h4><p>Предоплата (со скидкой) или рассрочка на 3–24 месяца — сумма считается в форме автоматически. Решение принимается до отправки формы.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 04</span><h4>Начинайте</h4><p>Место подтверждается, вас добавляют в Telegram-группу. До старта следующей группы открывается доступ к видеоархиву.</p></div>
         </div>
 
@@ -623,17 +623,19 @@
           </div>
 
           <div class="form-group" style="margin-top:20px;">
-            <label for="o2" class="form-label">Предпочтительный способ оплаты</label>
-            <div class="form-radio-group cols3">
-              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Полная оплата"/>
-<label for="o1" class="form-radio-lbl" data-pay="full">Полная оплата<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12 мес. рассрочка"/>
-<label for="o2" class="form-radio-lbl" data-pay="m12">12-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24 мес. рассрочка"/>
-<label for="o3" class="form-radio-lbl" data-pay="m24">24-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3 мес. рассрочка"/>
-<label for="o4" class="form-radio-lbl" data-pay="m3">3-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-            </div>
+            <label class="form-label">Способ оплаты</label>
+            <div class="form-radio-group cols2">
+              <input class="form-radio-tile" id="pt1" name="odenis_tip" type="radio" value="prepay"/>
+<label for="pt1" class="form-radio-lbl">Предоплата<br><span class="pay-sum" id="ptPrepaySum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="pt2" name="odenis_tip" type="radio" value="hisse"/>
+<label for="pt2" class="form-radio-lbl">Рассрочка<br><span class="pay-sum" id="ptHisseSum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+</div>
+<div id="termWrap" style="display:none;margin-top:14px;">
+<label for="termSel" class="form-label">На сколько месяцев?</label>
+<select id="termSel" class="form-input" style="cursor:pointer;" aria-label="Срок рассрочки"></select>
+</div>
+<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(181,155,114,0.35);border-left:2px solid var(--accent);background:rgba(181,155,114,0.06);font-size:0.875rem;line-height:1.9;"></div>
+<input type="hidden" name="odenis" id="odenisHidden"/>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -816,12 +818,42 @@
     })();
     </script>
     <script>
+      // Файлы уходят в payload как base64 — раньше обработчик их не читал,
+      // и приложенные документы терялись молча.
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const form = this;
         const btn = form.querySelector('button[type="submit"]');
+        const btnText = btn.textContent;
         const success = document.getElementById('regSuccess');
         const fd = new FormData(form);
+
+        const MAX_FILE = 5 * 1024 * 1024;
+        const picked = [];
+        for (const inp of form.querySelectorAll('input[type="file"]')) {
+          for (const f of inp.files) {
+            if (f.size > MAX_FILE) {
+              alert('«' + f.name + '» больше 5 МБ. Пожалуйста, уменьшите файл и попробуйте снова.');
+              return;
+            }
+            picked.push({ field: inp.name, file: f });
+          }
+        }
+
+        btn.textContent = 'Отправляется...';
+        btn.disabled = true;
+
+        const attachments = [];
+        for (const it of picked) {
+          const data = await new Promise(function (res) {
+            const r = new FileReader();
+            r.onload = function () { res(String(r.result).split(',')[1] || ''); };
+            r.onerror = function () { res(''); };
+            r.readAsDataURL(it.file);
+          });
+          if (data) attachments.push({ field: it.field, filename: it.file.name, mime: it.file.type || 'application/octet-stream', data: data });
+        }
+
         const payload = {
           type: 'registration',
           fname: fd.get('ad') || '',
@@ -830,11 +862,16 @@
           email: fd.get('email') || '',
           service: fd.get('proqram') || '',
           note: [fd.get('odenis') ? 'Оплата: ' + fd.get('odenis') : '', fd.get('qeyd') || ''].filter(Boolean).join(' | '),
-          source: 'ru/tehsil.html'
+          source: 'ru/tehsil.html',
+          attachments: attachments
         };
-        btn.textContent = 'Отправляется...';
-        btn.disabled = true;
-        await submitToAPI(payload);
+        const res = await submitToAPI(payload);
+        if (!res.ok) {
+          showSendError(form);
+          btn.textContent = btnText;
+          btn.disabled = false;
+          return;
+        }
         form.style.opacity = '0.5';
         form.style.pointerEvents = 'none';
         success.style.display = 'block';
@@ -946,38 +983,98 @@
 <!-- END: kitab-modal -->
 
 <script>
-  /* Прайс из карточек этой же страницы. Варианты оплаты у программ разные:
-     у семейной терапии рассрочка только на три месяца, у остальных — на
-     12 или 24. Показываем лишь то, что существует, и сразу с суммой, чтобы
-     человек не считал в уме и не выбирал несуществующее условие. */
+  /* Калькулятор оплаты (2026-08-28, решение владельца). База — цена за
+     12-месячную рассрочку (месячная × 12 из карточек). При предоплате —
+     скидка; короче 12 месяцев скидка тает пропорционально; дольше 12 —
+     за второй год суммарно +600 AZN, размазанные по месяцам. Месячный
+     платёж округляется вверх до кратного 5, итог = месячный × месяцы
+     (пример владельца: Клиническая 9 мес → 6450/9=716.67 → 720 × 9 = 6480).
+     Семейная терапия вне формулы — цены фиксированы как на сайте. */
   (function () {
-    var PRICE = {
-      'Общая психология':          { full: '3 800 AZN (при 100% оплате −10%)', m12: '350 AZN/мес.', m24: '200 AZN/мес.' },
-      'Клиническая психология':    { full: '6 000 AZN (при 100% оплате −10%)', m12: '550 AZN/мес.', m24: '300 AZN/мес.' },
-      'Практикум по психотерапии': { full: '3 000 AZN (при 100% оплате −20%)', m12: '300 AZN/мес.', m24: '175 AZN/мес.' },
-      'Семейная терапия':          { full: '500 AZN (предоплата)',              m3:  '200 AZN/мес. · 3 мес.' }
+    var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
+    var PLANS = {
+      'Общая психология':          { base: 4200, prepay: 3800, months: ALL },
+      'Клиническая психология':    { base: 6600, prepay: 6000, months: ALL },
+      'Практикум по психотерапии': { base: 3600, prepay: 3000, months: ALL,
+        fastNote: 'При оплате в день обращения — дополнительно −500 AZN → 2 500 AZN' },
+      'Семейная терапия':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
     };
     var form = document.getElementById('regForm');
     if (!form) return;
-    function refresh() {
-      var chosen = form.querySelector('input[name="proqram"]:checked');
-      var price = chosen ? PRICE[chosen.value] : null;
-      form.querySelectorAll('label[data-pay]').forEach(function (lbl) {
-        var key = lbl.getAttribute('data-pay');
-        var input = document.getElementById(lbl.getAttribute('for'));
-        var has = price && price[key];
-        lbl.style.display = has ? '' : 'none';
-        if (input) {
-          input.disabled = !has;
-          if (!has && input.checked) input.checked = false;
-        }
-        var sum = lbl.querySelector('.pay-sum');
-        if (sum) sum.textContent = has ? price[key] : '';
-      });
+    var termWrap = document.getElementById('termWrap');
+    var termSel  = document.getElementById('termSel');
+    var calcBox  = document.getElementById('payCalc');
+    var hidden   = document.getElementById('odenisHidden');
+    var prepaySum = document.getElementById('ptPrepaySum');
+    var hisseSum  = document.getElementById('ptHisseSum');
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+    function calc(plan, n) {
+      if (plan.fixed && plan.fixed[n]) return { monthly: plan.fixed[n], total: plan.fixed[n] * n };
+      var raw = n <= 12
+        ? plan.base - (plan.base - plan.prepay) * (12 - n) / 12
+        : plan.base + 600 * (n - 12) / 12;
+      var m = raw / n;
+      if (m !== Math.floor(m)) m = Math.ceil(m / 5) * 5;
+      return { monthly: m, total: m * n };
     }
-    form.querySelectorAll('input[name="proqram"]').forEach(function (r) {
+    function line(l, v, strong) {
+      var w = strong ? 'font-weight:800;' : '';
+      return '<div style="display:flex;justify-content:space-between;gap:16px;"><span style="opacity:.7;' + w + '">' + l + '</span><span style="' + w + '">' + v + '</span></div>';
+    }
+    function rebuildTerms(plan) {
+      var keep = parseInt(termSel.value, 10);
+      termSel.innerHTML = '';
+      plan.months.forEach(function (n) {
+        var c = calc(plan, n);
+        var o = document.createElement('option');
+        o.value = n;
+        o.textContent = n + ' мес. — ' + fmt(c.monthly) + ' AZN/мес. (итого ' + fmt(c.total) + ' AZN)';
+        termSel.appendChild(o);
+      });
+      if (plan.months.indexOf(keep) !== -1) termSel.value = keep;
+    }
+    function refresh() {
+      var p = form.querySelector('input[name="proqram"]:checked');
+      var plan = p ? PLANS[p.value] : null;
+      if (!plan) {
+        termWrap.style.display = 'none'; calcBox.style.display = 'none';
+        prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
+        return;
+      }
+      prepaySum.textContent = fmt(plan.prepay) + ' AZN (скидка ' + fmt(plan.base - plan.prepay) + ' AZN)';
+      hisseSum.textContent = plan.months.length > 1
+        ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' мес.'
+        : plan.months[0] + ' мес. — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/мес.';
+      var t = form.querySelector('input[name="odenis_tip"]:checked');
+      var rows = [];
+      if (t && t.value === 'hisse') {
+        rebuildTerms(plan);
+        termWrap.style.display = '';
+        var n = parseInt(termSel.value, 10);
+        var c = calc(plan, n);
+        rows.push(line('Цена курса', fmt(plan.base) + ' AZN'));
+        if (c.total < plan.base) rows.push(line('Скидка', '−' + fmt(plan.base - c.total) + ' AZN'));
+        rows.push(line('Итого', fmt(c.total) + ' AZN', true));
+        rows.push(line('Ежемесячно', fmt(c.monthly) + ' AZN × ' + n + ' мес.'));
+        hidden.value = 'Рассрочка ' + n + ' мес. — ' + c.monthly + ' AZN/мес., итого ' + c.total + ' AZN';
+      } else if (t && t.value === 'prepay') {
+        termWrap.style.display = 'none';
+        rows.push(line('Цена курса', fmt(plan.base) + ' AZN'));
+        rows.push(line('Скидка', '−' + fmt(plan.base - plan.prepay) + ' AZN'));
+        rows.push(line('Итого', fmt(plan.prepay) + ' AZN', true));
+        if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
+        hidden.value = 'Предоплата — ' + plan.prepay + ' AZN (скидка ' + (plan.base - plan.prepay) + ' AZN)';
+      } else {
+        termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
+        return;
+      }
+      calcBox.innerHTML = rows.join('');
+      calcBox.style.display = '';
+    }
+    form.querySelectorAll('input[name="proqram"], input[name="odenis_tip"]').forEach(function (r) {
       r.addEventListener('change', refresh);
     });
+    termSel.addEventListener('change', refresh);
     refresh();
   })();
 </script>
