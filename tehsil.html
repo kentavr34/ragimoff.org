@@ -953,7 +953,7 @@
           source: 'tehsil.html',
           attachments: attachments
         };
-        const res = await submitToAPI(payload);
+        const res = await submitRegistration(payload);
         if (!res.ok) {
           showSendError(form);
           btn.textContent = btnText;

@@ -243,6 +243,29 @@ async function submitToAPI(payload) {
   }
 }
 
+// Регистрация на обучение идёт на свой сервер (api.ragimoff.org): документы
+// хранятся там + уведомление в Telegram. Apps Script остаётся запасным
+// каналом — если сервер недоступен, заявка уходит по старому пути, поэтому
+// переход бесшовный и ни одна заявка не теряется.
+const RAGIMOFF_SERVER_API = 'https://api.ragimoff.org/api/register';
+
+async function submitRegistration(payload) {
+  try {
+    const res = await fetch(RAGIMOFF_SERVER_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      const data = await res.json().catch(function () { return null; });
+      if (!data || data.ok !== false) return { ok: true };
+    }
+  } catch (err) {
+    console.warn('server API unavailable, falling back:', err);
+  }
+  return submitToAPI(payload);
+}
+
 // Сообщение о неудаче: заявка не ушла, человека нельзя оставлять с ощущением,
 // что всё в порядке. Даём прямой путь — WhatsApp.
 function showSendError(form) {
