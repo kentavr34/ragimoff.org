@@ -615,24 +615,22 @@
               <label for="p2" class="form-radio-lbl">Clinical Psychology<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1,528 h · CPD Diploma</span></label>
               <input type="radio" name="proqram" id="p3" value="Psychotherapy Practicum" class="form-radio-tile" />
               <label for="p3" class="form-radio-lbl">Psychotherapy Practicum<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 h · IPAS Certificate</span></label>
-            <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Ailə Terapiyası"/>
-<label for="p4" class="form-radio-lbl">Ailə Terapiyası<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">IPAS Sertifikat · 2 modul</span></label>
+            <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Family Therapy"/>
+<label for="p4" class="form-radio-lbl">Family Therapy<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">IPAS Certificate · 2 modules</span></label>
 </div>
           </div>
 
           <div class="form-group" style="margin-top:20px;">
             <label for="o2" class="form-label">Preferred payment method</label>
             <div class="form-radio-group cols3">
-              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Tam ödəniş"/>
-<label for="o1" class="form-radio-lbl" data-pay="full">Tam ödəniş<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12 ay taksit"/>
-<label for="o2" class="form-radio-lbl" data-pay="m12">12 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24 ay taksit"/>
-<label for="o3" class="form-radio-lbl" data-pay="m24">24 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3 ay taksit"/>
-<label for="o4" class="form-radio-lbl" data-pay="m3">3 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input type="radio" name="odenis" id="o5" value="24-month instalment" class="form-radio-tile" />
-              <label for="o5" class="form-radio-lbl">24-Month Instalment</label>
+              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Full payment"/>
+<label for="o1" class="form-radio-lbl" data-pay="full">Full payment<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12-month instalment"/>
+<label for="o2" class="form-radio-lbl" data-pay="m12">12-month instalment<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24-month instalment"/>
+<label for="o3" class="form-radio-lbl" data-pay="m24">24-month instalment<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3-month instalment"/>
+<label for="o4" class="form-radio-lbl" data-pay="m3">3-month instalment<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
             </div>
           </div>
 
@@ -952,10 +950,10 @@
      человек не считал в уме и не выбирал несуществующее условие. */
   (function () {
     var PRICE = {
-      'Ümumi Psixologiya':       { full: '3 800 AZN (100% ödənişdə −10%)', m12: '350 AZN/ay', m24: '200 AZN/ay' },
-      'Klinik Psixologiya':      { full: '6 000 AZN (100% ödənişdə −10%)', m12: '550 AZN/ay', m24: '300 AZN/ay' },
-      'Psixoterapiya Praktikumu':{ full: '3 000 AZN (100% ödənişdə −20%)', m12: '300 AZN/ay', m24: '175 AZN/ay' },
-      'Ailə Terapiyası':         { full: '500 AZN (öncədən ödənişdə)',     m3:  '200 AZN/ay · 3 ay' }
+      'General Psychology':       { full: '3,800 AZN (100% payment: −10%)', m12: '350 AZN/mo.', m24: '200 AZN/mo.' },
+      'Clinical Psychology':      { full: '6,000 AZN (100% payment: −10%)', m12: '550 AZN/mo.', m24: '300 AZN/mo.' },
+      'Psychotherapy Practicum':  { full: '3,000 AZN (100% payment: −20%)', m12: '300 AZN/mo.', m24: '175 AZN/mo.' },
+      'Family Therapy':           { full: '500 AZN (prepayment)',           m3:  '200 AZN/mo. · 3 mo.' }
     };
     var form = document.getElementById('regForm');
     if (!form) return;

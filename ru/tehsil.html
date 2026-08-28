@@ -613,28 +613,26 @@
             <div class="form-radio-group cols2">
               <input type="radio" name="proqram" id="p1" value="Общая психология" class="form-radio-tile" required />
               <label for="p1" class="form-radio-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ч · Диплом ДПО</span></label>
-              <input type="radio" name="proqram" id="p2" value="Klinik Psixologiya" class="form-radio-tile" />
+              <input type="radio" name="proqram" id="p2" value="Клиническая психология" class="form-radio-tile" />
               <label for="p2" class="form-radio-lbl">Клиническая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ч · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="form-radio-tile" />
               <label for="p3" class="form-radio-lbl">Практикум по психотерапии<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ч · Сертификат IPAS</span></label>
-            <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Ailə Terapiyası"/>
-<label for="p4" class="form-radio-lbl">Ailə Terapiyası<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">IPAS Sertifikat · 2 modul</span></label>
+            <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Семейная терапия"/>
+<label for="p4" class="form-radio-lbl">Семейная терапия<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">Сертификат IPAS · 2 модуля</span></label>
 </div>
           </div>
 
           <div class="form-group" style="margin-top:20px;">
             <label for="o2" class="form-label">Предпочтительный способ оплаты</label>
             <div class="form-radio-group cols3">
-              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Tam ödəniş"/>
-<label for="o1" class="form-radio-lbl" data-pay="full">Tam ödəniş<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12 ay taksit"/>
-<label for="o2" class="form-radio-lbl" data-pay="m12">12 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24 ay taksit"/>
-<label for="o3" class="form-radio-lbl" data-pay="m24">24 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3 ay taksit"/>
-<label for="o4" class="form-radio-lbl" data-pay="m3">3 ay taksit<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input type="radio" name="odenis" id="o5" value="24 ay rəssite" class="form-radio-tile" />
-              <label for="o5" class="form-radio-lbl">Рассрочка 24 мес.</label>
+              <input class="form-radio-tile" id="o1" name="odenis" type="radio" value="Полная оплата"/>
+<label for="o1" class="form-radio-lbl" data-pay="full">Полная оплата<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o2" name="odenis" type="radio" value="12 мес. рассрочка"/>
+<label for="o2" class="form-radio-lbl" data-pay="m12">12-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o3" name="odenis" type="radio" value="24 мес. рассрочка"/>
+<label for="o3" class="form-radio-lbl" data-pay="m24">24-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
+<input class="form-radio-tile" id="o4" name="odenis" type="radio" value="3 мес. рассрочка"/>
+<label for="o4" class="form-radio-lbl" data-pay="m3">3-месячная рассрочка<br><span class="pay-sum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
             </div>
           </div>
 
@@ -954,10 +952,10 @@
      человек не считал в уме и не выбирал несуществующее условие. */
   (function () {
     var PRICE = {
-      'Ümumi Psixologiya':       { full: '3 800 AZN (100% ödənişdə −10%)', m12: '350 AZN/ay', m24: '200 AZN/ay' },
-      'Klinik Psixologiya':      { full: '6 000 AZN (100% ödənişdə −10%)', m12: '550 AZN/ay', m24: '300 AZN/ay' },
-      'Psixoterapiya Praktikumu':{ full: '3 000 AZN (100% ödənişdə −20%)', m12: '300 AZN/ay', m24: '175 AZN/ay' },
-      'Ailə Terapiyası':         { full: '500 AZN (öncədən ödənişdə)',     m3:  '200 AZN/ay · 3 ay' }
+      'Общая психология':          { full: '3 800 AZN (при 100% оплате −10%)', m12: '350 AZN/мес.', m24: '200 AZN/мес.' },
+      'Клиническая психология':    { full: '6 000 AZN (при 100% оплате −10%)', m12: '550 AZN/мес.', m24: '300 AZN/мес.' },
+      'Практикум по психотерапии': { full: '3 000 AZN (при 100% оплате −20%)', m12: '300 AZN/мес.', m24: '175 AZN/мес.' },
+      'Семейная терапия':          { full: '500 AZN (предоплата)',              m3:  '200 AZN/мес. · 3 мес.' }
     };
     var form = document.getElementById('regForm');
     if (!form) return;
