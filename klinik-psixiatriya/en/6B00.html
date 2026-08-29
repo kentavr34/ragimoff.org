@@ -702,6 +702,8 @@ function toggleSub(btn){
 <script>
 (function(){
   var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+
+ var BOOK_API = 'https://api.ragimoff.org/api/book-order';
   window.openKitabModal = function(){
     document.getElementById('kitab-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -752,7 +754,9 @@ function toggleSub(btn){
       };
       if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
       try {
-        await fetch(KITAB_API, { method:'POST', mode:'no-cors',
+        fetch(BOOK_API, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }).catch(function(){});
+
+ await fetch(KITAB_API, { method:'POST', mode:'no-cors',
           headers:{'Content-Type':'text/plain;charset=utf-8'},
           body: JSON.stringify(payload) });
       } catch(err) { console.error(err); }
