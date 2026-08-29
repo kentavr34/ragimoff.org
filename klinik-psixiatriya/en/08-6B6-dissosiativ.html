@@ -407,9 +407,15 @@ function toggleSub(btn){
           <label for="kitab-cls">Primary classification</label>
           <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
         <div class="kitab-field">
-          <label for="kitab-address">Delivery address</label>
-          <textarea id="kitab-address" name="address" rows="2" placeholder="Country, city, full address" required></textarea>
+          <button type="button" id="kitab-geo" class="kitab-geo-btn">📍 Use my location</button>
+          <div class="kitab-geo-status" id="kitab-geo-status"></div>
         </div>
+        <div class="kitab-field-row">
+          <div class="kitab-field"><label for="kitab-country">Country</label><input id="kitab-country" name="country" type="text" placeholder="Azerbaijan" autocomplete="country-name"></div>
+          <div class="kitab-field"><label for="kitab-postal">Postal code</label><input id="kitab-postal" name="postal" type="text" placeholder="AZ1000" autocomplete="postal-code"></div>
+        </div>
+        <div class="kitab-field"><label for="kitab-city">City</label><input id="kitab-city" name="city" type="text" placeholder="Baku" autocomplete="address-level2"></div>
+        <div class="kitab-field"><label for="kitab-street">Street, house, apartment</label><textarea id="kitab-street" name="street" rows="2" placeholder="Full address" required autocomplete="street-address"></textarea></div>
         <div class="kitab-field">
           <label for="kitab-discount">Discount request (optional)</label>
           <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
@@ -422,6 +428,52 @@ function toggleSub(btn){
     </div>
   </div>
 </div>
+<script>
+(function(){
+  var btn = document.getElementById('kitab-geo');
+  if (!btn) return;
+  var status = document.getElementById('kitab-geo-status');
+  var cCountry = document.getElementById('kitab-country');
+  var cCity = document.getElementById('kitab-city');
+  var cPostal = document.getElementById('kitab-postal');
+  var cStreet = document.getElementById('kitab-street');
+  btn.addEventListener('click', function(){
+    if (!navigator.geolocation) {
+      status.textContent = 'Your browser does not support geolocation.';
+      status.className = 'kitab-geo-status err';
+      return;
+    }
+    btn.disabled = true;
+    status.className = 'kitab-geo-status';
+    status.textContent = 'Locating you…';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var lat = pos.coords.latitude, lon = pos.coords.longitude;
+      fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon + '&addressdetails=1&accept-language=en')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var a = (d && d.address) || {};
+          if (a.country) cCountry.value = a.country;
+          if (a.postcode) cPostal.value = a.postcode;
+          var city = a.city || a.town || a.village || a.municipality || a.county;
+          if (city) cCity.value = city;
+          var street = [a.road, a.house_number].filter(Boolean).join(' ');
+          if (street) cStreet.value = street;
+          status.textContent = 'Address filled in — please check and adjust if needed.';
+          btn.disabled = false;
+        })
+        .catch(function(){
+          status.textContent = 'Could not determine the address, please enter it manually.';
+          status.className = 'kitab-geo-status err';
+          btn.disabled = false;
+        });
+    }, function(){
+      status.textContent = 'Permission denied — please enter the address manually.';
+      status.className = 'kitab-geo-status err';
+      btn.disabled = false;
+    }, { timeout: 10000 });
+  });
+})();
+</script>
 <script>
 (function(){
   var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
@@ -443,7 +495,13 @@ function toggleSub(btn){
       var name  = (document.getElementById('kitab-name').value || '').trim();
       var phone = (document.getElementById('kitab-phone').value || '').trim();
 
-        var address = (document.getElementById('kitab-address').value || '').trim();
+        var address = (function(){
+          var country = (document.getElementById('kitab-country').value || '').trim();
+          var city    = (document.getElementById('kitab-city').value || '').trim();
+          var postal  = (document.getElementById('kitab-postal').value || '').trim();
+          var street  = (document.getElementById('kitab-street').value || '').trim();
+          return [street, city, postal, country].filter(Boolean).join(', ');
+        })();
 
         var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
         var langEl = document.getElementById('kitab-lang');

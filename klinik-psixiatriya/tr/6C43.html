@@ -1119,9 +1119,15 @@ function toggleSub(btn){
 
           <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
         <div class="kitab-field">
-          <label for="kitab-address">Teslimat adresi</label>
-          <textarea id="kitab-address" name="address" rows="2" placeholder="Ülke, şehir, tam adres" required></textarea>
+          <button type="button" id="kitab-geo" class="kitab-geo-btn">📍 Konumumu kullan</button>
+          <div class="kitab-geo-status" id="kitab-geo-status"></div>
         </div>
+        <div class="kitab-field-row">
+          <div class="kitab-field"><label for="kitab-country">Ülke</label><input id="kitab-country" name="country" type="text" placeholder="Azerbaycan" autocomplete="country-name"></div>
+          <div class="kitab-field"><label for="kitab-postal">Posta kodu</label><input id="kitab-postal" name="postal" type="text" placeholder="AZ1000" autocomplete="postal-code"></div>
+        </div>
+        <div class="kitab-field"><label for="kitab-city">Şehir</label><input id="kitab-city" name="city" type="text" placeholder="Bakü" autocomplete="address-level2"></div>
+        <div class="kitab-field"><label for="kitab-street">Sokak, bina, daire</label><textarea id="kitab-street" name="street" rows="2" placeholder="Tam adres" required autocomplete="street-address"></textarea></div>
         <div class="kitab-field">
           <label for="kitab-discount">İndirim talebi (isteğe bağlı)</label>
           <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
@@ -1143,6 +1149,52 @@ function toggleSub(btn){
 
 </div>
 
+<script>
+(function(){
+  var btn = document.getElementById('kitab-geo');
+  if (!btn) return;
+  var status = document.getElementById('kitab-geo-status');
+  var cCountry = document.getElementById('kitab-country');
+  var cCity = document.getElementById('kitab-city');
+  var cPostal = document.getElementById('kitab-postal');
+  var cStreet = document.getElementById('kitab-street');
+  btn.addEventListener('click', function(){
+    if (!navigator.geolocation) {
+      status.textContent = 'Tarayıcınız konum belirlemeyi desteklemiyor.';
+      status.className = 'kitab-geo-status err';
+      return;
+    }
+    btn.disabled = true;
+    status.className = 'kitab-geo-status';
+    status.textContent = 'Konumunuz belirleniyor…';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var lat = pos.coords.latitude, lon = pos.coords.longitude;
+      fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon + '&addressdetails=1&accept-language=tr')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var a = (d && d.address) || {};
+          if (a.country) cCountry.value = a.country;
+          if (a.postcode) cPostal.value = a.postcode;
+          var city = a.city || a.town || a.village || a.municipality || a.county;
+          if (city) cCity.value = city;
+          var street = [a.road, a.house_number].filter(Boolean).join(' ');
+          if (street) cStreet.value = street;
+          status.textContent = 'Adres dolduruldu — kontrol edip gerekirse düzeltin.';
+          btn.disabled = false;
+        })
+        .catch(function(){
+          status.textContent = 'Adres bulunamadı, lütfen elle girin.';
+          status.className = 'kitab-geo-status err';
+          btn.disabled = false;
+        });
+    }, function(){
+      status.textContent = 'İzin verilmedi — lütfen adresi elle girin.';
+      status.className = 'kitab-geo-status err';
+      btn.disabled = false;
+    }, { timeout: 10000 });
+  });
+})();
+</script>
 <script>
 
 (function(){
@@ -1183,7 +1235,13 @@ function toggleSub(btn){
 
       var phone = (document.getElementById('kitab-phone').value || '').trim();
 
-        var address = (document.getElementById('kitab-address').value || '').trim();
+        var address = (function(){
+          var country = (document.getElementById('kitab-country').value || '').trim();
+          var city    = (document.getElementById('kitab-city').value || '').trim();
+          var postal  = (document.getElementById('kitab-postal').value || '').trim();
+          var street  = (document.getElementById('kitab-street').value || '').trim();
+          return [street, city, postal, country].filter(Boolean).join(', ');
+        })();
 
         var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
 

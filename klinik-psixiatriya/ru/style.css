@@ -128,7 +128,8 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
 .kitab-box{
   background:var(--bg2);border:1px solid var(--border);
   border-radius:12px;padding:36px 32px 28px;
-  width:100%;max-width:400px;margin:20px;
+  width:100%;max-width:460px;margin:20px;
+  max-height:calc(100vh - 40px);overflow-y:auto;
   position:relative;box-shadow:0 30px 80px rgba(0,0,0,.7);
 }
 .kitab-close{
@@ -158,15 +159,33 @@ mark{background:var(--gold);color:var(--bg);border-radius:2px;padding:0 2px}
   color:var(--text3);margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;
 }
 .kitab-field input,
-.kitab-field select{
+.kitab-field select,
+.kitab-field textarea{
   width:100%;background:var(--bg3);
   border:1px solid var(--border);border-radius:6px;
   color:var(--text);font-family:var(--font);font-size:14px;
   padding:10px 13px;outline:none;box-sizing:border-box;
   transition:border-color .2s;
 }
+.kitab-field textarea{resize:vertical;min-height:52px;line-height:1.5;font-family:inherit}
 .kitab-field input:focus,
-.kitab-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+.kitab-field select:focus,
+.kitab-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+/* Адрес доставки — структурированные поля вместо одного textarea
+   (2026-08-29): было слишком мелко для страны/города/индекса/улицы. */
+.kitab-field-row{display:flex;gap:10px}
+.kitab-field-row .kitab-field{flex:1;min-width:0}
+.kitab-field-hint{font-size:11px;color:var(--text3);margin:-8px 0 14px;line-height:1.5}
+.kitab-geo-btn{
+  width:100%;background:var(--bg3);border:1px dashed var(--border);
+  border-radius:6px;color:var(--gold);font-family:var(--font);
+  font-size:13px;font-weight:600;padding:10px 13px;cursor:pointer;
+  margin-bottom:14px;transition:border-color .2s,background .2s;
+}
+.kitab-geo-btn:hover{border-color:var(--gold);background:var(--bg2)}
+.kitab-geo-btn:disabled{opacity:.6;cursor:wait}
+.kitab-geo-status{font-size:11px;color:var(--text3);margin:-10px 0 14px;min-height:14px}
+.kitab-geo-status.err{color:#e08a8a}
 /* Язык издания и основная классификация — добавлены в заявку 2026-08-10:
    без них по заказу нельзя было понять, какое издание человек ждёт. */
 .kitab-field select{cursor:pointer;appearance:none;
