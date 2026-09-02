@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-24",
+  "updated": "2026-09-03",
   "root": "D:\\Документы\\ragimoff",
   "remote": "https://github.com/kentavr34/ragimoff.org.git",
   "domain": "ragimoff.org",
   "hosting": "GitHub Pages",
   "active_branch": "main",
   "worktree": null,
-  "note": "root/remote/branch corrected 2026-08-24 — with old values, everything below was accurate. Ветка claude/stupefied-cori-5b6e4a и её worktree удалены 2026-08-13 (см. PROGRESS.md); на GitHub осталась одна ветка main.",
+  "note": "root/remote/branch corrected 2026-08-24 — with old values, everything below was accurate. Ветка claude/stupefied-cori-5b6e4a и её worktree удалены 2026-08-13 (см. PROGRESS.md); на GitHub осталась одна ветка main. Правка 2026-09-03: ниже исправлены три группы ссылок на уже несуществующее — старый фиттер js-hero-fit.js, виджет «Düzəliş et» (duzelis.*) и каталог _supplements/chapters-v2/. Каждый путь проверен Test-Path пофактово, а не по памяти из CLAUDE.md.",
   "projects": [
     {
       "id": "site",
@@ -20,9 +20,10 @@
       ],
       "pages_count_approx": {
         "az": 60,
-        "ru": 55,
-        "en": 56
+        "ru": 56,
+        "en": 55
       },
+      "fit2_coverage": "проверено 2026-09-03 обходом диска: js-hero-fit2.js подключают 163 страницы (az 55 + ru 54 + en 54), всего на них 335 подзаголовков sec-sub (az 113 + ru 111 + en 111). В DESIGN-STANDARD.md замер по 160 страницам и 334 декам: три страницы блоговых хабов (blog.html, ru/blog.html, en/blog.html) содержат sec-sub-разметку в нуле, поэтому в выборку не попадают.",
       "renderer": "build.py",
       "templating": "_partials/*.html + _i18n.json (mustache-style {{var}})",
       "components": [
@@ -33,7 +34,8 @@
         "kitab-modal"
       ],
       "design_tokens": "gtc.css + gtc-dark.css (Binance-inspired palette)",
-      "page_hero_system": ".page-hero-x with js-hero-fit.js binary-search font-fitting (620px desktop)",
+      "page_hero_system": "реализация — js-hero-fit2.js. Старый js-hero-fit.js мёртв: ни одной HTML-ссылки на него (проверено обходом 2026-09-03), лежит в репо до решения владельца. Хиро с поиском ровняется на 620 px / 53 % бокса; пары h2 ↔ p.sec-sub на внутренних страницах получают наибольший кегль не выше 0,70 кегля заголовка при ≤3 строках.",
+      "design_standard": "DESIGN-STANDARD.md — единый стандарт пары «заголовок ↔ подзаголовок», кеглей, ритма и ловушек; §1 и §6a задают правила, §6c — известный пробел охвата (скрытые секции).",
       "spacing_canon": "переменные --s-gap-tag-hero/--s-gap-tag-sec/--s-gap-title/--s-gap-sub задают ритм бейдж→заголовок→подзаголовок на всех страницах; fix_rhythm.py (в репо с 2026-08-24) снимает ручные inline margin, которые его перебивают — идемпотентен, 0 страниц осталось на 2026-08-24",
       "etalon_file": "index.html",
       "etalon_rule": "Never modified by build.py (SKIP_FILES); has inline header/mobile-nav/footer; manual sync required if partials change.",
@@ -59,7 +61,8 @@
       "web_root": "klinik-psixiatriya/",
       "sources_root": "_supplements/",
       "chapters_v2": {
-        "path": "_supplements/chapters-v2/",
+        "path": null,
+        "_path_status": "каталога больше нет (проверено Test-Path 2026-09-03): _supplements/chapters-v2/ удалён 2026-08-09 как производная копия со СТАРОЙ привязкой кодов (6C90↔6C91 переставлены, 6C41 числился опиоидами, 6B60 — ДРИ). Лежит в истории git и в stale-trees-2026-08-09.zip. Единственный источник истины — изданные деревья klinik-psixiatriya/{,ru,en,tr}/.",
         "disorders_total": 103,
         "disorders_done": 103,
         "structure_sections": 11,
@@ -76,16 +79,17 @@
           "10. Mif və yanlış inanclar",
           "11. Mənbələr"
         ],
-        "etalon_template": "_supplements/chapters-v2/6A20.html",
-        "progress_file": "_supplements/chapters-v2/_progress.md",
-        "done_marker": "_supplements/chapters-v2/_done.md",
+        "etalon_template": null,
+        "progress_file": null,
+        "done_marker": null,
         "status": "complete",
         "note": "Исправлено 2026-08-24: было ошибочно 12 разделов с несуществующим «9. Metodikalar» — реальный шаблон карточки всегда 11 разделов, §9 = Proqnoz. Проверено на 5 карточках из разных глав."
       },
       "tools": {
-        "abbr_tooltips": "_inject_abbr.py (4166 <abbr title> wrappings, 130+ term dictionary)",
-        "feedback_widget": "klinik-psixiatriya/duzelis.{js,css} + duzelis-gas.txt (Google Apps Script endpoint)",
-        "widget_injector": "_inject_duzelis.py (applied to 52 chapter HTMLs)",
+        "abbr_tooltips": "_inject_abbr.py (4166 <abbr title> wrappings, 130+ term dictionary) — ОДНОРАЗОВЫЙ и опасный, в списке «не запускать» (CLAUDE.md); обёрнутые им сокращения снимаются _unwrap_abbr.py, тоже опасным",
+        "feedback_widget": null,
+        "_widget_status": "виджета правок «Düzəliş et» больше нет: кнопка снята 2026-08-09, конвейер (duzelis.js/css, воркер Cloudflare, PENDING.json, _term_sync.py, admin-corrections.html) удалён 2026-08-10. Проверено 2026-09-03: klinik-psixiatriya/duzelis.js, duzelis.css и _inject_duzelis.py отсутствуют.",
+        "widget_injector": null,
         "docx_builder": "build_book.py (title page + MÜNDƏRİCAT TOC + page breaks)"
       },
       "source_whitelist": [

@@ -76,7 +76,8 @@ sayt2/
 ├── gtc.css                ← основные стили
 ├── gtc-dark.css           ← dark theme overrides (Binance-inspired palette)
 ├── shared.js              ← общий JS (toggleMenu, toggleSubMenu, lang redirect)
-├── js-hero-fit.js         ← binary-search font-fitting для page-hero-x
+├── js-hero-fit2.js        ← живой фиттер: хиро с поиском + пары «заголовок ↔ подзаголовок»
+├── js-hero-fit.js         ← мёртвый предшественник, ни одна страница его не грузит (2026-09-03)
 ├── images/                ← статика
 ├── data/                  ← поисковый индекс и пр.
 ├── backend/               ← серверная часть (отдельно)
@@ -213,7 +214,9 @@ python build.py --migrate        # legacy: превратить старые с�
 
 ## Page Hero System (`.page-hero-x`)
 
-Стиль шапки внутренних страниц. Реализовано в `gtc.css` + `js-hero-fit.js`.
+Стиль шапки внутренних страниц. Реализовано в `gtc.css` + `js-hero-fit2.js`
+(`js-hero-fit.js` — мёртвый предшественник, правится только здесь и в `apply_style.py`).
+Полный свод правил пары «заголовок ↔ подзаголовок», кеглей и замеров — `DESIGN-STANDARD.md`.
 
 ```html
 <section class="page-hero-x" data-theme="dark"
@@ -241,6 +244,10 @@ python build.py --migrate        # legacy: превратить старые с�
 * Все 3 строки (H1 + 2 десктоп-сабтайтла) выравниваются по ширине поисковика (620 px) через binary-search font-fitting.
 * На мобайле — 3 строки сабтайтла, центрированы. **Подзаголовок ≤ 2 строк на десктопе, обе одинаковой длины.** Если получилось 3+ строк — переписать.
 * Background-image — опционально.
+* Это правила **хиро с поиском** (`.page-hero-x`). Пары «заголовок раздела ↔ подзаголовок»
+  (`.sec-header`, `h2.sec-h2` + `p.sec-sub`) меряются другим механизмом: мера — чернила
+  самой широкой строки заголовка, кегль — наибольший не выше 0,70 кегля заголовка при
+  ≤3 строках. См. `DESIGN-STANDARD.md` §1 и §6a — там же разбор двух конфликтов этих правил.
 
 ---
 
@@ -321,9 +328,12 @@ touched by the build. The `klinik-psixiatriya/` book has its own structure
 and is also excluded.
 
 **Page hero system.** `.page-hero-x` uses binary-search font-fitting
-(`js-hero-fit.js`) so badge / H1 / subtitle / search bar all align to the
-search bar width (620px desktop). Mobile shows 3 subtitle lines, desktop
-shows 2 (equal length).
+(`js-hero-fit2.js`) so badge / H1 / subtitle / search bar all align to the
+search bar width (620 px desktop, or 53 % of the hero box on narrow screens).
+Mobile shows 3 subtitle lines, desktop shows 2 (equal length). Section-level
+pairs (`h2.sec-h2` + `p.sec-sub`) are fitted by the same script against the
+heading's own ink width — see `DESIGN-STANDARD.md` §1 and §6a. The old
+`js-hero-fit.js` is dead: no page loads it.
 
 **To add a language:** add a section in `_i18n.json`, extend `LANG_DIRS` and
 `lang_switches()` in `build.py`, create the language directory with HTML files.
