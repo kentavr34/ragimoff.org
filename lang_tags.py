@@ -281,9 +281,9 @@ def tag_az(text: str, marks: str, found: list) -> str:
 #       фамилия не английский текст, помечать её языком неверно;
 #   «EIP», «HBOT», «M-CHAT-R/F» — аббревиатуры, это не проза;
 #   «lupus», «herpes» — латынь, а не английский.
-GLOSS = re.compile("([«“„‘(]\s*)"
-                   "([A-Za-z][A-Za-z ’'./+-]{2,60}?)"
-                   "(\s*[»”“’)])")
+GLOSS = re.compile(r"([«“„‘(]\s*)"
+                   r"([A-Za-z][A-Za-z ’'./+-]{2,60}?)"
+                   r"(\s*[»”“’)])")
 INITIAL = re.compile(r"^[A-Z]\.?(?:[A-Z]\.)?$")
 
 

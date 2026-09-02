@@ -335,6 +335,66 @@ function wireRegForm(formId, successId, source) {
   });
 }
 
+// B2B-заявка со страницы b2b.html (AZ/RU/EN). До аудита 2026-09-02 обработчик
+// сидел в inline-<script> каждой из трёх страниц и делал только preventDefault()
+// с немедленной надписью «Отправлено»: запрос не уходил никуда, весь B2B-поток
+// терялся молча. Канон тот же, что у рабочих регистрационных форм:
+// submitRegistration() — сначала свой сервер (api.ragimoff.org), при неудаче
+// Apps Script; если не сработали оба — showSendError(), а не ложный успех.
+// Форму при ошибке НЕ блокируем, чтобы человек мог повторить.
+// Текст кнопки берётся из data-done / data-sending самой страницы: форма живёт
+// в трёх языках, а shared.js — один на всех.
+async function handleB2BForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const val = function (id) {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  };
+  // Подписи полей в note берутся с самой страницы — они уже на нужном языке,
+  // и в реестре заявок не приходится догадываться, что за строка пришла.
+  const pair = function (id) {
+    const el = document.getElementById(id);
+    if (!el || !el.value.trim()) return '';
+    const lab = form.querySelector('label[for="' + id + '"]');
+    const name = lab ? lab.textContent.replace(/[*?]/g, '').trim() : id;
+    return name + ': ' + el.value.trim();
+  };
+  const sel = document.getElementById('b2b-f5');
+  const direction = (sel && sel.selectedIndex > 0) ? sel.options[sel.selectedIndex].text : '';
+  const payload = {
+    type: 'registration',
+    fname: val('b2b-f1'),        // название компании
+    lname: val('b2b-f2'),        // контактное лицо
+    phone: val('b2b-f3'),
+    email: val('b2b-f4'),
+    service: direction,          // выбранное направление программы
+    note: ['B2B', pair('b2b-f6'), pair('b2b-f7')].filter(Boolean).join(' | '),
+    source: location.pathname.replace(/^\//, '') || 'b2b.html'
+  };
+  const btn = form.querySelector('button[type="submit"]');
+  const btnText = btn ? btn.textContent : '';
+  if (btn) {
+    btn.textContent = form.getAttribute('data-sending') || 'Göndərilir...';
+    btn.disabled = true;
+  }
+  const result = await submitRegistration(payload);
+  if (!result.ok) {
+    if (btn) { btn.textContent = btnText; btn.disabled = false; }
+    showSendError(form);
+    return;
+  }
+  const err = form.querySelector('.form-error');
+  if (err) err.style.display = 'none';
+  if (btn) {
+    btn.textContent = form.getAttribute('data-done') || 'Göndərildi.';
+    btn.style.background = 'var(--navy)';
+    btn.style.color = 'var(--white)';
+  }
+  form.style.opacity = '0.5';
+  form.style.pointerEvents = 'none';
+}
+
 // Generic booking form submit  mailto + modal
 function submitBooking(emailTo) {
   const fields = ['fname','lname','phone','email','service','note'];

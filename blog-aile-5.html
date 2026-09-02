@@ -107,7 +107,7 @@
     <!-- @include mobile-nav -->
 <!-- BEGIN: mobile-nav (auto-generated, do not edit by hand) -->
 <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobil menyu">
-  <button class="mobile-nav-close" onclick="toggleMenu()">
+  <button class="mobile-nav-close" onclick="toggleMenu()" aria-label="Bağla">
     <svg viewBox="0 0 24 24">
       <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
     </svg>
@@ -407,7 +407,9 @@
 </div>
 <script>
 (function(){
-  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+  // Прежний адрес Apps Script был вписан сюда отдельной константой; теперь
+  // заявка идёт через канал shared.js (submitRegistration → submitToAPI),
+  // где сервер основной, а Apps Script — запасной.
   window.openKitabModal = function(){
     var m = document.getElementById('kitab-modal');
     m.style.display = 'flex'; document.body.style.overflow = 'hidden';
@@ -432,10 +434,26 @@
       var parts = name.split(/\s+/);
       var payload = {type:'registration',fname:parts[0]||'',lname:parts.slice(1).join(' ')||'',
         phone:phone,service:'Kitab sifarişi',source:'ragimoff.org/kitab-sifarisi'};
+      var btnLabel = btn ? btn.textContent : '';
       if(btn){btn.textContent='Göndərilir...';btn.disabled=true;}
-      try { await fetch(KITAB_API,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }
-      catch(err){console.error(err);}
+      // mode:'no-cors' здесь был: его ответ непрозрачен, поэтому ветка «успех»
+      // исполнялась безусловно — заявка терялась молча (аудит 2026-09-02, P0.3).
+      // Обычный запрос к тому же адресу читается (см. комментарий в shared.js).
+      // Канал тот же, что у рабочих форм: свой сервер, при неудаче Apps Script.
+      var result = {ok:false};
+      try {
+        var send = (typeof submitRegistration === 'function') ? submitRegistration
+                 : (typeof submitToAPI === 'function' ? submitToAPI : null);
+        if (!send) throw new Error('no submit channel');
+        result = await send(payload);
+      } catch(err){ console.error('kitab order failed:', err); result = {ok:false, error:String(err)}; }
+      if (!result || !result.ok) {
+        /* Форму не прячем и кнопку разблокируем: человек должен мочь повторить,
+           а не остаться с ощущением, что заказ принят. */
+        if(btn){btn.textContent=btnLabel;btn.disabled=false;}
+        if (typeof showSendError === 'function') showSendError(form);
+        return;
+      }
       document.getElementById('km-success').style.display='block';
       form.style.display='none';
     });
