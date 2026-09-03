@@ -2009,9 +2009,31 @@
       `gizlilik-siyasəti.html`, `landing-nLP.html` — таких файлов в репозитории нет
       (турецкого дерева сайта тоже нет). «Raw»-разметка без `@include header`
       оказалась у `gp.html`, `wc.html`, `index.html` и двух `template.html`.
-- [ ] **1.3 Footer.** `_partials/footer.html:33-35` — три ссылки на `tehsil.html`
+- [x] **1.3 Footer.** `_partials/footer.html:33-35` — три ссылки на `tehsil.html`
       вместо `program-umumi/klinik/praktikum`; `:12-15` против `:44-49` — два
       Instagram и два Telegram; `target="_blank"` без `rel="noopener"`.
+  - ✅ **ЗАКРЫТО 03.09.2026** (объём расширен по указанию владельца от 03.09:
+    «семейная терапия из меню Образования ведёт напрямую на страницу Самиры»).
+  - (а) Три ссылки программ: `tehsil.html` → `program-umumi/klinik/praktikum.html`.
+    Все 9 страниц живы во всех трёх деревьях (прод: 200).
+  - (б) Пункт «Семейная терапия» в меню **ОБРАЗОВАНИЯ** (десктоп
+    `header.html:22`, мобильный `mobile-nav.html:27`) → `samira.html` — напрямую
+    к специалисту. Пункт в меню **КОНСУЛЬТАЦИЙ** (`header.html:29`,
+    `mobile-nav.html:37`) → остаётся `aile-terapiyasi.html`: там подробно
+    терапия пары и занятия, и с неё уже есть переходы на `samira.html`
+    (az 2, ru 1, en 1). Различие по срезу между вкладками, не по тексту подписи
+    (она одинаковая в обоих меню).
+  - (в) `rel="noopener"` ко всем 7 `target="_blank"` подвала.
+  - «Дубли Instagram/Telegram» из аудита — **не дефект**: два разных живых
+    аккаунта на каждый канал (t.me/ragimoff 175 vs t.me/dockenan 166 упоминаний;
+    dr.ragimoff 169 vs doctor.ragimoff 166; Facebook Ragimoff.az 166; YouTube
+    @kragimoff 340), все 8 URL = 200. «Какой канон» — вопрос владельцу.
+  - Числа: **168 файлов, +1826 / −1826** (дифф строго зеркальный: 29 уникальных
+    строк в каждую сторону, других изменений нет), CJK-хитов 0. По 165 страницам:
+    edu→`samira.html` 165, cons→`aile-terapiyasi.html` 165 (header И mobile-nav),
+    program-* в подвале 495 = 165×3, внешних ссылок 1155 = 165×7, без `rel` — 0.
+    Повторный `build.py --check` = **0/207** (идемпотентно). Тег отката
+    `backup-before-footer-2026-09-04`.
 - [ ] **1.4 `samira.html`** — сирота: вне `header.html`, `sitemap.xml`,
       `search-index.json`.
 - [ ] **1.5 JSON-LD.** 56/167 в AZ, **0/55 в RU, 0/55 в EN**; `twitter:card` 0/167;
