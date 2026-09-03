@@ -79,12 +79,24 @@ document.addEventListener('click', function(e){
 
   function meta(prop, val, attr) {
     if (!val) return;
+    var a = attr || 'property';
+    // Гард от дублей (волна 1.1 аудита 2026-09-02). Раньше сюда не смотрели:
+    // статический head уже несёт og:title / og:description / og:type / og:url,
+    // а build-партиал добавляет их второй раз. Третья копия из скрипта была бы
+    // уже не косметикой: парсеры выбирают один тег из повторов, и угадать
+    // какой — нельзя. Если тег уже объявлен, авторская строка важнее.
+    if (head.querySelector('meta[' + a + '="' + prop + '"]')) return;
     var m = document.createElement('meta');
-    m.setAttribute(attr || 'property', prop);
+    m.setAttribute(a, prop);
     m.content = val;
     head.appendChild(m);
   }
   function link(rel, href, extra) {
+    // Тот же принцип: не плодить второй canonical и вторую пачку hreflang.
+    // На бою значения совпали бы и шум был бы невидим, но на любом зеркале или
+    // staging скрипт добавлял бы canonical с ЧУЖИМ доменом рядом с настоящим.
+    var sel = 'link[rel="' + rel + '"][href="' + href + '"]';
+    if (head.querySelector(sel)) return;
     var l = document.createElement('link');
     l.rel = rel;
     l.href = href;
@@ -104,6 +116,27 @@ document.addEventListener('click', function(e){
   link('alternate', ruUrl,  { hreflang: 'ru' });
   link('alternate', enUrl,  { hreflang: 'en' });
   link('alternate', azUrl,  { hreflang: 'x-default' });
+
+  // ── Иконки и манифест (волна 1.1 аудита 2026-09-02) ──────────────────────
+  // До этого ни одна своя страница не объявляла иконку: браузер молча просил
+  // /favicon.ico и получал 404, iOS не находил apple-touch-icon, а PWA-установка
+  // была невозможна без манифеста. Ссылки прописываются здесь, а не в 171 файле:
+  // общего head-партиала в проекте нет (build.py рендерит только
+  // header/mobile-nav/footer/hero-search/kitab-modal), а index.html — эталон.
+  // Тот же приём уже чинит и книгу: её страницы (161 файл) shared.js не грузят,
+  // но /favicon.ico и /apple-touch-icon.png браузеры просят от корня домена.
+  function brandLink(rel, href, extra) {
+    if (document.querySelector('link[rel="' + rel + '"]')) return;  // не дублируем авторскую
+    link(rel, href, extra);
+  }
+  brandLink('icon',             base + '/favicon.ico');
+  brandLink('icon',             base + '/favicons/favicon-32x32.png', { type: 'image/png', sizes: '32x32' });
+  brandLink('icon',             base + '/favicons/favicon-16x16.png', { type: 'image/png', sizes: '16x16' });
+  brandLink('apple-touch-icon', base + '/apple-touch-icon.png');
+  brandLink('manifest',         base + '/site.webmanifest');
+  if (!document.querySelector('meta[name="theme-color"]')) {
+    meta('theme-color', '#061826', 'name');   // цвет шапки: rgba(6,24,38,.98), gtc.css
+  }
 
   // Open Graph
   var isBlog   = /blog/.test(path);
