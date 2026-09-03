@@ -243,7 +243,52 @@ def update_html(content: str, lang: str, html_path: Path, i18n: dict) -> str:
             out.append("\n" + block)
             pos = m.end()
     out.append(content[pos:])
-    return "".join(out)
+    return ensure_main("".join(out))[0]
+
+
+# ───────── <main> landmark (волна 1.2 аудита 2026-09-02) ─────────
+#
+# Почему здесь, а не в 165 файлах: обёртка — часть скелета страницы, а скелет в
+# этом проекте живёт в генераторе (тот же приём уже держит header/mobile-nav/
+# footer/kitab-modal). Ручная правка гарантированно разъехалась бы с новыми
+# страницами.
+#
+# Якоря выбраны так, чтобы в <main> НЕ попали: мобильное меню (это overlay-<nav>,
+# он обязан остаться вне landmark) и всё, что идёт после подвала (модалка книги,
+# скрипты). id="main-content" специально НЕ переносится: на него ссылается
+# skip-link на 167 страницах, и он сидит на первом же блоке внутри обёртки —
+# прыжок остаётся прежним, а дубликата id не возникает.
+
+MAIN_CLOSE_MARK = re.compile(r"([ \t]*)<!--\s*END:\s*mobile-nav\s*-->", re.IGNORECASE)
+FOOTER_MARK = re.compile(r"([ \t]*)<!--\s*@include\s+footer\b", re.IGNORECASE)
+MAIN_PRESENT = re.compile(r"<main[\s>]", re.IGNORECASE)
+
+
+def ensure_main(content: str) -> Tuple[str, str]:
+    """Обернуть содержимое страницы между мобильным меню и подвалом в <main>.
+    Возвращает (content, статус): 'wrapped' | 'already' | 'no-anchors' | 'order'."""
+    if MAIN_PRESENT.search(content):
+        return content, "already"
+
+    open_m = None
+    for m in MAIN_CLOSE_MARK.finditer(content):
+        open_m = m                      # берём ПОСЛЕДНИЙ END: mobile-nav
+    close_m = FOOTER_MARK.search(content)
+    if not open_m or not close_m:
+        return content, "no-anchors"
+    if open_m.end() > close_m.start():
+        return content, "order"
+
+    indent = close_m.group(1) or open_m.group(1) or ""
+    # Правим от конца к началу, чтобы первые вставки не сдвигали вторые координаты.
+    content = (content[:close_m.start()]
+               + f"{indent}</main>\n"
+               + content[close_m.start():])
+    content = (content[:open_m.end()]
+               + "\n\n" + (open_m.group(1) or "")
+               + '<main class="page-main" id="page-main">'
+               + content[open_m.end():])
+    return content, "wrapped"
 
 
 # ───────── one-shot legacy migration ─────────
@@ -316,6 +361,13 @@ def process_file(path: Path, i18n: dict, do_migrate: bool, check: bool) -> Tuple
     lang = detect_lang(path)
     text = update_html(text, lang, path, i18n)
 
+    # Наблюдаемость обёртки (волна 1.2): без этой строки «ничего не изменилось» и
+    # «страница пропущена, потому что якорей нет» выглядели бы одинаково.
+    if not MAIN_PRESENT.search(original) and MAIN_PRESENT.search(text):
+        notes.append("main: wrapped")
+    elif not MAIN_PRESENT.search(original):
+        notes.append("main: NONE")
+
     changed = text != original
     if changed and not check:
         path.write_text(text, encoding="utf-8")
@@ -350,6 +402,7 @@ def main():
 
     def one_pass():
         n_changed = 0; n_total = 0; n_migrated = 0
+        n_mainwrapped = 0; n_mainnone = 0
         for p in iter_html_files(only):
             n_total += 1
             try:
@@ -359,6 +412,12 @@ def main():
                 continue
             if any(n.startswith("migrated") for n in notes):
                 n_migrated += 1
+            if any(n == "main: wrapped" for n in notes):
+                n_mainwrapped += 1
+            if any(n == "main: NONE" for n in notes):
+                n_mainnone += 1
+                rel = p.relative_to(ROOT)
+                print(f"  [main NET] {rel}")
             if changed or notes:
                 rel = p.relative_to(ROOT)
                 tag = "[would change]" if args.check else "[updated]"
@@ -371,7 +430,8 @@ def main():
                 n_changed += 1
         verb = "would change" if args.check else "updated"
         print(f"\nDone: {n_changed}/{n_total} files {verb}" +
-              (f", {n_migrated} migrated" if n_migrated else ""))
+              (f", {n_migrated} migrated" if n_migrated else "") +
+              f", main: {n_mainwrapped} завернуто, {n_mainnone} без обёртки")
         return n_changed
 
     if args.watch:
