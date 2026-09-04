@@ -283,7 +283,7 @@ async function submitToAPI(payload) {
 
 const RAGIMOFF_API_BASE = 'https://api.ragimoff.org';
 
-async function submitToEndpoint(endpoint: string, payload: object) {
+async function submitToEndpoint(endpoint, payload) {
   try {
     const res = await fetch(`${RAGIMOFF_API_BASE}${endpoint}`, {
       method: 'POST',
@@ -300,11 +300,11 @@ async function submitToEndpoint(endpoint: string, payload: object) {
   return submitToAPI(payload); // Apps Script fallback
 }
 
-async function submitBookOrder(payload: object) {
+async function submitBookOrder(payload) {
   return submitToEndpoint('/api/book-order', payload);
 }
 
-async function submitTrainingReg(payload: object) {
+async function submitTrainingReg(payload) {
   return submitToEndpoint('/api/training-reg', payload);
 }
 
