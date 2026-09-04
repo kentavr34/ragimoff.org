@@ -31,6 +31,17 @@
   <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/blog-panik.html" />
   <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/blog-panik.html" />
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/blog-panik.html" />
+<style>
+/* Wave 1.4 — Touch targets ≥44px for form controls */
+input, select, textarea, button {
+    min-height: 44px;
+}
+.form-field input, .form-field textarea, .form-field select {
+    min-height: 44px;
+}
+.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+.upload-item input[type="file"] { min-height: 44px; }
+</style>
 </head>
   <body>
     <a class="skip-link" href="#main-content">К основному содержимому</a>
@@ -345,14 +356,14 @@
     <div style="width:44px;height:44px;border-radius:8px;background:#E6B44A;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#0f1117;margin-bottom:16px;">КК</div>
     <h2 style="font-size:20px;font-weight:700;color:#f0f2f8;margin:0 0 10px;font-family:monospace;">Заказ книги</h2>
     <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:2px solid #c49b2f;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
-    <form id="kitab-form-main">
+    <form id="kitab-form-main" action="/api/book-order" method="POST" novalidate>
       <div style="margin-bottom:14px;">
         <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
-        <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+        <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="fname" autocomplete="given-name">
       </div>
       <div style="margin-bottom:14px;">
         <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
-        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;">
+        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="phone" autocomplete="tel">
       </div>
       <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>
     </form>
@@ -398,7 +409,7 @@
       // Канал тот же, что у рабочих форм: свой сервер, при неудаче Apps Script.
       var result = {ok:false};
       try {
-        var send = (typeof submitRegistration === 'function') ? submitRegistration
+        var send = (typeof submitBookOrder === 'function') ? submitBookOrder
                  : (typeof submitToAPI === 'function' ? submitToAPI : null);
         if (!send) throw new Error('no submit channel');
         result = await send(payload);

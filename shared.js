@@ -276,15 +276,16 @@ async function submitToAPI(payload) {
   }
 }
 
-// Регистрация на обучение идёт на свой сервер (api.ragimoff.org): документы
-// хранятся там + уведомление в Telegram. Apps Script остаётся запасным
-// каналом — если сервер недоступен, заявка уходит по старому пути, поэтому
-// переход бесшовный и ни одна заявка не теряется.
-const RAGIMOFF_SERVER_API = 'https://api.ragimoff.org/api/register';
+// ── Wave 1.4: New API endpoints on api.ragimoff.org ──────────────────────
+// Book orders → /api/book-order
+// Training registrations → /api/training-reg
+// Both with Supabase + Telegram, Apps Script as fallback
 
-async function submitRegistration(payload) {
+const RAGIMOFF_API_BASE = 'https://api.ragimoff.org';
+
+async function submitToEndpoint(endpoint: string, payload: object) {
   try {
-    const res = await fetch(RAGIMOFF_SERVER_API, {
+    const res = await fetch(`${RAGIMOFF_API_BASE}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
@@ -294,9 +295,17 @@ async function submitRegistration(payload) {
       if (!data || data.ok !== false) return { ok: true };
     }
   } catch (err) {
-    console.warn('server API unavailable, falling back:', err);
+    console.warn(`API ${endpoint} unavailable, falling back:`, err);
   }
-  return submitToAPI(payload);
+  return submitToAPI(payload); // Apps Script fallback
+}
+
+async function submitBookOrder(payload: object) {
+  return submitToEndpoint('/api/book-order', payload);
+}
+
+async function submitTrainingReg(payload: object) {
+  return submitToEndpoint('/api/training-reg', payload);
 }
 
 // Сообщение о неудаче: заявка не ушла, человека нельзя оставлять с ощущением,
@@ -350,7 +359,7 @@ function wireRegForm(formId, successId, source) {
     };
     const btnText = btn ? btn.textContent : '';
     if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
-    const result = await submitToAPI(payload);
+    const result = await submitTrainingReg(payload);
     if (!result.ok) {
       /* Форму НЕ блокируем: человек должен иметь возможность повторить. */
       if (btn) { btn.textContent = btnText; btn.disabled = false; }
