@@ -219,6 +219,7 @@ function toggleMenu() {
   const nav = document.getElementById('mobileNav');
   nav.classList.toggle('open');
 }
+window.toggleMenu = toggleMenu;
 function closeMenu() {
   document.getElementById('mobileNav')?.classList.remove('open');
 }
