@@ -1848,3 +1848,34 @@ refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0; книга в этой �
 **Коммит:** `368c44c` (1 файл, +1 строка)
 
 **Запушено:** `origin/main`
+
+---
+
+## Сессия 2026-09-05 — Wave 1.4: интеграция samira.html в sitemap.xml и search-index.json
+
+**Проблема:** Страница `samira.html` отсутствовала в sitemap.xml и search-index.json из-за тега `<meta name="robots" content="noindex, follow" />` в `<head>`. Также в `build_sitemap.py` директория `_build_print` не была в `SKIP_DIRS`, что тянуло печатные артефакты в карту сайта.
+
+**Исправления:**
+1. Убран `noindex` meta-тег из `samira.html`
+2. Добавлено `_build_print` в `SKIP_DIRS` в `build_sitemap.py`
+3. Перегенерен `sitemap.xml` — 714 страниц (548 книга + 166 сайт), включая `samira.html`
+4. Перегенерены `search-index.json` (сайт: 96 записей, включая `samira.html` с 2 записями) и `klinik-psixiatriya/search-index.json` (книга: 1284 записи)
+
+**Проверка по факту:**
+- Локально: `build_sitemap.py --apply` → samira.html в sitemap ✓
+- Продакшн: `https://ragimoff.org/sitemap.xml` содержит `<loc>https://ragimoff.org/samira.html</loc>` ✓
+- Продакшн: `https://ragimoff.org/search-index.json` содержит 2 записи для `samira` (страница + раздел `#sam-about`) ✓
+
+**Сторожи (все чистые):**
+- checkup.py: 0/19
+- regress.py: 1292
+- refcheck.py: 0
+- numcheck.py: 0/312
+- paracheck.py: 0/0
+- xrefcheck.py: 0
+- fix_orthography.py: 0 замен
+- lang_tags.py: 0 оборотов
+
+**Коммит:** `02f4ac3` (5 файлов, +766/−713)
+
+**Запушено:** `origin/main`

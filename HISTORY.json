@@ -528,6 +528,13 @@
       "type": "commit",
       "commit": "368c44c",
       "note": "fix: экспортировать toggleMenu в window для мобильного меню (hamburger). Функция toggleMenu() в shared.js не была привязана к window, поэтому onclick=\"toggleMenu()\" в HTML (179 файлов) выбрасывал ReferenceError: toggleMenu is not defined. Добавлено: window.toggleMenu = toggleMenu; (аналогично window.toggleSubMenu). Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0, xrefcheck 0, fix_orthography 0, lang_tags 0."
+    },
+    {
+      "ts": "2026-09-05",
+      "actor": "mavis",
+      "type": "commit",
+      "commit": "02f4ac3",
+      "note": "Wave 1.4: интеграция samira.html в sitemap.xml и search-index.json. Проблема: noindex meta-тег в samira.html исключал её из карты сайта и поискового индекса; _build_print не было в SKIP_DIRS. Исправления: 1) убран noindex из samira.html, 2) добавлено _build_print в SKIP_DIRS в build_sitemap.py, 3) перегенерен sitemap.xml (714 стр: 548 книга + 166 сайт) с samira.html, 4) перегенерены search-index.json (сайт 96 записей, 2 для samira; книга 1284). Проверка продакшн: sitemap.xml и search-index.json содержат samira.html. Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0, fix_orthography 0, lang_tags 0. Коммит: 5 файлов, +766/−713."
     }
   ]
 }
