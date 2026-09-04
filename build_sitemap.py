@@ -28,7 +28,8 @@ ROOT = Path(__file__).parent
 OUT = ROOT / 'sitemap.xml'
 BASE = 'https://ragimoff.org/'
 SKIP_DIRS = {'.git', 'node_modules', 'graphify-out', '__pycache__', '.claude',
-             '_supplements', 'backend', 'images', '_partials', 'partials'}
+             '_supplements', 'backend', 'images', '_partials', 'partials',
+             '_build_print'}
 SKIP_FILES = {'template.html', 'wc.html', 'gp.html'}
 BOOK = 'klinik-psixiatriya'
 
