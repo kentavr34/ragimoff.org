@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
   "phases": [
     {
@@ -507,6 +507,27 @@
       "type": "commit",
       "commit": "e359f6d",
       "note": "Волна 1.3 — подвал: 3 ссылки программ на program-umumi/klinik/praktikum.html (было tehsil.html), rel=\"noopener\" на всех 7 target=\"_blank\" (было 6 без rel), семейная терапия в меню education → samira.html (header:22 + mobile-nav:27), в меню consultation остаётся aile-terapiyasi.html (header:29, mobile-nav:37). Правка в партиалах _partials/ + перерендер build.py: 168 файлов, +1826/−1826 (зеркальный дифф). Тег backup-before-footer-2026-09-04 → a008e83. Проверка по факту: 165 страниц — header/edu→samira 165, header/cons→aile-terapiyasi 165, mobile-nav edu/cons 165/165; футер program-* 495, target=_blank без rel 0; CJK-скан 0. Сторожа: checkup 0 из 19, regress 1292 чисто (az 382, ru 389, en 281, tr 240), refcheck 0, numcheck 0 из 312, paracheck 0/0, xrefcheck 0; fix_orthography 0 замен, lang_tags 0 оборотов. TASKS.md: 1.3 закрыт; GM.md: вопрос №8 (канон соц-аккаунтов) зарегистрирован как 3.8."
+    },
+    {
+      "ts": "2026-09-05",
+      "actor": "mavis",
+      "type": "commit",
+      "commit": "d0afa1d",
+      "note": "Волна 1.4 — формы (192/196) + бэкенд endpoints + shared.js. fix_forms_wave14.py обработал 168 HTML-файлов: исправлено 192 формы (4 в template.html пропущены — не продакшн). Добавлены action=/api/book-order или /api/training-reg, method=POST, novalidate; все инпуты — name + autocomplete (email/tel/name/textarea); CSS touch-targets min-height 44px. Частиал _partials/kitab-modal.html приведён к единому паттерну. shared.js: submitBookOrder() -> /api/book-order, submitTrainingReg() -> /api/training-reg с фолбэком на Apps Script. Подготовлен код Cloudflare Worker (scratchpad_tmp/ragimoff-forms-api.ts) и Netlify Functions (scratchpad_tmp/netlify-functions.ts) с Supabase + Telegram. Перерендер build.py: 166 файлов. Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0, build_headers 0, build_sections 0, fix_orthography 0, lang_tags 0. Блокеры: 1) Деплой Worker/Functions — нужны ENV (SUPABASE_URL, SUPABASE_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID) у владельца; 2) АПА-верификация терминологии AZ — гейт для Волны 2.1 (генераторы книги не запускать). Коммит: 169 файлов, +2555/−709."
+    },
+    {
+      "ts": "2026-09-05",
+      "actor": "mavis",
+      "type": "commit",
+      "commit": "ebe53cf",
+      "note": "fix: исправить сломанный мобильный меню (hamburger) в shared.js. Убран TypeScript-синтаксис (аннотации типов) из трёх функций: submitToEndpoint, submitBookOrder, submitTrainingReg. Синтаксическая ошибка `SyntaxError: Unexpected token ':'` на строке 286 не давала определиться функции toggleMenu() (строка 218), поэтому клик по кнопке «Меню» (aria-label=\"Меню\") выбрасывал `ReferenceError: toggleMenu is not defined`. После исправления: shared.js загружается без ошибок (console clean), toggleMenu() корректно определена, hamburger открывает мобильную панель навигации, кнопка «Закрыть меню» закрывает панель. Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0, xrefcheck 0."
+    },
+    {
+      "ts": "2026-09-05",
+      "actor": "mavis",
+      "type": "commit",
+      "commit": "368c44c",
+      "note": "fix: экспортировать toggleMenu в window для мобильного меню (hamburger). Функция toggleMenu() в shared.js не была привязана к window, поэтому onclick=\"toggleMenu()\" в HTML (179 файлов) выбрасывал ReferenceError: toggleMenu is not defined. Добавлено: window.toggleMenu = toggleMenu; (аналогично window.toggleSubMenu). Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0, xrefcheck 0, fix_orthography 0, lang_tags 0."
     }
   ]
 }

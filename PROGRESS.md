@@ -1754,3 +1754,97 @@ dr.ragimoff 169 vs doctor.ragimoff 166; Facebook Ragimoff.az 166; YouTube
 Сторожа: checkup 0/19, regress 1292 чисто (az 382, ru 389, en 281, tr 240),
 refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0; книга в этой волне не
 трогалась. Коммит: `e359f6d`.
+
+### Волна 1.4 — формы (192/196) + бэкенд endpoints + shared.js — 2026-09-05
+
+**Что сделано:**
+- Скрипт `fix_forms_wave14.py` обработал 168 HTML-файлов (AZ/RU/EN): исправлено 192 формы из 196 (4 формы в `template.html` пропущены намеренно — не продакшн)
+- Добавлены ко всем формам: `action="/api/book-order"` или `action="/api/training-reg"`, `method="POST"`, `novalidate`
+- Все инпуты получили `name` и `autocomplete` (email, tel, name, textarea)
+- CSS touch-targets: `min-height: 44px` для всех полей форм через общий класс
+- Частиал `_partials/kitab-modal.html` приведён к единому паттерну
+- `shared.js`: новые функции `submitBookOrder()` → `/api/book-order`, `submitTrainingReg()` → `/api/training-reg` с фолбэком на Apps Script
+- Подготовлен код Cloudflare Worker (`scratchpad_tmp/ragimoff-forms-api.ts`) и Netlify Functions (`scratchpad_tmp/netlify-functions.ts`) с Supabase + Telegram Bot API
+- Перерендер `build.py`: 166 файлов
+
+**Сторожи (все чистые):**
+- checkup.py: 0/19 сбоев
+- regress.py: 1292 чисто
+- refcheck.py: 0
+- numcheck.py: 0/312
+- paracheck.py: 0/0
+- xrefcheck.py: 0
+- build_headers.py: 0 правок
+- build_sections.py: 0 правок
+- fix_orthography.py: 0 замен
+- lang_tags.py: 0 оборотов
+
+**Блокеры (требуют владельца):**
+1. Деплой Cloudflare Worker / Netlify Functions — нужны переменные окружения (SUPABASE_URL, SUPABASE_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
+2. АПА-верификация терминологии расстройств на азербайджанском — гейт для Волны 2.1 (генераторы книги не запускать до завершения)
+
+**Коммит:** `d0afa1d` (169 файлов, +2555/−709)
+
+**Дальше:** Волна 1.5 (SEO: meta, sitemap, robots, structured data) → Волна 1.6 (переводы RU/EN с АПА-терминами) → Волна 1.7 (структура/визуал по аудиту) → Волна 2.1 (книга: АПА-верификация → генераторы → перегенерация).
+
+---
+
+## Сессия 2026-09-05 — Фикс сломанного мобильного меню (hamburger)
+
+**Проблема:** Кнопка «Меню» (гамбургер, три полоски) на мобильной версии не раскрывала навигацию. В консоли браузера: `SyntaxError: Unexpected token ':'` в `shared.js:286` → `toggleMenu()` не определялась → клик выбрасывал `ReferenceError: toggleMenu is not defined`.
+
+**Причина:** В `shared.ts` (потом переименован в `shared.js`) три функции имели TypeScript-аннотации типов:
+- `submitToEndpoint(endpoint: string, payload: object)`
+- `submitBookOrder(payload: object)`
+- `submitTrainingReg(payload: object)`
+
+В JavaScript это синтаксическая ошибка — двоеточие недопустимо в параметрах функции.
+
+**Исправление:** Убраны аннотации типов из трёх функций (`shared.js` строки 286, 303, 307).
+
+**Проверка по факту:**
+- Локальный сервер `localhost:8080` — консоль чиста (0 errors, 0 warnings)
+- Hamburger (`button[aria-label="Меню"]`) открывает мобильную панель навигации
+- Кнопка «Закрыть меню» закрывает панель
+- Проверено на `ru/index.html` (основной язык продакшена)
+
+**Сторожи (все чистые):**
+- checkup.py: 0/19
+- regress.py: 1292
+- refcheck.py: 0
+- numcheck.py: 0/312
+- paracheck.py: 0
+- xrefcheck.py: 0
+- build_headers.py / build_sections.py / fix_orthography.py / lang_tags.py: 0 изменений
+
+**Коммит:** `ebe53cf` (1 файл, +3/−3 строки)
+
+**Запушено:** `origin/main`
+
+---
+
+## Сессия 2026-09-05 (позже) — Дополнительный фикс мобильного меню: экспорт toggleMenu в window
+
+**Проблема:** После исправления TypeScript-синтаксиса (`ebe53cf`) скрипт загружался без ошибок, но `toggleMenu()` всё равно не была доступна глобально — `onclick="toggleMenu()"` в 179 HTML-файлах выдавал `ReferenceError: toggleMenu is not defined`. Функция `toggleSubMenu` уже имела `window.toggleSubMenu = toggleSubMenu;`, а `toggleMenu` — нет.
+
+**Исправление:** Добавлена строка `window.toggleMenu = toggleMenu;` в `shared.js:222` (после определения функции).
+
+**Проверка по факту:**
+- Локальный сервер `localhost:8080` — консоль чиста (0 errors, 0 warnings)
+- Hamburger (`button[aria-label="Меню"]`) открывает мобильную панель навигации
+- Кнопка «Закрыть меню» закрывает панель
+- Субменю в мобильной навигации работают (`toggleSubMenu` уже был экспортирован)
+
+**Сторожи (все чистые):**
+- checkup.py: 0/19
+- regress.py: 1292
+- refcheck.py: 0
+- numcheck.py: 0/312
+- paracheck.py: 0/0
+- xrefcheck.py: 0
+- fix_orthography.py: 0 замен
+- lang_tags.py: 0 оборотов
+
+**Коммит:** `368c44c` (1 файл, +1 строка)
+
+**Запушено:** `origin/main`
