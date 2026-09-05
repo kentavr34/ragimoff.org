@@ -1,19 +1,147 @@
+# robots.txt for RAGIMOFF.org
+# Optimized for AI search engines and traditional crawlers
+
 User-agent: *
 Allow: /
 
+# Sitemaps
+Sitemap: https://ragimoff.org/sitemap.xml
+Sitemap: https://ragimoff.org/klinik-psixiatriya/sitemap.xml
+
+# Host
+Host: https://ragimoff.org
+
+# Crawl-delay for polite crawling
+Crawl-delay: 10
+
+# ===== AI-SPECIFIC DIRECTIVES =====
+# These user agents are known AI crawlers/training bots
+# We ALLOW them to access our high-quality structured content
+
+# GPTBot (OpenAI)
 User-agent: GPTBot
 Allow: /
 
+# ChatGPT-User (OpenAI browsing)
+User-agent: ChatGPT-User
+Allow: /
+
+# Google-Extended (Google AI training)
 User-agent: Google-Extended
 Allow: /
 
+# Googlebot (for AI Overviews)
+User-agent: Googlebot
+Allow: /
+
+# Bingbot (for Copilot)
+User-agent: Bingbot
+Allow: /
+
+# ClaudeBot (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# anthropic-ai (Anthropic training)
+User-agent: anthropic-ai
+Allow: /
+
+# PerplexityBot
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Claude-Web
+# YouBot (You.com)
+User-agent: YouBot
 Allow: /
 
-User-agent: Amazonbot
+# CCBot (Common Crawl)
+User-agent: CCBot
 Allow: /
 
-Sitemap: https://ragimoff.org/sitemap.xml
+# AppleBot (Apple Intelligence)
+User-agent: AppleBot
+Allow: /
+
+# Meta-ExternalAgent (Meta AI)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Bytespider (ByteDance/TikTok)
+User-agent: Bytespider
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# PetalBot (Huawei)
+User-agent: PetalBot
+Allow: /
+
+# YandexBot (Yandex AI)
+User-agent: YandexBot
+Allow: /
+
+# DuckDuckBot
+User-agent: DuckDuckBot
+Allow: /
+
+# ===== BLOCK LOW-VALUE PATHS =====
+# Prevent crawling of utility/technical paths
+
+User-agent: *
+Disallow: /backend/
+Disallow: /components.js
+Disallow: /shared.js
+Disallow: /gtc.css
+Disallow: /gtc-dark.css
+Disallow: /*.py
+Disallow: /*.json
+Disallow: /*.xml
+Disallow: /*.md
+Disallow: /*.txt
+Disallow: /*.zip
+Disallow: /_*/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /scratchpad_tmp/
+Disallow: /stale-trees-*/
+Disallow: /ARCHIVE/
+Disallow: /*.msi
+
+# ===== LANGUAGE-SPECIFIC HINTS =====
+# Help crawlers understand multilingual structure
+
+# Azerbaijani (default)
+User-agent: *
+Allow: /*.html
+Allow: /klinik-psixiatriya/
+
+# Russian
+Allow: /ru/*.html
+Allow: /klinik-psixiatriya/ru/
+
+# English
+Allow: /en/*.html
+Allow: /klinik-psixiatriya/en/
+
+# Turkish
+Allow: /klinik-psixiatriya/tr/
+
+# ===== AI CONTENT HINTS =====
+# These comments guide AI crawlers to high-value content
+# (not standard robots.txt but some parsers may read them)
+
+# High-value content for AI training:
+# - /haqqimda.html — Author credentials (E-E-A-T)
+# - /tehsil.html, /program-*.html — Educational programs with Course schema
+# - /xidmetler.html, /depressiya.html, /panik-ataklar.html, /sosial-fobiya.html, /enurez.html, /aile-terapiyasi.html — Services with Service + MedicalCondition + FAQ schemas
+# - /blog-*.html — Expert articles with BlogPosting/HowTo schemas
+# - /klinik-psixiatriya/ — Clinical Psychiatry textbook (Book schema, 4 languages)
+# - /llms.txt — This file and /en/llms.txt, /ru/llms.txt for AI context
+
+# Structured data types present:
+# WebSite, Organization, Person, EducationalOrganization, Service, Course, Book,
+# MedicalCondition, FAQPage, BlogPosting, TechArticle, HowTo, BreadcrumbList
+
+# Contact for AI/crawler questions: info@ragimoff.org

@@ -1879,3 +1879,23 @@ refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0; книга в этой �
 **Коммит:** `02f4ac3` (5 файлов, +766/−713)
 
 **Запушено:** `origin/main`
+
+---
+
+## Сессия 2026-09-05 (вечер) — Wave 1.5: GEO-завершение + SEO-аудит всех трёх деревьев
+
+**GEO-проход** (ранее в сессии, в локальном наборе к деплою):
+- Schema.org внедрена во всех трёх деревьях: AZ-корень / ru / en — MedicalCondition (с кодами ICD-11 на страницах расстройств), Article/BlogPosting, HowTo, FAQPage, Organisation/Person.
+- `llms.txt` в корне + `en/llms.txt` + `ru/llms.txt`; `robots.txt` — краулеры ИИ открыты; `indexnow_key.txt` + `indexnow_submit.py`.
+- 55–60 страниц на каждое дерево получили JSON-LD; проверено по факту grep-ом по всем 172 HTML.
+
+**Инвентаризация `archive/config`:** просмотрены полностью `pass.txt` (13 211 б) и `api.txt` (28 180 б) — других файлов-креденшалов нет. Состав и статусы зафиксированы, значения секретов никуда не выносились.
+
+**SEO-аудит head (скрипт `scratchpad_tmp/audit_seo.py`, 172 страницы):** 164 OK. Исправлено по факту этой сессии:
+- `ru/samira.html` и `en/samira.html` — снят `<meta name="robots" content="noindex">` остававшийся от прошлых итераций (в корне снят в Wave 1.4) → `index, follow`. Страница семейного терапевта снова индексируема во всех трёх языковых версиях; sitemap уже содержит её во всех трёх локалях.
+- Остаток в ISSUES — легитимный: `gp.html`/`wc.html` — справочные копии в `.gitignore` (не публикуются); `blog-klinik-psixiatriya.html` и `klinik-psixiatriya.html` — одноязычные страницы; корневой `index.html` — эталон, правки только с разрешения владельца.
+
+**Хвосты** — целиком в `TAILS.md` (деплой набора = коммит+push, IndexNow-верификация после деплоя, Google Indexing API, sitemap-пинги, Review/Rating schema, dev-файлы: template/ru-template, temp_*, og:locale на ~120 страниц, корневой index без hreflang).
+
+**Коммит:** НЕ выполнялся намеренно — GEO-/правки ждут решения по публикации (п.1 `TAILS.md`).
+**Доводка OG (та же сессия, после аудита):** аудит-скрипт `scratchpad_tmp/audit_seo.py` переведён на order-agnostic регексы (порядок `property`/`content` в meta не важен — раньше `og:locale` «не находился» на 118 страницах из-за порядка атрибутов). Фактические показатели: og:locale 168/172, og:image 167/172, og:title/desc 169/172 — все недостающие только dev-артефакты или эталонный корень. `geo_optimize.py` дополнен функцией `normalize_og()` (og:locale по `html lang`, дефолтный og:image, кроме эталонного `index.html`); добавлены og:image на `valideyn-mektebi.html` и `klinik-psixiatriya.html`. Повторный прогон — 0 изменений (идемпотентно). Поисковые индексы JSON-LD не засоряют (проверено).

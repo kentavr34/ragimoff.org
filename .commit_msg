@@ -1,0 +1,21 @@
+fix: исправить сломанный мобильный меню (hamburger) в shared.js
+
+Убран TypeScript-синтаксис (аннотации типов) из трёх функций shared.js:
+- submitToEndpoint(endpoint: string, payload: object)
+- submitBookOrder(payload: object)
+- submitTrainingReg(payload: object)
+
+Синтаксическая ошибка `SyntaxError: Unexpected token ':'` на строке 286
+не давала определиться функции toggleMenu() (строка 218), поэтому
+клик по кнопке «Меню» (aria-label="Меню") выбрасывал
+`ReferenceError: toggleMenu is not defined`.
+
+После исправления:
+- shared.js загружается без ошибок (console clean)
+- toggleMenu() корректно определена
+- hamburger открывает мобильную панель навигации
+- кнопка «Закрыть меню» закрывает панель
+
+Сторожа: checkup.py 0/19, regress.py 1292, refcheck.py 0, numcheck.py 0/312, paracheck.py 0, xrefcheck.py 0
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
