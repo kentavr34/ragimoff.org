@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-05",
+  "updated": "2026-09-08",
   "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
   "phases": [
     {
@@ -535,6 +535,13 @@
       "type": "commit",
       "commit": "02f4ac3",
       "note": "Wave 1.4: интеграция samira.html в sitemap.xml и search-index.json. Проблема: noindex meta-тег в samira.html исключал её из карты сайта и поискового индекса; _build_print не было в SKIP_DIRS. Исправления: 1) убран noindex из samira.html, 2) добавлено _build_print в SKIP_DIRS в build_sitemap.py, 3) перегенерен sitemap.xml (714 стр: 548 книга + 166 сайт) с samira.html, 4) перегенерены search-index.json (сайт 96 записей, 2 для samira; книга 1284). Проверка продакшн: sitemap.xml и search-index.json содержат samira.html. Сторожи: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0, fix_orthography 0, lang_tags 0. Коммит: 5 файлов, +766/−713."
+    },
+    {
+      "ts": "2026-09-08",
+      "actor": "zcode",
+      "type": "commit",
+      "commit": "bbc16ae",
+      "note": "Восстановление после пакетной правки 05–07.09 (MiniMax Code). Диагноз: 05.09 23:03 — 33 файла _supplements/ испорчены кодировкой (двойное перекодирование UTF-8→cp1251/1252, BOM) при смене уровней заголовков; 06.09 03:14 — батч по 161 странице переименовал спаны hero (ph-h1-w1→h1-w1, ph-badge→badge) и перерендерил kitab-modal (h2→h1) с той же порчей кодировки (4 строки на страницу, включая строку JS-формы), не обновив CSS-селекторы (gtc.css:3915 и инлайн .page-hero-x .ph-h1 .ph-h1-w1 перестали матчить — двухцветный h1 сломан); раскатка остановлена на половине. Ручные правки 06–07.09 (gtc.css, gtc-dark.css, tehsil, xidmetler, samira×3: .btn-action-1/2, line-clamp, ритм бейджа) лежали поверх батча. Ни одного коммита — прод оставался на 2b1b9df (деплой-канал исправен, проверено по Last-Modified). Решение: полный откат к HEAD по правилу «не выкатывать сырое»; состояние сохранено в git stash «wip-2026-09-06-design-batch» и _wip_backup_20260906/ (в .gitignore). Сторожи после отката: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0. Повторный дизайн — отдельной волной: DESIGN.md + скиллы, унификация hero вместе с CSS-селекторами, раскатка .btn-action."
     }
   ]
 }
