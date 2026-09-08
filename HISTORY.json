@@ -542,6 +542,13 @@
       "type": "commit",
       "commit": "bbc16ae",
       "note": "Восстановление после пакетной правки 05–07.09 (MiniMax Code). Диагноз: 05.09 23:03 — 33 файла _supplements/ испорчены кодировкой (двойное перекодирование UTF-8→cp1251/1252, BOM) при смене уровней заголовков; 06.09 03:14 — батч по 161 странице переименовал спаны hero (ph-h1-w1→h1-w1, ph-badge→badge) и перерендерил kitab-modal (h2→h1) с той же порчей кодировки (4 строки на страницу, включая строку JS-формы), не обновив CSS-селекторы (gtc.css:3915 и инлайн .page-hero-x .ph-h1 .ph-h1-w1 перестали матчить — двухцветный h1 сломан); раскатка остановлена на половине. Ручные правки 06–07.09 (gtc.css, gtc-dark.css, tehsil, xidmetler, samira×3: .btn-action-1/2, line-clamp, ритм бейджа) лежали поверх батча. Ни одного коммита — прод оставался на 2b1b9df (деплой-канал исправен, проверено по Last-Modified). Решение: полный откат к HEAD по правилу «не выкатывать сырое»; состояние сохранено в git stash «wip-2026-09-06-design-batch» и _wip_backup_20260906/ (в .gitignore). Сторожи после отката: checkup 0/19, regress 1292, refcheck 0, numcheck 0/312, paracheck 0/0, xrefcheck 0. Повторный дизайн — отдельной волной: DESIGN.md + скиллы, унификация hero вместе с CSS-селекторами, раскатка .btn-action."
+    },
+    {
+      "ts": "2026-09-08",
+      "actor": "zcode",
+      "type": "commit",
+      "commit": "5a8a519",
+      "note": "Wave 1.6: унификация hero (ph-*). Организованная волна вместо сломанного батча 06.09: канон ph-* сохранён. gtc.css — .ph-badge line-height var(--type-label-line) (ровно 36px) + утилиты .btn-action-1/2; samira x3 и tehsil — сняты инлайн-дубли .ph-badge/.ph-h1/.ph-sub, page-специфика только в scoped-оверрайдах (двухцветный h1, letter-spacing, щель поисковика), протухшие комментарии переписаны; новый сторож _hero_check.py (канон, дубли, mojibake, переопределения; ph-h1-w2 опционален). Проверка: _hero_check OK 860 стр (excl. klinik), checkup 0/19, Chromium-замер 1440/390 = эталон depressiya.html (бейдж 36, зазоры 39/30). Удалены артефакты deploy-temp/, deploy-temp2, _wip_backup_20260906/ (батч 06.09 живёт в git stash). Канон задокументирован в DESIGN-STANDARD.md §8 «PAGE HERO SYSTEM»."
     }
   ]
 }

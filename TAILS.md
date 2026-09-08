@@ -33,7 +33,9 @@ Schema.org (MedicalCondition, Article/BlogPosting, HowTo, Organisation, FAQPage)
 - Не блокирует деплой; расширить скрипт (тип `Review` + `aggregateRating`, без выдуманных цифр — только реальные) и прогнать.
 
 ## 6. Разобрать оставшиеся файлы (dev-артефакты)
-- `rebuild_site_search_index.py`, `temp_index.html`, `temp_shared.js`, `check_samira.py`, `.commit_msg` — при коммите п.1 решить: влить / удалить / в `.gitignore`.
+- ✅ 2026-09-08 (Wave 1.6): `deploy-temp/`, `deploy-temp2`, `_wip_backup_20260906/` удалены — содержимое сломанного батча 06.09 доступно в `git stash@{0}`; страж `_hero_check.py` закоммичен.
+- `rebuild_site_search_index.py`, `temp_index.html`, `temp_shared.js`, `check_samira.py`, `.commit_msg` — решить: влить / удалить / в `.gitignore`.
+- `standardize_az.py`, `standardize_ru.py`, `standardize_en.py`, `geo_out.txt` — артефакты сессии 06.09, остались незакоммиченными: влить или удалить.
 - ⚠️ `template.html` и `ru/template.html` **отслеживаются git и попадут на прод** при деплое (заголовок «Səhifə | RAGIMOFF», без JSON-LD). Решение: удалить из репо или добавить в `.gitignore` (проверено: в sitemap их нет, но на GitHub Pages они опубликуются).
 - `gp.html` / `wc.html` — справочные копии (CBASP-мануал и др.), уже в `.gitignore` (коммит `a7eaa8c`) — НЕ трогать, не публикуются.
 
