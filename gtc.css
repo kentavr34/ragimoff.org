@@ -810,6 +810,26 @@ body {
   transform: translateY(-2px);
 }
 
+/* Утилиты позиционирования кнопок (модификаторы к .btn/.btn-fill/.btn-line).
+   Волна унификации 2026-09-08. Применение — только там, где позиция
+   действительно описывается классом (hero-CTA под меню, отдельная
+   центрированная строка-действие). Кнопки внутри форм НЕ переводить:
+   их зазоры измерены по месту и живут в инлайне до отдельного прохода
+   по формам. */
+.btn-action-1 {
+  /* Основное действие под навигацией/меню: зазор сверху — токен ритма */
+  margin-top:  var(--s-gap-tag-hero);
+  margin-left: var(--s-section);
+}
+.btn-action-2 {
+  /* Вторичное действие в контенте: центрированная строка */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:  var(--s-gap-title);
+  margin-bottom: var(--s-gap-title);
+}
+
 /* Контурная — цвет контролируется темой */
 .btn-line {
   background: transparent;
@@ -3478,6 +3498,10 @@ select:focus-visible,
   font-size:      14px;
   font-weight:    700;
   letter-spacing: 1px;
+  /* line-height 1 (токен --type-label-line) при кегле 14px даёт высоту
+     ровно 36px: 14 + 2×10 паддинг + 2×1 рамка. Замер с index.html;
+     волна унификации 2026-09-08 — инлайновые дубли в страницах сняты. */
+  line-height:    var(--type-label-line);
   text-transform: uppercase;
   display:        inline-flex;
   align-items:    center;
