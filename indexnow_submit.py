@@ -136,9 +136,10 @@ def submit_indexnow(urls, key):
 
 def ping_sitemaps():
     """Ping search engines with sitemap URLs"""
+    # TAILS п.4 (закрыто 2026-09-08): google.com/ping отдаёт 404 (deprecated,
+    # googleblog 2023-06), bing.com/ping — 410 Gone. Оба убраны; живым остался
+    # только пинг Яндекса. Google/Bing индексируют через sitemap и IndexNow выше.
     ping_endpoints = [
-        'https://www.google.com/ping?sitemap=',
-        'https://www.bing.com/ping?sitemap=',
         'https://webmaster.yandex.com/ping?sitemap=',
     ]
     

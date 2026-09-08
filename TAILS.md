@@ -13,19 +13,20 @@ Schema.org (MedicalCondition, Article/BlogPosting, HowTo, Organisation, FAQPage)
 В набор уже включены правки этой сессии: снят `noindex` с `ru/samira.html` и `en/samira.html`
 (страница семейного терапевта индексируется во всех трёх языках; корень был снят ранее в Wave 1.4).
 
-## 2. IndexNow: верификация не пройдена (Bing)
-- Сейчас: Bing/IndexNow.org возвращает 403 `SiteVerificationNotCompleted`; Yandex уже принял (202).
-- Причина: ключ станет публично доступен только после деплоя (`https://ragimoff.org/indexnow_key.txt`).
-- Порядок: деплой (п.1) → проверить, что ключ открывается по URL → повторно запустить `indexnow_submit.py`.
-- Если и после этого 403 — смотреть, соответствует ли ключ в файле ожидаемому (64 символа) и нет ли CDN-кэша.
+## 2. IndexNow — ✅ ЗАКРЫТО 2026-09-08
+- Деплой выполнен (`2b1b9df`), ключ открылся: `https://ragimoff.org/indexnow_key.txt` → HTTP 200.
+- `indexnow_submit.py` повторно запущен 2026-09-08: **api.indexnow.org 200, Bing 200, Yandex 200** —
+  верификация пройдена, 403 `SiteVerificationNotCompleted` ушёл. WebSub (Google hub, Superfeedr) — 204 по всем URL.
 
 ## 3. Google Indexing API
 - Не настроен (нет сервис-аккаунта в Google Cloud / Search Console).
 - Решение: создавать аккаунт и пушить обновления через API, или положиться на sitemap + llms.txt + естественный обход.
 - Решается после п.1–2.
 
-## 4. Sitemap-пинги устарели
-- Старые URL Google/Bing ping возвращают 404/410 — обновить или убрать из скриптов/чеклистов.
+## 4. Sitemap-пинги устарели — ✅ ЗАКРЫТО 2026-09-08
+- Подтверждено прогоном: Google ping 404 (deprecated, googleblog 2023-06), Bing ping 410 Gone, Яндекс 200.
+- Google/Bing убраны из `indexnow_submit.py` (остался только Яндекс); Google/Bing индексируют
+  через sitemap + IndexNow (п.2 закрыт).
 
 ## 5. Review/Rating schema
 - В `geo_optimize.py` тип Review для страниц услуг не добавлялся (xidmetler, программы и т.д.).
