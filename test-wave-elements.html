@@ -194,15 +194,17 @@
           var h1 = document.querySelector('.hero-h1');
           if (!h1) return;
           var w1 = h1.querySelector('.h1-w1');
-          var w2 = h1.querySelector('.h1-w2');
+          var w2 = w1.querySelector('.h1-w2');
           if (!w1 || !w2) return;
           var isMobile = window.innerWidth <= 768;
           var h1W = h1.getBoundingClientRect().width;
           if (isMobile){
             /* Мобайл: проверяем, помещаются ли оба span'а в 1 строку */
             var baseFS = parseInt(getComputedStyle(w1).fontSize) || 34;
-            var w1W = measureText(w1.textContent.replace(/<\/?em>/g, ''), baseFS);
-            var w2W = measureText(w2.textContent.replace(/<\/?em>/g, ''), baseFS);
+            var w1Text = getPlainText(w1);
+            var w2Text = getPlainText(w2);
+            var w1W = measureText(w1Text, baseFS);
+            var w2W = measureText(w2Text, baseFS);
             if ((w1W + w2W + 20) > h1W){
               /* Не помещается → 2 строки с выравниванием по ширине */
               w1.style.display = 'inline-block';
@@ -213,25 +215,27 @@
               w2.style.textAlign = 'center';
               w1.style.whiteSpace = 'normal';
               w2.style.whiteSpace = 'normal';
-              /* Стretch both lines to same width — first slightly larger */
-              var lo1 = 8, hi1 = 60, lo2 = 8, hi2 = 60;
+              /* Stretch both lines to full width — first slightly larger */
+              var lo1 = 8, hi1 = 80, lo2 = 8, hi2 = 80;
               var targetW = h1W;
               for (var i = 0; i < 30; i++){
                 var m1 = (lo1 + hi1) / 2;
                 w1.style.fontSize = m1 + 'px';
-                if (w1.getBoundingClientRect().width < targetW) lo1 = m1; else hi1 = m1;
+                var r1 = w1.getBoundingClientRect();
+                if (r1.width < targetW * 0.98) lo1 = m1; else hi1 = m1;
               }
               for (var j = 0; j < 30; j++){
                 var m2 = (lo2 + hi2) / 2;
                 w2.style.fontSize = m2 + 'px';
-                if (w2.getBoundingClientRect().width < targetW) lo2 = m2; else hi2 = m2;
+                var r2 = w2.getBoundingClientRect();
+                if (r2.width < targetW * 0.98) lo2 = m2; else hi2 = m2;
               }
-              /* First line slightly larger */
+              /* First line slightly larger, second slightly smaller */
               var avgFS = (lo1 + lo2) / 2;
-              w1.style.fontSize = (avgFS * 1.1) + 'px';
-              w2.style.fontSize = (avgFS * 0.95) + 'px';
+              w1.style.fontSize = (avgFS * 1.15) + 'px';
+              w2.style.fontSize = (avgFS * 0.9) + 'px';
             } else {
-              /* Помещается в 1 строку */
+              /* Помещается в 1 строку — inline */
               w1.style.display = 'inline';
               w2.style.display = 'inline';
               w1.style.width = '';
@@ -248,6 +252,12 @@
             w1.style.fontSize = '';
             w2.style.fontSize = '';
           }
+        }
+
+        /* Get plain text without HTML tags */
+        function getPlainText(el){
+          var txt = el.textContent || el.innerText;
+          return txt.replace(/\s+/g, ' ').trim();
         }
 
         /* -------- ECO SUBTITLE (fitEco) -------- */
