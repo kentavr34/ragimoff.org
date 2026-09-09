@@ -106,39 +106,38 @@
           max-width: 100% !important;
         }
         .hero-search-bar { width: 100% !important; }
-        /* Герой заголовок: перенос по словам, 2 строки, центр */
-        .hero-h1 {
-          display: block !important;
+        /* ── Мобильные заголовки: ячейка-таблица, 2 строки равной ширины ── */
+        .hero-h1, .sec-h2 {
+          display: table !important;
           text-align: center !important;
-          white-space: normal !important;
+          width: 100% !important;
+          table-layout: fixed !important;
           word-wrap: break-word !important;
           overflow-wrap: break-word !important;
           hyphens: auto !important;
           line-height: 1.2 !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
         }
         .hero-h1 .h1-w1,
-        .hero-h1 .h1-w2 {
-          display: inline !important;
-          white-space: normal !important;
-        }
-        /* Заголовки всех секций: центр + перенос */
-        .sec-h2 {
-          text-align: center !important;
-          white-space: normal !important;
-          word-wrap: break-word !important;
-          overflow-wrap: break-word !important;
-          hyphens: auto !important;
-          line-height: 1.2 !important;
-        }
+        .hero-h1 .h1-w2,
         .sec-h2 .sh-line,
         .sec-h2 .eco-h2-w1,
         .sec-h2 .eco-h2-w2 {
+          display: table-cell !important;
+          width: 50% !important;
+          text-align: center !important;
           white-space: normal !important;
+          word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          vertical-align: middle !important;
         }
-        /* Eco заголовок: 2 строки по центру */
+        /* Eco header: each span in its own cell, full width */
         .sec-h2 .eco-h2-w1,
         .sec-h2 .eco-h2-w2 {
-          display: inline !important;
+          display: block !important;
+          width: 100% !important;
+          text-align: center !important;
         }
       }
     </style>
@@ -193,32 +192,68 @@
           var w1 = h1.querySelector('.h1-w1');
           var w2 = h1.querySelector('.h1-w2');
           if (!w1 || !w2) return;
-          if (window.innerWidth <= 768){
-            /* Мобайл: проверить, влезает ли сумма в ячейку */
-            var cellW = h1.parentElement.getBoundingClientRect().width;
-            var totalW = measureText(w1.textContent + ' ' + w2.textContent.replace('—','').trim(), 34);
+          var isMobile = window.innerWidth <= 768;
+          var cellW = h1.parentElement.getBoundingClientRect().width;
+          var baseFS = clamp(34, 10 * cellW / 100, 44);
+          if (isMobile){
+            /* Мобайл: если сумма не помещается в одну строку → 2 строки */
+            var w1Text = w1.textContent.replace(/<\/?em>/g, '').trim();
+            var w2Text = w2.textContent.replace(/<\/?em>/g, '').trim();
+            var totalW = measureText(w1Text + ' ' + w2Text, baseFS);
             if (totalW > cellW * 0.95){
-              /* Не влезает — растягиваем обе строки */
-              var fs1 = Math.min(44, cellW / (w1.textContent.length * 0.65));
-              var fs2 = Math.min(44, cellW / (w2.textContent.replace('<em>','').replace('</em>','').length * 0.65));
-              w1.style.fontSize = fs1 + 'px';
-              w2.style.fontSize = fs2 + 'px';
-              w1.style.display = 'block';
-              w2.style.display = 'block';
+              /* 2 строки с равной шириной — первая чуть больше, вторая чуть меньше */
+              h1.style.display = 'table';
+              w1.style.display = 'table-cell';
+              w2.style.display = 'table-cell';
+              /* Binary search font sizes to achieve equal pixel width */
+              var lo1 = 8, hi1 = baseFS * 1.4;
+              var lo2 = 8, hi2 = baseFS * 1.4;
+              var targetWidth = cellW * 0.5; /* half the width */
+              /* Fit w1 */
+              for (var i = 0; i < 30; i++){
+                var m1 = (lo1 + hi1) / 2;
+                w1.style.fontSize = m1 + 'px';
+                var r1 = w1.getBoundingClientRect();
+                if (r1.width < targetWidth) lo1 = m1; else hi1 = m1;
+              }
+              /* Fit w2 */
+              for (var j = 0; j < 30; j++){
+                var m2 = (lo2 + hi2) / 2;
+                w2.style.fontSize = m2 + 'px';
+                var r2 = w2.getBoundingClientRect();
+                if (r2.width < targetWidth) lo2 = m2; else hi2 = m2;
+              }
+              /* Ensure first line slightly larger */
+              if (typeof lo2 !== 'undefined' && lo1 < lo2 * 0.95){
+                /* Adjust: first should be >= second */
+                var avgFS = (lo1 + lo2) / 2;
+                w1.style.fontSize = (avgFS * 1.1) + 'px';
+                w2.style.fontSize = (avgFS * 0.95) + 'px';
+              }
               w1.style.textAlign = 'center';
               w2.style.textAlign = 'center';
             } else {
+              /* Помещается в одну строку — оставляем inline */
               w1.style.fontSize = '';
               w2.style.fontSize = '';
               w1.style.display = 'inline';
               w2.style.display = 'inline';
+              h1.style.display = 'block';
             }
           } else {
+            /* Десктоп: одна строка */
             w1.style.fontSize = '';
             w2.style.fontSize = '';
             w1.style.display = 'inline';
             w2.style.display = 'inline';
+            h1.style.display = 'flex';
+            h1.style.flexDirection = 'column';
+            h1.style.alignItems = 'stretch';
           }
+        }
+
+        function clamp(min, vw, max){
+          return Math.min(max, Math.max(min, vw));
         }
 
         /* -------- ECO SUBTITLE (fitEco) -------- */
