@@ -106,38 +106,42 @@
           max-width: 100% !important;
         }
         .hero-search-bar { width: 100% !important; }
-        /* ── Мобильные заголовки: ячейка-таблица, 2 строки равной ширины ── */
-        .hero-h1, .sec-h2 {
-          display: table !important;
+        /* ── Мобильные заголовки: центр, перенос по словам ── */
+        .hero-h1 {
+          display: block !important;
           text-align: center !important;
           width: 100% !important;
-          table-layout: fixed !important;
-          word-wrap: break-word !important;
-          overflow-wrap: break-word !important;
-          hyphens: auto !important;
           line-height: 1.2 !important;
           margin-left: auto !important;
           margin-right: auto !important;
         }
         .hero-h1 .h1-w1,
-        .hero-h1 .h1-w2,
-        .sec-h2 .sh-line,
-        .sec-h2 .eco-h2-w1,
-        .sec-h2 .eco-h2-w2 {
-          display: table-cell !important;
-          width: 50% !important;
+        .hero-h1 .h1-w2 {
+          display: inline-block !important;
           text-align: center !important;
           white-space: normal !important;
           word-wrap: break-word !important;
           overflow-wrap: break-word !important;
-          vertical-align: middle !important;
+          width: 100% !important;
+          margin-bottom: 4px !important;
         }
-        /* Eco header: each span in its own cell, full width */
+        /* Заголовки секций: центр + перенос */
+        .sec-h2 {
+          text-align: center !important;
+          width: 100% !important;
+          white-space: normal !important;
+          word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+          line-height: 1.2 !important;
+        }
+        .sec-h2 .sh-line,
         .sec-h2 .eco-h2-w1,
         .sec-h2 .eco-h2-w2 {
-          display: block !important;
-          width: 100% !important;
+          display: inline-block !important;
           text-align: center !important;
+          white-space: normal !important;
+          word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
         }
       }
     </style>
@@ -193,67 +197,57 @@
           var w2 = h1.querySelector('.h1-w2');
           if (!w1 || !w2) return;
           var isMobile = window.innerWidth <= 768;
-          var cellW = h1.parentElement.getBoundingClientRect().width;
-          var baseFS = clamp(34, 10 * cellW / 100, 44);
+          var h1W = h1.getBoundingClientRect().width;
           if (isMobile){
-            /* Мобайл: если сумма не помещается в одну строку → 2 строки */
-            var w1Text = w1.textContent.replace(/<\/?em>/g, '').trim();
-            var w2Text = w2.textContent.replace(/<\/?em>/g, '').trim();
-            var totalW = measureText(w1Text + ' ' + w2Text, baseFS);
-            if (totalW > cellW * 0.95){
-              /* 2 строки с равной шириной — первая чуть больше, вторая чуть меньше */
-              h1.style.display = 'table';
-              w1.style.display = 'table-cell';
-              w2.style.display = 'table-cell';
-              /* Binary search font sizes to achieve equal pixel width */
-              var lo1 = 8, hi1 = baseFS * 1.4;
-              var lo2 = 8, hi2 = baseFS * 1.4;
-              var targetWidth = cellW * 0.5; /* half the width */
-              /* Fit w1 */
+            /* Мобайл: проверяем, помещаются ли оба span'а в 1 строку */
+            var baseFS = parseInt(getComputedStyle(w1).fontSize) || 34;
+            var w1W = measureText(w1.textContent.replace(/<\/?em>/g, ''), baseFS);
+            var w2W = measureText(w2.textContent.replace(/<\/?em>/g, ''), baseFS);
+            if ((w1W + w2W + 20) > h1W){
+              /* Не помещается → 2 строки с выравниванием по ширине */
+              w1.style.display = 'inline-block';
+              w2.style.display = 'inline-block';
+              w1.style.width = '100%';
+              w2.style.width = '100%';
+              w1.style.textAlign = 'center';
+              w2.style.textAlign = 'center';
+              w1.style.whiteSpace = 'normal';
+              w2.style.whiteSpace = 'normal';
+              /* Стretch both lines to same width — first slightly larger */
+              var lo1 = 8, hi1 = 60, lo2 = 8, hi2 = 60;
+              var targetW = h1W;
               for (var i = 0; i < 30; i++){
                 var m1 = (lo1 + hi1) / 2;
                 w1.style.fontSize = m1 + 'px';
-                var r1 = w1.getBoundingClientRect();
-                if (r1.width < targetWidth) lo1 = m1; else hi1 = m1;
+                if (w1.getBoundingClientRect().width < targetW) lo1 = m1; else hi1 = m1;
               }
-              /* Fit w2 */
               for (var j = 0; j < 30; j++){
                 var m2 = (lo2 + hi2) / 2;
                 w2.style.fontSize = m2 + 'px';
-                var r2 = w2.getBoundingClientRect();
-                if (r2.width < targetWidth) lo2 = m2; else hi2 = m2;
+                if (w2.getBoundingClientRect().width < targetW) lo2 = m2; else hi2 = m2;
               }
-              /* Ensure first line slightly larger */
-              if (typeof lo2 !== 'undefined' && lo1 < lo2 * 0.95){
-                /* Adjust: first should be >= second */
-                var avgFS = (lo1 + lo2) / 2;
-                w1.style.fontSize = (avgFS * 1.1) + 'px';
-                w2.style.fontSize = (avgFS * 0.95) + 'px';
-              }
-              w1.style.textAlign = 'center';
-              w2.style.textAlign = 'center';
+              /* First line slightly larger */
+              var avgFS = (lo1 + lo2) / 2;
+              w1.style.fontSize = (avgFS * 1.1) + 'px';
+              w2.style.fontSize = (avgFS * 0.95) + 'px';
             } else {
-              /* Помещается в одну строку — оставляем inline */
-              w1.style.fontSize = '';
-              w2.style.fontSize = '';
+              /* Помещается в 1 строку */
               w1.style.display = 'inline';
               w2.style.display = 'inline';
-              h1.style.display = 'block';
+              w1.style.width = '';
+              w2.style.width = '';
+              w1.style.fontSize = '';
+              w2.style.fontSize = '';
             }
           } else {
             /* Десктоп: одна строка */
-            w1.style.fontSize = '';
-            w2.style.fontSize = '';
             w1.style.display = 'inline';
             w2.style.display = 'inline';
-            h1.style.display = 'flex';
-            h1.style.flexDirection = 'column';
-            h1.style.alignItems = 'stretch';
+            w1.style.width = '';
+            w2.style.width = '';
+            w1.style.fontSize = '';
+            w2.style.fontSize = '';
           }
-        }
-
-        function clamp(min, vw, max){
-          return Math.min(max, Math.max(min, vw));
         }
 
         /* -------- ECO SUBTITLE (fitEco) -------- */
