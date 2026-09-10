@@ -390,12 +390,12 @@
           spans.forEach(function(s, i){
             if (i < lines.length){
               s.textContent = lines[i];
-              s.style.display = 'block';
+              s.style.setProperty('display', 'block', 'important');
               s.style.fontSize = fs + 'px';
               s.style.whiteSpace = 'normal';
               s.style.textAlign = isMob ? 'center' : '';
             } else {
-              s.style.display = 'none';
+              s.style.setProperty('display', 'none', 'important');
             }
           });
         }
