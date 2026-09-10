@@ -116,6 +116,8 @@
          в CSS, остаток глифовой разницы гасим статичным margin-top */
       .sec-sub { margin-top: 2px !important; }
       .hero-text .hero-lead { margin-top: 2px !important; }
+      /* Hero text колонка выше фото — z-index чтобы подзаголовок не перекрывался */
+      .hero-text { position: relative; z-index: 2; padding-bottom: 70px; }
       /* ── Задача 4: поиск = ширина подзаголовка, высота своя (десктоп) ── */
       @media (min-width: 769px) {
         .hero-search-wrap { width: 620px !important; max-width: 100% !important; }
