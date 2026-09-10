@@ -312,7 +312,7 @@
         }
         function fitLead(container, spans, hideSpans, B, isMob){
           if (!container || !spans.length) return;
-          hideSpans.forEach(function(s){ s.style.display = 'none'; });
+          hideSpans.forEach(function(s){ s.style.setProperty('display', 'none', 'important'); });
           container.style.width = '';
           container.style.maxWidth = 'none';
           spans.forEach(function(s){
@@ -1464,27 +1464,7 @@ input, select, textarea, button {
 })();
 </script>
 
-<script id="debug-check">
-(function(){
-  setTimeout(function(){
-    var heroLead = document.querySelector('.hero-lead');
-    var subs = document.querySelectorAll('p.sec-sub');
-    var lines = [];
-    if(heroLead){
-      heroLead.querySelectorAll('span').forEach(function(s, i){
-        lines.push('hero-lead['+i+'] ' + s.className + ' display=' + getComputedStyle(s).display + ' text="' + s.textContent.substring(0,50) + '"');
-      });
-    }
-    subs.forEach(function(sub, i){
-      sub.querySelectorAll('span').forEach(function(s, j){
-        lines.push('sec-sub['+i+']['+j+'] ' + s.className + ' display=' + getComputedStyle(s).display + ' text="' + s.textContent.substring(0,50) + '"');
-      });
-    });
-    console.log('=== DISPLAY STATE ===');
-    lines.forEach(function(l){ console.log(l); });
-  }, 500);
-})();
-</script>
+
 
 </body>
 </html>
