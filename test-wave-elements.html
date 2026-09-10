@@ -22,11 +22,9 @@
          Условия владельца: см. _WAVE-ELEMENTS_2026-09-08.md (ред. 2, дословно).
          Утвердится — раскатим канон на все страницы через gtc.css и снимем блок. -->
     <style>
-      /* ── Заголовки: одинаковый шрифт/вес/цвет/трекинг КО ВСЕМ.
-           Кегль: у eco-пары («RAGIMOFF» / «EKOSİSTEMİ») размерами ведёт
-           fitAll — две строки, растянутые на одну ширину, и 3 строки лида
-           под него же («согласование пропорций» владельца). Eco-спанам
-           font-size НЕ навязывается. ── */
+      /* ── Заголовки: одинаковый шрифт/вес/цвет/трекинг/кегль КО ВСЕМ.
+           Десктоп: КАЖДЫЙ заголовок — строго ОДНА строка (герой и блоки).
+           Мобайл: отдельные правила ниже. ── */
       .hero-h1, .hero-h1 .h1-w1, .hero-h1 .h1-w2,
         .sec-h2, .sec-h2 .sh-line,
         .sec-h2 .eco-h2-w1, .sec-h2 .eco-h2-w2 {
@@ -38,11 +36,25 @@
         }
       .hero-h1 {
         font-size: 40px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 0 !important;
+        display: block !important;
         width: 100% !important;
+      }
+      /* ── Десктоп: одна строка у ВСЕХ заголовков ── */
+      @media (min-width: 769px) {
+        .hero-h1, .sec-h2 { white-space: nowrap !important; }
+        .hero-h1 .h1-w1, .hero-h1 .h1-w2,
+        .sec-h2 .sh-line, .sec-h2 .eco-h2-w1, .sec-h2 .eco-h2-w2 {
+          display: inline !important;
+        }
+      }
+      /* Узкий десктоп: единый кегль чуть меньше, чтобы строка гарантированно
+           вмещалась без переноса (все заголовки по-прежнему одного размера) */
+      @media (min-width: 769px) and (max-width: 1100px) {
+        .hero-h1, .hero-h1 .h1-w1, .hero-h1 .h1-w2,
+        .sec-h2, .sec-h2 .sh-line,
+        .sec-h2 .eco-h2-w1, .sec-h2 .eco-h2-w2 {
+          font-size: clamp(28px, 3.4vw, 40px) !important;
+        }
       }
       .hero-h1 em { color: var(--accent) !important; }
       /* Слова eco-заголовка НЕ сливаются — словесный зазор между ними */
@@ -55,6 +67,30 @@
         font-family: 'Cormorant Garamond', Georgia, serif !important;
         font-style:  italic !important;
         font-weight: 400 !important;
+      }
+      /* Переопределить gtc-dark: desk-lead-line / eco-lead-line на десктопе должны быть block */
+      @media (min-width: 769px) {
+        .hero-lead .desk-lead-line { display: block !important; }
+        .hero-lead .lead-line { display: none !important; }
+        .sec-sub .eco-lead-line { display: block !important; }
+        .sec-sub .svc-lead-desk,
+        .sec-sub .ab-lead-desk { display: block !important; }
+        .sec-sub .svc-lead-mob,
+        .sec-sub .ab-lead-mob { display: none !important; }
+      }
+      @media (max-width: 768px) {
+        .hero-lead .lead-line { display: block !important; }
+        .hero-lead .desk-lead-line { display: none !important; }
+        .sec-sub .eco-lead-line { display: block !important; }
+        .sec-sub .svc-lead-mob,
+        .sec-sub .ab-lead-mob { display: block !important; }
+        .sec-sub .svc-lead-desk,
+        .sec-sub .ab-lead-desk { display: none !important; }
+      }
+      /* Дефолтный кегль подзаголовков на десктопе (fitSubs перекроет) */
+      @media (min-width: 769px) {
+        .hero-lead .desk-lead-line,
+        .sec-sub span { font-size: 29px !important; }
       }
       /* Плотный интерлиньяж строк лида: зазор 50px считается по ГЛИФАМ,
          а не по боксам (иначе периферия строки добавляет лишние пиксели) */
@@ -194,63 +230,60 @@
           var h1 = document.querySelector('.hero-h1');
           if (!h1) return;
           var w1 = h1.querySelector('.h1-w1');
-          var w2 = w1.querySelector('.h1-w2');
+          var w2 = h1.querySelector('.h1-w2');
           if (!w1 || !w2) return;
           var isMobile = window.innerWidth <= 768;
           var h1W = h1.getBoundingClientRect().width;
           if (isMobile){
-            /* Мобайл: проверяем, помещаются ли оба span'а в 1 строку */
-            var baseFS = parseInt(getComputedStyle(w1).fontSize) || 34;
-            var w1Text = getPlainText(w1);
-            var w2Text = getPlainText(w2);
-            var w1W = measureText(w1Text, baseFS);
-            var w2W = measureText(w2Text, baseFS);
-            if ((w1W + w2W + 20) > h1W){
-              /* Не помещается → 2 строки с выравниванием по ширине */
-              w1.style.display = 'inline-block';
-              w2.style.display = 'inline-block';
-              w1.style.width = '100%';
-              w2.style.width = '100%';
-              w1.style.textAlign = 'center';
-              w2.style.textAlign = 'center';
-              w1.style.whiteSpace = 'normal';
-              w2.style.whiteSpace = 'normal';
-              /* Stretch both lines to full width — first slightly larger */
-              var lo1 = 8, hi1 = 80, lo2 = 8, hi2 = 80;
-              var targetW = h1W;
-              for (var i = 0; i < 30; i++){
-                var m1 = (lo1 + hi1) / 2;
-                w1.style.fontSize = m1 + 'px';
-                var r1 = w1.getBoundingClientRect();
-                if (r1.width < targetW * 0.98) lo1 = m1; else hi1 = m1;
-              }
-              for (var j = 0; j < 30; j++){
-                var m2 = (lo2 + hi2) / 2;
-                w2.style.fontSize = m2 + 'px';
-                var r2 = w2.getBoundingClientRect();
-                if (r2.width < targetW * 0.98) lo2 = m2; else hi2 = m2;
-              }
-              /* First line slightly larger, second slightly smaller */
-              var avgFS = (lo1 + lo2) / 2;
-              w1.style.fontSize = (avgFS * 1.15) + 'px';
-              w2.style.fontSize = (avgFS * 0.9) + 'px';
-            } else {
-              /* Помещается в 1 строку — inline */
-              w1.style.display = 'inline';
-              w2.style.display = 'inline';
-              w1.style.width = '';
-              w2.style.width = '';
-              w1.style.fontSize = '';
-              w2.style.fontSize = '';
+            /* Мобайл: принудительно 2 строки с выравниванием по ширине */
+            /* Ensure em inside w2 doesn't break layout */
+            var em = w2.querySelector('em');
+            if (em){
+              em.style.display = 'inline';
+              em.style.whiteSpace = 'nowrap';
             }
+            /* 2 строки с выравниванием по ширине — первая чуть больше */
+            w1.style.display = 'inline-block';
+            w2.style.display = 'inline-block';
+            w1.style.width = '100%';
+            w2.style.width = '100%';
+            w1.style.textAlign = 'center';
+            w2.style.textAlign = 'center';
+            w1.style.whiteSpace = 'normal';
+            w2.style.whiteSpace = 'normal';
+            w2.style.wordWrap = 'break-word';
+            w2.style.overflowWrap = 'break-word';
+            /* Stretch both lines to full width — first slightly larger */
+            var lo1 = 8, hi1 = 80, lo2 = 8, hi2 = 80;
+            var targetW = h1W;
+            for (var i = 0; i < 30; i++){
+              var m1 = (lo1 + hi1) / 2;
+              w1.style.fontSize = m1 + 'px';
+              var r1 = w1.getBoundingClientRect();
+              if (r1.width < targetW * 0.98) lo1 = m1; else hi1 = m1;
+            }
+            /* For w2, measure its plain text width first */
+            var w2Text = getPlainText(w2);
+            for (var j = 0; j < 30; j++){
+              var m2 = (lo2 + hi2) / 2;
+              w2.style.fontSize = m2 + 'px';
+              var r2 = w2.getBoundingClientRect();
+              if (r2.width < targetW * 0.98) lo2 = m2; else hi2 = m2;
+            }
+            /* First line slightly larger, second slightly smaller */
+            var avgFS = (lo1 + lo2) / 2;
+            w1.style.fontSize = (avgFS * 1.15) + 'px';
+            w2.style.fontSize = (avgFS * 0.9) + 'px';
           } else {
             /* Десктоп: одна строка */
-            w1.style.display = 'inline';
-            w2.style.display = 'inline';
-            w1.style.width = '';
-            w2.style.width = '';
             w1.style.fontSize = '';
             w2.style.fontSize = '';
+            w1.style.display = '';
+            w2.style.display = '';
+            w1.style.width = '';
+            w2.style.width = '';
+            w1.style.whiteSpace = '';
+            w2.style.whiteSpace = '';
           }
         }
 
@@ -260,181 +293,165 @@
           return txt.replace(/\s+/g, ' ').trim();
         }
 
-        /* -------- ECO SUBTITLE (fitEco) -------- */
-        function fitEco(){
-          var sub = document.querySelector('.eco-sub');
-          if (!sub || window.innerWidth <= 768) return;
-          var lines = Array.prototype.slice.call(sub.querySelectorAll('.eco-lead-line'));
-          if (!lines.length) return;
-          var heroLines = document.querySelectorAll('.hero-lead .desk-lead-line');
-          var B = (heroLines.length > 1 && parseFloat(getComputedStyle(heroLines[1]).fontSize)) || 29;
-          /* Заголовок над лидом */
-          var h2 = sub.closest('.sec-header').querySelector('.sec-h2');
-          var targetW = h2 ? h2.getBoundingClientRect().width : 600;
-          lines.forEach(function(l){ set(l, B + 'px', 'inline', 'nowrap'); });
-          var fitted = fitLinesToTarget(lines, targetW, B);
-          if (!fitted) return;
-          lines.forEach(function(l, idx){
-            set(l, fitted[idx] + 'px', 'block', '');
-          });
+        /* -------- ЕДИНЫЙ АЛГОРИТМ ПОДЗАГОЛОВКОВ (fitSubs) --------
+           Один шрифт и кегль везде (десктоп 29px / мобайл 20px).
+           Одна строка, если текст вмещается; иначе — 2 строки
+           максимально равной длины одним кеглем (кегль обеих строк
+           одинаков; если 2 строки не влезают — кегль пропорционально
+           уменьшается до вмещения). */
+        function measureH(text, fs){
+          var s = document.createElement('span');
+          s.style.cssText = 'position:absolute;visibility:hidden;' +
+            'font-family:Cormorant Garamond,Georgia,serif;font-size:'+fs+'px;'+
+            'font-style:italic;font-weight:400;white-space:nowrap;';
+          s.textContent = text;
+          document.body.appendChild(s);
+          var w = s.getBoundingClientRect().width;
+          document.body.removeChild(s);
+          return w;
         }
-
-        /* -------- STANDARD SUBTITLE (fitStandard) -------- */
-        function fitStandard(){
-          fitEco();
-          if (window.innerWidth <= 768) return;
-          document.querySelectorAll('p.sec-sub').forEach(function(sub){
-            if (sub.classList.contains('eco-sub')) return;
-            var root = sub.closest('section') || sub.parentElement;
-            var h2 = root ? root.querySelector('.sec-h2') : null;
-            if (!h2) return;
-            var lines = Array.prototype.slice.call(sub.children).filter(function(el){
-              return !/mob/i.test(el.className);
-            });
-            if (!lines.length) return;
-            var heroLines = document.querySelectorAll('.hero-lead .desk-lead-line');
-            var B = (heroLines.length > 1 && parseFloat(getComputedStyle(heroLines[1]).fontSize)) || 29;
-            var targetW = h2.getBoundingClientRect().width;
-            lines.forEach(function(l){ set(l, B + 'px', 'inline', 'nowrap'); });
-            var fitted = fitLinesToTarget(lines, targetW, B);
-            if (!fitted) return;
-            lines.forEach(function(l, idx){
-              set(l, fitted[idx] + 'px', 'block', '');
-            });
+        function fitLead(container, spans, hideSpans, B, isMob){
+          if (!container || !spans.length) return;
+          hideSpans.forEach(function(s){ s.style.display = 'none'; });
+          container.style.width = '';
+          container.style.maxWidth = 'none';
+          spans.forEach(function(s){
+            if (!s.getAttribute('data-orig')){
+              s.setAttribute('data-orig', s.textContent || '');
+            }
           });
-        }
-
-        /* -------- CORE FITTER -------- */
-        function fitLinesToTarget(lines, targetW, B){
-          /* Попробовать растянуть все строки на targetW;
-             если кегль выходит за 0.9B–1.1B — цель = самая длинная при B */
-          var targets = [targetW];
-          targets.push(Math.max.apply(null, lines.map(function(l){
-            return measureText(l.textContent, B);
-          })));
-          var fitted = null;
-          for (var t = 0; t < targets.length; t++){
-            var tgt = targets[t];
-            if (!tgt || tgt < 40) continue;
-            fitted = lines.map(function(l){
-              var lo = 8, hi = 90;
-              for (var i = 0; i < 26; i++){
-                var m = (lo + hi) / 2;
-                set(l, m + 'px', 'inline', 'nowrap');
-                if (l.getBoundingClientRect().width < tgt) lo = m; else hi = m;
-              }
-              return Math.floor(lo * 10) / 10;
-            });
-            var ok = fitted.every(function(s){ return s <= B * 1.1 && s >= B * 0.9; });
-            if (ok) break;
-            lines.forEach(function(l){ set(l, B + 'px', 'inline', 'nowrap'); });
+          var text = spans.map(function(s){
+            return (s.getAttribute('data-orig') || '').replace(/\s+/g, ' ').trim();
+          }).join(' ').replace(/\s+/g, ' ').trim();
+          if (!text) return;
+          
+          /* Hero: header IS hero-h1. For sections: sec-h2. */
+          var h2;
+          if (container.classList.contains('hero-lead')){
+            h2 = document.querySelector('.hero-h1');
+          } else {
+            h2 = container.closest('.sec-header')?.querySelector('.sec-h2') ||
+                 container.parentElement?.querySelector('.sec-h2');
           }
-          return fitted;
+          var headerTextW = 0;
+          if (h2){
+            var s = document.createElement('span');
+            s.style.cssText = 'position:absolute;visibility:hidden;' +
+              'font-family:Cormorant Garamond,Georgia,serif;font-size:'+B+'px;'+
+              'font-weight:500;font-style:normal;white-space:nowrap;';
+            s.textContent = h2.textContent.replace(/\s+/g, ' ').trim();
+            document.body.appendChild(s);
+            headerTextW = s.getBoundingClientRect().width;
+            document.body.removeChild(s);
+          }
+          var targetW;
+          if (container.classList.contains('hero-lead')){
+            // Hero subtitle should match search width (620px fixed) per task 4
+            var heroSearch = document.querySelector('.hero-search-wrap');
+            targetW = heroSearch ? heroSearch.getBoundingClientRect().width : 620;
+          } else {
+            var containerAnchor = container.closest('.sec-header') || container.parentElement;
+            targetW = containerAnchor ? containerAnchor.getBoundingClientRect().width : 0;
+          }
+          if (!targetW || targetW < 40) targetW = isMob ? window.innerWidth - 32 : 600;
+          
+          var words = text.split(' ');
+          var singleW = measureH(text, B);
+          var isHero = container.classList.contains('hero-lead');
+          
+          /* Hero: ignore header-based forceMulti; only care about targetW.
+             Sections: forceMulti when subtitle > 1.3x header text width. */
+          var forceMulti = isHero ? (singleW > targetW)
+                                  : (headerTextW > 0 && singleW > headerTextW * 1.3);
+          
+          var lines, fs;
+          if (!forceMulti && singleW <= targetW){
+            lines = [text]; fs = B;
+          } else if (words.length < 2){
+            lines = [text];
+            fs = Math.max(14, B * targetW / singleW);
+          } else {
+            /* Найти оптимальное разбиение на 2 или 3 строки */
+            var best = null;
+            var tryLines = Math.min(maxLines, words.length);
+            
+            if (tryLines === 3 && words.length >= 3){
+              /* Try 3 lines */
+              for (var i = 1; i < words.length - 1; i++){
+                for (var j = i + 1; j < words.length; j++){
+                  var l1 = words.slice(0, i).join(' ');
+                  var l2 = words.slice(i, j).join(' ');
+                  var l3 = words.slice(j).join(' ');
+                  var w1 = measureH(l1, B), w2 = measureH(l2, B), w3 = measureH(l3, B);
+                  var mx = Math.max(w1, w2, w3);
+                  if (!best || mx < best.mx){
+                    best = { lines: [l1, l2, l3], mx: mx };
+                  }
+                }
+              }
+            }
+            /* Always try 2 lines as fallback */
+            for (var k = 1; k < words.length; k++){
+              var l1 = words.slice(0, k).join(' ');
+              var l2 = words.slice(k).join(' ');
+              var w1 = measureH(l1, B), w2 = measureH(l2, B);
+              var mx = Math.max(w1, w2);
+              if (!best || mx < best.mx){
+                best = { lines: [l1, l2], mx: mx };
+              }
+            }
+            fs = best.mx <= targetW ? B : Math.max(14, B * targetW / best.mx);
+            lines = best.lines;
+          }
+          spans.forEach(function(s, i){
+            if (i < lines.length){
+              s.textContent = lines[i];
+              s.style.display = 'block';
+              s.style.fontSize = fs + 'px';
+              s.style.whiteSpace = 'normal';
+              s.style.textAlign = isMob ? 'center' : '';
+            } else {
+              s.style.display = 'none';
+            }
+          });
+        }
+        function fitSubs(){
+          var isMob = window.innerWidth <= 768;
+          var B = isMob ? 20 : 29;
+          /* Hero: мобильные .lead-line / десктопные .desk-lead-line */
+          var heroLead = document.querySelector('.hero-lead');
+          var mobSet = Array.prototype.slice.call(
+            document.querySelectorAll('.hero-lead .lead-line'));
+          var deskSet = Array.prototype.slice.call(
+            document.querySelectorAll('.hero-lead .desk-lead-line'));
+          if (isMob) fitLead(heroLead, mobSet, deskSet, B, true);
+          else fitLead(heroLead, deskSet, mobSet, B, false);
+          /* Секции: mobile-спаны на мобайле, остальные на десктопе */
+          document.querySelectorAll('p.sec-sub').forEach(function(sub){
+            try {
+              var all = Array.prototype.slice.call(sub.children).filter(function(el){
+                return el.tagName === 'SPAN';
+              });
+              var mobs = all.filter(function(el){ return /mob/i.test(el.className); });
+              var desks = all.filter(function(el){ return !/mob/i.test(el.className); });
+              if (isMob){
+                fitLead(sub, mobs.length ? mobs : desks,
+                        mobs.length ? desks : [], B, true);
+              } else {
+                fitLead(sub, desks, mobs, B, false);
+              }
+            } catch (e) { /* один блок не должен ломать остальные */ }
+          });
         }
 
         /* -------- INIT -------- */
         if (document.fonts && document.fonts.ready){
           document.fonts.ready.then(function(){
-            setTimeout(function(){ fitHeroH1(); fitStandard(); fitMobSubs(); }, 80);
+            setTimeout(function(){ fitHeroH1(); fitSubs(); }, 80);
           });
         }
-        window.addEventListener('load', function(){ fitHeroH1(); fitStandard(); fitMobSubs(); });
-        window.addEventListener('resize', function(){ fitHeroH1(); fitStandard(); fitMobSubs(); });
-
-        /* -------- MOBILE SUBTITLE BALANCER -------- */
-        function fitMobSubs(){
-          if (window.innerWidth > 768) return;
-          var sections = document.querySelectorAll('.sec-header');
-          sections.forEach(function(header){
-            var h2 = header.querySelector('.sec-h2');
-            var sub = header.querySelector('.sec-sub');
-            if (!h2 || !sub) return;
-            var h2W = h2.getBoundingClientRect().width;
-            var baseFS = 18;
-            /* Collect all non-mob line spans */
-            var lines = Array.prototype.slice.call(sub.querySelectorAll('span')).filter(function(el){
-              return !/mob/i.test(el.className);
-            });
-            if (!lines.length) return;
-            /* Join all text content */
-            var allText = lines.map(function(l){ return l.textContent.trim(); }).join(' ');
-            var totalChars = allText.length;
-            var targetLines = 1;
-            if (totalChars > 80) targetLines = 3;
-            else if (totalChars > 40) targetLines = 2;
-            /* Split text into balanced lines */
-            var split = balanceText(allText, targetLines);
-            /* Apply to existing line elements */
-            lines.forEach(function(l){ l.style.display = 'none'; });
-            split.forEach(function(txt, idx){
-              if (idx < lines.length){
-                lines[idx].textContent = txt;
-                lines[idx].style.display = 'block';
-                lines[idx].style.fontSize = baseFS + 'px';
-                lines[idx].style.textAlign = 'center';
-                lines[idx].style.whiteSpace = 'normal';
-              }
-            });
-            /* Stretch lines to header width */
-            var active = lines.filter(function(l, idx){ return idx < split.length; });
-            var fitted = active.map(function(l){
-              var lo = 8, hi = 50;
-              for (var i = 0; i < 26; i++){
-                var m = (lo + hi) / 2;
-                l.style.fontSize = m + 'px';
-                if (l.getBoundingClientRect().width < h2W) lo = m; else hi = m;
-              }
-              return Math.floor(lo * 10) / 10;
-            });
-            active.forEach(function(l, idx){
-              l.style.fontSize = fitted[idx] + 'px';
-            });
-          });
-        }
-
-        function balanceText(text, numLines){
-          /* Разделить текст на numLines строк с балансом ≤25% знаков */
-          if (numLines <= 1) return [text];
-          var words = text.split(/\s+/);
-          var result = [];
-          var perLine = Math.ceil(words.length / numLines);
-          /* Жадно: собирать слова, следя за балансом */
-          var cur = ''; var curLen = 0;
-          words.forEach(function(w, i){
-            var trial = cur ? cur + ' ' + w : w;
-            if (result.length < numLines - 1 &&
-                curLen >= perLine * 0.8 && curLen <= perLine * 1.2){
-              result.push(cur); cur = w; curLen = w.length;
-            } else {
-              cur = trial; curLen += (curLen ? 1 : 0) + w.length;
-            }
-          });
-          result.push(cur);
-          /* Если больше чем нужно — объединить последние */
-          while (result.length > numLines){
-            result[result.length - 2] += ' ' + result.pop();
-          }
-          /* Проверка баланса ≤25% */
-          var maxL = Math.max.apply(null, result.map(function(r){return r.length;}));
-          var minL = Math.min.apply(null, result.map(function(r){return r.length;}));
-          if (minL === 0) minL = 1;
-          if (maxL / minL > 1.25){
-            /* Перераспределить равномернее */
-            return simpleSplit(text, numLines);
-          }
-          return result;
-        }
-
-        function simpleSplit(text, numLines){
-          /* Простое поровну без учёта баланса */
-          var words = text.split(/\s+/);
-          var perLine = Math.ceil(words.length / numLines);
-          var result = [];
-          for (var i = 0; i < numLines; i++){
-            result.push(words.slice(i * perLine, (i+1) * perLine).join(' '));
-          }
-          return result.filter(function(s){ return s.length > 0; });
-        }
+        window.addEventListener('load', function(){ fitHeroH1(); fitSubs(); });
+        window.addEventListener('resize', function(){ fitHeroH1(); fitSubs(); });
       })();
     </script>
     <!-- ═══ КОНЕЦ ПРАКТИКИ ═══ -->
@@ -647,12 +664,12 @@ input, select, textarea, button {
             <span class="h1-w2"><em>Psixologiya</em> Məktəbi</span>
           </h1>
 
-          <p class="hero-lead">
-            <span class="lead-line">23 illik klinik təcrübə, beynəlxalq</span>
-            <span class="lead-line">kvalifikasiya, AR qanunvericiliyinə uyğun</span>
-            <span class="lead-line">psixologiya peşəsinə rəsmi yol.</span>
-            <span class="desk-lead-line">23 illik klinik təcrübə, beynəlxalq kvalifikasiya,</span>
-            <span class="desk-lead-line">AR qanunvericiliyinə uyğun psixologiya peşəsinə rəsmi yol.</span>
+<p class="hero-lead">
+            <span class="lead-line">2003-cü ildən həkim-psxoterapevt kvallifikasiyası,</span>
+            <span class="lead-line">terapiya və klinik təcrübə, psixologiya sahəsində -</span>
+            <span class="lead-line">peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</span>
+            <span class="desk-lead-line">2003-cü ildən həkim-psxoterapevt kvallifikasiyası, terapiya və klinik təcrübə, psixologiya sahəsində - peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</span>
+            <span class="desk-lead-line"></span>
           </p>
 
           <div class="hero-search-wrap">
@@ -1373,49 +1390,20 @@ input, select, textarea, button {
 </script>
 <script>
 (function(){
+  /* Заголовки (H1 hero + eco-пара) на мобайле: 2 строки равной px-ширины.
+     Подзаголовки НЕ трогаем — ими ведёт единый fitSubs (первый блок). */
   function fitAll(){
     var w1=document.querySelector('.h1-w1');
     var w2=document.querySelector('.h1-w2');
-    var leads=document.querySelectorAll('.lead-line');
-    var deskLeads=document.querySelectorAll('.desk-lead-line');
     if(!w1||!w2) return;
 
     if(window.innerWidth > 768) {
-      // ── DESKTOP ──
-      leads.forEach(function(l){ l.style.cssText='display:none!important'; });
-      // сбросить JS-стили H1 перед измерением
-      if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-      if(w2){ w2.style.fontSize=''; }
-      var heroH1=document.querySelector('.hero-h1');
-      var heroLead=document.querySelector('.hero-lead');
-      if(heroH1 && deskLeads.length){
-        // Цель = ширина поисковика (620px CSS) — все 3 строки от края до края поисковика
-        var heroSW=document.querySelector('.hero-search-wrap');
-        var target=heroSW ? Math.round(heroSW.getBoundingClientRect().width) : 620;
-        if(!target) target=620;
-        // Подогнать H1 под ту же ширину (inline-block trick)
-        heroH1.style.display='inline-block'; heroH1.style.whiteSpace='nowrap';
-        var loH=8,hiH=120;
-        for(var k=0;k<30;k++){var mH=(loH+hiH)/2;heroH1.style.fontSize=mH+'px';if(heroH1.getBoundingClientRect().width<target)loH=mH;else hiH=mH;}
-        heroH1.style.fontSize=Math.floor(loH)+'px';
-        heroH1.style.display=''; heroH1.style.whiteSpace='';
-        // Подогнать subtitle под ту же ширину → все 3 строки на одной вертикали с поисковиком
-        if(heroLead){ heroLead.style.width=target+'px'; heroLead.style.maxWidth='none'; }
-        deskLeads.forEach(function(line){
-          line.style.display='inline'; line.style.whiteSpace='nowrap';
-          var lo_d=8,hi_d=60;
-          for(var jd=0;jd<30;jd++){var md=(lo_d+hi_d)/2;line.style.fontSize=md+'px';if(line.getBoundingClientRect().width<target)lo_d=md;else hi_d=md;}
-          line.style.fontSize=Math.floor(lo_d)+'px'; line.style.display='block'; line.style.whiteSpace='';
-        });
-      }
+      // ── DESKTOP: подзаголовки и лид — только fitSubs ──
       return;
     }
 
     // ── MOBILE ──
-    // Явно скрыть десктопные строки
-    deskLeads.forEach(function(l){ l.style.cssText='display:none!important'; });
     if(w1){ w1.style.fontSize=''; w1.style.display=''; }
-    leads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
     // Measure target = natural text width of PSİXOLOGİYA MƏKTƏBİ at 20px
     w2.style.display='inline';
     var target=w2.getBoundingClientRect().width;
@@ -1434,29 +1422,12 @@ input, select, textarea, button {
     w1.style.fontSize=Math.floor(lo)+'px';
     w1.style.display='block';
     w1.style.textAlign='center';
-    // Fit each subtitle line to same target width
-    leads.forEach(function(line){
-      line.style.display='inline';
-      line.style.whiteSpace='nowrap';
-      var lo2=8, hi2=40;
-      for(var j=0;j<30;j++){
-        var mid2=(lo2+hi2)/2;
-        line.style.fontSize=mid2+'px';
-        if(line.getBoundingClientRect().width < target) lo2=mid2;
-        else hi2=mid2;
-      }
-      line.style.fontSize=Math.floor(lo2)+'px';
-      line.style.display='block';
-      line.style.whiteSpace='';
-    });
-    // ── Eco section: RAGIMOFF / EKOSİSTEMİ + subtitle fit to container width ──
+    // ── Eco section: RAGIMOFF / EKOSİSTEMİ заголовок к ширине контейнера ──
     var ecoH=document.getElementById('eco-heading');
     var ecoW1=document.querySelector('.eco-h2-w1');
     var ecoW2=document.querySelector('.eco-h2-w2');
-    var ecoLeads=document.querySelectorAll('.eco-lead-line');
     if(ecoW1){ ecoW1.style.fontSize=''; ecoW1.style.display=''; }
     if(ecoW2){ ecoW2.style.fontSize=''; ecoW2.style.display=''; }
-    ecoLeads.forEach(function(l){ l.style.fontSize=''; l.style.display=''; l.style.whiteSpace=''; });
     if(ecoH && ecoW1 && ecoW2){
       // Target = container (sec-header) width
       var ecoTarget=ecoH.parentElement.getBoundingClientRect().width - 60;
@@ -1471,13 +1442,6 @@ input, select, textarea, button {
         var lo_r=10,hi_r=160;
         for(var ir=0;ir<30;ir++){ var mr=(lo_r+hi_r)/2; ecoW1.style.fontSize=mr+'px'; if(ecoW1.getBoundingClientRect().width<ecoTarget) lo_r=mr; else hi_r=mr; }
         ecoW1.style.fontSize=Math.floor(lo_r)+'px'; ecoW1.style.display='block'; ecoW1.style.whiteSpace='';
-        // Fit subtitle lines to same target
-        ecoLeads.forEach(function(line){
-          line.style.display='inline'; line.style.whiteSpace='nowrap';
-          var lo3=8,hi3=40;
-          for(var k=0;k<30;k++){ var m3=(lo3+hi3)/2; line.style.fontSize=m3+'px'; if(line.getBoundingClientRect().width<ecoTarget) lo3=m3; else hi3=m3; }
-          line.style.fontSize=Math.floor(lo3)+'px'; line.style.display='block'; line.style.whiteSpace='';
-        });
       }
     }
   }
@@ -1491,12 +1455,11 @@ input, select, textarea, button {
 })();
 </script>
 <script>
-/* ── About section: binary-search fitting (mobile only) ── */
+/* ── About section: mobile header fit (подзаголовки — единый fitSubs) ── */
 (function(){
   function fitAbout(){
     if(window.innerWidth>768) return;
     var abH2=document.getElementById('about-heading');
-    var abMob=document.querySelectorAll('.ab-lead-mob');
     var abDesk=document.querySelectorAll('.ab-lead-desk');
     abDesk.forEach(function(l){l.style.cssText='display:none!important';});
     var secHdr=document.querySelector('.sec-2col .sec-header');
@@ -1509,13 +1472,6 @@ input, select, textarea, button {
       for(var k=0;k<30;k++){var mH=(loH+hiH)/2;abH2.style.fontSize=mH+'px';if(abH2.getBoundingClientRect().width<target)loH=mH;else hiH=mH;}
       abH2.style.fontSize=Math.floor(loH)+'px';abH2.style.display='block';abH2.style.whiteSpace='';
     }
-    /* Fit subtitle lines */
-    abMob.forEach(function(line){
-      line.style.display='inline';line.style.whiteSpace='nowrap';
-      var lo=8,hi=60;
-      for(var j=0;j<30;j++){var m=(lo+hi)/2;line.style.fontSize=m+'px';if(line.getBoundingClientRect().width<target)lo=m;else hi=m;}
-      line.style.fontSize=Math.floor(lo)+'px';line.style.display='block';line.style.whiteSpace='';
-    });
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',fitAbout);}
   else{fitAbout();}
