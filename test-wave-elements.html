@@ -68,10 +68,10 @@
         font-style:  italic !important;
         font-weight: 400 !important;
       }
-      /* Переопределить gtc-dark: desk-lead-line / eco-lead-line на десктопе должны быть block */
+      /* Переопределить gtc-dark: lead-line / desk-lead-line на десктопе */
       @media (min-width: 769px) {
-        .hero-lead .desk-lead-line { display: block; white-space: normal; }
-        .hero-lead .lead-line { display: none; }
+        .hero-lead .lead-line { display: block; white-space: normal; }
+        .hero-lead .desk-lead-line { display: none; }
         .sec-sub .eco-lead-line { display: block; }
         .sec-sub .svc-lead-desk,
         .sec-sub .ab-lead-desk { display: block; }
@@ -404,14 +404,13 @@
         function fitSubs(){
           var isMob = window.innerWidth <= 768;
           var B = isMob ? 20 : 29;
-          /* Hero: мобильные .lead-line / десктопные .desk-lead-line */
-          var heroLead = document.querySelector('.hero-lead');
-          var mobSet = Array.prototype.slice.call(
-            document.querySelectorAll('.hero-lead .lead-line'));
-          var deskSet = Array.prototype.slice.call(
-            document.querySelectorAll('.hero-lead .desk-lead-line'));
-          if (isMob) fitLead(heroLead, mobSet, deskSet, B, true);
-          else fitLead(heroLead, deskSet, mobSet, B, false);
+          /* Hero: на мобайле — fitLead, на десктопе — только CSS */
+          if (isMob) {
+            var heroLead = document.querySelector('.hero-lead');
+            var mobSet = Array.prototype.slice.call(
+              document.querySelectorAll('.hero-lead .lead-line'));
+            fitLead(heroLead, mobSet, [], B, true);
+          }
           /* Секции: mobile-спаны на мобайле, остальные на десктопе */
           document.querySelectorAll('p.sec-sub').forEach(function(sub){
             try {
@@ -651,11 +650,8 @@ input, select, textarea, button {
           </h1>
 
 <p class="hero-lead">
-            <span class="lead-line">2003-cü ildən həkim-psxoterapevt kvallifikasiyası,</span>
-            <span class="lead-line">terapiya və klinik təcrübə, psixologiya sahəsində -</span>
-            <span class="lead-line">peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</span>
-            <span class="desk-lead-line">2003-cü ildən həkim-psxoterapevt kvallifikasiyası, terapiya və klinik təcrübə, psixologiya sahəsində - peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</span>
-            <span class="desk-lead-line"></span>
+            <span class="lead-line">2003-cü ildən həkim-psxoterapevt kvallifikasiyası, terapiya və klinik təcrübə,</span>
+            <span class="lead-line">psixologiya sahəsində - peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</span>
           </p>
 
           <div class="hero-search-wrap">
