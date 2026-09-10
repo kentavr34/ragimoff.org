@@ -371,12 +371,10 @@
             lines = [text];
             fs = Math.max(14, B * targetW / singleW);
           } else {
-            /* Найти оптимальное разбиение на 2 или 3 строки */
+            /* Разбить на N строк (N = spans.length для героя, 2 для секций) */
+            var maxL = isHero ? spans.length : Math.min(2, spans.length);
             var best = null;
-            var tryLines = Math.min(maxLines, words.length);
-            
-            if (tryLines === 3 && words.length >= 3){
-              /* Try 3 lines */
+            if (maxL >= 3 && words.length >= 3){
               for (var i = 1; i < words.length - 1; i++){
                 for (var j = i + 1; j < words.length; j++){
                   var l1 = words.slice(0, i).join(' ');
@@ -384,24 +382,23 @@
                   var l3 = words.slice(j).join(' ');
                   var w1 = measureH(l1, B), w2 = measureH(l2, B), w3 = measureH(l3, B);
                   var mx = Math.max(w1, w2, w3);
-                  if (!best || mx < best.mx){
-                    best = { lines: [l1, l2, l3], mx: mx };
-                  }
+                  if (!best || mx < best.mx) best = { lines: [l1, l2, l3], mx: mx };
                 }
               }
             }
-            /* Always try 2 lines as fallback */
+            /* Always try 2 lines */
             for (var k = 1; k < words.length; k++){
               var l1 = words.slice(0, k).join(' ');
               var l2 = words.slice(k).join(' ');
               var w1 = measureH(l1, B), w2 = measureH(l2, B);
               var mx = Math.max(w1, w2);
-              if (!best || mx < best.mx){
-                best = { lines: [l1, l2], mx: mx };
-              }
+              if (!best || mx < best.mx) best = { lines: [l1, l2], mx: mx };
             }
-            fs = best.mx <= targetW ? B : Math.max(14, B * targetW / best.mx);
-            lines = best.lines;
+            if (best){
+              lines = best.lines; fs = best.mx <= targetW ? B : Math.max(14, B * targetW / best.mx);
+            } else {
+              lines = [text]; fs = B;
+            }
           }
           spans.forEach(function(s, i){
             if (i < lines.length){
