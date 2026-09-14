@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="az" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F5F3EF">
+
+  <title>KBT — koqnitiv davranış terapiyasının əsasları · Kenan Ragimov</title>
+  <meta name="description" content="Koqnativ davranış terapiyası — ən effektiv psixoterapiya üsullarından biri. Tarix, prinsiplər, tətbiq sahələri.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/sections.css">
+  <link rel="stylesheet" href="../styles/animations.css">
+
+  <script defer src="../scripts/theme.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Əsas məzmuna keç</a>
+
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="header-top">
+        <div class="container header-top-inner">
+          <a href="tel:+994702200376" class="header-phone">+994 70 220 03 76</a>
+          <div class="header-actions">
+            <nav class="header-lang" aria-label="Dil">
+              <a href="index.html" class="lang-link active" data-lang="az">Az</a>
+              <a href="../ru/index.html" class="lang-link" data-lang="ru">Ru</a>
+              <a href="../en/index.html" class="lang-link" data-lang="en">En</a>
+              <a href="../tr/index.html" class="lang-link" data-lang="tr">Tr</a>
+            </nav>
+            <button class="theme-toggle" aria-label="Mövzunu dəyiş" data-theme-toggle>
+              <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              </svg>
+              <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="header-main">
+        <div class="container header-main-inner">
+          <a href="index.html" class="logo">
+            <span class="logo-symbol" aria-hidden="true"></span>
+            <span>Kenan Ragimov</span>
+          </a>
+          <nav class="main-nav">
+            <a href="index.html" class="nav-link">Ana</a>
+            <a href="books/index.html" class="nav-link">Kitablar</a>
+            <a href="tehsil.html" class="nav-link">Təhsil</a>
+            <a href="xidmetler.html" class="nav-link">Xidmətlər</a>
+            <a href="b2b.html" class="nav-link">B2B</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="haqqimda.html" class="nav-link">Haqqımda</a>
+          </nav>
+          <button class="mobile-menu-btn" aria-label="Menyu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <nav class="mobile-nav" aria-label="Mobil menyu">
+          <a href="index.html" class="nav-link">Ana</a>
+          <a href="books/index.html" class="nav-link">Kitablar</a>
+          <a href="tehsil.html" class="nav-link">Təhsil</a>
+          <a href="xidmetler.html" class="nav-link">Xidmətlər</a>
+          <a href="b2b.html" class="nav-link">B2B</a>
+          <a href="blog.html" class="nav-link active">Blog</a>
+          <a href="haqqimda.html" class="nav-link">Haqqımda</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <article>
+        <header class="article-hero">
+          <div class="container container--narrow">
+            <a href="blog.html" class="link-arrow" style="margin-bottom: var(--sp-3);">← Bütün məqalələr</a>
+            <div style="display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3);">
+              <span class="blog-card-tag">Psixoterapiya</span>
+              <span class="blog-card-tag">KBT</span>
+            </div>
+            <h1 class="article-title">KBT — koqnitiv davranış terapiyasının əsasları</h1>
+            <div class="article-meta">
+              <span><strong>Kenan Ragimov</strong></span>
+              <span>>/span>
+              <span>15 iyul 2026</span>
+              <span>·</span>
+              <span>10 dəqiqə oxuma</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="article-body">
+          <div class="container container--narrow">
+
+            <p class="article-lead">
+              Koqnativ Davranış Terapyası (KBT) — müasir psixoterapianın ən çox ara, etdirilmiş və ən effektiv üsullarından biridir. Depressiya, narahatlıq, fobiya, OKS və daha çox pozuntuunun müalicəsində qızıl standart sayılır.
+            </p>
+
+            <h2>KBT nədir?</h2>
+
+            <p>KBT — Aaron Beck (koqnativ hissə) və Albert Ellis (rasional emotiv davranış terapiyası) tərəfindən inkişaf etdirilmiş, qısa müddətli, hədəflənmiş psixoterapiya üsuludur. Əsas fərziyyə:</p>
+
+            <blockquote class="article-pullquote">
+              Düşüncələrimiz, hisslərimiz və davranışlarımız bir-biri ilə sıx bağlıdır. Düşüncələri dəyişsək — hiss və davranış da dəyişir.
+            </blockquote>
+
+            <h2>KBT-nin əsas prinsipləri</h2>
+
+            <h3>1. Düşüncü — Hiss — Davranış əlaqəsi</h3>
+            <p>ABC modeli:</p>
+            <ul>
+              <li><strong>A</strong> (Activating event) — hadisə</li>
+              <li><strong>B</strong> (Belief) — inanc/düşüncə haqqında hadisə</li>
+              <li><strong>C</strong> (Consequence) — emosional və davranış nəticəsi</li>
+            </ul>
+
+            <p>ABC modelinə görə, hadisə (A) birbaşa emosiyanı yaratmır — bizim onu necə qiymətləndirməyimiz (B) emosiyanı (C) yaradır. Düşüncəni dəyişsək — emosional reaksiya dəyişir.</p>
+
+            <h3>2. Avtomatik düşüncələr</h3>
+            <p>Vəziyyətlərdə avtomatik olaraq yaranan fikirlər. Tez-tez distorsiyalaşmış (qərəzli) olur:</p>
+
+            <ul>
+              <li><strong>Katastrofizasiya</strong> — «Hər şey bitdi»</li>
+              <li><strong>Qara-ağ düşünc</strong> — «Ya mükəmməl, ya uğursuz»</li>
+              <li><strong>Şəxsiyyətləşdirmə</strong> — «Mən günahıyam»</li>
+              <li><strong>Zehin oxuması</strong> — «O mənim pis olduğumu düşünür»</li>
+              <li><strong>Filtrləmə</strong> — yalnız mənfi şeyləri görmək</li>
+            </ul>
+
+            <h3>3. Koqnativ restrukturizasiya</h3>
+            <p>Avtomatik düşüncələri müəyyənləşdirmək, onları sınamaq və daha balanslaşdırılmış alternativlərlə əvəz etmək.</p>
+
+            <h3>4. Davranış eksperimentləri</h3>
+            <p>Yeni davranış nümunələri sınamaq, nəticələri qiymətləndirmək.</p>
+
+            <h2>KBT hansı problemlərdə effektivdir?</h2>
+
+            <p>KBT qızıl standart sayılır:</p>
+            <ul>
+              <li><strong>Depressiya</strong> — effektivlik sübut edilmiş</li>
+              <li><strong>Narahatlıq pozuntuları</strong> — generalizəolunmuş narahatlıq, panik, sosial fobiya</li>
+              <li><strong>OKS</strong> (Obsessiv-kompulsiv pozuntu) — ekspozisiya + reaksiyanın qarşısının alınması</li>
+              <li><strong>PTSP</strong> (Travma sonrası stress) — travma-yönümlü KBT</li>
+              <li><strong>Fobiyalar</strong> — sistematik desensibilizasiya</li>
+              <li><strong>Yemə pozuntuları</strong> — KBT-E</li>
+              <li><strong>Yuxu pozuntuları</strong></li>
+              <li><strong>Sosial bacarıq problemləri</strong></li>
+            </ul>
+
+            <h2>Tipik KBT seansı</h2>
+
+            <p>KBT adətən 12-20 seansdan ibarətdir. Bir seansın strukturu:</p>
+            <ol>
+              <li>Agenda qurulması (5 dəq)</li>
+              <li>Ev tapşırığının müzakirəsi (10 dəq)</li>
+              <li>Mövzu işləmə (30-40 dəq)</li>
+              <li>Yeni ev tapşırığı (5 dəq)</li>
+              <li>Geribildirim (5 dəq)</li>
+            </ol>
+
+            <h2>KBT-nin üstünlükləri</h2>
+
+            <ul>
+              <li>Qısa müddətli — əksər hallarda 12-20 seans kifayətdir</li>
+              <li>Strukturlaşdırılmış — hər seansın aydık məqsədi var</li>
+              <li>Empirik əsaslı — yüzlərlə klinik araşdırma il</li>
+              <li>Öyrmənilə bilən — pasient özünə kömək edə bilir</li>
+              <li>Effektiv — depressiyada 50-65%, narahatlıqda 60-75%</li>
+              <li>Onlay u/ mümkündür</li>
+            </ul>
+
+            <h2>KBT-nin məhdudiyyətləri</h2>
+
+            <ul>
+              <li>Dərin emosional problemlər üçün bəzən kifayət deyil</li>
+              <li>Pasientin aktiv iştirakı lazımdır</li>
+              <li>Ev tapşırıqları mütləqdir</li>
+              <li>Trauma və ya şiddətli şəxsiyyət pozuntularında digər üsullarla kombinasiya lazımdır</li>
+            </ul>
+
+            <h2>Nəticə</h2>
+
+            <p>KBT — müasir psixoterapianın ən effektiv və ən çox araşdırılmış üsuludur. Əgər siz və ya yaxınınız depressiya, narahatlıq və ya digobik emosional problemlərlə üzləşirsə, KBT effektiv bir seçimdir.</p>
+
+            <div class="article-cta">
+              <h3>KBT üçün mütəxəssis axtarırsınız?</h3>
+              <p>Bizim mütəxəssislərimiz beynəlxalq sertifikatlı KBT terapevtləridir. İlkin konsultasiya üçün zəng edin.</p>
+              <a href="tel:+994702200376" class="btn btn--primary btn--lg">+994 70 220 03 76</a>
+            </div>
+
+          </div>
+        </div>
+      </article>
+
+      <section class="section section--alt">
+        <div class="container">
+          <span class="section-tag">Oxşar məqalələr</span>
+          <h2 class="section-heading" style="font-size: var(--fs-xl);">Bu mövzuda digər <em>mətnlər</em>.</h2>
+
+          <div class="blog-grid" style="margin-top: var(--sp-3);">
+            <a href="blog-depressiya.html" class="blog-card">
+              <div class="blog-card-thumb"><div class="blog-card-thumb-bg blog-card-thumb-depression"></div></div>
+              <div class="blog-card-info">
+                <p class="blog-card-tag">Depressiya</p>
+                <h3 class="blog-card-title">Depressiya haqqında</h3>
+                <p class="blog-card-excerpt">Klinik mənzər, diaqnostika, müalicə.</p>
+              </div>
+            </a>
+            <a href="blog-anxiety.html" class="blog-card">
+              <div class="blog-card-thumb"><div class="blog-card-thumb-bg blog-card-thumb-anxiety"></div></div>
+              <div class="blog-card-info">
+                <p class="blog-card-tag">Narahatlıq</p>
+                <h3 class="blog-card-title">Narahatlıq pozuntusu</h3>
+                <p class="blog-card-excerpt">Növləri, simptomları.</p>
+              </div>
+            </a>
+            <a href="blog-enurez.html" class="blog-card">
+              <div class="blog-card-thumb"><div class="blog-card-thumb-bg blog-card-thumb-enurez"></div></div>
+              <div class="blog-card-info">
+                <p class="blog-card-tag">Uşaq</p>
+                <h3 class="blog-card-title">Enurez</h3>
+                <p class="blog-card-excerpt">Uşaq enurezi və müalicəsi.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-col">
+            <a href="index.html" class="footer-logo">
+              <span class="logo-symbol" aria-hidden="true"></span>
+              <span>Kenan Ragimov</span>
+            </a>
+            <p class="footer-desc">23 illik klinik təcrübə</p>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Təhsil</h4>
+            <ul class="footer-links">
+              <li><a href="tehsil.html">Proqramlar</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Xidmətlər</h4>
+            <ul class="footer-links">
+              <li><a href="xidmetler.html">Klinik psixologiya</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-heading">Əlaqə</h4>
+            <ul class="footer-contact">
+              <li><a href="tel:+994702200376">+994 70 220 03 76</a></li>
+              <li><a href="https://wa.me/994702200376">WhatsApp</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <p class="footer-copy">© 2026 Kenan Ragimov</p>
+          <nav class="footer-lang">
+            <a href="index.html" class="footer-lang-link active" data-lang="az">Az</a>
+            <a href="../ru/index.html" class="footer-lang-link" data-lang="ru">Ru</a>
+            <a href="../en/index.html" class="footer-lang-link" data-lang="en">En</a>
+            <a href="../tr/index.html" class="footer-lang-link" data-lang="tr">Tr</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script defer src="../scripts/main.js"></script>
+  <script defer src="../scripts/scroll-anim.js"></script>
+</body>
+</html>

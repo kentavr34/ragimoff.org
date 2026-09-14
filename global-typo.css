@@ -1,0 +1,147 @@
+/* ============================================================
+   global-typo.css — Единая типографика ragimoff.org
+   НЕЗАВИСИМО от JS. Подключать ПОСЛЕ gtc.css и gtc-dark.css.
+   
+   Применение:
+     <h1 class="h1-left"><span class="h1-line">Слово1</span><span class="h1-line">Слово2</span></h1>
+     <h1 class="h1-center"><span class="h1-line">Слово1</span><span class="h1-line">Слово2</span></h1>
+     <p class="sub-left">Подзаголовок</p>
+     <p class="sub-center">Подзаголовок</p>
+     <section class="hero-section">...</section>
+     <section class="content-section">...</section>
+   ============================================================ */
+
+/* ── БАЗОВЫЙ ЗАГОЛОВОК ─────────────────────────────────── */
+
+.h1-left,
+.h1-center {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: var(--type-h-size, 40px);
+  font-weight: 500;
+  text-transform: var(--type-h-transform, uppercase);
+  letter-spacing: var(--type-h-spacing, 0.04em);
+  line-height: var(--type-h-line, 1.15);
+  color: var(--clr-heading);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+/* Выравнивание */
+.h1-left   { justify-content: flex-start; text-align: left; }
+.h1-center { justify-content: center;     text-align: center; }
+
+/* Строки заголовка */
+.h1-left .h1-line,
+.h1-center .h1-line,
+.h1-left .h1-w1,
+.h1-left .h1-w2,
+.h1-center .h1-w1,
+.h1-center .h1-w2,
+.hero-h1 .h1-w1,
+.hero-h1 .h1-w2 {
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+/* ── ПОДЗАГОЛОВОК ──────────────────────────────────────── */
+
+.sub-left,
+.sub-center {
+  font-family: var(--type-sub-family, var(--font));
+  font-size: var(--type-sub-size, 1.1rem);
+  font-weight: var(--type-sub-weight, 400);
+  line-height: var(--type-sub-line, 1.75);
+  color: var(--clr-muted, rgba(255,255,255,0.7));
+  margin: 0;
+  max-width: 620px;
+}
+
+.sub-left   { text-align: left;   margin-left: 0;       margin-right: auto; }
+.sub-center { text-align: center; margin-left: auto;    margin-right: auto; }
+
+/* ── ОТСТУПЫ ПО ВЕРТИКАЛИ ──────────────────────────────── */
+
+/* Hero-блок: верх 50, заголовок→подзаголовок 50, подзаголовок→поиск 50, низ 100 */
+.hero-section {
+  padding: 50px 24px 100px;
+}
+
+.hero-section > * + .h1-left,
+.hero-section > * + .h1-center {
+  margin-top: 50px;
+}
+
+.hero-section .h1-left + .sub-left,
+.hero-section .h1-center + .sub-center,
+.hero-section .h1-left + .sub-center,
+.hero-section .h1-center + .sub-left {
+  margin-top: 50px;
+}
+
+/* Секционные блоки: верх 50, низ 50 */
+.content-section {
+  padding: 50px 24px;
+}
+
+.content-section > .h1-left,
+.content-section > .h1-center {
+  margin-bottom: 50px;
+}
+
+.content-section > .h1-left + .sub-left,
+.content-section > .h1-center + .sub-center {
+  margin-top: -30px; /* компенсируем часть нижнего отступа заголовка */
+  margin-bottom: 50px;
+}
+
+/* ── МОБИЛЬНАЯ ВЕРСИЯ (< 768px) ───────────────────────── */
+
+@media (max-width: 768px) {
+  .h1-left,
+  .h1-center {
+    font-size: clamp(28px, 7vw, 38px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .h1-left .h1-line,
+  .h1-center .h1-line {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  .h1-left .h1-line {
+    text-align: left;
+  }
+
+  .h1-center .h1-line {
+    text-align: center;
+  }
+
+  .sub-left,
+  .sub-center {
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .hero-section {
+    padding: 24px 20px 50px;
+  }
+
+  .content-section {
+    padding: 24px 20px 50px;
+  }
+}

@@ -14,7 +14,18 @@
       <a href="haqqimda.html" onclick="toggleMenu()">{{about}}</a>
     </div>
   </div>
-  <a href="/klinik-psixiatriya/" onclick="toggleMenu()">{{clinical_psychiatry}}</a>
+  <div class="mobile-nav-group">
+    <div class="mn-head">
+      <a href="{{books_href}}" onclick="toggleMenu()">{{books}}</a>
+      <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="{{toggle_label}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+    <div class="mn-sub">
+      <a href="/klinik-psixiatriya/" onclick="toggleMenu()">{{books_clinical_psychiatry}}</a>
+      <a href="books/phoenix-era.html" onclick="toggleMenu()">{{books_phoenix_era}}</a>
+      <a href="books/guilt-virus.html" onclick="toggleMenu()">{{books_guilt_virus}}</a>
+      <a href="books/pandemic-madness.html" onclick="toggleMenu()">{{books_pandemic_madness}}</a>
+    </div>
+  </div>
   <div class="mobile-nav-group">
     <div class="mn-head">
       <a href="tehsil.html" onclick="toggleMenu()">{{education}}</a>

@@ -92,6 +92,10 @@ ACTIVE_MAP = {
     "enurez.html":         "xidmetler",
     "b2b.html":            "b2b",
     "blog.html":           "blog",
+    "books.html":          "books",
+    "books/phoenix-era.html":       "books",
+    "books/guilt-virus.html":       "books",
+    "books/pandemic-madness.html":  "books",
 }
 
 # ───────── helpers ─────────
@@ -149,8 +153,24 @@ def lang_switches(lang: str, html_path: Path) -> Tuple[str, str]:
     return desktop, mobile
 
 def home_href(lang: str, html_path: Path) -> str:
-    # All inner pages link to "index.html" within their own lang directory.
+    rel = html_path.relative_to(ROOT)
+    parts = rel.parts
+    # az/index.html → index.html (itself)
+    # az/tehsil.html → index.html (within az/)
+    # az/books/phoenix-era.html → ../index.html
+    # ru/index.html → index.html (within ru/)
+    # ru/tehsil.html → index.html (within ru/)
+    if len(parts) > 1 and parts[0] == "books":
+        return "../index.html"
     return "index.html"
+
+def books_href(lang: str, html_path: Path) -> str:
+    # From pages inside books/, link back to books.html in the lang root.
+    rel = html_path.relative_to(ROOT)
+    parts = rel.parts
+    if len(parts) > 1 and parts[0] == "books":
+        return "../books.html"
+    return "books.html"
 
 def render_partial(name: str, lang: str, html_path: Path, i18n: dict, params: dict) -> str:
     tpl = load_partial(name)
@@ -163,10 +183,11 @@ def render_partial(name: str, lang: str, html_path: Path, i18n: dict, params: di
     ctx["lang_switches"] = desk_lang
     ctx["mobile_lang_switches"] = mob_lang
     ctx["home_href"] = home_href(lang, html_path)
+    ctx["books_href"] = books_href(lang, html_path)
 
     # Active nav class injection (placed *inside* the <a> tag opening).
     active = params.get("active") or detect_active(html_path)
-    for key in ("home", "tehsil", "xidmetler", "b2b", "blog"):
+    for key in ("home", "tehsil", "xidmetler", "b2b", "blog", "books"):
         ctx[f"cls_{key}"] = ' class="nav-active"' if active == key else ""
 
     # Allow per-include overrides (e.g. hero-search placeholder=…).

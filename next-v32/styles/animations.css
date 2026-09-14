@@ -1,0 +1,208 @@
+/* ============================================================
+   ANIMATIONS — Scroll-triggered utilities
+   next-v32 · 2026-09-14
+
+   Canon: 12 Disney principles + Hon Tran 3P rule.
+          Subtle, deliberate, weighty — never bouncy.
+   ============================================================ */
+
+/* === UTILITY: reveal on scroll === */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--motion-deliberate) var(--ease-standard),
+    transform var(--motion-deliberate) var(--ease-standard);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--up   { transform: translateY(40px); }
+.reveal--down { transform: translateY(-40px); }
+.reveal--left { transform: translateX(-40px); }
+.reveal--right{ transform: translateX(40px); }
+.reveal--scale{ transform: scale(0.94); }
+
+.reveal.is-visible { transform: translate(0, 0) scale(1); }
+
+/* === STAGGER delays (for child reveals) === */
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--motion-slow) var(--ease-standard),
+    transform var(--motion-slow) var(--ease-standard);
+}
+
+.stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+.stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+.stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+.stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+.stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
+.stagger.is-visible > *:nth-child(7) { transition-delay: 480ms; }
+.stagger.is-visible > *:nth-child(8) { transition-delay: 560ms; }
+
+/* === HERO entrance === */
+
+.hero-eyebrow,
+.hero-title,
+.hero-subtitle,
+.hero-meta,
+.hero-cta,
+.hero-metrics,
+.hero-portrait,
+.hero-scroll-hint {
+  will-change: opacity, transform;
+}
+
+/* Loaded state — added by JS after fonts/images */
+.hero-eyebrow.loaded,
+.hero-title.loaded,
+.hero-subtitle.loaded,
+.hero-meta.loaded,
+.hero-cta.loaded,
+.hero-metrics.loaded,
+.hero-portrait.loaded,
+.hero-scroll-hint.loaded {
+  /* transitions defined in hero.css */
+}
+
+/* === COUNTER ANIMATION (handled by JS) === */
+
+.counter {
+  font-variant-numeric: tabular-nums;
+}
+
+/* === HOVER micro-interactions === */
+
+.hover-lift {
+  transition: transform var(--motion-base) var(--ease-standard);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-glow {
+  transition: box-shadow var(--motion-base) var(--ease-standard);
+}
+
+.hover-glow:hover {
+  box-shadow: var(--shadow-glow);
+}
+
+/* === FOCUS interactions (skip-reduce-motion friendly) === */
+
+@media (prefers-reduced-motion: no-preference) {
+  *:focus-visible {
+    transition: outline-offset var(--motion-fast) var(--ease-standard);
+  }
+
+  *:focus-visible:hover {
+    outline-offset: 5px;
+  }
+}
+
+/* === PARALLAX layers (set by JS via data-parallax) === */
+
+[data-parallax] {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* === SMOOTH SCROLL (Lenis) === */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* === VIEW TRANSITIONS (theme switch — modern browsers) === */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: var(--motion-slow);
+  }
+}
+
+/* === ENTRANCE on page load === */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* === Reduced motion guard === */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .stagger > *,
+  .hero-eyebrow,
+  .hero-title,
+  .hero-subtitle,
+  .hero-meta,
+  .hero-cta,
+  .hero-metrics,
+  .hero-portrait,
+  .hero-scroll-hint {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-scroll-line::after {
+    animation: none !important;
+  }
+}

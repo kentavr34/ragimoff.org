@@ -312,6 +312,72 @@
     return s;
   }
 
+  /* ── ГЛАВНАЯ СТРАНИЦА (.page-hero) ── */
+  function fitIndexHero(hero) {
+    var h1 = hero.querySelector('.hero-h1');
+    if (!h1) return;
+    var w1 = h1.querySelector('.h1-w1');
+    var w2 = h1.querySelector('.h1-w2');
+    var lead = hero.querySelector('.hero-lead');
+    var search = hero.querySelector('.hero-search-wrap');
+
+    /* Сброс inline-стилей прошлого прогона */
+    h1.style.cssText = '';
+    if (w1) w1.style.cssText = '';
+    if (w2) w2.style.cssText = '';
+    if (lead) lead.style.cssText = '';
+
+    var box = hero.querySelector('.hero-inner');
+    var boxW = box ? box.getBoundingClientRect().width : window.innerWidth;
+
+    if (window.innerWidth > 768) {
+      /* ДЕСКТОП: обе строки в одну линию, выравнивание слева */
+      var target = search ? Math.round(search.getBoundingClientRect().width)
+                          : Math.round(Math.min(620, boxW * 0.53));
+      if (!target) target = 620;
+
+      h1.style.display = 'inline-block';
+      h1.style.whiteSpace = 'nowrap';
+      h1.style.textAlign = 'left';
+      h1.style.margin = '0';
+      fitTo(h1, target, 8, 120, 0);
+
+      if (lead) { lead.style.width = target + 'px'; lead.style.maxWidth = 'none'; lead.style.textAlign = 'left'; }
+    } else {
+      /* МОБИЛЬНЫЙ: каждая строка на своей линии, обе одинаковой ширины */
+      /* Мера: натуральная ширина более длинной строки при базовом кегле */
+      var baseSize = 20;
+      var w1W = 0, w2W = 0;
+      if (w1) {
+        w1.style.display = 'inline';
+        w1.style.fontSize = baseSize + 'px';
+        w1.style.whiteSpace = 'nowrap';
+        w1W = w1.getBoundingClientRect().width;
+      }
+      if (w2) {
+        w2.style.display = 'inline';
+        w2.style.fontSize = baseSize + 'px';
+        w2.style.whiteSpace = 'nowrap';
+        w2W = w2.getBoundingClientRect().width;
+      }
+      var target = Math.max(w1W, w2W, boxW * 0.76);
+      if (!target) target = boxW * 0.8;
+
+      /* Подгоняем обе строки под одинаковую ширину */
+      [w1, w2].forEach(function (line) {
+        if (!line) return;
+        line.style.display = 'inline';
+        line.style.whiteSpace = 'nowrap';
+        var s = fitTo(line, target, 10, 140, 0);
+        line.style.display = 'block';
+        line.style.textAlign = 'center';
+        line.style.width = '100%';
+        line.style.lineHeight = (s * 1.15).toFixed(1) + 'px';
+      });
+      if (w1) w1.style.marginBottom = '8px';
+    }
+  }
+
   function fitHero(hero) {
     var h1 = hero.querySelector('.ph-h1');
     if (!h1) return;
@@ -804,6 +870,8 @@
 
   function pass() {
     document.querySelectorAll('.page-hero-x').forEach(fitHero);
+    /* Главная страница: отдельная обработка (.hero-h1, .h1-w1, .h1-w2) */
+    document.querySelectorAll('.page-hero').forEach(fitIndexHero);
     /* Заголовочным блоком считается РОДИТЕЛЬ h2.sec-h2, а не только
        обёртка .sec-header. На samira и tehsil это тот же самый узел —
        h2 лежит внутри .sec-header. Но на большинстве страниц сайта

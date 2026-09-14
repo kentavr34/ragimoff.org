@@ -208,9 +208,9 @@ div[style*="background: #fff"] {
     z-index: 2 !important;
     justify-content: flex-end !important;
   }
-  /* Desktop: show fitted desktop lines, hide mobile lines */
+  /* Desktop: show fitted desktop lines (max 2), hide mobile lines */
   .lead-line     { display: none !important; }
-  .desk-lead-line { display: block; white-space: nowrap; line-height: 1.6; }
+  .desk-lead-line { display: block !important; white-space: nowrap; line-height: 1.6; }
   /* Badge: поднять весь стек hero-text на 150px */
   .hero-text .badge {
     margin-top: 0 !important;
@@ -232,7 +232,6 @@ div[style*="background: #fff"] {
   .ab-lead-desk { display: block; }
 }
 /* Desktop lines hidden by default (mobile shows them via mobile media query) */
-.desk-lead-line { display: none; }
 .hero-lead { color: rgba(234,236,239,0.88) !important; }
 
 /* ─── CURRICULUM TABLE — светлый текст на тёмном фоне ─── */
@@ -734,6 +733,7 @@ hr {
   .sec-h2 { font-size: 1.6rem !important; }
   /* hero-lead: each .lead-line sized by JS to match H1 width */
   .hero-lead { line-height: 1.6 !important; margin-top: 20px !important; }
+    .desk-lead-line { display: none !important; }
   .lead-line { display: block; text-align: center; }
   .eco-h2-w1, .eco-h2-w2 { display: block; text-align: center; white-space: nowrap; line-height: 1.1; }
   .eco-lead-line { display: block; text-align: center; }

@@ -24,6 +24,9 @@
   --s-gap-sub:     30px;
   --s-gap-tag-hero: 30px;
   --s-gap-tag-sec:  25px;
+  --gap-hero:      50px;
+  --gap-section:   50px;
+  --gap-hero-bottom: 100px;
 
   /* Layout */
   --container-max: 1300px;
@@ -61,9 +64,10 @@
 
   /* Один переключатель шрифта для всего сайта */
   --font:                  "Montserrat", sans-serif;
+  --font-heading:          "Cormorant Garamond", Georgia, serif;
 
   /* Заголовки (H1, H2) */
-  --type-h-family:         var(--font);
+  --type-h-family:         var(--font-heading);
   --type-h-size:           40px;
   --type-h-weight:         700;
   --type-h-transform:      uppercase;
@@ -933,6 +937,7 @@ body {
 .sec-inner {
   max-width: var(--container-max);
   margin: 0 auto;
+  padding: var(--gap-section) 24px;
   text-align: center;
 }
 
@@ -944,6 +949,7 @@ body {
 }
 
 .sec-h2 {
+  margin-bottom: var(--gap-section);
   font-family:    var(--type-h-family);
   font-size:      var(--type-h-size);
   font-weight:    var(--type-h-weight);
@@ -1792,26 +1798,100 @@ body {
 
 /* 768px breakpoint */
 @media (max-width: 768px) {
-  /* ── Глобальные токены ── */
-  :root {
-    --s-section:     24px;
-    --s-section-bot: 56px;
-    --type-h-size:   2rem;
+  /* ── Hero Section Mobile: centered alignment, larger font, full-width layout ── */
+  
+  /* Hero wrapper center alignment */
+  .page-hero .hero-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 16px !important;
   }
-
-  /* Hero */
-  .page-hero {
-    padding: 32px 24px 0;
-    min-height: auto;
-    justify-content: flex-start;
-  }
-
+  
+  /* Hero text center alignment and full width */
   .hero-text {
-    padding-bottom: 32px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 !important;
+    gap: 16px !important;
   }
-
+  
+  /* Hero заголовок: в одну строку, центрированный, увеличен */
+  .hero-h1 {
+      font-size: clamp(28px, 8vw, 38px) !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      text-align: left !important;
+      margin-bottom: 20px !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+  
+  /* Слова hero заголовка: теперь в одну строку */
+  .hero-h1 .h1-w1,
+  .hero-h1 .h1-w2 {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    margin-right: 0.3em !important;
+    font-size: inherit !important;
+  }
+  
+  /* Hero подзаголовок: в одну строку, центрированный, увеличен */
+  .hero-lead {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 85% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Mobile lead lines: каждая в отдельной строке */
+  .hero-lead .lead-line,
+  .hero-lead .desk-lead-line {
+    display: block !important;
+    font-size: clamp(16px, 4vw, 22px) !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    max-width: 100% !important;
+    margin-bottom: 4px !important;
+  }
+  
+  /* Hero search bar: также центрируем */
+  .hero-search-wrap {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 20px !important;
+  }
+  
+  /* Герой фото: центрируем */
+  .photo-col {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 20px !important;
+  }
+  
   .photo-col img {
-    max-width: min(300px, 85vw);
+    width: 200px !important;
+    height: auto !important;
   }
 
   /* Секции */
@@ -3479,7 +3559,7 @@ select:focus-visible,
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 50px 24px 90px;
+  padding: var(--gap-hero) 24px var(--gap-hero-bottom);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3695,6 +3775,7 @@ html, body {
     margin: 0 0 50px 0 !important;
   }
   .page-hero-x .ph-h1 {
+    margin: 0 0 var(--gap-hero) 0 !important;
     /* как .hero-h1: типо-токены унаследованы; реальный font-size 32px
        (на главной задаётся js-hero-fit.js inline). Зеркалим тот же 32px. */
     font-family: var(--type-h-family) !important;
@@ -3713,6 +3794,7 @@ html, body {
     white-space: normal !important;
   }
   .page-hero-x .ph-sub {
+    margin: 0 0 var(--gap-hero) 0 !important;
     /* как .hero-lead: var(--type-sub-size) = 18px, max-width 684px */
     font-family: var(--type-sub-family) !important;
     font-size: var(--type-sub-size) !important;
