@@ -494,14 +494,6 @@
       }, { passive: true });
     }
 
-    // зерно дышит от прокрутки
-    var grain = $('.grain');
-    if (grain && !reduce) {
-      window.addEventListener('scroll', function () {
-        grain.style.transform = 'translate3d(0,' + (-(window.scrollY % 200) * 0.4).toFixed(1) + 'px,0)';
-      }, { passive: true });
-    }
-
     // плавные внутренние переходы
     if (!reduce) {
       doc.addEventListener('click', function (e) {

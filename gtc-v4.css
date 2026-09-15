@@ -307,9 +307,14 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 /* ─────────────────────────── 6. ЗЕРНО И РЕЛЬС ──────────────────────── */
 
 .grain {
-  position: fixed; inset: -50%;
+  position: fixed; inset: 0;
   z-index: 8000;
   pointer-events: none;
+  overflow: hidden;   /* зерно шире вьюпорта, но прокрутки не создаёт */
+}
+.grain::before {
+  content: "";
+  position: absolute; inset: -50%;
   opacity: .028;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   will-change: transform;
@@ -443,6 +448,18 @@ h1, h2, h3, h4, p, figure { margin: 0; }
 .hdr__burger.is-on span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .hdr__burger.is-on span:nth-child(2) { opacity: 0; }
 .hdr__burger.is-on span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+@media (max-width: 1100px) {
+  .hdr__nav, .hdr__lang { display: none; }
+  .hdr__side { margin-left: auto; gap: var(--s3); }
+  .hdr__burger { display: block; }
+}
+@media (max-width: 620px) {
+  .hdr__in { height: 74px; gap: var(--s3); }
+  .hdr.is-stuck .hdr__in { height: 62px; }
+  .hdr__cta { display: none; }
+  .hdr__mark { font-size: 1.35rem; }
+}
 
 /* ─────────────────────────── 8. МОБИЛЬНОЕ МЕНЮ ─────────────────────── */
 
