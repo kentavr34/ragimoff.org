@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi</title>
+    <meta name="description" content="Kənan Rəhimov — Həkim-psixiatr, Psixoterapevt. Təhsil, biznes-təlimlər və psixoterapiya xidmətləri." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ragimoff.org/index.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="az_AZ" />
+    <meta property="og:title" content="Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi" />
+    <meta property="og:description" content="Kənan Rəhimov — Həkim-psixiatr, Psixoterapevt. Təhsil, biznes-təlimlər və psixoterapiya xidmətləri." />
+    <meta property="og:image" content="https://ragimoff.org/images/og-cover.jpg" />
+
+    <link rel="icon" href="../images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="../images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../gtc-v4.css" />
+    <link rel="stylesheet" href="../gtc-v4-sections.css" />
+    <link rel="stylesheet" href="../gtc-v4-motion.css" />
+
+    <!-- Без этого класса «спрятанные» состояния не включаются: страница
+         остаётся полностью читаемой, если JS не выполнился. -->
+    <script>document.documentElement.className += ' js';</script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Əsas məzmuna keç</a>
+
+    <div class="grain" aria-hidden="true"></div>
+    <div class="rail" aria-hidden="true"><span class="rail__fill" id="railFill"></span></div>
+
+    <div class="cur" id="cur" aria-hidden="true">
+      <span class="cur__ring"><i class="cur__txt"></i></span>
+      <span class="cur__dot"></span>
+    </div>
+
+    <!-- ════════════════ ШАПКА ════════════════ -->
+    <header class="hdr" id="hdr">
+      <div class="hdr__in">
+        <a class="hdr__logo" href="index.html" data-cur="Ana">
+          <span class="hdr__mark">RAGIMOFF<em>.</em></span>
+          <span class="hdr__sub">Psixologiya Məktəbi</span>
+        </a>
+
+        <nav class="hdr__nav" aria-label="Əsas naviqasiya">
+          <a class="hdr__link" href="haqqimda.html"><i>01</i>Haqqımda</a>
+          <a class="hdr__link" href="tehsil.html"><i>02</i>Təhsil</a>
+          <a class="hdr__link" href="xidmetler.html"><i>03</i>Konsultasiya</a>
+          <a class="hdr__link" href="b2b.html"><i>04</i>Korporativ</a>
+          <a class="hdr__link" href="blog.html"><i>05</i>Blog</a>
+          <a class="hdr__link" href="../klinik-psixiatriya/"><i>06</i>XBT-11</a>
+        </nav>
+
+        <div class="hdr__side">
+          <button class="hdr__ico" type="button" data-search-open aria-label="Saytda axtar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.6-3.6" />
+            </svg>
+          </button>
+
+          <div class="hdr__lang">
+            <a href="index.html" class="is-on" aria-label="Azərbaycan dili (AZ)">AZ</a>
+            <a href="../ru/index.html" aria-label="Русский (RU)">RU</a>
+            <a href="../en/index.html" aria-label="English (EN)">EN</a>
+          </div>
+
+          <a class="btn btn--gold hdr__cta" href="tehsil.html#registration" data-cur="Yazıl">Qeydiyyat</a>
+
+          <button class="hdr__burger" id="burger" type="button" aria-label="Menyu" aria-expanded="false" aria-controls="sheet">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ════════════════ МОБИЛЬНОЕ МЕНЮ ════════════════ -->
+    <nav class="sheet" id="sheet" aria-label="Mobil menyu">
+      <div class="sheet__nav">
+        <a class="sheet__link" href="haqqimda.html"><i>01</i>Haqqımda</a>
+        <a class="sheet__link" href="tehsil.html"><i>02</i>Təhsil</a>
+        <a class="sheet__link" href="xidmetler.html"><i>03</i>Konsultasiya</a>
+        <a class="sheet__link" href="b2b.html"><i>04</i>Korporativ</a>
+        <a class="sheet__link" href="blog.html"><i>05</i>Blog</a>
+        <a class="sheet__link" href="../klinik-psixiatriya/"><i>06</i>XBT-11</a>
+      </div>
+
+      <div class="sheet__sub">
+        <a href="program-umumi.html">Ümumi Psixologiya</a>
+        <a href="program-klinik.html">Klinik Psixologiya DPO</a>
+        <a href="program-praktikum.html">Psixoterapiya Praktikumu</a>
+        <a href="aile-terapiyasi.html">Ailə Terapiyası</a>
+        <a href="samira.html">Samirə Rəhimova</a>
+        <a href="qanunlar.html">Qanuni Əsaslar</a>
+        <a href="depressiya.html">Depressiya</a>
+        <a href="panik-ataklar.html">Panik Ataklar</a>
+        <a href="sosial-fobiya.html">Sosial Fobiya</a>
+        <a href="enurez.html">Gecə Enurezi</a>
+      </div>
+
+      <div class="sheet__foot">
+        <a class="btn btn--gold" href="tehsil.html#registration">Qeydiyyat</a>
+        <div class="sheet__langs">
+          <a href="index.html" class="is-on">AZ</a>
+          <a href="../ru/index.html">RU</a>
+          <a href="../en/index.html">EN</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page-main" id="main-content">
+
+    <!-- ════════════════ 01 · HERO ════════════════ -->
+    <section class="hero" id="top" data-theme="ink" aria-labelledby="hero-heading">
+      <div class="hero__bg" aria-hidden="true">
+        <span class="hero__glow"></span>
+        <span class="hero__halo"></span>
+        <span class="hero__grid"></span>
+      </div>
+
+      <div class="hero__in">
+        <div class="hero__rail rv-l">
+          <span class="cap">01 — Giriş</span>
+          <span class="ln"></span>
+          <span class="dot"></span>
+          <span class="cap">Bakı · AZ1065</span>
+        </div>
+
+        <div class="hero__body">
+          <h1 class="hero__plate" id="hero-heading">
+            <span class="mask l" style="--d:80ms"><span>Peşəkar</span></span>
+            <span class="mask l" style="--d:180ms"><span><em>Psixologiya</em></span></span>
+            <span class="mask l" style="--d:280ms"><span>Məktəbi</span></span>
+          </h1>
+        </div>
+
+        <div class="hero__fig" aria-hidden="true">
+          <img
+            src="../images/kenan/Hero_Image_8gm1.png"
+            alt=""
+            width="621" height="402" fetchpriority="high" />
+        </div>
+
+        <div class="hero__foot rv" style="--d:520ms">
+          <div class="hero__cred">
+            <span class="cap">Kənan Rəhimov</span>
+            <span class="ln"></span>
+            <span class="cap">Həkim-Psixiatr · Psixoterapevt</span>
+          </div>
+
+          <p class="hero__lead">
+            23 illik klinik təcrübə, beynəlxalq kvalifikasiya, AR qanunvericiliyinə
+            uyğun psixologiya peşəsinə rəsmi yol.
+          </p>
+
+          <div class="hero__acts">
+            <a class="btn btn--gold" href="tehsil.html#registration" data-cur="Yazıl">
+              Qəbula yazıl
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <a class="btn btn--onink" href="xidmetler.html" data-cur="Bax">Xidmətlər</a>
+            <button class="btn btn--onink" type="button" data-search-open data-cur="Axtar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.6-3.6" /></svg>
+              Axtar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ БЕГУЩАЯ СТРОКА РЕГАЛИЙ ════════════════ -->
+    <div class="mq" aria-hidden="true">
+      <div class="mq__track">
+        <div class="mq__run">
+          <span class="mq__item is-key">IPAS Ambassador</span>
+          <span class="mq__item">23 il klinik təcrübə</span>
+          <span class="mq__item is-key">XBT-11</span>
+          <span class="mq__item">Koqnitiv-Davranış Terapiyası</span>
+          <span class="mq__item is-key">DSM-5-TR</span>
+          <span class="mq__item">B.D. Karvasarski İnstitutu</span>
+          <span class="mq__item is-key">EMDR</span>
+          <span class="mq__item">V.M. Bexterev Elmi-Tədqiqat İnstitutu</span>
+          <span class="mq__item is-key">3000+ pasiyent</span>
+          <span class="mq__item">Sankt-Peterburq Əlavə Təhsil İnstitutu</span>
+        </div>
+        <div class="mq__run">
+          <span class="mq__item is-key">IPAS Ambassador</span>
+          <span class="mq__item">23 il klinik təcrübə</span>
+          <span class="mq__item is-key">XBT-11</span>
+          <span class="mq__item">Koqnitiv-Davranış Terapiyası</span>
+          <span class="mq__item is-key">DSM-5-TR</span>
+          <span class="mq__item">B.D. Karvasarski İnstitutu</span>
+          <span class="mq__item is-key">EMDR</span>
+          <span class="mq__item">V.M. Bexterev Elmi-Tədqiqat İnstitutu</span>
+          <span class="mq__item is-key">3000+ pasiyent</span>
+          <span class="mq__item">Sankt-Peterburq Əlavə Təhsil İnstitutu</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════ РЕГАЛИИ В ЦИФРАХ ════════════════ -->
+    <section class="stats" data-theme="ink" aria-label="Rəqəmlərlə təcrübə">
+      <div class="sec__in">
+        <div class="stats__grid">
+          <div class="stat">
+            <span class="stat__n" data-to="23" data-suffix="+">23+</span>
+            <span class="stat__l">İl Klinik Təcrübə</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-to="3000" data-suffix="+">3000+</span>
+            <span class="stat__l">Uğurlu Pasient</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-to="300" data-suffix="+">300+</span>
+            <span class="stat__l">Peşəkar Məzun</span>
+          </div>
+          <div class="stat">
+            <span class="stat__n" data-to="300" data-suffix="+">300+</span>
+            <span class="stat__l">Video Dərs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 02 · ЭКОСИСТЕМА ════════════════ -->
+    <section class="sec sec--paper" id="ekosistem" data-theme="paper" aria-labelledby="eco-heading">
+      <div class="sec__in">
+        <div class="sec__head sec__head--split">
+          <div>
+            <div class="sec__kicker rv-l">
+              <span class="n">02</span><span class="t">Fəaliyyət Sahələri</span><span class="ln"></span>
+            </div>
+            <h2 class="sec__title rv" id="eco-heading" style="margin-top:22px">RAGIMOFF <em>ekosistemi</em></h2>
+          </div>
+          <p class="sec__lead rv" style="--d:120ms">
+            Dəqiq struktur, elmi metodlar və 23 illik klinik təcrübə əsasında
+            üç əsas fəaliyyət istiqamətində xidmət edirik.
+          </p>
+        </div>
+
+        <div class="eco__grid">
+          <a class="eco__card" href="tehsil.html" data-cur="Bax">
+            <span class="eco__num">01</span>
+            <span class="eco__kicker">Tədris Mərkəzi</span>
+            <h3 class="eco__title">Təhsil (DPO və Praktikum)</h3>
+            <p class="eco__txt">
+              Psixologiya ixtisası üzrə Rəsmi Əlavə Peşə Təhsili diplomu (DPO)
+              və real klinik bacarıqlar üçün Praktikum. Qanuni fəaliyyət üçün
+              nostrifikasiya tələb olunmur.
+            </p>
+            <span class="eco__go">Peşəkar ol
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </a>
+
+          <a class="eco__card" href="xidmetler.html" data-cur="Bax">
+            <span class="eco__num">02</span>
+            <span class="eco__kicker">Klinik Xidmət</span>
+            <h3 class="eco__title">Konsultasiya və Psixoterapiya</h3>
+            <p class="eco__txt">
+              Ailə problemləri, panik atak, depressiya, və uşaqlarda enurez
+              müalicəsi. Medikamentsiz, Koqnitiv-Davranış terapiyası əsasında
+              effektiv nəticə.
+            </p>
+            <span class="eco__go">Qəbula yazıl
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </a>
+
+          <a class="eco__card" href="b2b.html" data-cur="Bax">
+            <span class="eco__num">03</span>
+            <span class="eco__kicker">Biznes və HR</span>
+            <h3 class="eco__title">Korporativ və B2B</h3>
+            <p class="eco__txt">
+              Satış məktəbi, liderlik psixologiyası və HR üçün idarəetmə
+              təlimləri. Şirkətin effektivliyini və işçi motivasiyasını artıran
+              biznes-treninqləri.
+            </p>
+            <span class="eco__go">Şirkətini böyüt
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 03 · О ПЕРСОНЕ ════════════════ -->
+    <section class="sec sec--paper" id="haqqimda" data-theme="paper" aria-labelledby="about-heading" style="padding-top:0">
+      <div class="sec__in">
+        <div class="sec__head">
+          <div class="sec__kicker rv-l">
+            <span class="n">03</span><span class="t">Mütəxəssis Haqqında</span><span class="ln"></span>
+          </div>
+        </div>
+
+        <div class="ab__grid">
+          <div class="ab__media rv-s">
+            <div class="ab__plate">
+              <span class="ab__badge">IPAS Ambassador · 2022</span>
+              <img
+                src="../images/kenan/haqqimda-kenan.jpg"
+                alt="Kənan Rəhimov — həkim-psixiatr, psixoterapevt"
+                loading="lazy" width="392" height="600" />
+            </div>
+            <h3 class="ab__name" id="about-heading">Kənan Rəhimov</h3>
+            <p class="ab__role">Həkim-Psixiatr · Psixoterapevt</p>
+          </div>
+
+          <div class="ab__tl">
+            <ul class="tl">
+              <li class="tl__item rv">
+                <span class="tl__year">2026</span>
+                <p class="tl__txt">
+                  Psixoloji pozğunluqların diaqnostikası və müalicəsi üzrə hərtərəfli
+                  məlumatları əhatə edən, 2026-cı ilə aktual “Klinik Psixiatriya”
+                  sorğu kitabının müəllifi —
+                  <a href="../klinik-psixiatriya/">Kitabla tanış ol →</a>
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2022</span>
+                <p class="tl__txt">
+                  Beynəlxalq Psixoterapiya Assosiasiyasının Ambasadoru və bu sahədə
+                  tədris aparan Beynəlxalq Dərəcəli həkim psixoterapevt
+                  Sertifikatını alıb.
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2021</span>
+                <p class="tl__txt">
+                  Rusiyanın Sankt-Peterburq Əlavə Təhsil İnstitutunun müəllimi və
+                  B.D. Karvasarski adına İnstitutunun Səlahiyyətli nümayəndəsi
+                  təyin olunub.
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2008</span>
+                <p class="tl__txt">
+                  Öncə GTC, sonra da RAGIMOFF şirkətlərinin təsisçisi, bir çox
+                  layihələrin biznesin inkişafı üzrə məsləhətçisi — 3000-dən çox
+                  peşəkar təlim keçirib.
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2003</span>
+                <p class="tl__txt">
+                  Bakı «Regional Psixologiya Mərkəzi» direktoru olaraq Azərbaycanda
+                  psixologiyanın inkişafı üçün TV və Radio kanalları ilə sosial
+                  layihələr aparıb.
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2003</span>
+                <p class="tl__txt">
+                  Peşəkar Həkim Psixoterapevt Fərqlənmə Diplomu və Ekspert
+                  Sertifikatı ilə V.M. Bexterev adına Elmi-Tədqiqat İnstitutu
+                  tərəfindən təltif olunub.
+                </p>
+              </li>
+              <li class="tl__item rv">
+                <span class="tl__year">2001</span>
+                <p class="tl__txt">
+                  Rusiya Federasiyasının Baş Psixoterapevti professor B.D.
+                  Karvasarski tərəfindən təhsil alıb və dünya miqyaslı tanınmış
+                  psixoanalitik professor V.D. Vidin rəhbərliyi altında çalışıb,
+                  2 illik klinik ordinatura keçib.
+                </p>
+              </li>
+            </ul>
+
+            <div style="margin-top:38px">
+              <a class="arrowlink" href="haqqimda.html" data-cur="Bax">
+                Tam tərcümeyi-hal
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 04 · ХРАНИЛИЩЕ ДОКУМЕНТОВ ════════════════ -->
+    <section class="sec sec--ink vault" id="senadler" data-theme="ink" aria-labelledby="vault-heading">
+      <div class="sec__in">
+        <div class="sec__head vault__head" style="margin-bottom:0">
+          <div>
+            <div class="sec__kicker rv-l">
+              <span class="n">04</span><span class="t">Sənədlər</span><span class="ln" style="max-width:120px"></span>
+            </div>
+            <h2 class="sec__title rv" id="vault-heading" style="margin-top:22px;max-width:22ch">
+              Diplomlar və <em>sertifikatlar</em>
+            </h2>
+          </div>
+          <div class="vault__nav rv" style="--d:140ms">
+            <button class="vault__btn" type="button" data-vault-nav="#vaultStrip" data-dir="prev" aria-label="Əvvəlki">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+            </button>
+            <button class="vault__btn" type="button" data-vault-nav="#vaultStrip" data-dir="next" aria-label="Növbəti">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="vault__strip" id="vaultStrip" data-cur="Sürüşdür">
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/adtu-diplom-2000.jpg" alt="ADTU Diplom 2000" loading="lazy" width="800" height="587" /></div><figcaption class="vault__cap"><b>2000</b> ADTU Diplom</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/nlp-diploma-1999.jpg" alt="NLP Diplom 1999" loading="lazy" width="800" height="550" /></div><figcaption class="vault__cap"><b>1999</b> NLP Diplom</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/internatura-2001.jpg" alt="Klinik Ordinatura 2001" loading="lazy" width="800" height="568" /></div><figcaption class="vault__cap"><b>2001</b> Klinik Ordinatura</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/ptsd-apa-2000.jpg" alt="PTSD APA 2000" loading="lazy" width="800" height="591" /></div><figcaption class="vault__cap"><b>2000</b> PTSD · APA</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/sert-psychiatr-2003.jpg" alt="Psixiatr Sertifikatı 2003" loading="lazy" width="800" height="550" /></div><figcaption class="vault__cap"><b>2003</b> Psixiatr Sertifikatı</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/sert-psychotherapy-2003.jpg" alt="Psixoterapiya 2003" loading="lazy" width="800" height="583" /></div><figcaption class="vault__cap"><b>2003</b> Psixoterapiya Diplomu</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/bekhterev-udost-2.jpg" alt="Bexterev İnstitutu" loading="lazy" width="800" height="567" /></div><figcaption class="vault__cap"><b>2003</b> Bexterev İnstitutu</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/gtc-cert-team-2007.jpg" alt="GTC Sertifikatı 2007" loading="lazy" width="800" height="556" /></div><figcaption class="vault__cap"><b>2007</b> GTC Sertifikatı</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/sert-a2139286.jpg" alt="Sertifikat" loading="lazy" width="800" height="558" /></div><figcaption class="vault__cap"><b>—</b> Ekspert Sertifikatı</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/sert-a2139298.jpg" alt="Sertifikat" loading="lazy" width="800" height="567" /></div><figcaption class="vault__cap"><b>—</b> Ekspert Sertifikatı</figcaption></figure>
+        <figure class="vault__item"><div class="vault__frame"><img src="../images/diplomas/ipas-ambassador-2022.jpg" alt="IPAS Ambassador 2022" loading="lazy" width="800" height="587" /></div><figcaption class="vault__cap"><b>2022</b> IPAS Ambassador</figcaption></figure>
+      </div>
+
+      <div class="vault__hint">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4" /></svg>
+        Sürüşdürün
+      </div>
+    </section>
+
+    <!-- ════════════════ 05 · SAMİRƏ ════════════════ -->
+    <section class="sec sec--paper2" id="samira" data-theme="paper" aria-labelledby="ppl-heading">
+      <div class="sec__in">
+        <div class="ppl__grid">
+          <div>
+            <div class="sec__kicker rv-l">
+              <span class="n">05</span><span class="t">Komanda</span><span class="ln" style="max-width:120px"></span>
+            </div>
+            <h2 class="ppl__quote rv" id="ppl-heading" style="margin-top:26px">
+              Samirə <em>Rəhimova</em>/Rüstəmova
+            </h2>
+            <p class="sec__lead rv" style="--d:120ms;margin-top:22px">
+              Klinik psixoloq və ailə terapevti. Cütlük və valideyn-uşaq
+              münasibətləri, iki təlim proqramı, konsultasiya.
+            </p>
+            <div class="ppl__meta rv" style="--d:200ms">
+              <span class="ppl__chip">Ailə terapiyası</span>
+              <span class="ppl__chip">Cütlük terapiyası</span>
+              <span class="ppl__chip">Valideyn-uşaq</span>
+            </div>
+            <div style="margin-top:34px">
+              <a class="arrowlink" href="samira.html" data-cur="Bax">
+                Səhifəyə keç
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="ppl__media rv-s">
+            <img
+              src="../images/samira/samira-portret.jpg"
+              alt="Samirə Rəhimova — klinik psixoloq, ailə terapevti"
+              loading="lazy" width="600" height="800" data-plx="0.05" />
+            <span class="ppl__tag">Klinik psixoloq</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 06 · УСЛУГИ ════════════════ -->
+    <section class="sec sec--ink svc" id="konsultasiya" data-theme="ink" aria-labelledby="svc-heading">
+      <div class="sec__in">
+        <div class="sec__head sec__head--split">
+          <div>
+            <div class="sec__kicker rv-l">
+              <span class="n">06</span><span class="t">Klinik Xidmət</span><span class="ln"></span>
+            </div>
+            <h2 class="sec__title rv" id="svc-heading" style="margin-top:22px">
+              Fərdi və cütlük <em>psixoterapiya</em>
+            </h2>
+          </div>
+          <p class="sec__lead rv" style="--d:120ms">
+            Hansı psixoloji problemlərin həllində sizə kömək edə bilərik?
+          </p>
+        </div>
+
+        <div class="svc__list">
+          <a class="svc__row rv" href="aile-terapiyasi.html" data-img="../images/blog/aile/art1-cover.jpg">
+            <span class="svc__idx">01</span>
+            <h3 class="svc__name"><span class="svc__kicker">Cütlük / Ailə</span>Ailə Terapiyası</h3>
+            <p class="svc__txt">Cütlüklər arasında ünsiyyət böhranı, boşanma riski, münaqişə. Həftədə 3 sessiya — ortalama 2–3 ayda nəticə.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+
+          <a class="svc__row rv" href="aile-terapiyasi-usaq.html" data-img="../images/blog/aile-usaq/art1-cover.jpg">
+            <span class="svc__idx">02</span>
+            <h3 class="svc__name"><span class="svc__kicker">Valideyn / Yeniyetmə</span>Valideyn–Uşaq Terapiyası</h3>
+            <p class="svc__txt">Yeniyetmə davranış pozuntuları, valideyn-uşaq münaqişəsi, məktəb adaptasiyası. Ailə sistemi ilə iş.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+
+          <a class="svc__row rv" href="enurez.html" data-img="../images/kenan/enurez-mualice.jpg">
+            <span class="svc__idx">03</span>
+            <h3 class="svc__name"><span class="svc__kicker">Uşaq Psixologiyası</span>Gecə Enurezi</h3>
+            <p class="svc__txt">Uşaqlarda yataq islatma probleminin dərmansız, 5 sessiyada 80% effektivliklə həlli. Klinik protokol.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+
+          <a class="svc__row rv" href="panik-ataklar.html" data-img="../images/kenan/panik-ataklar.jpg">
+            <span class="svc__idx">04</span>
+            <h3 class="svc__name"><span class="svc__kicker">Narahatlıq</span>Panik Ataklar &amp; Təşviş</h3>
+            <p class="svc__txt">Gözlənilməz qorxu hücumları, ürək döyüntüsü, boğulma hissi. KBT ilə 5–8 sessiyada stabil nəticə.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+
+          <a class="svc__row rv" href="depressiya.html" data-img="../images/kenan/depressiya-mualice.jpg">
+            <span class="svc__idx">05</span>
+            <h3 class="svc__name"><span class="svc__kicker">Əhval Pozuntusu</span>Depressiya</h3>
+            <p class="svc__txt">Enerji itkisi, maraqsızlıq, boşluq hissi. Medikamentsiz koqnitiv-davranış terapiyası ilə müalicə.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+
+          <a class="svc__row rv" href="sosial-fobiya.html" data-img="../images/kenan/sosial-fobiya.jpg">
+            <span class="svc__idx">06</span>
+            <h3 class="svc__name"><span class="svc__kicker">Sosial Narahatlıq</span>Sosial Fobiya</h3>
+            <p class="svc__txt">İnsanlar qarşısında danışmaq qorxusu, rədd edilmə narahatlığı. Ekspozisiya terapiyası ilə sistematik azaldılma.</p>
+            <span class="svc__go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          </a>
+        </div>
+
+        <div style="margin-top:44px">
+          <a class="arrowlink" href="xidmetler.html" data-cur="Hamısı">
+            Bütün xidmətlər
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 07 · КНИГА ════════════════ -->
+    <section class="sec sec--paper" id="kitab" data-theme="paper" aria-labelledby="book-heading">
+      <div class="sec__in">
+        <div class="sec__head">
+          <div class="sec__kicker rv-l">
+            <span class="n">07</span><span class="t">Kitab</span><span class="ln" style="max-width:120px"></span>
+          </div>
+        </div>
+
+        <div class="book__plate rv-s">
+          <div class="book__spine" data-plx="0.05"><span>Klinik<br />Psixiatriya</span></div>
+          <div class="book__body">
+            <h2 class="book__title" id="book-heading">Klinik Psixiatriya</h2>
+            <p class="book__txt">
+              Psixoloji pozğunluqların diaqnostikası və müalicəsi üzrə hərtərəfli
+              sorğu kitabı. 2026-cı ilə aktual klinik protokollar, daxili axtarış
+              sistemi ilə.
+            </p>
+            <div class="book__tags">
+              <span class="book__tag">DSM-5</span>
+              <span class="book__tag">ICD-11</span>
+              <span class="book__tag">Klinik Protokollar</span>
+              <span class="book__tag">2026</span>
+            </div>
+            <div class="book__acts">
+              <a class="btn btn--gold" href="../klinik-psixiatriya/" data-cur="Oxu">
+                Oxu
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+              <a class="btn btn--onink" href="books.html" data-cur="Bax">Kitablar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 08 · БЛОГ ════════════════ -->
+    <section class="sec sec--paper" id="blog" data-theme="paper" aria-labelledby="blog-heading" style="padding-top:0">
+      <div class="sec__in">
+        <div class="sec__head sec__head--split">
+          <div>
+            <div class="sec__kicker rv-l">
+              <span class="n">08</span><span class="t">Bloq</span><span class="ln"></span>
+            </div>
+            <h2 class="sec__title rv" id="blog-heading" style="margin-top:22px">Son <em>məqalələr</em></h2>
+          </div>
+          <p class="sec__lead rv" style="--d:120ms">
+            Klinik protokollar, praktik təhlillər və psixologiya bloqu.
+          </p>
+        </div>
+
+        <div class="bl__grid" data-stagger="120">
+          <a class="bl__card rv" href="blog-depressiya-protokol.html" data-cur="Oxu">
+            <div class="bl__media"><img src="../images/blog/depressiya/protokol-cover.jpg" alt="Psixogen depressiya protokolu" loading="lazy" width="1600" height="900" /></div>
+            <span class="bl__cat">Klinik Protokol</span>
+            <h3 class="bl__title">Psixogen Depressiyanın Müalicəsi</h3>
+            <p class="bl__ex">Qısamüddətli kognitiv-restrukturlaşdırma + uzunmüddətli profilaktik strategiya. 17 illik klinik praktika.</p>
+            <div class="bl__foot"><span>Protokol · 18 dəq</span><span class="r">Oxu →</span></div>
+          </a>
+
+          <a class="bl__card rv" href="blog-enurez-protokol.html" data-cur="Oxu">
+            <div class="bl__media"><img src="../images/blog/enurez/protokol-cover.jpg" alt="Gecə enurezi protokolu" loading="lazy" width="1600" height="900" /></div>
+            <span class="bl__cat">Klinik Protokol</span>
+            <h3 class="bl__title">Gecə Enurezi — Modifikasiya Edilmiş Alarm-Protokol</h3>
+            <p class="bl__ex">10 həftəlik strukturlaşdırılmış proqram. n=240 klinik praktika, 80% halda tam remissiya.</p>
+            <div class="bl__foot"><span>Protokol · 14 dəq</span><span class="r">Oxu →</span></div>
+          </a>
+
+          <a class="bl__card rv" href="blog-depressiya-2.html" data-cur="Oxu">
+            <div class="bl__media"><img src="../images/blog/depressiya/art2-cover.jpg" alt="KDT depressiyada" loading="lazy" width="1600" height="900" /></div>
+            <span class="bl__cat">Klinik Psixologiya</span>
+            <h3 class="bl__title">KDT Depressiyada Necə İşləyir?</h3>
+            <p class="bl__ex">Üçbucaq, avtomatik düşüncələr, davranış aktivləşməsi, effektivlik dəlilləri.</p>
+            <div class="bl__foot"><span>Klinik · 11 dəq</span><span class="r">Oxu →</span></div>
+          </a>
+        </div>
+
+        <div style="margin-top:48px">
+          <a class="arrowlink" href="blog.html" data-cur="Hamısı">
+            Digər məqalələr
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ 09 · ЗАПИСЬ ════════════════ -->
+    <section class="sec sec--ink cta" id="qeydiyyat" data-theme="ink" aria-labelledby="cta-heading">
+      <span class="cta__glow" aria-hidden="true"></span>
+      <div class="sec__in">
+        <div class="cta__in">
+          <div class="sec__kicker rv-l" style="justify-content:center">
+            <span class="n">09</span><span class="t">Qeydiyyat</span>
+          </div>
+          <h2 class="cta__title" id="cta-heading" data-split="62">İlk addımı <em>bu gün</em> atın</h2>
+          <p class="cta__txt rv" style="--d:100ms">
+            Konsultasiya, təlim proqramı və ya korporativ təlim — müraciətinizə
+            həmin gün cavab veririk.
+          </p>
+          <div class="cta__acts rv" style="--d:180ms">
+            <a class="btn btn--gold" href="tehsil.html#registration" data-cur="Yazıl">
+              Qeydiyyatdan keç
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <a class="btn btn--onink" href="https://wa.me/994702200376" target="_blank" rel="noopener" data-cur="Yaz">WhatsApp</a>
+          </div>
+          <div class="cta__meta rv" style="--d:260ms">
+            <a href="tel:+994702200376">(+994) 70-220-03-76</a>
+            <a href="mailto:info@ragimoff.org">info@ragimoff.org</a>
+            <span>AZ1065, Bakı, Cəfər Cabbarlı 40</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </main>
+
+    <!-- ════════════════ ПОДВАЛ ════════════════ -->
+    <footer class="ft" data-theme="ink">
+      <div class="ft__in">
+        <div class="ft__grid">
+          <div>
+            <div class="ft__mark">RAGIMOFF<em>.</em></div>
+            <div class="ft__sub">Psixologiya Məktəbi</div>
+
+            <a class="ft__addr" href="https://www.google.com/maps/search/?api=1&amp;query=Caspian+Business+Center+Cəfər+Cabbarlı+40+Baku+AZ1065" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+              <span>AZ1065, Bakı şəhəri, Cəfər Cabbarlı 40, Caspian Business Center, 9-cu mərtəbə</span>
+            </a>
+
+            <div class="ft__soc">
+              <a href="https://t.me/ragimoff" target="_blank" rel="noopener" aria-label="Telegram (TG)">TG</a>
+              <a href="https://www.facebook.com/Ragimoff.az" target="_blank" rel="noopener" aria-label="Facebook (FB)">FB</a>
+              <a href="https://www.instagram.com/dr.ragimoff" target="_blank" rel="noopener" aria-label="Instagram (IG)">IG</a>
+              <a href="https://youtube.com/@kragimoff" target="_blank" rel="noopener" aria-label="YouTube (YT)">YT</a>
+            </div>
+          </div>
+
+          <div class="ft__col">
+            <div class="ft__col-t">Terapiya</div>
+            <ul>
+              <li><a href="aile-terapiyasi.html">Ailə Terapiyası</a></li>
+              <li><a href="enurez.html">Gecə Enurezi</a></li>
+              <li><a href="panik-ataklar.html">Panik Ataklar</a></li>
+              <li><a href="depressiya.html">Depressiya</a></li>
+              <li><a href="sosial-fobiya.html">Sosial Fobiya</a></li>
+            </ul>
+          </div>
+
+          <div class="ft__col">
+            <div class="ft__col-t">Təhsil</div>
+            <ul>
+              <li><a href="program-umumi.html">Ümumi Psixologiya</a></li>
+              <li><a href="program-klinik.html">Klinik Psixologiya DPO</a></li>
+              <li><a href="program-praktikum.html">Psixoterapiya Praktikumu</a></li>
+              <li><a href="blog.html">Psixologiya Bloqu</a></li>
+              <li><a href="https://youtube.com/@kragimoff" target="_blank" rel="noopener">YouTube Dərslər</a></li>
+            </ul>
+          </div>
+
+          <div class="ft__col">
+            <div class="ft__col-t">Əlaqə</div>
+            <ul>
+              <li><a href="tel:+994702200376">(+994) 70-220-03-76</a></li>
+              <li><a href="mailto:info@ragimoff.org">info@ragimoff.org</a></li>
+              <li><a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a></li>
+              <li><a href="https://t.me/dockenan" target="_blank" rel="noopener">Telegram</a></li>
+              <li><a href="https://instagram.com/doctor.ragimoff" target="_blank" rel="noopener">Instagram</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ft__bottom">
+          <span>© 2026 RAGIMOFF Peşəkar Psixologiya Məktəbi. Peşəkar Nüfuzun Ünvanı.</span>
+          <span>Bakı · AZ1065</span>
+        </div>
+      </div>
+    </footer>
+
+    <a class="wa" href="https://wa.me/994702200376" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.34M12.05 21.8a9.9 9.9 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88a9.8 9.8 0 0 1 6.99 2.9 9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.42-18.29A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.09.55 4.14 1.59 5.94L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9a11.8 11.8 0 0 0-3.47-8.4" /></svg>
+    </a>
+
+    <button class="totop" id="toTop" type="button" aria-label="Yuxarı">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+    </button>
+
+    <!-- ════════════════ ПАЛИТРА ПОИСКА ════════════════ -->
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Saytda axtarış">
+      <div class="palette__box">
+        <div class="palette__field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.6-3.6" /></svg>
+          <input class="palette__input" id="paletteInput" type="text" placeholder="Mövzu, xidmət, diaqnoz axtarın…" autocomplete="off" aria-label="Axtarış sorğusu" />
+        </div>
+        <div class="palette__res" id="paletteRes"></div>
+        <div class="palette__hint">↑ ↓ seç · Enter aç · Esc bağla</div>
+      </div>
+    </div>
+
+    <script src="../gtc-v4.js" defer></script>
+  </body>
+</html>

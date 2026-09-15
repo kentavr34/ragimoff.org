@@ -1,0 +1,117 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   RAGIMOFF · ATLAS — движение
+   ───────────────────────────────────────────────────────────────────────
+   Правило этого файла: без JS страница полностью читаема. Все «спрятанные»
+   состояния живут под `html.js` — класс ставит крошечный inline-скрипт в
+   <head>. Если скрипт не выполнился, ничего не спрятано.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─────────── общие появления ─────────── */
+
+html.js .rv {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .95s var(--e-out), transform .95s var(--e-out);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, transform;
+}
+html.js .rv.is-in { opacity: 1; transform: none; }
+
+html.js .rv-l { opacity: 0; transition: opacity 1.1s var(--e-out); transition-delay: var(--d, 0ms); }
+html.js .rv-l.is-in { opacity: 1; }
+
+html.js .rv-s { opacity: 0; transform: scale(.965); transition: opacity 1s var(--e-out), transform 1.1s var(--e-out); transition-delay: var(--d, 0ms); }
+html.js .rv-s.is-in { opacity: 1; transform: none; }
+
+/* маска для строк заголовка */
+.mask { display: block; overflow: hidden; }
+.mask > * { display: block; will-change: transform; }
+html.js .mask > * { transform: translateY(104%); }
+html.js .mask.is-in > * { transform: none; transition: transform 1.05s var(--e-out); transition-delay: var(--d, 0ms); }
+
+/* тонкая линейка, «прорастающая» слева */
+html.js .rv-rule { transform: scaleX(0); transform-origin: 0 50%; transition: transform 1.15s var(--e-out); transition-delay: var(--d, 0ms); }
+html.js .rv-rule.is-in { transform: scaleX(1); }
+
+/* посимвольный вылет — ставит SplitText */
+html.js .char, html.js .word { will-change: transform, opacity; }
+
+/* ─────────── бегущая строка ─────────── */
+
+@keyframes mqRun { to { transform: translateX(-50%); } }
+.mq__track { animation: mqRun var(--mq-dur, 42s) linear infinite; }
+.mq.is-paused .mq__track { animation-play-state: paused; }
+
+/* ─────────── «дыхание» гало ─────────── */
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: .28; }
+  50%      { transform: scale(1.045); opacity: .45; }
+}
+.hero__halo { animation: breathe 11s var(--e-io) infinite; }
+
+/* ─────────── подсказка прокрутки ─────────── */
+
+@keyframes cue {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+.hero__cue svg { animation: cue 2.2s var(--e-io) infinite; }
+
+/* ─────────── сдвиг зерна при прокрутке ─────────── */
+/* (JS меняет --grain-y; CSS только читает) */
+
+/* ─────────── переход темы шапки ─────────── */
+
+.hdr, .hdr__mark, .hdr__link, .hdr__sub { transition-property: color, opacity, transform, background-color, border-color; }
+
+/* ─────────── адаптив под ширину — сглаживание пластины ─────────── */
+
+@media (max-width: 1100px) {
+  :root { --fs-plate: clamp(3.2rem, 12.6vw, 8rem); }
+}
+
+/* ─────────── уважение к системной настройке ─────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+
+  html.js .rv,
+  html.js .rv-l,
+  html.js .rv-s { opacity: 1 !important; transform: none !important; }
+
+  html.js .mask > * { transform: none !important; }
+
+  .grain { display: none; }
+  .cur { display: none !important; }
+  html.has-cur, html.has-cur * { cursor: auto !important; }
+  .mq__track { animation: none; }
+}
+
+/* ─────────── разбивка заголовка по словам ─────────── */
+/* Классы .w/.w-i создаёт только JS. Без него их просто нет — текст целый. */
+
+.w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: .16em;
+  margin-bottom: -.16em;
+}
+.w-i {
+  display: inline-block;
+  transform: translateY(114%);
+  transition: transform 1.05s var(--e-out);
+  will-change: transform;
+}
+.is-in .w-i { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-i { transform: none !important; }
+}
