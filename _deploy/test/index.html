@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="az" data-theme="dark" data-theme-key="ragimoff-hub">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ana səhifə dizaynı — altı konsept · Kənan Rəhimov</title>
+<meta name="description" content="ragimoff.org ana səhifəsinin altı müstəqil dizayn prototipi. İstehsalat versiyası dəyişməyib." />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="theme-color" content="#0B0A09" />
+<link rel="icon" href="images/favicon-32x32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  :root{
+    --bg:#0B0A09; --fg:#EDE7DC; --dim:rgba(237,231,220,.55); --faint:rgba(237,231,220,.28);
+    --rule:rgba(237,231,220,.14); --gold:#C9A227; --plate:#121110;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Montserrat",-apple-system,"Segoe UI",sans-serif;
+    --e:cubic-bezier(.625,.05,0,1);
+    --pad:clamp(20px,5vw,72px);
+  }
+  html[data-theme="light"]{
+    --bg:#F5F3EE; --fg:#16130F; --dim:rgba(22,19,15,.58); --faint:rgba(22,19,15,.3);
+    --rule:rgba(22,19,15,.14); --gold:#8A6D14; --plate:#EDEAE3;
+  }
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:var(--sans); font-weight:300; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .5s var(--e), color .5s var(--e);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:9; pointer-events:none; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:clamp(72px,12vh,140px) var(--pad) 64px}
+
+  .bar{display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:clamp(48px,9vh,104px)}
+  .mark{font-family:var(--serif); font-size:clamp(17px,2vw,20px); letter-spacing:.06em}
+  .mark i{font-style:normal; color:var(--gold)}
+  .tgl{
+    appearance:none; background:none; border:0; padding:0; cursor:pointer; position:relative;
+    font:inherit; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--dim); border-bottom:1px solid var(--rule); padding-bottom:3px;
+    min-height:24px; transition:color .3s var(--e), border-color .3s var(--e);
+  }
+  /* сенсорная цель 44px без изменения внешнего вида */
+  .tgl::after{content:""; position:absolute; inset:-11px -10px;}
+  .tgl:hover,.tgl:focus-visible{color:var(--fg); border-color:var(--fg)}
+
+  .eyebrow{
+    margin:0 0 22px; font-size:11px; font-weight:500; letter-spacing:.3em; text-transform:uppercase; color:var(--gold);
+  }
+  h1{
+    margin:0 0 28px; font-family:var(--serif); font-weight:300;
+    font-size:clamp(44px,9vw,104px); line-height:.95; letter-spacing:-.02em;
+  }
+  h1 em{font-style:italic; color:var(--gold)}
+  .lead{
+    margin:0; max-width:62ch; font-size:clamp(14px,1.35vw,16.5px); color:var(--dim);
+  }
+  .lead b{color:var(--fg); font-weight:500}
+
+  .idx{list-style:none; margin:clamp(58px,10vh,120px) 0 0; padding:0; border-top:1px solid var(--rule)}
+  .idx li{border-bottom:1px solid var(--rule)}
+  .row{
+    display:grid; grid-template-columns:64px minmax(0,1fr) 230px 96px 52px;
+    align-items:center; gap:clamp(12px,2.4vw,34px);
+    padding:clamp(20px,3.1vw,34px) 0; text-decoration:none; color:inherit;
+  }
+  .row .n{
+    font-family:var(--sans); font-size:12px; font-weight:500; letter-spacing:.14em; color:var(--faint);
+    transition:color .35s var(--e);
+  }
+  .row .name{
+    display:block; font-family:var(--serif); font-weight:400;
+    font-size:clamp(27px,4.2vw,46px); line-height:1.02; letter-spacing:.01em;
+    transition:transform .5s var(--e);
+  }
+  .row .name em{font-style:italic}
+  .row .about{display:block; margin-top:9px; font-size:13.5px; color:var(--dim); max-width:52ch}
+  .row .fonts{
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); line-height:1.7;
+  }
+  .row .fonts.canon{color:var(--gold)}
+  .row .th{
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint);
+  }
+  .row .arw{
+    justify-self:end; display:grid; place-items:center; width:44px; height:44px;
+    border:1px solid var(--rule); border-radius:50%; color:var(--dim);
+    font-size:15px; line-height:1;
+    transition:transform .5s var(--e), border-color .5s var(--e), color .5s var(--e), background-color .5s var(--e);
+  }
+  .row:hover .arw, .row:focus-visible .arw{
+    transform:rotate(-45deg); border-color:var(--gold); color:var(--gold); background-color:color-mix(in srgb, var(--gold) 10%, transparent);
+  }
+  .row:hover .name, .row:focus-visible .name{transform:translateX(10px)}
+  .row:hover .n, .row:focus-visible .n{color:var(--gold)}
+  .row:focus-visible{outline:2px solid var(--gold); outline-offset:6px}
+
+  footer{margin-top:clamp(54px,9vh,104px); padding-top:26px; border-top:1px solid var(--rule);
+    display:flex; flex-wrap:wrap; gap:12px 32px; justify-content:space-between;
+    font-size:12px; letter-spacing:.05em; color:var(--faint)}
+  footer a{color:var(--dim); text-decoration:none; border-bottom:1px solid var(--rule); padding-bottom:2px}
+  footer a:hover, footer a:focus-visible{color:var(--gold); border-color:var(--gold)}
+
+  @media (max-width:900px){
+    .row{grid-template-columns:46px minmax(0,1fr) 44px; gap:14px}
+    .row .fonts{grid-column:2; margin-top:4px}
+    .row .th{display:none}
+    .row .arw{width:44px; height:44px}
+    .row .name{font-size:clamp(26px,8vw,38px)}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .enter{opacity:0; transform:translateY(14px); animation:rise .9s var(--e) forwards}
+    .enter:nth-child(2){animation-delay:.06s}
+    .enter:nth-child(3){animation-delay:.12s}
+    .idx li{opacity:0; transform:translateY(18px); animation:rise .8s var(--e) forwards}
+    .idx li:nth-child(1){animation-delay:.18s}
+    .idx li:nth-child(2){animation-delay:.24s}
+    .idx li:nth-child(3){animation-delay:.30s}
+    .idx li:nth-child(4){animation-delay:.36s}
+    .idx li:nth-child(5){animation-delay:.42s}
+    .idx li:nth-child(6){animation-delay:.48s}
+    footer{opacity:0; transform:translateY(18px); animation:rise .8s var(--e) .56s forwards}
+  }
+  @keyframes rise{to{opacity:1; transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar enter">
+    <span class="mark">Kənan <i>&amp;</i> Samirə Rəhimov</span>
+    <button class="tgl" type="button" id="tgl" aria-live="polite">İşıq / Qaranlıq</button>
+  </div>
+
+  <header class="enter">
+    <p class="eyebrow">Ana səhifə dizaynı · prototiplər</p>
+    <h1>Altı <em>konsept</em></h1>
+    <p class="lead">
+      Ana səhifənin altı müstəqil dizayn variantı. Məzmun eynidir — struktur, tipoqrafika və
+      hərəkət fərqlidir. <b>İstehsalat saytı və ragimoff.org dəyişməyib</b>; bu, baxış üçün
+      ayrıca nüsxədir.
+    </p>
+  </header>
+
+  <ol class="idx">
+    <li><a class="row" href="index4.html">
+      <span class="n">04</span>
+      <span class="body">
+        <span class="name">ATLAS</span>
+        <span class="about">Nömrələnmiş bölmələr, xətt skeleti, fiqurlarla oyun. Xidmətlər indeksi və kolleksiya rəfləri.</span>
+      </span>
+      <span class="fonts">Cormorant Garamond · IBM Plex Sans</span>
+      <span class="th">dark + light</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
+    <li><a class="row" href="index5.html">
+      <span class="n">05</span>
+      <span class="body">
+        <span class="name">AÇIQ</span>
+        <span class="about">Sakit, işıqlı, açıq mətn. Klinik yanaşmanın səmimiyyəti — nəfəs alan boşluq və yumşaq ritm.</span>
+      </span>
+      <span class="fonts">Fraunces · Space Grotesk</span>
+      <span class="th">light</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
+    <li><a class="row" href="index6.html">
+      <span class="n">06</span>
+      <span class="body">
+        <span class="name">PROTOKOL</span>
+        <span class="about">Klinik protokol dili: mono nişanlar, cədvəl sərtliyi, dəqiq sütunlar.</span>
+      </span>
+      <span class="fonts">Archivo · JetBrains Mono</span>
+      <span class="th">dark</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
+    <li><a class="row" href="index7.html">
+      <span class="n">07</span>
+      <span class="body">
+        <span class="name">XRONİKA</span>
+        <span class="about">Sticky vərəqlər yığını. İllər salnaməsi kadr-kadr açılır, kənarda illər indeksi.</span>
+      </span>
+      <span class="fonts canon">Cormorant Garamond · Montserrat</span>
+      <span class="th">dark + light</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
+    <li><a class="row" href="index8.html">
+      <span class="n">08</span>
+      <span class="body">
+        <span class="name">AĞ</span>
+        <span class="about">Asimmetrik jurnal. Sticky diptix, ağ səhifə, foto və mətnin növbələnməsi.</span>
+      </span>
+      <span class="fonts canon">Cormorant Garamond · Montserrat</span>
+      <span class="th">light</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
+    <li><a class="row" href="index9.html">
+      <span class="n">09</span>
+      <span class="body">
+        <span class="name">İMZA</span>
+        <span class="about">Ölçmə aləti estetikası: kaliper çərçivə, şkala, plyonka lenti və kadr sayğacı.</span>
+      </span>
+      <span class="fonts canon">Cormorant Garamond · Montserrat · IBM Plex Mono</span>
+      <span class="th">dark</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+  </ol>
+
+  <footer>
+    <span>Nəşr olunmamış prototip · baxış nüsxəsi · axtarış sistemlərinə bağlıdır</span>
+    <a href="https://ragimoff.org/" target="_blank" rel="noopener">Əsl sayt: ragimoff.org</a>
+  </footer>
+
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var key = root.getAttribute('data-theme-key') || 'ragimoff-theme';
+    var btn = document.getElementById('tgl');
+    try { var s = localStorage.getItem(key); if (s) root.setAttribute('data-theme', s); } catch (e) {}
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(key, next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
