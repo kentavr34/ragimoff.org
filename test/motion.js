@@ -1,23 +1,24 @@
 /* =====================================================================
-   RAGIMOFF · test/motion.js
-   Ядро: тема, режим движения, меню, покадровые галереи (data-seq),
-   reveal, счётчики, параллакс, курсор-превью, прогресс, маркиза.
-   Базис: x2motion.js (v7–v9) + починки:
-     ① читается data-seq-step (раньше всегда был фолбэк),
-     ② прогресс умеет и scaleX, и scaleY (v8 горизонтальный),
-     ③ на мобильной хроника становится статичным списком кадров,
-     ④ маркиза клонится вручную (без CSS-дубля).
-   Принцип x2-движка: обработчики навешиваются ВСЕГДА, а видимость
-   эффектов решают классы html.mo / html.no-mo.
+   RAGIMOFF · test/motion.js — движок концепта «NƏBZ»
+   Модули: тема · режим движения · полноэкранное меню с фото-сценой ·
+   пульс-рельс с названием раздела · ЭКГ-линия по скроллу · пословный
+   выезд заголовков · scramble-текст · магнитные кнопки · курсор-кольцо ·
+   покадровая галерея (data-seq) · reveal · счётчики · параллакс ·
+   курсор-превью · маркиза со склоном · прогресс.
+   Принцип: обработчики навешиваются ВСЕГДА; видимость эффектов решают
+   классы html.mo / html.no-mo (уважение prefers-reduced-motion, §0.18).
    ===================================================================== */
 (function () {
   'use strict';
 
   var root = document.documentElement;
   var reduceQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var fineQ = window.matchMedia('(hover: hover) and (pointer: fine)');
   var THEME_KEY = root.getAttribute('data-theme-key') || 'ragimoff-theme';
   var MOTION_KEY = root.getAttribute('data-motion-key') || 'ragimoff-motion';
+  var SCR = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789';
   var reduce = false;
+  var fine = false;
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -90,7 +91,7 @@
     });
   }
 
-  /* ───────────────────────── МЕНЮ ───────────────────────── */
+  /* ───────────────────────── МЕНЮ + ФОТО-СЦЕНА ───────────────────────── */
   var menuOpen = false;
   function setMenu(open) {
     var m = $('[data-menu]');
@@ -105,6 +106,27 @@
       if (f) setTimeout(function () { f.focus(); }, 60);
     }
   }
+  function initMenuStage() {
+    var m = $('[data-menu]');
+    if (!m) return;
+    var stage = $('[data-menu-stage]', m);
+    if (!stage) return;
+    $$('[data-menu-img]', m).forEach(function (a) {
+      a.addEventListener('mouseenter', function () {
+        var src = a.getAttribute('data-menu-img');
+        if (!src || stage.getAttribute('data-src') === src) return;
+        stage.setAttribute('data-src', src);
+        stage.style.backgroundImage = 'url("' + src + '")';
+        stage.classList.remove('is-pop');
+        void stage.offsetWidth;
+        stage.classList.add('is-pop');
+      });
+    });
+    var first = $('[data-menu-img]', m);
+    if (first && first.getAttribute('data-menu-img')) {
+      stage.style.backgroundImage = 'url("' + first.getAttribute('data-menu-img') + '")';
+    }
+  }
 
   /* ───────────────────── ПОСЛЕДОВАТЕЛЬНАЯ ГАЛЕРЕЯ ───────────────────── */
   var seqs = [];
@@ -114,10 +136,8 @@
       var items = $$('[data-seq-item]', el);
       var idxRoot = el.closest('[data-seq-root]') || el;
       el.style.setProperty('--seq-n', items.length);
-      /* ① шаг сцены читается из разметки */
       var stepAttr = el.getAttribute('data-seq-step');
       if (stepAttr) el.style.setProperty('--seq-step', stepAttr);
-      /* ③ на телефоне хроника — обычный стоп-список кадров */
       el.classList.toggle('is-static', narrow);
       return {
         el: el, items: items, n: items.length || 1, static: narrow,
@@ -138,9 +158,6 @@
         q.items.forEach(function (it) { it.classList.remove('is-live'); });
         if (q.idx) q.idx.forEach(function (it) { it.classList.remove('is-live'); });
         if (q.bar) q.bar.style.transform = '';
-        if (q.num && q.num.textContent !== '01/' + (q.n < 10 ? '0' + q.n : q.n)) {
-          q.num.textContent = '01/' + (q.n < 10 ? '0' + q.n : q.n);
-        }
         continue;
       }
 
@@ -181,10 +198,106 @@
     }
   }
 
+  /* ──────────────────────── ЭКГ-ЛИНИЯ ПО СКРОЛЛУ ──────────────────── */
+  var ecgPath = null, ecgStage = null, ecgDot = null, ecgLen = 0, ecgVB = [0, 0, 1200, 160];
+  function initEcg() {
+    ecgPath = $('[data-ecg]');
+    if (!ecgPath) return;
+    ecgStage = ecgPath.closest('.nbz__stage') || ecgPath.parentElement;
+    ecgDot = $('[data-ecg-dot]');
+    try { ecgLen = ecgPath.getTotalLength(); } catch (e) { ecgLen = 0; }
+    if (ecgLen) ecgPath.style.setProperty('--ecg-len', ecgLen.toFixed(1));
+    var vb = (ecgPath.getAttribute('viewBox') || '0 0 1200 160').split(/[\s,]+/).map(parseFloat);
+    if (vb.length === 4) ecgVB = vb;
+  }
+  function runEcg() {
+    if (!ecgPath || !ecgLen || reduce || !ecgStage) return;
+    var r = ecgStage.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    var span = r.height + innerHeight * 0.55;
+    var p = clamp((innerHeight - r.top) / span, 0, 1);
+    ecgPath.style.setProperty('--ecg-off', (ecgLen * (1 - p)).toFixed(1));
+    if (ecgDot) {
+      var pt = ecgPath.getPointAtLength(ecgLen * p);
+      var sr = ecgPath.getBoundingClientRect();
+      var sx = sr.width / (ecgVB[2] || 1200), sy = sr.height / (ecgVB[3] || 160);
+      ecgDot.style.left = ((sr.left - r.left) + pt.x * sx).toFixed(1) + 'px';
+      ecgDot.style.top = ((sr.top - r.top) + pt.y * sy).toFixed(1) + 'px';
+    }
+  }
+
+  /* ───────────────────────── ПУЛЬС-РЕЛЬС ───────────────────────── */
+  var railFill = null, railDot = null, railPct = null, railLbl = null, railSecs = [];
+  function initRail() {
+    railFill = $('[data-rail-fill]');
+    railDot = $('[data-rail-dot]');
+    railPct = $('[data-pct]');
+    railLbl = $('[data-rail-lbl]');
+    railSecs = $$('[data-rail]');
+  }
+  function runRail() {
+    if (!railFill) return;
+    var y = window.pageYOffset || root.scrollTop;
+    var max = root.scrollHeight - innerHeight;
+    var t = max > 0 ? clamp(y / max, 0, 1) : 0;
+    railFill.style.transform = 'scaleY(' + t.toFixed(4) + ')';
+    if (railDot) railDot.style.top = (t * 100).toFixed(2) + '%';
+    if (railPct) {
+      var s = Math.round(t * 100) + '%';
+      if (railPct.textContent !== s) railPct.textContent = s;
+    }
+    if (railLbl && railSecs.length) {
+      var mid = innerHeight * 0.45, name = railSecs[0].getAttribute('data-rail');
+      for (var i = 0; i < railSecs.length; i++) {
+        var r = railSecs[i].getBoundingClientRect();
+        if (r.top <= mid) name = railSecs[i].getAttribute('data-rail');
+      }
+      if (railLbl.textContent !== name) railLbl.textContent = name;
+    }
+  }
+
+  /* ─────────────── ПОСЛОВНЫЙ ВЫЕЗД ЗАГОЛОВКОВ (data-split) ─────────── */
+  function wordSpan(word, i) {
+    var w = document.createElement('span');
+    w.className = 'w';
+    var inner = document.createElement('i');
+    inner.textContent = word;
+    inner.style.setProperty('--wd', i);
+    w.appendChild(inner);
+    return w;
+  }
+  function splitHeadings() {
+    $$('[data-split]').forEach(function (h) {
+      if (h.getAttribute('data-split-done')) return;
+      var idx = 0;
+      var frag = document.createDocumentFragment();
+      Array.prototype.slice.call(h.childNodes).forEach(function (node) {
+        if (node.nodeType === 3) {
+          node.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            frag.appendChild(wordSpan(part, idx++));
+          });
+        } else if (node.nodeType === 1) {
+          var el = node.cloneNode(false);
+          var words = node.textContent.split(/\s+/).filter(Boolean);
+          words.forEach(function (w, k) {
+            el.appendChild(wordSpan(w, idx++));
+            if (k < words.length - 1) el.appendChild(document.createTextNode(' '));
+          });
+          frag.appendChild(el);
+        }
+      });
+      h.innerHTML = '';
+      h.appendChild(frag);
+      h.setAttribute('data-split-done', '1');
+    });
+  }
+
   /* ───────────────────────── REVEAL ───────────────────────── */
   var rvIO = null;
   function initReveal() {
-    var nodes = $$('[data-rv]');
+    var nodes = $$('[data-rv], [data-split]');
     if (!nodes.length) return;
     if (!('IntersectionObserver' in window)) {
       nodes.forEach(function (n) { n.classList.add('in'); });
@@ -202,6 +315,91 @@
       var d = n.getAttribute('data-stagger');
       if (d) n.style.setProperty('--delay', d + 'ms');
       rvIO.observe(n);
+    });
+  }
+
+  /* ──────────────────────── SCRAMBLE-ТЕКСТ ──────────────────────── */
+  function initScramble() {
+    $$('[data-scramble]').forEach(function (el) {
+      var orig = el.textContent;
+      var busy = false;
+      el.addEventListener('mouseenter', function () {
+        if (reduce || busy) return;
+        busy = true;
+        var t0 = 0, dur = 420;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var k = clamp((ts - t0) / dur, 0, 1);
+          var out = '';
+          for (var i = 0; i < orig.length; i++) {
+            var ch = orig.charAt(i);
+            if (ch === ' ' || ch === '·') { out += ch; continue; }
+            out += (k >= i / orig.length) ? ch : SCR.charAt((Math.random() * SCR.length) | 0);
+          }
+          el.textContent = out;
+          if (k < 1) requestAnimationFrame(step);
+          else { el.textContent = orig; busy = false; }
+        }
+        requestAnimationFrame(step);
+      });
+    });
+  }
+
+  /* ─────────────────────── МАГНИТНЫЕ КНОПКИ ─────────────────────── */
+  function initMagnets() {
+    if (!fine) return;
+    $$('[data-magnet]').forEach(function (el) {
+      var raf = 0, tx = 0, ty = 0, cx = 0, cy = 0;
+      function tick() {
+        cx += (tx - cx) * 0.18;
+        cy += (ty - cy) * 0.18;
+        el.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0)';
+        if (Math.abs(tx - cx) > 0.2 || Math.abs(ty - cy) > 0.2) raf = requestAnimationFrame(tick);
+        else raf = 0;
+      }
+      el.addEventListener('mousemove', function (e) {
+        if (reduce) return;
+        var b = el.getBoundingClientRect();
+        tx = (e.clientX - (b.left + b.width / 2)) * 0.26;
+        ty = (e.clientY - (b.top + b.height / 2)) * 0.32;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+      el.addEventListener('mouseleave', function () {
+        tx = 0; ty = 0;
+        if (!raf) raf = requestAnimationFrame(tick);
+      });
+    });
+  }
+
+  /* ──────────────────────── КУРСОР-КОЛЬЦО ──────────────────────── */
+  var cur = null, curX = 0, curY = 0, curTX = 0, curTY = 0, curRaf = 0;
+  function initCursor() {
+    if (!fine) return;
+    cur = document.createElement('div');
+    cur.className = 'cur';
+    cur.setAttribute('aria-hidden', 'true');
+    cur.innerHTML = '<span class="cur__ring"></span><span class="cur__lbl"></span>';
+    document.body.appendChild(cur);
+    var lbl = $('.cur__lbl', cur);
+
+    document.addEventListener('mousemove', function (e) {
+      curTX = e.clientX; curTY = e.clientY;
+      if (!curRaf) curRaf = requestAnimationFrame(curTick);
+    });
+    function curTick() {
+      var k = reduce ? 1 : 0.18;
+      curX += (curTX - curX) * k;
+      curY += (curTY - curY) * k;
+      cur.style.transform = 'translate3d(' + curX.toFixed(1) + 'px,' + curY.toFixed(1) + 'px,0)';
+      if (Math.abs(curTX - curX) > 0.4 || Math.abs(curTY - curY) > 0.4) curRaf = requestAnimationFrame(curTick);
+      else curRaf = 0;
+    }
+    $$('a, button, [data-cursor-label]').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        cur.classList.add('is-hot');
+        lbl.textContent = el.getAttribute('data-cursor-label') || '';
+      });
+      el.addEventListener('mouseleave', function () { cur.classList.remove('is-hot'); });
     });
   }
 
@@ -251,7 +449,7 @@
     }
   }
 
-  /* ──────────────────────── КУРСОР-ПРЕВЬЮ ───────────────────────── */
+  /* ──────────────────────── КУРСОР-ПРЕВЬЮ (§0.17) ───────────────── */
   var peek = null, peekX = 0, peekY = 0, peekTX = 0, peekTY = 0, peekRaf = 0;
   function initPeek() {
     var host = $('[data-peek-host]');
@@ -299,12 +497,11 @@
     }
   }
 
-  /* ──────────────────────── МАРКИЗА (наклон от скорости) ───────────── */
+  /* ──────────────────────── МАРКИЗА ──────────────────────── */
   var mqTrack = null;
   function prepMarquee() {
     mqTrack = $('.mq__track');
     if (!mqTrack) return;
-    /* ④ клон содержимого для бесшовного цикла */
     mqTrack.innerHTML += mqTrack.innerHTML;
   }
 
@@ -314,7 +511,6 @@
     var y = window.pageYOffset || root.scrollTop;
     if (bar) {
       var max = root.scrollHeight - innerHeight;
-      /* ② orient=h → scaleX, иначе scaleY (вертикальная полоса справа) */
       var horiz = bar.getAttribute('data-progress') === 'h';
       var t = max > 0 ? clamp(y / max, 0, 1) : 0;
       var target = bar.matches('i') ? bar : (bar.querySelector('i') || bar);
@@ -322,7 +518,6 @@
     }
     if (header) header.classList.toggle('is-stuck', y > 40);
 
-    /* маркиза-склон: ~±0.6deg пропорционально скорости (+ едва заметный стоп) */
     if (mqTrack) {
       var v = clamp((y - lastY) / 24, -3, 3);
       mqTrack.style.setProperty('--mq-skew', (v * 0.2).toFixed(2) + 'deg');
@@ -331,6 +526,8 @@
 
     runSeq();
     runPlx();
+    runRail();
+    runEcg();
   }
   function onScroll() {
     if (onScroll.q) return;
@@ -374,9 +571,14 @@
         e.preventDefault();
         setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
       }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setMenu(!menuOpen);
+      }
     });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () {
+      fine = fineQ.matches;
       collectSeqs(); collectPlx();
       onScroll();
     });
@@ -387,35 +589,44 @@
 
   function boot() {
     reduce = computeReduce();
+    fine = fineQ.matches;
     paintTheme(theme);
     paintMotion();
     if (root.getAttribute('data-theme-default') !== theme) lsSet(THEME_KEY, theme);
 
-    /* Прогресс-полосы: [data-progress="h"] — верх, .prog--v i — правая вертикаль */
-    bar = $('[data-progress]') || $('.prog--v i');
-
+    bar = $('[data-progress]');
     header = $('[data-header]');
 
     bind();
     prepMarquee();
+    splitHeadings();
+    initMenuStage();
+    initEcg();
+    initRail();
     collectSeqs();
     collectPlx();
     initReveal();
     initCounts();
     initPeek();
+    initScramble();
+    initMagnets();
+    initCursor();
 
     root.classList.add('js-ready');
     var heroEl = document.querySelector('.hero');
     if (heroEl) {
+      var hasIntro = $('[data-intro]');
+      var delay = (reduce || !hasIntro) ? 60 : 1700;
       if (reduce) { heroEl.classList.add('is-in'); }
       else {
         requestAnimationFrame(function () {
-          setTimeout(function () { heroEl.classList.add('is-in'); }, 60);
+          setTimeout(function () { heroEl.classList.add('is-in'); }, delay);
         });
       }
     }
     requestAnimationFrame(function () { onScroll(); });
     setTimeout(onScroll, 240);
+    setTimeout(onScroll, 900);
     window.addEventListener('load', onScroll);
   }
 
