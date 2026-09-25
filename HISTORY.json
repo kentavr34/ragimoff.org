@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-09-08",
+  "updated": "2026-09-25",
   "description": "Chronological log of major transformations to ragimoff.org (site + Klinik Psixiatriya textbook). Append new entries to 'entries' at the end. Granular per-commit history lives in git; this file captures phases.",
   "phases": [
     {
@@ -549,6 +549,13 @@
       "type": "commit",
       "commit": "5a8a519",
       "note": "Wave 1.6: унификация hero (ph-*). Организованная волна вместо сломанного батча 06.09: канон ph-* сохранён. gtc.css — .ph-badge line-height var(--type-label-line) (ровно 36px) + утилиты .btn-action-1/2; samira x3 и tehsil — сняты инлайн-дубли .ph-badge/.ph-h1/.ph-sub, page-специфика только в scoped-оверрайдах (двухцветный h1, letter-spacing, щель поисковика), протухшие комментарии переписаны; новый сторож _hero_check.py (канон, дубли, mojibake, переопределения; ph-h1-w2 опционален). Проверка: _hero_check OK 860 стр (excl. klinik), checkup 0/19, Chromium-замер 1440/390 = эталон depressiya.html (бейдж 36, зазоры 39/30). Удалены артефакты deploy-temp/, deploy-temp2, _wip_backup_20260906/ (батч 06.09 живёт в git stash). Канон задокументирован в DESIGN-STANDARD.md §8 «PAGE HERO SYSTEM»."
+    },
+    {
+      "ts": "2026-09-25",
+      "actor": "zcode",
+      "type": "commit",
+      "commit": "6d5a464",
+      "note": "Скрытый раздел /test/: концепт «NƏBZ» — новая уникальная главная. Точка отката тегом backup/prod-2026-09-25 (прод не тронут). tokens.css = единый источник шрифтов/кеглей/цветов/тем (правка в одном месте). Фишки: ЭКГ-линия по скроллу (data-ecg + точка), правый пульс-рельс (%+название раздела), живое меню (стаггер, фото-сцена, бегущий пульс), магнитные кнопки, курсор-кольцо с подписями, scramble-текст, пословный выезд заголовков, intro-шторка; хроника покадрово (§0.17), индекс услуг с превью, счётчики, книга, блог clip-reveal, CTA. Синтез v4–v9 сохранён как test/sintez-v4v9.html. Мобильная адаптация 1180/980/720/520. Уважение prefers-reduced-motion + кнопка принудительного включения (§0.18). Доступ только по ссылке ragimoff.org/test/, с главной не линкуется."
     }
   ]
 }
