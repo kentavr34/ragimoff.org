@@ -143,7 +143,12 @@
         el: el, items: items, n: items.length || 1, static: narrow,
         num: $('[data-seq-num]', el),
         cap: $('[data-seq-cap]', el),
-        bar: $('[data-seq-bar] i, [data-seq-bar]', el),
+        /* заливка полосы: сначала внутренний <i>, иначе сама обёртка
+           (селектор-список вернул бы родителя первым — поэтому вручную) */
+        bar: (function () {
+          var wrap = $('[data-seq-bar]', el);
+          return wrap ? ($('i', wrap) || wrap) : null;
+        })(),
         idx: $$('[data-seq-idx]', idxRoot)
       };
     });
@@ -151,7 +156,12 @@
   function runSeq() {
     for (var s = 0; s < seqs.length; s++) {
       var q = seqs[s], r = q.el.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > innerHeight + 200) continue;
+      if (r.bottom < -200 || r.top > innerHeight + 200) {
+        /* секция далеко — снимаем подсветку, чтобы состояние не «залипало» */
+        q.items.forEach(function (it) { it.classList.remove('is-live'); });
+        if (q.idx) q.idx.forEach(function (it) { it.classList.remove('is-live'); });
+        continue;
+      }
 
       if (reduce || q.static) {
         for (var j = 0; j < q.n; j++) q.items[j].style.removeProperty('--o');
