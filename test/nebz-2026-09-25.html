@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="az" data-theme="dark" data-theme-default="dark"
+      data-theme-key="ragimoff-test" data-motion-key="ragimoff-test-motion"
+      data-tc-dark="#0A0F18" data-tc-light="#F4F0E8">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0F18">
+  <title>RAGIMOFF · NƏBZ — yeni dizayn (test)</title>
+  <meta name="description" content="RAGIMOFF — yeni dizayn konsepsiyası «NƏBZ»: skroll-kino, canlı menyu, nəbz motivi. Test bölməsi.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Единые дизайн-токены: единственное место правок шрифтов/кеглей/цветов -->
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ─────────────────────── ВСТУПЛЕНИЕ ─────────────────────── -->
+  <div class="intro" data-intro aria-hidden="true">
+    <span class="intro__t"><span>RAGIMOFF</span><em>.</em></span>
+  </div>
+
+  <!-- ───────────────────────── ПРОГРЕСС ───────────────────────── -->
+  <div class="prog" data-progress="h" aria-hidden="true"></div>
+
+  <!-- ─────────────────── ПУЛЬС-РЕЛЬС (правый) ─────────────────── -->
+  <aside class="rail" aria-hidden="true">
+    <span class="rail__pct meta" data-pct>0%</span>
+    <span class="rail__line"><i data-rail-fill></i><b class="rail__dot" data-rail-dot></b></span>
+    <span class="rail__lbl meta" data-rail-lbl>Başlanğıc</span>
+  </aside>
+
+  <!-- ───────────────────────── ШАПКА ───────────────────────── -->
+  <header class="hdr" data-header>
+    <div class="hdr__in">
+      <a class="logo" href="../index.html">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Psixologiya Məktəbi</span>
+      </a>
+      <nav class="nav" aria-label="Əsas naviqasiya">
+        <a href="#xronika" data-scramble>Xronika</a>
+        <a href="#xidmet" data-scramble>Xidmətlər</a>
+        <a href="#kitab" data-scramble>Kitab</a>
+        <a href="#bloq" data-scramble>Bloq</a>
+        <a href="#elaqe" data-scramble>Əlaqə</a>
+      </nav>
+      <div class="hdr__tools">
+        <button class="tgl" type="button" data-theme-toggle aria-label="İşıq/Qaranlıq rejimi"
+                data-label-to-light="İşıq rejimi" data-label-to-dark="Qaranlıq rejim">
+          <svg class="tgl__ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5.2"/><path d="M12 .8v3.4M12 19.8v3.4M.8 12h3.4M19.8 12h3.4M3.6 3.6l2.4 2.4M18 18l2.4 2.4M20.4 3.6L18 6M6 18l-2.4 2.4"/></svg>
+          <span class="tgl__lb" data-theme-label>İşıq rejimi</span>
+        </button>
+        <button class="tgl" type="button" data-motion-toggle aria-label="Hərəkət rejimi"
+                data-label-on="Hərəkəti yandır" data-label-off="Hərəkəti söndür">
+          <svg class="tgl__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h8M13 12h8"/><circle cx="11" cy="12" r="2"/></svg>
+          <span class="tgl__lb" data-motion-label>Hərəkəti söndür</span>
+        </button>
+        <button class="tgl tgl--menu" type="button" data-menu-toggle aria-expanded="false" aria-label="Menyu">
+          <svg class="tgl__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span class="tgl__lb" aria-hidden="true">Menyu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────────────── МЕНЮ НА ВЕСЬ ЭКРАН (живое) ─────────────── -->
+  <div class="menu" data-menu aria-hidden="true">
+    <div class="menu__stage" data-menu-stage></div>
+    <button class="menu__x" type="button" data-menu-close aria-label="Bağla">✕</button>
+    <div class="menu__in">
+      <ul class="menu__list">
+        <li><a href="#xronika" data-menu-img="../images/diplomas/ipas-ambassador-2022.jpg"><sup>01</sup>Xronika</a></li>
+        <li><a href="#xidmet" data-menu-img="../images/blog/sosial-fobiya/art1-cover.jpg"><sup>02</sup>Xidmətlər</a></li>
+        <li><a href="#kitab" data-menu-img="../images/blog/depressiya/protokol-cover.jpg"><sup>03</sup>Kitab</a></li>
+        <li><a href="#bloq" data-menu-img="../images/blog/depressiya/art2-cover.jpg"><sup>04</sup>Bloq</a></li>
+        <li><a href="#elaqe" data-menu-img="../images/kenan/kenan-removebg-preview.png"><sup>05</sup>Əlaqə</a></li>
+      </ul>
+      <svg class="menu__pulse" viewBox="0 0 420 34" aria-hidden="true">
+        <path d="M0 17 H118 l10 -12 l12 24 l12 -30 l12 22 H240 l10 -12 l12 24 l12 -30 l12 22 H420"/>
+      </svg>
+    </div>
+    <div class="menu__foot">
+      <span class="meta">(+994) 70-220-03-76</span>
+      <span class="meta">info@ragimoff.org</span>
+      <span class="meta">Bakı · C.Cabbarlı 40</span>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ───────────────────────── ГЕРОЙ ───────────────────────── -->
+    <section class="hero" id="ana" data-rail="Başlanğıc">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <span class="hero__badge"><i class="beat"></i> IPAS Ambassador · 2003-cü ildən</span>
+          <h1>
+            <span class="h1-line"><span>Peşəkar</span></span>
+            <span class="h1-line"><span><em>Psixologiya</em> Məktəbi</span></span>
+          </h1>
+          <p class="hero__lede">2003-cü ildən həkim-psxoterapevt kvallifikasiyası, terapiya və klinik təcrübə,<br>psixologiya sahəsində - peşəkar keryera mentoru, XBT-11 üzrə tədris vəsaitinin müəllifi</p>
+          <div class="hero__cta">
+            <a class="btn" href="https://wa.me/994702200376" data-magnet data-cursor-label="Yaz">Qəbula yazıl <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#xidmet" data-magnet data-cursor-label="Bax">Xidmətlərə bax</a>
+          </div>
+        </div>
+        <figure class="hero__fig cal">
+          <span class="hero__halo" aria-hidden="true"></span>
+          <img src="../images/kenan/kenan-removebg-preview.png" alt="Dr. Kənan Rəhimov — həkim-psixiatr, psixoterapevt"
+               width="307" height="322" data-plx="0.03">
+          <figcaption class="hero__sign" aria-hidden="true">Kənan Rəhimov</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap">
+        <div class="hero__read">
+          <div><b>23</b><span class="meta">İl klinik təcrübə</span></div>
+          <div><b>3000<sup>+</sup></b><span class="meta">Peşəkar təlim</span></div>
+          <div><b>300<sup>+</sup></b><span class="meta">Davamlı müştəri</span></div>
+          <div><b>11</b><span class="meta">Diplom və sertifikat</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── МАРКИЗА ───────────────────────── -->
+    <div class="mq" aria-hidden="true">
+      <div class="mq__track">
+        <span>Həkim-psixiatr · psixoterapevt</span>
+        <span><em>IPAS</em> Ambassadoru</span>
+        <span>XBT-11 üzrə tədris vəsaiti</span>
+        <span>23 il klinik təcrübə</span>
+        <span>Beynəlxalq Psixoterapiya Assosiasiyası</span>
+        <span>KDT · Ailə terapiyası · Təlim</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────── ХРОНИКА · кадр на шаг ─────────────────── -->
+    <section class="sec" id="xronika" data-seq-root data-rail="Xronika">
+      <div class="wrap">
+        <div class="sec__head" data-rv>
+          <h2 data-split>Xronika · <em>26 il</em></h2>
+          <span class="meta">01 — Təcrübə yolu</span>
+        </div>
+        <div class="chron__grid">
+          <ol class="chron__years" aria-hidden="true">
+            <li data-seq-idx>2001</li>
+            <li data-seq-idx>2003</li>
+            <li data-seq-idx>2008</li>
+            <li data-seq-idx>2021</li>
+            <li data-seq-idx>2022</li>
+            <li data-seq-idx>2026</li>
+          </ol>
+          <div class="seq" data-seq data-seq-step="46vh">
+            <div class="seq__scene">
+              <figure class="seq__item" data-seq-item
+                      data-cap="Ordinatura — V.M.Bexterev adına Elmi-Tədqiqat İnstitutu, professor V.D.Vidinin rəhbərliyi altında.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/internatura-2001.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F01 · 2001</span>
+                  <span class="meta">Ordinatura · Bexterev İnstitutu</span>
+                </figcaption>
+              </figure>
+              <figure class="seq__item" data-seq-item
+                      data-cap="Həkim-psixiatr-psixoterapevt: fərqlənmə diplomu və ekspert sertifikatı, 2003.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/sert-psychotherapy-2003.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F02 · 2003</span>
+                  <span class="meta">Psixiatr–psixoterapevt sertifikatı</span>
+                </figcaption>
+              </figure>
+              <figure class="seq__item" data-seq-item
+                      data-cap="GTC — peşəkar təlimlər mərkəzinin qurulması, ilk komanda və proqramlar.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/gtc-cert-team-2007.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F03 · 2008</span>
+                  <span class="meta">GTC · Təlim mərkəzi</span>
+                </figcaption>
+              </figure>
+              <figure class="seq__item" data-seq-item
+                      data-cap="Sankt-Peterburq Əlavə Təhsil İnstitutu — müəllim və səlahiyyətli nümayəndə, 2021.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/sert-a2139286.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F04 · 2021</span>
+                  <span class="meta">SPb Əlavə Təhsil İnstitutu</span>
+                </figcaption>
+              </figure>
+              <figure class="seq__item" data-seq-item
+                      data-cap="IPAS Ambassadoru — Beynəlxalq Psixoterapiya Assosiasiyasının etimadı, 2022.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/ipas-ambassador-2022.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F05 · 2022</span>
+                  <span class="meta">IPAS Ambassadoru</span>
+                </figcaption>
+              </figure>
+              <figure class="seq__item" data-seq-item
+                      data-cap="«Klinik Psixiatriya» sorğu kitabı — XBT-11 və DSM-5 üzrə klinik protokollar toplusu.">
+                <div class="seq__img" style="background-image:url('../images/diplomas/sert-a2139298.jpg')"></div>
+                <figcaption class="seq__cap">
+                  <span class="meta seq__cap-n">F06 · 2026</span>
+                  <span class="meta">«Klinik Psixiatriya» kitabı</span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="seq__hud">
+              <span class="seq__num" data-seq-num>01/06</span>
+              <span class="seq__stamp">Xronika</span>
+              <span class="seq__bar" data-seq-bar><i></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────── NƏBZ · ЭКГ рисуется по скроллу ──────────────── -->
+    <section class="sec nbz" id="nebz" data-rail="Nəbz">
+      <div class="wrap">
+        <div class="nbz__stage">
+          <svg class="nbz__ecg" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+            <path data-ecg d="M0 80 H300 l18 -44 l20 78 l22 -120 l20 96 l16 -50 H700 l18 -44 l20 78 l22 -120 l20 96 l16 -50 H1200"/>
+          </svg>
+          <span class="nbz__dot" data-ecg-dot aria-hidden="true"></span>
+          <blockquote class="nbz__q" data-rv>Dəyişiklik <em>nəbz</em> kimi başlayır — əvvəlcə hiss olunur, sonra görünür.</blockquote>
+          <p class="nbz__s" data-rv data-stagger="90">23 il klinik praktika · 3000+ təlim · bir məqsəd: insanın öz ritmini tapması.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── УСЛУГИ · индекс ───────────────────── -->
+    <section class="sec" id="xidmet" data-rail="Xidmətlər">
+      <div class="wrap">
+        <div class="sec__head" data-rv>
+          <h2 data-split>Xidmət <em>indeksi</em></h2>
+          <span class="meta">02 — Fərdi · Ailə · Uşaq</span>
+        </div>
+        <div class="svc" data-peek-host>
+          <a class="svc__row" href="../sosial-fobiya.html" data-rv data-cursor-label="Bax" data-img="../images/blog/sosial-fobiya/art1-cover.jpg">
+            <span class="svc__n">01</span>
+            <span class="svc__t"><span class="svc__k">Sosial narahatlıq</span>Sosial Fobiya</span>
+            <span class="svc__d">İnsanlar qarşısında danışmaq qorxusu, rədd edilmə narahatlığı. Ekspozisiya terapiyası ilə sistematik azaldılma.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="svc__row" href="../depressiya.html" data-rv data-cursor-label="Bax" data-img="../images/blog/depressiya/art1-cover.jpg">
+            <span class="svc__n">02</span>
+            <span class="svc__t"><span class="svc__k">Əhval pozuntusu</span>Depressiya</span>
+            <span class="svc__d">Enerji itkisi, maraqsızlıq, boşluq hissi. Medikamentsiz koqnitiv-davranış terapiyası ilə müalicə.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="svc__row" href="../panik-ataklar.html" data-rv data-cursor-label="Bax" data-img="../images/blog/panik/art1-cover.jpg">
+            <span class="svc__n">03</span>
+            <span class="svc__t"><span class="svc__k">Narahatlıq</span>Panik Ataklar &amp; Təşviş</span>
+            <span class="svc__d">Gözlənilməz qorxu hücumları, ürək döyüntüsü, boğulma hissi. KBT ilə 5–8 sessiyada stabil nəticə.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="svc__row" href="../enurez.html" data-rv data-cursor-label="Bax" data-img="../images/blog/enurez/art1-cover.jpg">
+            <span class="svc__n">04</span>
+            <span class="svc__t"><span class="svc__k">Uşaq psixologiyası</span>Gecə Enurezi</span>
+            <span class="svc__d">Uşaqlarda yataq islatma probleminin dərmansız, 5 sessiyada 80% effektivliklə həlli. Klinik protokol.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="svc__row" href="../aile-terapiyasi-usaq.html" data-rv data-cursor-label="Bax" data-img="../images/blog/aile-usaq/art1-cover.jpg">
+            <span class="svc__n">05</span>
+            <span class="svc__t"><span class="svc__k">Valideyn / Yeniyetmə</span>Valideyn–Uşaq Terapiyası</span>
+            <span class="svc__d">Yeniyetmə davranış pozuntuları, valideyn-uşaq münaqişəsi, məktəb adaptasiyası. Ailə sistemi ilə iş.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="svc__row" href="../aile-terapiyasi.html" data-rv data-cursor-label="Bax" data-img="../images/blog/aile/art1-cover.jpg">
+            <span class="svc__n">06</span>
+            <span class="svc__t"><span class="svc__k">Cütlük / Ailə</span>Ailə Terapiyası</span>
+            <span class="svc__d">Cütlüklər arasında ünsiyyət böhranı, boşanma riski, münaqişə. 2–3 ayda ölçülmüş nəticə.</span>
+            <span class="svc__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────── СЧЁТЧИКИ ───────────────────── -->
+    <section class="sec" id="reqem" data-rail="Göstəricilər">
+      <div class="wrap">
+        <div class="sec__head" data-rv>
+          <h2 data-split>Göstəricilər</h2>
+          <span class="meta">03 — Rəqəmlərlə</span>
+        </div>
+        <div class="figs">
+          <div class="figs__cell" data-rv data-stagger="0">
+            <span class="figs__v"><span data-count="23">23</span></span>
+            <p class="meta">İl fasiləsiz klinik praktika</p>
+          </div>
+          <div class="figs__cell" data-rv data-stagger="80">
+            <span class="figs__v"><span data-count="3000" data-count-final="3000+">3000</span><sup>+</sup></span>
+            <p class="meta">Keçirilmiş peşəkar təlim</p>
+          </div>
+          <div class="figs__cell" data-rv data-stagger="160">
+            <span class="figs__v"><span data-count="300">300</span><sup>+</sup></span>
+            <p class="meta">Davamlı müştəri və tələbə</p>
+          </div>
+          <div class="figs__cell" data-rv data-stagger="240">
+            <span class="figs__v"><span data-count="11">11</span></span>
+            <p class="meta">Diplom, sertifikat və təltif</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── КНИГА ───────────────────────── -->
+    <section class="sec book" id="kitab" data-rail="Kitab">
+      <div class="wrap">
+        <div class="sec__head" data-rv>
+          <h2 data-split>Kitab · <em>Klinik Psixiatriya</em></h2>
+          <span class="meta">04 — Sorğu vəsaiti · 2026</span>
+        </div>
+        <div class="book__grid">
+          <div class="book__plate" data-rv data-plx="0.02">
+            <p class="meta">RAGIMOFF Press · 2026</p>
+            <dl>
+              <dt>Ad</dt><dd>Klinik Psixiatriya — Sorğu Kitabı</dd>
+              <dt>Standart</dt><dd>XBT-11 · DSM-5</dd>
+              <dt>Bölmələr</dt><dd>Diaqnostika · Müalicə · Klinik protokollar</dd>
+            </dl>
+          </div>
+          <div data-rv data-stagger="90">
+            <p>Psixoloji pozğunluqların diaqnostikası və müalicəsi üzrə hərtərəfli sorğu kitabı: 2026-cı ilə aktual klinik protokollar, XBT-11 üzrə şərhlər və daxili axtarış sistemi.</p>
+            <div class="hero__cta">
+              <a class="btn" href="../klinik-psixiatriya/" data-magnet data-cursor-label="Oxu">Oxu <span aria-hidden="true">→</span></a>
+              <a class="btn btn--ghost" href="../blog-klinik-psixiatriya.html" data-magnet>Məqaləyə bax</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────── БЛОГ ───────────────────────── -->
+    <section class="sec" id="bloq" data-rail="Bloq">
+      <div class="wrap">
+        <div class="sec__head" data-rv>
+          <h2 data-split>Son <em>məqalələr</em></h2>
+          <a class="meta" href="../blog.html" data-scramble>Bütün məqalələr →</a>
+        </div>
+        <div class="posts">
+          <a class="post" href="../blog-depressiya-2.html" data-rv data-cursor-label="Oxu">
+            <div class="post__img"><img src="../images/blog/depressiya/art2-cover.jpg" alt="KDT — depressiyada koqnitiv-davranış terapiyası"></div>
+            <div class="post__body">
+              <span class="meta">Klinik · 11 dəq</span>
+              <span class="post__t">KDT depressiyada necə işləyir?</span>
+              <span class="post__x">Üçbucaq, avtomatik düşüncələr, davranış aktivləşməsi, effektivlik dəlilləri.</span>
+              <span class="post__more meta">Oxu →</span>
+            </div>
+          </a>
+          <a class="post" href="../blog-enurez-protokol.html" data-rv data-stagger="80" data-cursor-label="Oxu">
+            <div class="post__img"><img src="../images/blog/enurez/art1-cover.jpg" alt="Gecə enurezi protokolu"></div>
+            <div class="post__body">
+              <span class="meta">Protokol · 14 dəq</span>
+              <span class="post__t">Gecə Enurezi — Modifikasiya Edilmiş Alarm-Protokol</span>
+              <span class="post__x">10 həftəlik strukturlaşdırılmış proqram. n=240 klinik praktika, 80% halda tam remissiya.</span>
+              <span class="post__more meta">Oxu →</span>
+            </div>
+          </a>
+          <a class="post" href="../blog-depressiya-protokol.html" data-rv data-stagger="160" data-cursor-label="Oxu">
+            <div class="post__img"><img src="../images/blog/depressiya/protokol-cover.jpg" alt="Psixogen depressiyanın müalicəsi protokolu"></div>
+            <div class="post__body">
+              <span class="meta">Protokol · 18 dəq</span>
+              <span class="post__t">Psixogen Depressiyanın Müalicəsi</span>
+              <span class="post__x">Qısamüddətli kognitiv-restrukturlaşdırma + uzunmüddətli profilaktika. 17 illik praktika.</span>
+              <span class="post__more meta">Oxu →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ───────────────────── CTA + КОНТАКТЫ ───────────────────── -->
+  <section class="cta" id="elaqe" data-rail="Əlaqə">
+    <div class="wrap cta__grid">
+      <div>
+        <h2 data-split data-rv>Başlayaq.</h2>
+        <p class="cta__lede" data-rv data-stagger="80">Dəyişiklik birinci söhbətdən başlayır. Sualınızı yazın — dəstək strategiyasını birlikdə seçək.</p>
+        <div class="cta__btn" data-rv data-stagger="160">
+          <a class="btn" href="https://wa.me/994702200376" data-magnet data-cursor-label="Yaz">WhatsApp · Qəbula yazıl</a>
+          <a class="btn btn--ghost" href="tel:+994702200376" data-magnet>Zəng et</a>
+        </div>
+      </div>
+      <dl class="cts" data-rv data-stagger="120">
+        <li><a href="https://wa.me/994702200376"><dt>WhatsApp</dt><b>(+994) 70-220-03-76</b></a></li>
+        <li><a href="mailto:info@ragimoff.org"><dt>E-poçt</dt><b>info@ragimoff.org</b></a></li>
+        <li><span><dt>Ünvan</dt><b>Caspian Business Center, 9-cu mərtəbə</b></span></li>
+        <li><span><dt>Şəhər</dt><b>AZ1065, Bakı, C.Cabbarlı 40</b></span></li>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── ФУТЕР ───────────────────────── -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <a class="logo" href="../index.html">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Peşəkar nüfuzun ünvanı</span>
+      </a>
+      <nav class="ft__nav" aria-label="Futermenü">
+        <a href="#xronika">Xronika</a>
+        <a href="#xidmet">Xidmətlər</a>
+        <a href="#kitab">Kitab</a>
+        <a href="#bloq">Bloq</a>
+        <a href="https://youtube.com/@kragimoff">YouTube</a>
+        <a href="https://www.instagram.com/dr.ragimoff">Instagram</a>
+        <a href="https://t.me/ragimoff">Telegram</a>
+      </nav>
+      <span class="meta">© 2026 RAGIMOFF · NƏBZ — test dizayn</span>
+    </div>
+  </footer>
+
+  <script src="motion.js" defer></script>
+</body>
+</html>
