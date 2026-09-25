@@ -1,0 +1,89 @@
+/* =====================================================================
+   RAGIMOFF · test/nur/tokens.css — концепт «NÜR»
+   ЕДИНЫЙ ИСТОЧНИК дизайн-параметров (правило владельца: меняем шрифт
+   в одном месте — меняется везде). Тёмная тема — основа, светлая — зеркало.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  /* ── Шрифты: антиква + script + sans + mono (два шрифта в заголовках) ── */
+  --font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --font-script:  'Marck Script', 'Segoe Script', cursive;
+  --font-body:    'Montserrat', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Consolas', monospace;
+
+  /* ── Типографика ── */
+  --fs-hero:  clamp(3rem, min(10.5vw, 14.5vh), 9.4rem);
+  --fs-h2:    clamp(2rem, 4.4vw, 3.8rem);
+  --fs-h3:    clamp(1.32rem, 2vw, 1.75rem);
+  --fs-lede:  clamp(1.02rem, 1.3vw, 1.28rem);
+  --fs-body:  1rem;
+  --fs-sm:    .875rem;
+  --fs-meta:  .68rem;
+  --fs-micro: .6rem;
+
+  --fw-light: 300; --fw-reg: 400; --fw-med: 500; --fw-semi: 600;
+  --ls-mega: -.035em; --ls-tight: -.02em; --ls-meta: .22em; --ls-wide: .34em;
+  --lh-hero: .9; --lh-tight: 1.04; --lh-h: 1.14; --lh-lede: 1.5; --lh-body: 1.72;
+
+  /* ── Воздух / сетка ── */
+  --max-w: 1420px;
+  --pad-x: clamp(20px, 5vw, 76px);
+  --gap-sec: clamp(90px, 14vh, 190px);
+  --gap-items: clamp(16px, 2vw, 30px);
+  --w-lede: 34em;
+
+  /* ── Геометрия / динамика ── */
+  --r: 3px; --r-pill: 999px; --bd: 1px;
+  --dur: .6s; --dur-ui: .25s;
+  --e:  cubic-bezier(.19, 1, .22, 1);       /* фирменный «выход» */
+  --e2: cubic-bezier(.65, 0, .35, 1);
+  --e-wipe: cubic-bezier(.625, .05, 0, 1);
+
+  /* ── Свет / золото ── */
+  --glow-a: rgba(201, 169, 97, .40);
+  --glow-b: rgba(38, 60, 104, .55);
+  --grain: .05;
+  --gold-line: 1px;
+}
+
+/* ══════════════════════════ ТЁМНАЯ (основа) ══════════════════════════ */
+[data-theme="dark"] {
+  --bg:      #06080D;
+  --bg-2:    #0A0E16;
+  --bg-3:    #10151F;
+  --fg:      #F2EDE3;
+  --mid:     rgba(242, 237, 227, .76);
+  --mute:    rgba(242, 237, 227, .5);
+  --acc:     #C9A961;
+  --acc-2:   #E8D9A8;
+  --acc-3:   #8A6A2A;
+  --line:    rgba(242, 237, 227, .12);
+  --line-2:  rgba(242, 237, 227, .28);
+  --veil:    rgba(6, 8, 13, .9);
+  --inv-bg:  #F2EDE3;
+  --inv-fg:  #06080D;
+  --acc-on-inv: #8A6A2A;
+  --shade:   rgba(6, 8, 13, .62);           /* затемнение под видео */
+}
+
+/* ══════════════════════════ СВЕТЛАЯ (зеркало) ═══════════════════════ */
+[data-theme="light"] {
+  --bg:      #F5F1E8;
+  --bg-2:    #EFE9DC;
+  --bg-3:    #E6DECD;
+  --fg:      #12151B;
+  --mid:     rgba(18, 21, 27, .78);
+  --mute:    rgba(18, 21, 27, .52);
+  --acc:     #8A6A2A;
+  --acc-2:   #A8853A;
+  --acc-3:   #C9A961;
+  --line:    rgba(18, 21, 27, .14);
+  --line-2:  rgba(18, 21, 27, .3);
+  --veil:    rgba(245, 241, 232, .92);
+  --inv-bg:  #12151B;
+  --inv-fg:  #F2EDE3;
+  --acc-on-inv: #E8D9A8;
+  --shade:   rgba(245, 241, 232, .5);
+}
