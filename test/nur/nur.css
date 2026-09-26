@@ -310,6 +310,24 @@ html.mo .menu.is-open .menu__list a { transform: none; }
   transform: translate(-50%, -50%) scale(.4);
   pointer-events: none;
 }
+.hero__btnspot {
+  position: absolute; z-index: 3;
+  right: clamp(70px, 13vw, 220px); bottom: clamp(120px, 24vh, 250px);
+  transform: translate(50%, 50%);
+  width: 66px; height: 66px; border-radius: 50%;
+  border: var(--bd) solid var(--line-2);
+  background: rgba(201, 169, 97, .1);
+  backdrop-filter: blur(6px);
+  display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--ls-meta); text-transform: uppercase; color: var(--acc-2);
+  transition: border-color .5s var(--e), box-shadow .6s var(--e), background-color .5s var(--e);
+}
+html.mo .hero.is-click .hero__btnspot {
+  border-color: var(--acc);
+  background: rgba(201, 169, 97, .2);
+  box-shadow: 0 0 70px rgba(201, 169, 97, .45);
+}
 html.mo .hero.is-click .hero__ripple { opacity: 1; animation: ripple 1.15s var(--e) infinite; }
 @keyframes ripple {
   0% { transform: translate(-50%, -50%) scale(.4); opacity: .95; }
