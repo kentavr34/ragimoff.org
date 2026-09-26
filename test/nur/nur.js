@@ -277,8 +277,7 @@
   var hero = null, heroVid = null, heroLayers = [];
   function initHero() {
     hero = $('.hero'); if (!hero) return;
-    heroVid = $('.hero__media video', hero);
-    if (heroVid) { var p = heroVid.play(); if (p && p.catch) p.catch(function () {}); }
+    heroVid = $('.hero__media video', hero);   /* режимом видео управляет initScrub */
     heroLayers = $$('[data-hx]', hero).map(function (el) {
       return { el: el, k: parseFloat(el.getAttribute('data-hx')) || 0.01 };
     });
@@ -293,6 +292,56 @@
           L.el.style.setProperty('--my', (dy * L.k * 100).toFixed(2) + 'px');
         });
       });
+    }
+  }
+
+
+  /* ─────────── ГЕРОЙ: скролл-скраб (ходьба вперёд/назад + «клик») ─────────── */
+  var scrubHero = null, scrubVid = null, scrubDur = 0, scrubCur = 0, scrubScrub = false;
+  function applyScrubMode() {
+    if (!scrubVid) return;
+    var canScrub = fine && !reduce && innerWidth > 980;
+    var canLoop = !reduce && !canScrub;
+    scrubScrub = canScrub;
+    try {
+      if (canScrub) {
+        scrubVid.pause();
+        scrubVid.loop = false;
+        if (!scrubDur) scrubVid.currentTime = 0;
+      } else if (canLoop) {
+        scrubVid.loop = true;
+        scrubVid.muted = true;
+        var p = scrubVid.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        scrubVid.pause();
+        scrubVid.loop = false;
+        scrubVid.currentTime = 0.08;
+      }
+    } catch (e) {}
+  }
+  function initScrub() {
+    scrubHero = $('.hero');
+    scrubVid = $('[data-scrub]');
+    if (!scrubHero || !scrubVid) return;
+    scrubVid.addEventListener('loadedmetadata', function () { scrubDur = scrubVid.duration || 0; });
+    scrubVid.addEventListener('canplay', function () { if (!scrubDur) scrubDur = scrubVid.duration || 0; });
+    applyScrubMode();
+    window.addEventListener('resize', applyScrubMode);
+  }
+  function runScrub() {
+    if (!scrubHero) return;
+    var r = scrubHero.getBoundingClientRect();
+    var span = scrubHero.offsetHeight - innerHeight;
+    if (span <= 1) return;
+    var p = clamp(-r.top / span, 0, 1);
+    scrubHero.style.setProperty('--hero-p', p.toFixed(4));
+    scrubHero.classList.toggle('is-click', p > 0.84);
+    if (!scrubScrub || !scrubVid || !scrubDur) return;
+    var t = p * (scrubDur - 0.06);
+    scrubCur += (t - scrubCur) * 0.22;
+    if (Math.abs(t - scrubCur) > 0.008) {
+      try { scrubVid.currentTime = scrubCur; } catch (e) {}
     }
   }
 
@@ -495,7 +544,7 @@
       }
     }
     lastY = y;
-    runSeq(); runPlx();
+    runSeq(); runPlx(); runScrub();
   }
   function onScroll() {
     if (onScroll.q) return;
@@ -579,6 +628,7 @@
     splitHeadings();
     initMenuStage();
     initHero();
+    initScrub();
     initDust();
     initSpec();
     collectSeqs();
