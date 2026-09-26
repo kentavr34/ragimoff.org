@@ -425,7 +425,7 @@ html.mo .hero__cue i::after { animation: cue 2.4s var(--e2) infinite; }
   position: sticky; top: 0;
   min-height: 100svh;
   display: grid; align-items: center;
-  background-image: url('assets/spec-bg.jpg');
+  background-image: url('assets/spec-bg-v2.jpg');
   background-size: cover; background-position: center right;
   border-block: var(--bd) solid var(--line);
 }
@@ -465,7 +465,7 @@ html.mo .spec.in .spec__dots li { opacity: 1; transform: none; }
 /* ──────────────── УСЛУГИ: ИНДЕКС-СТРОКИ (§0.17) ──────────── */
 .svc { margin-top: clamp(28px, 5vh, 54px); }
 .svc__row {
-  display: grid; grid-template-columns: 66px minmax(0, 2.4fr) minmax(0, 3.4fr) 66px;
+  display: grid; grid-template-columns: 54px 96px minmax(0, 2.2fr) minmax(0, 3.2fr) 60px;
   gap: clamp(14px, 2vw, 34px); align-items: center;
   padding: clamp(20px, 3vh, 32px) 0;
   border-top: var(--bd) solid var(--line);
@@ -477,6 +477,9 @@ html.mo .svc__row::before { background: var(--acc); transform: scaleY(0); transf
 html.mo .svc__row:hover::before { transform: none; }
 html.mo .svc__row { transition: color .3s linear; }
 html.mo .svc__row:hover { color: var(--inv-fg); }
+.svc__ph { width: 96px; aspect-ratio: 16 / 10; overflow: clip; border: var(--bd) solid var(--line); border-radius: var(--r); background: var(--bg-3); }
+.svc__ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--e); }
+html.mo .svc__row:hover .svc__ph img { transform: scale(1.08); }
 .svc__n { font-family: var(--font-mono); font-size: var(--fs-meta); letter-spacing: var(--ls-meta); color: var(--acc-2); }
 .svc__t { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: var(--fw-med); letter-spacing: var(--ls-tight); line-height: var(--lh-h); }
 .svc__k { display: block; font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: var(--ls-meta); text-transform: uppercase; color: var(--mute); margin-bottom: 6px; font-weight: var(--fw-med); }
@@ -509,6 +512,13 @@ html.no-mo .peek { display: none; }
 .train__cap { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 6px; }
 @media (max-width: 900px) { .train__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .train__grid { grid-template-columns: 1fr; } }
+
+/* ─────────────── MƏKAN · атмосфера (сгенерированные виды) ─────────────── */
+.atmos__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); margin-top: clamp(26px, 4.4vh, 48px); }
+.atmos__item { margin: 0; }
+.atmos__item img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border: var(--bd) solid var(--line); border-radius: var(--r); }
+.atmos__item figcaption { margin-top: 10px; }
+@media (max-width: 800px) { .atmos__grid { grid-template-columns: 1fr; } }
 
 /* ─────────────────── ХРОНИКА (кадр на шаг) ─────────────────── */
 .chron__grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
@@ -566,7 +576,7 @@ html.mo .figs__cell[data-rv].in { opacity: 1; transform: none; }
   position: relative; margin: 14px;
   border: var(--bd) solid var(--line-2); border-radius: var(--r);
   padding: clamp(28px, 5vh, 56px) clamp(24px, 4vw, 46px);
-  background: linear-gradient(160deg, var(--bg-2), var(--bg-3)), url('assets/book-bg.jpg');
+  background: linear-gradient(160deg, var(--bg-2), var(--bg-3)), url('assets/book-bg-v2.jpg');
   background-size: cover; background-position: center;
   background-blend-mode: normal;
   transform-style: preserve-3d; will-change: transform;
@@ -600,7 +610,7 @@ html.mo .post.in .post__img { clip-path: inset(0); }
 /* ───────────────────────── CTA ───────────────────────── */
 .cta {
   margin-top: var(--gap-sec); position: relative; z-index: 1;
-  background: var(--inv-bg) url('assets/cta-bg.jpg');
+  background: var(--inv-bg) url('assets/cta-bg-v2.jpg');
   background-size: cover; background-position: center;
   background-blend-mode: soft-light;
   color: var(--inv-fg);
@@ -676,7 +686,9 @@ html.no-mo .hero__canvas { display: none; }
 }
 @media (max-width: 720px) {
   .tgl__lb { display: none; }
-  .svc__row { grid-template-columns: 46px minmax(0, 1fr) 50px; }
+  .svc__row { grid-template-columns: 40px 74px minmax(0, 1fr) 46px; }
+  .svc__d { display: none; }
+  .svc__ph { width: 74px; }
   .svc__d { display: none; }
   .posts { grid-template-columns: 1fr; }
   .hero__read div { flex-basis: 50%; border-bottom: var(--bd) solid var(--line); }
