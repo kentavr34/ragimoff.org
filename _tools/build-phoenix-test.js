@@ -57,18 +57,20 @@ const GROUPS = {
   },
 };
 
-/* ссылки на главы книги про каждую модель (страницы сгенерированы конвертером) */
+/* ссылки на главы книги про каждую модель (абсолютные — тест лежит глубже) */
 const CHAPTER = {
   az: {
-    Lilit: '03-li-li-t.html', Putana: '04-putana.html', Hippi: '05-hi-ppi.html', 'Geyşa': '06-geysa.html',
-    'Məşuqə': '07-mesuqe.html', Kurtizan: '08-kurti-zan.html', Tereza: '09-tereza.html', 'İnfanta': '10-i-nfanta.html',
-    Sinderella: '11-si-nderella.html', 'Dilənçi': '12-di-lenci.html', 'Buqələmun': '13-bolum-11-munasi-bet-modeli-buqelemun.html',
-    Feniks: '../index.html',
+    Lilit: '/books/phoenix-era/03-li-li-t.html', Putana: '/books/phoenix-era/04-putana.html', Hippi: '/books/phoenix-era/05-hi-ppi.html',
+    'Geyşa': '/books/phoenix-era/06-geysa.html', 'Məşuqə': '/books/phoenix-era/07-mesuqe.html', Kurtizan: '/books/phoenix-era/08-kurti-zan.html',
+    Tereza: '/books/phoenix-era/09-tereza.html', 'İnfanta': '/books/phoenix-era/10-i-nfanta.html', Sinderella: '/books/phoenix-era/11-si-nderella.html',
+    'Dilənçi': '/books/phoenix-era/12-di-lenci.html', 'Buqələmun': '/books/phoenix-era/13-bolum-11-munasi-bet-modeli-buqelemun.html',
+    Feniks: '/books/phoenix-era/',
   },
   ru: {
-    'Лилит': '03-glava-3.html', 'Путана': '04-glava-4.html', 'Хиппи': '05-glava-5.html', 'Гейша': '06-glava-6.html',
-    'Любовница': '07-glava-7.html', 'Куртизанка': '08-glava-8.html', 'Тереза': '09-glava-9.html', 'Инфанта': '10-glava-10.html',
-    'Золушка': '11-glava-11.html', 'Попрошайка': '12-glava-12.html', 'Хамелеон': '14-glava-14.html', 'Феникс': '15-glava-15.html',
+    'Лилит': '/books/phoenix-era/ru/03-glava-3.html', 'Путана': '/books/phoenix-era/ru/04-glava-4.html', 'Хиппи': '/books/phoenix-era/ru/05-glava-5.html',
+    'Гейша': '/books/phoenix-era/ru/06-glava-6.html', 'Любовница': '/books/phoenix-era/ru/07-glava-7.html', 'Куртизанка': '/books/phoenix-era/ru/08-glava-8.html',
+    'Тереза': '/books/phoenix-era/ru/09-glava-9.html', 'Инфанта': '/books/phoenix-era/ru/10-glava-10.html', 'Золушка': '/books/phoenix-era/ru/11-glava-11.html',
+    'Попрошайка': '/books/phoenix-era/ru/12-glava-12.html', 'Хамелеон': '/books/phoenix-era/ru/14-glava-14.html', 'Феникс': '/books/phoenix-era/ru/15-glava-15.html',
   },
 };
 
