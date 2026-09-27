@@ -37,6 +37,14 @@
     <section class="sec" id="kitablar">
       <h1 class="h1">Kitablar</h1>
 
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input type="search" id="q" placeholder="Ad, müəllif və ya il üzrə axtarış…" aria-label="Kitab axtarışı" autocomplete="off">
+        </label>
+        <span class="count" id="count">4 kitab</span>
+      </div>
+
       <div class="grid">
 
         <!-- Klinik Psixiatriya -->
@@ -150,8 +158,17 @@
     <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="o-title">
       <button class="modal__x" data-close aria-label="Bağla">✕</button>
       <h2 class="h2" id="o-title">Kitabın sifarişi</h2>
-      <p class="modal__sub" id="o-book"></p>
+      <p class="modal__sub" id="o-sub"></p>
       <form id="order-form" action="/api/book-order" method="POST" novalidate>
+        <label class="field">
+          <span>Kitab</span>
+          <select id="o-book" name="book" required>
+            <option value="Klinik Psixiatriya · 100 ₼">Klinik Psixiatriya — 100 ₼</option>
+            <option value="Guilt Virus · 30 ₼">Guilt Virus — 30 ₼</option>
+            <option value="Pandemic of Madness · 30 ₼">Pandemic of Madness — 30 ₼</option>
+            <option value="Phoenix Era · 50 ₼">Phoenix Era — 50 ₼</option>
+          </select>
+        </label>
         <label class="field">
           <span>Ad Soyad</span>
           <input id="o-name" type="text" name="name" placeholder="Adınız və soyadınız" autocomplete="name" required>

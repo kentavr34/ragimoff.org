@@ -31,13 +31,40 @@
     nodes.forEach(function (n) { io.observe(n); });
   }
 
+  /* ── поиск по книгам (название, автор, год) ── */
+  function initSearch() {
+    var q = $('#q'); if (!q) return;
+    var cards = $('.card');
+    var count = $('#count');
+    var empty = null;
+    function run() {
+      var v = (q.value || '').trim().toLowerCase();
+      var shown = 0;
+      cards.forEach(function (c) {
+        var hay = (c.textContent || '').toLowerCase().replace(/s+/g, ' ');
+        var ok = !v || hay.indexOf(v) !== -1;
+        c.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (count) count.textContent = shown + ' kitab';
+      var grid = $('.grid');
+      if (grid) {
+        if (!empty) { empty = document.createElement('p'); empty.className = 'no-results'; empty.textContent = 'Heç nə tapılmadı'; grid.parentNode.appendChild(empty); }
+        empty.hidden = shown !== 0;
+      }
+    }
+    q.addEventListener('input', run);
+    run();
+  }
+
   /* ── модал заказа ── */
   function initOrder() {
     var modal = $('[data-modal]');
     if (!modal) return;
     var form = $('#order-form');
     var ok = $('#o-ok');
-    var sub = $('#o-book');
+    var sub = $('#o-sub');
+    var select = $('#o-book');
     var nameI = $('#o-name');
     var phoneI = $('#o-phone');
     var current = '';
@@ -46,10 +73,10 @@
     function open(book) {
       current = book || '';
       lastFocus = document.activeElement;
-      sub.textContent = current;
       ok.hidden = true;
       form.hidden = false;
       form.reset();
+      if (select) { for (var i = 0; i < select.options.length; i++) { if (select.options[i].value === current) { select.selectedIndex = i; break; } } }
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       root.classList.add('lock');
@@ -83,7 +110,7 @@
         fname: parts[0] || '',
         lname: parts.slice(1).join(' ') || '',
         phone: phone,
-        service: 'Kitab sifarişi — ' + current,
+        service: 'Kitab sifarişi — ' + ((select && select.value) || current),
         source: 'ragimoff.org/books'
       };
       var btn = $('button[type="submit"]', form);
@@ -120,6 +147,7 @@
 
   function boot() {
     initReveal();
+    initSearch();
     initOrder();
     initTilt();
     reduceQ.addEventListener && reduceQ.addEventListener('change', function () { reduce = reduceQ.matches; });
