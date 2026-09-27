@@ -326,9 +326,9 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
 
 const UI = {
-  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab' },
-  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга' },
-  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book' }
+  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab', test: 'Onlayn test: «Münasibət modellərinin xəritəsi»' },
+  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга', test: 'Онлайн-тест: «Карта моделей взаимоотношений»' },
+  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book', test: 'Online test: “Map of relationship models”' }
 };
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -393,6 +393,9 @@ const TOC_STYLE = '<style>' +
   '.book-toc .toc-sub a{color:inherit;text-decoration:none}' +
   '.book-toc .toc-sub a:hover{color:var(--gold2)}' +
   '.book-toc .toc-chapter{margin:14px 0}' +
+  '.toc-test{margin:0 0 18px}' +
+  '.toc-test .btn-order{display:inline-block;border:1px solid var(--gold2);border-radius:8px;padding:11px 20px;text-decoration:none;color:var(--gold2)}' +
+  '.toc-test .btn-order:hover{background:var(--gold-bg)}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
@@ -532,6 +535,10 @@ function indexPage(cfg, lang, all, rel, paras) {
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(up(lang.title)) + '</h1>' +
     '<p class="sub">' + esc(lang.subtitle || cfg.subtitle || '') + '</p></div>\n' +
+    /* ссылка на онлайн-тест книги (cfg.testUrl) — над оглавлением */
+    (cfg.testUrl && cfg.testUrl[lang.code]
+      ? '<p class="toc-test"><a class="btn-order" href="' + cfg.testUrl[lang.code] + '">' + esc((UI[lang.ui] || UI.az).test) + '</a></p>\n'
+      : '') +
     '<section class="book-toc"><h2 class="toc-title">' + esc(up((UI[lang.ui] || UI.az).toc)) + '</h2>\n      ' + cards + '\n    </section>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
