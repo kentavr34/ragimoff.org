@@ -255,6 +255,33 @@ function chapterName(ch) {
   return name;
 }
 
+/* Полное название главы — для оглавления книги: как заголовок на самой
+   странице главы (служебные слова убраны, кавычки-ёлочки, капс).
+   Короткие имена для бокового меню даёт chapterName(). */
+function tocLabel(ch) {
+  const t = String(ch.title || '')
+    .replace(/[‹›„“”"'‘’]/g, function (c) { return "‹„“'‘’".indexOf(c) !== -1 ? "«" : "»"; })
+    .replace(/MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ|MODEL OF RELATIONSHIPS/gi, '')
+    .replace(/\s*[.,;]\s*·\s*/g, ' · ')
+    .replace(/\s*·\s*·\s*/g, ' · ')
+    .replace(/^[\s·.,;—-]+|[\s·.,;—-]+$/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+  return t.toUpperCase();
+}
+
+/* названия для оглавления книги: полные, без дублей (повтор → номер главы) */
+function tocNames(all) {
+  const seen = {};
+  return all.map((c) => {
+    let n = tocLabel(c) || chapterName(c);
+    if (!n) n = 'BÖLMƏ';
+    if (seen[n]) n = n + ' (' + c.num + ')';
+    seen[n] = 1;
+    return n;
+  });
+}
+
 /* имена без дублей: повтор → берём полный заголовок без номера */
 function uniqueNames(all) {
   const seen = {};
@@ -326,6 +353,8 @@ const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 22px}' +
   '.book-toc{margin:16px auto 36px}' +
   '.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}' +
+  /* зазор «номер → название» вдвое меньше эталонного (96px → 48px) */
+  '.book-toc .toc-range{flex:0 0 48px;width:48px}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
@@ -333,7 +362,7 @@ const TOC_STYLE = '<style>' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
   '@media (max-width:640px){.d-nav .dn-name{display:none}}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:8px}' +
-  '.sidebar .sub-code{flex:0 0 30px;width:30px;font-size:10.5px}' +
+  '.sidebar .sub-code{flex:0 0 16px;width:16px;font-size:10.5px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
   '</style>';
 
@@ -384,7 +413,8 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 
 function indexPage(cfg, lang, all, rel) {
   const ui = UI[lang.ui] || UI.az;
-  const names = uniqueNames(all);
+  /* в оглавлении книги — полные названия; в боковом меню — короткие (uniqueNames) */
+  const names = tocNames(all);
   const cards = all.map((c, i) =>
     '<div class="toc-chapter"><a href="' + c.file + '" class="toc-chapter-title">' +
     '<span class="toc-name">' + esc(names[i]) + '</span>' +
