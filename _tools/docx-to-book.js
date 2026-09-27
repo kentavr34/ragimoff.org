@@ -1,0 +1,363 @@
+/* =====================================================================
+   RAGIMOFF · _tools/docx-to-book.js — конвертер книги DOCX → веб-книга
+   Подструктура как у «Klinik Psixiatriya»: index.html (обложка + оглавление),
+   страницы глав, style.css, сайдбар с оглавлением, навигация пред/след.
+
+   Запуск:
+     node _tools/docx-to-book.js <config.json>
+
+   Конфиг (JSON):
+   {
+     "slug": "phoenix-era",
+     "title": "Feniks Erası",
+     "titleRu": "Эра Феникса",
+     "author": "Samirə Rəhimova · Kənan Rəhimov",
+     "year": "2026",
+     "logo": "FE",
+     "out": "books/phoenix-era",
+     "styleFrom": "klinik-psixiatriya/style.css",
+     "langs": [
+       { "code": "az", "dir": "",    "file": "D:/…/Feniks_Erasi_v12-1 az.docx",  "title": "Feniks Erası",  "ui": "az" },
+       { "code": "ru", "dir": "ru",  "file": "D:/…/Era_Feniksa_1.docx rus.docx",  "title": "Эра Феникса",   "ui": "ru" }
+     ]
+   }
+   ===================================================================== */
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const { execFileSync } = require('child_process');
+
+/* ─────────── извлечение параграфов ─────────── */
+function decode(s) {
+  return s.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'").replace(/&amp;/g, '&')
+    .replace(/&#(\d+);/g, (m, d) => String.fromCharCode(+d));
+}
+
+function paragraphs(file) {
+  const xml = execFileSync('unzip', ['-p', file, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 }).toString('utf8');
+  const out = [];
+  const re = /<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g;
+  let m;
+  while ((m = re.exec(xml)) !== null) {
+    const p = m[0];
+    const texts = [];
+    const tr = /<w:t[^>]*>([\s\S]*?)<\/w:t>/g;
+    let t;
+    while ((t = tr.exec(p)) !== null) texts.push(decode(t[1]));
+    let text = texts.join('').replace(/\s+/g, ' ').trim();
+    text = text.replace(/<[^>]*>/g, ' ').replace(/\bw:[a-zA-Z]+/g, ' ')
+      .replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!text) continue;
+    const bold = /<w:b\/>|<w:b w:val="(1|true)"/.test(p);
+    const italic = /<w:i\/>|<w:i w:val="(1|true)"/.test(p);
+    const sz = +((p.match(/<w:sz w:val="(\d+)"/) || [])[1] || 0);
+    out.push({ text, bold, italic, sz });
+  }
+  return out;
+}
+
+/* ─────────── распознавание структуры ─────────── */
+const RX = {
+  tocStart: /^(MÜNDƏRİCAT|СОДЕРЖАНИЕ|CONTENTS|İÇİNDƏKİLƏR)$/i,
+  /* части: «FƏSİL 1», «ЧАСТЬ I», «PART III» */
+  part: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
+  chapter: /^(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter)\s*\d+/,
+  /* вводные разделы — только как отдельная строка-заголовок */
+  front: /^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог|INTRODUCTION|PROLOGUE)\s*$/i,
+  tocline: /(…|\.{3,}|\s\d{1,3}\s*$)/
+};
+
+/* нормализация для сопоставления названий из оглавления с телом книги */
+function norm(s) {
+  return String(s).toLowerCase()
+    .replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+
+/* Список названий глав из оглавления (со страницами/выносками — чистим) */
+function tocTitles(paras) {
+  const start = paras.findIndex((p) => RX.tocStart.test(p.text));
+  if (start < 0) return [];
+  const titles = [];
+  for (let i = start + 1; i < paras.length; i++) {
+    const raw = paras[i].text;
+    const isBody = (RX.chapter.test(raw) || RX.front.test(raw)) && !RX.tocline.test(raw) && raw.length < 120;
+    if (isBody && titles.length) break;               // началось тело книги
+    const clean = raw
+      .replace(/[.…\s]*\d{1,3}\s*$/, '')
+      .replace(/[.…]{2,}/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (clean.length > 4 && clean.length < 130) titles.push(clean);
+  }
+  return titles;
+}
+
+/* Разбиение тела по названиям из оглавления (первое совпадение после оглавления) */
+function splitByToc(body, titles) {
+  if (titles.length < 3) return null;
+  const idxs = [];
+  let from = 0;
+  titles.forEach((title) => {
+    const n = norm(title);
+    const short = n.slice(0, 28);
+    for (let i = from; i < body.length; i++) {
+      const bn = norm(body[i].text);
+      if (bn === n || (short.length > 8 && bn.startsWith(short))) { idxs.push({ i, title }); from = i + 1; return; }
+    }
+  });
+  if (idxs.length < 3) return null;
+  return idxs.map((o, k) => ({
+    title: o.title,
+    paras: body.slice(o.i + 1, k + 1 < idxs.length ? idxs[k + 1].i : body.length)
+  }));
+}
+
+function buildChapters(paras) {
+  /* 1) найти область оглавления и вырезать её */
+  let tocFrom = -1, tocTo = -1;
+  for (let i = 0; i < paras.length; i++) {
+    if (tocFrom < 0 && RX.tocStart.test(paras[i].text)) { tocFrom = i; continue; }
+    if (tocFrom >= 0 && i > tocFrom) {
+      const p = paras[i];
+      const isHead = RX.part.test(p.text) || RX.chapter.test(p.text) || RX.front.test(p.text);
+      if (isHead && !RX.tocline.test(p.text)) { tocTo = i; break; }
+    }
+  }
+  const body = paras.slice(tocTo > 0 ? tocTo : 0).filter((p) => !RX.tocline.test(p.text) || p.text.length > 120);
+
+  /* 1б) если в книге есть оглавление — режем по нему (самый надёжный путь).
+     Принимаем результат только если он покрывает большинство названий из
+     оглавления; иначе переходим к разбору по маркерам в тексте. */
+  const titles = tocTitles(paras);
+  const byToc = splitByToc(body, titles);
+  if (byToc && titles.length && byToc.length >= Math.max(6, titles.length * 0.6)) {
+    return byToc.map((ch) => ({ title: ch.title, paras: ch.paras, partTitle: '' }));
+  }
+
+  /* 2) разбить на части и главы */
+  const parts = [];
+  let curPart = null, curCh = null;
+  function pushPart(title) { curPart = { title, chapters: [] }; parts.push(curPart); return curPart; }
+  function pushCh(title, para) {
+    if (!curPart) pushPart('');
+    curCh = { title, paras: [], part: curPart };
+    curPart.chapters.push(curCh);
+    return curCh;
+  }
+
+  /* Маркер главы отдельной строкой: «ГЛАВА 1», «CHAPTER 3», «ЧАСТЬ I»,
+     «7-ci bölmə» — за ним обычно идёт заголовок капсом. */
+  const BARE = /^(ГЛАВА|CHAPTER|BÖLMƏ|BÖLÜM|FƏSİL)\s*([IVXLC]+|\d+)\s*$/i;
+  const AZNUM = /^\d+\s*[-–]?\s*(ci|cı|cu|cü)\s+bölmə\b/i;
+  let mergeTitle = false;
+
+  body.forEach((p) => {
+    const t = p.text;
+    const isPart = RX.part.test(t) && t.length < 120;
+    const isBare = BARE.test(t);
+    const isAzNum = AZNUM.test(t) && t.length < 140;
+    const isCh = RX.chapter.test(t) && t.length < 200;
+    const isFront = RX.front.test(t) && t.length < 120;
+    const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
+
+    if (isPart) { pushPart(t.replace(/\s+$/, '')); mergeTitle = false; return; }
+    if (isBare || isAzNum || isCh || isFront || isBigHead) {
+      /* короткий подзаголовок сразу после главы (напр. «LİLİT») — в название */
+      if (curCh && curCh.paras.length === 0 && t.length < 34 && !/^\d+[.)]/.test(t) && curCh.title && !RX.chapter.test(t) && !RX.front.test(t) && !isBare) {
+        curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
+        return;
+      }
+      pushCh(t, p);
+      mergeTitle = isBare || isAzNum;   /* следующая строка-капс станет частью названия */
+      return;
+    }
+    /* заголовок капсом после голого маркера: «ГЛАВА 1» + «ВИРУС В ГОЛОВЕ…» */
+    if (mergeTitle && curCh && curCh.paras.length === 0 && t.length < 130 && !/[.!?]$/.test(t)) {
+      curCh.title = curCh.title + '. ' + t;
+      mergeTitle = false;
+      return;
+    }
+    mergeTitle = false;
+
+    if (!curCh) pushCh('', p);
+    curCh.paras.push(p);
+  });
+
+  /* 3) очистка: убрать пустые главы, склеить короткие */
+  const flat = [];
+  parts.forEach((pt) => {
+    pt.chapters.forEach((ch) => {
+      const textLen = ch.paras.reduce((n, p) => n + p.text.length, 0);
+      if (textLen < 400) { if (flat.length) { flat[flat.length - 1].paras = flat[flat.length - 1].paras.concat(ch.paras); return; } }
+      ch.partTitle = pt.title;
+      flat.push(ch);
+    });
+  });
+  return flat;
+}
+
+function slugify(s, i, lang) {
+  let base = s.toLowerCase()
+    .replace(/[əıöüçşğ]/g, (c) => ({ 'ə': 'e', 'ı': 'i', 'ö': 'o', 'ü': 'u', 'ç': 'c', 'ş': 's', 'ğ': 'g' }[c] || c))
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 42);
+  const prefix = lang === 'ru' ? 'glava' : lang === 'en' ? 'chapter' : 'bolum';
+  if (!base || base.length < 3 || /^\d+$/.test(base)) base = prefix + '-' + i;
+  return String(i).padStart(2, '0') + '-' + base;
+}
+
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+/* ─────────── генерация страниц ─────────── */
+const UI = {
+  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə' },
+  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная' },
+  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home' }
+};
+
+function chapterPage(cfg, lang, ch, idx, all, rel) {
+  const ui = UI[lang.ui] || UI.az;
+  const prev = idx > 0 ? all[idx - 1] : null;
+  const next = idx < all.length - 1 ? all[idx + 1] : null;
+  const nav = all.map((c, i) => `<a href="${c.file}"${i === idx ? ' class="is-on"' : ''}>${esc(c.short)}</a>`).join('\n        ');
+  const body = ch.paras.map((p) => {
+    const t = esc(p.text);
+    if (p.text.length < 95 && /^\d+(\.\d+)*[.)]?\s/.test(p.text)) return `<h2>${t}</h2>`;
+    if (p.bold && p.sz >= 26 && p.text.length < 95) return `<h2>${t}</h2>`;
+    if (p.bold && p.text.length < 90 && /[:.]$/.test(p.text)) return `<h3>${t}</h3>`;
+    return `<p>${t}</p>`;
+  }).join('\n      ');
+
+  return `<!DOCTYPE html>
+<html lang="${lang.code}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="${esc(cfg.title)} — ${esc(ch.short)}">
+<title>${esc(ch.short)} | ${esc(lang.title)}</title>
+<link rel="stylesheet" href="${rel}style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="https://ragimoff.org/books/" class="hdr-back">← ${ui.back}</a>
+  <a href="${rel}index.html" class="hdr-brand">
+    <div class="hdr-logo">${cfg.logo}</div>
+    <div class="hdr-title">
+      <strong>${esc(lang.title.toUpperCase())}</strong>
+      <small>${esc(cfg.author)} · ${cfg.year}</small>
+    </div>
+  </a>
+  <a class="kitab-btn" href="https://ragimoff.org/books/#order=${encodeURIComponent(cfg.title)}">${ui.order}</a>
+</header>
+<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <nav>
+      <p class="sb-cap">${ui.toc}</p>
+        ${nav}
+    </nav>
+  </aside>
+  <main class="content-wrap">
+    <p class="crumb"><a href="${rel}index.html">${esc(lang.title)}</a> · ${esc(ch.partTitle || '')}</p>
+    <h1>${esc(ch.short)}</h1>
+      ${body}
+    <nav class="chapter-nav">
+      ${prev ? `<a href="${prev.file}">← ${ui.prev}</a>` : '<span></span>'}
+      ${next ? `<a href="${next.file}">${ui.next} →</a>` : '<span></span>'}
+    </nav>
+  </main>
+</div>
+<script>
+(function(){var f=document.getElementById('prog-fill');if(!f)return;function u(){var h=document.documentElement;var m=h.scrollHeight-h.clientHeight;f.style.transform='scaleX('+(m>0?h.scrollTop/m:0)+')';}addEventListener('scroll',u,{passive:true});u();})();
+</script>
+</body>
+</html>`;
+}
+
+function indexPage(cfg, lang, all, rel) {
+  const ui = UI[lang.ui] || UI.az;
+  const items = all.map((c) => `<li><a href="${c.file}"><span class="n">${c.num}</span><span class="t">${esc(c.short)}</span></a></li>`).join('\n        ');
+  const langs = cfg.langs.map((l) => `<a href="${l.dir ? '../' + l.dir + '/' : '../'}"${l.code === lang.code ? ' class="is-on"' : ''}>${l.code.toUpperCase()}</a>`).join(' ');
+  return `<!DOCTYPE html>
+<html lang="${lang.code}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="${esc(lang.title)} — ${esc(cfg.author)}">
+<title>${esc(lang.title)} | RAGIMOFF</title>
+<link rel="stylesheet" href="${rel}style.css">
+</head>
+<body>
+<header class="site-header">
+  <a href="https://ragimoff.org/books/" class="hdr-back">← ${ui.back}</a>
+  <a href="${rel}index.html" class="hdr-brand">
+    <div class="hdr-logo">${cfg.logo}</div>
+    <div class="hdr-title">
+      <strong>${esc(lang.title.toUpperCase())}</strong>
+      <small>${esc(cfg.author)} · ${cfg.year}</small>
+    </div>
+  </a>
+  <a class="kitab-btn" href="https://ragimoff.org/books/#order=${encodeURIComponent(cfg.title)}">${ui.order}</a>
+</header>
+<div class="site-layout">
+  <aside class="sidebar" id="sb">
+    <nav>
+      <p class="sb-cap">${ui.toc}</p>
+        ${items}
+    </nav>
+  </aside>
+  <main class="content-wrap">
+    <p class="crumb">${ui.home} · ${esc(cfg.title)}</p>
+    <h1>${esc(lang.title)}</h1>
+    <p class="book-sub">${esc(cfg.subtitle || '')}</p>
+    <p class="lang-row">${langs}</p>
+    <p><a class="read-btn" href="${all.length ? all[0].file : '#'}">${ui.read} →</a></p>
+    <h2>${ui.toc}</h2>
+    <ol class="toc-list">
+        ${items}
+    </ol>
+  </main>
+</div>
+</body>
+</html>`;
+}
+
+/* ─────────── main ─────────── */
+const cfgPath = process.argv[2];
+const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
+const outRoot = path.resolve(cfg.out);
+fs.mkdirSync(outRoot, { recursive: true });
+
+/* style.css — копия из эталонной книги */
+if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) {
+  fs.copyFileSync(cfg.styleFrom, path.join(outRoot, 'style.css'));
+}
+
+let totalPages = 0;
+cfg.langs.forEach((lang) => {
+  const dir = path.join(outRoot, lang.dir || '');
+  fs.mkdirSync(dir, { recursive: true });
+  const paras = paragraphs(lang.file);
+  const chapters = buildChapters(paras);
+  const used = {};
+  const all = chapters.map((ch, i) => {
+    const short = (ch.title || '').replace(/\s*\.\s*$/, '').slice(0, 120) || ('Bölmə ' + (i + 1));
+    let file = slugify(short, i + 1, lang.code) + '.html';
+    while (used[file]) file = file.replace(/\.html$/, '-x.html');
+    used[file] = 1;
+    return { short, num: String(i + 1).padStart(2, '0'), file, paras: ch.paras, partTitle: ch.partTitle };
+  });
+  const rel = lang.dir ? '../' : '';
+  all.forEach((ch, i) => {
+    fs.writeFileSync(path.join(dir, ch.file), chapterPage(cfg, lang, ch, i, all, rel), 'utf8');
+    totalPages++;
+  });
+  fs.writeFileSync(path.join(dir, 'index.html'), indexPage(cfg, lang, all, rel), 'utf8');
+  totalPages++;
+  console.log(`${lang.code}: глав ${all.length} → ${path.relative(process.cwd(), dir) || '.'}`);
+  all.slice(0, 6).forEach((c) => console.log('   · ' + c.file + '  ' + c.short.slice(0, 60)));
+});
+
+console.log('всего страниц:', totalPages);
