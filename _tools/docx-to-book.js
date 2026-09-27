@@ -347,7 +347,11 @@ function bodyTop(cfg, lang) {
     .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + cfg.logo + '</div>')
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(up(lang.title)) + '</strong>')
     .replace(/<small>[^<]*<\/small>/, '<small>' + esc(lang.author || cfg.author) + ' · ' + cfg.year + '</small>')
-    .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"');
+    .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"')
+    /* «← ragimoff.org» из эталонного каркаса — ссылка на главную сайта; на страницах
+       книги ей места нет (в шапке есть «← Книги»), а на русских страницах она вела
+       на азербайджанскую главную. Убираем. */
+    .replace(/<a href="https:\/\/ragimoff\.org"[^>]*>[\s\S]*?<\/a>\s*/, '');
 }
 
 /* сайдбар: оглавление книги в классовой структуре эталона */
@@ -361,7 +365,7 @@ function sidebarHtml(cfg, lang, all, idx, rel) {
   return '<aside class="sidebar" id="sb">\n' +
     '    <div class="sb-hdr"><a class="sb-site" href="https://ragimoff.org/books/" title="Kitablar">← ' + (UI[lang.ui] || UI.az).back + '</a>' +
     '<button class="sb-close" onclick="toggleSb()" aria-label="Bağla">✕</button></div>\n' +
-    '    <nav>\n      <div class="nav-item"><a href="' + rel + 'index.html" class="nav-link nav-front">' + (UI[lang.ui] || UI.az).home + '</a></div>\n      ' +
+    '    <nav>\n      <div class="nav-item"><a href="index.html" class="nav-link nav-front">' + (UI[lang.ui] || UI.az).home + '</a></div>\n      ' +
     items + '\n    </nav>\n  </aside>';
 }
 
@@ -398,8 +402,13 @@ const TOC_STYLE = '<style>' +
 
 function headHtml(cfg, lang, title, desc) {
   const LANGS_ATTR = cfg.langs.map(function (l) { return l.code; }).join(',');
+  /* адреса языковых версий книги для переключателя: слаги глав в языках разные,
+     поэтому переключатель ведёт на главную книги нужного языка */
+  const LANG_URLS = cfg.langs.map(function (l) {
+    return ' data-lang-url-' + l.code + '="/' + cfg.out + (l.dir ? '/' + l.dir : '') + '/"';
+  }).join('');
   return TPL.head
-    .replace('<html ', '<html data-langs="' + LANGS_ATTR + '" ')
+    .replace('<html ', '<html data-langs="' + LANGS_ATTR + '"' + LANG_URLS + ' ')
     .replace(/<html([^>]*?)lang="[a-z]{2}"/, '<html$1lang="' + lang.code + '"')
     .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(up(lang.title)) + '</title>')
     .replace(/<meta name="description" content="[^"]*"/, '<meta name="description" content="' + esc(desc) + '"')
@@ -425,7 +434,7 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 
   return headHtml(cfg, lang, ch.short, lang.title + ' — ' + ch.short) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, idx, rel) + TPL.mid + TPL.contentOpen +
-    '\n<nav class="crumb"><a href="' + rel + 'index.html">‹ ' + esc(lang.title) + '</a></nav>' +
+    '\n<nav class="crumb"><a href="index.html">‹ ' + esc(lang.title) + '</a></nav>' +
     '<header class="chap-head"><h1 class="chap-h1"><span class="chap-range">' + ch.num + '</span>' +
     '<span class="chap-title">' + esc(ch.short) + '</span></h1></header>\n' +
     body +
@@ -434,7 +443,7 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
     (prev
       ? '<a href="' + prev.file + '">← ' + prev.num + ' <span class="dn-name">' + esc(dnName(prev.short)) + '</span></a>'
       : '<span></span>') +
-    '<a class="up" href="' + rel + 'index.html">↑ ' + (ui.up || 'Fəsil') + '</a>' +
+    '<a class="up" href="index.html">↑ ' + (ui.up || 'Fəsil') + '</a>' +
     (next
       ? '<a href="' + next.file + '"><span class="dn-name">' + esc(dnName(next.short)) + '</span> ' + next.num + ' →</a>'
       : '<span></span>') +

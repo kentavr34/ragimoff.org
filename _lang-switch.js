@@ -20,6 +20,10 @@
     var base = segs.slice();
     if (cur !== "az") base.splice(li, 1);
     function urlFor(code) {
+      /* страницы книги объявляют адреса языковых версий сами (data-lang-url-<код>):
+         слаги глав в языках разные, автоподстановка папки давала 404 */
+      var own = document.documentElement.getAttribute("data-lang-url-" + code);
+      if (own) return own;
       var s = base.slice();
       if (code !== "az") s.splice(s.length - 1, 0, code);
       return "/" + s.join("/");
