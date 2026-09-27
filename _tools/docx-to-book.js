@@ -64,8 +64,10 @@ const RX = {
   /* части: «FƏSİL 1», «ЧАСТЬ I», «PART III» */
   part: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
   chapter: /^(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter)\s*\d+/,
-  /* вводные разделы — только как отдельная строка-заголовок */
-  front: /^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог|INTRODUCTION|PROLOGUE)\s*$/i,
+  /* вводные разделы: «GİRİŞ», «ВВЕДЕНИЕ», а также «GİRİŞ. MÜƏLLİFDƏN MÜRACİƏT»,
+     «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА». ВАЖНО: \b в JS не работает с кириллицей —
+     границу слова задаём явным классом букв. */
+  front: /^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог|INTRODUCTION|PROLOGUE)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   tocline: /(…|\.{3,}|\s\d{1,3}\s*$)/
 };
 
@@ -133,7 +135,10 @@ function buildChapters(paras) {
      оглавления; иначе переходим к разбору по маркерам в тексте. */
   const titles = tocTitles(paras);
   const byToc = splitByToc(body, titles);
-  if (byToc && titles.length && byToc.length >= Math.max(6, titles.length * 0.6)) {
+  /* Разбор «по оглавлению» принимаем только при почти полном совпадении:
+     иначе теряются вступления, названные иначе, чем в оглавлении
+     («ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА» против «Введение. Пандемия, о которой молчат»). */
+  if (global.__USE_TOC && byToc && titles.length && byToc.length >= Math.max(6, titles.length * 0.6)) {
     return byToc.map((ch) => ({ title: ch.title, paras: ch.paras, partTitle: '' }));
   }
 
@@ -160,7 +165,7 @@ function buildChapters(paras) {
     const isBare = BARE.test(t);
     const isAzNum = AZNUM.test(t) && t.length < 140;
     const isCh = RX.chapter.test(t) && t.length < 200;
-    const isFront = RX.front.test(t) && t.length < 120;
+    const isFront = RX.front.test(t) && t.length < 60;   /* «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА» — да, длинный раздел внутри главы — нет */
     const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
 
     /* короткий подзаголовок-название сразу после заголовка главы (напр. «LİLİT» / «ЛИЛИТ»)
@@ -410,6 +415,7 @@ cfg.langs.forEach((lang) => {
   const dir = path.join(outRoot, lang.dir || '');
   fs.mkdirSync(dir, { recursive: true });
   if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
+  global.__USE_TOC = !!cfg.useToc;
   const paras = paragraphs(lang.file);
   const chapters = buildChapters(paras);
   const used = {};
