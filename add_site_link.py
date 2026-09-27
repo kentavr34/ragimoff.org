@@ -25,12 +25,12 @@ ROOT = Path(__file__).parent
 BOOK = ROOT / 'klinik-psixiatriya'
 APPLY = '--apply' in sys.argv
 
-# язык издания → (адрес на основном сайте, подпись для screen reader)
+# язык издания → (адрес, подпись ссылки, подпись для screen reader)
 SITE = {
-    'az': ('https://ragimoff.org/', 'Əsas sayta qayıt'),
-    'ru': ('https://ragimoff.org/ru/', 'Вернуться на основной сайт'),
-    'en': ('https://ragimoff.org/en/', 'Back to the main site'),
-    'tr': ('https://ragimoff.org/', 'Ana siteye dön'),
+    'az': ('/books/', '← Kitablar', 'Kitablar'),
+    'ru': ('/books/', '← Книги', 'Книги'),
+    'en': ('/books/', '← Books', 'Books'),
+    'tr': ('/books/', '← Kitaplar', 'Kitaplar'),
 }
 HDR = re.compile(r'<div class="sb-hdr">(?!\s*<a class="sb-site")')
 
@@ -39,9 +39,9 @@ def main() -> int:
     total = 0
     for lg, folder in (('az', BOOK), ('ru', BOOK / 'ru'),
                        ('en', BOOK / 'en'), ('tr', BOOK / 'tr')):
-        href, title = SITE[lg]
+        href, label, title = SITE[lg]
         link = (f'<div class="sb-hdr"><a class="sb-site" href="{href}" '
-                f'title="{title}">← ragimoff.org</a>')
+                f'title="{title}">{label}</a>')
         n = 0
         for fp in sorted(folder.glob('*.html')):
             raw = fp.read_bytes().decode('utf-8')
