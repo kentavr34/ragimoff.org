@@ -331,7 +331,7 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 function indexPage(cfg, lang, all, rel) {
   const ui = UI[lang.ui] || UI.az;
   const cards = all.map((c) =>
-    '<a class="ch-disorder" href="' + c.file + '"><span class="ch-code">' + c.num + '</span><span class="ch-name">' + esc(c.short) + '</span></a>'
+    '<a class="ch-disorder" href="' + c.file + '"><span class="ch-code">' + c.num + '</span><span class="ch-name">' + esc(shortLabel(c.short)) + '</span></a>'
   ).join('\n      ');
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
