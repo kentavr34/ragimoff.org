@@ -25,8 +25,9 @@
       var own = document.documentElement.getAttribute("data-lang-url-" + code);
       if (own) return own;
       /* запасной путь для страниц книги без атрибута (старые копии из кэша):
-         /books/<книга>/… → главная книги нужного языка */
-      if (segs[0] === "books" && segs.length > 2) {
+         /books/<книга>/… → главная книги нужного языка.
+         ВАЖНО: /books/<язык>/… — это языковая версия галереи, её считает обычная логика ниже */
+      if (segs[0] === "books" && segs.length > 2 && !LCODES[segs[1]]) {
         return "/books/" + segs[1] + "/" + (code === "az" ? "" : code + "/");
       }
       var s = base.slice();

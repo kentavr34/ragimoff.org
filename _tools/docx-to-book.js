@@ -355,7 +355,7 @@ function bodyTop(cfg, lang) {
       '" class="hdr-back" title="' + (lang.code === 'ru' ? 'Вернуться на главную сайта' : 'Ana sayta qayıt') + '">')
     /* свежая версия переключателя языков (браузер держал старую — с ней на страницах
        книги смена языка вела в 404) */
-    .replace('src="/_lang-switch.js"', 'src="/_lang-switch.js?v=2"');
+    .replace('src="/_lang-switch.js"', 'src="/_lang-switch.js?v=4"');
 }
 
 /* сайдбар: оглавление книги в классовой структуре эталона */
