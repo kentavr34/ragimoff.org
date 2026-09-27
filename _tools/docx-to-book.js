@@ -263,6 +263,7 @@ function tailHtml(all, idx) {
 /* метаданные страницы */
 /* стиль оглавления книги (запомнен как канон): компактные пункты, узкая колонка номера */
 const TOC_STYLE = '<style>' +
+  '.home-hero{padding:16px 0 22px}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:8px}' +
   '.sidebar .sub-code{flex:0 0 30px;width:30px;font-size:10.5px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
@@ -312,10 +313,6 @@ function indexPage(cfg, lang, all, rel) {
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
     '<p class="sub">' + esc(cfg.subtitle || '') + '</p></div>\n' +
-    '<section class="author-note">' +
-    '<p><a class="read-link" href="' + (all.length ? all[0].file : '#') + '">' + ui.read + ' →</a></p>' +
-    '<button type="button" class="btn-order" onclick="openKitabModal()">' + ui.order + '</button>' +
-    '</section>\n' +
     '<div class="chapter-menu">\n      ' + cards + '\n    </div>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
