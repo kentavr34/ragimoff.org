@@ -235,7 +235,7 @@ function bodyTop(cfg, lang) {
   return TPL.bodyTop
     .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + cfg.logo + '</div>')
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(lang.title.toUpperCase()) + '</strong>')
-    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(cfg.author) + ' · ' + cfg.year + '</small>')
+    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(lang.author || cfg.author) + ' · ' + cfg.year + '</small>')
     .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"');
 }
 
