@@ -163,13 +163,16 @@ function buildChapters(paras) {
     const isFront = RX.front.test(t) && t.length < 120;
     const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
 
+    /* короткий подзаголовок-название сразу после заголовка главы (напр. «LİLİT» / «ЛИЛИТ»)
+       дописывается в название главы — проверяется ДО ветки маркеров */
+    if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 &&
+        !/^\d+[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
+      curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
+      return;
+    }
+
     if (isPart) { pushPart(t.replace(/\s+$/, '')); mergeTitle = false; return; }
     if (isBare || isAzNum || isCh || isFront || isBigHead) {
-      /* короткий подзаголовок сразу после главы (напр. «LİLİT») — в название */
-      if (curCh && curCh.paras.length === 0 && t.length < 34 && !/^\d+[.)]/.test(t) && curCh.title && !RX.chapter.test(t) && !RX.front.test(t) && !isBare) {
-        curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
-        return;
-      }
       pushCh(t, p);
       mergeTitle = isBare || isAzNum;   /* следующая строка-капс станет частью названия */
       return;
