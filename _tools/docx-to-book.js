@@ -208,6 +208,15 @@ function slugify(s, i, lang) {
   return String(i).padStart(2, '0') + '-' + base;
 }
 
+function shortLabel(title) {
+  const t = String(title).trim();
+  const num = (t.match(/^(?:BÖLÜM|Bölüm|ГЛАВА|Глава|CHAPTER|Chapter)\s*([IVXLC]+|\d+)/) || [])[1];
+  const name = (t.match(/«([^»]+)»/) || [])[1];
+  if (num && name) return (t.slice(0, 2) === 'ГЛ' || t.slice(0, 2) === 'Гл' ? 'Глава ' : 'Bölüm ') + num + ' · «' + name + '»';
+  if (num) return (t.slice(0, 2) === 'ГЛ' || t.slice(0, 2) === 'Гл' ? 'Глава ' : 'Bölüm ') + num + ' · ' + t.replace(/^[^.]*\.\s*/, '').slice(0, 34);
+  return t.length > 46 ? t.slice(0, 44) + '…' : t;
+}
+
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 /* ─────────── генерация страниц ─────────── */
@@ -226,14 +235,15 @@ function bodyTop(cfg, lang) {
   return TPL.bodyTop
     .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + cfg.logo + '</div>')
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(lang.title.toUpperCase()) + '</strong>')
-    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(cfg.author) + ' · ' + cfg.year + '</small>');
+    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(cfg.author) + ' · ' + cfg.year + '</small>')
+    .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"');
 }
 
 /* сайдбар: оглавление книги в классовой структуре эталона */
 function sidebarHtml(cfg, lang, all, idx, rel) {
   const items = all.map((c, i) =>
     '<div class="nav-item"><a href="' + c.file + '" class="nav-link' + (i === idx ? ' is-active' : '') + '">' +
-    '<span class="nav-code">' + c.num + '</span><span>' + esc(c.short) + '</span></a></div>'
+    '<span class="nav-code">' + c.num + '</span><span>' + esc(shortLabel(c.short)) + '</span></a></div>'
   ).join('\n      ');
   return '<aside class="sidebar" id="sb">\n' +
     '    <div class="sb-hdr"><a class="sb-site" href="https://ragimoff.org/books/" title="Kitablar">← ' + (UI[lang.ui] || UI.az).back + '</a>' +
@@ -280,30 +290,25 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
     '<header class="chap-head"><h1 class="chap-h1"><span class="chap-range">' + ch.num + '</span>' +
     '<span class="chap-title">' + esc(ch.short) + '</span></h1></header>\n' +
     body +
-    '\n<nav class="chapter-nav">' +
-    (prev ? '<a href="' + prev.file + '">← ' + ui.prev + '</a>' : '<span></span>') +
-    (next ? '<a href="' + next.file + '">' + ui.next + ' →</a>' : '<span></span>') +
-    '</nav>\n' + tailHtml(all, idx);
+    '\n<div class="chapter-menu">' +
+    (prev ? '<a class="ch-disorder" href="' + prev.file + '"><span class="ch-code">← ' + ui.prev + '</span><span class="ch-name">' + esc(shortLabel(prev.short)) + '</span></a>' : '') +
+    (next ? '<a class="ch-disorder" href="' + next.file + '"><span class="ch-code">' + ui.next + ' →</span><span class="ch-name">' + esc(shortLabel(next.short)) + '</span></a>' : '') +
+    '</div>\n' + tailHtml(all, idx);
 }
 
 function indexPage(cfg, lang, all, rel) {
   const ui = UI[lang.ui] || UI.az;
-  const items = all.map((c, i) =>
-    '<div class="nav-item"><a href="' + c.file + '" class="nav-link"><span class="nav-code">' + c.num + '</span><span>' + esc(c.short) + '</span></a></div>'
-  ).join('\n      ');
-  const langs = cfg.langs.map((l) =>
-    '<a href="' + (l.dir ? '../' + l.dir + '/' : '../') + '"' + (l.code === lang.code ? ' class="is-active"' : '') + '>' + l.code.toUpperCase() + '</a>'
-  ).join(' · ');
-  const list = all.map((c) =>
-    '<li><a href="' + c.file + '"><span class="n">' + c.num + '</span> <span>' + esc(c.short) + '</span></a></li>'
+  const cards = all.map((c) =>
+    '<a class="ch-disorder" href="' + c.file + '"><span class="ch-code">' + c.num + '</span><span class="ch-name">' + esc(c.short) + '</span></a>'
   ).join('\n      ');
   const content =
-    '\n<nav class="crumb">' + ui.home + ' · ' + esc(cfg.title) + '</nav>' +
-    '<header class="chap-head"><h1 class="chap-h1"><span class="chap-title">' + esc(lang.title) + '</span></h1>' +
-    '<div class="chap-en">' + esc(cfg.subtitle || '') + '</div></header>' +
-    '<p>' + langs + '</p>' +
-    '<p><a class="read-btn" href="' + (all.length ? all[0].file : '#') + '">' + ui.read + ' →</a></p>' +
-    '<h2>' + ui.toc + '</h2><ol class="toc-list">\n      ' + list + '\n    </ol>\n';
+    '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
+    '<p class="sub">' + esc(cfg.subtitle || '') + '</p></div>\n' +
+    '<section class="author-note">' +
+    '<p><a class="read-link" href="' + (all.length ? all[0].file : '#') + '">' + ui.read + ' →</a></p>' +
+    '<button type="button" class="btn-order" onclick="openKitabModal()">' + ui.order + '</button>' +
+    '</section>\n' +
+    '<div class="chapter-menu">\n      ' + cards + '\n    </div>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
     content + '\n' + tailHtml(all, 0);
