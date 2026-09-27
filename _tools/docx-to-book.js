@@ -242,8 +242,8 @@ function bodyTop(cfg, lang) {
 /* сайдбар: оглавление книги в классовой структуре эталона */
 function sidebarHtml(cfg, lang, all, idx, rel) {
   const items = all.map((c, i) =>
-    '<div class="nav-item"><a href="' + c.file + '" class="nav-link' + (i === idx ? ' is-active' : '') + '">' +
-    '<span class="nav-code">' + c.num + '</span><span>' + esc(shortLabel(c.short)) + '</span></a></div>'
+    '<div class="nav-item"><a href="' + c.file + '" class="nav-sub-link' + (i === idx ? ' is-active' : '') + '">' +
+    '<span class="sub-code">' + c.num + '</span><span class="sub-name">' + esc(shortLabel(c.short)) + '</span></a></div>'
   ).join('\n      ');
   return '<aside class="sidebar" id="sb">\n' +
     '    <div class="sb-hdr"><a class="sb-site" href="https://ragimoff.org/books/" title="Kitablar">← ' + (UI[lang.ui] || UI.az).back + '</a>' +
@@ -261,6 +261,13 @@ function tailHtml(all, idx) {
 }
 
 /* метаданные страницы */
+/* стиль оглавления книги (запомнен как канон): компактные пункты, узкая колонка номера */
+const TOC_STYLE = '<style>' +
+  '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:8px}' +
+  '.sidebar .sub-code{flex:0 0 30px;width:30px;font-size:10.5px}' +
+  '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
+  '</style>';
+
 function headHtml(cfg, lang, title, desc) {
   return TPL.head
     .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(lang.title.toUpperCase()) + '</title>')
@@ -269,7 +276,8 @@ function headHtml(cfg, lang, title, desc) {
     .replace(/<meta property="og:description" content="[^"]*"/, '<meta property="og:description" content="' + esc(desc) + '"')
     .replace(/<meta property="og:url" content="[^"]*"/, '<meta property="og:url" content="https://ragimoff.org/' + cfg.slug + '/"')
     .replace(/"name":"[^"]*","inLanguage":"[^"]*"/, '"name":"' + esc(cfg.title) + '","inLanguage":"' + lang.code + '"')
-    .replace(/"about":"[^"]*"/, '"about":"' + esc(cfg.subtitle || cfg.title) + '"');
+    .replace(/"about":"[^"]*"/, '"about":"' + esc(cfg.subtitle || cfg.title) + '"')
+    .replace('</head>', TOC_STYLE + '</head>');
 }
 
 function chapterPage(cfg, lang, ch, idx, all, rel) {
