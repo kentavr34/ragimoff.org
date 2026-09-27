@@ -199,6 +199,11 @@ function buildChapters(paras) {
       flat.push(ch);
     });
   });
+  /* первая глава без названия — служебная шапка файла: если у неё мало текста, убрать */
+  if (flat.length > 1 && !String(flat[0].title || '').trim()) {
+    const len0 = flat[0].paras.reduce((n, p) => n + p.text.length, 0);
+    if (len0 < 1200) flat.shift();
+  }
   return flat;
 }
 
@@ -212,12 +217,52 @@ function slugify(s, i, lang) {
 }
 
 function shortLabel(title) {
-  const t = String(title).trim();
+  const t0 = String(title).replace(/[‹›„“”"'‘’]/g, function (c) { return "‹„“'‘’".indexOf(c) !== -1 ? "«" : "»"; });
+  const t = t0.trim().replace(/^bÖLÜM/i, 'BÖLÜM');
   const num = (t.match(/^(?:BÖLÜM|Bölüm|ГЛАВА|Глава|CHAPTER|Chapter)\s*([IVXLC]+|\d+)/) || [])[1];
   const name = (t.match(/«([^»]+)»/) || [])[1];
   if (num && name) return (t.slice(0, 2) === 'ГЛ' || t.slice(0, 2) === 'Гл' ? 'Глава ' : 'Bölüm ') + num + ' · «' + name + '»';
   if (num) return (t.slice(0, 2) === 'ГЛ' || t.slice(0, 2) === 'Гл' ? 'Глава ' : 'Bölüm ') + num + ' · ' + t.replace(/^[^.]*\.\s*/, '').slice(0, 34);
   return t.length > 46 ? t.slice(0, 44) + '…' : t;
+}
+
+function chapterName(ch) {
+  const t = String(ch.title || '').replace(/[‹›„“”"'‘’]/g, function (c) { return "‹„“'‘’".indexOf(c) !== -1 ? "«" : "»"; }).trim();
+  let m = t.match(/«([^»]+)»/);
+  if (!m) {
+    for (let i = 0; i < Math.min(6, (ch.paras || []).length); i++) {
+      const p = String((ch.paras[i] || {}).text || '').trim();
+      const mm = p.match(/^«([^»]+)»/) || p.match(/^\u00ab([^\u00bb]+)\u00bb/);
+      if (mm && p.length < 60) { m = mm; break; }
+    }
+  }
+  if (m) return m[1].toUpperCase().trim();
+  let name = t
+    .replace(/^\s*(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter|FƏSİL|Fəsil|ÇAP)\s*[IVXLC\d]*[.)]?\s*/i, '')
+    .replace(/MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ|MODEL OF RELATIONSHIPS/gi, '')
+    .replace(/^[·.\s—–-]+/, '')
+    .split(/[·]/)[0]
+    .replace(/[«»]/g, "")
+    .trim();
+  if (!name) name = t.replace(/[«»]/g, "");
+  name = name.toUpperCase();
+  if (name.length > 44) name = name.slice(0, 42).replace(/[s—-]+S*$/, "") + "…";
+  return name;
+}
+
+/* имена без дублей: повтор → берём полный заголовок без номера */
+function uniqueNames(all) {
+  const seen = {};
+  return all.map((c) => {
+    let n = chapterName(c);
+    if (!n) n = 'BÖLMƏ';
+    if (seen[n]) {
+      const full = String(c.short).replace(/^[^.]*\.\s*/, '').toUpperCase().trim();
+      n = full && full !== n ? full : n + ' (' + c.num + ')';
+    }
+    seen[n] = 1;
+    return n;
+  });
 }
 
 function dnName(title) {
@@ -330,13 +375,16 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 
 function indexPage(cfg, lang, all, rel) {
   const ui = UI[lang.ui] || UI.az;
-  const cards = all.map((c) =>
-    '<a class="ch-disorder" href="' + c.file + '"><span class="ch-code">' + c.num + '</span><span class="ch-name">' + esc(shortLabel(c.short)) + '</span></a>'
+  const names = uniqueNames(all);
+  const cards = all.map((c, i) =>
+    '<div class="toc-chapter"><a href="' + c.file + '" class="toc-chapter-title">' +
+    '<span class="toc-name">' + esc(names[i]) + '</span>' +
+    '<span class="toc-range">' + c.num + '</span></a></div>'
   ).join('\n      ');
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
     '<p class="sub">' + esc(cfg.subtitle || '') + '</p></div>\n' +
-    '<div class="chapter-menu">\n      ' + cards + '\n    </div>\n';
+    '<section class="book-toc"><h2 class="toc-title">' + (UI[lang.ui] || UI.az).toc.toUpperCase() + '</h2>\n      ' + cards + '\n    </section>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
     content + '\n' + tailHtml(all, 0);
@@ -366,7 +414,7 @@ cfg.langs.forEach((lang) => {
     let file = slugify(short, i + 1, lang.code) + '.html';
     while (used[file]) file = file.replace(/\.html$/, '-x.html');
     used[file] = 1;
-    return { short, num: String(i + 1).padStart(2, '0'), file, paras: ch.paras, partTitle: ch.partTitle };
+    return { short, num: String(i + 1).padStart(2, '0'), file, paras: ch.paras, partTitle: ch.partTitle, title: ch.title };
   });
   const rel = lang.dir ? '../' : '';
   all.forEach((ch, i) => {
