@@ -12,8 +12,14 @@
   var fineQ = window.matchMedia('(hover: hover) and (pointer: fine)');
   var reduce = reduceQ.matches, fine = fineQ.matches;
 
-  /* тот же эндпоинт, что на главной (форма «Kitabın sifarişi») */
+  /* эндпоинты заказа — те же, что у формы «Kitabın sifarişi» на сайте:
+     сервер сайта (api.ragimoff.org) + Apps Script (Google-таблица + Telegram) */
+  var BOOK_API = 'https://api.ragimoff.org/api/book-order';
   var ORDER_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+
+  /* строки интерфейса — из страницы (window.__booksUI), запас — азербайджанский */
+  var T = window.__booksUI || {};
+  function t(key, fallback) { return T[key] || fallback; }
 
   function $(s, c) { return (c || document).querySelector(s); }
   function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
@@ -34,22 +40,22 @@
   /* ── поиск по книгам (название, автор, год) ── */
   function initSearch() {
     var q = $('#q'); if (!q) return;
-    var cards = $('.card');
+    var cards = $$('.card');
     var count = $('#count');
     var empty = null;
     function run() {
       var v = (q.value || '').trim().toLowerCase();
       var shown = 0;
       cards.forEach(function (c) {
-        var hay = (c.textContent || '').toLowerCase().replace(/s+/g, ' ');
+        var hay = (c.textContent || '').toLowerCase().replace(/\s+/g, ' ');
         var ok = !v || hay.indexOf(v) !== -1;
         c.hidden = !ok;
         if (ok) shown++;
       });
-      if (count) count.textContent = shown + ' kitab';
+      if (count) count.textContent = t('count', '%n kitab').replace('%n', shown);
       var grid = $('.grid');
       if (grid) {
-        if (!empty) { empty = document.createElement('p'); empty.className = 'no-results'; empty.textContent = 'Heç nə tapılmadı'; grid.parentNode.appendChild(empty); }
+        if (!empty) { empty = document.createElement('p'); empty.className = 'no-results'; empty.textContent = t('empty', 'Heç nə tapılmadı'); grid.parentNode.appendChild(empty); }
         empty.hidden = shown !== 0;
       }
     }
@@ -103,26 +109,32 @@
       e.preventDefault();
       var name = (nameI.value || '').trim();
       var phone = (phoneI.value || '').trim();
-      if (!name || !phone) { alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.'); return; }
+      if (!name || !phone) { alert(t('fill', 'Zəhmət olmasa Ad Soyad və Telefon daxil edin.')); return; }
       var parts = name.split(/\s+/);
+      var book = (select && select.value) || current;   /* «Название · цена» */
       var payload = {
         type: 'registration',
         fname: parts[0] || '',
         lname: parts.slice(1).join(' ') || '',
         phone: phone,
-        service: 'Kitab sifarişi — ' + ((select && select.value) || current),
-        source: 'ragimoff.org/books'
+        service: 'Kitab sifarişi — ' + book,
+        note: book,
+        source: 'ragimoff.org' + location.pathname
       };
       var btn = $('button[type="submit"]', form);
-      if (btn) { btn.textContent = 'Göndərilir...'; btn.disabled = true; }
+      if (btn) { btn.textContent = t('sending', 'Göndərilir…'); btn.disabled = true; }
+      var body = JSON.stringify(payload);
+      /* оба канала, как в форме «Kitabın sifarişi» на сайте:
+         сервер сайта (регистрация заказа) + Apps Script (Google-таблица + Telegram) */
+      try { fetch(BOOK_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body }).catch(function () {}); } catch (err) {}
       try {
         await fetch(ORDER_API, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
+          body: body
         });
       } catch (err) { /* no-cors: ответ не читаем, ошибка сети не блокирует UX */ }
-      if (btn) { btn.textContent = 'Sifariş et'; btn.disabled = false; }
+      if (btn) { btn.textContent = t('submit', 'Sifariş et'); btn.disabled = false; }
       form.hidden = true;
       ok.hidden = false;
     });
