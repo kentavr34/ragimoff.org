@@ -270,7 +270,9 @@ const TOC_STYLE = '<style>' +
   '</style>';
 
 function headHtml(cfg, lang, title, desc) {
+  const LANGS_ATTR = cfg.langs.map(function (l) { return l.code; }).join(',');
   return TPL.head
+    .replace('<html ', '<html data-langs="' + LANGS_ATTR + '" ')
     .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(lang.title.toUpperCase()) + '</title>')
     .replace(/<meta name="description" content="[^"]*"/, '<meta name="description" content="' + esc(desc) + '"')
     .replace(/<meta property="og:title" content="[^"]*"/, '<meta property="og:title" content="' + esc(title) + '"')
