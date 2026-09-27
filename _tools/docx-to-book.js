@@ -294,9 +294,11 @@ function bodyTop(cfg, lang) {
 
 /* сайдбар: оглавление книги в классовой структуре эталона */
 function sidebarHtml(cfg, lang, all, idx, rel) {
+  /* подписи в боковом меню — те же, что в оглавлении: капс, «имя», без служебных слов */
+  const names = uniqueNames(all);
   const items = all.map((c, i) =>
     '<div class="nav-item"><a href="' + c.file + '" class="nav-sub-link' + (i === idx ? ' is-active' : '') + '">' +
-    '<span class="sub-code">' + c.num + '</span><span class="sub-name">' + esc(shortLabel(c.short)) + '</span></a></div>'
+    '<span class="sub-code">' + c.num + '</span><span class="sub-name">' + esc(names[i]) + '</span></a></div>'
   ).join('\n      ');
   return '<aside class="sidebar" id="sb">\n' +
     '    <div class="sb-hdr"><a class="sb-site" href="https://ragimoff.org/books/" title="Kitablar">← ' + (UI[lang.ui] || UI.az).back + '</a>' +
@@ -317,6 +319,8 @@ function tailHtml(all, idx) {
 /* стиль оглавления книги (запомнен как канон): компактные пункты, узкая колонка номера */
 const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 22px}' +
+  '.book-toc{margin:16px auto 36px}' +
+  '.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
@@ -339,7 +343,7 @@ function headHtml(cfg, lang, title, desc) {
     .replace(/<meta property="og:description" content="[^"]*"/, '<meta property="og:description" content="' + esc(desc) + '"')
     .replace(/<meta property="og:url" content="[^"]*"/, '<meta property="og:url" content="https://ragimoff.org/' + cfg.slug + '/"')
     .replace(/"name":"[^"]*","inLanguage":"[^"]*"/, '"name":"' + esc(cfg.title) + '","inLanguage":"' + lang.code + '"')
-    .replace(/"about":"[^"]*"/, '"about":"' + esc(cfg.subtitle || cfg.title) + '"')
+    .replace(/"about":"[^"]*"/, '"about":"' + esc(lang.subtitle || cfg.subtitle || cfg.title) + '"')
     .replace('</head>', TOC_STYLE + '</head>');
 }
 
@@ -383,7 +387,7 @@ function indexPage(cfg, lang, all, rel) {
   ).join('\n      ');
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
-    '<p class="sub">' + esc(cfg.subtitle || '') + '</p></div>\n' +
+    '<p class="sub">' + esc(lang.subtitle || cfg.subtitle || '') + '</p></div>\n' +
     '<section class="book-toc"><h2 class="toc-title">' + (UI[lang.ui] || UI.az).toc.toUpperCase() + '</h2>\n      ' + cards + '\n    </section>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
