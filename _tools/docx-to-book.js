@@ -445,7 +445,7 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 function tocStructure(paras, all) {
   const titles = tocTitles(paras || []);
   if (titles.length < 3) return null;
-  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|PART|Школа|Şkola|Psixologiya Məktəbi)/i;
+  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|PART|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
   const CHAP = /^(Глава|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat)/i;
   /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
      (модель «Феникс», школа «Феникс») перепутать страницы */
@@ -465,7 +465,10 @@ function tocStructure(paras, all) {
       .toLowerCase()
       .replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
   };
-  const pages = all.map((c) => ({ c, k2: words(c.title || '').slice(0, 2).join(' '), k1: words(c.title || '')[0], mn: mn(c.title || '') }));
+  const pages = all.map((c) => {
+    const w = words(c.title || '');
+    return { c, k2: w.slice(0, 2).join(' '), k1: w[0], klast: w[w.length - 1] || '', mn: mn(c.title || '') };
+  });
   const used = {};
   const items = [];
   let last = null;
@@ -482,7 +485,11 @@ function tocStructure(paras, all) {
     const hit = CHAP.test(t)
       ? (pages.find((p) => !used[p.c.file] && compat(p) && p.k2 === k2) ||
          pages.find((p) => !used[p.c.file] && compat(p) && p.k1 === k1) ||
-         (my ? pages.find((p) => !used[p.c.file] && p.mn === my) : null))
+         (my ? pages.find((p) => !used[p.c.file] && p.mn === my) : null) ||
+         /* последнее слово названия: «Sonluq. Oxucuya müraciət» → «SON SÖZ · SƏYAHƏTÇİYƏ MÜRACİƏT» */
+         (w.length > 1 && w[w.length - 1].length > 4
+           ? pages.find((p) => !used[p.c.file] && compat(p) && p.klast === w[w.length - 1])
+           : null))
       : null;
     if (PART.test(t) && !CHAP.test(t)) { items.push({ type: 'part', text: t }); last = null; return; }
     if (hit) { used[hit.c.file] = 1; last = hit.c; items.push({ type: 'chapter', text: t, file: hit.c.file }); return; }
