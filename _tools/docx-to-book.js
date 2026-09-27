@@ -348,10 +348,14 @@ function bodyTop(cfg, lang) {
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(up(lang.title)) + '</strong>')
     .replace(/<small>[^<]*<\/small>/, '<small>' + esc(lang.author || cfg.author) + ' · ' + cfg.year + '</small>')
     .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"')
-    /* «← ragimoff.org» из эталонного каркаса — ссылка на главную сайта; на страницах
-       книги ей места нет (в шапке есть «← Книги»), а на русских страницах она вела
-       на азербайджанскую главную. Убираем. */
-    .replace(/<a href="https:\/\/ragimoff\.org"[^>]*>[\s\S]*?<\/a>\s*/, '');
+    /* «← ragimoff.org» в шапке — ссылка на главную сайта: для русского языка ведём
+       на русскую главную, азербайджанскую — на корень (в эталонном каркасе всегда корень) */
+    .replace(/<a href="https:\/\/ragimoff\.org"[^>]*class="hdr-back"[^>]*>/,
+      '<a href="' + (lang.code === 'az' ? 'https://ragimoff.org/' : 'https://ragimoff.org/' + lang.code + '/') +
+      '" class="hdr-back" title="' + (lang.code === 'ru' ? 'Вернуться на главную сайта' : 'Ana sayta qayıt') + '">')
+    /* свежая версия переключателя языков (браузер держал старую — с ней на страницах
+       книги смена языка вела в 404) */
+    .replace('src="/_lang-switch.js"', 'src="/_lang-switch.js?v=2"');
 }
 
 /* сайдбар: оглавление книги в классовой структуре эталона */
