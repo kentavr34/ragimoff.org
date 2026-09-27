@@ -250,7 +250,7 @@ function chapterName(ch) {
   const t = String(ch.title || '').replace(/[‹›„“”"'‘’]/g, function (c) { return "‹„“'‘’".indexOf(c) !== -1 ? "«" : "»"; }).trim();
   /* вводные разделы в боковом меню — только слово-маркер: «ВВЕДЕНИЕ», «GİRİŞ», «ПРОЛОГ» */
   const fr = t.match(/^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i);
-  if (fr) return fr[1].toUpperCase();
+  if (fr) return up(fr[1]);
   let m = t.match(/«([^»]+)»/);
   if (!m) {
     for (let i = 0; i < Math.min(6, (ch.paras || []).length); i++) {
@@ -259,7 +259,7 @@ function chapterName(ch) {
       if (mm && p.length < 60) { m = mm; break; }
     }
   }
-  if (m) return m[1].toUpperCase().trim();
+  if (m) return up(m[1]).trim();
   let name = t
     .replace(/^\s*(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter|FƏSİL|Fəsil|ÇAP)\s*[IVXLC\d]*[.)]?\s*/i, '')
     .replace(/MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ|MODEL OF RELATIONSHIPS/gi, '')
@@ -268,7 +268,7 @@ function chapterName(ch) {
     .replace(/[«»]/g, "")
     .trim();
   if (!name) name = t.replace(/[«»]/g, "");
-  name = name.toUpperCase();
+  name = up(name);
   if (name.length > 44) name = name.slice(0, 42).replace(/[s—-]+S*$/, "") + "…";
   return name;
 }
@@ -285,7 +285,7 @@ function tocLabel(ch) {
     .replace(/^[\s·.,;—-]+|[\s·.,;—-]+$/g, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  return t.toUpperCase();
+  return up(t);
 }
 
 /* названия для оглавления книги: полные, без дублей (повтор → номер главы) */
@@ -307,7 +307,7 @@ function uniqueNames(all) {
     let n = chapterName(c);
     if (!n) n = 'BÖLMƏ';
     if (seen[n]) {
-      const full = String(c.short).replace(/^[^.]*\.\s*/, '').toUpperCase().trim();
+      const full = up(String(c.short).replace(/^[^.]*\.\s*/, '').trim());
       n = full && full !== n ? full : n + ' (' + c.num + ')';
     }
     seen[n] = 1;
@@ -333,11 +333,19 @@ const UI = {
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+/* верхний регистр с учётом азербайджанского: «i» → «İ» (в JS toUpperCase даёт «I» без точки,
+   отсюда «FENIKS ERASI» вместо «FENİKS ERASI»); «ı» → «I» — верно и так */
+function up(s, code) {
+  const t = String(s == null ? '' : s);
+  const c = code || global.__LANG;
+  return (c === 'az' || c === 'tr') ? t.replace(/i/g, 'İ').toUpperCase() : t.toUpperCase();
+}
+
 /* шапка: подмена бренда книги */
 function bodyTop(cfg, lang) {
   return TPL.bodyTop
     .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + cfg.logo + '</div>')
-    .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(lang.title.toUpperCase()) + '</strong>')
+    .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(up(lang.title)) + '</strong>')
     .replace(/<small>[^<]*<\/small>/, '<small>' + esc(lang.author || cfg.author) + ' · ' + cfg.year + '</small>')
     .replace('data-lang-switch', 'data-lang-switch data-langs="' + cfg.langs.map(function (l) { return l.code; }).join(',') + '"');
 }
@@ -393,7 +401,7 @@ function headHtml(cfg, lang, title, desc) {
   return TPL.head
     .replace('<html ', '<html data-langs="' + LANGS_ATTR + '" ')
     .replace(/<html([^>]*?)lang="[a-z]{2}"/, '<html$1lang="' + lang.code + '"')
-    .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(lang.title.toUpperCase()) + '</title>')
+    .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(up(lang.title)) + '</title>')
     .replace(/<meta name="description" content="[^"]*"/, '<meta name="description" content="' + esc(desc) + '"')
     .replace(/<meta property="og:title" content="[^"]*"/, '<meta property="og:title" content="' + esc(title) + '"')
     .replace(/<meta property="og:description" content="[^"]*"/, '<meta property="og:description" content="' + esc(desc) + '"')
@@ -502,9 +510,9 @@ function indexPage(cfg, lang, all, rel, paras) {
   const structure = tocStructure(paras, all);
   const cards = structure ? tocHtml(structure) : tocHtml(all.map((c) => ({ type: 'chapter', text: tocLabel(c), file: c.file })));
   const content =
-    '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
+    '\n<div class="home-hero"><h1 class="home-title">' + esc(up(lang.title)) + '</h1>' +
     '<p class="sub">' + esc(lang.subtitle || cfg.subtitle || '') + '</p></div>\n' +
-    '<section class="book-toc"><h2 class="toc-title">' + (UI[lang.ui] || UI.az).toc.toUpperCase() + '</h2>\n      ' + cards + '\n    </section>\n';
+    '<section class="book-toc"><h2 class="toc-title">' + esc(up((UI[lang.ui] || UI.az).toc)) + '</h2>\n      ' + cards + '\n    </section>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
     '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
     content + '\n' + tailHtml(all, 0);
@@ -527,6 +535,7 @@ cfg.langs.forEach((lang) => {
   fs.mkdirSync(dir, { recursive: true });
   if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
   global.__USE_TOC = !!cfg.useToc;
+  global.__LANG = lang.code;
   global.__EXTRA = (cfg.extraChapters && cfg.extraChapters[lang.code]) || [];
   const paras = paragraphs(lang.file);
   const chapters = buildChapters(paras);
