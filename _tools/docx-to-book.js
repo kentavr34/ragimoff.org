@@ -88,11 +88,15 @@ function tocTitles(paras) {
     const isBody = (RX.chapter.test(raw) || RX.front.test(raw)) && !RX.tocline.test(raw) && raw.length < 120;
     if (isBody && titles.length) break;               // началось тело книги
     const clean = raw
-      .replace(/[.…\s]*\d{1,3}\s*$/, '')
       .replace(/[.…]{2,}/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-    if (clean.length > 4 && clean.length < 130) titles.push(clean);
+    /* в строке оглавления номер страницы может слипнуться со следующим разделом:
+       «Proloq. Elmi əsas. 11 Fəsil 1. Yalançı Dəyərlər» → две отдельные записи */
+    clean.split(/\s+(?=(?:Fəsil|FƏSİL|Сезон|Глава|Bölüm|Раздел|Школа)\s*\d)/i).forEach((piece) => {
+      const p2 = piece.replace(/[.…\s]*\d{1,3}\s*$/, '').replace(/[.\s]+$/, '').replace(/\s+/g, ' ').trim();
+      if (p2.length > 4 && p2.length < 130) titles.push(p2);
+    });
   }
   return titles;
 }
@@ -169,8 +173,10 @@ function buildChapters(paras) {
     const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
 
     /* короткий подзаголовок-название сразу после заголовка главы (напр. «LİLİT» / «ЛИЛИТ»)
-       дописывается в название главы — проверяется ДО ветки маркеров */
-    if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 &&
+       дописывается в название главы — проверяется ДО ветки маркеров.
+       Дописываем ТОЛЬКО строки-заголовки (жирные, с размером): строки автора
+       («Вы – Властелин своей судьбы.», «Дорогой читатель.») остаются в тексте главы. */
+    if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 && p.bold && p.sz >= 20 &&
         !/^\d+[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
       curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
       return;
@@ -233,6 +239,9 @@ function shortLabel(title) {
 
 function chapterName(ch) {
   const t = String(ch.title || '').replace(/[‹›„“”"'‘’]/g, function (c) { return "‹„“'‘’".indexOf(c) !== -1 ? "«" : "»"; }).trim();
+  /* вводные разделы в боковом меню — только слово-маркер: «ВВЕДЕНИЕ», «GİRİŞ», «ПРОЛОГ» */
+  const fr = t.match(/^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i);
+  if (fr) return fr[1].toUpperCase();
   let m = t.match(/«([^»]+)»/);
   if (!m) {
     for (let i = 0; i < Math.min(6, (ch.paras || []).length); i++) {
@@ -350,19 +359,23 @@ function tailHtml(all, idx) {
 /* метаданные страницы */
 /* стиль оглавления книги (запомнен как канон): компактные пункты, узкая колонка номера */
 const TOC_STYLE = '<style>' +
-  '.home-hero{padding:16px 0 22px}' +
-  '.book-toc{margin:16px auto 36px}' +
+  '.home-hero{padding:16px 0 11px}' +
+  '.book-toc{margin:8px auto 36px}' +
   '.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}' +
-  /* зазор «номер → название» вдвое меньше эталонного (96px → 48px) */
-  '.book-toc .toc-range{flex:0 0 48px;width:48px}' +
+  /* оглавление книги: части, главы, подпункты — без колонки номеров */
+  '.book-toc .toc-part{margin:30px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border);font-weight:700;letter-spacing:.04em;color:var(--gold2)}' +
+  '.book-toc .toc-sub{margin:3px 0 3px 26px;font-size:.86rem;color:var(--text2)}' +
+  '.book-toc .toc-sub a{color:inherit;text-decoration:none}' +
+  '.book-toc .toc-sub a:hover{color:var(--gold2)}' +
+  '.book-toc .toc-chapter{margin:14px 0}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
   '@media (max-width:640px){.d-nav .dn-name{display:none}}' +
-  '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:8px}' +
-  '.sidebar .sub-code{flex:0 0 16px;width:16px;font-size:10.5px}' +
+  '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}' +
+  '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
   '</style>';
 
@@ -411,15 +424,71 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
     '</nav>\n' + tailHtml(all, idx);
 }
 
-function indexPage(cfg, lang, all, rel) {
+/* ── оглавление книги: части, главы и подпункты — как в книге, без номеров страниц ── */
+function tocStructure(paras, all) {
+  const titles = tocTitles(paras || []);
+  if (titles.length < 3) return null;
+  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|PART|Школа|Şkola|Psixologiya Məktəbi)/i;
+  const CHAP = /^(Глава|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat)/i;
+  /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
+     (модель «Феникс», школа «Феникс») перепутать страницы */
+  const mn = (s) => {
+    const m = String(s).match(/^(BÖLÜM|Bölüm|Bölmə|ГЛАВА|Глава|Раздел|CHAPTER|Chapter)\s*([IVXLC]+|\d+)/i);
+    if (!m) return '';
+    const fam = /^(BÖLÜM|Bölüm|Bölmə)/i.test(m[1]) ? 'b' : /^Раздел/i.test(m[1]) ? 'r' : /^(ГЛАВА|Глава)/i.test(m[1]) ? 'g' : 'c';
+    return fam + m[2].toLowerCase();
+  };
+  /* ключ сопоставления с главой книги: имя модели в «…», иначе начало названия.
+     ВАЖНО: «İ».toLowerCase() в JS даёт «i̇» (i + точка) — приводим буквы заранее. */
+  const words = (s) => {
+    const q = String(s).match(/«([^»]+)»/);
+    return (q ? q[1] : String(s))
+      .replace(/İ/g, 'i').replace(/I/g, 'i').replace(/Ə/g, 'ə').replace(/Ğ/g, 'ğ')
+      .replace(/Ş/g, 'ş').replace(/Ç/g, 'ç').replace(/Ö/g, 'ö').replace(/Ü/g, 'ü')
+      .toLowerCase()
+      .replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ').replace(/\s+/g, ' ').trim().split(' ');
+  };
+  const pages = all.map((c) => ({ c, k2: words(c.title || '').slice(0, 2).join(' '), k1: words(c.title || '')[0], mn: mn(c.title || '') }));
+  const used = {};
+  const items = [];
+  let last = null;
+  const compat = (p, my) => !p.mn || !my || p.mn === my;
+  titles.forEach((t) => {
+    const w = words(t);
+    const k2 = w.slice(0, 2).join(' ');
+    const k1 = w[0];
+    const my = mn(t);
+    /* страницу может «забрать» только запись-глава, и только если маркеры совместимы */
+    const hit = CHAP.test(t)
+      ? (pages.find((p) => !used[p.c.file] && compat(p, my) && p.k2 === k2) ||
+         pages.find((p) => !used[p.c.file] && compat(p, my) && p.k1 === k1) ||
+         (my ? pages.find((p) => !used[p.c.file] && p.mn === my) : null))
+      : null;
+    if (PART.test(t) && !CHAP.test(t)) { items.push({ type: 'part', text: t }); last = null; return; }
+    if (hit) { used[hit.c.file] = 1; last = hit.c; items.push({ type: 'chapter', text: t, file: hit.c.file }); return; }
+    if (CHAP.test(t)) { items.push({ type: 'chapter', text: t, file: '' }); last = null; return; }
+    items.push({ type: 'sub', text: t, file: last ? last.file : '' });
+  });
+  return items;
+}
+
+function tocHtml(items) {
+  return items.map((it) => {
+    if (it.type === 'part') return '<div class="toc-part">' + esc(it.text) + '</div>';
+    if (it.type === 'sub') {
+      return '<div class="toc-sub">' + (it.file ? '<a href="' + it.file + '">' + esc(it.text) + '</a>' : esc(it.text)) + '</div>';
+    }
+    return '<div class="toc-chapter">' + (it.file
+      ? '<a href="' + it.file + '" class="toc-chapter-title"><span class="toc-name">' + esc(it.text) + '</span></a>'
+      : '<span class="toc-chapter-title"><span class="toc-name">' + esc(it.text) + '</span></span>') + '</div>';
+  }).join('\n      ');
+}
+
+function indexPage(cfg, lang, all, rel, paras) {
   const ui = UI[lang.ui] || UI.az;
-  /* в оглавлении книги — полные названия; в боковом меню — короткие (uniqueNames) */
-  const names = tocNames(all);
-  const cards = all.map((c, i) =>
-    '<div class="toc-chapter"><a href="' + c.file + '" class="toc-chapter-title">' +
-    '<span class="toc-name">' + esc(names[i]) + '</span>' +
-    '<span class="toc-range">' + c.num + '</span></a></div>'
-  ).join('\n      ');
+  /* оглавление — из книжного (части, главы, подпункты); запасной путь — список глав */
+  const structure = tocStructure(paras, all);
+  const cards = structure ? tocHtml(structure) : tocHtml(all.map((c) => ({ type: 'chapter', text: tocLabel(c), file: c.file })));
   const content =
     '\n<div class="home-hero"><h1 class="home-title">' + esc(lang.title.toUpperCase()) + '</h1>' +
     '<p class="sub">' + esc(lang.subtitle || cfg.subtitle || '') + '</p></div>\n' +
@@ -461,7 +530,7 @@ cfg.langs.forEach((lang) => {
     fs.writeFileSync(path.join(dir, ch.file), chapterPage(cfg, lang, ch, i, all, rel), 'utf8');
     totalPages++;
   });
-  fs.writeFileSync(path.join(dir, 'index.html'), indexPage(cfg, lang, all, rel), 'utf8');
+  fs.writeFileSync(path.join(dir, 'index.html'), indexPage(cfg, lang, all, rel, paras), 'utf8');
   totalPages++;
   console.log(`${lang.code}: глав ${all.length} → ${path.relative(process.cwd(), dir) || '.'}`);
   all.slice(0, 6).forEach((c) => console.log('   · ' + c.file + '  ' + c.short.slice(0, 60)));
