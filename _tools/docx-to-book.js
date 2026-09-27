@@ -217,15 +217,20 @@ function shortLabel(title) {
   return t.length > 46 ? t.slice(0, 44) + '…' : t;
 }
 
+function dnName(title) {
+  const t = shortLabel(title);
+  return t.length > 26 ? t.slice(0, 24).trim() + "…" : t;
+}
+
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 /* ─────────── генерация страниц ─────────── */
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
 
 const UI = {
-  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə' },
-  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная' },
-  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home' }
+  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab' },
+  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга' },
+  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book' }
 };
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -264,6 +269,12 @@ function tailHtml(all, idx) {
 /* стиль оглавления книги (запомнен как канон): компактные пункты, узкая колонка номера */
 const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 22px}' +
+  '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
+  '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
+  '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
+  '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
+  '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
+  '@media (max-width:640px){.d-nav .dn-name{display:none}}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:8px}' +
   '.sidebar .sub-code{flex:0 0 30px;width:30px;font-size:10.5px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
@@ -302,10 +313,16 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
     '<header class="chap-head"><h1 class="chap-h1"><span class="chap-range">' + ch.num + '</span>' +
     '<span class="chap-title">' + esc(ch.short) + '</span></h1></header>\n' +
     body +
-    '\n<div class="chapter-menu">' +
-    (prev ? '<a class="ch-disorder" href="' + prev.file + '"><span class="ch-code">← ' + ui.prev + '</span><span class="ch-name">' + esc(shortLabel(prev.short)) + '</span></a>' : '') +
-    (next ? '<a class="ch-disorder" href="' + next.file + '"><span class="ch-code">' + ui.next + ' →</span><span class="ch-name">' + esc(shortLabel(next.short)) + '</span></a>' : '') +
-    '</div>\n' + tailHtml(all, idx);
+    /* нижняя навигация — как в эталоне: одна строка (.d-nav): ← NN имя · ↑ вверх · имя NN → */
+    '\n<nav class="d-nav">' +
+    (prev
+      ? '<a href="' + prev.file + '">← ' + prev.num + ' <span class="dn-name">' + esc(dnName(prev.short)) + '</span></a>'
+      : '<span></span>') +
+    '<a class="up" href="' + rel + 'index.html">↑ ' + (ui.up || 'Fəsil') + '</a>' +
+    (next
+      ? '<a href="' + next.file + '"><span class="dn-name">' + esc(dnName(next.short)) + '</span> ' + next.num + ' →</a>'
+      : '<span></span>') +
+    '</nav>\n' + tailHtml(all, idx);
 }
 
 function indexPage(cfg, lang, all, rel) {
