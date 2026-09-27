@@ -122,6 +122,8 @@ function splitByToc(body, titles) {
 }
 
 function buildChapters(paras) {
+  /* разделы без маркера в DOCX — из конфига книги (cfg.extraChapters) */
+  const EXTRA = global.__EXTRA || [];
   /* 1) найти область оглавления и вырезать её */
   let tocFrom = -1, tocTo = -1;
   for (let i = 0; i < paras.length; i++) {
@@ -170,6 +172,9 @@ function buildChapters(paras) {
     const isAzNum = AZNUM.test(t) && t.length < 140;
     const isCh = RX.chapter.test(t) && t.length < 200;
     const isFront = RX.front.test(t) && t.length < 60;   /* «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА» — да, длинный раздел внутри главы — нет */
+    /* разделы, у которых в DOCX нет маркера (задаются в конфиге книги):
+       напр. «ШКОЛА МЕТОДОЛОГИИ «ФЕНИКС»», «ПОСЛЕСЛОВИЕ.» */
+    const isExtra = EXTRA.some((x) => t.toUpperCase().startsWith(x.toUpperCase())) && t.length < 90;
     const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
 
     /* короткий подзаголовок-название сразу после заголовка главы (напр. «LİLİT» / «ЛИЛИТ»)
@@ -177,12 +182,16 @@ function buildChapters(paras) {
        Дописываем ТОЛЬКО строки-заголовки (жирные, с размером): строки автора
        («Вы – Властелин своей судьбы.», «Дорогой читатель.») остаются в тексте главы. */
     if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 && p.bold && p.sz >= 20 &&
+        (!curCh.noMerge || (/[A-ZА-ЯƏİÖÜÇŞĞ]/.test(t) && t === t.toUpperCase())) &&
         !/^\d+[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
       curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
       return;
     }
 
     if (isPart) { pushPart(t.replace(/\s+$/, '')); mergeTitle = false; return; }
+    /* раздел из конфига (без маркера в DOCX): название уже задано точно,
+       к нему дописываем только строку-капс («ПОСЛЕСЛОВИЕ.» + «ОБРАЩЕНИЕ К ПУТЕШЕСТВЕННИКУ») */
+    if (isExtra) { pushCh(t, p); mergeTitle = false; curCh.noMerge = true; return; }
     if (isBare || isAzNum || isCh || isFront || isBigHead) {
       pushCh(t, p);
       mergeTitle = isBare || isAzNum;   /* следующая строка-капс станет частью названия */
@@ -452,16 +461,19 @@ function tocStructure(paras, all) {
   const used = {};
   const items = [];
   let last = null;
-  const compat = (p, my) => !p.mn || !my || p.mn === my;
+  /* раздел с маркером получает страницу только при совместимом маркере;
+     страница без маркера — лишь если такие разделы в книге вообще есть
+     (иначе «Раздел 3» из русского файла забрал бы чужую страницу) */
+  const famPresent = (fam) => pages.some((q) => q.mn && q.mn[0] === fam);
   titles.forEach((t) => {
     const w = words(t);
     const k2 = w.slice(0, 2).join(' ');
     const k1 = w[0];
     const my = mn(t);
-    /* страницу может «забрать» только запись-глава, и только если маркеры совместимы */
+    const compat = (p) => !my || p.mn === my || (!p.mn && famPresent(my[0]));
     const hit = CHAP.test(t)
-      ? (pages.find((p) => !used[p.c.file] && compat(p, my) && p.k2 === k2) ||
-         pages.find((p) => !used[p.c.file] && compat(p, my) && p.k1 === k1) ||
+      ? (pages.find((p) => !used[p.c.file] && compat(p) && p.k2 === k2) ||
+         pages.find((p) => !used[p.c.file] && compat(p) && p.k1 === k1) ||
          (my ? pages.find((p) => !used[p.c.file] && p.mn === my) : null))
       : null;
     if (PART.test(t) && !CHAP.test(t)) { items.push({ type: 'part', text: t }); last = null; return; }
@@ -515,6 +527,7 @@ cfg.langs.forEach((lang) => {
   fs.mkdirSync(dir, { recursive: true });
   if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
   global.__USE_TOC = !!cfg.useToc;
+  global.__EXTRA = (cfg.extraChapters && cfg.extraChapters[lang.code]) || [];
   const paras = paragraphs(lang.file);
   const chapters = buildChapters(paras);
   const used = {};
