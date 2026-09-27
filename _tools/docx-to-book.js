@@ -211,117 +211,102 @@ function slugify(s, i, lang) {
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 /* ─────────── генерация страниц ─────────── */
+const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+
 const UI = {
   az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə' },
   ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная' },
   en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home' }
 };
 
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+/* шапка: подмена бренда книги */
+function bodyTop(cfg, lang) {
+  return TPL.bodyTop
+    .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + cfg.logo + '</div>')
+    .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(lang.title.toUpperCase()) + '</strong>')
+    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(cfg.author) + ' · ' + cfg.year + '</small>');
+}
+
+/* сайдбар: оглавление книги в классовой структуре эталона */
+function sidebarHtml(cfg, lang, all, idx, rel) {
+  const items = all.map((c, i) =>
+    '<div class="nav-item"><a href="' + c.file + '" class="nav-link' + (i === idx ? ' is-active' : '') + '">' +
+    '<span class="nav-code">' + c.num + '</span><span>' + esc(c.short) + '</span></a></div>'
+  ).join('\n      ');
+  return '<aside class="sidebar" id="sb">\n' +
+    '    <div class="sb-hdr"><a class="sb-site" href="https://ragimoff.org/books/" title="Kitablar">← ' + (UI[lang.ui] || UI.az).back + '</a>' +
+    '<button class="sb-close" onclick="toggleSb()" aria-label="Bağla">✕</button></div>\n' +
+    '    <nav>\n      <div class="nav-item"><a href="' + rel + 'index.html" class="nav-link nav-front">' + (UI[lang.ui] || UI.az).home + '</a></div>\n      ' +
+    items + '\n    </nav>\n  </aside>';
+}
+
+/* хвост: поисковый индекс книги (ALL_PAGES) + текущая страница */
+function tailHtml(all, idx) {
+  const pages = JSON.stringify(all.map((c) => ({ slug: c.file.replace(/\.html$/, ''), title: c.short, code: c.num })));
+  return TPL.tail
+    .replace(/const CURRENT = "[^"]*";/, 'const CURRENT = "' + all[idx].file.replace(/\.html$/, '') + '";')
+    .replace(/const ALL_PAGES = \[[\s\S]*?\];/, 'const ALL_PAGES = ' + pages + ';');
+}
+
+/* метаданные страницы */
+function headHtml(cfg, lang, title, desc) {
+  return TPL.head
+    .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(lang.title.toUpperCase()) + '</title>')
+    .replace(/<meta name="description" content="[^"]*"/, '<meta name="description" content="' + esc(desc) + '"')
+    .replace(/<meta property="og:title" content="[^"]*"/, '<meta property="og:title" content="' + esc(title) + '"')
+    .replace(/<meta property="og:description" content="[^"]*"/, '<meta property="og:description" content="' + esc(desc) + '"')
+    .replace(/<meta property="og:url" content="[^"]*"/, '<meta property="og:url" content="https://ragimoff.org/' + cfg.slug + '/"')
+    .replace(/"name":"[^"]*","inLanguage":"[^"]*"/, '"name":"' + esc(cfg.title) + '","inLanguage":"' + lang.code + '"')
+    .replace(/"about":"[^"]*"/, '"about":"' + esc(cfg.subtitle || cfg.title) + '"');
+}
+
 function chapterPage(cfg, lang, ch, idx, all, rel) {
   const ui = UI[lang.ui] || UI.az;
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx < all.length - 1 ? all[idx + 1] : null;
-  const nav = all.map((c, i) => `<a href="${c.file}"${i === idx ? ' class="is-on"' : ''}>${esc(c.short)}</a>`).join('\n        ');
   const body = ch.paras.map((p) => {
     const t = esc(p.text);
-    if (p.text.length < 95 && /^\d+(\.\d+)*[.)]?\s/.test(p.text)) return `<h2>${t}</h2>`;
-    if (p.bold && p.sz >= 26 && p.text.length < 95) return `<h2>${t}</h2>`;
-    if (p.bold && p.text.length < 90 && /[:.]$/.test(p.text)) return `<h3>${t}</h3>`;
-    return `<p>${t}</p>`;
-  }).join('\n      ');
+    if (p.text.length < 95 && /^\d+(\.\d+)*[.)]?\s/.test(p.text)) return '<h2>' + t + '</h2>';
+    if (p.bold && p.sz >= 26 && p.text.length < 95) return '<h2>' + t + '</h2>';
+    if (p.bold && p.text.length < 90 && /[:.]$/.test(p.text)) return '<h3>' + t + '</h3>';
+    return '<p>' + t + '</p>';
+  }).join('\n');
 
-  return `<!DOCTYPE html>
-<html lang="${lang.code}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="${esc(cfg.title)} — ${esc(ch.short)}">
-<title>${esc(ch.short)} | ${esc(lang.title)}</title>
-<link rel="stylesheet" href="${rel}style.css">
-</head>
-<body>
-<header class="site-header">
-  <a href="https://ragimoff.org/books/" class="hdr-back">← ${ui.back}</a>
-  <a href="${rel}index.html" class="hdr-brand">
-    <div class="hdr-logo">${cfg.logo}</div>
-    <div class="hdr-title">
-      <strong>${esc(lang.title.toUpperCase())}</strong>
-      <small>${esc(cfg.author)} · ${cfg.year}</small>
-    </div>
-  </a>
-  <a class="kitab-btn" href="https://ragimoff.org/books/#order=${encodeURIComponent(cfg.title)}">${ui.order}</a>
-</header>
-<div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
-<div class="site-layout">
-  <aside class="sidebar" id="sb">
-    <nav>
-      <p class="sb-cap">${ui.toc}</p>
-        ${nav}
-    </nav>
-  </aside>
-  <main class="content-wrap">
-    <p class="crumb"><a href="${rel}index.html">${esc(lang.title)}</a> · ${esc(ch.partTitle || '')}</p>
-    <h1>${esc(ch.short)}</h1>
-      ${body}
-    <nav class="chapter-nav">
-      ${prev ? `<a href="${prev.file}">← ${ui.prev}</a>` : '<span></span>'}
-      ${next ? `<a href="${next.file}">${ui.next} →</a>` : '<span></span>'}
-    </nav>
-  </main>
-</div>
-<script>
-(function(){var f=document.getElementById('prog-fill');if(!f)return;function u(){var h=document.documentElement;var m=h.scrollHeight-h.clientHeight;f.style.transform='scaleX('+(m>0?h.scrollTop/m:0)+')';}addEventListener('scroll',u,{passive:true});u();})();
-</script>
-</body>
-</html>`;
+  return headHtml(cfg, lang, ch.short, lang.title + ' — ' + ch.short) +
+    '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, idx, rel) + TPL.mid + TPL.contentOpen +
+    '\n<nav class="crumb"><a href="' + rel + 'index.html">‹ ' + esc(lang.title) + '</a></nav>' +
+    '<header class="chap-head"><h1 class="chap-h1"><span class="chap-range">' + ch.num + '</span>' +
+    '<span class="chap-title">' + esc(ch.short) + '</span></h1></header>\n' +
+    body +
+    '\n<nav class="chapter-nav">' +
+    (prev ? '<a href="' + prev.file + '">← ' + ui.prev + '</a>' : '<span></span>') +
+    (next ? '<a href="' + next.file + '">' + ui.next + ' →</a>' : '<span></span>') +
+    '</nav>\n' + tailHtml(all, idx);
 }
 
 function indexPage(cfg, lang, all, rel) {
   const ui = UI[lang.ui] || UI.az;
-  const items = all.map((c) => `<li><a href="${c.file}"><span class="n">${c.num}</span><span class="t">${esc(c.short)}</span></a></li>`).join('\n        ');
-  const langs = cfg.langs.map((l) => `<a href="${l.dir ? '../' + l.dir + '/' : '../'}"${l.code === lang.code ? ' class="is-on"' : ''}>${l.code.toUpperCase()}</a>`).join(' ');
-  return `<!DOCTYPE html>
-<html lang="${lang.code}">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="${esc(lang.title)} — ${esc(cfg.author)}">
-<title>${esc(lang.title)} | RAGIMOFF</title>
-<link rel="stylesheet" href="${rel}style.css">
-</head>
-<body>
-<header class="site-header">
-  <a href="https://ragimoff.org/books/" class="hdr-back">← ${ui.back}</a>
-  <a href="${rel}index.html" class="hdr-brand">
-    <div class="hdr-logo">${cfg.logo}</div>
-    <div class="hdr-title">
-      <strong>${esc(lang.title.toUpperCase())}</strong>
-      <small>${esc(cfg.author)} · ${cfg.year}</small>
-    </div>
-  </a>
-  <a class="kitab-btn" href="https://ragimoff.org/books/#order=${encodeURIComponent(cfg.title)}">${ui.order}</a>
-</header>
-<div class="site-layout">
-  <aside class="sidebar" id="sb">
-    <nav>
-      <p class="sb-cap">${ui.toc}</p>
-        ${items}
-    </nav>
-  </aside>
-  <main class="content-wrap">
-    <p class="crumb">${ui.home} · ${esc(cfg.title)}</p>
-    <h1>${esc(lang.title)}</h1>
-    <p class="book-sub">${esc(cfg.subtitle || '')}</p>
-    <p class="lang-row">${langs}</p>
-    <p><a class="read-btn" href="${all.length ? all[0].file : '#'}">${ui.read} →</a></p>
-    <h2>${ui.toc}</h2>
-    <ol class="toc-list">
-        ${items}
-    </ol>
-  </main>
-</div>
-</body>
-</html>`;
+  const items = all.map((c, i) =>
+    '<div class="nav-item"><a href="' + c.file + '" class="nav-link"><span class="nav-code">' + c.num + '</span><span>' + esc(c.short) + '</span></a></div>'
+  ).join('\n      ');
+  const langs = cfg.langs.map((l) =>
+    '<a href="' + (l.dir ? '../' + l.dir + '/' : '../') + '"' + (l.code === lang.code ? ' class="is-active"' : '') + '>' + l.code.toUpperCase() + '</a>'
+  ).join(' · ');
+  const list = all.map((c) =>
+    '<li><a href="' + c.file + '"><span class="n">' + c.num + '</span> <span>' + esc(c.short) + '</span></a></li>'
+  ).join('\n      ');
+  const content =
+    '\n<nav class="crumb">' + ui.home + ' · ' + esc(cfg.title) + '</nav>' +
+    '<header class="chap-head"><h1 class="chap-h1"><span class="chap-title">' + esc(lang.title) + '</span></h1>' +
+    '<div class="chap-en">' + esc(cfg.subtitle || '') + '</div></header>' +
+    '<p>' + langs + '</p>' +
+    '<p><a class="read-btn" href="' + (all.length ? all[0].file : '#') + '">' + ui.read + ' →</a></p>' +
+    '<h2>' + ui.toc + '</h2><ol class="toc-list">\n      ' + list + '\n    </ol>\n';
+  return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
+    '\n</head>\n' + bodyTop(cfg, lang) + sidebarHtml(cfg, lang, all, -1, rel) + TPL.mid + TPL.contentOpen +
+    content + '\n' + tailHtml(all, 0);
 }
 
 /* ─────────── main ─────────── */
@@ -339,6 +324,7 @@ let totalPages = 0;
 cfg.langs.forEach((lang) => {
   const dir = path.join(outRoot, lang.dir || '');
   fs.mkdirSync(dir, { recursive: true });
+  if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
   const paras = paragraphs(lang.file);
   const chapters = buildChapters(paras);
   const used = {};
