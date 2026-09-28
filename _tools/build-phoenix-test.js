@@ -132,7 +132,8 @@ const BOOK = { az: '/books/phoenix-era/', ru: '/books/phoenix-era/ru/' };
 const TEST = { az: '/books/phoenix-era/test/', ru: '/books/phoenix-era/test/ru/' };
 
 const CSS = `
-  .t-wrap{max-width:760px;margin:0 auto;padding:32px 22px 96px}
+  /* шапка книги закреплена — контенту нужен отступ под неё (иначе прогресс и вопрос уходят под шапку) */
+  .t-wrap{max-width:760px;margin:0 auto;padding:calc(var(--hdr,68px) + 30px) 22px 96px}
   .t-back{display:inline-block;margin:0 0 26px;font-family:var(--mono,monospace);font-size:.8rem;letter-spacing:.06em;color:var(--text2);text-decoration:none}
   .t-back:hover{color:var(--gold2)}
   .t-h1{font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.22;margin:0 0 18px}
@@ -146,30 +147,30 @@ const CSS = `
   .t-btn--main{background:var(--gold2);color:#10151c;border-color:var(--gold2);font-weight:600}
   .t-btn[disabled]{opacity:.4;cursor:default}
   .t-btn[disabled]:hover{background:transparent}
-  .t-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-family:var(--mono,monospace);font-size:.82rem;color:var(--text2);margin:0 0 10px}
-  .t-top b{color:var(--gold2);font-weight:600}
-  .t-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:0 0 38px}
+  .t-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-family:var(--mono,monospace);font-size:.86rem;color:var(--text2);margin:0 0 12px}
+  .t-top b{color:var(--gold2);font-weight:600;font-size:1rem}
+  .t-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:0 0 42px}
   .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
-  .t-q{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;margin:0 0 28px;min-height:3.4em}
-  .t-opts{display:grid;gap:12px;margin:0 0 30px}
+  .t-q{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;margin:0 0 30px;min-height:3.4em}
+  .t-opts{display:grid;gap:12px;margin:0 0 34px}
   .t-opt{display:flex;gap:14px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:12px;padding:15px 18px;font:inherit;text-align:left;cursor:pointer}
   .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
   .t-opt.is-on{border-color:var(--gold2);background:var(--gold-bg)}
   .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.2rem}
   .t-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 30px}
-  .t-card__img{display:block;width:100%;height:auto}
+  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 34px}
+  .t-card__img{display:block;width:100%;height:auto;max-height:340px;object-fit:cover}
   .t-card__body{padding:24px 24px 26px}
   .t-big{font-size:clamp(1.4rem,3vw,1.8rem);margin:6px 0 8px}
   .t-mut{color:var(--text2);font-size:.92rem;margin:0 0 6px}
-  .t-tab{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 30px}
+  .t-tab{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 34px}
   .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:10px 12px;text-align:left}
   .t-tab th{color:var(--text2);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
   .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
   .t-tab tr.is-top td{background:var(--gold-bg)}
   [hidden]{display:none !important}
   @media(max-width:600px){
-    .t-wrap{padding:22px 18px 80px}
+    .t-wrap{padding:calc(var(--hdr,68px) + 20px) 18px 80px}
     .t-q{min-height:0}
     .t-btn{padding:12px 18px}
   }
