@@ -341,9 +341,9 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
 
 const UI = {
-  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab', test: 'Onlayn test: «Münasibət modellərinin xəritəsi»' },
-  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга', test: 'Онлайн-тест: «Карта моделей взаимоотношений»' },
-  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book', test: 'Online test: “Map of relationship models”' }
+  az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab', test: '«Münasibət modellərinin xəritəsi» · 100 sual, 12 model', testBtn: 'Onlayn test' },
+  ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга', test: '«Карта моделей взаимоотношений» · 100 утверждений, 12 моделей', testBtn: 'Онлайн-тест' },
+  en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book', test: '“Map of relationship models” · 100 statements, 12 models', testBtn: 'Online test' }
 };
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -409,10 +409,13 @@ const TOC_STYLE = '<style>' +
   '.book-toc .toc-sub a:hover{color:var(--gold2)}' +
   '.book-toc .toc-chapter{margin:14px 0}' +
   /* .content-wrap p из каркаса задаёт свой margin — перебиваем более точным селектором */
-  '.content-wrap .toc-test{margin:0 0 34px}' +
-  '.toc-test .btn-order{display:inline-block;border:1px solid var(--gold2);border-radius:10px;padding:13px 24px;text-decoration:none;color:var(--gold2)}' +
-  '.toc-test .btn-order:hover{background:var(--gold-bg)}' +
-  '@media(max-width:600px){.toc-test .btn-order{padding:12px 18px}}' +
+  '.content-wrap .toc-test{margin:0 0 34px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}' +
+  '.toc-test .test-btn{display:inline-block;background:var(--gold);color:var(--bg);border:none;border-radius:8px;padding:13px 26px;' +
+  'font:inherit;font-weight:600;font-size:.95rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;' +
+  'transition:background .2s ease,transform .1s ease}' +
+  '.toc-test .test-btn:hover{background:#f0c050;transform:translateY(-1px)}' +
+  '.toc-test .test-note{color:var(--text2);font-size:.9rem;line-height:1.4}' +
+  '@media(max-width:600px){.toc-test{gap:12px}.toc-test .test-btn{padding:12px 20px;width:100%;text-align:center}}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
@@ -554,7 +557,7 @@ function indexPage(cfg, lang, all, rel, paras) {
     '<p class="sub">' + esc(lang.subtitle || cfg.subtitle || '') + '</p></div>\n' +
     /* ссылка на онлайн-тест книги (cfg.testUrl) — над оглавлением */
     (cfg.testUrl && cfg.testUrl[lang.code]
-      ? '<p class="toc-test"><a class="btn-order" href="' + cfg.testUrl[lang.code] + '">' + esc((UI[lang.ui] || UI.az).test) + '</a></p>\n'
+      ? '<div class="toc-test"><a class="test-btn" href="' + cfg.testUrl[lang.code] + '">' + esc((UI[lang.ui] || UI.az).testBtn) + '</a><span class="test-note">' + esc((UI[lang.ui] || UI.az).test) + '</span></div>\n'
       : '') +
     '<section class="book-toc"><h2 class="toc-title">' + esc(up((UI[lang.ui] || UI.az).toc)) + '</h2>\n      ' + cards + '\n    </section>\n';
   return headHtml(cfg, lang, lang.title, lang.title + ' — ' + (cfg.subtitle || '')) +
