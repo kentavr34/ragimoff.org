@@ -317,7 +317,12 @@ ${alts}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/books/books.css">
+  <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
+  <link rel="stylesheet" href="/books/books.css?v=2">
+  <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
+       перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
+       на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
+  <style>[hidden] { display: none !important; }</style>
 </head>
 <body>
 
@@ -420,7 +425,7 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=6" defer></script>
+  <script src="/books/books.js?v=7" defer></script>
   <script src="/_lang-switch.js?v=7" defer></script>
 </body>
 </html>

@@ -44,6 +44,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ::selection { background: var(--acc); color: #07090E; }
 :focus-visible { outline: 1px solid var(--acc); outline-offset: 3px; }
 
+/* Скрытие атрибутом hidden: браузерное [hidden]{display:none} из UA-таблицы
+   слабее любого авторского правила, а у карточек здесь .card{display:flex},
+   поэтому без явного правила с !important карточки оставались видимыми и
+   фильтр по авторам/поиск «не работали» (атрибут hidden в DOM при этом был). */
+[hidden] { display: none !important; }
+
 body::before {
   content: ''; position: fixed; inset: -20vh auto auto -16vw; width: 70vw; height: 70vw;
   background: radial-gradient(closest-side, rgba(201,169,97,.14), transparent 70%),
