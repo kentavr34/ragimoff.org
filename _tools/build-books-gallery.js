@@ -386,7 +386,7 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=4" defer></script>
+  <script src="/books/books.js?v=5" defer></script>
   <script src="/_lang-switch.js?v=4" defer></script>
 </body>
 </html>

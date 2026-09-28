@@ -40,9 +40,9 @@
   /* ── поиск по книгам (название, автор, год) ── */
   function initSearch() {
     var q = $('#q'); if (!q) return;
-    var cards = $('.card');
+    var cards = $$('.card');
     var count = $('#count');
-    var chips = $('.chip');
+    var chips = $$('.chip');
     var activeAuthor = '';
     var empty = null;
     function run() {
@@ -56,9 +56,9 @@
         if (ok) shown++;
       });
       /* секция автора видна, только если в ней остались карточки */
-      $('.author-sec').forEach(function (h) {
+      $$('.author-sec').forEach(function (h) {
         var g = h.getAttribute('data-author');
-        h.hidden = !$('.card[data-author="' + g + '"]').some(function (c) { return !c.hidden; });
+        h.hidden = !$$('.card[data-author="' + g + '"]').some(function (c) { return !c.hidden; });
       });
       if (count) count.textContent = t('count', '%n kitab').replace('%n', shown);
       var grid = $('.grid');
