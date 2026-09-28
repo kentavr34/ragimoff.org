@@ -38,6 +38,13 @@ function decode(s) {
 function paragraphs(file) {
   const xml = execFileSync('unzip', ['-p', file, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 }).toString('utf8');
   const out = [];
+  /* диапазоны таблиц: абзацы внутри <w:tbl> — ячейки, а не заголовки
+     (в «Вирусе Вины» в таблицах встречаются «ВВЕДЕНИЕ», «РАЗДЕЛ 2» и подобное) */
+  const tables = [];
+  const tre = /<w:tbl>[\s\S]*?<\/w:tbl>/g;
+  let tm;
+  while ((tm = tre.exec(xml)) !== null) tables.push([tm.index, tm.index + tm[0].length]);
+  const inTable = (pos) => tables.some(([a, b]) => pos >= a && pos < b);
   const re = /<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g;
   let m;
   while ((m = re.exec(xml)) !== null) {
@@ -53,7 +60,7 @@ function paragraphs(file) {
     const bold = /<w:b\/>|<w:b w:val="(1|true)"/.test(p);
     const italic = /<w:i\/>|<w:i w:val="(1|true)"/.test(p);
     const sz = +((p.match(/<w:sz w:val="(\d+)"/) || [])[1] || 0);
-    out.push({ text, bold, italic, sz });
+    out.push({ text, bold, italic, sz, tbl: inTable(m.index) });
   }
   return out;
 }
@@ -64,7 +71,17 @@ const RX = {
   /* части: «FƏSİL 1», «ЧАСТЬ I», «PART III».
      ВАЖНО: в AZ-книге глава модели 12 помечена «FƏSİL 12. MÜNASİBƏT MODELİ» —
      это глава, а не часть; отличаем по слову «модель» в строке (modelMark). */
-  part: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
+  part: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s+([IVXLC]+)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
+  /* части в AZ: «I HİSSƏ»; разделы приложения («РАЗДЕЛ 1», «Part 1», «Section 2»,
+     «3-CÜ BÖLMƏ») — главы, а не части */
+  partAz: /^([IVXLC]+)\s+HİSSƏ(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
+  appendixSec: /^(РАЗДЕЛ|SECTION|PART|BÖLMƏ)\s*\d/i,
+  /* интермедии: «ИНТЕРМЕДИЯ ПЕРВАЯ», «FIRST INTERLUDE», «INTERLUDE TWO», «BİRİNCİ İNTERMEDİYA» */
+  intermedia: /^(ИНТЕРМЕДИЯ|INTERLUDE\s+(ONE|TWO|THREE|FOUR)|(FIRST|SECOND|THIRD|FOURTH)\s+INTERLUDE|BİRİNCİ\s+İNTERMEDİYA|İKİNCİ\s+İNTERMEDİYA|ÜÇÜNCÜ\s+İNTERMEDİYA|DÖRDÜNCÜ\s+İNTERMEDİYA)/i,
+  appendix: /^(ПРИЛОЖЕНИЕ|APPENDIX|ƏLAVƏ)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
+  closing: /^(ЗАКЛЮЧИТЕЛЬНОЕ\s+ПОСЛАНИЕ|CLOSING\s+MESSAGE)/i,
+  /* глава AZ: «1-Cİ FƏSİL» — номер впереди */
+  azChapter: /^\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL](?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   modelMark: /MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ|MODEL OF RELATIONSHIPS/i,
   modelChapter: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
   chapter: /^(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter)\s*\d+/,
@@ -138,7 +155,9 @@ function buildChapters(paras) {
       if (isHead && !RX.tocline.test(p.text)) { tocTo = i; break; }
     }
   }
-  const body = paras.slice(tocTo > 0 ? tocTo : 0).filter((p) => !RX.tocline.test(p.text) || p.text.length > 120);
+  const body = paras.slice(tocTo > 0 ? tocTo : 0).filter((p) =>
+    !RX.tocline.test(p.text) || p.text.length > 120 ||
+    /^(ГЛАВА|CHAPTER|BÖLMƏ|BÖLÜM|FƏSİL)\s*([IVXLC]+|\d+)\s*$/i.test(p.text));
 
   /* 1б) если в книге есть оглавление — режем по нему (самый надёжный путь).
      Принимаем результат только если он покрывает большинство названий из
@@ -167,18 +186,22 @@ function buildChapters(paras) {
   /* Маркер главы отдельной строкой: «ГЛАВА 1», «CHAPTER 3», «ЧАСТЬ I»,
      «7-ci bölmə» — за ним обычно идёт заголовок капсом. */
   const BARE = /^(ГЛАВА|CHAPTER|BÖLMƏ|BÖLÜM|FƏSİL)\s*([IVXLC]+|\d+)\s*$/i;
-  const AZNUM = /^\d+\s*[-–]?\s*(ci|cı|cu|cü)\s+bölmə\b/i;
+  const AZNUM = /^\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE](?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i;
   let mergeTitle = false;
 
   body.forEach((p) => {
     const t = p.text;
-    const isPart = RX.part.test(t) && t.length < 120 && !RX.modelMark.test(t);
-    const isBare = BARE.test(t);
-    const isAzNum = AZNUM.test(t) && t.length < 140;
+    const headOk = !p.tbl;                    /* ячейка таблицы заголовком не бывает */
+    const isPart = headOk && (RX.part.test(t) || RX.partAz.test(t)) && t.length < 120 && !RX.modelMark.test(t);
+    const isBare = headOk && BARE.test(t);
+    const isAzNum = headOk && (AZNUM.test(t) || RX.azChapter.test(t)) && t.length < 160;
     /* глава модели, помеченная как часть: «FƏSİL 12. MÜNASİBƏT MODELİ» */
     const isModelCh = RX.modelChapter.test(t) && RX.modelMark.test(t) && t.length < 200;
-    const isCh = (RX.chapter.test(t) || isModelCh) && t.length < 200;
-    const isFront = RX.front.test(t) && t.length < 60;   /* «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА» — да, длинный раздел внутри главы — нет */
+    const isCh = headOk && (RX.chapter.test(t) || isModelCh || RX.appendixSec.test(t) ||
+      RX.intermedia.test(t) || RX.appendix.test(t) || RX.closing.test(t)) && t.length < 200;
+    /* вводные разделы — только в начале книги: «ВВЕДЕНИЕ»/«GİRİŞ» посреди текста
+       (в таблицах, в приложении) главой не становится */
+    const isFront = headOk && RX.front.test(t) && t.length < 60 && !curCh;
     /* разделы, у которых в DOCX нет маркера (задаются в конфиге книги):
        напр. «ШКОЛА МЕТОДОЛОГИИ «ФЕНИКС»», «ПОСЛЕСЛОВИЕ.» */
     const isExtra = EXTRA.some((x) => t.toUpperCase().startsWith(x.toUpperCase())) && t.length < 90;
@@ -190,7 +213,7 @@ function buildChapters(paras) {
        («Вы – Властелин своей судьбы.», «Дорогой читатель.») остаются в тексте главы. */
     if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 && p.bold && p.sz >= 20 &&
         (!curCh.noMerge || (/[A-ZА-ЯƏİÖÜÇŞĞ]/.test(t) && t === t.toUpperCase())) &&
-        !/^\d+[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
+        !/^\d+[.)]/.test(t) && !/^[A-ZА-ЯƏİ]\s*[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
       curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
       return;
     }
@@ -209,7 +232,9 @@ function buildChapters(paras) {
     if (isExtra) { pushCh(t, p); mergeTitle = false; curCh.noMerge = true; return; }
     if (isBare || isAzNum || isCh || isFront || isBigHead) {
       pushCh(t, p);
-      mergeTitle = isBare || isAzNum;   /* следующая строка-капс станет частью названия */
+      /* следующая строка-капс станет частью названия: «ГЛАВА N», «1-Cİ FƏSİL»,
+         а также вводные («ВВЕДЕНИЕ» + «ПАНДЕМИЯ, О КОТОРОЙ МОЛЧАТ») */
+      mergeTitle = isBare || isAzNum || (isFront && t === t.toUpperCase());
       return;
     }
     /* заголовок капсом после голого маркера: «ГЛАВА 1» + «ВИРУС В ГОЛОВЕ…» */
@@ -481,12 +506,13 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 function tocStructure(paras, all) {
   const titles = tocTitles(paras || []);
   if (titles.length < 3) return null;
-  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|PART|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
-  const CHAP = /^(Глава|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat)/i;
+  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|HİSSƏ|PART\s+[IVXLC]+(?![A-Za-z])|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
+  const CHAP = /^(Глава|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|\d+\s*[-–]?\s*(ci|cı|cu|cü)\s+(fəsil|bölmə))/i;
   /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
      (модель «Феникс», школа «Феникс») перепутать страницы */
   const mn = (s) => {
-    const m = String(s).match(/^(BÖLÜM|Bölüm|Bölmə|ГЛАВА|Глава|Раздел|CHAPTER|Chapter)\s*([IVXLC]+|\d+)/i);
+    let m = String(s).match(/^(BÖLÜM|Bölüm|Bölmə|ГЛАВА|Глава|Раздел|CHAPTER|Chapter|Section|Part|FƏSİL|Fəsil)\s*([IVXLC]+|\d+)/i);
+    if (!m) { const a = String(s).match(/^(\d+)\s*[-–]?\s*(?:ci|cı|cu|cü)\s+(fəsil|bölmə)/i); if (a) m = [a[0], a[2], a[1]]; }
     if (!m) return '';
     const fam = /^(BÖLÜM|Bölüm|Bölmə)/i.test(m[1]) ? 'b' : /^Раздел/i.test(m[1]) ? 'r' : /^(ГЛАВА|Глава)/i.test(m[1]) ? 'g' : 'c';
     return fam + m[2].toLowerCase();

@@ -119,7 +119,7 @@ const BOOKS = [
       en: 'Kenan Ragimov · 2024 · AZ RU EN',
     },
     price: '30 ₼',
-    read: null,
+    read: { az: '/books/virus-viny/', ru: '/books/virus-viny/ru/', en: '/books/virus-viny/en/' },
   },
   {
     id: 'schizo',
