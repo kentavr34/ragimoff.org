@@ -32,6 +32,15 @@ function paragraphs(file) {
 /* Блоки: «БЛОК 1. Модель «Лилит» (Вопросы 1–8)» / «BLOK 1. «Lilit» Modeli (Suallar 1–8)» */
 const BLOCK_RX = /^(?:БЛОК|BLOK)\s*(\d+)[.\s]*[^\n]*?«([^»]+)»[^\n]*?\(?(?:Вопросы|Suallar)\s*(\d+)\s*[–-]\s*(\d+)\)?/i;
 const Q_RX = /^(\d{1,3})\.\s+(.{12,})$/;
+/* Раздел описания модели: «1. AD VƏ MƏNA» / «1. НАЗВАНИЕ И ЗНАЧЕНИЕ», до «2. …» */
+const DESC_START = /^1\.\s*(AD VƏ MƏNA|НАЗВАНИЕ И ЗНАЧЕНИЕ)/i;
+const DESC_END = /^2\.\s*(ŞÜAR VƏ İNANCLAR|СЛОГАН И УБЕЖДЕНИЯ)/i;
+/* Сколько предложений брать в краткое описание модели (владелец: 8–10) */
+const DESC_SENTENCES = 9;
+
+function sentences(text) {
+  return String(text).split(/(?<=[.!?…])\s+/).filter((s) => s.trim().length > 3);
+}
 
 function extract(file, lang) {
   const P = paragraphs(file);
@@ -50,7 +59,47 @@ function extract(file, lang) {
       if (n >= cur.from && n <= cur.to) cur.questions.push({ n, text: q[2].trim() });
     }
   });
-  return { lang, file: path.basename(file), blocks };
+
+  /* описания моделей — из глав книги: раздел «1. Название и значение» */
+  let desc = null;
+  const descriptions = {};
+  P.forEach((text) => {
+    const h = text.match(/^(?:BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава)\s*(\d+)\s*[.\s]+(?:MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ)/i);
+    if (h) { desc = { n: +h[1], on: false, text: [] }; return; }
+    if (!desc) return;
+    if (DESC_START.test(text)) { desc.on = true; return; }
+    if (DESC_END.test(text)) { desc.on = false; return; }
+    if (desc.on) desc.text.push(text);
+  });
+  /* собираем по номеру модели (desc.n — номер главы: 1..12) */
+  const byNumber = {};
+  let cur2 = null;
+  P.forEach((text) => {
+    const h = text.match(/^(?:BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава)\s*(\d+)\s*[.\s]+(?:MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ)/i);
+    if (h) { cur2 = { n: +h[1], on: false, parts: [] }; byNumber[cur2.n] = cur2; return; }
+    if (!cur2) return;
+    if (DESC_START.test(text)) { cur2.on = true; return; }
+    if (DESC_END.test(text)) { cur2.on = false; return; }
+    if (cur2.on) cur2.parts.push(text);
+  });
+  Object.values(byNumber).forEach((d) => {
+    const model = blocks[d.n - 1] ? blocks[d.n - 1].model : null;
+    if (!model) return;
+    const out = [];
+    let count = 0;
+    for (const p of d.parts) {
+      const ss = sentences(p);
+      for (const s of ss) {
+        if (count >= DESC_SENTENCES) break;
+        out.push(s.trim());
+        count++;
+      }
+      if (count >= DESC_SENTENCES) break;
+    }
+    if (out.length) descriptions[model] = out.join(' ');
+  });
+
+  return { lang, file: path.basename(file), blocks, descriptions };
 }
 
 const data = {

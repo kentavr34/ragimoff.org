@@ -155,21 +155,20 @@ const CSS = `
   .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
   .t-q{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;margin:0 0 30px;min-height:3.4em}
   .t-opts{display:grid;gap:12px;margin:0 0 34px}
-  .t-opt{display:flex;gap:14px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:12px;padding:15px 18px;font:inherit;text-align:left;cursor:pointer}
-  .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
-  .t-opt.is-on{border-color:var(--gold2);background:var(--gold-bg)}
+  .t-opt{display:flex;gap:14px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:12px;padding:15px 18px;font:inherit;text-align:left;cursor:pointer;
+         transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease}
+  .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+  .t-opt:active{transform:translateY(0)}
+  .t-opt.is-on{border-color:#4ade80;background:rgba(74,222,128,.08)}
+  .t-opt.is-on::after{content:'✓';margin-left:auto;color:#4ade80;font-size:1.15rem;font-weight:700;line-height:1}
   .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.2rem}
   .t-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 34px}
+  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 34px;background:var(--bg2)}
+  .t-desc{margin:16px 0 0;line-height:1.7;color:var(--text);font-size:1rem}
   .t-card__img{display:block;width:100%;height:auto;max-height:340px;object-fit:cover}
   .t-card__body{padding:24px 24px 26px}
   .t-big{font-size:clamp(1.4rem,3vw,1.8rem);margin:6px 0 8px}
   .t-mut{color:var(--text2);font-size:.92rem;margin:0 0 6px}
-  .t-tab{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 34px}
-  .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:10px 12px;text-align:left}
-  .t-tab th{color:var(--text2);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
-  .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
-  .t-tab tr.is-top td{background:var(--gold-bg)}
   [hidden]{display:none !important}
   @media(max-width:600px){
     .t-wrap{padding:calc(var(--hdr,68px) + 20px) 18px 80px}
@@ -189,6 +188,7 @@ function page(code) {
     lang: code,
     blocks: d.blocks.map((b) => ({ model: b.model, count: b.questions.length, questions: b.questions.map((q) => q.text) })),
     levels: Object.entries(levels).map(([k, v]) => ({ strength: +k, model: v[0], maturity: v[1] })),
+    descriptions: d.descriptions || {},
     groups: GROUPS[code],
     chapters,
     images,
@@ -253,14 +253,10 @@ ${scaleRows}
           <p class="t-mut" id="r-maturity"></p>
           <p class="t-mut" id="r-avg"></p>
           <p id="r-group" style="margin:14px 0 0;line-height:1.6"></p>
-          <p style="margin:22px 0 0"><a class="t-btn t-btn--main" id="r-link" href="#">${ui.readMore}</a></p>
+          <p class="t-desc" id="r-desc"></p>
+          <p style="margin:24px 0 0"><a class="t-btn t-btn--main" id="r-link" href="#">${ui.readMore}</a></p>
         </div>
       </div>
-      <h3 class="t-h2">${ui.allTitle}</h3>
-      <table class="t-tab">
-        <thead><tr><th>${ui.level}</th><th>${ui.modelCol}</th><th>${ui.avg}</th></tr></thead>
-        <tbody id="r-table"></tbody>
-      </table>
       <div class="t-actions">
         <button class="t-btn" id="again">${ui.restart}</button>
         <a class="t-btn" href="${BOOK[code]}">${ui.toBook}</a>
@@ -298,7 +294,12 @@ ${scaleRows}
         var b = document.createElement('button');
         b.className = 't-opt' + (answers[idx] === i + 1 ? ' is-on' : '');
         b.innerHTML = '<b>' + (i + 1) + '</b><span>' + label + '</span>';
-        b.addEventListener('click', function () { answers[idx] = i + 1; next(); });
+        b.addEventListener('click', function () {
+          answers[idx] = i + 1;
+          Array.prototype.forEach.call(opts.querySelectorAll('.t-opt'), function (x) { x.classList.remove('is-on'); });
+          b.classList.add('is-on');                 /* зелёная галочка — подтверждение выбора */
+          setTimeout(next, 420);                    /* успевает увидеть галочку */
+        });
         opts.appendChild(b);
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -327,11 +328,8 @@ ${scaleRows}
       else { img.hidden = true; img.removeAttribute('src'); }
       var link = document.getElementById('r-link');
       link.href = D.chapters[top.model] || D.book;
-      var tb = document.getElementById('r-table');
-      tb.innerHTML = rows.map(function (r) {
-        var cls = r.model === top.model ? ' class="is-top"' : '';
-        return '<tr' + cls + '><td class="t-avg">' + r.strength + '</td><td>' + r.model + '</td><td class="t-avg">' + r.avg.toFixed(2) + '</td></tr>';
-      }).join('');
+      var dsc = document.getElementById('r-desc');
+      dsc.textContent = D.descriptions[top.model] || '';
       quiz.hidden = true; res.hidden = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
