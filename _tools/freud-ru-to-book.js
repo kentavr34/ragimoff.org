@@ -113,17 +113,22 @@ function srcFile(dir, id) {
   if (!list.length) throw new Error('нет источника ' + id + ' в ' + dir);
   return path.join(dir, list[0]);
 }
-/* часть книги: пост (id) целиком либо срез от маркера `from` до `to` */
-function partBlocks(id, from, to) {
+/* часть книги: пост (id) целиком либо срез от маркера `from` до `to`.
+   `ex` — маркеры-заголовки, совпадающие с блоком ЦЕЛИКОМ («I.», «II.» — иначе
+   строка «I.» поймала бы любой абзац, начинающийся с «I.»); сам маркер в тело
+   не идёт — он становится заголовком главы. */
+function partBlocks(id, from, to, ex) {
   const blocks = mdBlocks(srcFile(path.join(SRC, 'content/books_full_texts'), id));
   /* маркеры сверяем по нормализованному тексту: в источнике узкие/неразрывные пробелы */
   const head = (b) => b.replace(/[\u00a0\u2009\u202f]/g, ' ').replace(/\s+/g, ' ').replace(/[\s*]+$/, '').trim();
-  const at = (marker) => {
-    const i = blocks.findIndex((b) => head(b).startsWith(marker));
+  const at = (marker, exact) => {
+    const i = blocks.findIndex((b) => (exact ? head(b) === marker : head(b).startsWith(marker)));
     if (i < 0) throw new Error('маркер не найден: ' + marker);
     return i;
   };
-  return blocks.slice(from ? at(from) : 0, to ? at(to) : blocks.length);
+  const fromI = from ? at(from, !!(ex && ex.from)) : 0;
+  const toI = to ? at(to, !!(ex && ex.to)) : blocks.length;
+  return blocks.slice(from && ex && ex.from ? fromI + 1 : fromI, toI);
 }
 
 /* ─────────────────────────── источник: письма Марте Бернайс ─────────────────────────── */
@@ -186,6 +191,28 @@ const BOOKS = [
     intro: 'Первое издание — 1882–1886', ruYear: '1882–1886',
     letters: true,
     chapters: [{ slug: 'o-pismah', title: 'Письма Марте Бернайс (1882–1886)', short: 'Предисловие', src: { id: '7020' } }]
+  },
+  {
+    /* «Недовольство культурой» (Das Unbehagen in der Kultur, 1930).
+       Русский текст — зеркало freudproject.ru, пост 818 (пер. А.М. Руткевич).
+       Азербайджанского издания в архиве нет → книга выходит только на русском
+       (ruOnly): переключатель языка не показываем, hreflang az не объявляем.
+       Главы в источнике — римские номера отдельными абзацами («I.» … «VIII.»):
+       маркеры сверяются целиком (ex), иначе «I.» поймал бы любой абзац с «I.». */
+    slug: 'freud-medeniyyetin-sancilari', logo: 'MS', year: YEAR,
+    ruTitle: 'Недовольство культурой', ruSubtitle: 'Зигмунд Фрейд', ruAuthor: 'Зигмунд Фрейд',
+    intro: 'Первое издание — 1930', ruYear: '1930',
+    ruOnly: true,
+    chapters: [
+      { slug: 'glava-i', title: 'I', src: { id: '818', from: 'I.', to: 'II.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-ii', title: 'II', src: { id: '818', from: 'II.', to: 'III.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-iii', title: 'III', src: { id: '818', from: 'III.', to: 'IV.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-iv', title: 'IV', src: { id: '818', from: 'IV.', to: 'V.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-v', title: 'V', src: { id: '818', from: 'V.', to: 'VI.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-vi', title: 'VI', src: { id: '818', from: 'VI.', to: 'VII.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-vii', title: 'VII', src: { id: '818', from: 'VII.', to: 'VIII.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-viii', title: 'VIII', src: { id: '818', from: 'VIII.', ex: { from: true } }, heads: [] }
+    ]
   }
 ];
 
@@ -225,14 +252,22 @@ const TOC_STYLE = '<style>' +
 function headHtml(b, href, title, desc, css) {
   const azUrl = 'https://ragimoff.org/books/' + b.slug + '/' + (href ? href : '');
   const ruUrl = 'https://ragimoff.org/books/' + b.slug + '/ru/' + (href ? href : '');
-  const alt = '  <link rel="canonical" href="' + ruUrl + '" />\n\n' +
-    '  <link rel="alternate" hreflang="az" href="' + azUrl + '" />\n\n' +
-    '  <link rel="alternate" hreflang="ru" href="' + ruUrl + '" />\n\n' +
-    '  <link rel="alternate" hreflang="x-default" href="' + azUrl + '" />';
+  /* книга только на русском (азербайджанского издания нет): az-адрес и hreflang az не объявляем —
+     иначе переключатель предлагал бы несуществующую страницу, а alternate врал бы поисковику */
+  const alt = b.ruOnly
+    ? '  <link rel="canonical" href="' + ruUrl + '" />\n\n' +
+      '  <link rel="alternate" hreflang="ru" href="' + ruUrl + '" />\n\n' +
+      '  <link rel="alternate" hreflang="x-default" href="' + ruUrl + '" />'
+    : '  <link rel="canonical" href="' + ruUrl + '" />\n\n' +
+      '  <link rel="alternate" hreflang="az" href="' + azUrl + '" />\n\n' +
+      '  <link rel="alternate" hreflang="ru" href="' + ruUrl + '" />\n\n' +
+      '  <link rel="alternate" hreflang="x-default" href="' + azUrl + '" />';
   return TPL.head
     .replace('<html lang="az">',
-      '<html data-langs="az,ru" data-lang-url-az="/books/' + b.slug + '/" data-lang-url-ru="/books/' + b.slug + '/ru/" ' +
-      'data-lang-avail="az ru" lang="ru">')
+      '<html data-langs="' + (b.ruOnly ? 'ru' : 'az,ru') + '" ' +
+      (b.ruOnly ? '' : 'data-lang-url-az="/books/' + b.slug + '/" ') +
+      'data-lang-url-ru="/books/' + b.slug + '/ru/" ' +
+      'data-lang-avail="' + (b.ruOnly ? 'ru' : 'az ru') + '" lang="ru">')
     .replace('<link rel="stylesheet" href="style.css">', '<link rel="stylesheet" href="' + (css || 'style.css') + '">')
     .replace(/<title>[\s\S]*?<\/title>/, '<title>' + esc(title) + ' | ' + esc(up(b.ruTitle)) + '</title>')
     .replace(/<meta name="description" content="[^"]*"/, '<meta name="description" content="' + esc(desc) + '"')
@@ -251,7 +286,8 @@ function bodyTop(b) {
     .replace(/<a href="https:\/\/ragimoff\.org" class="hdr-back"[^>]*>/, '<a href="https://ragimoff.org/ru/" class="hdr-back" title="Вернуться на главную сайта">')
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(up(b.ruTitle)) + '</strong>')
     .replace(/<small>[^<]*<\/small>/, '<small>' + esc(b.ruAuthor) + ' · ' + (b.ruYear || b.year) + '</small>')
-    .replace('data-lang-switch', 'data-lang-switch data-langs="az,ru" data-lang-avail="az ru"')
+    .replace('data-lang-switch', 'data-lang-switch data-langs="' + (b.ruOnly ? 'ru' : 'az,ru') +
+      '" data-lang-avail="' + (b.ruOnly ? 'ru' : 'az ru') + '"')
     .replace('src="/_lang-switch.js"', 'src="/_lang-switch.js?v=' + LSV + '"');
 }
 
@@ -316,7 +352,7 @@ function buildChapters(b) {
       const r = clean(cut > 0 ? blocks.slice(0, cut) : blocks, []);
       list.push({ slug: c.slug, title: c.title, short: c.short, parts: r });
     } else {
-      const r = clean(partBlocks(c.src.id, c.src.from, c.src.to), c.heads, { dropRoman: true });
+      const r = clean(partBlocks(c.src.id, c.src.from, c.src.to, c.src.ex), c.heads, { dropRoman: !c.src.ex });
       list.push({ slug: c.slug, title: c.title, short: c.short, parts: r });
     }
   });
@@ -363,9 +399,17 @@ function patchAz(slug, ru) {
 }
 
 /* ─────────────────────────── запуск ─────────────────────────── */
+/* node _tools/freud-ru-to-book.js [slug …] — без аргументов собираются все книги,
+   с аргументами — только перечисленные (чтобы не переписывать уже опубликованные). */
+
+const only = process.argv.slice(2).filter((x) => !x.startsWith('-'));
+const WANTED = only.length ? BOOKS.filter((b) => only.includes(b.slug)) : BOOKS;
+if (only.length && WANTED.length !== only.length) {
+  throw new Error('неизвестный slug: ' + only.filter((s) => !BOOKS.some((b) => b.slug === s)).join(', '));
+}
 
 let pages = 0;
-BOOKS.forEach((b) => {
+WANTED.forEach((b) => {
   const style = path.join(ROOT, 'klinik-psixiatriya', 'style.css');
   const dir = path.join(ROOT, 'books', b.slug, 'ru');
   const list = buildChapters(b);
@@ -381,8 +425,11 @@ BOOKS.forEach((b) => {
   pages++;
   console.log(b.slug + ': глав ' + list.length + ' → books/' + b.slug + '/ru/');
 });
-/* AZ-страницы: у трёх книг появляется русская версия, у двух — только AZ */
-BOOKS.forEach((b) => console.log('AZ ' + b.slug + ': страниц обновлено ' + patchAz(b.slug, true)));
-['freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'].forEach((s) =>
-  console.log('AZ ' + s + ': страниц обновлено ' + patchAz(s, false)));
+/* AZ-страницы: у трёх книг появляется русская версия, у двух — только AZ.
+   Книга только с русской версией (ruOnly) AZ-страниц не имеет — пропускаем. */
+WANTED.filter((b) => !b.ruOnly).forEach((b) => console.log('AZ ' + b.slug + ': страниц обновлено ' + patchAz(b.slug, true)));
+if (!only.length) {
+  ['freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'].forEach((s) =>
+    console.log('AZ ' + s + ': страниц обновлено ' + patchAz(s, false)));
+}
 console.log('всего страниц:', pages);

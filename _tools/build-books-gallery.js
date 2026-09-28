@@ -269,6 +269,29 @@ const BOOKS = [
     langs: ['az'],                                /* русской версии нет — есть только AZ */
     read: { az: '/books/freud-aforizmlar/', ru: null, en: null },
   },
+  {
+    /* «Недовольство культурой» (Das Unbehagen in der Kultur, 1930).
+       Текст есть только на русском (зеркало freudproject.ru, пост 818,
+       пер. А.М. Руткевич); азербайджанское издание «Mədəniyyətin sancıları»
+       («Alatoran», пер. Rüstəm Ayaks) в архив не попало — AZ-версии пока нет,
+       поэтому langs: ['ru'] и «читать» ведёт в русскую версию с любой языковой
+       страницы галереи (как freud-aforizmlar ведёт в AZ из ru/en). */
+    id: 'freud-medeniyyetin-sancilari',
+    authorKey: 'freud',
+    cover: 'freud-medeniyyetin-sancilari.jpg',
+    coverTitle: { az: 'Mədəniyyətin<br>sancıları', ru: 'Недовольство<br>культурой', en: 'Civilization and<br>Its Discontents' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1930',
+    title: { az: 'Mədəniyyətin sancıları', ru: 'Недовольство культурой', en: 'Civilization and Its Discontents' },
+    meta: {
+      az: 'Ziqmund Freyd · 1930 · RU',
+      ru: 'Зигмунд Фрейд · 1930 · RU',
+      en: 'Sigmund Freud · 1930 · RU',
+    },
+    price: null,                                  /* только чтение, без заказа */
+    langs: ['ru'],                                /* азербайджанской версии нет — только RU */
+    read: { az: null, ru: '/books/freud-medeniyyetin-sancilari/ru/', en: null },
+  },
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -335,7 +358,7 @@ ${alts}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=3">
+  <link rel="stylesheet" href="/books/books.css?v=4">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -442,8 +465,8 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=8" defer></script>
-  <script src="/_lang-switch.js?v=8" defer></script>
+  <script src="/books/books.js?v=9" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
 </body>
 </html>
 `;

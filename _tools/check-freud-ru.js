@@ -12,6 +12,10 @@ const ROOT = path.resolve(__dirname, '..');
 const RU_BOOKS = ['freud-musa', 'freud-seksualligin-psixologiyasi', 'freud-sevgi-mektublari',
   'freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'];   /* у всех пяти есть русская версия */
 const AZ_ONLY = [];
+/* русская версия есть, азербайджанского издания нет: языковая пара не объявляется —
+   ни data-lang-url-az, ни hreflang az, ни AZ-страниц у книги быть не должно,
+   доступный язык один (data-lang-avail="ru" — переключатель скрывает сам скрипт) */
+const RU_ONLY = ['freud-medeniyyetin-sancilari'];
 let bad = 0, links = 0;
 const fail = (m) => { console.log('  БИТО: ' + m); bad++; };
 
@@ -88,6 +92,33 @@ AZ_ONLY.forEach((slug) => {
   if (fs.existsSync(path.join(ROOT, 'books', slug, 'ru'))) fail(slug + ': неожиданная папка ru');
 });
 
+RU_ONLY.forEach((slug) => {
+  const dir = path.join(ROOT, 'books', slug, 'ru');
+  const index = checkFile(path.join(dir, 'index.html'), dir);
+  const toc = [...index.matchAll(/<a href="([^"]+)\/index\.html" class="toc-chapter-title"/g)].map((m) => m[1]);
+  const dirs = fs.readdirSync(dir).filter((f) => fs.statSync(path.join(dir, f)).isDirectory());
+  console.log('# ' + slug + ' (только ru): глав в оглавлении ' + toc.length + ' | папок глав ' + dirs.length);
+  if (toc.length !== dirs.length) fail('число глав ' + toc.length + ' ≠ папок ' + dirs.length);
+  toc.forEach((t) => {
+    const f = path.join(dir, t, 'index.html');
+    if (!fs.existsSync(f)) { fail('нет главы ' + t + '/index.html'); return; }
+    const html = checkFile(f, dir);
+    const sb = (html.match(/<aside class="sidebar"[\s\S]*?<\/aside>/) || [''])[0];
+    const sbN = (sb.match(/nav-sub-link/g) || []).length;
+    if (sbN !== toc.length) fail(t + ': в сайдбаре ' + sbN + ' глав, в оглавлении ' + toc.length);
+    if (!/class="d-nav"/.test(html)) fail(t + ': нет нижней навигации');
+    if (/data-lang-url-az/.test(html)) fail(t + ': лишний data-lang-url-az (AZ-версии нет)');
+    if (!/data-lang-avail="ru"/.test(html)) fail(t + ': нет data-lang-avail="ru"');
+    if (!/hreflang="ru"/.test(html)) fail(t + ': нет hreflang ru');
+    if (/hreflang="az"/.test(html)) fail(t + ': лишний hreflang az (AZ-версии нет)');
+  });
+  if (!/data-lang-avail="ru"/.test(index)) fail('index.html: нет data-lang-avail="ru"');
+  if (/data-lang-url-az/.test(index)) fail('index.html: лишний data-lang-url-az');
+  /* AZ-страницы у книги быть не должно: адрес /books/<slug>/ не существует */
+  if (fs.existsSync(path.join(ROOT, 'books', slug, 'index.html')))
+    fail(slug + ': есть корневой index.html, хотя AZ-версии нет');
+});
+
 /* галерея: ссылки «читать» ведут на существующие версии */
 ['index.html', 'ru/index.html', 'en/index.html'].forEach((rel) => {
   const f = path.join(ROOT, 'books', rel);
@@ -96,6 +127,9 @@ AZ_ONLY.forEach((slug) => {
     const p = path.join(ROOT, u.replace(/^\//, ''), 'index.html');
     if (!fs.existsSync(p)) fail('галерея books/' + rel + ' → ' + u);
   });
+  /* карточки новых книг: data-author="freud" у каждой карточки Фрейда */
+  const cred = [...h.matchAll(/<article class="card" data-author="([^"]+)"[^>]*data-title="([^"]*)"/g)];
+  if (!cred.some((m) => m[1] === 'freud')) fail('галерея books/' + rel + ': нет карточек Фрейда');
 });
 
 console.log('\nпроверено ссылок: ' + links + ' | проблем: ' + bad);

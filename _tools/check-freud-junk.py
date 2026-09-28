@@ -6,7 +6,8 @@ import os, re, sys
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 BOOKS = ['freud-musa', 'freud-yuxularin-yozumu', 'freud-seksualligin-psixologiyasi',
-         'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar']
+         'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar',
+         'freud-medeniyyetin-sancilari']
 
 PATTERNS = [
     (r'^ISBN', 'ISBN'), (r'^İSBN', 'İSBN'), (r'^©', 'копирайт'), (r'^\(c\)', '(c)'),

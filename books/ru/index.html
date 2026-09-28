@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=3">
+  <link rel="stylesheet" href="/books/books.css?v=4">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -51,7 +51,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
           <input type="search" id="q" placeholder="Поиск по названию, автору или году…" aria-label="Поиск книг" autocomplete="off">
         </label>
-        <span class="count" id="count">10 книг</span>
+        <span class="count" id="count">11 книг</span>
       </div>
 
       <div class="afilter" id="afilter">
@@ -214,6 +214,20 @@
           </div>
         </article>
 
+        <article class="card" data-author="freud" data-title="Недовольство культурой">
+          <a class="card__cover" href="/books/freud-medeniyyetin-sancilari/ru/">
+<div class="cover" style="--tex:url('/books/covers/freud-medeniyyetin-sancilari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Недовольство<br>культурой</span><span class="cover__year">1930</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Недовольство культурой</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1930 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-medeniyyetin-sancilari/ru/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -258,6 +272,7 @@
             <option value="Три очерка по теории сексуальности · null">Три очерка по теории сексуальности — null</option>
             <option value="Письма Марте Бернайс (1882–1886) · null">Письма Марте Бернайс (1882–1886) — null</option>
             <option value="Афоризмы · null">Афоризмы — null</option>
+            <option value="Недовольство культурой · null">Недовольство культурой — null</option>
           </select>
         </label>
         <label class="field">
@@ -279,7 +294,7 @@
   <script>
     window.__booksUI = {"sending":"Отправляем…","submit":"Заказать","fill":"Пожалуйста, укажите имя и телефон.","empty":"Ничего не найдено","count":"%n книг"};
   </script>
-  <script src="/books/books.js?v=8" defer></script>
-  <script src="/_lang-switch.js?v=8" defer></script>
+  <script src="/books/books.js?v=9" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
 </body>
 </html>

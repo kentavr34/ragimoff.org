@@ -6,6 +6,8 @@
      на существующие файлы (0 битых);
    • число пунктов TOC = число файлов глав;
    • языковые атрибуты (data-lang-url-*, data-lang-avail) и версии ?v=.
+   Плюс RU_ONLY — книги, у которых есть только русская версия (AZ-издания нет):
+   у них нет data-lang-url-az и переключателя языков (data-lang-avail="ru").
    Запуск: node _tools/check-freud-book.js
    ===================================================================== */
 const fs = require('fs');
@@ -14,6 +16,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const ALL = ['freud-musa', 'freud-yuxularin-yozumu', 'freud-seksualligin-psixologiyasi',
   'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar'];
+const RU_ONLY = ['freud-medeniyyetin-sancilari'];
 
 /* тот же список мусора, что в _tools/freud-az-book.js */
 const JUNK = [
@@ -72,6 +75,48 @@ ALL.forEach((slug) => {
     if (!/data-lang-avail="/.test(htmlTag)) fail(slug + '/' + f + ': нет data-lang-avail');
     if (!/\/_lang-switch\.js\?v=\d+/.test(html)) fail(slug + '/' + f + ': _lang-switch.js без ?v=');
   });
+});
+
+/* книги только на русском: AZ-издания нет → data-lang-url-az быть не должно,
+   доступный язык один (data-lang-avail="ru") — переключатель скрывается сам */
+RU_ONLY.forEach((slug) => {
+  const dir = path.join(ROOT, 'books', slug, 'ru');
+  const index = fs.readFileSync(path.join(dir, 'index.html'), 'utf8');
+  const toc = [...index.matchAll(/<a href="([^"]+)\/index\.html" class="toc-chapter-title"/g)].map((m) => m[1]);
+  const dirs = fs.readdirSync(dir).filter((f) => fs.statSync(path.join(dir, f)).isDirectory());
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.html')).sort();
+  console.log('# ' + slug + ' (только ru): файлов ' + files.length + ', пунктов TOC ' + toc.length + ', папок глав ' + dirs.length);
+  if (toc.length !== dirs.length) fail(slug + ': число глав ' + toc.length + ' ≠ папок ' + dirs.length);
+  toc.forEach((t) => {
+    const p = path.join(dir, t, 'index.html');
+    if (!fs.existsSync(p)) { fail(slug + ': нет главы ' + t + '/index.html'); return; }
+    const html = fs.readFileSync(p, 'utf8');
+    const sb = (html.match(/<aside class="sidebar"[\s\S]*?<\/aside>/) || [''])[0];
+    if ((sb.match(/nav-sub-link/g) || []).length !== toc.length)
+      fail(t + ': в сайдбаре ' + (sb.match(/nav-sub-link/g) || []).length + ' глав, в оглавлении ' + toc.length);
+    if (!/class="d-nav"/.test(html)) fail(t + ': нет нижней навигации');
+    if (/data-lang-url-az/.test(html)) fail(t + ': лишний data-lang-url-az (AZ-версии нет)');
+    if (!/data-lang-avail="ru"/.test(html)) fail(t + ': нет data-lang-avail="ru"');
+    if (!/hreflang="ru"/.test(html)) fail(t + ': нет hreflang ru');
+  });
+  files.forEach((f) => {
+    const html = fs.readFileSync(path.join(dir, f), 'utf8');
+    pages++;
+    const paras = [...html.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
+    const junk = paras.filter((p) => JUNK.some((re) => re.test(p)));
+    if (junk.length) {
+      junkTotal += junk.length;
+      fail(slug + '/ru/' + f + ': мусор ' + junk.length + ' абз., напр. «' + junk[0].slice(0, 70) + '»');
+    }
+    [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1])
+      .filter((h) => !/^(https?:|mailto:|#|javascript:|\/)/.test(h))
+      .forEach((h) => {
+        const p = path.resolve(path.join(dir, f === 'index.html' ? '' : f), h);
+        if (!fs.existsSync(p) && !fs.existsSync(path.join(p, 'index.html'))) fail(slug + '/ru/' + f + ' → ' + h);
+      });
+  });
+  if (!/data-lang-avail="ru"/.test(index)) fail('index.html: нет data-lang-avail="ru"');
+  if (/data-lang-url-az/.test(index)) fail('index.html: лишний data-lang-url-az');
 });
 
 console.log('\nИтого страниц проверено: ' + pages);
