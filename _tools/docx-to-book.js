@@ -408,7 +408,8 @@ const TOC_STYLE = '<style>' +
   '.book-toc .toc-sub a{color:inherit;text-decoration:none}' +
   '.book-toc .toc-sub a:hover{color:var(--gold2)}' +
   '.book-toc .toc-chapter{margin:14px 0}' +
-  '.toc-test{margin:0 0 34px}' +
+  /* .content-wrap p из каркаса задаёт свой margin — перебиваем более точным селектором */
+  '.content-wrap .toc-test{margin:0 0 34px}' +
   '.toc-test .btn-order{display:inline-block;border:1px solid var(--gold2);border-radius:10px;padding:13px 24px;text-decoration:none;color:var(--gold2)}' +
   '.toc-test .btn-order:hover{background:var(--gold-bg)}' +
   '@media(max-width:600px){.toc-test .btn-order{padding:12px 18px}}' +
