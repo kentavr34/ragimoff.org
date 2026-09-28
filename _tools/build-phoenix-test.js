@@ -64,7 +64,7 @@ const CHAPTER = {
     'Geyşa': '/books/phoenix-era/06-geysa.html', 'Məşuqə': '/books/phoenix-era/07-mesuqe.html', Kurtizan: '/books/phoenix-era/08-kurti-zan.html',
     Tereza: '/books/phoenix-era/09-tereza.html', 'İnfanta': '/books/phoenix-era/10-i-nfanta.html', Sinderella: '/books/phoenix-era/11-si-nderella.html',
     'Dilənçi': '/books/phoenix-era/12-di-lenci.html', 'Buqələmun': '/books/phoenix-era/13-bolum-11-munasi-bet-modeli-buqelemun.html',
-    Feniks: '/books/phoenix-era/',
+    Feniks: '/books/phoenix-era/14-fesi-l-12-munasi-bet-modeli-feni-ks-yolun-.html',
   },
   ru: {
     'Лилит': '/books/phoenix-era/ru/03-glava-3.html', 'Путана': '/books/phoenix-era/ru/04-glava-4.html', 'Хиппи': '/books/phoenix-era/ru/05-glava-5.html',

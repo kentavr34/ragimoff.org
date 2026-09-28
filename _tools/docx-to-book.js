@@ -61,8 +61,12 @@ function paragraphs(file) {
 /* ─────────── распознавание структуры ─────────── */
 const RX = {
   tocStart: /^(MÜNDƏRİCAT|СОДЕРЖАНИЕ|CONTENTS|İÇİNDƏKİLƏR)$/i,
-  /* части: «FƏSİL 1», «ЧАСТЬ I», «PART III» */
+  /* части: «FƏSİL 1», «ЧАСТЬ I», «PART III».
+     ВАЖНО: в AZ-книге глава модели 12 помечена «FƏSİL 12. MÜNASİBƏT MODELİ» —
+     это глава, а не часть; отличаем по слову «модель» в строке (modelMark). */
   part: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
+  modelMark: /MÜNASİBƏT MODELİ|МОДЕЛЬ ВЗАИМООТНОШЕНИЙ|MODEL OF RELATIONSHIPS/i,
+  modelChapter: /^(FƏSİL|FƏSIL|ЧАСТЬ|PART)\s*([IVXLC]+|\d+)\b/i,
   chapter: /^(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter)\s*\d+/,
   /* вводные разделы: «GİRİŞ», «ВВЕДЕНИЕ», а также «GİRİŞ. MÜƏLLİFDƏN MÜRACİƏT»,
      «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА». ВАЖНО: \b в JS не работает с кириллицей —
@@ -167,10 +171,12 @@ function buildChapters(paras) {
 
   body.forEach((p) => {
     const t = p.text;
-    const isPart = RX.part.test(t) && t.length < 120;
+    const isPart = RX.part.test(t) && t.length < 120 && !RX.modelMark.test(t);
     const isBare = BARE.test(t);
     const isAzNum = AZNUM.test(t) && t.length < 140;
-    const isCh = RX.chapter.test(t) && t.length < 200;
+    /* глава модели, помеченная как часть: «FƏSİL 12. MÜNASİBƏT MODELİ» */
+    const isModelCh = RX.modelChapter.test(t) && RX.modelMark.test(t) && t.length < 200;
+    const isCh = (RX.chapter.test(t) || isModelCh) && t.length < 200;
     const isFront = RX.front.test(t) && t.length < 60;   /* «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА» — да, длинный раздел внутри главы — нет */
     /* разделы, у которых в DOCX нет маркера (задаются в конфиге книги):
        напр. «ШКОЛА МЕТОДОЛОГИИ «ФЕНИКС»», «ПОСЛЕСЛОВИЕ.» */
