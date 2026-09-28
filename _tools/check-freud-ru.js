@@ -1,0 +1,87 @@
+/* =====================================================================
+   _tools/check-freud-ru.js — проверка собранных русских книг Фрейда.
+   Проверяет: все ссылки оглавления/сайдбара/нижней навигации ведут на
+   существующие файлы; число глав = числу страниц глав; языковые адреса
+   (data-lang-url-*) и список доступных языков (data-lang-avail) на RU- и
+   AZ-страницах; canonical/hreflang. Запуск: node _tools/check-freud-ru.js
+   ===================================================================== */
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.resolve(__dirname, '..');
+const RU_BOOKS = ['freud-musa', 'freud-seksualligin-psixologiyasi', 'freud-sevgi-mektublari'];
+const AZ_ONLY = ['freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'];
+let bad = 0, links = 0;
+const fail = (m) => { console.log('  БИТО: ' + m); bad++; };
+
+function hrefs(html) {
+  return [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1])
+    .filter((h) => !/^(https?:|mailto:|#|javascript:|\/$|\/books\/)/.test(h));
+}
+function checkFile(file, dir) {
+  const html = fs.readFileSync(file, 'utf8');
+  hrefs(html).forEach((h) => {
+    const clean = h.split('#')[0];
+    if (!clean) return;
+    if (clean.startsWith('/')) return;                       /* адреса сайта */
+    links++;
+    const p = path.resolve(path.dirname(file), clean);
+    const ok = fs.existsSync(p) || fs.existsSync(path.join(p, 'index.html'));
+    if (!ok) fail(path.relative(ROOT, file) + ' → ' + h);
+  });
+  return html;
+}
+
+RU_BOOKS.forEach((slug) => {
+  const dir = path.join(ROOT, 'books', slug, 'ru');
+  console.log('# ' + slug + ' (ru)');
+  if (!fs.existsSync(dir)) { fail('нет папки ' + path.relative(ROOT, dir)); return; }
+  const index = checkFile(path.join(dir, 'index.html'), dir);
+  const toc = [...index.matchAll(/<a href="([^"]+)\/index\.html" class="toc-chapter-title"/g)].map((m) => m[1]);
+  const dirs = fs.readdirSync(dir).filter((f) => fs.statSync(path.join(dir, f)).isDirectory());
+  console.log('  глав в оглавлении: ' + toc.length + ' | папок глав: ' + dirs.length);
+  if (toc.length !== dirs.length) fail('число глав ' + toc.length + ' ≠ папок ' + dirs.length);
+  toc.forEach((t, i) => {
+    const f = path.join(dir, t, 'index.html');
+    if (!fs.existsSync(f)) { fail('нет главы ' + t + '/index.html'); return; }
+    const html = checkFile(f, dir);
+    /* сайдбар главы = все главы + «Главная»; d-nav — соседи */
+    const sb = (html.match(/<aside class="sidebar"[\s\S]*?<\/aside>/) || [''])[0];
+    const sbN = (sb.match(/nav-sub-link/g) || []).length;
+    if (sbN !== toc.length) fail(t + ': в сайдбаре ' + sbN + ' глав, в оглавлении ' + toc.length);
+    if (!/class="d-nav"/.test(html)) fail(t + ': нет нижней навигации');
+    if (!/data-lang-url-az="\/books\//.test(html) || !/data-lang-url-ru="\/books\//.test(html))
+      fail(t + ': нет data-lang-url-az/ru');
+    if (!/data-lang-avail="az ru"/.test(html)) fail(t + ': нет data-lang-avail="az ru"');
+    if (!/hreflang="ru"/.test(html)) fail(t + ': нет hreflang ru');
+  });
+  if (!/data-lang-avail="az ru"/.test(index)) fail('index.html: нет data-lang-avail');
+  /* AZ-версия этой же книги должна вести в /ru/ */
+  const azDir = path.join(ROOT, 'books', slug);
+  const azIndex = fs.readFileSync(path.join(azDir, 'index.html'), 'utf8');
+  if (!azIndex.includes('data-lang-url-ru="/books/' + slug + '/ru/"'))
+    fail('AZ index.html: неверный data-lang-url-ru');
+  if (!/data-lang-avail="az ru"/.test(azIndex)) fail('AZ index.html: нет data-lang-avail="az ru"');
+});
+
+AZ_ONLY.forEach((slug) => {
+  console.log('# ' + slug + ' (только az)');
+  const f = path.join(ROOT, 'books', slug, 'index.html');
+  const h = fs.readFileSync(f, 'utf8');
+  if (!/data-lang-avail="az"/.test(h)) fail(slug + ': нет data-lang-avail="az"');
+  if (/data-lang-url-ru/.test(h)) fail(slug + ': лишний data-lang-url-ru');
+  if (fs.existsSync(path.join(ROOT, 'books', slug, 'ru'))) fail(slug + ': неожиданная папка ru');
+});
+
+/* галерея: ссылки «читать» ведут на существующие версии */
+['index.html', 'ru/index.html', 'en/index.html'].forEach((rel) => {
+  const f = path.join(ROOT, 'books', rel);
+  const h = fs.readFileSync(f, 'utf8');
+  [...h.matchAll(/class="btn" href="([^"]+)"/g)].map((m) => m[1]).forEach((u) => {
+    const p = path.join(ROOT, u.replace(/^\//, ''), 'index.html');
+    if (!fs.existsSync(p)) fail('галерея books/' + rel + ' → ' + u);
+  });
+});
+
+console.log('\nпроверено ссылок: ' + links + ' | проблем: ' + bad);
+if (bad) process.exitCode = 1;

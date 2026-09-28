@@ -177,19 +177,21 @@ const BOOKS = [
     title: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
     meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
     price: null,                                  /* только чтение, без заказа */
+    langs: ['az'],
     read: { az: '/books/freud-yuxularin-yozumu/', ru: '/books/freud-yuxularin-yozumu/', en: '/books/freud-yuxularin-yozumu/' },
   },
   {
     id: 'freud-musa',
     authorKey: 'freud',
     cover: 'freud-musa.jpg',
-    coverTitle: { az: 'Musa və təkallahlılıq', ru: 'Musa və təkallahlılıq', en: 'Musa və təkallahlılıq' },
+    coverTitle: { az: 'Musa və təkallahlılıq', ru: 'Человек<br>Моисей', en: 'Musa və təkallahlılıq' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
-    title: { az: 'Musa və təkallahlılıq', ru: 'Musa və təkallahlılıq', en: 'Musa və təkallahlılıq' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    title: { az: 'Musa və təkallahlılıq', ru: 'Человек Моисей и монотеистическая религия', en: 'Musa və təkallahlılıq' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
     price: null,                                  /* только чтение, без заказа */
-    read: { az: '/books/freud-musa/', ru: '/books/freud-musa/', en: '/books/freud-musa/' },
+    langs: ['az', 'ru'],                          /* ru — русская версия, en — фолбэк на az */
+    read: { az: '/books/freud-musa/', ru: '/books/freud-musa/ru/', en: null },
   },
   {
     id: 'freud-psixoanalizle-tanishliq',
@@ -201,38 +203,50 @@ const BOOKS = [
     title: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
     meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
     price: null,                                  /* только чтение, без заказа */
+    langs: ['az'],
     read: { az: '/books/freud-psixoanalizle-tanishliq/', ru: '/books/freud-psixoanalizle-tanishliq/', en: '/books/freud-psixoanalizle-tanishliq/' },
   },
   {
     id: 'freud-seksualligin-psixologiyasi',
     authorKey: 'freud',
     cover: 'freud-seksualligin-psixologiyasi.jpg',
-    coverTitle: { az: 'Seksuallığın psixologiyası', ru: 'Seksuallığın psixologiyası', en: 'Seksuallığın psixologiyası' },
+    coverTitle: { az: 'Seksuallığın psixologiyası', ru: 'Три очерка<br>по теории', en: 'Seksuallığın psixologiyası' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
-    title: { az: 'Seksuallığın psixologiyası', ru: 'Seksuallığın psixologiyası', en: 'Seksuallığın psixologiyası' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    title: { az: 'Seksuallığın psixologiyası', ru: 'Три очерка по теории сексуальности', en: 'Seksuallığın psixologiyası' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
     price: null,                                  /* только чтение, без заказа */
-    read: { az: '/books/freud-seksualligin-psixologiyasi/', ru: '/books/freud-seksualligin-psixologiyasi/', en: '/books/freud-seksualligin-psixologiyasi/' },
+    langs: ['az', 'ru'],
+    read: { az: '/books/freud-seksualligin-psixologiyasi/', ru: '/books/freud-seksualligin-psixologiyasi/ru/', en: null },
   },
   {
     id: 'freud-sevgi-mektublari',
     authorKey: 'freud',
     cover: 'freud-sevgi-mektublari.jpg',
-    coverTitle: { az: 'Sevgi məktubları', ru: 'Sevgi məktubları', en: 'Sevgi məktubları' },
+    coverTitle: { az: 'Sevgi məktubları', ru: 'Письма<br>Марте', en: 'Sevgi məktubları' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
-    title: { az: 'Sevgi məktubları', ru: 'Sevgi məktubları', en: 'Sevgi məktubları' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    title: { az: 'Sevgi məktubları', ru: 'Письма Марте Бернайс (1882–1886)', en: 'Sevgi məktubları' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
     price: null,                                  /* только чтение, без заказа */
-    read: { az: '/books/freud-sevgi-mektublari/', ru: '/books/freud-sevgi-mektublari/', en: '/books/freud-sevgi-mektublari/' },
+    langs: ['az', 'ru'],
+    read: { az: '/books/freud-sevgi-mektublari/', ru: '/books/freud-sevgi-mektublari/ru/', en: null },
   },
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+/* «читать» ведёт на версию того же языка; если её нет — на доступную (не битая ссылка) */
+function readFor(book, code) {
+  const r = book.read || {};
+  if (r[code]) return r[code];
+  const langs = book.langs && book.langs.length ? book.langs : ['az'];
+  for (const c of langs) if (r[c]) return r[c];
+  return null;
+}
+
 function card(book, code, ui) {
-  const read = book.read && book.read[code];
+  const read = readFor(book, code);
   const cover = '<div class="cover" style="--tex:url(\'/books/covers/' + book.cover + '\')">' +
     '<span class="cover__frame" aria-hidden="true"></span>' +
     '<span class="cover__author">' + esc(book.coverAuthor[code]) + '</span>' +
@@ -387,7 +401,7 @@ ${options}
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
   <script src="/books/books.js?v=5" defer></script>
-  <script src="/_lang-switch.js?v=4" defer></script>
+  <script src="/_lang-switch.js?v=6" defer></script>
 </body>
 </html>
 `;

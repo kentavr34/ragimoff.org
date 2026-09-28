@@ -14,11 +14,14 @@
     if (path.charAt(path.length - 1) === "/") path += "index.html";
     if (path.charAt(0) === "/") path = path.slice(1);
     var segs = path.split("/");
-    var li = segs.length - 2;
-    var cur = "az";
-    if (li >= 0 && LCODES[segs[li]]) cur = segs[li];
+    /* язык страницы — первый сегмент-код в пути (кроме имени файла):
+       /ru/blog.html, /klinik-psixiatriya/ru/01.html, /books/freud-musa/ru/глава/index.html */
+    var cur = "az", li = -1;
+    for (var i = 0; i < segs.length - 1; i++) {
+      if (LCODES[segs[i]]) { cur = segs[i]; li = i; break; }
+    }
     var base = segs.slice();
-    if (cur !== "az") base.splice(li, 1);
+    if (li >= 0) base.splice(li, 1);
     function urlFor(code) {
       /* страницы книги объявляют адреса языковых версий сами (data-lang-url-<код>):
          слаги глав в языках разные, автоподстановка папки давала 404 */
@@ -56,26 +59,41 @@
 
   var GLOBE = '<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.9 6h-2.6a15.7 15.7 0 00-1.4-3.6A8 8 0 0118.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8 8 0 010-4h3a17.5 17.5 0 000 4h-3zm.8 2h2.6c.4 1.3.9 2.5 1.4 3.6A8 8 0 015.1 16zm2.6-8H5.1a8 8 0 013.9-3.6C8.4 5.5 7.9 6.7 7.7 8zM12 20c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a15.5 15.5 0 010-4h4.6a15.5 15.5 0 010 4zm.6 5.6c.5-1.1 1-2.3 1.4-3.6h2.6a8 8 0 01-4 3.6zM16.7 14a17.5 17.5 0 000-4h3a8 8 0 010 4h-3z"/></svg>';
 
+  function attr(name, host) {
+    /* значение атрибута ищем на хосте, затем на контейнере [data-lang-switch], затем на <html> */
+    if (host && host.getAttribute && host.getAttribute(name)) return host.getAttribute(name);
+    var c = document.querySelector("[data-lang-switch][" + name + "]");
+    if (c) return c.getAttribute(name);
+    return document.documentElement.getAttribute ? document.documentElement.getAttribute(name) : null;
+  }
+
   function allowedLangs(host) {
     /* языки страницы объявляются: на хосте, на контейнере [data-lang-switch]
        (его скрипт прячет) или на <html data-langs="…"> */
-    var a = host && host.getAttribute && host.getAttribute("data-langs");
-    if (!a) {
-      var c = document.querySelector("[data-lang-switch][data-langs]");
-      if (c) a = c.getAttribute("data-langs");
-    }
-    if (!a && document.documentElement.getAttribute) {
-      a = document.documentElement.getAttribute("data-langs");
-    }
+    var a = attr("data-langs", host);
     if (!a) return LANGS;
     var codes = a.split(",").map(function (x) { return x.trim(); });
     var list = LANGS.filter(function (L) { return codes.indexOf(L.code) !== -1; });
     return list.length ? list : LANGS;
   }
 
-  function makeSwitcher(host, info) {
-    var LIST = allowedLangs(host);
-    var cur = LIST.filter(function (L) { return L.code === info.cur; })[0] || LANGS[0];
+  /* какие языковые версии реально есть у страницы: <html data-lang-avail="az ru">
+     (если атрибута нет — считаем доступными все объявленные языки) */
+  function availLangs() {
+    var a = attr("data-lang-avail", null);
+    if (!a) return null;
+    return a.split(/[\s,]+/).map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+
+  function hideAll() {
+    /* языковая версия одна — переключатель не нужен */
+    Array.prototype.forEach.call(document.querySelectorAll("[data-lang-switch]"), function (c) {
+      c.style.display = "none";
+    });
+  }
+
+  function makeSwitcher(host, info, LIST) {
+    var cur = LIST.filter(function (L) { return L.code === info.cur; })[0] || LIST[0];
     var items = LIST.map(function (L) {
       var on = L.code === info.cur;
       return '<a href="' + (on ? "#" : info.urlFor(L.code)) + '"' + (on ? ' class="on" aria-current="page"' : "") + ">" + L.short + "</a>";
@@ -92,16 +110,19 @@
   function render() {
     injectStyle();
     var info = build();
+    var av = availLangs();
+    var LIST = allowedLangs(null).filter(function (L) { return !av || av.indexOf(L.code) !== -1; });
+    if (!LIST.length) LIST = allowedLangs(null);
+    /* доступен один язык — переключать нечего: прячем и оставляем логотип книги */
+    if (LIST.length < 2) { hideAll(); return; }
     var logos = document.querySelectorAll(".hdr-logo");
     if (logos.length) {
       // заменяем бейдж КП на переключатель; скрываем прежний контейнер справа
-      logos.forEach(function (el) { makeSwitcher(el, info); });
-      Array.prototype.forEach.call(document.querySelectorAll("[data-lang-switch]"), function (c) {
-        c.style.display = "none";
-      });
+      logos.forEach(function (el) { makeSwitcher(el, info, LIST); });
+      hideAll();
     } else {
       var host = document.querySelector("[data-lang-switch]");
-      if (host) makeSwitcher(host, info);
+      if (host) makeSwitcher(host, info, LIST);
     }
     document.addEventListener("click", function () {
       Array.prototype.forEach.call(document.querySelectorAll(".lsw.open"), function (x) { x.classList.remove("open"); });
