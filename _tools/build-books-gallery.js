@@ -16,6 +16,9 @@ const UI = {
     title: 'Kitablar — RAGIMOFF',
     desc: 'RAGIMOFF kitabları: Klinik Psixiatriya, Günahkarlıq Virusu, Şizofreniya, Feniks Erası. Elektron oxu və sifariş.',
     h1: 'Kitablar',
+    authors: {"kenan":"Kənan Rəhimov","samira":"Samirə Rüstəmova / Rəhimova","freud":"Ziqmund Freyd"},
+    filterAll: "Bütün müəlliflər",
+    filterLabel: "Müəllif",
     searchPh: 'Ad, müəllif və ya il üzrə axtarış…',
     searchAria: 'Kitab axtarışı',
     count: (n) => n + ' kitab',
@@ -41,6 +44,9 @@ const UI = {
     title: 'Книги — RAGIMOFF',
     desc: 'Книги RAGIMOFF: Клиническая психиатрия, Вирус вины, Шизофрения, Эра Феникса. Чтение онлайн и заказ.',
     h1: 'Книги',
+    authors: {"kenan":"Кенан Рагимов","samira":"Самира Рустамова / Рагимова","freud":"Зигмунд Фрейд"},
+    filterAll: "Все авторы",
+    filterLabel: "Автор",
     searchPh: 'Поиск по названию, автору или году…',
     searchAria: 'Поиск книг',
     count: (n) => n + ' книг',
@@ -66,6 +72,9 @@ const UI = {
     title: 'Books — RAGIMOFF',
     desc: 'RAGIMOFF books: Clinical Psychiatry, The Guilt Virus, Schizophrenia, Phoenix Era. Read online and order.',
     h1: 'Books',
+    authors: {"kenan":"Kenan Ragimov","samira":"Samira Rustamova / Ragimova","freud":"Sigmund Freud"},
+    filterAll: "All authors",
+    filterLabel: "Author",
     searchPh: 'Search by title, author or year…',
     searchAria: 'Search books',
     count: (n) => n + ' books',
@@ -93,6 +102,7 @@ const UI = {
 const BOOKS = [
   {
     id: 'klinik',
+    authorKey: 'kenan',
     cover: 'klinik.jpg',
     coverTitle: { az: 'Klinik<br>Psixiatriya', ru: 'Клиническая<br>психиатрия', en: 'Clinical<br>Psychiatry' },
     coverAuthor: { az: 'KƏNAN RƏHİMOV', ru: 'КЕНАН РАГИМОВ', en: 'KENAN RAGIMOV' },
@@ -108,6 +118,7 @@ const BOOKS = [
   },
   {
     id: 'guilt',
+    authorKey: 'kenan',
     cover: 'guilt.jpg',
     coverTitle: { az: 'Günahkarlıq<br>Virusu', ru: 'Вирус<br>вины', en: 'The Guilt<br>Virus' },
     coverAuthor: { az: 'KƏNAN RƏHİMOV', ru: 'КЕНАН РАГИМОВ', en: 'KENAN RAGIMOV' },
@@ -123,6 +134,7 @@ const BOOKS = [
   },
   {
     id: 'schizo',
+    authorKey: 'kenan',
     cover: 'pandemic.jpg',
     coverTitle: { az: 'Şizofreniya<br>Cinnət Pandemiyası', ru: 'Шизофрения<br>Пандемия безумия', en: 'Schizophrenia<br>A Pandemic of Madness' },
     coverAuthor: { az: 'KƏNAN RƏHİMOV', ru: 'КЕНАН РАГИМОВ', en: 'KENAN RAGIMOV' },
@@ -138,6 +150,7 @@ const BOOKS = [
   },
   {
     id: 'phoenix',
+    authorKey: 'samira',
     cover: 'phoenix.jpg',
     coverTitle: { az: 'Feniks<br>Erası', ru: 'Эра<br>Феникса', en: 'Phoenix<br>Era' },
     coverAuthor: { az: 'SAMİRƏ RÜSTƏMOVA / RƏHİMOVA', ru: 'САМИРА РУСТАМОВА / РАГИМОВА', en: 'SAMIRA RUSTAMOVA / RAGIMOVA' },
@@ -164,7 +177,8 @@ function card(book, code, ui) {
     '<span class="cover__year">' + book.year + '</span>' +
     '</div>';
   const orderValue = book.title[code] + ' · ' + book.price;
-  return '        <article class="card">\n' +
+  const canOrder = !!book.price;                 /* без цены — только чтение */
+  return '        <article class="card" data-author="' + book.authorKey + '" data-title="' + esc(book.title[code]) + '">\n' +
     (read ? '          <a class="card__cover" href="' + read + '">\n' + cover + '\n          </a>\n'
           : '          <div class="card__cover">\n' + cover + '\n          </div>\n') +
     '          <div class="card__body">\n' +
@@ -173,7 +187,7 @@ function card(book, code, ui) {
     '            <p class="card__price">' + esc(book.price) + '</p>\n' +
     '            <div class="card__cta">\n' +
     (read ? '              <a class="btn" href="' + read + '">' + ui.read + ' <span aria-hidden="true">→</span></a>\n' : '') +
-    '              <button class="btn' + (read ? ' btn--ghost' : '') + '" data-order="' + esc(book.title[code]) + '" data-price="' + esc(book.price) + '">' + ui.order + '</button>\n' +
+    (canOrder ? '              <button class="btn' + (read ? ' btn--ghost' : '') + '" data-order="' + esc(book.title[code]) + '" data-price="' + esc(book.price) + '">' + ui.order + '</button>\n' : '') +
     '            </div>\n' +
     '          </div>\n' +
     '        </article>';
@@ -181,7 +195,14 @@ function card(book, code, ui) {
 
 function page(code) {
   const ui = UI[code];
-  const cards = BOOKS.map((b) => card(b, code, ui)).join('\n\n');
+  /* карточки — секциями по авторам */
+  const AUTHOR_ORDER = ['kenan', 'samira', 'freud'];
+  const cards = AUTHOR_ORDER.map((g) => {
+    const list = BOOKS.filter((b) => b.authorKey === g);
+    if (!list.length) return '';
+    return '        <h2 class="author-sec" data-author="' + g + '">' + esc(ui.authors[g]) + '</h2>\n\n' +
+      list.map((b) => card(b, code, ui)).join('\n\n');
+  }).filter(Boolean).join('\n\n');
   const options = BOOKS.map((b) => '            <option value="' + esc(b.title[code] + ' · ' + b.price) + '">' + esc(b.title[code]) + ' — ' + esc(b.price) + '</option>').join('\n');
   const alts = ['az', 'ru', 'en'].map((c) =>
     '  <link rel="alternate" hreflang="' + c + '" href="' + SITE + (c === 'az' ? '/books/' : '/books/' + c + '/') + '">').join('\n');
@@ -232,6 +253,14 @@ ${alts}
           <input type="search" id="q" placeholder="${esc(ui.searchPh)}" aria-label="${esc(ui.searchAria)}" autocomplete="off">
         </label>
         <span class="count" id="count">${ui.count(BOOKS.length)}</span>
+      </div>
+
+      <div class="afilter" id="afilter">
+        <span class="afilter__label">${esc(ui.filterLabel)}</span>
+        <button class="chip is-on" data-author="">${esc(ui.filterAll)}</button>
+        <button class="chip" data-author="kenan">${esc(ui.authors.kenan)}</button>
+        <button class="chip" data-author="samira">${esc(ui.authors.samira)}</button>
+        <button class="chip" data-author="freud">${esc(ui.authors.freud)}</button>
       </div>
 
       <div class="grid">

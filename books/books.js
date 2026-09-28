@@ -40,17 +40,25 @@
   /* ── поиск по книгам (название, автор, год) ── */
   function initSearch() {
     var q = $('#q'); if (!q) return;
-    var cards = $$('.card');
+    var cards = $('.card');
     var count = $('#count');
+    var chips = $('.chip');
+    var activeAuthor = '';
     var empty = null;
     function run() {
       var v = (q.value || '').trim().toLowerCase();
       var shown = 0;
       cards.forEach(function (c) {
+        var okAuthor = !activeAuthor || c.getAttribute('data-author') === activeAuthor;
         var hay = (c.textContent || '').toLowerCase().replace(/\s+/g, ' ');
-        var ok = !v || hay.indexOf(v) !== -1;
+        var ok = (!v || hay.indexOf(v) !== -1) && okAuthor;
         c.hidden = !ok;
         if (ok) shown++;
+      });
+      /* секция автора видна, только если в ней остались карточки */
+      $('.author-sec').forEach(function (h) {
+        var g = h.getAttribute('data-author');
+        h.hidden = !$('.card[data-author="' + g + '"]').some(function (c) { return !c.hidden; });
       });
       if (count) count.textContent = t('count', '%n kitab').replace('%n', shown);
       var grid = $('.grid');
@@ -59,6 +67,13 @@
         empty.hidden = shown !== 0;
       }
     }
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () {
+        activeAuthor = b.getAttribute('data-author') || '';
+        chips.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+        run();
+      });
+    });
     q.addEventListener('input', run);
     run();
   }
