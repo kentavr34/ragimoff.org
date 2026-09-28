@@ -74,6 +74,7 @@ const UI = {
     of: 'sual',
     resultTitle: 'Nəticəniz',
     dominant: 'Dominant model',
+    modelCol: 'Model',
     avg: 'Orta bal',
     level: 'Güc səviyyəsi',
     allTitle: 'Bütün modellər üzrə orta ballar',
@@ -96,6 +97,7 @@ const UI = {
     of: 'вопрос',
     resultTitle: 'Ваш результат',
     dominant: 'Доминирующая модель',
+    modelCol: 'Модель',
     avg: 'Средний балл',
     level: 'Сила архетипа',
     allTitle: 'Средние баллы по всем моделям',
@@ -256,7 +258,7 @@ ${scaleRows}
       </div>
       <h3 class="t-h2">${ui.allTitle}</h3>
       <table class="t-tab">
-        <thead><tr><th>${ui.level}</th><th>${ui.dominant}</th><th>${ui.avg}</th></tr></thead>
+        <thead><tr><th>${ui.level}</th><th>${ui.modelCol}</th><th>${ui.avg}</th></tr></thead>
         <tbody id="r-table"></tbody>
       </table>
       <div class="t-actions">
