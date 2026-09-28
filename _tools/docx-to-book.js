@@ -452,8 +452,8 @@ const TOC_STYLE = '<style>' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
   '@media (max-width:640px){.d-nav .dn-name{display:none}}' +
-  '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}' +
-  '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}' +
+  '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}' +
+  '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
   '</style>';
 

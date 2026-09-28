@@ -291,7 +291,7 @@ table.dh tr:last-child td{padding-bottom:.8rem}
 
 /* ЕДИНАЯ ТИПОГРАФИКА бокового меню (и раскрывающегося overlay) + выравнивание в 2 колонки.
 
-   Только для превью-страниц (EXTRA_CSS в них) — живой сайт не трогаем. */
+   Действует и на живых страницах книг (head шаблона вставляется в каждую страницу). */
 
 .sidebar nav .cls-tabs-side{display:flex;gap:.3rem;padding:.15rem 0 .7rem;margin-bottom:.4rem;border-bottom:1px solid var(--border)}
 
@@ -305,11 +305,13 @@ table.dh tr:last-child td{padding-bottom:.8rem}
 
 .sidebar nav .nav-link.is-bolme{display:grid;grid-template-columns:4.9rem 1fr;gap:.4rem;align-items:baseline;cursor:default;color:var(--text);font-weight:700}
 
-.sidebar nav .nav-sub-link{display:grid;grid-template-columns:3.7rem 1fr;gap:.5rem;align-items:baseline;font-size:.85rem;color:var(--text)}
+.sidebar nav .nav-sub-link{display:grid;grid-template-columns:2.5rem 1fr;gap:.5rem;align-items:baseline;font-size:11px;line-height:1.4;color:var(--text);text-transform:none}
 
-.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:.76rem;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
+.sidebar nav .sub-code{color:var(--gold);font-family:var(--mono,monospace);font-size:10px;font-weight:400;letter-spacing:normal;font-variant-numeric:tabular-nums;min-width:0;background:none !important;padding:0 !important}
 
-.sidebar nav .sub-name{color:var(--text)}
+.sidebar nav .sub-name{color:var(--text);text-transform:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+
+/* Оглавление сайдбара: шрифт и кегль как у кнопки «← Kitablar» (Montserrat 11px/400, letter-spacing:normal). Разделитель столбцов сдвинут влево на 5 мм: 3.7rem -> 2.5rem (59,19 px -> 40 px, -19,19 px = -5,08 мм). Освободившиеся ~19 px ушли в колонку названий (было 167,81 px при сайдбаре 280 px). Длинные названия — 2 строки с многоточием вместо 3-4 строк. */
 
 .sidebar nav .nav-empty .sub-name{color:var(--text3);font-style:italic}
 
@@ -385,7 +387,7 @@ function setCls(k){
 
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/books/freud-sevgi-mektublari/16-vyana-ikinci-gun-20-mart-1884-cu-il.html" />
 
-<style>.home-hero{padding:16px 0 11px}.book-toc{margin:8px auto 36px}.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}.content-wrap .toc-test{margin:0 0 34px}.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}.content-wrap h3.sub{font-size:1rem;font-weight:700;line-height:1.35;margin:1.5rem 0 .5rem;padding:0;border:0;color:var(--text)}.home-hero{padding:4px 0 2px}.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}.home-hero .sub:first-of-type{color:var(--text)}.home-hero .sub.year{font-variant-numeric:tabular-nums}</style></head>
+<style>.home-hero{padding:16px 0 11px}.book-toc{margin:8px auto 36px}.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}.content-wrap .toc-test{margin:0 0 34px}.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}.content-wrap h3.sub{font-size:1rem;font-weight:700;line-height:1.35;margin:1.5rem 0 .5rem;padding:0;border:0;color:var(--text)}.home-hero{padding:4px 0 2px}.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}.home-hero .sub:first-of-type{color:var(--text)}.home-hero .sub.year{font-variant-numeric:tabular-nums}</style></head>
 </head>
 <body>
 
