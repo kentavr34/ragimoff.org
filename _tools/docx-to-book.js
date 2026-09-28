@@ -77,7 +77,7 @@ const RX = {
   partAz: /^([IVXLC]+)\s+HİSSƏ(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   appendixSec: /^(РАЗДЕЛ|SECTION|PART|BÖLMƏ)\s*\d/i,
   /* интермедии: «ИНТЕРМЕДИЯ ПЕРВАЯ», «FIRST INTERLUDE», «INTERLUDE TWO», «BİRİNCİ İNTERMEDİYA» */
-  intermedia: /^(ИНТЕРМЕДИЯ|ИНТЕРМЕЦЦО|ИНТЕРЛЮДИЯ|İNTERMEZZO|İntermezzo|İNTERLÜDİYA|İnterlüd|interlüd|İnterlüd|(BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Birinci|İkinci|Üçüncü|Dördüncü)\s+ara səhnə|ara oyun|INTERMEZZO|Intermezzo|INTERLUDE\s+(ONE|TWO|THREE|FOUR)|(FIRST|SECOND|THIRD|FOURTH)\s+INTERLUDE|BİRİNCİ\s+İNTERMEDİYA|İKİNCİ\s+İNTERMEDİYA|ÜÇÜNCÜ\s+İNTERMEDİYA|DÖRDÜNCÜ\s+İNTERMEDİYA)/i,
+  intermedia: /^(ИНТЕРМЕДИЯ|ИНТЕРМЕЦЦО|ИНТЕРЛЮДИЯ|İNTERMEZZO|İntermezzo|İNTERLÜDİYA|(BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Birinci|İkinci|Üçüncü|Dördüncü)\s+(ara səhnə|ara oyun|interlüd|İnterlüd)|INTERMEZZO|Intermezzo|INTERLUDE\s+(ONE|TWO|THREE|FOUR)|(FIRST|SECOND|THIRD|FOURTH)\s+INTERLUDE|BİRİNCİ\s+İNTERMEDİYA|İKİNCİ\s+İNTERMEDİYA|ÜÇÜNCÜ\s+İNTERMEDİYA|DÖRDÜNCÜ\s+İNTERMEDİYA)/i,
   appendix: /^(ПРИЛОЖЕНИЕ|APPENDIX|ƏLAVƏ)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   closing: /^(ЗАКЛЮЧИТЕЛЬНОЕ\s+ПОСЛАНИЕ|CLOSING\s+MESSAGE)/i,
   /* глава AZ: «1-Cİ FƏSİL» — номер впереди */
