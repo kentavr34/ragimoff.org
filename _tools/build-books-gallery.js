@@ -171,50 +171,66 @@ const BOOKS = [
     id: 'freud-yuxularin-yozumu',
     authorKey: 'freud',
     cover: 'freud-yuxularin-yozumu.jpg',
-    coverTitle: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
+    coverTitle: { az: 'Yuxuların<br>yozumu', ru: 'Толкование<br>сновидений', en: 'The Interpretation<br>of Dreams' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    year: '1900',
+    title: { az: 'Yuxuların yozumu', ru: 'Толкование сновидений', en: 'The Interpretation of Dreams' },
+    meta: {
+      az: 'Ziqmund Freyd · 1900 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1900 · AZ RU',
+      en: 'Sigmund Freud · 1900 · AZ RU',
+    },
     price: null,                                  /* только чтение, без заказа */
-    langs: ['az'],
-    read: { az: '/books/freud-yuxularin-yozumu/', ru: '/books/freud-yuxularin-yozumu/', en: '/books/freud-yuxularin-yozumu/' },
+    langs: ['az', 'ru'],
+    read: { az: '/books/freud-yuxularin-yozumu/', ru: '/books/freud-yuxularin-yozumu/ru/', en: null },
   },
   {
     id: 'freud-musa',
     authorKey: 'freud',
     cover: 'freud-musa.jpg',
-    coverTitle: { az: 'Musa və təkallahlılıq', ru: 'Человек<br>Моисей', en: 'Musa və təkallahlılıq' },
+    coverTitle: { az: 'Musa və<br>təkallahlılıq', ru: 'Человек<br>Моисей', en: 'Moses and<br>Monotheism' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Musa və təkallahlılıq', ru: 'Человек Моисей и монотеистическая религия', en: 'Musa və təkallahlılıq' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
+    year: '1939',
+    title: { az: 'Musa və təkallahlılıq', ru: 'Человек Моисей и монотеистическая религия', en: 'Moses and Monotheism' },
+    meta: {
+      az: 'Ziqmund Freyd · 1939 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1939 · AZ RU',
+      en: 'Sigmund Freud · 1939 · AZ RU',
+    },
     price: null,                                  /* только чтение, без заказа */
-    langs: ['az', 'ru'],                          /* ru — русская версия, en — фолбэк на az */
+    langs: ['az', 'ru'],
     read: { az: '/books/freud-musa/', ru: '/books/freud-musa/ru/', en: null },
   },
   {
     id: 'freud-psixoanalizle-tanishliq',
     authorKey: 'freud',
     cover: 'freud-psixoanalizle-tanishliq.jpg',
-    coverTitle: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
+    coverTitle: { az: 'Psixoanalizlə<br>ilkin tanışlıq', ru: 'Введение<br>в психоанализ', en: 'Introduction<br>to Psychoanalysis' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    year: '1917',
+    title: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Введение в психоанализ. Лекции', en: 'Introduction to Psychoanalysis' },
+    meta: {
+      az: 'Ziqmund Freyd · 1917 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1917 · AZ RU',
+      en: 'Sigmund Freud · 1917 · AZ RU',
+    },
     price: null,                                  /* только чтение, без заказа */
-    langs: ['az'],
-    read: { az: '/books/freud-psixoanalizle-tanishliq/', ru: '/books/freud-psixoanalizle-tanishliq/', en: '/books/freud-psixoanalizle-tanishliq/' },
+    langs: ['az', 'ru'],
+    read: { az: '/books/freud-psixoanalizle-tanishliq/', ru: '/books/freud-psixoanalizle-tanishliq/ru/', en: null },
   },
   {
     id: 'freud-seksualligin-psixologiyasi',
     authorKey: 'freud',
     cover: 'freud-seksualligin-psixologiyasi.jpg',
-    coverTitle: { az: 'Seksuallığın psixologiyası', ru: 'Три очерка<br>по теории', en: 'Seksuallığın psixologiyası' },
+    coverTitle: { az: 'Seksuallığın<br>psixologiyası', ru: 'Три очерка<br>по теории', en: 'Three Essays on<br>Sexual Theory' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Seksuallığın psixologiyası', ru: 'Три очерка по теории сексуальности', en: 'Seksuallığın psixologiyası' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
+    year: '1905',
+    title: { az: 'Seksuallığın psixologiyası', ru: 'Три очерка по теории сексуальности', en: 'Three Essays on the Theory of Sexuality' },
+    meta: {
+      az: 'Ziqmund Freyd · 1905 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1905 · AZ RU',
+      en: 'Sigmund Freud · 1905 · AZ RU',
+    },
     price: null,                                  /* только чтение, без заказа */
     langs: ['az', 'ru'],
     read: { az: '/books/freud-seksualligin-psixologiyasi/', ru: '/books/freud-seksualligin-psixologiyasi/ru/', en: null },
@@ -223,11 +239,15 @@ const BOOKS = [
     id: 'freud-sevgi-mektublari',
     authorKey: 'freud',
     cover: 'freud-sevgi-mektublari.jpg',
-    coverTitle: { az: 'Sevgi məktubları', ru: 'Письма<br>Марте', en: 'Sevgi məktubları' },
+    coverTitle: { az: 'Sevgi<br>məktubları', ru: 'Письма<br>Марте', en: 'Letters to<br>Martha' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Sevgi məktubları', ru: 'Письма Марте Бернайс (1882–1886)', en: 'Sevgi məktubları' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ RU', ru: 'Зигмунд Фрейд · 2026 · AZ RU', en: 'Sigmund Freud · 2026 · AZ RU' },
+    year: '1882–1886',
+    title: { az: 'Sevgi məktubları', ru: 'Письма Марте Бернайс (1882–1886)', en: 'Letters to Martha Bernays (1882–1886)' },
+    meta: {
+      az: 'Ziqmund Freyd · 1882–1886 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1882–1886 · AZ RU',
+      en: 'Sigmund Freud · 1882–1886 · AZ RU',
+    },
     price: null,                                  /* только чтение, без заказа */
     langs: ['az', 'ru'],
     read: { az: '/books/freud-sevgi-mektublari/', ru: '/books/freud-sevgi-mektublari/ru/', en: null },
@@ -400,8 +420,8 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=5" defer></script>
-  <script src="/_lang-switch.js?v=6" defer></script>
+  <script src="/books/books.js?v=6" defer></script>
+  <script src="/_lang-switch.js?v=7" defer></script>
 </body>
 </html>
 `;
