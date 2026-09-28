@@ -177,18 +177,6 @@ const BOOKS = [
     read: { az: '/books/freud-yuxularin-yozumu/', ru: '/books/freud-yuxularin-yozumu/', en: '/books/freud-yuxularin-yozumu/' },
   },
   {
-    id: 'freud-aforizmlar',
-    authorKey: 'freud',
-    cover: 'freud.jpg',
-    coverTitle: { az: 'Aforizmlər', ru: 'Aforizmlər', en: 'Aforizmlər' },
-    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2026',
-    title: { az: 'Aforizmlər', ru: 'Aforizmlər', en: 'Aforizmlər' },
-    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
-    price: null,                                  /* только чтение, без заказа */
-    read: { az: '/books/freud-aforizmlar/', ru: '/books/freud-aforizmlar/', en: '/books/freud-aforizmlar/' },
-  },
-  {
     id: 'freud-musa',
     authorKey: 'freud',
     cover: 'freud.jpg',
