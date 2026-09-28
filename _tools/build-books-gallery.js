@@ -252,6 +252,23 @@ const BOOKS = [
     langs: ['az', 'ru'],
     read: { az: '/books/freud-sevgi-mektublari/', ru: '/books/freud-sevgi-mektublari/ru/', en: null },
   },
+  {
+    id: 'freud-aforizmlar',
+    authorKey: 'freud',
+    cover: 'freud-aforizmlar.jpg',
+    coverTitle: { az: 'Aforizmlər', ru: 'Афоризмы', en: 'Aphorisms' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2014',
+    title: { az: 'Aforizmlər', ru: 'Афоризмы', en: 'Aphorisms' },
+    meta: {
+      az: 'Ziqmund Freyd · 2014 · AZ',
+      ru: 'Зигмунд Фрейд · 2014 · AZ',
+      en: 'Sigmund Freud · 2014 · AZ',
+    },
+    price: null,                                  /* только чтение, без заказа */
+    langs: ['az'],                                /* русской версии нет — есть только AZ */
+    read: { az: '/books/freud-aforizmlar/', ru: null, en: null },
+  },
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -318,7 +335,7 @@ ${alts}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=2">
+  <link rel="stylesheet" href="/books/books.css?v=3">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -425,8 +442,8 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=7" defer></script>
-  <script src="/_lang-switch.js?v=7" defer></script>
+  <script src="/books/books.js?v=8" defer></script>
+  <script src="/_lang-switch.js?v=8" defer></script>
 </body>
 </html>
 `;

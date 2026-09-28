@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=2">
+  <link rel="stylesheet" href="/books/books.css?v=3">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -51,7 +51,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
           <input type="search" id="q" placeholder="Ad, müəllif və ya il üzrə axtarış…" aria-label="Kitab axtarışı" autocomplete="off">
         </label>
-        <span class="count" id="count">9 kitab</span>
+        <span class="count" id="count">10 kitab</span>
       </div>
 
       <div class="afilter" id="afilter">
@@ -200,6 +200,20 @@
           </div>
         </article>
 
+        <article class="card" data-author="freud" data-title="Aforizmlər">
+          <a class="card__cover" href="/books/freud-aforizmlar/">
+<div class="cover" style="--tex:url('/books/covers/freud-aforizmlar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Aforizmlər</span><span class="cover__year">2014</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Aforizmlər</h2>
+            <p class="card__meta">Ziqmund Freyd · 2014 · AZ</p>
+            <p class="card__price">Pulsuz</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-aforizmlar/">Oxu <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
 
@@ -243,6 +257,7 @@
             <option value="Psixoanalizlə ilkin tanışlıq · null">Psixoanalizlə ilkin tanışlıq — null</option>
             <option value="Seksuallığın psixologiyası · null">Seksuallığın psixologiyası — null</option>
             <option value="Sevgi məktubları · null">Sevgi məktubları — null</option>
+            <option value="Aforizmlər · null">Aforizmlər — null</option>
           </select>
         </label>
         <label class="field">
@@ -264,7 +279,7 @@
   <script>
     window.__booksUI = {"sending":"Göndərilir…","submit":"Sifariş et","fill":"Zəhmət olmasa Ad Soyad və Telefon daxil edin.","empty":"Heç nə tapılmadı","count":"%n kitab"};
   </script>
-  <script src="/books/books.js?v=7" defer></script>
-  <script src="/_lang-switch.js?v=7" defer></script>
+  <script src="/books/books.js?v=8" defer></script>
+  <script src="/_lang-switch.js?v=8" defer></script>
 </body>
 </html>

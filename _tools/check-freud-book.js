@@ -13,7 +13,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const ALL = ['freud-musa', 'freud-yuxularin-yozumu', 'freud-seksualligin-psixologiyasi',
-  'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari'];
+  'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar'];
 
 /* тот же список мусора, что в _tools/freud-az-book.js */
 const JUNK = [
