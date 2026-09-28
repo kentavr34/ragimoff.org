@@ -241,12 +241,14 @@ const BOOKS = [
     cover: 'freud-sevgi-mektublari.jpg',
     coverTitle: { az: 'Sevgi<br>məktubları', ru: 'Письма<br>Марте', en: 'Letters to<br>Martha' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '1882–1886',
-    title: { az: 'Sevgi məktubları', ru: 'Письма Марте Бернайс (1882–1886)', en: 'Letters to Martha Bernays (1882–1886)' },
+    /* интервал — по фактическим датам писем в книге (первое 10.06.1882, последнее 20.09.1912),
+       а не по годам печатного тома «Die Brautbriefe» (1882–1886): решение владельца 29.09.2026 */
+    year: '1882–1912',
+    title: { az: 'Sevgi məktubları (1882–1912)', ru: 'Письма Марте Бернайс (1882–1912)', en: 'Letters to Martha Bernays (1882–1912)' },
     meta: {
-      az: 'Ziqmund Freyd · 1882–1886 · AZ RU',
-      ru: 'Зигмунд Фрейд · 1882–1886 · AZ RU',
-      en: 'Sigmund Freud · 1882–1886 · AZ RU',
+      az: 'Ziqmund Freyd · 1882–1912 · AZ RU',
+      ru: 'Зигмунд Фрейд · 1882–1912 · AZ RU',
+      en: 'Sigmund Freud · 1882–1912 · AZ RU',
     },
     price: null,                                  /* только чтение, без заказа */
     langs: ['az', 'ru'],
