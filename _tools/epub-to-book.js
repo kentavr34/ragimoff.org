@@ -9,6 +9,8 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* издательский мусор: эти строки в книгу не попадают */
+const JUNK = /^(sigmund freud|ziqmund freyd|tərcümə|tercümə|İSBN|ISBN|©|qanun|nəşriyyat|nəşr\b|çap\b|redaktor|redaksiya|buraxılışa|müəllif hüquqları|bütün hüquqlar|kitabxana|translated by|translation|converted ebook|telegram|@)/i;
 const UI = {
   az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab', part: 'Bölmə' },
   ru: { toc: 'Содержание', order: 'Заказать книгу', back: 'Книги', prev: 'Предыдущая', next: 'Следующая', read: 'Читать', home: 'Главная', up: 'Книга', part: 'Часть' },
@@ -26,6 +28,10 @@ function slugify(s, i, lang) {
 
 /* ── разбор EPUB: части = файлы index_split_*.html в порядке из content.opf ── */
 function readEpub(file) {
+  /* unzip в Windows не понимает не-ASCII пути — копируем во временный файл */
+  const __epubTmp = path.join(require("os").tmpdir(), "book-src-" + Date.now() + ".epub");
+  fs.copyFileSync(file, __epubTmp);
+  file = __epubTmp;
   const list = execFileSync('unzip', ['-Z1', file], { maxBuffer: 64 * 1024 * 1024 }).toString('utf8')
     .split('\n').map((x) => x.trim()).filter(Boolean);
   const parts = list.filter((f) => /\.x?html?$/i.test(f)).sort();
@@ -40,7 +46,7 @@ function readEpub(file) {
       .map((x) => x.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"').replace(/&#(\d+);/g, (m, d) => String.fromCharCode(+d))
         .replace(/\s+/g, ' ').trim())
-      .filter((x) => x.length > 2 && !/^index$/i.test(x));
+      .filter((x) => x.length > 2 && !/^index$/i.test(x) && !JUNK.test(x));
     if (paras.length) out.push({ file: f, paras });
   });
   return out;
@@ -59,9 +65,18 @@ cfg.langs.forEach((lang) => {
   if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
 
   const parts = readEpub(lang.file);
+  /* титул книги, повторённый в начале (в т.ч. капсом) — в книгу не попадает */
+  const normT = (x) => String(x).toLowerCase().replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const bookTitle = normT(lang.title);
+  parts.forEach((part) => {
+    part.paras = part.paras.filter((x, i) => !(i < 15 && (normT(x) === bookTitle || normT(x).startsWith(bookTitle.slice(0, 12)))));
+  });
   const ui = UI[lang.ui] || UI.az;
   const all = parts.map((p, i) => {
-    const title = (ui.part || 'Bölmə') + ' ' + (i + 1);
+    /* заголовок — первая осмысленная строка части, без нумерации */
+    const first = (p.paras.find((x) => x.length > 20 && !JUNK.test(x)) || '').replace(/\s+/g, ' ').trim();
+    const looksHead = first && first.length <= 70 && !/[.!?…]$/.test(first) && first.split(' ').length <= 9;
+    const title = looksHead ? first : (lang.title || '');
     return { num: String(i + 1).padStart(2, '0'), file: slugify(title, i + 1, lang.code) + '.html', title, short: title, paras: p.paras };
   });
   const rel = lang.dir ? '../' : '';
@@ -95,6 +110,9 @@ cfg.langs.forEach((lang) => {
     '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
     '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
     '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
+    /* чтение с телефона на тёмном фоне: крупнее кегль, просторнее строки */
+    '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
+    '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
     '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}' +
     '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}' +
     '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
@@ -118,7 +136,7 @@ cfg.langs.forEach((lang) => {
   function chapterPage(ch, idx) {
     const prev = idx > 0 ? all[idx - 1] : null, next = idx < all.length - 1 ? all[idx + 1] : null;
     const content = '\n<nav class="crumb"><a href="index.html">‹ ' + esc(name) + '</a></nav>\n' +
-      '<h1 class="chap-title-wrap"><span class="chap-code">' + ch.num + '</span><span class="chap-title">' + esc(ch.title) + '</span></h1>\n' +
+      '<h1 class="chap-title-wrap"><span class="chap-title">' + esc(ch.title) + '</span></h1>\n' +
       ch.paras.map((p) => '<p>' + esc(p) + '</p>').join('\n') + '\n' +
       '<nav class="d-nav">' +
       (prev ? '<a href="' + prev.file + '">← ' + prev.num + ' <span class="dn-name">' + esc(prev.short) + '</span></a>' : '<span></span>') +
