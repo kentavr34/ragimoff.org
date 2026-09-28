@@ -1,8 +1,9 @@
 /* =====================================================================
    RAGIMOFF · _tools/build-phoenix-test.js
    Онлайн-тест «Карта моделей взаимоотношений» из книги «Эра Феникса».
-   Вопросы, шкала, подсчёт и уровни — из самой книги (_tools/phoenix-test.json).
-   Собирает: books/phoenix-era/test/index.html (AZ), books/phoenix-era/test/ru/index.html (RU).
+   Вопросы, шкала, подсчёт, уровни — из книги (_tools/phoenix-test.json);
+   картинки моделей — из книги (_tools/phoenix-test-images.json).
+   Собирает: books/phoenix-era/test/index.html (AZ), .../test/ru/index.html (RU).
    Запуск: node _tools/build-phoenix-test.js
    ===================================================================== */
 const fs = require('fs');
@@ -10,6 +11,7 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const DATA = JSON.parse(fs.readFileSync(path.join(__dirname, 'phoenix-test.json'), 'utf8'));
+const IMGS = JSON.parse(fs.readFileSync(path.join(__dirname, 'phoenix-test-images.json'), 'utf8'));
 
 /* уровни зрелости и группы результата — из книги (шаг 4 инструкции по подсчёту) */
 const LEVELS = {
@@ -51,26 +53,9 @@ const GROUPS = {
   },
   az: {
     low: 'Nəticələr 1–4: güclü asılılıq modellərindəsiniz. Bu, başlanğıc nöqtəsidir. Dərk — transformasiyanın ilk addımıdır.',
-    mid: 'Nəticələr 5–8: keçid dövründəsiniiz. Artıq müstəqillik var, lakin nevrotik nümunələr qalır.',
+    mid: 'Nəticələr 5–8: keçid dövründəsiniz. Artıq müstəqillik var, lakin nevrotik nümunələr qalır.',
     high: 'Nəticələr 9–11: zirvəyə yaxınsınız. Səmimiliyə və tamlığa doğru addım atmaq qalır.',
     top: 'Nəticə 12 (Feniks): təbriklər. Yetkinlik yolundasınız. Yadınızda saxlayın: Feniks — prosesdir, varmaq üçün nöqtə deyil.',
-  },
-};
-
-/* ссылки на главы книги про каждую модель (абсолютные — тест лежит глубже) */
-const CHAPTER = {
-  az: {
-    Lilit: '/books/phoenix-era/03-li-li-t.html', Putana: '/books/phoenix-era/04-putana.html', Hippi: '/books/phoenix-era/05-hi-ppi.html',
-    'Geyşa': '/books/phoenix-era/06-geysa.html', 'Məşuqə': '/books/phoenix-era/07-mesuqe.html', Kurtizan: '/books/phoenix-era/08-kurti-zan.html',
-    Tereza: '/books/phoenix-era/09-tereza.html', 'İnfanta': '/books/phoenix-era/10-i-nfanta.html', Sinderella: '/books/phoenix-era/11-si-nderella.html',
-    'Dilənçi': '/books/phoenix-era/12-di-lenci.html', 'Buqələmun': '/books/phoenix-era/13-bolum-11-munasi-bet-modeli-buqelemun.html',
-    Feniks: '/books/phoenix-era/14-fesi-l-12-munasi-bet-modeli-feni-ks-yolun-.html',
-  },
-  ru: {
-    'Лилит': '/books/phoenix-era/ru/03-glava-3.html', 'Путана': '/books/phoenix-era/ru/04-glava-4.html', 'Хиппи': '/books/phoenix-era/ru/05-glava-5.html',
-    'Гейша': '/books/phoenix-era/ru/06-glava-6.html', 'Любовница': '/books/phoenix-era/ru/07-glava-7.html', 'Куртизанка': '/books/phoenix-era/ru/08-glava-8.html',
-    'Тереза': '/books/phoenix-era/ru/09-glava-9.html', 'Инфанта': '/books/phoenix-era/ru/10-glava-10.html', 'Золушка': '/books/phoenix-era/ru/11-glava-11.html',
-    'Попрошайка': '/books/phoenix-era/ru/12-glava-12.html', 'Хамелеон': '/books/phoenix-era/ru/14-glava-14.html', 'Феникс': '/books/phoenix-era/ru/15-glava-15.html',
   },
 };
 
@@ -84,9 +69,9 @@ const UI = {
     scaleTitle: 'Qiymətləndirmə şkalası',
     scale: ['Tamamilə doğru deyil', 'Daha çox doğru deyil', 'Bəzən doğrudur', 'Daha çox doğrudur', 'Tamamilə doğrudur'],
     start: 'Testə başla',
-    back: '← Geri',
-    next: 'Növbəti',
-    of: '/ 100',
+    back: '← Əvvəlki sual',
+    answered: 'Cavablandı',
+    of: 'sual',
     resultTitle: 'Nəticəniz',
     dominant: 'Dominant model',
     avg: 'Orta bal',
@@ -106,9 +91,9 @@ const UI = {
     scaleTitle: 'Шкала оценки',
     scale: ['Совсем не верно для меня', 'Скорее не верно', 'Иногда верно', 'Скорее верно', 'Полностью верно для меня'],
     start: 'Начать тест',
-    back: '← Назад',
-    next: 'Далее',
-    of: '/ 100',
+    back: '← Предыдущий вопрос',
+    answered: 'Отвечено',
+    of: 'вопрос',
     resultTitle: 'Ваш результат',
     dominant: 'Доминирующая модель',
     avg: 'Средний балл',
@@ -121,8 +106,7 @@ const UI = {
   },
 };
 
-/* ссылки на главы моделей берём из собранной книги — по имени модели в заголовке главы.
-   Так ссылки не ломаются, когда книга пересобирается и меняются имена файлов. */
+/* главы моделей — из собранной книги (не ломаются при пересборке) */
 function chaptersFromBook(code) {
   const dir = code === 'az' ? path.join(ROOT, 'books/phoenix-era') : path.join(ROOT, 'books/phoenix-era/ru');
   const base = code === 'az' ? '/books/phoenix-era/' : '/books/phoenix-era/ru/';
@@ -147,28 +131,74 @@ function chaptersFromBook(code) {
 const BOOK = { az: '/books/phoenix-era/', ru: '/books/phoenix-era/ru/' };
 const TEST = { az: '/books/phoenix-era/test/', ru: '/books/phoenix-era/test/ru/' };
 
+const CSS = `
+  .t-wrap{max-width:760px;margin:0 auto;padding:32px 22px 96px}
+  .t-back{display:inline-block;margin:0 0 26px;font-family:var(--mono,monospace);font-size:.8rem;letter-spacing:.06em;color:var(--text2);text-decoration:none}
+  .t-back:hover{color:var(--gold2)}
+  .t-h1{font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.22;margin:0 0 18px}
+  .t-h2{font-size:1.05rem;margin:34px 0 14px}
+  .t-lead{color:var(--text2);margin:0 0 30px;line-height:1.6}
+  .t-scale{width:100%;border-collapse:collapse;margin:0 0 34px;font-size:.95rem}
+  .t-scale td{border-bottom:1px solid var(--border);padding:10px 12px}
+  .t-num{color:var(--gold2);font-family:var(--mono,monospace);width:3rem}
+  .t-btn{display:inline-block;border:1px solid var(--gold2);background:transparent;color:var(--text);border-radius:10px;padding:13px 24px;font:inherit;cursor:pointer;text-decoration:none}
+  .t-btn:hover{background:var(--gold-bg)}
+  .t-btn--main{background:var(--gold2);color:#10151c;border-color:var(--gold2);font-weight:600}
+  .t-btn[disabled]{opacity:.4;cursor:default}
+  .t-btn[disabled]:hover{background:transparent}
+  .t-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-family:var(--mono,monospace);font-size:.82rem;color:var(--text2);margin:0 0 10px}
+  .t-top b{color:var(--gold2);font-weight:600}
+  .t-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:0 0 38px}
+  .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
+  .t-q{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;margin:0 0 28px;min-height:3.4em}
+  .t-opts{display:grid;gap:12px;margin:0 0 30px}
+  .t-opt{display:flex;gap:14px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:12px;padding:15px 18px;font:inherit;text-align:left;cursor:pointer}
+  .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
+  .t-opt.is-on{border-color:var(--gold2);background:var(--gold-bg)}
+  .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.2rem}
+  .t-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 30px}
+  .t-card__img{display:block;width:100%;height:auto}
+  .t-card__body{padding:24px 24px 26px}
+  .t-big{font-size:clamp(1.4rem,3vw,1.8rem);margin:6px 0 8px}
+  .t-mut{color:var(--text2);font-size:.92rem;margin:0 0 6px}
+  .t-tab{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 30px}
+  .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:10px 12px;text-align:left}
+  .t-tab th{color:var(--text2);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
+  .t-tab tr.is-top td{background:var(--gold-bg)}
+  [hidden]{display:none !important}
+  @media(max-width:600px){
+    .t-wrap{padding:22px 18px 80px}
+    .t-q{min-height:0}
+    .t-btn{padding:12px 18px}
+  }
+`;
+
 function page(code) {
   const ui = UI[code];
   const d = DATA.langs[code];
-  const chapters = Object.keys(chaptersFromBook(code)).length ? chaptersFromBook(code) : CHAPTER[code];
+  const chapters = chaptersFromBook(code);
   const levels = LEVELS[code];
-  /* модель → сила */
-  const strength = {};
-  Object.entries(levels).forEach(([k, v]) => { strength[v[0]] = +k; });
+  const images = {};
+  Object.entries(IMGS).forEach(([model, url]) => { if (d.blocks.some((b) => b.model === model)) images[model] = url; });
   const payload = {
     lang: code,
     blocks: d.blocks.map((b) => ({ model: b.model, count: b.questions.length, questions: b.questions.map((q) => q.text) })),
     levels: Object.entries(levels).map(([k, v]) => ({ strength: +k, model: v[0], maturity: v[1] })),
     groups: GROUPS[code],
     chapters,
+    images,
     book: BOOK[code],
     test: TEST[code],
     scale: ui.scale,
     interp: ui.interp,
-    ui: { of: ui.of, back: ui.back, next: ui.next, readMore: ui.readMore, restart: ui.restart, resultTitle: ui.resultTitle, dominant: ui.dominant, avg: ui.avg, level: ui.level, allTitle: ui.allTitle },
+    ui: {
+      of: ui.of, back: ui.back, answered: ui.answered, readMore: ui.readMore, restart: ui.restart,
+      resultTitle: ui.resultTitle, dominant: ui.dominant, avg: ui.avg, level: ui.level, allTitle: ui.allTitle,
+    },
   };
-  const scaleRows = ui.scale.map((s, i) =>
-    '          <tr><td class="t-num">' + (i + 1) + '</td><td>' + s + '</td></tr>').join('\n');
+  const scaleRows = ui.scale.map((s, i) => '          <tr><td class="t-num">' + (i + 1) + '</td><td>' + s + '</td></tr>').join('\n');
   return `<!doctype html>
 <html lang="${code}" data-langs="az,ru" data-lang-url-az="${TEST.az}" data-lang-url-ru="${TEST.ru}">
 <head>
@@ -182,35 +212,7 @@ function page(code) {
   <link rel="alternate" hreflang="ru" href="https://ragimoff.org${TEST.ru}">
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="${code === 'ru' ? '/books/phoenix-era/ru/style.css' : '/books/phoenix-era/style.css'}">
-  <style>
-    .t-wrap{max-width:760px;margin:0 auto;padding:24px 20px 90px}
-    .t-h1{font-family:var(--font);font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.2;margin:0 0 14px}
-    .t-lead{color:var(--text2);margin:0 0 22px}
-    .t-scale{width:100%;border-collapse:collapse;margin:0 0 26px;font-size:.95rem}
-    .t-scale td{border-bottom:1px solid var(--border);padding:8px 10px}
-    .t-num{color:var(--gold2);font-family:var(--mono,monospace);width:3rem}
-    .t-btn{display:inline-block;border:1px solid var(--gold2);background:transparent;color:var(--text);border-radius:8px;padding:12px 22px;font:inherit;cursor:pointer}
-    .t-btn:hover{background:var(--gold-bg)}
-    .t-btn--main{background:var(--gold2);color:#10151c;border-color:var(--gold2);font-weight:600}
-    .t-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono,monospace);font-size:.8rem;color:var(--text2);margin-bottom:10px}
-    .t-bar{height:4px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:26px}
-    .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
-    .t-q{font-size:clamp(1.05rem,2.4vw,1.3rem);line-height:1.45;margin:0 0 22px;min-height:3.2em}
-    .t-opts{display:grid;gap:10px;margin-bottom:18px}
-    .t-opt{display:flex;gap:12px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:13px 16px;font:inherit;text-align:left;cursor:pointer}
-    .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
-    .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.1rem}
-    .t-card{border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:18px}
-    .t-big{font-size:1.5rem;margin:0 0 6px}
-    .t-mut{color:var(--text2);font-size:.92rem}
-    .t-tab{width:100%;border-collapse:collapse;font-size:.92rem}
-    .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:8px 10px;text-align:left}
-    .t-tab th{color:var(--text2);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
-    .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
-    .t-tab tr.is-top td{background:var(--gold-bg)}
-    .t-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-    [hidden]{display:none !important}
-  </style>
+  <style>${CSS}</style>
 </head>
 <body>
   <header class="site-header">
@@ -221,7 +223,7 @@ function page(code) {
     <section id="intro">
       <h1 class="t-h1">${ui.h1}</h1>
       <p class="t-lead">${ui.lead}</p>
-      <h2 class="t-h1" style="font-size:1.05rem">${ui.scaleTitle}</h2>
+      <h2 class="t-h2">${ui.scaleTitle}</h2>
       <table class="t-scale">
 ${scaleRows}
       </table>
@@ -229,28 +231,31 @@ ${scaleRows}
     </section>
 
     <section id="quiz" hidden>
-      <div class="t-top"><span id="pos">1 / 100</span><span id="pct">1%</span></div>
+      <div class="t-top"><span><b id="pos">1</b> / 100 ${ui.of}</span><span>${ui.answered}: <b id="done">0</b></span></div>
       <div class="t-bar"><i id="fill"></i></div>
       <p class="t-q" id="qtext"></p>
       <div class="t-opts" id="opts"></div>
       <div class="t-actions">
-        <button class="t-btn" id="prev">${ui.back}</button>
+        <button class="t-btn" id="prev" disabled>${ui.back}</button>
       </div>
     </section>
 
     <section id="result" hidden>
       <h2 class="t-h1">${ui.resultTitle}</h2>
       <div class="t-card">
-        <p class="t-mut" id="r-level"></p>
-        <p class="t-big" id="r-model"></p>
-        <p class="t-mut" id="r-maturity"></p>
-        <p class="t-mut" id="r-avg"></p>
-        <p id="r-group" style="margin-top:12px"></p>
-        <p style="margin-top:16px"><a class="t-btn" id="r-link" href="#"></a></p>
+        <img class="t-card__img" id="r-img" alt="">
+        <div class="t-card__body">
+          <p class="t-mut" id="r-level"></p>
+          <p class="t-big" id="r-model"></p>
+          <p class="t-mut" id="r-maturity"></p>
+          <p class="t-mut" id="r-avg"></p>
+          <p id="r-group" style="margin:14px 0 0;line-height:1.6"></p>
+          <p style="margin:22px 0 0"><a class="t-btn t-btn--main" id="r-link" href="#">${ui.readMore}</a></p>
+        </div>
       </div>
-      <h3 class="t-h1" style="font-size:1.05rem">${ui.allTitle}</h3>
+      <h3 class="t-h2">${ui.allTitle}</h3>
       <table class="t-tab">
-        <thead><tr><th>#</th><th>${ui.dominant}</th><th>${ui.avg}</th></tr></thead>
+        <thead><tr><th>${ui.level}</th><th>${ui.dominant}</th><th>${ui.avg}</th></tr></thead>
         <tbody id="r-table"></tbody>
       </table>
       <div class="t-actions">
@@ -267,7 +272,7 @@ ${scaleRows}
     var D = window.__TEST;
     var intro = document.getElementById('intro'), quiz = document.getElementById('quiz'), res = document.getElementById('result');
     var qtext = document.getElementById('qtext'), opts = document.getElementById('opts'), pos = document.getElementById('pos'),
-        pct = document.getElementById('pct'), fill = document.getElementById('fill');
+        done = document.getElementById('done'), fill = document.getElementById('fill'), prev = document.getElementById('prev');
     var order = [], idx = 0, answers = [];
 
     function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -279,31 +284,34 @@ ${scaleRows}
       idx = 0;
     }
     function render() {
-      var q = order[idx];
-      pos.textContent = (idx + 1) + ' ' + D.ui.of;
-      var p = Math.round((idx + 1) / order.length * 100);
-      pct.textContent = p + '%'; fill.style.width = p + '%';
-      qtext.textContent = q.text;
+      pos.textContent = idx + 1;
+      var answered = answers.filter(function (a) { return a > 0; }).length;
+      done.textContent = answered;
+      fill.style.width = Math.round(answered / order.length * 100) + '%';
+      prev.disabled = idx === 0;
+      qtext.textContent = order[idx].text;
       opts.innerHTML = '';
       D.scale.forEach(function (label, i) {
         var b = document.createElement('button');
-        b.className = 't-opt';
+        b.className = 't-opt' + (answers[idx] === i + 1 ? ' is-on' : '');
         b.innerHTML = '<b>' + (i + 1) + '</b><span>' + label + '</span>';
         b.addEventListener('click', function () { answers[idx] = i + 1; next(); });
         opts.appendChild(b);
       });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     function next() { if (idx < order.length - 1) { idx++; render(); } else { finish(); } }
     function finish() {
       var sums = {};
       D.blocks.forEach(function (b) { sums[b.model] = 0; });
-      order.forEach(function (q, i) { sums[q.model] += answers[i]; });
-      var rows = D.blocks.map(function (b) {
-        return { model: b.model, avg: sums[b.model] / b.count, strength: 0, maturity: '' };
-      });
+      order.forEach(function (q, i) { sums[q.model] += answers[i] || 0; });
       var lv = {};
       D.levels.forEach(function (l) { lv[l.model] = l; });
-      rows.forEach(function (r) { if (lv[r.model]) { r.strength = lv[r.model].strength; r.maturity = lv[r.model].maturity; } });
+      var rows = D.blocks.map(function (b) {
+        var r = { model: b.model, avg: sums[b.model] / b.count, strength: 0, maturity: '' };
+        if (lv[r.model]) { r.strength = lv[r.model].strength; r.maturity = lv[r.model].maturity; }
+        return r;
+      });
       rows.sort(function (a, b) { return b.avg - a.avg; });
       var top = rows[0];
       document.getElementById('r-level').textContent = D.ui.level + ': ' + top.strength + ' / 12';
@@ -311,9 +319,11 @@ ${scaleRows}
       document.getElementById('r-maturity').textContent = top.maturity;
       document.getElementById('r-avg').textContent = D.ui.avg + ': ' + top.avg.toFixed(2);
       document.getElementById('r-group').textContent = top.strength <= 4 ? D.groups.low : (top.strength <= 8 ? D.groups.mid : (top.strength <= 11 ? D.groups.high : D.groups.top));
+      var img = document.getElementById('r-img');
+      if (D.images[top.model]) { img.src = D.images[top.model]; img.alt = top.model; img.hidden = false; }
+      else { img.hidden = true; img.removeAttribute('src'); }
       var link = document.getElementById('r-link');
       link.href = D.chapters[top.model] || D.book;
-      link.textContent = D.ui.readMore;
       var tb = document.getElementById('r-table');
       tb.innerHTML = rows.map(function (r) {
         var cls = r.model === top.model ? ' class="is-top"' : '';
@@ -323,7 +333,7 @@ ${scaleRows}
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     document.getElementById('start').addEventListener('click', function () { build(); intro.hidden = true; quiz.hidden = false; render(); });
-    document.getElementById('prev').addEventListener('click', function () { if (idx > 0) { idx--; render(); } });
+    prev.addEventListener('click', function () { if (idx > 0) { idx--; render(); } });
     document.getElementById('again').addEventListener('click', function () { build(); res.hidden = true; quiz.hidden = false; render(); });
   })();
   </script>

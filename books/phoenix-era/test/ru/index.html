@@ -12,34 +12,48 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="/books/phoenix-era/ru/style.css">
   <style>
-    .t-wrap{max-width:760px;margin:0 auto;padding:24px 20px 90px}
-    .t-h1{font-family:var(--font);font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.2;margin:0 0 14px}
-    .t-lead{color:var(--text2);margin:0 0 22px}
-    .t-scale{width:100%;border-collapse:collapse;margin:0 0 26px;font-size:.95rem}
-    .t-scale td{border-bottom:1px solid var(--border);padding:8px 10px}
-    .t-num{color:var(--gold2);font-family:var(--mono,monospace);width:3rem}
-    .t-btn{display:inline-block;border:1px solid var(--gold2);background:transparent;color:var(--text);border-radius:8px;padding:12px 22px;font:inherit;cursor:pointer}
-    .t-btn:hover{background:var(--gold-bg)}
-    .t-btn--main{background:var(--gold2);color:#10151c;border-color:var(--gold2);font-weight:600}
-    .t-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--mono,monospace);font-size:.8rem;color:var(--text2);margin-bottom:10px}
-    .t-bar{height:4px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:26px}
-    .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
-    .t-q{font-size:clamp(1.05rem,2.4vw,1.3rem);line-height:1.45;margin:0 0 22px;min-height:3.2em}
-    .t-opts{display:grid;gap:10px;margin-bottom:18px}
-    .t-opt{display:flex;gap:12px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:13px 16px;font:inherit;text-align:left;cursor:pointer}
-    .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
-    .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.1rem}
-    .t-card{border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:18px}
-    .t-big{font-size:1.5rem;margin:0 0 6px}
-    .t-mut{color:var(--text2);font-size:.92rem}
-    .t-tab{width:100%;border-collapse:collapse;font-size:.92rem}
-    .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:8px 10px;text-align:left}
-    .t-tab th{color:var(--text2);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
-    .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
-    .t-tab tr.is-top td{background:var(--gold-bg)}
-    .t-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-    [hidden]{display:none !important}
-  </style>
+  .t-wrap{max-width:760px;margin:0 auto;padding:32px 22px 96px}
+  .t-back{display:inline-block;margin:0 0 26px;font-family:var(--mono,monospace);font-size:.8rem;letter-spacing:.06em;color:var(--text2);text-decoration:none}
+  .t-back:hover{color:var(--gold2)}
+  .t-h1{font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.22;margin:0 0 18px}
+  .t-h2{font-size:1.05rem;margin:34px 0 14px}
+  .t-lead{color:var(--text2);margin:0 0 30px;line-height:1.6}
+  .t-scale{width:100%;border-collapse:collapse;margin:0 0 34px;font-size:.95rem}
+  .t-scale td{border-bottom:1px solid var(--border);padding:10px 12px}
+  .t-num{color:var(--gold2);font-family:var(--mono,monospace);width:3rem}
+  .t-btn{display:inline-block;border:1px solid var(--gold2);background:transparent;color:var(--text);border-radius:10px;padding:13px 24px;font:inherit;cursor:pointer;text-decoration:none}
+  .t-btn:hover{background:var(--gold-bg)}
+  .t-btn--main{background:var(--gold2);color:#10151c;border-color:var(--gold2);font-weight:600}
+  .t-btn[disabled]{opacity:.4;cursor:default}
+  .t-btn[disabled]:hover{background:transparent}
+  .t-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-family:var(--mono,monospace);font-size:.82rem;color:var(--text2);margin:0 0 10px}
+  .t-top b{color:var(--gold2);font-weight:600}
+  .t-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:0 0 38px}
+  .t-bar i{display:block;height:100%;width:0;background:var(--gold2);transition:width .25s}
+  .t-q{font-size:clamp(1.08rem,2.3vw,1.32rem);line-height:1.5;margin:0 0 28px;min-height:3.4em}
+  .t-opts{display:grid;gap:12px;margin:0 0 30px}
+  .t-opt{display:flex;gap:14px;align-items:center;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:12px;padding:15px 18px;font:inherit;text-align:left;cursor:pointer}
+  .t-opt:hover{border-color:var(--gold2);background:var(--gold-bg)}
+  .t-opt.is-on{border-color:var(--gold2);background:var(--gold-bg)}
+  .t-opt b{font-family:var(--mono,monospace);color:var(--gold2);min-width:1.2rem}
+  .t-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .t-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:0 0 30px}
+  .t-card__img{display:block;width:100%;height:auto}
+  .t-card__body{padding:24px 24px 26px}
+  .t-big{font-size:clamp(1.4rem,3vw,1.8rem);margin:6px 0 8px}
+  .t-mut{color:var(--text2);font-size:.92rem;margin:0 0 6px}
+  .t-tab{width:100%;border-collapse:collapse;font-size:.92rem;margin:0 0 30px}
+  .t-tab th,.t-tab td{border-bottom:1px solid var(--border);padding:10px 12px;text-align:left}
+  .t-tab th{color:var(--text2);font-weight:500;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+  .t-tab .t-avg{font-family:var(--mono,monospace);color:var(--gold2);white-space:nowrap}
+  .t-tab tr.is-top td{background:var(--gold-bg)}
+  [hidden]{display:none !important}
+  @media(max-width:600px){
+    .t-wrap{padding:22px 18px 80px}
+    .t-q{min-height:0}
+    .t-btn{padding:12px 18px}
+  }
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -50,7 +64,7 @@
     <section id="intro">
       <h1 class="t-h1">Карта моделей взаимоотношений</h1>
       <p class="t-lead">Тест состоит из 100 утверждений. Каждое отражает определённую модель поведения в отношениях. Прочитайте внимательно и оцените, насколько это верно для вас сейчас, по шкале 1–5.</p>
-      <h2 class="t-h1" style="font-size:1.05rem">Шкала оценки</h2>
+      <h2 class="t-h2">Шкала оценки</h2>
       <table class="t-scale">
           <tr><td class="t-num">1</td><td>Совсем не верно для меня</td></tr>
           <tr><td class="t-num">2</td><td>Скорее не верно</td></tr>
@@ -62,28 +76,31 @@
     </section>
 
     <section id="quiz" hidden>
-      <div class="t-top"><span id="pos">1 / 100</span><span id="pct">1%</span></div>
+      <div class="t-top"><span><b id="pos">1</b> / 100 вопрос</span><span>Отвечено: <b id="done">0</b></span></div>
       <div class="t-bar"><i id="fill"></i></div>
       <p class="t-q" id="qtext"></p>
       <div class="t-opts" id="opts"></div>
       <div class="t-actions">
-        <button class="t-btn" id="prev">← Назад</button>
+        <button class="t-btn" id="prev" disabled>← Предыдущий вопрос</button>
       </div>
     </section>
 
     <section id="result" hidden>
       <h2 class="t-h1">Ваш результат</h2>
       <div class="t-card">
-        <p class="t-mut" id="r-level"></p>
-        <p class="t-big" id="r-model"></p>
-        <p class="t-mut" id="r-maturity"></p>
-        <p class="t-mut" id="r-avg"></p>
-        <p id="r-group" style="margin-top:12px"></p>
-        <p style="margin-top:16px"><a class="t-btn" id="r-link" href="#"></a></p>
+        <img class="t-card__img" id="r-img" alt="">
+        <div class="t-card__body">
+          <p class="t-mut" id="r-level"></p>
+          <p class="t-big" id="r-model"></p>
+          <p class="t-mut" id="r-maturity"></p>
+          <p class="t-mut" id="r-avg"></p>
+          <p id="r-group" style="margin:14px 0 0;line-height:1.6"></p>
+          <p style="margin:22px 0 0"><a class="t-btn t-btn--main" id="r-link" href="#">Прочитать о модели в книге →</a></p>
+        </div>
       </div>
-      <h3 class="t-h1" style="font-size:1.05rem">Средние баллы по всем моделям</h3>
+      <h3 class="t-h2">Средние баллы по всем моделям</h3>
       <table class="t-tab">
-        <thead><tr><th>#</th><th>Доминирующая модель</th><th>Средний балл</th></tr></thead>
+        <thead><tr><th>Сила архетипа</th><th>Доминирующая модель</th><th>Средний балл</th></tr></thead>
         <tbody id="r-table"></tbody>
       </table>
       <div class="t-actions">
@@ -93,14 +110,14 @@
     </section>
   </main>
 
-  <script>window.__TEST = {"lang":"ru","blocks":[{"model":"Лилит","count":8,"questions":["Я считаю, что деньги гарантируют безопасность в отношениях больше, чем чувства.","Если у партнёра нет финансовой стабильности, я не вижу будущего с ним.","Я оцениваю потенциальных партнёров по их статусу и возможностям.","Любовь можно купить, если у тебя достаточно средств.","Я чувствую себя защищённой только когда у меня есть финансовая подушка.","В отношениях для меня важнее подарки и обеспечение, чем слова любви.","Я не доверяю людям, у которых нет материальных ресурсов.","Без денег отношения обречены на провал."]},{"model":"Путана","count":8,"questions":["Мне всё равно, что думают обо мне окружающие люди.","Я готова нарушать правила, чтобы доказать свою свободу.","Мой бунт против системы важнее, чем спокойная жизнь.","Я привлекаю внимание через скандалы и провокации.","Мне можно всё, я делаю то, что хочу.","Я знаю лучше всех, не учите меня жить.","Я горжусь тем, что могу упасть очень низко и не испытывать стыда.","Общество лицемерно, и я имею право отвечать ему тем же."]},{"model":"Хиппи","count":8,"questions":["Жизнь скоротечна, нужно жить здесь и сейчас, не планируя будущее.","Не нужно никому ничего доказывать, включая карьерные достижения.","Я предпочитаю свободу обязательствам, даже если это нестабильно.","Нужно попробовать всё в этой жизни, включая запрещённые вещи.","Планирование будущего лишено смысла, всё равно всё изменится.","Я избегаю долгосрочных обязательств в отношениях.","Работа ради денег — это рабство, я выбираю свободу.","Мои желания важнее, чем мнение семьи или общества."]},{"model":"Гейша","count":8,"questions":["Восхищение толпы важнее для меня, чем любовь одного человека.","Мой талант требует жертв, и любовь — первая из них.","Репутация — это единственное, что нельзя потерять.","Я готова жертвовать личной жизнью ради успеха и признания.","Меня любят только за мои достижения, а не за то, кто я есть.","Я чувствую себя живой только когда меня оценивают по достоинству.","Одиночество в окружении поклонников — это моя норма.","Я боюсь, что без моих достижений я стану неинтересной."]},{"model":"Любовница","count":8,"questions":["С ним моя жизнь под гарантией, безопасность важнее свободы.","Я люблю его, поэтому всё прощу, даже предательство.","Он не может без меня, я его спасение и опора.","Я боюсь остаться одна больше, чем быть в зависимых отношениях.","Я готова ждать годами, лишь бы быть рядом с ним.","Без партнёра я чувствую себя неполноценной и потерянной.","Я прощаю всё, потому что боюсь, что больше никто меня не выберет.","Моя ценность определяется тем, нужна ли я кому–то."]},{"model":"Куртизанка","count":8,"questions":["В жизни человека может быть много любовников, это нормально.","Он не устоит перед моим обаянием, я всегда могу завоевать.","Любовь — это игра, где я всегда должна выигрывать.","Количество побед важнее качества отношений.","Я коллекционирую внимание противоположного пола для подтверждения своей ценности.","Мне скучно в стабильных отношениях, мне нужна охота.","Я меняю партнёров, когда они перестают меня восхищать.","Моя сексуальность — это главное оружие, которое у меня есть."]},{"model":"Тереза","count":8,"questions":["Человек должен быть известен только своими добрыми делами.","Главное не красота, а доброта и служение людям.","Если я не помогу, кто это сделает? Я незаменима.","Я жертвую собой, чтобы меня оценили и полюбили.","Мои потребности не важны по сравнению с потребностями других.","Я чувствую вину, если отдыхаю, пока другие работают.","Святость и жертвенность — это мой путь к признанию.","Я помогаю людям, чтобы доказать, что я хорошая."]},{"model":"Инфанта","count":8,"questions":["У каждого человека обязательно должна быть опора, самостоятельно невозможно.","Мне можно всё, я же не виноват в своих ошибках.","Решите за меня, я не знаю, как лучше поступить.","Я боюсь принимать решения без совета или разрешения.","Мне нужен кто–то, кто будет направлять меня в жизни.","Я чувствую себя беспомощным без поддержки другого человека.","Ошибаться страшно, лучше пусть другой решит.","Я жду, что кто–то придёт и устроит мою жизнь."]},{"model":"Золушка","count":8,"questions":["Если я не помогу, они пропадут, это моя ответственность.","Без меня они не справятся, я должна быть рядом.","Я должна заслужить право на любовь через служение.","Я не могу сказать «нет», даже если мне тяжело.","Я чувствую вину, если отказываю в помощи.","Мои желания должны быть на последнем месте.","Я тащу всё на себе, потому что больше некому.","Если меня не ценят, значит, я мало сделала."]},{"model":"Попрошайка","count":8,"questions":["Если у тебя есть, почему ты не поделишься? Это справедливо.","Мир мне должен за мои страдания и трудности.","Настоящий друг познается в беде — он должен помочь.","Я требую помощи, потому что имею на это право.","Другие обязаны заботиться обо мне, я жертва обстоятельств.","Если мне не помогают, значит, люди плохие и жадные.","Я не виноват в своей ситуации, виноваты другие.","Мне должны дать, потому что у меня ничего нет."]},{"model":"Хамелеон","count":8,"questions":["С каждым человеком нужно говорить на его языке, искренность менее эффективна.","У меня всё есть, но мне чего–то не хватает внутри.","Человек приходит в этот мир один и уходит один — это фатализм.","Я удобный для всех, но не знаю, чего хочу сам.","Я избегаю конфликтов, подстраиваясь под настроение собеседника.","Я успешен внешне, но чувствую внутреннюю пустоту.","Я путаю свои желания с желаниями окружающих.","Быть удобным — значит быть принятым, это важнее правды."]},{"model":"Феникс","count":12,"questions":["Я принимаю себя и других без условий и требований.","Моя жизнь — это мой выбор, я отвечаю за свои решения.","Любовь — это действие, а не сделка или обмен.","Я могу сказать «нет» без чувства вины и оправданий.","Я помогаю людям не ради оценки, а потому что могу.","Мои мысли, слова и действия совпадают, я целостен.","Я не боюсь ошибок, они — часть моего роста.","Я строю отношения на доверии, а не на контроле.","Я чувствую свою ценность независимо от внешнего успеха.","Я живу ради смысла, а не ради выживания или одобрения.","Я могу быть уязвимым, не теряя силы.","Я выбираю искренность, даже если это неудобно."]}],"levels":[{"strength":1,"model":"Инфанта","maturity":"Полная зависимость — исходная точка пути"},{"strength":2,"model":"Попрошайка","maturity":"Требование и манипуляция — точка старта"},{"strength":3,"model":"Путана","maturity":"Бунт и протест — точка начала осознания"},{"strength":4,"model":"Золушка","maturity":"Служение из вины — зависимая позиция"},{"strength":5,"model":"Любовница","maturity":"Зависимость через любовь — работа продолжается"},{"strength":6,"model":"Хиппи","maturity":"Свобода без ответственности — середина пути"},{"strength":7,"model":"Куртизанка","maturity":"Свобода выбора — ещё невротически окрашена"},{"strength":8,"model":"Лилит","maturity":"Ресурс и безопасность — переходный уровень"},{"strength":9,"model":"Гейша","maturity":"Талант и признание — осознанность растёт"},{"strength":10,"model":"Тереза","maturity":"Служение обществу — высокий уровень"},{"strength":11,"model":"Хамелеон","maturity":"Адаптация и поиск себя — близко к вершине"},{"strength":12,"model":"Феникс","maturity":"Вершина развития — целостность, зрелость, служение"}],"groups":{"low":"Результаты 1–4: вы находитесь в моделях сильной зависимости. Это точка старта. Осознание — первый шаг к трансформации.","mid":"Результаты 5–8: вы в переходном периоде. Уже есть самостоятельность, но невротические паттерны сохраняются.","high":"Результаты 9–11: вы близки к вершине. Осталось сделать шаг к искренности и целостности.","top":"Результат 12 (Феникс): поздравляем, вы на пути зрелости. Помните: Феникс — это процесс, а не точка прибытия."},"chapters":{"Лилит":"/books/phoenix-era/ru/03-glava-3.html","Путана":"/books/phoenix-era/ru/04-glava-4.html","Хиппи":"/books/phoenix-era/ru/05-glava-5.html","Гейша":"/books/phoenix-era/ru/06-glava-6.html","Любовница":"/books/phoenix-era/ru/07-glava-7.html","Куртизанка":"/books/phoenix-era/ru/08-glava-8.html","Тереза":"/books/phoenix-era/ru/09-glava-9.html","Инфанта":"/books/phoenix-era/ru/10-glava-10.html","Золушка":"/books/phoenix-era/ru/11-glava-11.html","Попрошайка":"/books/phoenix-era/ru/12-glava-12.html","Хамелеон":"/books/phoenix-era/ru/14-glava-14.html","Феникс":"/books/phoenix-era/ru/15-glava-15.html"},"book":"/books/phoenix-era/ru/","test":"/books/phoenix-era/test/ru/","scale":["Совсем не верно для меня","Скорее не верно","Иногда верно","Скорее верно","Полностью верно для меня"],"interp":{"dom":"Доминирующая модель — ваш основной паттерн сейчас","sec":"Вторичная модель — проявляется в стрессе","weak":"Слабая модель — сейчас не характерна"},"ui":{"of":"/ 100","back":"← Назад","next":"Далее","readMore":"Прочитать о модели в книге →","restart":"Пройти заново","resultTitle":"Ваш результат","dominant":"Доминирующая модель","avg":"Средний балл","level":"Сила архетипа","allTitle":"Средние баллы по всем моделям"}};</script>
+  <script>window.__TEST = {"lang":"ru","blocks":[{"model":"Лилит","count":8,"questions":["Я считаю, что деньги гарантируют безопасность в отношениях больше, чем чувства.","Если у партнёра нет финансовой стабильности, я не вижу будущего с ним.","Я оцениваю потенциальных партнёров по их статусу и возможностям.","Любовь можно купить, если у тебя достаточно средств.","Я чувствую себя защищённой только когда у меня есть финансовая подушка.","В отношениях для меня важнее подарки и обеспечение, чем слова любви.","Я не доверяю людям, у которых нет материальных ресурсов.","Без денег отношения обречены на провал."]},{"model":"Путана","count":8,"questions":["Мне всё равно, что думают обо мне окружающие люди.","Я готова нарушать правила, чтобы доказать свою свободу.","Мой бунт против системы важнее, чем спокойная жизнь.","Я привлекаю внимание через скандалы и провокации.","Мне можно всё, я делаю то, что хочу.","Я знаю лучше всех, не учите меня жить.","Я горжусь тем, что могу упасть очень низко и не испытывать стыда.","Общество лицемерно, и я имею право отвечать ему тем же."]},{"model":"Хиппи","count":8,"questions":["Жизнь скоротечна, нужно жить здесь и сейчас, не планируя будущее.","Не нужно никому ничего доказывать, включая карьерные достижения.","Я предпочитаю свободу обязательствам, даже если это нестабильно.","Нужно попробовать всё в этой жизни, включая запрещённые вещи.","Планирование будущего лишено смысла, всё равно всё изменится.","Я избегаю долгосрочных обязательств в отношениях.","Работа ради денег — это рабство, я выбираю свободу.","Мои желания важнее, чем мнение семьи или общества."]},{"model":"Гейша","count":8,"questions":["Восхищение толпы важнее для меня, чем любовь одного человека.","Мой талант требует жертв, и любовь — первая из них.","Репутация — это единственное, что нельзя потерять.","Я готова жертвовать личной жизнью ради успеха и признания.","Меня любят только за мои достижения, а не за то, кто я есть.","Я чувствую себя живой только когда меня оценивают по достоинству.","Одиночество в окружении поклонников — это моя норма.","Я боюсь, что без моих достижений я стану неинтересной."]},{"model":"Любовница","count":8,"questions":["С ним моя жизнь под гарантией, безопасность важнее свободы.","Я люблю его, поэтому всё прощу, даже предательство.","Он не может без меня, я его спасение и опора.","Я боюсь остаться одна больше, чем быть в зависимых отношениях.","Я готова ждать годами, лишь бы быть рядом с ним.","Без партнёра я чувствую себя неполноценной и потерянной.","Я прощаю всё, потому что боюсь, что больше никто меня не выберет.","Моя ценность определяется тем, нужна ли я кому–то."]},{"model":"Куртизанка","count":8,"questions":["В жизни человека может быть много любовников, это нормально.","Он не устоит перед моим обаянием, я всегда могу завоевать.","Любовь — это игра, где я всегда должна выигрывать.","Количество побед важнее качества отношений.","Я коллекционирую внимание противоположного пола для подтверждения своей ценности.","Мне скучно в стабильных отношениях, мне нужна охота.","Я меняю партнёров, когда они перестают меня восхищать.","Моя сексуальность — это главное оружие, которое у меня есть."]},{"model":"Тереза","count":8,"questions":["Человек должен быть известен только своими добрыми делами.","Главное не красота, а доброта и служение людям.","Если я не помогу, кто это сделает? Я незаменима.","Я жертвую собой, чтобы меня оценили и полюбили.","Мои потребности не важны по сравнению с потребностями других.","Я чувствую вину, если отдыхаю, пока другие работают.","Святость и жертвенность — это мой путь к признанию.","Я помогаю людям, чтобы доказать, что я хорошая."]},{"model":"Инфанта","count":8,"questions":["У каждого человека обязательно должна быть опора, самостоятельно невозможно.","Мне можно всё, я же не виноват в своих ошибках.","Решите за меня, я не знаю, как лучше поступить.","Я боюсь принимать решения без совета или разрешения.","Мне нужен кто–то, кто будет направлять меня в жизни.","Я чувствую себя беспомощным без поддержки другого человека.","Ошибаться страшно, лучше пусть другой решит.","Я жду, что кто–то придёт и устроит мою жизнь."]},{"model":"Золушка","count":8,"questions":["Если я не помогу, они пропадут, это моя ответственность.","Без меня они не справятся, я должна быть рядом.","Я должна заслужить право на любовь через служение.","Я не могу сказать «нет», даже если мне тяжело.","Я чувствую вину, если отказываю в помощи.","Мои желания должны быть на последнем месте.","Я тащу всё на себе, потому что больше некому.","Если меня не ценят, значит, я мало сделала."]},{"model":"Попрошайка","count":8,"questions":["Если у тебя есть, почему ты не поделишься? Это справедливо.","Мир мне должен за мои страдания и трудности.","Настоящий друг познается в беде — он должен помочь.","Я требую помощи, потому что имею на это право.","Другие обязаны заботиться обо мне, я жертва обстоятельств.","Если мне не помогают, значит, люди плохие и жадные.","Я не виноват в своей ситуации, виноваты другие.","Мне должны дать, потому что у меня ничего нет."]},{"model":"Хамелеон","count":8,"questions":["С каждым человеком нужно говорить на его языке, искренность менее эффективна.","У меня всё есть, но мне чего–то не хватает внутри.","Человек приходит в этот мир один и уходит один — это фатализм.","Я удобный для всех, но не знаю, чего хочу сам.","Я избегаю конфликтов, подстраиваясь под настроение собеседника.","Я успешен внешне, но чувствую внутреннюю пустоту.","Я путаю свои желания с желаниями окружающих.","Быть удобным — значит быть принятым, это важнее правды."]},{"model":"Феникс","count":12,"questions":["Я принимаю себя и других без условий и требований.","Моя жизнь — это мой выбор, я отвечаю за свои решения.","Любовь — это действие, а не сделка или обмен.","Я могу сказать «нет» без чувства вины и оправданий.","Я помогаю людям не ради оценки, а потому что могу.","Мои мысли, слова и действия совпадают, я целостен.","Я не боюсь ошибок, они — часть моего роста.","Я строю отношения на доверии, а не на контроле.","Я чувствую свою ценность независимо от внешнего успеха.","Я живу ради смысла, а не ради выживания или одобрения.","Я могу быть уязвимым, не теряя силы.","Я выбираю искренность, даже если это неудобно."]}],"levels":[{"strength":1,"model":"Инфанта","maturity":"Полная зависимость — исходная точка пути"},{"strength":2,"model":"Попрошайка","maturity":"Требование и манипуляция — точка старта"},{"strength":3,"model":"Путана","maturity":"Бунт и протест — точка начала осознания"},{"strength":4,"model":"Золушка","maturity":"Служение из вины — зависимая позиция"},{"strength":5,"model":"Любовница","maturity":"Зависимость через любовь — работа продолжается"},{"strength":6,"model":"Хиппи","maturity":"Свобода без ответственности — середина пути"},{"strength":7,"model":"Куртизанка","maturity":"Свобода выбора — ещё невротически окрашена"},{"strength":8,"model":"Лилит","maturity":"Ресурс и безопасность — переходный уровень"},{"strength":9,"model":"Гейша","maturity":"Талант и признание — осознанность растёт"},{"strength":10,"model":"Тереза","maturity":"Служение обществу — высокий уровень"},{"strength":11,"model":"Хамелеон","maturity":"Адаптация и поиск себя — близко к вершине"},{"strength":12,"model":"Феникс","maturity":"Вершина развития — целостность, зрелость, служение"}],"groups":{"low":"Результаты 1–4: вы находитесь в моделях сильной зависимости. Это точка старта. Осознание — первый шаг к трансформации.","mid":"Результаты 5–8: вы в переходном периоде. Уже есть самостоятельность, но невротические паттерны сохраняются.","high":"Результаты 9–11: вы близки к вершине. Осталось сделать шаг к искренности и целостности.","top":"Результат 12 (Феникс): поздравляем, вы на пути зрелости. Помните: Феникс — это процесс, а не точка прибытия."},"chapters":{"Лилит":"/books/phoenix-era/ru/03-glava-3.html","Путана":"/books/phoenix-era/ru/04-glava-4.html","Хиппи":"/books/phoenix-era/ru/05-glava-5.html","Гейша":"/books/phoenix-era/ru/06-glava-6.html","Любовница":"/books/phoenix-era/ru/07-glava-7.html","Куртизанка":"/books/phoenix-era/ru/08-glava-8.html","Тереза":"/books/phoenix-era/ru/09-glava-9.html","Инфанта":"/books/phoenix-era/ru/10-glava-10.html","Золушка":"/books/phoenix-era/ru/11-glava-11.html","Попрошайка":"/books/phoenix-era/ru/12-glava-12.html","Хамелеон":"/books/phoenix-era/ru/14-glava-14.html","Феникс":"/books/phoenix-era/ru/15-glava-15.html"},"images":{"Лилит":"/books/phoenix-era/test/img/lilit.jpeg","Путана":"/books/phoenix-era/test/img/putana.jpeg","Хиппи":"/books/phoenix-era/test/img/hippi.png","Гейша":"/books/phoenix-era/test/img/geysha.jpeg","Любовница":"/books/phoenix-era/test/img/lyubovnica.jpeg","Куртизанка":"/books/phoenix-era/test/img/kurtizanka.jpeg","Тереза":"/books/phoenix-era/test/img/tereza.jpeg","Инфанта":"/books/phoenix-era/test/img/infanta.jpeg","Золушка":"/books/phoenix-era/test/img/zolushka.jpeg","Попрошайка":"/books/phoenix-era/test/img/poproshayka.jpeg","Хамелеон":"/books/phoenix-era/test/img/hameleon.jpeg","Феникс":"/books/phoenix-era/test/img/feniks.jpeg"},"book":"/books/phoenix-era/ru/","test":"/books/phoenix-era/test/ru/","scale":["Совсем не верно для меня","Скорее не верно","Иногда верно","Скорее верно","Полностью верно для меня"],"interp":{"dom":"Доминирующая модель — ваш основной паттерн сейчас","sec":"Вторичная модель — проявляется в стрессе","weak":"Слабая модель — сейчас не характерна"},"ui":{"of":"вопрос","back":"← Предыдущий вопрос","answered":"Отвечено","readMore":"Прочитать о модели в книге →","restart":"Пройти заново","resultTitle":"Ваш результат","dominant":"Доминирующая модель","avg":"Средний балл","level":"Сила архетипа","allTitle":"Средние баллы по всем моделям"}};</script>
   <script>
   (function () {
     'use strict';
     var D = window.__TEST;
     var intro = document.getElementById('intro'), quiz = document.getElementById('quiz'), res = document.getElementById('result');
     var qtext = document.getElementById('qtext'), opts = document.getElementById('opts'), pos = document.getElementById('pos'),
-        pct = document.getElementById('pct'), fill = document.getElementById('fill');
+        done = document.getElementById('done'), fill = document.getElementById('fill'), prev = document.getElementById('prev');
     var order = [], idx = 0, answers = [];
 
     function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
@@ -112,31 +129,34 @@
       idx = 0;
     }
     function render() {
-      var q = order[idx];
-      pos.textContent = (idx + 1) + ' ' + D.ui.of;
-      var p = Math.round((idx + 1) / order.length * 100);
-      pct.textContent = p + '%'; fill.style.width = p + '%';
-      qtext.textContent = q.text;
+      pos.textContent = idx + 1;
+      var answered = answers.filter(function (a) { return a > 0; }).length;
+      done.textContent = answered;
+      fill.style.width = Math.round(answered / order.length * 100) + '%';
+      prev.disabled = idx === 0;
+      qtext.textContent = order[idx].text;
       opts.innerHTML = '';
       D.scale.forEach(function (label, i) {
         var b = document.createElement('button');
-        b.className = 't-opt';
+        b.className = 't-opt' + (answers[idx] === i + 1 ? ' is-on' : '');
         b.innerHTML = '<b>' + (i + 1) + '</b><span>' + label + '</span>';
         b.addEventListener('click', function () { answers[idx] = i + 1; next(); });
         opts.appendChild(b);
       });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     function next() { if (idx < order.length - 1) { idx++; render(); } else { finish(); } }
     function finish() {
       var sums = {};
       D.blocks.forEach(function (b) { sums[b.model] = 0; });
-      order.forEach(function (q, i) { sums[q.model] += answers[i]; });
-      var rows = D.blocks.map(function (b) {
-        return { model: b.model, avg: sums[b.model] / b.count, strength: 0, maturity: '' };
-      });
+      order.forEach(function (q, i) { sums[q.model] += answers[i] || 0; });
       var lv = {};
       D.levels.forEach(function (l) { lv[l.model] = l; });
-      rows.forEach(function (r) { if (lv[r.model]) { r.strength = lv[r.model].strength; r.maturity = lv[r.model].maturity; } });
+      var rows = D.blocks.map(function (b) {
+        var r = { model: b.model, avg: sums[b.model] / b.count, strength: 0, maturity: '' };
+        if (lv[r.model]) { r.strength = lv[r.model].strength; r.maturity = lv[r.model].maturity; }
+        return r;
+      });
       rows.sort(function (a, b) { return b.avg - a.avg; });
       var top = rows[0];
       document.getElementById('r-level').textContent = D.ui.level + ': ' + top.strength + ' / 12';
@@ -144,9 +164,11 @@
       document.getElementById('r-maturity').textContent = top.maturity;
       document.getElementById('r-avg').textContent = D.ui.avg + ': ' + top.avg.toFixed(2);
       document.getElementById('r-group').textContent = top.strength <= 4 ? D.groups.low : (top.strength <= 8 ? D.groups.mid : (top.strength <= 11 ? D.groups.high : D.groups.top));
+      var img = document.getElementById('r-img');
+      if (D.images[top.model]) { img.src = D.images[top.model]; img.alt = top.model; img.hidden = false; }
+      else { img.hidden = true; img.removeAttribute('src'); }
       var link = document.getElementById('r-link');
       link.href = D.chapters[top.model] || D.book;
-      link.textContent = D.ui.readMore;
       var tb = document.getElementById('r-table');
       tb.innerHTML = rows.map(function (r) {
         var cls = r.model === top.model ? ' class="is-top"' : '';
@@ -156,7 +178,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     document.getElementById('start').addEventListener('click', function () { build(); intro.hidden = true; quiz.hidden = false; render(); });
-    document.getElementById('prev').addEventListener('click', function () { if (idx > 0) { idx--; render(); } });
+    prev.addEventListener('click', function () { if (idx > 0) { idx--; render(); } });
     document.getElementById('again').addEventListener('click', function () { build(); res.hidden = true; quiz.hidden = false; render(); });
   })();
   </script>

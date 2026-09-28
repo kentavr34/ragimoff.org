@@ -408,9 +408,10 @@ const TOC_STYLE = '<style>' +
   '.book-toc .toc-sub a{color:inherit;text-decoration:none}' +
   '.book-toc .toc-sub a:hover{color:var(--gold2)}' +
   '.book-toc .toc-chapter{margin:14px 0}' +
-  '.toc-test{margin:0 0 18px}' +
-  '.toc-test .btn-order{display:inline-block;border:1px solid var(--gold2);border-radius:8px;padding:11px 20px;text-decoration:none;color:var(--gold2)}' +
+  '.toc-test{margin:0 0 34px}' +
+  '.toc-test .btn-order{display:inline-block;border:1px solid var(--gold2);border-radius:10px;padding:13px 24px;text-decoration:none;color:var(--gold2)}' +
   '.toc-test .btn-order:hover{background:var(--gold-bg)}' +
+  '@media(max-width:600px){.toc-test .btn-order{padding:12px 18px}}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav a:hover{background:var(--bg3);color:var(--gold)}' +
