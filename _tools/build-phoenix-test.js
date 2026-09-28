@@ -121,13 +121,36 @@ const UI = {
   },
 };
 
+/* ссылки на главы моделей берём из собранной книги — по имени модели в заголовке главы.
+   Так ссылки не ломаются, когда книга пересобирается и меняются имена файлов. */
+function chaptersFromBook(code) {
+  const dir = code === 'az' ? path.join(ROOT, 'books/phoenix-era') : path.join(ROOT, 'books/phoenix-era/ru');
+  const base = code === 'az' ? '/books/phoenix-era/' : '/books/phoenix-era/ru/';
+  const norm = (s) => String(s)
+    .replace(/İ/g, 'i').replace(/I/g, 'i').replace(/Ə/g, 'ə').replace(/Ğ/g, 'ğ')
+    .replace(/Ş/g, 'ş').replace(/Ç/g, 'ç').replace(/Ö/g, 'ö').replace(/Ü/g, 'ü')
+    .toLowerCase().replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.html') && f !== 'index.html').sort();
+  const out = {};
+  files.forEach((f) => {
+    const m = fs.readFileSync(path.join(dir, f), 'utf8').match(/<span class="chap-title">([^<]*)</);
+    if (!m) return;
+    const title = norm(m[1]);
+    DATA.langs[code].blocks.forEach((b) => {
+      if (out[b.model]) return;
+      if (title.includes(norm(b.model))) out[b.model] = base + f;
+    });
+  });
+  return out;
+}
+
 const BOOK = { az: '/books/phoenix-era/', ru: '/books/phoenix-era/ru/' };
 const TEST = { az: '/books/phoenix-era/test/', ru: '/books/phoenix-era/test/ru/' };
 
 function page(code) {
   const ui = UI[code];
   const d = DATA.langs[code];
-  const chapters = CHAPTER[code];
+  const chapters = Object.keys(chaptersFromBook(code)).length ? chaptersFromBook(code) : CHAPTER[code];
   const levels = LEVELS[code];
   /* модель → сила */
   const strength = {};

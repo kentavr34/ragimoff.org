@@ -158,7 +158,8 @@ function buildChapters(paras) {
   function pushPart(title) { curPart = { title, chapters: [] }; parts.push(curPart); return curPart; }
   function pushCh(title, para) {
     if (!curPart) pushPart('');
-    curCh = { title, paras: [], part: curPart };
+    /* опечатка в файле книги: «bÖLÜM 9» — приводим маркер к «BÖLÜM» (как остальные главы) */
+    curCh = { title: String(title).replace(/^bÖLÜM/, 'BÖLÜM'), paras: [], part: curPart };
     curPart.chapters.push(curCh);
     return curCh;
   }
@@ -190,6 +191,14 @@ function buildChapters(paras) {
     if (curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 && p.bold && p.sz >= 20 &&
         (!curCh.noMerge || (/[A-ZА-ЯƏİÖÜÇŞĞ]/.test(t) && t === t.toUpperCase())) &&
         !/^\d+[.)]/.test(t) && !isPart && !isCh && !isBare && !isAzNum && !isFront && !isBigHead) {
+      curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
+      return;
+    }
+
+    /* «LİLİT»/«FENİKS» крупным кеглем сразу после «Bölüm N. MÜNASİBƏT MODELİ» — это
+       подзаголовок главы, а не новая глава: дописываем в название, чтобы сохранить
+       «Bölüm N» (как в книге; иначе префикс терялся и глава называлась только «FENİKS») */
+    if (isBigHead && curCh && curCh.paras.length === 0 && curCh.title && t.length < 34 && RX.modelMark.test(curCh.title)) {
       curCh.title = curCh.title.replace(/\s*\.\s*$/, '') + ' · ' + t;
       return;
     }
