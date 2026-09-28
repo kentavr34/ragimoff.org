@@ -305,7 +305,7 @@ ${alts}
 
     <!-- ─────────────────────── КНИГИ ─────────────────────── -->
     <section class="sec" id="kitablar">
-      <h1 class="h1">${esc(ui.h1)}</h1>
+      <h1 class="sr-only">${esc(ui.h1)}</h1>
 
       <div class="toolbar">
         <label class="search">
