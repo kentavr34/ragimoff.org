@@ -16,6 +16,7 @@ const UI = {
     title: 'Kitablar — RAGIMOFF',
     desc: 'RAGIMOFF kitabları: Klinik Psixiatriya, Günahkarlıq Virusu, Şizofreniya, Feniks Erası. Elektron oxu və sifariş.',
     h1: 'Kitablar',
+    free: 'Pulsuz',
     authors: {"kenan":"Kənan Rəhimov","samira":"Samirə Rüstəmova / Rəhimova","freud":"Ziqmund Freyd"},
     filterAll: "Bütün müəlliflər",
     filterLabel: "Müəllif",
@@ -44,6 +45,7 @@ const UI = {
     title: 'Книги — RAGIMOFF',
     desc: 'Книги RAGIMOFF: Клиническая психиатрия, Вирус вины, Шизофрения, Эра Феникса. Чтение онлайн и заказ.',
     h1: 'Книги',
+    free: 'Бесплатно',
     authors: {"kenan":"Кенан Рагимов","samira":"Самира Рустамова / Рагимова","freud":"Зигмунд Фрейд"},
     filterAll: "Все авторы",
     filterLabel: "Автор",
@@ -72,6 +74,7 @@ const UI = {
     title: 'Books — RAGIMOFF',
     desc: 'RAGIMOFF books: Clinical Psychiatry, The Guilt Virus, Schizophrenia, Phoenix Era. Read online and order.',
     h1: 'Books',
+    free: 'Free',
     authors: {"kenan":"Kenan Ragimov","samira":"Samira Rustamova / Ragimova","freud":"Sigmund Freud"},
     filterAll: "All authors",
     filterLabel: "Author",
@@ -244,7 +247,7 @@ function card(book, code, ui) {
     '          <div class="card__body">\n' +
     '            <h2 class="card__title">' + esc(book.title[code]) + '</h2>\n' +
     '            <p class="card__meta">' + esc(book.meta[code]) + '</p>\n' +
-    '            <p class="card__price">' + esc(book.price) + '</p>\n' +
+    '            <p class="card__price">' + esc(book.price || ui.free) + '</p>\n' +
     '            <div class="card__cta">\n' +
     (read ? '              <a class="btn" href="' + read + '">' + ui.read + ' <span aria-hidden="true">→</span></a>\n' : '') +
     (canOrder ? '              <button class="btn' + (read ? ' btn--ghost' : '') + '" data-order="' + esc(book.title[code]) + '" data-price="' + esc(book.price) + '">' + ui.order + '</button>\n' : '') +
@@ -383,7 +386,7 @@ ${options}
   <script>
     window.__booksUI = ${JSON.stringify({ sending: ui.sending, submit: ui.submit, fill: ui.fill, empty: ui.empty, count: code === 'ru' ? '%n книг' : (code === 'en' ? '%n books' : '%n kitab') })};
   </script>
-  <script src="/books/books.js?v=2" defer></script>
+  <script src="/books/books.js?v=3" defer></script>
   <script src="/_lang-switch.js?v=4" defer></script>
 </body>
 </html>
