@@ -77,7 +77,7 @@ const RX = {
   partAz: /^([IVXLC]+)\s+HİSSƏ(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   appendixSec: /^(РАЗДЕЛ|SECTION|PART|BÖLMƏ)\s*\d/i,
   /* интермедии: «ИНТЕРМЕДИЯ ПЕРВАЯ», «FIRST INTERLUDE», «INTERLUDE TWO», «BİRİNCİ İNTERMEDİYA» */
-  intermedia: /^(ИНТЕРМЕДИЯ|INTERLUDE\s+(ONE|TWO|THREE|FOUR)|(FIRST|SECOND|THIRD|FOURTH)\s+INTERLUDE|BİRİNCİ\s+İNTERMEDİYA|İKİNCİ\s+İNTERMEDİYA|ÜÇÜNCÜ\s+İNTERMEDİYA|DÖRDÜNCÜ\s+İNTERMEDİYA)/i,
+  intermedia: /^(ИНТЕРМЕДИЯ|ИНТЕРМЕЦЦО|ИНТЕРЛЮДИЯ|İNTERMEZZO|İntermezzo|İNTERLÜDİYA|(BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Birinci|İkinci|Üçüncü|Dördüncü)\s+ara səhnə|INTERMEZZO|Intermezzo|INTERLUDE\s+(ONE|TWO|THREE|FOUR)|(FIRST|SECOND|THIRD|FOURTH)\s+INTERLUDE|BİRİNCİ\s+İNTERMEDİYA|İKİNCİ\s+İNTERMEDİYA|ÜÇÜNCÜ\s+İNTERMEDİYA|DÖRDÜNCÜ\s+İNTERMEDİYA)/i,
   appendix: /^(ПРИЛОЖЕНИЕ|APPENDIX|ƏLAVƏ)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   closing: /^(ЗАКЛЮЧИТЕЛЬНОЕ\s+ПОСЛАНИЕ|CLOSING\s+MESSAGE)/i,
   /* глава AZ: «1-Cİ FƏSİL» — номер впереди */
@@ -88,7 +88,7 @@ const RX = {
   /* вводные разделы: «GİRİŞ», «ВВЕДЕНИЕ», а также «GİRİŞ. MÜƏLLİFDƏN MÜRACİƏT»,
      «ВВЕДЕНИЕ. ОБРАЩЕНИЕ АВТОРА». ВАЖНО: \b в JS не работает с кириллицей —
      границу слова задаём явным классом букв. */
-  front: /^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог|INTRODUCTION|PROLOGUE)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
+  front: /^(GİRİŞ|Giriş|PROLOQ|Proloq|ВВЕДЕНИЕ|Введение|ПРОЛОГ|Пролог|INTRODUCTION|PROLOGUE|От автора|Müəllifdən|From the Author)(?![A-Za-zА-Яа-яƏəİıÖöÜüÇçŞşĞğ])/i,
   tocline: /(…|\.{3,}|\s\d{1,3}\s*$)/
 };
 
@@ -171,6 +171,10 @@ function buildChapters(paras) {
     return byToc.map((ch) => ({ title: ch.title, paras: ch.paras, partTitle: '' }));
   }
 
+  /* «Fəsil N» — часть или глава? В «Фениксе» есть маркеры «Bölüm/Глава/Chapter N»
+     (там Fəsil — часть), в AZ-издании «Шизофрении» таких маркеров нет (там Fəsil — глава) */
+  const fesilIsChapter = !body.some((p) => /^(BÖLÜM|Bölüm|bÖLÜM|ГЛАВА|Глава|CHAPTER|Chapter)\s*\d/.test(p.text));
+
   /* 2) разбить на части и главы */
   const parts = [];
   let curPart = null, curCh = null;
@@ -192,19 +196,20 @@ function buildChapters(paras) {
   body.forEach((p) => {
     const t = p.text;
     const headOk = !p.tbl;                    /* ячейка таблицы заголовком не бывает */
-    const isPart = headOk && (RX.part.test(t) || RX.partAz.test(t)) && t.length < 120 && !RX.modelMark.test(t);
+    const isPart = headOk && (RX.part.test(t) || RX.partAz.test(t)) && t.length < 120 && !RX.modelMark.test(t) &&
+      !(fesilIsChapter && /^F[əƏ]sil/i.test(t));
     const isBare = headOk && BARE.test(t);
     const isAzNum = headOk && (AZNUM.test(t) || RX.azChapter.test(t)) && t.length < 160;
     /* глава модели, помеченная как часть: «FƏSİL 12. MÜNASİBƏT MODELİ» */
     const isModelCh = RX.modelChapter.test(t) && RX.modelMark.test(t) && t.length < 200;
-    const isCh = headOk && (RX.chapter.test(t) || isModelCh || RX.appendixSec.test(t) ||
+    const isCh = headOk && (RX.chapter.test(t) || (fesilIsChapter && /^F[əƏ]sil\s*\d/i.test(t)) || isModelCh || RX.appendixSec.test(t) ||
       RX.intermedia.test(t) || RX.appendix.test(t) || RX.closing.test(t)) && t.length < 200;
     /* вводные разделы — только в начале книги: «ВВЕДЕНИЕ»/«GİRİŞ» посреди текста
        (в таблицах, в приложении) главой не становится */
     const isFront = headOk && RX.front.test(t) && t.length < 60 && !curCh;
     /* разделы, у которых в DOCX нет маркера (задаются в конфиге книги):
        напр. «ШКОЛА МЕТОДОЛОГИИ «ФЕНИКС»», «ПОСЛЕСЛОВИЕ.» */
-    const isExtra = EXTRA.some((x) => t.toUpperCase().startsWith(x.toUpperCase())) && t.length < 90;
+    const isExtra = EXTRA.some((x) => up(t).startsWith(up(x))) && t.length < 90;
     const isBigHead = p.bold && p.sz >= 32 && t.length < 90 && !/^\d+[.)]/.test(t);
 
     /* короткий подзаголовок-название сразу после заголовка главы (напр. «LİLİT» / «ЛИЛИТ»)
@@ -507,7 +512,7 @@ function tocStructure(paras, all) {
   const titles = tocTitles(paras || []);
   if (titles.length < 3) return null;
   const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|HİSSƏ|PART\s+[IVXLC]+(?![A-Za-z])|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
-  const CHAP = /^(Глава|Chapter|CHAPTER|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL]|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE])/i;
+  const CHAP = /^(Глава|Chapter|CHAPTER|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|От автора|Müəllifdən|From the Author|Интермеццо|İntermezzo|Intermezzo|Интерлюдия|İnterlüdiya|ara səhnə|Fəsil\s*\d|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL]|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE])/i;
   /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
      (модель «Феникс», школа «Феникс») перепутать страницы */
   const mn = (s) => {
