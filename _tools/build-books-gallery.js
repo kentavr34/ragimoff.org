@@ -164,6 +164,78 @@ const BOOKS = [
     price: '50 ₼',
     read: { az: '/books/phoenix-era/', ru: '/books/phoenix-era/ru/', en: null },
   },
+  {
+    id: 'freud-yuxularin-yozumu',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-yuxularin-yozumu/', ru: '/books/freud-yuxularin-yozumu/', en: '/books/freud-yuxularin-yozumu/' },
+  },
+  {
+    id: 'freud-aforizmlar',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Aforizmlər', ru: 'Aforizmlər', en: 'Aforizmlər' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Aforizmlər', ru: 'Aforizmlər', en: 'Aforizmlər' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-aforizmlar/', ru: '/books/freud-aforizmlar/', en: '/books/freud-aforizmlar/' },
+  },
+  {
+    id: 'freud-musa',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Musa və təkallahlılıq', ru: 'Musa və təkallahlılıq', en: 'Musa və təkallahlılıq' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Musa və təkallahlılıq', ru: 'Musa və təkallahlılıq', en: 'Musa və təkallahlılıq' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-musa/', ru: '/books/freud-musa/', en: '/books/freud-musa/' },
+  },
+  {
+    id: 'freud-psixoanalizle-tanishliq',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-psixoanalizle-tanishliq/', ru: '/books/freud-psixoanalizle-tanishliq/', en: '/books/freud-psixoanalizle-tanishliq/' },
+  },
+  {
+    id: 'freud-seksualligin-psixologiyasi',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Seksuallığın psixologiyası', ru: 'Seksuallığın psixologiyası', en: 'Seksuallığın psixologiyası' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Seksuallığın psixologiyası', ru: 'Seksuallığın psixologiyası', en: 'Seksuallığın psixologiyası' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-seksualligin-psixologiyasi/', ru: '/books/freud-seksualligin-psixologiyasi/', en: '/books/freud-seksualligin-psixologiyasi/' },
+  },
+  {
+    id: 'freud-sevgi-mektublari',
+    authorKey: 'freud',
+    cover: 'freud.jpg',
+    coverTitle: { az: 'Sevgi məktubları', ru: 'Sevgi məktubları', en: 'Sevgi məktubları' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '2026',
+    title: { az: 'Sevgi məktubları', ru: 'Sevgi məktubları', en: 'Sevgi məktubları' },
+    meta: { az: 'Ziqmund Freyd · 2026 · AZ', ru: 'Зигмунд Фрейд · 2026 · AZ', en: 'Sigmund Freud · 2026 · AZ' },
+    price: null,                                  /* только чтение, без заказа */
+    read: { az: '/books/freud-sevgi-mektublari/', ru: '/books/freud-sevgi-mektublari/', en: '/books/freud-sevgi-mektublari/' },
+  },
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
