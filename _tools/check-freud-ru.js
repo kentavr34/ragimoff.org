@@ -9,8 +9,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const RU_BOOKS = ['freud-musa', 'freud-seksualligin-psixologiyasi', 'freud-sevgi-mektublari'];
-const AZ_ONLY = ['freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'];
+const RU_BOOKS = ['freud-musa', 'freud-seksualligin-psixologiyasi', 'freud-sevgi-mektublari',
+  'freud-yuxularin-yozumu', 'freud-psixoanalizle-tanishliq'];   /* у всех пяти есть русская версия */
+const AZ_ONLY = [];
 let bad = 0, links = 0;
 const fail = (m) => { console.log('  БИТО: ' + m); bad++; };
 
@@ -18,8 +19,22 @@ function hrefs(html) {
   return [...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1])
     .filter((h) => !/^(https?:|mailto:|#|javascript:|\/$|\/books\/)/.test(h));
 }
+const RU_JUNK = [
+  /^ISBN/i, /^©/, /royallib/i, /^Скачать/i, /^Читать$/i, /^ЛитРес/i, /^УДК/i, /^ББК/i,
+  /^www\./i, /^https?:\/\//i, /^e-?mail/i, /^Перевод .{0,60}дополнен редакторскими/i,
+  /^Вводное примечание издателей/i, /^От редакции/i, /^Издательство/i, /^Подписано/i,
+  /^Редактор/i, /^Корректор/i, /^Зигмунд Фрейд$/
+];
+let junk = 0;
 function checkFile(file, dir) {
   const html = fs.readFileSync(file, 'utf8');
+  [...html.matchAll(/<p>([\s\S]*?)<\/p>/g)].forEach((m) => {
+    const t = m[1].replace(/<[^>]+>/g, '').trim();
+    if (RU_JUNK.some((re) => re.test(t))) {
+      junk++;
+      fail(path.relative(ROOT, file) + ': мусор «' + t.slice(0, 60) + '»');
+    }
+  });
   hrefs(html).forEach((h) => {
     const clean = h.split('#')[0];
     if (!clean) return;

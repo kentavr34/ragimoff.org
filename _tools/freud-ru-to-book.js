@@ -17,7 +17,7 @@ const SRC = 'D:/Документы/ZFreud/site_freudproject_ru';
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
 const LSV = 6;                                   /* версия _lang-switch.js (?v=) */
 
-const UI = { toc: 'Содержание', back: 'Книги', home: 'Главная', up: 'Книга' };
+const UI = { toc: 'СОДЕРЖАНИЕ', back: 'Книги', home: 'Главная', up: 'Книга' };
 const YEAR = '2026';
 
 function up(s) { return String(s).toUpperCase(); }
@@ -30,7 +30,15 @@ const JUNK_ONE = [
   /^#\s/, /^- \*\*(ID|Дата|Категории|URL)/, /^freudproject\.ru Last updated:/,
   /^https?:\/\/freudproject\.ru/, /^ПРЕДЛАГАЕМЫЙ ТЕКСТ/, /^Заметили ошибку\?/,
   /^\[Примечание freudproject\.ru\]/, /^Оставить заявку$/, /^Сверка с источником произведена$/,
-  /^Читать$/, /^Сноски:$/
+  /^Читать$/, /^Сноски:$/,
+  /* редакторские вставки русских изданий/зеркала — не текст Фрейда */
+  /^Перевод .{0,60}дополнен редакторскими/,
+  /^Tepмuн/i
+];
+/* выкинуть абзац-заголовок и следующий за ним абзац (редакторские примечания) */
+const JUNK_DROP_NEXT = [
+  /^Вводное примечание издателей/i, /^Вводное замечание издателей/i,
+  /^От редакции/i, /^От переводчика/i, /^Примечание издателей/i, /^Предисловие издателей/i
 ];
 /* «шапка: значение» — гасим и следующую строку (значение отдельным абзацем) */
 const JUNK_SKIP = [
@@ -71,6 +79,7 @@ function clean(blocks, heads, opts) {
     if (skipNext) { skipNext = false; continue; }
     if (series) { if (series.test(b)) continue; series = null; }
     if (JUNK_ONE.some((re) => re.test(b))) continue;
+    if (JUNK_DROP_NEXT.some((re) => re.test(b))) { skipNext = true; continue; }
     const js = JUNK_SERIES.find((x) => x.head.test(b));
     if (js) { series = js.item; continue; }
     const sk = JUNK_SKIP.find((re) => re.test(b));
@@ -142,7 +151,7 @@ const BOOKS = [
   {
     slug: 'freud-musa', logo: 'MT', year: YEAR,
     ruTitle: 'Человек Моисей и монотеистическая религия', ruSubtitle: 'Зигмунд Фрейд', ruAuthor: 'Зигмунд Фрейд',
-    intro: 'Перевод В. В. Бибихина · очерки I–III · 1939',
+    intro: 'Первое издание — 1939', ruYear: '1939',
     chapters: [
       { slug: 'ocherk-i-egipcyanin-moisei', title: 'Очерк I. Египтянин Моисей', src: { id: '7485' },
         heads: ['Вводное примечание издателей немецкого Studienausgabe'] },
@@ -156,7 +165,7 @@ const BOOKS = [
   {
     slug: 'freud-seksualligin-psixologiyasi', logo: 'SP', year: YEAR,
     ruTitle: 'Три очерка по теории сексуальности', ruSubtitle: 'Зигмунд Фрейд', ruAuthor: 'Зигмунд Фрейд',
-    intro: 'Перевод М. В. Вульфа · 1905 · предисловия к 3-му и 4-му изданиям',
+    intro: 'Первое издание — 1905', ruYear: '1905',
     chapters: [
       { slug: 'predisloviya', title: 'Предисловия к 3-му и 4-му изданиям', src: { id: '14242', from: 'Предисловие автора к 3-му изданию', to: 'I. Сексуальные отклонения' },
         heads: ['Предисловие автора к 3-му изданию', 'Предисловие автора к 4-му изданию'] },
@@ -174,7 +183,7 @@ const BOOKS = [
   {
     slug: 'freud-sevgi-mektublari', logo: 'SM', year: YEAR,
     ruTitle: 'Письма Марте Бернайс (1882–1886)', ruSubtitle: 'Зигмунд Фрейд', ruAuthor: 'Зигмунд Фрейд',
-    intro: 'Перевод С. В. Лайне · 36 писем невесте · 1882–1886',
+    intro: 'Первое издание — 1882–1886', ruYear: '1882–1886',
     letters: true,
     chapters: [{ slug: 'o-pismah', title: 'Письма Марте Бернайс (1882–1886)', short: 'Предисловие', src: { id: '7020' } }]
   }
@@ -192,6 +201,14 @@ const TOC_STYLE = '<style>' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
   '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
+  /* титул книги: название · автор · год издания — ровно, без пустоты снизу */
+  '.home-hero{padding:4px 0 2px}' +
+  '.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}' +
+  '.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}' +
+  '.home-hero .sub:first-of-type{color:var(--text)}' +
+  '.book-toc{margin:16px auto 6px}' +
+  '.book-toc .toc-chapter{margin:0}' +
+  '.content-wrap{padding-top:.6rem;padding-bottom:2rem}' +
   '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}' +
   '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}' +
@@ -233,7 +250,7 @@ function bodyTop(b) {
     .replace(/<div class="hdr-logo">[^<]*<\/div>/, '<div class="hdr-logo">' + b.logo + '</div>')
     .replace(/<a href="https:\/\/ragimoff\.org" class="hdr-back"[^>]*>/, '<a href="https://ragimoff.org/ru/" class="hdr-back" title="Вернуться на главную сайта">')
     .replace(/<strong>[^<]*<\/strong>/, '<strong>' + esc(up(b.ruTitle)) + '</strong>')
-    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(b.ruAuthor) + ' · ' + b.year + '</small>')
+    .replace(/<small>[^<]*<\/small>/, '<small>' + esc(b.ruAuthor) + ' · ' + (b.ruYear || b.year) + '</small>')
     .replace('data-lang-switch', 'data-lang-switch data-langs="az,ru" data-lang-avail="az ru"')
     .replace('src="/_lang-switch.js"', 'src="/_lang-switch.js?v=' + LSV + '"');
 }
