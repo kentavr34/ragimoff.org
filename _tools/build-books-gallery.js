@@ -170,7 +170,7 @@ const BOOKS = [
   {
     id: 'freud-yuxularin-yozumu',
     authorKey: 'freud',
-    cover: 'freud.jpg',
+    cover: 'freud-yuxularin-yozumu.jpg',
     coverTitle: { az: 'Yuxuların yozumu', ru: 'Yuxuların yozumu', en: 'Yuxuların yozumu' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
@@ -182,7 +182,7 @@ const BOOKS = [
   {
     id: 'freud-musa',
     authorKey: 'freud',
-    cover: 'freud.jpg',
+    cover: 'freud-musa.jpg',
     coverTitle: { az: 'Musa və təkallahlılıq', ru: 'Musa və təkallahlılıq', en: 'Musa və təkallahlılıq' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
@@ -194,7 +194,7 @@ const BOOKS = [
   {
     id: 'freud-psixoanalizle-tanishliq',
     authorKey: 'freud',
-    cover: 'freud.jpg',
+    cover: 'freud-psixoanalizle-tanishliq.jpg',
     coverTitle: { az: 'Psixoanalizlə ilkin tanışlıq', ru: 'Psixoanalizlə ilkin tanışlıq', en: 'Psixoanalizlə ilkin tanışlıq' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
@@ -206,7 +206,7 @@ const BOOKS = [
   {
     id: 'freud-seksualligin-psixologiyasi',
     authorKey: 'freud',
-    cover: 'freud.jpg',
+    cover: 'freud-seksualligin-psixologiyasi.jpg',
     coverTitle: { az: 'Seksuallığın psixologiyası', ru: 'Seksuallığın psixologiyası', en: 'Seksuallığın psixologiyası' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
@@ -218,7 +218,7 @@ const BOOKS = [
   {
     id: 'freud-sevgi-mektublari',
     authorKey: 'freud',
-    cover: 'freud.jpg',
+    cover: 'freud-sevgi-mektublari.jpg',
     coverTitle: { az: 'Sevgi məktubları', ru: 'Sevgi məktubları', en: 'Sevgi məktubları' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '2026',
