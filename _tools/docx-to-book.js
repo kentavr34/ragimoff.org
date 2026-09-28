@@ -507,7 +507,7 @@ function tocStructure(paras, all) {
   const titles = tocTitles(paras || []);
   if (titles.length < 3) return null;
   const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|HİSSƏ|PART\s+[IVXLC]+(?![A-Za-z])|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
-  const CHAP = /^(Глава|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|\d+\s*[-–]?\s*(ci|cı|cu|cü)\s+(fəsil|bölmə))/i;
+  const CHAP = /^(Глава|Chapter|CHAPTER|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL]|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE])/i;
   /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
      (модель «Феникс», школа «Феникс») перепутать страницы */
   const mn = (s) => {
