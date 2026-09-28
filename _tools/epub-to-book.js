@@ -69,7 +69,9 @@ cfg.langs.forEach((lang) => {
   const normT = (x) => String(x).toLowerCase().replace(/[«»"'`.,:;!?()\[\]–—-]/g, ' ').replace(/\s+/g, ' ').trim();
   const bookTitle = normT(lang.title);
   parts.forEach((part) => {
-    part.paras = part.paras.filter((x, i) => !(i < 15 && (normT(x) === bookTitle || normT(x).startsWith(bookTitle.slice(0, 12)))));
+    part.paras = part.paras.filter((x, i) => !(i < 15 && (normT(x) === bookTitle ||
+      /^(bakı|\(c\)|©|isbn|qanun|nəşriyyat|tərcümə|tercümə|redaktor)/i.test(x.trim()) ||
+      (x.length < 60 && /qanun nəşriyyatı|nəşriyyatı/i.test(x)))));
   });
   const ui = UI[lang.ui] || UI.az;
   const all = parts.map((p, i) => {
