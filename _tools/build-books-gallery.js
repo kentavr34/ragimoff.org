@@ -260,12 +260,14 @@ const BOOKS = [
     cover: 'freud-aforizmlar.jpg',
     coverTitle: { az: 'Aforizmlər', ru: 'Афоризмы', en: 'Aphorisms' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
-    year: '2014',
+    /* года у сборника нет (решение владельца 29.09.2026): 2014/2015 — год печатного
+       издания Qanun, а не год первой публикации; бейдж обложки тогда не выводится */
+    year: '',
     title: { az: 'Aforizmlər', ru: 'Афоризмы', en: 'Aphorisms' },
     meta: {
-      az: 'Ziqmund Freyd · 2014 · AZ',
-      ru: 'Зигмунд Фрейд · 2014 · AZ',
-      en: 'Sigmund Freud · 2014 · AZ',
+      az: 'Ziqmund Freyd · AZ',
+      ru: 'Зигмунд Фрейд · AZ',
+      en: 'Sigmund Freud · AZ',
     },
     price: null,                                  /* только чтение, без заказа */
     langs: ['az'],                                /* русской версии нет — есть только AZ */
@@ -313,7 +315,7 @@ function card(book, code, ui) {
     '<span class="cover__frame" aria-hidden="true"></span>' +
     '<span class="cover__author">' + esc(book.coverAuthor[code]) + '</span>' +
     '<span class="cover__title">' + book.coverTitle[code] + '</span>' +
-    '<span class="cover__year">' + book.year + '</span>' +
+    (book.year ? '<span class="cover__year">' + book.year + '</span>' : '') +
     '</div>';
   const orderValue = book.title[code] + ' · ' + book.price;
   const canOrder = !!book.price;                 /* без цены — только чтение */
