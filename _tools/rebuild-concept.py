@@ -59,7 +59,7 @@ FONT_URL = ("https://fonts.googleapis.com/css2?"
             "&family=IBM+Plex+Mono:wght@400;500"
             "&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700"
             "&family=Montserrat:wght@300;400;500")
-CSS_BOOK = "/books/book.css?v=4"               # концепт (замена содержимого на book-concept.css)
+CSS_BOOK = "/books/book.css?v=8"               # концепт (замена содержимого на book-concept.css)
 CSS_CONTENT = "/books/book-content.css?v=1"    # содержимое книг: таблицы, списки, обложки
 
 # ── строки интерфейса по языкам страницы ──────────────────────────────────────
@@ -266,15 +266,29 @@ def parse_page(path, book, page_rel, base=None):
 
     # ── содержимое ──
     parse_content(p, raw)
+
+    # титул: своей рейки у него нет — берём навигацию книги (в демо она общая)
+    if not (p["side"]["front"] or p["side"]["rows"] or p["side"]["trees"]):
+        side = cover_side(book, page_rel, base)
+        if not side["front"] and not side["rows"] and not side["trees"]:
+            side = cover_toc_side(p)
+        p["side"] = side
+        if not p["side"]["front"] and not p["side"]["rows"] and not p["side"]["trees"]:
+            p["side"] = empty_side()
     return p
 
 
 def parse_sidebar(raw, path, book, page_rel):
-    """Пункты навигации: front-ссылки, разделы, главы. Плюс вкладки классификаций (klinik)."""
-    side = {"front": [], "rows": [], "trees": [], "tabs": []}
+    """Пункты навигации: front-ссылки, разделы, главы. Плюс вкладки классификаций (klinik).
+
+    Два источника: исходный `.sidebar` (старая разметка) и уже пересобранный `.bk-sb`
+    (каркас концепта). Второй нужен, потому что страницы уже пересобраны, и без него
+    повторный прогон терял бы навигацию.
+    """
     i = raw.find('<aside class="sidebar"')
     if i < 0:
-        return side
+        return parse_sidebar_bk(raw)
+    side = {"front": [], "rows": [], "trees": [], "tabs": []}
     j = raw.find("</aside>", i)
     nav = raw[i:j]
 
@@ -318,6 +332,58 @@ def parse_sidebar(raw, path, book, page_rel):
     return side
 
 
+def parse_sidebar_bk(raw):
+    """Пункты навигации из УЖЕ пересобранной рейки `.bk-sb` (каркас концепта)."""
+    side = {"front": [], "rows": [], "trees": [], "tabs": []}
+    i = raw.find('<aside class="bk-sb')
+    if i < 0:
+        return side
+    j = raw.find("</aside>", i)
+    nav = raw[i:j]
+
+    row_re = re.compile(r'<(a|span)\b([^>]*class="[^"]*\bbk-row\b[^"]*"[^>]*)>(.*?)</\1>', re.S)
+
+    def rows_in(chunk, front):
+        """front=True — только безномерные пункты (.bk-row--front), иначе — только главы."""
+        out = []
+        for m in row_re.finditer(chunk):
+            tag = "<x " + m.group(2) + ">"
+            cls = attr(tag, "class") or ""
+            inner = m.group(3)
+            if front != ("bk-row--front" in cls):
+                continue
+            if front:
+                out.append({"href": attr(tag, "href") or "index.html",
+                            "name": strip_tags(inner), "code": ""})
+                continue
+            code = strip_tags((re.findall(r'<span class="bk-row__n">(.*?)</span>', inner, re.S) or [""])[0])
+            name = strip_tags((re.findall(r'<span class="bk-row__t">(.*?)</span>', inner, re.S) or [""])[0])
+            lvl = 1 if "bk-row--sec" in cls else (2 if "bk-row--sub" in cls else 1)
+            out.append({"href": attr(tag, "href"), "name": name, "code": code, "level": lvl,
+                        "active": "is-on" in cls})
+        return out
+
+    for m in re.finditer(r'<button\b([^>]*class="[^"]*cls-tab[^"]*"[^>]*)>(.*?)</button>', nav, re.S):
+        side["tabs"].append({"cls": attr("<x " + m.group(1) + ">", "data-cls") or "",
+                             "label": strip_tags(m.group(2)),
+                             "active": "is-active" in (attr("<x " + m.group(1) + ">", "class") or "")})
+    for m in re.finditer(r'<div class="cls-tree" data-cls="([^"]*)"([^>]*)>', nav):
+        start = m.start()
+        end = block_end(nav, start)
+        side["trees"].append({"cls": m.group(1), "rows": rows_in(nav[start:end], front=False),
+                              "hidden": "hidden" in m.group(2)})
+
+    # рейка плоская там, где нет деревьев: front-пункты и главы различаются классом
+    if side["trees"]:
+        head = nav[:nav.find('<div class="cls-tree"')]
+    else:
+        head = nav
+    side["front"] = rows_in(head, front=True)
+    if not side["trees"]:
+        side["rows"] = rows_in(nav, front=False)
+    return side
+
+
 def resolve(page_rel, href, path=None):
     """Куда ведёт href со страницы page_rel (путь относительно корня книги)."""
     if not href:
@@ -328,12 +394,192 @@ def resolve(page_rel, href, path=None):
     return posixpath.normpath(posixpath.join(base, href.split("#")[0].split("?")[0]))
 
 
+# ── навигация титула: в демо рейка одна на всю книгу ──────────────────────────
+LANG_DIRS = ("az", "ru", "en", "tr")
+
+
+def rebase_href(href, from_rel, to_rel):
+    """Адрес со страницы from_rel → тот же адрес со страницы to_rel (обе — от корня книги)."""
+    if not href or re.match(r"^[a-z]+:", href) or href.startswith("//") or href.startswith("#"):
+        return href
+    clean, tail = href, ""
+    for sep in ("#", "?"):
+        i = href.find(sep)
+        if i >= 0:
+            clean, tail = href[:i], href[i:]
+            break
+    target = resolve(from_rel, clean)
+    if not target:
+        return href
+    base = posixpath.dirname(to_rel) or "."
+    return posixpath.relpath(target, base) + tail
+
+
+def rebase_side(side, from_rel, to_rel):
+    """Все адреса рейки пересчитываем на каталог титула."""
+    for group in (side["front"], side["rows"]):
+        for r in group:
+            r["href"] = rebase_href(r.get("href"), from_rel, to_rel)
+    for tree in side["trees"]:
+        for r in tree["rows"]:
+            r["href"] = rebase_href(r.get("href"), from_rel, to_rel)
+    return side
+
+
+def donor_rel(book, page_rel):
+    """Соседняя страница книги — донор её рейки: сначала та же папка, потом подпапки
+    (кроме языковых каталогов — английская рейка не должна попасть на русский титул)."""
+    base = os.path.join(ROOT, book)
+    d = posixpath.dirname(page_rel)
+    abs_d = os.path.join(base, d.replace("/", os.sep)) if d else base
+    if not os.path.isdir(abs_d):
+        return None
+    for f in sorted(os.listdir(abs_d)):
+        if f.endswith(".html") and f != posixpath.basename(page_rel) \
+                and os.path.isfile(os.path.join(abs_d, f)):
+            return posixpath.join(d, f) if d else f
+    for sub in sorted(os.listdir(abs_d)):
+        abs_sub = os.path.join(abs_d, sub)
+        if sub in LANG_DIRS or not os.path.isdir(abs_sub):
+            continue
+        for f in sorted(os.listdir(abs_sub)):
+            if f.endswith(".html"):
+                return posixpath.join(d, sub, f) if d else posixpath.join(sub, f)
+    return None
+
+
+def empty_side():
+    return {"front": [], "rows": [], "trees": [], "tabs": []}
+
+
+def cover_side(book, page_rel, base=None):
+    """Рейка титула: те же пункты, что на страницах книги, с адресами от титула."""
+    r = donor_rel(book, page_rel)
+    if not r:
+        return empty_side()
+    side = parse_sidebar(read_source(posixpath.join(book, r), base), None, book, r)
+    if not (side["front"] or side["rows"] or side["trees"]):
+        return empty_side()
+    # «Главная» на странице-доноре местами ведёт на неё саму (адрес потерян при
+    # пересборке). На титуле этот пункт обязан вести на титул — в демо он и активен.
+    self_href = posixpath.basename(page_rel) or "index.html"
+    self_rows = [i for i, f in enumerate(side["front"]) if resolve(r, f.get("href")) == r]
+    rebase_side(side, r, page_rel)
+    for i in self_rows:
+        side["front"][i]["href"] = self_href
+    return side
+
+
+def apply_toc_names(p):
+    """Подписи пунктов рейки на титуле берём из оглавления той же страницы: в демо
+    рейка и оглавление подписаны одинаково, а в старой разметке подписи рейки были
+    обрезаны под узкую колонку («III. … birinci bölmə», «от автора»)."""
+    toc = {}
+    for r in cover_toc(p):
+        if r.get("href") and not r.get("part") and r.get("name"):
+            k = resolve(p["rel"], r["href"])
+            if k:
+                toc.setdefault(k, r["name"])
+    if not toc:
+        return p
+    groups = [p["side"]["rows"]] + [t["rows"] for t in p["side"]["trees"]]
+    for group in groups:
+        for r in group:
+            k = resolve(p["rel"], r.get("href"))
+            if k in toc:
+                r["name"] = toc[k]
+    return p
+
+
+def cover_toc_side(p):
+    """Запасной источник для титула: его же оглавление .bk-toc__list (если донора нет)."""
+    side = empty_side()
+    blk = p["raw"]
+    i = blk.find('<ol class="bk-toc__list">')
+    if i < 0:
+        return side
+    blk = blk[i:blk.find("</ol>", i)]
+    for m in re.finditer(r'<li class="([^"]*)">(.*?)</li>', blk, re.S):
+        cls, inner = m.group(1), m.group(2)
+        a = re.search(r"<a\b([^>]*)>", inner)
+        href = attr("<x " + a.group(1) + ">", "href") if a else None
+        name = strip_tags((re.findall(r'<span class="bk-toc__t">(.*?)</span>', inner, re.S) or [""])[0])
+        num = strip_tags((re.findall(r'<span class="bk-toc__n">(.*?)</span>', inner, re.S) or [""])[0])
+        if not name:
+            continue
+        if not href:
+            side["front"].append({"href": "", "name": name, "code": ""})
+        else:
+            side["rows"].append({"href": href, "name": name, "code": num, "level": 1,
+                                 "active": False})
+    return side
+
+
+def parse_content_bk(p, raw):
+    """Содержимое УЖЕ пересобранного каркаса (глава `.bk-chead` / титул `.bk-tp`) —
+    чтобы повторный прогон не терял заголовок, тело, примечания и пред/след."""
+    if '<section class="bk-tp"' in raw:
+        p["kind"] = "cover"
+        rest = re.search(r'<div class="bk-read bk-read--rest">', raw)
+        if rest:
+            p["body"] = div_inner(raw, rest.start()).strip()
+        return
+
+    m = re.search(r'<header class="bk-chead">(.*?)</header>', raw, re.S)
+    if not m:
+        return
+    blk = m.group(1)
+    p["chead"] = {
+        "code": strip_tags((re.findall(r'<span class="bk-chead__n">(.*?)</span>', blk, re.S) or [""])[0]),
+        "title": strip_tags((re.findall(r'<h1 class="bk-chead__h1">(.*?)</h1>', blk, re.S) or [""])[0]),
+        "en": strip_tags((re.findall(r'<p class="bk-chead__en">(.*?)</p>', blk, re.S) or [""])[0]),
+        "sub": strip_tags((re.findall(r'<p class="bk-chead__sub">(.*?)</p>', blk, re.S) or [""])[0]),
+    }
+    cr = re.search(r'<nav class="bk-crumb"[^>]*>(.*?)</nav>', raw, re.S)
+    if cr:
+        a = re.search(r'<a\b([^>]*)>(.*?)</a>', cr.group(1), re.S)
+        if a:
+            p["crumb"] = {"href": attr("<x " + a.group(1) + ">", "href"), "name": strip_tags(a.group(2))}
+    mn = re.search(r'<ul class="bk-toc__list">(.*?)</ul>', raw, re.S)
+    if mn:
+        p["menu"] = [{"href": attr("<x " + a.group(1) + ">", "href"),
+                      "code": strip_tags((re.findall(r'<span class="bk-toc__n">(.*?)</span>', a.group(2), re.S) or [""])[0]),
+                      "name": strip_tags((re.findall(r'<span class="bk-toc__t">(.*?)</span>', a.group(2), re.S) or [""])[0])}
+                     for a in re.finditer(r'<a\b([^>]*)>(.*?)</a>', mn.group(1), re.S)]
+    for nm in re.finditer(r'<section class="bk-notes">(.*?)</section>', raw, re.S):
+        blk2 = nm.group(1)
+        items = [{"n": strip_tags(n2.group(1)),
+                  "t": strip_tags((re.findall(r'<span class="bk-note__t">(.*?)</span>', n2.group(2), re.S) or [""])[0])}
+                 for n2 in re.finditer(r'<p class="bk-note"><span class="bk-note__n">(.*?)</span>(.*?)</p>', blk2, re.S)]
+        if items:
+            p["notes"].append({
+                "title": strip_tags((re.findall(r'<h2[^>]*>(.*?)</h2>', blk2, re.S) or [""])[0]),
+                "items": items})
+    rd = re.search(r'<div class="bk-read">', raw)
+    if rd:
+        p["body"] = div_inner(raw, rd.start()).strip()
+    pn = re.search(r'<nav class="bk-pn"[^>]*>(.*?)</nav>', raw, re.S)
+    if pn:
+        up = re.search(r'<p class="bk-pn__up"><a\b([^>]*)>(.*?)</a></p>', pn.group(1), re.S)
+        if up:
+            p["up"] = {"href": attr("<x " + up.group(1) + ">", "href"), "name": strip_tags(up.group(2))}
+        links = [{"href": attr("<x " + a.group(1) + ">", "href"),
+                  "name": strip_tags((re.findall(r'<span class="bk-pn__t">(.*?)</span>', a.group(2), re.S) or [""])[0]),
+                  "dir": strip_tags((re.findall(r'<span class="bk-pn__dir">(.*?)</span>', a.group(2), re.S) or [""])[0])}
+                 for a in re.finditer(r'<a\b([^>]*)>(.*?)</a>', pn.group(1), re.S)]
+        if len(links) > 0:
+            p["prev"] = links[0]
+        if len(links) > 1:
+            p["next"] = links[1]
+
+
 def parse_content(p, raw):
     """Содержимое: хлебная крошка, шапка главы, тело, примечания, пред/след."""
     p.update({"crumb": None, "chead": None, "body": "", "notes": [], "prev": None,
               "next": None, "up": None, "kind": "chapter", "menu": None, "cover": None})
     i = raw.find('<div class="content-wrap">')
     if i < 0:
+        parse_content_bk(p, raw)      # уже пересобранный каркас концепта
         return
     inner = div_inner(raw, i)
 
@@ -799,9 +1045,11 @@ def modal_html(raw):
 
 def render(p):
     if p["kind"] == "cover":
+        apply_toc_names(p)
         main = cover_main(p)
         body_cls = "bk bk-cover"
-        sb, prog = "", ""
+        sb = sidebar_html(p)          # титул тоже с рейкой — как в демо (book-cover.html)
+        prog = ""
     else:
         main = page_main(p)
         body_cls = "bk bk-chapter"
@@ -852,7 +1100,7 @@ def cover_main(p):
             body = ('<span class="bk-toc__a" aria-disabled="true"><span class="bk-toc__n"></span>%s</span>' % inner)
         rows.append('          <li class="%s">%s</li>' % (cls, body))
     notes = notes_html(p)
-    rest = p["body"].strip()
+    rest = re.sub(r"</main>", "", p["body"]).strip()      # лишний </main> из старой разметки
     rest_html = ('\n      <div class="bk-read bk-read--rest">\n%s\n      </div>\n' % rest) if rest else "\n"
     return '''      <section class="bk-tp">
         <div class="bk-tp__mark" role="presentation"></div>
@@ -892,6 +1140,14 @@ def cover_texts(p):
     raw = p["raw"]
     m = re.search(r'<div class="home-hero">(.*?)</div>', raw, re.S)
     hero = m.group(1) if m else ""
+    if not hero and '<h1 class="bk-tp__title">' in raw:
+        # уже пересобранный титул: тексты берём из него самого
+        tp = re.search(r'<section class="bk-tp">(.*?)</section>', raw, re.S)
+        tp = tp.group(1) if tp else raw
+        return (strip_tags((re.findall(r'<h1 class="bk-tp__title">(.*?)</h1>', tp, re.S) or [""])[0]),
+                strip_tags((re.findall(r'<span class="bk-tp__author">(.*?)</span>', tp, re.S) or [""])[0]),
+                strip_tags((re.findall(r'<span class="bk-tp__year">(.*?)</span>', tp, re.S) or [""])[0]),
+                strip_tags((re.findall(r'<p class="bk-tp__sub">(.*?)</p>', tp, re.S) or [""])[0]))
     title = strip_tags((re.findall(r"<h1[^>]*>(.*?)</h1>", hero, re.S) or [""])[0]) or p["book_title"]
     subs = [strip_tags(x) for x in re.findall(r'<p class="sub"[^>]*>(.*?)</p>', hero, re.S)]
     years = re.findall(r'<p class="sub year"[^>]*>(.*?)</p>', hero, re.S)
@@ -917,7 +1173,7 @@ def cover_toc(p):
     raw = p["raw"]
     i = raw.find('<section class="book-toc">')
     if i < 0:
-        return []
+        return cover_toc_bk(raw)
     blk = raw[i:block_end(raw, i, "section")]
     codes, by_name = {}, {}
     all_rows = p["side"]["rows"] + [x for t in p["side"]["trees"] for x in t["rows"]]
@@ -953,6 +1209,27 @@ def cover_toc(p):
                 seq += 1
                 num = "%02d" % seq
         out.append({"name": name, "href": href, "num": num, "range": rng, "part": part})
+    return out
+
+
+def cover_toc_bk(raw):
+    """Оглавление УЖЕ пересобранного титула (`.bk-toc__list`) — повторный прогон не теряет список."""
+    i = raw.find('<ol class="bk-toc__list">')
+    if i < 0:
+        return []
+    blk = raw[i:raw.find("</ol>", i)]
+    out = []
+    for m in re.finditer(r'<li class="([^"]*)">(.*?)</li>', blk, re.S):
+        cls, inner = m.group(1), m.group(2)
+        a = re.search(r"<a\b([^>]*)>", inner)
+        name = (re.findall(r'<span class="bk-toc__t">(.*?)</span>', inner, re.S) or [""])[0]
+        rng = strip_tags((re.findall(r'<span class="bk-toc__r">(.*?)</span>', name, re.S) or [""])[0])
+        name = re.sub(r'<span class="bk-toc__r">.*?</span>', "", name, flags=re.S)
+        out.append({"name": strip_tags(name),
+                    "href": attr("<x " + a.group(1) + ">", "href") if a else None,
+                    "num": strip_tags((re.findall(r'<span class="bk-toc__n">(.*?)</span>', inner, re.S) or [""])[0]),
+                    "range": rng,
+                    "part": not a})
     return out
 
 
@@ -1031,15 +1308,74 @@ def read_source(rel, base=None):
         return fh.read()
 
 
+def sync_cover(path, book, page_rel, base=None):
+    """Титул: дописать рейку `.bk-sb` (если её нет) и убрать мусор старой разметки.
+    Остальное содержимое не трогаем — так титулы правятся точечно, главы не при чём."""
+    raw = read_source(posixpath.join(book, page_rel), base)
+    out, fixed = drop_stray_main(raw)
+    what = ["убрано лишнее </main>"] if fixed else []
+    p = parse_page(path, book, page_rel, base)
+    if not (p["side"]["front"] or p["side"]["rows"] or p["side"]["trees"]):
+        return "нет навигации"
+    apply_toc_names(p)
+    sb = sidebar_html(p)
+    i = out.find('<aside class="bk-sb')
+    if i < 0:
+        m = re.search(r'^([ \t]*)<main class="bk-main">', out, re.M)
+        if not m:
+            return "нет .bk-main"
+        out = out[:m.start()] + sb + "\n\n" + out[m.start():]
+        what.insert(0, "рейка .bk-sb")
+    else:
+        j = out.find("</aside>", i) + len("</aside>")
+        if out[i:j].strip() != sb.strip():
+            out = out[:i] + sb + out[j:]
+            what.insert(0, "рейка .bk-sb переписана")
+    if out == raw:
+        return "без изменений"
+    with open(path, "w", encoding="utf-8", newline="\r\n") as fh:
+        fh.write(out)
+    return ", ".join(what)
+
+
+def drop_stray_main(raw):
+    """В «остатке» старой разметки на титуле оставался лишний </main>: он закрывал
+    .bk-main раньше времени, и футер уезжал ПОД сайдбар (в демо он внутри колонки).
+    Настоящий </main> один — последний; лишние убираем."""
+    if raw.count("</main>") < 2:
+        return raw, False
+    i = raw.rfind("</main>")
+    return raw[:i].replace("</main>", "") + raw[i:], True
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry", action="store_true", help="только отчёт")
     ap.add_argument("--book", action="append", help="одна книга (путь от корня репозитория)")
     ap.add_argument("--base", help="читать исходники из этого коммита (пересборка повторяема)")
+    ap.add_argument("--sync-covers", action="store_true",
+                    help="только титулы: дописать рейку .bk-sb (главы не трогать)")
     ap.add_argument("--quiet", action="store_true")
     a = ap.parse_args()
 
     books = a.book or BOOKS
+    if a.sync_covers:
+        stat = {"изменено": 0, "без изменений": 0}
+        for book in books:
+            for full, rel in walk(book):
+                if 'class="bk bk-cover"' not in read_source(posixpath.join(book, rel))[:6000]:
+                    continue
+                res = "dry-run" if a.dry else sync_cover(full, book, rel)
+                key = ("без изменений" if res == "без изменений"
+                       else ("проблемы" if res.startswith("нет ") else "изменено"))
+                stat[key] = stat.get(key, 0) + 1
+                if not a.quiet:
+                    print("  %-24s %s/%s" % (res, book, rel))
+        print("титулы: изменено %d | уже в порядке %d | проблемных %d"
+              % (stat.get("изменено", 0), stat.get("без изменений", 0), stat.get("проблемы", 0)))
+        if a.dry:
+            print("(dry-run: файлы не изменены)")
+        return
     stats = {"pages": 0, "cover": 0, "chapter": 0, "chars": 0, "toc": 0, "rows": 0,
              "langs": 0, "notes": 0, "bad_head": 0, "files": [], "skipped": []}
     for book in books:

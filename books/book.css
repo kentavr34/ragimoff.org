@@ -526,6 +526,9 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 
 /* ─────────── 14. ТИПОГРАФИЧЕСКИЙ КОЛОНОТИТУЛ СТРАНИЦЫ ───────────
    Нужен, чтобы высота колонки не зависела от высоты рейки. */
+/* Титул меряется шириной демо (44rem), чтение — утверждённой колонкой 656 px:
+   в демо --col один на обе страницы, здесь он разделён, чтобы не тронуть чтение. */
+body.bk-cover { --col: 44rem; }
 body.bk-cover .bk-main { min-height: calc(100vh - var(--hdr)); display: flex; flex-direction: column; }
 body.bk-cover .bk-col { flex: 1; display: flex; flex-direction: column; }
 body.bk-cover .bk-ft { margin-top: auto; }      /* колофон — по нижнему краю первого экрана */
@@ -547,50 +550,7 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
   display: flex; flex-wrap: wrap; gap: 6px var(--s3); justify-content: space-between;
 }
 
-/* ═══ АДАПТЕР: концепт поверх существующих классов страниц книг ═══ */
-:root{--gold:#C9A961!important;--bg:#07090E!important}
-/* чтение: Literata 18/1.85, колонка 656, влево, без растяжки */
-.content-wrap p{font-family:"Literata",Georgia,serif!important;font-size:18px!important;line-height:1.85!important;letter-spacing:0!important;text-align:left!important;hyphens:none!important;margin:0 0 .95em!important;color:#E8E2D6!important}
-.content-wrap{max-width:696px!important}
-.content-wrap li{font-family:"Literata",Georgia,serif!important;font-size:18px!important;line-height:1.85!important;letter-spacing:0!important}
-/* титул книги и заголовок главы */
-.home-hero h1.home-title,.content-wrap h1.chap-title-wrap{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:500!important;letter-spacing:-.01em!important;color:#F2EDE3!important}
-.home-hero h1.home-title{font-size:clamp(40px,6.4vw,76px)!important;line-height:1.08!important}
-.content-wrap h1.chap-title-wrap{font-size:clamp(28px,3.4vw,34px)!important;line-height:1.25!important;font-family:"Literata",Georgia,serif!important}
-.home-hero .sub{font-family:Montserrat,sans-serif!important}
-.home-hero .sub.year{font-family:"IBM Plex Mono",monospace!important;font-variant-numeric:tabular-nums!important}
-/* сайдбар: номера 10 Plex Mono, названия 12 */
-.sidebar .sub-code{font-family:"IBM Plex Mono",monospace!important;font-size:10px!important;font-variant-numeric:tabular-nums!important}
-.sidebar .nav-sub-link{font-size:12px!important;line-height:1.4!important;transition:background-color .18s ease,color .18s ease!important}
-.sidebar .nav-sub-link.is-active{color:#C9A961!important;border-left-color:#C9A961!important}
-/* мелочи: переходы и золотая кнопка */
-a,button{transition:color .18s ease,border-color .18s ease,background-color .18s ease,transform .18s ease}
-.d-nav .up{color:#C9A961!important}
-
-
-/* ═══ ТИТУЛ КНИГИ: центрирование, шкала, строка автора (правка 30.09) ═══ */
-body.bk-cover .bk-main{display:block}
-body.bk-cover .bk-col{max-width:none;width:100%;margin:0 auto;padding-inline:clamp(20px,4vw,56px)}
-.bk-tp{max-width:1120px;margin:clamp(36px,7vh,88px) auto 0;position:relative}
-.bk-tp__box{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important}
-.bk-tp__mark{width:56px;height:2px;background:#C9A961;margin:0 0 clamp(18px,3vh,28px)}
-.bk-tp__title{font-family:var(--f-disp,"Cormorant Garamond",Georgia,serif)!important;font-weight:500!important;
-  font-size:clamp(42px,7vw,76px)!important;line-height:1.05!important;letter-spacing:-.012em!important;
-  color:#F2EDE3!important;margin:0!important;position:static!important}
-.bk-tp__meta{display:flex!important;justify-content:space-between!important;align-items:baseline!important;gap:20px!important;
-  margin:clamp(16px,2.6vh,26px) 0 0!important;padding-top:14px!important;border-top:1px solid rgba(255,255,255,.10)!important;
-  font-family:var(--f-mono,"IBM Plex Mono",monospace)!important;font-size:.8rem!important;letter-spacing:.08em!important;
-  text-transform:uppercase!important;position:static!important}
-.bk-tp__author{color:#F2EDE3!important}
-.bk-tp__year{color:#A8A296!important}
-.bk-tp + .bk-toc,.bk-toc{max-width:1120px;margin-left:auto;margin-right:auto}
-.bk-toc__a{grid-template-columns:64px minmax(0,1fr)!important;column-gap:24px!important}
-.bk-toc__t{font-size:clamp(1.15rem,1.6vw,1.45rem)!important;line-height:1.3!important}
-
-
-/* ═══ ТИТУЛ: снять ограничения контейнеров, центрировать колонку ═══ */
-body.bk-cover .bk-shell,body.bk-cover .bk-main,body.bk-cover .bk-col{display:block!important;max-width:none!important;width:100%!important;margin:0!important}
-body.bk-cover .bk-main{padding-inline:clamp(20px,4vw,56px)!important}
-body.bk-cover .bk-tp,body.bk-cover .bk-toc,body.bk-cover .bk-ft{max-width:1120px!important;margin-inline:auto!important;width:100%!important}
-body.bk-cover .bk-col{max-width:none!important}
-.bk-col{max-width:none!important}
+/* ═══ Сайдбар: длинное название обрезается С КОНЦА (многоточие справа) ═══
+   Костылей поверх каркаса демо здесь нет намеренно: сетка, колонки и титул —
+   ровно из book-concept.css (эталон владельца), см. разделы 5–7 выше. */
+.bk-row__t{direction:ltr!important;unicode-bidi:isolate!important;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
