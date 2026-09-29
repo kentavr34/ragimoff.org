@@ -2,3 +2,66 @@
 .article-body p,.fa-text p,.post-body p{font-family:"Literata",Georgia,serif!important;font-size:18px!important;line-height:1.85!important;letter-spacing:0!important;text-align:left!important;hyphens:none!important;max-width:656px!important}
 .article-body h2,.article-body h3{font-family:"Literata",Georgia,serif!important;line-height:1.25!important}
 .fa-date,.post-date,.card__meta,.mono,.blog-card-date{font-family:"IBM Plex Mono",monospace!important;font-variant-numeric:tabular-nums!important}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   ТЁМНАЯ ТЕМА САЙТА = КОНЦЕПТ КНИГ (решение владельца, 30.09.2026)
+   Палитра: фон #07090E, поверхность #12151D, карточка #171B25,
+   граница rgba(255,255,255,.08), текст #F2EDE3, вторичный #A8A296,
+   золото #C9A961. Дисплей — Cormorant, интерфейс — Montserrat,
+   метаданные — IBM Plex Mono, чтение — Literata (правила выше).
+   ═══════════════════════════════════════════════════════════════════ */
+:root{
+  --navy:#07090E!important; --white:#F2EDE3!important; --light:#07090E!important;
+  --gray:#A8A296!important; --text:#F2EDE3!important; --border:rgba(255,255,255,.08)!important;
+  --accent:#C9A961!important; --gold:#C9A961!important;
+}
+html,body{background:#07090E!important;color:#F2EDE3!important}
+section,main,article,.section,.band,.page-hero,.stats-strip{background-color:transparent!important}
+/* секции с собственным светлым фоном */
+.bg-light,.bg-white,.section-light,.about,.services,.pricing,.faq,.steps,.reviews,.contacts{
+  background:#07090E!important;color:#F2EDE3!important}
+/* поверхности: карточки, панели, блоки */
+.card,.blog-card,.book-card-row,.stat-item,.faq-item,.step,.review,.form-file-item,.modal__box,
+.panel,.box,.info-block,.books-band-inner,.about-content,.dg-lb-img-wrap{
+  background:#12151D!important;border:1px solid rgba(255,255,255,.08)!important;color:#F2EDE3!important}
+.blog-card:hover,.card:hover,.faq-item:hover{background:#171B25!important;border-color:rgba(201,169,97,.35)!important}
+/* шапка и навигация */
+.site-header,header.hdr,header,.desktop-nav,.topbar{
+  background:rgba(7,9,14,.92)!important;border-bottom:1px solid rgba(255,255,255,.08)!important;color:#F2EDE3!important}
+.desktop-nav a,.nav a,.topbar a{color:#F2EDE3!important}
+.desktop-nav a:hover,.nav a:hover{color:#C9A961!important}
+/* подвал */
+footer,.ft,.footer-inner,.footer-grid{background:#07090E!important;color:#F2EDE3!important;
+  border-top:1px solid rgba(255,255,255,.08)!important}
+.footer-link,.footer-desc,.footer-address{color:#A8A296!important}
+.footer-col-title{color:#F2EDE3!important}
+/* заголовки-дисплей */
+h1,h2,.hero-h1,.sec-title,.section-title{font-family:"Cormorant Garamond",Georgia,serif!important;color:#F2EDE3!important}
+h3,h4{font-family:Montserrat,sans-serif!important;color:#F2EDE3!important}
+.sub,.lead,.sec-sub,.hero-lead{color:#A8A296!important}
+/* метаданные, даты, номера, подписи */
+.date,.post-date,.blog-card-cat,.card-label,.book-card-tag,.stat-num,.badge,.mono,.price,.fa-date{
+  font-family:"IBM Plex Mono",monospace!important;font-variant-numeric:tabular-nums!important}
+.blog-card-cat,.card-label,.book-card-tag{color:#C9A961!important;background:rgba(201,169,97,.10)!important}
+.stat-num{color:#C9A961!important}
+/* формы */
+input,textarea,select,.input,.field input,.field select,.field textarea{
+  background:#12151D!important;border:1px solid rgba(255,255,255,.12)!important;color:#F2EDE3!important}
+input::placeholder,textarea::placeholder{color:#6E6A61!important}
+label,.field span,.form-file-lbl,.form-file-hint{color:#A8A296!important}
+/* кнопки */
+.btn,.btn-fill,.book-read-btn{background:#C9A961!important;color:#07090E!important;border-color:#C9A961!important}
+.btn:hover,.btn-fill:hover{background:#D8BC7C!important}
+.btn-line,.btn-dark{background:transparent!important;color:#F2EDE3!important;border:1px solid rgba(255,255,255,.18)!important}
+.btn-line:hover,.btn-dark:hover{border-color:#C9A961!important;color:#C9A961!important}
+/* ссылки и разделители */
+a{color:#F2EDE3}
+a:hover{color:#C9A961}
+hr,.divider{border-color:rgba(255,255,255,.08)!important}
+/* таблицы */
+table{background:#12151D!important;color:#F2EDE3!important}
+th{background:#171B25!important;color:#F2EDE3!important}
+td{border-color:rgba(255,255,255,.08)!important}
+/* модальные окна */
+.modal,.modal__scrim{background:rgba(7,9,14,.88)!important}
