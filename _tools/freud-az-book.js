@@ -19,6 +19,10 @@ const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = 'D:/Документы/ZFreud/azerbaycan_freud/books';
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* Единый стандарт читального слоя (Literata 18px / 1.85 / колонка 44rem),
+   решение владельца от 29.09.2026. Значения НЕ дублируем — берём из
+   _tools/book-template.json, ключ read (единое место для всех книг и языков). */
+const READ_CSS = TPL.read.css;
 const LSV = 6;                                    /* версия _lang-switch.js (?v=) */
 
 const UI = { back: 'Kitablar', home: 'Ana səhifə', up: 'Kitab', toc: 'MÜNDƏRİCAT' };
@@ -227,8 +231,8 @@ const TOC_STYLE = '<style>' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
-  '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
-  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
+  '.content-wrap p{margin:0 0 1.05em;color:var(--text)}' +
+  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}' +
   '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
@@ -239,6 +243,7 @@ const TOC_STYLE = '<style>' +
   '.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}' +
   '.home-hero .sub:first-of-type{color:var(--text)}' +
   '.home-hero .sub.year{font-variant-numeric:tabular-nums}' +
+  READ_CSS +
   '</style>';
 
 /* только для индекса книги: без пустоты снизу, без лишнего воздуха сверху */

@@ -369,6 +369,10 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').
 
 /* ─────────── генерация страниц ─────────── */
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* Единый стандарт читального слоя (Literata 18px / 1.85 / колонка 44rem),
+   решение владельца от 29.09.2026. Значения НЕ дублируем — берём из
+   _tools/book-template.json, ключ read (единое место для всех книг и языков). */
+const READ_CSS = TPL.read.css;
 
 const UI = {
   az: { toc: 'Mündəricat', order: 'Kitabın sifarişi', back: 'Kitablar', prev: 'Əvvəlki', next: 'Növbəti', read: 'Oxu', home: 'Ana səhifə', up: 'Kitab', test: '«Münasibət modellərinin xəritəsi» · 100 sual, 12 model', testBtn: 'Onlayn test' },
@@ -455,6 +459,7 @@ const TOC_STYLE = '<style>' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}' +
   '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
+  READ_CSS +
   '</style>';
 
 function headHtml(cfg, lang, title, desc) {

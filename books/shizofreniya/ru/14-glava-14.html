@@ -390,7 +390,38 @@ function setCls(k){
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/klinik-psixiatriya/01-6A0-neyroinkisaf.html" />
 
 <style>.home-hero{padding:16px 0 11px}.book-toc{margin:8px auto 36px}.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}.book-toc .toc-part{margin:30px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border);font-weight:700;letter-spacing:.04em;color:var(--gold2)}.book-toc .toc-sub{margin:3px 0 3px 26px;font-size:.86rem;color:var(--text2)}.book-toc .toc-sub a{color:inherit;text-decoration:none}.book-toc .toc-sub a:hover{color:var(--gold2)}.book-toc .toc-chapter{margin:14px 0}.content-wrap .toc-test{margin:0 0 34px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.toc-test .test-btn{display:inline-block;background:var(--gold);color:var(--bg);border:none;border-radius:8px;padding:13px 26px;font:inherit;font-weight:600;font-size:.95rem;letter-spacing:.01em;text-decoration:none;cursor:pointer;transition:background .2s ease,transform .1s ease}.toc-test .test-btn:hover{background:#f0c050;transform:translateY(-1px)}.toc-test .test-note{color:var(--text2);font-size:.9rem;line-height:1.4}@media(max-width:600px){.toc-test{gap:12px}.toc-test .test-btn{padding:12px 20px;width:100%;text-align:center}}.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}.d-nav a:hover{background:var(--bg3);color:var(--gold)}.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}@media (max-width:640px){.d-nav .dn-name{display:none}}.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:12.5px;gap:12px}.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10.5px}.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}</style></head>
-</head>
+<style>/* ═══ ЕДИНЫЙ СТАНДАРТ ЧИТАЛЬНОГО СЛОЯ — решение владельца от 29.09.2026 ═══
+   Literata · кегль 18px · интерлиньяж 1.85 · колонка 44rem (≈ 700px) ·
+   letter-spacing 0 · выключка по левому краю · переносов нет.
+   Одинаково во всех книгах и во всех языках (AZ, RU, EN).
+   Интерфейс (шапка, боковое меню, кнопки, пред/след) остаётся Montserrat — не трогать.
+   Шкала заголовков читального слоя (с эталонных тестовых страниц
+   _align/font_demo/variant-literata.html, соотношения сохранены):
+     название главы 34px/1.25 · h1.h-bolme и h1.h-section 22px · h1.h-disorder 20px ·
+     h2 1.18rem · h3 1.02rem · h4 14px.
+   ЗНАЧЕНИЯ ЖИВУТ ТОЛЬКО В ОДНОМ МЕСТЕ: _tools/book-template.json, ключ "read".
+   Этот блок — его зеркало для страниц, которые не собираются сборщиками. */
+.content-wrap{max-width:44rem;font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,.content-wrap blockquote,.content-wrap figcaption{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif);
+  font-size:18px;line-height:1.85;letter-spacing:0;word-spacing:normal;
+  text-align:left;text-align-last:left;hyphens:none;-webkit-hyphens:none;
+  max-width:44rem;overflow-wrap:break-word}
+.content-wrap h1,.content-wrap h2,.content-wrap h3,.content-wrap h4,
+.content-wrap h5,.content-wrap h6,.content-wrap .chap-title,
+.content-wrap .chap-title-wrap,.content-wrap .h-section-sub{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.h-bolme,.content-wrap h1.h-disorder,.content-wrap h1.h-section{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.chap-title-wrap{font-size:34px;line-height:1.25}
+/* интерфейс внутри читального слоя (переходы пред/след) остаётся на Montserrat */
+.content-wrap .pnav-btn,.content-wrap .d-nav{font-family:var(--mono,monospace)}
+@media(max-width:720px){
+  .content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,
+  .content-wrap blockquote,.content-wrap figcaption{font-size:17.5px;line-height:1.85}
+  .content-wrap h1.chap-title-wrap{font-size:32px}
+}
+</style></head>
 <body>
 
 

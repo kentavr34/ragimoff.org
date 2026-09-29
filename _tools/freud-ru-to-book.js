@@ -15,6 +15,10 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = 'D:/Документы/ZFreud/site_freudproject_ru';
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* Единый стандарт читального слоя (Literata 18px / 1.85 / колонка 44rem),
+   решение владельца от 29.09.2026. Значения НЕ дублируем — берём из
+   _tools/book-template.json, ключ read (единое место для всех книг и языков). */
+const READ_CSS = TPL.read.css;
 const LSV = 6;                                   /* версия _lang-switch.js (?v=) */
 
 const UI = { toc: 'СОДЕРЖАНИЕ', back: 'Книги', home: 'Главная', up: 'Книга' };
@@ -227,7 +231,7 @@ const TOC_STYLE = '<style>' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
   '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
-  '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
+  '.content-wrap p{margin:0 0 1.05em;color:var(--text)}' +
   /* титул книги: название · автор · год издания — ровно, без пустоты снизу */
   '.home-hero{padding:4px 0 2px}' +
   '.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}' +
@@ -236,7 +240,7 @@ const TOC_STYLE = '<style>' +
   '.book-toc{margin:16px auto 6px}' +
   '.book-toc .toc-chapter{margin:0}' +
   '.content-wrap{padding-top:.6rem;padding-bottom:2rem}' +
-  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
+  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}}' +
   '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}' +
   '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}' +
   '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
@@ -247,6 +251,7 @@ const TOC_STYLE = '<style>' +
   '.content-wrap .notes-title{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .7rem}' +
   '.content-wrap .note{font-size:.92rem;line-height:1.6;margin:0 0 .5em;color:var(--text2)}' +
   '.content-wrap .note .note-n{color:var(--gold)}' +
+  READ_CSS +
   '</style>';
 
 function headHtml(b, href, title, desc, css) {

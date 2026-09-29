@@ -387,7 +387,38 @@ function setCls(k){
 
   <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/books/freud-yuxularin-yozumu/04-besinci-nesre-on-soz.html" />
 
-<style>.home-hero{padding:16px 0 11px}.book-toc{margin:8px auto 36px}.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}.content-wrap .toc-test{margin:0 0 34px}.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}.content-wrap h3.sub{font-size:1rem;font-weight:700;line-height:1.35;margin:1.5rem 0 .5rem;padding:0;border:0;color:var(--text)}.home-hero{padding:4px 0 2px}.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}.home-hero .sub:first-of-type{color:var(--text)}.home-hero .sub.year{font-variant-numeric:tabular-nums}</style></head>
+<style>.home-hero{padding:16px 0 11px}.book-toc{margin:8px auto 36px}.book-toc .toc-title{margin:0 0 16px 0;padding-bottom:8px}.content-wrap .toc-test{margin:0 0 34px}.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}.content-wrap p{margin:0 0 1.05em;color:var(--text)}@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}}.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}.content-wrap h3.sub{font-size:1rem;font-weight:700;line-height:1.35;margin:1.5rem 0 .5rem;padding:0;border:0;color:var(--text)}.home-hero{padding:4px 0 2px}.home-hero h1.home-title{font-size:clamp(22px,4.4vw,32px);line-height:1.18;letter-spacing:.01em;margin:0}.home-hero .sub{font-size:15px;line-height:1.5;margin:10px 0 0;color:var(--text2);letter-spacing:.02em}.home-hero .sub:first-of-type{color:var(--text)}.home-hero .sub.year{font-variant-numeric:tabular-nums}/* ═══ ЕДИНЫЙ СТАНДАРТ ЧИТАЛЬНОГО СЛОЯ — решение владельца от 29.09.2026 ═══
+   Literata · кегль 18px · интерлиньяж 1.85 · колонка 44rem (≈ 700px) ·
+   letter-spacing 0 · выключка по левому краю · переносов нет.
+   Одинаково во всех книгах и во всех языках (AZ, RU, EN).
+   Интерфейс (шапка, боковое меню, кнопки, пред/след) остаётся Montserrat — не трогать.
+   Шкала заголовков читального слоя (с эталонных тестовых страниц
+   _align/font_demo/variant-literata.html, соотношения сохранены):
+     название главы 34px/1.25 · h1.h-bolme и h1.h-section 22px · h1.h-disorder 20px ·
+     h2 1.18rem · h3 1.02rem · h4 14px.
+   ЗНАЧЕНИЯ ЖИВУТ ТОЛЬКО В ОДНОМ МЕСТЕ: _tools/book-template.json, ключ "read".
+   Этот блок — его зеркало для страниц, которые не собираются сборщиками. */
+.content-wrap{max-width:44rem;font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,.content-wrap blockquote,.content-wrap figcaption{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif);
+  font-size:18px;line-height:1.85;letter-spacing:0;word-spacing:normal;
+  text-align:left;text-align-last:left;hyphens:none;-webkit-hyphens:none;
+  max-width:44rem;overflow-wrap:break-word}
+.content-wrap h1,.content-wrap h2,.content-wrap h3,.content-wrap h4,
+.content-wrap h5,.content-wrap h6,.content-wrap .chap-title,
+.content-wrap .chap-title-wrap,.content-wrap .h-section-sub{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.h-bolme,.content-wrap h1.h-disorder,.content-wrap h1.h-section{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.chap-title-wrap{font-size:34px;line-height:1.25}
+/* интерфейс внутри читального слоя (переходы пред/след) остаётся на Montserrat */
+.content-wrap .pnav-btn,.content-wrap .d-nav{font-family:var(--mono,monospace)}
+@media(max-width:720px){
+  .content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,
+  .content-wrap blockquote,.content-wrap figcaption{font-size:17.5px;line-height:1.85}
+  .content-wrap h1.chap-title-wrap{font-size:32px}
+}
+</style></head>
 </head>
 <body>
 

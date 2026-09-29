@@ -9,6 +9,10 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* Единый стандарт читального слоя (Literata 18px / 1.85 / колонка 44rem),
+   решение владельца от 29.09.2026. Значения НЕ дублируем — берём из
+   _tools/book-template.json, ключ read (единое место для всех книг и языков). */
+const READ_CSS = TPL.read.css;
 /* издательский мусор: эти строки в книгу не попадают */
 const JUNK = /^(sigmund freud|ziqmund freyd|tərcümə|tercümə|İSBN|ISBN|©|qanun|nəşriyyat|nəşr\b|çap\b|redaktor|redaksiya|buraxılışa|müəllif hüquqları|bütün hüquqlar|kitabxana|translated by|translation|converted ebook|telegram|@)/i;
 const UI = {
@@ -113,12 +117,13 @@ cfg.langs.forEach((lang) => {
     '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
     '.d-nav .dn-name{color:var(--text2);font-weight:400;font-family:var(--font);font-size:.85rem}' +
     /* чтение с телефона на тёмном фоне: крупнее кегль, просторнее строки */
-    '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
-    '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
+    '.content-wrap p{margin:0 0 1.05em;color:var(--text)}' +
+    '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}}' +
     '.sidebar .nav-sub-link{padding:7px 14px 7px 18px;font-size:11px;gap:.5rem;line-height:1.4}' +
     '.sidebar .sub-code{flex:0 0 auto;width:auto;white-space:nowrap;margin-right:0;font-size:10px}' +
     '.sidebar .nav-sub-link.is-active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-bg)}' +
-    '</style>';
+    READ_CSS +
+  '</style>';
 
   function bodyTop() {
     return TPL.bodyTop

@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap');
 
 :root {
   --bg:       #0F1117;
@@ -20,6 +21,7 @@
   --red:      #F85149;
   --r:        8px;
   --font:     'Montserrat', sans-serif;
+  --serif:    'Literata', Georgia, 'Times New Roman', serif;  /* основной текст книг */
   --mono:     'Montserrat', sans-serif;
   --sidebar:  280px;
   --hdr:      68px;
@@ -853,4 +855,36 @@ span[lang] {
 @media (max-width: 640px) {
   .book-toc .toc-group { font-size: 14px; margin-top: 26px; }
   .chap-meta { font-size: 14px; margin-bottom: 20px; }
+}
+
+/* ═══ ЕДИНЫЙ СТАНДАРТ ЧИТАЛЬНОГО СЛОЯ — решение владельца от 29.09.2026 ═══
+   Literata · кегль 18px · интерлиньяж 1.85 · колонка 44rem (≈ 700px) ·
+   letter-spacing 0 · выключка по левому краю · переносов нет.
+   Одинаково во всех книгах и во всех языках (AZ, RU, EN).
+   Интерфейс (шапка, боковое меню, кнопки, пред/след) остаётся Montserrat — не трогать.
+   Шкала заголовков читального слоя (с эталонных тестовых страниц
+   _align/font_demo/variant-literata.html, соотношения сохранены):
+     название главы 34px/1.25 · h1.h-bolme и h1.h-section 22px · h1.h-disorder 20px ·
+     h2 1.18rem · h3 1.02rem · h4 14px.
+   ЗНАЧЕНИЯ ЖИВУТ ТОЛЬКО В ОДНОМ МЕСТЕ: _tools/book-template.json, ключ "read".
+   Этот блок — его зеркало для страниц, которые не собираются сборщиками. */
+.content-wrap{max-width:44rem;font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,.content-wrap blockquote,.content-wrap figcaption{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif);
+  font-size:18px;line-height:1.85;letter-spacing:0;word-spacing:normal;
+  text-align:left;text-align-last:left;hyphens:none;-webkit-hyphens:none;
+  max-width:44rem;overflow-wrap:break-word}
+.content-wrap h1,.content-wrap h2,.content-wrap h3,.content-wrap h4,
+.content-wrap h5,.content-wrap h6,.content-wrap .chap-title,
+.content-wrap .chap-title-wrap,.content-wrap .h-section-sub{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.h-bolme,.content-wrap h1.h-disorder,.content-wrap h1.h-section{
+  font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap h1.chap-title-wrap{font-size:34px;line-height:1.25}
+/* интерфейс внутри читального слоя (переходы пред/след) остаётся на Montserrat */
+.content-wrap .pnav-btn,.content-wrap .d-nav{font-family:var(--mono,monospace)}
+@media(max-width:720px){
+  .content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,
+  .content-wrap blockquote,.content-wrap figcaption{font-size:17.5px;line-height:1.85}
+  .content-wrap h1.chap-title-wrap{font-size:32px}
 }

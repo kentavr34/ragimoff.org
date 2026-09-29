@@ -17,6 +17,10 @@ const { execFileSync } = require('child_process');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = 'D:/Документы/ZFreud/royallib';
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
+/* Единый стандарт читального слоя (Literata 18px / 1.85 / колонка 44rem),
+   решение владельца от 29.09.2026. Значения НЕ дублируем — берём из
+   _tools/book-template.json, ключ read (единое место для всех книг и языков). */
+const READ_CSS = TPL.read.css;
 const LSV = 6;
 const UI = { toc: 'СОДЕРЖАНИЕ', back: 'Книги', home: 'Главная', up: 'Книга', note: 'Примечания', notes: 'Примечания' };
 
@@ -122,8 +126,8 @@ const TOC_STYLE = '<style>' +
   '.book-toc{margin:16px auto 6px}' +
   '.book-toc .toc-chapter{margin:0}' +
   '.content-wrap{padding-top:.6rem;padding-bottom:2rem}' +
-  '.content-wrap p{font-size:clamp(16.5px,1.05rem,19px);line-height:1.78;margin:0 0 1.05em;color:var(--text)}' +
-  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}.content-wrap p{font-size:17.5px;line-height:1.8}}' +
+  '.content-wrap p{margin:0 0 1.05em;color:var(--text)}' +
+  '@media(max-width:600px){.content-wrap{padding-left:18px;padding-right:18px}}' +
   '.d-nav{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin:2.2rem 0 .5rem;padding:.7rem 0 0;border-top:1px solid var(--border)}' +
   '.d-nav a{color:var(--text);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-family:var(--mono,monospace);font-weight:700;font-size:.95rem;white-space:nowrap;max-width:42%;overflow:hidden;text-overflow:ellipsis}' +
   '.d-nav .up{color:var(--gold);font-family:var(--font);font-weight:600}' +
@@ -135,6 +139,7 @@ const TOC_STYLE = '<style>' +
   '.content-wrap .notes{margin:2.4rem 0 0;padding-top:1.1rem;border-top:1px solid var(--border)}' +
   '.content-wrap .notes-title{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 .7rem}' +
   '.content-wrap .note{font-size:.92rem;line-height:1.6;margin:0 0 .5em;color:var(--text2)}' +
+  READ_CSS +
   '</style>';
 
 function headHtml(b, href, title, desc, depth) {
