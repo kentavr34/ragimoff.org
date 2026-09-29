@@ -1,0 +1,541 @@
+/* =====================================================================
+   RAGIMOFF · книги — ЕДИНЫЙ ДИЗАЙН-КОНЦЕПТ страниц книг (по уровню /books)
+   ---------------------------------------------------------------------
+   Две страницы одного стиля: book-cover.html (титул + оглавление) и
+   book-chapter.html (шапка, боковое меню, текст главы, пред/след).
+
+   ЧТО ВЗЯТО ИЗ ГАЛЕРЕИ /books (эталон владельца) — и почему:
+     · палитра тёплая, а не «гитхабовская»: фон #07090E, текст #F2EDE3,
+       золото #C9A961 (спокойное) вместо #E6B44A (кричащее);
+     · две гарнитуры-роли: Cormorant Garamond — только дисплей (титул,
+       названия в оглавлении, логотип), Montserrat + IBM Plex Mono —
+       интерфейс и метаданные. Никаких «полужирных всех подряд»;
+     · IBM Plex Mono для чисел и подписей: цифры табличные, колонка
+       номера не «дышит» при смене «01» → «12»;
+     · шкала отступов кратна 8 px, а не «на глаз»;
+     · состояния кнопок и ссылок одни и те же на всех страницах:
+       пилюля-контур с заливкой снизу, ссылка с золотой чертой слева→вправо,
+       focus-visible золотом, disabled — 0.35 непрозрачности;
+     · линии — тёплые волосяные: rgba(242,237,227,.12) / .30, без #30363D;
+     · сетка и пропорции обложек: 2/3, но на странице книги работают
+       пропорции колонки: 44 rem (704 px) чтение, 280 px сайдбар.
+
+   ЧТО НЕ ТРОГАЕТСЯ (решение владельца от 29.09.2026):
+     чтение — Literata 18 px / 1.85 / колонка 44 rem / letter-spacing 0 /
+     выключка влево / без переносов (в ≤720 px — 17.5 px, как в сайтовом
+     блоке стандарта). Интерфейс — Montserrat, оглавление сайдбара 11 px,
+     номера 10 px.
+
+   РАСКАТКА: этот файл ЗАМЕНЯЕТ books/<слаг>/style.css и все инлайновые
+   <style> шаблонов. Классы с префиксом .bk- выбраны специально: пока файл
+   лежит рядом со старым style.css, он физически не может сломать старое
+   оформление, и наоборот.
+   ===================================================================== */
+
+/* ─────────── 1. ТОКЕНЫ ───────────
+   Значения объявлены и на :root, и на .bk (body): если на странице остался
+   старый style.css со своими --bg/--gold, наследование от body всё равно
+   отдаёт концепту его собственные числа. */
+:root,
+.bk {
+  /* фон и текст */
+  --bg: #07090E;
+  --bg-2: #0C1016;
+  --bg-3: #131922;
+  --fg: #F2EDE3;
+  --mid: rgba(242, 237, 227, .76);
+  --mute: rgba(242, 237, 227, .5);
+  /* золото: акцент и «второе» золото для наведения */
+  --acc: #C9A961;
+  --acc-2: #E8D9A8;
+  --acc-bg: rgba(201, 169, 97, .08);
+  --on-acc: #07090E;
+  /* линии */
+  --line: rgba(242, 237, 227, .12);
+  --line-2: rgba(242, 237, 227, .30);
+
+  /* гарнитуры */
+  --f-disp: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --f-ui: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --f-mono: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  --f-read: 'Literata', Georgia, 'Times New Roman', serif;
+
+  /* размеры-каркас */
+  --hdr: 64px;
+  --sb: 280px;
+  --col: 656px;          /* ширина чтения — утверждена владельцем */
+  --wrap: 1380px;
+  --pad-x: clamp(24px, 6vw, 120px);
+
+  /* шаг отступов, кратный 8 */
+  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
+
+  /* сайдбар-оглавление: колонки номера и названия */
+  --sb-num-col: 40px;    /* колонка номера (было 40 px — сохраняем) */
+  --sb-col-gap: 14px;    /* зазор до разделителя */
+  --sb-fs: 11px;         /* кегль названия — утверждён владельцем */
+  --sb-num-fs: 10px;     /* кегль номера — утверждён владельцем */
+
+  --r: 3px;
+  --pill: 999px;
+  --e: cubic-bezier(.19, 1, .22, 1);
+}
+
+/* ─────────── 2. БАЗА ─────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { overflow-x: clip; background: var(--bg); scroll-behavior: smooth; }
+body.bk {
+  margin: 0; overflow-x: clip;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-ui); font-size: 1rem; line-height: 1.7;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+/* атрибут hidden должен побеждать любые display: у компонентов */
+[hidden] { display: none !important; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+::selection { background: var(--acc); color: var(--on-acc); }
+:focus-visible { outline: 1px solid var(--acc); outline-offset: 3px; border-radius: 2px; }
+
+/* мягкое свечение — только на титуле: у текста главы фон должен быть ровным */
+body.bk-cover::before {
+  content: ''; position: fixed; inset: -18vh auto auto -14vw; width: 62vw; height: 62vw;
+  background: radial-gradient(closest-side, rgba(201, 169, 97, .10), transparent 70%),
+              radial-gradient(closest-side at 60% 60%, rgba(38, 60, 104, .26), transparent 76%);
+  filter: blur(30px); pointer-events: none; z-index: 0;
+}
+/* зерно: убирает ступеньки на больших тёмных плоскостях */
+body.bk::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9; opacity: .04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+.bk-wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad-x); }
+.bk-col { max-width: var(--col); margin-inline: auto; }  /* 656px — читальная колонка */
+
+/* типографские роли интерфейса */
+.bk-label {                  /* подпись раздела: «Mündəricat», «Примечания» */
+  font-family: var(--f-mono); font-size: .66rem; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ─────────── 3. ШАПКА ─────────── */
+.bk-hdr {
+  position: sticky; top: 0; z-index: 40; height: var(--hdr);
+  background: rgba(7, 9, 14, .86); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+.bk-hdr__in {
+  height: 100%; max-width: var(--wrap); margin-inline: auto;
+  padding-inline: clamp(16px, 3vw, 40px);
+  display: flex; align-items: center; gap: clamp(14px, 2vw, 28px);
+}
+.bk-logo { display: flex; flex-direction: column; line-height: 1.05; flex: 0 0 auto; }
+.bk-logo__t { font-family: var(--f-disp); font-size: 1.35rem; font-weight: 500; letter-spacing: -.02em; }
+.bk-logo__t em { color: var(--acc); font-style: normal; }
+.bk-logo__s {
+  font-family: var(--f-mono); font-size: .58rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--mute);
+}
+/* разделитель «сайт | книга» — волосяная черта в полстроки */
+.bk-hdr__sep { width: 1px; height: 30px; background: var(--line); flex: 0 0 auto; }
+
+.bk-book { min-width: 0; max-width: min(420px, 38vw); display: flex; flex-direction: column; gap: 3px; }
+.bk-book__t {
+  font-family: var(--f-disp); font-size: 1.2rem; font-weight: 500; line-height: 1.05;
+  letter-spacing: -.01em; color: var(--fg);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bk-book__m {
+  font-family: var(--f-mono); font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--mute);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.bk-hdr__sp { margin-left: auto; }           /* прижимает правый блок */
+
+/* переключатель языков: активен — золото, недоступен — приглушён */
+.bk-langs { display: flex; align-items: center; gap: 2px; flex: 0 0 auto; }
+.bk-lang {
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mid);
+  padding: 8px 9px; border-radius: 2px; position: relative;
+  transition: color .2s;
+}
+.bk-lang:hover { color: var(--fg); }
+.bk-lang.is-on { color: var(--acc); }
+.bk-lang.is-on::after {
+  content: ''; position: absolute; left: 9px; right: 9px; bottom: 3px;
+  height: 1px; background: var(--acc);
+}
+.bk-lang[aria-disabled="true"] { color: var(--mute); opacity: .45; cursor: not-allowed; }
+.bk-lang[aria-disabled="true"]:hover { color: var(--mute); }
+
+.bk-burger { display: none; flex: 0 0 auto; }
+/* бургер — только инструмент узких экранов: перебиваем .bk-btn{display:inline-flex} */
+.bk-hdr .bk-burger { display: none; }
+
+/* ─────────── 4. КНОПКИ И ССЫЛКИ (одна семья на все страницы) ─────────── */
+.bk-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 38px; padding: 9px 18px;
+  border: 1px solid var(--line-2); border-radius: var(--pill);
+  position: relative; overflow: hidden; isolation: isolate; cursor: pointer;
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--fg); white-space: nowrap;
+  transition: color .25s, border-color .25s;
+}
+.bk-btn::before {                    /* заливка снизу вверх — как в галерее */
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: var(--acc); transform: scaleY(0); transform-origin: bottom;
+  transition: transform .45s var(--e);
+}
+.bk-btn:hover { color: var(--on-acc); border-color: var(--acc); }
+.bk-btn:hover::before { transform: none; }
+.bk-btn:active { transform: translateY(1px); }
+.bk-btn--solid { background: var(--acc); border-color: var(--acc); color: var(--on-acc); }
+.bk-btn--solid::before { background: var(--acc-2); }
+
+/* текстовая ссылка: волосяная золотая черта, растущая слева → вправо */
+.bk-link { position: relative; padding-bottom: 2px; transition: color .2s; }
+.bk-link::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--acc); transform: scaleX(0); transform-origin: right;
+  transition: transform .25s var(--e);
+}
+.bk-link:hover { color: var(--acc-2); }
+.bk-link:hover::after { transform: none; transform-origin: left; }
+
+/* ─────────── 5. КАРКАС: САЙДБАР + КОЛОНКА ─────────── */
+/* Каркас намеренно БЕЗ z-index: с z-index:1 он создавал бы свой контекст
+   наложения, и выдвижное меню (z-index 70) оказалось бы ПОД затемнением
+   (z-index 65), то есть приглушённым. position:relative без z-index держит
+   контент выше свечения фона, но оставляет меню в общем контексте страницы. */
+.bk-shell { display: grid; grid-template-columns: var(--sb) minmax(0, 1fr); align-items: start; position: relative; }
+
+.bk-sb {
+  position: sticky; top: var(--hdr); height: calc(100vh - var(--hdr));
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bg-2); border-right: 1px solid var(--line);
+}
+.bk-sb__hdr {
+  position: sticky; top: 0; z-index: 2; background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  min-height: 56px; padding: 0 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.bk-sb__nav { padding: var(--s2) 0 var(--s5); }
+
+/* строка оглавления: [номер | разделитель] [название] */
+.bk-row {
+  display: grid; grid-template-columns: var(--sb-num-col) minmax(0, 1fr);
+  column-gap: var(--sb-col-gap);
+  align-items: baseline;
+  padding: 9px 20px 9px 18px; min-height: 40px;
+  border-left: 2px solid transparent;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.bk-row + .bk-row { margin-top: 2px; }
+.bk-row__n {                       /* колонка номера + разделитель колонок */
+  font-family: var(--f-mono); font-size: var(--sb-num-fs); line-height: 1.4;
+  letter-spacing: .04em; font-variant-numeric: tabular-nums;
+  color: var(--mute); padding-right: 12px; border-right: 1px solid var(--line);
+  align-self: stretch;
+}
+.bk-row__t {
+  font-family: var(--f-ui); font-size: var(--sb-fs); line-height: 1.45;
+  color: var(--mid); min-width: 0; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+  transition: color .2s;
+}
+.bk-row:hover { background: rgba(242, 237, 227, .04); }
+.bk-row:hover .bk-row__t { color: var(--fg); }
+.bk-row:hover .bk-row__n { color: var(--acc-2); }
+
+/* активный пункт: спокойно — фон, золотой номер, тихая черта слева */
+.bk-row.is-on { background: var(--acc-bg); border-left-color: var(--acc); }
+.bk-row.is-on .bk-row__t { color: var(--fg); font-weight: 500; }
+.bk-row.is-on .bk-row__n { color: var(--acc); }
+
+/* безномерной пункт (обложка книги, вступительные страницы, «Giriş») */
+.bk-row--front .bk-row__t { color: var(--mid); }
+.bk-row--front.is-on .bk-row__t { color: var(--fg); }
+.bk-row--front { padding-top: 11px; padding-bottom: 11px; }
+.bk-sb__sep { height: 1px; background: var(--line); margin: 10px 20px 10px 18px; }
+.bk-sb__back {
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--mid); padding: 6px 0;
+}
+.bk-sb__back:hover { color: var(--acc); }
+
+/* переключение языковой версии. В бою языки — отдельные каталоги (/ru/, /en/),
+   здесь обе версии лежат в одном файле, чтобы владелец видел их рядом. */
+html[data-lang="az"] [data-l]:not([data-l="az"]),
+html[data-lang="ru"] [data-l]:not([data-l="ru"]),
+html[data-lang="en"] [data-l]:not([data-l="en"]) { display: none !important; }
+html.bk-lock, html.bk-lock body { overflow: hidden; }
+
+.bk-sb__x { display: none; margin-left: auto; width: 40px; height: 40px; color: var(--mid); cursor: pointer; }
+.bk-sb__x:hover { color: var(--fg); }
+.bk-sb__langs { display: none; }
+
+.bk-main { min-width: 0; padding: 40px clamp(20px, 4vw, 64px) 96px; }
+
+/* затемнение под выдвижным меню — только на узких экранах */
+.bk-scrim {
+  position: fixed; inset: 0; z-index: 65; background: rgba(4, 5, 8, .72);
+  backdrop-filter: blur(6px); opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s linear .3s;
+}
+.bk-scrim.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+
+/* полоса прогресса чтения — под шапкой */
+.bk-prog { position: fixed; top: var(--hdr); left: 0; right: 0; height: 2px; z-index: 39; background: transparent; }
+.bk-prog__f { height: 100%; width: 0; background: var(--acc); }
+
+/* ─────────── 6. ТИТУЛ КНИГИ (book-cover) ─────────── */
+.bk-tp { padding-top: var(--s3); }
+.bk-tp__mark { width: 44px; height: 1px; background: var(--acc); margin-bottom: var(--s4); }  /* отклик на золотую рамку обложки */
+.bk-tp__box { width: max-content; max-width: 100%; }  /* ширина = ширине названия */
+.bk-tp__title {
+  margin: 0;
+  font-family: var(--f-disp); font-weight: 300;
+  font-size: clamp(2.35rem, 6.2vw, 4.75rem);   /* 37.6 → 76 px */
+  line-height: 1; letter-spacing: -.02em; color: var(--fg);
+}
+.bk-tp__meta {
+  margin-top: var(--s3); padding-top: var(--s2);
+  border-top: 1px solid var(--line-2);          /* черта ровно по ширине названия */
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3);
+}
+.bk-tp__author { font-family: var(--f-ui); font-size: .95rem; letter-spacing: .02em; color: var(--mid); }
+.bk-tp__year {
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--mute); white-space: nowrap;
+}
+
+/* ─────────── 7. ОГЛАВЛЕНИЕ КНИГИ ─────────── */
+.bk-toc { margin-top: var(--s7); }
+.bk-toc__hdr {
+  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3);
+  padding-bottom: 14px; border-bottom: 1px solid var(--line-2);
+}
+.bk-toc__list { list-style: none; margin: 0; padding: 0; }
+.bk-toc__row { border-bottom: 1px solid var(--line); }
+.bk-toc__a {
+  display: grid; grid-template-columns: 48px minmax(0, 1fr);
+  column-gap: var(--s3); align-items: baseline;
+  padding: 20px 4px 20px 0;
+  transition: background .2s, padding-left .2s;
+}
+.bk-toc__n {
+  font-family: var(--f-mono); font-size: .78rem; letter-spacing: .08em;
+  font-variant-numeric: tabular-nums; color: var(--acc);
+}
+.bk-toc__t {
+  font-family: var(--f-disp); font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  font-weight: 400; line-height: 1.3; letter-spacing: 0; color: var(--fg);
+  transition: color .2s;
+}
+.bk-toc__a:hover { background: rgba(242, 237, 227, .03); }
+.bk-toc__a:hover .bk-toc__t { color: var(--acc-2); }
+.bk-toc__row--front .bk-toc__t { color: var(--mid); }
+
+/* ─────────── 8. ШАПКА ГЛАВЫ ─────────── */
+.bk-crumb { display: flex; align-items: center; gap: 8px; margin-bottom: var(--s4); }
+.bk-crumb a { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); }
+.bk-crumb a:hover { color: var(--acc); }
+.bk-crumb__sep { color: var(--line-2); font-size: .62rem; }
+
+.bk-chead { padding-bottom: var(--s4); border-bottom: 1px solid var(--line-2); margin-bottom: var(--s5); }
+.bk-chead__top { display: flex; align-items: center; gap: var(--s2); margin-bottom: 14px; }
+.bk-chead__n {
+  font-family: var(--f-mono); font-size: .78rem; letter-spacing: .2em;
+  color: var(--acc); font-variant-numeric: tabular-nums;
+}
+.bk-chead__rule { width: 40px; height: 1px; background: var(--line-2); }
+.bk-chead__h1 {
+  margin: 0;
+  font-family: var(--f-read); font-weight: 600;
+  font-size: 34px; line-height: 1.25; letter-spacing: 0; color: var(--fg);
+}
+
+/* ─────────── 9. ЧИТАЛЬНЫЙ СЛОЙ (стандарт владельца — не менять) ───────────
+   Literata · 18 px · 1.85 · 44 rem · letter-spacing 0 · влево · без переносов.
+
+   Ритм «что раньше не было задано» взят с эталона plough.com (замеры 29.09.2026):
+     · интервал между абзацами = 24 px при 19 px/40 px, то есть 0.60 строки (1.26 em);
+       у нас линия 33.3 px, поэтому 0.60 строки = 20.0 px = 1.11 em. Берём --read-gap
+       как долю строки и держим 1.05 em (18.9 px = 0.567 строки) — расхождение 1.1 px
+       на абзац; при желании владельца ставится 1.11 em одной строкой;
+     · отбивки заголовков у Plough равны абзацному интервалу (h3: 24 px до и 24 px
+       после). У нас h2 почти равен кеглю текста, поэтому берём кратные модуля:
+       h2 — 2 интервала сверху и 1 снизу, h3 — 1.5 и 0.5. Ритм остаётся единым. */
+.bk-read {
+  --read-size: 18px;                 /* кегль чтения — утверждён */
+  --read-lh: 1.85;                   /* интерлиньяж — утверждён */
+  --read-gap: calc(var(--read-size) * 1.05);   /* абзацный интервал: 18.9 px = 0.57 строки */
+  font-family: var(--f-read); font-size: var(--read-size); line-height: var(--read-lh);
+  letter-spacing: 0; word-spacing: normal; font-variant-numeric: normal;
+  text-align: left; text-align-last: left;
+  hyphens: none; -webkit-hyphens: none;
+  overflow-wrap: break-word; color: var(--fg);
+  max-width: var(--col);
+}
+.bk-read > * { max-width: var(--col); }
+.bk-read p { margin: 0 0 var(--read-gap); }
+.bk-read p:last-child { margin-bottom: 0; }
+.bk-read h2 {
+  font-family: var(--f-read); font-weight: 600; font-size: 1.18rem;   /* 18.9 px */
+  line-height: 1.35; letter-spacing: 0;
+  margin: calc(var(--read-gap) * 2) 0 var(--read-gap);
+}
+.bk-read h3 {
+  font-family: var(--f-read); font-weight: 600; font-size: 1.02rem;   /* 16.3 px */
+  line-height: 1.4; letter-spacing: 0;
+  margin: calc(var(--read-gap) * 1.5) 0 calc(var(--read-gap) * .5);
+}
+.bk-read strong { font-weight: 600; }
+.bk-read em { font-style: italic; }
+.bk-read ul, .bk-read ol { margin: 0 0 var(--read-gap); padding-left: 1.5rem; }
+.bk-read li { margin: calc(var(--read-gap) * .25) 0; }
+.bk-read blockquote {
+  margin: calc(var(--read-gap) * 1.5) 0; padding-left: 1.5rem;
+  border-left: 2px solid var(--acc); font-style: italic; color: var(--mid);
+}
+.bk-read blockquote p { margin-bottom: calc(var(--read-gap) * .5); }
+.bk-read abbr[title] { text-decoration: underline dotted var(--line-2); text-underline-offset: 3px; cursor: help; }
+.bk-read [lang]:not(html) { border-bottom: 1px dotted var(--line); }   /* тихая метка иноязычного куска */
+
+/* примечания — второй типографический уровень, тише основного текста */
+.bk-notes { margin-top: var(--s6); padding-top: var(--s4); border-top: 1px solid var(--line); }
+.bk-notes__h { margin: 0 0 var(--s3); }
+.bk-note { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: var(--s2); margin: 0 0 .7em; }
+.bk-note__n { font-family: var(--f-mono); font-size: .7rem; color: var(--acc); line-height: 1.7; }
+.bk-note__t { font-family: var(--f-read); font-size: 15px; line-height: 1.7; color: var(--mid); }
+
+/* ─────────── 10. ПЕРЕХОДЫ «ПРЕДЫДУЩАЯ / СЛЕДУЮЩАЯ» ───────────
+   Два одинаковых по размеру блока: полоса слева/справа, разделитель между ними. */
+.bk-pn { margin-top: var(--s7); }
+.bk-pn__up { display: flex; justify-content: center; margin-bottom: var(--s4); }
+.bk-pn__up a { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.bk-pn__up a:hover { color: var(--acc); }
+.bk-pn__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line-2);
+}
+.bk-pn__a { display: block; min-height: 84px; padding: var(--s3) 0 var(--s2); transition: color .2s; }
+.bk-pn__a + .bk-pn__a { border-left: 1px solid var(--line); padding-left: var(--s5); text-align: right; }
+.bk-pn__a:first-child { padding-right: var(--s5); }
+.bk-pn__dir {
+  display: block; margin-bottom: 8px;
+  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--mute);
+}
+.bk-pn__t {
+  font-family: var(--f-ui); font-size: .84rem; font-weight: 500; line-height: 1.45; color: var(--fg);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+.bk-pn__a:hover .bk-pn__t { color: var(--acc-2); }
+.bk-pn__a:hover .bk-pn__dir { color: var(--acc); }
+/* конца книги нет: блок не «пропадает», а тихо гаснет */
+.bk-pn__a[aria-disabled="true"] { opacity: .34; pointer-events: none; }
+
+/* ─────────── 11. ПОДВАЛ (колофон в ширину колонки) ─────────── */
+.bk-ft {
+  margin-top: var(--s7); padding-top: var(--s3);
+  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s2) var(--s3);
+}
+.bk-ft__nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.bk-ft a {
+  font-family: var(--f-mono); font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--mute);
+}
+.bk-ft a:hover { color: var(--acc-2); }
+.bk-ft__c { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .16em; color: var(--mute); }
+
+/* ─────────── 12. АДАПТИВ ─────────── */
+
+/* планшет: сайдбар уезжает в выдвижное меню */
+@media (max-width: 960px) {
+  .bk-shell { grid-template-columns: minmax(0, 1fr); }
+  .bk-sb {
+    position: fixed; top: 0; bottom: 0; left: 0; height: auto;
+    width: min(320px, 88vw); z-index: 70;
+    transform: translateX(-100%); transition: transform .32s var(--e);
+    border-right: 1px solid var(--line-2);
+  }
+  .bk-sb.is-open { transform: none; box-shadow: 24px 0 60px rgba(0, 0, 0, .6); }
+  .bk-sb__hdr { padding-top: 4px; }
+  .bk-sb__x { display: flex; align-items: center; justify-content: center; }
+  .bk-sb__nav { padding-bottom: var(--s3); }
+  .bk-row { min-height: 44px; padding: 12px 20px; }        /* зона нажатия ≥ 44 px */
+  .bk-hdr .bk-burger { display: inline-flex; }
+  .bk-main { padding-top: var(--s4); }
+}
+
+/* телефон: шапка в две роли — «сайт» и «книга-действие» */
+@media (max-width: 620px) {
+  .bk-hdr__in { padding-inline: 18px; gap: 12px; }
+  .bk-book, .bk-hdr__sep { display: none; }
+  .bk-logo__t { font-size: 1.2rem; }
+  .bk-langs { display: none; }
+  .bk-sb__langs { display: flex; gap: 8px; padding: 0 20px var(--s2); }
+  .bk-main { padding: 24px 20px 72px; }
+  .bk-tp { padding-top: 0; }
+  .bk-tp__mark { margin-bottom: var(--s3); }
+  /* строка автора и года остаётся ОДНОЙ строкой и растянута по ширине названия —
+     это принятый эталон, на телефоне он тоже сохраняется */
+  .bk-tp__meta { gap: var(--s2); }
+  .bk-toc { margin-top: var(--s5); }
+  .bk-toc__a { grid-template-columns: 34px minmax(0, 1fr); column-gap: var(--s2); padding: 16px 0; }
+  .bk-toc__t { font-size: 1.1rem; }
+  .bk-chead__h1 { font-size: 28px; }
+  .bk-pn__grid { grid-template-columns: 1fr; }
+  .bk-pn__a { min-height: 0; padding: var(--s3) 0; }
+  .bk-pn__a:first-child { padding-right: 0; }
+  .bk-pn__a + .bk-pn__a {
+    border-left: 0; border-top: 1px solid var(--line);
+    padding-left: 0; text-align: left;
+  }
+}
+
+/* чтение на телефоне — 17.5 px, как в действующем стандарте сайта */
+@media (max-width: 720px) {
+  .bk-read { --read-size: 17.5px; }      /* абзацный интервал пересчитывается сам */
+  .bk-chead__h1 { font-size: 30px; }
+}
+
+/* ─────────── 13. ПЕЧАТЬ (заготовка для PDF/DOCX) ─────────── */
+@media print {
+  .bk-hdr, .bk-sb, .bk-pn, .bk-ft, .bk-scrim, .bk-prog { display: none !important; }
+  body.bk { background: #fff; color: #111; }
+  body.bk::after, body.bk::before { display: none; }
+  .bk-shell { grid-template-columns: 1fr; }
+  .bk-main { padding: 0; }
+  .bk-read { color: #111; }
+}
+
+/* ─────────── 14. ТИПОГРАФИЧЕСКИЙ КОЛОНОТИТУЛ СТРАНИЦЫ ───────────
+   Нужен, чтобы высота колонки не зависела от высоты рейки. */
+body.bk-cover .bk-main { min-height: calc(100vh - var(--hdr)); display: flex; flex-direction: column; }
+body.bk-cover .bk-col { flex: 1; display: flex; flex-direction: column; }
+body.bk-cover .bk-ft { margin-top: auto; }      /* колофон — по нижнему краю первого экрана */
+
+/* ─────────── 15. ВАРИАНТ ЧТЕНИЯ ДРУГОЙ ГАРНИТУРОЙ (сравнение) ───────────
+   Только для файла-варианта: тот же кегль и интерлиньяж, другая гарнитура.
+   Кегль компенсируется вручную, потому что x-height у гарнитур разный:
+   Literata 0.507 em, Merriweather 0.556 em — при одном кегле буквы Merriweather
+   выглядят на ~9.5 % крупнее, поэтому в варианте кегль уменьшен до 16.5 px. */
+body.bk[data-read="merriweather"] {
+  --f-read: 'Merriweather', Georgia, 'Times New Roman', serif;
+}
+body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
+
+/* плашка-пометка: это стенд сравнения, а не страница сайта */
+.bk-variant {
+  margin: 0 0 var(--s5); padding: 0 0 var(--s3);
+  border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 6px var(--s3); justify-content: space-between;
+}
