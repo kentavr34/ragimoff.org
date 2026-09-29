@@ -550,7 +550,14 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
   display: flex; flex-wrap: wrap; gap: 6px var(--s3); justify-content: space-between;
 }
 
-/* ═══ Сайдбар: длинное название обрезается С КОНЦА (многоточие справа) ═══
-   Костылей поверх каркаса демо здесь нет намеренно: сетка, колонки и титул —
-   ровно из book-concept.css (эталон владельца), см. разделы 5–7 выше. */
-.bk-row__t{direction:ltr!important;unicode-bidi:isolate!important;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+/* ═══ Сайдбар: название идёт в ДВЕ строки, многоточие — в конце второй ═══
+   Как в демо (book-concept.css): `-webkit-line-clamp: 2`, обрезка С КОНЦА.
+   [dir]/[unicode-bidi] оставлены с прежней правки: без них многоточие в
+   азербайджанской строке уезжало в начало. `white-space: nowrap` снят —
+   он-то и резал название в одну строку. Сетка, колонки и титул — из демо. */
+.bk-row__t{
+  direction:ltr!important;unicode-bidi:isolate!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;line-clamp:2!important;
+  text-overflow:ellipsis;overflow:hidden;
+}

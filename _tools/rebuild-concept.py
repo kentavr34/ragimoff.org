@@ -1263,7 +1263,7 @@ def page_main(p):
                 % (top, esc(nice_case(chead["title"], p["lang"])), en, sub))
     else:
         head = crumb_html(p)
-    body = p["body"].strip()
+    body = strip_stray_main(p["body"].strip()).strip()   # без лишнего </main> из старой разметки
     if body:
         body = '      <div class="bk-read">\n%s\n      </div>\n' % body
     parts = [head]
@@ -1341,11 +1341,22 @@ def sync_cover(path, book, page_rel, base=None):
 def drop_stray_main(raw):
     """В «остатке» старой разметки на титуле оставался лишний </main>: он закрывал
     .bk-main раньше времени, и футер уезжал ПОД сайдбар (в демо он внутри колонки).
-    Настоящий </main> один — последний; лишние убираем."""
+    Настоящий </main> один — последний; лишние убираем (вместе с их строкой)."""
     if raw.count("</main>") < 2:
         return raw, False
     i = raw.rfind("</main>")
-    return raw[:i].replace("</main>", "") + raw[i:], True
+    return re.sub(r"[ \t]*</main>[ \t]*\r?\n", "", raw[:i]) + raw[i:], True
+
+
+def strip_stray_main(raw):
+    """То же для ТЕЛА главы (`.content-wrap`): в старой разметке оно заканчивалось
+    закрывающим </main>. В новой оболочке `shell()` свой </main> ровно один — из
+    шаблона, поэтому из тела убираем ВСЕ: иначе .bk-main (а с ним .bk-col и
+    колонка чтения) закрывается раньше времени, и пред/след с футером уезжают
+    во всю ширину ПОД сайдбар. Зовётся из page_main()."""
+    if "</main>" not in raw:
+        return raw
+    return re.sub(r"[ \t]*</main>[ \t]*\r?\n?", "", raw)
 
 
 def main():
