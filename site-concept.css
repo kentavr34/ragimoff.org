@@ -65,3 +65,26 @@ th{background:#171B25!important;color:#F2EDE3!important}
 td{border-color:rgba(255,255,255,.08)!important}
 /* модальные окна */
 .modal,.modal__scrim{background:rgba(7,9,14,.88)!important}
+
+
+/* ═══ v3: тёплая палитра концепта + Literata в чтении (главный рычаг видимого изменения) ═══ */
+:root, [data-theme], [data-theme="dark"], [data-theme="light"]{
+  --bnb-bg:#07090E!important; --bnb-surface:#0E1116!important; --bnb-card:#141821!important;
+  --bnb-hover:#1B202B!important; --bnb-border:rgba(255,255,255,.08)!important;
+  --bnb-text:#F2EDE3!important; --bnb-muted:#A8A296!important; --bnb-dim:#8B857A!important;
+  --type-h-family:"Cormorant Garamond",Georgia,serif!important;
+  --type-label-family:"IBM Plex Mono",ui-monospace,monospace!important;
+}
+/* чтение и лиды — Literata, не гротеск */
+.sec-sub,.sec-lead,.hero-lead,.section-sub,.dir-topics,.about-text,.about-content p,
+.blog-card-excerpt,.blog-featured-excerpt,.footer-desc,.fa-text p,.article-body p,
+.sec-3cards p,.sec-services p,.sec-2col p,.card p,.card-link,.review-text,.faq-answer{
+  font-family:"Literata",Georgia,serif!important;letter-spacing:0!important;line-height:1.75!important}
+.sec-sub,.sec-lead,.hero-lead{font-size:17.5px!important}
+/* подписи, даты, номера — моноширинные */
+.stat-label,.card-label,.blog-card-cat,.badge,.dir-num,.footer-col-title,.footer-link,
+.book-card-tag,.price,.date,.mono,.diploma-label{
+  font-family:"IBM Plex Mono",ui-monospace,monospace!important;font-variant-numeric:tabular-nums!important}
+/* заголовки-дисплей — Cormorant везде */
+.hero-h1,.sec-title,.section-title,.card-title,.blog-card-title,.about-name,h1,h2{
+  font-family:"Cormorant Garamond",Georgia,serif!important;color:#F2EDE3!important}
