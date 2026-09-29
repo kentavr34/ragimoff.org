@@ -5,7 +5,8 @@ import os, re, sys
 sys.stdout.reconfigure(encoding='utf-8')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOKS = ['freud-yuxularin-yozumu', 'freud-musa', 'freud-seksualligin-psixologiyasi',
-         'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari']
+         'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari',
+         'freud-totem-ve-tabu', 'freud-medeniyyetin-sancilari']
 
 def toc(path):
     if not os.path.exists(path):

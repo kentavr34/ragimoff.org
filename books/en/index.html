@@ -15,12 +15,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=5">
+  <link rel="stylesheet" href="/books/books.css?v=4">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
   <style>[hidden] { display: none !important; }</style>
-<link rel="stylesheet" href="/books/book.css?v=2">
 </head>
 <body>
 
@@ -230,15 +229,15 @@
         </article>
 
         <article class="card" data-author="freud" data-title="Civilization and Its Discontents">
-          <a class="card__cover" href="/books/freud-medeniyyetin-sancilari/ru/">
+          <a class="card__cover" href="/books/freud-medeniyyetin-sancilari/">
 <div class="cover" style="--tex:url('/books/covers/freud-medeniyyetin-sancilari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">SIGMUND FREUD</span><span class="cover__title">Civilization and<br>Its Discontents</span><span class="cover__year">1930</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Civilization and Its Discontents</h2>
-            <p class="card__meta">Sigmund Freud · 1930 · RU</p>
+            <p class="card__meta">Sigmund Freud · 1930 · AZ</p>
             <p class="card__price">Free</p>
             <div class="card__cta">
-              <a class="btn" href="/books/freud-medeniyyetin-sancilari/ru/">Read <span aria-hidden="true">→</span></a>
+              <a class="btn" href="/books/freud-medeniyyetin-sancilari/">Read <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
@@ -281,14 +280,6 @@
             <option value="The Guilt Virus · 30 ₼">The Guilt Virus — 30 ₼</option>
             <option value="Schizophrenia. A Pandemic of Madness · 30 ₼">Schizophrenia. A Pandemic of Madness — 30 ₼</option>
             <option value="Feniks Erası · 50 ₼">Feniks Erası — 50 ₼</option>
-            <option value="The Interpretation of Dreams · null">The Interpretation of Dreams — null</option>
-            <option value="Moses and Monotheism · null">Moses and Monotheism — null</option>
-            <option value="Totem and Taboo · null">Totem and Taboo — null</option>
-            <option value="Introduction to Psychoanalysis · null">Introduction to Psychoanalysis — null</option>
-            <option value="Three Essays on the Theory of Sexuality · null">Three Essays on the Theory of Sexuality — null</option>
-            <option value="Letters to Martha Bernays (1882–1912) · null">Letters to Martha Bernays (1882–1912) — null</option>
-            <option value="Aphorisms · null">Aphorisms — null</option>
-            <option value="Civilization and Its Discontents · null">Civilization and Its Discontents — null</option>
           </select>
         </label>
         <label class="field">
@@ -310,7 +301,7 @@
   <script>
     window.__booksUI = {"sending":"Sending…","submit":"Order","fill":"Please enter your name and phone number.","empty":"Nothing found","count":"%n books"};
   </script>
-  <script src="/books/books.js?v=10" defer></script>
+  <script src="/books/books.js?v=9" defer></script>
   <script src="/_lang-switch.js?v=9" defer></script>
 </body>
 </html>

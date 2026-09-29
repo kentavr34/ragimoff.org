@@ -14,8 +14,10 @@ const RU_BOOKS = ['freud-musa', 'freud-seksualligin-psixologiyasi', 'freud-sevgi
 const AZ_ONLY = [];
 /* русская версия есть, азербайджанского издания нет: языковая пара не объявляется —
    ни data-lang-url-az, ни hreflang az, ни AZ-страниц у книги быть не должно,
-   доступный язык один (data-lang-avail="ru" — переключатель скрывает сам скрипт) */
-const RU_ONLY = ['freud-medeniyyetin-sancilari'];
+   доступный язык один (data-lang-avail="ru" — переключатель скрывает сам скрипт).
+   Список пуст с 30.09.2026: у «Недовольства культурой» появился наш
+   азербайджанский перевод (8 разделов в корне books/<slug>/), пара объявляется. */
+const RU_ONLY = [];
 let bad = 0, links = 0;
 const fail = (m) => { console.log('  БИТО: ' + m); bad++; };
 

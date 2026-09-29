@@ -295,11 +295,10 @@ const BOOKS = [
   },
   {
     /* «Недовольство культурой» (Das Unbehagen in der Kultur, 1930).
-       Текст есть только на русском (зеркало freudproject.ru, пост 818,
-       пер. А.М. Руткевич); азербайджанское издание «Mədəniyyətin sancıları»
-       («Alatoran», пер. Rüstəm Ayaks) в архив не попало — AZ-версии пока нет,
-       поэтому langs: ['ru'] и «читать» ведёт в русскую версию с любой языковой
-       страницы галереи (как freud-aforizmlar ведёт в AZ из ru/en). */
+       Русский текст — зеркало freudproject.ru, пост 818 (пер. А.М. Руткевич);
+       с 30.09.2026 к нему добавлен НАШ азербайджанский перевод (8 разделов,
+       названия по содержанию — авторских у произведения нет). Книга двуязычная:
+       «читать» ведёт в версию языка страницы (как у остальных парных книг). */
     id: 'freud-medeniyyetin-sancilari',
     authorKey: 'freud',
     cover: 'freud-medeniyyetin-sancilari.jpg',
@@ -308,13 +307,17 @@ const BOOKS = [
     year: '1930',
     title: { az: 'Mədəniyyətin sancıları', ru: 'Недовольство культурой', en: 'Civilization and Its Discontents' },
     meta: {
-      az: 'Ziqmund Freyd · 1930 · RU',
-      ru: 'Зигмунд Фрейд · 1930 · RU',
-      en: 'Sigmund Freud · 1930 · RU',
+      az: 'Ziqmund Freyd · 1930 · AZ',
+      ru: 'Зигмунд Фрейд · 1930 · AZ',
+      en: 'Sigmund Freud · 1930 · AZ',
     },
     price: null,                                  /* только чтение, без заказа */
-    langs: ['ru'],                                /* азербайджанской версии нет — только RU */
-    read: { az: null, ru: '/books/freud-medeniyyetin-sancilari/ru/', en: null },
+    langs: ['az', 'ru'],                          /* AZ — наш перевод, RU — зеркало freudproject */
+    read: {
+      az: '/books/freud-medeniyyetin-sancilari/',
+      ru: '/books/freud-medeniyyetin-sancilari/ru/',
+      en: '/books/freud-medeniyyetin-sancilari/',
+    },
   },
 ];
 
@@ -364,7 +367,9 @@ function page(code) {
     return '        <h2 class="author-sec" data-author="' + g + '">' + esc(ui.authors[g]) + '</h2>\n\n' +
       list.map((b) => card(b, code, ui)).join('\n\n');
   }).filter(Boolean).join('\n\n');
-  const options = BOOKS.map((b) => '            <option value="' + esc(b.title[code] + ' · ' + b.price) + '">' + esc(b.title[code]) + ' — ' + esc(b.price) + '</option>').join('\n');
+  /* в форме заказа — только книги с ценой: у бесплатных (price: null) печатного
+     тиража нет, и раньше они выводились строкой «Название — null» */
+  const options = BOOKS.filter((b) => b.price).map((b) => '            <option value="' + esc(b.title[code] + ' · ' + b.price) + '">' + esc(b.title[code]) + ' — ' + esc(b.price) + '</option>').join('\n');
   const alts = ['az', 'ru', 'en'].map((c) =>
     '  <link rel="alternate" hreflang="' + c + '" href="' + SITE + (c === 'az' ? '/books/' : '/books/' + c + '/') + '">').join('\n');
   return `<!doctype html>

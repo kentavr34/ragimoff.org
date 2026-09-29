@@ -199,23 +199,25 @@ const BOOKS = [
   {
     /* «Недовольство культурой» (Das Unbehagen in der Kultur, 1930).
        Русский текст — зеркало freudproject.ru, пост 818 (пер. А.М. Руткевич).
-       Азербайджанского издания в архиве нет → книга выходит только на русском
-       (ruOnly): переключатель языка не показываем, hreflang az не объявляем.
+       С 30.09.2026 у книги есть и наш азербайджанский перевод (8 разделов лежат
+       в books/<slug>/ в корне) → ruOnly снят: переключатель языка показываем,
+       hreflang az объявляем, AZ-страницы достраивает _tools/freud-az-book.js.
+       Авторских названий у разделов нет (в печатных изданиях только римские цифры) —
+       названия даны по содержанию раздела: требование Кенана, §4.1 стандарта заливки.
        Главы в источнике — римские номера отдельными абзацами («I.» … «VIII.»):
        маркеры сверяются целиком (ex), иначе «I.» поймал бы любой абзац с «I.». */
     slug: 'freud-medeniyyetin-sancilari', logo: 'MS', year: YEAR,
     ruTitle: 'Недовольство культурой', ruSubtitle: 'Зигмунд Фрейд', ruAuthor: 'Зигмунд Фрейд',
     intro: 'Первое издание — 1930', ruYear: '1930',
-    ruOnly: true,
     chapters: [
-      { slug: 'glava-i', title: 'I', src: { id: '818', from: 'I.', to: 'II.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-ii', title: 'II', src: { id: '818', from: 'II.', to: 'III.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-iii', title: 'III', src: { id: '818', from: 'III.', to: 'IV.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-iv', title: 'IV', src: { id: '818', from: 'IV.', to: 'V.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-v', title: 'V', src: { id: '818', from: 'V.', to: 'VI.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-vi', title: 'VI', src: { id: '818', from: 'VI.', to: 'VII.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-vii', title: 'VII', src: { id: '818', from: 'VII.', to: 'VIII.', ex: { from: true, to: true } }, heads: [] },
-      { slug: 'glava-viii', title: 'VIII', src: { id: '818', from: 'VIII.', ex: { from: true } }, heads: [] }
+      { slug: 'glava-i', title: 'I. О целях жизни и ложной мере благ', src: { id: '818', from: 'I.', to: 'II.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-ii', title: 'II. Религия и её утешения', src: { id: '818', from: 'II.', to: 'III.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-iii', title: 'III. Счастье, страдание и требования культуры', src: { id: '818', from: 'III.', to: 'IV.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-iv', title: 'IV. Происхождение культуры и могущество человека', src: { id: '818', from: 'IV.', to: 'V.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-v', title: 'V. Сексуальность, сублимация и отказ от влечений', src: { id: '818', from: 'V.', to: 'VI.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-vi', title: 'VI. Агрессия и борьба Эроса с влечением к смерти', src: { id: '818', from: 'VI.', to: 'VII.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-vii', title: 'VII. Чувство вины как цена культурного прогресса', src: { id: '818', from: 'VII.', to: 'VIII.', ex: { from: true, to: true } }, heads: [] },
+      { slug: 'glava-viii', title: 'VIII. Заключение: свобода и будущее культуры', src: { id: '818', from: 'VIII.', ex: { from: true } }, heads: [] }
     ]
   }
 ];

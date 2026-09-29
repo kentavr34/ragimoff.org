@@ -238,6 +238,35 @@ BOOKS.push({
   ],
 });
 
+/* «Mədəniyyətin sancıları» — НАШ перевод (8 разделов). У «Недовольства культурой»
+   авторских названий разделов нет: в печатных изданиях стоят только римские цифры,
+   а это запрещено правилом владельца (§4.1 стандарта заливки) — названия даны по
+   содержанию раздела. EPUB собран нами из переведённых глав (_med_final).
+   Год — первая публикация произведения (1930). Русская версия лежит в books/<slug>/ru. */
+BOOKS.push({
+  slug: 'freud-medeniyyetin-sancilari', logo: 'MS', epub: 'Mədəniyyətin sancıları.epub',
+  title: 'Mədəniyyətin sancıları', titlePrinted: 'MƏDƏNİYYƏTİN SANCILARI',
+  author: 'Ziqmund Freyd', year: '1930', yearSub: 'İlk nəşr — 1930', ru: true, prefix: 'glava',
+  chapters: [
+    { title: 'I. Həyatın məqsədləri və nemətlərin yanlış ölçüsü', short: 'I. Həyatın məqsədləri',
+      find: ['I. Həyatın məqsədləri və nemətlərin yanlış ölçüsü'], pdfPage: 5 },
+    { title: 'II. Din və onun təsəlliləri', short: 'II. Din və təsəlliləri',
+      find: ['II. Din və onun təsəlliləri'], pdfPage: 17 },
+    { title: 'III. Xoşbəxtlik, əzab və mədəniyyətin tələbləri', short: 'III. Xoşbəxtlik və əzab',
+      find: ['III. Xoşbəxtlik, əzab və mədəniyyətin tələbləri'], pdfPage: 33 },
+    { title: 'IV. Mədəniyyətin mənşəyi və insanın qüdrəti', short: 'IV. Mədəniyyətin mənşəyi',
+      find: ['IV. Mədəniyyətin mənşəyi və insanın qüdrəti'], pdfPage: 50 },
+    { title: 'V. Seksuallıq, sublimasiya və instinktlərdən imtina', short: 'V. Seksuallıq və imtina',
+      find: ['V. Seksuallıq, sublimasiya və instinktlərdən imtina'], pdfPage: 66 },
+    { title: 'VI. Aqressiya və Erosun ölüm instinkti ilə mübarizəsi', short: 'VI. Aqressiya və ölüm instinkti',
+      find: ['VI. Aqressiya və Erosun ölüm instinkti ilə mübarizəsi'], pdfPage: 82 },
+    { title: 'VII. Təqsir hissi mədəni tərəqqinin qiyməti kimi', short: 'VII. Təqsir hissi',
+      find: ['VII. Təqsir hissi mədəni tərəqqinin qiyməti kimi'], pdfPage: 99 },
+    { title: 'VIII. Nəticə: azadlıq və mədəniyyətin gələcəyi', short: 'VIII. Nəticə',
+      find: ['VIII. Nəticə: azadlıq və mədəniyyətin gələcəyi'], pdfPage: 114 },
+  ],
+});
+
 /* ── каркас страницы ── */
 const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 11px}' +
