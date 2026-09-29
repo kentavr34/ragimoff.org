@@ -36,6 +36,10 @@ const JUNK = [
   /^Annotasiya$/i, /^Annotation$/i,
 ];
 
+/* Сокращённое имя автора — запрещено (владелец, 29.09.2026): писать полностью
+   «Ziqmund Freyd» / «Зигмунд Фрейд». Ловим в текстах страниц отдельным правилом. */
+const SF_ABBR = /[ЗZ]\.\s?[ФF](рейд|reyd)/i;
+
 let junkTotal = 0, broken = 0, pages = 0;
 const fail = (m) => { console.log('  БИТО: ' + m); broken++; };
 
@@ -55,8 +59,12 @@ ALL.forEach((slug) => {
     const html = fs.readFileSync(path.join(dir, f), 'utf8');
     pages++;
     /* мусор в абзацах */
-    const paras = [...html.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
-    const junk = paras.filter((p) => JUNK.some((re) => re.test(p)));
+    const paras = [...html.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
+    const abbr = paras.filter((p) => SF_ABBR.test(p));
+    if (abbr.length) fail(slug + '/' + f + ': сокращённое имя автора, напр. «' + abbr[0].slice(0, 60) + '»');
+    const junk = paras.filter((p) => JUNK.some((re) => re.test(p)))
+      /* на ТИТУЛЬНОЙ странице книги имя автора — законный элемент, а не колонтитул */
+      .filter((p) => !(f === 'index.html' && /^Ziqmund Freyd$/i.test(p.trim())));
     if (junk.length) {
       junkTotal += junk.length;
       fail(slug + '/' + f + ': мусор ' + junk.length + ' абз., напр. «' + junk[0].slice(0, 70) + '»');
@@ -103,8 +111,12 @@ RU_ONLY.forEach((slug) => {
   files.forEach((f) => {
     const html = fs.readFileSync(path.join(dir, f), 'utf8');
     pages++;
-    const paras = [...html.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
-    const junk = paras.filter((p) => JUNK.some((re) => re.test(p)));
+    const paras = [...html.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/g)].map((m) => m[1].replace(/<[^>]+>/g, '').trim());
+    const abbr = paras.filter((p) => SF_ABBR.test(p));
+    if (abbr.length) fail(slug + '/' + f + ': сокращённое имя автора, напр. «' + abbr[0].slice(0, 60) + '»');
+    const junk = paras.filter((p) => JUNK.some((re) => re.test(p)))
+      /* на ТИТУЛЬНОЙ странице книги имя автора — законный элемент, а не колонтитул */
+      .filter((p) => !(f === 'index.html' && /^Ziqmund Freyd$/i.test(p.trim())));
     if (junk.length) {
       junkTotal += junk.length;
       fail(slug + '/ru/' + f + ': мусор ' + junk.length + ' абз., напр. «' + junk[0].slice(0, 70) + '»');
