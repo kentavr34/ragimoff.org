@@ -221,6 +221,23 @@ BOOKS.push({
 
 });
 
+/* «Тотем və Tabu» — НАШ перевод: печатного издания у него нет, EPUB собран нами
+   из переведённых частей (_align/translations/totem). Главы ищутся по заголовкам,
+   заданным при сборке EPUB. Год — первая публикация произведения (1913). */
+BOOKS.push({
+  slug: 'freud-totem-ve-tabu', logo: 'TT', epub: 'Totem və Tabu.epub',
+  title: 'Totem və Tabu', titlePrinted: 'TOTEM VƏ TABU',
+  author: 'Ziqmund Freyd', year: '1913', yearSub: 'İlk nəşr — 1913', ru: false, prefix: 'totem',
+  chapters: [
+    { title: 'Giriş', find: ['Giriş'], pdfPage: 5 },
+    { title: 'I. İNSEST QORXUSU', find: ['I', 'İNSEST QORXUSU'], pdfPage: 12 },
+    { title: 'II. TABU VƏ HİSLƏRİN AMBİVALENTLİYİ', find: ['II', 'TABU VƏ HİSLƏRİN AMBİVALENTLİYİ'], pdfPage: 30 },
+    { title: 'III. ANİMIZM, MAGİYA VƏ DÜŞÜNCƏNİN HƏR ŞEYƏ QADİRLİYİ', short: 'III. ANİMIZM, MAGİYA…',
+      find: ['III', 'ANİMIZM, MAGİYA VƏ DÜŞÜNCƏNİN HƏR ŞEYƏ QADİRLİYİ'], pdfPage: 75 },
+    { title: 'IV. TOTEMİN İNFANTİL QAYITMASI', find: ['IV', 'TOTEMİN İNFANTİL QAYITMASI'], pdfPage: 95 },
+  ],
+});
+
 /* ── каркас страницы ── */
 const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 11px}' +

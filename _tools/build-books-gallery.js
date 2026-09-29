@@ -202,6 +202,26 @@ const BOOKS = [
     read: { az: '/books/freud-musa/', ru: '/books/freud-musa/ru/', en: null },
   },
   {
+    /* Наш перевод: введение и четыре статьи. Печатного издания нет — EPUB собран
+       из переведённых частей; на сайте книга только на азербайджанском.
+       Обложку-иллюстрацию владелец добавит позже (текст карточки уже верен). */
+    id: 'freud-totem-ve-tabu',
+    authorKey: 'freud',
+    cover: 'freud-totem-ve-tabu.jpg',
+    coverTitle: { az: 'Totem və<br>Tabu', ru: 'Тотем и<br>табу', en: 'Totem and<br>Taboo' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1913',
+    title: { az: 'Totem və Tabu', ru: 'Тотем и табу', en: 'Totem and Taboo' },
+    meta: {
+      az: 'Ziqmund Freyd \u00b7 1913 \u00b7 AZ',
+      ru: 'Зигмунд Фрейд \u00b7 1913 \u00b7 AZ',
+      en: 'Sigmund Freud \u00b7 1913 \u00b7 AZ',
+    },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-totem-ve-tabu/', ru: null, en: null },
+  },
+  {
     id: 'freud-psixoanalizle-tanishliq',
     authorKey: 'freud',
     cover: 'freud-psixoanalizle-tanishliq.jpg',

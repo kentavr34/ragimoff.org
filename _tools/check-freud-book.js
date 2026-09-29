@@ -15,7 +15,8 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const ALL = ['freud-musa', 'freud-yuxularin-yozumu', 'freud-seksualligin-psixologiyasi',
-  'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar'];
+  'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar',
+  'freud-totem-ve-tabu'];
 const RU_ONLY = ['freud-medeniyyetin-sancilari'];
 
 /* тот же список мусора, что в _tools/freud-az-book.js */
