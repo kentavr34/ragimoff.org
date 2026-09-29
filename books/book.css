@@ -539,3 +539,23 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
   border-bottom: 1px solid var(--line);
   display: flex; flex-wrap: wrap; gap: 6px var(--s3); justify-content: space-between;
 }
+
+/* ═══ АДАПТЕР: концепт поверх существующих классов страниц книг ═══ */
+:root{--gold:#C9A961!important;--bg:#07090E!important}
+/* чтение: Literata 18/1.85, колонка 656, влево, без растяжки */
+.content-wrap p{font-family:"Literata",Georgia,serif!important;font-size:18px!important;line-height:1.85!important;letter-spacing:0!important;text-align:left!important;hyphens:none!important;margin:0 0 .95em!important;color:#E8E2D6!important}
+.content-wrap{max-width:696px!important}
+.content-wrap li{font-family:"Literata",Georgia,serif!important;font-size:18px!important;line-height:1.85!important;letter-spacing:0!important}
+/* титул книги и заголовок главы */
+.home-hero h1.home-title,.content-wrap h1.chap-title-wrap{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:500!important;letter-spacing:-.01em!important;color:#F2EDE3!important}
+.home-hero h1.home-title{font-size:clamp(40px,6.4vw,76px)!important;line-height:1.08!important}
+.content-wrap h1.chap-title-wrap{font-size:clamp(28px,3.4vw,34px)!important;line-height:1.25!important;font-family:"Literata",Georgia,serif!important}
+.home-hero .sub{font-family:Montserrat,sans-serif!important}
+.home-hero .sub.year{font-family:"IBM Plex Mono",monospace!important;font-variant-numeric:tabular-nums!important}
+/* сайдбар: номера 10 Plex Mono, названия 12 */
+.sidebar .sub-code{font-family:"IBM Plex Mono",monospace!important;font-size:10px!important;font-variant-numeric:tabular-nums!important}
+.sidebar .nav-sub-link{font-size:12px!important;line-height:1.4!important;transition:background-color .18s ease,color .18s ease!important}
+.sidebar .nav-sub-link.is-active{color:#C9A961!important;border-left-color:#C9A961!important}
+/* мелочи: переходы и золотая кнопка */
+a,button{transition:color .18s ease,border-color .18s ease,background-color .18s ease,transform .18s ease}
+.d-nav .up{color:#C9A961!important}
