@@ -566,3 +566,23 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
 /* мелочи: переходы и золотая кнопка */
 a,button{transition:color .18s ease,border-color .18s ease,background-color .18s ease,transform .18s ease}
 .d-nav .up{color:#C9A961!important}
+
+
+/* ═══ ТИТУЛ КНИГИ: центрирование, шкала, строка автора (правка 30.09) ═══ */
+body.bk-cover .bk-main{display:block}
+body.bk-cover .bk-col{max-width:none;width:100%;margin:0 auto;padding-inline:clamp(20px,4vw,56px)}
+.bk-tp{max-width:1120px;margin:clamp(36px,7vh,88px) auto 0;position:relative}
+.bk-tp__box{background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important}
+.bk-tp__mark{width:56px;height:2px;background:#C9A961;margin:0 0 clamp(18px,3vh,28px)}
+.bk-tp__title{font-family:var(--f-disp,"Cormorant Garamond",Georgia,serif)!important;font-weight:500!important;
+  font-size:clamp(42px,7vw,76px)!important;line-height:1.05!important;letter-spacing:-.012em!important;
+  color:#F2EDE3!important;margin:0!important;position:static!important}
+.bk-tp__meta{display:flex!important;justify-content:space-between!important;align-items:baseline!important;gap:20px!important;
+  margin:clamp(16px,2.6vh,26px) 0 0!important;padding-top:14px!important;border-top:1px solid rgba(255,255,255,.10)!important;
+  font-family:var(--f-mono,"IBM Plex Mono",monospace)!important;font-size:.8rem!important;letter-spacing:.08em!important;
+  text-transform:uppercase!important;position:static!important}
+.bk-tp__author{color:#F2EDE3!important}
+.bk-tp__year{color:#A8A296!important}
+.bk-tp + .bk-toc,.bk-toc{max-width:1120px;margin-left:auto;margin-right:auto}
+.bk-toc__a{grid-template-columns:64px minmax(0,1fr)!important;column-gap:24px!important}
+.bk-toc__t{font-size:clamp(1.15rem,1.6vw,1.45rem)!important;line-height:1.3!important}
