@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>klinik nav shot</title>
+<style>html,body{margin:0;padding:0;background:#07090E}iframe{display:block;border:0}</style>
+</head>
+<body>
+<iframe id="f"></iframe>
+<script>
+/* klinik-nav-shot.html — кадр страницы книги для скриншота headless Chrome'ом.
+ * Параметры: ?p=<путь от корня сайта>&cls=icd|dsm|icd10&w=1440&h=1600&open=1
+ * Нужен, потому что chrome CLI не умеет ни кликать, ни выставлять localStorage:
+ * здесь страница открывается в iframe, классификация включается кликом, ширина
+ * кадра задаётся точно, а снимок делает --screenshot по окну. */
+const q = new URLSearchParams(location.search);
+const p = q.get('p') || 'klinik-psixiatriya/ru/6B20.html';
+const cls = q.get('cls') || '';
+const w = parseInt(q.get('w') || '1440', 10);
+const h = parseInt(q.get('h') || '1600', 10);
+const f = document.getElementById('f');
+f.style.width = w + 'px';
+f.style.height = h + 'px';
+f.src = '/' + p;
+f.onload = function () {
+  const d = f.contentDocument;
+  if (!d) return;
+  try { f.contentWindow.localStorage.removeItem('bk-cls-klinik'); } catch (e) {}
+  const dir = q.get('dir');         // ru / en / tr (каталог языковой версии)
+  const base = p.split('/').slice(0, -1).join('/') || '';
+  if (dir && base.indexOf('/' + dir) < 0) { /* язык уже в пути */ }
+  if (cls) {
+    const tab = d.querySelector('.cls-tab[data-cls="' + cls + '"]');
+    if (tab) tab.click();
+  }
+  if (q.get('open')) {                // раскрыть вторую группу — видно подменю
+    const gs = d.querySelectorAll('.cls-tree:not([hidden]) .bk-grp');
+    for (const g of gs) {
+      if (g.getAttribute('data-here') !== '1' && g.querySelector('.bk-tgl')) {
+        g.querySelector('.bk-tgl').click();
+        break;
+      }
+    }
+  }
+  if (q.get('burger') && w <= 500) {  // выдвинуть меню на мобильном кадре
+    const b = d.getElementById('bk-burger');
+    if (b) b.click();
+  }
+  document.title = 'SHOT-READY';
+};
+</script>
+</body>
+</html>

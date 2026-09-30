@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Klinik nav probe — ждём…</title>
+<style>
+  body{font:14px/1.5 monospace;background:#111;color:#eee;margin:0;padding:12px}
+  #out{white-space:pre-wrap}
+  iframe{width:1200px;height:800px;border:1px solid #444}
+  .ok{color:#7ce38b}.bad{color:#ff7b72}
+</style>
+</head>
+<body>
+<div id="out">…</div>
+<iframe id="f" src="../klinik-psixiatriya/06-6B2-okp.html"></iframe>
+<script>
+/* klinik-nav-probe.html — проверка поведения меню классификаций книги
+ * «Klinik Psixiatriya» в headless Chrome (--dump-dom), без DevTools.
+ *
+ * Проверяет ровно то, на что жаловался владелец:
+ *   1. деревья МКБ-11 / DSM-5-TR / МКБ-10 переключаются вкладками;
+ *   2. в КАЖДОЙ классификации группы раскрываются/закрываются кликом (подменю);
+ *   3. группа текущей страницы раскрыта сразу (data-here=1);
+ *   4. активный пункт подсвечен (is-on);
+ *   5. выбор классификации не «соскакивает» при переходе на другую страницу
+ *      (localStorage).
+ */
+const log = [];
+const f = document.getElementById('f');
+const PAGES = {
+  ru: '../klinik-psixiatriya/ru/06-6B2-okp.html',
+  az: '../klinik-psixiatriya/06-6B2-okp.html',
+  en: '../klinik-psixiatriya/en/06-6B2-okp.html',
+  tr: '../klinik-psixiatriya/tr/06-6B2-okp.html',
+};
+const NEXT = {
+  ru: '../klinik-psixiatriya/ru/6B23.html',
+  az: '../klinik-psixiatriya/6B23.html',
+  en: '../klinik-psixiatriya/en/6B23.html',
+  tr: '../klinik-psixiatriya/tr/6B23.html',
+};
+
+function say(s, cls) { log.push((cls === 'ok' ? 'OK   ' : cls === 'bad' ? 'FAIL ' : '     ') + s); }
+
+function load(url) {
+  return new Promise(res => {
+    f.onload = () => setTimeout(res, 120);
+    f.src = url;
+  });
+}
+function $(sel) { return f.contentDocument.querySelector(sel); }
+function $$(sel) { return Array.from(f.contentDocument.querySelectorAll(sel)); }
+
+async function run() {
+  let fails = 0;
+  const fail = (s) => { say(s, 'bad'); fails++; };
+  const ok = (s) => say(s, 'ok');
+  for (const lang of ['ru', 'az', 'en', 'tr']) {
+    say('── ' + lang + ' ─────────────────────────────');
+    // 0. чистое состояние
+    await load(PAGES[lang] + '?x=' + Date.now());
+    try { f.contentWindow.localStorage.removeItem('bk-cls-klinik'); } catch (e) {}
+    await load(PAGES[lang] + '?y=' + Date.now());
+
+    // 1. вкладки и три дерева
+    const tabs = $$('.cls-tab');
+    say('вкладок: ' + tabs.length + ' (' + tabs.map(t => t.textContent.trim()).join(' / ') + ')');
+    if (tabs.length < 3) fail('меньше трёх переключателей классификаций');
+
+    for (const cls of ['icd', 'dsm', 'icd10']) {
+      const tab = $('.cls-tab[data-cls="' + cls + '"]');
+      if (!tab) { fail(cls + ': нет вкладки'); continue; }
+      tab.click();
+      const tree = $('.cls-tree[data-cls="' + cls + '"]');
+      const others = $$('.cls-tree').filter(t => t.getAttribute('data-cls') !== cls);
+      if (!tree || tree.hidden) fail(cls + ': дерево не показалось');
+      else if (others.some(t => !t.hidden)) fail(cls + ': другое дерево осталось видимым');
+      else ok(cls + ': дерево переключилось');
+      const groups = tree.querySelectorAll('.bk-grp');
+      const subs = tree.querySelectorAll('.bk-row--sub, .bk-row--sec');
+      const toggles = tree.querySelectorAll('.bk-tgl');
+      say(cls + ': групп ' + groups.length + ', переключателей ' + toggles.length +
+          ', строк ' + subs.length);
+      if (!groups.length) fail(cls + ': группы не собраны (плоский список)');
+      // 2. клик по группе открывает и закрывает подменю
+      const g = Array.from(groups).find(x => x.getAttribute('data-here') !== '1') || groups[0];
+      const tgl = g.querySelector('.bk-tgl');
+      const before = g.classList.contains('is-open');
+      tgl.click();
+      const after = g.classList.contains('is-open');
+      tgl.click();
+      const back = g.classList.contains('is-open');
+      if (before === after || after === back) fail(cls + ': клик по группе не переключает подменю');
+      else ok(cls + ': клик по группе открывает и закрывает подменю');
+      // 3. группа текущей страницы раскрыта
+      const here = tree.querySelector('.bk-grp[data-here="1"]');
+      if (!here) fail(cls + ': группа текущей страницы не отмечена data-here=1');
+      else if (!here.classList.contains('is-open')) fail(cls + ': группа текущей страницы закрыта');
+      else ok(cls + ': группа текущей страницы раскрыта');
+      // 4. активный пункт подсвечен
+      const on = tree.querySelector('.bk-row.is-on');
+      if (!on) fail(cls + ': активный пункт не подсвечен');
+      else ok(cls + ': активный пункт подсвечен — ' + on.textContent.trim().replace(/\s+/g, ' ').slice(0, 48));
+    }
+
+    // 5. выбор классификации держится при переходе на другую страницу
+    $('.cls-tab[data-cls="dsm"]').click();
+    await load(NEXT[lang] + '?z=' + Date.now());
+    const active = $('.cls-tab.is-active');
+    const dsm = $('.cls-tree[data-cls="dsm"]');
+    if (!active || active.getAttribute('data-cls') !== 'dsm') {
+      fail('после перехода активна ' + (active ? active.getAttribute('data-cls') : '—') + ', а не dsm');
+    } else if (!dsm || dsm.hidden) fail('после перехода дерево dsm скрыто');
+    else ok('переход на другую страницу: выбор dsm сохранён');
+    // и обратно на icd
+    $('.cls-tab[data-cls="icd"]').click();
+    await load(PAGES[lang] + '?w=' + Date.now());
+    const a2 = $('.cls-tab.is-active');
+    if (!a2 || a2.getAttribute('data-cls') !== 'icd') fail('возврат на icd не сохранился');
+    else ok('возврат на icd сохранён');
+  }
+  say('');
+  say(fails ? 'ИТОГ: ' + fails + ' нарушений' : 'ИТОГ: нарушений 0', fails ? 'bad' : 'ok');
+  document.getElementById('out').innerHTML = log.map(l =>
+    l.startsWith('FAIL') ? '<span class="bad">' + l + '</span>' : l).join('\n');
+  document.title = (fails ? 'FAIL ' + fails : 'NAV-OK') + ' | klinik nav probe';
+}
+run().catch(e => {
+  document.getElementById('out').textContent = 'ОШИБКА: ' + e.message + '\n' + log.join('\n');
+  document.title = 'NAV-ERROR | klinik nav probe';
+});
+</script>
+</body>
+</html>
