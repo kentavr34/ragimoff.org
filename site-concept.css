@@ -1270,6 +1270,57 @@ section[class]:has(.gallery-band),
 section[class]:has(.sec-pad),
 section[class]:has(.band) { padding-bottom: 0 !important; }
 .stats-strip { padding-top: 48px !important; padding-bottom: 48px !important; }
+
+/* ОДИН зазор между блоками, а не два. Владелец: «пустая полоса ~100 px между
+   блоком DSM-5/ICD-11/Klinik Protokollar/2026 и следующим блоком» и «слишком
+   большой интервал между Bütün Xidmətlər и BLOQ». Причина одна: нижний
+   паддинг блока A (88) + верхний паддинг блока B (88) = 176 px пустоты при
+   стандарте 88. Нижний паддинг снимается у блока, за которым идёт ещё блок;
+   у последнего перед подвалом он остаётся. Замер: 177 → 89 и 176 → 89. */
+section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ section[class]),
+section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ div),
+.sec-3cards:has(+ section), .sec-2col:has(+ section),
+.sec-services:has(+ section), .sec-blog:has(+ section), .sec-programs:has(+ section) {
+  padding-bottom: 0 !important;
+}
+/* полоса цифр и герой сохраняют свои нижние отступы: у героя это требование
+   владельца «50 px после поисковика», у полосы — воздух под цифрами */
+.stats-strip { padding-bottom: 48px !important; }
+.page-hero:has(.hero-search-wrap),
+.page-hero-x:has(.ph-search-wrap),
+.pg-hero:has(.ph-search-wrap) { padding-bottom: 50px !important; }
+
+/* Внутренние полосы не добавляют нижнего отступа: у секций он уже снят, а
+   вложенные полосы продолжали копить пустоту — под кнопкой «Bütün Xidmətlər»
+   было 86 px, под метками «DSM-5 / ICD-11 / Klinik Protokollar / 2026» —
+   44 px полосы книг + 16 px у самих меток. Всё это читается как «пустая
+   полоса ~100 px» между блоками. */
+.svc-actions { padding-bottom: 0 !important; }
+.book-card-tag { margin-bottom: 0 !important; }
+.books-band, .books-band-inner { padding-bottom: 0 !important; }
+.book-card-tags { margin-bottom: 0 !important; }
+
+/* ЗАГОЛОВОК → СОДЕРЖИМОЕ. Один стандарт на все блоки: 48 px на десктопе,
+   32 px на телефоне. Разброс был 0/16/24/64 (tehsil «Təcrübənizi Bölüşün» —
+   0 px, xidmetler «4 Addım» — 16 px, index «EKOSİSTEMİ» — 24 px). */
+.sec-header + *,
+.sec-inner > .sec-header + *,
+.sec-header ~ *,
+.sec-header ~ .grid-3, .sec-header ~ .grid-2, .sec-header ~ [class*="grid"],
+.sec-header ~ [class*="cards"], .sec-header ~ .steps, .sec-header ~ .faq,
+.sec-header ~ form { margin-top: 48px !important; }
+/* подзаголовок не добавляет своего зазора: иначе к 48 прибавлялись его 24 */
+.sec-header .sec-sub, .sec-sub:last-child { margin-bottom: 0 !important; }
+@media (max-width: 768px) {
+  .sec-header + *, .sec-inner > .sec-header + *,
+  .sec-header ~ .grid-3, .sec-header ~ .grid-2, .sec-header ~ [class*="grid"] { margin-top: 32px !important; }
+}
+/* верх блока → бейдж: ровно 88 у всех блоков без исключений */
+.sec-header > *:first-child, .sec-inner > *:first-child { margin-top: 0 !important; }
+.badge, .card-label, .diploma-label { margin-top: 0 !important; }
+/* бейдж, стоящий прямо в блочном контейнере (.sec-inner), садился на базовую
+   линию строки и уезжал на 3 px вниз (91 вместо 88) */
+.badge { vertical-align: top !important; }
 /* внутренняя обёртка блока не добавляет вертикальных отступов: стандарт
    считает от грани БЛОКА до первого элемента, и второй слой паддинга
    (.sec-inner с инлайновым padding у «Son Məqalələr») уводил бейдж на 177 px */
