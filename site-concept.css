@@ -507,7 +507,11 @@ header.hdr {
   text-wrap: balance;
 }
 .hero-h1 em, .ph-h1 em { color: var(--acc) !important; font-style: normal !important; }
-.h1-w1, .h1-w2, .ph-h1-w1, .ph-h1-w2, .eco-h2-w1, .eco-h2-w2 { display: inline !important; }
+/* Строки заголовков героя/раздела остаются инлайн на десктопе, но НЕ
+   eco-h2-w1/w2: их фиттер (index.html) раскладывает как блоки и в мобильной
+   ветке gtc-dark они блоки. Пока они были в этом списке с !important,
+   «RAGIMOFF» и «EKOSİSTEMİ» склеивались в «RAGIMOFFEKOSİSTEMİ». */
+.h1-w1, .h1-w2, .ph-h1-w1, .ph-h1-w2 { display: inline !important; }
 
 .badge, .ph-badge, .badge.on-light {
   font-family: var(--f-mono) !important;
@@ -1146,7 +1150,6 @@ label, .form-label, .form-field > span, .field > span, .upload-lbl, .tile-lbl {
 }
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: minmax(0, 1fr) !important; }
-  .photo-col { display: none !important; }
   .page-hero { padding-top: var(--s5) !important; }
 }
 @media (max-width: 768px) {
@@ -1230,6 +1233,202 @@ label, .form-label, .form-field > span, .field > span, .upload-lbl, .tile-lbl {
 .filter-btn.active, .filter-btn.is-on {
   color: var(--acc) !important; border-color: rgba(201, 169, 97, .45) !important;
   background: var(--acc-bg) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   21. ЕДИНАЯ ШКАЛА ИНТЕРВАЛОВ БЛОКОВ
+   Владелец 30.09.2026: «одинаковые замеры интервалов выше и ниже блоков —
+   надо создать 1 правильный замер и применить на все страницы… над IPAS
+   Ambassador, и над Fəaliyyət Sahələri, и над Mütəxəssis Haqqında — до
+   верхней грани блока должны быть одинаковые величины».
+   Стандарт (шаг 8 px):
+     десктоп  — 88 px от верхней грани блока до его первого элемента
+                (бейджа/метки) и 88 px от последнего элемента до нижней;
+     ≤768 px  — 48 px и 48 px;  ≤560 px — 32 px.
+   Было: у секций 86.4 px (6vw — не кратно 8), у героя бейдж стоял на 136 px,
+   между полосой галереи и блоком услуг набегало 344 px двойного паддинга.
+   ═══════════════════════════════════════════════════════════════════ */
+:root { --s-block: 88px; }
+
+section, .sec-pad, .sec-3cards, .sec-2col, .sec-services, .sec-blog, .sec-programs,
+.gallery-band, .cta-band, .stats-strip, .books-band, .band, .bolme-card {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+section[class],
+div.sec-pad, div.sec-3cards, div.sec-2col, div.sec-services, div.sec-blog, div.sec-programs,
+div.gallery-band, div.cta-band, div.band, div.bolme-card,
+.sec-pad, .sec-3cards, .sec-2col, .sec-services, .sec-blog, .sec-programs,
+.gallery-band, .cta-band, .band {
+  padding-top: var(--s-block) !important;
+  padding-bottom: var(--s-block) !important;
+}
+/* вложенный блок не удваивает паддинг внешнего: иначе между полосой галереи
+   и блоком услуг набегало 346 px пустоты */
+section[class]:has(section[class]),
+section[class]:has(.gallery-band),
+section[class]:has(.sec-pad),
+section[class]:has(.band) { padding-bottom: 0 !important; }
+.stats-strip { padding-top: 48px !important; padding-bottom: 48px !important; }
+/* внутренняя обёртка блока не добавляет вертикальных отступов: стандарт
+   считает от грани БЛОКА до первого элемента, и второй слой паддинга
+   (.sec-inner с инлайновым padding у «Son Məqalələr») уводил бейдж на 177 px */
+.sec-inner, .sec-header { padding-top: 0 !important; padding-bottom: 0 !important; }
+/* герой: контент от верхней грани, а не снизу — иначе бейдж уезжал на 138 px
+   против 89 px в секциях */
+.page-hero, .page-hero-x, .pg-hero {
+  justify-content: flex-start !important;
+  min-height: 0 !important;
+}
+/* герой: бейдж на той же высоте от верхней грани, что и в секциях */
+.page-hero, .page-hero-x, .pg-hero {
+  padding-top: var(--s-block) !important;
+}
+.page-hero .hero-text > .badge, .page-hero-x .hero-text > .badge, .pg-hero .badge {
+  margin-top: 0 !important;
+}
+/* в .hero-text стоял padding-top: 50px — бейдж уезжал на 138 px от верхней
+   грани при 89 px в секциях. Теперь верх блока и верх героя совпадают. */
+.page-hero .hero-text, .page-hero-x .hero-text { padding-top: 0 !important; }
+.hero-text > *:first-child, .ph-inner > *:first-child { margin-top: 0 !important; }
+
+@media (max-width: 768px) {
+  :root { --s-block: 48px; }
+}
+@media (max-width: 560px) {
+  :root { --s-block: 32px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   22. ГЕРОЙ ГЛАВНОЙ: ЗАГОЛОВОК В ОДНУ СТРОКУ, ФОТО ПОД ТЕКСТОМ
+   Владелец 30.09.2026: «заголовок надо разместить в 1 строчку — фото героя
+   можно сделать под текстом и увеличить размер фото… на мобильном заголовок
+   может разделиться на 2 строки, а фото будет идти под заголовком».
+   Разметка одна на обе раскладки: .photo-col лежит внутри .hero-text сразу
+   за H1. Порядок решает CSS: на десктопе фото уезжает в конец блока
+   (order), на телефоне остаётся сразу под заголовком.
+   ═══════════════════════════════════════════════════════════════════ */
+.page-hero .hero-inner {
+  grid-template-columns: minmax(0, 1fr) !important;   /* фото больше не колонка */
+  display: block !important;
+}
+.page-hero .hero-text {
+  display: flex !important;
+  flex-direction: column !important;
+  max-width: none !important;                          /* заголовку — вся ширина */
+  width: 100%;
+}
+.page-hero .hero-h1 { text-wrap: nowrap; }             /* одна строка на десктопе */
+@media (max-width: 1100px) {
+  .page-hero .hero-h1 { text-wrap: balance; }          /* ниже — до двух строк */
+}
+.page-hero .photo-col {
+  order: 10;                                           /* десктоп: под текстом */
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+  margin-top: var(--s5);
+  width: 100%;
+}
+.page-hero .photo-col img {
+  max-height: 520px;                                   /* крупнее прежних 360 */
+  width: auto !important;
+  max-width: min(560px, 62vw);
+  height: auto !important;
+  object-fit: contain;
+  object-position: right bottom;
+}
+@media (max-width: 860px) {
+  .page-hero .photo-col {
+    order: 0;                       /* фото — сразу под заголовком */
+    margin: var(--s4) 0 0 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: visible;
+  }
+  .page-hero .photo-col img {
+    max-height: 300px;
+    max-width: 100%;
+    margin: 0 !important;
+    transform: none !important;
+    object-position: center bottom;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   18. ПОИСК: ШРИФТ, ПЛЕЙСХОЛДЕР, КЕГЛЬ — ОДИН НАБОР НА ВЕСЬ САЙТ
+   Владелец 30.09.2026: «внутри поисковика остался старый шрифт, даже на
+   страницах книг». Поля поиска: #hero-si (герой), #site-si (шапка),
+   #q на галерее книг, .ph-search-bar на внутренних страницах.
+   Роль интерфейса — Montserrat, placeholder #A8A296, введённый текст
+   #F2EDE3, кегль как у остальных полей ввода (.95rem).
+   ═══════════════════════════════════════════════════════════════════ */
+#hero-si, #site-si, #q, .hero-search-bar input, .ph-search-bar input,
+.site-search-wrap input, .search input, input[type="search"] {
+  font-family: var(--f-ui) !important;
+  font-size: .95rem !important;
+  letter-spacing: 0 !important;
+  color: var(--fg) !important;
+}
+#hero-si::placeholder, #site-si::placeholder, #q::placeholder,
+.hero-search-bar input::placeholder, .ph-search-bar input::placeholder,
+.site-search-wrap input::placeholder, .search input::placeholder,
+input[type="search"]::placeholder {
+  color: var(--mid) !important;      /* #A8A296 */
+  font-family: var(--f-ui) !important;
+  font-size: .95rem !important;
+  opacity: 1;
+}
+/* кнопка поиска — интерфейсная роль */
+.hero-search-btn, .ph-search-btn { font-family: var(--f-mono) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   19. ОТСТУП ПОД ПОИСКОМ В ГЕРОЕ: 50 px / 25 px
+   Владелец 30.09.2026: «после поисковика в блоке героя должен быть интервал
+   ниже до нижней грани блока героя размером 50 пикселей для десктопа и
+   25 для мобильной».
+   ═══════════════════════════════════════════════════════════════════ */
+.page-hero .hero-search-wrap,
+.page-hero-x .ph-search-wrap,
+.pg-hero .ph-search-wrap {
+  margin-bottom: 0 !important;
+}
+/* Нижняя грань героя = ровно 50 px ниже последнего элемента (на внутренних
+   страницах это и есть поисковик). Владелец: «после поисковика … 50 пикселей
+   для десктопа и 25 для мобильной». */
+.page-hero:has(.hero-search-wrap),
+.page-hero-x:has(.ph-search-wrap),
+.pg-hero:has(.ph-search-wrap) {
+  padding-bottom: 50px !important;
+}
+@media (max-width: 860px) {
+  .page-hero:has(.hero-search-wrap),
+  .page-hero-x:has(.ph-search-wrap),
+  .pg-hero:has(.ph-search-wrap) { padding-bottom: 25px !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   20. ПОДЗАГОЛОВКИ: ДВЕ СТРОКИ, ДЕЛЕНИЕ ПО СЛОВАМ, РАВНЫЕ ДОЛИ
+   Владелец 30.09.2026: «при разделении на 2 строки делить надо на
+   приблизительно равные длины знаков, не разделяя слово». `text-wrap:
+   balance` даёт ровно это (замер на «RAGIMOFF EKOSİSTEMİ»: было 665/239,
+   стало 453/451 px). Ставим его всем лидам на десктопе; переносы по слогам
+   выключены — деление только по словам.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .sec-sub, .eco-sub, .section-sub, .sec-lead, .hero-lead,
+  [class$="-lead-desk"], [class*="-lead-desk "] {
+    text-wrap: balance !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+  }
+}
+.sec-sub, .eco-sub, .sec-lead, .hero-lead,
+[class$="-lead-desk"], [class*="-lead-desk "], [class$="-lead-mob"], [class*="-lead-mob "] {
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
 }
 
 /* портрет в герое: фото вырезано по фону, рамка и подложка читаются как
