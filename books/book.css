@@ -324,7 +324,9 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 }
 
 /* ─────────── 7. ОГЛАВЛЕНИЕ КНИГИ ─────────── */
-.bk-toc { margin-top: var(--s7); }
+/* зазор титул → оглавление: было 96 px (сверх демо), владелец просил вдвое меньше —
+   112 px суммарно (мета→шапка оглавления) → 64 px; на телефоне столько же */
+.bk-toc { margin-top: var(--s5); }
 .bk-toc__hdr {
   display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3);
   padding-bottom: 14px; border-bottom: 1px solid var(--line-2);
@@ -349,6 +351,16 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 .bk-toc__a:hover { background: rgba(242, 237, 227, .03); }
 .bk-toc__a:hover .bk-toc__t { color: var(--acc-2); }
 .bk-toc__row--front .bk-toc__t { color: var(--mid); }
+
+/* строка оглавления БЕЗ целевой страницы — это заголовок группы (часть, раздел),
+   а не ссылка: тише по цвету и кеглю, курсор обычный, подсветки при наведении нет.
+   Иначе строка выглядит кликабельной, но не работает (жалоба владельца). */
+.bk-toc__row--group .bk-toc__g {
+  display: block; padding: 16px 4px 14px 0;
+  font-family: var(--f-mono); font-size: .72rem; letter-spacing: .14em;
+  line-height: 1.4; color: var(--mute); cursor: default;
+}
+.bk-toc__row--group:hover .bk-toc__g { color: var(--mute); }
 
 /* ─────────── 8. ШАПКА ГЛАВЫ ─────────── */
 .bk-crumb { display: flex; align-items: center; gap: 8px; margin-bottom: var(--s4); }

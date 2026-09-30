@@ -213,6 +213,23 @@
 .bk-row--sub .bk-row__t { font-size: 10px; }
 .bk-row--sub .bk-row__n { font-size: 9px; }
 
+/* раскрывающиеся группы дерева классификаций — прежнее поведение книги:
+   раздел закрыт, ▶ раскрывает подпункты, а группа текущей страницы открыта сама
+   (в прежней разметке это были .nav-has-sub + .nav-toggle + toggleSub()). */
+.bk-grp { position: relative; }
+.bk-grp > .bk-tgl {
+  position: absolute; top: 4px; right: 12px; width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; border: 0; border-radius: 2px; background: none;
+  color: var(--mute); font-size: .62rem; line-height: 1; cursor: pointer;
+  transition: transform .2s var(--e), color .2s;
+}
+.bk-grp > .bk-tgl:hover { color: var(--acc); }
+.bk-grp.is-open > .bk-tgl { transform: rotate(90deg); color: var(--acc); }
+.bk-grp > .bk-row--sec { padding-right: 42px; }
+.bk-grp__sub { display: none; }
+.bk-grp.is-open > .bk-grp__sub { display: block; }
+
 /* ── 13. Модал заказа книги (разметка перенесена со старых страниц) ────── */
 .kitab-overlay {
   display: none; position: fixed; inset: 0; z-index: 9999;

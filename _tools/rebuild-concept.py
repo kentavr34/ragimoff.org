@@ -59,8 +59,8 @@ FONT_URL = ("https://fonts.googleapis.com/css2?"
             "&family=IBM+Plex+Mono:wght@400;500"
             "&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700"
             "&family=Montserrat:wght@300;400;500")
-CSS_BOOK = "/books/book.css?v=8"               # концепт (замена содержимого на book-concept.css)
-CSS_CONTENT = "/books/book-content.css?v=1"    # содержимое книг: таблицы, списки, обложки
+CSS_BOOK = "/books/book.css?v=9"               # концепт (замена содержимого на book-concept.css)
+CSS_CONTENT = "/books/book-content.css?v=2"    # содержимое книг: таблицы, списки, обложки
 
 # ── строки интерфейса по языкам страницы ──────────────────────────────────────
 UI = {
@@ -199,12 +199,16 @@ def nice_case(s, lang="az"):
     out = []
     for tok in s.split(" "):
         core = tok.strip("()[]«»\"'.,;:!?—-–")
+        # дефисные слова («OBSESSİV-KOMPULSİV») — тоже переводим в обычный регистр:
+        # раньше `not core.isalpha()` оставлял их в капсе, и в одном списке встречались
+        # «Neyroinkişaf pozuntuları» и «OBSESSİV-KOMPULSİV (OKP)» (жалоба владельца).
         keep = (len(core) <= 1 or any(ch.isdigit() for ch in core)
-                or core.upper() in ACRONYMS or not core.isalpha())
+                or core.upper() in ACRONYMS
+                or not re.fullmatch(r"[^\W\d_]+(?:[-–—][^\W\d_]+)*", core))
         out.append(tok if keep else az_lower(tok, lang))
     txt = " ".join(out)
-    # заглавная — в начале строки и после конца предложения
-    txt = re.sub(r"(^|[.!?]\s+)([a-zəğıöşüç])",
+    # заглавная — в начале строки, после конца предложения и после тире
+    txt = re.sub(r"(^|[.!?]\s+|[—–]\s*)([a-zəğıöşüç])",
                  lambda m: m.group(1) + az_upper1(m.group(2), lang), txt)
     return txt
 
@@ -1089,19 +1093,27 @@ def cover_main(p):
     n = len([r for r in toc if r["href"]])
     rows = []
     for r in toc:
-        cls = "bk-toc__row" + (" bk-toc__row--front" if not r["href"] else "")
         inner = '<span class="bk-toc__t">%s%s</span>' % (
             esc(nice_case(r["name"], p["lang"])),
             '<span class="bk-toc__r">%s</span>' % esc(r["range"]) if r.get("range") else "")
         if r["href"]:
             body = ('<a class="bk-toc__a" href="%s"><span class="bk-toc__n">%s</span>%s</a>'
                     % (esc(r["href"]), esc(r["num"] or ""), inner))
+            rows.append('          <li class="bk-toc__row">%s</li>' % body)
         else:
-            body = ('<span class="bk-toc__a" aria-disabled="true"><span class="bk-toc__n"></span>%s</span>' % inner)
-        rows.append('          <li class="%s">%s</li>' % (cls, body))
+            # без целевой страницы: это заголовок группы (часть, раздел), а не ссылка.
+            # Обёртка со <span class="bk-toc__a"> выглядела и вела себя как ссылка —
+            # владелец читал это как «ссылка не кликается».
+            rows.append('          <li class="bk-toc__row bk-toc__row--group">'
+                        '<span class="bk-toc__g">%s</span></li>' % inner)
     notes = notes_html(p)
     rest = re.sub(r"</main>", "", p["body"]).strip()      # лишний </main> из старой разметки
     rest_html = ('\n      <div class="bk-read bk-read--rest">\n%s\n      </div>\n' % rest) if rest else "\n"
+    # «Остаток» титула с обращением автора ставим ДО оглавления: в прежней разметке
+    # порядок был «титул → обращение → карточки → оглавление» (жалоба владельца:
+    # «обращение на главной сместилось в конец»).
+    rest_before = rest_html if 'class="author-note"' in rest else ""
+    rest_after = "" if rest_before else rest_html
     return '''      <section class="bk-tp">
         <div class="bk-tp__mark" role="presentation"></div>
         <div class="bk-tp__box">
@@ -1111,7 +1123,7 @@ def cover_main(p):
             <span class="bk-tp__year">%(year)s</span>
           </p>
         </div>
-      </section>
+      </section>%(rest_before)s
 
       <section class="bk-toc" aria-labelledby="bk-toc-h">
         <div class="bk-toc__hdr">
@@ -1121,7 +1133,7 @@ def cover_main(p):
         <ol class="bk-toc__list">
 %(rows)s
         </ol>
-      </section>%(rest)s%(notes)s
+      </section>%(rest_after)s%(notes)s
 ''' % {
         "title": esc(nice_case(title, p["lang"])),
         "sub": ('\n          <p class="bk-tp__sub">%s</p>' % esc(sub)) if sub else "",
@@ -1131,7 +1143,8 @@ def cover_main(p):
         "cnt": esc("%d %s" % (n, plural(p["lang"], n))),
         "rows": "\n".join(rows),
         "notes": notes,
-        "rest": rest_html,
+        "rest_before": rest_before,
+        "rest_after": rest_after,
     }
 
 
@@ -1165,6 +1178,8 @@ def cover_texts(p):
         author = meta[1] if len(meta) >= 3 else meta[0]
     if not year and len(meta) > 1:
         year = meta[-1]
+    if sub and author and sub.strip() == author.strip():
+        sub = ""      # подпись повторяла автора: на титуле он выходил двумя строками
     return title, author, year, sub
 
 
