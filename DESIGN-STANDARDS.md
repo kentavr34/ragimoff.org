@@ -178,3 +178,40 @@ python _hero_check.py                                        # канон ком
 --screenshot=<ascii>.png <url>`.
 Флаг `--lang=az` обязателен: `shared.js` уводит браузер с другим языком на
 `/ru/` или `/en/`, и замер попадёт не на ту страницу.
+
+## 8. Сплошной аудит 30.09.2026 — что он поменял
+
+Обход всех 171 страницы (корень + `ru/` + `en/`): `_tools/site-audit.js`
+(статика + headless Chrome, десктоп 1440 и узкий 500), текст — отрисованный
+`innerText`, а не разметка (`_tools/site-grammar.py`), сводка —
+`_tools/site-audit-summary.py`, сведение «до/после» —
+`_tools/site-audit-diff.py`, скриншоты — `_tools/site-shot.js`.
+Отчётные файлы: `_align/site_audit/` (вне репозитория).
+
+Найденное и исправленное (всё — в `site-concept.css`, если не указано иное):
+
+| правило | зачем |
+|---|---|
+| `.hero-search-btn span, .ph-search-btn span { color: var(--on-acc) }` | gtc.css красил `<span>` в тёмной секции в `.85` белого: на золоте 1.8:1, «AXTAR» не читался |
+| карточные заголовки `h4` (`svc/xid/feat/step/dir/price-card-head`) | `h4`-двойники `h3` оставались в интерфейсной гарнитуре (18 px Montserrat против 20 px Cormorant на одной странице) |
+| `.price-card-desc, .age-desc, .video-desc` — в группу `.card p` | описания карточек шли интерфейсной гарнитурой 14 px вместо Literata |
+| `.price-card:hover`, `.price-card.featured`, `.price-card` | карточка цены поднималась на 8 px с тенью и рамкой 2 px, пока соседние — на 2 px без тени |
+| `.cur-wrap .cur-hours/.cur-date`, `.ind-meta-label`, `.en-stat .l` | старые сине-серые полутона вне палитры: 3.8–4.4:1 |
+| `.pdf-btn, .pdf-export-btn` | единственные кнопки сайта в UI-гарнитуре, высота 34 px и радиус 0 → система §5 |
+| `.cur-name { white-space: normal }` | `nowrap` из разметки программ обрезал название темы на узком экране |
+| `.filter-inner { flex-wrap: wrap }`, `.art-table { table-layout: fixed }` | вылет за вьюпорт на узком экране (замер: 499.9 и 531 при 500) |
+| мобильный герой: `padding-top: calc(var(--s-block) - 8px)` | у `.ph-badge` margin-top 8 px, «верх блока → метка» выходило 40 вместо 32 там, где фиттер не отработал |
+
+`js-hero-fit2.js`: строка автора статьи (`.post-byline`) исключена из
+фиттера — он растягивал её до ширины поисковика (28 px моно вместо `.8rem`).
+
+Граница, оставленная владельцу: приглушённый токен `--mute`
+(`rgba(242,237,227,.5)`) на поверхностях `--bg-2/--bg-3` даёт 4.2–4.4:1 —
+это системное решение о палитре, а не дефект страницы.
+
+Для повторного прогона:
+```bash
+python -m http.server 8765 --bind 127.0.0.1 -d .
+node _tools/site-audit.js --out <каталог> --width 1440,390 --light-width 390 --jobs 6
+python _tools/site-grammar.py --out <каталог> --rendered <каталог>/rendered
+```

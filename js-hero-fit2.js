@@ -420,8 +420,11 @@
     var lead = hero.querySelector('.ph-sub');
     var sw = hero.querySelector('.ph-search-wrap');
     var inner = hero.querySelector('.page-hero-x-inner');
-    var subDesk = hero.querySelectorAll('.ph-sub-desk');
-    var subMob = hero.querySelectorAll('.ph-sub-mob');
+    /* Строка автора статьи (.post-byline) — метаданные, а не лид: фиттер
+       растягивал её до ширины поисковика, и она выходила моноширинными
+       28 px, а на телефоне вылезала за вьюпорт. Аудит 30.09.2026. */
+    var subDesk = hero.querySelectorAll('.ph-sub-desk:not(.post-byline)');
+    var subMob = hero.querySelectorAll('.ph-sub-mob:not(.post-byline)');
 
     /* Сброс: без него прошлый прогон исказит измерение. */
     h1.style.cssText = '';
