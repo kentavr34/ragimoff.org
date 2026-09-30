@@ -655,7 +655,10 @@ section[data-theme="light"],
 }
 /* чередующиеся секции: вместо заливки — только тонкая линия сверху */
 .sec-3cards, .sec-2col, .sec-services, .sec-pad, .sec-books, .gallery-band, .band {
-  border-top: 1px solid var(--line) !important;
+  /* волосяная линия — ВНУТРЕННЯЯ тень, а не border-top: граница добавляла
+     1 px к габариту блока, и бейдж вставал на 89 вместо 88 */
+  border-top: 0 !important;
+  box-shadow: inset 0 1px 0 var(--line) !important;
   padding-top: var(--s-section) !important;
   padding-bottom: var(--s-section) !important;
 }
@@ -1255,7 +1258,7 @@ section, .sec-pad, .sec-3cards, .sec-2col, .sec-services, .sec-blog, .sec-progra
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
-section[class],
+section[class], section[id],
 div.sec-pad, div.sec-3cards, div.sec-2col, div.sec-services, div.sec-blog, div.sec-programs,
 div.gallery-band, div.cta-band, div.band, div.bolme-card,
 .sec-pad, .sec-3cards, .sec-2col, .sec-services, .sec-blog, .sec-programs,
@@ -1263,6 +1266,12 @@ div.gallery-band, div.cta-band, div.band, div.bolme-card,
   padding-top: var(--s-block) !important;
   padding-bottom: var(--s-block) !important;
 }
+/* Блок, который показывается по кнопке (форма отзыва #reviewFormSection),
+   фиттер не обрабатывает: у display:none все размеры нулевые, и sectionRhythm
+   его пропускает. Такой блок остаётся без класса — только с id, — и правило
+   section[class] его не ловило: верх до бейджа был 86 вместо 88 (а на 390 —
+   48 вместо 32). Теперь шкалу задаёт CSS, а фиттер лишь уточняет её. */
+section:not([class]) { padding-top: var(--s-block) !important; }
 /* вложенный блок не удваивает паддинг внешнего: иначе между полосой галереи
    и блоком услуг набегало 346 px пустоты */
 section[class]:has(section[class]),

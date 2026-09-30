@@ -609,7 +609,9 @@
     var gapTop = badge.getBoundingClientRect().top - sec.getBoundingClientRect().top;
     var basePad = parseFloat(getComputedStyle(sec).paddingTop) || 0;
     var wantPad = basePad + (SEC_TOP - gapTop);
-    sec.style.setProperty('padding-top', Math.max(0, wantPad).toFixed(1) + 'px', 'important');
+    /* Целые пиксели: дробный паддинг давал бейджу смещение 88.5 → 89 и
+       разброс 88/89 там, где владелец просил одно значение. */
+    sec.style.setProperty('padding-top', Math.round(Math.max(0, wantPad)) + 'px', 'important');
     if (wantPad < 0 && inner) {
       var baseIn = parseFloat(getComputedStyle(inner).paddingTop) || 0;
       inner.style.setProperty('padding-top',
