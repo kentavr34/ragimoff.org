@@ -12,19 +12,19 @@
     <title>Обучение | RAGIMOFF</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../gtc.css" />
   <link rel="stylesheet" href="../gtc-dark.css" />
     <style>
       .price-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.06); }
       .feat-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(181,155,114,0.2); margin-bottom: 32px; }
-      .reg-path-step { padding: 28px 24px; border-right: 1px solid rgba(181,155,114,0.2); }
+      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(201,169,97,0.2); margin-bottom: 32px; }
+      .reg-path-step { padding: 28px 24px; border-right: 1px solid rgba(201,169,97,0.2); }
       .reg-path-step:last-child { border-right: none; }
       .reg-path-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; display: block; }
       .reg-path-step h4 { font-size: var(--t-body); font-weight: 800; color: var(--white); margin-bottom: 8px; font-family: var(--font); }
       .reg-path-step p { font-size: var(--t-sm); color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
-      .reg-discount { background: rgba(181,155,114,0.06); border: 1px solid rgba(181,155,114,0.25); border-left: 2px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
+      .reg-discount { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.25); border-left: 2px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
       .reg-discount strong { font-size: var(--t-body); font-weight: 800; color: var(--white); display: block; margin-bottom: 8px; }
       .reg-discount p { font-size: var(--t-sm); color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
       @media (max-width: 1100px) { .price-grid-3 { display: block; } .feat-grid-3 { grid-template-columns: 1fr 1fr; } .reg-path { grid-template-columns: 1fr 1fr; } }
@@ -33,7 +33,7 @@
         .reg-path { grid-template-columns: 1fr; }
         #programs > div { padding-left: 0 !important; padding-right: 0 !important; }
         .price-grid-3 { display: flex; flex-direction: column; }
-        .price-card { border-bottom: 1px solid rgba(181,155,114,0.12); padding: 28px 20px; }
+        .price-card { border-bottom: 1px solid rgba(201,169,97,0.12); padding: 28px 20px; }
         .price-card:last-child { border-bottom: none; }
         .form-radio-group.cols3 { grid-template-columns: 1fr 1fr; }
         .reg-path-step { padding: 20px 16px; }
@@ -44,7 +44,7 @@
         .price-card { padding: 24px 16px; }
         .feat-card { padding: 24px 20px; }
       }
-      .pdf-export-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(181,155,114,0.12); border: 1px solid rgba(181,155,114,0.35); color: var(--accent); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.2s; text-decoration: none; }
+      .pdf-export-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,97,0.12); border: 1px solid rgba(201,169,97,0.35); color: var(--accent); padding: 10px 20px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.2s; text-decoration: none; }
       .pdf-export-btn:hover { background: var(--accent); color: var(--navy); }
       .pdf-export-btn svg { flex-shrink: 0; }
       @media print {
@@ -79,10 +79,10 @@
       @media (max-width: 960px) { .students-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (max-width: 560px) { .students-grid { grid-template-columns: 1fr; } }
       .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
-      .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(181,155,114,0.22); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+      .review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,169,97,0.22); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
       .review-stars { color: var(--accent); font-size: 1.1rem; letter-spacing: 2px; }
       .review-text { font-size: var(--t-sm); color: rgba(255,255,255,0.82); line-height: 1.7; margin: 0; font-style: italic; }
-      .review-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 12px; border-top: 1px solid rgba(181,155,114,0.15); }
+      .review-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 12px; border-top: 1px solid rgba(201,169,97,0.15); }
       .review-name { font-size: var(--t-sm); font-weight: 700; color: var(--white); }
       .review-prog { font-size: var(--t-xs); color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
       @media (max-width: 1100px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
@@ -99,7 +99,7 @@
       .rev-stars-input label:hover, .rev-stars-input label:hover ~ label { color: var(--accent); }
       .rev-stars-input input:checked ~ label { color: var(--accent); }
       .rev-stars-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
-      .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(181,155,114,0.06); border-left: 2px solid var(--accent); }
+      .rev-note { font-size: var(--t-xs); color: var(--clr-text-muted); margin-top: 14px; padding: 12px 14px; background: rgba(201,169,97,0.06); border-left: 2px solid var(--accent); }
       .rev-success { display: none; background: #e8f5e9; border: 1px solid #81c784; padding: 20px; color: #2e7d32; font-size: var(--t-sm); font-weight: 600; margin-top: 20px; }
       @media (max-width: 600px) { .rev-form-wrap { padding: 28px 20px; } }
       .stud-sub { max-width: 920px; line-height: 1.55; }
@@ -218,7 +218,7 @@ input, select, textarea, button {
 }
 </script>
   <meta property="og:locale" content="ru_RU" />
-  <link rel="stylesheet" href="/site-concept.css?v=3">
+  <link rel="stylesheet" href="/site-concept.css?v=4">
 </head>
   <body>
     <a class="skip-link" href="#main-content">К основному содержимому</a>
@@ -230,7 +230,7 @@ input, select, textarea, button {
     <a href="index.html" class="logo-box">
       <span class="logo-text">RAGIMOFF<em>.</em></span>
       <span class="logo-sub">Школа психологии</span>
-    </a>
+    </a><span class="hdr-sep" aria-hidden="true"></span><span class="hdr-sec">Обучение</span>
 
     <nav class="desktop-nav">
       <div class="nav-item">
@@ -614,12 +614,12 @@ input, select, textarea, button {
         <p class="sec-sub"><span class="ab-lead-mob">О профессии психолога,</span>
 <span class="ab-lead-mob">карьере и заботе о себе.</span>
 <span class="ab-lead-desk">О профессии психолога, построении карьеры, супервизии, выгорании и заботе о себе.</span></p>
-        <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(181,155,114,0.22)">
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Хороший психолог никогда не останется без работы — почему?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Клиническая vs Общая психология — разница и выбор</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Как начинающему психологу найти первого клиента?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 7 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Супервизия — постоянный учитель психолога</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-          <li style="border-bottom:1px solid rgba(181,155,114,0.22)"><a href="blog-psixolog-olmaq-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(181,155,114,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Самопомощь психолога — защита от выгорания</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+        <ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(201,169,97,0.22)">
+          <li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="blog-psixolog-olmaq.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art1-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Хороший психолог никогда не останется без работы — почему?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="blog-psixolog-olmaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art2-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Клиническая vs Общая психология — разница и выбор</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="blog-psixolog-olmaq-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art3-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Как начинающему психологу найти первого клиента?</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="blog-psixolog-olmaq-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art4-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 7 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Супервизия — постоянный учитель психолога</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+          <li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="blog-psixolog-olmaq-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none; color:#fff;"><img src="../images/blog/psixoloq-olmaq/art5-cover.jpg" alt="" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" loading="lazy" width="1600" height="900" /><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Самопомощь психолога — защита от выгорания</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
         </ul>
       </div>
     </section>
@@ -747,7 +747,7 @@ input, select, textarea, button {
 <label for="termSel" class="form-label">На сколько месяцев?</label>
 <select id="termSel" class="form-input" style="cursor:pointer;" aria-label="Срок рассрочки" name="termSel" autocomplete="off"></select>
 </div>
-<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(181,155,114,0.35);border-left:2px solid var(--accent);background:rgba(181,155,114,0.06);font-size:0.875rem;line-height:1.9;"></div>
+<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(201,169,97,0.35);border-left:2px solid var(--accent);background:rgba(201,169,97,0.06);font-size:0.875rem;line-height:1.9;"></div>
 <input type="hidden" name="odenis" id="odenisHidden"/>
           </div>
 
@@ -805,7 +805,7 @@ input, select, textarea, button {
           <span class="logo-text">RAGIMOFF<em>.</em></span>
           <span class="logo-sub">Школа психологии</span>
         </a>
-        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=Caspian+Business+Center+Cəfər+Cabbarlı+40+Baku+AZ1065" target="_blank" rel="noopener" aria-label="Открыть на карте и проложить маршрут"><svg class="fa-pin" width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold,#E6B44A)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="fa-text">AZ1065, г. Баку, Джафар Джаббарлы 40,<br/>Caspian Business Center, 9 этаж</span><svg class="fa-dir" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 8-6 8M20 12H4"/></svg></a>
+        <a class="footer-address" href="https://www.google.com/maps/search/?api=1&query=Caspian+Business+Center+Cəfər+Cabbarlı+40+Baku+AZ1065" target="_blank" rel="noopener" aria-label="Открыть на карте и проложить маршрут"><svg class="fa-pin" width="12" height="12" viewBox="0 0 24 24" fill="var(--bnb-gold,#C9A961)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span class="fa-text">AZ1065, г. Баку, Джафар Джаббарлы 40,<br/>Caspian Business Center, 9 этаж</span><svg class="fa-dir" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 8-6 8M20 12H4"/></svg></a>
         <div class="social-links">
           <a href="https://t.me/ragimoff" target="_blank" rel="noopener" class="social-btn">TG</a>
           <a href="https://www.facebook.com/Ragimoff.az" target="_blank" rel="noopener" class="social-btn">FB</a>
@@ -950,7 +950,7 @@ input, select, textarea, button {
           box.innerHTML = '';
           window.regFilePool[name].forEach(function (f, i) {
             const chip = document.createElement('span');
-            chip.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid rgba(181,155,114,0.45);background:rgba(181,155,114,0.08);font-size:0.75rem;line-height:1.6;word-break:break-all;';
+            chip.style.cssText = 'display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border:1px solid rgba(201,169,97,0.45);background:rgba(201,169,97,0.08);font-size:0.75rem;line-height:1.6;word-break:break-all;';
             chip.textContent = f.name + ' (' + Math.max(1, Math.round(f.size / 1024)) + ' KB)';
             const x = document.createElement('button');
             x.type = 'button';
@@ -1074,21 +1074,21 @@ input, select, textarea, button {
 <!-- BEGIN: kitab-modal (auto-generated, do not edit by hand) -->
 <!-- Kitabın Sifarişi Modal -->
 <div id="kitab-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#1a1d27;border:1px solid #2e3245;border-radius:12px;padding:36px 32px 28px;width:100%;max-width:400px;margin:20px;position:relative;box-shadow:0 18px 20px rgba(0,0,0,.62);">
-    <button onclick="closeKitabModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#8892aa;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;">&#10005;</button>
-    <div style="width:44px;height:44px;border-radius:8px;background:#E6B44A;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#0f1117;margin-bottom:16px;">КК</div>
-    <h2 style="font-size:20px;font-weight:700;color:#f0f2f8;margin:0 0 10px;font-family:monospace;">Заказ книги</h2>
-    <p style="font-size:13px;color:#c2c8d8;line-height:1.65;margin:0 0 22px;border-left:2px solid #c49b2f;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
+  <div style="background:#0e1116;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:36px 32px 28px;width:100%;max-width:400px;margin:20px;position:relative;box-shadow:0 18px 20px rgba(0,0,0,.62);">
+    <button onclick="closeKitabModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#a8a296;font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;">&#10005;</button>
+    <div style="width:44px;height:44px;border-radius:8px;background:#C9A961;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#07090e;margin-bottom:16px;">КК</div>
+    <h2 style="font-size:20px;font-weight:700;color:#f2ede3;margin:0 0 10px;font-family:monospace;">Заказ книги</h2>
+    <p style="font-size:13px;color:#a8a296;line-height:1.65;margin:0 0 22px;border-left:2px solid #c9a961;padding-left:12px;">Книга готовится к печатному изданию. Если хотите быть среди первых читателей — оставьте контакты, и мы свяжемся с вами сразу после выхода.</p>
     <form id="kitab-form-main" action="/api/book-order" method="POST" novalidate>
       <div style="margin-bottom:14px;">
-        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
-        <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="fname" autocomplete="given-name">
+        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#a8a296;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Имя и фамилия</label>
+        <input id="km-name" type="text" placeholder="Ваше имя и фамилия" required style="width:100%;background:#141821;border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#f2ede3;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="fname" autocomplete="given-name">
       </div>
       <div style="margin-bottom:14px;">
-        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#8892aa;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
-        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#222538;border:1px solid #2e3245;border-radius:6px;color:#f0f2f8;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="phone" autocomplete="tel">
+        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#a8a296;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Мобильный номер</label>
+        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#141821;border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#f2ede3;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="phone" autocomplete="tel">
       </div>
-      <button type="submit" style="width:100%;background:#E6B44A;color:#0f1117;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>
+      <button type="submit" style="width:100%;background:#C9A961;color:#07090e;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Заказать</button>
     </form>
     <div id="km-success" style="display:none;background:rgba(100,200,120,.1);border:1px solid rgba(100,200,120,.3);border-radius:8px;padding:20px;font-size:14px;color:#6dc87e;text-align:center;margin-top:16px;line-height:1.6;">
       Спасибо!<br>Свяжемся с вами сразу после выхода книги.

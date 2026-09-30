@@ -7,24 +7,24 @@
 /* ─── 1. BINANCE-STYLE COLOR PALETTE ─── */
 :root {
   /* Binance-inspired palette */
-  --bnb-bg:      #0B0E11;
-  --bnb-surface: #1E2026;
-  --bnb-card:    #2B2F36;
-  --bnb-hover:   #363B45;
-  --bnb-border:  #2B2F36;
-  --bnb-text:    #EAECEF;
+  --bnb-bg:      #07090E;
+  --bnb-surface: #0E1116;
+  --bnb-card:    #141821;
+  --bnb-hover:   #1B202B;
+  --bnb-border:  #141821;
+  --bnb-text:    #F2EDE3;
   /* Серый текст был слишком тёмным на чёрном фоне: #848E9C давал контраст
-     4.05 к карточке #2B2F36 — ниже нормы WCAG AA (4.5). Тело текста, хроника
+     4.05 к карточке #141821 — ниже нормы WCAG AA (4.5). Тело текста, хроника
      и подзаголовки читались тяжело. Подняты на два тона; разница с белым
-     основным текстом #EAECEF сохраняется (отношение 1.94), поэтому иерархия
+     основным текстом #F2EDE3 сохраняется (отношение 1.94), поэтому иерархия
      «основной / второстепенный» не пропадает.
      Контраст после правки: к фону 8.44, к surface 7.10, к карточке 5.86. */
   --bnb-muted:   #A3ACB9;
   --bnb-dim:     #98A1AE;
   --bnb-gold:    #C9A961;
   --bnb-gold2:   #C8961F;
-  --bnb-gold-bg: rgba(230,180,74,0.10);
-  --bnb-gold-glow: rgba(230,180,74,0.18);
+  --bnb-gold-bg: rgba(201,169,97,0.10);
+  --bnb-gold-glow: rgba(201,169,97,0.18);
 
   /* Override all site tokens */
   --navy:             var(--bnb-bg);
@@ -46,13 +46,13 @@
 
   --badge-bg:          var(--bnb-gold-bg);
   --badge-color:       var(--bnb-gold);
-  --badge-border:      rgba(230,180,74,0.25);
+  --badge-border:      rgba(201,169,97,0.25);
 
   --btn-fill-bg:            var(--bnb-gold);
-  --btn-fill-color:         #0B0E11;
+  --btn-fill-color:         #07090E;
   --btn-fill-bg-hover:      #fff;
-  --btn-fill-color-hover:   #0B0E11;
-  --btn-ghost-border:       rgba(230,180,74,0.5);
+  --btn-fill-color-hover:   #07090E;
+  --btn-ghost-border:       rgba(201,169,97,0.5);
   --btn-ghost-text:         var(--bnb-gold);
   --shadow-card:            0 4px 24px rgba(0,0,0,0.5);
 }
@@ -117,12 +117,12 @@ div[style*="background: #fff"] {
 /* ─── 4. HEADER ─── */
 .site-header {
   background: rgba(11,14,17,0.98) !important;
-  border-bottom-color: rgba(230,180,74,0.15) !important;
+  border-bottom-color: rgba(201,169,97,0.15) !important;
 }
 
 /* ─── 5. NAVIGATION ─── */
 .desktop-nav a {
-  color: rgba(234,236,239,0.7) !important;
+  color: rgba(242,237,227,0.7) !important;
 }
 .desktop-nav a:hover,
 .desktop-nav a.nav-active {
@@ -131,7 +131,7 @@ div[style*="background: #fff"] {
 /* CTA button: dark text on gold — must override the .desktop-nav a rule */
 .desktop-nav .nav-cta,
 .desktop-nav .nav-cta:hover {
-  color: #0B0E11 !important;
+  color: #07090E !important;
   font-weight: 800 !important;
 }
 .nav-dropdown {
@@ -159,7 +159,7 @@ div[style*="background: #fff"] {
 
 /* ─── 7. HERO ─── */
 .page-hero {
-  background: linear-gradient(135deg, #0B0E11 0%, #161B22 100%) !important;
+  background: linear-gradient(135deg, #07090E 0%, #07090E 100%) !important;
 }
 @media (min-width: 769px) {
   .page-hero {
@@ -233,11 +233,11 @@ div[style*="background: #fff"] {
 }
 /* Desktop lines hidden by default (mobile shows them via mobile media query) */
 .desk-lead-line { display: none; }
-.hero-lead { color: rgba(234,236,239,0.88) !important; }
+.hero-lead { color: rgba(242,237,227,0.88) !important; }
 
 /* ─── CURRICULUM TABLE — светлый текст на тёмном фоне ─── */
-.cur-wrap .cur-name                              { color: #e0e3ec !important; }
-.cur-wrap .cur-hours                             { color: #e0e3ec !important; }
+.cur-wrap .cur-name                              { color: #A8A296 !important; }
+.cur-wrap .cur-hours                             { color: #A8A296 !important; }
 .cur-wrap .cur-hours span                        { color: rgba(224,227,236,0.5) !important; }
 .cur-wrap .cur-num                               { color: rgba(224,227,236,0.62) !important; }
 .cur-wrap .cur-date                              { color: rgba(224,227,236,0.45) !important; }
@@ -245,17 +245,17 @@ div[style*="background: #fff"] {
 .cur-wrap .cur-row > div:first-child::after,
 .cur-wrap .cur-row > div:nth-child(2)::after     { border-bottom-color: rgba(224,227,236,0.1) !important; }
 .cur-wrap                                        { border-color: rgba(224,227,236,0.1) !important; }
-.pdf-btn                                         { color: #e0e3ec !important; border-color: rgba(224,227,236,0.2) !important; }
+.pdf-btn                                         { color: #A8A296 !important; border-color: rgba(255,255,255,.16) !important; }
 
 /* ─── 8. STATS STRIP ─── */
 .stats-strip {
-  background: #0B0E11 !important;
-  border-top-color: rgba(230,180,74,0.12) !important;
-  border-bottom-color: rgba(230,180,74,0.12) !important;
+  background: #07090E !important;
+  border-top-color: rgba(201,169,97,0.12) !important;
+  border-bottom-color: rgba(201,169,97,0.12) !important;
 }
 .stat-num { color: var(--bnb-gold) !important; }
 .stat-label { color: var(--bnb-dim) !important; font-size: 0.63rem !important; }
-.stat-div { background: rgba(230,180,74,0.12) !important; }
+.stat-div { background: rgba(201,169,97,0.12) !important; }
 
 /* ─── 9. CARDS ─── */
 .card {
@@ -289,7 +289,7 @@ div[style*="background: #fff"] {
 .svc-card-label { color: var(--bnb-gold) !important; }
 .svc-card.active {
   border-top-color: var(--bnb-gold) !important;
-  background: rgba(230,180,74,0.06) !important;
+  background: rgba(201,169,97,0.06) !important;
 }
 
 /* Blog cards */
@@ -376,7 +376,7 @@ h1, h2, h3, h4, h5, h6,
   color: var(--bnb-muted) !important;
 }
 .hero-lead {
-  color: rgba(234,236,239,0.88) !important;
+  color: rgba(242,237,227,0.88) !important;
 }
 
 /* Don't override gold/accent headings */
@@ -390,7 +390,7 @@ h1, h2, h3, h4, h5, h6,
 .badge {
   background: var(--bnb-gold-bg) !important;
   color: var(--bnb-gold) !important;
-  border-color: rgba(230,180,74,0.25) !important;
+  border-color: rgba(201,169,97,0.25) !important;
 }
 .badge.on-light {
   background: var(--bnb-gold-bg) !important;
@@ -399,7 +399,7 @@ h1, h2, h3, h4, h5, h6,
 
 /* ─── 15. FOOTER ─── */
 .site-footer {
-  background: #0B0E11 !important;
+  background: #07090E !important;
   border-top: 1px solid var(--bnb-border) !important;
   color: var(--bnb-muted) !important;
 }
@@ -457,7 +457,7 @@ label { color: var(--bnb-muted) !important; }
   color: var(--bnb-text) !important;
 }
 .price-card.featured {
-  background: rgba(230,180,74,0.08) !important;
+  background: rgba(201,169,97,0.08) !important;
   border-color: var(--bnb-gold) !important;
 }
 #programs {
@@ -474,7 +474,7 @@ label { color: var(--bnb-muted) !important; }
 .rev-author { color: var(--bnb-text) !important; }
 
 /* ─── 19. TIMELINE ─── */
-.timeline-list::before { background: rgba(230,180,74,0.2) !important; }
+.timeline-list::before { background: rgba(201,169,97,0.2) !important; }
 .timeline-list li { color: var(--bnb-muted) !important; }
 .timeline-list li::before {
   background: var(--bnb-gold) !important;
@@ -497,14 +497,14 @@ ul li::before { background-color: var(--bnb-gold) !important; }
 /* ─── 22. BOOKS BAND ─── */
 .books-band {
   background: var(--bnb-bg) !important;
-  border-color: rgba(230,180,74,0.12) !important;
+  border-color: rgba(201,169,97,0.12) !important;
 }
 .book-card-row { background: var(--bnb-card) !important; }
 .book-spine { background: var(--bnb-gold) !important; }
 .book-card-tag {
   background: var(--bnb-gold-bg) !important;
   color: var(--bnb-gold) !important;
-  border-color: rgba(230,180,74,0.2) !important;
+  border-color: rgba(201,169,97,0.2) !important;
 }
 
 /* ─── 23. CTA BAND / LEGAL BANNER ─── */
@@ -531,7 +531,7 @@ section#students * {
 
 .reg-discount {
   background: var(--bnb-gold-bg) !important;
-  border-color: rgba(230,180,74,0.3) !important;
+  border-color: rgba(201,169,97,0.3) !important;
 }
 .rev-success {
   background: rgba(14,203,129,0.1) !important;
@@ -593,7 +593,7 @@ hr {
 .ssr-title { font-size: 13px; font-weight: 600; color: var(--bnb-text); margin-bottom: 2px; }
 .ssr-snip { font-size: 11px; color: var(--bnb-muted); line-height: 1.5; }
 .ssr-sub { font-size: 10px; color: var(--bnb-gold); margin-top: 3px; text-transform: uppercase; letter-spacing: .05em; }
-.ssr mark { background: rgba(230,180,74,0.25); color: #fff; border-radius: 2px; }
+.ssr mark { background: rgba(201,169,97,0.25); color: #fff; border-radius: 2px; }
 @media (max-width: 900px) { .site-search-wrap { display: none; } }
 
 /* ─── 28. HERO SEARCH BAR ─── */
@@ -627,7 +627,7 @@ hr {
 .hero-search-btn {
   background: var(--bnb-gold) !important;
   border: none;
-  color: #0B0E11 !important;
+  color: #07090E !important;
   font-size: 13px;
   font-weight: 700;
   font-family: inherit;
@@ -822,14 +822,14 @@ section[style], div[style] {
 button[type="submit"].btn-fill,
 .kitabin-sifarisi-btn,
 .about-img-btn {
-  color: #0B0E11 !important;
+  color: #07090E !important;
   font-weight: 700 !important;
 }
 .desktop-nav .lang-switch.lang-active:hover,
 .desktop-nav .lang-switch.active:hover,
 .btn-fill:hover,
 .btn.btn-fill:hover {
-  color: #0B0E11 !important;
+  color: #07090E !important;
 }
 
 
@@ -854,7 +854,7 @@ button[type="submit"].btn-fill,
    выигрывает по !important. */
 .mobile-nav .mobile-lang-btn.current,
 .mobile-nav a.mobile-lang-btn.current {
-  color: #0B0E11 !important;
+  color: #07090E !important;
   font-weight: 700 !important;
 }
 
@@ -906,7 +906,7 @@ button[type="submit"].btn-fill,
   top: 0;
   z-index: 10000;
   background: var(--bnb-gold);
-  color: #0B0E11;
+  color: #07090E;
   font-weight: 700;
   font-size: 14px;
   padding: 12px 20px;
@@ -915,7 +915,7 @@ button[type="submit"].btn-fill,
 }
 .skip-link:focus {
   left: 0;
-  outline: 3px solid #0B0E11;
+  outline: 3px solid #07090E;
   outline-offset: -3px;
 }
 
@@ -970,19 +970,19 @@ button[type="submit"].btn-fill,
 .kitabin-sifarisi-btn,
 .about-img-btn {
   background: var(--bnb-gold) !important;
-  color: #0B0E11 !important;
+  color: #07090E !important;
   border-color: var(--bnb-gold) !important;
 }
 .btn-line,
 .btn.btn-line,
 a.btn-line {
   color: var(--bnb-gold) !important;
-  border-color: rgba(230, 180, 74, 0.5) !important;
+  border-color: rgba(201, 169, 97, 0.5) !important;
 }
 .btn-line:hover,
 .btn.btn-line:hover {
   background: var(--bnb-gold) !important;
-  color: #0B0E11 !important;
+  color: #07090E !important;
 }
 
 /* Подписи, унаследовавшие тёмный цвет от светлой темы. Читаемость важнее
@@ -991,7 +991,7 @@ a.btn-line {
 .rv-meta      { color: var(--bnb-muted) !important; }
 .step-title   { color: var(--bnb-text) !important; }
 .def-code     { color: var(--bnb-gold) !important; }
-.tile-lbl     { color: #0B0E11 !important; }
+.tile-lbl     { color: #07090E !important; }
 
 /* Предупреждающий красный: #8b0000 на почти чёрном давал 1.9. Берём
    светлый оттенок — он и тревожен, и читается. */
