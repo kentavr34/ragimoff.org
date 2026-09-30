@@ -410,215 +410,20 @@
     return s;
   }
 
-  function fitHero(hero) {
-    var h1 = hero.querySelector('.ph-h1');
-    if (!h1) return;
-
-    var badge = hero.querySelector('.ph-badge');
-    var w1 = hero.querySelector('.ph-h1-w1');
-    var w2 = hero.querySelector('.ph-h1-w2');
-    var lead = hero.querySelector('.ph-sub');
-    var sw = hero.querySelector('.ph-search-wrap');
-    var inner = hero.querySelector('.page-hero-x-inner');
-    /* Строка автора статьи (.post-byline) — метаданные, а не лид: фиттер
-       растягивал её до ширины поисковика, и она выходила моноширинными
-       28 px, а на телефоне вылезала за вьюпорт. Аудит 30.09.2026. */
-    var subDesk = hero.querySelectorAll('.ph-sub-desk:not(.post-byline)');
-    var subMob = hero.querySelectorAll('.ph-sub-mob:not(.post-byline)');
-
-    /* Сброс: без него прошлый прогон исказит измерение. */
-    h1.style.cssText = '';
-    if (w1) w1.style.cssText = '';
-    if (w2) w2.style.cssText = '';
-    if (lead) lead.style.cssText = '';
-    [].forEach.call(subDesk, function (s) { s.style.cssText = ''; });
-    [].forEach.call(subMob, function (s) { s.style.cssText = ''; });
-
-    var box = inner ? inner.getBoundingClientRect().width : window.innerWidth;
-
-    if (window.innerWidth > 768) {
-      /* ── ДЕСКТОП ── строки заголовка идут в одну линию (display:inline),
-         поэтому подгоняется весь <h1>. Мера — ширина поисковика: на главной
-         заголовок, лид и поисковик стоят на одной вертикали. На страницах
-         без поисковика держим ту же долю контейнера, что даёт поисковик
-         на главной, — 53% (620 из 1164). */
-      var dt = sw ? Math.round(sw.getBoundingClientRect().width)
-                  : Math.round(Math.min(620, box * 0.53));
-      if (!dt) dt = 620;
-
-      h1.style.display = 'inline-block';
-      h1.style.whiteSpace = 'nowrap';
-      fitTo(h1, dt, 8, 120, 0);
-      h1.style.display = '';
-      h1.style.whiteSpace = '';
-
-      if (lead) { lead.style.width = dt + 'px'; lead.style.maxWidth = 'none'; }
-      var deskSizes = [];
-      [].forEach.call(subDesk, function (line) {
-        line.style.display = 'inline';
-        line.style.whiteSpace = 'nowrap';
-        deskSizes.push(fitTo(line, dt, 8, 48, 0));
-        line.style.display = 'block';
-        line.style.whiteSpace = '';
-      });
-      /* Интерлиньяж ОДИН на все строки подзаголовка. Считать его от кегля
-         каждой строки нельзя: строки разного кегля (25 и 29) дают 40 и 46.4,
-         и промежутки внутри одного абзаца выходят разными — это видно глазом.
-         Берём по самой крупной строке. */
-      /* Как и на мобильном: ширины равны, интерлиньяж — от кегля своей
-         строки. */
-      [].forEach.call(subDesk, function (line) {
-        var szD = parseFloat(getComputedStyle(line).fontSize) || 8;
-        line.style.lineHeight = (szD * LH_SUB).toFixed(1) + 'px';
-      });
-
-      /* Зазор бейдж → заголовок нужен и на десктопе: раньше ветка выходила
-         до блока отступов, и в шапке оставалось 26 вместо 40. */
-      if (badge && w1) {
-        h1.style.removeProperty('margin-top');
-        var gD = w1.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(w1);
-        var baseD = parseFloat(getComputedStyle(h1).marginTop) || 0;
-        h1.style.setProperty('margin-top',
-          Math.max(-40, baseD + (40 - gD)).toFixed(1) + 'px', 'important');
-      }
-      return;
-    }
-
-    /* ── МОБИЛЬНЫЙ ── одна мера на все объекты. */
-    var target = box * MIN_SHARE;
-    if (w2) {
-      setSize(w2, BASE_W2);
-      w2.style.display = 'inline';
-      w2.style.whiteSpace = 'nowrap';
-      var natural = textWidth(w2);
-      if (natural > target) target = natural;
-      w2.style.display = '';
-      w2.style.whiteSpace = '';
-    }
-    if (!target) return;
-
-    /* Строка 2 остаётся на базовом кегле, если сама задаёт меру,
-       иначе растягивается до неё — как строка 1. */
-    [w2, w1].forEach(function (line) {
-      if (!line) return;
-      line.style.display = 'inline';
-      line.style.whiteSpace = 'nowrap';
-      var s = fitTo(line, target, 10, 140, CAP_H1);
-      line.style.display = 'block';
-      line.style.textAlign = 'center';
-      line.style.lineHeight = (s * LH_H1).toFixed(1) + 'px';
-    });
-    if (w1) w1.style.marginBottom = '16px';   /* зазор строка1→строка2 с главной */
-
-    /* ── ОПТИЧЕСКИЕ ЗАЗОРЫ ──
-       Половина разницы интерлиньяжа и кегля — пустое место внутри строки.
-       Глаз видит его как отступ, getBoundingClientRect — нет. Кегль на
-       каждой странице свой (подгоняется), поэтому фиксированный margin даёт
-       РАЗНЫЙ видимый зазор. Считаем от цели и вычитаем полулидинг.
-
-       Цели заданы Кенаном по месту: верхний зазор и зазор бейдж→заголовок
-       должны быть равны и примерно в полтора раза больше прежних 24;
-       перед панелью поиска — меньше, под ней — больше, чтобы панель
-       поднялась внутри полосы. */
-    var GAP_TOP = SEC_TOP;        /* верх шапки → бейдж, как в разделах */
-    /* В шапке зазор после бейджа БОЛЬШЕ, чем в разделах: заголовок здесь
-       крупный (43px против 40px в разделах и куда крупнее на мобильном),
-       и та же цифра 27 читается как теснота. Кенан 2026-08-17. */
-    var GAP_BADGE = 40;           /* бейдж → заголовок в шапке, оптически */
-    var GAP_LEAD_BAR = 30;        /* лид → панель, оптически */
-    var GAP_BAR_BOTTOM = HERO_BOTTOM; /* панель → низ шапки: 50 / 25 */
-
-    /* important обязателен: в CSS страницы эти же свойства заданы с
-       !important, обычный inline-стиль их не перебивает. */
-    hero.style.setProperty('padding-bottom', GAP_BAR_BOTTOM + 'px', 'important');
-
-    /* Как и в разделах — измеряем фактический зазор и правим на разницу:
-       отступ складывается из padding шапки и внутреннего контейнера. */
-    if (badge) {
-      hero.style.removeProperty('padding-top');
-      var gTop = badge.getBoundingClientRect().top - hero.getBoundingClientRect().top;
-      var basePadTop = parseFloat(getComputedStyle(hero).paddingTop) || 0;
-      hero.style.setProperty('padding-top',
-        Math.max(0, basePadTop + (GAP_TOP - gTop)).toFixed(1) + 'px', 'important');
-    }
-    if (w1) {
-      h1.style.removeProperty('margin-top');
-      var gB = w1.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(w1);
-      var baseMT1 = parseFloat(getComputedStyle(h1).marginTop) || 0;
-      h1.style.setProperty('margin-top',
-        Math.max(-40, baseMT1 + (GAP_BADGE - gB)).toFixed(1) + 'px', 'important');
-    }
-
-    /* Мера блока берётся в два прохода. Сначала каждая строка подгоняется
-       под расчётную ширину; если самая длинная не влезает даже на нижнем
-       кегле, она сама и задаёт меру — иначе она осталась бы шире прочих и
-       правый край всё равно был бы рваным. Вторым проходом остальные
-       строки подтягиваются к этой мере. */
-    var mobSizes = [];
-    var natural = target;
-    [].forEach.call(subMob, function (line) {
-      line.style.display = 'inline';
-      line.style.whiteSpace = 'nowrap';
-      setSize(line, MIN_SUB);
-      var atMin = textWidth(line);
-      if (atMin > natural) natural = atMin;
-      line.style.display = 'block';
-      line.style.whiteSpace = '';
-    });
-    [].forEach.call(subMob, function (line) {
-      line.style.display = 'inline';
-      line.style.whiteSpace = 'nowrap';
-      var sM = fitTo(line, natural, MIN_SUB, 40, 0);
-      if (sM < MIN_SUB) { sM = MIN_SUB; setSize(line, sM); }
-      mobSizes.push(sM);
-      line.style.display = 'block';
-      line.style.whiteSpace = '';
-    });
-
-    /* Заголовок подтягивается к ТОЙ ЖЕ мере, что и подзаголовок. Иначе
-       выходило 250/245 у заголовка против 293/287/282 у подзаголовка:
-       строки внутри каждого блока ровные, а блоки между собой нет, и
-       правый край пары всё равно рваный. Меру задаёт самая длинная строка
-       пары, и к ней тянутся оба. */
-    if (natural > target + 1) {
-      [w2, w1].forEach(function (line) {
-        if (!line) return;
-        line.style.display = 'inline';
-        line.style.whiteSpace = 'nowrap';
-        var sT = fitTo(line, natural, 10, 140, CAP_H1);
-        line.style.display = 'block';
-        line.style.textAlign = 'center';
-        line.style.lineHeight = (sT * LH_H1).toFixed(1) + 'px';
-      });
-    }
-    /* Абзац прозы набирается ОДНИМ кеглем. Подгонять каждую строку под
-       общую ширину — приём для заголовка, где слова стоят столбиком; в
-       подзаголовке он давал «Qəfil narahatlıq,» 32px и «panik
-       bozğunluğunun müalicəsi.» 15px в одном предложении, а интерлиньяж
-       считался по самой крупной строке и на мелкой выглядел провалом
-       (51px при кегле 15). Берём наименьший из подогнанных: он
-       гарантирует, что самая длинная строка помещается по ширине. */
-    /* Строки подзаголовка выравниваются ПО ШИРИНЕ, а не по кеглю: короткая
-       строка набирается крупнее, длинная мельче, и правый край блока
-       становится ровным — тот же приём, что уже работает у заголовка
-       (28 и 21px дают 250 и 245px). Это канон владельца.
-
-       Интерлиньяж при этом считается от кегля СВОЕЙ строки. Раньше он
-       брался по самой крупной, и на мелкой строке выходило 51px при кегле
-       15 — множитель 3.4 вместо 1.6, что и читалось как «слишком большой
-       интервал». Разброс кеглей сам по себе не порок; порок — интервал,
-       посчитанный не от той строки. */
-    [].forEach.call(subMob, function (line) {
-      var sz = parseFloat(getComputedStyle(line).fontSize) || MIN_SUB;
-      line.style.lineHeight = (sz * LH_SUB).toFixed(1) + 'px';
-    });
-
-    if (lead && subMob.length) {
-      var lastLine = subMob[subMob.length - 1];
-      lead.style.setProperty('margin-bottom',
-        Math.max(0, GAP_LEAD_BAR - halfLeading(lastLine)).toFixed(1) + 'px', 'important');
-    }
-  }
+  /* ЕДИНЫЙ БЛОК ГЕРОЯ (site-concept.css, блок 24) — подгонка кегля в шапке
+     снята 30.09.2026 по требованию владельца: «на страницах сайта высота
+     блока героя на разных страницах разная — сделай одинаковыми; размещение
+     различных блоков на ней тоже структурно одинаковыми». Кегль H1
+     подгонялся под ширину поисковика (замер «до»: 32–109 px), поэтому
+     высота шапки гуляла 400–570 px. Теперь кегль, слоты строк, зазоры и
+     высота блока заданы ОДНОЙ группой переменных в CSS (--hero-h,
+     --hero-h1-fs, --hero-h1-slot, --hero-lead-slot, --hero-stack-gap), а
+     фиттер шапку не трогает: его инлайновые значения с !important сильнее
+     CSS, и высота снова разъехалась бы. Раскладка (паддинги блока, прижатый
+     к низу поиск, фото-колонка) тоже целиком в CSS — блок 24 site-concept.css
+     вместе с блоком 22 (стандарт героя). Функция оставлена заглушкой, чтобы
+     не менять вызов в pass(). */
+  function fitHero(hero) { void hero; }
 
   /* Заголовок секции и его подпись — перенос блока fitAbout с главной.
      Без него «Samirə Rahimova/Rüstəmova» переносится как попало: одна
@@ -1024,6 +829,10 @@
   }
   function subRhythm() {
     subRoots().forEach(function (s) {
+      /* Шапку ритм не трогает: зазоры внутри блока героя заданы одной
+         группой переменных в CSS (блок 24 site-concept.css), а не подгонкой
+         по месту — иначе зазор «лид → поиск» зависел бы от высоты страницы. */
+      if (s.closest('.page-hero, .page-hero-x, .pg-hero')) return;
       var n = subNextFlow(s);
       if (!n) return;
       /* Страницы задают свой margin-top инлайновым <style> (40 px у .def-grid).

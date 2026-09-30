@@ -1789,3 +1789,372 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   color: var(--on-acc) !important;
   font-weight: 500 !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   24. ЕДИНЫЙ БЛОК ГЕРОЯ — ОДНА ВЫСОТА, ОДНА СЕТКА НА ВСЕХ СТРАНИЦАХ
+   Владелец 30.09.2026: «на страницах сайта высота блока героя на разных
+   страницах разная — сделай одинаковыми; размещение различных блоков на
+   ней тоже структурно одинаковыми — расположение, отступы, интервалы,
+   симметрия».
+
+   Замер «до» (headless Chrome, 1440, 168 страниц с блоком героя): высота
+   гуляла 400–570 px — кегль H1 сайт подгонял под ширину поисковика
+   (32–109 px), поэтому текстовый столб у каждой страницы был своей высоты.
+   Теперь у блока ОДНА высота и ОДНА сетка; числа заданы переменными ниже,
+   а не набором частных значений по страницам:
+
+     метка ........... 88 от верха блока (--s-block)
+     H1 .............. один кегль (--hero-h1-fs), слот в две строки
+     лид ............. один кегль (17.5/1.75), слот в две строки
+     поиск ........... прижат к низу: 50 снизу (--hero-gap-bottom)
+     фото ............ верх 50 от грани (--hero-gap-top), низ = низ блока
+     высота блока .... --hero-h (десктоп) / --hero-h-m (телефон-планшет)
+
+   Пустая строка в слоте H1 или лида — не дефект: слот рассчитан на самый
+   длинный заголовок и на две строки лида, поэтому положение поиска и высота
+   блока одинаковы на всех страницах, включая страницы без фото (у них
+   фото-слой просто пуст — геометрия сетки не плывёт).
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* ЕДИНАЯ ВЫСОТА БЛОКА ГЕРОЯ: десктоп */
+  --hero-h: 520px;
+  /* ОДИН КЕГЛЬ H1 на все страницы (соразмерно узкому десктопу) */
+  --hero-h1-fs: clamp(32px, 3.4vw, 48px);
+  /* СЛОТ H1 — две строки (1.15) при этом кегле: заголовок любой длины
+     занимает не больше двух строк и не сдвигает лид */
+  --hero-h1-slot: calc(2.3 * var(--hero-h1-fs));
+  /* СЛОТ ЛИДА — две строки (17.5 × 1.75 = 30.6) */
+  --hero-lead-slot: 62px;
+  /* ОДИН зазор «метка → H1» и «H1 → лид» */
+  --hero-stack-gap: 40px;
+  /* Текстовая колонка: левее фото (фото — правая колонка сетки) */
+  --hero-text-col: 62%;
+  /* Высота панели поиска — одна на сайте (обёртка равна панели) */
+  --hero-search-h: 50px;
+  /* ТЕЛЕФОН/ПЛАНШЕТ (≤860): единая логика — метка 32, H1 до трёх строк,
+     фото в потоке под H1 (полоса фиксированной высоты), лид, поиск, 25 вниз */
+  --hero-h1-fs-m: clamp(22px, 7.2vw, 34px);
+  --hero-h1-slot-m: calc(3.45 * var(--hero-h1-fs-m));
+  --hero-lead-slot-m: 92px;
+  --hero-stack-gap-m: 24px;
+  --hero-photo-band-m: 170px;
+  --hero-search-h-m: 46px;
+  --hero-h-m: 620px;
+}
+
+/* ─── ДЕСКТОП (≥861 px): одна высота, одна сетка ─── */
+@media (min-width: 861px) {
+  /* 1. ВЫСОТА БЛОКА — одно число на всех страницах. */
+  section.page-hero.page-hero,
+  section.page-hero-x.page-hero-x,
+  section.pg-hero.pg-hero {
+    min-height: var(--hero-h) !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+  /* 2. КАРКАС: обёртка растягивается на высоту блока — тогда поиск можно
+        прижать к нижней грани, а свободное место соберётся над ним. */
+  section.page-hero.page-hero > .hero-inner,
+  section.page-hero-x.page-hero-x > .page-hero-x-inner,
+  section.pg-hero.pg-hero > .pg-hero-inner {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  /* 2b. ТЕКСТОВЫЙ СТОЛБ главной тоже растягивается: поиск живёт в нём, и
+        без растяжки margin-top:auto не дотягивал панель до низа блока
+        (замер index.html: поиск на 366 вместо 419). */
+  section.page-hero.page-hero > .hero-inner > .hero-text {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  /* 3. МЕТКА: верх блока → метка 88 (--s-block), один зазор до H1. */
+  section.page-hero.page-hero .hero-text > .badge,
+  section.page-hero-x.page-hero-x .ph-badge,
+  section.pg-hero.pg-hero .badge {
+    margin: 0 0 var(--hero-stack-gap) 0 !important;
+    flex: 0 0 auto !important;
+  }
+  /* 4. H1: один кегль, слот в две строки, текстовая колонка слева. */
+  section.page-hero.page-hero .hero-h1,
+  section.page-hero-x.page-hero-x .ph-h1,
+  section.pg-hero.pg-hero .hero-h1 {
+    font-size: var(--hero-h1-fs) !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    margin: 0 0 var(--hero-stack-gap) 0 !important;
+    padding: 0 !important;
+    min-height: var(--hero-h1-slot) !important;
+    max-width: var(--hero-text-col) !important;
+    width: auto !important;
+    display: block !important;
+    text-align: left !important;
+    white-space: normal !important;
+    text-wrap: wrap !important;
+    flex: 0 0 auto !important;
+    overflow-wrap: break-word !important;
+  }
+  /* строки заголовка — обычный поток: деление по словам, без nowrap */
+  section.page-hero.page-hero .hero-h1 .h1-w1,
+  section.page-hero.page-hero .hero-h1 .h1-w2,
+  section.page-hero-x.page-hero-x .ph-h1 .ph-h1-w1,
+  section.page-hero-x.page-hero-x .ph-h1 .ph-h1-w2,
+  section.pg-hero.pg-hero .hero-h1 .h1-w1,
+  section.pg-hero.pg-hero .hero-h1 .h1-w2 {
+    display: inline !important;
+    white-space: normal !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    text-align: inherit !important;
+    margin: 0 !important;
+  }
+  /* 5. ЛИД: один кегль, слот в две строки. */
+  section.page-hero.page-hero .hero-lead,
+  section.page-hero-x.page-hero-x .ph-sub,
+  section.pg-hero.pg-hero .hero-lead {
+    font-family: var(--f-read) !important;
+    font-size: 17.5px !important;
+    line-height: 1.75 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: var(--mid) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: var(--hero-lead-slot) !important;
+    max-width: var(--hero-text-col) !important;
+    width: auto !important;
+    display: block !important;
+    text-align: left !important;
+    flex: 0 0 auto !important;
+  }
+  section.page-hero.page-hero .hero-lead .desk-lead-line,
+  section.page-hero-x.page-hero-x .ph-sub .ph-sub-desk,
+  section.pg-hero.pg-hero .hero-lead .desk-lead-line {
+    display: block !important;
+    white-space: normal !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  section.page-hero.page-hero .hero-lead .lead-line,
+  section.page-hero-x.page-hero-x .ph-sub .ph-sub-mob,
+  section.pg-hero.pg-hero .hero-lead .lead-line { display: none !important; }
+  /* 6. ПОИСК: обёртка равна панели и прижата к низу блока —
+        свободное место собирается НАД поиском, низ остаётся 50 px. */
+  section.page-hero.page-hero .hero-search-wrap,
+  section.page-hero-x.page-hero-x .ph-search-wrap,
+  section.pg-hero.pg-hero .ph-search-wrap {
+    margin: auto 0 0 0 !important;
+    padding: 0 !important;
+    width: 620px !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+  section.page-hero.page-hero .hero-search-bar,
+  section.page-hero-x.page-hero-x .hero-search-bar,
+  section.page-hero-x.page-hero-x .ph-search-bar,
+  section.pg-hero.pg-hero .hero-search-bar,
+  section.pg-hero.pg-hero .ph-search-bar {
+    height: var(--hero-search-h) !important;
+    min-height: var(--hero-search-h) !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  /* 7. ФОТО: правая колонка, верх 50 от грани, низ = низ блока. Позицию
+        задаёт блок 22 (--hero-gap-top / --hero-gap-bottom); здесь только
+        ширина колонки и отступ от правого края — симметрия не зависит от
+        страницы. */
+  section.page-hero.page-hero > .hero-inner > .hero-text > .photo-col > img,
+  section.page-hero-x.page-hero-x > .page-hero-x-inner > .photo-col > img,
+  section.pg-hero.pg-hero > .pg-hero-inner > .photo-col > img {
+    max-width: 100% !important;
+  }
+}
+
+/* ─── ТЕЛЕФОН И ПЛАНШЕТ (≤860 px): единая логика и одна высота ─── */
+@media (max-width: 860px) {
+  section.page-hero.page-hero,
+  section.page-hero-x.page-hero-x,
+  section.pg-hero.pg-hero {
+    min-height: var(--hero-h-m) !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: var(--s-block) !important;              /* метка 32/48 */
+    padding-bottom: var(--hero-gap-bottom) !important;   /* 25 под поиском */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+  section.page-hero.page-hero > .hero-inner,
+  section.page-hero-x.page-hero-x > .page-hero-x-inner,
+  section.pg-hero.pg-hero > .pg-hero-inner {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+  }
+  section.page-hero.page-hero .hero-text {
+    /* flex:1 обязателен и на телефоне: поиск в этом столбе прижат к низу
+       через margin-top:auto, и без растяжки столба он не дотягивал до
+       нижней грани (замер index.html @390: поиск на 512 вместо 548) */
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  /* метка: 32 от верха блока; свой margin-top 8 px у .ph-badge снят */
+  section.page-hero.page-hero .hero-text > .badge,
+  section.page-hero-x.page-hero-x .ph-badge,
+  section.pg-hero.pg-hero .badge {
+    margin: 0 0 var(--hero-stack-gap-m) 0 !important;
+    align-self: center !important;
+  }
+  /* H1: один кегль, слот в три строки, по центру */
+  section.page-hero.page-hero .hero-h1,
+  section.page-hero-x.page-hero-x .ph-h1,
+  section.pg-hero.pg-hero .hero-h1 {
+    font-size: var(--hero-h1-fs-m) !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    margin: 0 0 var(--hero-stack-gap-m) 0 !important;
+    padding: 0 !important;
+    min-height: var(--hero-h1-slot-m) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    white-space: normal !important;
+    text-wrap: wrap !important;
+    flex: 0 0 auto !important;
+  }
+  section.page-hero.page-hero .hero-h1 .h1-w1,
+  section.page-hero.page-hero .hero-h1 .h1-w2,
+  section.page-hero-x.page-hero-x .ph-h1 .ph-h1-w1,
+  section.page-hero-x.page-hero-x .ph-h1 .ph-h1-w2,
+  section.pg-hero.pg-hero .hero-h1 .h1-w1,
+  section.pg-hero.pg-hero .hero-h1 .h1-w2 {
+    display: inline !important;
+    white-space: normal !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    margin: 0 !important;
+  }
+  /* ФОТО: полоса в потоке под H1 — одна высота на всех страницах.
+     На страницах без фото слот остаётся пустым (та же геометрия). */
+  section.page-hero.page-hero .hero-text > .photo-col,
+  section.page-hero-x.page-hero-x > .page-hero-x-inner > .photo-col,
+  section.pg-hero.pg-hero > .pg-hero-inner > .photo-col {
+    position: static !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    order: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: var(--hero-photo-band-m) !important;
+    min-height: var(--hero-photo-band-m) !important;
+    max-height: var(--hero-photo-band-m) !important;
+    margin: 0 0 var(--hero-stack-gap-m) 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  section.page-hero.page-hero .hero-text > .photo-col > img,
+  section.page-hero-x.page-hero-x > .page-hero-x-inner > .photo-col > img,
+  section.pg-hero.pg-hero > .pg-hero-inner > .photo-col > img {
+    height: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    clip-path: none !important;
+    display: block !important;
+  }
+  /* СТРАНИЦА БЕЗ ФОТО: полоса фото остаётся ПУСТОЙ, но сетка не плывёт —
+     высоту полосы резервируем псевдоэлементом после H1 (он невидим).
+     Замер 390 до этой правки: у страниц с фото лид стоял на 397, у страниц
+     без фото — на 203; высота блока совпадала (поиск прижат к низу), а
+     позиция лида разъезжалась на высоту полосы. */
+  section.page-hero.page-hero:not(:has(.photo-col)) .hero-h1,
+  section.page-hero-x.page-hero-x:not(:has(.photo-col)) .ph-h1,
+  section.pg-hero.pg-hero:not(:has(.photo-col)) .hero-h1 {
+    margin-bottom: calc(var(--hero-stack-gap-m) + var(--hero-photo-band-m) + var(--hero-stack-gap-m)) !important;
+  }
+  /* ЛИД: один кегль, слот в три строки */
+  section.page-hero.page-hero .hero-lead,
+  section.page-hero-x.page-hero-x .ph-sub,
+  section.pg-hero.pg-hero .hero-lead {
+    font-family: var(--f-read) !important;
+    font-size: 17.5px !important;
+    line-height: 1.75 !important;
+    color: rgba(242, 237, 227, .88) !important;
+    margin: 0 0 var(--hero-stack-gap-m) 0 !important;
+    padding: 0 !important;
+    min-height: var(--hero-lead-slot-m) !important;
+    max-width: 100% !important;
+    width: auto !important;
+    display: block !important;
+    text-align: center !important;
+    flex: 0 0 auto !important;
+  }
+  section.page-hero.page-hero .hero-lead .lead-line,
+  section.page-hero-x.page-hero-x .ph-sub .ph-sub-mob,
+  section.pg-hero.pg-hero .hero-lead .lead-line {
+    display: block !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    text-align: center !important;
+  }
+  section.page-hero.page-hero .hero-lead .desk-lead-line,
+  section.page-hero-x.page-hero-x .ph-sub .ph-sub-desk,
+  section.pg-hero.pg-hero .hero-lead .desk-lead-line { display: none !important; }
+  /* ПОИСК: прижат к низу блока, снизу 25 px */
+  section.page-hero.page-hero .hero-search-wrap,
+  section.page-hero-x.page-hero-x .ph-search-wrap,
+  section.pg-hero.pg-hero .ph-search-wrap {
+    margin: auto 0 0 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+  section.page-hero.page-hero .hero-search-bar,
+  section.page-hero-x.page-hero-x .hero-search-bar,
+  section.page-hero-x.page-hero-x .ph-search-bar,
+  section.pg-hero.pg-hero .hero-search-bar,
+  section.pg-hero.pg-hero .ph-search-bar {
+    height: var(--hero-search-h-m) !important;
+    min-height: var(--hero-search-h-m) !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}
