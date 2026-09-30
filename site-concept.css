@@ -1360,13 +1360,26 @@ section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ div),
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   22. ГЕРОЙ ГЛАВНОЙ: ЗАГОЛОВОК В ОДНУ СТРОКУ, ФОТО ПОД ТЕКСТОМ
-   Владелец 30.09.2026: «заголовок надо разместить в 1 строчку — фото героя
-   можно сделать под текстом и увеличить размер фото… на мобильном заголовок
-   может разделиться на 2 строки, а фото будет идти под заголовком».
-   Разметка одна на обе раскладки: .photo-col лежит внутри .hero-text сразу
-   за H1. Порядок решает CSS: на десктопе фото уезжает в конец блока
-   (order), на телефоне остаётся сразу под заголовком.
+   22. ГЕРОЙ ГЛАВНОЙ: ПОРТРЕТ СПРАВА, ТЕКСТ ЛОЖИТСЯ ПОВЕРХ ФОТО
+   Владелец 30.09.2026: «верни старую фотку; сделай расположение текста
+   поверх фото (не фото опустить ниже, а сделать поверх фото, если будет
+   наложение) — это красивый визуальный эффект» и уточнение: «kenan-
+   removebg-preview.png — вот что должно стоять в блоке героя, и фото
+   подними выше в блоке — до уровня зазора в 50 пикселей от верхней грани
+   блока героя».
+   Портрет вернулся прежний — images/kenan/kenan-removebg-preview.png
+   (307×322, вырезан без фона); крупный исходник photo-portal-crop-
+   removebg-preview.png в герое больше не стоит.
+   Слойность (десктоп, ≥861 px): портрет z1 → мягкий тёмный градиент z2 →
+   текст (бейдж, H1, лид, поиск) z3. Градиент начинается цветом фона и
+   сходит на нет правее текстовой зоны — прямоугольной плашки нет, над
+   фоном он невидим, работает только на пересечении с портретом: на нём
+   же держится читаемость заголовка. Полупрозрачность по замеру: под
+   заголовком фон не светлее #1D1F25 против текста #F2EDE3 — контраст 12:1.
+   Верх портрета — ровно 50 px от верхней грани блока (--s-block это
+   верхний паддинг героя, 88/48/32), низ совпадает с низом контента
+   героя, поэтому `overflow: clip` блока портрет не режет.
+   Телефон (≤860 px): наложения нет — фото в потоке сразу под H1.
    ═══════════════════════════════════════════════════════════════════ */
 .page-hero .hero-inner {
   grid-template-columns: minmax(0, 1fr) !important;   /* фото больше не колонка */
@@ -1382,36 +1395,114 @@ section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ div),
 @media (max-width: 1100px) {
   .page-hero .hero-h1 { text-wrap: balance; }          /* ниже — до двух строк */
 }
+/* текст — передний план: он лежит ПОВЕРХ портрета и градиента, поэтому
+   каждый текстовый блок позиционирован и поднят по z-index */
+.page-hero .hero-text > .badge,
+.page-hero .hero-text > .hero-h1,
+.page-hero .hero-text > .hero-lead,
+.page-hero .hero-text > .hero-search-wrap {
+  position: relative !important;
+  z-index: 3 !important;
+}
+/* мобильный и планшетный вариант — фото в потоке, сразу под заголовком */
 .page-hero .photo-col {
-  order: 10;                                           /* десктоп: под текстом */
-  justify-content: flex-end !important;
-  align-items: flex-end !important;
-  margin-top: var(--s5);
+  order: 0;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   width: 100%;
+  margin: var(--s4) 0 0 !important;
+  pointer-events: none;
 }
 .page-hero .photo-col img {
-  max-height: 520px;                                   /* крупнее прежних 360 */
+  max-height: 300px;
+  max-width: 100%;
   width: auto !important;
-  max-width: min(560px, 62vw);
   height: auto !important;
+  margin: 0 !important;
+  transform: none !important;
   object-fit: contain;
-  object-position: right bottom;
+  object-position: center bottom;
 }
-@media (max-width: 860px) {
+@media (min-width: 861px) {
+  /* высота героя задаётся портретом: он выше текстового столбца.
+     !important обязателен: в gtc-dark.css у .hero-inner стоит
+     `min-height: 0 !important`, и без него высота падала до текста. */
+  .page-hero .hero-inner { min-height: clamp(470px, 38vw, 590px) !important; }
   .page-hero .photo-col {
-    order: 0;                       /* фото — сразу под заголовком */
-    margin: var(--s4) 0 0 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: visible;
+    position: absolute !important;
+    /* верх = ровно 50 px от верхней грани блока героя: его верхний паддинг
+       равен --s-block (88 px на десктопе), значит портрет начинается на
+       38 px ВЫШЕ контента — фото «поднято в блоке», как просил владелец */
+    top: calc(50px - var(--s-block)) !important;
+    bottom: 0;
+    right: 2%;
+    width: min(50%, 640px);
+    margin: 0 !important;
+    justify-content: flex-end !important;
+    align-items: flex-end !important;
+    z-index: 1 !important;
   }
   .page-hero .photo-col img {
-    max-height: 300px;
-    max-width: 100%;
-    margin: 0 !important;
-    transform: none !important;
-    object-position: center bottom;
+    height: 100% !important;
+    width: auto !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain;
+    object-position: right bottom;
   }
+  /* Тёмное пятно под текстовой зоной — мягкое, без граней. Линейный
+     градиент пробовал: по его краю на золотом свечении героя вылезала
+     прямоугольная плашка, а владелец её запретил. Радиальное пятно граней
+     не даёт и над фоном незаметно, но закрывает пересечение текста с
+     портретом. Замер контраста (текст #F2EDE3 к фону под ним, портрет на
+     месте, буквы скрыты): было в самом узком месте 2.37:1 — заголовок RU
+     заходит на лицо; при .72 в центре пятна стало больше 6:1, на десктопе
+     AZ/EN 14–16:1. */
+  .page-hero .hero-inner::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: -40px !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    background: radial-gradient(58% 62% at 72% 46%,
+        rgba(7, 9, 14, .72) 0%, rgba(7, 9, 14, .55) 38%,
+        rgba(7, 9, 14, .20) 70%, rgba(7, 9, 14, 0) 100%) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   23. ЗАЗОР ПОСЛЕ ПОДЗАГОЛОВКА — ПРАВИЛОМ НА ГЛАВНОЙ
+   Владелец 30.09.2026: «Подзаголовок Həkim-Psixiatr-Psixoterapevt — после
+   него нет вообще никакого интервала, он прилип к нижнему блоку. То же
+   самое во всех подзаголовках… Hansı psixoloji problemlərin həllində sizə
+   kömək edə bilərik? — где интервал и пропуск строки после этого?»
+   На остальных страницах зазор доводит js-hero-fit2.js (subRhythm: 48/32,
+   внутри карточек 16/12), но главная az/ru/en фиттер не подключает — у неё
+   своя вёрстка героя. Поэтому три раскладки главной закрыты правилами:
+     1) шапка блока лежит в .sec-inner ОДНА, содержимое — следующий сосед
+        обёртки: «Mütəxəssis Haqqında» → .about-grid, «Klinik Xidmət» →
+        .svc-grid (было 0 px); правило видит только соседей внутри того же
+        блока — до следующей секции оно не достаёт;
+     2) подзаголовок прямо в обёртке, без .sec-header: «Son Məqalələr» →
+        .blog-grid-2 (было 32 px инлайном);
+     3) герой: лид → поиск (было 10 px, задавал gtc-dark).
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .sec-inner:has(> .sec-header:only-child) + *,
+  .sec-inner > .sec-sub + * { margin-top: 48px !important; }
+  /* у лида в герое свой нижний отступ 10 px (gtc-dark) — иначе к 48
+     прибавились бы ещё 10: .hero-text это флекс, поля не схлопываются */
+  .page-hero .hero-lead { margin-bottom: 0 !important; }
+  .page-hero .hero-lead + .hero-search-wrap { margin-top: 48px !important; }
+}
+@media (max-width: 768px) {
+  /* Только те места, где зазора не было ВООБЩЕ (главная: подзаголовок
+     «Mütəxəssis Haqqında» и «Klinik Xidmət» упирались в сетку, 0 px).
+     Уже стоящие 40 px не уменьшаем: остальные страницы доводит
+     js-hero-fit2.js, а он никогда не сжимает — иначе вышло бы 32 на
+     главной против 40 на прочих. */
+  .sec-inner:has(> .sec-header:only-child) + * { margin-top: 32px !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════

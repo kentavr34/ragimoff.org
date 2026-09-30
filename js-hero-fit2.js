@@ -83,6 +83,34 @@
      страницы с собственным правилом .stats-strip + section вообще на 47 px. */
   var SEC_BADGE = 27;
 
+  /* ЗАЗОР ПОСЛЕ ПОДЗАГОЛОВКА/ЛИДА (владелец, 30.09.2026): «Подзаголовок
+     Həkim-Psixiatr-Psixoterapevt — после него нет вообще никакого интервала,
+     он прилип к нижнему блоку. То же самое во всех подзаголовках… Hansı
+     psixoloji problemlərin həllində sizə kömək edə bilərik? — где интервал и
+     пропуск строки после этого?»
+     Одно правило на весь сайт: от низа подзаголовка или лида до верха
+     СЛЕДУЮЩЕГО элемента в потоке — не меньше 48 px на десктопе и 32 px на
+     телефоне; внутри карточек 16/12. Сплошной замер: 1103 замера на 168
+     страницах (1440/390), ниже минимума было 853.
+     Правило живёт здесь, а не в CSS, по трём причинам:
+       1) элемент после подзаголовка бывает и соседним, и лежащим в следующем
+          контейнере — на главной .sec-header лежит в .sec-inner, а сетка это
+          следующий сосед .sec-inner; селектором такое не поймать;
+       2) у каждой страницы свой <style> с margin-top: 40px, правило стилей
+          без !important его не перебьёт;
+       3) !important в CSS наоборот СЖАЛ бы те зазоры, которые сейчас БОЛЬШЕ
+          минимума (yt-grid-3 — 113 px, blog-grid-2 — 50 px).
+     Скрипт только добавляет недостающее и никогда не уменьшает. */
+  var SUB_MIN_D = 48, SUB_MIN_T = 32;      /* секции и герои — как SEC_TOP */
+  var SUB_MIN_CARD_D = 16, SUB_MIN_CARD_T = 12;   /* внутри карточек */
+  var SUB_SEL = '.sec-sub, .sec-lead, .eco-sub, .section-sub, .hero-lead,' +
+                '.ph-sub, [class$="-lead-mob"], [class$="-lead-desk"],' +
+                '[class*="-lead-mob "], [class*="-lead-desk "]';
+  var SUB_CARD = '.card, .svc-card, .blog-card, .book-card, .mod-panel,' +
+                 '.kitab-box, .price-card, .pricing-card';
+  var SUB_DEAD = '.mobile-nav, .noise, .site-header, footer, .bk-shell,' +
+                 '.wa-float, .lsw, .search-drop, .hero-sd';
+
   /* Ширина именно текста: у display:block элемента getBoundingClientRect
      возвращает ширину контейнера, мерить по нему нельзя. */
   /* Ширина ТЕКСТА, а не блока. Для одной строки достаточно объединяющего
@@ -928,16 +956,112 @@
     });
   }
 
+  /* ── зазор после подзаголовка: см. константы SUB_MIN_* выше ────────── */
+  function subMin(el) {
+    var w = window.innerWidth;
+    if (el.closest(SUB_CARD)) return w > 560 ? SUB_MIN_CARD_D : SUB_MIN_CARD_T;
+    return w > 768 ? SUB_MIN_D : SUB_MIN_T;
+  }
+  function subVisible(e) {
+    if (!e || e.nodeType !== 1) return false;
+    if (e.closest(SUB_DEAD)) return false;
+    /* инлайновые продолжения строки блоком не считаются */
+    if (/^(SPAN|A|EM|STRONG|B|I|SMALL|SUP|SUB|BR|LABEL|MARK|TIME|SVG|PATH|CODE|WBR)$/
+        .test(e.tagName)) return false;
+    if (/^(SCRIPT|STYLE|LINK|META|NOSCRIPT|SOURCE|TEMPLATE)$/.test(e.tagName)) return false;
+    var c = getComputedStyle(e);
+    if (c.position === 'absolute' || c.position === 'fixed' || c.display === 'contents') return false;
+    var r = e.getBoundingClientRect();
+    return r.height > 0.5 && r.width > 0.5 &&
+           c.display !== 'none' && c.visibility !== 'hidden';
+  }
+  /* Следующий элемент В ПОТОКЕ: поднимаемся по предкам и у каждого ищем
+     следующего соседа с содержимым. Так «следующим» становится то, что
+     читатель видит ниже, даже когда подзаголовок лежит внутри обёртки
+     (.sec-header → .sec-inner → сетка). Сосед, стоящий СБОКУ, не считается:
+     в .cta-band-inner кнопки стоят правее подзаголовка, и их верх на 48–76 px
+     выше его низа — если принять их за следующий блок, скрипт отодвинул бы
+     горизонтальную раскладку на пустое место. */
+  function subNextFlow(el) {
+    var bot = el.getBoundingClientRect().bottom;
+    var n = el;
+    while (n && n !== document.body && n.parentElement) {
+      var s = n.nextElementSibling;
+      while (s && (!subVisible(s) || s.getBoundingClientRect().top < bot - 1)) {
+        s = s.nextElementSibling;
+      }
+      if (s) return s;
+      n = n.parentElement;
+    }
+    return null;
+  }
+  function subRoots() {
+    var out = [];
+    document.querySelectorAll(SUB_SEL).forEach(function (el) {
+      if (el.closest(SUB_DEAD)) return;
+      /* .ph-sub-mob внутри .ph-sub, .ab-lead-desk внутри .sec-sub — строки
+         одного подзаголовка, а не отдельные подзаголовки */
+      var p = el.parentElement;
+      if (p) { try { if (p.matches(SUB_SEL)) return; } catch (err) { /* старый движок */ } }
+      if (!subVisible(el)) return;
+      out.push(el);
+    });
+    return out;
+  }
+  function subRhythm() {
+    subRoots().forEach(function (s) {
+      var n = subNextFlow(s);
+      if (!n) return;
+      /* Страницы задают свой margin-top инлайновым <style> (40 px у .def-grid).
+         Запоминаем авторский инлайн один раз и каждый проход начинаем с него —
+         иначе правки копились бы при каждом resize. */
+      if (n.__srBase === undefined) {
+        n.__srBase = n.style.getPropertyValue('margin-top') || '';
+      }
+      n.style.removeProperty('margin-top');
+      if (n.__srBase) n.style.setProperty('margin-top', n.__srBase);
+      if (getComputedStyle(n).marginTop === 'auto') return;  /* margin:auto в flex */
+      var want = subMin(s);
+      /* В несколько шагов, а не одним: margin-top соседа схлопывается с
+         margin-bottom подзаголовка, и добавка «на разницу» может не изменить
+         зазор вовсе. На enurez у .sec-lead поле снизу 32 px, у .yt-wrap
+         сверху 0; правка «+16 px» давала схлопывание до 32 вместо 48 —
+         замер упрямо показывал 32. Шаги сходятся за три прохода.
+         Округление вверх: при зазоре 31.6 дробная добавка 0.4 округлялась к
+         нулю и правило не срабатывало (герои внутренних страниц на 390). */
+      var prevGap = -1;
+      for (var i = 0; i < 8; i++) {
+        var gap = n.getBoundingClientRect().top - s.getBoundingClientRect().bottom;
+        if (gap >= want - 0.5) break;
+        if (i > 0 && gap <= prevGap + 0.5) {
+          /* Зазор не растёт: поле соседа схлопывается с margin-bottom
+             подзаголовка (у .sec-lead на enurez снизу 40 px, и правка
+             «+8» трижды подряд не двигала ничего). В схлопывании зазор
+             равен максимуму из двух полей, поэтому ставим норму целиком. */
+          n.style.setProperty('margin-top', want + 'px', 'important');
+          break;
+        }
+        prevGap = gap;
+        var cur = parseFloat(getComputedStyle(n).marginTop) || 0;
+        n.style.setProperty('margin-top',
+          Math.ceil(cur + (want - gap)) + 'px', 'important');
+      }
+    });
+  }
+
   /* Порядок важен: внутренний ритм сдвигает содержимое, значит нижний
      зазор надо пересчитать ПОСЛЕ него. Раньше цикл кончался на inner(),
      и от кнопки до края раздела оставалось 55 вместо 48. */
   function fitAll() {
     syncSecTop();
+    subRhythm();   /* первый проход: зазор учитывается ритмом секций снизу */
+    pass();
+    inner();
+    subRhythm();
     pass();
     inner();
     pass();
-    inner();
-    pass();
+    subRhythm();   /* последним: зазор после подзаголовка — окончательный */
   }
 
   if (document.readyState === 'loading') {
