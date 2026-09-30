@@ -154,6 +154,12 @@ function staticChecks(rel, html) {
   /* 5. двойные пробелы внутри одного текстового узла (в отрисовке они
      схлопываются, поэтому шум от отступов разметки здесь не считается) */
   const noCode = html.replace(RE_SCRIPT, ' ').replace(RE_COMMENT, ' ');
+  /* 4b. HTML-сущности в верхнем регистре: валидны только строчные, иначе
+     браузер печатает «&MIDDOT;» прямо в тексте (аудит 30.09.2026, ru/en
+     enurez.html — так и висело в бейдже героя) */
+  (noCode.match(/&[A-Z]{2,10};/g) || []).forEach(function (e) {
+    add('html-entity', 'HTML-сущность в верхнем регистре — печатается как есть', e);
+  });
   const dbl = [];
   noCode.split(/<[^>]*>/).forEach(function (chunk) {
     const parts = chunk.match(/[^\s] {2,}[^\s]/g);
