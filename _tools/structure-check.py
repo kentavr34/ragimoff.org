@@ -255,6 +255,17 @@ def snapshot_book(book_name, book_root, rel_root):
                 menu_urls.add(h)
         broken = sorted(u for u in menu_urls if not os.path.exists(os.path.join(d, u.split("#")[0]))
                         and u.split("#")[0] != "")
+        # страницы-переходы (meta refresh) — прежние адреса книги, в рейке их нет by design
+        stubs = set()
+        for f in files:
+            try:
+                head = open(os.path.join(d, f), encoding="utf-8", errors="replace").read(2000)
+            except OSError:
+                continue
+            if 'http-equiv="refresh"' in head:
+                stubs.add(f)
+        content_pages = [f for f in files if f not in stubs]
+        unlinked = sorted(f for f in content_pages if f not in menu_urls)
         groups = [r for r in rows if r["kind"] == "group"]
         flat = [r for r in rows if r["kind"] == "flat"]
         data["langs"][L] = {
@@ -272,6 +283,9 @@ def snapshot_book(book_name, book_root, rel_root):
             "broken_sample": broken[:5],
             "trees": sorted({r["tree"] for r in rows if r["tree"]}),
             "files": files,
+            "stub_pages": len(stubs),
+            "content_pages": len(content_pages),
+            "unlinked_pages": unlinked,
         }
         if L == ref[0]:
             for tr in sorted({r["tree"] for r in rows if r["tree"]}):
@@ -294,7 +308,7 @@ def snapshot_book(book_name, book_root, rel_root):
     checks = {}
     for L, s in data["langs"].items():
         checks[L] = {
-            "pages_equals_menu_items": s["pages"] > 0 and s["menu_pages"] >= s["pages"] - 1,
+            "pages_equals_menu_items": s["content_pages"] > 0 and not s["unlinked_pages"],
             "broken_links_zero": s["broken_links"] == 0,
             "groups_expandable": s["groups"] == s["groups_with_sub"] == s["groups_with_toggle"] or s["groups"] == 0,
             "group_headers_are_links": s["groups_label_only"] == 0,
@@ -304,6 +318,9 @@ def snapshot_book(book_name, book_root, rel_root):
     data["checks"] = checks
     data["counts"] = {
         "pages_total": sum(s["pages"] for s in data["langs"].values()),
+        "content_pages_total": sum(s["content_pages"] for s in data["langs"].values()),
+        "stub_pages_total": sum(s["stub_pages"] for s in data["langs"].values()),
+        "unlinked_pages_total": sum(len(s["unlinked_pages"]) for s in data["langs"].values()),
         "menu_items_total": sum(s["menu_rows"] for s in data["langs"].values()),
         "groups_total": sum(s["groups"] for s in data["langs"].values()),
         "flat_rows_total": sum(s["flat_rows"] for s in data["langs"].values()),
@@ -328,7 +345,9 @@ def write_md(data, path):
     L.append("| корень | `%s` |" % data["root"])
     L.append("| языки | %s |" % ", ".join(data["languages"]))
     c = data.get("counts", {})
-    L.append("| страниц всего | %s |" % c.get("pages_total"))
+    L.append("| страниц всего | %s (из них страниц-переходов %s) |" % (c.get("pages_total"), c.get("stub_pages_total")))
+    L.append("| страниц с содержанием | %s |" % c.get("content_pages_total"))
+    L.append("| страниц без ссылки из меню | %s |" % c.get("unlinked_pages_total"))
     L.append("| пунктов меню всего | %s |" % c.get("menu_items_total"))
     L.append("| групп (разделов) | %s |" % c.get("groups_total"))
     L.append("| выпавших подпунктов | %s |" % c.get("flat_rows_total"))
