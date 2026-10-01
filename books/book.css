@@ -50,8 +50,11 @@
   --bg-2: #0C1016;
   --bg-3: #131922;
   --fg: #F2EDE3;
-  --mid: rgba(242, 237, 227, .76);
-  --mute: rgba(242, 237, 227, .5);
+  --mid: rgba(242, 237, 227, .76);   /* 9.9:1 на #07090E */
+  /* --mute: было .5 — 4.71:1, у самой границы нормы; на 10–11 px это «тёмно-серое
+     на тёмном». Поднято до .68 → 8.1:1 на #07090E и 8.0:1 на --bg-2 (Кенан 2026-09-30:
+     «тёмно-серый на тёмном фоне не использовать в принципе»). */
+  --mute: rgba(242, 237, 227, .68);
   /* золото: акцент и «второе» золото для наведения */
   --acc: #C9A961;
   --acc-2: #E8D9A8;
@@ -368,7 +371,12 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 .bk-crumb a:hover { color: var(--acc); }
 .bk-crumb__sep { color: var(--line-2); font-size: .62rem; }
 
-.bk-chead { padding-bottom: var(--s4); border-bottom: 1px solid var(--line-2); margin-bottom: var(--s5); }
+/* Шапка страницы: под названием — одна черта и ОДИН шаг шкалы до текста.
+   Было: padding-bottom 32 + margin-bottom 48 = 81 px пустой полосы; Кенан
+   2026-09-30: «после названия пустая полоска — это не отступ, это слишком
+   большой для отступа». Стало 24 + 24 = 49 px, и первый блок чтения
+   не добавляет сверху своего margin (см. .bk-read > :first-child). */
+.bk-chead { padding-bottom: var(--s3); border-bottom: 1px solid var(--line-2); margin-bottom: var(--s3); }
 .bk-chead__top { display: flex; align-items: center; gap: var(--s2); margin-bottom: 14px; }
 .bk-chead__n {
   font-family: var(--f-mono); font-size: .78rem; letter-spacing: .2em;
@@ -404,17 +412,29 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
   max-width: var(--col);
 }
 .bk-read > * { max-width: var(--col); }
+/* Первый блок чтения не добавляет отбивку сверху: после шапки уже стоит шаг
+   шкалы (24 px), иначе под названием собирается «пустая полоса» 80+ px. */
+.bk-read > :first-child { margin-top: 0; }
 .bk-read p { margin: 0 0 var(--read-gap); }
 .bk-read p:last-child { margin-bottom: 0; }
+/* Заголовок раздела. Было 1.18rem (18.9 px) при тексте 18 px — «мелкий и не
+   читается» (Кенан 2026-09-30). Норма владельца: заголовок раздела не меньше
+   1.6–2 кегля текста. Стало 30 px = 1.67 × 18 px, цвет — основной текст книги,
+   не серый. Подраздел h3 — 22 px, чтобы лестница оставалась монотонной. */
 .bk-read h2 {
-  font-family: var(--f-read); font-weight: 600; font-size: 1.18rem;   /* 18.9 px */
-  line-height: 1.35; letter-spacing: 0;
-  margin: calc(var(--read-gap) * 2) 0 var(--read-gap);
+  font-family: var(--f-read); font-weight: 600; font-size: 30px;      /* 1.67 × текста */
+  line-height: 1.3; letter-spacing: 0; color: var(--fg);
+  margin: calc(var(--read-gap) * 1.8) 0 var(--read-gap);
 }
+.bk-read h2:first-child { margin-top: 0; }
 .bk-read h3 {
-  font-family: var(--f-read); font-weight: 600; font-size: 1.02rem;   /* 16.3 px */
-  line-height: 1.4; letter-spacing: 0;
-  margin: calc(var(--read-gap) * 1.5) 0 calc(var(--read-gap) * .5);
+  font-family: var(--f-read); font-weight: 600; font-size: 22px;      /* 1.22 × текста */
+  line-height: 1.4; letter-spacing: 0; color: var(--fg);
+  margin: calc(var(--read-gap) * 1.35) 0 calc(var(--read-gap) * .5);
+}
+.bk-read h4 {
+  font-family: var(--f-read); font-weight: 600; font-size: 19px; line-height: 1.45;
+  letter-spacing: 0; color: var(--fg); margin: calc(var(--read-gap) * 1.1) 0 calc(var(--read-gap) * .4);
 }
 .bk-read strong { font-weight: 600; }
 .bk-read em { font-style: italic; }

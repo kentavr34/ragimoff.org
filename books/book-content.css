@@ -125,7 +125,7 @@
 /* ── 9. Вводные страницы (Müqəddimə, Kitab haqqında, Yekun, sözlük) ────── */
 .bk-read .front-page { max-width: var(--col); }
 .bk-read .front-page:first-child { margin-top: 0; }
-.bk-read h1.h-section, .bk-read h1.h-bolme, .bk-read h1.h-disorder, .bk-read h1.h-chapter {
+.bk-read h1.h-section, .bk-read h2.h-section, .bk-read h1.h-bolme, .bk-read h1.h-disorder, .bk-read h1.h-chapter {
   margin: 0 0 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line-2);
   font-family: var(--f-read); font-weight: 600; font-size: 28px; line-height: 1.25;
   letter-spacing: 0; color: var(--fg);
@@ -151,9 +151,13 @@
 .bk-read .home-card b { font-family: var(--f-ui); font-size: .95rem; font-weight: 500; color: var(--fg); }
 .bk-read .home-card span { font-family: var(--f-ui); font-size: .82rem; line-height: 1.45; color: var(--mid); }
 .bk-read .author-note { margin: 28px 0; padding: 24px 0 0; border-top: 1px solid var(--line); }
+/* «Обращение автора» — заголовок раздела, значит по норме владельца (2026-09-30)
+   крупнее текста книги и цветом основного текста, а не серой моноподписью.
+   Было: IBM Plex Mono .62rem (9.9 px), uppercase, --mute. Стало 30 px = 1.67 ×
+   кегля чтения (18 px), Literata, цвет --fg. */
 .bk-read .author-note-title {
-  margin: 0 0 14px; font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
-  text-transform: uppercase; font-weight: 400; color: var(--mute);
+  margin: 0 0 var(--s2); font-family: var(--f-read); font-size: 30px; font-weight: 600;
+  letter-spacing: 0; text-transform: none; line-height: 1.3; color: var(--fg);
 }
 .bk-read .author-note-sign { font-family: var(--f-ui); font-size: .9rem; color: var(--mid); }
 .bk-read .btn-order, .bk-read button.btn-order {
@@ -302,11 +306,15 @@
 /* ── 14. Мелочи ─────────────────────────────────────────────────────────── */
 .bk-read abbr[title] { text-decoration: underline dotted var(--line-2); text-underline-offset: 3px; cursor: help; }
 .bk-read [hidden] { display: none !important; }
-.bk-read--rest { margin-top: var(--s7); }
+/* Зазор «титул → обращение автора»: было --s7 (96 px) — та самая «пустая полоска
+   после названия», которую владелец назвал не отступом, а слишком большой
+   величиной. Стало 32 px = --s4; первый заголовок внутри не добавляет своего
+   верхнего margin (см. .bk-read > :first-child в book.css). */
+.bk-read--rest { margin-top: var(--s4); }
 .bk-read--rest > h2:first-child { margin-top: 0; }
 
 @media (max-width: 720px) {
-  .bk-read h1.h-section, .bk-read h1.h-bolme, .bk-read h1.h-disorder, .bk-read h1.h-chapter { font-size: 24px; }
+  .bk-read h1.h-section, .bk-read h2.h-section, .bk-read h1.h-bolme, .bk-read h1.h-disorder, .bk-read h1.h-chapter { font-size: 24px; }
   .kitab-box { padding: 28px 20px 22px; }
   .bk-sb--wide { --sb-num-col: 70px; }
 }

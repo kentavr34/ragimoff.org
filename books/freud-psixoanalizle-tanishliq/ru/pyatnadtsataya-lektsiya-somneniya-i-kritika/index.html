@@ -65,7 +65,7 @@
     <aside class="bk-sb" id="bk-sb">
       <div class="bk-sb__hdr">
         <a class="bk-sb__back" href="/books/">← Книги</a>
-        <button class="bk-sb__x" id="bk-close" type="button" aria-label="Bağla / Закрыть">
+        <button class="bk-sb__x" id="bk-close" type="button" aria-label="Закрыть">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M1 1l12 12M13 1L1 13"/></svg>
         </button>
@@ -110,7 +110,7 @@
     </aside>
   <main class="bk-main">
     <div class="bk-col">
-      <nav class="bk-crumb" aria-label="Naviqasiya">
+      <nav class="bk-crumb" aria-label="Навигация">
         <a href="../index.html">Введение в психоанализ. Лекции</a>
         <span class="bk-crumb__sep" aria-hidden="true">/</span>
       </nav>
@@ -151,7 +151,7 @@
 
       </div>
 
-      <nav class="bk-pn" aria-label="Fəsil keçidi / Переход между главами">
+      <nav class="bk-pn" aria-label="Переход между главами">
         <p class="bk-pn__up"><a href="../index.html">Книга</a></p>
         <div class="bk-pn__grid">
           <a class="bk-pn__a" href="../chetyrnadtsataya-lektsiya-ispolnenie-zhelani/index.html">
@@ -166,7 +166,7 @@
       </nav>
       <footer class="bk-ft">
         <span class="bk-ft__c">RAGIMOFF<em style="color:var(--acc);font-style:normal">.</em></span>
-        <nav class="bk-ft__nav" aria-label="Futermenü">
+        <nav class="bk-ft__nav" aria-label="Меню подвала">
           <a href="/">Главная</a>
           <a href="/books/">Книги</a>
           <a href="https://t.me/ragimoff">Telegram</a>
@@ -179,77 +179,48 @@
 </div>
 
 <div id="kitab-modal" class="kitab-overlay" onclick="if(event.target===this)closeKitabModal()">
-
-  <div class="kitab-box">
-
-    <button class="kitab-close" onclick="closeKitabModal()" aria-label="Bağla">✕</button>
-
-    <div class="kitab-logo">КП</div>
-
-    <h2 class="kitab-title">Kitabın sifarişi</h2>
-
-    <p class="kitab-desc">Kitab artıq nəşr olunub və çap nüsxəsi hazırdır. Sifariş etdiyiniz nüsxəni şəxsən imzalayıb, istənilən ünvana poçtla göndərəcəyəm. Təxmini qiymət — 100&nbsp;$; sizin üçün ağırdırsa, aşağıda endirim sorğusu göndərə bilərsiniz.</p>
-
-    <form id="kitab-form">
-
-      <div class="kitab-field">
-
-        <label for="kitab-name">Ad Soyad</label>
-
-        <input id="kitab-name" name="name" type="text" placeholder="Adınız və soyadınız" required autocomplete="name">
-
-      </div>
-
-      <div class="kitab-field">
-
-        <label for="kitab-phone">Mobil nömrə</label>
-
-        <input id="kitab-phone" name="phone" type="tel" placeholder="+994 XX XXX XX XX" required autocomplete="tel">
-
-      </div>
-
+ <div class="kitab-box">
+ <button class="kitab-close" onclick="closeKitabModal()" aria-label="Закрыть">✕</button>
+ <div class="kitab-logo">КП</div>
+ <h2 class="kitab-title">Заказ книги</h2>
+ <p class="kitab-desc">Книга уже издана, печатный экземпляр готов к отправке. Заказанный экземпляр я подпишу лично и отправлю почтой по любому адресу. Ориентировочная стоимость — 100&nbsp;$; если она вам не по силам, ниже можно отправить запрос на скидку.</p>
+ <form id="kitab-form">
+ <div class="kitab-field">
+ <label for="kitab-name">Имя Фамилия</label>
+ <input id="kitab-name" name="name" type="text" placeholder="Ваши имя и фамилия" required autocomplete="name">
+ </div>
+ <div class="kitab-field">
+ <label for="kitab-phone">Мобильный номер</label>
+ <input id="kitab-phone" name="phone" type="tel" placeholder="+994 XX XXX XX XX" required autocomplete="tel">
+ </div>
         <div class="kitab-field">
-
-          <label for="kitab-lang">Kitabın dili</label>
-
-          <select id="kitab-lang" name="lang"><option value="az" lang="az" selected>Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en">English</option><option value="tr" lang="tr">Türkçe</option></select>
-
+          <label for="kitab-lang">Язык издания</label>
+          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru" selected>Русский</option><option value="en" lang="en">English</option><option value="tr" lang="tr">Türkçe</option></select>
         </div>
-
         <div class="kitab-field">
-
-          <label for="kitab-cls">Əsas təsnifat</label>
-
-          <select id="kitab-cls" name="classification"><option value="XBT-11">XBT-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
+          <label for="kitab-cls">Основная классификация</label>
+          <select id="kitab-cls" name="classification"><option value="XBT-11">МКБ-11 (ICD-11)</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
         <div class="kitab-field">
-          <button type="button" id="kitab-geo" class="kitab-geo-btn">📍 Mövqeyimi təyin et</button>
+          <button type="button" id="kitab-geo" class="kitab-geo-btn">📍 Определить моё местоположение</button>
           <div class="kitab-geo-status" id="kitab-geo-status"></div>
         </div>
         <div class="kitab-field-row">
-          <div class="kitab-field"><label for="kitab-country">Ölkə</label><input id="kitab-country" name="country" type="text" placeholder="Azərbaycan" autocomplete="country-name"></div>
-          <div class="kitab-field"><label for="kitab-postal">Poçt indeksi</label><input id="kitab-postal" name="postal" type="text" placeholder="AZ1000" autocomplete="postal-code"></div>
+          <div class="kitab-field"><label for="kitab-country">Страна</label><input id="kitab-country" name="country" type="text" placeholder="Азербайджан" autocomplete="country-name"></div>
+          <div class="kitab-field"><label for="kitab-postal">Почтовый индекс</label><input id="kitab-postal" name="postal" type="text" placeholder="AZ1000" autocomplete="postal-code"></div>
         </div>
-        <div class="kitab-field"><label for="kitab-city">Şəhər</label><input id="kitab-city" name="city" type="text" placeholder="Bakı" autocomplete="address-level2"></div>
-        <div class="kitab-field"><label for="kitab-street">Küçə, ev, mənzil</label><textarea id="kitab-street" name="street" rows="2" placeholder="Tam ünvan" required autocomplete="street-address"></textarea></div>
+        <div class="kitab-field"><label for="kitab-city">Город</label><input id="kitab-city" name="city" type="text" placeholder="Баку" autocomplete="address-level2"></div>
+        <div class="kitab-field"><label for="kitab-street">Улица, дом, квартира</label><textarea id="kitab-street" name="street" rows="2" placeholder="Полный адрес" required autocomplete="street-address"></textarea></div>
         <div class="kitab-field">
-          <label for="kitab-discount">Endirim sorğusu (istəyə bağlı)</label>
+          <label for="kitab-discount">Скидка (по желанию)</label>
           <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
         </div>
 
-
-
-      <button type="submit" class="kitab-submit">Sifariş et</button>
-
-    </form>
-
-    <div id="kitab-success" class="kitab-success" style="display:none">
-
-      Təşəkkür edirik!<br>Çatdırılma detallarını dəqiqləşdirmək üçün tezliklə sizinlə əlaqə saxlayacağıq.
-
-    </div>
-
-  </div>
-
+ <button type="submit" class="kitab-submit">Заказать</button>
+ </form>
+ <div id="kitab-success" class="kitab-success" style="display:none">
+ Благодарим вас!<br>Мы свяжемся с вами в ближайшее время, чтобы уточнить детали доставки.
+ </div>
+ </div>
 </div>
 <script>
 /* Концепт: два настоящих поведения страницы — выдвижное меню и полоса чтения.
