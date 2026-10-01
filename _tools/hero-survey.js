@@ -60,6 +60,39 @@ const PROBE = `
       }
       return tops.length;
     }
+    /* Построчная мера для правила владельца «строки по возможности равной
+       длины, деление по словам»: идём по текстовым узлам (а не по корню
+       элемента — у корня в прямоугольники попадают блочные дети во всю
+       ширину, и «строк» выходило вдвое больше), каждую видимую строку
+       собираем по верхней границе, ширину берём по чернилам. */
+    function lineMetrics(el) {
+      if (!el) return null;
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      var rows = [], node;
+      while ((node = walker.nextNode())) {
+        if (!node.nodeValue || !/\\S/.test(node.nodeValue)) continue;
+        var pe = node.parentElement;
+        if (!pe) continue;
+        var pcs = getComputedStyle(pe);
+        if (pcs.display === 'none' || pcs.visibility === 'hidden') continue;
+        var rg = document.createRange();
+        rg.selectNodeContents(node);
+        var rcs = rg.getClientRects();
+        for (var k = 0; k < rcs.length; k++) {
+          var b = rcs[k];
+          if (b.width < 1 || b.height < 1) continue;
+          var top = Math.round(b.top), idx = -1;
+          for (var q = 0; q < rows.length; q++) if (rows[q].top === top) { idx = q; break; }
+          if (idx < 0) rows.push({ top: top, l: b.left, r: b.right });
+          else { rows[idx].l = Math.min(rows[idx].l, b.left); rows[idx].r = Math.max(rows[idx].r, b.right); }
+        }
+      }
+      rows.sort(function (a, b) { return a.top - b.top; });
+      var ws = rows.map(function (o) { return r1(o.r - o.l); });
+      var mn = ws.length ? Math.min.apply(null, ws) : 0;
+      var mx = ws.length ? Math.max.apply(null, ws) : 0;
+      return { n: ws.length, widths: ws, skew: mn ? r1(mx / mn) : null };
+    }
     function rel(el) {
       if (!el) return null;
       var b = box(el);
@@ -71,6 +104,9 @@ const PROBE = `
     out.badge = bb; out.h1 = h1b; out.lead = lb; out.search = sb;
     out.h1Lines = lines(h1);
     out.leadLines = lines(lead);
+    /* точные построчные меры (текстовые узлы, чернильная ширина) */
+    out.h1Metrics = lineMetrics(h1);
+    out.leadMetrics = lineMetrics(lead);
     out.h1Fs = h1 ? getComputedStyle(h1).fontSize : null;
     out.h1Text = h1 ? h1.textContent.replace(/\\s+/g, ' ').trim().slice(0, 90) : null;
     out.leadText = lead ? lead.textContent.replace(/\\s+/g, ' ').trim().slice(0, 90) : null;
@@ -200,6 +236,24 @@ const PRESCRIPT = 'try{localStorage.setItem("ragimoff_lang",___LANG___);}catch(e
 
 /* локальный кэш шрифтов: ссылку на Google Fonts в копии страницы заменяем
    на http://127.0.0.1:8766/__fonts.css (см. font-cache-server.js) */
+/* Локальный кэш Google Fonts (см. _tools/font-cache-server.js): с этой
+   машины fonts.googleapis.com отвечает ~8 секунд, и замер одной страницы
+   выходил 3 минуты (обход 171 страницы — три часа). При AUDIT_FONTCACHE=1
+   ссылки в копии страницы заменяются на локальный сервер 127.0.0.1:8776. */
+const crypto = require('crypto');
+function fcHash(u) { return crypto.createHash('md5').update(u).digest('hex'); }
+function rewriteFonts(html, on) {
+  if (!on) return html;
+  const P = process.env.AUDIT_FONTCACHE_PORT || '8776';
+  html = html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"'`)\s<>]+/g, function (u) {
+    return 'http://127.0.0.1:' + P + '/fc/' + fcHash(u.replace(/&amp;/g, '&')) + '.css';
+  });
+  html = html.replace(/https:\/\/fonts\.gstatic\.com\/[^"'`)\s<>)]+/g, function (u) {
+    return 'http://127.0.0.1:' + P + '/fc/' + fcHash(u) + '.woff2';
+  });
+  return html;
+}
+
 const FONTS_LINK = 'http://127.0.0.1:8766/__fonts.css';
 
 function withProbe(rel) {
@@ -210,10 +264,9 @@ function withProbe(rel) {
   const lang = /(^|[\/])ru[\/]/.test(rel) ? 'ru' : (/(^|[\/])en[\/]/.test(rel) ? 'en' : 'az');
   html = html.replace(/<head([^>]*)>/i,
     '<head$1><script>' + PRESCRIPT.replace('___LANG___', '"' + lang + '"') + '</script>');
-  if (!process.env.HERO_NO_FONTCACHE) {
-    html = html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']*/g, FONTS_LINK);
-    html = html.replace(/https:\/\/fonts\.gstatic\.com/g, 'http://127.0.0.1:8766');
-  }
+  /* кэш шрифтов: каждая ссылка — на свой файл по хешу URL
+     (один __fonts.css на все страницы давал чужой набор семейств) */
+  html = rewriteFonts(html, !process.env.HERO_NO_FONTCACHE);
   html = html.replace(/<\/body>/i, '<script>' + PROBE + '</script></body>');
   if (html.indexOf('__hro_out') === -1) html += '<script>' + PROBE + '</script>';
   fs.writeFileSync(tmp, html, 'utf8');

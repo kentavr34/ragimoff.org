@@ -1,0 +1,3619 @@
+{
+ "site": "ragimoff.org",
+ "updated": "2026-10-01",
+ "generator": "_tools/site-structure-build.py",
+ "checker": "_tools/site-structure-check.py",
+ "case_register": "CASE-REGISTER.tsv",
+ "intro": "Машинный паспорт сайта: какие страницы существуют, из каких блоков состоят,\nчто обязано быть на каждом типе страницы и какие проверки обязана проходить\nкаждая страница. Пересобирается скриптом `_tools/site-structure-build.py`\n(раздел «Страницы» снимается с дерева), проверяется скриптом\n`_tools/site-structure-check.py` по живой копии сайта. Человекочитаемая\nпроекция — `SITE-STRUCTURE.md`; стандарт дизайна — `DESIGN-STANDARDS.md`,\nстандарт пары «заголовок ↔ подзаголовок» — `DESIGN-STANDARD.md`.",
+ "languages": [
+  {
+   "code": "az",
+   "label": "AZ",
+   "dir": "/",
+   "role": "основная версия; страницы раздела психиатрии и служебные — только здесь"
+  },
+  {
+   "code": "ru",
+   "label": "RU",
+   "dir": "/ru/",
+   "role": "русская версия; полный набор, кроме служебных"
+  },
+  {
+   "code": "en",
+   "label": "EN",
+   "dir": "/en/",
+   "role": "английская версия; полный набор, кроме служебных"
+  }
+ ],
+ "frame": [
+  {
+   "name": "Шапка",
+   "marker": "header .site-header / .desktop-nav / .mobile-nav",
+   "required": "да",
+   "role": "логотип, меню разделов, поиск (#site-si), переключатель языков (.lang-drop / .mobile-lang-row), кнопка записи"
+  },
+  {
+   "name": "Блок героя",
+   "marker": ".page-hero (главные) / .page-hero-x (внутренние) / .pg-hero",
+   "required": "да",
+   "role": "метка (.badge/.ph-badge), H1, лид (.hero-lead/.ph-sub), поиск (.hero-search-wrap/.ph-search-wrap), фото (.photo-col — не на всех страницах)"
+  },
+  {
+   "name": "Секции",
+   "marker": "section[class], .sec-header + содержимое",
+   "required": "да, ≥1",
+   "role": "смысловые блоки страницы; шапка блока (.sec-header) = бейдж + H2 + подзаголовок"
+  },
+  {
+   "name": "Подвал",
+   "marker": "footer .footer-links",
+   "required": "да",
+   "role": "навигация по разделам, контакты, языковой ряд, копирайт"
+  },
+  {
+   "name": "Мобильное меню",
+   "marker": ".mobile-nav",
+   "required": "да",
+   "role": "выдвижное меню; закрыто вне экрана и не считается за горизонтальную прокрутку"
+  }
+ ],
+ "page_types": {
+  "home": {
+   "title": "Главная (az/ru/en)",
+   "note": "Витрина: герой с портретом автора, полоса цифр, экосистема, направления, статьи, книги, форма связи.\nГерой — самый длинный на сайте: H1 в одну строку на десктопе, лид в две.",
+   "require": [
+    ".page-hero",
+    ".stats-strip",
+    "h2",
+    ".footer-links"
+   ]
+  },
+  "page": {
+   "title": "Внутренняя страница (раздел, услуга, программа, статья раздела)",
+   "note": "Всё, что не главная и не блог: страницы услуг, программы, раздел психиатрии, юридические,\nслужебные. Единый герой `.page-hero-x` с меткой, H1, лидом и поиском.\nРаздел психиатрии (`klinik-psixiatriya/`) ведёт свой герой (`pg-hero`) и в этот файл не входит.",
+   "require": [
+    ".page-hero-x",
+    "section",
+    "h2",
+    ".footer-links"
+   ]
+  },
+  "blog-index": {
+   "title": "Индекс блога",
+   "note": "Список статей с фильтром по темам.",
+   "require": [
+    ".page-hero-x",
+    ".filter-inner",
+    "h2",
+    ".footer-links"
+   ]
+  },
+  "blog-article": {
+   "title": "Статья блога",
+   "note": "Текстовая страница: герой, тело статьи (.article-body), блок «читать также», подвал.\nВнутри статьи подзаголовки ведут себя по карточному правилу (16/12), а не 48/32.",
+   "require": [
+    ".page-hero-x",
+    ".article-body",
+    "h2",
+    ".footer-links"
+   ]
+  },
+  "template": {
+   "title": "Служебные шаблоны",
+   "note": "`template.html`, `temp_index.html` — заготовки для копирования. Из проверок структуры\nисключены (могут не иметь H1), но не должны попадать в sitemap и в навигацию.",
+   "require": []
+  },
+  "test": {
+   "title": "Тестовые страницы",
+   "note": "`test-wave-elements.html` — стенд проверки волн. Из проверок структуры исключены,\nв навигацию и sitemap не входят.",
+   "require": []
+  },
+  "redirect": {
+   "title": "Страница-редирект",
+   "note": "`klinik-psixiatriya.html` — точка входа в раздел психиатрии: `<meta http-equiv=\"refresh\">`\nуводит в `/klinik-psixiatriya/`. Ни шапки, ни героя, ни подвала у неё нет по устройству —\nпроверки структуры к типу не применяются (исключён из правил в `site-structure-check.py`).",
+   "require": []
+  }
+ },
+ "checks": [
+  {
+   "id": "hero-height",
+   "class": "a",
+   "what": "высота блока героя — одна на всех страницах (все страницы с героем)",
+   "norm": "десктоп 1440: 520 px ± 1; телефон 390: одна величина на всех страницах (слоты H1/лида/фото) ± 1",
+   "tool": "node _tools/hero-survey.js --width <ш> --jobs 4 --require-fit 0 --list pages.txt --out out.json"
+  },
+  {
+   "id": "hero-grid",
+   "class": "a",
+   "what": "сетка героя: метка / H1 / лид / поиск на одних и тех же высотах",
+   "norm": "десктоп: метка 88, H1 154, лид 304, поиск 419; телефон: метка 32, лид после фото, поиск прижат, 25 px под поиском",
+   "tool": "node _tools/hero-survey.js"
+  },
+  {
+   "id": "hero-photo",
+   "class": "a",
+   "what": "пропорции фото героя",
+   "norm": "десктоп: верх 50 от грани блока, низ = низ блока; телефон: портрет 70–85 % ширины колонки, пропорция кадра 0,952 сохранена, лицо не обрезано",
+   "tool": "node _tools/hero-lines.js 390 <страницы>"
+  },
+  {
+   "id": "hero-lines",
+   "class": "a",
+   "what": "деление H1 и лида на строки",
+   "norm": "по словам, без переносов по слогам; 2 строки, при необходимости 3; text-wrap: balance; перекос (макс/мин ширина строки) ≤ 1,3",
+   "tool": "node _tools/hero-lines.js 390 <страницы>"
+  },
+  {
+   "id": "spacing",
+   "class": "c",
+   "what": "шкала интервалов и пустые полосы",
+   "norm": "верх блока → метка 88/48/32; шапка блока → содержимое 48/32; поиск → низ героя 50/25; пустая полоса между блоками > 160 px — дефект",
+   "tool": "node _tools/site-audit.js --width 1440,390 --light-width 390"
+  },
+  {
+   "id": "font-roles",
+   "class": "d",
+   "what": "роли гарнитур по классам элементов",
+   "norm": "дисплей Cormorant Garamond — H1/H2/H3; чтение Literata — абзацы и лиды; интерфейс Montserrat — навигация, кнопки, поля; метаданные IBM Plex Mono — бейджи, метки, подписи",
+   "tool": "node _tools/site-audit.js --width 1440"
+  },
+  {
+   "id": "contrast",
+   "class": "b",
+   "what": "контраст текста к фону",
+   "norm": "≥ 4,5:1 обычный текст; ≥ 3:1 крупный (≥ 24 px или ≥ 18,66 px при весе ≥ 700)",
+   "tool": "node _tools/site-audit.js --width 1440"
+  },
+  {
+   "id": "h-scroll",
+   "class": "e",
+   "what": "горизонтальная прокрутка и вылеты за вьюпорт",
+   "norm": "scrollWidth ≤ clientWidth + 1 на 390 и 1440; ни один видимый элемент не выходит за вьюпорт",
+   "tool": "node _tools/site-audit.js --width 390,1440"
+  },
+  {
+   "id": "links",
+   "class": "f",
+   "what": "ссылки и навигация",
+   "norm": "все внутренние ссылки и якоря разрешаются; нет пустых href (\"\", \"#\"); переключатель языков ведёт на существующие страницы",
+   "tool": "node _tools/site-audit.js --static-only"
+  },
+  {
+   "id": "lang",
+   "class": "g",
+   "what": "язык версии и регистр",
+   "norm": "основной текст — на языке версии; иноязычное только в скобках/кавычках; термины — по реестру CASE-REGISTER.tsv",
+   "tool": "_tools/site-structure-check.py --lang"
+  },
+  {
+   "id": "structure",
+   "class": "f",
+   "what": "обязательные блоки типа страницы и метаданные",
+   "norm": "шапка, герой нужного класса, ≥1 секция, подвал, ровно один H1, <title>, lang атрибута версии",
+   "tool": "_tools/site-structure-check.py"
+  }
+ ],
+ "pages": [
+  {
+   "path": "aile-terapiyasi-usaq.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Ailə Terapiyası — Uşaqlarla İş | RAGIMOFF",
+   "h1": "Ailə-Uşaq Terapiyası",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36037,
+   "purpose": "детская и подростковая семейная терапия"
+  },
+  {
+   "path": "aile-terapiyasi.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Ailə Terapiyası | RAGIMOFF",
+   "h1": "Ailə Terapiyası",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 64329,
+   "purpose": "семейная терапия: направления и форматы работы"
+  },
+  {
+   "path": "b2b.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Korporativ | RAGIMOFF",
+   "h1": "Korporativ Təlimlər",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34645,
+   "purpose": "корпоративным клиентам: программы для организаций"
+  },
+  {
+   "path": "blog-aile-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Toksik Münasibətin 7 Əlaməti | RAGIMOFF",
+   "h1": "Toksik Münasibətin 7 Əlaməti",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34791,
+   "purpose": "Toksik Münasibətin 7 Əlaməti"
+  },
+  {
+   "path": "blog-aile-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Boşanma Astanasında Ailə — Müalicə vs Ayrılıq | RAGIMOFF",
+   "h1": "Boşanma Astanasında Ailə — Müalicə vs Ayrılıq",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35148,
+   "purpose": "Boşanma Astanasında Ailə — Müalicə vs Ayrılıq"
+  },
+  {
+   "path": "blog-aile-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Cütlüklər Necə Düzgün Mübahisə Etməlidir? | RAGIMOFF",
+   "h1": "Cütlüklər Necə Düzgün Mübahisə Etməlidir?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36612,
+   "purpose": "Cütlüklər Necə Düzgün Mübahisə Etməlidir?"
+  },
+  {
+   "path": "blog-aile-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Etibar İtirildikdə Onu Necə Qaytarmaq Olar? | RAGIMOFF",
+   "h1": "Etibar İtirildikdə Onu Necə Qaytarmaq Olar?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35647,
+   "purpose": "Etibar İtirildikdə Onu Necə Qaytarmaq Olar?"
+  },
+  {
+   "path": "blog-aile-usaq-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Uşaq Davranış Problemləri — Əmr-Cəza vs Anlama | RAGIMOFF",
+   "h1": "Uşaq Davranış Problemləri — Əmr-Cəza vs Anlama",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35554,
+   "purpose": "Uşaq Davranış Problemləri — Əmr-Cəza vs Anlama"
+  },
+  {
+   "path": "blog-aile-usaq-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Boşanma Sonrası Uşaq — Necə Kömək Etmək Olar? | RAGIMOFF",
+   "h1": "Boşanma Sonrası Uşaq — Necə Kömək Etmək Olar?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36499,
+   "purpose": "Boşanma Sonrası Uşaq — Necə Kömək Etmək Olar?"
+  },
+  {
+   "path": "blog-aile-usaq-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Məktəbdən İmtina — 5 Əsl Səbəb | RAGIMOFF",
+   "h1": "Məktəbdən İmtina — 5 Əsl Səbəb",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35954,
+   "purpose": "Məktəbdən İmtina — 5 Əsl Səbəb"
+  },
+  {
+   "path": "blog-aile-usaq-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Uşağa 'Yox' Demək — Sağlam Sərhəd Necə Qurulur? | RAGIMOFF",
+   "h1": "Uşağa 'Yox' Demək — Sağlam Sərhəd Necə Qurulur?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35956,
+   "purpose": "Uşağa 'Yox' Demək — Sağlam Sərhəd Necə Qurulur?"
+  },
+  {
+   "path": "blog-aile.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Ailə Münaqişəsini Həll Etmənin 5 Prinsipi | RAGIMOFF",
+   "h1": "Ailə Münaqişəsini Həll Etmənin 5 Prinsipi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34761,
+   "purpose": "Ailə Münaqişəsini Həll Etmənin 5 Prinsipi"
+  },
+  {
+   "path": "blog-depressiya-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "KDT Depressiyada Necə İşləyir? | RAGIMOFF",
+   "h1": "KDT Depressiyada Necə İşləyir?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38189,
+   "purpose": "KDT Depressiyada Necə İşləyir?"
+  },
+  {
+   "path": "blog-depressiya-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Antidepressantlar — Faktlar və Miflər | RAGIMOFF",
+   "h1": "Antidepressantlar — Faktlar və Miflər",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34218,
+   "purpose": "Antidepressantlar — Faktlar və Miflər"
+  },
+  {
+   "path": "blog-depressiya-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Postpartum Depressiya — Tanımaq və Müalicə | RAGIMOFF",
+   "h1": "Postpartum Depressiya — Tanımaq və Müalicə",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34056,
+   "purpose": "Postpartum Depressiya — Tanımaq və Müalicə"
+  },
+  {
+   "path": "blog-depressiya-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Mövsümi Depressiya (SAD) və İşıq Terapiyası | RAGIMOFF",
+   "h1": "Mövsümi Depressiya (SAD) və İşıq Terapiyası",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34798,
+   "purpose": "Mövsümi Depressiya (SAD) və İşıq Terapiyası"
+  },
+  {
+   "path": "blog-depressiya-protokol.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Psixogen Depressiyanın Müalicəsi — Klinik Protokol | RAGIMOFF",
+   "h1": "Psixogen Depressiyanın Müalicəsi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 50791,
+   "purpose": "Psixogen Depressiyanın Müalicəsi"
+  },
+  {
+   "path": "blog-depressiya.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Depressiya Kədərdən Necə Fərqlənir? | RAGIMOFF",
+   "h1": "Depressiya Kədərdən Necə Fərqlənir?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35978,
+   "purpose": "Depressiya Kədərdən Necə Fərqlənir?"
+  },
+  {
+   "path": "blog-enurez-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "BMGE — Birincili Monosimptomatik Gecə Enurezi: Tam Bələdçi | RAGIMOFF",
+   "h1": "BMGE — Birincili Monosimptomatik Gecə Enurezi: Tam Bələdçi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35838,
+   "purpose": "BMGE — Birincili Monosimptomatik Gecə Enurezi: Tam Bələdçi"
+  },
+  {
+   "path": "blog-enurez-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol | RAGIMOFF",
+   "h1": "Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35727,
+   "purpose": "Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol"
+  },
+  {
+   "path": "blog-enurez-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Desmopressin və İmipramin — Enurezdə Dərmanlar | RAGIMOFF",
+   "h1": "Desmopressin və İmipramin — Enurezdə Dərmanlar",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36051,
+   "purpose": "Desmopressin və İmipramin — Enurezdə Dərmanlar"
+  },
+  {
+   "path": "blog-enurez-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Valideynlər Üçün 7 Praktik Məsləhət | RAGIMOFF",
+   "h1": "Valideynlər Üçün 7 Praktik Məsləhət",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36083,
+   "purpose": "Valideynlər Üçün 7 Praktik Məsləhət"
+  },
+  {
+   "path": "blog-enurez-protokol.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Uşaqlarda Gecə Enurezi — Modifikasiya Edilmiş Alarm-Protokol | RAGIMOFF",
+   "h1": "Uşaqlarda Gecə Enurezinin Müalicəsi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 46895,
+   "purpose": "Uşaqlarda Gecə Enurezinin Müalicəsi"
+  },
+  {
+   "path": "blog-enurez.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc | RAGIMOFF",
+   "h1": "Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35281,
+   "purpose": "Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc"
+  },
+  {
+   "path": "blog-klinik-psixiatriya.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Klinik Psixiatriya — XBT-11 Rəhbərliyi | RAGIMOFF",
+   "h1": "Klinik Psixiatriya — XBT-11 Əsaslı Diaqnostika Rəhbərliyi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38033,
+   "purpose": "Klinik Psixiatriya — XBT-11 Əsaslı Diaqnostika Rəhbərliyi"
+  },
+  {
+   "path": "blog-panik-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Panik Atak Anında Beyində Nə Baş Verir? | RAGIMOFF",
+   "h1": "Panik Atak Anında Beyində Nə Baş Verir?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34962,
+   "purpose": "Panik Atak Anında Beyində Nə Baş Verir?"
+  },
+  {
+   "path": "blog-panik-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Agorafobiya — Panik Atakdan Sosial Təcridə | RAGIMOFF",
+   "h1": "Agorafobiya — Panik Atakdan Sosial Təcridə",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35338,
+   "purpose": "Agorafobiya — Panik Atakdan Sosial Təcridə"
+  },
+  {
+   "path": "blog-panik-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "KDT Panik Pozğunluqda Necə İşləyir? | RAGIMOFF",
+   "h1": "KDT Panik Pozğunluqda Necə İşləyir?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36693,
+   "purpose": "KDT Panik Pozğunluqda Necə İşləyir?"
+  },
+  {
+   "path": "blog-panik-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Panik Ataklarla Bağlı 7 Mif və Elmi Cavablar | RAGIMOFF",
+   "h1": "Panik Ataklarla Bağlı 7 Mif və Elmi Cavablar",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35431,
+   "purpose": "Panik Ataklarla Bağlı 7 Mif və Elmi Cavablar"
+  },
+  {
+   "path": "blog-panik.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Panik Atak Anında Nə Etməli? | RAGIMOFF",
+   "h1": "Panik Atak Anında Nə Etməli?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34234,
+   "purpose": "Panik Atak Anında Nə Etməli?"
+  },
+  {
+   "path": "blog-psixolog-olmaq-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Klinik vs Ümumi Psixologiya — Fərq və Seçim | RAGIMOFF",
+   "h1": "Klinik vs Ümumi Psixologiya — Fərq və Seçim",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36125,
+   "purpose": "Klinik vs Ümumi Psixologiya — Fərq və Seçim"
+  },
+  {
+   "path": "blog-psixolog-olmaq-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Yeni Psixoloq Üçün İlk Müştəri Necə Alınır? | RAGIMOFF",
+   "h1": "Yeni Psixoloq Üçün İlk Müştəri Necə Alınır?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35979,
+   "purpose": "Yeni Psixoloq Üçün İlk Müştəri Necə Alınır?"
+  },
+  {
+   "path": "blog-psixolog-olmaq-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Süpervizyon — Psixoloqun Davamlı Müəllimi | RAGIMOFF",
+   "h1": "Süpervizyon — Psixoloqun Davamlı Müəllimi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35480,
+   "purpose": "Süpervizyon — Psixoloqun Davamlı Müəllimi"
+  },
+  {
+   "path": "blog-psixolog-olmaq-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Psixoloqun Özünüqayğısı — Burnoutdan Qorunma | RAGIMOFF",
+   "h1": "Psixoloqun Özünüqayğısı — Burnoutdan Qorunma",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36118,
+   "purpose": "Psixoloqun Özünüqayğısı — Burnoutdan Qorunma"
+  },
+  {
+   "path": "blog-psixolog-olmaq.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə? | RAGIMOFF",
+   "h1": "Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35845,
+   "purpose": "Yaxşı Psixoloq Heç Vaxt İşsiz Qalmır — Niyə?"
+  },
+  {
+   "path": "blog-sosial-fobiya-2.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "İctimai Çıxış Qorxusu — KDT və Ekspozisiya | RAGIMOFF",
+   "h1": "İctimai Çıxış Qorxusu — KDT və Ekspozisiya",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35988,
+   "purpose": "İctimai Çıxış Qorxusu — KDT və Ekspozisiya"
+  },
+  {
+   "path": "blog-sosial-fobiya-3.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Qızarma və Tərləmə — Sosial Reaksiyalar | RAGIMOFF",
+   "h1": "Qızarma və Tərləmə — Sosial Reaksiyalar",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35201,
+   "purpose": "Qızarma və Tərləmə — Sosial Reaksiyalar"
+  },
+  {
+   "path": "blog-sosial-fobiya-4.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Sosial Anksiyete vs İntrovertlik — Fərq Nədə? | RAGIMOFF",
+   "h1": "Sosial Anksiyete vs İntrovertlik — Fərq Nədə?",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35998,
+   "purpose": "Sosial Anksiyete vs İntrovertlik — Fərq Nədə?"
+  },
+  {
+   "path": "blog-sosial-fobiya-5.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Sosial Mediada Anksiyete — Yeni Forma | RAGIMOFF",
+   "h1": "Sosial Mediada Anksiyete — Yeni Forma",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35866,
+   "purpose": "Sosial Mediada Anksiyete — Yeni Forma"
+  },
+  {
+   "path": "blog-sosial-fobiya.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Sosial Fobiya — Sadəcə Utancaqlıq Deyil | RAGIMOFF",
+   "h1": "Sosial Fobiya — Sadəcə Utancaqlıq Deyil",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35705,
+   "purpose": "Sosial Fobiya — Sadəcə Utancaqlıq Deyil"
+  },
+  {
+   "path": "blog-yeniyetme.html",
+   "lang": "az",
+   "type": "blog-article",
+   "title": "Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz | RAGIMOFF",
+   "h1": "Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35924,
+   "purpose": "Yeniyetməniz Sizinlə Danışmırsa — Səbəb Siz Deyilsiniz"
+  },
+  {
+   "path": "blog.html",
+   "lang": "az",
+   "type": "blog-index",
+   "title": "Psixologiya Bloqu | RAGIMOFF",
+   "h1": "RAGIMOFF Bloq",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 2,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 59872,
+   "purpose": "индекс статей блога с фильтром по темам"
+  },
+  {
+   "path": "depressiya.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Depressiya Müalicəsi | RAGIMOFF",
+   "h1": "Depressiyanın Müalicəsi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37197,
+   "purpose": "депрессия: раздел направления"
+  },
+  {
+   "path": "enurez.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Gecə Enurezi Müalicəsi | RAGIMOFF",
+   "h1": "Uşaq Enurezi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 12,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 74663,
+   "purpose": "энурез: раздел направления"
+  },
+  {
+   "path": "haqqimda.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Kənan Rəhimov Haqqında | RAGIMOFF",
+   "h1": "Kənan Rəhimov Haqqında",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 41861,
+   "purpose": "о специалисте: биография, квалификации, подход"
+  },
+  {
+   "path": "index.html",
+   "lang": "az",
+   "type": "home",
+   "title": "Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi",
+   "h1": "Peşəkar Psixologiya Məktəbi",
+   "hero_class": "page-hero",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 58739,
+   "purpose": "витрина: герой с портретом, цифры, экосистема, направления, статьи, книги, форма"
+  },
+  {
+   "path": "klinik-psixiatriya.html",
+   "lang": "az",
+   "type": "redirect",
+   "title": "Klinik Psixiatriya",
+   "h1": "",
+   "hero_class": null,
+   "html_lang": "az",
+   "blocks": {
+    "header": false,
+    "nav": false,
+    "hero": false,
+    "search": false,
+    "sections": 0,
+    "footer": false,
+    "lang_switch": false
+   },
+   "bytes": 12756,
+   "purpose": "редирект в раздел «Клиническая психиатрия»"
+  },
+  {
+   "path": "panik-ataklar.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Panik Ataklar | RAGIMOFF",
+   "h1": "Panik Ataklar",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36644,
+   "purpose": "панические атаки: раздел направления"
+  },
+  {
+   "path": "program-klinik.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Klinik Psixologiya (Əlavə Peşə Təhsili) | RAGIMOFF",
+   "h1": "Klinik Psixologiya",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 75017,
+   "purpose": "программа «Клиническая психология»"
+  },
+  {
+   "path": "program-praktikum.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Psixoterapiya Praktikumu | RAGIMOFF",
+   "h1": "Psixoterapiya Praktikumu",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 8,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 69971,
+   "purpose": "программу «Практикум»"
+  },
+  {
+   "path": "program-umumi.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Ümumi Psixologiya | RAGIMOFF",
+   "h1": "Ümumi Psixologiya",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 75771,
+   "purpose": "программа «Общая психология»"
+  },
+  {
+   "path": "qanunlar.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Fəaliyyətin Qanuni Əsasları | RAGIMOFF",
+   "h1": "Qanunlar və Razılaşmalar",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 59837,
+   "purpose": "нормативная база: законы и стандарты профессии"
+  },
+  {
+   "path": "samira.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Ailə Terapiyası — Samirə Rəhimova | RAGIMOFF",
+   "h1": "Sistemli Ailə Terapiyası",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 59508,
+   "purpose": "авторский метод SAMİRA: протокол и обоснование"
+  },
+  {
+   "path": "sosial-fobiya.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Sosial Fobiya | RAGIMOFF",
+   "h1": "Sosial Fobiya",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36513,
+   "purpose": "социальная фобия: раздел направления"
+  },
+  {
+   "path": "tehsil.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Təhsil | RAGIMOFF",
+   "h1": "Psixologiyada Karyera İmkanları",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 101072,
+   "purpose": "программа обучения: институт ДПО, модули, цены, форма записи"
+  },
+  {
+   "path": "temp_index.html",
+   "lang": "az",
+   "type": "template",
+   "title": "Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi",
+   "h1": "Peşəkar Psixologiya Məktəbi",
+   "hero_class": "page-hero",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 57565,
+   "purpose": "служебная заготовка главной (не индексируется)"
+  },
+  {
+   "path": "template.html",
+   "lang": "az",
+   "type": "template",
+   "title": "Səhifə | RAGIMOFF",
+   "h1": "",
+   "hero_class": null,
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": false,
+    "search": false,
+    "sections": 0,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 9795,
+   "purpose": "служебный шаблон страницы (не индексируется)"
+  },
+  {
+   "path": "test-wave-elements.html",
+   "lang": "az",
+   "type": "test",
+   "title": "Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi",
+   "h1": "Peşəkar Psixologiya Məktəbi",
+   "hero_class": "page-hero",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 76780,
+   "purpose": "тестовый стенд элементов (не индексируется)"
+  },
+  {
+   "path": "valideyn-mektebi.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Valideyn Məktəbi — Valideynlər üçün Psixologiya | RAGIMOFF",
+   "h1": "Valideyn Məktəbi",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 6,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35976,
+   "purpose": "родительская школа: курс для родителей"
+  },
+  {
+   "path": "xidmetler.html",
+   "lang": "az",
+   "type": "page",
+   "title": "Xidmətlər və Qiymətlər | RAGIMOFF",
+   "h1": "Konsultasiya Xidmətləri",
+   "hero_class": "page-hero-x",
+   "html_lang": "az",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 45485,
+   "purpose": "каталог услуг: индивидуальная, семейная, подростковая терапия"
+  },
+  {
+   "path": "ru/aile-terapiyasi-usaq.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Детско-родительская терапия | RAGIMOFF",
+   "h1": "Детско-родительская терапия",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38045,
+   "purpose": "детская и подростковая семейная терапия"
+  },
+  {
+   "path": "ru/aile-terapiyasi.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Семейная терапия | RAGIMOFF",
+   "h1": "Семейная терапия",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 66679,
+   "purpose": "семейная терапия: направления и форматы работы"
+  },
+  {
+   "path": "ru/b2b.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Корпоративное | RAGIMOFF",
+   "h1": "Психологические решения для бизнеса",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36743,
+   "purpose": "корпоративным клиентам: программы для организаций"
+  },
+  {
+   "path": "ru/blog-aile-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "7 признаков токсичных отношений | RAGIMOFF",
+   "h1": "7 признаков токсичных отношений",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35992,
+   "purpose": "7 признаков токсичных отношений"
+  },
+  {
+   "path": "ru/blog-aile-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Семья на грани развода — лечение или расставание? | RAGIMOFF",
+   "h1": "Семья на грани развода — лечение или расставание?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36409,
+   "purpose": "Семья на грани развода — лечение или расставание?"
+  },
+  {
+   "path": "ru/blog-aile-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как правильно спорить в паре? | RAGIMOFF",
+   "h1": "Как правильно спорить в паре?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37749,
+   "purpose": "Как правильно спорить в паре?"
+  },
+  {
+   "path": "ru/blog-aile-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как восстановить доверие после измены? | RAGIMOFF",
+   "h1": "Как восстановить доверие после измены?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37062,
+   "purpose": "Как восстановить доверие после измены?"
+  },
+  {
+   "path": "ru/blog-aile-usaq-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Проблемы поведения ребёнка — наказание или понимание? | RAGIMOFF",
+   "h1": "Проблемы поведения ребёнка — наказание или понимание?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37017,
+   "purpose": "Проблемы поведения ребёнка — наказание или понимание?"
+  },
+  {
+   "path": "ru/blog-aile-usaq-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Ребёнок после развода — как помочь? | RAGIMOFF",
+   "h1": "Ребёнок после развода — как помочь?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38011,
+   "purpose": "Ребёнок после развода — как помочь?"
+  },
+  {
+   "path": "ru/blog-aile-usaq-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Отказ от школы — 5 настоящих причин | RAGIMOFF",
+   "h1": "Отказ от школы — 5 настоящих причин",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37649,
+   "purpose": "Отказ от школы — 5 настоящих причин"
+  },
+  {
+   "path": "ru/blog-aile-usaq-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Сказать ребёнку «нет» — как выстроить здоровые границы? | RAGIMOFF",
+   "h1": "Сказать ребёнку «нет» — как выстроить здоровые границы?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37583,
+   "purpose": "Сказать ребёнку «нет» — как выстроить здоровые границы?"
+  },
+  {
+   "path": "ru/blog-aile.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "5 принципов разрешения семейных конфликтов | RAGIMOFF",
+   "h1": "5 принципов разрешения семейных конфликтов",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35636,
+   "purpose": "5 принципов разрешения семейных конфликтов"
+  },
+  {
+   "path": "ru/blog-depressiya-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как работает КПТ при депрессии? | RAGIMOFF",
+   "h1": "Как работает КПТ при депрессии?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 40329,
+   "purpose": "Как работает КПТ при депрессии?"
+  },
+  {
+   "path": "ru/blog-depressiya-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Антидепрессанты — факты и мифы | RAGIMOFF",
+   "h1": "Антидепрессанты — факты и мифы",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35374,
+   "purpose": "Антидепрессанты — факты и мифы"
+  },
+  {
+   "path": "ru/blog-depressiya-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Послеродовая депрессия — распознать и лечить | RAGIMOFF",
+   "h1": "Послеродовая депрессия — распознать и лечить",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34853,
+   "purpose": "Послеродовая депрессия — распознать и лечить"
+  },
+  {
+   "path": "ru/blog-depressiya-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Сезонная депрессия (SAD) и световая терапия | RAGIMOFF",
+   "h1": "Сезонная депрессия (SAD) и световая терапия",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36007,
+   "purpose": "Сезонная депрессия (SAD) и световая терапия"
+  },
+  {
+   "path": "ru/blog-depressiya-protokol.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Лечение психогенной депрессии — клинический протокол | RAGIMOFF",
+   "h1": "Лечение психогенной депрессии",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 59825,
+   "purpose": "Лечение психогенной депрессии"
+  },
+  {
+   "path": "ru/blog-depressiya.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Чем депрессия отличается от грусти? | RAGIMOFF",
+   "h1": "Чем депрессия отличается от грусти?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37694,
+   "purpose": "Чем депрессия отличается от грусти?"
+  },
+  {
+   "path": "ru/blog-enurez-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "ПМНЭ — Первичный моносимптоматический ночной энурез: полное руководство | RAGIMOFF",
+   "h1": "ПМНЭ — Первичный моносимптоматический ночной энурез: полное руководство",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37645,
+   "purpose": "ПМНЭ — Первичный моносимптоматический ночной энурез: полное руководство"
+  },
+  {
+   "path": "ru/blog-enurez-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как работает сигнализатор энуреза? — Международный протокол | RAGIMOFF",
+   "h1": "Как работает сигнализатор энуреза? — Международный протокол",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37259,
+   "purpose": "Как работает сигнализатор энуреза? — Международный протокол"
+  },
+  {
+   "path": "ru/blog-enurez-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Десмопрессин и имипрамин — препараты при энурезе | RAGIMOFF",
+   "h1": "Десмопрессин и имипрамин — препараты при энурезе",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37834,
+   "purpose": "Десмопрессин и имипрамин — препараты при энурезе"
+  },
+  {
+   "path": "ru/blog-enurez-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "7 практических советов для родителей | RAGIMOFF",
+   "h1": "7 практических советов для родителей",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37719,
+   "purpose": "7 практических советов для родителей"
+  },
+  {
+   "path": "ru/blog-enurez-protokol.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Ночной энурез у детей — Модифицированный протокол алармной терапии | RAGIMOFF",
+   "h1": "Лечение ночного энуреза у детей",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 53671,
+   "purpose": "Лечение ночного энуреза у детей"
+  },
+  {
+   "path": "ru/blog-enurez.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Ребёнок мочится в постель ночью — 5 ложных убеждений | RAGIMOFF",
+   "h1": "Ребёнок мочится в постель ночью — 5 ложных убеждений",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36832,
+   "purpose": "Ребёнок мочится в постель ночью — 5 ложных убеждений"
+  },
+  {
+   "path": "ru/blog-panik-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Что происходит в мозге во время панической атаки? | RAGIMOFF",
+   "h1": "Что происходит в мозге во время панической атаки?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36353,
+   "purpose": "Что происходит в мозге во время панической атаки?"
+  },
+  {
+   "path": "ru/blog-panik-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Агорафобия — от панических атак к социальной изоляции | RAGIMOFF",
+   "h1": "Агорафобия — от панических атак к социальной изоляции",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36946,
+   "purpose": "Агорафобия — от панических атак к социальной изоляции"
+  },
+  {
+   "path": "ru/blog-panik-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как работает КПТ при паническом расстройстве? | RAGIMOFF",
+   "h1": "Как работает КПТ при паническом расстройстве?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38503,
+   "purpose": "Как работает КПТ при паническом расстройстве?"
+  },
+  {
+   "path": "ru/blog-panik-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "7 мифов о панических атаках и научные ответы | RAGIMOFF",
+   "h1": "7 мифов о панических атаках и научные ответы",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37351,
+   "purpose": "7 мифов о панических атаках и научные ответы"
+  },
+  {
+   "path": "ru/blog-panik.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Что делать во время панической атаки? | RAGIMOFF",
+   "h1": "Что делать во время панической атаки?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35263,
+   "purpose": "Что делать во время панической атаки?"
+  },
+  {
+   "path": "ru/blog-psixolog-olmaq-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Клиническая vs общая психология — разница и выбор | RAGIMOFF",
+   "h1": "Клиническая vs общая психология — разница и выбор",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37269,
+   "purpose": "Клиническая vs общая психология — разница и выбор"
+  },
+  {
+   "path": "ru/blog-psixolog-olmaq-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Как новому психологу найти первых клиентов? | RAGIMOFF",
+   "h1": "Как новому психологу найти первых клиентов?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37462,
+   "purpose": "Как новому психологу найти первых клиентов?"
+  },
+  {
+   "path": "ru/blog-psixolog-olmaq-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Супервизия — постоянный учитель психолога | RAGIMOFF",
+   "h1": "Супервизия — постоянный учитель психолога",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36945,
+   "purpose": "Супервизия — постоянный учитель психолога"
+  },
+  {
+   "path": "ru/blog-psixolog-olmaq-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Забота о себе для психолога — защита от выгорания | RAGIMOFF",
+   "h1": "Забота о себе для психолога — защита от выгорания",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37608,
+   "purpose": "Забота о себе для психолога — защита от выгорания"
+  },
+  {
+   "path": "ru/blog-psixolog-olmaq.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Хороший психолог никогда не остаётся без работы — почему? | RAGIMOFF",
+   "h1": "Хороший психолог никогда не остаётся без работы — почему?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37612,
+   "purpose": "Хороший психолог никогда не остаётся без работы — почему?"
+  },
+  {
+   "path": "ru/blog-sosial-fobiya-2.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Страх публичных выступлений — КПТ и экспозиция | RAGIMOFF",
+   "h1": "Страх публичных выступлений — КПТ и экспозиция",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37125,
+   "purpose": "Страх публичных выступлений — КПТ и экспозиция"
+  },
+  {
+   "path": "ru/blog-sosial-fobiya-3.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Покраснение и потливость — социальные реакции | RAGIMOFF",
+   "h1": "Покраснение и потливость — социальные реакции",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 36157,
+   "purpose": "Покраснение и потливость — социальные реакции"
+  },
+  {
+   "path": "ru/blog-sosial-fobiya-4.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Социальная тревога vs интроверсия — в чём разница? | RAGIMOFF",
+   "h1": "Социальная тревога vs интроверсия — в чём разница?",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37384,
+   "purpose": "Социальная тревога vs интроверсия — в чём разница?"
+  },
+  {
+   "path": "ru/blog-sosial-fobiya-5.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Тревога в социальных сетях — новая форма | RAGIMOFF",
+   "h1": "Тревога в социальных сетях — новая форма",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37647,
+   "purpose": "Тревога в социальных сетях — новая форма"
+  },
+  {
+   "path": "ru/blog-sosial-fobiya.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Социофобия — это не просто застенчивость | RAGIMOFF",
+   "h1": "Социофобия — это не просто застенчивость",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37015,
+   "purpose": "Социофобия — это не просто застенчивость"
+  },
+  {
+   "path": "ru/blog-yeniyetme.html",
+   "lang": "ru",
+   "type": "blog-article",
+   "title": "Ваш подросток не разговаривает с вами — это не ваша вина | RAGIMOFF",
+   "h1": "Ваш подросток не разговаривает с вами — это не ваша вина",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 37698,
+   "purpose": "Ваш подросток не разговаривает с вами — это не ваша вина"
+  },
+  {
+   "path": "ru/blog.html",
+   "lang": "ru",
+   "type": "blog-index",
+   "title": "Психология (блог) | RAGIMOFF",
+   "h1": "Блог психологии",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 2,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 66545,
+   "purpose": "индекс статей блога с фильтром по темам"
+  },
+  {
+   "path": "ru/depressiya.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Лечение депрессии | RAGIMOFF",
+   "h1": "Лечение депрессии",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 39561,
+   "purpose": "депрессия: раздел направления"
+  },
+  {
+   "path": "ru/enurez.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Лечение ночного энуреза | RAGIMOFF",
+   "h1": "Лечение ночного энуреза",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 12,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 85758,
+   "purpose": "энурез: раздел направления"
+  },
+  {
+   "path": "ru/haqqimda.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "О Кенане Рагимове | RAGIMOFF",
+   "h1": "Кенан Рагимов",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 45643,
+   "purpose": "о специалисте: биография, квалификации, подход"
+  },
+  {
+   "path": "ru/index.html",
+   "lang": "ru",
+   "type": "home",
+   "title": "Ragimoff | Профессиональный центр психотерапии и обучения",
+   "h1": "Профессиональная школа психологии",
+   "hero_class": "page-hero",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 47730,
+   "purpose": "витрина: герой с портретом, цифры, экосистема, направления, статьи, книги, форма"
+  },
+  {
+   "path": "ru/panik-ataklar.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Панические атаки | RAGIMOFF",
+   "h1": "Панические атаки",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 39109,
+   "purpose": "панические атаки: раздел направления"
+  },
+  {
+   "path": "ru/program-klinik.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Клиническая психология ДПО | RAGIMOFF",
+   "h1": "Клиническая психология ДПО",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 80723,
+   "purpose": "программа «Клиническая психология»"
+  },
+  {
+   "path": "ru/program-praktikum.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Практикум по психотерапии | RAGIMOFF",
+   "h1": "Практикум по психотерапии",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 8,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 75404,
+   "purpose": "программу «Практикум»"
+  },
+  {
+   "path": "ru/program-umumi.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Общая психология | RAGIMOFF",
+   "h1": "Общая психология",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 81717,
+   "purpose": "программа «Общая психология»"
+  },
+  {
+   "path": "ru/qanunlar.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Юридические основы деятельности | RAGIMOFF",
+   "h1": "Юридические основы деятельности",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 63933,
+   "purpose": "нормативная база: законы и стандарты профессии"
+  },
+  {
+   "path": "ru/samira.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Самира Рагимова — семейная терапия | RAGIMOFF",
+   "h1": "Системная Семейная терапия",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 65087,
+   "purpose": "авторский метод SAMİRA: протокол и обоснование"
+  },
+  {
+   "path": "ru/sosial-fobiya.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Социофобия | RAGIMOFF",
+   "h1": "Социофобия",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 38611,
+   "purpose": "социальная фобия: раздел направления"
+  },
+  {
+   "path": "ru/tehsil.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Обучение | RAGIMOFF",
+   "h1": "Официальный путь в профессию психолога",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 98507,
+   "purpose": "программа обучения: институт ДПО, модули, цены, форма записи"
+  },
+  {
+   "path": "ru/template.html",
+   "lang": "ru",
+   "type": "template",
+   "title": "Səhifə | RAGIMOFF",
+   "h1": "",
+   "hero_class": null,
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": false,
+    "search": false,
+    "sections": 0,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 10699,
+   "purpose": "служебный шаблон страницы (не индексируется)"
+  },
+  {
+   "path": "ru/valideyn-mektebi.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Школа родителей — психология для родителей | RAGIMOFF",
+   "h1": "Школа Родителей",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 6,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 40086,
+   "purpose": "родительская школа: курс для родителей"
+  },
+  {
+   "path": "ru/xidmetler.html",
+   "lang": "ru",
+   "type": "page",
+   "title": "Консультация и услуги | RAGIMOFF",
+   "h1": "Не приговор судьбы",
+   "hero_class": "page-hero-x",
+   "html_lang": "ru",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 49858,
+   "purpose": "каталог услуг: индивидуальная, семейная, подростковая терапия"
+  },
+  {
+   "path": "en/aile-terapiyasi-usaq.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Child-Parent Therapy | RAGIMOFF",
+   "h1": "Child-Parent Therapy",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34069,
+   "purpose": "детская и подростковая семейная терапия"
+  },
+  {
+   "path": "en/aile-terapiyasi.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Family Therapy | RAGIMOFF",
+   "h1": "Family Therapy",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 58367,
+   "purpose": "семейная терапия: направления и форматы работы"
+  },
+  {
+   "path": "en/b2b.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Corporate | RAGIMOFF",
+   "h1": "Psychological solutions for business",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32227,
+   "purpose": "корпоративным клиентам: программы для организаций"
+  },
+  {
+   "path": "en/blog-aile-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "7 Signs of a Toxic Relationship | RAGIMOFF",
+   "h1": "7 Signs of a Toxic Relationship",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31076,
+   "purpose": "7 Signs of a Toxic Relationship"
+  },
+  {
+   "path": "en/blog-aile-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Family on the Brink of Divorce — Therapy or Separation? | RAGIMOFF",
+   "h1": "Family on the Brink of Divorce — Therapy or Separation?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31554,
+   "purpose": "Family on the Brink of Divorce — Therapy or Separation?"
+  },
+  {
+   "path": "en/blog-aile-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How to Argue Constructively as a Couple? | RAGIMOFF",
+   "h1": "How to Argue Constructively as a Couple?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32673,
+   "purpose": "How to Argue Constructively as a Couple?"
+  },
+  {
+   "path": "en/blog-aile-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How to Rebuild Trust After Infidelity? | RAGIMOFF",
+   "h1": "How to Rebuild Trust After Infidelity?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31843,
+   "purpose": "How to Rebuild Trust After Infidelity?"
+  },
+  {
+   "path": "en/blog-aile-usaq-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Child Behavior Problems — Punishment or Understanding? | RAGIMOFF",
+   "h1": "Child Behavior Problems — Punishment or Understanding?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31994,
+   "purpose": "Child Behavior Problems — Punishment or Understanding?"
+  },
+  {
+   "path": "en/blog-aile-usaq-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "A Child After Divorce — How to Help? | RAGIMOFF",
+   "h1": "A Child After Divorce — How to Help?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32341,
+   "purpose": "A Child After Divorce — How to Help?"
+  },
+  {
+   "path": "en/blog-aile-usaq-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "School Refusal — 5 Real Causes | RAGIMOFF",
+   "h1": "School Refusal — 5 Real Causes",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32234,
+   "purpose": "School Refusal — 5 Real Causes"
+  },
+  {
+   "path": "en/blog-aile-usaq-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Saying \"No\" to a Child — How to Build Healthy Boundaries? | RAGIMOFF",
+   "h1": "Saying \"No\" to a Child — How to Build Healthy Boundaries?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32084,
+   "purpose": "Saying \"No\" to a Child — How to Build Healthy Boundaries?"
+  },
+  {
+   "path": "en/blog-aile.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "5 Principles of Resolving Family Conflicts | RAGIMOFF",
+   "h1": "5 Principles of Resolving Family Conflicts",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31055,
+   "purpose": "5 Principles of Resolving Family Conflicts"
+  },
+  {
+   "path": "en/blog-depressiya-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How Does CBT Work for Depression? | RAGIMOFF",
+   "h1": "How Does CBT Work for Depression?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34006,
+   "purpose": "How Does CBT Work for Depression?"
+  },
+  {
+   "path": "en/blog-depressiya-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Antidepressants — Facts and Myths | RAGIMOFF",
+   "h1": "Antidepressants — Facts and Myths",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 30653,
+   "purpose": "Antidepressants — Facts and Myths"
+  },
+  {
+   "path": "en/blog-depressiya-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Postpartum Depression — Recognition and Treatment | RAGIMOFF",
+   "h1": "Postpartum Depression — Recognition and Treatment",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 30549,
+   "purpose": "Postpartum Depression — Recognition and Treatment"
+  },
+  {
+   "path": "en/blog-depressiya-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Seasonal Depression (SAD) and Light Therapy | RAGIMOFF",
+   "h1": "Seasonal Depression (SAD) and Light Therapy",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31151,
+   "purpose": "Seasonal Depression (SAD) and Light Therapy"
+  },
+  {
+   "path": "en/blog-depressiya-protokol.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Treatment of Psychogenic Depression — Clinical Protocol | RAGIMOFF",
+   "h1": "Treatment of Psychogenic Depression",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 45703,
+   "purpose": "Treatment of Psychogenic Depression"
+  },
+  {
+   "path": "en/blog-depressiya.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How Does Depression Differ from Sadness? | RAGIMOFF",
+   "h1": "How Does Depression Differ from Sadness?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31980,
+   "purpose": "How Does Depression Differ from Sadness?"
+  },
+  {
+   "path": "en/blog-enurez-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "PMNE — Primary Monosymptomatic Nocturnal Enuresis: Complete Guide | RAGIMOFF",
+   "h1": "PMNE — Primary Monosymptomatic Nocturnal Enuresis: Complete Guide",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32325,
+   "purpose": "PMNE — Primary Monosymptomatic Nocturnal Enuresis: Complete Guide"
+  },
+  {
+   "path": "en/blog-enurez-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How Does the Enuresis Alarm Work? — International Protocol | RAGIMOFF",
+   "h1": "How Does the Enuresis Alarm Work? — International Protocol",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32212,
+   "purpose": "How Does the Enuresis Alarm Work? — International Protocol"
+  },
+  {
+   "path": "en/blog-enurez-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Desmopressin and Imipramine — Medications for Enuresis | RAGIMOFF",
+   "h1": "Desmopressin and Imipramine — Medications for Enuresis",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32428,
+   "purpose": "Desmopressin and Imipramine — Medications for Enuresis"
+  },
+  {
+   "path": "en/blog-enurez-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "7 Practical Tips for Parents | RAGIMOFF",
+   "h1": "7 Practical Tips for Parents",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32506,
+   "purpose": "7 Practical Tips for Parents"
+  },
+  {
+   "path": "en/blog-enurez-protokol.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Nocturnal Enuresis in Children — Modified Alarm Therapy Protocol | RAGIMOFF",
+   "h1": "Nocturnal Enuresis in Children — Modified Alarm Therapy Protocol",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 42254,
+   "purpose": "Nocturnal Enuresis in Children — Modified Alarm Therapy Protocol"
+  },
+  {
+   "path": "en/blog-enurez.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Child Wets the Bed at Night — 5 False Beliefs | RAGIMOFF",
+   "h1": "Child Wets the Bed at Night — 5 False Beliefs",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31797,
+   "purpose": "Child Wets the Bed at Night — 5 False Beliefs"
+  },
+  {
+   "path": "en/blog-panik-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "What Happens in the Brain During a Panic Attack? | RAGIMOFF",
+   "h1": "What Happens in the Brain During a Panic Attack?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31475,
+   "purpose": "What Happens in the Brain During a Panic Attack?"
+  },
+  {
+   "path": "en/blog-panik-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Agoraphobia — From Panic Attacks to Social Isolation | RAGIMOFF",
+   "h1": "Agoraphobia — From Panic Attacks to Social Isolation",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31956,
+   "purpose": "Agoraphobia — From Panic Attacks to Social Isolation"
+  },
+  {
+   "path": "en/blog-panik-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How Does CBT Work for Panic Disorder? | RAGIMOFF",
+   "h1": "How Does CBT Work for Panic Disorder?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32929,
+   "purpose": "How Does CBT Work for Panic Disorder?"
+  },
+  {
+   "path": "en/blog-panik-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "7 Myths About Panic Attacks and Scientific Answers | RAGIMOFF",
+   "h1": "7 Myths About Panic Attacks and Scientific Answers",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31727,
+   "purpose": "7 Myths About Panic Attacks and Scientific Answers"
+  },
+  {
+   "path": "en/blog-panik.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "What to Do During a Panic Attack? | RAGIMOFF",
+   "h1": "What to Do During a Panic Attack?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 30606,
+   "purpose": "What to Do During a Panic Attack?"
+  },
+  {
+   "path": "en/blog-psixolog-olmaq-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Clinical vs General Psychology — Differences and Choice | RAGIMOFF",
+   "h1": "Clinical vs General Psychology — Differences and Choice",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32286,
+   "purpose": "Clinical vs General Psychology — Differences and Choice"
+  },
+  {
+   "path": "en/blog-psixolog-olmaq-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "How Can a New Psychologist Find Their First Clients? | RAGIMOFF",
+   "h1": "How Can a New Psychologist Find Their First Clients?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32063,
+   "purpose": "How Can a New Psychologist Find Their First Clients?"
+  },
+  {
+   "path": "en/blog-psixolog-olmaq-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Supervision — The Psychologist's Permanent Teacher | RAGIMOFF",
+   "h1": "Supervision — The Psychologist's Permanent Teacher",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31729,
+   "purpose": "Supervision — The Psychologist's Permanent Teacher"
+  },
+  {
+   "path": "en/blog-psixolog-olmaq-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Self-Care for Psychologists — Protection Against Burnout | RAGIMOFF",
+   "h1": "Self-Care for Psychologists — Protection Against Burnout",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32158,
+   "purpose": "Self-Care for Psychologists — Protection Against Burnout"
+  },
+  {
+   "path": "en/blog-psixolog-olmaq.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "A Good Psychologist Never Runs Out of Work — Why? | RAGIMOFF",
+   "h1": "A Good Psychologist Never Runs Out of Work — Why?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32028,
+   "purpose": "A Good Psychologist Never Runs Out of Work — Why?"
+  },
+  {
+   "path": "en/blog-sosial-fobiya-2.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Fear of Public Speaking — CBT and Exposure | RAGIMOFF",
+   "h1": "Fear of Public Speaking — CBT and Exposure",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31660,
+   "purpose": "Fear of Public Speaking — CBT and Exposure"
+  },
+  {
+   "path": "en/blog-sosial-fobiya-3.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Blushing and Sweating — Social Physical Reactions | RAGIMOFF",
+   "h1": "Blushing and Sweating — Social Physical Reactions",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31115,
+   "purpose": "Blushing and Sweating — Social Physical Reactions"
+  },
+  {
+   "path": "en/blog-sosial-fobiya-4.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Social Anxiety vs Introversion — What Is the Difference? | RAGIMOFF",
+   "h1": "Social Anxiety vs Introversion — What Is the Difference?",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31792,
+   "purpose": "Social Anxiety vs Introversion — What Is the Difference?"
+  },
+  {
+   "path": "en/blog-sosial-fobiya-5.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Social Media Anxiety — A New Form | RAGIMOFF",
+   "h1": "Social Media Anxiety — A New Form",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31878,
+   "purpose": "Social Media Anxiety — A New Form"
+  },
+  {
+   "path": "en/blog-sosial-fobiya.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Social Phobia Is Not Just Shyness | RAGIMOFF",
+   "h1": "Social Phobia Is Not Just Shyness",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 31540,
+   "purpose": "Social Phobia Is Not Just Shyness"
+  },
+  {
+   "path": "en/blog-yeniyetme.html",
+   "lang": "en",
+   "type": "blog-article",
+   "title": "Your Teenager Won't Talk to You — It's Not Your Fault | RAGIMOFF",
+   "h1": "Your Teenager Won't Talk to You — It's Not Your Fault",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 32051,
+   "purpose": "Your Teenager Won't Talk to You — It's Not Your Fault"
+  },
+  {
+   "path": "en/blog.html",
+   "lang": "en",
+   "type": "blog-index",
+   "title": "Psychology (blog) | RAGIMOFF",
+   "h1": "Psychology blog",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 2,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 57693,
+   "purpose": "индекс статей блога с фильтром по темам"
+  },
+  {
+   "path": "en/depressiya.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Depression Treatment | RAGIMOFF",
+   "h1": "Depression Treatment",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 35335,
+   "purpose": "депрессия: раздел направления"
+  },
+  {
+   "path": "en/enurez.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Nocturnal Enuresis Treatment | RAGIMOFF",
+   "h1": "Nocturnal Enuresis Treatment",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 12,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 73885,
+   "purpose": "энурез: раздел направления"
+  },
+  {
+   "path": "en/haqqimda.html",
+   "lang": "en",
+   "type": "page",
+   "title": "About Kenan Ragimov | RAGIMOFF",
+   "h1": "Kenan Ragimov",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 41537,
+   "purpose": "о специалисте: биография, квалификации, подход"
+  },
+  {
+   "path": "en/index.html",
+   "lang": "en",
+   "type": "home",
+   "title": "Ragimoff | Professional Psychotherapy and Education Centre",
+   "h1": "Professional Psychology School",
+   "hero_class": "page-hero",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 42113,
+   "purpose": "витрина: герой с портретом, цифры, экосистема, направления, статьи, книги, форма"
+  },
+  {
+   "path": "en/panik-ataklar.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Panic Attacks | RAGIMOFF",
+   "h1": "Panic Attacks",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34739,
+   "purpose": "панические атаки: раздел направления"
+  },
+  {
+   "path": "en/program-klinik.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Clinical Psychology CPD | RAGIMOFF",
+   "h1": "Clinical Psychology CPD",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 71469,
+   "purpose": "программа «Клиническая психология»"
+  },
+  {
+   "path": "en/program-praktikum.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Psychotherapy Practicum | RAGIMOFF",
+   "h1": "Psychotherapy Practicum",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 8,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 67327,
+   "purpose": "программу «Практикум»"
+  },
+  {
+   "path": "en/program-umumi.html",
+   "lang": "en",
+   "type": "page",
+   "title": "General Psychology | RAGIMOFF",
+   "h1": "General Psychology",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 72213,
+   "purpose": "программа «Общая психология»"
+  },
+  {
+   "path": "en/qanunlar.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Legal Basis for Practice | RAGIMOFF",
+   "h1": "Legal basis for practice",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 3,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 55979,
+   "purpose": "нормативная база: законы и стандарты профессии"
+  },
+  {
+   "path": "en/samira.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Samira Rahimova — family therapy | RAGIMOFF",
+   "h1": "Systemic Family Therapy",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 58824,
+   "purpose": "авторский метод SAMİRA: протокол и обоснование"
+  },
+  {
+   "path": "en/sosial-fobiya.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Social Phobia | RAGIMOFF",
+   "h1": "Social Phobia",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 5,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34698,
+   "purpose": "социальная фобия: раздел направления"
+  },
+  {
+   "path": "en/tehsil.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Education | RAGIMOFF",
+   "h1": "The official path to becoming a psychologist",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 9,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 88149,
+   "purpose": "программа обучения: институт ДПО, модули, цены, форма записи"
+  },
+  {
+   "path": "en/valideyn-mektebi.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Parents School — psychology for parents | RAGIMOFF",
+   "h1": "Parents School",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 6,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 34703,
+   "purpose": "родительская школа: курс для родителей"
+  },
+  {
+   "path": "en/xidmetler.html",
+   "lang": "en",
+   "type": "page",
+   "title": "Consultation & Services | RAGIMOFF",
+   "h1": "Not a sentence of fate",
+   "hero_class": "page-hero-x",
+   "html_lang": "en",
+   "blocks": {
+    "header": true,
+    "nav": true,
+    "hero": true,
+    "search": true,
+    "sections": 4,
+    "footer": true,
+    "lang_switch": true
+   },
+   "bytes": 44777,
+   "purpose": "каталог услуг: индивидуальная, семейная, подростковая терапия"
+  }
+ ],
+ "footer": "Файл сгенерирован; раздел «Страницы» пересобирается `python _tools/site-structure-build.py`,\nпроверяется `python _tools/site-structure-check.py --base http://127.0.0.1:8765`."
+}

@@ -184,11 +184,29 @@ function staticChecks(rel, html) {
 }
 
 /* ───────────────────────── прогон Chrome ───────────────────────── */
+/* Локальный кэш Google Fonts (см. _tools/font-cache-server.js): с этой машины
+   fonts.googleapis.com отвечает ~8 секунд, и замер одной страницы выходил
+   3 минуты (обход 171 страницы — три часа). При AUDIT_FONTCACHE=1 ссылки в
+   копии страницы заменяются на локальный сервер 127.0.0.1:8776. */
+const crypto = require('crypto');
+function fcHash(u) { return crypto.createHash('md5').update(u).digest('hex'); }
+function rewriteFonts(html) {
+  if (!process.env.AUDIT_FONTCACHE) return html;
+  const P = process.env.AUDIT_FONTCACHE_PORT || '8776';
+  html = html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"'`)\s<>]+/g, function (u) {
+    return 'http://127.0.0.1:' + P + '/fc/' + fcHash(u.replace(/&amp;/g, '&')) + '.css';
+  });
+  html = html.replace(/https:\/\/fonts\.gstatic\.com\/[^"'`)\s<>)]+/g, function (u) {
+    return 'http://127.0.0.1:' + P + '/fc/' + fcHash(u) + '.woff2';
+  });
+  return html;
+}
+
 function withProbe(rel, probeSrc, prefix) {
   const src = path.join(ROOT, rel);
   const dir = path.dirname(src);
   const tmp = path.join(dir, '_a.' + path.basename(src));
-  let html = fs.readFileSync(src, 'utf8');
+  let html = rewriteFonts(fs.readFileSync(src, 'utf8'));
   let probe = (prefix || '') + (probeSrc || PROBE);
   /* текст страницы снимаем тем же прогоном: innerText дешёв, а грамматика
      потом проверяется по отрисованному, а не по разметке */
@@ -208,6 +226,13 @@ function chromeDump(args) {
   });
 }
 
+/* Аргументы виртуального времени: по умолчанию 9000 мс, AUDIT_VTB=off снимает
+   бюджет вовсе (Chrome тогда отдаёт DOM сразу после load и +300 мс зонда). */
+function vtbArgs() {
+  const v = process.env.AUDIT_VTB;
+  return (v === 'off' || v === '0') ? [] : ['--virtual-time-budget=' + (v || '9000')];
+}
+
 async function measure(rel, width, job, probeSrc, marker, prefix) {
   const relTmp = withProbe(rel, probeSrc, prefix);
   const url = 'http://127.0.0.1:' + PORT + '/' + encodeURI(relTmp);
@@ -218,11 +243,20 @@ async function measure(rel, width, job, probeSrc, marker, prefix) {
       '--headless=new', '--disable-gpu', '--no-sandbox', '--disable-extensions',
       '--lang=az', '--accept-lang=az',
       '--user-data-dir=' + userDir,
-      '--virtual-time-budget=9000',
+      /* ipapi.co — заглушка: shared.js на каждой странице делает внешний
+         запрос геолокации, и виртуальное время ждёт его (замер одной
+         страницы выходил 3 минуты вместо секунд). Приём взят из
+         _tools/hero-survey.js. */
+      '--host-resolver-rules=MAP ipapi.co 127.0.0.1:9',
+      /* Бюджет виртуального времени настраивается, а AUDIT_VTB=off его
+         снимает. С бюджетом Chrome на этой машине держит страницу ~2 минуты
+         (виртуальные часы стоят, пока висят сетевые задачи), без него —
+         ~7 секунд; зонд при снятом бюджете фиксирует состояние по load и
+         через 300 мс (см. site-audit-probe.js). */
       '--window-size=' + width + ',1400',
       '--force-device-scale-factor=1',
       '--dump-dom', url
-    ]);
+    ].concat(vtbArgs()));
   } finally {
     try { fs.unlinkSync(path.join(ROOT, relTmp)); } catch (e) {}
     try { fs.rmSync(userDir, { recursive: true, force: true }); } catch (e) {}
