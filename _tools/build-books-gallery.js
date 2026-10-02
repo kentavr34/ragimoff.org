@@ -319,6 +319,26 @@ const BOOKS = [
       en: '/books/freud-medeniyyetin-sancilari/',
     },
   },
+  {
+    /* «Flissə məktublar» — НАШ перевод писем Фрейда Вильгельму Флиссу (1887–1904).
+       Печатной азербайджанской книги нет, EPUB собран нами; русская версия — зеркало
+       freudproject, отдельной страницей на сайт пока не выкладывалась. */
+    id: 'freud-fliesse-mektublari',
+    authorKey: 'freud',
+    cover: 'freud-fliesse-mektublari.jpg',
+    coverTitle: { az: 'Flissə<br>məktublar', ru: 'Письма<br>Флиссу', en: 'Letters to<br>Fliess' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1887–1904',
+    title: { az: 'Flissə məktublar (1887–1904)', ru: 'Письма Вильгельму Флиссу (1887–1904)', en: 'Letters to Wilhelm Fliess (1887–1904)' },
+    meta: {
+      az: 'Ziqmund Freyd · 1887–1904 · AZ',
+      ru: 'Зигмунд Фрейд · 1887–1904 · AZ',
+      en: 'Sigmund Freud · 1887–1904 · AZ',
+    },
+    price: null,                                  /* только чтение, без заказа */
+    langs: ['az'],
+    read: { az: '/books/freud-fliesse-mektublari/', ru: null, en: null },
+  },
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }

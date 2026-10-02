@@ -16,7 +16,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const ALL = ['freud-musa', 'freud-yuxularin-yozumu', 'freud-seksualligin-psixologiyasi',
   'freud-psixoanalizle-tanishliq', 'freud-sevgi-mektublari', 'freud-aforizmlar',
-  'freud-totem-ve-tabu', 'freud-medeniyyetin-sancilari'];
+  'freud-totem-ve-tabu', 'freud-medeniyyetin-sancilari', 'freud-fliesse-mektublari'];
 /* книг только с русской версией больше нет: 30.09.2026 у «Недовольства культурой»
    появился наш азербайджанский перевод (8 разделов в корне books/<slug>/) */
 const RU_ONLY = [];

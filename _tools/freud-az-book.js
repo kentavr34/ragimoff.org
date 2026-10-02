@@ -267,6 +267,61 @@ BOOKS.push({
   ],
 });
 
+/* «Flissə məktublar» — НАШ перевод писем Фрейда Вильгельму Флиссу (1887–1904).
+   Источник — русское зеркало freudproject (категория «Письма Флиссу», 42 поста).
+   Печатной азербайджанской книги нет, EPUB собран нами из переведённых писем
+   (_make_fliess_epub.py): заголовок каждой позиции — «дата — тема» (§4.3 стандарта),
+   порядок — хронология источника, письма от Флисса помечены, памфлет 1906 года — отдельной позицией. */
+BOOKS.push({
+  slug: 'freud-fliesse-mektublari', logo: 'FM', epub: 'Flissə məktublar.epub',
+  title: 'Flissə məktublar', titlePrinted: 'FLİSSƏ MƏKTUBLAR',
+  author: 'Ziqmund Freyd', year: '1887–1904', yearSub: 'Yazışma illəri — 1887–1904', ru: false, prefix: 'fliess',
+  chapters: [
+    { title: '24 noyabr 1887 — xanım A.-nın diaqnozu və elmi işlər barədə', short: '24 noyabr 1887', find: ['24 noyabr 1887 — xanım A.-nın diaqnozu və elmi işlər barədə'], pdfPage: 1 },
+    { title: '28 dekabr 1887 — Bernhaymın tərcüməsi və hipnoz uğurları barədə', short: '28 dekabr 1887', find: ['28 dekabr 1887 — Bernhaymın tərcüməsi və hipnoz uğurları barədə'], pdfPage: 2 },
+    { title: '4 fevral 1888 — frau A., tibbi cəmiyyət qalmaqalı və Meynert barədə', short: '4 fevral 1888', find: ['4 fevral 1888 — frau A., tibbi cəmiyyət qalmaqalı və Meynert barədə'], pdfPage: 3 },
+    { title: '28 may 1888 — yay kurortu seçimi və yazı işləri barədə', short: '28 may 1888', find: ['28 may 1888 — yay kurortu seçimi və yazı işləri barədə'], pdfPage: 4 },
+    { title: '29 avqust 1888 — ümumi praktikadan imtina və təlqin kitabı barədə', short: '29 avqust 1888', find: ['29 avqust 1888 — ümumi praktikadan imtina və təlqin kitabı barədə'], pdfPage: 5 },
+    { title: '21 iyul 1890 — konqres dəvəti və Berlinə səfər barədə', short: '21 iyul 1890', find: ['21 iyul 1890 — konqres dəvəti və Berlinə səfər barədə'], pdfPage: 6 },
+    { title: '1 avqust 1890 — Berlinə səfərin baş tutmaması barədə', short: '1 avqust 1890', find: ['1 avqust 1890 — Berlinə səfərin baş tutmaması barədə'], pdfPage: 7 },
+    { title: '11 avqust 1890 — Zalsburqda görüş və tarixin təyini barədə', short: '11 avqust 1890', find: ['11 avqust 1890 — Zalsburqda görüş və tarixin təyini barədə'], pdfPage: 8 },
+    { title: '2 may 1891 — afaziya kitabı və Oliverin doğulması barədə', short: '2 may 1891', find: ['2 may 1891 — afaziya kitabı və Oliverin doğulması barədə'], pdfPage: 9 },
+    { title: '17 avqust 1891 — səyahət planları və görüş istəyi barədə', short: '17 avqust 1891', find: ['17 avqust 1891 — səyahət planları və görüş istəyi barədə'], pdfPage: 10 },
+    { title: '11 sentyabr 1891 — sentyabrın 15-də gözlənilən görüş barədə', short: '11 sentyabr 1891', find: ['11 sentyabr 1891 — sentyabrın 15-də gözlənilən görüş barədə'], pdfPage: 11 },
+    { title: '25 may 1892 — toy təbriki və hədiyyə seçimi barədə', short: '25 may 1892', find: ['25 may 1892 — toy təbriki və hədiyyə seçimi barədə'], pdfPage: 12 },
+    { title: '28 iyun 1892 — Dostun diaqnostik bacarına etimad', short: '28 iyun 1892', find: ['28 iyun 1892 — Dostun diaqnostik bacarına etimad'], pdfPage: 13 },
+    { title: '12 iyul 1892 — Dostun atasını ziyarət və seçimi', short: '12 iyul 1892', find: ['12 iyul 1892 — Dostun atasını ziyarət və seçimi'], pdfPage: 14 },
+    { title: '4 oktyabr 1892 — Freydin ünvanı və qəbul saatları', short: '4 oktyabr 1892', find: ['4 oktyabr 1892 — Freydin ünvanı və qəbul saatları'], pdfPage: 15 },
+    { title: '21 oktyabr 1892 — Fr pasiyentini ziyarət və diaqnoz mübahisəsi', short: '21 oktyabr 1892', find: ['21 oktyabr 1892 — Fr pasiyentini ziyarət və diaqnoz mübahisəsi'], pdfPage: 16 },
+    { title: '24 oktyabr 1892 — Freydin xidməti məktublaşması haqqında', short: '24 oktyabr 1892', find: ['24 oktyabr 1892 — Freydin xidməti məktublaşması haqqında'], pdfPage: 17 },
+    { title: '31 oktyabr 1892 — Freydin xidməti qeydi haqqında', short: '31 oktyabr 1892', find: ['31 oktyabr 1892 — Freydin xidməti qeydi haqqında'], pdfPage: 18 },
+    { title: '3 noyabr 1892 — Alınan hədiyyəyə minnətdarlıq', short: '3 noyabr 1892', find: ['3 noyabr 1892 — Alınan hədiyyəyə minnətdarlıq'], pdfPage: 19 },
+    { title: '18 dekabr 1892 — Freydin məktublaşmasının başlanğıcı haqqında', short: '18 dekabr 1892', find: ['18 dekabr 1892 — Freydin məktublaşmasının başlanğıcı haqqında'], pdfPage: 20 },
+    { title: '5 yanvar 1893 — Berggasse ünvanından Freydin məktubu', short: '5 yanvar 1893', find: ['5 yanvar 1893 — Berggasse ünvanından Freydin məktubu'], pdfPage: 21 },
+    { title: '14 may 1893 — Nevraljiya baş ağrısı olan pasiyentin tövsiyəsi', short: '14 may 1893', find: ['14 may 1893 — Nevraljiya baş ağrısı olan pasiyentin tövsiyəsi'], pdfPage: 22 },
+    { title: '15 may 1893 — Freydin sağlamlığı və dostuna məsləhət', short: '15 may 1893', find: ['15 may 1893 — Freydin sağlamlığı və dostuna məsləhət'], pdfPage: 23 },
+    { title: '30 may 1893 — Sağalma və dostdan məktub sevinci', short: '30 may 1893', find: ['30 may 1893 — Sağalma və dostdan məktub sevinci'], pdfPage: 24 },
+    { title: '19 aprel 1894 — Sağlamlıq və tütün çəkilməkdən imtina', short: '19 aprel 1894', find: ['19 aprel 1894 — Sağlamlıq və tütün çəkilməkdən imtina'], pdfPage: 25 },
+    { title: '25 aprel 1894 — Freydin sağlamlığı və diaqnozdakı şübhələr', short: '25 aprel 1894', find: ['25 aprel 1894 — Freydin sağlamlığı və diaqnozdakı şübhələr'], pdfPage: 26 },
+    { title: '(tarixsiz)', short: '(tarixsiz)', find: ['(tarixsiz)'], pdfPage: 27 },
+    { title: '14 iyul 1894 — Tütündən imtina və yeni işlər', short: '14 iyul 1894', find: ['14 iyul 1894 — Tütündən imtina və yeni işlər'], pdfPage: 28 },
+    { title: '24 iyul 1895 — Sağlamlığa diqqət və gündəlik işlər', short: '24 iyul 1895', find: ['24 iyul 1895 — Sağlamlığa diqqət və gündəlik işlər'], pdfPage: 29 },
+    { title: '29 sentyabr 1896 — Köçməyə minnətdarlıq və xəstəlik təsviri', short: '29 sentyabr 1896', find: ['29 sentyabr 1896 — Köçməyə minnətdarlıq və xəstəlik təsviri'], pdfPage: 30 },
+    { title: '6 dekabr 1896 — Psixik aparat qatları hipotezi haqqında', short: '6 dekabr 1896', find: ['6 dekabr 1896 — Psixik aparat qatları hipotezi haqqında'], pdfPage: 31 },
+    { title: '7 iyul 1897 — Nadir məktublara görə üzr istəmə', short: '7 iyul 1897', find: ['7 iyul 1897 — Nadir məktublara görə üzr istəmə'], pdfPage: 32 },
+    { title: '3 oktyabr 1897 — Ziyarət və şəxsi işlərin müzakirəsi', short: '3 oktyabr 1897', find: ['3 oktyabr 1897 — Ziyarət və şəxsi işlərin müzakirəsi'], pdfPage: 33 },
+    { title: '1 fevral 1900 — Xəstəliyin təkrarlanması narahatlığı', short: '1 fevral 1900', find: ['1 fevral 1900 — Xəstəliyin təkrarlanması narahatlığı'], pdfPage: 34 },
+    { title: '23 oktyabr 1900 — Yaşlı nəslin getməsinə təbrik', short: '23 oktyabr 1900', find: ['23 oktyabr 1900 — Yaşlı nəslin getməsinə təbrik'], pdfPage: 35 },
+    { title: '26 aprel 1904 — Elmi jurnal yaratmaqda əməkdaşlıq təklifi', short: '26 aprel 1904', find: ['26 aprel 1904 — Elmi jurnal yaratmaqda əməkdaşlıq təklifi'], pdfPage: 36 },
+    { title: '27 aprel 1904 — Vilhelm Flissdən Ziqmund Freydə: Ziqmundun tanınması sevinci', short: '27 aprel 1904', find: ['27 aprel 1904 — Vilhelm Flissdən Ziqmund Freydə: Ziqmundun tanınması sevinci'], pdfPage: 37 },
+    { title: '15 iyul 1904 — Mariin bacısının gəlinliyinin təbriki', short: '15 iyul 1904', find: ['15 iyul 1904 — Mariin bacısının gəlinliyinin təbriki'], pdfPage: 38 },
+    { title: '20 iyul 1904 — Vilhelm Flissdən Ziqmund Freydə: Vyan otelindən məktub', short: '20 iyul 1904', find: ['20 iyul 1904 — Vilhelm Flissdən Ziqmund Freydə: Vyan otelindən məktub'], pdfPage: 39 },
+    { title: '23 iyul 1904 — Freydin Vilhelm Sonnenfelusa məktubu', short: '23 iyul 1904', find: ['23 iyul 1904 — Freydin Vilhelm Sonnenfelusa məktubu'], pdfPage: 40 },
+    { title: '26 iyul 1904 — Vilhelm Flissdən Ziqmund Freydə: Weiningerin əlyazmasının nəşri mübahisəsi', short: '26 iyul 1904', find: ['26 iyul 1904 — Vilhelm Flissdən Ziqmund Freydə: Weiningerin əlyazmasının nəşri mübahisəsi'], pdfPage: 41 },
+    { title: '1906 — Riçard Pfenniq pamfletindən iki məktub', short: '1906', find: ['1906 — Riçard Pfenniq pamfletindən iki məktub'], pdfPage: 42 }
+  ],
+});
+
 /* ── каркас страницы ── */
 const TOC_STYLE = '<style>' +
   '.home-hero{padding:16px 0 11px}' +
