@@ -1552,9 +1552,10 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   .page-hero-x .photo-col,
   .pg-hero .photo-col {
     position: absolute !important;
-    /* верх = ровно 50 px от верхней грани блока героя: его верхний паддинг
-       равен --hero-pad-top (48 px на десктопе), значит портрет начинается
-       на 2 px НИЖЕ верха контента, а от грани блока — на 50 px */
+    /* верх блока → верх фото = --hero-gap-top (0 с 03.10.2026, третья волна:
+       портрет растянут между гранями блока; при шаге 50 он занимал 88 %
+       высоты и «увеличить» было неоткуда). Верхний паддинг обёртки —
+       --hero-pad-top (48), поэтому в calc отнимается он. */
     top: calc(var(--hero-gap-top) - var(--hero-pad-top)) !important;
     /* низ = нижняя грань блока: обёртка кончается на --hero-gap-bottom
        выше грани, добавляем её и 1 px нижней рамки блока */
@@ -1564,7 +1565,11 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     margin: 0 !important;
     justify-content: flex-end !important;
     align-items: flex-end !important;
-    z-index: 1 !important;
+    /* z-слои героя (владелец 03.10.2026: «как будто над фото героя есть
+       какая-то наложенная тень — вывести фото на слой поверх тени»):
+       тень/свечение z1 → ФОТО z2 → текст z3. Было фото z1 и пятно z2 —
+       затемнение лежало поверх портрета и он выглядел притемнённым. */
+    z-index: 2 !important;
   }
   .page-hero .photo-col img,
   .page-hero-x .photo-col img,
@@ -1587,20 +1592,43 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   /* Тёмное пятно под текстовой зоной — мягкое, без граней. Линейный
      градиент пробовал: по его краю на золотом свечении героя вылезала
      прямоугольная плашка, а владелец её запретил. Радиальное пятно граней
-     не даёт и над фоном незаметно, но закрывает пересечение текста с
-     портретом. Замер контраста (текст #F2EDE3 к фону под ним, портрет на
-     месте, буквы скрыты): было в самом узком месте 2.37:1 — заголовок RU
-     заходит на лицо; при .72 в центре пятна стало больше 6:1, на десктопе
-     AZ/EN 14–16:1. */
+     не даёт и над фоном незаметно.
+     С 03.10.2026 (третья волна) пятно лежит ПОД портретом (z1, фото z2):
+     владелец: «как будто над фото героя есть какая-то наложенная тень —
+     вывести фото на слой поверх тени». Фон героя пятно по-прежнему держит
+     тёмным, а портрет больше не притемняет. Читаемость текста на
+     пересечении с портретом держит не пятно, а градиент текстовой зоны
+     (.hero-text::after ниже) — он не накрывает портрет целиком. */
   .page-hero .hero-inner::after {
     content: '' !important;
     position: absolute !important;
     inset: -40px !important;
-    z-index: 2 !important;
+    z-index: 1 !important;
     pointer-events: none !important;
     background: radial-gradient(58% 62% at 72% 46%,
         rgba(7, 9, 14, .72) 0%, rgba(7, 9, 14, .55) 38%,
         rgba(7, 9, 14, .20) 70%, rgba(7, 9, 14, 0) 100%) !important;
+  }
+  /* ЧИТАЕМОСТЬ ЗАГОЛОВКА НА ПЕРЕСЕЧЕНИИ С ПОРТРЕТОМ. Владелец 03.10.2026:
+     «если текст теряет контраст — решать не затемнением фото, а мягким
+     затемнением именно текстовой зоны». Ширина = колонка текста
+     (--hero-text-col, 64 %): при 1440 колонка кончается на 896, портрет
+     начинается на 938 — градиент до портрета не достаёт вовсе; на узких
+     десктопах он накрывает только левую полосу портрета под текстом,
+     лицо остаётся открытым. z2 — над портретом (z2, позже в потоке),
+     под текстом (z3). */
+  .page-hero .hero-text::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: var(--hero-text-col) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    background: linear-gradient(90deg,
+        rgba(7, 9, 14, .55) 0%, rgba(7, 9, 14, .68) 60%,
+        rgba(7, 9, 14, .62) 88%, rgba(7, 9, 14, 0) 100%) !important;
   }
 }
 
@@ -1664,6 +1692,35 @@ input[type="search"]::placeholder {
 }
 /* кнопка поиска — интерфейсная роль */
 .hero-search-btn, .ph-search-btn { font-family: var(--f-mono) !important; }
+
+/* ── ВСЕ ПОЛЯ ВВОДА САЙТА — ОДИН НАБОР (волна 03.10.2026, третья) ──────
+   Владелец: «шрифт текста внутри поисковика — он старый — обновить его с
+   текущим стилем сайта», уточнение владельца: «на всех страницах сайта».
+   Сплошной обмер 171 страницы @1440 и @390 (пробник по input/textarea/
+   select, вычисленные стили) показал: семейство и кегль уже сходились
+   (Montserrat .95rem — роль интерфейса, блок 18), а расходились ПЛЕЙСХОЛДЕРЫ
+   форм: 138 полей на страницах обучения/услуг несли унаследованный
+   rgba(242,237,227,.5) вместо стандартного --mid #A8A296, а на отдельных
+   страницах оставались инлайновые 13/14 px и `font-family: inherit`
+   (шапка главной — #site-si, модалки .km-*). Правило ниже закрывает весь
+   класс сразу: любое поле ввода на любой странице — Montserrat, .95rem,
+   текст #F2EDE3, placeholder #A8A296. Кнопки (input type=button/submit/
+   reset) и чекбоксы не трогаем — у кнопок своя роль (--f-mono). */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="hidden"]),
+textarea, select {
+  font-family: var(--f-ui) !important;
+  font-size: .95rem !important;
+  color: var(--fg) !important;
+  letter-spacing: 0 !important;
+}
+input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="hidden"])::placeholder,
+textarea::placeholder {
+  color: var(--mid) !important;      /* #A8A296 — как в блоке 18 */
+  font-family: var(--f-ui) !important;
+  font-size: .95rem !important;
+  opacity: 1 !important;
+}
+select option { color: var(--fg); background: var(--bg-2); }
 
 /* ═══════════════════════════════════════════════════════════════════
    19. ОТСТУП ПОД ПОИСКОМ В ГЕРОЕ: 50 px / 25 px
