@@ -1820,13 +1820,21 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   --hero-h: 520px;
   /* ОДИН КЕГЛЬ H1 на все страницы (соразмерно узкому десктопу) */
   --hero-h1-fs: clamp(32px, 3.4vw, 48px);
-  /* СЛОТ H1 — две строки (1.15) при этом кегле: заголовок любой длины
-     занимает не больше двух строк и не сдвигает лид */
-  --hero-h1-slot: calc(2.3 * var(--hero-h1-fs));
-  /* СЛОТ ЛИДА — две строки (17.5 × 1.75 = 30.6) */
-  --hero-lead-slot: 62px;
-  /* ОДИН зазор «метка → H1» и «H1 → лид» */
-  --hero-stack-gap: 40px;
+  /* СЛОТ H1 — одна строка (1.15). Двухстрочный слот СНЯТ (волна 03.10.2026):
+     он давал 55 px мёртвого поля у 79 страниц из 168 (заголовок в одну
+     строку) и «дыру» 95 px вместо 40 между H1 и лидом. Теперь коробка H1
+     равна своим строкам, а лишнее место собирается в зазоре лид → поиск. */
+  --hero-h1-slot: calc(1.15 * var(--hero-h1-fs));
+  /* СЛОТ ЛИДА — одна строка (17.5 × 1.75 = 30.6), по той же причине:
+     двухстрочный слот оставлял 30,6 px пустоты у 113 страниц из 168 */
+  --hero-lead-slot: 31px;
+  /* ЗАЗОРЫ ЛЕВОГО СТОЛБА — единая шкала 24 / 20 / 32 (владелец 03.10.2026:
+     «интервалы и отступы по вертикали сильно разнятся — выровнять логичнее»).
+     Раньше «метка → H1» и «H1 → лид» были одним числом 40, но с мёртвыми
+     слотами видимый зазор H1 → лид выходил 95 px. */
+  --hero-gap-badge: 24px;
+  --hero-gap-h1: 20px;
+  --hero-gap-lead: 32px;   /* минимум; остаток высоты собирается ЗДЕСЬ */
   /* Текстовая колонка: левее фото (фото — правая колонка сетки) */
   --hero-text-col: 62%;
   /* Высота панели поиска — одна на сайте (обёртка равна панели) */
@@ -1834,11 +1842,11 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   /* ТЕЛЕФОН/ПЛАНШЕТ (≤860): единая логика — метка 32, H1 до трёх строк,
      фото в потоке под H1 (полоса фиксированной высоты), лид, поиск, 25 вниз */
   --hero-h1-fs-m: clamp(22px, 7.2vw, 34px);
-  --hero-h1-slot-m: calc(3.45 * var(--hero-h1-fs-m));
-  --hero-lead-slot-m: 92px;
+  --hero-h1-slot-m: 0px;
+  --hero-lead-slot-m: 0px;
   --hero-stack-gap-m: 24px;
   --hero-photo-band-m: 170px;
-  --hero-search-h-m: 46px;
+  --hero-search-h-m: 52px;
   --hero-h-m: 620px;
 }
 
@@ -1882,14 +1890,15 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     width: 100% !important;
     max-width: 100% !important;
   }
-  /* 3. МЕТКА: верх блока → метка 88 (--s-block), один зазор до H1. */
+  /* 3. МЕТКА: верх блока → метка 88 (--s-block), зазор до H1 — 24. */
   section.page-hero.page-hero .hero-text > .badge,
   section.page-hero-x.page-hero-x .ph-badge,
   section.pg-hero.pg-hero .badge {
-    margin: 0 0 var(--hero-stack-gap) 0 !important;
+    margin: 0 0 var(--hero-gap-badge) 0 !important;
     flex: 0 0 auto !important;
   }
-  /* 4. H1: один кегль, слот в две строки, текстовая колонка слева. */
+  /* 4. H1: один кегль, коробка = свои строки (мёртвого слота нет),
+        текстовая колонка слева. */
   section.page-hero.page-hero .hero-h1,
   section.page-hero-x.page-hero-x .ph-h1,
   section.pg-hero.pg-hero .hero-h1 {
@@ -1897,7 +1906,7 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     line-height: 1.15 !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
-    margin: 0 0 var(--hero-stack-gap) 0 !important;
+    margin: 0 0 var(--hero-gap-h1) 0 !important;
     padding: 0 !important;
     min-height: var(--hero-h1-slot) !important;
     max-width: var(--hero-text-col) !important;
@@ -1954,12 +1963,14 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   section.page-hero-x.page-hero-x .ph-sub .ph-sub-mob,
   section.pg-hero.pg-hero .hero-lead .lead-line { display: none !important; }
   /* 6. ПОИСК: обёртка равна панели и прижата к низу блока —
-        свободное место собирается НАД поиском, низ остаётся 50 px. */
+        свободное место собирается НАД поиском, низ остаётся 50 px.
+        padding-top = --hero-gap-lead: это ПОЛ зазора «лид → поиск», когда
+        остаток высоты меньше (страницы с длинным лидом). */
   section.page-hero.page-hero .hero-search-wrap,
   section.page-hero-x.page-hero-x .ph-search-wrap,
   section.pg-hero.pg-hero .ph-search-wrap {
     margin: auto 0 0 0 !important;
-    padding: 0 !important;
+    padding: var(--hero-gap-lead) 0 0 0 !important;
     width: 620px !important;
     max-width: 100% !important;
     flex: 0 0 auto !important;
@@ -2035,7 +2046,7 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     margin: 0 0 var(--hero-stack-gap-m) 0 !important;
     align-self: center !important;
   }
-  /* H1: один кегль, слот в три строки, по центру */
+  /* H1: один кегль, коробка = свои строки (мёртвого слота нет), по центру */
   section.page-hero.page-hero .hero-h1,
   section.page-hero-x.page-hero-x .ph-h1,
   section.pg-hero.pg-hero .hero-h1 {
@@ -2109,7 +2120,7 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   section.pg-hero.pg-hero:not(:has(.photo-col)) .hero-h1 {
     margin-bottom: calc(var(--hero-stack-gap-m) + var(--hero-photo-band-m) + var(--hero-stack-gap-m)) !important;
   }
-  /* ЛИД: один кегль, слот в три строки */
+  /* ЛИД: один кегль, коробка = свои строки (мёртвого слота нет) */
   section.page-hero.page-hero .hero-lead,
   section.page-hero-x.page-hero-x .ph-sub,
   section.pg-hero.pg-hero .hero-lead {
@@ -2137,12 +2148,13 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   section.page-hero.page-hero .hero-lead .desk-lead-line,
   section.page-hero-x.page-hero-x .ph-sub .ph-sub-desk,
   section.pg-hero.pg-hero .hero-lead .desk-lead-line { display: none !important; }
-  /* ПОИСК: прижат к низу блока, снизу 25 px */
+  /* ПОИСК: прижат к низу блока, снизу 25 px. padding-top даёт ПОЛ зазора
+     «лид → поиск» = 24 (остаток высоты собирается здесь же, над поиском). */
   section.page-hero.page-hero .hero-search-wrap,
   section.page-hero-x.page-hero-x .ph-search-wrap,
   section.pg-hero.pg-hero .ph-search-wrap {
     margin: auto 0 0 0 !important;
-    padding: 0 !important;
+    padding: var(--hero-stack-gap-m) 0 0 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     flex: 0 0 auto !important;
@@ -2156,6 +2168,15 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     min-height: var(--hero-search-h-m) !important;
     margin: 0 !important;
     max-width: 100% !important;
+  }
+  /* Кнопка поиска на телефоне — цель касания не ниже 44 px (норма §моб.).
+     Бар 52 px, панель поиска внутри имеет паддинг 4 px → 44 встаёт ровно. */
+  section.page-hero .hero-search-btn,
+  section.page-hero-x .hero-search-btn,
+  section.page-hero-x .ph-search-btn,
+  section.pg-hero .hero-search-btn,
+  section.pg-hero .ph-search-btn {
+    min-height: 44px !important;
   }
 }
 
@@ -2202,7 +2223,10 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
 @media (max-width: 860px) {
   :root {
     --hero-photo-band-m: clamp(232px, 73vw, 420px);
-    --hero-lead-slot-m: 123px;              /* 4 строки 17,5 × 1,75 */
+    /* Слот лида снят (03.10.2026): коробка = свои строки. Четырёхстрочный
+       слот 123 px оставлял 31 px пустоты у страниц с тремя строками лида
+       (115 из 168 по десктопному обмеру) — та же «дыра», что и в H1. */
+    --hero-lead-slot-m: 0px;
   }
   /* строки H1 — балансировка по словам (было text-wrap: wrap из блока 24) */
   section.page-hero.page-hero .hero-h1,
@@ -2244,3 +2268,65 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
 .form-radio-lbl { color: rgba(242, 237, 227, .72) !important; }
 .form-radio-tile:checked + .form-radio-lbl { color: var(--navy) !important; }
 .form-radio-lbl:hover { color: var(--fg) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   27. МОБИЛЬНАЯ ШКАЛА — ОДНА НА ВСЕ СТРАНИЦЫ
+   Владелец 03.10.2026: «в мобильной версии пропорции неверны у многих
+   объектов — стилизовать, стандартизировать — применить ко всем
+   страницам сайта».
+
+   Замер «до» (390 и 320, `_tools/mobile-audit.js`, 6 страниц):
+     кнопка поиска в герое ....... 51 × 36   (норма 44)
+     .btn (главная/призрачная) ... 344 × 40,9 (норма 44)
+     .filter-btn (фильтр блога) .. 74–157 × 36 (норма 44)
+     .card-link «Ətraflı →» ...... 16,3 px по высоте
+     полоса цифр ................. паддинг 48/48 (норма 32)
+     подписи-моно ................ 9,28–9,92 px (пол 10)
+
+   Шкала (те же числа, что и в §3 стандарта, только сведённые в токены):
+     между блоками 32 (--m-gap-sec) · внутри блока 24 (--m-gap-in) ·
+     внутри карточки 16 (--m-gap-card) · цель касания 44 (--m-tap).
+   Планшет (561–768) оставляет 48 между блоками — это `--s-block`, как в §3.
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 860px) {
+  :root {
+    --m-tap: 44px;         /* минимальная цель касания — кнопки, чипы, ссылки */
+    --m-gap-sec: 32px;     /* между блоками на телефоне (≤560) */
+    --m-gap-in: 24px;      /* внутри блока */
+    --m-gap-card: 16px;    /* внутри карточки */
+    --m-label: .625rem;    /* пол кегля меток и подписей — 10 px */
+  }
+  /* 1. ЦЕЛЬ КАСАНИЯ. Одно число на все действия: кнопка, чип фильтра,
+        ссылка-действие в карточке. Было 36–41 px — палец не попадал. */
+  .btn, .btn-fill, .btn-line, .btn-dark, .social-btn, .book-read-btn,
+  .filter-btn, .card-link, .blog-card-read, .dir-link, .mn-toggle {
+    min-height: var(--m-tap) !important;
+    align-items: center !important;
+  }
+  /* 2. ПОЛОСА ЦИФР: паддинг 32 вместо 48 (шкала §3 для телефона) и
+        зазор 16 между колонками — подписи слипались (замер 390: подпись
+        152 px в колонке 160). Полоса — flex с `flex: 0 0 50%` у элемента
+        (gtc.css), поэтому зазор снимаем с той же базы:
+        2 × (50 % − 8) + 16 = 100 %. Без вычитания вторая колонка уезжала
+        на вторую строку (проверено — полоса становилась одноколоночной). */
+  .stats-strip {
+    padding-top: var(--m-gap-sec) !important;
+    padding-bottom: var(--m-gap-sec) !important;
+  }
+  .stats-inner { column-gap: var(--m-gap-card) !important; }
+  .stat-item { flex: 0 0 calc(50% - var(--m-gap-card) / 2) !important; padding: var(--m-gap-in) var(--s1) !important; }
+  /* 3. МЕТКИ И ПОДПИСИ: пол 10 px. Метка героя была 9,28 (0,58rem),
+        подпись полосы цифр 9,92, ссылка карточки 9,6 — на телефоне это
+        уже не читалось. */
+  .badge, .ph-badge, .stat-label, .card-label, .blog-card-cat,
+  .card-link, .blog-card-read, .mn-label {
+    font-size: var(--m-label) !important;
+  }
+  /* 4. ЗАГОЛОВОК ГЕРОЯ: пол 24 px (DESIGN-STANDARD §6a «пол заголовка»).
+        При 320 кегль 7,2vw давал 23,04 — ниже пола. */
+  section.page-hero.page-hero .hero-h1,
+  section.page-hero-x.page-hero-x .ph-h1,
+  section.pg-hero.pg-hero .hero-h1 {
+    font-size: clamp(24px, 7.2vw, 34px) !important;
+  }
+}
