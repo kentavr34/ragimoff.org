@@ -1841,7 +1841,9 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   --hero-search-h: 50px;
   /* ТЕЛЕФОН/ПЛАНШЕТ (≤860): единая логика — метка 32, H1 до трёх строк,
      фото в потоке под H1 (полоса фиксированной высоты), лид, поиск, 25 вниз */
-  --hero-h1-fs-m: clamp(22px, 7.2vw, 34px);
+  /* пол 24 px — DESIGN-STANDARD §6a «пол заголовка»: при 320 семь vw давали
+     23,04, заголовок читался одним уровнем с подзаголовком */
+  --hero-h1-fs-m: clamp(24px, 7.2vw, 34px);
   --hero-h1-slot-m: 0px;
   --hero-lead-slot-m: 0px;
   --hero-stack-gap-m: 24px;
@@ -2322,11 +2324,13 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   .card-link, .blog-card-read, .mn-label {
     font-size: var(--m-label) !important;
   }
-  /* 4. ЗАГОЛОВОК ГЕРОЯ: пол 24 px (DESIGN-STANDARD §6a «пол заголовка»).
-        При 320 кегль 7,2vw давал 23,04 — ниже пола. */
+  /* 4. ЗАГОЛОВОК ГЕРОЯ: кегль берётся из общей мобильной переменной
+        (--hero-h1-fs-m, пол 24 px — DESIGN-STANDARD §6a «пол заголовка»).
+        Правило оставлено явным: это единственное место мобильной шкалы,
+        где кегль зависит от ширины экрана. */
   section.page-hero.page-hero .hero-h1,
   section.page-hero-x.page-hero-x .ph-h1,
   section.pg-hero.pg-hero .hero-h1 {
-    font-size: clamp(24px, 7.2vw, 34px) !important;
+    font-size: var(--hero-h1-fs-m) !important;
   }
 }
