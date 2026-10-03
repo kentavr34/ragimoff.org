@@ -225,10 +225,60 @@ def abbr_index(rows):
 
 
 EXTRA_NAME_ROWS = [
-    {"key": "index.html", "ru": "Клиническая психиатрия", "az": "Klinik psixiatriya",
-     "en": "Clinical psychiatry", "tr": "Klinik psikiyatri", "rule": RULE_SENT,
-     "where": "заголовок обложки / подпись шапки", "note": "название книги"},
+    {"key": "index.html", "ru": "Клиническая психиатрия", "az": "Klinik Psixiatriya",
+     "en": "Clinical Psychiatry", "tr": "Klinik Psikiyatri", "rule": RULE_NAME,
+     "where": "название книги: обложка, шапка, <title>, og, JSON-LD, подпись заказа",
+     "note": "название книги — имя собственное: каждое слово с прописной (RU — первое слово), не капсом"},
 ]
+
+
+# ── слоты названия книги: <title>, og, описания, JSON-LD, подписи ────────────
+RE_TITLE = re.compile(r"<title>(.*?)</title>", re.S)
+RE_OG_TITLE = re.compile(r'(<meta property="og:title" content=")([^"]*)(")')
+RE_DESC = re.compile(r'(<meta name="description" content=")([^"]*)(")')
+RE_OG_DESC = re.compile(r'(<meta property="og:description" content=")([^"]*)(")')
+RE_JSONLD_NAME = re.compile(r'("name"\s*:\s*")([^"]*)(")')
+RE_DATA_ORDER = re.compile(r'(data-order=")([^"]*)(")')
+RE_SLOT_TP = re.compile(r'(<h1 class="bk-tp__title">)(.*?)(</h1>)', re.S)
+
+# как название книги может быть написано в любой из версий (чужое имя — тоже ошибка)
+BOOK_FORMS = {
+    "ru": "клиническая психиатрия",
+    "az": "klinik psixiatriya",
+    "en": "clinical psychiatry",
+    "tr": "klinik psikiyatri",
+}
+
+
+def is_book_title(s: str, lang: str) -> bool:
+    """Строка — название книги (в любой версии, любом регистре)?"""
+    k = re.sub(r"\s+", " ", lang_lower(s, lang)).strip().replace("\u0307", "")
+    k = k.rstrip(".").strip()
+    if not k:
+        return False
+    return k in set(BOOK_FORMS.values())
+
+
+def title_part(h1_text: str, canon: str) -> str:
+    """Часть «до |» в <title>: канон реестра + префикс из h1 («Без психоза — …»)."""
+    h1 = re.sub(r"\s+", " ", h1_text).strip()
+    if not h1:
+        return ""
+    if canon:
+        if h1 == canon:
+            return canon
+        if h1.startswith(canon):
+            tail = h1[len(canon):].strip()
+            if not tail or (tail.startswith("(") and tail.endswith(")")):
+                return canon
+        pre, sep, rest = h1.rpartition("—")
+        if sep:
+            rest = rest.strip()
+            if rest.startswith(canon):
+                tail = rest[len(canon):].strip()
+                if not tail or (tail.startswith("(") and tail.endswith(")")):
+                    return pre.strip() + " — " + canon
+    return re.sub(r"\s*\([^()]*\)\s*$", "", h1).strip() or h1
 
 
 def canon_text(s: str, lang: str, abbr: dict) -> str:
@@ -369,12 +419,85 @@ def load_maps(base: str = None):
     rows = load_registry()
     names = {lg: {} for lg in VERSIONS}
     for r in rows:
-        if r["rule"] != RULE_SENT or not r["key"]:
+        if r["rule"] not in (RULE_SENT, RULE_NAME) or not r["key"]:
             continue
         for lg in VERSIONS:
             if r[lg].strip():
                 names[lg][r["key"]] = r[lg].strip()
     return names, abbr_index(rows)
+
+
+def skip_zone(raw: str) -> tuple:
+    """Зона деревьев DSM-5-TR и МКБ-10: их пункты — имена классификаций, не реестра."""
+    a = raw.find('<div class="cls-tree" data-cls="dsm"')
+    if a < 0:
+        return -1, -1
+    b = raw.find("</aside>", a)
+    return a, b if b > a else len(raw)
+
+
+def page_part(out: str, lang: str, slug: str, names: dict) -> str:
+    """«Часть до |» для заголовка страницы: из h1 (канон + префикс), иначе из <title>."""
+    canon = names[lang].get(slug, "")
+    mh = RE_CHEAD.search(out)
+    if mh:
+        return title_part(txt(mh.group(1)), canon)
+    mt = RE_TITLE.search(out)
+    if mt and "|" in mt.group(1):
+        return re.sub(r"\s+", " ", mt.group(1).split("|")[0]).strip()
+    return ""
+
+
+def fix_book_meta(out: str, lang: str, slug: str, names: dict, stats: Counter,
+                  log=None) -> str:
+    """Название книги в <title>, og:title, описаниях, JSON-LD, подписи заказа.
+
+    Форматы: «{часть} | {название книги}» и «{название книги} — {часть}».
+    """
+    bt = names[lang].get("index.html")
+    if not bt:
+        return out
+    part = page_part(out, lang, slug, names)
+
+    def sub_g(m, rx, gi, kind, new_of):
+        inner = m.group(gi)
+        new = new_of(inner)
+        if new is None or new == inner:
+            return m.group(0)
+        stats[kind] += 1
+        if log:
+            log(kind, inner, new)
+        s = m.group(0)
+        a, b = m.start(gi) - m.start(0), m.end(gi) - m.start(0)
+        return s[:a] + new + s[b:]
+
+    def pair_of(inner):
+        if "|" not in inner:
+            return None
+        new = (part or re.sub(r"\s+", " ", inner.split("|")[0]).strip()) + " | " + bt
+        return new
+
+    def desc_of(inner):
+        head, sep, rest = inner.partition(" — ")
+        if not sep or not is_book_title(head, lang):
+            return None
+        new = bt + " — " + (part or rest.strip())
+        return new if new != inner else None
+
+    out = RE_TITLE.sub(lambda m: sub_g(m, RE_TITLE, 1, "slot:meta-title", pair_of), out)
+    out = RE_OG_TITLE.sub(lambda m: sub_g(m, RE_OG_TITLE, 2, "slot:og-title", pair_of), out)
+    out = RE_DESC.sub(lambda m: sub_g(m, RE_DESC, 2, "slot:meta-desc", desc_of), out)
+    out = RE_OG_DESC.sub(lambda m: sub_g(m, RE_OG_DESC, 2, "slot:og-desc", desc_of), out)
+    out = RE_JSONLD_NAME.sub(
+        lambda m: sub_g(m, RE_JSONLD_NAME, 2, "slot:jsonld-name",
+                        lambda s: bt if is_book_title(s, lang) else None), out)
+    out = RE_DATA_ORDER.sub(
+        lambda m: sub_g(m, RE_DATA_ORDER, 2, "slot:data-order",
+                        lambda s: bt if is_book_title(s, lang) else None), out)
+    out = RE_SLOT_TP.sub(
+        lambda m: sub_g(m, RE_SLOT_TP, 2, "slot:cover-title",
+                        lambda s: bt if is_book_title(txt(s), lang) else None), out)
+    return out
 
 
 def fix_page(path: str, lang: str, names: dict, abbr: dict, dry: bool, stats: Counter,
@@ -389,11 +512,15 @@ def fix_page(path: str, lang: str, names: dict, abbr: dict, dry: bool, stats: Co
         nonlocal out
         n = [0]
 
+        za, zb = skip_zone(raw)          # деревья DSM/МКБ-10 — имена классификаций
+
         def repl(m):
             href = os.path.basename(m.group(href_idx))
             canon = names[lang].get(href)
             old = m.group(name_idx)
             if not canon or reg_page or "—" in old or canon == old:
+                return m.group(0)
+            if za >= 0 and za <= m.start() < zb:
                 return m.group(0)
             s = m.group(0)
             a = m.start(name_idx) - m.start(0)
@@ -420,6 +547,7 @@ def fix_page(path: str, lang: str, names: dict, abbr: dict, dry: bool, stats: Co
                 return m.group(1) + bt + m.group(3)
             return m.group(0)
         out = RE_SLOT_BOOK.sub(book_repl, out)
+        out = fix_book_meta(out, lang, slug, names, stats)
 
     # ── заголовок главы/страницы + латинское название в скобках ──────────────
     def chead_repl(m):
@@ -501,7 +629,9 @@ def fix_page(path: str, lang: str, names: dict, abbr: dict, dry: bool, stats: Co
     if out != raw:
         changes.append((slug, stats))
         if not dry:
-            open(path, "w", encoding="utf-8", newline="").write(out)
+            crlf = b"\r\n" in open(path, "rb").read(200000)
+            data = out.replace("\n", "\r\n") if crlf else out
+            open(path, "w", encoding="utf-8", newline="").write(data)
     return out != raw
 
 
@@ -706,6 +836,58 @@ def cmd_fix(a):
     return 0
 
 
+def check_book_meta(raw: str, lang: str, slug: str, names: dict) -> tuple:
+    """Проверка названия книги в <title>, og, описаниях, JSON-LD, подписях."""
+    bt = names[lang].get("index.html")
+    if not bt:
+        return [], 0
+    viol = []
+    n = 0
+    part = page_part(raw, lang, slug, names)
+
+    def add(where, was, term=None):
+        viol.append({"lang": lang, "file": slug, "where": where,
+                     "term": term or bt, "was": was})
+
+    m = RE_TITLE.search(raw)
+    if m and "|" in m.group(1):
+        n += 1
+        want = (part or re.sub(r"\s+", " ", m.group(1).split("|")[0]).strip()) + " | " + bt
+        if m.group(1) != want:
+            add("<title>", re.sub(r"\s+", " ", m.group(1)))
+    m = RE_OG_TITLE.search(raw)
+    if m and "|" in m.group(2):
+        n += 1
+        want = (part or re.sub(r"\s+", " ", m.group(2).split("|")[0]).strip()) + " | " + bt
+        if m.group(2) != want:
+            add("og:title", m.group(2))
+    for rx, where in ((RE_DESC, "meta description"), (RE_OG_DESC, "og:description")):
+        m = rx.search(raw)
+        if m:
+            head, sep, rest = m.group(2).partition(" — ")
+            if sep and is_book_title(head, lang):
+                n += 1
+                want = bt + " — " + (part or rest.strip())
+                if m.group(2) != want:
+                    add(where, m.group(2), term=want)
+    m = RE_JSONLD_NAME.search(raw)
+    if m and is_book_title(m.group(2), lang):
+        n += 1
+        if m.group(2) != bt:
+            add("JSON-LD name", m.group(2))
+    m = RE_DATA_ORDER.search(raw)
+    if m and is_book_title(m.group(2), lang):
+        n += 1
+        if m.group(2) != bt:
+            add("подпись заказа (data-order)", m.group(2))
+    m = RE_SLOT_TP.search(raw)
+    if m and is_book_title(txt(m.group(2)), lang):
+        n += 1
+        if m.group(2) != bt:
+            add("заголовок обложки", txt(m.group(2)))
+    return viol, n
+
+
 def cmd_check(a):
     names, abbr = load_maps(a.book)
     rows = load_registry()
@@ -716,14 +898,22 @@ def cmd_check(a):
         if not os.path.isdir(d):
             continue
         for f in sorted(os.listdir(d)):
-            if not f.endswith(".html") or f in REGISTRY_PAGES:
+            if not f.endswith(".html"):
                 continue
             raw = open(os.path.join(d, f), encoding="utf-8").read()
             slug = f
+            v2, n2 = check_book_meta(raw, lang, slug, names)
+            viol.extend(v2)
+            checked += n2
+            if f in REGISTRY_PAGES:
+                continue
+            za, zb = skip_zone(raw)
             for rx, gi, what in ((RE_SLOT_ROW, 5, "пункт меню"), (RE_SLOT_TOC, 2, "оглавление главы"),
                                  (RE_SLOT_PN, 3, "пред/след"), (RE_SLOT_CRUMB, 3, "крошка"),
                                  (RE_SLOT_TC, 3, "оглавление книги")):
                 for m in rx.finditer(raw):
+                    if za >= 0 and za <= m.start() < zb:
+                        continue        # DSM/МКБ-10-деревья: имена классификаций по праву
                     checked += 1
                     href = os.path.basename(m.group(2))
                     canon = names[lang].get(href)
