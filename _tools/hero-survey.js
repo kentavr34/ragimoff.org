@@ -47,6 +47,10 @@ const PROBE = `
     var h1 = q(hero, '.hero-h1') || q(hero, '.ph-h1') || q(hero, 'h1');
     var lead = q(hero, '.hero-lead') || q(hero, '.ph-sub');
     var search = q(hero, '.hero-search-wrap') || q(hero, '.ph-search-wrap');
+    /* сама панель поиска: в обёртке сверху лежит паддинг-зазор (--hero-gap-lead),
+       поэтому «видимый» зазор «лид → поиск» считается до ПАНЕЛИ, а не до
+       обёртки (у обёртки с margin-top:auto он равен нулю) */
+    var searchBar = q(hero, '.hero-search-bar') || q(hero, '.ph-search-bar');
     var col = q(hero, '.photo-col');
     var img = q(hero, '.photo-col img');
     var inner = q(hero, '.hero-inner') || q(hero, '.page-hero-x-inner') || q(hero, '.pg-hero-inner');
@@ -102,6 +106,7 @@ const PROBE = `
     out.hero = { x: hb.x, y: hb.y, w: hb.w, h: hb.h };
     out.inner = box(inner);
     out.badge = bb; out.h1 = h1b; out.lead = lb; out.search = sb;
+    out.searchBar = searchBar ? rel(searchBar) : null;
     out.h1Lines = lines(h1);
     out.leadLines = lines(lead);
     /* точные построчные меры (текстовые узлы, чернильная ширина) */
@@ -129,6 +134,8 @@ const PROBE = `
       badgeToH1: (bb && h1b) ? r1(h1b.y - (bb.y + bb.h)) : null,
       h1ToLead: (h1b && lb) ? r1(lb.y - (h1b.y + h1b.h)) : null,
       leadToSearch: (lb && sb) ? r1(sb.y - (lb.y + lb.h)) : null,
+      /* видимый зазор «лид → панель поиска» (обёртка = панель + паддинг-зазор) */
+      leadToBar: (lb && searchBar) ? r1(rel(searchBar).y - (lb.y + lb.h)) : null,
       searchToBottom: (sb) ? r1(hb.h - (sb.y + sb.h)) : null
     };
     out.pad = { top: cs.paddingTop, bottom: cs.paddingBottom, bt: cs.borderTopWidth, bb: cs.borderBottomWidth };
