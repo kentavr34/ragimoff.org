@@ -189,29 +189,42 @@ const BOOKS = [
 
 /* Sevgi məktubları: главы — письма, заголовок = напечатанная строка даты */
 const LETTERS = [
-  ['Vyana, 10 iyun 1882-ci il', 'Vyana, 10 iyun 1882-ci il', 3],
-  ['Vyana, ikinci gün, 27 iyun 1882-ci il', 'Vyana, 27 iyun 1882-ci il', 5],
-  ['Hamburq, bazar günü, 23 iyul 1882-ci il.', 'Hamburq, 23 iyul 1882-ci il', 8],
-  ['Vyana, 18 avqust 1882-ci il, gecə', 'Vyana, 18 avqust 1882-ci il', 13],
-  ['Vyana, 25 sentyabr 1882-ci il', 'Vyana, 25 sentyabr 1882-ci il', 16],
-  ['Vyana, bazar günü, 16 sentyabr 1883-cü il', 'Vyana, 16 sentyabr 1883-cü il', 23],
-  ['Vyana, ikinci gün, 9 oktyabr 1883-cü il, gecə', 'Vyana, 9 oktyabr 1883-cü il', 31],
-  ['Vyana, ikinci gün, 23 oktyabr 1883-cü il', 'Vyana, 23 oktyabr 1883-cü il', 32],
-  ['Vyana, 15 noyabr, 1883-cü il, dördüncü gün, axşamüstü saat beşdə', 'Vyana, 15 noyabr 1883-cü il', 34],
-  ['Vyana, dördüncü gün, 10 yanvar 1884-cü il', 'Vyana, 10 yanvar 1884-cü il', 36],
-  ['Vyana, ikinci gün, 7 fevral 1884-cü il', 'Vyana, 7 fevral 1884-cü il', 39],
-  ['Vyana, ikinci gün, 19 iyun 1884-cü il', 'Vyana, 19 iyun 1884-cü il', 42],
-  ['Vyana, bazar ertəsi, 30 iyun 1884-cü il', 'Vyana, 30 iyun 1884-cü il', 44],
-  ['Vyana, 16 yanvar 1885-ci il', 'Vyana, 16 yanvar 1885-ci il', 46],
-  ['Vyana, dördüncü gün, 7 may 1885-ci il', 'Vyana, 7 may 1885-ci il', 48],
-  ['Vyana, şənbə günü, 6 iyun 1885-ci il', 'Vyana, 6 iyun 1885-ci il', 48],
-  ['Vyana, şənbə günü, 20 iyun 1885-ci il, axşam', 'Vyana, 20 iyun 1885-ci il', 50],
-  ['Paris, 20 yanvar 1986-cı il', 'Paris, 20 yanvar 1886-cı il', 51],
-  ['Paris, ikinci gün, 2 fevral 1886-cı il', 'Paris, 2 fevral 1886-cı il', 54],
-  ['3 fevral 1886-cı il, gecə saat birin yarısı', '3 fevral 1886-cı il', 57],
-  ['Berlin, beşinci gün, 19 mart 1886-cı il', 'Berlin, 19 mart 1886-cı il', 58],
-  ['Vyana, ikinci gün, 6 may 1886-cı il', 'Vyana, 6 may 1886-cı il', 61],
-  ['Vyana, 13 may 1886-cı il', 'Vyana, 13 may 1886-cı il', 62],
+  ['Vyana, 10 iyun 1882', 'Vyana, 10 iyun 1882', 1],
+  ['Vyana, 27 iyun 1882', 'Vyana, 27 iyun 1882', 2],
+  ['Hamburq, 23 iyul 1882', 'Hamburq, 23 iyul 1882', 3],
+  ['Vyana, 18 avqust 1882', 'Vyana, 18 avqust 1882', 4],
+  ['Vyana, 25 sentyabr 1882', 'Vyana, 25 sentyabr 1882', 5],
+  ['Vyana, 5 oktyabr 1882', 'Vyana, 5 oktyabr 1882', 6],
+  ['Vyana, 13 iyul 1883', 'Vyana, 13 iyul 1883', 7],
+  ['Vyana, 29 avqust 1883', 'Vyana, 29 avqust 1883', 8],
+  ['Vyana, 9 sentyabr 1883', 'Vyana, 9 sentyabr 1883', 9],
+  ['Vyana, 16 sentyabr 1883', 'Vyana, 16 sentyabr 1883', 10],
+  ['Vyana, 9 oktyabr 1883', 'Vyana, 9 oktyabr 1883', 11],
+  ['Vyana, 23 oktyabr 1883', 'Vyana, 23 oktyabr 1883', 12],
+  ['Vyana, 15 noyabr 1883', 'Vyana, 15 noyabr 1883', 13],
+  ['Vyana, 10 yanvar 1884', 'Vyana, 10 yanvar 1884', 14],
+  ['Vyana, 7 fevral 1884', 'Vyana, 7 fevral 1884', 15],
+  ['Vyana, 20 mart 1884', 'Vyana, 20 mart 1884', 16],
+  ['Vyana, 19 iyun 1884', 'Vyana, 19 iyun 1884', 17],
+  ['Vyana, 30 iyun 1884', 'Vyana, 30 iyun 1884', 18],
+  ['Vyana, 16 yanvar 1885', 'Vyana, 16 yanvar 1885', 19],
+  ['Vyana, 7 may 1885', 'Vyana, 7 may 1885', 20],
+  ['Vyana, 6 iyun 1885', 'Vyana, 6 iyun 1885', 21],
+  ['Vyana, 20 iyun 1885', 'Vyana, 20 iyun 1885', 22],
+  ['Modlinq, 23 iyul 1885', 'Modlinq, 23 iyul 1885', 23],
+  ['Vyana, 6 avqust 1885', 'Vyana, 6 avqust 1885', 24],
+  ['Vyana, 12 avqust 1885', 'Vyana, 12 avqust 1885', 25],
+  ['Paris, 19 oktyabr 1885', 'Paris, 19 oktyabr 1885', 26],
+  ['Paris, 8 noyabr 1885', 'Paris, 8 noyabr 1885', 27],
+  ['Paris, 18 yanvar 1886', 'Paris, 18 yanvar 1886', 28],
+  ['Paris, 20 yanvar 1886', 'Paris, 20 yanvar 1886', 29],
+  ['Paris, 2 fevral 1886', 'Paris, 2 fevral 1886', 30],
+  ['Paris, 3 fevral 1886', 'Paris, 3 fevral 1886', 31],
+  ['Berlin, 10 mart 1886', 'Berlin, 10 mart 1886', 32],
+  ['Berlin, 19 mart 1886', 'Berlin, 19 mart 1886', 33],
+  ['Vyana, 6 may 1886', 'Vyana, 6 may 1886', 34],
+  ['Vyana, 13 may 1886', 'Vyana, 13 may 1886', 35],
+  ['Roma, 20 sentyabr 1912', 'Roma, 20 sentyabr 1912', 36],
 ];
 BOOKS.push({
   slug: 'freud-sevgi-mektublari', logo: 'SM', epub: 'Sevgi məktubları.epub',
@@ -415,7 +428,7 @@ function chapterPage(b, list, idx) {
 function indexPage(b, list) {
   const cards = list.map((c) =>
     '<div class="toc-chapter"><a href="' + c.file + '" class="toc-chapter-title"><span class="toc-name">' + esc(c.title) + '</span></a></div>').join('\n      ');
-  const content = '\n<div class="home-hero"><h1 class="home-title">' + esc(b.titlePrinted) + '</h1>' +
+  const content = '\n<div class="home-hero"><h1 class="home-title"><img src="title-lockup.png" alt="' + esc(b.titlePrinted) + '" style="width:min(520px,86vw);height:auto"></h1>' +
     '<p class="sub">' + esc(b.author) + '</p>' +
     '<p class="sub year">' + esc(b.yearSub || b.year) + '</p></div>\n' +
     '<section class="book-toc"><h2 class="toc-title">' + esc(UI.toc) + '</h2>\n      ' + cards + '\n    </section>\n';
@@ -479,6 +492,8 @@ function buildBook(b) {
   fs.mkdirSync(dir, { recursive: true });
   const style = path.join(ROOT, 'klinik-psixiatriya', 'style.css');
   if (fs.existsSync(style)) fs.copyFileSync(style, path.join(dir, 'style.css'));
+  const lock = path.join(ROOT, '_tools', 'title-lockups', b.slug + '.png');
+  if (fs.existsSync(lock)) fs.copyFileSync(lock, path.join(dir, 'title-lockup.png'));
   /* старые главы (от прежней эвристики) — удалить, чтобы не осталось мусора */
   const keep = new Set(list.map((c) => c.file).concat('index.html'));
   fs.readdirSync(dir).filter((f) => /^\d{2}-.*\.html$/.test(f) && !keep.has(f)).forEach((f) => fs.unlinkSync(path.join(dir, f)));
