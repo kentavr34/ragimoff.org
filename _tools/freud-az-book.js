@@ -189,6 +189,7 @@ const BOOKS = [
 
 /* Sevgi məktubları: главы — письма, заголовок = напечатанная строка даты */
 const LETTERS = [
+  ['Ön söz', 'Ön söz', 0],
   ['Vyana, 10 iyun 1882', 'Vyana, 10 iyun 1882', 1],
   ['Vyana, 27 iyun 1882', 'Vyana, 27 iyun 1882', 2],
   ['Hamburq, 23 iyul 1882', 'Hamburq, 23 iyul 1882', 3],
