@@ -188,6 +188,12 @@ body.bk::after {
 /* бургер — только инструмент узких экранов: перебиваем .bk-btn{display:inline-flex} */
 .bk-hdr .bk-burger { display: none; }
 
+/* Кнопка заказа в шапке книги: раскрывается под свой текст и НЕ сжимается.
+   Жалоба владельца 2026-10-03: из-за слогана сайта («Peşəkar nüfuzun ünvanı»)
+   кнопка зажималась — у «Заказать» оставалось 36 px при нужных 67, текст резала
+   `overflow:hidden`. Кнопка — приоритет: уступают соседи (слоган, название книги). */
+.bk-hdr .bk-btn { flex: 0 0 auto; }
+
 /* ─────────── 4. КНОПКИ И ССЫЛКИ (одна семья на все страницы) ─────────── */
 .bk-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -496,8 +502,15 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 
 /* ─────────── 12. АДАПТИВ ─────────── */
 
-/* планшет: сайдбар уезжает в выдвижное меню */
+/* планшет: сайдбар уезжает в выдвижное меню; шапка на тесной ширине:
+   кнопка заказа сохраняет текст целиком — уступают соседи (слоган сайта
+   и название книги обрезаются многоточием), а межбуквенный интервал самой
+   кнопки сжимается (.18em → .10em / .06em на телефоне) */
 @media (max-width: 960px) {
+  .bk-hdr__in { gap: 12px; }
+  .bk-logo { flex: 0 1 auto; min-width: 0; }
+  .bk-logo__t, .bk-logo__s { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bk-hdr .bk-btn { letter-spacing: .10em; padding-inline: 16px; }
   .bk-shell { grid-template-columns: minmax(0, 1fr); }
   .bk-sb {
     position: fixed; top: 0; bottom: 0; left: 0; height: auto;
@@ -516,9 +529,10 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
 
 /* телефон: шапка в две роли — «сайт» и «книга-действие» */
 @media (max-width: 620px) {
-  .bk-hdr__in { padding-inline: 18px; gap: 12px; }
+  .bk-hdr__in { padding-inline: 18px; gap: 10px; }
   .bk-book, .bk-hdr__sep { display: none; }
   .bk-logo__t { font-size: 1.2rem; }
+  .bk-hdr .bk-btn { letter-spacing: .06em; padding-inline: 16px; }
   .bk-langs { display: none; }
   .bk-sb__langs { display: flex; gap: 8px; padding: 0 20px var(--s2); }
   .bk-main { padding: 24px 20px 72px; }
