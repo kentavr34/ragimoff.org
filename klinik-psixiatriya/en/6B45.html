@@ -1062,10 +1062,19 @@
 <div id="kitab-modal" class="kitab-overlay" onclick="if(event.target===this)closeKitabModal()">
   <div class="kitab-box">
     <button class="kitab-close" onclick="closeKitabModal()" aria-label="Close">✕</button>
-    <div class="kitab-logo">CP</div>
+    <div class="kitab-logo">КП</div>
     <h2 class="kitab-title">Order the book</h2>
-    <p class="kitab-desc">The book is published and the print edition is ready. I will personally sign your copy and mail it to any address. The suggested price is $100; if that is more than you can manage, you can request a discount below.</p>
-    <form id="kitab-form">
+    <p class="kitab-desc">The book is published and the print edition is ready. I will personally sign your copy and mail it to any address.</p>
+    <form id="kitab-form" action="/api/book-order" method="POST" novalidate>
+      <div class="kitab-field">
+        <label for="kitab-book">Book</label>
+        <select id="kitab-book" name="book" required>
+          <option value="Klinik Psixiatriya · Azərbaycan dili">Klinik Psixiatriya · Azərbaycan dili</option>
+          <option value="Klinik Psixiatriya · Русский">Klinik Psixiatriya · Русский</option>
+          <option value="Klinik Psixiatriya · English" selected>Klinik Psixiatriya · English</option>
+          <option value="Klinik Psixiatriya · Türkçe">Klinik Psixiatriya · Türkçe</option>
+        </select>
+      </div>
       <div class="kitab-field">
         <label for="kitab-name">Full Name</label>
         <input id="kitab-name" name="name" type="text" placeholder="Your first and last name" required autocomplete="name">
@@ -1074,28 +1083,6 @@
         <label for="kitab-phone">Mobile number</label>
         <input id="kitab-phone" name="phone" type="tel" placeholder="+994 XX XXX XX XX" required autocomplete="tel">
       </div>
-        <div class="kitab-field">
-          <label for="kitab-lang">Language of the edition</label>
-          <select id="kitab-lang" name="lang"><option value="az" lang="az">Azərbaycan</option><option value="ru" lang="ru">Русский</option><option value="en" lang="en" selected>English</option><option value="tr" lang="tr">Türkçe</option></select>
-        </div>
-        <div class="kitab-field">
-          <label for="kitab-cls">Primary classification</label>
-          <select id="kitab-cls" name="classification"><option value="XBT-11">ICD-11</option><option value="DSM-5-TR">DSM-5-TR</option></select></div>
-        <div class="kitab-field">
-          <button type="button" id="kitab-geo" class="kitab-geo-btn">📍 Use my location</button>
-          <div class="kitab-geo-status" id="kitab-geo-status"></div>
-        </div>
-        <div class="kitab-field-row">
-          <div class="kitab-field"><label for="kitab-country">Country</label><input id="kitab-country" name="country" type="text" placeholder="Azerbaijan" autocomplete="country-name"></div>
-          <div class="kitab-field"><label for="kitab-postal">Postal code</label><input id="kitab-postal" name="postal" type="text" placeholder="AZ1000" autocomplete="postal-code"></div>
-        </div>
-        <div class="kitab-field"><label for="kitab-city">City</label><input id="kitab-city" name="city" type="text" placeholder="Baku" autocomplete="address-level2"></div>
-        <div class="kitab-field"><label for="kitab-street">Street, house, apartment</label><textarea id="kitab-street" name="street" rows="2" placeholder="Full address" required autocomplete="street-address"></textarea></div>
-        <div class="kitab-field">
-          <label for="kitab-discount">Discount request (optional)</label>
-          <select id="kitab-discount" name="discount"><option value="0%" selected>0%</option><option value="10%">10%</option><option value="20%">20%</option><option value="30%">30%</option><option value="40%">40%</option><option value="50%">50%</option></select>
-        </div>
-
       <button type="submit" class="kitab-submit">Order</button>
     </form>
     <div id="kitab-success" class="kitab-success" style="display:none">
@@ -1150,77 +1137,56 @@ function setCls(k, save){
   } catch(e){}
 })();</script>
 <script>(function(){
-  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
+/* Заказ книги — та же форма и тот же канал, что у остальных книг:
+   сервер сайта (/api/book-order) + Apps Script (Google-таблица + Telegram). */
+var BOOK_API = 'https://api.ragimoff.org/api/book-order';
+var ORDER_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
 
- var BOOK_API = 'https://api.ragimoff.org/api/book-order';
-  window.openKitabModal = function(){
-    document.getElementById('kitab-modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function(){ document.getElementById('kitab-name').focus(); }, 120);
-  };
-  window.closeKitabModal = function(){
-    document.getElementById('kitab-modal').classList.remove('open');
-    document.body.style.overflow = '';
-  };
-  document.addEventListener('DOMContentLoaded', function(){
-    var form = document.getElementById('kitab-form');
-    if (!form) return;
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      var btn = form.querySelector('button[type="submit"]');
-      var name  = (document.getElementById('kitab-name').value || '').trim();
-      var phone = (document.getElementById('kitab-phone').value || '').trim();
+window.openKitabModal = function(){
+  document.getElementById('kitab-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){ var n = document.getElementById('kitab-name'); if (n) n.focus(); }, 120);
+};
 
-        var address = (function(){
-          var country = (document.getElementById('kitab-country').value || '').trim();
-          var city    = (document.getElementById('kitab-city').value || '').trim();
-          var postal  = (document.getElementById('kitab-postal').value || '').trim();
-          var street  = (document.getElementById('kitab-street').value || '').trim();
-          return [street, city, postal, country].filter(Boolean).join(', ');
-        })();
+window.closeKitabModal = function(){
+  document.getElementById('kitab-modal').classList.remove('open');
+  document.body.style.overflow = '';
+};
 
-        var discount = document.getElementById('kitab-discount') ? document.getElementById('kitab-discount').value : '0%';
-        var langEl = document.getElementById('kitab-lang');
-        var clsEl  = document.getElementById('kitab-cls');
-        var lang = langEl ? langEl.value : '';
-        var langName = langEl ? langEl.options[langEl.selectedIndex].text : '';
-        var cls  = clsEl ? clsEl.value : '';
-      if (!name || !phone || !address) { alert('Please enter your Full Name, Phone, and Address.'); return; }
-      var parts = name.split(/\s+/);
-      var payload = {
-        type: 'registration',
-        fname: parts[0] || '',
-        lname: parts.slice(1).join(' ') || '',
-        phone: phone,
-        service: 'Kitab sifarişi — ' + langName + ' / ' + cls,
-          lang: lang,
-          classification: cls,
-        source: 'klinik-psixiatriya/kitab-sifarisi',
-
-          address: address,
-
-          discount: discount
-      };
-      if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
-      try {
-        fetch(BOOK_API, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }).catch(function(){});
-
- await fetch(KITAB_API, { method:'POST', mode:'no-cors',
-          headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body: JSON.stringify(payload) });
-      } catch(err) { console.error(err); }
-      var waMsg = '📚 Book order\nName: ' + name + '\nPhone: ' + phone + '\nLanguage: ' + langName + '\nClassification: ' + cls + '\nAddress: ' + address + '\nDiscount: ' + discount;
-
-        window.open('https://wa.me/994702200376?text=' + encodeURIComponent(waMsg), '_blank');
-
-        document.getElementById('kitab-success').style.display = 'block';
-      form.style.display = 'none';
-    });
-    // ESC закрывает
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape') closeKitabModal();
-    });
+document.addEventListener('DOMContentLoaded', function(){
+  var form = document.getElementById('kitab-form');
+  if (!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var name  = (document.getElementById('kitab-name').value || '').trim();
+    var phone = (document.getElementById('kitab-phone').value || '').trim();
+    if (!name || !phone) { alert('Please enter your full name and phone number.'); return; }
+    var parts = name.split(/\s+/);
+    var bookEl = document.getElementById('kitab-book');
+    var book = bookEl ? bookEl.value : 'Klinik Psixiatriya';
+    var payload = {
+      type: 'registration',
+      fname: parts[0] || '',
+      lname: parts.slice(1).join(' ') || '',
+      phone: phone,
+      service: 'Kitab sifarişi — ' + book,
+      note: book,
+      source: 'ragimoff.org' + location.pathname
+    };
+    var btnLabel = btn ? btn.textContent : '';
+    if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+    var body = JSON.stringify(payload);
+    try { fetch(BOOK_API, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: body }).catch(function(){}); } catch (err) {}
+    try {
+      await fetch(ORDER_API, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: body });
+    } catch (err) { console.error(err); }
+    if (btn) { btn.textContent = btnLabel; btn.disabled = false; }
+    document.getElementById('kitab-success').style.display = 'block';
+    form.style.display = 'none';
   });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeKitabModal(); });
+});
 })();</script>
 <script>/* дерево классификаций: раскрывающиеся группы (прежнее поведение книги) */
 (function(){
