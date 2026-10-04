@@ -69,10 +69,6 @@
       .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
       .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
       .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
-      /* YouTube */
-      .yt-wrap { position: relative; padding-bottom: 28.125%; height: 0; overflow: hidden; border: 1px solid rgba(201,169,97,0.15); max-width: 50%; margin: 0 auto; }
-      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-      @media (max-width: 768px) { .yt-wrap { max-width: 100%; padding-bottom: 56.25%; } }
       /* Treatment protocol */
       .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
       .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
@@ -244,7 +240,7 @@ input, select, textarea, button {
 }
 </script>
   <meta property="og:locale" content="en_US" />
-  <link rel="stylesheet" href="/site-concept.css?v=10">
+  <link rel="stylesheet" href="/site-concept.css?v=11">
 </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -526,19 +522,6 @@ input, select, textarea, button {
       </div>
     </section>
 
-    <!-- YOUTUBE -->
-    <section class="ps white">
-      <div class="ps-inner">
-        <span class="badge on-light">Lesson on YouTube</span>
-        <h2 class="sec-h2"><span class="sh-line">Nocturnal</span> <span class="sh-line">Enuresis Treatment</span></h2>
-        <p class="sec-lead" style="margin:0 auto 32px; text-align:center; max-width:780px;">A lesson from the free support group for young psychologists — already uploaded to YouTube and open to everyone.</p>
-        <div class="yt-wrap">
-          <iframe src="https://www.youtube.com/embed/CPjtCqIKNZc?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Diagnosis and Treatment of Nocturnal Enuresis — Dr. Kenan Ragimov"></iframe>
-        </div>
-        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;">More videos on the channel: <a href="https://youtube.com/@kragimoff" target="_blank" style="color:var(--accent);font-weight:700;">youtube.com/@kragimoff</a></p>
-      </div>
-    </section>
-
     <!-- TREATMENT PROTOCOL -->
     <section class="ps light-bg">
       <div class="ps-inner">
@@ -611,28 +594,37 @@ input, select, textarea, button {
       <div class="ps-inner">
         <span class="badge on-light">Pricing</span>
         <h2 class="sec-h2"><span class="sh-line">Treatment</span> <span class="sh-line">Costs</span></h2>
-        <p class="sec-lead" style="margin-bottom:0;">Full course on average $270–330. Children of martyrs, veterans and low-income families — completely free.</p>
+        <p class="sec-lead" style="margin-bottom:0;">The treatment course is 500 AZN for three months; if continuation is needed, an additional 100 AZN. Instalments via BirBank for up to 18 months are available.</p>
         <div class="price-table">
           <div class="pt-head"><span>Services</span></div>
           <div class="pt-row">
-            <div><div class="pt-label">Initial Assessment</div><div class="pt-sub">30 min &middot; ruling out secondary enuresis &middot; in person or online</div></div>
-            <div class="pt-price">$30</div>
+            <div><div class="pt-label">Main treatment course — 3 months</div><div class="pt-sub">Alarm device + methodology + support for 3 months</div></div>
+            <div class="pt-price">500 AZN</div>
           </div>
           <div class="pt-row">
-            <div><div class="pt-label">Course Start</div><div class="pt-sub">Alarm device + methodology + forms + full instructions</div></div>
-            <div class="pt-price">$180</div>
+            <div><div class="pt-label">Continuation — if needed</div><div class="pt-sub">If treatment continues beyond 3 months</div></div>
+            <div class="pt-price">+100 AZN</div>
           </div>
           <div class="pt-row">
-            <div><div class="pt-label">Monthly Support</div><div class="pt-sub">Weekly report analysis &middot; on average 2–3 months</div></div>
-            <div class="pt-price">$60/mo</div>
-          </div>
-          <div class="pt-row">
-            <div><div class="pt-label">Martyrs · Veterans · Low-Income</div><div class="pt-sub">Upon presentation of supporting document — completely free</div></div>
+            <div><div class="pt-label">Martyrs · Veterans · Low-Income</div><div class="pt-sub">Upon presentation of a supporting document — completely free</div></div>
             <div class="pt-price" style="color:var(--accent);">Free</div>
           </div>
+          <div class="pt-head"><span>Instalments via BirBank — up to 18 months</span></div>
+          <div class="pt-row">
+            <div><div class="pt-label">18 months</div><div class="pt-sub">Monthly payment</div></div>
+            <div class="pt-price">30 AZN/mo</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">12 months</div><div class="pt-sub">Monthly payment</div></div>
+            <div class="pt-price">45 AZN/mo</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">6 months</div><div class="pt-sub">Monthly payment</div></div>
+            <div class="pt-price">90 AZN/mo</div>
+          </div>
           <div class="pt-total">
-            <span class="tl">Total (average)</span>
-            <span class="tv">$270–330</span>
+            <span class="tl">Main course — 3 months · continuation +100 AZN</span>
+            <span class="tv">500 AZN</span>
           </div>
         </div>
       </div>
@@ -667,7 +659,7 @@ input, select, textarea, button {
         <div class="reg-path">
           <div class="reg-path-step"><span class="rp-num">Step 01</span><h4 role="heading" aria-level="3" data-a11y-level>Enquiry</h4><p>Fill in the form and indicate the child's age</p></div>
           <div class="reg-path-step"><span class="rp-num">Step 02</span><h4>Call</h4><p>A coordinator will contact you within 24 hours</p></div>
-          <div class="reg-path-step"><span class="rp-num">Step 03</span><h4>Initial Meeting</h4><p>$30 &middot; assessment, diagnosis confirmation</p></div>
+          <div class="reg-path-step"><span class="rp-num">Step 03</span><h4>Initial Meeting</h4><p>Assessment, diagnosis confirmation</p></div>
           <div class="reg-path-step"><span class="rp-num">Step 04</span><h4>Course Start</h4><p>Alarm device + instructions — treatment at home</p></div>
         </div>
         <form class="reg-form" id="enRegForm" action="/api/training-reg" method="POST" novalidate>

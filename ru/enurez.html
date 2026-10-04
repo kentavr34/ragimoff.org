@@ -69,10 +69,6 @@
       .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
       .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
       .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
-      /* YouTube */
-      .yt-wrap { position: relative; padding-bottom: 28.125%; height: 0; overflow: hidden; border: 1px solid rgba(201,169,97,0.15); max-width: 50%; margin: 0 auto; }
-      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-      @media (max-width: 768px) { .yt-wrap { max-width: 100%; padding-bottom: 56.25%; } }
       /* Treatment protocol */
       .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
       .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
@@ -244,7 +240,7 @@ input, select, textarea, button {
 }
 </script>
   <meta property="og:locale" content="ru_RU" />
-  <link rel="stylesheet" href="/site-concept.css?v=10">
+  <link rel="stylesheet" href="/site-concept.css?v=11">
 </head>
   <body>
     <a class="skip-link" href="#main-content">К основному содержимому</a>
@@ -526,19 +522,6 @@ input, select, textarea, button {
       </div>
     </section>
 
-    <!-- YOUTUBE -->
-    <section class="ps white">
-      <div class="ps-inner">
-        <span class="badge on-light">Урок на YouTube</span>
-        <h2 class="sec-h2"><span class="sh-line">Лечение</span> <span class="sh-line">ночного энуреза</span></h2>
-        <p class="sec-lead" style="margin:0 auto 32px; text-align:center; max-width:780px;">Урок из группы бесплатной поддержки для молодых психологов — уже загружен на YouTube и открыт для всех.</p>
-        <div class="yt-wrap">
-          <iframe src="https://www.youtube.com/embed/CPjtCqIKNZc?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="Диагностика и лечение ночного энуреза — Д-р Кенан Рагимов"></iframe>
-        </div>
-        <p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;">Больше видео на канале: <a href="https://youtube.com/@kragimoff" target="_blank" style="color:var(--accent);font-weight:700;">youtube.com/@kragimoff</a></p>
-      </div>
-    </section>
-
     <!-- TREATMENT PROTOCOL -->
     <section class="ps light-bg">
       <div class="ps-inner">
@@ -611,28 +594,37 @@ input, select, textarea, button {
       <div class="ps-inner">
         <span class="badge on-light">Стоимость</span>
         <h2 class="sec-h2"><span class="sh-line">Стоимость</span> <span class="sh-line">лечения</span></h2>
-        <p class="sec-lead" style="margin-bottom:0;">Полный курс в среднем 23–28тыс. руб. Дети шахидов, ветеранов и малообеспеченных семей — полностью бесплатно.</p>
+        <p class="sec-lead" style="margin-bottom:0;">Курс лечения — 500 AZN за три месяца; при необходимости продолжения — дополнительно 100 AZN. Возможна рассрочка через BirBank до 18 месяцев.</p>
         <div class="price-table">
           <div class="pt-head"><span>Услуги</span></div>
           <div class="pt-row">
-            <div><div class="pt-label">Первичная оценка</div><div class="pt-sub">30 мин &middot; исключение вторичного энуреза &middot; лично или онлайн</div></div>
-            <div class="pt-price">3 тыс. руб.</div>
+            <div><div class="pt-label">Основной курс лечения — 3 месяца</div><div class="pt-sub">Аларм-устройство + методология + поддержка в течение 3 месяцев</div></div>
+            <div class="pt-price">500 AZN</div>
           </div>
           <div class="pt-row">
-            <div><div class="pt-label">Начало курса</div><div class="pt-sub">Аларм-устройство + методология + бланки + полная инструкция</div></div>
-            <div class="pt-price">15 тыс. руб.</div>
-          </div>
-          <div class="pt-row">
-            <div><div class="pt-label">Ежемесячная поддержка</div><div class="pt-sub">Еженедельный анализ отчётов &middot; в среднем 2–3 месяца</div></div>
-            <div class="pt-price">5 тыс. руб./мес.</div>
+            <div><div class="pt-label">Продолжение — при необходимости</div><div class="pt-sub">Если лечение продолжается после 3 месяцев</div></div>
+            <div class="pt-price">+100 AZN</div>
           </div>
           <div class="pt-row">
             <div><div class="pt-label">Шахиды · Ветераны · Малообеспеченные</div><div class="pt-sub">На основании подтверждающего документа — полностью бесплатно</div></div>
             <div class="pt-price" style="color:var(--accent);">Бесплатно</div>
           </div>
+          <div class="pt-head"><span>Рассрочка через BirBank — до 18 месяцев</span></div>
+          <div class="pt-row">
+            <div><div class="pt-label">18 месяцев</div><div class="pt-sub">Ежемесячный платёж</div></div>
+            <div class="pt-price">30 AZN/мес.</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">12 месяцев</div><div class="pt-sub">Ежемесячный платёж</div></div>
+            <div class="pt-price">45 AZN/мес.</div>
+          </div>
+          <div class="pt-row">
+            <div><div class="pt-label">6 месяцев</div><div class="pt-sub">Ежемесячный платёж</div></div>
+            <div class="pt-price">90 AZN/мес.</div>
+          </div>
           <div class="pt-total">
-            <span class="tl">Итого (в среднем)</span>
-            <span class="tv">23–28тыс. руб.</span>
+            <span class="tl">Основной курс — 3 месяца · продолжение +100 AZN</span>
+            <span class="tv">500 AZN</span>
           </div>
         </div>
       </div>
@@ -667,7 +659,7 @@ input, select, textarea, button {
         <div class="reg-path">
           <div class="reg-path-step"><span class="rp-num">Шаг 01</span><h4 role="heading" aria-level="3" data-a11y-level>Обращение</h4><p>Заполните форму, укажите возраст ребёнка</p></div>
           <div class="reg-path-step"><span class="rp-num">Шаг 02</span><h4>Звонок</h4><p>В течение 24 часов координатор свяжется с вами</p></div>
-          <div class="reg-path-step"><span class="rp-num">Шаг 03</span><h4>Первичная встреча</h4><p>3 тыс. руб. &middot; оценка, подтверждение диагноза</p></div>
+          <div class="reg-path-step"><span class="rp-num">Шаг 03</span><h4>Первичная встреча</h4><p>Оценка состояния, подтверждение диагноза</p></div>
           <div class="reg-path-step"><span class="rp-num">Шаг 04</span><h4>Начало курса</h4><p>Аларм-устройство + инструкция — лечение дома</p></div>
         </div>
         <form class="reg-form" id="enRegForm" action="/api/training-reg" method="POST" novalidate>

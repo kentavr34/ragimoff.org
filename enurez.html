@@ -70,10 +70,6 @@
       .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
       .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
       .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
-      /* YouTube */
-      .yt-wrap { position: relative; padding-bottom: 28.125%; height: 0; overflow: hidden; border: 1px solid rgba(201,169,97,0.15); max-width: 50%; margin: 0 auto; }
-      .yt-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-      @media (max-width: 768px) { .yt-wrap { max-width: 100%; padding-bottom: 56.25%; } }
       /* Treatment protocol */
       .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
       .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
@@ -259,7 +255,7 @@ input, select, textarea, button {
   "description": "Clinical information about Gecə Enurezi diagnosis and treatment."
 }
 </script>
-  <link rel="stylesheet" href="/site-concept.css?v=10">
+  <link rel="stylesheet" href="/site-concept.css?v=11">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Əsas məzmuna keç</a>
@@ -534,18 +530,6 @@ input, select, textarea, button {
 </div>
 </div>
 </section>
-<!-- YOUTUBE -->
-<section class="ps white">
-<div class="ps-inner">
-<span class="badge on-light">YouTube Dərs</span>
-<h2 class="sec-h2"><span class="sh-line">Gecə Enurezinin</span> <span class="sh-line">Müalicəsi</span></h2>
-<p class="sec-lead" style="margin:0 auto 32px; text-align:center; max-width:780px;">Gənc psixoloqlara ödənişsiz dəstək qrupunun dərsi — artıq YouTube-da yüklənib, hamının açıq şəkildə baxa bilməsi üçün.</p>
-<div class="yt-wrap">
-<iframe allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/CPjtCqIKNZc?rel=0&amp;modestbranding=1" title="Gecə Enurezinin Diaqnostikası və Müalicəsi — Dr. Kənan Rəhimov"></iframe>
-</div>
-<p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;">Kanalda daha çox video: <a href="https://youtube.com/@kragimoff" style="color:var(--accent);font-weight:700;" target="_blank">youtube.com/@kragimoff</a></p>
-</div>
-</section>
 <!-- TREATMENT PROTOCOL -->
 <section class="ps light-bg">
 <div class="ps-inner">
@@ -615,28 +599,37 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Qiymətlər</span>
 <h2 class="sec-h2"><span class="sh-line">Müalicənin</span> <span class="sh-line">Dəyəri</span></h2>
-<p class="sec-lead" style="margin-bottom:0;">Tam kurs ortalama 450–550 AZN. Şəhid, Qazi, Veteran və aztəminatlı ailələr üçün — tam ödənişsiz.</p>
+<p class="sec-lead" style="margin-bottom:0;">Müalicə kursu — 3 ay üçün 500 AZN; davam etmək zərurəti yaranarsa, əlavə 100 AZN. Kursu BirBank vasitəsilə 18 aya qədər hissə-hissə ödəmək mümkündür.</p>
 <div class="price-table">
 <div class="pt-head"><span>Xidmətlər</span></div>
 <div class="pt-row">
-<div><div class="pt-label">İlkin qiymətləndirmə</div><div class="pt-sub">30 dəq · ikincili enurezin istisna edilməsi · şəxsi və ya online</div></div>
-<div class="pt-price">50 AZN</div>
+<div><div class="pt-label">Əsas müalicə kursu — 3 ay</div><div class="pt-sub">Alarm cihazı + metodologiya + 3 ay ərzində dəstək</div></div>
+<div class="pt-price">500 AZN</div>
 </div>
 <div class="pt-row">
-<div><div class="pt-label">Kurs başlanğıcı</div><div class="pt-sub">Alarm cihazı + metodologiya + blanqlar + tam instruksiya</div></div>
-<div class="pt-price">300 AZN</div>
-</div>
-<div class="pt-row">
-<div><div class="pt-label">Aylıq dəstək</div><div class="pt-sub">Həftəlik hesabat analizi · ortalama 2–3 ay</div></div>
-<div class="pt-price">100 AZN/ay</div>
+<div><div class="pt-label">Davam etmə — zərurət olduqda</div><div class="pt-sub">Müalicə 3 aydan sonra davam etdirilərsə</div></div>
+<div class="pt-price">+100 AZN</div>
 </div>
 <div class="pt-row">
 <div><div class="pt-label">Şəhid · Qazi · Veteran · Aztəminatlı</div><div class="pt-sub">Təsdiqedici sənəd əsasında — tam ödənişsiz</div></div>
 <div class="pt-price" style="color:var(--accent);">Pulsuz</div>
 </div>
+<div class="pt-head"><span>BirBank ilə hissə-hissə ödəniş — 18 aya qədər</span></div>
+<div class="pt-row">
+<div><div class="pt-label">18 ay</div><div class="pt-sub">Aylıq ödəniş</div></div>
+<div class="pt-price">30 AZN/ay</div>
+</div>
+<div class="pt-row">
+<div><div class="pt-label">12 ay</div><div class="pt-sub">Aylıq ödəniş</div></div>
+<div class="pt-price">45 AZN/ay</div>
+</div>
+<div class="pt-row">
+<div><div class="pt-label">6 ay</div><div class="pt-sub">Aylıq ödəniş</div></div>
+<div class="pt-price">90 AZN/ay</div>
+</div>
 <div class="pt-total">
-<span class="tl">Cəmi (ortalama)</span>
-<span class="tv">450 – 550 AZN</span>
+<span class="tl">Əsas kurs — 3 ay · davam zərurətində +100 AZN</span>
+<span class="tv">500 AZN</span>
 </div>
 </div>
 </div>
@@ -669,7 +662,7 @@ input, select, textarea, button {
 <div class="reg-path">
 <div class="reg-path-step"><span class="rp-num">Addım 01</span><h4 role="heading" aria-level="3" data-a11y-level>Müraciət</h4><p>Formu doldurun, uşağın yaşını yazın</p></div>
 <div class="reg-path-step"><span class="rp-num">Addım 02</span><h4>Zəng</h4><p>24 saat ərzində koordinator əlaqə saxlayır</p></div>
-<div class="reg-path-step"><span class="rp-num">Addım 03</span><h4>İlkin görüş</h4><p>50 AZN · qiymətləndirmə, diaqnozun təsdiqi</p></div>
+<div class="reg-path-step"><span class="rp-num">Addım 03</span><h4>İlkin görüş</h4><p>Qiymətləndirmə, diaqnozun təsdiqi</p></div>
 <div class="reg-path-step"><span class="rp-num">Addım 04</span><h4>Kurs başlayır</h4><p>Alarm cihazı + instruksiya — evdə müalicə</p></div>
 </div>
 <form class="reg-form" id="enRegForm" action="/api/training-reg" method="POST" novalidate>
