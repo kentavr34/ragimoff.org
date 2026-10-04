@@ -593,6 +593,25 @@ function buildBook(b) {
   return list;
 }
 
+
+/* «Yeni mühazirələr» (1933) — НАШ перевод с немецкого (1-е издание IPV, Wien 1933),
+   продолжение «Psixoanalizlə ilkin tanışlıq» (лекции XXIX–XXXV). EPUB собран нами, обложка — Wan 2.7. */
+BOOKS.push({
+  slug: 'freud-yeni-muhazireler', logo: 'YM', epub: 'Yeni mühazirələr.epub',
+  title: 'Yeni mühazirələr', titlePrinted: 'YENİ MÜHAZİRƏLƏR',
+  author: 'Ziqmund Freyd', year: '1933', yearSub: 'İlk nəşr — 1933', ru: false, prefix: 'yeni',
+  chapters: [
+    { title: 'Ön söz', find: ['Ön söz'], pdfPage: 5 },
+    { title: 'İyirmi doqquzuncu mühazirə. YUXU NƏZƏRİYYƏSİNƏ YENİDƏN BAXIŞ', find: ['İyirmi doqquzuncu mühazirə. YUXU NƏZƏRİYYƏSİNƏ YENİDƏN BAXIŞ'], pdfPage: 9 },
+    { title: 'Otuzuncu mühazirə. YUXU VƏ OKKULTİZM', find: ['Otuzuncu mühazirə. YUXU VƏ OKKULTİZM'], pdfPage: 25 },
+    { title: 'Otuz birinci mühazirə. PSİXİ ŞƏXSİYYƏTİN PARÇALANMASI', find: ['Otuz birinci mühazirə. PSİXİ ŞƏXSİYYƏTİN PARÇALANMASI'], pdfPage: 41 },
+    { title: 'Otuz ikinci mühazirə. QORXU VƏ İNSTİNKT HƏYATI', find: ['Otuz ikinci mühazirə. QORXU VƏ İNSTİNKT HƏYATI'], pdfPage: 57 },
+    { title: 'Otuz üçüncü mühazirə. QADINLIQ', find: ['Otuz üçüncü mühazirə. QADINLIQ'], pdfPage: 73 },
+    { title: 'Otuz dördüncü mühazirə. İZAHLAR, TƏTBİQLƏR, ORİYENTASİYALAR', find: ['Otuz dördüncü mühazirə. İZAHLAR, TƏTBİQLƏR, ORİYENTASİYALAR'], pdfPage: 89 },
+    { title: 'Otuz beşinci mühazirə. DÜNYAGÖRÜŞÜ HAQQINDA', find: ['Otuz beşinci mühazirə. DÜNYAGÖRÜŞÜ HAQQINDA'], pdfPage: 105 },
+  ],
+});
+
 const only = process.argv[2];
 let n = 0;
 BOOKS.forEach((b) => {
