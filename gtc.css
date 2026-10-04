@@ -3670,15 +3670,20 @@ html, body {
     align-items: stretch !important;
     overflow: hidden;
   }
-  /* Когда сразу следом идёт stats-strip ИЛИ en-stats — даём hero полные 532,
-     потому что stats покрывает нижние 80px overlap-ом. */
+  /* Исторический min-height 532px (герой + полоса цифр) обнулён в
+     site-concept.css; селектор оставлен, чтобы не менять каскад. */
   .page-hero-x:has(+ .stats-strip),
   .page-hero-x:has(+ .en-stats) {
     min-height: 532px !important;
   }
-  /* en-stats overlap в hero — как у глобального .stats-strip на dark. */
+  /* 04.10.2026: полоса цифр больше НЕ заезжает на герой.
+     Было margin-top:-80px (владелец: «на enurez.html он как фото закреплён
+     над блоком героя») — полоса перекрывала низ героя, включая поле поиска.
+     Замер до: overlap = 80 px (низ героя 497,4 → верх полосы 417,4).
+     Стало 0 px: полоса идёт строго ПОСЛЕ героя, встык к его нижней грани,
+     как .stats-strip на index.html (владелец признал этот блок верным). */
   .page-hero-x + .en-stats {
-    margin-top: -80px !important;
+    margin-top: 0 !important;
     position: relative;
     z-index: 1;
   }

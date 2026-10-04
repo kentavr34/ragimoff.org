@@ -1295,7 +1295,7 @@ label, .form-label, .form-field > span, .field > span, .upload-lbl, .tile-lbl {
 :root { --s-block: 88px; }
 
 section, .sec-pad, .sec-3cards, .sec-2col, .sec-services, .sec-blog, .sec-programs,
-.gallery-band, .cta-band, .stats-strip, .books-band, .band, .bolme-card {
+.gallery-band, .cta-band, .stats-strip, .en-stats, .books-band, .band, .bolme-card {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -2451,5 +2451,63 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
   section.page-hero-x.page-hero-x .ph-h1,
   section.pg-hero.pg-hero .hero-h1 {
     font-size: var(--hero-h1-fs-m) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   28. ЯРЛЫКИ И МЕТКИ ВНУТРИ БЛОКОВ — ОТСТУП ОТ ГРАНЕЙ
+   Владелец 04.10.2026: «некоторые ярлыки — "Diaqnoz", "Xəbərdarlıq",
+   "Diferensial Diaqnostika", "Niyə Bizə Etibar Edirsiniz?" — прикреплены
+   к левому верхнему краю, как бы слипшись с гранями блока, а
+   "Instagram — Aktuallar" на той же странице размещено аккуратно,
+   с отступом от краёв».
+
+   ЗАМЕР «КАК НАДО» — .ig-block на enurez.html (эталон владельца):
+     паддинг контейнера 40 px → отступ ярлыка 41 px (40 + 1 px рамки),
+     по горизонтали и по вертикали ОДИНАКОВЫЙ.
+
+   ЗАМЕР «КАК НЕ НАДО» — .ps-inner (энурез, 3 языковые версии):
+     контейнер оформлен карточкой (фон --bg-2 + рамка --line, §7), но
+     паддинга у него не было вовсе → инсет ярлыка 1 px = 0 + рамка.
+     30 ярлыков в 3 файлах: enurez.html 10, en/enurez.html 10,
+     ru/enurez.html 10. Замер до: insetL=1, insetT=1 у всех.
+
+   СТАНДАРТ ПРИНЯТ ПО ШКАЛЕ КАРТОЧЕК §7: clamp(24px, 2.4vw, 32px)
+   (32 px на десктопе, 24 px на телефоне) — это шаг 8 и --s4/--s3,
+   то есть то же число, что у всех карточек сайта, а не локальные 40 px
+   одной страницы. Обе оси равны: эталон тоже симметричен (40/40).
+
+   Отступ задан ЯРЛЫКУ, а не контейнеру: у .cur-wrap / .tl-item / .box
+   паддинг сдвинул бы всю сетку (таблица учебного плана, лента протокола),
+   а владелец просил отступ именно у ярлыка. Ярлык — прямой первый ребёнок
+   контейнера с оформлением и без паддинга; специфичность (0,3,0) выше,
+   чем у правила «.badge, .card-label, .diploma-label { margin-top: 0 }»
+   из блока «верх блока → бейдж» выше по файлу.
+   ═══════════════════════════════════════════════════════════════════ */
+:root {
+  --lbl-inset-x: var(--s4) !important;   /* 32 px — грань блока → ярлык */
+  --lbl-inset-y: var(--s4) !important;
+}
+.ps-inner > .badge:first-child,
+.ps-inner > .card-label:first-child,
+.panel > .badge:first-child,
+.panel > .card-label:first-child,
+.box > .badge:first-child,
+.box > .card-label:first-child,
+.info-block > .badge:first-child,
+.review > .badge:first-child,
+.cur-wrap > .badge:first-child,
+.form-file-item > .badge:first-child,
+.tl-item > .badge:first-child,
+.pricing-card > .badge:first-child,
+.pricing-card > .card-label:first-child {
+  margin-top: var(--lbl-inset-y) !important;
+  margin-left: var(--lbl-inset-x) !important;
+}
+/* Телефон и планшет: шаг шкалы ниже — 24 px (--s3), как у карточек в §27. */
+@media (max-width: 860px) {
+  :root {
+    --lbl-inset-x: var(--s3) !important;
+    --lbl-inset-y: var(--s3) !important;
   }
 }
