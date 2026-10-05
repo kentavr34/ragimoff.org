@@ -629,6 +629,23 @@ BOOKS.push({
   ],
 });
 
+
+/* «Həzz prinsipinin o tayında» (Jenseits des Lustprinzips, 1920) — перевод GLM-агента (по изд. IPV 1923), ревизия de↔az + починка. Обложка — Wan 2.7. */
+BOOKS.push({
+  slug: 'freud-jenseits', logo: 'HJ', epub: 'Həzz prinsipinin o tayında.epub',
+  title: 'Həzz prinsipinin o tayında', titlePrinted: 'HƏZZ PRİNSİPİNİN O TAYINDA',
+  author: 'Ziqmund Freyd', year: '1920', yearSub: 'İlk nəşr — 1920', ru: false, prefix: 'jenseits',
+  chapters: [
+    { title: 'I. Həzz prinsipi və psixi aparat', find: ['I. Həzz prinsipi və psixi aparat'], pdfPage: 1 },
+    { title: 'II. Texnikadan travmaya: təkrarlama meyli', find: ['II. Texnikadan travmaya: təkrarlama meyli'], pdfPage: 12 },
+    { title: 'III. Şüur və şüursuzluq', find: ['III. Şüur və şüursuzluq'], pdfPage: 17 },
+    { title: 'IV. Spekulyativ ekskurs: instinktlərin ikiliyi', find: ['IV. Spekulyativ ekskurs: instinktlərin ikiliyi'], pdfPage: 24 },
+    { title: 'V. Bioloji ekskurs: soma və protistlər', find: ['V. Bioloji ekskurs: soma və protistlər'], pdfPage: 38 },
+    { title: 'VI. İnstinktlərin geriyə qaytaran xarakteri: həyat və ölüm instinktləri', find: ['VI. İnstinktlərin geriyə qaytaran xarakteri: həyat və ölüm instinktləri'], pdfPage: 44 },
+    { title: 'VII. Eros və Ananke: həzz prinsipinin yenidən qiymətləndirilməsi', find: ['VII. Eros və Ananke: həzz prinsipinin yenidən qiymətləndirilməsi'], pdfPage: 57 },
+  ],
+});
+
 const only = process.argv[2];
 let n = 0;
 BOOKS.forEach((b) => {
