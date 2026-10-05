@@ -130,7 +130,7 @@ body::after {
 }
 .cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,9,14,.3) 0%, transparent 36%, rgba(7,9,14,.72) 100%); }
 .cover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(90deg, rgba(0,0,0,.5), transparent); z-index: 2; }
-.cover__frame { position: absolute; inset: clamp(9px, 1.2vw, 16px); border: 1px solid rgba(201,169,97,.42); border-radius: 2px; z-index: 2; }
+.cover__frame { display: none; /* рамки убраны (Кенан 06.10) */ }
 .cover__author, .cover__title, .cover__year { position: relative; z-index: 3; }
 .cover__author { font-family: var(--font-mono); font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: var(--acc); }
 .cover__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.35rem, 2vw, 2.1rem); line-height: 1.06; }
