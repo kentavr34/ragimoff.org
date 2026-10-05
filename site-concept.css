@@ -2662,3 +2662,20 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
     display: block !important;
   }
 }
+
+
+/* ═══ Единый стандарт: заголовок и подзаголовок БЛОКА — по центру (кроме героя) ═══ */
+section:not(.page-hero):not(.page-hero-x) .sec-header,
+section:not(.page-hero):not(.page-hero-x) .sec-h2,
+section:not(.page-hero):not(.page-hero-x) .sec-sub,
+section:not(.page-hero):not(.page-hero-x) .sec-lead,
+.faq-block .sec-h2, .faq-block .sec-sub,
+.program-block .sec-h2, .program-block .sec-sub,
+.pricing-block .sec-h2, .pricing-block .sec-sub {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* выравнивание текста внутри центрированного подзаголовка */
+section:not(.page-hero):not(.page-hero-x) .sec-sub,
+section:not(.page-hero):not(.page-hero-x) .sec-lead { text-align-last: center !important; }
