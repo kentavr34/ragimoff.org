@@ -382,10 +382,12 @@ input, select, textarea, button {
         <div class="sec-header">
           <span class="badge">Education Programmes</span>
           <h2 class="sec-h2" id="prog-h"><span class="sh-line">3 Official</span> <span class="sh-line">Professional Programmes</span></h2>
-          <p class="sec-sub"><span class="ab-lead-mob">Each programme — one year,</span>
-<span class="ab-lead-mob">in person or online.</span>
-<span class="ab-lead-desk">Each programme lasts one year, in person or online. Instalments up to 24 months,</span>
-<span class="ab-lead-desk">the diploma is issued after full payment.</span></p>
+          <p class="sec-sub"><span class="ab-lead-mob">Diploma programmes last one year,</span>
+<span class="ab-lead-mob">family therapy — 3 months of classes</span>
+<span class="ab-lead-mob">and 6 months of supervision.</span>
+<span class="ab-lead-desk">Diploma programmes — one year, in person or online.</span>
+<span class="ab-lead-desk">Family therapy — 3 months of classes and 6 months of supervision.</span>
+<span class="ab-lead-desk">For diploma programmes — instalments up to 24 months; the diploma is issued after full payment.</span></p>
         </div>
       </div>
       <div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section);">
@@ -453,12 +455,12 @@ input, select, textarea, button {
 <span>IPAS Certificate · 2 modules</span>
 </div>
 <p class="price-card-desc">Couples therapy and the parent–child relationship. Higher education is not required — those with a background in psychology have wider opportunities. Graduates may provide counselling at our centre.</p>
-<div class="price-row"><span class="price-row-label">Duration</span><span class="price-row-value">3 months</span></div>
-<div class="price-row"><span class="price-row-label">Structure</span><span class="price-row-value">2 months of training + 1 month of supervision</span></div>
+<div class="price-row"><span class="price-row-label">Classes</span><span class="price-row-value">3 months — twice a week, 2 hours</span></div>
+<div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">In-person classes or online video lessons</span></div>
+<div class="price-row"><span class="price-row-label">Supervision</span><span class="price-row-value">6 months — once a week</span></div>
 <div class="price-row"><span class="price-row-label">Full price</span><span class="price-row-value">600 AZN</span></div>
-<div class="price-row"><span class="price-row-label">Paid in advance</span><span class="price-row-value accent">500 AZN</span></div>
-<div class="price-row"><span class="price-row-label">monthly</span><span class="price-row-value">200 AZN/month</span></div>
-<div class="price-total"><span class="num">200 AZN</span><span class="lbl">per month</span></div>
+<div class="price-row"><span class="price-row-label">3-month instalments</span><span class="price-row-value">200 AZN/month</span></div>
+<div class="price-total"><span class="num">600 AZN</span><span class="lbl">full price</span></div>
 <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Registration</a>
 <a class="btn btn-line" href="samira.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Training programme →</a>
 </div>
@@ -1165,14 +1167,16 @@ input, select, textarea, button {
        12 months the discount shrinks proportionally; over 12 months the
        second year adds +600 AZN in total, spread across the months. The
        monthly amount is rounded up to a multiple of 5; total = monthly ×
-       months. Family Therapy is outside the formula — fixed site prices. */
+       months. Family Therapy is outside the formula: a fixed full price of
+       600 AZN (3 months of classes and 6 months of supervision included),
+       no prepayment discount, 3 monthly instalments of 200 AZN. */
     var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
     var PLANS = {
       'General Psychology':      { base: 4200, prepay: 3800, months: ALL },
       'Clinical Psychology':     { base: 6600, prepay: 6000, months: ALL },
       'Psychotherapy Practicum': { base: 3600, prepay: 3000, months: ALL,
         fastNote: 'Pay on the day you apply — an extra −500 AZN → 2,500 AZN' },
-      'Family Therapy':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
+      'Family Therapy':          { base: 600, prepay: 600, months: [3], fixed: { 3: 200 } }
     };
     var form = document.getElementById('regForm');
     if (!form) return;
@@ -1216,7 +1220,7 @@ input, select, textarea, button {
         prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
         return;
       }
-      prepaySum.textContent = fmt(plan.prepay) + ' AZN (save ' + fmt(plan.base - plan.prepay) + ' AZN)';
+      prepaySum.textContent = fmt(plan.prepay) + ' AZN' + (plan.base > plan.prepay ? ' (save ' + fmt(plan.base - plan.prepay) + ' AZN)' : '');
       hisseSum.textContent = plan.months.length > 1
         ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' months'
         : plan.months[0] + ' months — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/mo.';
@@ -1234,11 +1238,12 @@ input, select, textarea, button {
         hidden.value = 'Instalment ' + n + ' months — ' + c.monthly + ' AZN/mo., total ' + c.total + ' AZN';
       } else if (t && t.value === 'prepay') {
         termWrap.style.display = 'none';
-        rows.push(line('Course price', fmt(plan.base) + ' AZN'));
-        rows.push(line('Discount', '−' + fmt(plan.base - plan.prepay) + ' AZN'));
+        var dp = plan.base - plan.prepay;
+        if (dp > 0) rows.push(line('Course price', fmt(plan.base) + ' AZN'));
+        if (dp > 0) rows.push(line('Discount', '−' + fmt(dp) + ' AZN'));
         rows.push(line('Total', fmt(plan.prepay) + ' AZN', true));
         if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
-        hidden.value = 'Prepayment — ' + plan.prepay + ' AZN (discount ' + (plan.base - plan.prepay) + ' AZN)';
+        hidden.value = 'Prepayment — ' + plan.prepay + ' AZN' + (dp > 0 ? ' (discount ' + dp + ' AZN)' : '');
       } else {
         termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
         return;

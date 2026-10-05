@@ -431,9 +431,10 @@ input, select, textarea, button {
 <h2 class="sec-h2" id="prog-h"><span class="sh-line">4 Tədris</span> <span class="sh-line">Proqramı</span></h2>
 <p class="sec-sub">
 <span class="pr-lead-mob">Diplom proqramları bir il davam edir,</span>
-<span class="pr-lead-mob">ailə terapiyası isə üç ay.</span>
-<span class="pr-lead-desk">Diplom proqramları 1 il, ailə terapiyası 3 ay.</span>
-<span class="pr-lead-desk">Bilavasitə və onlayn format, ödəniş hissə-hissə.</span>
+<span class="pr-lead-mob">ailə terapiyası isə 3 ay tədris</span>
+<span class="pr-lead-mob">və 6 ay superviziyadır.</span>
+<span class="pr-lead-desk">Diplom proqramları 1 il, ailə terapiyası — 3 ay tədris</span>
+<span class="pr-lead-desk">və 6 ay superviziya. Əyani, onlayn və video dərslər.</span>
 </p>
 </div>
 </div>
@@ -500,12 +501,12 @@ input, select, textarea, button {
 <span>IPAS Sertifikat · 2 modul</span>
 </div>
 <p class="price-card-desc">Cütlük terapiyası və&nbsp;valideyn-övlad münasibətləri. Ali təhsil tələb olunmur — psixologiya təhsili olanlara daha geniş imkanlar. Məzunlar mərkəzimizdə məsləhətçilik xidməti göstərə bilər.</p>
-<div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">3 ay</span></div>
-<div class="price-row"><span class="price-row-label">Quruluş</span><span class="price-row-value">2 ay tədris + 1 ay superviziya</span></div>
+<div class="price-row"><span class="price-row-label">Tədris</span><span class="price-row-value">3 ay — həftədə 2 dəfə 2 saat</span></div>
+<div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">Əyani dərslər və ya onlayn video dərslər</span></div>
+<div class="price-row"><span class="price-row-label">Superviziya</span><span class="price-row-value">6 ay — həftədə 1 dəfə</span></div>
 <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">600 AZN</span></div>
-<div class="price-row"><span class="price-row-label">Öncədən ödənişdə</span><span class="price-row-value accent">500 AZN</span></div>
-<div class="price-row"><span class="price-row-label">aylıq ödəniş</span><span class="price-row-value">200 AZN/ay</span></div>
-<div class="price-total"><span class="num">200 AZN</span><span class="lbl">aylıq</span></div>
+<div class="price-row"><span class="price-row-label">hissə-hissə 3 ay</span><span class="price-row-value">200 AZN/ay</span></div>
+<div class="price-total"><span class="num">600 AZN</span><span class="lbl">tam qiymət</span></div>
 <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Qeydiyyat</a>
 <a class="btn btn-line" href="samira.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı →</a>
 </div>
@@ -1366,7 +1367,9 @@ input, select, textarea, button {
      müddətdə ikinci il üçün cəmi +600 AZN (aya bölünərək) əlavə olunur.
      Aylıq məbləğ 5 AZN-ə qədər yuxarı yuvarlaqlaşdırılır, yekun = aylıq × ay
      (пример владельца: Klinik 9 ay → 6450/9=716.67 → 720 × 9 = 6480).
-     Ailə Terapiyası düsturdan kənardır — qiymətlər saytdakı kimi sabitdir. */
+     Ailə Terapiyası düsturdan kənardır: 600 AZN sabit tam qiymət (3 ay tədris
+     və 6 ay superviziya daxil), öncədən ödənişdə endirim yoxdur, hissə-hissə
+     3 ay × 200 AZN. */
   (function () {
     var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
     var PLANS = {
@@ -1374,7 +1377,7 @@ input, select, textarea, button {
       'Klinik Psixologiya':       { base: 6600, prepay: 6000, months: ALL },
       'Psixoterapiya Praktikumu': { base: 3600, prepay: 3000, months: ALL,
         fastNote: 'Müraciət günü ödənişdə əlavə −500 AZN → 2 500 AZN' },
-      'Ailə Terapiyası':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
+      'Ailə Terapiyası':          { base: 600, prepay: 600, months: [3], fixed: { 3: 200 } }
     };
     var form = document.getElementById('regForm');
     if (!form) return;
@@ -1418,7 +1421,7 @@ input, select, textarea, button {
         prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
         return;
       }
-      prepaySum.textContent = fmt(plan.prepay) + ' AZN (endirim ' + fmt(plan.base - plan.prepay) + ' AZN)';
+      prepaySum.textContent = fmt(plan.prepay) + ' AZN' + (plan.base > plan.prepay ? ' (endirim ' + fmt(plan.base - plan.prepay) + ' AZN)' : '');
       hisseSum.textContent = plan.months.length > 1
         ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' ay'
         : plan.months[0] + ' ay — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/ay';
@@ -1436,11 +1439,12 @@ input, select, textarea, button {
         hidden.value = 'Hissə-hissə ' + n + ' ay — ' + c.monthly + ' AZN/ay, cəmi ' + c.total + ' AZN';
       } else if (t && t.value === 'prepay') {
         termWrap.style.display = 'none';
-        rows.push(line('Kurs qiyməti', fmt(plan.base) + ' AZN'));
-        rows.push(line('Endirim', '−' + fmt(plan.base - plan.prepay) + ' AZN'));
+        var dp = plan.base - plan.prepay;
+        if (dp > 0) rows.push(line('Kurs qiyməti', fmt(plan.base) + ' AZN'));
+        if (dp > 0) rows.push(line('Endirim', '−' + fmt(dp) + ' AZN'));
         rows.push(line('Yekun', fmt(plan.prepay) + ' AZN', true));
         if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
-        hidden.value = 'Öncədən ödəniş — ' + plan.prepay + ' AZN (endirim ' + (plan.base - plan.prepay) + ' AZN)';
+        hidden.value = 'Öncədən ödəniş — ' + plan.prepay + ' AZN' + (dp > 0 ? ' (endirim ' + dp + ' AZN)' : '');
       } else {
         termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
         return;
