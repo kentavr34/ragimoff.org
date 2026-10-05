@@ -612,6 +612,23 @@ BOOKS.push({
   ],
 });
 
+
+/* «Yumor və onun qeyri-şüurla əlaqəsi» (Der Witz, 1905) — НАШ перевод с немецкого (текст по GW VI, Imago 1940). EPUB собран нами, обложка — Wan 2.7. */
+BOOKS.push({
+  slug: 'freud-yumor', logo: 'YY', epub: 'Yumor və onun qeyri-şüurla əlaqəsi.epub',
+  title: 'Yumor və onun qeyri-şüurla əlaqəsi', titlePrinted: 'YUMOR VƏ ONUN QEYRİ-ŞÜURLA ƏLAQƏSİ',
+  author: 'Ziqmund Freyd', year: '1905', yearSub: 'İlk nəşr — 1905', ru: false, prefix: 'yumor',
+  chapters: [
+    { title: 'I. Giriş', find: ['I. Giriş'], pdfPage: 1 },
+    { title: 'II. Yumorun texnikası', find: ['II. Yumorun texnikası'], pdfPage: 8 },
+    { title: 'III. Yumorun meylləri', find: ['III. Yumorun meylləri'], pdfPage: 76 },
+    { title: 'IV. Yumorun zövq mexanizmi və psixogenezi', find: ['IV. Yumorun zövq mexanizmi və psixogenezi'], pdfPage: 100 },
+    { title: 'V. Yumorun motivləri — yumor sosial hadisə kimi', find: ['V. Yumorun motivləri — yumor sosial hadisə kimi'], pdfPage: 120 },
+    { title: 'VI. Yumorun yuxu və şüursuzla əlaqəsi', find: ['VI. Yumorun yuxu və şüursuzla əlaqəsi'], pdfPage: 137 },
+    { title: 'VII. Yumor və komikliyin növləri', find: ['VII. Yumor və komikliyin növləri'], pdfPage: 167 },
+  ],
+});
+
 const only = process.argv[2];
 let n = 0;
 BOOKS.forEach((b) => {
