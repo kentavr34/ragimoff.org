@@ -2679,3 +2679,23 @@ section:not(.page-hero):not(.page-hero-x) .sec-lead,
 /* выравнивание текста внутри центрированного подзаголовка */
 section:not(.page-hero):not(.page-hero-x) .sec-sub,
 section:not(.page-hero):not(.page-hero-x) .sec-lead { text-align-last: center !important; }
+
+
+/* ═══ Портрет героя: без прямоугольной подложки — мягкая маска по краям ═══ */
+.page-hero-x .photo-col img, .page-hero .photo-col img {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 78%, rgba(0,0,0,.35) 94%, transparent 100%),
+                      linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 0, #000 78%, rgba(0,0,0,.35) 94%, transparent 100%),
+              linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-composite: intersect;
+  background: transparent !important; border-radius: 0 !important; box-shadow: none !important;
+}
+/* ═══ Мобильный герой: полоса фото схлопывается, без пустоты над фото ═══ */
+@media (max-width: 860px) {
+  .page-hero-x .photo-col, .page-hero .photo-col {
+    position: static !important; order: 3; width: 100% !important; height: auto !important;
+    min-height: 0 !important; margin: 16px 0 0 !important; padding: 0 !important;
+  }
+  .page-hero-x .photo-col img, .page-hero .photo-col img { width: 100% !important; height: auto !important; }
+}
