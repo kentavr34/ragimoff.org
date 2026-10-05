@@ -1152,6 +1152,16 @@ label, .form-label, .form-field > span, .field > span, .upload-lbl, .tile-lbl {
   /* в разметке программ стоит white-space: nowrap — на узком экране длинное
      название темы обрезалось контейнером (замер аудита: вылет до 547 при 500) */
   white-space: normal !important; }
+/* Расписание программ на телефоне (волна 05.10.2026): колонка имени темы
+   сжималась до 102 px (замер 390: clientWidth 102, scrollWidth 154–164) —
+   хвост названия срезался `overflow:hidden`, а часы «72 saat» визуально
+   липли к тексту. Освобождаем место под имя: дата 96 → 64, лидер-линия
+   скрыта, паддинг строки 20 → 16 → колонке имени 102 → ~178 px. */
+@media (max-width: 560px) {
+  .cur-row { padding-left: 16px !important; padding-right: 16px !important; }
+  .cur-date { min-width: 64px !important; }
+  .cur-row > div:nth-child(2)::after { display: none !important; }
+}
 .cur-hours, .cur-date { font-family: var(--f-mono) !important; font-size: .66rem !important; color: var(--mid) !important; }
 /* расписание программ: цвета были из старой сине-серой палитры
    (224,227,236 @ .45–.62) — вне тёплых токенов и 3.8–4.4:1 на поверхностях.
