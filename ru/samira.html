@@ -60,6 +60,15 @@
          обрезаясь на «RÜSTƏ». Замер: колонка фото начиналась на y=106,
          а сетка на y=231. Опускаем фото на уровень сетки. */
       .sec-2col .about-col-right { margin-top: 0 !important; }
+      /* Кнопка записи — ОТДЕЛЬНОЙ СТРОКОЙ. js-hero-fit2.js (innerRhythm)
+         выравнивает пару «абзац → кнопка» через margin-top РОДИТЕЛЯ кнопки:
+         он берёт родителя и добавляет ему поле, пока зазор до абзаца не
+         станет 32/24 px. Здесь родителем был весь .about-col-right, поэтому
+         поле получала вся колонка (фото + соцсети + абзац): на 390 замер
+         дал margin-top 1375px — та самая пустота от имени и специальности
+         до фото. Своя обёртка только вокруг кнопки возвращает правилу
+         настоящего адресата, а колонка остаётся с полем 0. */
+      .sec-2col .about-cta { display: block; width: 100%; }
       /* ХРОНИКА — СТОПКОЙ, НА ВСЕХ ШИРИНАХ.
          Сначала здесь стояла сетка «подпись 130px | текст». Она убирала
          «ёлочку» (в gtc.css li это flex, а strong имеет ширину по
@@ -470,7 +479,9 @@ input, select, textarea, button {
             <a href="https://wa.me/994775395009" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">WA</a>
           </div>
           <p style="margin:14px 0 0;font-size:14px;line-height:1.6;">Регистрацию нужно пройти заранее: места распределяются между записавшимися в группу тренинга. Без этого <strong>1 сентября присоединиться к занятиям не получится</strong>.</p>
-          <a href="https://wa.me/994775395009" target="_blank" rel="noopener" class="btn btn-fill about-img-btn">Запись</a>
+          <div class="about-cta">
+            <a href="https://wa.me/994775395009" target="_blank" rel="noopener" class="btn btn-fill about-img-btn">Запись</a>
+          </div>
         </div>
       </div>
     </section>
@@ -489,7 +500,7 @@ input, select, textarea, button {
           </p>
         </div>
 
-        <p class="mod-intro">Занятия дважды в неделю — <strong>вторник и четверг, с 14:00 до 16:00</strong>. Начало тренинга — <strong>1 сентября</strong>.</p>
+        <p class="mod-intro">Занятия дважды в неделю — <strong>вторник и четверг, с 14:00 до 16:00</strong>. Начало тренинга — <strong>1 сентября 2026</strong>.</p>
 
         <details class="mod-panel">
           <summary>
