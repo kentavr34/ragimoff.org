@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Практикум по психотерапии — 864 академических часа (36 живых + 36 видео × 12 мес.), сертификат IPAS/BPA, супервизия. RAGIMOFF." />
-    <meta property="og:title" content="Практикум по психотерапии | RAGIMOFF" />
+    <meta property="og:title" content="Психоанализ | RAGIMOFF" />
     <meta property="og:description" content="Практикум по психотерапии — 864 академических часа (36 живых + 36 видео × 12 мес.), сертификат IPAS/BPA, супервизия. RAGIMOFF." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ragimoff.org/ru/program-praktikum.html" />
+    <meta property="og:url" content="https://ragimoff.org/ru/program-psixoanaliz.html" />
     <meta property="og:image" content="https://ragimoff.org/images/kenan/photo-portal-crop-removebg-preview.png" />
-    <title>Практикум по психотерапии | RAGIMOFF</title>
+    <title>Психоанализ | RAGIMOFF</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -71,6 +71,13 @@
       .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.18); }
       .tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
       .tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
+      /* Пять программ: три плитки в первом ряду, две — во втором по центру. */
+      @media (min-width: 961px) {
+        .tile-group.cols3 { grid-template-columns: repeat(6,1fr); }
+        .tile-group.cols3 > .tile-lbl { grid-column: span 2; }
+        .tile-group.cols3 > .tile-lbl:nth-child(n+8) { grid-column: span 3; }
+      }
+      .tile-group.cols2 { grid-template-columns: repeat(2,1fr); }
       .tile-opt { display: none; }
       .tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: var(--t-xs); color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; font-family: var(--font); }
       .tile-opt:checked + .tile-lbl { background: var(--accent); color: var(--navy); }
@@ -156,11 +163,11 @@
         .pdf-btn { visibility: hidden !important; }
       }
     </style>
-  <link rel="canonical" href="https://ragimoff.org/ru/program-praktikum.html" />
-  <link rel="alternate" hreflang="az" href="https://ragimoff.org/program-praktikum.html" />
-  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/program-praktikum.html" />
-  <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/program-praktikum.html" />
-  <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/program-praktikum.html" />
+  <link rel="canonical" href="https://ragimoff.org/ru/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/program-psixoanaliz.html" />
 <style>
 /* Wave 1.4 — Touch targets ≥44px for form controls */
 input, select, textarea, button {
@@ -201,12 +208,12 @@ input, select, textarea, button {
     "name": "RAGIMOFF Psixologiya Məktəbi",
     "url": "https://ragimoff.org/"
   },
-  "educationalLevel": "Practicum",
+  "educationalLevel": "Advanced",
   "credentialCategory": "Certificate",
   "hasCourseInstance": {
     "@type": "CourseInstance",
     "courseMode": "online, in-person",
-    "duration": "P1Y",
+    "duration": "P9M",
     "inLanguage": "ru"
   }
 }
@@ -215,7 +222,7 @@ input, select, textarea, button {
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ragimoff.org/ru/"}, {"@type": "ListItem", "position": 2, "name": "Ru", "item": "https://ragimoff.org/ru"}, {"@type": "ListItem", "position": 3, "name": "Практикум по психотерапии | RAGIMOFF", "item": "https://ragimoff.org/ru/program-praktikum.html"}]
+  "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ragimoff.org/ru/"}, {"@type": "ListItem", "position": 2, "name": "Ru", "item": "https://ragimoff.org/ru"}, {"@type": "ListItem", "position": 3, "name": "Практикум по психотерапии | RAGIMOFF", "item": "https://ragimoff.org/ru/program-psixoanaliz.html"}]
 }
 </script>
   <meta property="og:locale" content="ru_RU" />
@@ -336,47 +343,46 @@ input, select, textarea, button {
 
 <main class="page-main" id="page-main">
     <!-- B) HERO -->
-    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/psixoterapiya-praktikum.jpg');" aria-labelledby="page-h1">
-      <div class="page-hero-x-inner">
-        <span class="ph-badge">ПРАКТИЧЕСКАЯ ПРОГРАММА</span>
-        <h1 class="ph-h1" id="page-h1">
-          <span class="ph-h1-w1">Практикум</span>
-          <span class="ph-h1-w2">по психотерапии</span>
-        </h1>
-        <div class="photo-col">
-          <img src="../images/hero/program-praktikum-ru.png" alt="Практикум психотерапии" width="640" height="672" />
-        </div>
+    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/psixologiya-mekteb.jpg');" aria-labelledby="psixoanaliz-h1">
+  <div class="page-hero-x-inner">
+    <span class="ph-badge">ОБУЧАЮЩАЯ ПРОГРАММА</span>
+    <h1 class="ph-h1" id="psixoanaliz-h1">
+      <span class="ph-h1-w1">Психоанализ</span>
+      <span class="ph-h1-w2">Наследие Фрейда</span>
+    </h1>
+    <div class="photo-col">
+      <img src="../images/hero/tehsil-ru.png" alt="Программа «Психоанализ» — Школа психологии RAGIMOFF" width="640" height="672" />
+    </div>
 
-        <p class="ph-sub">
-          <span class="ph-sub-mob">Для тех, кто знает теорию, — 864</span>
-          <span class="ph-sub-mob">часа практики (36 живых + 36 видео</span>
-          <span class="ph-sub-mob">× 12 мес.). Международный</span>
-          <span class="ph-sub-desk">Для тех, кто знает теорию, — 864 часа практики (36 живых + 36 видео ×</span>
-          <span class="ph-sub-desk">12 мес.). Международный сертификат IPAS/BPA.</span>
-        </p>
-        <div class="ph-search-wrap hero-search-wrap">
-          <div class="hero-search-bar">
-            <input id="hero-si" type="text" placeholder="Поиск..." autocomplete="off" aria-label="Поиск...">
-            <button class="hero-search-btn" onclick="heroSearch()">
-              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <span>ПОИСК</span>
-            </button>
-          </div>
-          <div id="hero-sd"></div>
-        </div>
+    <p class="ph-sub">
+      <span class="ph-sub-mob">3 месяца теории и 6 месяцев супервизии;</span>
+      <span class="ph-sub-mob">начало — 01.11.2026.</span>
+      <span class="ph-sub-desk">3 месяца теории и 6 месяцев супервизии — начало 01.11.2026;</span>
+      <span class="ph-sub-desk">бонус: 24 книги Фрейда впервые в переводе с оригинального немецкого на азербайджанский.</span>
+    </p>
+    <div class="ph-search-wrap hero-search-wrap">
+      <div class="hero-search-bar">
+        <input id="hero-si" type="text" placeholder="Поиск темы..." autocomplete="off" aria-label="Поиск темы...">
+        <button class="hero-search-btn" onclick="heroSearch()">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>ПОИСК</span>
+        </button>
       </div>
-    </section>
+      <div id="hero-sd"></div>
+    </div>
+  </div>
+</section>
 
     <!-- C) STATS STRIP -->
     <div class="stats-strip" data-theme="dark">
       <div class="stats-inner">
-        <div class="stat-item"><span class="stat-num">864 ч.</span><span class="stat-label">Всего практики</span></div>
+        <div class="stat-item"><span class="stat-num">3 месяца</span><span class="stat-label">Теория</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">1 год</span><span class="stat-label">Срок практики</span></div>
+        <div class="stat-item"><span class="stat-num">6 месяцев</span><span class="stat-label">Супервизия</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">IPAS/BPA</span><span class="stat-label">Международный сертификат</span></div>
+        <div class="stat-item"><span class="stat-num">24</span><span class="stat-label">Книги Фрейда — бонус</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">159</span><span class="stat-label">тыс. руб.</span></div>
+        <div class="stat-item"><span class="stat-num">600 AZN</span><span class="stat-label">Полная стоимость</span></div>
       </div>
     </div>
 
@@ -384,71 +390,37 @@ input, select, textarea, button {
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
         <span class="badge on-light">О ПРОГРАММЕ</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Что такое Практикум</span> <span class="sh-line">по психотерапии?</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Живые сессии, супервизия</span>
-<span class="ab-lead-mob">и консилиум — 864 часа.</span>
-<span class="ab-lead-desk">Живые сессии, супервизия и консилиум для тех, кто знает теорию:</span>
-<span class="ab-lead-desk">международный сертификат IPAS/BPA с проверкой по QR-коду, 864 часа.</span></p>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Что такое</span> <span class="sh-line">Психоанализ?</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Курс теории по наследию Фрейда</span>
+<span class="ab-lead-mob">и клиническая супервизия.</span>
+<span class="ab-lead-desk">Теоретический курс по наследию Зигмунда Фрейда и 6 месяцев клинической супервизии.</span></p>
         <div class="overview-grid">
           <div class="overview-text">
-            <p>Программа «Практикум по психотерапии» предназначена для специалистов, прошедших базовый курс психологии, имеющих прочную теоретическую базу, но не обладающих достаточной уверенностью для реальной клинической работы. Программа сводит теорию к минимуму и доводит практику до максимума.</p>
-            <p>Программа рассчитана на 12 месяцев, по 72 часа в месяц: 36 часов живых сессий (ролевые игры, разбор случаев, консилиум) + 36 часов видеозаписей. Итого 864 часа. Кроме того, в течение года продолжаются 2 индивидуальные сессии супервизии ежемесячно.</p>
-            <p>Успешно завершившие программу получают международный сертификат IPAS (International Psychotherapy Accreditation Society) и BPA — документ, верифицируемый по QR-коду, признаваемый за пределами Азербайджана.</p>
+            <p>Программа «Психоанализ» состоит из трёх частей: 3 месяца теории (2 раза в неделю, занятие 2 часа), 6 месяцев еженедельной супервизии и работа с текстами Фрейда. Преподаватель — Кенан Рагимов.</p>
+            <p>В теоретической части изучается понятийный аппарат психоанализа: бессознательное, сопротивление, толкование сновидений, оговорки, защитные механизмы, детская сексуальность, перенос и контрперенос. На этапе супервизии участники работают со своим клиническим материалом.</p>
+            <p>Бонус программы: все 24 книги Зигмунда Фрейда впервые в Азербайджане переведены с оригинального немецкого языка на азербайджанский и будут доступны студентам этой программы.</p>
             <ul class="highlights-list">
-              <li>Необходимо пройти базовый курс психологии (обязательное условие)</li>
-              <li>Группы максимум 8 человек — каждый участник получает индивидуальное внимание</li>
-              <li>Живая демонстрация реальных сессий с д-ром Рагимовым</li>
-              <li>Отработка проведения собственных сессий под супервизией</li>
-              <li>2 индивидуальные сессии супервизии ежемесячно в течение года</li>
-              <li>Накопление часов для сертификата IPAS/BPA</li>
+              <li>Преподаватель и руководитель — Кенан Рагимов</li>
+              <li>3 месяца теории: 2 раза в неделю × 2 часа (очно или онлайн-видеоуроки)</li>
+              <li>6 месяцев супервизии: 1 раз в неделю, на собственном клиническом материале</li>
+              <li>Бонус: 24 книги Фрейда в переводе с оригинального немецкого на азербайджанский</li>
+              <li>Небольшие группы — индивидуальное внимание каждому участнику</li>
+              <li>Аттестация по завершении программы</li>
             </ul>
           </div>
           <div>
             <div class="info-card">
-              <div class="info-card-title">Сведения о программе</div>
-              <div class="info-row">
-                <span class="info-lbl">Стоимость</span>
-                <span class="info-val accent">180 тыс. руб.</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">При полной оплате</span>
-                <span class="info-val">150 тыс. руб. (−20%)</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Рассрочка 12 мес.</span>
-                <span class="info-val">15 тыс. руб./мес.</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Рассрочка 24 мес.</span>
-                <span class="info-val">9 тыс. руб./мес.</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Ежемесячная нагрузка</span>
-                <span class="info-val">72 ч. (36 живых + 36 видео)</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Супервизия</span>
-                <span class="info-val">1 год, 2 сессии в месяц</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Формат</span>
-                <span class="info-val">Онлайн + Офлайн</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Сертификат</span>
-                <span class="info-val">IPAS/BPA — Международный</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Язык</span>
-                <span class="info-val">Русский</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Начало</span>
-                <span class="info-val">05.01.2027</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl" style="color:rgba(255,255,255,0.6);font-size:0.68rem;font-weight:400;text-transform:none;letter-spacing:0;">Оплата банковским переводом или через СБП.</span>
-              </div>
+              <div class="info-card-title">Данные программы</div>
+              <div class="info-row"><span class="info-lbl">Стоимость</span><span class="info-val accent">600 AZN</span></div>
+              <div class="info-row"><span class="info-lbl">При предоплате</span><span class="info-val">500 AZN (−100 AZN)</span></div>
+              <div class="info-row"><span class="info-lbl">Рассрочка</span><span class="info-val">200 AZN/мес. × 3 мес.</span></div>
+              <div class="info-row"><span class="info-lbl">Срок</span><span class="info-val">3 месяца обучения + 6 месяцев супервизии</span></div>
+              <div class="info-row"><span class="info-lbl">Обучение</span><span class="info-val">2 раза в неделю × 2 часа</span></div>
+              <div class="info-row"><span class="info-lbl">Супервизия</span><span class="info-val">1 раз в неделю, 6 месяцев</span></div>
+              <div class="info-row"><span class="info-lbl">Формат</span><span class="info-val">Очно + онлайн</span></div>
+              <div class="info-row"><span class="info-lbl">Преподаватель</span><span class="info-val">Кенан Рагимов</span></div>
+              <div class="info-row"><span class="info-lbl">Язык</span><span class="info-val">Азербайджанский</span></div>
+              <div class="info-row"><span class="info-lbl">Начало</span><span class="info-val">01.11.2026</span></div>
             </div>
           </div>
         </div>
@@ -456,235 +428,128 @@ input, select, textarea, button {
     </section>
 
     <!-- E) SCHEDULE TABLE -->
-    <section id="sec-curriculum" style="background:var(--white);">
+    <section id="sec-curriculum" style="background:#0E1116;">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">РАСПИСАНИЕ 2027</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Ежемесячное</span> <span class="sh-line">расписание программы</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Один блок в месяц,</span>
-<span class="ab-lead-mob">онлайн или очно.</span>
-<span class="ab-lead-desk">Один тематический блок в месяц, онлайн или очно: пропущенную живую сессию</span>
-<span class="ab-lead-desk">можно посмотреть в видеоархиве.</span></p>
+        <span class="badge on-light">УЧЕБНЫЙ ПЛАН</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">2 модуля</span> <span class="sh-line">— теория и супервизия</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Теоретический блок и</span>
+<span class="ab-lead-mob">шесть месяцев супервизии.</span>
+<span class="ab-lead-desk">Теоретический блок — три месяца, занятие 2 часа; блок супервизии — шесть месяцев, раз в неделю.</span></p>
 
-        <div style="display:flex;justify-content:flex-end;width:100%;max-width:800px;margin-top:32px;margin-bottom:8px;">
-          <button onclick="window.print()" class="pdf-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-            Скачать PDF
-          </button>
-        </div>
         <div class="cur-wrap">
-          <p class="cur-group-title">I Квартал &mdash; Январь &ndash; Март</p>
-          <div class="cur-row"><div class="cur-date">Январь</div><div><span class="cur-name">Первичная оценка и сбор анамнеза</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Февраль</div><div><span class="cur-name">Психодиагностика: практика тестовых батарей</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Март</div><div><span class="cur-name">Первая сессия при расстройствах адаптации</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
+          <p class="cur-group-title">Модуль 1 — Теория · 3 месяца (2×2 часа в неделю)</p>
+          <div class="cur-row"><div class="cur-date">Ноябрь</div><div><span class="cur-name">Бессознательное, топическая модель психического аппарата, сопротивление</span></div><div class="cur-hours">16 <span>часов</span></div></div>
+          <div class="cur-row"><div class="cur-date">Декабрь</div><div><span class="cur-name">Толкование сновидений, оговорки, символ и язык</span></div><div class="cur-hours">16 <span>часов</span></div></div>
+          <div class="cur-row"><div class="cur-date">Январь</div><div><span class="cur-name">Защитные механизмы, детская сексуальность, перенос и контрперенос</span></div><div class="cur-hours">16 <span>часов</span></div></div>
 
-          <p class="cur-group-title">II Квартал &mdash; Апрель &ndash; Июнь</p>
-          <div class="cur-row"><div class="cur-date">Апрель</div><div><span class="cur-name">Работа с депрессией и нарушениями настроения</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Май</div><div><span class="cur-name">Тревога и панические атаки: техники экспозиции</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Июнь</div><div><span class="cur-name">Травма: этап стабилизации</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-
-          <p class="cur-group-title">III Квартал &mdash; Июль &ndash; Сентябрь</p>
-          <div class="cur-row"><div class="cur-date">Июль</div><div><span class="cur-name">Семейная динамика: системный подход</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Август</div><div><span class="cur-name">Детская психология: нарушения развития</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Сентябрь</div><div><span class="cur-name">Расстройства личности: долгосрочная работа</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-
-          <p class="cur-group-title">IV Квартал &mdash; Октябрь &ndash; Декабрь</p>
-          <div class="cur-row"><div class="cur-date">Октябрь</div><div><span class="cur-name">Психосоматика: работа с телом</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Ноябрь</div><div><span class="cur-name">Супервизия: разбор сложных случаев</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
-          <div class="cur-row"><div class="cur-date">Декабрь</div><div><span class="cur-name">Итоговая аттестация: анализ реального случая</span></div><div class="cur-hours">72 <span>ч.</span></div></div>
+          <p class="cur-group-title">Модуль 2 — Супервизия · 6 месяцев (1 раз в неделю)</p>
+          <div class="cur-row"><div class="cur-date">Февраль – Июль</div><div><span class="cur-name">Еженедельные супервизионные сессии на собственном клиническом материале</span></div><div class="cur-hours">24 <span>сессии</span></div></div>
 
           <div class="cur-total">
-            <span class="tl">2027 — 12 мес. × 72 ч.</span>
-            <span class="tv">864 ч.</span>
+            <span class="tl">Всего — 3 месяца теории + 6 месяцев супервизии</span>
+            <span class="tv">48 часов + 24 сессии</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- E2) PRACTICE FORMATS -->
-    <section data-theme="dark" style="background:var(--navy);">
-      <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge">ФОРМАТЫ ПРАКТИКИ</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">5 форматов</span> <span class="sh-line">работы</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Каждый формат формирует</span>
-<span class="ab-lead-mob">самостоятельные навыки.</span>
-<span class="ab-lead-desk">Каждый формат направлен на формирование самостоятельных клинических навыков.</span></p>
-        <div class="fmt-grid">
-          <div class="fmt-card">
-            <span class="fmt-num">Format 01</span>
-            <h3 class="fmt-title">Ролевые игры</h3>
-            <p class="fmt-body">Участники поочерёдно исполняют роли психолога и пациента. Супервизор даёт обратную связь в режиме реального времени. Наиболее эффективный формат для отработки динамики реальной сессии.</p>
-          </div>
-          <div class="fmt-card">
-            <span class="fmt-num">Format 02</span>
-            <h3 class="fmt-title">Разбор случаев</h3>
-            <p class="fmt-body">Групповое обсуждение реальных (анонимизированных) клинических случаев. Диагностическое мышление, планирование лечения и изучение альтернативных подходов.</p>
-          </div>
-          <div class="fmt-card">
-            <span class="fmt-num">Format 03</span>
-            <h3 class="fmt-title">Консилиум</h3>
-            <p class="fmt-body">Мультидисциплинарное обсуждение сложных случаев. Взгляд с позиций психиатра, психолога, психотерапевта. Навык принятия командных решений.</p>
-          </div>
-          <div class="fmt-card">
-            <span class="fmt-num">Format 04</span>
-            <h3 class="fmt-title">Видеоархив</h3>
-            <p class="fmt-body">Доступ к более чем 100 записям реальных сессий. Наблюдение за тем, как различные психотерапевтические подходы выглядят на практике. Для самостоятельного обучения.</p>
-          </div>
-          <div class="fmt-card">
-            <span class="fmt-num">Format 05</span>
-            <h3 class="fmt-title">Итоговая аттестация</h3>
-            <p class="fmt-body">30-минутная работа над реальным случаем перед комиссией. Анамнез, диагноз, план лечения, прогноз. Успешно прошедшим выдаётся сертификат IPAS/BPA.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- E3) CERTIFICATE & VIDEO -->
+    <!-- F) BONUS / TUTOR / SUPERVISION -->
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">СЕРТИФИКАТ И АРХИВ</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Сертификат</span> <span class="sh-line">и видеоархив</span></h2>
+        <span class="badge on-light">БОНУС И ПРЕПОДАВАТЕЛЬ</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">24 книги Фрейда</span> <span class="sh-line">и преподаватель</span></h2>
         <div class="opp-grid">
           <div class="opp-card">
-            <span class="opp-label">Международный сертификат</span>
-            <h3 class="opp-title">IPAS/BPA &mdash; верифицируемый по QR-коду</h3>
-            <p class="opp-body">Участникам, успешно окончившим программу, выдаётся сертификат IPAS (International Psychotherapy Accreditation Society) и BPA. Сертификат можно проверить онлайн по QR-коду. Выдаётся в рамках программы, включённой в государственный реестр ФРДО.</p>
+            <span class="opp-label">Бонус</span>
+            <h3 class="opp-title">24 книги Фрейда — впервые на азербайджанском языке</h3>
+            <p class="opp-body">Все 24 книги Зигмунда Фрейда впервые в Азербайджане переведены с оригинального немецкого языка на азербайджанский и будут доступны студентам этой программы. Полный каталог книг — в разделе «Книги».</p>
           </div>
           <div class="opp-card">
-            <span class="opp-label">Видеоархив</span>
-            <h3 class="opp-title">Видеозаписи 300+ занятий &mdash; постоянное совершенствование</h3>
-            <p class="opp-body">Зачисленные участники получают постоянный доступ к более чем 300 видеоурокам. Архив регулярно пополняется. Каждая сессия практикума также записывается и добавляется в архив — процесс обучения не прекращается.</p>
+            <span class="opp-label">Преподаватель</span>
+            <h3 class="opp-title">Кенан Рагимов — автор и руководитель</h3>
+            <p class="opp-body">Программу ведёт Кенан Рагимов: 23 года клинической практики, автор проекта перевода наследия Фрейда на азербайджанский язык. Теоретические занятия и супервизия проходят под его личным руководством.</p>
+          </div>
+          <div class="opp-card">
+            <span class="opp-label">Супервизия</span>
+            <h3 class="opp-title">6 месяцев еженедельной супервизии</h3>
+            <p class="opp-body">Блок супервизии длится шесть месяцев: одна сессия в неделю, работа с клиническим материалом участника. Материал анонимизируется, разбор идёт в группе.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- E4) TELEGRAM BAND -->
-    <div class="tg-band">
-      <div class="tg-inner">
-        <div class="tg-text">
-          <span class="badge" style="display:inline-block">Группа практикума</span>
-          <h2>Telegram-группа практикума</h2>
-          <p style="margin-top:12px;">Все участники добавляются в закрытую Telegram-группу. Напоминания о следующих сессиях, материалы, вопросы супервизору — всё в одном месте. Группа только для действующих участников.</p>
-          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;">
-            <a href="https://t.me/ragimoff" target="_blank" class="btn btn-fill">Telegram &rarr;</a>
-            <a href="#registration" class="btn btn-line">Запись</a>
-          </div>
-        </div>
-        <div style="min-width:260px;max-width:320px;">
-          <div style="background:rgba(255,255,255,0.06);border-left:2px solid var(--accent);padding:20px 24px;margin-bottom:16px;">
-            <p style="font-size:var(--t-sm);color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:10px;">«Эта программа изменила мою жизнь. Теперь у меня есть свой кабинет и пациенты.»</p>
-            <span style="font-size:var(--t-xs);font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;">Слушатель &mdash; 2024</span>
-          </div>
-          <div style="background:rgba(255,255,255,0.06);border-left:2px solid var(--accent);padding:20px 24px;">
-            <p style="font-size:var(--t-sm);color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:10px;">«Практикум с д-ром Рагимовым — это особый опыт. Теория оживает.»</p>
-            <span style="font-size:var(--t-xs);font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;">Слушатель &mdash; 2023</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- F) REQUIREMENTS -->
+    <!-- G) REQUIREMENTS -->
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">УСЛОВИЯ ПОСТУПЛЕНИЯ</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Кто может</span> <span class="sh-line">поступить?</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Специалисты с базовым</span>
-<span class="ab-lead-mob">курсом психологии.</span>
-<span class="ab-lead-desk">Специалисты, прошедшие базовый курс психологии, могут подать заявку на программу.</span></p>
+        <span class="badge on-light">УСЛОВИЯ УЧАСТИЯ</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Кто может</span> <span class="sh-line">подать заявку?</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Высшее образование не требуется —</span>
+<span class="ab-lead-mob">психологам открыты более широкие возможности.</span>
+<span class="ab-lead-desk">Высшее образование не требуется; для тех, у кого есть психологическое образование, открыты более широкие возможности.</span></p>
         <div class="req-grid">
           <div class="req-block">
-            <div class="req-block-title">Обязательные условия</div>
+            <div class="req-block-title">Требования</div>
             <ul class="req-list">
-              <li>Необходимо пройти базовый курс психологии (RAGIMOFF или другой аккредитованный центр)</li>
-              <li>Высшее образование в области психологии (приветствуется)</li>
-              <li>Намерение вести клиническую работу с реальными клиентами</li>
-              <li>Обязательство регулярно посещать сессии супервизии</li>
+              <li>Психологи, психотерапевты, врачи и педагоги</li>
+              <li>Студенты психологических факультетов и начинающие специалисты</li>
+              <li>Готовые работать с текстами Фрейда</li>
+              <li>Запись в группу — количество мест ограничено</li>
             </ul>
           </div>
           <div class="req-block">
             <div class="req-block-title">Необходимые документы</div>
             <ul class="req-list">
-              <li>Сертификат/диплом, подтверждающий прохождение курса психологии</li>
               <li>Копия удостоверения личности</li>
               <li>Диплом о высшем образовании (при наличии)</li>
-              <li>Заполненная форма заявки</li>
+              <li>Сертификаты по психологии (при наличии)</li>
+              <li>Заполненная форма регистрации</li>
             </ul>
           </div>
         </div>
-        <div class="steps-row">
-          <div class="step-card">
-            <span class="step-num">Шаг 01</span>
-            <div class="step-title">Заполните форму</div>
-            <p class="step-body">Заполните форму ниже. Приложите сертификат по психологии. Займёт 3 минуты.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Шаг 02</span>
-            <div class="step-title">Связь с координатором</div>
-            <p class="step-body">В течение 24 часов наш координатор свяжется с вами. Проверяются обязательные условия, согласовывается план оплаты.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Шаг 03</span>
-            <div class="step-title">Начните практикум</div>
-            <p class="step-body">Вас добавят в Telegram-группу. Дата первого интенсивного блока будет сообщена. Откроется доступ к видеоархиву.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- CERTIFICATES GALLERY -->
-    <section id="certificates" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="cert-h">
-      <div class="sec-inner">
-        <div class="sec-header">
-          <span class="badge on-light">Сертификаты выпускников</span>
-          <h2 class="sec-h2" id="cert-h"><span class="sh-line">Сертификаты, которые вы</span> <span class="sh-line">получите по завершении программы</span></h2>
-          <p class="sec-sub"><span class="ab-lead-mob">Сертификаты IPAS и GTC</span>
-<span class="ab-lead-mob">Практикум — с QR-кодом.</span>
-<span class="ab-lead-desk">Образцы сертификатов IPAS и GTC Практикум: каждому выпускнику выдаётся</span>
-<span class="ab-lead-desk">официальный документ с проверкой по QR-коду.</span></p>
-        </div>
-      </div>
-      <div class="gallery-band" data-theme="dark">
-        <div class="diploma-gallery" id="diplomaGallery">
-          <div class="dg-mains">
-            <div class="dg-main-item" data-idx="0"><img src="../images/certificate/cert-sample-ipas-clinical.jpg" alt="Сертификат IPAS по клинической психологии" loading="lazy" width="860" height="608" /></div>
-            <div class="dg-main-item" data-idx="1"><img src="../images/certificate/cert-sample-ipas-family.jpg" alt="Сертификат IPAS по общей психологии" loading="lazy" width="860" height="608" /></div>
-            <div class="dg-main-item" data-idx="2"><img src="../images/certificate/cert-sample-gtc-dark.jpg" alt="Сертификат GTC — Практикум" loading="lazy" width="600" height="860" /></div>
-          </div>
-          <div class="dg-thumbs">
-            <div class="dg-thumb" data-idx="3"><img src="../images/certificate/sample-cert-ipas-klinik.jpg" alt="Образец сертификата IPAS (клинический)" loading="lazy" width="1754" height="1241" /></div>
-            <div class="dg-thumb" data-idx="4"><img src="../images/certificate/sample-cert-ipas-family.jpg" alt="Образец сертификата IPAS (общий)" loading="lazy" width="1754" height="1241" /></div>
-            <div class="dg-thumb" data-idx="5"><img src="../images/certificate/sample-cert-gtc-praktikum.jpg" alt="Образец сертификата GTC — Практикум" loading="lazy" width="1625" height="1125" /></div>
+    <!-- G2) PRICE -->
+    <section data-theme="dark" style="background:#07090E;">
+      <div class="sec-inner" style="padding:var(--s-section);">
+        <span class="badge">СТОИМОСТЬ</span>
+        <h2 class="sec-h2"><span class="sh-line">Цена</span> <span class="sh-line">программы</span></h2>
+        <div style="max-width:520px;margin:32px auto 0;">
+          <div class="price-card">
+            <div class="price-card-head">
+              <h4 role="heading" aria-level="3" data-a11y-level>Психоанализ</h4>
+              <span>Сертификат · 2 модуля</span>
+            </div>
+            <p class="price-card-desc">3 месяца теоретического курса и&nbsp;6 месяцев супервизии; бонус — 24 книги Фрейда в переводе с оригинального немецкого на азербайджанский.</p>
+            <div class="price-row"><span class="price-row-label">Начало</span><span class="price-row-value">01.11.2026</span></div>
+            <div class="price-row"><span class="price-row-label">Обучение</span><span class="price-row-value">3 месяца — 2×2 ч в неделю</span></div>
+            <div class="price-row"><span class="price-row-label">Формат</span><span class="price-row-value">Очно или онлайн</span></div>
+            <div class="price-row"><span class="price-row-label">Супервизия</span><span class="price-row-value">6 месяцев — 1 раз в неделю</span></div>
+            <div class="price-row"><span class="price-row-label">Полная стоимость</span><span class="price-row-value">600 AZN</span></div>
+            <div class="price-row"><span class="price-row-label">При предоплате (−100 AZN)</span><span class="price-row-value accent">500 AZN</span></div>
+            <div class="price-row"><span class="price-row-label">Рассрочка 3 мес.</span><span class="price-row-value">200 AZN/мес.</span></div>
+            <div class="price-total"><span class="num">600 AZN</span><span class="lbl">полная стоимость</span></div>
+            <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Записаться</a>
           </div>
         </div>
+        <p class="prog-enroll-note" style="text-align:center;margin:28px auto 0;max-width:820px;font-size:0.9375rem;line-height:1.7;color:rgba(242,237,227,0.62);">Сейчас идёт набор в новую группу — заполните форму в нижней части страницы.</p>
       </div>
     </section>
-
-    <!-- G) LEGAL BLOCK -->
-    <div class="legal-block">
-      <div class="legal-block-inner">
-        <h2>Вас интересует законность диплома?</h2>
-        <p>Законность диплома подтверждается тремя законами Азербайджанской Республики и Российско-азербайджанским соглашением. Проверяется через государственный реестр ФРДО — нострификация не требуется.</p>
-        <div class="legal-btns">
-          <a href="qanunlar.html" class="btn btn-fill">Юридические основы</a>
-          <a href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%20%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%B4%D0%B8%D0%BF%D0%BB%D0%BE%D0%BC%D0%B0." target="_blank" class="btn btn-line">Спросить в WhatsApp</a>
-        </div>
-      </div>
-    </div>
 
     <!-- H) REGISTRATION FORM -->
     <section id="registration" data-theme="dark" style="background:var(--navy);padding:var(--s-section) 0;">
       <div class="sec-inner">
         <span class="badge">ЗАПИСЬ</span>
-        <h2 class="sec-h2"><span class="sh-line">Присоединиться</span> <span class="sh-line">к практикуму</span></h2>
+        <h2 class="sec-h2"><span class="sh-line">Присоединиться</span> <span class="sh-line">к программе</span></h2>
         <p class="sec-sub" style="color:rgba(255,255,255,0.6);"><span class="ab-lead-mob">Заполните форму — свяжемся</span>
 <span class="ab-lead-mob">с вами в течение суток.</span>
-<span class="ab-lead-desk">Заполните форму — наша команда свяжется с вами в течение 24 часов и ответит на вопросы. <strong>Сейчас идёт набор в новую группу — обучение начинается 05.01.2027.</strong></span></p>
+<span class="ab-lead-desk">Заполните форму — наша команда свяжется с вами в течение 24 часов и ответит на вопросы. <strong>Сейчас идёт набор в новую группу — обучение начинается 01.11.2026.</strong></span></p>
 
         <div class="reg-path" style="margin-top:32px;">
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 01</span>
             <h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4>
-            <p>Фото сертификата по психологии и удостоверения личности.</p>
+            <p>Фото удостоверения личности; диплом и сертификаты (при наличии).</p>
           </div>
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 02</span>
@@ -694,7 +559,7 @@ input, select, textarea, button {
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 03</span>
             <h4>Начните</h4>
-            <p>Вас добавят в Telegram-группу. Дата интенсивного блока будет сообщена.</p>
+            <p>Вас добавят в Telegram-группу. Расписание занятий и материалы высылаются.</p>
           </div>
         </div>
 
@@ -710,23 +575,25 @@ input, select, textarea, button {
             <label>Программа</label>
             <div class="tile-group cols3">
               <input type="radio" name="proqram" id="p1" value="Общая психология" class="tile-opt" />
-              <label for="p2" class="tile-lbl">Общая психология<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1 556 ак. ч. · Диплом ДПО</span></label>
+              <label for="p1" class="tile-lbl">Общая психология<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1 556 ак. ч. · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p2" value="Клиническая психология" class="tile-opt" />
-              <label for="p3" class="tile-lbl">Клиническая психология<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1 528 ак. ч. · Диплом ДПО + IPAS</span></label>
-              <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="tile-opt" checked />
+              <label for="p2" class="tile-lbl">Клиническая психология<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1 528 ак. ч. · Диплом ДПО + IPAS</span></label>
+              <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="tile-opt" />
               <label for="p3" class="tile-lbl">Практикум по психотерапии<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">864 ак. ч. · Сертификат IPAS</span></label>
+              <input type="radio" name="proqram" id="p4" value="Семейная терапия" class="tile-opt" />
+              <label for="p4" class="tile-lbl">Семейная терапия<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">2 модуля · 600 AZN</span></label>
+              <input type="radio" name="proqram" id="p5" value="Психоанализ" class="tile-opt" checked />
+              <label for="p5" class="tile-lbl">Психоанализ<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">2 модуля · 600 AZN</span></label>
             </div>
           </div>
 
           <div class="form-field" style="margin-top:20px;">
-            <label for="o2">Способ оплаты</label>
-            <div class="tile-group cols3">
-              <input type="radio" name="odenis" id="o1" value="Полная оплата (−20%)" class="tile-opt" />
-              <label for="o2" class="tile-lbl">Полная оплата<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">−20% скидка</span></label>
-              <input type="radio" name="odenis" id="o2" value="Рассрочка 12 мес." class="tile-opt" />
-              <label for="o3" class="tile-lbl">Рассрочка 12 мес.<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">15 тыс. руб./мес.</span></label>
-              <input type="radio" name="odenis" id="o3" value="Рассрочка 24 мес." class="tile-opt" />
-              <label for="o3" class="tile-lbl">Рассрочка 24 мес.<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">9 тыс. руб./мес.</span></label>
+            <label>Способ оплаты</label>
+            <div class="tile-group cols2">
+              <input type="radio" name="odenis" id="o1" value="Предоплата — 500 AZN" class="tile-opt" checked />
+              <label for="o1" class="tile-lbl">Предоплата<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">500 AZN</span></label>
+              <input type="radio" name="odenis" id="o2" value="Рассрочка 3 мес. — 200 AZN/мес." class="tile-opt" />
+              <label for="o2" class="tile-lbl">Рассрочка 3 мес.<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">200 AZN/мес.</span></label>
             </div>
           </div>
 
@@ -734,12 +601,12 @@ input, select, textarea, button {
             <label for="km-name">Документы</label>
             <div class="upload-grid">
               <div class="upload-item">
-                <span class="upload-lbl">Сертификат по психологии *</span>
+                <span class="upload-lbl">Диплом о высшем образовании (при наличии)</span>
                 <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — макс. 5 МБ</span>
               </div>
               <div class="upload-item">
-                <span class="upload-lbl">Удостоверение личности *</span>
+                <span class="upload-lbl">Удостоверение личности</span>
                 <input type="file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — макс. 5 МБ</span>
               </div>
@@ -836,7 +703,7 @@ input, select, textarea, button {
 
     <script src="../shared.js"></script>
     <script>
-      wireRegForm('regForm', 'regSuccess', 'ru/program-praktikum.html');
+      wireRegForm('regForm', 'regSuccess', 'ru/program-psixoanaliz.html');
     </script>
 
     <!-- Diploma Lightbox -->

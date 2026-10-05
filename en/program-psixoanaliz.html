@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Clinical Psychology CPD — 1,528 academic hours, 23 disciplines. DSM-5/ICD-11, CBT, PTSD. FRDO Diploma + IPAS. RAGIMOFF." />
-    <meta property="og:title" content="Clinical Psychology CPD | RAGIMOFF" />
-    <meta property="og:description" content="Clinical Psychology CPD — 1,528 academic hours, 23 disciplines. DSM-5/ICD-11, CBT, PTSD. FRDO Diploma + IPAS. RAGIMOFF." />
+    <meta name="description" content="Psychotherapy Practicum — 864 academic hours (36 live + 36 video × 12 months), IPAS/BPA certificate, supervision. RAGIMOFF." />
+    <meta property="og:title" content="Psychoanalysis | RAGIMOFF" />
+    <meta property="og:description" content="Psychotherapy Practicum — 864 academic hours (36 live + 36 video × 12 months), IPAS/BPA certificate, supervision. RAGIMOFF." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ragimoff.org/en/program-klinik.html" />
+    <meta property="og:url" content="https://ragimoff.org/en/program-psixoanaliz.html" />
     <meta property="og:image" content="https://ragimoff.org/images/kenan/photo-portal-crop-removebg-preview.png" />
-    <title>Clinical Psychology CPD | RAGIMOFF</title>
+    <title>Psychoanalysis | RAGIMOFF</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,8 @@
       .overview-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; margin-top: 40px; align-items: start; }
       .overview-text p { color: var(--clr-text); line-height: 1.8; margin-bottom: 16px; font-size: var(--t-body); text-align: left; }
       .overview-text ul { text-align: left; }
-      .highlights-list { list-style: none; padding: 0; margin: 24px 0 0; }
-      .highlights-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: var(--t-sm); color: var(--text); display: flex; align-items: flex-start; gap: 10px; }
+      .highlights-list { list-style: none; padding: 0; margin: 24px 0 0; text-align: left; }
+      .highlights-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: var(--t-sm); color: var(--text); display: flex; align-items: flex-start; gap: 10px; text-align: left; }
       .highlights-list li::before { content: "—"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
       .info-card { background: var(--navy); padding: 32px; }
       .info-card-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 20px; }
@@ -31,23 +31,7 @@
       .info-val { font-size: var(--t-sm); color: var(--white); font-weight: 600; text-align: right; }
       .info-val.accent { color: var(--accent); font-weight: 800; font-size: var(--t-body); }
 
-      /* ── CURRICULUM TABLE ── */
-      .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 0; width: 800px; }
-      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 9px 24px; border-bottom: 2px solid rgba(201,169,97,0.25); background: rgba(201,169,97,0.04); margin: 0; }
-      .cur-row { display: flex; align-items: baseline; padding: 9px 24px; border-bottom: 1px solid var(--clr-border); }
-      .cur-row:last-child { border-bottom: none; }
-      .cur-row:hover { background: rgba(201,169,97,0.03); }
-      .cur-row > div:first-child { display: flex; align-items: baseline; flex: 1; overflow: hidden; }
-      .cur-row > div:first-child::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(224,227,236,0.12); margin: 0 10px 3px; min-width: 16px; }
-      .cur-num { font-size: 0.7rem; color: rgba(224, 227, 236, 0.62); font-weight: 700; margin-right: 8px; flex-shrink: 0; }
-      .cur-name { font-size: var(--t-sm); color: #a8a296; white-space: nowrap; }
-      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: #a8a296; white-space: nowrap; flex-shrink: 0; }
-      .cur-hours span { font-size: 0.7rem; font-weight: 400; color: rgba(224,227,236,0.5); margin-left: 2px; }
-      .cur-total { display: flex; justify-content: space-between; align-items: center; background: var(--navy); padding: 16px 24px; }
-      .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
-      .cur-total .tv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
-      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.25); color: #a8a296; padding: 8px 18px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
-      .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+      /* ── SCHEDULE TABLE ─ (duplicated below in cur-wrap block, removed from here) ── */
 
       /* ── REQUIREMENTS ── */
       .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
@@ -62,8 +46,8 @@
       .step-body { font-size: var(--t-sm); color: var(--gray); line-height: 1.7; }
 
       /* ── LEGAL BLOCK ── */
-      .legal-block { background: var(--navy); padding: var(--s-section) 0; border-top: 1px solid rgba(201,169,97,0.2); }
-      .legal-block-inner { max-width: var(--container-max); margin: 0 auto; padding: 0; text-align: center; }
+      .legal-block { background: var(--navy); padding: var(--s-section); border-top: 1px solid rgba(201,169,97,0.2); }
+      .legal-block-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--s-section); text-align: center; }
       .legal-block h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px; }
       .legal-block p { font-size: var(--t-body); color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 32px; line-height: 1.75; }
       .legal-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -87,6 +71,13 @@
       .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.18); }
       .tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
       .tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
+      /* Пять программ: три плитки в первом ряду, две — во втором по центру. */
+      @media (min-width: 961px) {
+        .tile-group.cols3 { grid-template-columns: repeat(6,1fr); }
+        .tile-group.cols3 > .tile-lbl { grid-column: span 2; }
+        .tile-group.cols3 > .tile-lbl:nth-child(n+8) { grid-column: span 3; }
+      }
+      .tile-group.cols2 { grid-template-columns: repeat(2,1fr); }
       .tile-opt { display: none; }
       .tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: var(--t-xs); color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; font-family: var(--font); }
       .tile-opt:checked + .tile-lbl { background: var(--accent); color: var(--navy); }
@@ -102,13 +93,33 @@
       .form-success { display: none; padding: 24px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.35); text-align: center; margin-top: 16px; }
       .form-success p { color: var(--accent); font-weight: 700; font-size: var(--t-sm); margin: 0; }
 
-      /* ── ADVANTAGES ── */
-      .adv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(201,169,97,0.2); margin-top: 40px; }
-      .adv-card { padding: 36px 32px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .adv-card:last-child { border-right: none; }
-      .adv-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
-      .adv-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .adv-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
+      /* ── SCHEDULE TABLE ── */
+      .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 0; width: 800px; }
+      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 9px 24px; border-bottom: 2px solid rgba(201,169,97,0.25); background: rgba(201,169,97,0.04); margin: 0; }
+      .cur-row { display: flex; align-items: baseline; padding: 9px 24px; border-bottom: 1px solid var(--clr-border); }
+      .cur-row:last-child { border-bottom: none; }
+      .cur-row:hover { background: rgba(201,169,97,0.03); }
+      .cur-date { font-size: var(--t-sm); color: rgba(224,227,236,0.45); font-weight: 500; white-space: nowrap; flex-shrink: 0; min-width: 96px; }
+      .cur-row > div:nth-child(2) { display: flex; align-items: baseline; flex: 1; overflow: hidden; }
+      .cur-row > div:nth-child(2)::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(224,227,236,0.12); margin: 0 10px 3px; min-width: 16px; }
+      .cur-name { font-size: var(--t-sm); color: #a8a296; white-space: nowrap; }
+      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: #a8a296; white-space: nowrap; flex-shrink: 0; }
+      .cur-hours span { font-size: 0.7rem; font-weight: 400; color: rgba(224,227,236,0.5); margin-left: 2px; }
+      .cur-total { display: flex; justify-content: space-between; align-items: center; background: var(--navy); padding: 16px 24px; }
+      .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
+      .cur-total .tv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.25); color: #a8a296; padding: 8px 18px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
+      .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+      /* ── FORMATS GRID ── */
+      .fmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(201,169,97,0.2); margin-top: 40px; }
+      .fmt-card { padding: 32px; border-right: 1px solid rgba(201,169,97,0.2); }
+      .fmt-card:last-child { border-right: none; }
+      .fmt-card:nth-child(4) { border-right: 1px solid rgba(201,169,97,0.2); border-top: 1px solid rgba(201,169,97,0.2); }
+      .fmt-card:nth-child(5) { border-top: 1px solid rgba(201,169,97,0.2); border-right: none; }
+      .fmt-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
+      .fmt-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
+      .fmt-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
 
       /* ── OPPORTUNITY ── */
       .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
@@ -123,10 +134,6 @@
       .tg-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
       .tg-text h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
       .tg-text p { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 560px; }
-      .tg-reviews { display: grid; gap: 16px; min-width: 280px; max-width: 340px; }
-      .tg-review { background: rgba(255,255,255,0.06); border-left: 2px solid var(--accent); padding: 20px 24px; }
-      .tg-review p { font-size: var(--t-sm); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 10px; }
-      .tg-review span { font-size: var(--t-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
 
       @media (max-width: 960px) {
         .overview-grid { grid-template-columns: 1fr; }
@@ -136,17 +143,16 @@
         .form-2col { grid-template-columns: 1fr; }
         .upload-grid { grid-template-columns: 1fr; }
         .tile-group.cols3 { grid-template-columns: 1fr; }
-        .adv-grid { grid-template-columns: 1fr; }
-        .adv-card { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
-        .adv-card:last-child { border-bottom: none; }
+        .fmt-grid { grid-template-columns: 1fr; }
+        .fmt-card { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
+        .fmt-card:nth-child(4) { border-right: none; }
         .opp-grid { grid-template-columns: 1fr; }
         .opp-card { border-right: none; border-bottom: 1px solid var(--clr-border); }
         .opp-card:last-child { border-bottom: none; }
         .tg-inner { grid-template-columns: 1fr; }
-        .tg-reviews { min-width: unset; max-width: 100%; }
-        .cur-row { padding: 8px 16px; }
-        .cur-group-title { padding: 8px 16px; }
-        .cur-total { padding: 14px 16px; }
+        .cur-row { padding: 14px 20px; }
+        .cur-group-title { padding: 12px 20px; }
+        .cur-total { padding: 16px 20px; }
         .cur-wrap { width: 100%; }
       }
       @media print {
@@ -157,11 +163,11 @@
         .pdf-btn { visibility: hidden !important; }
       }
     </style>
-  <link rel="canonical" href="https://ragimoff.org/en/program-klinik.html" />
-  <link rel="alternate" hreflang="az" href="https://ragimoff.org/program-klinik.html" />
-  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/program-klinik.html" />
-  <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/program-klinik.html" />
-  <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/program-klinik.html" />
+  <link rel="canonical" href="https://ragimoff.org/en/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/ru/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/en/program-psixoanaliz.html" />
+  <link rel="alternate" hreflang="x-default" href="https://ragimoff.org/program-psixoanaliz.html" />
 <style>
 /* Wave 1.4 — Touch targets ≥44px for form controls */
 input, select, textarea, button {
@@ -195,19 +201,19 @@ input, select, textarea, button {
 {
   "@context": "https://schema.org",
   "@type": "Course",
-  "name": "Clinical Psychology (Additional Professional Education)",
-  "description": "Clinical Psychology (Additional Professional Education) program. 2392 hours, DSM-5/ICD-11, CBT, PTSD. 6600 AZN.",
+  "name": "Psychoanalysis",
+  "description": "Psychotherapy practicum. 864 hours (36 live + 36 video × 12 months), IPAS/BPA certificate, supervision.",
   "provider": {
     "@type": "Organization",
     "name": "RAGIMOFF Psixologiya Məktəbi",
     "url": "https://ragimoff.org/"
   },
-  "educationalLevel": "Advanced Professional Development",
-  "credentialCategory": "Diploma",
+  "educationalLevel": "Advanced",
+  "credentialCategory": "Certificate",
   "hasCourseInstance": {
     "@type": "CourseInstance",
     "courseMode": "online, in-person",
-    "duration": "P1Y",
+    "duration": "P9M",
     "inLanguage": "en"
   }
 }
@@ -216,7 +222,7 @@ input, select, textarea, button {
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ragimoff.org/en/"}, {"@type": "ListItem", "position": 2, "name": "En", "item": "https://ragimoff.org/en"}, {"@type": "ListItem", "position": 3, "name": "Clinical Psychology CPD | RAGIMOFF", "item": "https://ragimoff.org/en/program-klinik.html"}]
+  "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ragimoff.org/en/"}, {"@type": "ListItem", "position": 2, "name": "En", "item": "https://ragimoff.org/en"}, {"@type": "ListItem", "position": 3, "name": "Psychotherapy Practicum | RAGIMOFF", "item": "https://ragimoff.org/en/program-psixoanaliz.html"}]
 }
 </script>
   <meta property="og:locale" content="en_US" />
@@ -337,47 +343,46 @@ input, select, textarea, button {
 
 <main class="page-main" id="page-main">
     <!-- B) HERO -->
-    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/group-training.jpg');" aria-labelledby="page-h1">
-      <div class="page-hero-x-inner">
-        <span class="ph-badge">CLINICAL PROGRAMME — CPD</span>
-        <h1 class="ph-h1" id="page-h1">
-          <span class="ph-h1-w1">Clinical</span>
-          <span class="ph-h1-w2">Psychology CPD</span>
-        </h1>
-        <div class="photo-col">
-          <img src="../images/hero/program-klinik-en.png" alt="Clinical psychology program" width="640" height="672" />
-        </div>
+    <section id="main-content" class="page-hero-x" data-theme="dark" style="background-image:url('../images/students/psixologiya-mekteb.jpg');" aria-labelledby="psixoanaliz-h1">
+  <div class="page-hero-x-inner">
+    <span class="ph-badge">EDUCATION PROGRAMME</span>
+    <h1 class="ph-h1" id="psixoanaliz-h1">
+      <span class="ph-h1-w1">Psychoanalysis</span>
+      <span class="ph-h1-w2">Freud's Legacy</span>
+    </h1>
+    <div class="photo-col">
+      <img src="../images/hero/tehsil-en.png" alt="Psychoanalysis programme — RAGIMOFF Psychology School" width="640" height="672" />
+    </div>
 
-        <p class="ph-sub">
-          <span class="ph-sub-mob">State FRDO diploma, international</span>
-          <span class="ph-sub-mob">IPAS certificate. The right to</span>
-          <span class="ph-sub-mob">practise independently in complex</span>
-          <span class="ph-sub-desk">State FRDO diploma, international IPAS certificate. The right to</span>
-          <span class="ph-sub-desk">practise independently in complex clinical cases.</span>
-        </p>
-        <div class="ph-search-wrap hero-search-wrap">
-          <div class="hero-search-bar">
-            <input id="hero-si" type="text" placeholder="Search..." autocomplete="off" aria-label="Search...">
-            <button class="hero-search-btn" onclick="heroSearch()">
-              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <span>SEARCH</span>
-            </button>
-          </div>
-          <div id="hero-sd"></div>
-        </div>
+    <p class="ph-sub">
+      <span class="ph-sub-mob">3 months of theory and 6 months of supervision;</span>
+      <span class="ph-sub-mob">start — 01.11.2026.</span>
+      <span class="ph-sub-desk">3 months of theory and 6 months of supervision — starting 01.11.2026;</span>
+      <span class="ph-sub-desk">bonus: all 24 books by Freud, translated from the original German into Azerbaijani.</span>
+    </p>
+    <div class="ph-search-wrap hero-search-wrap">
+      <div class="hero-search-bar">
+        <input id="hero-si" type="text" placeholder="Search a topic..." autocomplete="off" aria-label="Search a topic...">
+        <button class="hero-search-btn" onclick="heroSearch()">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>SEARCH</span>
+        </button>
       </div>
-    </section>
+      <div id="hero-sd"></div>
+    </div>
+  </div>
+</section>
 
     <!-- C) STATS STRIP -->
     <div class="stats-strip" data-theme="dark">
       <div class="stats-inner">
-        <div class="stat-item"><span class="stat-num">1,528</span><span class="stat-label">Academic Hours</span></div>
+        <div class="stat-item"><span class="stat-num">3 months</span><span class="stat-label">Theory</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">23</span><span class="stat-label">Disciplines &amp; Modules</span></div>
+        <div class="stat-item"><span class="stat-num">6 months</span><span class="stat-label">Supervision</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">1 Year</span><span class="stat-label">Duration</span></div>
+        <div class="stat-item"><span class="stat-num">24</span><span class="stat-label">Freud books — bonus</span></div>
         <div class="stat-div"></div>
-        <div class="stat-item"><span class="stat-num">CPD</span><span class="stat-label">State Diploma</span></div>
+        <div class="stat-item"><span class="stat-num">600 AZN</span><span class="stat-label">Full price</span></div>
       </div>
     </div>
 
@@ -385,349 +390,166 @@ input, select, textarea, button {
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
         <span class="badge on-light">ABOUT THE PROGRAMME</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">What is Clinical</span> <span class="sh-line">Psychology CPD?</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">23 disciplines, 5 blocks —</span>
-<span class="ab-lead-mob">CPD diploma in the FRDO registry.</span>
-<span class="ab-lead-desk">23 disciplines, 5 blocks — an official CPD diploma in the FRDO registry</span>
-<span class="ab-lead-desk">and the right to independent clinical practice.</span></p>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">What is</span> <span class="sh-line">Psychoanalysis?</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">A theory course based on Freud's legacy</span>
+<span class="ab-lead-mob">and clinical supervision.</span>
+<span class="ab-lead-desk">A theory course based on Sigmund Freud's legacy and six months of clinical supervision.</span></p>
         <div class="overview-grid">
           <div class="overview-text">
-            <p>The Clinical Psychology CPD programme covers the diagnosis of mental disorders using DSM-5 and ICD-11, core psychotherapeutic approaches (CBT, elements of EMDR), and real clinical practice. The programme is designed for professionals already working in their field or planning to start.</p>
-            <p>Upon completing the one-year programme, graduates receive a CPD diploma entered into the FRDO state registry. The diploma is officially recognised and grants the right to independent practice in complex clinical cases.</p>
-            <p>In addition, graduates receive an international IPAS (International Psychotherapy Accreditation Society) certificate — a QR-verified document valid outside Azerbaijan.</p>
+            <p>The Psychoanalysis programme has three parts: 3 months of theory (twice a week, 2 hours per class), 6 months of weekly supervision and work with Freud's texts. The tutor is Kenan Ragimov.</p>
+            <p>The theoretical part covers the conceptual apparatus of psychoanalysis: the unconscious, resistance, dream interpretation, slips of the tongue, defence mechanisms, infantile sexuality, transference and countertransference. In the supervision block participants work with their own clinical material.</p>
+            <p>Programme bonus: all 24 books by Sigmund Freud, translated from the original German into Azerbaijani for the first time in Azerbaijan, will be available to the students of this programme.</p>
             <ul class="highlights-list">
-              <li>A higher education degree is required (any field)</li>
-              <li>Full coverage of DSM-5 / ICD-11 diagnostic systems</li>
-              <li>Practical application of CBT protocols</li>
-              <li>PTSD, trauma, and child psychology modules</li>
-              <li>Real clinical case analysis under supervision</li>
-              <li>CPD diploma + international IPAS certificate — two credentials at once</li>
+              <li>Tutor and supervisor — Kenan Ragimov</li>
+              <li>3 months of theory: 2×2 hours a week (in person or online video lessons)</li>
+              <li>6 months of supervision: weekly, based on the participant’s own clinical material</li>
+              <li>Bonus: 24 books by Freud translated from the original German into Azerbaijani</li>
+              <li>Small groups — individual attention for every participant</li>
+              <li>Attestation at the end of the programme</li>
             </ul>
           </div>
           <div>
             <div class="info-card">
-              <div class="info-card-title">Programme Details</div>
-              <div class="info-row">
-                <span class="info-lbl">Full Price</span>
-                <span class="info-val accent">$3,900</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Full Payment</span>
-                <span class="info-val">$3,550 (−10%)</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">12-Month Plan</span>
-                <span class="info-val">$330/mo</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">24-Month Plan</span>
-                <span class="info-val">$180/mo</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Duration</span>
-                <span class="info-val">1 Year (6+6 months)</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Hours</span>
-                <span class="info-val">1,528 academic hours</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Format</span>
-                <span class="info-val">Online + Offline</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Diploma</span>
-                <span class="info-val">CPD + IPAS Certificate</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Language</span>
-                <span class="info-val">Russian</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl">Start</span>
-                <span class="info-val">05.01.2027</span>
-              </div>
-              <div class="info-row">
-                <span class="info-lbl" style="color:rgba(255,255,255,0.6);font-size:0.68rem;font-weight:400;text-transform:none;letter-spacing:0;">Payment by bank transfer or SWIFT.</span>
-              </div>
+              <div class="info-card-title">Programme details</div>
+              <div class="info-row"><span class="info-lbl">Price</span><span class="info-val accent">600 AZN</span></div>
+              <div class="info-row"><span class="info-lbl">With prepayment</span><span class="info-val">500 AZN (−100 AZN)</span></div>
+              <div class="info-row"><span class="info-lbl">Instalments</span><span class="info-val">200 AZN/month × 3 months</span></div>
+              <div class="info-row"><span class="info-lbl">Duration</span><span class="info-val">3 months of classes + 6 months of supervision</span></div>
+              <div class="info-row"><span class="info-lbl">Classes</span><span class="info-val">Twice a week × 2 hours</span></div>
+              <div class="info-row"><span class="info-lbl">Supervision</span><span class="info-val">Weekly, 6 months</span></div>
+              <div class="info-row"><span class="info-lbl">Format</span><span class="info-val">In person + online</span></div>
+              <div class="info-row"><span class="info-lbl">Tutor</span><span class="info-val">Kenan Ragimov</span></div>
+              <div class="info-row"><span class="info-lbl">Language</span><span class="info-val">Azerbaijani</span></div>
+              <div class="info-row"><span class="info-lbl">Start</span><span class="info-val">01.11.2026</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- E) CURRICULUM -->
-    <section id="sec-curriculum" style="background:var(--white);">
+    <!-- E) SCHEDULE TABLE -->
+    <section id="sec-curriculum" style="background:#0E1116;">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">CURRICULUM</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Discipline List</span> <span class="sh-line">— 23 Subjects</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">5 blocks: neurology, theory,</span>
-<span class="ab-lead-mob">modules, practicum, assessment.</span>
-<span class="ab-lead-desk">The programme consists of 5 blocks: neurological foundations, clinical theory,</span>
-<span class="ab-lead-desk">additional modules, practicum and assessment.</span></p>
+        <span class="badge on-light">SYLLABUS</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">2 modules</span> <span class="sh-line">— theory and supervision</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">A theory block and</span>
+<span class="ab-lead-mob">six months of supervision.</span>
+<span class="ab-lead-desk">The theory block runs for three months, 2 hours per class; the supervision block runs for six months, once a week.</span></p>
 
-        <div style="display:flex;justify-content:flex-end;width:100%;max-width:800px;margin-top:32px;margin-bottom:8px;">
-          <button onclick="window.print()" class="pdf-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
-            Download PDF
-          </button>
-        </div>
         <div class="cur-wrap">
-          <!-- Block I -->
-          <p class="cur-group-title">Block I &mdash; Neurological &amp; Physiological Foundations</p>
-          <div class="cur-row"><div><span class="cur-num">01</span><span class="cur-name">Anatomy of the Central Nervous System</span></div><div class="cur-hours">52 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">02</span><span class="cur-name">Physiology of the Central Nervous System</span></div><div class="cur-hours">47 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">03</span><span class="cur-name">Psychophysiology</span></div><div class="cur-hours">48 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">04</span><span class="cur-name">Neuropsychology</span></div><div class="cur-hours">56 <span>hrs</span></div></div>
+          <p class="cur-group-title">Module 1 — Theory · 3 months (2×2 hours weekly)</p>
+          <div class="cur-row"><div class="cur-date">November</div><div><span class="cur-name">The unconscious, the topographical model of the mind, resistance</span></div><div class="cur-hours">16 <span>hours</span></div></div>
+          <div class="cur-row"><div class="cur-date">December</div><div><span class="cur-name">Dream interpretation, slips, symbol and language</span></div><div class="cur-hours">16 <span>hours</span></div></div>
+          <div class="cur-row"><div class="cur-date">January</div><div><span class="cur-name">Defence mechanisms, infantile sexuality, transference and countertransference</span></div><div class="cur-hours">16 <span>hours</span></div></div>
 
-          <!-- Block II -->
-          <p class="cur-group-title">Block II &mdash; Theoretical Foundations of Clinical Psychology</p>
-          <div class="cur-row"><div><span class="cur-num">05</span><span class="cur-name">Pathopsychology</span></div><div class="cur-hours">53 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">06</span><span class="cur-name">Introduction to Clinical Psychology</span></div><div class="cur-hours">47 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">07</span><span class="cur-name">Psychosomatics and Body-Oriented Psychology</span></div><div class="cur-hours">94 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">08</span><span class="cur-name">Psychotherapy: Theory and Practice</span></div><div class="cur-hours">66 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">09</span><span class="cur-name">Differential Psychology</span></div><div class="cur-hours">47 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">10</span><span class="cur-name">Personality Theories in Clinical Psychology</span></div><div class="cur-hours">11 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">11</span><span class="cur-name">Psychodiagnostics</span></div><div class="cur-hours">67 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">12</span><span class="cur-name">Foundations of Psychological Counselling</span></div><div class="cur-hours">30 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">13</span><span class="cur-name">Psychological Developmental Disorders</span></div><div class="cur-hours">104 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">14</span><span class="cur-name">Clinical Psychology in Gerontology</span></div><div class="cur-hours">63 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">15</span><span class="cur-name">Deviantology</span></div><div class="cur-hours">50 <span>hrs</span></div></div>
-
-          <!-- Block III -->
-          <p class="cur-group-title">Block III &mdash; Additional Clinical Modules</p>
-          <div class="cur-row"><div><span class="cur-num">16</span><span class="cur-name">Fundamentals of Psychiatry</span></div><div class="cur-hours">100 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">17</span><span class="cur-name">Crisis Psychology (PTSD)</span></div><div class="cur-hours">80 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">18</span><span class="cur-name">Psychology of Addictions</span></div><div class="cur-hours">63 <span>hrs</span></div></div>
-
-          <!-- Block IV -->
-          <p class="cur-group-title">Block IV &mdash; Practicum</p>
-          <div class="cur-row"><div><span class="cur-num">19</span><span class="cur-name">Neuropsychology Practicum</span></div><div class="cur-hours">112 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">20</span><span class="cur-name">Pathopsychology Practicum</span></div><div class="cur-hours">161 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">21</span><span class="cur-name">Psychodiagnostics Practicum</span></div><div class="cur-hours">105 <span>hrs</span></div></div>
-          <div class="cur-row"><div><span class="cur-num">22</span><span class="cur-name">Child Clinical Psychology Practicum</span></div><div class="cur-hours">60 <span>hrs</span></div></div>
-
-          <!-- Block V -->
-          <p class="cur-group-title">Block V &mdash; Final Assessment</p>
-          <div class="cur-row"><div><span class="cur-num">23</span><span class="cur-name">Final Interdisciplinary Examination</span></div><div class="cur-hours">12 <span>hrs</span></div></div>
+          <p class="cur-group-title">Module 2 — Supervision · 6 months (once a week)</p>
+          <div class="cur-row"><div class="cur-date">February – July</div><div><span class="cur-name">Weekly supervision sessions based on the participant’s own clinical material</span></div><div class="cur-hours">24 <span>sessions</span></div></div>
 
           <div class="cur-total">
-            <span class="tl">Total Hours</span>
-            <span class="tv">1,528 hrs</span>
+            <span class="tl">Total — 3 months of theory + 6 months of supervision</span>
+            <span class="tv">48 hours + 24 sessions</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- F) ADVANTAGES -->
-    <section data-theme="dark" style="background:var(--navy);">
-      <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge">PROGRAMME HIGHLIGHTS</span>
-        <h2 class="sec-h2" style="text-align:left;">What to Expect</h2>
-        <div class="adv-grid">
-          <div class="adv-card">
-            <span class="adv-num">01 &mdash; Theory</span>
-            <h3 class="adv-title">Video Lessons + Literature</h3>
-            <p class="adv-body">Video recordings of Dr. Ragimov's classes are available for every discipline. You can watch them anytime, from anywhere — through your personal student account. A recommended professional reading list is also provided.</p>
-          </div>
-          <div class="adv-card">
-            <span class="adv-num">02 &mdash; Practicum</span>
-            <h3 class="adv-title">Live Practice with Dr. Ragimov</h3>
-            <p class="adv-body">Live demonstration sessions are held every week: real clinical material, supervision, and case analysis. Knowing the theory is not enough — developing clinical thinking requires working alongside an experienced professional. This programme takes you from "I know" to "I can do."</p>
-          </div>
-          <div class="adv-card">
-            <span class="adv-num">03 &mdash; Official Status</span>
-            <h3 class="adv-title">CPD Diploma + IPAS Certificate</h3>
-            <p class="adv-body">A CPD diploma is issued and entered into the FRDO state registry in accordance with the legislation of the Republic of Azerbaijan. No legalisation required. Employers may verify it through the FIS FRDO registry. In addition, graduates receive an international IPAS/BPA certificate.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW TO REGISTER -->
-    <section data-theme="light">
-      <div class="sec-inner" style="padding:var(--s-section);text-align:left;">
-        <span class="badge on-light">ENROLMENT</span>
-        <h2 class="sec-h2" style="text-align:left;">How to Enrol?</h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;">Fill in the form — our team will contact you within 24 hours.</p>
-        <div class="steps-row">
-          <div class="step-card">
-            <span class="step-num">Step 01</span>
-            <div class="step-title">Fill in the Form</div>
-            <p class="step-body">Your name, phone number, and chosen programme. Attach your higher education diploma. Takes 3 minutes.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Step 02</span>
-            <div class="step-title">Coordinator Calls Within 24 Hours</div>
-            <p class="step-body">Programme details, start date, documents, and payment plan — we'll agree on everything together.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Step 03</span>
-            <div class="step-title">You Begin Studying</div>
-            <p class="step-body">You are added to the Telegram group. Access to the video archive is opened. You are notified of the first class date.</p>
-          </div>
-        </div>
-        <div style="margin-top:28px;">
-          <a href="#registration" class="btn btn-fill">Go to Enrolment Form</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- G) OPPORTUNITY -->
+    <!-- F) BONUS / TUTOR / SUPERVISION -->
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">CAREER</span>
-        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">What Comes</span> <span class="sh-line">After Graduation?</span></h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Graduates gain a diploma</span>
-<span class="ab-lead-mob">and professional skills.</span>
-<span class="ab-lead-desk">Programme graduates gain not only a diploma, but real professional skills.</span></p>
+        <span class="badge on-light">BONUS AND TUTOR</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">24 books by Freud</span> <span class="sh-line">and the tutor</span></h2>
         <div class="opp-grid">
           <div class="opp-card">
-            <span class="opp-label">RAGIMOFF Centre</span>
-            <h3 class="opp-title">Option to See Clients at Our Centre</h3>
-            <p class="opp-body">A special opportunity for newly qualified psychologists who have completed the programme: seeing clients at Dr. Ragimov's centre — both in-person and online. This removes the biggest hurdle of a first practice — your first step starts at our centre.</p>
+            <span class="opp-label">Bonus</span>
+            <h3 class="opp-title">24 books by Freud — for the first time in Azerbaijani</h3>
+            <p class="opp-body">All 24 books by Sigmund Freud have been translated from the original German into Azerbaijani for the first time in Azerbaijan and will be available to the students of this programme. The full catalogue is in the Books section.</p>
           </div>
           <div class="opp-card">
-            <span class="opp-label">Independent Practice</span>
-            <h3 class="opp-title">Building Your Own Psychology Practice</h3>
-            <p class="opp-body">Most of our graduates open their own private practices within one to two years; some go on to establish their own psychology centres. Among them are today's leading psychologists — former students of Dr. Ragimov.</p>
+            <span class="opp-label">Tutor</span>
+            <h3 class="opp-title">Kenan Ragimov — author and supervisor</h3>
+            <p class="opp-body">The programme is led by Kenan Ragimov: 23 years of clinical practice and author of the project translating Freud’s legacy into Azerbaijani. Theory classes and supervision are held under his personal guidance.</p>
+          </div>
+          <div class="opp-card">
+            <span class="opp-label">Supervision</span>
+            <h3 class="opp-title">6 months of weekly supervision</h3>
+            <p class="opp-body">The supervision block lasts six months: one session a week working with the participant’s clinical material. Material is anonymised and discussed in the group.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- H) TELEGRAM BAND -->
-    <div class="tg-band">
-      <div class="tg-inner">
-        <div class="tg-text">
-          <span class="badge" style="display:inline-block">Graduate Reviews</span>
-          <h2>What Do Students Say?</h2>
-          <p style="margin-top:12px;">If you'd like to read reviews from hundreds of students who have completed the programme, visit our Telegram channel. Real testimonials, graduate stories, and current news are all published there.</p>
-          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;">
-            <a href="https://t.me/ragimoff" target="_blank" class="btn btn-fill">Telegram Channel</a>
-            <a href="#registration" class="btn btn-line">Enrol</a>
-          </div>
-        </div>
-        <div class="tg-reviews">
-          <div class="tg-review">
-            <p>"This programme changed my life. I now have my own practice and clients."</p>
-            <span>Student &mdash; 2024</span>
-          </div>
-          <div class="tg-review">
-            <p>"The practicum with Dr. Ragimov is a unique experience. Theory comes to life."</p>
-            <span>Student &mdash; 2023</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- F) REQUIREMENTS -->
+    <!-- G) REQUIREMENTS -->
     <section data-theme="light">
       <div class="sec-inner" style="padding:var(--s-section);">
-        <span class="badge on-light">ADMISSION REQUIREMENTS</span>
-        <h2 class="sec-h2" style="text-align:left;">Who Can Apply?</h2>
-        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">A degree is required —</span>
-<span class="ab-lead-mob">psychology or medicine.</span>
-<span class="ab-lead-desk">A higher education degree is required: preference is given to psychology,</span>
-<span class="ab-lead-desk">medicine, education and social work graduates.</span></p>
+        <span class="badge on-light">ENTRY REQUIREMENTS</span>
+        <h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Who can</span> <span class="sh-line">apply?</span></h2>
+        <p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Higher education is not required —</span>
+<span class="ab-lead-mob">a psychology background opens wider options.</span>
+<span class="ab-lead-desk">Higher education is not required; those with a background in psychology have wider opportunities.</span></p>
         <div class="req-grid">
           <div class="req-block">
-            <div class="req-block-title">Who It Is For</div>
+            <div class="req-block-title">Requirements</div>
             <ul class="req-list">
-              <li>Holders of a higher education degree (any field)</li>
-              <li>Those who have completed the general psychology programme</li>
-              <li>Those wishing to work in clinics and hospitals</li>
-              <li>Those wishing to become a psychotherapist</li>
-              <li>Those planning to open their own psychology centre</li>
-              <li>Those seeking to organise their knowledge into a clinical framework</li>
+              <li>Psychologists, psychotherapists, doctors and educators</li>
+              <li>Psychology students and early-career specialists</li>
+              <li>Those ready to work with Freud’s texts</li>
+              <li>Enrolment in the group — places are limited</li>
             </ul>
           </div>
           <div class="req-block">
-            <div class="req-block-title">Required Documents</div>
+            <div class="req-block-title">Documents required</div>
             <ul class="req-list">
-              <li>Higher education diploma (mandatory)</li>
-              <li>Copy of ID document (both sides)</li>
-              <li>Previous psychology certificates (if available — for a discount)</li>
-              <li>Completed application form</li>
+              <li>A copy of your ID document</li>
+              <li>Higher education diploma (if any)</li>
+              <li>Psychology certificates (if any)</li>
+              <li>Completed registration form</li>
             </ul>
           </div>
         </div>
-        <div class="steps-row">
-          <div class="step-card">
-            <span class="step-num">Step 01</span>
-            <div class="step-title">Fill in the Form</div>
-            <p class="step-body">Fill in the registration form below. Attach your higher education diploma. Takes 3 minutes.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Step 02</span>
-            <div class="step-title">Coordinator Contact</div>
-            <p class="step-body">Within 24 hours our coordinator will contact you. Documents are reviewed and a payment plan is agreed.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-num">Step 03</span>
-            <div class="step-title">Programme Begins</div>
-            <p class="step-body">You are added to the Telegram group. Access to the video archive is opened. The next cohort starts.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- DIPLOMAS GALLERY -->
-    <section id="diplomas" class="sec-pad" data-theme="light" style="background:var(--white);padding-bottom:var(--s-section);" aria-labelledby="dip-h">
-      <div class="sec-inner">
-        <div class="sec-header">
-          <span class="badge on-light">Official Documents</span>
-          <h2 class="sec-h2" id="dip-h"><span class="sh-line">Institute Diplomas</span> <span class="sh-line">and Licences</span></h2>
-          <p class="sec-sub"><span class="ab-lead-mob">Diploma of the St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists</span>
-<span class="ab-lead-mob">Institute and licences.</span>
-<span class="ab-lead-desk">Sample diploma from the St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists and official operating licences.</span></p>
-        </div>
-      </div>
-      <div class="gallery-band" data-theme="dark">
-        <div class="diploma-gallery" id="diplomaGallery">
-          <div class="dg-mains">
-            <div class="dg-main-item" data-idx="0"><img src="../images/institute/diplom-psy-b-spb-idpo.jpg" alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Clinical Psychology Diploma" loading="lazy" width="1000" height="717" /></div>
-            <div class="dg-main-item" data-idx="1"><img src="../images/institute/diplom-spb-idpo.jpg" alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Diploma" loading="lazy" width="2190" height="1573" /></div>
-            <div class="dg-main-item" data-idx="2"><img src="../images/institute/diplom-psy-spb-idpo.jpg" alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Psychology Diploma" loading="lazy" width="540" height="768" /></div>
-          </div>
-          <div class="dg-thumbs">
-            <div class="dg-thumb" data-idx="3"><img src="../images/institute/diplom-spb-prilozhenie.jpg" alt="Diploma Supplement" loading="lazy" width="1113" height="1541" /></div>
-            <div class="dg-thumb" data-idx="4"><img src="../images/certificate/cert-sample-ipas-clinical.jpg" alt="IPAS Certificate — Clinical Psychology" loading="lazy" width="860" height="608" /></div>
-            <div class="dg-thumb" data-idx="5"><img src="../images/certificate/cert-sample-ipas-family.jpg" alt="IPAS Certificate — General Psychology" loading="lazy" width="860" height="608" /></div>
-            <div class="dg-thumb" data-idx="6"><img src="../images/certificate/cert-sample-gtc-dark.jpg" alt="GTC Certificate — Practicum" loading="lazy" width="600" height="860" /></div>
-            <div class="dg-thumb" data-idx="7"><img src="../images/institute/diplom-predmety.jpg" alt="Discipline Table" loading="lazy" width="1020" height="1393" /></div>
-            <div class="dg-thumb" data-idx="8"><img src="../images/institute/licenziya-1.jpg" alt="Official Operating Licence" loading="lazy" width="424" height="600" /></div>
-            <div class="dg-thumb" data-idx="9"><img src="../images/institute/licenziya-2.jpg" alt="Licence 2" loading="lazy" width="424" height="600" /></div>
-            <div class="dg-thumb" data-idx="10"><img src="../images/institute/licenziya-vypiska.jpg" alt="Licence Extract" loading="lazy" width="424" height="600" /></div>
-            <div class="dg-thumb" data-idx="11"><img src="../images/institute/licenziya-vypiska-2.jpg" alt="Licence Extract 2" loading="lazy" width="424" height="600" /></div>
+    <!-- G2) PRICE -->
+    <section data-theme="dark" style="background:#07090E;">
+      <div class="sec-inner" style="padding:var(--s-section);">
+        <span class="badge">PRICE</span>
+        <h2 class="sec-h2"><span class="sh-line">Programme</span> <span class="sh-line">price</span></h2>
+        <div style="max-width:520px;margin:32px auto 0;">
+          <div class="price-card">
+            <div class="price-card-head">
+              <h4 role="heading" aria-level="3" data-a11y-level>Psychoanalysis</h4>
+              <span>Certificate · 2 modules</span>
+            </div>
+            <p class="price-card-desc">A three-month theory course and&nbsp;six months of supervision; bonus — 24 books by Freud translated from the original German into Azerbaijani.</p>
+            <div class="price-row"><span class="price-row-label">Start</span><span class="price-row-value">01.11.2026</span></div>
+            <div class="price-row"><span class="price-row-label">Classes</span><span class="price-row-value">3 months — 2×2 hrs weekly</span></div>
+            <div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">In person or online</span></div>
+            <div class="price-row"><span class="price-row-label">Supervision</span><span class="price-row-value">6 months — once a week</span></div>
+            <div class="price-row"><span class="price-row-label">Full price</span><span class="price-row-value">600 AZN</span></div>
+            <div class="price-row"><span class="price-row-label">Prepayment (−100 AZN)</span><span class="price-row-value accent">500 AZN</span></div>
+            <div class="price-row"><span class="price-row-label">3-month instalments</span><span class="price-row-value">200 AZN/month</span></div>
+            <div class="price-total"><span class="num">600 AZN</span><span class="lbl">full price</span></div>
+            <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Enrol</a>
           </div>
         </div>
+        <p class="prog-enroll-note" style="text-align:center;margin:28px auto 0;max-width:820px;font-size:0.9375rem;line-height:1.7;color:rgba(242,237,227,0.62);">Enrolment for the new group is open — fill in the form at the bottom of the page.</p>
       </div>
     </section>
-
-    <!-- G) LEGAL BLOCK -->
-    <div class="legal-block">
-      <div class="legal-block-inner">
-        <h2>Questions About the Diploma's Legal Status?</h2>
-        <p>Under the Agreement between the Russian Federation and the Republic of Azerbaijan in the field of education (Law of the Republic of Azerbaijan No. 455-IIQ, 13 May 2003), the diploma of the St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists is officially recognised in Azerbaijan. Graduates may work in both public and private institutions.</p>
-        <div class="legal-btns">
-          <a href="https://e-qanun.az/framework/2054" target="_blank" rel="noopener" class="btn btn-fill">Read the Agreement</a>
-          <a href="qanunlar.html" class="btn btn-line">Legal Basis</a>
-        </div>
-      </div>
-    </div>
 
     <!-- H) REGISTRATION FORM -->
-    <section id="registration" data-theme="dark" style="background:var(--navy);">
-      <div class="sec-inner" style="padding:var(--s-section);">
+    <section id="registration" data-theme="dark" style="background:var(--navy);padding:var(--s-section) 0;">
+      <div class="sec-inner">
+        <span class="badge">ENROLMENT</span>
         <h2 class="sec-h2"><span class="sh-line">Join the</span> <span class="sh-line">Programme</span></h2>
-        <p class="sec-sub" style="color:rgba(255,255,255,0.6);">Fill in the form — our team will contact you within 24 hours. <strong>Enrolment for the new cohort is open — classes start on 05.01.2027.</strong></p>
+        <p class="sec-sub" style="color:rgba(255,255,255,0.6);"><span class="ab-lead-mob">Fill in the form — we reply</span>
+<span class="ab-lead-mob">within one working day.</span>
+<span class="ab-lead-desk">Fill in the form — our team will contact you within 24 hours and answer your questions. <strong>Enrolment for the new cohort is open — classes start on 01.11.2026.</strong></span></p>
 
         <div class="reg-path" style="margin-top:32px;">
           <div class="reg-path-step">
             <span class="reg-path-num">Step 01</span>
             <h4 role="heading" aria-level="3" data-a11y-level>Prepare Your Documents</h4>
-            <p>A photo of your higher education diploma and ID. If you have certificates, attach them for a discount.</p>
+            <p>A photo of your ID; diploma and certificates (if any).</p>
           </div>
           <div class="reg-path-step">
             <span class="reg-path-num">Step 02</span>
@@ -737,39 +559,41 @@ input, select, textarea, button {
           <div class="reg-path-step">
             <span class="reg-path-num">Step 03</span>
             <h4>Get Started</h4>
-            <p>Your place is confirmed and you are added to the Telegram group. Access to the video archive is opened.</p>
+            <p>You are added to the Telegram group. The class schedule and materials are sent out.</p>
           </div>
         </div>
 
         <form class="reg-form-wrap" id="regForm" enctype="multipart/form-data" style="margin-top:32px;" action="/api/training-reg" method="POST" novalidate>
           <div class="form-2col">
-            <div class="form-field"><label for="program-klinik-f1">First Name *</label><input id="program-klinik-f1" type="text" name="ad" required placeholder="Your first name" aria-label="Your first name"></div>
-            <div class="form-field"><label for="program-klinik-f2">Last Name *</label><input id="program-klinik-f2" type="text" name="soyad" required placeholder="Your last name" aria-label="Your last name"></div>
-            <div class="form-field"><label for="program-klinik-f3">Phone *</label><input id="program-klinik-f3" type="tel" name="telefon" required placeholder="+994 (XX) XXX-XX-XX" aria-label="+994 (XX) XXX-XX-XX"></div>
-            <div class="form-field"><label for="program-klinik-f4">E-mail</label><input id="program-klinik-f4" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
+            <div class="form-field"><label for="program-prakti-f1">First Name *</label><input id="program-prakti-f1" type="text" name="ad" required placeholder="Your first name" aria-label="Your first name"></div>
+            <div class="form-field"><label for="program-prakti-f2">Last Name *</label><input id="program-prakti-f2" type="text" name="soyad" required placeholder="Your last name" aria-label="Your last name"></div>
+            <div class="form-field"><label for="program-prakti-f3">Phone *</label><input id="program-prakti-f3" type="tel" name="telefon" required placeholder="+994 (XX) XXX-XX-XX" aria-label="+994 (XX) XXX-XX-XX"></div>
+            <div class="form-field"><label for="program-prakti-f4">E-mail</label><input id="program-prakti-f4" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
           </div>
 
           <div class="form-field" style="margin-top:24px;">
             <label>Programme</label>
             <div class="tile-group cols3">
               <input type="radio" name="proqram" id="p1" value="General Psychology" class="tile-opt" />
-              <label for="p2" class="tile-lbl">General Psychology<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1,556 ac. hrs · CPD Diploma</span></label>
-              <input type="radio" name="proqram" id="p2" value="Clinical Psychology" class="tile-opt" checked />
-              <label for="p3" class="tile-lbl">Clinical Psychology<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1,528 ac. hrs · CPD Diploma + IPAS</span></label>
+              <label for="p1" class="tile-lbl">General Psychology<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1,556 ac. hrs · CPD Diploma</span></label>
+              <input type="radio" name="proqram" id="p2" value="Clinical Psychology" class="tile-opt" />
+              <label for="p2" class="tile-lbl">Clinical Psychology<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">1,528 ac. hrs · CPD Diploma + IPAS</span></label>
               <input type="radio" name="proqram" id="p3" value="Psychotherapy Practicum" class="tile-opt" />
-              <label for="p3" class="tile-lbl">Psychotherapy Practicum<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">40 ac. hrs · IPAS Certificate</span></label>
+              <label for="p3" class="tile-lbl">Psychotherapy Practicum<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">864 ac. hrs · IPAS Certificate</span></label>
+              <input type="radio" name="proqram" id="p4" value="Family Therapy" class="tile-opt" />
+              <label for="p4" class="tile-lbl">Family Therapy<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">2 modules · 600 AZN</span></label>
+              <input type="radio" name="proqram" id="p5" value="Psychoanalysis" class="tile-opt" checked />
+              <label for="p5" class="tile-lbl">Psychoanalysis<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">2 modules · 600 AZN</span></label>
             </div>
           </div>
 
           <div class="form-field" style="margin-top:20px;">
-            <label for="o2">Payment Method</label>
-            <div class="tile-group cols3">
-              <input type="radio" name="odenis" id="o1" value="Full Payment (−10%)" class="tile-opt" />
-              <label for="o2" class="tile-lbl">Full Payment<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">−10% discount</span></label>
-              <input type="radio" name="odenis" id="o2" value="12-Month Instalment" class="tile-opt" />
-              <label for="o3" class="tile-lbl">12-Month Plan<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">$330/mo</span></label>
-              <input type="radio" name="odenis" id="o3" value="24-Month Instalment" class="tile-opt" />
-              <label for="o3" class="tile-lbl">24-Month Plan<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">$180/mo</span></label>
+            <label>Payment Method</label>
+            <div class="tile-group cols2">
+              <input type="radio" name="odenis" id="o1" value="Prepayment — 500 AZN" class="tile-opt" checked />
+              <label for="o1" class="tile-lbl">Prepayment<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">500 AZN</span></label>
+              <input type="radio" name="odenis" id="o2" value="3-month instalments — 200 AZN/month" class="tile-opt" />
+              <label for="o2" class="tile-lbl">3-month instalments<br /><span style="font-size:0.65rem;font-weight:400;opacity:0.7;">200 AZN/month</span></label>
             </div>
           </div>
 
@@ -777,17 +601,17 @@ input, select, textarea, button {
             <label for="km-name">Documents</label>
             <div class="upload-grid">
               <div class="upload-item">
-                <span class="upload-lbl">Higher Education Diploma *</span>
+                <span class="upload-lbl">Higher education diploma (if any)</span>
                 <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — max 5 MB</span>
               </div>
               <div class="upload-item">
-                <span class="upload-lbl">ID Document *</span>
+                <span class="upload-lbl">ID Document</span>
                 <input type="file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — max 5 MB</span>
               </div>
               <div class="upload-item">
-                <span class="upload-lbl">Previous Certificates</span>
+                <span class="upload-lbl">Other Certificates</span>
                 <input type="file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
                 <span class="upload-hint">For a discount — multiple files accepted</span>
               </div>
@@ -795,8 +619,8 @@ input, select, textarea, button {
           </div>
 
           <div class="form-field" style="margin-top:20px;">
-            <label for="program-klinik-f5">Notes</label>
-            <textarea id="program-klinik-f5" name="qeyd" rows="3" placeholder="Your question or special circumstances..." aria-label="Your question or special circumstances..."></textarea>
+            <label for="program-prakti-f5">Notes</label>
+            <textarea id="program-prakti-f5" name="qeyd" rows="3" placeholder="Your question, current experience, special circumstances..." aria-label="Your question, current experience, special circumstances..."></textarea>
           </div>
 
           <div class="form-footer">
@@ -879,7 +703,7 @@ input, select, textarea, button {
 
     <script src="../shared.js"></script>
     <script>
-      wireRegForm('regForm', 'regSuccess', 'en/program-klinik.html');
+      wireRegForm('regForm', 'regSuccess', 'en/program-psixoanaliz.html');
     </script>
 
     <!-- Diploma Lightbox -->

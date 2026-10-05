@@ -4,9 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu. Rəsmi dövlət diplomu + beynəlxalq sertifikat." name="description"/>
+<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu, Ailə Terapiyası, Psixoanaliz. Rəsmi dövlət diplomu + beynəlxalq sertifikat." name="description"/>
 <meta content="Təhsil | RAGIMOFF" property="og:title"/>
-<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu. Rəsmi dövlət diplomu + beynəlxalq sertifikat." property="og:description"/>
+<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu, Ailə Terapiyası, Psixoanaliz. Rəsmi dövlət diplomu + beynəlxalq sertifikat." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://ragimoff.org/tehsil.html" property="og:url"/>
 <meta content="https://ragimoff.org/images/kenan/photo-portal-crop-removebg-preview.png" property="og:image"/>
@@ -59,12 +59,24 @@
         .pr-lead-desk { display: none !important; }
       }
 
-      /* Программ стало четыре, а сетка на десктопе трёхколоночная —
-         четвёртая карточка оставалась одна в ряду и прижималась влево.
-         Ставим её в среднюю колонку, чтобы ряд читался по центру. */
-      @media (min-width: 769px) {
-        .price-card:nth-child(4) { grid-column: 2; }
+      /* Программ стало пять: три дипломные занимают первый ряд (по 2 колонки
+         из шести), два коротких — семейная терапия и психоанализ — второй
+         ряд по 3 колонки. Ряды заполнены целиком, пара стоит по центру.
+         Доли карточек прежние, меняется только сетка. */
+      @media (min-width: 1101px) {
+        .price-grid-3 { grid-template-columns: repeat(6,1fr); }
+        .price-grid-3 > .price-card { grid-column: span 2; }
+        .price-grid-3 > .price-card:nth-child(4),
+        .price-grid-3 > .price-card:nth-child(5) { grid-column: span 3; }
       }
+
+      /* Ячейки прайса: метка слева, значение справа. Длинное значение
+         переносится на вторую строку и прижимается к правому краю, а не
+         наезжает на метку (правки владельца 05.10.2026). */
+      .price-row { gap: 16px; }
+      .price-row-label { flex-shrink: 0; }
+      .price-row-value { text-align: right; }
+      .prog-enroll-note { text-wrap: pretty; }
 
       /* ── БЛОК ГЕРОЯ: ЧАСТНЫЕ ЗНАЧЕНИЯ СНЯТЫ (волна 03.10.2026) ──
          Здесь стояла своя «подгонка» героя на .pg-hero-inner (50 px между
@@ -193,7 +205,7 @@
     </style>
 <meta content="index, follow" name="robots"/>
 <meta content="Təhsil | RAGIMOFF" property="og:title"/>
-<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu. Rəsmi dövlət diplomu + beynəlxalq sertifikat." property="og:description"/>
+<meta content="RAGIMOFF Psixologiya Məktəbi — Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu, Ailə Terapiyası, Psixoanaliz. Rəsmi dövlət diplomu + beynəlxalq sertifikat." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://ragimoff.org/tehsil.html" property="og:url"/>
 <meta content="az_AZ" property="og:locale"/>
@@ -227,7 +239,7 @@ input, select, textarea, button {
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Psixologiya Təhsil Proqramları",
-  "description": "Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu, Ailə Terapiyası. Rəsmi diplom + beynəlxalq sertifikat.",
+  "description": "Ümumi Psixologiya, Klinik Psixologiya (Əlavə Təhsil), Psixoterapiya Praktikumu, Ailə Terapiyası, Psixoanaliz. Rəsmi diplom + beynəlxalq sertifikat.",
   "provider": {
     "@type": "Organization",
     "name": "RAGIMOFF Psixologiya Məktəbi",
@@ -295,6 +307,7 @@ input, select, textarea, button {
           <li><a href="program-umumi.html">Ümumi Psixologiya</a></li>
           <li><a href="program-klinik.html">Klinik Psixologiya (Əlavə Təhsil)</a></li>
           <li><a href="program-praktikum.html">Psixoterapiya Praktikumu</a></li>
+          <li><a href="program-psixoanaliz.html">Psixoanaliz</a></li>
           <li><a href="samira.html">Ailə Terapiyası</a></li>
           <li><a href="qanunlar.html">Qanuni Əsaslar</a></li>
         </ul>
@@ -302,7 +315,7 @@ input, select, textarea, button {
       <div class="nav-item">
         <a href="xidmetler.html">Konsultasiya</a>
         <ul class="nav-dropdown">
-          <li><a href="aile-terapiyasi.html">Ailə Terapiyası</a></li>
+          <li><a href="samira.html">Ailə Terapiyası</a></li>
           <li><a href="valideyn-mektebi.html">Valideyn Məktəbi</a></li>
           <li><a href="aile-terapiyasi-usaq.html">Ailə-Uşaq Terapiyası</a></li>
           <li><a href="depressiya.html">Depressiya</a></li>
@@ -353,6 +366,7 @@ input, select, textarea, button {
       <a href="program-umumi.html" onclick="toggleMenu()">Ümumi Psixologiya</a>
       <a href="program-klinik.html" onclick="toggleMenu()">Klinik Psixologiya (Əlavə Təhsil)</a>
       <a href="program-praktikum.html" onclick="toggleMenu()">Psixoterapiya Praktikumu</a>
+      <a href="program-psixoanaliz.html" onclick="toggleMenu()">Psixoanaliz</a>
       <a href="samira.html" onclick="toggleMenu()">Ailə Terapiyası</a>
       <a href="qanunlar.html" onclick="toggleMenu()">Qanuni Əsaslar</a>
     </div>
@@ -363,7 +377,7 @@ input, select, textarea, button {
       <button type="button" class="mn-toggle" onclick="toggleSubMenu(this)" aria-label="Aç/bağla"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
     </div>
     <div class="mn-sub">
-      <a href="aile-terapiyasi.html" onclick="toggleMenu()">Ailə Terapiyası</a>
+      <a href="samira.html" onclick="toggleMenu()">Ailə Terapiyası</a>
       <a href="valideyn-mektebi.html" onclick="toggleMenu()">Valideyn Məktəbi</a>
       <a href="aile-terapiyasi-usaq.html" onclick="toggleMenu()">Ailə-Uşaq Terapiyası</a>
       <a href="depressiya.html" onclick="toggleMenu()">Depressiya</a>
@@ -428,12 +442,12 @@ input, select, textarea, button {
 <div class="sec-inner">
 <div class="sec-header">
 <span class="badge">Tədris Proqramları</span>
-<h2 class="sec-h2" id="prog-h"><span class="sh-line">4 Tədris</span> <span class="sh-line">Proqramı</span></h2>
+<h2 class="sec-h2" id="prog-h"><span class="sh-line">5 Tədris</span> <span class="sh-line">Proqramı</span></h2>
 <p class="sec-sub">
 <span class="pr-lead-mob">Diplom proqramları bir il davam edir,</span>
-<span class="pr-lead-mob">ailə terapiyası isə 3 ay tədris</span>
-<span class="pr-lead-mob">və 6 ay superviziyadır.</span>
-<span class="pr-lead-desk">Diplom proqramları 1 il, ailə terapiyası — 3 ay tədris</span>
+<span class="pr-lead-mob">ailə terapiyası və psixoanaliz isə</span>
+<span class="pr-lead-mob">3 ay tədris və 6 ay superviziyadır.</span>
+<span class="pr-lead-desk">Diplom proqramları 1 il, ailə terapiyası və psixoanaliz — 3 ay tədris</span>
 <span class="pr-lead-desk">və 6 ay superviziya. Əyani, onlayn və video dərslər.</span>
 </p>
 </div>
@@ -453,6 +467,7 @@ input, select, textarea, button {
 <span>Əlavə Təhsil Diplomu · 1 556 saat</span>
 </div>
 <p class="price-card-desc">AR qanunvericiliyinə uyğun FRDO dövlət reyestrinə daxil edilən rəsmi Əlavə Təhsil diplomu. Psixoloq kimi hüquqi fəaliyyətin başlanğıcı.</p>
+<div class="price-row"><span class="price-row-label">Başlanğıc</span><span class="price-row-value">05.01.2027</span></div>
 <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — 6+6 ay</span></div>
 <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">4 200 AZN</span></div>
 <div class="price-row"><span class="price-row-label">Öncədən ödənişdə (−400 AZN)</span><span class="price-row-value accent">3 800 AZN</span></div>
@@ -469,6 +484,7 @@ input, select, textarea, button {
 <span>Əlavə Təhsil Diplomu · 1 528 saat</span>
 </div>
 <p class="price-card-desc">Mürəkkəb klinik hallar üzərində müstəqil işləmək hüququ. Öz mərkəzinizi açmaq üçün tam hüquqi status. Beynəlxalq IPAS sertifikatı ilə birgə.</p>
+<div class="price-row"><span class="price-row-label">Başlanğıc</span><span class="price-row-value">05.01.2027</span></div>
 <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — 6+6 ay</span></div>
 <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">6 600 AZN</span></div>
 <div class="price-row"><span class="price-row-label">Öncədən ödənişdə (−600 AZN)</span><span class="price-row-value accent">6 000 AZN</span></div>
@@ -485,6 +501,7 @@ input, select, textarea, button {
 <span>IPAS/BPA Sertifikat · 864 saat</span>
 </div>
 <p class="price-card-desc">Psixoloq + pasiyent rollarında canlı məşqlər, real keyslərin superviziyası, konsilium formatı. QR-kodla yoxlanılan beynəlxalq IPAS/BPA sertifikatı.</p>
+<div class="price-row"><span class="price-row-label">Başlanğıc</span><span class="price-row-value">05.01.2027</span></div>
 <div class="price-row"><span class="price-row-label">Müddət</span><span class="price-row-value">1 il — praktika</span></div>
 <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">3 600 AZN</span></div>
 <div class="price-row"><span class="price-row-label">Öncədən ödənişdə (−600 AZN)</span><span class="price-row-value accent">3 000 AZN</span></div>
@@ -501,17 +518,37 @@ input, select, textarea, button {
 <span>IPAS Sertifikat · 2 modul</span>
 </div>
 <p class="price-card-desc">Cütlük terapiyası və&nbsp;valideyn-övlad münasibətləri. Ali təhsil tələb olunmur — psixologiya təhsili olanlara daha geniş imkanlar. Məzunlar mərkəzimizdə məsləhətçilik xidməti göstərə bilər.</p>
-<div class="price-row"><span class="price-row-label">Tədris</span><span class="price-row-value">3 ay — həftədə 2 dəfə 2 saat</span></div>
-<div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">Əyani dərslər və ya onlayn video dərslər</span></div>
+<div class="price-row"><span class="price-row-label">Tədris</span><span class="price-row-value">3 ay — həftədə 2×2 saat</span></div>
+<div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">Əyani və ya onlayn</span></div>
 <div class="price-row"><span class="price-row-label">Superviziya</span><span class="price-row-value">6 ay — həftədə 1 dəfə</span></div>
 <div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">600 AZN</span></div>
+<div class="price-row"><span class="price-row-label">Öncədən ödənişdə (−100 AZN)</span><span class="price-row-value accent">500 AZN</span></div>
 <div class="price-row"><span class="price-row-label">hissə-hissə 3 ay</span><span class="price-row-value">200 AZN/ay</span></div>
 <div class="price-total"><span class="num">600 AZN</span><span class="lbl">tam qiymət</span></div>
 <a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Qeydiyyat</a>
 <a class="btn btn-line" href="samira.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı →</a>
 </div>
+<!-- Psixoanaliz -->
+<div class="price-card">
+<div class="price-card-head">
+<h4 role="heading" aria-level="3" data-a11y-level>Psixoanaliz</h4>
+<span>Sertifikat · 2 modul</span>
+</div>
+<p class="price-card-desc">3 aylıq nəzəri təlim və&nbsp;6 aylıq superviziya; tədrisçi — Kənan Rəhimov. Bonus: Ziqmund Freydin 24 kitabı Azərbaycanda ilk dəfə orijinal alman dilindən tərcümə edilib — bu proqramın tələbələri üçün əlçatan olacaq.</p>
+<div class="price-row"><span class="price-row-label">Başlanğıc</span><span class="price-row-value">01.11.2026</span></div>
+<div class="price-row"><span class="price-row-label">Tədris</span><span class="price-row-value">3 ay — həftədə 2×2 saat</span></div>
+<div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">Əyani və ya onlayn</span></div>
+<div class="price-row"><span class="price-row-label">Superviziya</span><span class="price-row-value">6 ay — həftədə 1 dəfə</span></div>
+<div class="price-row"><span class="price-row-label">Tam qiymət</span><span class="price-row-value">600 AZN</span></div>
+<div class="price-row"><span class="price-row-label">Öncədən ödənişdə (−100 AZN)</span><span class="price-row-value accent">500 AZN</span></div>
+<div class="price-row"><span class="price-row-label">hissə-hissə 3 ay</span><span class="price-row-value">200 AZN/ay</span></div>
+<div class="price-total"><span class="num">600 AZN</span><span class="lbl">tam qiymət</span></div>
+<a class="btn btn-line" href="#registration" style="display:flex;align-items:center;justify-content:center;margin-top:20px;">Qeydiyyat</a>
+<a class="btn btn-line" href="program-psixoanaliz.html" style="display:flex;align-items:center;justify-content:center;margin-top:10px;">Tədris Proqramı →</a>
+</div>
 
 </div>
+<p class="prog-enroll-note" style="text-align:center;margin:28px auto 0;max-width:820px;font-size:0.9375rem;line-height:1.7;color:rgba(242,237,227,0.62);">Hazırda Ümumi Psixologiya, Klinik Psixologiya, Psixoterapiya Praktikumu və&nbsp;Psixoanaliz proqramlarına yeni qruplara qeydiyyat davam edir — müraciət üçün səhifənin aşağısındakı formanı doldurun.</p>
 </div>
 </section>
 <!-- BENEFITS -->
@@ -766,6 +803,8 @@ input, select, textarea, button {
 <label for="p3" class="form-radio-lbl">Psixoterapiya Praktikumu<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 saat · IPAS Sertifikat</span></br></label>
 <input class="form-radio-tile" id="p4" name="proqram" type="radio" value="Ailə Terapiyası"/>
 <label for="p4" class="form-radio-lbl">Ailə Terapiyası<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">IPAS Sertifikat · 2 modul</span></label>
+<input class="form-radio-tile" id="p5" name="proqram" type="radio" value="Psixoanaliz"/>
+<label for="p5" class="form-radio-lbl">Psixoanaliz<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">Sertifikat · 2 modul · 600 AZN</span></label>
 </div>
 </div>
 <div class="form-group" style="margin-top:20px;">
@@ -845,7 +884,7 @@ input, select, textarea, button {
       <div>
         <span class="footer-col-title">Terapiya</span>
         <ul class="footer-links">
-          <li><a href="aile-terapiyasi.html" class="footer-link">Ailə Terapiyası</a></li>
+          <li><a href="samira.html" class="footer-link">Ailə Terapiyası</a></li>
           <li><a href="enurez.html" class="footer-link">Gecə Enurezi</a></li>
           <li><a href="panik-ataklar.html" class="footer-link">Panik Ataklar</a></li>
           <li><a href="depressiya.html" class="footer-link">Depressiya</a></li>
@@ -1367,9 +1406,10 @@ input, select, textarea, button {
      müddətdə ikinci il üçün cəmi +600 AZN (aya bölünərək) əlavə olunur.
      Aylıq məbləğ 5 AZN-ə qədər yuxarı yuvarlaqlaşdırılır, yekun = aylıq × ay
      (пример владельца: Klinik 9 ay → 6450/9=716.67 → 720 × 9 = 6480).
-     Ailə Terapiyası düsturdan kənardır: 600 AZN sabit tam qiymət (3 ay tədris
-     və 6 ay superviziya daxil), öncədən ödənişdə endirim yoxdur, hissə-hissə
-     3 ay × 200 AZN. */
+     Ailə Terapiyası düsturdan kənardır: 600 AZN tam qiymət (3 ay tədris
+     və 6 ay superviziya daxil), öncədən ödənişdə 500 AZN (−100 AZN),
+     hissə-hissə 3 ay × 200 AZN. Psixoanaliz eyni şərtlərlədir: 600 AZN,
+     öncədən ödənişdə 500 AZN, hissə-hissə 3 ay × 200 AZN. */
   (function () {
     var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
     var PLANS = {
@@ -1377,7 +1417,8 @@ input, select, textarea, button {
       'Klinik Psixologiya':       { base: 6600, prepay: 6000, months: ALL },
       'Psixoterapiya Praktikumu': { base: 3600, prepay: 3000, months: ALL,
         fastNote: 'Müraciət günü ödənişdə əlavə −500 AZN → 2 500 AZN' },
-      'Ailə Terapiyası':          { base: 600, prepay: 600, months: [3], fixed: { 3: 200 } }
+      'Ailə Terapiyası':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } },
+      'Psixoanaliz':              { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
     };
     var form = document.getElementById('regForm');
     if (!form) return;

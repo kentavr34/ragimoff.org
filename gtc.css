@@ -2129,6 +2129,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 16px;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -2140,12 +2141,14 @@ body {
 .price-row-label {
   font-size: var(--t-sm);
   color: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
 }
 
 .price-row-value {
   font-size: var(--t-body);
   font-weight: 700;
   color: var(--white);
+  text-align: right;
 }
 
 .price-row-value.accent {
