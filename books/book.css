@@ -607,3 +607,13 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
   -webkit-line-clamp:2!important;line-clamp:2!important;
   text-overflow:ellipsis;overflow:hidden;
 }
+
+
+/* ═══ Титул книги: автор и дата издания — В ОДНУ СТРОКУ ═══ */
+.bk-tp__meta, .bk-tp__author, .bk-tp__year, .bk-tp .tp-meta, .bk-tp .book-meta {
+  display: flex !important; flex-wrap: nowrap !important; align-items: baseline !important;
+  justify-content: space-between !important; gap: 16px !important; white-space: nowrap !important;
+}
+.bk-tp__meta > *, .bk-tp .tp-meta > *, .bk-tp .book-meta > * { white-space: nowrap !important; }
+/* если автор и дата лежат соседними элементами — держим их в одном ряду */
+.bk-tp__author + .bk-tp__year, .bk-tp__year + .bk-tp__author { display: inline !important; }
