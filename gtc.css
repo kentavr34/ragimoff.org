@@ -76,7 +76,10 @@
   --type-sub-weight:       400;
   --type-sub-transform:    none;
   --type-sub-spacing:      normal;
-  --type-sub-line:         1.75;
+  /* Интерлиньяж лида — одно число на весь сайт, объявлено в site-concept.css
+     (§ :root, --lead-lh = как в герое). Здесь только ссылка, чтобы у роли
+     «подзаголовок» не было второго, вольного значения. */
+  --type-sub-line:         var(--lead-lh, 1.75);
 
   /* Название блока (badge, diploma-label, nav) */
   --type-label-family:     var(--font);

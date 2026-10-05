@@ -65,6 +65,19 @@ body {
   --pad-x: clamp(24px, 6vw, 120px);
   --col: 44rem;                 /* читальная колонка — как у книг */
 
+  /* ── ЛИД И ПОДЗАГОЛОВОК: один межстрочный интервал на весь сайт ──────
+     Владелец 05.10.2026: «в подзаголовках некоторых блоков интервал между
+     строками слишком большой, не такой, как в блоке героя». Эталон снят
+     замером с героя (headless Chrome, 1440/390): кегль 17.5px, line-height
+     1.75 → строка 30.625px, видимый зазор 4.63px.
+       --lead-fs — кегль лида (как в герое);
+       --lead-lh — интерлиньяж лида (как в герое), единственное число на
+                   весь сайт: и CSS, и фиттер js-hero-fit2.js (LH_SUB) берут
+                   его отсюда.
+     Менять интерлиньяж лидов — ТОЛЬКО здесь. */
+  --lead-fs:    17.5px;
+  --lead-lh:    1.75;
+
   /* шаг отступов, кратный 8 */
   --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 64px; --s7: 96px;
   --s-section:     clamp(48px, 6vw, 96px) !important;
@@ -533,7 +546,7 @@ header.hdr {
   font-family: var(--f-read) !important;
   font-size: 17.5px !important;
   font-weight: 400 !important;
-  line-height: 1.75 !important;
+  line-height: var(--lead-lh) !important;
   letter-spacing: 0 !important;
   color: var(--mid) !important;
   max-width: 44rem;
@@ -682,13 +695,18 @@ section[data-theme="light"],
 .sec-sub, .sec-lead {
   font-family: var(--f-read) !important;
   font-size: 17.5px !important;
-  line-height: 1.75 !important;
+  line-height: var(--lead-lh) !important;
   letter-spacing: 0 !important;
   color: var(--mid) !important;
   max-width: 44rem !important;
   margin-inline: auto;
   text-transform: none !important;
 }
+/* Лиды, объявленные не здесь, а страничным <style>: интервал берут из общего
+   числа (--lead-lh), кегль — свой. Замер 05.10.2026 до правки: .bc-lead 1.65
+   (лента блога, 12 блоков / 3 страницы), .pt-sub 1.7 (прайс, 9 блоков).
+   Интерлиньяж лида — не место для вольных чисел: все лиды идут по герою. */
+.bc-lead, .pt-sub { line-height: var(--lead-lh) !important; }
 h1, h2 { font-family: var(--f-disp) !important; font-weight: 400 !important; text-transform: none !important; color: var(--fg) !important; }
 h3, h4, h5, h6 { font-family: var(--f-ui) !important; font-weight: 500 !important; color: var(--fg) !important; text-transform: none !important; }
 p { color: inherit; }
@@ -2562,4 +2580,41 @@ section.page-hero, section.page-hero-x, section.pg-hero { padding-bottom: var(--
 .ps-inner > :is(.price-table, .pricing-tbl, .art-table, .diff-table) {
   max-width: none !important;
   width: 100% !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   РИТМ СТРОК ЛИДА: строку ведёт сам лид, а не контейнер
+   Владелец 05.10.2026: «в подзаголовках некоторых блоков интервал между
+   строками слишком большой, не такой, как в блоке героя». Замер 1440 на
+   aile-terapiyasi: строки AB-лида стояли через 56 при строке-эталоне 30,625.
+
+   ПРИЧИНА (замер, не догадка). В блоках «İki modul…», «Əlaqə böhranı…» текст
+   набран внутренними спанами-лидами (`*-lead-desk`), и кегль этим спанам
+   ставит site-concept (17.5px !important), а кегль КОНТЕЙНЕРА подгоняет
+   фиттер js-hero-fit2.js инлайном с !important (в замере — 32px). Интервал
+   строки считает контейнер: 32 × 1.75 = 56. Отсюда «разъехавшиеся» строки.
+
+   ЧТО ДЕЛАЕМ. Спаны-лиды отдаём потоку как блоки (в gtc-dark.css для
+   `-lead-desk` это и было задумано: display:block с 769px, но инлайн-стиль
+   фиттера `display:inline` его перебивал). У блока строка своя: 17.5 × 1.75 =
+   30,625 = герой. Ничего, кроме интервала, не меняется — кегль и переносы
+   те же (замер: высота страниц aile 10295 → 9889, tehsil 11008 → 10810,
+   переполнений не прибавилось: wideEls до = после).
+   ═══════════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .ab-lead-desk,
+  [class$="-lead-desk"], [class*="-lead-desk "] {
+    display: block !important;
+  }
+}
+/* Строка автора в шапке блога (.post-byline) — единственный лид-блок, набранный
+   НЕ Literata (Plex Mono: метрики выше). В общем потоке лида её строка вырастала
+   до 32,63 вместо 30,625 (замер 390, 55 блогов). Своим блоком строка берёт ровно
+   свой интерлиньяж. Селектор намеренно узкий — только МОБИЛЬНАЯ строка и только
+   в шапке: правило шире по классу (`… .ph-sub .post-byline`) подняло бы на
+   телефоне и десктопную строку (у неё те же классы), то есть удвоило бы подпись. */
+@media (max-width: 860px) {
+  section.page-hero-x.page-hero-x .ph-sub .ph-sub-mob.post-byline {
+    display: block !important;
+  }
 }
