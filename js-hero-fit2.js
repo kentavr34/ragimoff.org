@@ -492,10 +492,16 @@
        зазору, и от кнопки до края раздела выходило 103 вместо 48. Обход
        всех потомков тоже не годится — затягивает скрытый <ol> внутри
        закрытого <details>. */
+    /* Закрытый <details> САМ виден на экране (это его строка-заголовок), и
+       нижнюю границу содержимого задаёт именно он: без него у раздела
+       вопросов-ответов aile-terapiyasi низ блока считался по подзаголовку —
+       замер 958 px пустоты вместо 88 (владелец: «пустоты между блоками»).
+       Дети закрытого details по-прежнему не считаются. */
     var deepest = 0;
-    [].forEach.call(sec.querySelectorAll('p, h1, h2, h3, a, ul, ol, img, .btn, .stat-item, .mod-panel'),
+    [].forEach.call(sec.querySelectorAll('p, h1, h2, h3, a, ul, ol, img, .btn, .stat-item, details'),
       function (el) {
-        if (el.closest('details') && !el.closest('details').open) return;
+        var dd = el.closest('details');
+        if (dd && !dd.open && el !== dd && !el.closest('summary')) return;
         var r = el.getBoundingClientRect();
         if (r.height > 0 && r.bottom > deepest) deepest = r.bottom;
       });
@@ -517,6 +523,25 @@
         innerB.style.setProperty('padding-bottom',
           Math.max(0, baseInB + wantB).toFixed(1) + 'px', 'important');
       }
+    }
+
+    /* ОДИН ЗАЗОР МЕЖДУ БЛОКАМИ (владелец 05.10.2026: «карточки-темы
+       заканчиваются, и до следующего блока пустота около 150 px вместо
+       стандартных 88»). Низ блока (88) + верх следующего блока (88) = 176 px
+       при стандарте 88 — нижний паддинг снимается у блока, за которым идёт
+       ещё блок. Правило есть в site-concept.css («ОДИН зазор между блоками»),
+       но его перебивает инлайновый !important самого фиттера — поэтому закон
+       живёт здесь; у последнего блока перед подвалом низ остаётся 88. */
+    var nx = sec.nextElementSibling;
+    while (nx && nx.nodeType === 1 && !nx.getClientRects().length) nx = nx.nextElementSibling;
+    if (nx && nx.nodeType === 1 && (nx.tagName === 'SECTION' ||
+        nx.classList.contains('cta-band') || nx.classList.contains('band') ||
+        nx.classList.contains('stats-strip') || nx.classList.contains('books-band') ||
+        nx.classList.contains('gallery-band') || nx.classList.contains('tg-band') ||
+        nx.classList.contains('legal-block') || nx.classList.contains('legal-banner'))) {
+      sec.style.setProperty('padding-bottom', '0px', 'important');
+      var innerZ = sec.querySelector('.sec-inner');
+      if (innerZ) innerZ.style.setProperty('padding-bottom', '0px', 'important');
     }
 
     var gapB = h.getBoundingClientRect().top - badge.getBoundingClientRect().bottom + halfLeading(h);
@@ -578,8 +603,26 @@
 
     [].forEach.call(desk, function (l) { l.style.cssText = 'display:none!important'; });
 
-    var target = header.getBoundingClientRect().width - 32;  /* как на главной */
-    if (!target) return;
+    /* ── МОБИЛЬНАЯ МЕРА И КЕГЛИ (волна 05.10.2026, вечер) ────────────────
+       Владелец: «интервалы между строками — нет единого стандарта, который
+       мы применяли при формировании стиля дизайна на главной странице».
+       Сплошной замер 390 вскрыл две вещи:
+       1) мера была header.width − 32, то есть БОКС обёртки без вычета её
+          паддингов. У .sec-inner паддинг --s-section (48/48 на 390), поэтому
+          подбор укладывал строки в 358 px при колонке 294 и раздувал их на
+          60–70 px шире колонки — дефект «sec-h2 357 > 294» (замер: ink 350,7
+          при колонке 288);
+       2) тем же подбором строки лида раздувались до 44 px, и строка лида
+          выходила 77 px вместо эталона 30,625 (кегль 17,5 × интерлиньяж
+          1,75 — как в герое, §6a; кегли мобильной шкалы §5a: лид 17,5,
+          H2 секции 25,6).
+       Теперь кегли на телефоне — из мобильной шкалы (кегль строки двигает
+       только страховка от вылета за колонку), а строку лида ведёт CSS:
+       шаг строк = --lead-lh × 17,5 = 30,625 на всех страницах. */
+    var hcsM = getComputedStyle(header);
+    var target = header.getBoundingClientRect().width
+      - (parseFloat(hcsM.paddingLeft) || 0) - (parseFloat(hcsM.paddingRight) || 0) - 8;
+    if (!target || target < 120) return;
 
     /* Заголовок раздела теперь разбит на строки-спаны (.sh-line), как в
        шапке. Если они есть — равняем КАЖДУЮ по общей мере: именно этого не
@@ -588,113 +631,35 @@
        перетягивал. */
     var hLines = h2.querySelectorAll('.sh-line');
     h2.style.cssText = '';
-    if (hLines.length > 1) {
-      var hSizes = [];
-      [].forEach.call(hLines, function (line) {
-        line.style.cssText = '';
-        line.style.display = 'inline';
-        line.style.whiteSpace = 'nowrap';
-        var sL = fitTo(line, target, MIN_H2 - 6, 160, 0);
-        hSizes.push(sL);
-        line.style.display = 'block';
-        line.style.whiteSpace = '';
-        line.style.lineHeight = (sL * LH_H1).toFixed(1) + 'px';
-      });
-      var sH = Math.max.apply(null, hSizes);
-      var subPmL = h2.parentElement.querySelector('.sec-sub');
-      if (subPmL) {
-        subPmL.style.setProperty('max-width', Math.ceil(target) + 'px', 'important');
-        subPmL.style.setProperty('margin-left', 'auto');
-        subPmL.style.setProperty('margin-right', 'auto');
+    /* Строки автора сохраняют структуру (каждая — своей строкой), кегль —
+       из мобильной шкалы; страховка уменьшает ТОЛЬКО строку, которая шире
+       колонки (длинное неразрывное слово): заголовку лучше ужаться, чем
+       вылезти за колонку. */
+    var subPmM = h2.parentElement.querySelector('.sec-sub');
+    if (subPmM) {
+      subPmM.style.setProperty('max-width', Math.ceil(target) + 'px', 'important');
+      subPmM.style.setProperty('margin-left', 'auto');
+      subPmM.style.setProperty('margin-right', 'auto');
+    }
+    [].forEach.call(hLines, function (line) {
+      line.style.cssText = '';
+      line.style.display = 'block';
+      line.style.whiteSpace = 'normal';
+      var fsL = parseFloat(getComputedStyle(line).fontSize) || MIN_H2;
+      if (widestLine(line) > target + 1 && fsL > MIN_H2) {
+        fitTo(line, target, MIN_H2, fsL, 0);
       }
-      [].forEach.call(mob, function (line) {
-        line.style.cssText = '';
-        line.style.display = 'inline';
-        line.style.whiteSpace = 'nowrap';
-        var s2 = fitTo(line, target, MIN_SUB, Math.max(MIN_SUB + 1, sH - 2), 0);
-        line.style.display = 'block';
-        line.style.whiteSpace = 'normal';
-        line.style.lineHeight = (s2 * LH_SUB).toFixed(1) + 'px';
-      });
-      return;
-    }
-    h2.style.display = 'inline';
-    h2.style.whiteSpace = 'nowrap';
-    var sH = fitTo(h2, target, MIN_H2, 160, 0);
-    /* Упёрлись в пол — значит в одну строку текст не входит. Снимаем nowrap
-       и отдаём заголовок на перенос: две строки крупным кеглем читаются, одна
-       строка кеглем подзаголовка — нет. */
-    if (sH <= MIN_H2) setSize(h2, MIN_H2);
-    h2.style.display = 'block';
-    h2.style.whiteSpace = '';
-
-    /* ГЛАВНОЕ ПРАВИЛО ПАРЫ «заголовок ↔ подзаголовок» (скилл kenan-design-rules):
-       подзаголовок по ширине ≈ заголовку, ±10%. Не по ширине контейнера!
-       Замер до правки: 52 / 63 / 78 / 121% — ни один раздел в норму не попадал.
-       Мера для строк подзаголовка — ширина ТЕКСТА заголовка после его подгонки. */
-    /* На МОБИЛЬНОМ мера подзаголовка — контейнер, а не ширина заголовка.
-       Правило «равная ширина» — типографика широкого блока; на 375px
-       заголовок сам сжат, и привязка к нему давала кегль 9–15px, то есть
-       нечитаемо, а в двух разделах подзаголовок всё равно выходил вдвое
-       шире заголовка, упёршись в нижнюю границу поиска. Скилл
-       kenan-design-rules это допускает: на мобайле сохраняется ПОРЯДОК,
-       размеры адаптируются. */
-    /* Пара выравнивается и на мобильном — по требованию владельца. Но
-       мерой служит НЕ кегль, а ширина блока: подзаголовок секции обычно не
-       разбит на строки вручную и переносится сам, поэтому достаточно
-       ограничить его max-width шириной заголовка. Кегль остаётся читаемым,
-       а правый край блока совпадает с заголовком.
-
-       Нижняя граница 78% контейнера: у короткого заголовка («Kənan
-       Rəhimov») привязка один в один сжала бы текст в узкую колонку из
-       обрывков. Ширина заголовка при этом остаётся потолком. */
-    var subPm = h2.parentElement.querySelector('.sec-sub');
-    var h2w = textWidth(h2);
-    var subTarget = Math.min(target, Math.max(h2w, target * 0.78));
-    if (subPm) {
-      subPm.style.setProperty('max-width', Math.ceil(subTarget) + 'px', 'important');
-      subPm.style.setProperty('margin-left', 'auto');
-      subPm.style.setProperty('margin-right', 'auto');
-    }
-
-    /* max-width только ограничивает — короткий подзаголовок так и остаётся
-       уже заголовка. Если текст помещается в одну строку, подтягиваем его
-       кеглем до той же меры: пара выравнивается с обеих сторон, а не
-       только сверху. Потолок MIN_H2 - 4 держит подзаголовок мельче
-       заголовка, как и требует правило. */
-    if (subPm && !mob.length) {
-      var probe = subPm.cloneNode(true);
-      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;' +
-                            'max-width:none;display:inline-block;left:-9999px';
-      subPm.parentNode.appendChild(probe);
-      var oneLine = probe.getBoundingClientRect().width;
-      probe.parentNode.removeChild(probe);
-      if (oneLine && oneLine <= subTarget * 1.05) {
-        subPm.style.setProperty('white-space', 'nowrap');
-        fitTo(subPm, subTarget, MIN_SUB, MIN_H2 - 4, 0);
-        subPm.style.removeProperty('white-space');
-      }
-    }
-    var mobSubSizes = [];
+    });
     [].forEach.call(mob, function (line) {
       line.style.cssText = '';
-      line.style.display = 'inline';
-      line.style.whiteSpace = 'nowrap';
-      /* Потолок MIN_H2 - 6. На мобильном мера — контейнер, и короткая строка
-         («İki modul, hər biri 16 dərs.») растягивалась до 27px при заголовке
-         24px: подзаголовок выходил КРУПНЕЕ заголовка, а потом ещё и не влезал
-         и ломался на 4 строки. Здесь потолок безопасен — в отличие от
-         десктопа, где мера это ширина заголовка и потолок ломает правило пары. */
-      var s = fitTo(line, subTarget, MIN_SUB, MIN_H2 - 6, 0);
-      if (s < MIN_SUB) { s = MIN_SUB; setSize(line, s); }
-      mobSubSizes.push(s);
       line.style.display = 'block';
       line.style.whiteSpace = 'normal';
     });
-    if (mobSubSizes.length) {
-      var lhS = (Math.max.apply(null, mobSubSizes) * LH_SUB).toFixed(1) + 'px';
-      [].forEach.call(mob, function (line) { line.style.lineHeight = lhS; });
-    }
+    return;
+    /* Прежняя мобильная ветка (подбор кегля КАЖДОЙ строки под меру контейнера,
+       потолок MIN_H2-6, линейка mobSubSizes) удалена волной 05.10.2026:
+       она и раздувала строки за колонку, и ломала шаг строк лида (см. выше).
+       Кегли берутся из мобильной шкалы, перенос — по словам. */
   }
 
   /* Ритм и подгонка кегля зависят друг от друга: правка отступа меняет
@@ -748,6 +713,15 @@
      полулидинга: у абзаца 14px с интерлиньяжем 24.5 сверху и снизу по
      5px пустоты, которой не видно в рамках. */
   var SEC_INNER = 40;
+  /* АБЗАЦ → КНОПКА (владелец 05.10.2026, скриншот aile-terapiyasi: «пропуск
+     между текстом и кнопкой отсутствует»). Стандарт пары — 32 px на десктопе
+     и 24 px на телефоне (шкала 8/16/24/32, значение --s4/--s3). Прежний код
+     мерил зазор от .mod-foot ДО кнопки, хотя между ними стоит абзац с ценой:
+     в замер попадали и абзац, и его поля, и фиттер «доводил» зазор до 40,
+     обнуляя margin-top строки с кнопкой — кнопка приклеивалась к тексту
+     (замер до: 0 px). Теперь мера — сосед СВЕРХУ, тот, что читатель видит
+     над кнопкой. */
+  var BTN_GAP_D = 32, BTN_GAP_M = 24;
 
   function innerRhythm(sec) {
     var sub = sec.querySelector('.sec-sub');
@@ -768,13 +742,20 @@
           Math.max(0, b1 + (SEC_INNER - g1)).toFixed(1) + 'px', 'important');
       }
     }
-    if (btnRow && body && btnRow !== body) {
-      btnRow.style.removeProperty('margin-top');
-      var g2 = btn.getBoundingClientRect().top - body.getBoundingClientRect().bottom
-               + halfLeading(body);
-      var b2 = parseFloat(getComputedStyle(btnRow).marginTop) || 0;
-      btnRow.style.setProperty('margin-top',
-        Math.max(0, b2 + (SEC_INNER - g2)).toFixed(1) + 'px', 'important');
+    if (btnRow && btnRow !== body) {
+      /* Сосед сверху: ищем предыдущий видимый элемент — им может быть и
+         .mod-foot, и абзац цены (.prog-price), и что угодно ещё. */
+      var ref = btnRow.previousElementSibling;
+      while (ref && !ref.getClientRects().length) ref = ref.previousElementSibling;
+      if (ref) {
+        btnRow.style.removeProperty('margin-top');
+        var g2 = btn.getBoundingClientRect().top - ref.getBoundingClientRect().bottom
+                 + halfLeading(ref);
+        var wantBtn = window.innerWidth > 768 ? BTN_GAP_D : BTN_GAP_M;
+        var b2 = parseFloat(getComputedStyle(btnRow).marginTop) || 0;
+        btnRow.style.setProperty('margin-top',
+          Math.max(0, b2 + (wantBtn - g2)).toFixed(1) + 'px', 'important');
+      }
     }
   }
 

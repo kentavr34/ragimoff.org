@@ -160,13 +160,12 @@
       .page-hero-x .hero-search-bar { margin-top: 0 !important; }
       /* объект 3 — лид: ритм (0/0 top/bottom) — из компонента .ph-sub (gtc.css), как на остальных 159 страницах. Здесь только цвет */
       .page-hero-x .ph-sub { color: rgba(242, 237, 227, 0.88) !important; }
-      /* объект 4 — поисковик. Замер главной: лид →32→ поисковик →2→ фото,
-         низ фото = низ шапки. Без фото поисковик ложился ВПЛОТНУЮ на
-         границу (замер 0). Даём ту же единицу, что и сверху, — 24px. */
-      .page-hero-x { padding-bottom: 24px !important; }
-      /* стык шапки со следующим блоком. На главной от полосы буллетов до
-         бейджа 48px, здесь было 20 — бейдж прижимался к верхнему краю. */
-      .stats-strip + section { padding-top: 48px !important; }
+      /* объект 4 — поисковик и низ шапки. Прежние локальные перебивки
+         (padding-bottom 24px у шапки и 48px у раздела после полосы цифр)
+         сняты: и низ героя, и верх раздела задаёт один стандарт
+         (site-concept.css, блоки 22/24: --hero-gap-bottom = 48/36; ритм
+         разделов пишет js-hero-fit2.js). Замер после снятия — 49 @1440 и
+         37 @390 под поиском, верх блока 88, как на остальных 158 страницах. */
     </style>
     <!-- Черновая страница: доступна по прямой ссылке, из меню не видна.
          Снять noindex, когда страница будет готова. -->
@@ -207,7 +206,7 @@ input, select, textarea, button {
   "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Səhifə", "item": "https://ragimoff.org/"}, {"@type": "ListItem", "position": 2, "name": "Ailə Terapiyası — Samirə Rəhimova | RAGIMOFF", "item": "https://ragimoff.org/samira.html"}]
 }
 </script>
-  <link rel="stylesheet" href="/site-concept.css?v=11">
+  <link rel="stylesheet" href="/site-concept.css?v=12">
 </head>
   <body>
     <a class="skip-link" href="#main-content">Əsas məzmuna keç</a>
@@ -448,10 +447,10 @@ input, select, textarea, button {
           <span class="badge">TƏLİM PROQRAMI</span>
           <h2 class="sec-h2"><span class="sh-line">Ailə</span> <span class="sh-line">Terapiyası</span></h2>
           <p class="sec-sub">
-            <span class="ab-lead-mob">İki modul, hər biri 3 ay:</span>
-            <span class="ab-lead-mob">tədris, praktika, superviziya.</span>
-            <span class="ab-lead-desk">İki modul. Hər modul 3 ay: 2 ay tədris və praktika,</span>
-            <span class="ab-lead-desk">3-cü ay superviziya. Qiymət əyani və online üçün eyni.</span>
+            <span class="ab-lead-mob">İki modul: 3 ay tədris</span>
+            <span class="ab-lead-mob">və 6 ay superviziya.</span>
+            <span class="ab-lead-desk">İki modul: 3 ay tədris — həftədə 2 dəfə, hər dərs 2 saat —</span>
+            <span class="ab-lead-desk">və 6 ay superviziya. Qiymət əyani və onlayn üçün eynidir.</span>
           </p>
         </div>
 
@@ -464,11 +463,11 @@ input, select, textarea, button {
             <p class="mod-note">Kişi-qadın münasibətləri</p>
             <p>Cütlük sistemi ilə iş: diaqnostikadan böhran dövrünə qədər. İlkin qəbul, genoqramma, rollar və&nbsp;sərhədlər, patternlər, xəyanət və&nbsp;boşanma ərəfəsində yanaşma.</p>
             <div class="mod-meta">
-              <span class="mod-chip">3 ay</span>
-              <span class="mod-chip">16 dərs + superviziya</span>
+              <span class="mod-chip">3 ay tədris + 6 ay superviziya</span>
+              <span class="mod-chip">16 dərs</span>
               <span class="mod-chip">həftədə 2 dəfə × 2 saat</span>
             </div>
-            <p class="mod-price">Cəmi 600 AZN <span>— ayda 200 AZN × 3 ay, yaxud öncədən ödənişlə 500 AZN. Əyani və&nbsp;online üçün qiymət eynidir.</span></p>
+            <p class="mod-price">Proqram üzrə cəmi 600 AZN <span>— 3 ay tədris və&nbsp;6 ay superviziya daxil; ödəniş ayda 200 AZN × 3 ay. Əyani və&nbsp;onlayn üçün qiymət eynidir.</span></p>
             <span class="mod-open">Tam proqrama bax</span>
           </summary>
           <ol class="mod-list">
@@ -502,11 +501,11 @@ input, select, textarea, button {
             <p class="mod-note">Valideynlər üçün ailə terapiyası</p>
             <p>Övladın inkişaf mərhələləri və&nbsp;kritik məqamlar, ailədaxili funksional pozuntular, ünsiyyət modelinin qurulması, oyun terapiyası, qorxular və&nbsp;aqressiya. Psixoloqlar, pedaqoqlar və&nbsp;valideynlər üçün.</p>
             <div class="mod-meta">
-              <span class="mod-chip">3 ay</span>
-              <span class="mod-chip">16 dərs + superviziya</span>
+              <span class="mod-chip">3 ay tədris + 6 ay superviziya</span>
+              <span class="mod-chip">16 dərs</span>
               <span class="mod-chip">həftədə 2 dəfə × 2 saat</span>
             </div>
-            <p class="mod-price">Cəmi 600 AZN <span>— ayda 200 AZN × 3 ay, yaxud öncədən ödənişlə 500 AZN. Əyani və&nbsp;online üçün qiymət eynidir.</span></p>
+            <p class="mod-price">Proqram üzrə cəmi 600 AZN <span>— 3 ay tədris və&nbsp;6 ay superviziya daxil; ödəniş ayda 200 AZN × 3 ay. Əyani və&nbsp;onlayn üçün qiymət eynidir.</span></p>
             <span class="mod-open">Tam proqrama bax</span>
           </summary>
           <ol class="mod-list">
@@ -772,7 +771,7 @@ input, select, textarea, button {
 })();
 </script>
 <!-- END: kitab-modal -->
-    <script src="js-hero-fit2.js"></script>
+    <script src="js-hero-fit2.js?v=12"></script>
   <script>
       // Регистрация
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
@@ -850,7 +849,7 @@ input, select, textarea, button {
       'Ümumi Psixologiya':       { full: '3 800 AZN (100% ödənişdə −10%)', m12: '350 AZN/ay', m24: '200 AZN/ay' },
       'Klinik Psixologiya':      { full: '6 000 AZN (100% ödənişdə −10%)', m12: '550 AZN/ay', m24: '300 AZN/ay' },
       'Psixoterapiya Praktikumu':{ full: '3 000 AZN (100% ödənişdə −20%)', m12: '300 AZN/ay', m24: '175 AZN/ay' },
-      'Ailə Terapiyası':         { full: '500 AZN (öncədən ödənişdə)',     m3:  '200 AZN/ay · 3 ay' }
+      'Ailə Terapiyası':         { full: '600 AZN (3 ay tədris + 6 ay superviziya)', m3: '200 AZN/ay · 3 ay' }
     };
     var form = document.getElementById('regForm');
     if (!form) return;

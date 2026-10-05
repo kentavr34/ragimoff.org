@@ -100,7 +100,7 @@ input, select, textarea, button {
   "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Ana Səhifə", "item": "https://ragimoff.org/"}, {"@type": "ListItem", "position": 2, "name": "Ragimoff | Peşəkar Psixoterapiya və Təhsil Mərkəzi", "item": "https://ragimoff.org/index.html"}]
 }
 </script>
-  <link rel="stylesheet" href="/site-concept.css?v=11">
+  <link rel="stylesheet" href="/site-concept.css?v=12">
 </head>
 
   <body>
@@ -1036,13 +1036,12 @@ input, select, textarea, button {
         var lo_r=10,hi_r=160;
         for(var ir=0;ir<30;ir++){ var mr=(lo_r+hi_r)/2; ecoW1.style.fontSize=mr+'px'; if(ecoW1.getBoundingClientRect().width<ecoTarget) lo_r=mr; else hi_r=mr; }
         ecoW1.style.fontSize=Math.floor(lo_r)+'px'; ecoW1.style.display='block'; ecoW1.style.whiteSpace='';
-        // Fit subtitle lines to same target
-        ecoLeads.forEach(function(line){
-          line.style.display='inline'; line.style.whiteSpace='nowrap';
-          var lo3=8,hi3=40;
-          for(var k=0;k<30;k++){ var m3=(lo3+hi3)/2; line.style.fontSize=m3+'px'; if(line.getBoundingClientRect().width<ecoTarget) lo3=m3; else hi3=m3; }
-          line.style.fontSize=Math.floor(lo3)+'px'; line.style.display='block'; line.style.whiteSpace='';
-        });
+        /* Подгонка строк лида к ширине заголовка СНЯТА 05.10.2026 (единый
+           стандарт): строки раздувались до 19 px, и строка лида выходила
+           ровно 31,3 px вместо эталона 30,625 (кегль 17,5 × интерлиньяж 1,75,
+           как в герое — DESIGN-STANDARDS §6a). Кегль и интерлиньяж строк
+           ведёт CSS (.sec-sub / eco-sub: 17,5 px, --lead-lh). Кегль заголовка
+           RAGIMOFF / EKOSİSTEMİ выше по-прежнему подгоняется. */
       }
     }
   }

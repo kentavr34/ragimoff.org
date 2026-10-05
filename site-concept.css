@@ -707,6 +707,16 @@ section[data-theme="light"],
    (лента блога, 12 блоков / 3 страницы), .pt-sub 1.7 (прайс, 9 блоков).
    Интерлиньяж лида — не место для вольных чисел: все лиды идут по герою. */
 .bc-lead, .pt-sub { line-height: var(--lead-lh) !important; }
+/* Вторичные абзацы блоков — ТОТ ЖЕ интерлиньяж, что у лида и подзаголовка
+   (§6a): одно число на весь сайт. До волны у каждого класса было своё вольное
+   значение — замер samira 05.10.2026: .mod-intro 1,7, .mod-video 1,7,
+   .mod-list li 1,7, .team-desc 1,7, примечание в блоке «Mütəxəssis Haqqında»
+   инлайновое 1,6, .sec-body/.mod-foot 1,75 — владелец читал это как
+   «интервалы между строками не по стандарту» (samira.html). */
+.sec-body, .mod-foot, .mod-intro, .mod-video, .mod-note, .prog-intro, .prog-price,
+.team-desc, .mod-price, .mod-list li, .reg-note, .about-col-right p, .faq-item p {
+  line-height: var(--lead-lh) !important;
+}
 h1, h2 { font-family: var(--f-disp) !important; font-weight: 400 !important; text-transform: none !important; color: var(--fg) !important; }
 h3, h4, h5, h6 { font-family: var(--f-ui) !important; font-weight: 500 !important; color: var(--fg) !important; text-transform: none !important; }
 p { color: inherit; }
@@ -766,7 +776,7 @@ hr, .divider { border: 0 !important; border-top: 1px solid var(--line) !importan
    Cormorant на одной странице). */
 .card h3, .svc-card h3, .xid-card h3, .feat-card h3, .step-card h3,
 .dir-card h3, .card h4, .svc-card h4, .xid-card h4, .feat-card h4,
-.step-card h4, .dir-card h4, .price-card-head h4,
+.step-card h4, .dir-card h4, .price-card-head h4, .process-step h3, .process-step h4,
 .card-title, .bc-title, .tl-title, .step-title {
   font-family: var(--f-disp) !important;
   font-size: clamp(1.3rem, 1.7vw, 1.55rem) !important;
@@ -774,7 +784,13 @@ hr, .divider { border: 0 !important; border-top: 1px solid var(--line) !importan
   line-height: 1.15 !important;
   letter-spacing: -.01em !important;
   color: var(--fg) !important;
-  margin-bottom: var(--s1) !important;
+  /* Внутри карточки «заголовок → текст» — 16 px на десктопе и 12 px на
+     телефоне (DESIGN-STANDARDS §3, шкала карточек). Прежние 8 px (--s1)
+     оставляли заголовок приклеенным к тексту, а у .process-step (стрелка
+     процесса на aile-terapiyasi и её родне) и вовсе выходило 0 px: класс
+     не входил в правило, и h3 стоял вплотную к абзацу (замер 390/1440: 0).
+     Одно число на все карточки — clamp(12px, 1.2vw, 16px). */
+  margin-bottom: clamp(12px, 1.2vw, 16px) !important;
 }
 /* описания карточек — тем же чтением (Literata), что .card p: в старых
    разметках они шли интерфейсной гарнитурой 14 px */
@@ -1339,16 +1355,44 @@ section[class]:has(.sec-pad),
 section[class]:has(.band) { padding-bottom: 0 !important; }
 .stats-strip { padding-top: 48px !important; padding-bottom: 48px !important; }
 
+/* ТАБЛИЦА В ТЕКСТЕ СТАТЬИ — не вылезает за колонку на телефоне.
+   Владелец 03.10.2026 (wave mobile): «таблица уезжает за экран». Фикс тогда
+   закрыл .art-table; сплошной обход 05.10.2026 нашёл ещё одну — обычную
+   <table style="width:100%"> в ru/blog-psixolog-olmaq-2 (433,6 при колонке
+   384 на 390). table-layout: fixed + перенос длинных слов по «anywhere»
+   держат ширину, не ломая вид на десктопе. */
+.art-table, .art-body table, .article-body table, article table, .sec-inner > table {
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+.art-table td, .art-table th, .art-body table td, .art-body table th, .article-body table td, .article-body table th,
+.sec-inner > table td, .sec-inner > table th {
+  overflow-wrap: anywhere !important;
+}
+
 /* ОДИН зазор между блоками, а не два. Владелец: «пустая полоса ~100 px между
    блоком DSM-5/ICD-11/Klinik Protokollar/2026 и следующим блоком» и «слишком
    большой интервал между Bütün Xidmətlər и BLOQ». Причина одна: нижний
    паддинг блока A (88) + верхний паддинг блока B (88) = 176 px пустоты при
    стандарте 88. Нижний паддинг снимается у блока, за которым идёт ещё блок;
    у последнего перед подвалом он остаётся. Замер: 177 → 89 и 176 → 89. */
+/* Секции БЕЗ класса — тот же закон: у qanunlar <section data-theme="dark">
+   правила section[class] не срабатывали, и к низу 85,44 добавлялся верх
+   следующего блока — замер 173,5 при стандарте 88. */
 section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ section[class]),
 section[class]:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ div),
+section:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ section),
+section:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ div),
+section:not(.page-hero):not(.page-hero-x):not(.pg-hero):has(+ .band),
 .sec-3cards:has(+ section), .sec-2col:has(+ section),
-.sec-services:has(+ section), .sec-blog:has(+ section), .sec-programs:has(+ section) {
+.sec-services:has(+ section), .sec-blog:has(+ section), .sec-programs:has(+ section),
+/* у полосы тот же закон: cta-band (88 снизу) + следующий блок (88 сверху) = 177
+   пустоты при стандарте 88 (замер samira.html: cta-band → «FAYDALI OXU»).
+   Фиттер правит только <section>, полоса — <div>, поэтому закон ей задаёт CSS. */
+.filter-bar:has(+ section), .tg-band:has(+ section), .tg-band:has(+ div), .legal-block:has(+ section),
+.legal-banner:has(+ section), .books-band:has(+ section),
+.cta-band:has(+ section), .cta-band:has(+ .band), .cta-band:has(+ div),
+.band:has(+ section), .stats-strip:has(+ section) {
   padding-bottom: 0 !important;
 }
 /* полоса цифр и герой сохраняют свои нижние отступы: у героя это требование

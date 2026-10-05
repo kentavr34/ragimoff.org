@@ -838,3 +838,37 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
   }
 })();
+
+/* ── ПОЛОСЫ ВО ВСЮ ШИРИНУ ОКНА (единый стандарт, 05.10.2026) ──────────────
+   .gallery-band/.books-band растягиваются формулой width:100vw; margin-left:
+   calc(50% - 50vw). Формула верна, если контентная часть родителя
+   отцентрована в окне; при вертикальной полосе прокрутки это не так —
+   замер: окно 1424, клиентская ширина 1418, полоса уезжала на -3 px влево и
+   справа оголяла кромку (аудит 05.10.2026: 20 строк «CLIPPED» на 8
+   страницах ×3 языка, класс gallery-band). Здесь кромки ставятся точно по
+   клиентской ширине: width = clientWidth, margin-left = -left. Идемпотентно:
+   перед замером инлайновые значения снимаются, поэтому resize сходится. */
+(function () {
+  function fitBands() {
+    var cw = document.documentElement.clientWidth;
+    var list = document.querySelectorAll(".gallery-band, .books-band");
+    for (var i = 0; i < list.length; i++) {
+      var b = list[i];
+      if (!b.getClientRects().length) continue;
+      /* Сначала margin-left = 0: измеряем НАТУРАЛЬНУЮ левую грань (левый
+         край контентной части родителя). Без этого в замер попадала бы
+         сама формула calc(50% - 50vw) из gtc.css и кромка уезжала. */
+      b.style.setProperty("margin-left", "0px", "important");
+      b.style.removeProperty("width");
+      var left = b.getBoundingClientRect().left;
+      b.style.setProperty("width", cw + "px", "important");
+      b.style.setProperty("margin-left", (-left) + "px", "important");
+      b.style.setProperty("margin-right", "0px", "important");
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fitBands);
+  } else { fitBands(); }
+  window.addEventListener("resize", fitBands, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBands);
+})();
