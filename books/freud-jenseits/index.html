@@ -421,7 +421,6 @@ function setCls(k){
 @media(max-width:720px){
   .site-main{padding-left:0;padding-right:0}
   .home-title img,.home-title .lock{width:min(460px,88vw) !important}
-  .book-meta{width:min(460px,88vw);margin-top:10px;font-size:13px !important}
 }
 /* окно чтения — единые отступы и интервалы */
 .content-wrap{max-width:50rem;margin:0 auto;padding-left:24px;padding-right:24px}
@@ -432,18 +431,21 @@ function setCls(k){
 .home-hero{text-align:center;margin:1.4rem 0 1.2rem;padding:0}
 .home-title{margin:0;padding:0;font-size:inherit;font-weight:400;line-height:1}
 .home-title img,.home-title .lock{display:block;width:min(520px,86vw) !important;max-width:100%;height:auto;margin:0 auto}
-.book-meta{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:0;
-  width:min(520px,86vw);max-width:100%;margin:14px auto 0;font-size:14px !important;
-  line-height:1.5;color:var(--text2,#9aa4b2);text-align:center}
-.book-meta .bm-author{font-weight:600}
-.book-meta .bm-date{font-variant-numeric:tabular-nums}
+/* мета-строка «Автор, İlk nəşr — YYYY»: под названием, по центру названия,
+   растянута до его краёв — кегль подбирает /books/book-meta-fit.js */
+.book-meta{display:flex;flex-wrap:nowrap;justify-content:center;align-items:baseline;gap:0;
+  width:fit-content;max-width:100%;margin:14px auto 0;
+  font-size:var(--bk-meta-fs,16px) !important;
+  line-height:1.5;color:var(--text2,#9aa4b2);text-align:center;white-space:nowrap;
+  letter-spacing:var(--bk-meta-ls,0)}
+.book-meta > * + *{margin-left:calc(-1 * var(--bk-meta-ls,0px))}
+.book-meta .bm-author{font-weight:600;letter-spacing:var(--bk-meta-ls,0)}
+.book-meta .bm-date{font-variant-numeric:tabular-nums;letter-spacing:var(--bk-meta-ls,0)}
 .book-meta .bm-date::before{content:", "}
 @media(max-width:720px){
   .site-main{padding-left:0;padding-right:0}
   .home-title img,.home-title .lock{width:min(460px,88vw) !important}
-  .book-meta{width:min(460px,88vw);margin-top:10px;font-size:13px !important;
-    flex-direction:column;align-items:center;gap:2px}
-  .book-meta .bm-date::before{content:""}
+  .book-meta{width:fit-content;max-width:88vw;margin-top:10px}
 }
 .content-wrap{max-width:50rem;margin:0 auto;padding-left:24px;padding-right:24px}
 @media(max-width:720px){.content-wrap{padding-left:16px;padding-right:16px}}
@@ -1100,6 +1102,7 @@ function toggleSub(btn){
 
 </script>
 
+<script src="/books/book-meta-fit.js?v=1" defer></script>
 </body>
 
 </html>

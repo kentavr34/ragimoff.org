@@ -321,16 +321,26 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
   font-size: clamp(2.35rem, 6.2vw, 4.75rem);   /* 37.6 → 76 px */
   line-height: 1; letter-spacing: -.02em; color: var(--fg);
 }
+/* строка «Автор, İlk nəşr — YYYY»: под названием, по центру названия,
+   растянута до его краёв — кегль подбирает book-meta-fit.js (переменная ниже) */
 .bk-tp__meta {
   margin-top: var(--s3); padding-top: var(--s2);
   border-top: 1px solid var(--line-2);          /* черта ровно по ширине названия */
-  display: flex; align-items: baseline; justify-content: space-between; gap: var(--s3);
+  display: flex; flex-wrap: nowrap; align-items: baseline; justify-content: center; gap: 0;
+  width: fit-content; max-width: 100%;          /* ширина = ширине строки, не колонки */
+  margin-left: auto; margin-right: auto;        /* центр = центр названия */
+  white-space: nowrap;
+  font-size: var(--bk-meta-fs, .95rem);
 }
-.bk-tp__author { font-family: var(--f-ui); font-size: .95rem; letter-spacing: .02em; color: var(--mid); }
-.bk-tp__year {
-  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--mute); white-space: nowrap;
+.bk-tp__meta > * + * { margin-left: calc(-1 * var(--bk-meta-ls, 0px)); }  /* хвост межбуквенного */
+.bk-tp__meta .bk-tp__author,
+.bk-tp__meta .bk-tp__year {
+  font-family: var(--f-ui); font-size: inherit; color: inherit;
+  letter-spacing: var(--bk-meta-ls, 0); text-transform: none;
 }
+.bk-tp__meta .bk-tp__author { font-weight: 600; color: var(--mid); }
+.bk-tp__meta .bk-tp__year { font-variant-numeric: tabular-nums; color: var(--mid); }
+.bk-tp__meta .bk-tp__year::before { content: ", "; }
 
 /* ─────────── 7. ОГЛАВЛЕНИЕ КНИГИ ─────────── */
 /* зазор титул → оглавление: было 96 px (сверх демо), владелец просил вдвое меньше —
@@ -538,9 +548,9 @@ html.bk-lock, html.bk-lock body { overflow: hidden; }
   .bk-main { padding: 24px 20px 72px; }
   .bk-tp { padding-top: 0; }
   .bk-tp__mark { margin-bottom: var(--s3); }
-  /* строка автора и года остаётся ОДНОЙ строкой и растянута по ширине названия —
-     это принятый эталон, на телефоне он тоже сохраняется */
-  .bk-tp__meta { gap: var(--s2); }
+  /* строка автора и даты остаётся ОДНОЙ строкой и растянута по ширине названия —
+     на телефоне её так же подгоняет book-meta-fit.js (кегль 12–38 px) */
+  .bk-tp__meta { gap: 0; }
   .bk-toc { margin-top: var(--s5); }
   .bk-toc__a { grid-template-columns: 34px minmax(0, 1fr); column-gap: var(--s2); padding: 16px 0; }
   .bk-toc__t { font-size: 1.1rem; }
@@ -609,10 +619,14 @@ body.bk[data-read="merriweather"] .bk-read { --read-size: 16.5px; }
 }
 
 
-/* ═══ Титул книги: автор и дата издания — В ОДНУ СТРОКУ ═══ */
+/* ═══ Титул книги: автор и дата издания — в одну строку, по центру названия ═══
+   Раньше здесь было `justify-content: space-between` — автор уезжал к левому
+   краю колонки, дата к правому (владелец: «а надо под названием книги и по
+   середине относительно названия»). Теперь строка обнимает свой текст
+   (width: fit-content), центрируется по названию и растягивается кеглем —
+   см. правила .bk-tp__meta выше и books/book-meta-fit.js. */
 .bk-tp__meta, .bk-tp__author, .bk-tp__year, .bk-tp .tp-meta, .bk-tp .book-meta {
-  display: flex !important; flex-wrap: nowrap !important; align-items: baseline !important;
-  justify-content: space-between !important; gap: 16px !important; white-space: nowrap !important;
+  flex-wrap: nowrap !important; white-space: nowrap !important;
 }
 .bk-tp__meta > *, .bk-tp .tp-meta > *, .bk-tp .book-meta > * { white-space: nowrap !important; }
 /* если автор и дата лежат соседними элементами — держим их в одном ряду */
