@@ -418,7 +418,27 @@ function setCls(k){
   .content-wrap blockquote,.content-wrap figcaption{font-size:17.5px;line-height:1.85}
   .content-wrap h1.chap-title-wrap{font-size:32px}
 }
-</style><style>.content-wrap{padding-top:.6rem;padding-bottom:2rem}.book-toc{margin:16px auto 6px}.book-toc .toc-chapter{margin:0}</style></head>
+</style><style>.content-wrap{padding-top:.6rem;padding-bottom:2rem}.book-toc{margin:16px auto 6px}.book-toc .toc-chapter{margin:0}
+
+/* == ЕДИНЫЙ СТИЛЬ СЕРИИ (06.10.2026, задание владельца) == */
+.home-hero{text-align:center;margin:1.4rem 0 1.2rem;padding:0}
+.home-title{margin:0;padding:0;font-size:inherit;font-weight:400;line-height:1}
+.home-title img,.home-title .lock{display:block;width:min(520px,86vw) !important;max-width:100%;height:auto;margin:0 auto}
+.book-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  width:min(520px,86vw);max-width:100%;margin:14px auto 0;font-size:14px !important;
+  line-height:1.4;color:var(--text2,#9aa4b2)}
+.book-meta .bm-author{font-weight:600}
+.book-meta .bm-date{font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+  .site-main{padding-left:0;padding-right:0}
+  .home-title img,.home-title .lock{width:min(460px,88vw) !important}
+  .book-meta{width:min(460px,88vw);margin-top:10px;font-size:13px !important}
+}
+/* окно чтения — единые отступы и интервалы */
+.content-wrap{max-width:50rem;margin:0 auto;padding-left:24px;padding-right:24px}
+@media(max-width:720px){.content-wrap{padding-left:16px;padding-right:16px}}
+.content-wrap p{margin:0 0 1.05em;line-height:1.75;text-align:justify}
+</style></head>
 </head>
 <body>
 
@@ -521,7 +541,7 @@ function setCls(k){
   <main class="site-main">
 
     <div class="content-wrap">
-<div class="home-hero"><h1 class="home-title"><img src="title-lockup.png" alt="PSİXOANALİZLƏ İLKİN TANIŞLIQ" style="width:min(520px,86vw);height:auto"></h1><p class="sub">Ziqmund Freyd</p><p class="sub year">İlk nəşr — 1917</p></div>
+<div class="home-hero"><h1 class="home-title"><img src="title-lockup.png" alt="PSİXOANALİZLƏ İLKİN TANIŞLIQ" class="lock"></h1><p class="book-meta"><span class="bm-author">Ziqmund Freyd</span><span class="bm-date">İlk nəşr — 1917</span></p></div>
 <section class="book-toc"><h2 class="toc-title">MÜNDƏRİCAT</h2>
       <div class="toc-chapter"><a href="01-on-soz.html" class="toc-chapter-title"><span class="toc-name">Ön söz</span></a></div>
       <div class="toc-chapter"><a href="02-birinci-muhazire-giris.html" class="toc-chapter-title"><span class="toc-name">Birinci mühazirə. GİRİŞ</span></a></div>
