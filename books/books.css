@@ -125,16 +125,25 @@ body::after {
   background: var(--tex) center/cover, var(--bg-3);
   box-shadow: 0 26px 60px rgba(0,0,0,.5);
   display: flex; flex-direction: column; justify-content: space-between;
+  align-items: center; text-align: center;   /* Кенан 06.10: название по центру */
   padding: clamp(16px, 2vw, 30px);
   transition: transform .55s var(--e), box-shadow .55s var(--e);
 }
-.cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,9,14,.3) 0%, transparent 36%, rgba(7,9,14,.72) 100%); }
-.cover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 12px; background: linear-gradient(90deg, rgba(0,0,0,.5), transparent); z-index: 2; }
+.cover::after { content: ''; position: absolute; inset: 0; background:
+  radial-gradient(130% 64% at 50% 46%, rgba(7,9,14,.42) 0%, rgba(7,9,14,0) 66%),
+  linear-gradient(180deg, rgba(7,9,14,.34) 0%, transparent 36%, rgba(7,9,14,.74) 100%); }
+.cover::before { content: ''; position: absolute; inset: 0; z-index: 2; background: radial-gradient(140% 92% at 50% 42%, transparent 58%, rgba(0,0,0,.4) 100%); }
 .cover__frame { display: none; /* рамки убраны (Кенан 06.10) */ }
 .cover__author, .cover__title, .cover__year { position: relative; z-index: 3; }
-.cover__author { font-family: var(--font-mono); font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: var(--acc); }
-.cover__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.35rem, 2vw, 2.1rem); line-height: 1.06; }
-.cover__year { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .22em; color: var(--acc-2); }
+.cover__author { font-family: var(--font-mono); font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: var(--acc);
+  text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.8); }
+.cover__title { font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(1.7rem, 2.5vw, 2.6rem); line-height: 1.05; letter-spacing: .015em;
+  color: #F6EFDC;
+  text-shadow: 0 1px 0 rgba(0,0,0,.92), 0 2px 0 rgba(0,0,0,.78), 0 3px 0 rgba(0,0,0,.62),
+               0 5px 9px rgba(0,0,0,.82), 0 9px 24px rgba(0,0,0,.66); }
+.cover__year { font-family: var(--font-mono); font-size: .58rem; letter-spacing: .22em; color: var(--acc-2);
+  text-shadow: 0 1px 2px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.8); }
 .card__cover:hover .cover { transform: translateY(-8px); box-shadow: 0 40px 84px rgba(0,0,0,.58); }
 
 /* ─────────── КНОПКИ ─────────── */
