@@ -29,7 +29,7 @@
 | 2 | Sevgi və ehtiras | 01-sevgi-ve-ehtiras.html | да |
 | 3 | Seksuallıq və istəklər | 02-seksualliq-ve-istekler.html | да |
 | 4 | Uşaqlıq, ailə və tərbiyə | 03-usaqliq-aile-ve-terbiye.html | да |
-| 5 | Yuxu, yuxugörmə və şüuraltı | 04-yuxu-ve-suuralti.html | да |
+| 5 | Yuxu, yuxugörmə və şüursuzluq | 04-yuxu-ve-suuralti.html | да |
 | 6 | Nevrozlar, qorxu və çıxılmazlıq | 05-nevrozlar-ve-qorxu.html | да |
 | 7 | Özünü dərketmə və şəxsiyyət | 06-ozunu-derketme.html | да |
 | 8 | İztirab, ölüm və xoşbəxtlik | 07-iztirab-olum-ve-xosbextlik.html | да |
