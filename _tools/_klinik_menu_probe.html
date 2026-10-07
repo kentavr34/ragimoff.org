@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<title>meni waite…</title>
+<style>body{font:12px/1.4 monospace;background:#111;color:#eee;margin:0;padding:8px}pre{margin:0;white-space:pre-wrap}
+iframe{width:1440px;height:900px;border:1px solid #444;margin-top:8px}</style>
+</head>
+<body>
+<pre id="out">…</pre>
+<iframe id="f"></iframe>
+<script>
+/* _klinik_menu_probe.html — замеры бокового меню книги «Klinik Psixiatriya»
+ * в headless Chrome (--dump-dom), без DevTools и без кликов руками.
+ * Печатает строки с префиксом PROBE| — их и разбирает проверяющий. */
+const PAGES = [
+  ['az', 'klinik-psixiatriya/index.html'],
+  ['az', 'klinik-psixiatriya/mugeddime.html'],
+  ['az', 'klinik-psixiatriya/01-6A0-neyroinkisaf.html'],
+  ['az', 'klinik-psixiatriya/6A00.html'],
+  ['az', 'klinik-psixiatriya/melumat.html'],
+  ['az', 'klinik-psixiatriya/yekun.html'],
+  ['az', 'klinik-psixiatriya/elave-skalalar.html'],
+  ['ru', 'klinik-psixiatriya/ru/index.html'],
+  ['ru', 'klinik-psixiatriya/ru/06-6B2-okp.html'],
+  ['en', 'klinik-psixiatriya/en/index.html'],
+  ['en', 'klinik-psixiatriya/en/yekun.html'],
+  ['tr', 'klinik-psixiatriya/tr/index.html'],
+  ['tr', 'klinik-psixiatriya/tr/melumat.html'],
+];
+const lines = [];
+const f = document.getElementById('f');
+const BASE = location.origin + '/';
+
+function say(s) { lines.push('PROBE| ' + s); }
+function vis(el) { return el.getClientRects().length > 0; }
+function txt(el) { return el.textContent.replace(/\s+/g, ' ').trim(); }
+
+function load(url) {
+  return new Promise(res => { f.onload = () => setTimeout(res, 150); f.src = url; });
+}
+
+async function run() {
+  for (const [lang, path] of PAGES) {
+    await load(BASE + path + '?t=' + Date.now());
+    const d = f.contentDocument;
+    const nav = d.querySelector('.bk-sb__nav');
+    const page = path.split('/').pop();
+    say(`── ${lang} ${page}`);
+    if (!nav) { say('НЕТ МЕНЮ (nav отсутствует)'); continue; }
+    const rows = Array.from(nav.querySelectorAll('.bk-row'));
+    const vrows = rows.filter(vis);
+    say(`строк меню всего ${rows.length}, видимых ${vrows.length}`);
+    say(`первая видимая: «${txt(vrows[0])}»; последняя видимая: «${txt(vrows[vrows.length - 1])}»`);
+    const groups = Array.from(nav.querySelectorAll('.bk-grp'));
+    const front = groups.filter(g => g.parentElement === nav || g.parentElement.classList.contains('bk-sb__nav'));
+    say(`групп в меню ${groups.length}; групп вне деревьев ${front.length}`);
+    for (const g of front) {
+      const t = g.querySelector('.bk-row');
+      const subs = Array.from(g.querySelectorAll('.bk-grp__sub .bk-row'));
+      say(`ГРУППА slug=${g.getAttribute('data-slug')} here=${g.getAttribute('data-here')} ` +
+          `открыта=${g.classList.contains('is-open')} подпунктов ${subs.length} ` +
+          `видимых ${subs.filter(vis).length} href=${t.getAttribute('href')} «${txt(t)}»` +
+          (subs.length ? ` → ${subs.map(s => s.getAttribute('href')).join(' ')}` : ''));
+      // аккордеон: клик туда-обратно
+      const tgl = g.querySelector('.bk-tgl');
+      if (tgl) {
+        tgl.click();
+        const a = g.classList.contains('is-open');
+        tgl.click();
+        const b = g.classList.contains('is-open');
+        const c = g.classList.contains('is-open');
+        say(`  аккордеон: ${g.classList.contains('is-open') === (g.getAttribute('data-here') === '1') ? 'возврат в исходное' : 'СБОЙ'} ` +
+            `(клик открыл=${a}, повторно закрыл=${!b && !c})`);
+        if (g.getAttribute('data-here') !== '1') g.classList.remove('is-open');
+        else if (!g.classList.contains('is-open')) { }
+      }
+    }
+    const on = rows.filter(r => r.classList.contains('is-on') && vis(r)).map(txt);
+    say(`подсвечено видимых: ${on.length} — ${on.join(' | ')}`);
+    const openFront = front.filter(g => g.classList.contains('is-open')).length;
+    const openTree = Array.from(nav.querySelectorAll('.cls-tree:not([hidden]) .bk-grp.is-open')).length;
+    say(`открытых групп вне деревьев ${openFront}, в видимом дереве ${openTree}`);
+  }
+  say('ГОТОВО');
+  document.getElementById('out').textContent = lines.join('\n');
+  document.title = 'PROBE-DONE';
+}
+run().catch(e => {
+  lines.push('PROBE| ОШИБКА: ' + e.message);
+  document.getElementById('out').textContent = lines.join('\n');
+  document.title = 'PROBE-ERROR';
+});
+</script>
+</body>
+</html>

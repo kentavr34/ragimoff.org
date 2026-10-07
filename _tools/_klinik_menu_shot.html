@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<title>menu shot</title>
+<style>html,body{margin:0;padding:0;background:#07090E}iframe{display:block;border:0}</style>
+</head>
+<body>
+<iframe id="f"></iframe>
+<script>
+/* _klinik_menu_shot.html — кадр страницы книги для headless Chrome --screenshot.
+ * ?p=<путь>&w=1440&h=1700&open=<slug группы|1>&burger=1
+ * open: раскрыть группу с данным data-slug (или первую свёрнутую);
+ * burger: выдвинуть меню на мобильном кадре. */
+const q = new URLSearchParams(location.search);
+const p = q.get('p') || 'klinik-psixiatriya/index.html';
+const w = parseInt(q.get('w') || '1440', 10);
+const h = parseInt(q.get('h') || '1700', 10);
+const f = document.getElementById('f');
+f.style.width = w + 'px';
+f.style.height = h + 'px';
+f.src = '/' + p + (p.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now();
+f.onload = function () {
+  const d = f.contentDocument;
+  if (!d) { document.title = 'SHOT-NODOC'; return; }
+  try { f.contentWindow.localStorage.removeItem('bk-cls-klinik'); } catch (e) {}
+  if (q.get('open')) {
+    const want = q.get('open');
+    const gs = Array.from(d.querySelectorAll('.bk-sb__nav .bk-grp'));
+    let g = want === '1' ? gs.find(x => !x.classList.contains('is-open')) : gs.find(x => x.getAttribute('data-slug') === want);
+    if (g) { const t = g.querySelector('.bk-tgl'); if (t) t.click(); }
+  }
+  if (q.get('burger') && w <= 500) {
+    const b = d.getElementById('bk-burger');
+    if (b) b.click();
+  }
+  const sb = d.getElementById('bk-sb');
+  if (q.get('sbscroll')) { if (sb) sb.scrollTop = parseInt(q.get('sbscroll'), 10); }
+  setTimeout(function () { document.title = 'SHOT-READY'; }, 400);
+};
+</script>
+</body>
+</html>
