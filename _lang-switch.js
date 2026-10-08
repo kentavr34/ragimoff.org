@@ -114,10 +114,30 @@
     var LIST = allowedLangs(null).filter(function (L) { return !av || av.indexOf(L.code) !== -1; });
     if (!LIST.length) LIST = allowedLangs(null);
     /* доступен один язык — переключать нечего: прячем и оставляем логотип книги */
-    if (LIST.length < 2) { hideAll(); return; }
+    var onBook = /^\/books\/[^/]+\//.test(window.location.pathname) || !!document.querySelector(".hdr-logo");
+    if (LIST.length < 2 && !onBook) { hideAll(); return; }
+    if (onBook && av && av.indexOf("az") !== -1) {
+      /* книга: показываем AZ + существующие языки + EN (фолбэк — каталог языка) */
+      var want = ["az", "ru", "en"];
+      LIST = LANGS.filter(function (L) { return want.indexOf(L.code) !== -1; });
+      var base0 = info;
+      info = { cur: base0.cur, urlFor: function (code) {
+        if (av && av.indexOf(code) === -1) {
+          return code === "az" ? "/books/" : "/books/" + code + "/";
+        }
+        return base0.urlFor(code);
+      } };
+    }
     var logos = document.querySelectorAll(".hdr-logo");
-    if (logos.length) {
-      // заменяем бейдж КП на переключатель; скрываем прежний контейнер справа
+    var menuBtn = document.querySelector(".menu-btn");
+    if (logos.length && menuBtn) {
+      // книга: ставим переключатель справа — перед кнопкой меню (по просьбе Кенана), бейдж книги остаётся
+      var host = document.createElement("span");
+      var slot = menuBtn.parentNode;
+      slot.insertBefore(host, menuBtn);
+      makeSwitcher(host, info, LIST);
+      hideAll();
+    } else if (logos.length) {
       logos.forEach(function (el) { makeSwitcher(el, info, LIST); });
       hideAll();
     } else {
