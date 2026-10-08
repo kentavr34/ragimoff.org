@@ -343,10 +343,10 @@ const BOOKS = [
     id: 'freud-abriss',
     authorKey: 'freud',
     cover: 'freud-abriss.jpg',
-    coverTitle: { az: 'Psixoanaliz<br>oçerki', ru: 'Очерк<br>психоанализа', en: 'An Outline of<br>Psycho-Analysis' },
+    coverTitle: { az: 'Psixoanaliz<br>oçerki', ru: 'Краткое изложение<br>психоанализа', en: 'An Outline of<br>Psycho-Analysis' },
     coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
     year: '1938',
-    title: { az: 'Psixoanaliz oçerki', ru: 'Очерк психоанализа', en: 'An Outline of Psycho-Analysis' },
+    title: { az: 'Psixoanalizin qısa xülasəsi', ru: 'Краткое изложение психоанализа', en: 'An Outline of Psycho-Analysis' },
     meta: {
       az: 'Ziqmund Freyd · 1938 · AZ',
       ru: 'Зигмунд Фрейд · 1938 · AZ',
