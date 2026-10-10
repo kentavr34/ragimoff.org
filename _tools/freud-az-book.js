@@ -137,7 +137,7 @@ const BOOKS = [
       { title: 'Altıncı nəşrə ön söz', find: ['Altıncı nəşrə ön söz'], pdfPage: 11 },
       { title: 'I. Yuxugörmə məsələlərinə dair elmi ədəbiyyat (1900-cü ilədək)', find: ['I. Yuxugörmə məsələlərinə dair elmi ədəbiyyat (1900-cü ilədək)'], pdfPage: 12 },
       { title: 'II. Yuxuların yozulma üsulu. Yuxuların təhlili örnəyi', find: ['II. Yuxuların yozulma üsulu. Yuxuların təhlili örnəyi'], pdfPage: 67 },
-      { title: 'III. Yuxugörmə – arzuların gerçəkləşməsidir', find: ['III. Yuxugörmə – arzuların gerçəkləşməsidir'], pdfPage: 83 },
+      { title: 'III. Yuxu – arzuların gerçəkləşməsidir', find: ['III. Yuxu – arzuların gerçəkləşməsidir'], pdfPage: 83 },
       { title: 'IV. Yuxuların təhrifedici fəaliyyəti', find: ['IV. Yuxuların təhrifedici fəaliyyəti'], pdfPage: 90 },
       { title: 'V. Yuxuların material və mənbələri', find: ['V. Yuxuların material və mənbələri'], pdfPage: 107 },
       { title: 'VI. Yuxugörmənin işi', find: ['VI. Yuxugörmənin işi'], pdfPage: 185 },
