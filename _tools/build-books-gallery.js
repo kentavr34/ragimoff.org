@@ -30,12 +30,20 @@ const UI = {
     nameLabel: 'Ad Soyad',
     namePh: 'Adınız və soyadınız',
     phoneLabel: 'Mobil nömrə',
+    /* 13.10.2026: бумажная книга отправляется почтой — адрес обязателен.
+       Сервер /api/book-order принимает ключ `address` и пишет его в book_orders. */
+    addressLabel: 'Çatdırılma ünvanı',
+    addressPh: 'Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi',
+    addressHint: 'Kağız nüsxə poçtla göndərilir. Çatdırılma və ödəniş şərtləri telefonla dəqiqləşdirilir.',
+    /* Книги серии Фрейда читаются бесплатно; бумажную версию можно заказать,
+       но цена на серию владельцем ещё не установлена, поэтому заказ идёт без цены. */
+    paper: 'Kağız nüsxə',
     submit: 'Sifariş et',
     sending: 'Göndərilir…',
     ok: 'Təşəkkür edirik!<br>Sifarişiniz qeydə alındı — tezliklə sizinlə əlaqə saxlayacağıq.',
     empty: 'Heç nə tapılmadı',
     close: 'Bağla',
-    fill: 'Zəhmət olmasa Ad Soyad və Telefon daxil edin.',
+    fill: 'Zəhmət olmasa Ad Soyad, Telefon və Çatdırılma ünvanını daxil edin.',
     nav: { home: 'Ana Səhifə', edu: 'Təhsil', books: 'Kitablar', blog: 'Blog' },
     footer: { tag: 'Peşəkar nüfuzun ünvanı', ebook: 'Elektron kitab', blog: 'Bloq' },
     href: { home: '/', edu: '/tehsil.html', books: '/books/', blog: '/blog.html' },
@@ -59,6 +67,10 @@ const UI = {
     nameLabel: 'Имя и фамилия',
     namePh: 'Ваше имя и фамилия',
     phoneLabel: 'Мобильный телефон',
+    addressLabel: 'Адрес доставки',
+    addressPh: 'Страна, город, улица, дом, квартира, индекс',
+    addressHint: 'Бумажный экземпляр отправляется почтой. Условия доставки и оплаты уточняются по телефону.',
+    paper: 'Бумажный экземпляр',
     submit: 'Заказать',
     sending: 'Отправляем…',
     ok: 'Спасибо!<br>Заказ принят — мы скоро свяжемся с вами.',
@@ -88,6 +100,10 @@ const UI = {
     nameLabel: 'Full name',
     namePh: 'Your full name',
     phoneLabel: 'Mobile phone',
+    addressLabel: 'Delivery address',
+    addressPh: 'Country, city, street, building, apartment, postal code',
+    addressHint: 'The paper copy is sent by post. Delivery and payment terms are confirmed by phone.',
+    paper: 'Paper copy',
     submit: 'Order',
     sending: 'Sending…',
     ok: 'Thank you!<br>Your order has been received — we will contact you soon.',
@@ -340,6 +356,27 @@ const BOOKS = [
     read: { az: '/books/freud-fliesse-mektublari/', ru: null, en: null },
   },
   {
+    /* «Freyd–Tsveyq məktubları» — переписка Фрейда со Стефаном Цвейгом (1908–1939),
+       79 писем. Наш перевод выполнен 13.10.2026 на закреплённой модели DeepSeek 4.1
+       Flash, проверен воротами (9 находок на 79 писем, 8 из них — воспроизведение
+       разрыва абзаца из русского оригинала). Русской версии на сайте нет. */
+    id: 'freud-zweig-mektublari',
+    authorKey: 'freud',
+    cover: 'freud-zweig-mektublari.jpg',
+    coverTitle: { az: 'Freyd–Tsveyq<br>məktubları', ru: 'Переписка<br>Фрейда и Цвейга', en: 'Freud–Zweig<br>Letters' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1908–1939',
+    title: { az: 'Freyd–Tsveyq məktubları (1908–1939)', ru: 'Переписка Фрейда и Цвейга (1908–1939)', en: 'Freud–Zweig Letters (1908–1939)' },
+    meta: {
+      az: 'Ziqmund Freyd · Ştefan Tsveyq · 1908–1939 · AZ',
+      ru: 'Зигмунд Фрейд · Стефан Цвейг · 1908–1939 · AZ',
+      en: 'Sigmund Freud · Stefan Zweig · 1908–1939 · AZ',
+    },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-zweig-mektublari/', ru: null, en: null },
+  },
+  {
     id: 'freud-abriss',
     authorKey: 'freud',
     cover: 'freud-abriss.jpg',
@@ -565,7 +602,12 @@ function card(book, code, ui) {
     (book.year ? '<span class="cover__year">' + book.year + '</span>' : '') +
     '</div>';
   const orderValue = book.title[code] + ' · ' + book.price;
-  const canOrder = !!book.price;                 /* без цены — только чтение */
+  const canOrder = !!book.price;                 /* цена есть — обычный заказ */
+  /* Серия Фрейда: чтение бесплатное, но бумажную версию заказать НУЖНО (миссия:
+     «читать онлайн бесплатно, заказать бумажную с доставкой»). Цена на серию
+     владельцем не установлена, поэтому заказ идёт без цены — цена и доставка
+     подтверждаются телефоном. Так заявка не теряется и не уходит как бесплатная. */
+  const paperOnly = !canOrder && book.authorKey === 'freud';
   return '        <article class="card" data-author="' + book.authorKey + '" data-title="' + esc(book.title[code]) + '">\n' +
     (read ? '          <a class="card__cover" href="' + read + '">\n' + cover + '\n          </a>\n'
           : '          <div class="card__cover">\n' + cover + '\n          </div>\n') +
@@ -576,6 +618,7 @@ function card(book, code, ui) {
     '            <div class="card__cta">\n' +
     (read ? '              <a class="btn" href="' + read + '">' + ui.read + ' <span aria-hidden="true">→</span></a>\n' : '') +
     (canOrder ? '              <button class="btn' + (read ? ' btn--ghost' : '') + '" data-order="' + esc(book.title[code]) + '" data-price="' + esc(book.price) + '">' + ui.order + '</button>\n' : '') +
+    (paperOnly ? '              <button class="btn btn--ghost" type="button" data-order="' + esc(book.title[code]) + ' · ' + esc(ui.paper) + '" data-paper="1" data-price="">' + esc(ui.paper) + '</button>\n' : '') +
     '            </div>\n' +
     '          </div>\n' +
     '        </article>';
@@ -611,7 +654,7 @@ ${alts}
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=4">
+  <link rel="stylesheet" href="/books/books.css?v=8">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -707,6 +750,11 @@ ${options}
           <span>${esc(ui.phoneLabel)}</span>
           <input id="o-phone" type="tel" name="phone" placeholder="+994 XX XXX XX XX" autocomplete="tel" required>
         </label>
+        <label class="field">
+          <span>${esc(ui.addressLabel)}</span>
+          <textarea id="o-address" name="address" rows="2" placeholder="${esc(ui.addressPh)}" autocomplete="street-address" required></textarea>
+        </label>
+        <small class="field__hint">${esc(ui.addressHint)}</small>
         <button class="btn btn--main" type="submit">${esc(ui.submit)}</button>
       </form>
       <div class="modal__ok" id="o-ok" hidden>
@@ -728,6 +776,29 @@ ${options}
 ['az', 'ru', 'en'].forEach((code) => {
   const dir = code === 'az' ? OUT : path.join(OUT, code);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), page(code), 'utf8');
-  console.log('собрано:', path.relative(path.resolve(__dirname, '..'), path.join(dir, 'index.html')));
+  const target = path.join(dir, 'index.html');
+  const next = page(code);
+
+  /* ── ЗАЩИТА ОТ ПОТЕРИ КНИГ (13.10.2026) ──────────────────────────────────
+     Список книг в этом файле ОТСТАЁТ от живого каталога: 09.10 их было 26, а в
+     books/index.html — 42, потому что 17 книг добавлялись позже точечно.
+     Пересборка «как есть» уничтожила 17 карточек (проверено: 42 → 26).
+     Поэтому перед записью сравниваем число карточек и отказываемся писать,
+     если новая версия беднее. Обойти можно только осознанно: `--force`. */
+  const countCards = (s) => (s.match(/<article class="card"/g) || []).length;
+  if (fs.existsSync(target) && !process.argv.includes('--force')) {
+    const prev = countCards(fs.readFileSync(target, 'utf8'));
+    const now = countCards(next);
+    if (now < prev) {
+      console.error(
+        `ОТКАЗ: в ${path.relative(process.cwd(), target)} было ${prev} карточек, ` +
+        `сборка даёт ${now}. Список книг в build-books-gallery.js устарел — ` +
+        `дополните его или запустите с --force, если потеря книг намеренная.`);
+      process.exitCode = 1;
+      return;
+    }
+  }
+
+  fs.writeFileSync(target, next, 'utf8');
+  console.log('собрано:', path.relative(path.resolve(__dirname, '..'), target));
 });
