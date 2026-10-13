@@ -293,7 +293,11 @@ async function submitToEndpoint(endpoint, payload) {
     });
     if (res.ok) {
       const data = await res.json().catch(function () { return null; });
-      if (!data || data.ok !== false) return { ok: true };
+      /* data отдаём НАРУЖУ: сервер считает сумму тренинга и возвращает её вместе
+         с признаком рассрочки. Без этого сайт не мог показать кнопку оплаты —
+         человек регистрировался и оставался со словом «спасибо», хотя заявка
+         на тренинги предполагает оплату. */
+      if (!data || data.ok !== false) return { ok: true, data: data || null };
     }
   } catch (err) {
     console.warn(`API ${endpoint} unavailable, falling back:`, err);
@@ -373,9 +377,89 @@ function wireRegForm(formId, successId, source) {
     form.style.pointerEvents = 'none';
     if (success) {
       success.style.display = 'block';
+      // ── Оплата после регистрации (Кенан 13.10, голосом) ──────────────────
+      // «Регистрация на тренинге — сделать так, чтобы люди после регистрации
+      //  переходили к оплате через ePoint… должна быть форма выбора рассрочки.»
+      // Регистрация — это ещё не конец: тренинг платный, и человек должен
+      // иметь возможность сразу оплатить, а не ждать звонка.
+      showTrainingPay(success, payload, result.data);
       success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   });
+}
+
+// Кнопка оплаты тренинга: полная сумма через ePoint либо заявка на рассрочку,
+// которую оформляет БАНК (Кенан: «они через какой-то банк оформляют рассрочку,
+// а не через нашу систему»).
+function showTrainingPay(box, payload, data) {
+  if (!data || !data.amount) return;              // \u0441\u0443\u043c\u043c\u0430 \u043d\u0435 \u043f\u0440\u0438\u0448\u043b\u0430 \u2014 \u043d\u0435 \u043e\u0431\u0435\u0449\u0430\u0435\u043c \u043e\u043f\u043b\u0430\u0442\u0443
+  if (box.querySelector('.training-pay')) return;
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  var T = {
+    az: { pay: 'İndi ödə', inst: 'Taksitlə ödə', payHint: 'Kartla tam ödəniş',
+          instHint: 'Taksiti BANK rəsmiləşdirir', sent: 'Göndərilir…',
+          ok: 'Taksit müraciətiniz qəbul edildi. Bank sizinlə əlaqə saxlayacaq.',
+          err: 'Ödənişi başlada bilmədik. Yenidən cəhd edin.' },
+    ru: { pay: 'Оплатить', inst: 'Оплатить в рассрочку', payHint: 'Полная оплата картой',
+          instHint: 'Рассрочку оформляет БАНК', sent: 'Отправляем…',
+          ok: 'Заявка на рассрочку принята. Банк свяжется с вами.',
+          err: 'Не удалось начать оплату. Попробуйте ещё раз.' },
+    en: { pay: 'Pay now', inst: 'Pay in instalments', payHint: 'Full card payment',
+          instHint: 'The instalment is arranged by the BANK', sent: 'Sending…',
+          ok: 'Your instalment request was accepted. The bank will contact you.',
+          err: 'Could not start the payment. Please try again.' },
+    tr: { pay: 'Şimdi öde', inst: 'Taksitle öde', payHint: 'Kartla tam ödeme',
+          instHint: 'Taksiti BANKA düzenler', sent: 'Gönderiliyor…',
+          ok: 'Taksit talebiniz alındı. Banka sizinle iletişime geçecek.',
+          err: 'Ödeme başlatılamadı. Lütfen tekrar deneyin.' }
+  }[L] || null;
+  if (!T) T = { pay: 'Ödə', inst: 'Taksit', payHint: '', instHint: '', sent: '…',
+                ok: 'OK', err: 'Error' };
+
+  var wrap = document.createElement('div');
+  wrap.className = 'training-pay';
+  wrap.style.cssText = 'margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);';
+  var sum = document.createElement('p');
+  sum.style.cssText = 'margin:0 0 14px;font-size:15px;';
+  sum.innerHTML = '<b>' + data.amount + ' ₼</b>' +
+    (data.months ? ' / ' + data.months + ' ay' : '');
+  wrap.appendChild(sum);
+
+  function mkBtn(label, hint, months) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn btn-fill';
+    b.style.cssText = 'display:block;width:100%;margin:0 0 8px;padding:14px 20px;';
+    b.innerHTML = label + (hint ? '<span style="display:block;font-size:12px;opacity:.75;font-weight:400;">' + hint + '</span>' : '');
+    b.onclick = async function () {
+      b.disabled = true;
+      var old = b.innerHTML;
+      b.textContent = T.sent;
+      try {
+        var r = await fetch(RAGIMOFF_API_BASE + '/api/billing/epoint/training', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: ((payload.fname || '') + ' ' + (payload.lname || '')).trim(),
+            phone: payload.phone || '', program: payload.service || '',
+            amount: data.amount, months: months || 0
+          })
+        });
+        var j = await r.json();
+        if (j && j.redirect_url) { location.href = j.redirect_url; return; }
+        if (j && j.installment) { sum.innerHTML = '<b>' + T.ok + '</b>'; b.remove(); return; }
+      } catch (e) { /* ниже покажем честную ошибку */ }
+      b.disabled = false;
+      b.innerHTML = old;
+      sum.insertAdjacentHTML('beforeend',
+        '<span style="display:block;margin-top:8px;color:#E8A0A0;font-size:13px;">' + T.err + '</span>');
+    };
+    return b;
+  }
+
+  wrap.appendChild(mkBtn(T.pay, T.payHint, 0));
+  wrap.appendChild(mkBtn(T.inst, T.instHint, 12));
+  box.appendChild(wrap);
 }
 
 // B2B-заявка со страницы b2b.html (AZ/RU/EN). До аудита 2026-09-02 обработчик
