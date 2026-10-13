@@ -56,6 +56,12 @@
     box-shadow:0 10px 26px rgba(201,162,39,.42);cursor:pointer;transition:transform .15s,box-shadow .15s}
   .coll-banner__btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(201,162,39,.55)}
   .coll-banner__hint{margin:12px 0 0;color:#a89b78;font-size:12.5px}
+
+  .sci-title{margin:3rem 0 1rem;font-size:clamp(20px,2.6vw,26px);color:#e8e6e1;
+    border-top:1px solid rgba(201,162,39,.35);padding-top:1.6rem}
+  .sci-note{background:rgba(201,162,39,.08);border-left:3px solid #c9a227;
+    border-radius:8px;padding:14px 18px;margin:0 0 1.4rem;max-width:70ch}
+  .sci-note p{margin:0;color:#d9d3c4;font-size:14.5px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -99,7 +105,6 @@
         <button class="chip" data-author="freud">Ziqmund Freyd</button>
       </div>
 
-      
     <section class="coll-banner">
       <div class="coll-banner__inner">
         <div class="coll-banner__cover">
@@ -138,7 +143,8 @@
             Səbətdə ad, telefon və ünvanı doldurub Epoint ilə ödəyirsiniz.
           </p>
         </div>
-      </div>
+
+</div>
     </section>
     <div class="grid">
 
@@ -358,21 +364,6 @@
           </div>
         </article>
 
-                <article class="card" data-author="freud" data-title="Kokain haqqında yazılar">
-          <a class="card__cover" href="/books/freud-kokain/">
-<div class="cover" style="--tex:url('/books/covers/freud-kokain.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Kokain<br>haqqında</span><span class="cover__year">1884–1887</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Kokain haqqında yazılar</h2>
-            <p class="card__meta">Ziqmund Freyd · 1884–1887 · AZ</p>
-            <p class="card__price">30 ₼</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-kokain/">Oxu <span aria-hidden="true">→</span></a>
-              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Kokain haqqında yazılar" data-price="30 ₼">Səbətə at</button>
-            </div>
-          </div>
-        </article>
-
         <article class="card" data-author="freud" data-title="Yuxu və folklor">
           <a class="card__cover" href="/books/freud-folklor/">
 <div class="cover" style="--tex:url('/books/covers/freud-folklor.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Yuxu<br>və folklor</span><span class="cover__year">1911</span></div>
@@ -384,36 +375,6 @@
             <div class="card__cta">
               <a class="btn" href="/books/freud-folklor/">Oxu <span aria-hidden="true">→</span></a>
               <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Yuxu və folklor" data-price="30 ₼">Səbətə at</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Afaziyaya dair anlayışa doğru">
-          <a class="card__cover" href="/books/freud-afaziya/">
-<div class="cover" style="--tex:url('/books/covers/freud-afaziya.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Afaziyaya<br>dair</span><span class="cover__year">1886–1891</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Afaziyaya dair anlayışa doğru</h2>
-            <p class="card__meta">Ziqmund Freyd · 1886–1891 · AZ</p>
-            <p class="card__price">30 ₼</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-afaziya/">Oxu <span aria-hidden="true">→</span></a>
-              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Afaziyaya dair anlayışa doğru" data-price="30 ₼">Səbətə at</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Uşaq serebral iflici">
-          <a class="card__cover" href="/books/freud-usaq-iflici/">
-<div class="cover" style="--tex:url('/books/covers/freud-usaq-iflici.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Uşaq<br>serebral iflici</span><span class="cover__year">1897</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Uşaq serebral iflici</h2>
-            <p class="card__meta">Ziqmund Freyd · 1897 · AZ</p>
-            <p class="card__price">Pulsuz</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-usaq-iflici/">Oxu <span aria-hidden="true">→</span></a>
-              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Uşaq serebral iflici" data-price="">Səbətə at</button>
             </div>
           </div>
         </article>
@@ -849,6 +810,55 @@
             <div class="card__cta">
               <a class="btn" href="/books/freud-resenziyalar/">Oxu <span aria-hidden="true">→</span></a>
               <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Resenziyalar (1887–1910)" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+      <h2 class="sci-title" id="erken-elmi">Erkən elmi işlər</h2>
+    <section class="sci-note">
+      <p><b>Elmi qeyd.</b> Bu kitab Freydin psixoanalizdən ƏVVƏLKİ tibbi
+      tədqiqatlarına aiddir (1884–1897). O, narkotik maddələrin istifadəsini
+      təbliğ etmir: mətn XIX əsrin tibb ədəbiyyatıdır və maddələrin ZƏRƏRİNİ də
+      təsvir edir. Tarixi və elmi məqsədlə dərc olunur.</p>
+    </section>
+      <article class="card" data-author="freud" data-title="Kokain haqqında yazılar">
+          <a class="card__cover" href="/books/freud-kokain/">
+<div class="cover" style="--tex:url('/books/covers/freud-kokain.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Kokain<br>haqqında</span><span class="cover__year">1884–1887</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Kokain haqqında yazılar</h2>
+            <p class="card__meta">Ziqmund Freyd · 1884–1887 · AZ</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-kokain/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Kokain haqqında yazılar" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+      <article class="card" data-author="freud" data-title="Afaziyaya dair anlayışa doğru">
+          <a class="card__cover" href="/books/freud-afaziya/">
+<div class="cover" style="--tex:url('/books/covers/freud-afaziya.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Afaziyaya<br>dair</span><span class="cover__year">1886–1891</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Afaziyaya dair anlayışa doğru</h2>
+            <p class="card__meta">Ziqmund Freyd · 1886–1891 · AZ</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-afaziya/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Afaziyaya dair anlayışa doğru" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+      <article class="card" data-author="freud" data-title="Uşaq serebral iflici">
+          <a class="card__cover" href="/books/freud-usaq-iflici/">
+<div class="cover" style="--tex:url('/books/covers/freud-usaq-iflici.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Uşaq<br>serebral iflici</span><span class="cover__year">1897</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Uşaq serebral iflici</h2>
+            <p class="card__meta">Ziqmund Freyd · 1897 · AZ</p>
+            <p class="card__price">Pulsuz</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-usaq-iflici/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Uşaq serebral iflici" data-price="">Səbətə at</button>
             </div>
           </div>
         </article>
