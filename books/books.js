@@ -223,6 +223,11 @@
           discount: 'Bütün Freyd kolleksiyasına endirim',
           payable: 'Ödəniləcək',
           buyLang: 'Kitabın dili',
+          instL: 'Taksit imkanı', instNo: 'Taksitsiz — tam ödəniş',
+          instMo: 'ay', instBtn: 'Taksit müraciəti göndər',
+          instHint: 'Taksiti BANK rəsmiləşdirir — bu düymə yalnız müraciət göndərir, ödəniş tutulmur.',
+          instPick: 'Zəhmət olmasa taksit müddətini seçin.',
+          instOk: 'Taksit müraciətiniz qəbul edildi. Bank sizinlə əlaqə saxlayacaq — ödəniş hələ tutulmayıb.',
           freudAzOnly: 'Freydin kitabları yalnız Azərbaycan dilində satılır.',
           geoBtn: 'Ünvanı avtomatik təyin et',
           geoWait: 'Yer müəyyən edilir…',
@@ -239,6 +244,11 @@
           discount: 'Скидка на всю коллекцию Фрейда',
           payable: 'К оплате',
           buyLang: 'Язык издания',
+          instL: 'Рассрочка', instNo: 'Без рассрочки — полная оплата',
+          instMo: 'мес.', instBtn: 'Отправить заявку на рассрочку',
+          instHint: 'Рассрочку оформляет БАНК — эта кнопка только отправляет заявку, деньги не списываются.',
+          instPick: 'Пожалуйста, выберите срок рассрочки.',
+          instOk: 'Заявка на рассрочку принята. Банк свяжется с вами — оплата ещё не списана.',
           freudAzOnly: 'Книги Фрейда продаются только на азербайджанском.',
           geoBtn: 'Определить адрес автоматически',
           geoWait: 'Определяем местоположение…',
@@ -255,6 +265,11 @@
           discount: 'Full Freud collection discount',
           payable: 'Payable',
           buyLang: 'Edition language',
+          instL: 'Instalments', instNo: 'No instalment — full payment',
+          instMo: 'months', instBtn: 'Send an instalment request',
+          instHint: 'The instalment is arranged by the BANK — this button only sends a request, no money is taken.',
+          instPick: 'Please choose an instalment term.',
+          instOk: 'Your instalment request was accepted. The bank will contact you — no payment has been taken yet.',
           freudAzOnly: 'Books by Freud are sold in Azerbaijani only.',
           geoBtn: 'Detect my address',
           geoWait: 'Detecting location…',
@@ -509,6 +524,22 @@
             '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
             '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
           '<button class="btn btn--main" type="button" id="c-pay">' + cstr('pay') + '</button>' +
+          /* РАССРОЧКА ДЛЯ КНИГ (Кенан 13.10): «то же самое с книгами можно сделать,
+             чтобы они могли выбрать рассрочку… они через какой-то банк оформляют
+             рассрочку, а не через нашу систему». Кнопка отправляет заявку с выбранным
+             сроком; деньги через ePoint при этом НЕ берём — иначе вышла бы двойная
+             оплата, ведь банк списывает своё. */
+          '<div class="inst-wrap">' +
+            '<label class="field"><span>' + cstr('instL') + '</span>' +
+              '<select id="c-months">' +
+                '<option value="0">' + cstr('instNo') + '</option>' +
+                '<option value="6">6 ' + cstr('instMo') + '</option>' +
+                '<option value="12">12 ' + cstr('instMo') + '</option>' +
+                '<option value="24">24 ' + cstr('instMo') + '</option>' +
+              '</select></label>' +
+            '<button class="btn btn--ghost" type="button" id="c-inst">' + cstr('instBtn') + '</button>' +
+            '<p class="inst-hint">' + cstr('instHint') + '</p>' +
+          '</div>' +
           '<button class="btn btn--cart" type="submit">' + cstr('checkout') + '</button>' +
         '</form>' +
         '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>' +
@@ -516,6 +547,16 @@
 
       var payB = $('#c-pay', body);
       if (payB) payB.addEventListener('click', epointPay);
+
+      /* Рассрочка: тот же запрос, но с выбранным сроком. Сервер по нему понимает,
+         что оплату через ePoint брать нельзя — рассрочку оформляет банк. */
+      var instB = $('#c-inst', body);
+      if (instB) instB.addEventListener('click', function () {
+        var sel = $('#c-months', body);
+        var m = parseInt((sel && sel.value) || '0', 10) || 0;
+        if (!m) { alert(cstr('instPick')); return; }
+        epointPay(m);
+      });
 
       var geoB = $('#c-geo', body);
       if (geoB) geoB.addEventListener('click', geoFill);
@@ -536,7 +577,7 @@
 
       /* ОПЛАТА: после формы заказчика — переход на страницу оплаты Epoint.
          Сумму считает СЕРВЕР: в браузере её можно подменить в консоли. */
-      function epointPay() {
+      function epointPay(months) {
         var list = cartRead();
         if (!list.length) return;
         var nm = ($('#c-name', body).value || '').trim();
@@ -544,18 +585,33 @@
         var ad = ($('#c-addr', body).value || '').trim();
         if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
         var pb = $('#c-pay', body);
-        if (pb) { pb.disabled = true; pb.textContent = cstr('send'); }
+        var ib = $('#c-inst', body);
+        var btn = (months > 0 && ib) ? ib : pb;
+        var label = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = cstr('send'); }
+        function back() {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+        }
         fetch(PAY_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
-                                   lang: cartBuyLang() })
+                                 lang: cartBuyLang(), months: months || 0 })
         }).then(function (r) { return r.json(); }).then(function (d) {
           if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
-          if (pb) { pb.disabled = false; pb.textContent = cstr('pay'); }
+          if (d && d.ok && d.installment) {
+            /* Деньги НЕ списаны: заявку примет банк. Сказать об этом прямо, иначе
+               человек решит, что уже заплатил, и не станет отвечать банку. */
+            alert(cstr('instOk'));
+            var ok = $('#cart-ok', body);
+            if (ok) { ok.hidden = false; ok.innerHTML = cstr('instOk'); }
+            back();
+            return;
+          }
+          back();
           alert((d && d.error) || cstr('payErr'));
         }).catch(function () {
-          if (pb) { pb.disabled = false; pb.textContent = cstr('pay'); }
+          back();
           alert(cstr('payErr'));
         });
       }
