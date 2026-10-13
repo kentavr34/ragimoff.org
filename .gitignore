@@ -1,92 +1,11 @@
-__pycache__/
-# Local-only artifacts
-_build/
-pandoc-*.msi
-
-# graphify knowledge-graph artifacts (regenerable)
-graphify-out/
-
-# Word lockfiles
-~$*.docx
-~$*.doc
-
-# Reference PDFs (large, can be re-downloaded)
-_supplements/ICD-11_RU_2022_reference.pdf
-
-# рабочие копии агентов (git worktree)
-.claude/worktrees/
-klinik-psixiatriya/.claude/
-
-# резервные копии и архивы, попавшие в рабочий каталог — в репозиторий не нужны
-OLD/
-OLD_VERSION/
-sayt/
-sayt2/
-V.7.6.3/
-# images/kenan/ попала в этот список 2026-08-08 вместе с архивами OLD/ и sayt/,
-# и портреты перестали уезжать на сайт: на ragimoff.org они отдавали 404.
-# Держим в репозитории ровно те шесть файлов, на которые ссылаются страницы;
-# остальное в папке — рабочие варианты, им в репозитории делать нечего.
-images/kenan/*
-!images/kenan/photo-portal-crop-removebg-preview.png
-!images/kenan/photo-portal-crop.jpg
-!images/kenan/kenan-removebg-preview.png
-!images/kenan/depressiya-mualice.jpg
-!images/kenan/panik-ataklar.jpg
-!images/kenan/sosial-fobiya.jpg
-*.zip
-*.rar
-*.tar
-_codes_map_raw.json
-_parallel_audit.json
-_structure_map.json
-_checkup.json
-
-_refcheck.json
-_checkup.json
-_cddr.txt
-_build_print/
-
-# 2026-09-02, аудит (_AUDIT_2026-09-02.md, P0.2): gp.html и wc.html — скопированные
-# страницы чужих сайтов (guilford.com, worldcat.org) с чужими сниппетами Google
-# Analytics и New Relic. Лежали в публикации на нашем домене. Сняты с трекинга,
-# файлы остались на диске как образец мусора — повторное git add -A не должно
-# вернуть их на Pages.
-/gp.html
-/wc.html
-
-# 2026-09-03: рабочий каталог агентов ВНУТРИ репозитория — 201 файл, 811 КБ
-# (слейпки js-hero-fit2, отчёты сверок, временные скрипты). Он всегда был локальным,
-# но в игноре не числился: следующее git add -A выложило бы его на GitHub Pages —
-# ровно та же история, что с gp.html/wc.html выше.
-scratchpad_tmp/
-
-# 2026-09-08: бэкап отката пакетной правки 05–07.09 (патч + статус + артефакты
-# сессий). Полное состояние также в git stash «wip-2026-09-06-design-batch».
-# В репозиторий не публикуется — см. _HANDOFF_MINIMAX_2026-09-08.md.
-_wip_backup_*/
-_tools/dsgen.js
-
-*.bak_20260929*
-
-# словарь английского (4 МБ) для _tools/langcheck.py --build-lexicon;
-# в репозитории лежит только выжимка _tools/en-lexicon.txt
-_tools/_words_en.txt
-_tools/_before.json
-_tools/_after_*.json
-_tools/_dbg*.txt
-_tools/_orig_*.html
-_tools/*.bak
-
-# 2026-09-30: временные копии страниц со вставленным пробником (_tools/site-audit.js,
-# _tools/page-probe.js). Живут секунды рядом с оригиналом (иначе не находятся
-# images/ и css/), при обрыве прогона остаются — в репозиторий им не надо.
-_a.*.html
-_p.*.html
-en/_a.*.html
-ru/_a.*.html
-en/_p.*.html
-ru/_p.*.html
-_tools/ds-generate.sh
-_tools/*.bak_*
-*.bak*
+# РЕЗЕРВНЫЕ КОПИИ И ТЯЖЁЛЫЕ ФАЙЛЫ — НЕ В РЕПОЗИТОРИЙ.
+# GitHub не принимает файлы больше 100 МБ, а наши копии базы весят ровно столько.
+# К тому же резервные копии не должны попадать в историю сайта: они её раздувают
+# и мешают видеть настоящие изменения текста.
+_backup_before_*/
+_backups*/
+_table/_snapshots/
+_table/freud_align.db
+*.db
+*.bak_*
+*.tmp
