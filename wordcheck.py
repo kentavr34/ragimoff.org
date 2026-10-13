@@ -89,7 +89,7 @@ def main() -> int:
               f'({len(bad)} различных)')
         for w, n in bad:
             page = where[w][0]
-            m = re.search(r'.{0,40}' + w + r'.{0,40}', texts[page], re.I)
+            m = re.search(r'.{0,40}\b' + w + r'\b.{0,40}', texts[page], re.I)
             print(f'  {w:<16}{n:>3}  {page:<14}…{m.group(0).strip() if m else ""}…')
         return 0
 

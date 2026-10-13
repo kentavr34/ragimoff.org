@@ -74,7 +74,7 @@ cfg.langs.forEach((lang) => {
   const bookTitle = normT(lang.title);
   parts.forEach((part) => {
     part.paras = part.paras.filter((x, i) => !(i < 15 && (normT(x) === bookTitle ||
-      /^(bakı|\(c\)|©|isbn|qanun|nəşriyyat|tərcümə|tercümə|redaktor)/i.test(x.trim()) ||
+      /^(bakı|\(c\)|©|isbn|qanun|nəşriyyat|tərcümə|tercümə|redaktor)\b/i.test(x.trim()) ||
       (x.length < 60 && /qanun nəşriyyatı|nəşriyyatı/i.test(x)))));
   });
   const ui = UI[lang.ui] || UI.az;
