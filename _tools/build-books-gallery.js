@@ -174,7 +174,7 @@ const BOOKS = [
     coverTitle: { az: 'Feniks<br>Erası', ru: 'Эра<br>Феникса', en: 'Phoenix<br>Era' },
     coverAuthor: { az: 'SAMİRƏ RÜSTƏMOVA / RƏHİMOVA', ru: 'САМИРА РУСТАМОВА / РАГИМОВА', en: 'SAMIRA RUSTAMOVA / RAGIMOVA' },
     year: '2026',
-    title: { az: 'Feniks Erası', ru: 'Эра Феникса', en: 'Feniks Erası' },
+    title: { az: 'Feniks Erası', ru: 'Эра Феникса', en: 'Phoenix Era' },
     meta: {
       az: 'Samirə Rüstəmova / Rəhimova · 2026 · AZ RU',
       ru: 'Самира Рустамова / Рагимова · 2026 · AZ RU',
@@ -580,6 +580,262 @@ const BOOKS = [
     langs: ['az', 'ru'],
     read: { az: '/books/freud-yumor/', ru: '/books/freud-yumor/ru/', en: null },
   },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-krankengeschichten',
+    authorKey: 'freud',
+    cover: 'freud-krankengeschichten.jpg',
+    coverTitle: { az: 'Xəstəlik<br>tarixçələri', ru: 'Истории<br>болезни', en: 'Case<br>Histories' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1905–1918',
+    title: { az: 'Xəstəlik tarixçələri', ru: 'Истории болезни', en: 'Case Histories' },
+    meta: { az: 'Ziqmund Freyd · 1905–1918 · AZ', ru: 'Зигмунд Фрейд · 1905–1918 · AZ', en: 'Sigmund Freud · 1905–1918 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-krankengeschichten/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-psixoanaliz-texnikasi',
+    authorKey: 'freud',
+    cover: 'freud-psixoanaliz-texnikasi.jpg',
+    coverTitle: { az: 'Psixoanaliz<br>texnikasına dair', ru: 'К технике<br>психоанализа', en: 'On the Technique<br>of Psycho-Analysis' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1904–1919',
+    title: { az: 'Psixoanaliz texnikasına dair', ru: 'К технике психоанализа', en: 'On the Technique of Psycho-Analysis' },
+    meta: { az: 'Ziqmund Freyd · 1904–1919 · AZ', ru: 'Зигмунд Фрейд · 1904–1919 · AZ', en: 'Sigmund Freud · 1904–1919 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-psixoanaliz-texnikasi/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-kicik-eserler',
+    authorKey: 'freud',
+    cover: 'freud-kicik-eserler.jpg',
+    coverTitle: { az: 'Seksuallıq və nevrozlar<br>haqqında kiçik əsərlər', ru: 'Малые работы<br>о сексуальности и неврозах', en: 'Papers on Sexuality<br>and Neurosis' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1898–1924',
+    title: { az: 'Seksuallıq və nevrozlar haqqında kiçik əsərlər', ru: 'Малые работы о сексуальности и неврозах', en: 'Papers on Sexuality and Neurosis' },
+    meta: { az: 'Ziqmund Freyd · 1898–1924 · AZ', ru: 'Зигмунд Фрейд · 1898–1924 · AZ', en: 'Sigmund Freud · 1898–1924 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-kicik-eserler/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-ozunu-tesvir',
+    authorKey: 'freud',
+    cover: 'freud-ozunu-tesvir.jpg',
+    coverTitle: { az: 'Özünü<br>təsvir', ru: 'Авто<br>биография', en: 'An Autobiographical<br>Study' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1923–1926',
+    title: { az: 'Özünü təsvir', ru: 'Автобиография', en: 'An Autobiographical Study' },
+    meta: { az: 'Ziqmund Freyd · 1923–1926 · AZ', ru: 'Зигмунд Фрейд · 1923–1926 · AZ', en: 'Sigmund Freud · 1923–1926 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-ozunu-tesvir/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-muxtelif-eserler',
+    authorKey: 'freud',
+    cover: 'freud-muxtelif-eserler.jpg',
+    coverTitle: { az: 'Müxtəlif<br>əsərlər', ru: 'Разные<br>сочинения', en: 'Miscellaneous<br>Works' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1908–1928',
+    title: { az: 'Müxtəlif əsərlər (1908–1928)', ru: 'Разные сочинения (1908–1928)', en: 'MISCELLANEOUS WORKS (1908–1928)' },
+    meta: { az: 'Ziqmund Freyd · 1908–1928 · AZ', ru: 'Зигмунд Фрейд · 1908–1928 · AZ', en: 'Sigmund Freud · 1908–1928 · AZ EN' },
+    price: null,
+    langs: ['az', 'en'],
+    read: { az: '/books/freud-muxtelif-eserler/', ru: null, en: '/books/freud-muxtelif-eserler/en/' },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-elyazmalar',
+    authorKey: 'freud',
+    cover: 'freud-elyazmalar.jpg',
+    coverTitle: { az: 'Əlyazmalardan<br>yazılar', ru: 'Из<br>рукописей', en: 'Posthumous<br>Writings' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1892–1938',
+    title: { az: 'Əlyazmalardan yazılar (1892–1938)', ru: 'Из рукописей (1892–1938)', en: 'Posthumous Writings (1892–1938)' },
+    meta: { az: 'Ziqmund Freyd · 1892–1938 · AZ', ru: 'Зигмунд Фрейд · 1892–1938 · AZ', en: 'Sigmund Freud · 1892–1938 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-elyazmalar/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-incesenet',
+    authorKey: 'freud',
+    cover: 'freud-incesenet.jpg',
+    coverTitle: { az: 'Əlyazmalardan<br>yazılar', ru: 'Искусство<br>и литература', en: 'Art and<br>Literature' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1907–1928',
+    title: { az: 'İncəsənət və ədəbiyyat', ru: 'Искусство и литература', en: 'ART AND LITERATURE' },
+    meta: { az: 'Ziqmund Freyd · 1907–1928 · AZ EN', ru: 'Зигмунд Фрейд · 1907–1928 · AZ', en: 'Sigmund Freud · 1907–1928 · AZ' },
+    price: null,
+    langs: ['az', 'en'],
+    read: { az: '/books/freud-incesenet/', ru: null, en: '/books/freud-incesenet/en/' },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-tetbiqi-yazilar',
+    authorKey: 'freud',
+    cover: 'freud-tetbiqi-yazilar.jpg',
+    coverTitle: { az: 'Psixoanalizin<br>tətbiqi', ru: 'Прикладной<br>психоанализ', en: 'Applied<br>Psycho-Analysis' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1906–1938',
+    title: { az: 'Psixoanalizin tətbiqi üzrə yazılar', ru: 'Прикладной психоанализ', en: 'Applied Psycho-Analysis' },
+    meta: { az: 'Ziqmund Freyd · 1906–1938 · AZ', ru: 'Зигмунд Фрейд · 1906–1938 · AZ', en: 'Sigmund Freud · 1906–1938 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-tetbiqi-yazilar/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-ilk-nevroz-isleri',
+    authorKey: 'freud',
+    cover: 'freud-ilk-nevroz-isleri.jpg',
+    coverTitle: { az: 'Nevroz təliminə<br>dair ilk işlər', ru: 'Ранние работы<br>по теории неврозов', en: 'Early Papers on<br>the Theory of<br>the Neuroses' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1892–1899',
+    title: { az: 'Nevroz təliminə dair ilk işlər', ru: 'Ранние работы по теории неврозов', en: 'EARLY PAPERS ON THE THEORY OF THE NEUROSES' },
+    meta: { az: 'Ziqmund Freyd · 1892–1899 · AZ EN', ru: 'Зигмунд Фрейд · 1892–1899 · AZ', en: 'Sigmund Freud · 1892–1899 · AZ' },
+    price: null,
+    langs: ['az', 'en'],
+    read: { az: '/books/freud-ilk-nevroz-isleri/', ru: null, en: '/books/freud-ilk-nevroz-isleri/en/' },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-gec-analitik-yazilar',
+    authorKey: 'freud',
+    cover: 'freud-gec-analitik-yazilar.jpg',
+    coverTitle: { az: 'Gec analitik yazılar<br>(1922–1937)', ru: 'Поздние аналитические<br>работы (1922–1937)', en: 'Late Analytical<br>Papers (1922–1937)' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1922–1937',
+    title: { az: 'Gec analitik yazılar (1922–1937)', ru: 'Поздние аналитические работы (1922–1937)', en: 'Late Analytical Papers (1922–1937)' },
+    meta: { az: 'Ziqmund Freyd · 1922–1937 · AZ', ru: 'Зигмунд Фрейд · 1922–1937 · AZ', en: 'Sigmund Freud · 1922–1937 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-gec-analitik-yazilar/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-yuxu-haqqinda',
+    authorKey: 'freud',
+    cover: 'freud-yuxu-haqqinda.jpg',
+    coverTitle: { az: 'Yuxu haqqında<br>və kiçik yazılar', ru: 'О сновидении<br>и малые работы', en: 'On Dreams and<br>Shorter Works' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1901–1925',
+    title: { az: 'Yuxu haqqında və kiçik yazılar (1901–1925)', ru: 'О сновидении и малые работы (1901–1925)', en: 'ON DREAMS AND SHORTER WORKS' },
+    meta: { az: 'Ziqmund Freyd · 1901–1925 · AZ EN', ru: 'Зигмунд Фрейд · 1901–1925 · AZ', en: 'Sigmund Freud · 1901–1925 · AZ EN' },
+    price: null,
+    langs: ['az', 'en'],
+    read: { az: '/books/freud-yuxu-haqqinda/', ru: null, en: '/books/freud-yuxu-haqqinda/en/' },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-psixoanaliz-haqqinda',
+    authorKey: 'freud',
+    cover: 'freud-psixoanaliz-haqqinda.jpg',
+    coverTitle: { az: 'Psixoanaliz haqqında<br>(Klark mühazirələri)', ru: 'О психоанализе<br>(Кларковские лекции)', en: 'On Psychoanalysis<br>(Clark Lectures)' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1910',
+    title: { az: 'Psixoanaliz haqqında (Klark mühazirələri)', ru: 'О психоанализе (Кларковские лекции)', en: 'On Psychoanalysis (Clark Lectures)' },
+    meta: { az: 'Ziqmund Freyd · 1910 · AZ', ru: 'Зигмунд Фрейд · 1910 · AZ', en: 'Sigmund Freud · 1910 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-psixoanaliz-haqqinda/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-kicik-fragmenler',
+    authorKey: 'freud',
+    cover: 'freud-kicik-fragmenler.jpg',
+    coverTitle: { az: 'Kiçik fragmenler<br>(1924–1942)', ru: 'Малые фрагменты<br>(1924–1942)', en: 'Little Fragments<br>(1924–1942)' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1924–1942',
+    title: { az: 'Kiçik fragmenler (1924–1942)', ru: 'Малые фрагменты (1924–1942)', en: 'Little Fragments (1924–1942)' },
+    meta: { az: 'Ziqmund Freyd · 1924–1942 · AZ', ru: 'Зигмунд Фрейд · 1924–1942 · AZ', en: 'Sigmund Freud · 1924–1942 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-kicik-fragmenler/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-kicik-eserler-ii',
+    authorKey: 'freud',
+    cover: 'freud-kicik-eserler-ii.jpg',
+    coverTitle: { az: 'Kiçik əsərlər II<br>(1898, 1925)', ru: 'Малые работы II<br>(1898, 1925)', en: 'Shorter Works II<br>(1898, 1925)' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1898, 1925',
+    title: { az: 'Kiçik əsərlər II (1898, 1925)', ru: 'Малые работы II (1898, 1925)', en: 'Shorter Works II (1898, 1925)' },
+    meta: { az: 'Ziqmund Freyd · 1898, 1925 · AZ', ru: 'Зигмунд Фрейд · 1898, 1925 · AZ', en: 'Sigmund Freud · 1898, 1925 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-kicik-eserler-ii/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-on-sozler',
+    authorKey: 'freud',
+    cover: 'freud-on-sozler.jpg',
+    coverTitle: { az: 'Ön sözlər', ru: 'Предисловия', en: 'Prefaces' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ЗИГМУНД ФРЕЙД', en: 'SIGMUND FREUD' },
+    year: '1886–1930',
+    title: { az: 'Ön sözlər (1886–1930)', ru: 'Предисловия (1886–1930)', en: 'Prefaces (1886–1930)' },
+    meta: { az: 'Ziqmund Freyd · 1886–1930 · AZ', ru: 'Зигмунд Фрейд · 1886–1930 · AZ', en: 'Sigmund Freud · 1886–1930 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-on-sozler/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-referatlar',
+    authorKey: 'freud',
+    cover: 'freud-referatlar.jpg',
+    coverTitle: { az: 'Referatlar', ru: 'Referatlar', en: 'Referatlar' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ZIQMUND FREYD', en: 'ZIQMUND FREYD' },
+    year: '1884–1885',
+    title: { az: 'Referatlar (1884–1885)', ru: 'Referatlar (1884–1885)', en: 'Referatlar (1884–1885)' },
+    meta: { az: 'Ziqmund Freyd · 1884–1885 · AZ', ru: 'Ziqmund Freyd · 1884–1885 · AZ', en: 'Ziqmund Freyd · 1884–1885 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-referatlar/', ru: null, en: null },
+  },
+  {
+    /* Восстановлено 13.10.2026: книга была добавлена в каталог точечно и
+       в списке генератора отсутствовала — пересборка её уничтожала. */
+    id: 'freud-resenziyalar',
+    authorKey: 'freud',
+    cover: 'freud-resenziyalar.jpg',
+    coverTitle: { az: 'Resenziyalar', ru: 'Resenziyalar', en: 'Resenziyalar' },
+    coverAuthor: { az: 'ZIQMUND FREYD', ru: 'ZIQMUND FREYD', en: 'ZIQMUND FREYD' },
+    year: '1887–1910',
+    title: { az: 'Resenziyalar (1887–1910)', ru: 'Resenziyalar (1887–1910)', en: 'Resenziyalar (1887–1910)' },
+    meta: { az: 'Ziqmund Freyd · 1887–1910 · AZ', ru: 'Ziqmund Freyd · 1887–1910 · AZ', en: 'Ziqmund Freyd · 1887–1910 · AZ' },
+    price: null,
+    langs: ['az'],
+    read: { az: '/books/freud-resenziyalar/', ru: null, en: null },
+  },
+
 ];
 
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -587,9 +843,20 @@ function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').
 /* «читать» ведёт на версию того же языка; если её нет — на доступную (не битая ссылка) */
 function readFor(book, code) {
   const r = book.read || {};
-  if (r[code]) return r[code];
+  /* 13.10.2026: ссылка ставится только если языковая версия РЕАЛЬНО существует.
+     Раньше в русском каталоге было 12 битых ссылок вида /books/<slug>/ru/ —
+     книга помечена как имеющая RU-версию, а каталога на диске нет.
+     Структура сайта: языковая версия лежит ВНУТРИ папки книги (books/<slug>/ru/). */
+  const exists = (url) => {
+    if (!url) return false;
+    if (code === 'az' || !/\/ru\/|\/en\/|\/tr\/|\/ar\/$/.test(url)) return true;
+    const m = url.match(/^\/books\/([^/]+)\//);
+    if (!m) return true;
+    return fs.existsSync(path.join(OUT, m[1], code, 'index.html'));
+  };
+  if (r[code] && exists(r[code])) return r[code];
   const langs = book.langs && book.langs.length ? book.langs : ['az'];
-  for (const c of langs) if (r[c]) return r[c];
+  for (const c of langs) if (r[c] && exists(r[c])) return r[c];
   return null;
 }
 

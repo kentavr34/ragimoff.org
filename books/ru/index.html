@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=6">
+  <link rel="stylesheet" href="/books/books.css?v=8">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -51,7 +51,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
           <input type="search" id="q" placeholder="Поиск по названию, автору или году…" aria-label="Поиск книг" autocomplete="off">
         </label>
-        <span class="count" id="count">13 книг</span>
+        <span class="count" id="count">43 книг</span>
       </div>
 
       <div class="afilter" id="afilter">
@@ -68,7 +68,7 @@
 
         <article class="card" data-author="kenan" data-title="Клиническая психиатрия">
           <a class="card__cover" href="/klinik-psixiatriya/ru/">
-<div class="cover" style="--tex:url('/books/covers/klinik.jpg')"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Клиническая<br>психиатрия</span><span class="cover__year">2026</span></div>
+<div class="cover" style="--tex:url('/books/covers/klinik.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Клиническая<br>психиатрия</span><span class="cover__year">2026</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Клиническая психиатрия</h2>
@@ -83,7 +83,7 @@
 
         <article class="card" data-author="kenan" data-title="Вирус вины">
           <a class="card__cover" href="/books/virus-viny/ru/">
-<div class="cover" style="--tex:url('/books/covers/guilt.jpg')"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Вирус<br>вины</span><span class="cover__year">2024</span></div>
+<div class="cover" style="--tex:url('/books/covers/guilt.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Вирус<br>вины</span><span class="cover__year">2024</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Вирус вины</h2>
@@ -98,7 +98,7 @@
 
         <article class="card" data-author="kenan" data-title="Шизофрения. Пандемия безумия">
           <a class="card__cover" href="/books/shizofreniya/ru/">
-<div class="cover" style="--tex:url('/books/covers/pandemic.jpg')"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Шизофрения<br>Пандемия безумия</span><span class="cover__year">2026</span></div>
+<div class="cover" style="--tex:url('/books/covers/pandemic.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__title">Шизофрения<br>Пандемия безумия</span><span class="cover__year">2026</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Шизофрения. Пандемия безумия</h2>
@@ -115,7 +115,7 @@
 
         <article class="card" data-author="samira" data-title="Эра Феникса">
           <a class="card__cover" href="/books/phoenix-era/ru/">
-<div class="cover" style="--tex:url('/books/covers/phoenix.jpg')"><span class="cover__author">САМИРА РУСТАМОВА / РАГИМОВА</span><span class="cover__title">Эра<br>Феникса</span><span class="cover__year">2026</span></div>
+<div class="cover" style="--tex:url('/books/covers/phoenix.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">САМИРА РУСТАМОВА / РАГИМОВА</span><span class="cover__title">Эра<br>Феникса</span><span class="cover__year">2026</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Эра Феникса</h2>
@@ -130,69 +130,9 @@
 
         <h2 class="author-sec" data-author="freud">Зигмунд Фрейд</h2>
 
-<article class="card" data-author="freud" data-title="Человек Моисей и монотеистическая религия">
-          <a class="card__cover" href="/books/freud-musa/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-musa.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Человек<br>Моисей</span><span class="cover__year">1939</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Человек Моисей и монотеистическая религия</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1939 · AZ RU</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-musa/ru/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article><article class="card" data-author="freud" data-title="Недовольство культурой">
-          <a class="card__cover" href="/books/freud-medeniyyetin-sancilari/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-medeniyyetin-sancilari.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Недовольство<br>культурой</span><span class="cover__year">1930</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Недовольство культурой</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1930 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-medeniyyetin-sancilari/ru/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article><article class="card" data-author="freud" data-title="Введение в психоанализ. Лекции">
-          <a class="card__cover" href="/books/freud-psixoanalizle-tanishliq/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-psixoanalizle-tanishliq.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Введение<br>в психоанализ</span><span class="cover__year">1917</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Введение в психоанализ. Лекции</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1917 · AZ RU</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-psixoanalizle-tanishliq/ru/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article><article class="card" data-author="freud" data-title="Тотем и табу">
-          <a class="card__cover" href="/books/freud-totem-ve-tabu/">
-<div class="cover" style="--tex:url('/books/covers/freud-totem-ve-tabu.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Тотем и<br>табу</span><span class="cover__year">1913</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Тотем и табу</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1913 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-totem-ve-tabu/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article><article class="card" data-author="freud" data-title="Три очерка по теории сексуальности">
-          <a class="card__cover" href="/books/freud-seksualligin-psixologiyasi/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-seksualligin-psixologiyasi.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Три очерка<br>по теории</span><span class="cover__year">1905</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Три очерка по теории сексуальности</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1905 · AZ RU</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-seksualligin-psixologiyasi/ru/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article><article class="card" data-author="freud" data-title="Толкование сновидений">
+        <article class="card" data-author="freud" data-title="Толкование сновидений">
           <a class="card__cover" href="/books/freud-yuxularin-yozumu/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-yuxularin-yozumu.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Толкование<br>сновидений</span><span class="cover__year">1900</span></div>
+<div class="cover" style="--tex:url('/books/covers/freud-yuxularin-yozumu.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Толкование<br>сновидений</span><span class="cover__year">1900</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Толкование сновидений</h2>
@@ -200,23 +140,74 @@
             <p class="card__price">Бесплатно</p>
             <div class="card__cta">
               <a class="btn" href="/books/freud-yuxularin-yozumu/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Толкование сновидений · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
             </div>
           </div>
-        </article><article class="card" data-author="freud" data-title="Письма Вильгельму Флиссу (1887–1904)">
-          <a class="card__cover" href="/books/freud-fliesse-mektublari/">
-<div class="cover" style="--tex:url('/books/covers/freud-fliesse-mektublari.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Письма<br>Флиссу</span><span class="cover__year">1887–1904</span></div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Человек Моисей и монотеистическая религия">
+          <a class="card__cover" href="/books/freud-musa/ru/">
+<div class="cover" style="--tex:url('/books/covers/freud-musa.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Человек<br>Моисей</span><span class="cover__year">1939</span></div>
           </a>
           <div class="card__body">
-            <h2 class="card__title">Письма Вильгельму Флиссу (1887–1904)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1887–1904 · AZ</p>
+            <h2 class="card__title">Человек Моисей и монотеистическая религия</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1939 · AZ RU</p>
             <p class="card__price">Бесплатно</p>
             <div class="card__cta">
-              <a class="btn" href="/books/freud-fliesse-mektublari/">Читать <span aria-hidden="true">→</span></a>
+              <a class="btn" href="/books/freud-musa/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Человек Моисей и монотеистическая религия · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
             </div>
           </div>
-        </article><article class="card" data-author="freud" data-title="Письма Марте Бернайс (1882–1912)">
+        </article>
+
+        <article class="card" data-author="freud" data-title="Тотем и табу">
+          <a class="card__cover" href="/books/freud-totem-ve-tabu/">
+<div class="cover" style="--tex:url('/books/covers/freud-totem-ve-tabu.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Тотем и<br>табу</span><span class="cover__year">1913</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Тотем и табу</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1913 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-totem-ve-tabu/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Тотем и табу · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Введение в психоанализ. Лекции">
+          <a class="card__cover" href="/books/freud-psixoanalizle-tanishliq/ru/">
+<div class="cover" style="--tex:url('/books/covers/freud-psixoanalizle-tanishliq.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Введение<br>в психоанализ</span><span class="cover__year">1917</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Введение в психоанализ. Лекции</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1917 · AZ RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-psixoanalizle-tanishliq/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Введение в психоанализ. Лекции · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Три очерка по теории сексуальности">
+          <a class="card__cover" href="/books/freud-seksualligin-psixologiyasi/ru/">
+<div class="cover" style="--tex:url('/books/covers/freud-seksualligin-psixologiyasi.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Три очерка<br>по теории</span><span class="cover__year">1905</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Три очерка по теории сексуальности</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1905 · AZ RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-seksualligin-psixologiyasi/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Три очерка по теории сексуальности · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Письма Марте Бернайс (1882–1912)">
           <a class="card__cover" href="/books/freud-sevgi-mektublari/ru/">
-<div class="cover" style="--tex:url('/books/covers/freud-sevgi-mektublari.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Письма<br>Марте</span><span class="cover__year">1882–1912</span></div>
+<div class="cover" style="--tex:url('/books/covers/freud-sevgi-mektublari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Письма<br>Марте</span><span class="cover__year">1882–1912</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Письма Марте Бернайс (1882–1912)</h2>
@@ -224,359 +215,14 @@
             <p class="card__price">Бесплатно</p>
             <div class="card__cta">
               <a class="btn" href="/books/freud-sevgi-mektublari/ru/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="По ту сторону принципа удовольствия">
-          <a class="card__cover" href="/books/freud-jenseits/">
-<div class="cover" style="--tex:url('/books/covers/freud-jenseits.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">По ту сторону<br>принципа удовольствия</span><span class="cover__year">1920</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">По ту сторону принципа удовольствия</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1920 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-jenseits/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Письма Марте Бернайс (1882–1912) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
             </div>
           </div>
         </article>
 
-        <article class="card" data-author="freud" data-title="Психология масс и анализ «Я»">
-          <a class="card__cover" href="/books/freud-massen/">
-<div class="cover" style="--tex:url('/books/covers/freud-massen.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Психология масс<br>и анализ «Я»</span><span class="cover__year">1921</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Психология масс и анализ «Я»</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1921 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-massen/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="«Я» и «Оно»">
-          <a class="card__cover" href="/books/freud-men-ve-o/">
-<div class="cover" style="--tex:url('/books/covers/freud-men-ve-o.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">«Я» и «Оно»</span><span class="cover__year">1923</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">«Я» и «Оно»</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1923 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-men-ve-o/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Торможение, симптом и тревога">
-          <a class="card__cover" href="/books/freud-manee-simptom-qorxu/">
-<div class="cover" style="--tex:url('/books/covers/freud-manee-simptom-qorxu.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Торможение,<br>симптом и тревога</span><span class="cover__year">1926</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Торможение, симптом и тревога</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1926 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-manee-simptom-qorxu/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Будущее одной иллюзии">
-          <a class="card__cover" href="/books/freud-bir-illuziyanin-geleceyi/">
-<div class="cover" style="--tex:url('/books/covers/freud-bir-illuziyanin-geleceyi.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Будущее<br>одной иллюзии</span><span class="cover__year">1927</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Будущее одной иллюзии</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1927 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-bir-illuziyanin-geleceyi/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Остроумие и его отношение к бессознательному">
-          <a class="card__cover" href="/books/freud-yumor/">
-<div class="cover" style="--tex:url('/books/covers/freud-yumor.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Остроумие и его<br>отношение к бессознательному</span><span class="cover__year">1905</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Остроумие и его отношение к бессознательному</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1905 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-yumor/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Метапсихология">
-          <a class="card__cover" href="/books/freud-metapsixologiya/">
-<div class="cover" style="--tex:url('/books/covers/freud-metapsixologiya.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Метапсихология</span><span class="cover__year">1915</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Метапсихология</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1915 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-metapsixologiya/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Психопатология обыденной жизни">
-          <a class="card__cover" href="/books/freud-gundelik-heyat/">
-<div class="cover" style="--tex:url('/books/covers/freud-gundelik-heyat.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Психопатология<br>обыденной жизни</span><span class="cover__year">1901</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Психопатология обыденной жизни</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1901 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-gundelik-heyat/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Избранные произведения">
-          <a class="card__cover" href="/books/freud-gwx/">
-<div class="cover" style="--tex:url('/books/covers/freud-gwx.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Избранные<br>произведения</span><span class="cover__year">1913–1917</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Избранные произведения</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1913–1917 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-gwx/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" data-author="freud" data-title="Новые лекции по психоанализу">
-          <a class="card__cover" href="/books/freud-yeni-muhazireler/">
-<div class="cover" style="--tex:url('/books/covers/freud-yeni-muhazireler.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Новые лекции<br>по психоанализу</span><span class="cover__year">1933</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Новые лекции по психоанализу</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1933 · RU</p>
-            <p class="card__price">Читать</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-yeni-muhazireler/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Исследования истерии">
-          <a class="card__cover" href="/books/freud-histeriya/">
-<div class="cover" style="--tex:url('/books/covers/freud-histeriya.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Исследования<br>истерии</span><span class="cover__year">1895</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Исследования истерии</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1895 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-histeriya/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Очерк психоанализа">
-          <a class="card__cover" href="/books/freud-abriss/">
-<div class="cover" style="--tex:url('/books/covers/freud-abriss.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Очерк<br>психоанализа</span><span class="cover__year">1938</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Очерк психоанализа</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1938 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-abriss/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Истории болезни">
-          <a class="card__cover" href="/books/freud-krankengeschichten/">
-<div class="cover" style="--tex:url('/books/covers/freud-krankengeschichten.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Истории<br>болезни</span><span class="cover__year">1905–1918</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Истории болезни</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1905–1918 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-krankengeschichten/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="К технике психоанализа">
-          <a class="card__cover" href="/books/freud-psixoanaliz-texnikasi/">
-<div class="cover" style="--tex:url('/books/covers/freud-psixoanaliz-texnikasi.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">К технике<br>психоанализа</span><span class="cover__year">1904–1919</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">К технике психоанализа</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1904–1919 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-psixoanaliz-texnikasi/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Малые работы о сексуальности и неврозах">
-          <a class="card__cover" href="/books/freud-kicik-eserler/">
-<div class="cover" style="--tex:url('/books/covers/freud-kicik-eserler.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые работы<br>о сексуальности и неврозах</span><span class="cover__year">1898–1924</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Малые работы о сексуальности и неврозах</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1898–1924 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-kicik-eserler/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Автобиография">
-          <a class="card__cover" href="/books/freud-ozunu-tesvir/">
-<div class="cover" style="--tex:url('/books/covers/freud-ozunu-tesvir.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Авто<br>биография</span><span class="cover__year">1923–1926</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Автобиография</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1923–1926 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-ozunu-tesvir/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Разные сочинения (1908–1928)">
-          <a class="card__cover" href="/books/freud-muxtelif-eserler/">
-<div class="cover" style="--tex:url('/books/covers/freud-muxtelif-eserler.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Разные<br>сочинения</span><span class="cover__year">1908–1928</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Разные сочинения (1908–1928)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1908–1928 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-muxtelif-eserler/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Из рукописей (1892–1938)">
-          <a class="card__cover" href="/books/freud-elyazmalar/">
-<div class="cover" style="--tex:url('/books/covers/freud-elyazmalar.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Из<br>рукописей</span><span class="cover__year">1892–1938</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Из рукописей (1892–1938)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1892–1938 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-elyazmalar/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Искусство и литература">
-          <a class="card__cover" href="/books/freud-incesenet/">
-<div class="cover" style="--tex:url('/books/covers/freud-incesenet.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Искусство<br>и литература</span><span class="cover__year">1907–1928</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Искусство и литература</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1907–1928 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-incesenet/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Прикладной психоанализ">
-          <a class="card__cover" href="/books/freud-tetbiqi-yazilar/">
-<div class="cover" style="--tex:url('/books/covers/freud-tetbiqi-yazilar.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Прикладной<br>психоанализ</span><span class="cover__year">1906–1938</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Прикладной психоанализ</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1906–1938 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-tetbiqi-yazilar/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Ранние работы по теории неврозов">
-          <a class="card__cover" href="/books/freud-ilk-nevroz-isleri/">
-<div class="cover" style="--tex:url('/books/covers/freud-ilk-nevroz-isleri.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Ранние работы<br>по теории неврозов</span><span class="cover__year">1892–1899</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Ранние работы по теории неврозов</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1892–1899 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-ilk-nevroz-isleri/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Поздние аналитические работы (1922–1937)">
-          <a class="card__cover" href="/books/freud-gec-analitik-yazilar/">
-<div class="cover" style="--tex:url('/books/covers/freud-gec-analitik-yazilar.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Поздние аналитические<br>работы (1922–1937)</span><span class="cover__year">1922–1937</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Поздние аналитические работы (1922–1937)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1922–1937 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-gec-analitik-yazilar/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="О сновидении и малые работы (1901–1925)">
-          <a class="card__cover" href="/books/freud-yuxu-haqqinda/">
-<div class="cover" style="--tex:url('/books/covers/freud-yuxu-haqqinda.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">О сновидении<br>и малые работы</span><span class="cover__year">1901–1925</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">О сновидении и малые работы (1901–1925)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1901–1925 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-yuxu-haqqinda/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="О психоанализе (Кларковские лекции)">
-          <a class="card__cover" href="/books/freud-psixoanaliz-haqqinda/">
-<div class="cover" style="--tex:url('/books/covers/freud-psixoanaliz-haqqinda.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">О психоанализе<br>(Кларковские лекции)</span><span class="cover__year">1910</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">О психоанализе (Кларковские лекции)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1910 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-psixoanaliz-haqqinda/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Малые фрагменты (1924–1942)">
-          <a class="card__cover" href="/books/freud-kicik-fragmenler/">
-<div class="cover" style="--tex:url('/books/covers/freud-kicik-fragmenler.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые фрагменты<br>(1924–1942)</span><span class="cover__year">1924–1942</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Малые фрагменты (1924–1942)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1924–1942 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-kicik-fragmenler/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
-        <article class="card" data-author="freud" data-title="Малые работы II (1898, 1925)">
-          <a class="card__cover" href="/books/freud-kicik-eserler-ii/">
-<div class="cover" style="--tex:url('/books/covers/freud-kicik-eserler-ii.jpg?v=6')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые работы II<br>(1898, 1925)</span><span class="cover__year">1898, 1925</span></div>
-          </a>
-          <div class="card__body">
-            <h2 class="card__title">Малые работы II (1898, 1925)</h2>
-            <p class="card__meta">Зигмунд Фрейд · 1898, 1925 · AZ</p>
-            <p class="card__price">Бесплатно</p>
-            <div class="card__cta">
-              <a class="btn" href="/books/freud-kicik-eserler-ii/">Читать <span aria-hidden="true">→</span></a>
-            </div>
-          </div>
-        </article>
         <article class="card" data-author="freud" data-title="Афоризмы">
           <a class="card__cover" href="/books/freud-aforizmlar/">
-<div class="cover" style="--tex:url('/books/covers/freud-aforizmlar.jpg')"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Афоризмы</span></div>
+<div class="cover" style="--tex:url('/books/covers/freud-aforizmlar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Афоризмы</span></div>
           </a>
           <div class="card__body">
             <h2 class="card__title">Афоризмы</h2>
@@ -584,28 +230,490 @@
             <p class="card__price">Бесплатно</p>
             <div class="card__cta">
               <a class="btn" href="/books/freud-aforizmlar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Афоризмы · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
             </div>
           </div>
         </article>
 
+        <article class="card" data-author="freud" data-title="Недовольство культурой">
+          <a class="card__cover" href="/books/freud-medeniyyetin-sancilari/ru/">
+<div class="cover" style="--tex:url('/books/covers/freud-medeniyyetin-sancilari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Недовольство<br>культурой</span><span class="cover__year">1930</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Недовольство культурой</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1930 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-medeniyyetin-sancilari/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Недовольство культурой · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
+        <article class="card" data-author="freud" data-title="Письма Вильгельму Флиссу (1887–1904)">
+          <a class="card__cover" href="/books/freud-fliesse-mektublari/">
+<div class="cover" style="--tex:url('/books/covers/freud-fliesse-mektublari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Письма<br>Флиссу</span><span class="cover__year">1887–1904</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Письма Вильгельму Флиссу (1887–1904)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1887–1904 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-fliesse-mektublari/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Письма Вильгельму Флиссу (1887–1904) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
+        <article class="card" data-author="freud" data-title="Переписка Фрейда и Цвейга (1908–1939)">
+          <a class="card__cover" href="/books/freud-zweig-mektublari/">
+<div class="cover" style="--tex:url('/books/covers/freud-zweig-mektublari.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Переписка<br>Фрейда и Цвейга</span><span class="cover__year">1908–1939</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Переписка Фрейда и Цвейга (1908–1939)</h2>
+            <p class="card__meta">Зигмунд Фрейд · Стефан Цвейг · 1908–1939 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-zweig-mektublari/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Переписка Фрейда и Цвейга (1908–1939) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Краткое изложение психоанализа">
+          <a class="card__cover" href="/books/freud-abriss/">
+<div class="cover" style="--tex:url('/books/covers/freud-abriss.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Краткое изложение<br>психоанализа</span><span class="cover__year">1938</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Краткое изложение психоанализа</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1938 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-abriss/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Краткое изложение психоанализа · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Будущее одной иллюзии">
+          <a class="card__cover" href="/books/freud-bir-illuziyanin-geleceyi/">
+<div class="cover" style="--tex:url('/books/covers/freud-bir-illuziyanin-geleceyi.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Будущее<br>одной иллюзии</span><span class="cover__year">1927</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Будущее одной иллюзии</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1927 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-bir-illuziyanin-geleceyi/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Будущее одной иллюзии · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Психопатология обыденной жизни">
+          <a class="card__cover" href="/books/freud-gundelik-heyat/">
+<div class="cover" style="--tex:url('/books/covers/freud-gundelik-heyat.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Психопатология<br>обыденной жизни</span><span class="cover__year">1901</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Психопатология обыденной жизни</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1901 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-gundelik-heyat/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Психопатология обыденной жизни · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Избранные произведения">
+          <a class="card__cover" href="/books/freud-gwx/">
+<div class="cover" style="--tex:url('/books/covers/freud-gwx.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Избранные<br>произведения</span><span class="cover__year">1913–1917</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Избранные произведения</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1913–1917 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-gwx/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Избранные произведения · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Исследования истерии">
+          <a class="card__cover" href="/books/freud-histeriya/">
+<div class="cover" style="--tex:url('/books/covers/freud-histeriya.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Исследования<br>истерии</span><span class="cover__year">1895</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Исследования истерии</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1895 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-histeriya/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Исследования истерии · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="По ту сторону принципа удовольствия">
+          <a class="card__cover" href="/books/freud-jenseits/">
+<div class="cover" style="--tex:url('/books/covers/freud-jenseits.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">По ту сторону<br>принципа удовольствия</span><span class="cover__year">1920</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">По ту сторону принципа удовольствия</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1920 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-jenseits/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="По ту сторону принципа удовольствия · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Торможение, симптом и тревога">
+          <a class="card__cover" href="/books/freud-manee-simptom-qorxu/">
+<div class="cover" style="--tex:url('/books/covers/freud-manee-simptom-qorxu.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Торможение,<br>симптом и тревога</span><span class="cover__year">1926</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Торможение, симптом и тревога</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1926 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-manee-simptom-qorxu/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Торможение, симптом и тревога · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
-        
+        <article class="card" data-author="freud" data-title="Психология масс и анализ «Я»">
+          <a class="card__cover" href="/books/freud-massen/">
+<div class="cover" style="--tex:url('/books/covers/freud-massen.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Психология масс<br>и анализ «Я»</span><span class="cover__year">1921</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Психология масс и анализ «Я»</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1921 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-massen/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Психология масс и анализ «Я» · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="«Я» и «Оно»">
+          <a class="card__cover" href="/books/freud-men-ve-o/">
+<div class="cover" style="--tex:url('/books/covers/freud-men-ve-o.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">«Я» и «Оно»</span><span class="cover__year">1923</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">«Я» и «Оно»</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1923 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-men-ve-o/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="«Я» и «Оно» · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Метапсихология">
+          <a class="card__cover" href="/books/freud-metapsixologiya/">
+<div class="cover" style="--tex:url('/books/covers/freud-metapsixologiya.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Метапсихология</span><span class="cover__year">1915</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Метапсихология</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1915 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-metapsixologiya/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Метапсихология · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Новые лекции по психоанализу">
+          <a class="card__cover" href="/books/freud-yeni-muhazireler/">
+<div class="cover" style="--tex:url('/books/covers/freud-yeni-muhazireler.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Новые лекции<br>по психоанализу</span><span class="cover__year">1933</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Новые лекции по психоанализу</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1933 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-yeni-muhazireler/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Новые лекции по психоанализу · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Остроумие и его отношение к бессознательному">
+          <a class="card__cover" href="/books/freud-yumor/">
+<div class="cover" style="--tex:url('/books/covers/freud-yumor.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Остроумие и его<br>отношение к бессознательному</span><span class="cover__year">1905</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Остроумие и его отношение к бессознательному</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1905 · RU</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-yumor/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Остроумие и его отношение к бессознательному · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Истории болезни">
+          <a class="card__cover" href="/books/freud-krankengeschichten/">
+<div class="cover" style="--tex:url('/books/covers/freud-krankengeschichten.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Истории<br>болезни</span><span class="cover__year">1905–1918</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Истории болезни</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1905–1918 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-krankengeschichten/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Истории болезни · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="К технике психоанализа">
+          <a class="card__cover" href="/books/freud-psixoanaliz-texnikasi/">
+<div class="cover" style="--tex:url('/books/covers/freud-psixoanaliz-texnikasi.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">К технике<br>психоанализа</span><span class="cover__year">1904–1919</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">К технике психоанализа</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1904–1919 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-psixoanaliz-texnikasi/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="К технике психоанализа · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Малые работы о сексуальности и неврозах">
+          <a class="card__cover" href="/books/freud-kicik-eserler/">
+<div class="cover" style="--tex:url('/books/covers/freud-kicik-eserler.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые работы<br>о сексуальности и неврозах</span><span class="cover__year">1898–1924</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Малые работы о сексуальности и неврозах</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1898–1924 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-kicik-eserler/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Малые работы о сексуальности и неврозах · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Автобиография">
+          <a class="card__cover" href="/books/freud-ozunu-tesvir/">
+<div class="cover" style="--tex:url('/books/covers/freud-ozunu-tesvir.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Авто<br>биография</span><span class="cover__year">1923–1926</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Автобиография</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1923–1926 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-ozunu-tesvir/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Автобиография · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Разные сочинения (1908–1928)">
+          <a class="card__cover" href="/books/freud-muxtelif-eserler/">
+<div class="cover" style="--tex:url('/books/covers/freud-muxtelif-eserler.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Разные<br>сочинения</span><span class="cover__year">1908–1928</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Разные сочинения (1908–1928)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1908–1928 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-muxtelif-eserler/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Разные сочинения (1908–1928) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Из рукописей (1892–1938)">
+          <a class="card__cover" href="/books/freud-elyazmalar/">
+<div class="cover" style="--tex:url('/books/covers/freud-elyazmalar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Из<br>рукописей</span><span class="cover__year">1892–1938</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Из рукописей (1892–1938)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1892–1938 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-elyazmalar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Из рукописей (1892–1938) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Искусство и литература">
+          <a class="card__cover" href="/books/freud-incesenet/">
+<div class="cover" style="--tex:url('/books/covers/freud-incesenet.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Искусство<br>и литература</span><span class="cover__year">1907–1928</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Искусство и литература</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1907–1928 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-incesenet/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Искусство и литература · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Прикладной психоанализ">
+          <a class="card__cover" href="/books/freud-tetbiqi-yazilar/">
+<div class="cover" style="--tex:url('/books/covers/freud-tetbiqi-yazilar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Прикладной<br>психоанализ</span><span class="cover__year">1906–1938</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Прикладной психоанализ</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1906–1938 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-tetbiqi-yazilar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Прикладной психоанализ · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Ранние работы по теории неврозов">
+          <a class="card__cover" href="/books/freud-ilk-nevroz-isleri/">
+<div class="cover" style="--tex:url('/books/covers/freud-ilk-nevroz-isleri.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Ранние работы<br>по теории неврозов</span><span class="cover__year">1892–1899</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Ранние работы по теории неврозов</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1892–1899 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-ilk-nevroz-isleri/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Ранние работы по теории неврозов · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Поздние аналитические работы (1922–1937)">
+          <a class="card__cover" href="/books/freud-gec-analitik-yazilar/">
+<div class="cover" style="--tex:url('/books/covers/freud-gec-analitik-yazilar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Поздние аналитические<br>работы (1922–1937)</span><span class="cover__year">1922–1937</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Поздние аналитические работы (1922–1937)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1922–1937 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-gec-analitik-yazilar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Поздние аналитические работы (1922–1937) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="О сновидении и малые работы (1901–1925)">
+          <a class="card__cover" href="/books/freud-yuxu-haqqinda/">
+<div class="cover" style="--tex:url('/books/covers/freud-yuxu-haqqinda.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">О сновидении<br>и малые работы</span><span class="cover__year">1901–1925</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">О сновидении и малые работы (1901–1925)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1901–1925 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-yuxu-haqqinda/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="О сновидении и малые работы (1901–1925) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="О психоанализе (Кларковские лекции)">
+          <a class="card__cover" href="/books/freud-psixoanaliz-haqqinda/">
+<div class="cover" style="--tex:url('/books/covers/freud-psixoanaliz-haqqinda.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">О психоанализе<br>(Кларковские лекции)</span><span class="cover__year">1910</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">О психоанализе (Кларковские лекции)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1910 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-psixoanaliz-haqqinda/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="О психоанализе (Кларковские лекции) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Малые фрагменты (1924–1942)">
+          <a class="card__cover" href="/books/freud-kicik-fragmenler/">
+<div class="cover" style="--tex:url('/books/covers/freud-kicik-fragmenler.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые фрагменты<br>(1924–1942)</span><span class="cover__year">1924–1942</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Малые фрагменты (1924–1942)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1924–1942 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-kicik-fragmenler/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Малые фрагменты (1924–1942) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Малые работы II (1898, 1925)">
+          <a class="card__cover" href="/books/freud-kicik-eserler-ii/">
+<div class="cover" style="--tex:url('/books/covers/freud-kicik-eserler-ii.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Малые работы II<br>(1898, 1925)</span><span class="cover__year">1898, 1925</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Малые работы II (1898, 1925)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1898, 1925 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-kicik-eserler-ii/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Малые работы II (1898, 1925) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Предисловия (1886–1930)">
+          <a class="card__cover" href="/books/freud-on-sozler/">
+<div class="cover" style="--tex:url('/books/covers/freud-on-sozler.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__title">Предисловия</span><span class="cover__year">1886–1930</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Предисловия (1886–1930)</h2>
+            <p class="card__meta">Зигмунд Фрейд · 1886–1930 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-on-sozler/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Предисловия (1886–1930) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Referatlar (1884–1885)">
+          <a class="card__cover" href="/books/freud-referatlar/">
+<div class="cover" style="--tex:url('/books/covers/freud-referatlar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Referatlar</span><span class="cover__year">1884–1885</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Referatlar (1884–1885)</h2>
+            <p class="card__meta">Ziqmund Freyd · 1884–1885 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-referatlar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Referatlar (1884–1885) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="freud" data-title="Resenziyalar (1887–1910)">
+          <a class="card__cover" href="/books/freud-resenziyalar/">
+<div class="cover" style="--tex:url('/books/covers/freud-resenziyalar.jpg')"><span class="cover__frame" aria-hidden="true"></span><span class="cover__author">ZIQMUND FREYD</span><span class="cover__title">Resenziyalar</span><span class="cover__year">1887–1910</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Resenziyalar (1887–1910)</h2>
+            <p class="card__meta">Ziqmund Freyd · 1887–1910 · AZ</p>
+            <p class="card__price">Бесплатно</p>
+            <div class="card__cta">
+              <a class="btn" href="/books/freud-resenziyalar/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--ghost" type="button" data-order="Resenziyalar (1887–1910) · Бумажный экземпляр" data-paper="1" data-price="">Бумажный экземпляр</button>
+            </div>
+          </div>
+        </article>
 
       </div>
     </section>
