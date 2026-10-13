@@ -422,7 +422,12 @@
     initReveal();
     initSearch();
     initOrder();
-    initCart();
+    /* корзина — дополнительная возможность: если она когда-нибудь упадёт
+       (старый браузер, заблокированное localStorage), каталог обязан остаться
+       рабочим. Поэтому ошибку глушим и сообщаем в консоль, а не на страницу. */
+    try { initCart(); } catch (e) {
+      if (window.console && console.warn) console.warn('cart disabled:', e);
+    }
     initTilt();
     reduceQ.addEventListener && reduceQ.addEventListener('change', function () { reduce = reduceQ.matches; });
     fineQ.addEventListener && fineQ.addEventListener('change', function () { fine = fineQ.matches; });
