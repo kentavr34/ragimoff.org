@@ -332,19 +332,31 @@
 
     /* 1) кнопка «В корзину» рядом с каждой кнопкой бумажного заказа */
     cards.forEach(function (btn) {
-      if (btn.getAttribute('data-cart-btn')) return;
+      var title = btn.getAttribute('data-order') || '';
+      var price = btn.getAttribute('data-price') || '';
+
+      function doAdd() {
+        cartAdd(title, price);
+        var was = btn.textContent;
+        btn.textContent = cstr('added');
+        setTimeout(function () { btn.textContent = was; }, 1200);
+      }
+
+      /* КНОПКА УЖЕ ЕСТЬ В РАЗМЕТКЕ — вешаем обработчик НА НЕЁ.
+         Раньше здесь стоял `return`, и такие кнопки оставались БЕЗ обработчика:
+         нажать можно, в корзину ничего не попадает. Дефект был внесён, когда
+         кнопки «Kağız nüsxə» заменили на готовые data-cart-btn. */
+      if (btn.getAttribute('data-cart-btn')) {
+        btn.addEventListener('click', doAdd);
+        return;
+      }
+
       var add = document.createElement('button');
       add.type = 'button';
       add.className = 'btn btn--cart';
       add.textContent = cstr('add');
       add.setAttribute('data-cart-btn', '1');
-      add.addEventListener('click', function () {
-        var title = btn.getAttribute('data-order') || '';
-        var price = btn.getAttribute('data-price') || '';
-        cartAdd(title, price);
-        add.textContent = cstr('added');
-        setTimeout(function () { add.textContent = cstr('add'); }, 1200);
-      });
+      add.addEventListener('click', doAdd);
       if (btn.parentNode) btn.parentNode.insertBefore(add, btn.nextSibling);
     });
 
