@@ -195,10 +195,234 @@
     });
   }
 
+  /* ===================================================================
+     КОРЗИНА (Səbət) — магазин книг, оформление заказа БЕЗ онлайн-оплаты.
+     Решение владельца 13.10.2026: сначала магазин + корзина + оформление,
+     приём платежей (epoint) — позже. Поэтому здесь только сбор заявки:
+     состав заказа, контакт и адрес доставки уходят на сервер и в Telegram,
+     оплата и доставка подтверждаются менеджером по телефону.
+
+     Всё строится из JS: HTML каталогов править не нужно, корзина работает
+     сразу в трёх языковых версиях.
+     =================================================================== */
+
+  var CART_KEY = 'ragimoff_cart_v1';
+
+  var CART_T = {
+    az: { add: 'Səbətə at', added: 'Əlavə edildi', cart: 'Səbət', empty: 'Səbət boşdur',
+          total: 'Cəm', checkout: 'Sifarişi tamamla', remove: 'Sil', clear: 'Səbəti təmizlə',
+          qty: 'Say', ask: 'qiymət sorğu ilə', send: 'Göndərilir…',
+          done: 'Təşəkkür edirik!<br>Sifarişiniz qeydə alındı — tezliklə əlaqə saxlayacağıq.',
+          nameL: 'Ad Soyad', phoneL: 'Mobil nömrə', addrL: 'Çatdırılma ünvanı',
+          addrPh: 'Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi',
+          fill: 'Zəhmət olmasa Ad Soyad, Telefon və ünvanı daxil edin.',
+          noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.' },
+    ru: { add: 'В корзину', added: 'Добавлено', cart: 'Корзина', empty: 'Корзина пуста',
+          total: 'Итого', checkout: 'Оформить заказ', remove: 'Удалить', clear: 'Очистить корзину',
+          qty: 'Кол-во', ask: 'цена по запросу', send: 'Отправляем…',
+          done: 'Спасибо!<br>Заказ принят — мы скоро свяжемся с вами.',
+          nameL: 'Имя и фамилия', phoneL: 'Мобильный телефон', addrL: 'Адрес доставки',
+          addrPh: 'Страна, город, улица, дом, квартира, индекс',
+          fill: 'Пожалуйста, укажите имя, телефон и адрес.',
+          noPrice: 'Цену уточним по телефону.' },
+    en: { add: 'Add to cart', added: 'Added', cart: 'Cart', empty: 'Your cart is empty',
+          total: 'Total', checkout: 'Place the order', remove: 'Remove', clear: 'Clear cart',
+          qty: 'Qty', ask: 'price on request', send: 'Sending…',
+          done: 'Thank you!<br>Your order has been received — we will contact you soon.',
+          nameL: 'Full name', phoneL: 'Mobile phone', addrL: 'Delivery address',
+          addrPh: 'Country, city, street, building, apartment, postal code',
+          fill: 'Please provide your name, phone and address.',
+          noPrice: 'We will confirm the price by phone.' }
+  };
+
+  function cartLang() {
+    var l = (document.documentElement.lang || 'az').slice(0, 2).toLowerCase();
+    return CART_T[l] ? l : 'az';
+  }
+  function cstr(k) { return CART_T[cartLang()][k]; }
+
+  function cartRead() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]') || []; } catch (e) { return []; }
+  }
+  function cartWrite(items) {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch (e) {}
+    cartBadge(items);
+  }
+  /* «Günahkarlıq Virusu · 30 ₼» → 30; без цены → null (товар «по запросу») */
+  function priceOf(title) {
+    var m = String(title || '').match(/(\d[\d\s]*)\s*(₼|AZN|\$|€)/);
+    if (!m) return null;
+    var n = parseFloat(m[1].replace(/\s/g, ''));
+    return isNaN(n) ? null : { num: n, cur: m[2] };
+  }
+  function cleanTitle(title) {
+    return String(title || '').replace(/\s*·\s*(Kağız nüsxə|Бумажный экземпляр|Paper copy)\s*$/i, '').trim();
+  }
+
+  function cartBadge(items) {
+    var b = $('#cart-badge');
+    if (!b) return;
+    var n = (items || cartRead()).reduce(function (s, i) { return s + (i.qty || 1); }, 0);
+    b.textContent = n;
+    b.hidden = n === 0;
+  }
+
+  function cartAdd(title) {
+    var items = cartRead();
+    var name = cleanTitle(title);
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].title === name) { items[i].qty = (items[i].qty || 1) + 1; cartWrite(items); return items; }
+    }
+    items.push({ title: name, qty: 1 });
+    cartWrite(items);
+    return items;
+  }
+  function cartRemove(idx) {
+    var items = cartRead();
+    items.splice(idx, 1);
+    cartWrite(items);
+    return items;
+  }
+
+  function initCart() {
+    var cards = $$('[data-order]');
+    if (!cards.length) return;
+
+    /* 1) кнопка «В корзину» рядом с каждой кнопкой бумажного заказа */
+    cards.forEach(function (btn) {
+      if (btn.getAttribute('data-cart-btn')) return;
+      var add = document.createElement('button');
+      add.type = 'button';
+      add.className = 'btn btn--cart';
+      add.textContent = cstr('add');
+      add.setAttribute('data-cart-btn', '1');
+      add.addEventListener('click', function () {
+        var title = btn.getAttribute('data-order') || '';
+        cartAdd(title);
+        add.textContent = cstr('added');
+        setTimeout(function () { add.textContent = cstr('add'); }, 1200);
+      });
+      if (btn.parentNode) btn.parentNode.insertBefore(add, btn.nextSibling);
+    });
+
+    /* 2) плавающая кнопка корзины со счётчиком */
+    var fab = document.createElement('button');
+    fab.type = 'button';
+    fab.className = 'cart-fab';
+    fab.setAttribute('aria-label', cstr('cart'));
+    fab.innerHTML = '<span class="cart-fab__ico" aria-hidden="true">🛒</span>' +
+                    '<span id="cart-badge" class="cart-fab__n" hidden>0</span>';
+    fab.addEventListener('click', openCart);
+    document.body.appendChild(fab);
+    cartBadge();
+
+    /* 3) окно корзины — своя разметка, стили модала переиспользуются */
+    var box = document.createElement('div');
+    box.className = 'modal cart-modal';
+    box.setAttribute('aria-hidden', 'true');
+    box.innerHTML =
+      '<div class="modal__scrim" data-cart-close></div>' +
+      '<div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="cart-h">' +
+        '<button class="modal__x" data-cart-close aria-label="' + t('close', 'Bağla') + '">✕</button>' +
+        '<h2 class="h2" id="cart-h">' + cstr('cart') + '</h2>' +
+        '<div id="cart-body"></div>' +
+      '</div>';
+    document.body.appendChild(box);
+    $$('[data-cart-close]', box).forEach(function (b) {
+      b.addEventListener('click', function () { box.classList.remove('is-open'); box.setAttribute('aria-hidden', 'true'); });
+    });
+
+    function openCart() { render(); box.classList.add('is-open'); box.setAttribute('aria-hidden', 'false'); }
+
+    function render() {
+      var items = cartRead();
+      var body = $('#cart-body', box);
+      if (!items.length) {
+        body.innerHTML = '<p class="cart-empty">' + cstr('empty') + '</p>';
+        return;
+      }
+      var sum = 0, hasAsk = false, rows = '';
+      items.forEach(function (it, i) {
+        var p = priceOf(it.title);
+        if (p) sum += p.num * (it.qty || 1); else hasAsk = true;
+        rows += '<div class="cart-row">' +
+                  '<span class="cart-row__t">' + it.title + '</span>' +
+                  '<span class="cart-row__p">' + (p ? (p.num + ' ' + p.cur) : cstr('ask')) + '</span>' +
+                  '<input class="cart-row__q" type="number" min="1" value="' + (it.qty || 1) + '" data-q="' + i + '" aria-label="' + cstr('qty') + '">' +
+                  '<button type="button" class="cart-row__x" data-x="' + i + '">' + cstr('remove') + '</button>' +
+                '</div>';
+      });
+      body.innerHTML =
+        rows +
+        '<p class="cart-sum">' + cstr('total') + ': <b>' + sum + ' ₼</b>' +
+          (hasAsk ? ' <span class="cart-note">' + cstr('noPrice') + '</span>' : '') + '</p>' +
+        '<form id="cart-form" novalidate>' +
+          '<label class="field"><span>' + cstr('nameL') + '</span>' +
+            '<input id="c-name" type="text" autocomplete="name" required></label>' +
+          '<label class="field"><span>' + cstr('phoneL') + '</span>' +
+            '<input id="c-phone" type="tel" placeholder="+994 XX XXX XX XX" autocomplete="tel" required></label>' +
+          '<label class="field"><span>' + cstr('addrL') + '</span>' +
+            '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea></label>' +
+          '<small class="field__hint">' + (CART_T[cartLang()].noPrice) + '</small>' +
+          '<button class="btn btn--main" type="submit">' + cstr('checkout') + '</button>' +
+        '</form>' +
+        '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>' +
+        '<button type="button" class="cart-clear" id="cart-clear">' + cstr('clear') + '</button>';
+
+      $$('[data-x]', body).forEach(function (b) {
+        b.addEventListener('click', function () { cartRemove(+b.getAttribute('data-x')); render(); });
+      });
+      $$('[data-q]', body).forEach(function (b) {
+        b.addEventListener('change', function () {
+          var items2 = cartRead(), k = +b.getAttribute('data-q');
+          var v = parseInt(b.value, 10);
+          items2[k].qty = (v > 0 ? v : 1);
+          cartWrite(items2);
+          render();
+        });
+      });
+      $('#cart-clear', body).addEventListener('click', function () { cartWrite([]); render(); });
+
+      $('#cart-form', body).addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = ($('#c-name', body).value || '').trim();
+        var phone = ($('#c-phone', body).value || '').trim();
+        var addr = ($('#c-addr', body).value || '').trim();
+        if (!name || !phone || !addr) { alert(cstr('fill')); return; }
+        var parts = name.split(/\s+/);
+        var list = cartRead();
+        var note = list.map(function (x) { return x.title + ' x' + (x.qty || 1); }).join('; ');
+        var payload = {
+          type: 'registration',
+          fname: parts[0] || '',
+          lname: parts.slice(1).join(' ') || '',
+          phone: phone,
+          address: addr,
+          service: 'Səbət sifarişi — ' + list.length + ' kitab',
+          note: note,
+          source: 'ragimoff.org' + location.pathname
+        };
+        var body2 = JSON.stringify(payload);
+        var btn = $('button[type="submit"]', body);
+        if (btn) { btn.textContent = cstr('send'); btn.disabled = true; }
+        try { fetch(BOOK_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 }).catch(function () {}); } catch (err) {}
+        try {
+          fetch(ORDER_API, { method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 });
+        } catch (err) {}
+        $('#cart-form', box).hidden = true;
+        $('#cart-ok', box).hidden = false;
+        $('#cart-clear', box).hidden = true;
+        cartWrite([]);
+      });
+    }
+  }
+
   function boot() {
     initReveal();
     initSearch();
     initOrder();
+    initCart();
     initTilt();
     reduceQ.addEventListener && reduceQ.addEventListener('change', function () { reduce = reduceQ.matches; });
     fineQ.addEventListener && fineQ.addEventListener('change', function () { fine = fineQ.matches; });
