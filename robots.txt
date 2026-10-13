@@ -6,7 +6,9 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://ragimoff.org/sitemap.xml
-Sitemap: https://ragimoff.org/klinik-psixiatriya/sitemap.xml
+# ВНИМАНИЕ: строка Sitemap для /klinik-psixiatriya/ УБРАНА — файла там нет,
+# robots.txt отдавал поисковикам БИТУЮ ссылку (404). Если карта понадобится,
+# сначала создать файл, потом возвращать строку.
 
 # Host
 Host: https://ragimoff.org
@@ -98,6 +100,10 @@ Disallow: /gtc-dark.css
 Disallow: /*.py
 Disallow: /*.json
 Disallow: /*.xml
+# ВНИМАНИЕ: sitemap.xml — ИСКЛЮЧЕНИЕ из блокировки .xml ниже.
+# Без этой строки robots.txt сам себе противоречил: объявлял карту сайта
+# и тут же запрещал краулерам читать .xml.
+Allow: /sitemap.xml
 Disallow: /*.md
 Disallow: /*.txt
 Disallow: /*.zip
