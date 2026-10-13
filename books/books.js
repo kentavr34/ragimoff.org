@@ -98,7 +98,24 @@
       ok.hidden = true;
       form.hidden = false;
       form.reset();
-      if (select) { for (var i = 0; i < select.options.length; i++) { if (select.options[i].value === current) { select.selectedIndex = i; break; } } }
+      /* 13.10.2026: если книги нет в списке, ДОБАВЛЯЕМ её отдельным пунктом.
+         Иначе select оставался на первом пункте, и в заказ уходила ЧУЖАЯ книга
+         (проверено: заказ открывался для книги серии Фрейда, а уходила
+         «Klinik Psixiatriya · 100 ₼»). */
+      if (select && current) {
+        var idx = -1;
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === current) { idx = i; break; }
+        }
+        if (idx < 0) {
+          var opt = document.createElement('option');
+          opt.value = current;
+          opt.textContent = current;
+          select.appendChild(opt);
+          idx = select.options.length - 1;
+        }
+        select.selectedIndex = idx;
+      }
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       root.classList.add('lock');
