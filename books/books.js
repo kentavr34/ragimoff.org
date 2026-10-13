@@ -131,6 +131,7 @@
     $$('[data-order]').forEach(function (b) {
       b.addEventListener('click', function () {
         var book = b.getAttribute('data-order') || '';
+        var bookPrice = b.getAttribute('data-price') || '';
         var price = b.getAttribute('data-price') || '';
         open(price ? book + ' · ' + price : book);
       });
@@ -216,7 +217,12 @@
           nameL: 'Ad Soyad', phoneL: 'Mobil nömrə', addrL: 'Çatdırılma ünvanı',
           addrPh: 'Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi',
           fill: 'Zəhmət olmasa Ad Soyad, Telefon və ünvanı daxil edin.',
-          noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.' },
+          noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.',
+          discount: 'Bütün Freyd kolleksiyasına endirim',
+          payable: 'Ödəniləcək',
+          geoBtn: 'Ünvanı avtomatik təyin et',
+          geoWait: 'Yer müəyyən edilir…',
+          geoNo: 'Ünvanı təyin etmək alınmadı — zəhmət olmasa əl ilə yazın.' },
     ru: { add: 'В корзину', added: 'Добавлено', cart: 'Корзина', empty: 'Корзина пуста',
           total: 'Итого', checkout: 'Оформить заказ', remove: 'Удалить', clear: 'Очистить корзину',
           qty: 'Кол-во', ask: 'цена по запросу', send: 'Отправляем…',
@@ -224,7 +230,13 @@
           nameL: 'Имя и фамилия', phoneL: 'Мобильный телефон', addrL: 'Адрес доставки',
           addrPh: 'Страна, город, улица, дом, квартира, индекс',
           fill: 'Пожалуйста, укажите имя, телефон и адрес.',
-          noPrice: 'Цену уточним по телефону.' },
+          fill: 'Пожалуйста, укажите имя, телефон и адрес.',
+          noPrice: 'Цену уточним по телефону.',
+          discount: 'Скидка на всю коллекцию Фрейда',
+          payable: 'К оплате',
+          geoBtn: 'Определить адрес автоматически',
+          geoWait: 'Определяем местоположение…',
+          geoNo: 'Не удалось определить адрес — введите вручную.' },
     en: { add: 'Add to cart', added: 'Added', cart: 'Cart', empty: 'Your cart is empty',
           total: 'Total', checkout: 'Place the order', remove: 'Remove', clear: 'Clear cart',
           qty: 'Qty', ask: 'price on request', send: 'Sending…',
@@ -232,7 +244,13 @@
           nameL: 'Full name', phoneL: 'Mobile phone', addrL: 'Delivery address',
           addrPh: 'Country, city, street, building, apartment, postal code',
           fill: 'Please provide your name, phone and address.',
-          noPrice: 'We will confirm the price by phone.' }
+          fill: 'Please provide your name, phone and address.',
+          noPrice: 'We will confirm the price by phone.',
+          discount: 'Full Freud collection discount',
+          payable: 'Payable',
+          geoBtn: 'Detect my address',
+          geoWait: 'Detecting location…',
+          geoNo: 'Could not detect the address — please type it.' }
   };
 
   function cartLang() {
@@ -248,12 +266,29 @@
     try { localStorage.setItem(CART_KEY, JSON.stringify(items)); } catch (e) {}
     cartBadge(items);
   }
-  /* «Günahkarlıq Virusu · 30 ₼» → 30; без цены → null (товар «по запросу») */
-  function priceOf(title) {
+  /* Цена товара. Берём СОХРАНЁННУЮ цену из корзины, и только если её нет —
+     разбираем из названия. Раньше цена искалась только в названии, а в
+     data-order её нет, поэтому вся корзина показывала «по запросу»
+     и бумажный заказ уходил без суммы. */
+  function priceOf(item) {
+    if (item && item.price) {
+      var m0 = String(item.price).match(/(\d[\d\s]*)\s*(₼|AZN|\$|€)/);
+      if (m0) {
+        var n0 = parseFloat(m0[1].replace(/\s/g, ''));
+        if (!isNaN(n0)) return { num: n0, cur: m0[2] };
+      }
+    }
+    var title = item && item.title !== undefined ? item.title : item;
     var m = String(title || '').match(/(\d[\d\s]*)\s*(₼|AZN|\$|€)/);
     if (!m) return null;
     var n = parseFloat(m[1].replace(/\s/g, ''));
     return isNaN(n) ? null : { num: n, cur: m[2] };
+  }
+  /* Скидка 20% на всю коллекцию Фрейда: считается, если в корзине есть
+     позиция-коллекция (data-collection="freud"). */
+  var COLLECTION_DISCOUNT = 20;
+  function isCollection(title) {
+    return /bütün freyd kolleksiyası/i.test(String(title || ''));
   }
   function cleanTitle(title) {
     return String(title || '').replace(/\s*·\s*(Kağız nüsxə|Бумажный экземпляр|Paper copy)\s*$/i, '').trim();
@@ -267,13 +302,18 @@
     b.hidden = n === 0;
   }
 
-  function cartAdd(title) {
+  function cartAdd(title, price) {
     var items = cartRead();
     var name = cleanTitle(title);
     for (var i = 0; i < items.length; i++) {
-      if (items[i].title === name) { items[i].qty = (items[i].qty || 1) + 1; cartWrite(items); return items; }
+      if (items[i].title === name) {
+        items[i].qty = (items[i].qty || 1) + 1;
+        if (price && !items[i].price) items[i].price = price;
+        cartWrite(items);
+        return items;
+      }
     }
-    items.push({ title: name, qty: 1 });
+    items.push({ title: name, qty: 1, price: price || '' });
     cartWrite(items);
     return items;
   }
@@ -298,7 +338,8 @@
       add.setAttribute('data-cart-btn', '1');
       add.addEventListener('click', function () {
         var title = btn.getAttribute('data-order') || '';
-        cartAdd(title);
+        var price = btn.getAttribute('data-price') || '';
+        cartAdd(title, price);
         add.textContent = cstr('added');
         setTimeout(function () { add.textContent = cstr('add'); }, 1200);
       });
@@ -341,10 +382,11 @@
         body.innerHTML = '<p class="cart-empty">' + cstr('empty') + '</p>';
         return;
       }
-      var sum = 0, hasAsk = false, rows = '';
+      var sum = 0, hasAsk = false, rows = '', hasColl = false;
       items.forEach(function (it, i) {
-        var p = priceOf(it.title);
+        var p = priceOf(it);
         if (p) sum += p.num * (it.qty || 1); else hasAsk = true;
+        if (isCollection(it.title)) hasColl = true;
         rows += '<div class="cart-row">' +
                   '<span class="cart-row__t">' + it.title + '</span>' +
                   '<span class="cart-row__p">' + (p ? (p.num + ' ' + p.cur) : cstr('ask')) + '</span>' +
@@ -352,22 +394,57 @@
                   '<button type="button" class="cart-row__x" data-x="' + i + '">' + cstr('remove') + '</button>' +
                 '</div>';
       });
+      /* Скидка 20% на всю коллекцию Фрейда: в корзине есть позиция-коллекция */
+      var discount = hasColl ? Math.round(sum * COLLECTION_DISCOUNT / 100) : 0;
+      var payable = sum - discount;
+
+      /* Геолокация: определяем адрес доставки в ОДИН КЛИК по кнопке.
+         Согласие спрашивает браузер; при отказе или ошибке — обычный ввод. */
+      function geoFill() {
+        var out = $('#c-addr', body);
+        if (!out) return;
+        if (!navigator.geolocation) { alert(cstr('geoNo')); return; }
+        out.value = cstr('geoWait');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          var la = pos.coords.latitude.toFixed(6);
+          var lo = pos.coords.longitude.toFixed(6);
+          var url = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=1&lat=' + la + '&lon=' + lo;
+          fetch(url, { headers: { 'Accept': 'application/json' } })
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+              var a = (d && d.address) || {};
+              var parts = [a.road || a.pedestrian, a.house_number, a.suburb || a.neighbourhood,
+                           a.city || a.town || a.village || a.county, a.country].filter(Boolean);
+              out.value = parts.length ? parts.join(', ')
+                                       : (d && d.display_name) || (la + ', ' + lo);
+            })
+            .catch(function () { out.value = la + ', ' + lo; });
+        }, function () { out.value = ''; alert(cstr('geoNo')); },
+           { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+      }
+
       body.innerHTML =
         rows +
         '<p class="cart-sum">' + cstr('total') + ': <b>' + sum + ' ₼</b>' +
           (hasAsk ? ' <span class="cart-note">' + cstr('noPrice') + '</span>' : '') + '</p>' +
+        (discount ? '<p class="cart-sum">' + cstr('discount') + ' −' + COLLECTION_DISCOUNT +
+          '%: <b>−' + discount + ' ₼</b></p>' +
+          '<p class="cart-sum">' + cstr('payable') + ': <b>' + payable + ' ₼</b></p>' : '') +
         '<form id="cart-form" novalidate>' +
           '<label class="field"><span>' + cstr('nameL') + '</span>' +
             '<input id="c-name" type="text" autocomplete="name" required></label>' +
           '<label class="field"><span>' + cstr('phoneL') + '</span>' +
             '<input id="c-phone" type="tel" placeholder="+994 XX XXX XX XX" autocomplete="tel" required></label>' +
           '<label class="field"><span>' + cstr('addrL') + '</span>' +
-            '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea></label>' +
-          '<small class="field__hint">' + (CART_T[cartLang()].noPrice) + '</small>' +
+            '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
+            '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
           '<button class="btn btn--main" type="submit">' + cstr('checkout') + '</button>' +
         '</form>' +
         '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>' +
         '<button type="button" class="cart-clear" id="cart-clear">' + cstr('clear') + '</button>';
+
+      var geoB = $('#c-geo', body);
+      if (geoB) geoB.addEventListener('click', geoFill);
 
       $$('[data-x]', body).forEach(function (b) {
         b.addEventListener('click', function () { cartRemove(+b.getAttribute('data-x')); render(); });
@@ -391,7 +468,21 @@
         if (!name || !phone || !addr) { alert(cstr('fill')); return; }
         var parts = name.split(/\s+/);
         var list = cartRead();
-        var note = list.map(function (x) { return x.title + ' x' + (x.qty || 1); }).join('; ');
+        /* Сумма и скидка уходят в заказ: без них на складе не знают, сколько
+           брать с покупателя. Скидка 20% — если в корзине вся коллекция Фрейда. */
+        var tot = 0, coll = false;
+        list.forEach(function (x) {
+          var pp = priceOf(x);
+          if (pp) tot += pp.num * (x.qty || 1);
+          if (isCollection(x.title)) coll = true;
+        });
+        var disc = coll ? Math.round(tot * COLLECTION_DISCOUNT / 100) : 0;
+        var note = list.map(function (x) {
+          var pp = priceOf(x);
+          return x.title + ' x' + (x.qty || 1) + (pp ? ' = ' + (pp.num * (x.qty || 1)) + ' ₼' : '');
+        }).join('; ');
+        note += ' | Cəm: ' + tot + ' ₼';
+        if (disc) note += ' | Kolleksiya endirimi ' + COLLECTION_DISCOUNT + '%: −' + disc + ' ₼ | Ödəniləcək: ' + (tot - disc) + ' ₼';
         var payload = {
           type: 'registration',
           fname: parts[0] || '',
@@ -402,6 +493,7 @@
           note: note,
           source: 'ragimoff.org' + location.pathname
         };
+        if (disc) payload.discount = String(COLLECTION_DISCOUNT);
         var body2 = JSON.stringify(payload);
         var btn = $('button[type="submit"]', body);
         if (btn) { btn.textContent = cstr('send'); btn.disabled = true; }
