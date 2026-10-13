@@ -30,5 +30,29 @@
     <a class="pay__b pay__b--ghost" href="/">Ana səhifə</a>
     <p class="pay__note">Sifariş GÖNDƏRİLDİKDƏN SONRA təsdiqlənir: əvvəlcə kitabı əldə edirsiniz, sonra ödəyirsiniz. Əgər bu ödənişi siz etməmisinizsə, bizimlə əlaqə saxlayın.</p>
   </main>
+<script>
+/* КРУПНЫЙ ЗАКАЗ ОПЛАЧИВАЕТСЯ ЧАСТЯМИ.
+   У Epoint есть предел одной операции (найден перебором: 480 ₼ проходит,
+   510 ₼ отвергается). Полная коллекция Фрейда стоит больше, поэтому сервер
+   делит её на части. После каждой оплаченной части спрашиваем сервер:
+   «есть ещё?» — и уводим на следующую. Для покупателя это один процесс. */
+(function () {
+  var oid = new URLSearchParams(location.search).get('order_id');
+  var box = document.querySelector('.pay__m');
+  if (!oid) return;
+  if (box) box.textContent = 'Ödəniş yoxlanılır…';
+  fetch('https://api.ragimoff.org/api/billing/epoint/next?order_id=' + encodeURIComponent(oid))
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d && d.ok && !d.done && d.redirect_url) {
+        if (box) box.textContent = 'Növbəti hissəyə keçilir (' + d.part + '/' + d.of + ')…';
+        location.href = d.redirect_url;
+      } else if (d && d.ok && d.done) {
+        if (box) box.textContent = 'Bütün hissələr ödənildi. Təşəkkür edirik!';
+      }
+    })
+    .catch(function () {});
+})();
+</script>
 </body>
 </html>
