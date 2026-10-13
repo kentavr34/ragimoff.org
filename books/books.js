@@ -222,6 +222,8 @@
           noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.', pay: 'Ödənişə keç', payErr: 'Ödənişə keçmək alınmadı. Yenidən cəhd edin.',
           discount: 'Bütün Freyd kolleksiyasına endirim',
           payable: 'Ödəniləcək',
+          buyLang: 'Kitabın dili',
+          freudAzOnly: 'Freydin kitabları yalnız Azərbaycan dilində satılır.',
           geoBtn: 'Ünvanı avtomatik təyin et',
           geoWait: 'Yer müəyyən edilir…',
           geoNo: 'Ünvanı təyin etmək alınmadı — zəhmət olmasa əl ilə yazın.' },
@@ -236,6 +238,8 @@
           noPrice: 'Цену уточним по телефону.', pay: 'Перейти к оплате', payErr: 'Не удалось перейти к оплате. Попробуйте снова.',
           discount: 'Скидка на всю коллекцию Фрейда',
           payable: 'К оплате',
+          buyLang: 'Язык издания',
+          freudAzOnly: 'Книги Фрейда продаются только на азербайджанском.',
           geoBtn: 'Определить адрес автоматически',
           geoWait: 'Определяем местоположение…',
           geoNo: 'Не удалось определить адрес — введите вручную.' },
@@ -250,6 +254,8 @@
           noPrice: 'We will confirm the price by phone.', pay: 'Proceed to payment', payErr: 'Could not proceed to payment. Please try again.',
           discount: 'Full Freud collection discount',
           payable: 'Payable',
+          buyLang: 'Edition language',
+          freudAzOnly: 'Books by Freud are sold in Azerbaijani only.',
           geoBtn: 'Detect my address',
           geoWait: 'Detecting location…',
           geoNo: 'Could not detect the address — please type it.' }
@@ -258,6 +264,43 @@
   function cartLang() {
     var l = (document.documentElement.lang || 'az').slice(0, 2).toLowerCase();
     return CART_T[l] ? l : 'az';
+  }
+
+  /* ── ЯЗЫК ПОКУПКИ (Кенан 13.10, голосом) ────────────────────────────────
+     «В книгах Фрейда язык только азербайджанский можно выбрать при покупке.
+      А книги касаются клинической психиатрии, других — покупка на других языках
+      тоже открыто. Клиническая психиатрия, эра Феникса, вирус ВИНИ, шизофрения —
+      эти книги на всех трёх языках можно купить. И язык нужно выбирать
+      опционально.»
+
+     ПРАВИЛО:
+       • в корзине ТОЛЬКО книги Фрейда → язык покупки ВСЕГДА азербайджанский,
+         даже если человек читает русскую или английскую версию сайта: продаём
+         только наш азербайджанский перевод;
+       • есть авторская книга → язык выбирает покупатель (азербайджанский,
+         русский, английский).
+     Названия ниже — это data-order карточек, то есть ровно то, что попадает
+     в корзину. Список менять только вместе с каталогом. */
+  var MY_BOOKS = ['Klinik Psixiatriya', 'Günahkarlıq Virusu',
+                  'Şizofreniya', 'Feniks Erası'];
+  var BUY_LANGS = [['az', 'AZ'], ['ru', 'RU'], ['en', 'EN']];
+
+  function isMyBook(title) {
+    var s = cleanTitle(title || '');
+    for (var i = 0; i < MY_BOOKS.length; i++) {
+      if (s.indexOf(MY_BOOKS[i]) === 0) return true;   // \u043d\u0430\u0447\u0430\u043b\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0435\u0442
+    }
+    return false;
+  }
+
+  function cartHasMyBook() {
+    return cartRead().some(function (x) { return isMyBook(x.title); });
+  }
+
+  function cartBuyLang() {
+    if (!cartHasMyBook()) return 'az';       // \u0424\u0440\u0435\u0439\u0434 \u2014 \u0442\u043e\u043b\u044c\u043a\u043e \u0430\u0437\u0435\u0440\u0431\u0430\u0439\u0434\u0436\u0430\u043d\u0441\u043a\u0438\u0439
+    var sel = document.querySelector('input[name="buy-lang"]:checked');
+    return sel ? sel.value : 'az';
   }
   function cstr(k) { return CART_T[cartLang()][k]; }
 
@@ -445,6 +488,19 @@
           '%: <b>−' + discount + ' ₼</b></p>' +
           '<p class="cart-sum">' + cstr('payable') + ': <b>' + payable + ' ₼</b></p>' : '') +
         '<form id="cart-form" novalidate>' +
+          /* Язык покупки. Для книг Фрейда выбора НЕТ: продаём только наш
+             азербайджанский перевод, поэтому вместо выбора — честное пояснение,
+             а не пустой список. Для авторских книг — выбор из трёх языков. */
+          (cartHasMyBook()
+            ? '<div class="field"><span>' + cstr('buyLang') + '</span>' +
+              '<div class="buy-langs">' +
+              BUY_LANGS.map(function (p, i) {
+                return '<label class="buy-lang' + (i === 0 ? ' is-on' : '') + '">' +
+                  '<input type="radio" name="buy-lang" value="' + p[0] + '"' +
+                  (i === 0 ? ' checked' : '') + '>' + p[1] + '</label>';
+              }).join('') +
+              '</div></div>'
+            : '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>') +
           '<label class="field"><span>' + cstr('nameL') + '</span>' +
             '<input id="c-name" type="text" autocomplete="name" required></label>' +
           '<label class="field"><span>' + cstr('phoneL') + '</span>' +
@@ -492,7 +548,8 @@
         fetch(PAY_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad })
+          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
+                                   lang: cartBuyLang() })
         }).then(function (r) { return r.json(); }).then(function (d) {
           if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
           if (pb) { pb.disabled = false; pb.textContent = cstr('pay'); }

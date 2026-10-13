@@ -293,3 +293,18 @@ body::after {
 .card__price{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 .btn{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,color .18s ease}
 .card:hover .cover{transform:translateY(-4px)}
+
+
+/* ── Выбор языка покупки в корзине (Кенан 13.10) ──────────────────────────
+   Появляется ТОЛЬКО когда в корзине есть авторская книга. У книг Фрейда выбора
+   нет — продаём только наш азербайджанский перевод, и там вместо переключателя
+   стоит пояснение .cart-note--lang. */
+.buy-langs{display:flex;gap:8px;margin-top:6px}
+.buy-lang{position:relative;flex:1;text-align:center;padding:9px 6px;border-radius:6px;
+  cursor:pointer;border:1px solid rgba(255,255,255,.14);font-size:13px;font-weight:700;
+  letter-spacing:.04em;user-select:none;transition:border-color .15s,background .15s,color .15s}
+.buy-lang input{position:absolute;opacity:0;pointer-events:none}
+.buy-lang:hover{border-color:rgba(201,162,39,.5)}
+.buy-lang.is-on{border-color:#C9A227;background:rgba(201,162,39,.14);color:#E8C86A}
+.cart-note--lang{margin:0 0 12px;padding:10px 12px;border-left:3px solid #C9A227;
+  background:rgba(201,162,39,.08);font-size:13px;line-height:1.5;border-radius:6px}
