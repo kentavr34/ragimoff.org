@@ -15,6 +15,8 @@
   /* эндпоинты заказа — те же, что у формы «Kitabın sifarişi» на сайте:
      сервер сайта (api.ragimoff.org) + Apps Script (Google-таблица + Telegram) */
   var BOOK_API = 'https://api.ragimoff.org/api/book-order';
+  /* создание платежа Epoint: сумму считает СЕРВЕР, браузеру доверять нельзя */
+  var PAY_API = 'https://api.ragimoff.org/api/billing/epoint/create';
   var ORDER_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
 
   /* строки интерфейса — из страницы (window.__booksUI), запас — азербайджанский */
@@ -217,7 +219,7 @@
           nameL: 'Ad Soyad', phoneL: 'Mobil nömrə', addrL: 'Çatdırılma ünvanı',
           addrPh: 'Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi',
           fill: 'Zəhmət olmasa Ad Soyad, Telefon və ünvanı daxil edin.',
-          noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.',
+          noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.', pay: 'Ödənişə keç', payErr: 'Ödənişə keçmək alınmadı. Yenidən cəhd edin.',
           discount: 'Bütün Freyd kolleksiyasına endirim',
           payable: 'Ödəniləcək',
           geoBtn: 'Ünvanı avtomatik təyin et',
@@ -231,7 +233,7 @@
           addrPh: 'Страна, город, улица, дом, квартира, индекс',
           fill: 'Пожалуйста, укажите имя, телефон и адрес.',
           fill: 'Пожалуйста, укажите имя, телефон и адрес.',
-          noPrice: 'Цену уточним по телефону.',
+          noPrice: 'Цену уточним по телефону.', pay: 'Перейти к оплате', payErr: 'Не удалось перейти к оплате. Попробуйте снова.',
           discount: 'Скидка на всю коллекцию Фрейда',
           payable: 'К оплате',
           geoBtn: 'Определить адрес автоматически',
@@ -245,7 +247,7 @@
           addrPh: 'Country, city, street, building, apartment, postal code',
           fill: 'Please provide your name, phone and address.',
           fill: 'Please provide your name, phone and address.',
-          noPrice: 'We will confirm the price by phone.',
+          noPrice: 'We will confirm the price by phone.', pay: 'Proceed to payment', payErr: 'Could not proceed to payment. Please try again.',
           discount: 'Full Freud collection discount',
           payable: 'Payable',
           geoBtn: 'Detect my address',
@@ -438,10 +440,14 @@
           '<label class="field"><span>' + cstr('addrL') + '</span>' +
             '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
             '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
-          '<button class="btn btn--main" type="submit">' + cstr('checkout') + '</button>' +
+          '<button class="btn btn--main" type="button" id="c-pay">' + cstr('pay') + '</button>' +
+          '<button class="btn btn--cart" type="submit">' + cstr('checkout') + '</button>' +
         '</form>' +
         '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>' +
         '<button type="button" class="cart-clear" id="cart-clear">' + cstr('clear') + '</button>';
+
+      var payB = $('#c-pay', body);
+      if (payB) payB.addEventListener('click', epointPay);
 
       var geoB = $('#c-geo', body);
       if (geoB) geoB.addEventListener('click', geoFill);
@@ -459,6 +465,31 @@
         });
       });
       $('#cart-clear', body).addEventListener('click', function () { cartWrite([]); render(); });
+
+      /* ОПЛАТА: после формы заказчика — переход на страницу оплаты Epoint.
+         Сумму считает СЕРВЕР: в браузере её можно подменить в консоли. */
+      function epointPay() {
+        var list = cartRead();
+        if (!list.length) return;
+        var nm = ($('#c-name', body).value || '').trim();
+        var ph = ($('#c-phone', body).value || '').trim();
+        var ad = ($('#c-addr', body).value || '').trim();
+        if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
+        var pb = $('#c-pay', body);
+        if (pb) { pb.disabled = true; pb.textContent = cstr('send'); }
+        fetch(PAY_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad })
+        }).then(function (r) { return r.json(); }).then(function (d) {
+          if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
+          if (pb) { pb.disabled = false; pb.textContent = cstr('pay'); }
+          alert((d && d.error) || cstr('payErr'));
+        }).catch(function () {
+          if (pb) { pb.disabled = false; pb.textContent = cstr('pay'); }
+          alert(cstr('payErr'));
+        });
+      }
 
       $('#cart-form', body).addEventListener('submit', function (e) {
         e.preventDefault();
