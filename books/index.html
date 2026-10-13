@@ -19,7 +19,44 @@
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
-  <style>[hidden] { display: none !important; }</style>
+  <style>[hidden] { display: none !important; }
+  /* ── БАННЕР КОЛЛЕКЦИИ: горячее предложение над библиотекой ── */
+  .coll-banner{margin:2.2rem 0 2.6rem;border-radius:22px;overflow:hidden;
+    background:linear-gradient(135deg,#1a1206 0%,#3a2a08 45%,#6b4e0d 100%);
+    border:1px solid rgba(201,162,39,.45);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+  .coll-banner__inner{display:grid;grid-template-columns:260px 1fr;gap:28px;
+    padding:30px 32px;align-items:center}
+  @media(max-width:760px){.coll-banner__inner{grid-template-columns:1fr;gap:20px;padding:24px 20px}}
+  .coll-banner__cover{display:flex;justify-content:center}
+  .coll-banner__stack{position:relative;width:180px;height:250px}
+  .coll-banner__b{position:absolute;inset:0;border-radius:8px;
+    background:linear-gradient(160deg,#c9a227,#8a6d14);box-shadow:0 8px 22px rgba(0,0,0,.5)}
+  .coll-banner__b--1{transform:rotate(-7deg) translate(-12px,6px);opacity:.75}
+  .coll-banner__b--2{transform:rotate(-3deg) translate(-5px,3px);opacity:.9}
+  .coll-banner__front{position:absolute;inset:0;border-radius:8px;
+    background:linear-gradient(160deg,#f4e3a8 0%,#c9a227 55%,#8a6d14 100%);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:16px 14px;color:#1a1206;box-shadow:0 10px 26px rgba(0,0,0,.55)}
+  .coll-banner__author{font-size:11px;letter-spacing:.16em;font-weight:700;opacity:.85}
+  .coll-banner__title{font-size:26px;line-height:1.05;font-weight:800;letter-spacing:.01em}
+  .coll-banner__count{font-size:12px;font-weight:800;letter-spacing:.1em;
+    background:#1a1206;color:#f4e3a8;align-self:flex-start;padding:3px 9px;border-radius:99px}
+  .coll-banner__tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;
+    color:#1a1206;background:#e8c65a;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+  .coll-banner__h{margin:0 0 10px;font-size:clamp(22px,3.2vw,32px);color:#fff;line-height:1.15}
+  .coll-banner__p{margin:0 0 16px;color:#e6dcc0;font-size:16px;line-height:1.6;max-width:60ch}
+  .coll-banner__price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
+  .coll-banner__old{color:#b9ab86;text-decoration:line-through;font-size:19px}
+  .coll-banner__new{color:#fff;font-size:38px;font-weight:900;letter-spacing:-.02em}
+  .coll-banner__save{background:#1f7a3d;color:#fff;font-size:13px;font-weight:800;
+    padding:5px 12px;border-radius:99px}
+  .coll-banner__note{margin:0 0 20px;color:#c8bb98;font-size:13.5px}
+  .coll-banner__btn{background:linear-gradient(135deg,#ffd75e,#c9a227);color:#1a1206;
+    font-weight:900;font-size:17px;padding:16px 34px;border:0;border-radius:14px;
+    box-shadow:0 10px 26px rgba(201,162,39,.42);cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .coll-banner__btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(201,162,39,.55)}
+  .coll-banner__hint{margin:12px 0 0;color:#a89b78;font-size:12.5px}
+</style>
 </head>
 <body>
 
@@ -62,7 +99,48 @@
         <button class="chip" data-author="freud">Ziqmund Freyd</button>
       </div>
 
-      <div class="grid">
+      
+    <section class="coll-banner">
+      <div class="coll-banner__inner">
+        <div class="coll-banner__cover">
+          <div class="coll-banner__stack">
+            <span class="coll-banner__b coll-banner__b--1"></span>
+            <span class="coll-banner__b coll-banner__b--2"></span>
+            <span class="coll-banner__b coll-banner__b--3"></span>
+            <div class="coll-banner__front">
+              <span class="coll-banner__author">ZİQMUND FREYD</span>
+              <span class="coll-banner__title">BÜTÜN<br>ƏSƏRLƏRİ</span>
+              <span class="coll-banner__count">43 KİTAB</span>
+            </div>
+          </div>
+        </div>
+        <div class="coll-banner__body">
+          <span class="coll-banner__tag">TOP SET · ƏN SƏRFƏLİ SEÇİM</span>
+          <h2 class="coll-banner__h">Bütün Freyd kolleksiyası</h2>
+          <p class="coll-banner__p">
+            Freydin bütün <b>43 kitabı</b> bir dəstədə — azərbaycan dilində,
+            tam mətnlə. Ayrı-ayrı almaqdan <b>20% daha sərfəli</b>.
+          </p>
+          <div class="coll-banner__price">
+            <span class="coll-banner__old">1290 ₼</span>
+            <span class="coll-banner__new">1032 ₼</span>
+            <span class="coll-banner__save">258 ₼ qənaət</span>
+          </div>
+          <p class="coll-banner__note">
+            43 kitab · hər kitab 30 ₼ əvəzinə <b>24.00 ₼</b> · 20% endirim
+          </p>
+          <button class="btn coll-banner__btn" type="button" data-cart-btn="1"
+                  data-order="Bütün Freyd kolleksiyası" data-price="1032 ₼"
+                  data-collection="freud" data-discount="20">
+            Bütün kolleksiyanı səbətə at
+          </button>
+          <p class="coll-banner__hint">
+            Səbətdə ad, telefon və ünvanı doldurub Epoint ilə ödəyirsiniz.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="grid">
 
         <h2 class="author-sec" data-author="kenan">Kənan Rəhimov</h2>
 
@@ -776,14 +854,6 @@
         </article>
 
       </div>
-    </section>
-
-  
-    <section class="book-toc" style="margin-top:2.5rem">
-      <h2 class="toc-title">BÜTÜN FREYD KOLLEKSİYASI</h2>
-      <p style="margin:.5rem 0">Freydin bütün kitablarını birlikdə sifariş edin — <b>20% endirim</b>.</p>
-      <p style="margin:.5rem 0">Adi qiymət: 1260 ₼ · <b>Endirimlə: 1008 ₼</b></p>
-      <p style="margin:.8rem 0"><button class="btn" type="button" data-order="Bütün Freyd kolleksiyası" data-price="1008 ₼" data-collection="freud" data-discount="20">Bütün kolleksiyanı sifariş et</button></p>
     </section>
 </main>
 
