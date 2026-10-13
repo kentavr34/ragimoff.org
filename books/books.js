@@ -88,6 +88,7 @@
     var select = $('#o-book');
     var nameI = $('#o-name');
     var phoneI = $('#o-phone');
+    var addrI = $('#o-address');   /* 13.10.2026: адрес доставки бумажной книги */
     var current = '';
     var lastFocus = null;
 
@@ -124,7 +125,11 @@
       e.preventDefault();
       var name = (nameI.value || '').trim();
       var phone = (phoneI.value || '').trim();
-      if (!name || !phone) { alert(t('fill', 'Zəhmət olmasa Ad Soyad və Telefon daxil edin.')); return; }
+      var address = addrI ? (addrI.value || '').trim() : '';
+      if (!name || !phone || !address) {
+        alert(t('fill', 'Zəhmət olmasa Ad Soyad, Telefon və Çatdırılma ünvanını daxil edin.'));
+        return;
+      }
       var parts = name.split(/\s+/);
       var book = (select && select.value) || current;   /* «Название · цена» */
       var payload = {
@@ -132,6 +137,7 @@
         fname: parts[0] || '',
         lname: parts.slice(1).join(' ') || '',
         phone: phone,
+        address: address,          /* сервер /api/book-order пишет это в book_orders.address */
         service: 'Kitab sifarişi — ' + book,
         note: book,
         source: 'ragimoff.org' + location.pathname

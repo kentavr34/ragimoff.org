@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=6">
+  <link rel="stylesheet" href="/books/books.css?v=7">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
@@ -690,6 +690,13 @@
           <span>Mobil nömrə</span>
           <input id="o-phone" type="tel" name="phone" placeholder="+994 XX XXX XX XX" autocomplete="tel" required>
         </label>
+        <!-- 13.10.2026: адрес доставки. Бумажная книга отправляется почтой, а форма
+             его не собирала — в базе сервера поле address было, но всегда пустым. -->
+        <label class="field">
+          <span>Çatdırılma ünvanı</span>
+          <textarea id="o-address" name="address" rows="2" placeholder="Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi" autocomplete="street-address" required></textarea>
+        </label>
+        <small class="field__hint">Kağız nüsxə poçtla göndərilir. Çatdırılma və ödəniş şərtləri telefonla dəqiqləşdirilir.</small>
         <button class="btn btn--main" type="submit">Sifariş et</button>
       </form>
       <div class="modal__ok" id="o-ok" hidden>
