@@ -220,6 +220,9 @@
           addrPh: 'Ölkə, şəhər, küçə, ev, mənzil, poçt indeksi',
           fill: 'Zəhmət olmasa Ad Soyad, Telefon və ünvanı daxil edin.',
           noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.', pay: 'Ödənişə keç', payErr: 'Ödənişə keçmək alınmadı. Yenidən cəhd edin.',
+          payMethod: 'Ödəniş üsulu', payFull: 'Kartla tam ödəniş', payInst: 'Taksitlə ödəniş',
+          payBtn: 'Ödə', instBank: 'bank rəsmiləşdirir', instPer: 'ay',
+          orderOnly: 'Sifariş ver — qiyməti telefonla dəqiqləşdirəcəyik',
           discount: 'Bütün Freyd kolleksiyasına endirim',
           payable: 'Ödəniləcək',
           buyLang: 'Kitabın dili',
@@ -241,6 +244,9 @@
           fill: 'Пожалуйста, укажите имя, телефон и адрес.',
           fill: 'Пожалуйста, укажите имя, телефон и адрес.',
           noPrice: 'Цену уточним по телефону.', pay: 'Перейти к оплате', payErr: 'Не удалось перейти к оплате. Попробуйте снова.',
+          payMethod: 'Способ оплаты', payFull: 'Полная оплата картой', payInst: 'Рассрочка',
+          payBtn: 'Оплатить', instBank: 'оформляет банк', instPer: 'мес.',
+          orderOnly: 'Оформить заказ — цену уточним по телефону',
           discount: 'Скидка на всю коллекцию Фрейда',
           payable: 'К оплате',
           buyLang: 'Язык издания',
@@ -262,6 +268,9 @@
           fill: 'Please provide your name, phone and address.',
           fill: 'Please provide your name, phone and address.',
           noPrice: 'We will confirm the price by phone.', pay: 'Proceed to payment', payErr: 'Could not proceed to payment. Please try again.',
+          payMethod: 'Payment method', payFull: 'Full card payment', payInst: 'Instalments',
+          payBtn: 'Pay', instBank: 'arranged by the bank', instPer: 'mo.',
+          orderOnly: 'Place the order — we will confirm the price by phone',
           discount: 'Full Freud collection discount',
           payable: 'Payable',
           buyLang: 'Edition language',
@@ -670,30 +679,60 @@
           '<label class="field"><span>' + cstr('addrL') + '</span>' +
             '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
             '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
-          '<button class="btn btn--main" type="button" id="c-pay">' + cstr('pay') + '</button>' +
-          /* РАССРОЧКА ДЛЯ КНИГ (Кенан 13.10): «то же самое с книгами можно сделать,
-             чтобы они могли выбрать рассрочку… они через какой-то банк оформляют
-             рассрочку, а не через нашу систему». Кнопка отправляет заявку с выбранным
-             сроком; деньги через ePoint при этом НЕ берём — иначе вышла бы двойная
-             оплата, ведь банк списывает своё. */
-          '<div class="inst-wrap">' +
+
+          /* ── СПОСОБ ОПЛАТЫ — ДО КНОПКИ, А НЕ ПОСЛЕ ────────────────────────
+             Кенан 14.10.2026: «в меню заказа перейти к оплате стоит до выбора
+             способа оплаты — сразу или в рассрочку — по логике должно быть
+             обратно».
+             ОН ПРАВ, и это не мелочь. Так устроены все крупные площадки
+             (Amazon, Ozon, Shopify, Stripe): сначала человек выбирает СПОСОБ,
+             и только потом нажимает кнопку — при этом на самой кнопке написана
+             сумма, которую он заплатит. Иначе получалось две беды:
+                1) кнопка «Перейти к оплате» стояла ВЫШЕ выбора рассрочки, и
+                   человек уходил платить, не увидев, что есть рассрочка;
+                2) в форме было ДВЕ кнопки — «Перейти к оплате» и «Оформить
+                   заказ». Вторая принимала заказ без оплаты, и человек решал,
+                   что уже купил. Именно на это Кенан и попал.
+             ТЕПЕРЬ: один выбор способа и ОДНА кнопка с суммой. */
+          '<div class="field" style="margin-top:18px;"><span>' + cstr('payMethod') + '</span>' +
+            '<div class="pay-choice">' +
+              '<label class="pay-opt"><input type="radio" name="pay-mode" value="full" checked>' +
+                '<span>' + cstr('payFull') + ' — <b>' + payable + ' ₼</b>' +
+                (discount ? ' <s style="opacity:.55;">' + sum + ' ₼</s>' : '') + '</span></label>' +
+              '<label class="pay-opt"><input type="radio" name="pay-mode" value="inst">' +
+                '<span>' + cstr('payInst') + ' — ' + cstr('instBank') + '</span></label>' +
+            '</div>' +
+          '</div>' +
+          '<div id="c-inst-box" style="display:none;margin:12px 0 0;">' +
             '<label class="field"><span>' + cstr('instL') + '</span>' +
               '<select id="c-months">' +
-                '<option value="0">' + cstr('instNo') + '</option>' +
                 '<option value="6">6 ' + cstr('instMo') + '</option>' +
-                '<option value="12">12 ' + cstr('instMo') + '</option>' +
+                '<option value="12" selected>12 ' + cstr('instMo') + '</option>' +
                 '<option value="24">24 ' + cstr('instMo') + '</option>' +
               '</select></label>' +
-            '<button class="btn btn--ghost" type="button" id="c-inst">' + cstr('instBtn') + '</button>' +
             '<p class="inst-hint">' + cstr('instHint') + '</p>' +
           '</div>' +
-          '<button class="btn btn--cart" type="submit">' + cstr('checkout') + '</button>' +
+          '<button class="btn btn--main" type="button" id="c-pay" style="width:100%;margin-top:16px;">' +
+            (hasAsk && !sum ? cstr('orderOnly') : cstr('payBtn') + ' <span id="c-pay-sum">' + payable + ' ₼</span>') +
+          '</button>' +
         '</form>' +
         '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>' +
         '<button type="button" class="cart-clear" id="cart-clear">' + cstr('clear') + '</button>';
 
       var payB = $('#c-pay', body);
-      if (payB) payB.addEventListener('click', epointPay);
+      if (payB) payB.addEventListener('click', function () {
+        /* ЕСЛИ ЦЕНЫ НЕТ (книга «по запросу») — платить нечего: собираем заявку,
+           и менеджер звонит с ценой. Если цена есть — ведём на оплату. */
+        if (hasAsk && !sum) { sendOrderOnly(); return; }
+        var mode = 'full';
+        $$('input[name="pay-mode"]', body).forEach(function (r) { if (r.checked) mode = r.value; });
+        var m = 0;
+        if (mode === 'inst') {
+          var sel = $('#c-months', body);
+          m = parseInt((sel && sel.value) || '12', 10) || 12;
+        }
+        epointPay(m);
+      });
 
       /* ПРОФИЛЬ: если человек уже заказывал с этого устройства — не заставляем
          вводить всё заново. Показываем «Это ваш профиль?» и по «Да» подставляем
@@ -709,15 +748,37 @@
         });
       })();
 
-      /* Рассрочка: тот же запрос, но с выбранным сроком. Сервер по нему понимает,
-         что оплату через ePoint брать нельзя — рассрочку оформляет банк. */
-      var instB = $('#c-inst', body);
-      if (instB) instB.addEventListener('click', function () {
-        var sel = $('#c-months', body);
-        var m = parseInt((sel && sel.value) || '0', 10) || 0;
-        if (!m) { alert(cstr('instPick')); return; }
-        epointPay(m);
-      });
+      /* ВЫБОР СПОСОБА ОПЛАТЫ УПРАВЛЯЕТ КНОПКОЙ.
+         Кенан 14.10.2026: «перейти к оплате стоит до выбора способа оплаты —
+         по логике должно быть обратно». Теперь наоборот: сначала способ, потом
+         кнопка, и НА КНОПКЕ НАПИСАНА СУММА, которую человек заплатит.
+         При рассрочке сумма на кнопке — это МЕСЯЧНЫЙ ВЗНОС, а не вся цена:
+         иначе человек решит, что с него спишут всё сразу. */
+      var modes = $$('input[name="pay-mode"]', body);
+      var instBox = $('#c-inst-box', body);
+      var paySum = $('#c-pay-sum', body);
+      function syncPayBtn() {
+        var mode = 'full';
+        modes.forEach(function (r) { if (r.checked) mode = r.value; });
+        if (instBox) instBox.style.display = (mode === 'inst') ? 'block' : 'none';
+        if (paySum) {
+          if (mode === 'inst') {
+            var sel = $('#c-months', body);
+            var m = parseInt((sel && sel.value) || '12', 10) || 12;
+            paySum.textContent = (payable && m ? Math.ceil(payable / m) : payable) + ' ₼ / ' +
+                                 m + ' ' + cstr('instPer');
+          } else {
+            paySum.textContent = payable + ' ₼';
+          }
+        }
+      }
+      modes.forEach(function (r) { r.addEventListener('change', syncPayBtn); });
+      var monSel = $('#c-months', body);
+      if (monSel) monSel.addEventListener('change', syncPayBtn);
+      syncPayBtn();
+      /* Старая кнопка рассрочки убрана: теперь способ выбирается переключателем,
+         а кнопка одна. Оставлять вторую кнопку опаснее, чем кажется — именно она
+         принимала заказ БЕЗ оплаты, и Кенан решил, что уже купил книгу. */
 
       var geoB = $('#c-geo', body);
       if (geoB) geoB.addEventListener('click', geoFill);
@@ -748,8 +809,7 @@
         /* Запоминаем профиль: следующий заказ с этого устройства заполнится сам. */
         profileSave({ name: nm, phone: ph, address: ad });
         var pb = $('#c-pay', body);
-        var ib = $('#c-inst', body);
-        var btn = (months > 0 && ib) ? ib : pb;
+        var btn = pb;
         var label = btn ? btn.textContent : '';
         if (btn) { btn.disabled = true; btn.textContent = cstr('send'); }
         function back() {
@@ -779,13 +839,18 @@
         });
       }
 
-      $('#cart-form', body).addEventListener('submit', function (e) {
-        e.preventDefault();
+      /* ЗАКАЗ БЕЗ ОПЛАТЫ — только для книг с ценой «по запросу».
+         Раньше это был обработчик кнопки «Оформить заказ», которая стояла РЯДОМ
+         с «Перейти к оплате». Человек нажимал её и получал «Спасибо» БЕЗ оплаты,
+         решая, что купил книгу. Именно на это Кенан и попал 14.10.2026.
+         Теперь такой путь остался ТОЛЬКО там, где он честен: у книги нет цены,
+         платить нечего, и менеджер звонит с ценой. При наличии цены кнопка одна —
+         «Оплатить», и она ведёт на оплату. */
+      function sendOrderOnly() {
         var name = ($('#c-name', body).value || '').trim();
         var phone = ($('#c-phone', body).value || '').trim();
         var addr = ($('#c-addr', body).value || '').trim();
         if (!name || !phone || !addr) { alert(cstr('fill')); return; }
-        /* Запоминаем профиль и здесь: заказ оформлен — данные пригодятся в следующий раз. */
         profileSave({ name: name, phone: phone, address: addr });
         var parts = name.split(/\s+/);
         var list = cartRead();
@@ -816,7 +881,7 @@
         };
         if (disc) payload.discount = String(COLLECTION_DISCOUNT);
         var body2 = JSON.stringify(payload);
-        var btn = $('button[type="submit"]', body);
+        var btn = $('#c-pay', body);
         if (btn) { btn.textContent = cstr('send'); btn.disabled = true; }
         try { fetch(BOOK_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 }).catch(function () {}); } catch (err) {}
         try {
@@ -827,7 +892,7 @@
         $('#cart-ok', box).hidden = false;
         $('#cart-clear', box).hidden = true;
         cartWrite([]);
-      });
+      }
     }
   }
 

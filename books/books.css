@@ -330,8 +330,28 @@ body::after {
    Рассрочку оформляет БАНК, а не мы: кнопка только отправляет заявку, деньги
    через ePoint не списываются. Подсказка под кнопкой говорит это прямо —
    иначе человек решит, что уже заплатил, и не станет отвечать банку. */
-.inst-wrap{margin:14px 0;padding:14px;border:1px solid rgba(255,255,255,.10);
-  border-radius:8px;background:rgba(255,255,255,.02)}
+.inst-wrap{margin:14px 0;padding:14px;border:1px solid rgba(255,255,255,.10);  border-radius:8px;background:rgba(255,255,255,.02)}
 .inst-wrap select{width:100%;margin-top:6px;padding:10px 12px;border-radius:6px;
   background:#141821;color:inherit;border:1px solid rgba(255,255,255,.14);font-size:14px}
 .inst-hint{margin:10px 0 0;font-size:12.5px;line-height:1.5;opacity:.7}
+
+
+/* ── ВЫБОР СПОСОБА ОПЛАТЫ ────────────────────────────────────────────────
+   Кенан 14.10.2026: «перейти к оплате стоит до выбора способа оплаты —
+   по логике должно быть обратно». Теперь выбор способа стоит ПЕРЕД кнопкой,
+   как на крупных площадках: сначала что платим, потом кнопка с суммой. */
+.pay-choice { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.pay-opt {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 12px 14px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.02);
+  transition: border-color .2s ease, background-color .2s ease;
+  font-size: .9375rem; line-height: 1.4;
+}
+.pay-opt:hover { border-color: rgba(201,169,97,.45); }
+.pay-opt input { flex: 0 0 auto; width: 18px; height: 18px; accent-color: #C9A227; }
+.pay-opt:has(input:checked) {
+  border-color: #C9A227; background: rgba(201,169,97,.10);
+}
+.pay-opt s { text-decoration: line-through; }
