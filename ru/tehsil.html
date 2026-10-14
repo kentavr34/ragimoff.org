@@ -1131,6 +1131,11 @@ input, select, textarea, button {
 
       document.getElementById('regForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();
+        /* ПРОВЕРКА ЗАПОЛНЕНИЯ (Кенан 14.10.2026): пустые обязательные поля
+           должны краснеть. Обязательны: имя, фамилия, мобильный номер и
+           удостоверение личности. Для переподготовки по Общей и Клинической
+           психологии обязателен ещё и диплом о высшем образовании. */
+        if (typeof validateRegForm === 'function' && !validateRegForm(this)) return;
         const form = this;
         const btn = form.querySelector('button[type="submit"]');
         const btnText = btn.textContent;

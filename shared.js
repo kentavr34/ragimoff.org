@@ -309,8 +309,158 @@ async function submitBookOrder(payload) {
   return submitToEndpoint('/api/book-order', payload);
 }
 
+/* ── ПРОВЕРКА ЗАПОЛНЕНИЯ ФОРМЫ РЕГИСТРАЦИИ ────────────────────────────────
+   Кенан 14.10.2026: «при неполном заполнении обязательных ячеек он не показывает
+   красными предупреждениями пустые ячейки».
+   Причина была двойная: у формы стоит novalidate (браузерная проверка выключена),
+   а своей проверки не было вовсе. Человек нажимал кнопку — и ничего не происходило.
+
+   ОБЯЗАТЕЛЬНЫЕ ПОЛЯ (указание Кенана):
+      • имя и фамилия;
+      • мобильный номер;
+      • удостоверение личности (файл).
+   ОСТАЛЬНЫЕ — необязательные: почта, адрес, программа, форма оплаты, заметки,
+   сертификаты.
+   ОСОБЫЙ СЛУЧАЙ: при выборе переподготовки по Общей или Клинической психологии
+   обязательным становится ещё и ДИПЛОМ о высшем образовании.
+
+   Проверка показывает КАЖДОЕ пустое поле красным и подписывает, чего не хватает. */
+var REG_RETRAIN = ['Ümumi Psixologiya', 'Klinik Psixologiya'];
+
+function regFieldError(input, on) {
+  if (!input) return;
+  var box = input.closest ? input.closest('.field, .form-field, .form-group') : null;
+  if (on) {
+    input.classList.add('field-invalid');
+    input.style.borderColor = '#e06b6b';
+    input.style.boxShadow = '0 0 0 2px rgba(224,107,107,.18)';
+    if (box) {
+      var msg = box.querySelector('.field-invalid-msg');
+      if (!msg) {
+        msg = document.createElement('span');
+        msg.className = 'field-invalid-msg';
+        msg.style.cssText = 'display:block;margin-top:6px;color:#e88;font-size:.8125rem;';
+        box.appendChild(msg);
+      }
+      msg.textContent = input.getAttribute('data-need') || '';
+    }
+  } else {
+    input.classList.remove('field-invalid');
+    input.style.borderColor = '';
+    input.style.boxShadow = '';
+    if (box) {
+      var m2 = box.querySelector('.field-invalid-msg');
+      if (m2) m2.textContent = '';
+    }
+  }
+}
+
+/* Возвращает true, если форма заполнена верно. Иначе — красит пустые поля. */
+function validateRegForm(form) {
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  var NEED = {
+    az: { name: 'Ad və soyadı yazın', phone: 'Mobil nömrəni yazın',
+          id: 'Şəxsiyyət vəsiqəsini əlavə edin', dip: 'Ali təhsil diplomunu əlavə edin',
+          prog: 'Proqramı seçin' },
+    ru: { name: 'Укажите имя и фамилию', phone: 'Укажите мобильный номер',
+          id: 'Приложите удостоверение личности', dip: 'Приложите диплом о высшем образовании',
+          prog: 'Выберите программу' },
+    en: { name: 'Enter your first and last name', phone: 'Enter your mobile number',
+          id: 'Attach your ID document', dip: 'Attach your university diploma',
+          prog: 'Choose a programme' },
+    tr: { name: 'Ad və soyadı yazın', phone: 'Mobil nömrəni yazın',
+          id: 'Şəxsiyyət vəsiqəsini əlavə edin', dip: 'Ali təhsil diplomunu əlavə edin',
+          prog: 'Proqramı seçin' }
+  }[L] || null;
+  if (!NEED) NEED = { name: 'Name', phone: 'Phone', id: 'ID', dip: 'Diploma', prog: 'Programme' };
+
+  var ok = true;
+  function need(el, text) {
+    if (!el) return;
+    var empty = !String(el.value || '').trim();
+    if (empty) { ok = false; el.setAttribute('data-need', text); regFieldError(el, true); }
+    else { regFieldError(el, false); }
+  }
+
+  need(form.querySelector('[name="ad"], [name="fname"]'), NEED.name);
+  need(form.querySelector('[name="soyad"], [name="lname"]'), NEED.name);
+  need(form.querySelector('[name="telefon"], [name="phone"]'), NEED.phone);
+
+  /* Программа: если выбрана переподготовка — диплом обязателен. */
+  var prog = form.querySelector('[name="proqram"]:checked, [name="service"]:checked');
+  var progVal = prog ? prog.value : '';
+  var needDip = REG_RETRAIN.indexOf(progVal) >= 0;
+
+  /* Удостоверение личности — обязательный ФАЙЛ. Файлы лежат в пуле
+     (window.regFilePool), потому что input очищается после выбора. */
+  var pool = window.regFilePool || {};
+  var idCount = (pool['shexsiyyet'] || []).length;
+  var dipCount = (pool['diplom'] || []).length;
+  /* Если файлы отправляются обычным input (без пула) — считаем по input.files */
+  var idInput = form.querySelector('[name="shexsiyyet"]');
+  var dipInput = form.querySelector('[name="diplom"]');
+  if (!idCount && idInput && idInput.files) idCount = idInput.files.length;
+  if (!dipCount && dipInput && dipInput.files) dipCount = dipInput.files.length;
+
+  if (!idCount) { ok = false; if (idInput) { idInput.setAttribute('data-need', NEED.id); regFieldError(idInput, true); } }
+  else if (idInput) regFieldError(idInput, false);
+
+  if (needDip && !dipCount) { ok = false; if (dipInput) { dipInput.setAttribute('data-need', NEED.dip); regFieldError(dipInput, true); } }
+  else if (dipInput) regFieldError(dipInput, false);
+  /* Диплом НЕ обязателен, если программа не переподготовка — снимаем красноту. */
+
+  if (prog) regFieldError(prog, false);
+
+  if (!ok) {
+    var first = form.querySelector('.field-invalid');
+    if (first) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { first.focus({ preventScroll: true }); } catch (e) {}
+    }
+  }
+  return ok;
+}
+
+/* Снимаем красноту, как только человек начал заполнять поле. */
+document.addEventListener('input', function (e) {
+  if (e.target && e.target.classList && e.target.classList.contains('field-invalid')) {
+    if (String(e.target.value || '').trim()) regFieldError(e.target, false);
+  }
+}, true);
+document.addEventListener('change', function (e) {
+  if (e.target && e.target.type === 'file') regFieldError(e.target, false);
+}, true);
+
 async function submitTrainingReg(payload) {
   return submitToEndpoint('/api/training-reg', payload);
+}
+
+/* submitRegistration() — САМАЯ ЧАСТАЯ ПОЛОМКА ФОРМ НА САЙТЕ.
+   Эту функцию ВЫЗЫВАЛИ в трёх местах: tehsil.html (az/ru/en) и handleB2BForm().
+   А ОПРЕДЕЛЕНА ОНА НЕ БЫЛА НИГДЕ. Что происходило при отправке:
+      ReferenceError: submitRegistration is not defined
+   → ошибка внутри async-обработчика, поймать её некому;
+   → кнопка навсегда остаётся в положении «Göndərilir…» и заблокирована;
+   → человек видит, что «форма не работает», и не понимает почему.
+   Именно на это жаловался Кенан 14.10.2026: «заполнил, но не могу отправить».
+
+   Теперь функция есть: она шлёт заявку на наш сервер, при неудаче — в Apps Script,
+   и умеет прикладывать файлы (документы абитуриента уходят в архив на сервере). */
+async function submitRegistration(payload) {
+  try {
+    const res = await fetch(`${RAGIMOFF_API_BASE}/api/training-reg`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      const data = await res.json().catch(function () { return null; });
+      if (!data || data.ok !== false) return { ok: true, data: data || null };
+    }
+  } catch (err) {
+    console.warn('training-reg unavailable, falling back:', err);
+  }
+  return submitToAPI(payload);   // Apps Script: заявка не должна потеряться
 }
 
 // Сообщение о неудаче: заявка не ушла, человека нельзя оставлять с ощущением,
@@ -474,6 +624,9 @@ function showTrainingPay(box, payload, data) {
 async function handleB2BForm(e) {
   e.preventDefault();
   const form = e.target;
+  /* Проверка заполнения — та же, что у формы переподготовки: пустые обязательные
+     поля краснеют и подписываются. Кенан 14.10.2026. */
+  if (typeof validateRegForm === 'function' && !validateRegForm(form)) return;
   const val = function (id) {
     const el = document.getElementById(id);
     return el ? el.value.trim() : '';

@@ -362,6 +362,51 @@
     b.hidden = n === 0;
   }
 
+  /* Всплывающее уведомление «книга в корзине» с переходом в корзину.
+     Живёт 4 секунды, не мешает читать каталог, закрывается нажатием.
+     Кенан 14.10.2026: без него человек не понимал, попала ли книга в корзину. */
+  function showCartToast(title) {
+    var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+    var TXT = {
+      az: ['Səbətə əlavə edildi', 'Səbətə keç'],
+      ru: ['Добавлено в корзину', 'Перейти в корзину'],
+      en: ['Added to cart', 'Go to cart'],
+      tr: ['Sepete eklendi', 'Sepete git']
+    }[L] || ['OK', 'Cart'];
+
+    var old = document.getElementById('cart-toast');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+
+    var el = document.createElement('div');
+    el.id = 'cart-toast';
+    el.setAttribute('role', 'status');
+    el.style.cssText =
+      'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:120;' +
+      'display:flex;align-items:center;gap:14px;max-width: calc(100vw - 32px);' +
+      'padding:14px 18px;border-radius:12px;background:#141821;color:#f2ede3;' +
+      'border:1px solid rgba(201,169,97,.5);box-shadow:0 10px 34px rgba(0,0,0,.5);' +
+      'font-size:.9375rem;line-height:1.4;';
+    var txt = document.createElement('span');
+    txt.innerHTML = '<b>' + TXT[0] + '</b><br><span style="opacity:.75;font-size:.8125rem;">' +
+                    String(title).replace(/[<>&]/g, '') + '</span>';
+    var go = document.createElement('button');
+    go.type = 'button';
+    go.textContent = TXT[1];
+    go.style.cssText = 'flex:0 0 auto;padding:9px 14px;border-radius:8px;border:0;' +
+      'background:#C9A227;color:#07090E;font-weight:700;cursor:pointer;';
+    go.addEventListener('click', function () {
+      if (el.parentNode) el.parentNode.removeChild(el);
+      openCart();
+    });
+    el.appendChild(txt);
+    el.appendChild(go);
+    document.body.appendChild(el);
+    /* На телефоне уведомление не должно закрывать кнопку корзины —
+       поэтому поднимаем его над ней. */
+    if (window.innerWidth <= 640) el.style.bottom = '92px';
+    setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 4000);
+  }
+
   function cartAdd(title, price) {
     var items = cartRead();
     var name = cleanTitle(title);
@@ -398,6 +443,12 @@
         var was = btn.textContent;
         btn.textContent = cstr('added');
         setTimeout(function () { btn.textContent = was; }, 1200);
+        /* УВЕДОМЛЕНИЕ О ПОПАДАНИИ В КОРЗИНУ.
+           Кенан 14.10.2026: «если попадает в корзину, то должно выходить уведомление
+           о попадании в корзину». Раньше менялась только надпись на самой кнопке —
+           на 1,2 секунды и незаметно, особенно если кнопка ниже экрана. Теперь
+           всплывает сообщение с названием книги и переходом в корзину. */
+        showCartToast(title);
       }
 
       /* КНОПКА УЖЕ ЕСТЬ В РАЗМЕТКЕ — вешаем обработчик НА НЕЁ.

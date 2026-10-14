@@ -171,10 +171,26 @@ body::after {
 .ft__nav a:hover { color: var(--acc-2); }
 
 /* ─────────── МОДАЛ ЗАКАЗА ─────────── */
-.modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: clamp(16px, 4vw, 48px); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; }
+/* ОКНО КОРЗИНЫ И РЕГИСТРАЦИИ: БЫЛО НЕ ПРОКРУТИТЬ.
+   Кенан 14.10.2026: «окно регистрации открывается очень высоким и не скроллится —
+   не удобное».
+   ПРИЧИНА: окно центрировалось через display:grid/place-items:center, а у самого
+   .modal НЕ БЫЛО overflow. Если содержимое выше экрана, верх и низ обрезаются за
+   пределами видимой области, и прокрутить нельзя — колесо мыши не действует,
+   потому что прокручивать нечего.
+   ЧТО ИЗМЕНЕНО:
+     • .modal — flex со выравниванием к ВЕРХУ и overflow-y:auto: страница окна
+       прокручивается колесом и пальцем;
+     • .modal__box — margin:auto: короткое окно остаётся по центру, а высокое
+       прокручивается целиком, ничего не теряя;
+     • padding-bottom увеличен на телефонах, чтобы низ не упирался в край экрана. */
+.modal { position: fixed; inset: 0; z-index: 80; display: flex; align-items: flex-start; justify-content: center; padding: clamp(16px, 4vw, 48px); opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s linear .35s; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 .modal.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
-.modal__scrim { position: absolute; inset: 0; background: rgba(4,5,8,.86); backdrop-filter: blur(10px); }
-.modal__box { position: relative; z-index: 1; width: min(480px, 100%); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: clamp(22px, 3vw, 38px); transform: translateY(16px); transition: transform .45s var(--e); }
+.modal__scrim { position: fixed; inset: 0; background: rgba(4,5,8,.86); backdrop-filter: blur(10px); }
+.modal__box { position: relative; z-index: 1; width: min(480px, 100%); margin: auto; background: var(--bg-2); border: 1px solid var(--line-2); border-radius: var(--r); padding: clamp(22px, 3vw, 38px); transform: translateY(16px); transition: transform .45s var(--e); }
+@media (max-width: 640px) {
+  .modal { padding-bottom: 84px; }
+}
 .modal.is-open .modal__box { transform: none; }
 .modal__x { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 1px solid var(--line-2); border-radius: var(--r-pill); color: var(--mid); transition: border-color .25s, color .25s; }
 .modal__x:hover { border-color: var(--acc); color: var(--fg); }
