@@ -429,6 +429,102 @@
     return items;
   }
 
+  /* ── ПРОФИЛЬ ПОКУПАТЕЛЯ: ИДЕНТИФИКАЦИЯ ПО НОМЕРУ ─────────────────────────
+     Кенан 14.10.2026:
+     «Если пользователь идентифицирован, то не нужно при каждом заказе спрашивать
+      личные данные — только до идентификации; после просто добавлять в корзину.
+      Для идентификации достаточно мобильного номера. Совпадения могут быть,
+      поэтому при повторном заказе книг нужно переспросить — Имя и Фамилия — это
+      ваш профиль? Если кнопка да — автовставление данных его профиля и переход
+      к оплате.»
+
+     ПОЧЕМУ ЗДЕСЬ, А НЕ В shared.js: книжные страницы shared.js НЕ грузят —
+     проверил, из трёх страниц с books.js общий файл не подключает ни одна.
+     Поэтому профиль живёт прямо здесь.
+
+     ПОЧЕМУ ДАННЫЕ НА УСТРОЙСТВЕ, А НЕ ТОЛЬКО НА СЕРВЕРЕ: отдавать имя и адрес
+     по одному номеру телефона нельзя — так можно узнать чужой адрес. Храним там,
+     где человек сам вводил, и подтверждение спрашиваем у него же. */
+  var PROFILE_KEY = 'ragimoff_profile_v1';
+
+  function profileGet() {
+    try {
+      var raw = localStorage.getItem(PROFILE_KEY);
+      if (!raw) return null;
+      var p = JSON.parse(raw);
+      return (p && p.phone) ? p : null;
+    } catch (e) { return null; }
+  }
+
+  function profileSave(p) {
+    try {
+      if (!p || !p.phone) return;
+      localStorage.setItem(PROFILE_KEY, JSON.stringify({
+        name: String(p.name || '').slice(0, 120),
+        phone: String(p.phone || '').slice(0, 40),
+        address: String(p.address || '').slice(0, 300),
+        ts: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  function profileClear() { try { localStorage.removeItem(PROFILE_KEY); } catch (e) {} }
+
+  /* Строка «это ваш профиль?» над формой. Возвращает true, если показана. */
+  function profileAsk(form, onYes) {
+    var p = profileGet();
+    if (!p || !form) return false;
+    var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+    var T = {
+      az: ['Bu sizin profilinizdir?', 'Bəli, mənəm', 'Xeyr, başqa şəxsdir'],
+      ru: ['Это ваш профиль?', 'Да, это я', 'Нет, это другой человек'],
+      en: ['Is this your profile?', 'Yes, that is me', 'No, someone else'],
+      tr: ['Bu sizin profiliniz mi?', 'Evet, benim', 'Hayır, başka biri']
+    }[L] || ['Is this your profile?', 'Yes', 'No'];
+
+    var old = form.querySelector('.profile-ask');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+
+    var box = document.createElement('div');
+    box.className = 'profile-ask';
+    box.style.cssText = 'margin:0 0 16px;padding:14px 16px;border-radius:10px;' +
+      'border:1px solid rgba(201,169,97,.45);background:rgba(201,169,97,.08);line-height:1.5;';
+    var who = document.createElement('div');
+    who.style.cssText = 'font-size:.9375rem;margin-bottom:10px;';
+    who.innerHTML = '<b>' + p.name.replace(/[<>&]/g, '') + '</b> · ' +
+                    p.phone.replace(/[<>&]/g, '') + '<br>' +
+                    '<span style="opacity:.85;font-size:.875rem;">' + T[0] + '</span>';
+    var yes = document.createElement('button');
+    yes.type = 'button'; yes.textContent = T[1];
+    yes.style.cssText = 'padding:10px 16px;margin-right:8px;border-radius:8px;border:0;' +
+      'background:#C9A227;color:#07090E;font-weight:700;cursor:pointer;';
+    var no = document.createElement('button');
+    no.type = 'button'; no.textContent = T[2];
+    no.style.cssText = 'padding:10px 16px;border-radius:8px;cursor:pointer;' +
+      'border:1px solid rgba(255,255,255,.25);background:transparent;color:inherit;';
+
+    yes.addEventListener('click', function () {
+      var n = form.querySelector('#c-name'), ph = form.querySelector('#c-phone'),
+          ad = form.querySelector('#c-addr');
+      if (n) n.value = p.name || '';
+      if (ph) ph.value = p.phone || '';
+      if (ad && p.address) ad.value = p.address;
+      if (box.parentNode) box.parentNode.removeChild(box);
+      if (typeof onYes === 'function') onYes();
+    });
+    no.addEventListener('click', function () {
+      profileClear();
+      var n = form.querySelector('#c-name'), ph = form.querySelector('#c-phone'),
+          ad = form.querySelector('#c-addr');
+      if (n) n.value = ''; if (ph) ph.value = ''; if (ad) ad.value = '';
+      if (box.parentNode) box.parentNode.removeChild(box);
+    });
+
+    box.appendChild(who); box.appendChild(yes); box.appendChild(no);
+    form.insertBefore(box, form.firstChild);
+    return true;
+  }
+
   function initCart() {
     var cards = $$('[data-order]');
     if (!cards.length) return;
@@ -599,6 +695,20 @@
       var payB = $('#c-pay', body);
       if (payB) payB.addEventListener('click', epointPay);
 
+      /* ПРОФИЛЬ: если человек уже заказывал с этого устройства — не заставляем
+         вводить всё заново. Показываем «Это ваш профиль?» и по «Да» подставляем
+         имя, телефон и адрес, после чего ведём к оплате.
+         Кенан 14.10.2026: «после идентификации просто добавлять в корзину»,
+         «если кнопка да — автовставка данных его профиля и переход к оплате». */
+      (function () {
+        var f = $('#cart-form', body);
+        if (!f) return;
+        profileAsk(f, function () {
+          var pb2 = $('#c-pay', body);
+          if (pb2) { pb2.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        });
+      })();
+
       /* Рассрочка: тот же запрос, но с выбранным сроком. Сервер по нему понимает,
          что оплату через ePoint брать нельзя — рассрочку оформляет банк. */
       var instB = $('#c-inst', body);
@@ -635,6 +745,8 @@
         var ph = ($('#c-phone', body).value || '').trim();
         var ad = ($('#c-addr', body).value || '').trim();
         if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
+        /* Запоминаем профиль: следующий заказ с этого устройства заполнится сам. */
+        profileSave({ name: nm, phone: ph, address: ad });
         var pb = $('#c-pay', body);
         var ib = $('#c-inst', body);
         var btn = (months > 0 && ib) ? ib : pb;
@@ -673,6 +785,8 @@
         var phone = ($('#c-phone', body).value || '').trim();
         var addr = ($('#c-addr', body).value || '').trim();
         if (!name || !phone || !addr) { alert(cstr('fill')); return; }
+        /* Запоминаем профиль и здесь: заказ оформлен — данные пригодятся в следующий раз. */
+        profileSave({ name: name, phone: phone, address: addr });
         var parts = name.split(/\s+/);
         var list = cartRead();
         /* Сумма и скидка уходят в заказ: без них на складе не знают, сколько

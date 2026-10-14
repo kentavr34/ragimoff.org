@@ -431,6 +431,134 @@ document.addEventListener('change', function (e) {
   if (e.target && e.target.type === 'file') regFieldError(e.target, false);
 }, true);
 
+/* ── ПРОФИЛЬ ПОКУПАТЕЛЯ: ИДЕНТИФИКАЦИЯ ПО НОМЕРУ ──────────────────────────
+   Кенан 14.10.2026:
+   «Если пользователь идентифицирован, то не нужно при каждом заказе спрашивать
+    личные данные — только до идентификации; после просто добавлять в корзину.
+    Для идентификации достаточно мобильного номера. Совпадения могут быть, поэтому
+    при повторном заказе книг нужно переспросить — Имя и Фамилия — это ваш профиль?
+    Если кнопка да — автовставление данных его профиля, которые он вводил ранее,
+    и переход к оплате.»
+
+   КАК РАБОТАЕТ:
+     1) первый заказ: человек заполняет имя, фамилию, телефон, адрес;
+     2) после успешной отправки данные сохраняются в профиль НА ЭТОМ УСТРОЙСТВЕ;
+     3) следующий заказ: вместо пустой формы показывается строка
+            «Иван Иванов, +994… — это ваш профиль?»  [Да] [Нет, это другой человек]
+        • «Да»  — данные подставляются, человек сразу идёт к оплате;
+        • «Нет» — форма очищается, заполняет другой человек (совпадение номеров).
+
+   ПОЧЕМУ НА УСТРОЙСТВЕ, А НЕ ТОЛЬКО НА СЕРВЕРЕ: сервер по номеру телефона отдавать
+   имя и адрес постороннему нельзя — по номеру можно было бы узнать чужой адрес.
+   Храним там, где человек сам вводил, и подтверждение спрашиваем у него. */
+var PROFILE_KEY = 'ragimoff_profile_v1';
+
+function profileGet() {
+  try {
+    var raw = localStorage.getItem(PROFILE_KEY);
+    if (!raw) return null;
+    var p = JSON.parse(raw);
+    if (!p || !p.phone) return null;
+    return p;
+  } catch (e) { return null; }
+}
+
+function profileSave(p) {
+  try {
+    if (!p || !p.phone) return;
+    localStorage.setItem(PROFILE_KEY, JSON.stringify({
+      name: String(p.name || '').slice(0, 120),
+      phone: String(p.phone || '').slice(0, 40),
+      address: String(p.address || '').slice(0, 300),
+      email: String(p.email || '').slice(0, 160),
+      ts: Date.now()
+    }));
+  } catch (e) {}
+}
+
+function profileClear() {
+  try { localStorage.removeItem(PROFILE_KEY); } catch (e) {}
+}
+
+/* Тексты подтверждения профиля на четырёх языках сайта. */
+function profileTexts() {
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  return {
+    az: { q: 'Bu sizin profilinizdir?', yes: 'Bəli, mənəm', no: 'Xeyr, başqa şəxsdir',
+          go: 'Ödənişə keç', edit: 'Məlumatları dəyiş' },
+    ru: { q: 'Это ваш профиль?', yes: 'Да, это я', no: 'Нет, это другой человек',
+          go: 'Перейти к оплате', edit: 'Изменить данные' },
+    en: { q: 'Is this your profile?', yes: 'Yes, that is me', no: 'No, someone else',
+          go: 'Proceed to payment', edit: 'Edit details' },
+    tr: { q: 'Bu sizin profiliniz mi?', yes: 'Evet, benim', no: 'Hayır, başka biri',
+          go: 'Ödemeye geç', edit: 'Bilgileri değiştir' }
+  }[L] || { q: 'Is this your profile?', yes: 'Yes', no: 'No', go: 'Pay', edit: 'Edit' };
+}
+
+/* Показать строку подтверждения профиля над формой.
+   onYes()  — человек подтвердил: подставляем данные и ведём к оплате;
+   onNo()   — это другой человек: очищаем поля, профиль стираем. */
+function profileAsk(form, onYes, onNo) {
+  var p = profileGet();
+  if (!p || !form) return false;
+  var T = profileTexts();
+  var old = form.querySelector('.profile-ask');
+  if (old) old.parentNode.removeChild(old);
+
+  var box = document.createElement('div');
+  box.className = 'profile-ask';
+  box.style.cssText = 'margin:0 0 16px;padding:14px 16px;border-radius:10px;' +
+    'border:1px solid rgba(201,169,97,.45);background:rgba(201,169,97,.08);line-height:1.5;';
+  var who = document.createElement('div');
+  who.style.cssText = 'font-size:.9375rem;margin-bottom:10px;';
+  who.innerHTML = '<b>' + p.name.replace(/[<>&]/g, '') + '</b> · ' +
+                  p.phone.replace(/[<>&]/g, '') + '<br>' +
+                  '<span style="opacity:.85;font-size:.875rem;">' + T.q + '</span>';
+  var yes = document.createElement('button');
+  yes.type = 'button';
+  yes.textContent = T.yes;
+  yes.style.cssText = 'padding:10px 16px;margin-right:8px;border-radius:8px;border:0;' +
+    'background:#C9A227;color:#07090E;font-weight:700;cursor:pointer;';
+  var no = document.createElement('button');
+  no.type = 'button';
+  no.textContent = T.no;
+  no.style.cssText = 'padding:10px 16px;border-radius:8px;cursor:pointer;' +
+    'border:1px solid rgba(255,255,255,.25);background:transparent;color:inherit;';
+
+  yes.addEventListener('click', function () {
+    var nameEl = form.querySelector('[name="ad"], [name="fname"], #c-name');
+    var phoneEl = form.querySelector('[name="telefon"], [name="phone"], #c-phone');
+    var addrEl = form.querySelector('[name="unvan"], [name="address"], #c-addr');
+    var mailEl = form.querySelector('[name="email"]');
+    if (nameEl) regFieldError(nameEl, false);
+    if (phoneEl) regFieldError(phoneEl, false);
+    if (addrEl) regFieldError(addrEl, false);
+    if (nameEl) nameEl.value = p.name || '';
+    if (phoneEl) phoneEl.value = p.phone || '';
+    if (addrEl && p.address) addrEl.value = p.address;
+    if (mailEl && p.email) mailEl.value = p.email;
+    if (box.parentNode) box.parentNode.removeChild(box);
+    if (typeof onYes === 'function') onYes();
+  });
+  no.addEventListener('click', function () {
+    profileClear();
+    var nameEl = form.querySelector('[name="ad"], [name="fname"], #c-name');
+    var phoneEl = form.querySelector('[name="telefon"], [name="phone"], #c-phone');
+    var addrEl = form.querySelector('[name="unvan"], [name="address"], #c-addr');
+    if (nameEl) nameEl.value = '';
+    if (phoneEl) phoneEl.value = '';
+    if (addrEl) addrEl.value = '';
+    if (box.parentNode) box.parentNode.removeChild(box);
+    if (typeof onNo === 'function') onNo();
+  });
+
+  box.appendChild(who);
+  box.appendChild(yes);
+  box.appendChild(no);
+  form.insertBefore(box, form.firstChild);
+  return true;
+}
+
 async function submitTrainingReg(payload) {
   return submitToEndpoint('/api/training-reg', payload);
 }
