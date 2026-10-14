@@ -559,6 +559,121 @@ function profileAsk(form, onYes, onNo) {
   return true;
 }
 
+/* ── ШАГ ОПЛАТЫ ПОСЛЕ РЕГИСТРАЦИИ НА ТРЕНИНГ ────────────────────────────
+   Кенан 14.10.2026: «Далее после отправки регистрации должна выйти форма оплаты —
+   единоразово или частями — епоинт система рассрочки или разовой оплаты».
+
+   ПОРЯДОК ВЗЯТ У КРУПНЫХ ПЛОЩАДОК: сначала человек выбирает СПОСОБ, потом
+   нажимает ОДНУ кнопку, и на кнопке написана сумма. Обратный порядок (кнопка
+   выше выбора) Кенан справедливо забраковал в корзине книг.
+
+   Две ветки, и они РАЗНЫЕ по смыслу:
+     • полная оплата — деньги идут через ePoint, человек получает чек;
+     • рассрочка — оформляет БАНК, мы только принимаем заявку и передаём Кенану.
+       Деньги через ePoint тут НЕ берём: иначе вышла бы двойная оплата. */
+function showTrainingPayStep(box, payload, data) {
+  if (!box || box.querySelector('.training-pay-step')) return;
+  var total = (data && (data.amount || data.price)) || 0;
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  var T = {
+    az: { title: 'Ödəniş', full: 'Kartla tam ödəniş', inst: 'Taksitlə ödəniş',
+          months: 'Neçə ay', mo: 'ay', bank: 'Taksi BANK rəsmiləşdirir',
+          pay: 'Ödə', sending: 'Göndərilir…', err: 'Ödənişi başlada bilmədik. Yenidən cəhd edin.',
+          instOk: 'Taksit müraciətiniz qəbul edildi. Bank sizinlə əlaqə saxlayacaq.' },
+    ru: { title: 'Оплата', full: 'Полная оплата картой', inst: 'Рассрочка',
+          months: 'На сколько месяцев', mo: 'мес.', bank: 'Рассрочку оформляет БАНК',
+          pay: 'Оплатить', sending: 'Отправляем…', err: 'Не удалось начать оплату. Попробуйте ещё раз.',
+          instOk: 'Заявка на рассрочку принята. Банк свяжется с вами.' },
+    en: { title: 'Payment', full: 'Full card payment', inst: 'Instalments',
+          months: 'Number of months', mo: 'mo.', bank: 'The instalment is arranged by the BANK',
+          pay: 'Pay', sending: 'Sending…', err: 'Could not start the payment. Please try again.',
+          instOk: 'Your instalment request was accepted. The bank will contact you.' },
+    tr: { title: 'Ödeme', full: 'Kartla tam ödeme', inst: 'Taksitli ödeme',
+          months: 'Kaç ay', mo: 'ay', bank: 'Taksiti BANKA düzenler',
+          pay: 'Öde', sending: 'Gönderiliyor…', err: 'Ödeme başlatılamadı. Tekrar deneyin.',
+          instOk: 'Taksit talebiniz alındı. Banka sizinle iletişime geçecek.' }
+  }[L] || null;
+  if (!T) T = { title: 'Payment', full: 'Full payment', inst: 'Instalments', months: 'Months',
+                mo: 'mo.', bank: 'by the bank', pay: 'Pay', sending: '…', err: 'Error', instOk: 'OK' };
+
+  var wrap = document.createElement('div');
+  wrap.className = 'training-pay-step';
+  wrap.style.cssText = 'margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14);';
+  wrap.innerHTML =
+    '<p style="margin:0 0 12px;font-weight:700;">' + T.title + (total ? ': ' + total + ' ₼' : '') + '</p>' +
+    '<label style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;' +
+      'border:1px solid rgba(201,169,97,.5);background:rgba(201,169,97,.08);margin-bottom:8px;cursor:pointer;">' +
+      '<input type="radio" name="tp-mode" value="full" checked>' +
+      '<span>' + T.full + (total ? ' — <b>' + total + ' ₼</b>' : '') + '</span></label>' +
+    '<label style="display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:10px;' +
+      'border:1px solid rgba(255,255,255,.14);cursor:pointer;">' +
+      '<input type="radio" name="tp-mode" value="inst">' +
+      '<span>' + T.inst + ' — ' + T.bank + '</span></label>' +
+    '<div class="tp-months" style="display:none;margin:12px 0 0;">' +
+      '<label style="display:block;font-size:.875rem;opacity:.85;">' + T.months + '</label>' +
+      '<select class="tp-sel" style="width:100%;margin-top:6px;padding:10px 12px;border-radius:8px;">' +
+        '<option value="6">6 ' + T.mo + '</option>' +
+        '<option value="12" selected>12 ' + T.mo + '</option>' +
+        '<option value="24">24 ' + T.mo + '</option>' +
+      '</select></div>' +
+    '<button type="button" class="tp-go" style="width:100%;margin-top:14px;padding:14px 24px;' +
+      'border-radius:10px;border:0;background:#C9A227;color:#07090E;font-weight:700;' +
+      'font-size:1rem;cursor:pointer;">' + T.pay + (total ? ' ' + total + ' ₼' : '') + '</button>' +
+    '<p class="tp-msg" style="margin:10px 0 0;font-size:.875rem;"></p>';
+
+  var modes = wrap.querySelectorAll('input[name="tp-mode"]');
+  var mBox = wrap.querySelector('.tp-months');
+  var go = wrap.querySelector('.tp-go');
+  var msg = wrap.querySelector('.tp-msg');
+  var baseLabel = go.textContent;
+
+  function sync() {
+    var m = 'full';
+    Array.prototype.forEach.call(modes, function (r) { if (r.checked) m = r.value; });
+    mBox.style.display = (m === 'inst') ? 'block' : 'none';
+    if (m === 'inst') {
+      var s = wrap.querySelector('.tp-sel');
+      var n = parseInt((s && s.value) || '12', 10) || 12;
+      go.textContent = T.pay + ' ' + (total ? Math.ceil(total / n) + ' ₼ / ' + n + ' ' + T.mo : '');
+    } else {
+      go.textContent = baseLabel;
+    }
+  }
+  Array.prototype.forEach.call(modes, function (r) { r.addEventListener('change', sync); });
+  wrap.querySelector('.tp-sel').addEventListener('change', sync);
+
+  go.addEventListener('click', async function () {
+    var m = 'full';
+    Array.prototype.forEach.call(modes, function (r) { if (r.checked) m = r.value; });
+    var months = 0;
+    if (m === 'inst') months = parseInt(wrap.querySelector('.tp-sel').value, 10) || 12;
+    go.disabled = true; go.textContent = T.sending; msg.textContent = '';
+    try {
+      var r = await fetch(RAGIMOFF_API_BASE + '/api/billing/epoint/training', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: ((payload.fname || '') + ' ' + (payload.lname || '')).trim(),
+          phone: payload.phone || '', program: payload.service || '',
+          amount: total, months: months
+        })
+      });
+      var d = await r.json();
+      if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
+      if (d && d.ok && d.installment) {
+        msg.style.color = '#8fd49b'; msg.textContent = T.instOk;
+        go.disabled = true; return;
+      }
+      msg.style.color = '#e88'; msg.textContent = (d && d.error) || T.err;
+    } catch (e) {
+      msg.style.color = '#e88'; msg.textContent = T.err;
+    }
+    go.disabled = false; sync();
+  });
+
+  box.appendChild(wrap);
+  sync();
+}
+
 async function submitTrainingReg(payload) {
   return submitToEndpoint('/api/training-reg', payload);
 }

@@ -1211,6 +1211,10 @@ input, select, textarea, button {
         form.style.opacity = '0.5';
         form.style.pointerEvents = 'none';
         success.style.display = 'block';
+        /* ШАГ ОПЛАТЫ. Показываем выбор способа и ОДНУ кнопку с суммой —
+           порядок как на Amazon, Ozon, Shopify: сначала способ, потом кнопка.
+           Рассрочку оформляет БАНК, деньги через ePoint при ней не берём. */
+        if (typeof showTrainingPayStep === 'function') showTrainingPayStep(success, payload, res.data);
         success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       });
 
