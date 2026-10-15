@@ -619,82 +619,10 @@ input, select, textarea, button {
     <div style="width:44px;height:44px;border-radius:8px;background:#C9A961;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:700;color:#07090e;margin-bottom:16px;">KP</div>
     <h2 style="font-size:20px;font-weight:700;color:#f2ede3;margin:0 0 10px;font-family:monospace;">Kitabın sifarişi</h2>
     <p style="font-size:13px;color:#a8a296;line-height:1.65;margin:0 0 22px;border-left:2px solid #c9a961;padding-left:12px;">Kitab çap nəşrinə hazırlanır. İlk oxucular arasında olmaq istəyirsinizsə, məlumatlarınızı buraxın — nəşr olunan kimi dərhal sizinlə əlaqə saxlayacağıq.</p>
-    <form id="kitab-form-main" action="/api/book-order" method="POST" novalidate>
-      <div style="margin-bottom:14px;">
-        <label for="km-name" style="display:block;font-size:11px;font-weight:700;color:#a8a296;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Ad Soyad</label>
-        <input id="km-name" type="text" placeholder="Adınız və soyadınız" required style="width:100%;background:#141821;border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#f2ede3;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="km-name" autocomplete="given-name">
-      </div>
-      <div style="margin-bottom:14px;">
-        <label for="km-phone" style="display:block;font-size:11px;font-weight:700;color:#a8a296;margin-bottom:5px;letter-spacing:.06em;text-transform:uppercase;">Mobil nömrə</label>
-        <input id="km-phone" type="tel" placeholder="+994 XX XXX XX XX" required style="width:100%;background:#141821;border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#f2ede3;font-size:14px;padding:10px 13px;outline:none;box-sizing:border-box;" name="km-phone" autocomplete="tel">
-      </div>
-      <button type="submit" style="width:100%;background:#C9A961;color:#07090e;border:none;border-radius:6px;padding:13px;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;margin-top:6px;">Sifariş et</button>
-    </form>
-    <div id="km-success" style="display:none;background:rgba(100,200,120,.1);border:1px solid rgba(100,200,120,.3);border-radius:8px;padding:20px;font-size:14px;color:#6dc87e;text-align:center;margin-top:16px;line-height:1.6;">
-      Təşəkkür edirik!<br>Kitab nəşr olunan kimi sizinlə əlaqə saxlayacağıq.
-    </div>
-  </div>
+    
+    
 </div>
-<script>
-(function(){
-  var KITAB_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
-  window.openKitabModal = function(){
-    var m = document.getElementById('kitab-modal');
-    m.style.display = 'flex'; document.body.style.overflow = 'hidden';
-    setTimeout(function(){ var n=document.getElementById('km-name'); if(n)n.focus(); }, 120);
-  };
-  window.closeKitabModal = function(){
-    document.getElementById('kitab-modal').style.display = 'none';
-    document.body.style.overflow = '';
-  };
-  document.getElementById('kitab-modal').addEventListener('click', function(e){
-    if (e.target === this) closeKitabModal();
-  });
-  document.addEventListener('DOMContentLoaded', function(){
-    var form = document.getElementById('kitab-form-main');
-    if (!form) return;
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      var btn = form.querySelector('button[type="submit"]');
-      var name  = (document.getElementById('km-name').value||'').trim();
-      var phone = (document.getElementById('km-phone').value||'').trim();
-      if (!name||!phone){alert('Zəhmət olmasa Ad Soyad və Telefon daxil edin.');return;}
-      var parts = name.split(/\s+/);
-      var payload = {type:'registration',fname:parts[0]||'',lname:parts.slice(1).join(' ')||'',
-        phone:phone,service:'Kitab sifarişi',source:'ragimoff.org/kitab-sifarisi'};
-      if(btn){btn.textContent='Göndərilir...';btn.disabled=true;}
-      try { await fetch(KITAB_API,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)}); }
-      catch(err){console.error(err);}
-      document.getElementById('km-success').style.display='block';
-      form.style.display='none';
-    });
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeKitabModal();});
-  });
 
-      // Свайп — см. пояснение в остальных галереях: на телефоне жест
-      // не работал, оставались автопилот и мелкие стрелки.
-      var swX = 0, swY = 0;
-      lb.addEventListener('touchstart', function (e) {
-        if (e.touches.length !== 1) return;
-        swX = e.touches[0].clientX; swY = e.touches[0].clientY;
-      }, { passive: true });
-      lb.addEventListener('touchmove', function (e) {
-        if (e.touches.length !== 1) return;
-        var dx = e.touches[0].clientX - swX, dy = e.touches[0].clientY - swY;
-        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) e.preventDefault();
-      }, { passive: false });
-      lb.addEventListener('touchend', function (e) {
-        if (!e.changedTouches || !e.changedTouches.length) return;
-        var dx = e.changedTouches[0].clientX - swX;
-        var dy = e.changedTouches[0].clientY - swY;
-        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-        show(current + (dx < 0 ? 1 : -1));
-        startAuto();
-      });
-
-    })();
-</script>
 
     <!-- Diploma Lightbox -->
     <div class="dg-lightbox" id="dgLightbox">
