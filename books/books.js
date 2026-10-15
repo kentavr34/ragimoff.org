@@ -611,6 +611,123 @@
 
     function openCart() { render(); box.classList.add('is-open'); box.setAttribute('aria-hidden', 'false'); }
 
+
+    /* ★ ВЫНЕСЕНО НА УРОВЕНЬ initCart (15.10.2026).
+       ПРИЧИНА: geoFill, epointPay и sendOrderOnly были объявлены ВНУТРИ render(),
+       а вызываются теперь из renderStep2(). Браузер выдавал
+       «ReferenceError: epointPay is not defined» — кнопка оплаты не работала.
+       Теперь эти функции видны всем трём экранам: корзине, регистрации и заказу. */
+      function epointPay(months) {
+        var list = cartRead();
+        if (!list.length) return;
+        var nm = ($('#c-name', body).value || '').trim();
+        var ph = ($('#c-phone', body).value || '').trim();
+        var ad = ($('#c-addr', body).value || '').trim();
+        if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
+        /* Запоминаем профиль: следующий заказ с этого устройства заполнится сам. */
+        profileSave({ name: nm, phone: ph, address: ad });
+        var pb = $('#c-pay', body);
+        var btn = pb;
+        var label = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = cstr('send'); }
+        function back() {
+          if (btn) { btn.disabled = false; btn.textContent = label; }
+        }
+        fetch(PAY_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
+                                 lang: cartBuyLang(), months: months || 0 })
+        }).then(function (r) { return r.json(); }).then(function (d) {
+          if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
+          if (d && d.ok && d.installment) {
+            /* Деньги НЕ списаны: заявку примет банк. Сказать об этом прямо, иначе
+               человек решит, что уже заплатил, и не станет отвечать банку. */
+            alert(cstr('instOk'));
+            var ok = $('#cart-ok', body);
+            if (ok) { ok.hidden = false; ok.innerHTML = cstr('instOk'); }
+            back();
+            return;
+          }
+          back();
+          alert((d && d.error) || cstr('payErr'));
+        }).catch(function () {
+          back();
+          alert(cstr('payErr'));
+        });
+      }
+
+      function geoFill() {
+        var out = $('#c-addr', body);
+        if (!out) return;
+        if (!navigator.geolocation) { alert(cstr('geoNo')); return; }
+        out.value = cstr('geoWait');
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          var la = pos.coords.latitude.toFixed(6);
+          var lo = pos.coords.longitude.toFixed(6);
+          var url = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=1&lat=' + la + '&lon=' + lo;
+          fetch(url, { headers: { 'Accept': 'application/json' } })
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+              var a = (d && d.address) || {};
+              var parts = [a.road || a.pedestrian, a.house_number, a.suburb || a.neighbourhood,
+                           a.city || a.town || a.village || a.county, a.country].filter(Boolean);
+              out.value = parts.length ? parts.join(', ')
+                                       : (d && d.display_name) || (la + ', ' + lo);
+            })
+            .catch(function () { out.value = la + ', ' + lo; });
+        }, function () { out.value = ''; alert(cstr('geoNo')); },
+           { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+      }
+
+      function sendOrderOnly() {
+        var name = ($('#c-name', body).value || '').trim();
+        var phone = ($('#c-phone', body).value || '').trim();
+        var addr = ($('#c-addr', body).value || '').trim();
+        if (!name || !phone || !addr) { alert(cstr('fill')); return; }
+        profileSave({ name: name, phone: phone, address: addr });
+        var parts = name.split(/\s+/);
+        var list = cartRead();
+        /* Сумма и скидка уходят в заказ: без них на складе не знают, сколько
+           брать с покупателя. Скидка 20% — если в корзине вся коллекция Фрейда. */
+        var tot = 0, coll = false;
+        list.forEach(function (x) {
+          var pp = priceOf(x);
+          if (pp) tot += pp.num * (x.qty || 1);
+          if (isCollection(x.title)) coll = true;
+        });
+        var disc = coll ? Math.round(tot * COLLECTION_DISCOUNT / 100) : 0;
+        var note = list.map(function (x) {
+          var pp = priceOf(x);
+          return x.title + ' x' + (x.qty || 1) + (pp ? ' = ' + (pp.num * (x.qty || 1)) + ' ₼' : '');
+        }).join('; ');
+        note += ' | Cəm: ' + tot + ' ₼';
+        if (disc) note += ' | Kolleksiya endirimi ' + COLLECTION_DISCOUNT + '%: −' + disc + ' ₼ | Ödəniləcək: ' + (tot - disc) + ' ₼';
+        var payload = {
+          type: 'registration',
+          fname: parts[0] || '',
+          lname: parts.slice(1).join(' ') || '',
+          phone: phone,
+          address: addr,
+          service: 'Səbət sifarişi — ' + list.length + ' kitab',
+          note: note,
+          source: 'ragimoff.org' + location.pathname
+        };
+        if (disc) payload.discount = String(COLLECTION_DISCOUNT);
+        var body2 = JSON.stringify(payload);
+        var btn = $('#c-pay', body);
+        if (btn) { btn.textContent = cstr('send'); btn.disabled = true; }
+        try { fetch(BOOK_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 }).catch(function () {}); } catch (err) {}
+        try {
+          fetch(ORDER_API, { method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 });
+        } catch (err) {}
+        $('#cart-form', box).hidden = true;
+        $('#cart-ok', box).hidden = false;
+        $('#cart-clear', box).hidden = true;
+        cartWrite([]);
+      }
+
     function render() {
       var items = cartRead();
       var body = $('#cart-body', box);
@@ -636,28 +753,6 @@
 
       /* Геолокация: определяем адрес доставки в ОДИН КЛИК по кнопке.
          Согласие спрашивает браузер; при отказе или ошибке — обычный ввод. */
-      function geoFill() {
-        var out = $('#c-addr', body);
-        if (!out) return;
-        if (!navigator.geolocation) { alert(cstr('geoNo')); return; }
-        out.value = cstr('geoWait');
-        navigator.geolocation.getCurrentPosition(function (pos) {
-          var la = pos.coords.latitude.toFixed(6);
-          var lo = pos.coords.longitude.toFixed(6);
-          var url = 'https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=1&lat=' + la + '&lon=' + lo;
-          fetch(url, { headers: { 'Accept': 'application/json' } })
-            .then(function (r) { return r.json(); })
-            .then(function (d) {
-              var a = (d && d.address) || {};
-              var parts = [a.road || a.pedestrian, a.house_number, a.suburb || a.neighbourhood,
-                           a.city || a.town || a.village || a.county, a.country].filter(Boolean);
-              out.value = parts.length ? parts.join(', ')
-                                       : (d && d.display_name) || (la + ', ' + lo);
-            })
-            .catch(function () { out.value = la + ', ' + lo; });
-        }, function () { out.value = ''; alert(cstr('geoNo')); },
-           { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
-      }
 
       body.innerHTML =
         rows +
@@ -916,45 +1011,6 @@
 
       /* ОПЛАТА: после формы заказчика — переход на страницу оплаты Epoint.
          Сумму считает СЕРВЕР: в браузере её можно подменить в консоли. */
-      function epointPay(months) {
-        var list = cartRead();
-        if (!list.length) return;
-        var nm = ($('#c-name', body).value || '').trim();
-        var ph = ($('#c-phone', body).value || '').trim();
-        var ad = ($('#c-addr', body).value || '').trim();
-        if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
-        /* Запоминаем профиль: следующий заказ с этого устройства заполнится сам. */
-        profileSave({ name: nm, phone: ph, address: ad });
-        var pb = $('#c-pay', body);
-        var btn = pb;
-        var label = btn ? btn.textContent : '';
-        if (btn) { btn.disabled = true; btn.textContent = cstr('send'); }
-        function back() {
-          if (btn) { btn.disabled = false; btn.textContent = label; }
-        }
-        fetch(PAY_API, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
-                                 lang: cartBuyLang(), months: months || 0 })
-        }).then(function (r) { return r.json(); }).then(function (d) {
-          if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
-          if (d && d.ok && d.installment) {
-            /* Деньги НЕ списаны: заявку примет банк. Сказать об этом прямо, иначе
-               человек решит, что уже заплатил, и не станет отвечать банку. */
-            alert(cstr('instOk'));
-            var ok = $('#cart-ok', body);
-            if (ok) { ok.hidden = false; ok.innerHTML = cstr('instOk'); }
-            back();
-            return;
-          }
-          back();
-          alert((d && d.error) || cstr('payErr'));
-        }).catch(function () {
-          back();
-          alert(cstr('payErr'));
-        });
-      }
 
       /* ЗАКАЗ БЕЗ ОПЛАТЫ — только для книг с ценой «по запросу».
          Раньше это был обработчик кнопки «Оформить заказ», которая стояла РЯДОМ
@@ -963,53 +1019,6 @@
          Теперь такой путь остался ТОЛЬКО там, где он честен: у книги нет цены,
          платить нечего, и менеджер звонит с ценой. При наличии цены кнопка одна —
          «Оплатить», и она ведёт на оплату. */
-      function sendOrderOnly() {
-        var name = ($('#c-name', body).value || '').trim();
-        var phone = ($('#c-phone', body).value || '').trim();
-        var addr = ($('#c-addr', body).value || '').trim();
-        if (!name || !phone || !addr) { alert(cstr('fill')); return; }
-        profileSave({ name: name, phone: phone, address: addr });
-        var parts = name.split(/\s+/);
-        var list = cartRead();
-        /* Сумма и скидка уходят в заказ: без них на складе не знают, сколько
-           брать с покупателя. Скидка 20% — если в корзине вся коллекция Фрейда. */
-        var tot = 0, coll = false;
-        list.forEach(function (x) {
-          var pp = priceOf(x);
-          if (pp) tot += pp.num * (x.qty || 1);
-          if (isCollection(x.title)) coll = true;
-        });
-        var disc = coll ? Math.round(tot * COLLECTION_DISCOUNT / 100) : 0;
-        var note = list.map(function (x) {
-          var pp = priceOf(x);
-          return x.title + ' x' + (x.qty || 1) + (pp ? ' = ' + (pp.num * (x.qty || 1)) + ' ₼' : '');
-        }).join('; ');
-        note += ' | Cəm: ' + tot + ' ₼';
-        if (disc) note += ' | Kolleksiya endirimi ' + COLLECTION_DISCOUNT + '%: −' + disc + ' ₼ | Ödəniləcək: ' + (tot - disc) + ' ₼';
-        var payload = {
-          type: 'registration',
-          fname: parts[0] || '',
-          lname: parts.slice(1).join(' ') || '',
-          phone: phone,
-          address: addr,
-          service: 'Səbət sifarişi — ' + list.length + ' kitab',
-          note: note,
-          source: 'ragimoff.org' + location.pathname
-        };
-        if (disc) payload.discount = String(COLLECTION_DISCOUNT);
-        var body2 = JSON.stringify(payload);
-        var btn = $('#c-pay', body);
-        if (btn) { btn.textContent = cstr('send'); btn.disabled = true; }
-        try { fetch(BOOK_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 }).catch(function () {}); } catch (err) {}
-        try {
-          fetch(ORDER_API, { method: 'POST', mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body2 });
-        } catch (err) {}
-        $('#cart-form', box).hidden = true;
-        $('#cart-ok', box).hidden = false;
-        $('#cart-clear', box).hidden = true;
-        cartWrite([]);
-      }
     }
   }
 
