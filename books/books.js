@@ -213,7 +213,7 @@
 
   var CART_T = {
     az: { add: 'Səbətə at', added: 'Əlavə edildi', cart: 'Səbət', empty: 'Səbət boşdur',
-          total: 'Cəm', checkout: 'Sifarişi tamamla', remove: 'Sil', clear: 'Səbəti təmizlə',
+          total: 'Cəm', checkout: 'Sifarişi tamamla', step2: 'Sifarişin rəsmiləşdirilməsi', back: 'Geri', remove: 'Sil', clear: 'Səbəti təmizlə',
           qty: 'Say', ask: 'qiymət sorğu ilə', send: 'Göndərilir…',
           done: 'Təşəkkür edirik!<br>Sifarişiniz qeydə alındı — tezliklə əlaqə saxlayacağıq.',
           nameL: 'Ad Soyad', phoneL: 'Mobil nömrə', addrL: 'Çatdırılma ünvanı',
@@ -236,7 +236,7 @@
           geoWait: 'Yer müəyyən edilir…',
           geoNo: 'Ünvanı təyin etmək alınmadı — zəhmət olmasa əl ilə yazın.' },
     ru: { add: 'В корзину', added: 'Добавлено', cart: 'Корзина', empty: 'Корзина пуста',
-          total: 'Итого', checkout: 'Оформить заказ', remove: 'Удалить', clear: 'Очистить корзину',
+          total: 'Итого', checkout: 'Оформить заказ', step2: 'Оформление заказа', back: 'Назад', remove: 'Удалить', clear: 'Очистить корзину',
           qty: 'Кол-во', ask: 'цена по запросу', send: 'Отправляем…',
           done: 'Спасибо!<br>Заказ принят — мы скоро свяжемся с вами.',
           nameL: 'Имя и фамилия', phoneL: 'Мобильный телефон', addrL: 'Адрес доставки',
@@ -260,7 +260,7 @@
           geoWait: 'Определяем местоположение…',
           geoNo: 'Не удалось определить адрес — введите вручную.' },
     en: { add: 'Add to cart', added: 'Added', cart: 'Cart', empty: 'Your cart is empty',
-          total: 'Total', checkout: 'Place the order', remove: 'Remove', clear: 'Clear cart',
+          total: 'Total', checkout: 'Place the order', step2: 'Checkout', back: 'Back', remove: 'Remove', clear: 'Clear cart',
           qty: 'Qty', ask: 'price on request', send: 'Sending…',
           done: 'Thank you!<br>Your order has been received — we will contact you soon.',
           nameL: 'Full name', phoneL: 'Mobile phone', addrL: 'Delivery address',
@@ -326,7 +326,15 @@
     var sel = document.querySelector('input[name="buy-lang"]:checked');
     return sel ? sel.value : 'az';
   }
-  function cstr(k) { return CART_T[cartLang()][k]; }
+  /* Если ключа нет в языке — берём азербайджанский, потом английский.
+     Так новый шаг оформления не сломается на языке, где строк ещё нет. */
+  function cstr(k) {
+    var L = CART_T[cartLang()] || CART_T.az;
+    if (L[k] != null) return L[k];
+    if (CART_T.az[k] != null) return CART_T.az[k];
+    if (CART_T.en && CART_T.en[k] != null) return CART_T.en[k];
+    return '';
+  }
 
   function cartRead() {
     try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]') || []; } catch (e) { return []; }
@@ -658,6 +666,115 @@
         (discount ? '<p class="cart-sum">' + cstr('discount') + ' −' + COLLECTION_DISCOUNT +
           '%: <b>−' + discount + ' ₼</b></p>' +
           '<p class="cart-sum">' + cstr('payable') + ': <b>' + payable + ' ₼</b></p>' : '') +
+        /* ═══ ШАГ 1. КОРЗИНА — ТОЛЬКО ТОВАРЫ И КНОПКА «ОФОРМИТЬ ЗАКАЗ» ═══════════
+           Кенан 15.10.2026 (дословно):
+             «в корзине при нажатии заказать/оплатить — должно выйти окно
+              регистрации заказа и потом кнопка оплатить»
+           Значит в КОРЗИНЕ не должно быть ни полей ввода, ни выбора способа
+           оплаты. Только товары, сумма и ОДНА кнопка. Так устроены Amazon,
+           Ozon, Shopify: корзина -> оформление -> оплата, три отдельных экрана.
+           Раньше здесь было ВСЁ СРАЗУ (поля + способ оплаты + кнопка) — от этого
+           путь и был «тупой и дырявый», как сказал Кенан. */
+        '<button class="btn btn--main" type="button" id="c-next" style="width:100%;margin-top:18px;">' +
+          cstr('checkout') + (sum ? ' <span>' + payable + ' ₼</span>' : '') +
+        '</button>' +
+        '<button type="button" class="cart-clear" id="cart-clear">' + cstr('clear') + '</button>';
+
+      var nextB = $('#c-next', body);
+      if (nextB) nextB.addEventListener('click', function () {
+        if (hasAsk && !sum) { renderStep2(true); return; }
+        renderStep2(false);
+      });
+
+      $$('[data-x]', body).forEach(function (b) {
+        b.addEventListener('click', function () {
+          var i = parseInt(b.getAttribute('data-x'), 10);
+          var list = cartRead();
+          list.splice(i, 1);
+          cartWrite(list);
+          cartBadge();
+          render();
+        });
+      });
+
+      var clr = $('#cart-clear', body);
+      if (clr) clr.addEventListener('click', function () { cartWrite([]); cartBadge(); render(); });
+    }
+
+    /* ═══ ШАГ 2. ОКНО РЕГИСТРАЦИИ ЗАКАЗА ═══════════════════════════════════════
+       Здесь человек вводит имя, телефон и адрес. Товары показываем кратко —
+       чтобы он видел, ЧТО заказывает, но не отвлекался.
+       Способ оплаты здесь НЕ выбирается: его предложит сам банк на своей
+       странице (полностью или частями) — это требование Кенана. */
+    function renderStep2(askOnly) {
+      var items = cartRead();
+      var body = $('#cart-body', box);
+      var sum = 0, ask = false;
+      items.forEach(function (it) {
+        var p = priceOf(it);
+        if (p) sum += p.num * (it.qty || 1); else ask = true;
+      });
+      var brief = items.map(function (it) {
+        return '<li>' + it.title + ' ×' + (it.qty || 1) + '</li>';
+      }).join('');
+
+      body.innerHTML =
+        '<p class="cart-step">' + cstr('step2') + '</p>' +
+        '<ul class="cart-brief">' + brief + '</ul>' +
+        (sum ? '<p class="cart-sum">' + cstr('payable') + ': <b>' + sum + ' ₼</b></p>' : '') +
+        '<form id="cart-form" novalidate>' +
+          (cartHasMyBook()
+            ? '<div class="field"><span>' + cstr('buyLang') + '</span>' +
+              '<div class="buy-langs">' +
+              BUY_LANGS.map(function (p, i) {
+                return '<label class="buy-lang' + (i === 0 ? ' is-on' : '') + '">' +
+                  '<input type="radio" name="buy-lang" value="' + p[0] + '"' +
+                  (i === 0 ? ' checked' : '') + '>' + p[1] + '</label>';
+              }).join('') +
+              '</div></div>'
+            : '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>') +
+          '<label class="field"><span>' + cstr('nameL') + '</span>' +
+            '<input id="c-name" type="text" autocomplete="name" required></label>' +
+          '<label class="field"><span>' + cstr('phoneL') + '</span>' +
+            '<input id="c-phone" type="tel" placeholder="+994 XX XXX XX XX" autocomplete="tel" required></label>' +
+          '<label class="field"><span>' + cstr('addrL') + '</span>' +
+            '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
+            '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
+          /* Кнопка с суммой: человек видит, сколько заплатит, ПЕРЕД нажатием. */
+          '<button class="btn btn--main" type="button" id="c-pay" style="width:100%;margin-top:16px;">' +
+            (askOnly ? cstr('orderOnly') : cstr('payBtn') + (sum ? ' <span id="c-pay-sum">' + sum + ' ₼</span>' : '')) +
+          '</button>' +
+        '</form>' +
+        '<button type="button" class="btn btn--ghost" id="c-back" style="width:100%;margin-top:8px;">' +
+          cstr('back') + '</button>' +
+        '<div class="cart-ok" id="cart-ok" hidden>' + cstr('done') + '</div>';
+
+      var backB = $('#c-back', body);
+      if (backB) backB.addEventListener('click', function () { render(); });
+
+      var payB = $('#c-pay', body);
+      if (payB) payB.addEventListener('click', function () {
+        if (askOnly) { sendOrderOnly(); return; }
+        epointPay(0);   /* 0 = способ оплаты выбирает БАНК на своей странице */
+      });
+
+      (function () {
+        var f = $('#cart-form', body);
+        if (!f) return;
+        profileAsk(f, function () {
+          var pb2 = $('#c-pay', body);
+          if (pb2) { pb2.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        });
+      })();
+
+      var geo = $('#c-geo', body);
+      if (geo) geo.addEventListener('click', geoFill);
+    }
+
+    function renderLegacy() {
+      var items = cartRead();
+      var body = $('#cart-body', box);
+      var sum = 0, hasAsk = false, rows = '', hasColl = false;
         '<form id="cart-form" novalidate>' +
           /* Язык покупки. Для книг Фрейда выбора НЕТ: продаём только наш
              азербайджанский перевод, поэтому вместо выбора — честное пояснение,
