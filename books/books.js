@@ -618,6 +618,7 @@
        «ReferenceError: epointPay is not defined» — кнопка оплаты не работала.
        Теперь эти функции видны всем трём экранам: корзине, регистрации и заказу. */
       function epointPay(months) {
+        var body = document.getElementById('cart-body');
         var list = cartRead();
         if (!list.length) return;
         var nm = ($('#c-name', body).value || '').trim();
@@ -658,6 +659,7 @@
       }
 
       function geoFill() {
+        var body = document.getElementById('cart-body');
         var out = $('#c-addr', body);
         if (!out) return;
         if (!navigator.geolocation) { alert(cstr('geoNo')); return; }
@@ -681,6 +683,7 @@
       }
 
       function sendOrderOnly() {
+        var body = document.getElementById('cart-body');
         var name = ($('#c-name', body).value || '').trim();
         var phone = ($('#c-phone', body).value || '').trim();
         var addr = ($('#c-addr', body).value || '').trim();
