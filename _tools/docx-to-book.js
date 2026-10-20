@@ -408,7 +408,9 @@ function dnName(title) {
   return t.length > 26 ? t.slice(0, 24).trim() + "…" : t;
 }
 
-function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+/* мягкие переносы (U+00AD) нужны только печати: в вебе они дают рваные слова,
+   а на сайте такие знаки убраны отдельной чисткой — поэтому режем их здесь */
+function esc(s) { return String(s).replace(/\u00ad/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 /* ─────────── генерация страниц ─────────── */
 const TPL = JSON.parse(fs.readFileSync(path.join(__dirname, 'book-template.json'), 'utf8'));
@@ -423,7 +425,7 @@ const UI = {
   en: { toc: 'Contents', order: 'Order the book', back: 'Books', prev: 'Previous', next: 'Next', read: 'Read', home: 'Home', up: 'Book', test: '“Map of relationship models” · 100 statements, 12 models', testBtn: 'Online test' }
 };
 
-function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function esc(s) { return String(s).replace(/\u00ad/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 /* верхний регистр с учётом азербайджанского: «i» → «İ» (в JS toUpperCase даёт «I» без точки,
    отсюда «FENIKS ERASI» вместо «FENİKS ERASI»); «ı» → «I» — верно и так */
