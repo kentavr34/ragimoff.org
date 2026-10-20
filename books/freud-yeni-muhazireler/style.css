@@ -9,8 +9,8 @@
   --bg4:      #21262D;
   --border:   #30363D;
   --border2:  #21262D;
-  --gold:     #C9A961;
-  --gold2:    #B8934A;
+  --gold:     #E6B44A;
+  --gold2:    #C8961F;
   --gold-bg:  rgba(230,180,74,0.10);
   --gold-glow:rgba(230,180,74,0.18);
   --text:     #E6EDF3;
@@ -843,13 +843,12 @@ span[lang] {
      h2 1.18rem · h3 1.02rem · h4 14px.
    ЗНАЧЕНИЯ ЖИВУТ ТОЛЬКО В ОДНОМ МЕСТЕ: _tools/book-template.json, ключ "read".
    Этот блок — его зеркало для страниц, которые не собираются сборщиками. */
-.content-wrap{max-width:50rem;font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
+.content-wrap{max-width:44rem;font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif)}
 .content-wrap p,.content-wrap li,.content-wrap dd,.content-wrap dt,.content-wrap blockquote,.content-wrap figcaption{
   font-family:var(--serif,'Literata', Georgia, 'Times New Roman', serif);
-  margin-bottom:20px;
   font-size:18px;line-height:1.85;letter-spacing:0;word-spacing:normal;
-  text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto;
-  max-width:50rem;overflow-wrap:break-word}
+  text-align:left;text-align-last:left;hyphens:none;-webkit-hyphens:none;
+  max-width:44rem;overflow-wrap:break-word}
 .content-wrap h1,.content-wrap h2,.content-wrap h3,.content-wrap h4,
 .content-wrap h5,.content-wrap h6,.content-wrap .chap-title,
 .content-wrap .chap-title-wrap,.content-wrap .h-section-sub{
@@ -864,38 +863,3 @@ span[lang] {
   .content-wrap blockquote,.content-wrap figcaption{font-size:17.5px;line-height:1.85}
   .content-wrap h1.chap-title-wrap{font-size:32px}
 }
-
-@media(max-width:720px){
-  .site-main{padding-left:0;padding-right:0}
-  .home-title img,.home-title .lock{width:min(460px,88vw) !important}
-}
-/* окно чтения — единые отступы и интервалы */
-.content-wrap{max-width:50rem;margin:0 auto;padding-left:24px;padding-right:24px}
-@media(max-width:720px){.content-wrap{padding-left:16px;padding-right:16px}}
-.content-wrap p{margin:0 0 1.05em;line-height:1.75;text-align:justify}
-
-/* == ЕДИНЫЙ СТИЛЬ СЕРИИ (06.10.2026, задание владельца) == */
-.home-hero{text-align:center;margin:1.4rem 0 1.2rem;padding:0}
-.home-title{margin:0;padding:0;font-size:inherit;font-weight:400;line-height:1}
-.home-title img,.home-title .lock{display:block;width:min(520px,86vw) !important;max-width:100%;height:auto;margin:0 auto}
-/* мета-строка «Автор, İlk nəşr — YYYY»: под названием, по центру названия,
-   растянута до его краёв — кегль подбирает /books/book-meta-fit.js */
-.book-meta{display:flex;flex-wrap:nowrap;justify-content:center;align-items:baseline;gap:0;
-  width:fit-content;max-width:100%;margin:14px auto 0;
-  font-size:var(--bk-meta-fs,16px) !important;
-  line-height:1.5;color:var(--text2,#9aa4b2);text-align:center;white-space:nowrap;
-  letter-spacing:var(--bk-meta-ls,0)}
-.book-meta > * + *{margin-left:calc(-1 * var(--bk-meta-ls,0px))}
-.book-meta .bm-author{font-weight:600;letter-spacing:var(--bk-meta-ls,0)}
-.book-meta .bm-date{font-variant-numeric:tabular-nums;letter-spacing:var(--bk-meta-ls,0)}
-.book-meta .bm-date::before{content:", "}
-@media(max-width:720px){
-  .site-main{padding-left:0;padding-right:0}
-  .home-title img,.home-title .lock{width:min(460px,88vw) !important}
-  .book-meta{width:fit-content;max-width:88vw;margin-top:10px}
-}
-.content-wrap{max-width:50rem;margin:0 auto;padding-left:24px;padding-right:24px}
-@media(max-width:720px){.content-wrap{padding-left:16px;padding-right:16px}}
-.content-wrap p{margin:0 0 1.05em;line-height:1.75;text-align:justify}
-
-@media (max-width: 700px){ .site-header .lsw{ margin-left:auto } }
