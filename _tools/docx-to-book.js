@@ -35,20 +35,63 @@ function decode(s) {
     .replace(/&#(\d+);/g, (m, d) => String.fromCharCode(+d));
 }
 
+/* ─────────── таблицы DOCX → структурные блоки ─────────── */
+function cellParas(tc) {
+  const out = [];
+  const pre = /<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g;
+  let m;
+  while ((m = pre.exec(tc)) !== null) {
+    const texts = [];
+    const tr = /<w:t[^>]*>([\s\S]*?)<\/w:t>/g;
+    let t;
+    while ((t = tr.exec(m[0])) !== null) texts.push(decode(t[1]));
+    const tx = texts.join('').replace(/\s+/g, ' ').trim();
+    if (tx) out.push(tx);
+  }
+  return out;
+}
+
+function parseTableXml(xml) {
+  const rows = [];
+  const tre = /<w:tr[ >][\s\S]*?<\/w:tr>/g;
+  let rm;
+  while ((rm = tre.exec(xml)) !== null) {
+    const rowXml = rm[0];
+    const isHead = /<w:tblHeader\s*\/?>/.test(rowXml);
+    const cells = [];
+    const cre = /<w:tc>([\s\S]*?)<\/w:tc>/g;
+    let cm;
+    while ((cm = cre.exec(rowXml)) !== null) {
+      const tc = cm[1];
+      const span = +((tc.match(/<w:gridSpan w:val="(\d+)"/) || [])[1] || 1);
+      const box = /<w:drawing>|<w:pict>/.test(tc);
+      cells.push({ paras: cellParas(tc), colspan: span, box });
+    }
+    if (cells.length) rows.push({ cells, hdr: isHead });
+  }
+  if (!rows.length) return null;
+  /* шапка — первая строка, если в DOCX она помечена как повторяющаяся */
+  const hasHead = rows[0].hdr;
+  return { type: 'table', text: '', tbl: true, head: hasHead, rows };
+}
+
 function paragraphs(file) {
   const xml = execFileSync('unzip', ['-p', file, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 }).toString('utf8');
   const out = [];
   /* диапазоны таблиц: абзацы внутри <w:tbl> — ячейки, а не заголовки
      (в «Вирусе Вины» в таблицах встречаются «ВВЕДЕНИЕ», «РАЗДЕЛ 2» и подобное) */
-  const tables = [];
-  const tre = /<w:tbl>[\s\S]*?<\/w:tbl>/g;
-  let tm;
-  while ((tm = tre.exec(xml)) !== null) tables.push([tm.index, tm.index + tm[0].length]);
-  const inTable = (pos) => tables.some(([a, b]) => pos >= a && pos < b);
-  const re = /<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g;
+  /* Таблицы и абзацы идут ОДНИМ потоком: таблица попадает в результат на своём
+     месте отдельным блоком {type:'table', rows}, а не россыпью абзацев-ячеек.
+     Раньше ячейки выпадали в общий текст и таблица читалась как поток «1 2 3 ☐». */
+  const re = /(<w:tbl>[\s\S]*?<\/w:tbl>)|(<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>)/g;
   let m;
   while ((m = re.exec(xml)) !== null) {
-    const p = m[0];
+    if (m[1]) {
+      const tbl = parseTableXml(m[1]);
+      if (tbl && tbl.rows.length) out.push(tbl);
+      continue;
+    }
+    const p = m[2];
     const texts = [];
     const tr = /<w:t[^>]*>([\s\S]*?)<\/w:t>/g;
     let t;
@@ -60,7 +103,7 @@ function paragraphs(file) {
     const bold = /<w:b\/>|<w:b w:val="(1|true)"/.test(p);
     const italic = /<w:i\/>|<w:i w:val="(1|true)"/.test(p);
     const sz = +((p.match(/<w:sz w:val="(\d+)"/) || [])[1] || 0);
-    out.push({ text, bold, italic, sz, tbl: inTable(m.index) });
+    out.push({ text, bold, italic, sz, tbl: false });
   }
   return out;
 }
@@ -482,11 +525,38 @@ function headHtml(cfg, lang, title, desc) {
     .replace('</head>', TOC_STYLE + '</head>');
 }
 
+/* ─────────── рендер таблицы ─────────── */
+function cellHtml(c) {
+  const t = (c.paras || []).map((x) => esc(x)).join(' ');
+  if (!t) return c.box ? '<span class="tbl-box" aria-hidden="true"></span>' : '';
+  return t;
+}
+
+function renderTable(tbl) {
+  const rows = tbl.rows;
+  const head = tbl.head ? rows[0] : null;
+  const bodyRows = head ? rows.slice(1) : rows;
+  let html = '<div class="tbl-wrap"><table class="bk-tbl">';
+  if (head) {
+    html += '<thead><tr>' + head.cells.map((c) =>
+      '<th' + (c.colspan > 1 ? ' colspan="' + c.colspan + '"' : '') + '>' + cellHtml(c) + '</th>').join('') +
+      '</tr></thead>';
+  }
+  html += '<tbody>' + bodyRows.map((r) =>
+    '<tr>' + r.cells.map((c) =>
+      '<td' + (c.colspan > 1 ? ' colspan="' + c.colspan + '"' : '') +
+      (c.box ? ' class="tbl-c"' : '') + '>' + cellHtml(c) + '</td>').join('') + '</tr>').join('') +
+    '</tbody></table></div>';
+  return html;
+}
+
 function chapterPage(cfg, lang, ch, idx, all, rel) {
+
   const ui = UI[lang.ui] || UI.az;
   const prev = idx > 0 ? all[idx - 1] : null;
   const next = idx < all.length - 1 ? all[idx + 1] : null;
   const body = ch.paras.map((p) => {
+    if (p.type === 'table') return renderTable(p);
     const t = esc(p.text);
     if (p.text.length < 95 && /^\d+(\.\d+)*[.)]?\s/.test(p.text)) return '<h2>' + t + '</h2>';
     if (p.bold && p.sz >= 26 && p.text.length < 95) return '<h2>' + t + '</h2>';

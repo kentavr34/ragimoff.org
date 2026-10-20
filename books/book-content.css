@@ -71,6 +71,47 @@
 .bk-read td strong, .bk-read th strong { color: var(--fg); }
 .bk-read .tbl-wrap { overflow-x: auto; margin: 0 0 var(--read-gap); }
 .bk-read .tbl-wrap table { margin: 0; }
+
+/* ── 4б. Таблица из DOCX (.bk-tbl) — результат конвертера docx-to-book.js ────
+   Базовые рамки/отступы берутся из блока 4 выше; здесь только то, что нужно
+   именно конвертированным таблицам: шапка, чек-боксы опросников, мобильный вид. */
+.bk-read .bk-tbl {
+  font-size: .93em;
+  line-height: 1.45;
+  /* длинные слова (азербайджанские термины) не должны распирать колонку */
+  overflow-wrap: anywhere;
+}
+.bk-read .bk-tbl th {
+  font-weight: 600;
+  white-space: nowrap;      /* короткие шапки «№», «1»…«5», «Да», «Нет» — в строку */
+}
+.bk-read .bk-tbl td.tbl-c {
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px 8px;
+  width: 1%;
+  white-space: nowrap;
+}
+/* чек-бокс опросника: рисуется рамкой, а не зависит от шрифта */
+.bk-read .tbl-box {
+  display: inline-block;
+  width: .95em;
+  height: .95em;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  vertical-align: -.08em;
+}
+/* на узких экранах таблица прокручивается, а не ломает вёрстку */
+@media (max-width: 640px) {
+  .bk-read .bk-tbl { font-size: .86em; }
+  .bk-read .bk-tbl th,
+  .bk-read .bk-tbl td { padding: 6px 8px; }
+  .bk-read .tbl-wrap {
+    margin-inline: -14px;
+    padding-inline: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 .bk-read .kod-cell {
   font-family: var(--f-mono); font-size: .7rem; color: var(--acc);
   white-space: nowrap; font-variant-numeric: tabular-nums;
