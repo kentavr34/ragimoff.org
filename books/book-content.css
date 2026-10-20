@@ -78,13 +78,14 @@
 .bk-read .bk-tbl {
   font-size: .93em;
   line-height: 1.45;
-  /* длинные слова (азербайджанские термины) не должны распирать колонку */
-  overflow-wrap: anywhere;
 }
 .bk-read .bk-tbl th {
   font-weight: 600;
   white-space: nowrap;      /* короткие шапки «№», «1»…«5», «Да», «Нет» — в строку */
 }
+.bk-read .bk-tbl td { overflow-wrap: break-word; }
+/* числа и годы не рвём никогда */
+.bk-read .bk-tbl td.nowrap { white-space: nowrap; }
 .bk-read .bk-tbl td.tbl-c {
   text-align: center;
   vertical-align: middle;
