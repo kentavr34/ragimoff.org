@@ -691,7 +691,7 @@ input, select, textarea, button {
           </div>
         </div>
 
-        <form class="reg-form-wrap" id="regForm" enctype="multipart/form-data" style="margin-top:32px;" action="/api/training-reg" method="POST" novalidate>
+        <form class="reg-form-wrap" id="regForm" enctype="multipart/form-data" style="margin-top:32px;" action="https://api.ragimoff.org/api/training-reg" method="POST" novalidate>
           <div class="form-2col">
             <div class="form-field"><label for="program-prakti-f1">Ad *</label><input id="program-prakti-f1" type="text" name="ad" required placeholder="Adınız" aria-label="Adınız"></div>
             <div class="form-field"><label for="program-prakti-f2">Soyad *</label><input id="program-prakti-f2" type="text" name="soyad" required placeholder="Soyadınız" aria-label="Soyadınız"></div>
@@ -727,16 +727,16 @@ input, select, textarea, button {
             <label for="km-name">Sənədlər</label>
             <div class="upload-grid">
               <div class="upload-item">
-                <span class="upload-lbl">Psixologiya Sertifikatı *</span>
-                <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="upload-hint">PDF, JPG — maks. 5 MB</span>
-              </div>
-              <div class="upload-item">
                 <span class="upload-lbl">Şəxsiyyət Vəsiqəsi *</span>
                 <input type="file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — maks. 5 MB</span>
               </div>
-              <div class="upload-item">
+<div class="upload-item">
+                <span class="upload-lbl">Psixologiya Sertifikatı *</span>
+                <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
+                <span class="upload-hint">PDF, JPG — maks. 5 MB</span>
+              </div>
+<div class="upload-item">
                 <span class="upload-lbl">Digər Sertifikatlar</span>
                 <input type="file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
                 <span class="upload-hint">Endirim üçün — bir neçə fayl</span>
@@ -751,7 +751,7 @@ input, select, textarea, button {
 
           <div class="form-footer">
             <p class="form-note">Sənədlər yalnız qeydiyyat məqsədilə qəbul edilir. Üçüncü şəxslərə ötürülmür.</p>
-            <button type="submit" class="btn btn-fill" style="min-width:240px;padding:16px 32px;">Qeydiyyat Formasını Göndər</button>
+            <button type="submit" class="btn btn-fill" style="min-width:240px;padding:16px 32px;">Göndər</button>
           </div>
           <div class="form-success" id="regSuccess">
             <p>Sorğunuz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.</p>
