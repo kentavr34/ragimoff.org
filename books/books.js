@@ -322,7 +322,12 @@
      Названия ниже — это data-order карточек, то есть ровно то, что попадает
      в корзину. Список менять только вместе с каталогом. */
   var MY_BOOKS = ['Klinik Psixiatriya', 'Günahkarlıq Virusu',
-                  'Şizofreniya', 'Feniks Erası'];
+                  'Şizofreniya', 'Feniks Erası',
+                  /* те же книги, когда их кладут в корзину с русской или
+                     английской страницы каталога (21.10.2026): иначе корзина
+                     считала их «книгами Фрейда» и навязывала азербайджанский */
+                  'Клиническая психиатрия', 'Вирус вины', 'Шизофрения', 'Эра Феникса',
+                  'Clinical Psychiatry', 'The Guilt Virus', 'Schizophrenia', 'Phoenix Era'];
   var BUY_LANGS = [['az', 'AZ'], ['ru', 'RU'], ['en', 'EN']];
 
   function isMyBook(title) {

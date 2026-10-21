@@ -204,3 +204,138 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
 })();
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   КНОПКА В ШАПКЕ СТРАНИЦЫ КНИГИ = «В КОРЗИНУ»
+   Задание Кенана (21.10.2026): «она должна вести себя также как добавить
+   в корзину — та же функция».
+
+   ЧТО БЫЛО СЛОМАНО: книга добавлялась в ДРУГУЮ корзину (ragimoff_cart_v2),
+   а каталог books.js читает ragimoff_cart_v1. Две корзины на одном сайте:
+   то, что человек положил со страницы книги, в каталоге не появлялось.
+
+   ТЕПЕРЬ: та же корзина и тот же формат элемента, что у каталога —
+   { title, qty, price } в localStorage['ragimoff_cart_v1'].
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var CART_KEY = 'ragimoff_cart_v1';
+  var CATALOG_URL = '/books/';
+  var MAP = {"virus-viny":{"az":{"t":"Günahkarlıq Virusu","p":"30 ₼"},"ru":{"t":"Вирус вины","p":"30 ₼"},"en":{"t":"The Guilt Virus","p":"30 ₼"}},"shizofreniya":{"az":{"t":"Şizofreniya. Cinnət pandemiyası","p":"30 ₼"},"ru":{"t":"Шизофрения. Пандемия безумия","p":"30 ₼"},"en":{"t":"Schizophrenia. A Pandemic of Madness","p":"30 ₼"}},"phoenix-era":{"az":{"t":"Feniks Erası","p":"30 ₼"},"ru":{"t":"Эра Феникса","p":"30 ₼"},"en":{"t":"Phoenix Era","p":"30 ₼"}},"freud-yuxularin-yozumu":{"az":{"t":"Yuxuların yozumu","p":"30 ₼"},"ru":{"t":"Толкование сновидений","p":"30 ₼"},"en":{"t":"The Interpretation of Dreams","p":"30 ₼"}},"freud-musa":{"az":{"t":"Musa və təkallahlılıq","p":"30 ₼"},"ru":{"t":"Человек Моисей и монотеистическая религия","p":"30 ₼"},"en":{"t":"Moses and Monotheism","p":"30 ₼"}},"freud-totem-ve-tabu":{"az":{"t":"Totem və Tabu","p":"30 ₼"},"ru":{"t":"Тотем и табу","p":"30 ₼"},"en":{"t":"Totem and Taboo","p":"30 ₼"}},"freud-psixoanalizle-tanishliq":{"az":{"t":"Psixoanalizlə ilkin tanışlıq","p":"30 ₼"},"ru":{"t":"Введение в психоанализ. Лекции","p":"30 ₼"},"en":{"t":"Introduction to Psychoanalysis","p":"30 ₼"}},"freud-seksualligin-psixologiyasi":{"az":{"t":"Seksuallığın psixologiyası","p":"30 ₼"},"ru":{"t":"Три очерка по теории сексуальности","p":"30 ₼"},"en":{"t":"Three Essays on the Theory of Sexuality","p":"30 ₼"}},"freud-sevgi-mektublari":{"az":{"t":"Sevgi məktubları (1882–1912)","p":"30 ₼"},"ru":{"t":"Письма Марте Бернайс (1882–1912)","p":"30 ₼"},"en":{"t":"Letters to Martha Bernays (1882–1912)","p":"30 ₼"}},"freud-aforizmlar":{"az":{"t":"Aforizmlər","p":"30 ₼"},"ru":{"t":"Афоризмы","p":"30 ₼"},"en":{"t":"Aphorisms","p":"30 ₼"}},"freud-medeniyyetin-sancilari":{"az":{"t":"Mədəniyyətin sancıları","p":"30 ₼"},"ru":{"t":"Недовольство культурой","p":"30 ₼"},"en":{"t":"Civilization and Its Discontents","p":"30 ₼"}},"freud-fliesse-mektublari":{"az":{"t":"Flissə məktublar (1887–1904)","p":"30 ₼"},"ru":{"t":"Письма Вильгельму Флиссу (1887–1904)","p":"30 ₼"},"en":{"t":"Letters to Wilhelm Fliess (1887–1904)","p":"30 ₼"}},"freud-zweig-mektublari":{"az":{"t":"Freyd–Tsveyq məktubları (1908–1939)","p":"30 ₼"},"ru":{"t":"Переписка Фрейда и Цвейга (1908–1939)","p":"30 ₼"},"en":{"t":"Freud–Zweig Letters (1908–1939)","p":"30 ₼"}},"freud-folklor":{"az":{"t":"Yuxu və folklor","p":"30 ₼"}},"freud-abriss":{"az":{"t":"Psixoanalizin qısa xülasəsi","p":"30 ₼"},"ru":{"t":"Краткое изложение психоанализа","p":"30 ₼"},"en":{"t":"An Outline of Psycho-Analysis","p":"30 ₼"}},"freud-bir-illuziyanin-geleceyi":{"az":{"t":"Bir illüziyanın gələcəyi","p":"30 ₼"},"ru":{"t":"Будущее одной иллюзии","p":"30 ₼"},"en":{"t":"The Future of an Illusion","p":"30 ₼"}},"freud-gundelik-heyat":{"az":{"t":"Gündəlik həyatın psixopatologiyası","p":"30 ₼"},"ru":{"t":"Психопатология обыденной жизни","p":"30 ₼"},"en":{"t":"The Psychopathology of Everyday Life","p":"30 ₼"}},"freud-gwx":{"az":{"t":"Seçilmiş əsərlər 1913–1917","p":"30 ₼"},"ru":{"t":"Избранные произведения","p":"30 ₼"},"en":{"t":"Selected Works","p":"30 ₼"}},"freud-histeriya":{"az":{"t":"Histeriya üzrə tədqiqatlar","p":"30 ₼"},"ru":{"t":"Исследования истерии","p":"30 ₼"},"en":{"t":"Studies on Hysteria","p":"30 ₼"}},"freud-jenseits":{"az":{"t":"Həzz prinsipinin o tayında","p":"30 ₼"},"ru":{"t":"По ту сторону принципа удовольствия","p":"30 ₼"},"en":{"t":"Beyond the Pleasure Principle","p":"30 ₼"}},"freud-manee-simptom-qorxu":{"az":{"t":"Maneə, simptom və qorxu","p":"30 ₼"},"ru":{"t":"Торможение, симптом и тревога","p":"30 ₼"},"en":{"t":"Inhibitions, Symptoms and Anxiety","p":"30 ₼"}},"freud-massen":{"az":{"t":"Kütlə psixologiyası və Mən-analizi","p":"30 ₼"},"ru":{"t":"Психология масс и анализ «Я»","p":"30 ₼"},"en":{"t":"Group Psychology and the Analysis of the Ego","p":"30 ₼"}},"freud-men-ve-o":{"az":{"t":"Mən və O","p":"30 ₼"},"ru":{"t":"«Я» и «Оно»","p":"30 ₼"},"en":{"t":"The Ego and the Id","p":"30 ₼"}},"freud-metapsixologiya":{"az":{"t":"Metapsixologiya","p":"30 ₼"},"ru":{"t":"Метапсихология","p":"30 ₼"},"en":{"t":"Metapsychology","p":"30 ₼"}},"freud-yeni-muhazireler":{"az":{"t":"Yeni mühazirələr","p":"30 ₼"},"ru":{"t":"Новые лекции по психоанализу","p":"30 ₼"},"en":{"t":"New Introductory Lectures on Psycho-Analysis","p":"30 ₼"}},"freud-yumor":{"az":{"t":"Yumor və onun qeyri-şüurla əlaqəsi","p":"30 ₼"},"ru":{"t":"Остроумие и его отношение к бессознательному","p":"30 ₼"},"en":{"t":"Jokes and Their Relation to the Unconscious","p":"30 ₼"}},"freud-krankengeschichten":{"az":{"t":"Xəstəlik tarixçələri","p":"30 ₼"},"ru":{"t":"Истории болезни","p":"30 ₼"},"en":{"t":"Case Histories","p":"30 ₼"}},"freud-psixoanaliz-texnikasi":{"az":{"t":"Psixoanaliz texnikasına dair","p":"30 ₼"},"ru":{"t":"К технике психоанализа","p":"30 ₼"},"en":{"t":"On the Technique of Psycho-Analysis","p":"30 ₼"}},"freud-kicik-eserler":{"az":{"t":"Seksuallıq və nevrozlar haqqında kiçik əsərlər","p":"30 ₼"},"ru":{"t":"Малые работы о сексуальности и неврозах","p":"30 ₼"},"en":{"t":"Papers on Sexuality and Neurosis","p":"30 ₼"}},"freud-ozunu-tesvir":{"az":{"t":"Özünü təsvir","p":"30 ₼"},"ru":{"t":"Автобиография","p":"30 ₼"},"en":{"t":"An Autobiographical Study","p":"30 ₼"}},"freud-muxtelif-eserler":{"az":{"t":"Müxtəlif əsərlər (1908–1928)","p":"30 ₼"},"ru":{"t":"Разные сочинения (1908–1928)","p":"30 ₼"},"en":{"t":"MISCELLANEOUS WORKS (1908–1928)","p":"30 ₼"}},"freud-elyazmalar":{"az":{"t":"Əlyazmalardan yazılar (1892–1938)","p":"30 ₼"},"ru":{"t":"Из рукописей (1892–1938)","p":"30 ₼"},"en":{"t":"Posthumous Writings (1892–1938)","p":"30 ₼"}},"freud-incesenet":{"az":{"t":"İncəsənət və ədəbiyyat","p":"30 ₼"},"ru":{"t":"Искусство и литература","p":"30 ₼"},"en":{"t":"ART AND LITERATURE","p":"30 ₼"}},"freud-tetbiqi-yazilar":{"az":{"t":"Psixoanalizin tətbiqi üzrə yazılar","p":"30 ₼"},"ru":{"t":"Прикладной психоанализ","p":"30 ₼"},"en":{"t":"Applied Psycho-Analysis","p":"30 ₼"}},"freud-ilk-nevroz-isleri":{"az":{"t":"Nevroz təliminə dair ilk işlər","p":"30 ₼"},"ru":{"t":"Ранние работы по теории неврозов","p":"30 ₼"},"en":{"t":"EARLY PAPERS ON THE THEORY OF THE NEUROSES","p":"30 ₼"}},"freud-gec-analitik-yazilar":{"az":{"t":"Gec analitik yazılar (1922–1937)","p":"30 ₼"},"ru":{"t":"Поздние аналитические работы (1922–1937)","p":"30 ₼"},"en":{"t":"Late Analytical Papers (1922–1937)","p":"30 ₼"}},"freud-yuxu-haqqinda":{"az":{"t":"Yuxu haqqında və kiçik yazılar (1901–1925)","p":"30 ₼"},"ru":{"t":"О сновидении и малые работы (1901–1925)","p":"30 ₼"},"en":{"t":"ON DREAMS AND SHORTER WORKS","p":"30 ₼"}},"freud-psixoanaliz-haqqinda":{"az":{"t":"Psixoanaliz haqqında (Klark mühazirələri)","p":"30 ₼"},"ru":{"t":"О психоанализе (Кларковские лекции)","p":"30 ₼"},"en":{"t":"On Psychoanalysis (Clark Lectures)","p":"30 ₼"}},"freud-kicik-fragmenler":{"az":{"t":"Kiçik fragmenler (1924–1942)","p":"30 ₼"},"ru":{"t":"Малые фрагменты (1924–1942)","p":"30 ₼"},"en":{"t":"Little Fragments (1924–1942)","p":"30 ₼"}},"freud-kicik-eserler-ii":{"az":{"t":"Kiçik əsərlər II (1898, 1925)","p":"30 ₼"},"ru":{"t":"Малые работы II (1898, 1925)","p":"30 ₼"},"en":{"t":"Shorter Works II (1898, 1925)","p":"30 ₼"}},"freud-on-sozler":{"az":{"t":"Ön sözlər (1886–1930)","p":"30 ₼"},"ru":{"t":"Предисловия (1886–1930)","p":"30 ₼"},"en":{"t":"Prefaces (1886–1930)","p":"30 ₼"}},"freud-referatlar":{"az":{"t":"Referatlar (1884–1885)","p":"30 ₼"},"ru":{"t":"Referatlar (1884–1885)","p":"30 ₼"},"en":{"t":"Referatlar (1884–1885)","p":"30 ₼"}},"freud-resenziyalar":{"az":{"t":"Resenziyalar (1887–1910)","p":"30 ₼"},"ru":{"t":"Resenziyalar (1887–1910)","p":"30 ₼"},"en":{"t":"Resenziyalar (1887–1910)","p":"30 ₼"}},"freud-kokain":{"az":{"t":"Kokain haqqında yazılar","p":"30 ₼"}},"freud-afaziya":{"az":{"t":"Afaziyaya dair anlayışa doğru","p":"30 ₼"}},"freud-usaq-iflici":{"az":{"t":"Uşaq serebral iflici","p":""}}};
+
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2).toLowerCase();
+  if (!MAP || !Object.keys(MAP).length) return;
+  if (L !== 'ru' && L !== 'en') L = 'az';
+
+  var TXT = {
+    az: { add: 'Səbətə at', short: 'Səbət', added: 'Səbətə əlavə edildi',
+          go: 'Səbətə keç', more: 'Davam et' },
+    ru: { add: 'В корзину', short: 'Корзина', added: 'Добавлено в корзину',
+          go: 'Перейти в корзину', more: 'Продолжить' },
+    en: { add: 'Add to cart', short: 'Cart', added: 'Added to cart',
+          go: 'Go to cart', more: 'Continue' }
+  }[L];
+
+  function slug() {
+    var m = location.pathname.match(/^\/books\/([^\/]+)/);
+    return m ? m[1] : '';
+  }
+
+  function book() {
+    var s = slug();
+    var byLang = MAP[s] || {};
+    return byLang[L] || byLang.az || byLang.ru || byLang.en || null;
+  }
+
+  function read() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]') || []; } catch (e) { return []; }
+  }
+  function write(list) {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+
+  function addToCart() {
+    var b = book();
+    if (!b) return null;
+    var items = read(), hit = false;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].title === b.t) {
+        items[i].qty = (items[i].qty || 1) + 1;
+        if (b.p && !items[i].price) items[i].price = b.p;
+        hit = true;
+        break;
+      }
+    }
+    if (!hit) items.push({ title: b.t, qty: 1, price: b.p || '' });
+    write(items);
+    return b;
+  }
+
+  function count() {
+    return read().reduce(function (s, i) { return s + (i.qty || 1); }, 0);
+  }
+
+  function toast(b) {
+    var old = document.getElementById('cfg-toast');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var d = document.createElement('div');
+    d.id = 'cfg-toast';
+    d.setAttribute('role', 'status');
+    d.style.cssText =
+      'position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:99999;' +
+      'background:#0f131b;color:#f2ede3;border:1px solid #c9a961;border-radius:10px;' +
+      'padding:14px 18px;max-width:440px;width:calc(100% - 32px);' +
+      'box-shadow:0 12px 40px rgba(0,0,0,.55);font-size:14px;line-height:1.55;' +
+      'box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;';
+    d.innerHTML =
+      '<div style="display:flex;gap:10px;align-items:flex-start;">' +
+      '<span style="color:#c9a961;font-size:18px;line-height:1;">\u2713</span>' +
+      '<div style="flex:1;">' +
+      '<b style="display:block;margin-bottom:4px;">' + TXT.added + '</b>' +
+      '<span style="color:#a8a296;">' + String(b.t).replace(/[<>&]/g, '') +
+      (b.p ? ' \u00b7 ' + b.p : '') + '</span>' +
+      '<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">' +
+      '<a href="' + CATALOG_URL + '" style="background:#c9a961;color:#07090e;text-decoration:none;' +
+      'padding:9px 16px;border-radius:7px;font-weight:700;font-size:13px;">' + TXT.go +
+      ' (' + count() + ')</a>' +
+      '<button type="button" data-cfg-close style="background:transparent;color:#a8a296;' +
+      'border:1px solid rgba(255,255,255,.15);padding:9px 16px;border-radius:7px;' +
+      'cursor:pointer;font-size:13px;">' + TXT.more + '</button>' +
+      '</div></div></div>';
+    document.body.appendChild(d);
+    d.querySelector('[data-cfg-close]').onclick = function () { d.parentNode.removeChild(d); };
+    setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 12000);
+  }
+
+  function relabel(btn) {
+    var full = btn.querySelector('.kitab-full');
+    var short = btn.querySelector('.kitab-short');
+    if (full) { full.textContent = TXT.add; }
+    if (short) { short.textContent = TXT.short; }
+    if (!full && !short) { btn.textContent = TXT.add; }
+  }
+
+  function bind() {
+    var btns = document.querySelectorAll('button[onclick*="openKitabModal"]');
+    for (var i = 0; i < btns.length; i++) {
+      (function (btn) {
+        if (btn.getAttribute('data-cfg') === '1') return;
+        btn.setAttribute('data-cfg', '1');
+        btn.removeAttribute('onclick');
+        btn.setAttribute('type', 'button');
+        relabel(btn);
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var b = addToCart();
+          if (b) toast(b);
+        });
+      })(btns[i]);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind);
+  } else { bind(); }
+})();
