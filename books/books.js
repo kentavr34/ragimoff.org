@@ -85,6 +85,7 @@
     var modal = $('[data-modal]');
     if (!modal) return;
     var form = $('#order-form');
+    if (!form) return;
     var ok = $('#o-ok');
     var sub = $('#o-sub');
     var select = $('#o-book');
@@ -1058,7 +1059,7 @@
   function boot() {
     initReveal();
     initSearch();
-    initOrder();
+    try { initOrder(); } catch (e) { console.warn('order disabled:', e); }
     /* корзина — дополнительная возможность: если она когда-нибудь упадёт
        (старый браузер, заблокированное localStorage), каталог обязан остаться
        рабочим. Поэтому ошибку глушим и сообщаем в консоль, а не на страницу. */
