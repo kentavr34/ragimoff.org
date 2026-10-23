@@ -88,6 +88,10 @@
         <a href="/tehsil.html">Təhsil</a>
         <a href="/books/">Kitablar</a>
         <a href="/blog.html">Blog</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Səbət" title="Səbət">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -558,5 +562,12 @@
   </script>
   <script src="/books/books.js?v=12" defer></script>
   <script src="/_lang-switch.js?v=9" defer></script>
-<script>(function(){var n=document.querySelectorAll(".card[data-author=freud]").length;document.querySelectorAll("#count,.coll-banner__count").forEach(function(e){e.textContent=n+" "+(e.id==="count"?"kitab":"KİTAB")});var old=n*30,now=Math.round(old*.8);document.querySelectorAll(".coll-banner__old").forEach(function(e){e.textContent=old+" ₼"});document.querySelectorAll(".coll-banner__new").forEach(function(e){e.textContent=now+" ₼"});document.querySelectorAll(".coll-banner__save").forEach(function(e){e.textContent=(old-now)+" ₼ qənaət"});})();</script></body>
+<script>(function(){var n=document.querySelectorAll(".card[data-author=freud]").length;document.querySelectorAll("#count,.coll-banner__count").forEach(function(e){e.textContent=n+" "+(e.id==="count"?"kitab":"KİTAB")});var old=n*30,now=Math.round(old*.8);document.querySelectorAll(".coll-banner__old").forEach(function(e){e.textContent=old+" ₼"});document.querySelectorAll(".coll-banner__new").forEach(function(e){e.textContent=now+" ₼"});document.querySelectorAll(".coll-banner__save").forEach(function(e){e.textContent=(old-now)+" ₼ qənaət"});})();</script><script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n(),el=document.getElementById('cart-count');if(el){el.textContent=c;el.hidden=!c}}
+  var a=document.getElementById('site-cart-link');if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
 </html>
