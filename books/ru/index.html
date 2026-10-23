@@ -19,7 +19,11 @@
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
-  <style>[hidden] { display: none !important; }</style>
+  <style>[hidden] { display: none !important; }
+.card__cta{display:flex;flex-wrap:wrap;gap:8px}
+.card__cta .btn{min-width:0;flex:1 1 120px;white-space:nowrap}
+@media(max-width:600px){.card__cta{display:grid;grid-template-columns:1fr}.card__cta .btn{width:100%}}
+</style>
 <style>
 .hdr__cart{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;color:#e9dcc0;text-decoration:none;border:1px solid rgba(201,169,97,.35);background:rgba(255,255,255,.03)}
 .hdr__cart:hover{background:rgba(201,169,97,.12)}
