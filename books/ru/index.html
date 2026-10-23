@@ -15,12 +15,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
-  <link rel="stylesheet" href="/books/books.css?v=9">
+  <link rel="stylesheet" href="/books/books.css?v=10">
   <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
        перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
        на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
   <style>[hidden] { display: none !important; }</style>
-</head>
+<style>
+.hdr__cart{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;color:#e9dcc0;text-decoration:none;border:1px solid rgba(201,169,97,.35);background:rgba(255,255,255,.03)}
+.hdr__cart:hover{background:rgba(201,169,97,.12)}
+.hdr__cart-n{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#c9a961;color:#1a1408;font:600 11px/18px Montserrat,Arial,sans-serif;text-align:center}
+.cover__title{font-size:clamp(15px,1.8vw,23px)!important;line-height:1.1!important;max-width:90%;margin-left:auto;margin-right:auto;overflow-wrap:break-word;word-break:normal;text-align:center;max-height:60%;overflow:hidden}
+.card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.25;max-height:2.5em}
+.card__meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.cover__title{font-size:17px!important}.card__title{font-size:15px!important}}
+</style></head>
 <body>
 
   <!-- ─────────────────────── ШАПКА ─────────────────────── -->
@@ -36,6 +44,10 @@
         <a href="/ru/tehsil.html">Обучение</a>
         <a href="/books/ru/">Книги</a>
         <a href="/ru/blog.html">Блог</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Корзина" title="Корзина">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -779,7 +791,14 @@
   <script>
     window.__booksUI = {"sending":"Отправляем…","submit":"Заказать","fill":"Пожалуйста, укажите имя и телефон.","empty":"Ничего не найдено","count":"%n книг"};
   </script>
-  <script src="/books/books.js?v=11" defer></script>
+  <script src="/books/books.js?v=12" defer></script>
   <script src="/_lang-switch.js?v=9" defer></script>
-</body>
+<script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n(),el=document.getElementById('cart-count');if(el){el.textContent=c;el.hidden=!c}}
+  var a=document.getElementById('site-cart-link');if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
 </html>
