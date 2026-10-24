@@ -263,5 +263,19 @@
 
 <script src="/books/book-meta-fit.js?v=1" defer></script>
   <script src="/books/order-form.js" defer></script>
+<script>
+(function(){
+  function clean(){
+    [...document.body.childNodes].forEach(function(n){
+      if(n.nodeType===3 && n.textContent.trim()==='>') n.remove();
+    });
+  }
+  clean();
+  document.addEventListener('DOMContentLoaded',clean);
+  var obs=new MutationObserver(clean);
+  obs.observe(document.body,{childList:true});
+  setTimeout(function(){obs.disconnect();clean();},3000);
+})();
+</script>
 </body>
 </html>
