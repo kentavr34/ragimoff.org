@@ -76,7 +76,15 @@ function parseTableXml(xml) {
 }
 
 function paragraphs(file) {
-  const xml = execFileSync('unzip', ['-p', file, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 }).toString('utf8');
+  const os = require('os');
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'docx-'));
+  let xml;
+  try {
+    execFileSync('tar', ['-xf', file, '-C', tmp, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 });
+    xml = fs.readFileSync(path.join(tmp, 'word', 'document.xml'), 'utf8');
+  } finally {
+    try { fs.rmSync(tmp, { recursive: true, force: true }); } catch (e) {}
+  }
   const out = [];
   /* диапазоны таблиц: абзацы внутри <w:tbl> — ячейки, а не заголовки
      (в «Вирусе Вины» в таблицах встречаются «ВВЕДЕНИЕ», «РАЗДЕЛ 2» и подобное) */
