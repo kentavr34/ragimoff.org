@@ -357,50 +357,75 @@ body::after {
 .pay-opt s { text-decoration: line-through; }
 
 
-/* ── Каталог 28.10.2026: пропорциональные карточки ─────────────────────────
-   Кенан: кнопки «Oxu / Səbətə at» были крупнее обложки и на телефоне вылезали
-   за край; обложек не было. Теперь: сетка 4/3/2 колонки (на телефоне — 2,
-   как полка книжного магазина), кнопки компактные, на узких экранах корзина
-   становится иконкой. Обложка серии — картина без текста (одна на все языки),
-   название набрано поверх HTML-ом и масштабируется вместе с картиной (cqw). */
-.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(28px, 3vw, 48px) clamp(16px, 2vw, 32px); }
+/* ── Каталог 28.10.2026 (v12): витрина как в книжном магазине ──────────────
+   Кенан: кнопки были крупнее обложки и вылезали за край; корзина-иконка без
+   подписи непонятна; корзина в шапке на телефоне «съехала». Теперь у всех
+   карточек одна схема: обложка → название → строка данных → цена и «Oxu →»
+   в одну линию → кнопка «Səbətə at» с подписью и значком на всю ширину.
+   Разметку карточек не меняли — раскладка сделана сеткой (.card__cta = contents). */
+.grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(30px, 3vw, 48px) clamp(16px, 2vw, 32px); }
 @media (max-width: 1180px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 820px)  { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 14px; } .card__cover { max-width: none; } }
+@media (max-width: 820px)  { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 14px; } .card__cover { max-width: none; } }
 .card { gap: 14px; min-width: 0; }
-.card__body { gap: 6px; min-width: 0; }
-.card__title { font-size: clamp(1.12rem, 1.55vw, 1.42rem); line-height: 1.15; overflow-wrap: anywhere; }
-.card__meta { font-size: .64rem; line-height: 1.5; letter-spacing: .04em; }
-.card__price { margin-top: auto; padding-top: 4px; font-size: .95rem; }
-.card__cta { display: flex; flex-wrap: nowrap; gap: 6px; margin-top: 4px; }
-.card__cta [hidden] { display: none !important; }
-.card__cta .btn { flex: 1 1 0; min-width: 0; min-height: 36px; padding: 8px 10px; gap: 6px;
-  font-size: .58rem; letter-spacing: .12em; white-space: nowrap; }
-.card__cta .btn--read { background: var(--acc); border-color: var(--acc); color: #07090E; }
-.card__cta .btn--read::before { background: var(--acc-2); }
+.card .card__body { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto auto 1fr auto;
+  column-gap: 10px; row-gap: 6px; min-width: 0; }
+.card .card__body > * { grid-column: 1 / -1; min-width: 0; }
+.card .card__title { font-size: clamp(1.1rem, 1.5vw, 1.38rem); line-height: 1.15;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card .card__meta { font-size: .64rem; line-height: 1.55; letter-spacing: .03em; white-space: normal;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card .card__price { grid-row: 4; grid-column: 1; align-self: end; margin: 6px 0 0;
+  font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; line-height: 1; }
+.card .card__cta { display: contents; }
+.card .card__cta [hidden] { display: none !important; }
+/* «Oxu →» — ссылка справа от цены */
+.card .card__cta > .btn:not(.btn--cart) { grid-row: 4; grid-column: 2; align-self: end; justify-self: end; width: auto;
+  min-height: 0; padding: 4px 0 3px; border: 0; border-bottom: 1px solid rgba(201,169,97,.45); border-radius: 0; background: none;
+  font-size: .62rem; letter-spacing: .16em; color: var(--acc); white-space: nowrap; }
+.card .card__cta > .btn:not(.btn--cart)::before { display: none; }
+.card .card__cta > .btn:not(.btn--cart):hover { color: var(--acc-2); border-bottom-color: var(--acc-2); }
+/* «Səbətə at» — главная кнопка карточки, с подписью */
+.card .card__cta > .btn--cart { grid-row: 5; grid-column: 1 / -1; width: 100%; margin-top: 10px; min-height: 40px; padding: 8px 10px; gap: 8px;
+  background: transparent; border: 1px solid var(--acc); color: var(--acc); font-size: .6rem; letter-spacing: .14em; white-space: nowrap; }
+.card .card__cta > .btn--cart::after { content: ''; order: -1; flex: 0 0 auto; width: 15px; height: 15px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.4'/%3E%3Ccircle cx='18' cy='20' r='1.4'/%3E%3Cpath d='M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='20' r='1.4'/%3E%3Ccircle cx='18' cy='20' r='1.4'/%3E%3Cpath d='M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6'/%3E%3C/svg%3E") center / contain no-repeat; }
+.card .card__cta > .btn--cart:hover { color: #07090E; }
 @media (max-width: 560px) {
-  .card__title { font-size: 1.02rem; }
-  .card__meta { font-size: .58rem; letter-spacing: .02em; }
-  .card__cta .btn { min-height: 34px; padding: 6px 8px; font-size: .54rem; letter-spacing: .08em; }
-  /* корзина-иконка рядом с «Oxu»; текст остаётся для скринридеров */
-  .card__cta .btn--read + .btn--cart { flex: 0 0 34px; padding: 0; font-size: 0; letter-spacing: 0; }
-  .card__cta .btn--read + .btn--cart::after { content: ''; width: 16px; height: 16px; background: currentColor;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1.2 12H6.2z'/%3E%3Cpath d='M9 8V6a3 3 0 0 1 6 0v2'/%3E%3C/svg%3E") center / contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8h14l-1.2 12H6.2z'/%3E%3Cpath d='M9 8V6a3 3 0 0 1 6 0v2'/%3E%3C/svg%3E") center / contain no-repeat; }
+  .card .card__title { font-size: 1.04rem; }
+  .card .card__meta { font-size: .58rem; letter-spacing: .02em; }
+  .card .card__price { font-size: 1.22rem; }
+  .card .card__cta > .btn:not(.btn--cart) { font-size: .56rem; letter-spacing: .12em; }
+  .card .card__cta > .btn--cart { min-height: 38px; padding: 6px 6px; gap: 6px; font-size: .54rem; letter-spacing: .08em; }
 }
 
-/* обложка-картина: текст в спокойной верхней трети, номер книги внизу */
-.cover--art { container-type: inline-size; justify-content: flex-start; padding: 9% 8% 8%; gap: 0; }
+/* шапка на телефоне: корзина стоит в одной линии с языком, а не «висит» в углу */
+@media (max-width: 760px) {
+  .hdr .hdr__in { gap: 10px; }
+  .hdr .hdr__cart--m { position: static; top: auto; right: auto; width: 40px; height: 40px; box-shadow: none; background: transparent; flex: 0 0 auto; }
+}
+/* плавающая 🛒 больше не нужна: корзина всегда видна в липкой шапке (по клику на шапку окно открывается через неё) */
+.cart-fab { display: none !important; }
+
+/* обложка-картина: текст в спокойной верхней трети, номер книги внизу.
+   container-type стоит на обёртке, а не на самой обложке: Safari на iPhone
+   схлопывал блок с aspect-ratio + container-type (обложки не появлялись). */
+.card__cover { container-type: inline-size; }
+.cover--art { justify-content: flex-start; padding: 9cqw 8cqw 8cqw; gap: 0; }
 .cover--art::after { background: linear-gradient(180deg, rgba(7,9,14,.80) 0%, rgba(7,9,14,.42) 30%, rgba(7,9,14,0) 52%, rgba(7,9,14,0) 74%, rgba(7,9,14,.62) 100%); }
 .cover--art::before { background: radial-gradient(150% 100% at 50% 40%, transparent 62%, rgba(0,0,0,.32) 100%); }
-.cover--art .cover__author { font-size: 4.2cqw; letter-spacing: .26em; }
-.cover--art .cover__rule { position: relative; z-index: 3; display: block; width: 14cqw; height: 1px; margin: 4.4cqw 0 4cqw; background: var(--acc); opacity: .75; }
-.cover--art .cover__title { font-size: 10.6cqw; line-height: 1.04; text-wrap: balance;
+.cover.cover--art .cover__author { font-family: "IBM Plex Mono", Consolas, monospace !important; font-size: .55rem; font-size: 4.2cqw; letter-spacing: .26em; }
+.cover--art .cover__rule { position: relative; z-index: 3; display: block; width: 14%; height: 1px; margin: 4.4cqw 0 4cqw; background: var(--acc); opacity: .75; }
+.cover.cover--art .cover__title { font-family: "Cormorant Garamond", Georgia, serif !important; font-size: 1.15rem !important; font-size: 10.6cqw !important;
+  line-height: 1.04 !important; max-width: 100%; max-height: none; overflow: visible; overflow-wrap: break-word; hyphens: manual; text-wrap: balance;
   text-shadow: 0 1px 2px rgba(0,0,0,.7), 0 3px 14px rgba(0,0,0,.55); }
-.cover--art .cover__year { margin-top: auto; font-size: 3.7cqw; letter-spacing: .22em; text-transform: uppercase; }
-/* перекрываем старые встроенные <style> каталога (шрифт DejaVu и кнопки в столбик ≤600px) */
-.cover.cover--art .cover__title { font-family: "Cormorant Garamond", Georgia, serif !important; font-size: 10.6cqw !important;
-  line-height: 1.04 !important; max-width: 100%; max-height: none; overflow: visible; overflow-wrap: break-word; hyphens: manual; }
-.cover.cover--art .cover__author, .cover.cover--art .cover__year { font-family: "IBM Plex Mono", Consolas, monospace !important; }
-.card .card__cta { display: flex; grid-template-columns: none; }
-.card .card__cta .btn { width: auto; flex: 1 1 0; }
-@media (max-width: 560px) { .card .card__cta .btn--read + .btn--cart { flex: 0 0 34px; width: 34px; } }
+.cover.cover--art .cover__year { font-family: "IBM Plex Mono", Consolas, monospace !important; margin-top: auto; font-size: .5rem; font-size: 3.7cqw; letter-spacing: .22em; text-transform: uppercase; }
+.card .card__title { max-height: none; }
+/* корзина в шапке — общие правила (раньше жили только во встроенных стилях AZ/RU, в EN корзины не было) */
+.hdr__cart { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px;
+  color: #e9dcc0; text-decoration: none; border: 1px solid rgba(201,169,97,.35); background: rgba(255,255,255,.03); }
+.hdr__cart:hover { background: rgba(201,169,97,.12); }
+.hdr__cart-n { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: #c9a961;
+  color: #1a1408; font: 600 11px/18px Montserrat, Arial, sans-serif; text-align: center; }
+.hdr a.hdr__cart--m { display: none; }
+@media (max-width: 760px) { .hdr a.hdr__cart--m { display: inline-flex; } }

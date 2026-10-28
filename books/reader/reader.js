@@ -100,6 +100,18 @@
     pop.style.top = (scrollY + r.bottom + 10) + 'px';
   });
 
+  // «Kitabı al»: кладём печатный экземпляр в ту же корзину, что у каталога (ragimoff_cart_v1), и открываем её там
+  btn('rd-buy', function () {
+    var b = document.getElementById('rd-buy'), title = b.getAttribute('data-order'), price = b.getAttribute('data-price');
+    try {
+      var items = JSON.parse(localStorage.getItem('ragimoff_cart_v1') || '[]');
+      if (!items.some(function (x) { return x.title === title; })) items.push({ title: title, qty: 1, price: price });
+      localStorage.setItem('ragimoff_cart_v1', JSON.stringify(items));
+    } catch (e) {}
+    b.classList.add('is-added');
+    setTimeout(function () { location.href = '/books/#sebet'; }, 350);
+  });
+
   // старт: из адреса (#chN) или с последнего места чтения
   var m = /^#ch(\d+)$/.exec(location.hash);
   var start = m ? +m[1] : +(store.get('rd-pos-' + book) || 0);

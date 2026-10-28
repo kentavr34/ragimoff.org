@@ -429,8 +429,9 @@
     el.id = 'cart-toast';
     el.setAttribute('role', 'status');
     el.style.cssText =
-      'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:120;' +
-      'display:flex;align-items:center;gap:14px;max-width: calc(100vw - 32px);' +
+      /* left:50% + translate сжимал блок до половины экрана (текст в столбик) — центрируем через left/right + auto */
+      'position:fixed;left:16px;right:16px;bottom:20px;margin:0 auto;width:max-content;z-index:120;' +
+      'display:flex;align-items:center;justify-content:space-between;gap:14px;max-width: min(460px, calc(100vw - 32px));' +
       'padding:14px 18px;border-radius:12px;background:#141821;color:#f2ede3;' +
       'border:1px solid rgba(201,169,97,.5);box-shadow:0 10px 34px rgba(0,0,0,.5);' +
       'font-size:.9375rem;line-height:1.4;';
@@ -451,7 +452,7 @@
     document.body.appendChild(el);
     /* На телефоне уведомление не должно закрывать кнопку корзины —
        поэтому поднимаем его над ней. */
-    if (window.innerWidth <= 640) el.style.bottom = '92px';
+    // плавающей кнопки корзины больше нет (корзина в шапке) — поднимать уведомление не нужно
     setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 4000);
   }
 
@@ -641,6 +642,8 @@
     });
 
     function openCart() { render(); box.classList.add('is-open'); box.setAttribute('aria-hidden', 'false'); }
+    // из читалки книги: /books/#sebet — сразу открыть корзину (книга уже добавлена читалкой)
+    if (location.hash === '#sebet') setTimeout(openCart, 250);
 
 
     /* ★ ВЫНЕСЕНО НА УРОВЕНЬ initCart (15.10.2026).
