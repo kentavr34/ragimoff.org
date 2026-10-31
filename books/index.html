@@ -1,6 +1,37 @@
 <!doctype html>
 <html lang="az" data-theme="dark">
 <head>
+  <script>
+  /* Язык каталога по региону посетителя (Кенан 31.10.2026). GitHub Pages не видит IP, поэтому:
+     1) часовой пояс устройства (мгновенно, без сторонних запросов): Баку → AZ, Россия и СНГ → RU, остальное → EN;
+     2) если пояс неопределённый (UTC/Etc) — страна по IP через get.geojs.io (не дольше 1,5 с).
+     Не перенаправляем: переход внутри сайта (в т.ч. переключатель языка), ?lang=az, роботов поисковиков. */
+  (function () {
+    try {
+      if (/[?&]lang=az/.test(location.search)) return;
+      var ref = document.referrer && document.referrer.indexOf(location.host) !== -1 ? new URL(document.referrer).pathname : '';
+      if (ref) {  /* пришёл со своего сайта: RU/EN-страницы ведут на /books/ — отдаём их язык; переключатель каталога и AZ-страницы не трогаем */
+        var m = ref.match(/\/(ru|en)\//);
+        if (m && !/^\/books\/(ru|en)\//.test(ref)) location.replace('/books/' + m[1] + '/' + location.hash);
+        return;
+      }
+      if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+      var RU = /^(Europe\/(Moscow|Kaliningrad|Samara|Volgograd|Saratov|Ulyanovsk|Astrakhan|Kirov|Minsk|Chisinau)|Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr|Almaty|Qostanay|Aqtobe|Aqtau|Atyrau|Oral|Qyzylorda|Bishkek|Tashkent|Samarkand|Dushanbe|Ashgabat|Yerevan))$/;
+      var RUC = {RU:1,BY:1,KZ:1,KG:1,UZ:1,TJ:1,TM:1,AM:1,MD:1};
+      function go(lang) { if (lang !== 'az') location.replace('/books/' + lang + '/' + location.hash); }
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+      if (tz === 'Asia/Baku') return;
+      if (RU.test(tz)) return go('ru');
+      if (tz && !/^(UTC|Etc\/|GMT)/.test(tz)) return go('en');
+      var done = false, t = setTimeout(function () { done = true; }, 1500);
+      fetch('https://get.geojs.io/v1/ip/country.json').then(function (r) { return r.json(); }).then(function (j) {
+        if (done) return; clearTimeout(t);
+        var c = (j && j.country) || '';
+        go(c === 'AZ' ? 'az' : RUC[c] ? 'ru' : 'en');
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07090E">
@@ -71,6 +102,7 @@
 .coll-banner__inner{min-width:0;max-width:100%}
 .coll-banner__p,.coll-banner__note,.coll-banner__hint{max-width:100%;white-space:normal;overflow-wrap:break-word}
 .coll-banner__btn{max-width:100%;white-space:normal;line-height:1.3}
+.coll-banner__btn .cb-short{display:none}
 .hdr__cart--m{display:none}
 @media(max-width:760px){
   .coll-banner__inner{padding:18px 16px;gap:16px}
@@ -78,6 +110,9 @@
   .coll-banner__p{font-size:14px;line-height:1.45}
   .coll-banner__new{font-size:32px}
   .coll-banner__btn{font-size:13px;padding:14px 12px}
+  .coll-banner__btn{white-space:nowrap}
+  .coll-banner__btn .cb-full{display:none}
+  .coll-banner__btn .cb-short{display:inline}
   .hdr__cart--m{display:inline-flex;position:fixed;top:12px;right:12px;z-index:95;background:#0d0b07;box-shadow:0 6px 18px rgba(0,0,0,.45)}
 }
 
@@ -186,7 +221,7 @@
           <button class="btn coll-banner__btn" type="button" data-cart-btn="1"
                   data-order="Bütün Freyd kolleksiyası" data-price="594 ₼"
                   data-collection="freud" data-discount="10">
-            Bütün kolleksiyanı səbətə at
+            <span class="cb-full">Bütün kolleksiyanı səbətə at</span><span class="cb-short">Kolleksiyanı səbətə at</span>
           </button>
           <p class="coll-banner__hint">
             Səbətdə ad, telefon və ünvanı doldurub Epoint ilə ödəyirsiniz.
