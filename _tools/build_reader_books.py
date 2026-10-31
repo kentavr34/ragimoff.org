@@ -19,7 +19,7 @@ esc = html.escape
 BOOKS = {
     'virus-viny': {'art': '/books/covers/guilt.jpg', 'price': 30, 'order': 'Günahkarlıq Virusu'},
     'shizofreniya': {'art': '/books/covers/pandemic.jpg', 'price': 30, 'order': 'Şizofreniya. Cinnət Pandemiyası'},
-    'phoenix-era': {'art': '/books/covers/phoenix.jpg', 'price': 30, 'order': 'Feniks Erası'},
+    'phoenix-era': {'art': '/books/covers/phoenix.jpg', 'price': 30, 'order': 'Feniks Erası', 'title': {'ru': 'Эра Феникса'}},
 }
 UI = {
     'az': dict(books='Kitablar', toc='Mündəricat', minus='Şrifti kiçilt', plus='Şrifti böyüt', theme='Gecə / gündüz', buy='Kitabı al',
@@ -135,6 +135,9 @@ def build(slug, lang, stubs=False):
     if idx.select_one('.rd-bar'):
         sys.exit(f'{d}/index.html уже читалка — исходное оглавление в git: git show HEAD~:books/{slug}/...')
     title = txt(idx.select_one('.bk-tp__title')) or txt(idx.find('h1'))
+    if title == title.lower():  # в RU-оглавлении название набрано строчными (регистр делал CSS)
+        title = re.sub(r'(^|\.\s+)(\w)', lambda m: m.group(1) + m.group(2).upper(), title)
+    title = cfg.get('title', {}).get(lang, title)
     sub = txt(idx.select_one('.bk-tp__sub'))
     author = txt(idx.select_one('.bk-tp__author')) or 'Kənan Rəhimov'
     year = txt(idx.select_one('.bk-tp__year'))
@@ -144,8 +147,12 @@ def build(slug, lang, stubs=False):
         a = li.select_one('a.bk-toc__a')
         n = txt(li.select_one('.bk-toc__n'))
         t = txt(li.select_one('.bk-toc__t')) or txt(li.select_one('.bk-toc__g')) or txt(li)
-        if a is None or not n:
+        if a is None:
             rows.append(('part', t))
+            continue
+        if not n:  # ссылка без номера: «II HİSSƏ» — часть; «Modeldən çıxış…» (Феникс) — подраздел той же главы
+            if re.search(r'\b(HİSSƏ|Hissə|hissə|ЧАСТЬ|Часть|PART|Part)\b', t):
+                rows.append(('part', t))
             continue
         f = a['href'].split('#')[0]
         if f in seen or not os.path.exists(os.path.join(d, f)):
@@ -153,6 +160,17 @@ def build(slug, lang, stubs=False):
         seen.add(f)
         files.append(f)
         rows.append(('ch', t, f))
+    # главы, пропущенные в оглавлении (Феникс 13), — на место по номеру файла, сразу после предыдущей главы
+    for f in sorted(x for x in os.listdir(d) if re.match(r'\d\d-.*\.html$', x) and x not in seen):
+        h = txt(BeautifulSoup(open(os.path.join(d, f), encoding='utf-8').read(), 'html.parser').select_one('.bk-chead__h1')) or f
+        prev = [i for i, r in enumerate(rows) if r[0] == 'ch' and r[2] < f]
+        at = prev[-1] + 1 if prev else 0
+        rows.insert(at, ('ch', h, f))
+        seen.add(f)
+        print('  добавлена глава вне оглавления:', f)
+    # часть без глав (в RU «Эры Феникса» разделов 1–5 нет на сайте) — не показывать пустой заголовок
+    rows = [r for i, r in enumerate(rows) if r[0] == 'ch' or (i + 1 < len(rows) and rows[i + 1][0] == 'ch')]
+    files = [r[2] for r in rows if r[0] == 'ch']
     chapters, toc, k, pend = [], [], 0, None
     N = len(files)
     for r in rows:
@@ -190,7 +208,7 @@ def build(slug, lang, stubs=False):
     out = PAGE.format(
         lang=lang, alts=alts, title=esc(title), author=esc(author), desc=esc(f'{title} — {author}. {sub}'.strip()), url=url, art=cfg['art'],
         v=READER_V, ld=ld, slug=slug, u=u, back='/books/' + ('' if lang == 'az' else f'{lang}/'), i_back=ICON['back'], i_toc=ICON['toc'],
-        i_theme=ICON['theme'], i_cart=ICON['cart'], i_x=ICON['x'], order=esc(cfg['order']), price=cfg['price'], toc=''.join(toc),
+        i_theme=ICON['theme'], i_cart=ICON['cart'], i_x=ICON['x'], order=esc(cfg['order'] if lang == 'az' else title), price=cfg['price'], toc=''.join(toc),
         cover=cover_html(cfg['art'], author, title, yr.group() if yr else ''),
         sub=f'<p class="rd-sub">{esc(sub)}</p>' if sub else '',
         year=f'<li>{u["first"]} <b>{yr.group()}</b></li>' if yr else '', nch=N, chapters='\n'.join(chapters))
