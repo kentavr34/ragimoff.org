@@ -194,3 +194,12 @@ body.toc-open .rd-scrim { opacity: 1; pointer-events: auto; }
   radial-gradient(ellipse 92% 24% at 50% 41%, rgba(7,9,14,.62) 0%, rgba(7,9,14,.38) 55%, rgba(7,9,14,0) 100%),
   linear-gradient(180deg, rgba(7,9,14,.18) 0%, rgba(7,9,14,0) 22%, rgba(7,9,14,0) 72%, rgba(7,9,14,.6) 100%); }
 .bk-cover__t { text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 2px 18px rgba(0,0,0,.7); }
+
+/* Таблицы в книгах Кенана Рагимова (31.10): на телефоне — горизонтальная прокрутка внутри рамки, страница не расползается */
+.rd-chap .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.4em 0; border: 1px solid var(--line); border-radius: 8px; }
+.rd-chap table { width: 100%; border-collapse: collapse; font-size: .86em; line-height: 1.45; text-indent: 0; }
+.rd-chap .tbl-wrap table { margin: 0; }
+.rd-chap caption { caption-side: top; text-align: left; padding: .7em .9em; font-family: var(--font-mono); font-size: .78em; letter-spacing: .04em; color: var(--mute); }
+.rd-chap th, .rd-chap td { padding: .55em .8em; text-align: left; vertical-align: top; border-top: 1px solid var(--line); text-indent: 0; }
+.rd-chap th { font-weight: 600; color: var(--ink); background: var(--bg-2); }
+.rd-chap td p, .rd-chap th p { margin: 0; text-indent: 0; }
