@@ -206,8 +206,10 @@ function buildChapters(paras) {
       if (isHead && !RX.tocline.test(p.text)) { tocTo = i; break; }
     }
   }
-  const body = paras.slice(tocTo > 0 ? tocTo : 0).filter((p) =>
-    !RX.tocline.test(p.text) || p.text.length > 120 ||
+  /* строки оглавления отсекаем только если область оглавления не найдена (tocTo<=0): после неё фильтр
+     съедал настоящие абзацы — с многоточием «…»/«...» или оканчивающиеся числом («• Yaşı: 47») */
+  const body = (tocTo > 0 ? paras.slice(tocTo) : paras).filter((p) =>
+    tocTo > 0 || !RX.tocline.test(p.text) || p.text.length > 120 ||
     /^(ГЛАВА|CHAPTER|BÖLMƏ|BÖLÜM|FƏSİL)\s*([IVXLC]+|\d+)\s*$/i.test(p.text));
 
   /* 1б) если в книге есть оглавление — режем по нему (самый надёжный путь).
@@ -294,7 +296,9 @@ function buildChapters(paras) {
       return;
     }
     /* заголовок капсом после голого маркера: «ГЛАВА 1» + «ВИРУС В ГОЛОВЕ…» */
-    if (mergeTitle && curCh && curCh.paras.length === 0 && t.length < 130 && !/[.!?]$/.test(t)) {
+    /* название главы уже полное («1-Cİ FƏSİL. Название…») — дописываем только строку-капс, эпиграф/подзаголовок остаётся в тексте */
+    if (mergeTitle && curCh && curCh.paras.length === 0 && t.length < 130 && !/[.!?]$/.test(t) &&
+        (t === t.toUpperCase() || !/\.\s+\S/.test(curCh.title))) {
       curCh.title = curCh.title + '. ' + t;
       mergeTitle = false;
       return;
@@ -309,7 +313,8 @@ function buildChapters(paras) {
   const flat = [];
   parts.forEach((pt) => {
     pt.chapters.forEach((ch) => {
-      const textLen = ch.paras.reduce((n, p) => n + p.text.length, 0);
+      /* текст таблиц тоже считается: раздел из одной таблицы (напр. «Tövsiyə olunan ədəbiyyat») не склеивается с предыдущим */
+      const textLen = ch.paras.reduce((n, p) => n + (p.tbl ? p.rows.reduce((m, r) => m + r.cells.reduce((k, c) => k + c.paras.join(' ').length, 0), 0) : p.text.length), 0);
       if (textLen < 400) { if (flat.length) { flat[flat.length - 1].paras = flat[flat.length - 1].paras.concat(ch.paras); return; } }
       ch.partTitle = pt.title;
       flat.push(ch);
