@@ -64,6 +64,13 @@ def variants(path: str) -> dict[str, str]:
             cand = '{}/{}'.format(BOOK, name) if lang == 'az' else '{}/{}/{}'.format(BOOK, lang, name)
             if (ROOT / cand).is_file():
                 out[lang] = cand
+    elif path.startswith('books/') and path.count('/') >= 2 and path.endswith('/index.html'):
+        # читалки книг: books/<slug>/[ru|en/]index.html — языковые версии, если есть (03.11.2026)
+        slug = path.split('/')[1]
+        for lang in ('az', 'ru', 'en'):
+            cand = 'books/{}/index.html'.format(slug) if lang == 'az' else 'books/{}/{}/index.html'.format(slug, lang)
+            if (ROOT / cand).is_file():
+                out[lang] = cand
     else:
         parts = path.split('/')
         name = parts[-1] if parts[0] in ('ru', 'en') else path
@@ -77,7 +84,8 @@ def variants(path: str) -> dict[str, str]:
 def collect() -> list[str]:
     pages = []
     for dp, dn, fn in os.walk(ROOT):
-        dn[:] = [d for d in dn if d not in SKIP_DIRS]
+        # служебные каталоги (_backup*, _backups*, _tools, _print*, _table) в карту не попадают (03.11.2026)
+        dn[:] = [d for d in dn if d not in SKIP_DIRS and not d.startswith(('_backup', '_tools', '_print', '_table'))]
         rel = Path(dp).relative_to(ROOT)
         for f in sorted(fn):
             if not f.endswith('.html') or f in SKIP_FILES:
@@ -94,7 +102,12 @@ def collect() -> list[str]:
 
 
 def url_of(path: str) -> str:
-    return BASE if path == 'index.html' else BASE + path
+    # каталожные адреса (как в canonical страниц): .../books/virus-viny/, а не .../index.html (03.11.2026)
+    if path == 'index.html':
+        return BASE
+    if path.endswith('/index.html'):
+        return BASE + path[:-len('index.html')]
+    return BASE + path
 
 
 def main(apply: bool = False) -> None:

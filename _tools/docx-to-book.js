@@ -35,17 +35,28 @@ function decode(s) {
     .replace(/&#(\d+);/g, (m, d) => String.fromCharCode(+d));
 }
 
+/* текст абзаца: <w:t> как есть; <w:br/> и <w:tab/> — пробел (иначе слова склеиваются); <w:noBreakHyphen/> — U+2011;
+   свойства абзаца (<w:pPr>, там <w:tabs><w:tab/>) не читаем. Раньше шаблон <w:t[^>]*> цеплял <w:tab/> и склеивал слова. */
+function runText(p) {
+  const body = p.replace(/<w:pPr>[\s\S]*?<\/w:pPr>/g, '');
+  const re = /<w:t(?:\s[^>]*)?>([\s\S]*?)<\/w:t>|<w:br(?:\s[^>]*)?\/>|<w:tab\s*\/>|<w:noBreakHyphen\s*\/>/g;
+  const parts = [];
+  let t;
+  while ((t = re.exec(body)) !== null) {
+    if (t[1] !== undefined) parts.push(decode(t[1]));
+    else if (t[0].startsWith('<w:noBreakHyphen')) parts.push('‑');
+    else parts.push(' ');
+  }
+  return parts.join('');
+}
+
 /* ─────────── таблицы DOCX → структурные блоки ─────────── */
 function cellParas(tc) {
   const out = [];
   const pre = /<w:p[ >][\s\S]*?<\/w:p>|<w:p\/>/g;
   let m;
   while ((m = pre.exec(tc)) !== null) {
-    const texts = [];
-    const tr = /<w:t[^>]*>([\s\S]*?)<\/w:t>/g;
-    let t;
-    while ((t = tr.exec(m[0])) !== null) texts.push(decode(t[1]));
-    const tx = texts.join('').replace(/\s+/g, ' ').trim();
+    const tx = runText(m[0]).replace(/\s+/g, ' ').trim();
     if (tx) out.push(tx);
   }
   return out;
@@ -100,11 +111,7 @@ function paragraphs(file) {
       continue;
     }
     const p = m[2];
-    const texts = [];
-    const tr = /<w:t[^>]*>([\s\S]*?)<\/w:t>/g;
-    let t;
-    while ((t = tr.exec(p)) !== null) texts.push(decode(t[1]));
-    let text = texts.join('').replace(/\s+/g, ' ').trim();
+    let text = runText(p).replace(/\s+/g, ' ').trim();
     text = text.replace(/<[^>]*>/g, ' ').replace(/\bw:[a-zA-Z]+/g, ' ')
       .replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim();
     if (!text) continue;
@@ -601,8 +608,8 @@ function chapterPage(cfg, lang, ch, idx, all, rel) {
 function tocStructure(paras, all) {
   const titles = tocTitles(paras || []);
   if (titles.length < 3) return null;
-  const PART = /^(Сезон|Fəsil|FƏSİL|ЧАСТЬ|HİSSƏ|PART\s+[IVXLC]+(?![A-Za-z])|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
-  const CHAP = /^(Глава|Chapter|CHAPTER|Bölüm|Bölmə|Раздел|Введение|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|От автора|Müəllifdən|From the Author|Интермеццо|İntermezzo|Intermezzo|Интерлюдия|İnterlüdiya|ara səhnə|Fəsil\s*\d|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL]|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE])/i;
+  const PART = /^(Сезон|Season|Fəsil|FƏSİL|ЧАСТЬ|HİSSƏ|PART\s+[IVXLC]+(?![A-Za-z])|Школа|Şkola|Psixologiya Məktəbi|«Feniks»\s*Psixologiya)/i;
+  const CHAP = /^(Глава|Chapter|CHAPTER|Bölüm|Bölmə|Раздел|Введение|Introduction|Prologue|Afterword|Bibliography|Giriş|Пролог|Proloq|Послесловие|Sonluq|Список литературы|Ədəbiyyat|Интермедия|Interlude|First Interlude|Second Interlude|Third Interlude|Fourth Interlude|BİRİNCİ|İKİNCİ|ÜÇÜNCÜ|DÖRDÜNCÜ|Приложение|Appendix|Əlavə|Заключительное|Closing|Section|Part\s*\d|От автора|Müəllifdən|From the Author|Интермеццо|İntermezzo|Intermezzo|Интерлюдия|İnterlüdiya|ara səhnə|Fəsil\s*\d|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[fF][əƏeE][sS][iİıI][lL]|\d+\s*[-–]?\s*(ci|cİ|cI|cı|cu|cU|cü|cÜ)\s+[bB][öÖoO][lL][mM][əƏeE])/i;
   /* маркер+номер («Глава 3» / «Bölüm 3»): не даём одноимённым разделам
      (модель «Феникс», школа «Феникс») перепутать страницы */
   const mn = (s) => {

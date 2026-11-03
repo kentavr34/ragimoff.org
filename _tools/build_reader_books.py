@@ -19,7 +19,7 @@ esc = html.escape
 BOOKS = {
     'virus-viny': {'art': '/books/covers/guilt.jpg', 'price': 30, 'order': 'Günahkarlıq Virusu'},
     'shizofreniya': {'art': '/books/covers/pandemic.jpg', 'price': 30, 'order': 'Şizofreniya. Cinnət Pandemiyası'},
-    'phoenix-era': {'art': '/books/covers/phoenix.jpg', 'price': 30, 'order': 'Feniks Erası', 'title': {'ru': 'Эра Феникса'}},
+    'phoenix-era': {'art': '/books/covers/phoenix.jpg', 'price': 30, 'order': 'Feniks Erası', 'title': {'ru': 'Эра Феникса', 'en': 'The Phoenix Era'}},
 }
 UI = {
     'az': dict(books='Kitablar', toc='Mündəricat', minus='Şrifti kiçilt', plus='Şrifti böyüt', theme='Gecə / gündüz', buy='Kitabı al',
