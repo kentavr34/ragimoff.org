@@ -852,24 +852,18 @@ input, select, textarea, button {
 
         <!-- Steps -->
         <div class="reg-path">
-          <div class="reg-path-step"><span class="reg-path-num">Step 01</span><h4 role="heading" aria-level="3" data-a11y-level>Prepare your documents</h4><p>A photo of your higher education diploma and ID. If you have previous psychology certificates — have them ready too.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Step 02</span><h4>Fill in the form</h4><p>Name, contact details, programme choice and documents. Takes 3 minutes.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 01</span><h4 role="heading" aria-level="3" data-a11y-level>Prepare your documents</h4><p>A photo of your ID — front and back.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 02</span><h4>Fill in the form</h4><p>First and last name, phone, programme and ID. Takes 1 minute.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Step 03</span><h4>Payment</h4><p>After you submit the form, you are taken straight to the ePoint payment page — at the programme’s prepayment price (with the discount).</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Step 04</span><h4>Get started</h4><p>Your place is confirmed and you are added to the Telegram group. Access to the video archive opens before the next group starts.</p></div>
         </div>
 
-        <div class="reg-discount">
-          <strong>Have you previously taken any psychology courses?</strong>
-          <p>Attach certificates from previous courses to the form — this may be grounds for an additional discount. Some of our students save a significant amount this way.</p>
-        </div>
 
         <form class="form-section" id="regForm" enctype="multipart/form-data" action="/api/training-reg" method="POST" novalidate>
           <div class="form-grid">
             <div class="form-group"><label for="tehsil-f1" class="form-label">First Name *</label><input id="tehsil-f1" class="form-input" type="text" name="ad" required placeholder="Your first name" aria-label="Your first name"></div>
             <div class="form-group"><label for="tehsil-f2" class="form-label">Last Name *</label><input id="tehsil-f2" class="form-input" type="text" name="soyad" required placeholder="Your last name" aria-label="Your last name"></div>
             <div class="form-group"><label for="tehsil-f3" class="form-label">Phone *</label><input id="tehsil-f3" class="form-input" type="tel" name="telefon" required placeholder="+994 XX XXX XX XX" aria-label="+994 XX XXX XX XX"></div>
-            <div class="form-group"><label for="tehsil-f4" class="form-label">E-mail</label><input id="tehsil-f4" class="form-input" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
-<div class="form-group"><label for="tehsil-f6" class="form-label">Home address</label><input id="tehsil-f6" class="form-input" type="text" name="unvan" placeholder="City, street, house" aria-label="Home address"></div>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -892,29 +886,12 @@ input, select, textarea, button {
             <label for="km-name" class="form-label">Documents</label>
             <div class="form-file-grid">
               <div class="form-file-item">
-                <span class="form-file-lbl">Higher Education Diploma *</span>
-                <input multiple="" type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-<div class="form-file-list" data-for="diplom" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-                <span class="form-file-hint">Both sides as separate files — PDF/JPG/PNG, max 5 MB</span>
-              </div>
-              <div class="form-file-item">
                 <span class="form-file-lbl">Identity Document *</span>
                 <input multiple="" type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
 <div class="form-file-list" data-for="shexsiyyet" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
                 <span class="form-file-hint">Front and back — two separate files (PDF/JPG/PNG, max 5 MB)</span>
               </div>
-              <div class="form-file-item">
-                <span class="form-file-lbl">Previous Certificates</span>
-                <input type="file" class="form-file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
-<div class="form-file-list" data-for="sertifikatlar" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-                <span class="form-file-hint">For discount — multiple files can be attached</span>
-              </div>
             </div>
-          </div>
-
-          <div class="form-group" style="margin-top:20px;">
-            <label for="tehsil-f5" class="form-label">Additional Note</label>
-            <textarea id="tehsil-f5" class="form-textarea" name="qeyd" rows="3" placeholder="Your question or special circumstances..." aria-label="Your question or special circumstances..."></textarea>
           </div>
 
           <div class="form-footer">

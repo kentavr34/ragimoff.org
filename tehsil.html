@@ -887,22 +887,16 @@ input, select, textarea, button {
 </div>
 <!-- Steps -->
 <div class="reg-path">
-<div class="reg-path-step"><span class="reg-path-num">Addım 01</span><h4 role="heading" aria-level="3" data-a11y-level>Sənədləri hazırlayın</h4><p>Ali təhsil diplomunuzun və şəxsiyyət vəsiqənizin fotosu. Əvvəlki psixologiya sertifikatları varsa — onları da tapın.</p></div>
-<div class="reg-path-step"><span class="reg-path-num">Addım 02</span><h4>Formanı doldurun</h4><p>Ad, əlaqə məlumatı, proqram seçimi və sənədlər. 3 dəqiqə çəkir.</p></div>
+<div class="reg-path-step"><span class="reg-path-num">Addım 01</span><h4 role="heading" aria-level="3" data-a11y-level>Sənədləri hazırlayın</h4><p>Şəxsiyyət vəsiqənizin fotosu — ön və arxa tərəf.</p></div>
+<div class="reg-path-step"><span class="reg-path-num">Addım 02</span><h4>Formanı doldurun</h4><p>Ad, soyad, telefon, proqram seçimi və şəxsiyyət vəsiqəsi. 1 dəqiqə çəkir.</p></div>
 <div class="reg-path-step"><span class="reg-path-num">Addım 03</span><h4>Ödəniş</h4><p>Formanı göndərdikdən sonra avtomatik olaraq ePoint ödəniş səhifəsinə keçirsiniz — proqramın öncədən ödəniş qiyməti ilə (endirimlə).</p></div>
 <div class="reg-path-step"><span class="reg-path-num">Addım 04</span><h4>Başlayın</h4><p>Yeriniz təsdiqlənir, Telegram qrupuna əlavə edilirsiniz. Növbəti qrup başlamazdan əvvəl video arxivinə giriş açılır.</p></div>
-</div>
-<div class="reg-discount">
-<strong>Daha əvvəl psixologiya kursları keçmisinizmi?</strong>
-<p>Əvvəlki kursların sertifikatlarını formaya əlavə edin — bu, əlavə endirimin əsasını yarada bilər. Tələbələrimizin bir hissəsi bu yolla 600–1 200 AZN qənaət edir.</p>
 </div>
 <form class="form-section" enctype="multipart/form-data" id="regForm" action="https://api.ragimoff.org/api/training-reg" method="POST" novalidate>
 <div class="form-grid">
 <div class="form-group"><label for="tehsil-f1" class="form-label">Ad *</label><input id="tehsil-f1" class="form-input" name="ad" placeholder="Adınız" required="" type="text" aria-label="Adınız"></div>
 <div class="form-group"><label for="tehsil-f2" class="form-label">Soyad *</label><input id="tehsil-f2" class="form-input" name="soyad" placeholder="Soyadınız" required="" type="text" aria-label="Soyadınız"></div>
 <div class="form-group"><label for="tehsil-f3" class="form-label">Telefon *</label><input id="tehsil-f3" class="form-input" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel" aria-label="+994 XX XXX XX XX"></div>
-<div class="form-group"><label for="tehsil-f4" class="form-label">E-poçt</label><input id="tehsil-f4" class="form-input" name="email" placeholder="email@example.com" type="email" aria-label="email@example.com"></div>
-<div class="form-group"><label for="tehsil-f6" class="form-label">Yaşayış ünvanı</label><input id="tehsil-f6" class="form-input" type="text" name="unvan" placeholder="Şəhər, küçə, ev" aria-label="Yaşayış ünvanı"></div>
 </div>
 <div class="form-group" style="margin-top:24px;">
 <label class="form-label">Proqram seçin *</label>
@@ -928,23 +922,7 @@ input, select, textarea, button {
 <div class="form-file-list" data-for="shexsiyyet" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
 <span class="form-file-hint">Ön və arxa tərəf — iki ayrı fayl (PDF/JPG/PNG, maks. 5 MB)</span>
 </div>
-<div class="form-file-item">
-<span class="form-file-lbl">Ali Təhsil Diplomu</span>
-<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" name="diplom" multiple="" type="file"/>
-<div class="form-file-list" data-for="diplom" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-<span class="form-file-hint">Hər iki üzü ayrı-ayrı fayl kimi əlavə edin — PDF/JPG/PNG, maks. 5 MB</span>
 </div>
-<div class="form-file-item">
-<span class="form-file-lbl">Əvvəlki Sertifikatlar</span>
-<input accept=".pdf,.jpg,.jpeg,.png" class="form-file" multiple="" name="sertifikatlar" type="file"/>
-<div class="form-file-list" data-for="sertifikatlar" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-<span class="form-file-hint">Endirim üçün — bir neçə fayl əlavə edə bilərsiniz</span>
-</div>
-</div>
-</div>
-<div class="form-group" style="margin-top:20px;">
-<label for="tehsil-f5" class="form-label">Əlavə qeyd</label>
-<textarea id="tehsil-f5" class="form-textarea" name="qeyd" placeholder="Sualınız və ya xüsusi vəziyyətiniz..." rows="3" aria-label="Sualınız və ya xüsusi vəziyyətiniz..."></textarea>
 </div>
 <div class="form-footer">
 <p class="form-note">Sənədlər yalnız qeydiyyat məqsədilə<br>qəbul edilir. Üçüncü şəxslərə ötürülmür.</p>

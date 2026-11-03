@@ -2,24 +2,26 @@
    ЗАЯВКА НА ТРЕНИНГ → ОПЛАТА В EPOINT. Один модуль для всех страниц программ
    (tehsil.html и program-*.html, AZ/RU/EN).
 
-   Задание Кенана (02.11.2026): убрать из формы выбор «рассрочка / предоплата» —
-   ePoint такую рассрочку не поддерживает. После «Göndər» заявка сохраняется, как
-   раньше, и человек СРАЗУ уходит на страницу оплаты ePoint.
+   Канон Кенана (04.11.2026): в форме только телефон, имя, фамилия,
+   удостоверение личности и выбор программы. Рассрочку/предоплату в форме НЕ
+   выбирают — клиент решает это на странице ePoint. После «Отправить» заявка
+   сохраняется и клиент СРАЗУ уходит на страницу оплаты ePoint.
 
    КАК РАБОТАЕТ:
-     1) проверка обязательных полей (validateRegForm из shared.js: имя, фамилия,
-        телефон, удостоверение; диплом — для переподготовки) + выбрана программа;
-     2) заявка с документами (base64) — JSON на /api/training-reg через
-        submitRegistration() из shared.js (при сбое — запасной Apps Script);
-     3) /api/billing/epoint/training {name, phone, program, amount, months:0} →
-        сервер возвращает redirect_url ePoint → location.href.
-     Сумма — цена разовой оплаты (предоплаты) программы из карточек цен.
+     1) проверка полей (свой validate: имя, фамилия, телефон, удостоверение,
+        программа — сообщения на языке страницы);
+     2) JSON на /api/training-reg (файлы — base64). Сервер сохраняет заявку,
+        САМ считает сумму по канону цен программы (сумма из браузера не
+        принимается) и в том же ответе отдаёт redirect_url страницы ePoint;
+     3) location.href = redirect_url. Если в ответе ссылки нет (сбой ePoint) —
+        запасной вызов /api/billing/epoint/training; если и он не дал ссылки —
+        понятное сообщение с кнопкой «повторить» и WhatsApp.
+     Сумма > 2000 AZN (лимит ePoint на операцию) делится сервером на равные
+     части; следующие части открывает страница успеха.
 
-   ПОЧЕМУ ПЕРЕХВАТ НА document В ФАЗЕ CAPTURE: на страницах висели ещё два
-   обработчика той же формы (wireRegForm из shared.js и встроенный в tehsil.html),
-   а старая версия этого файла слала FormData (multipart), которую сервер
-   отвергал 400 «bad json». Заявка уходила дважды или не уходила вовсе.
-   Здесь — один обработчик; остальные до формы не доходят (stopImmediatePropagation).
+   ПОЧЕМУ ПЕРЕХВАТ НА document В ФАЗЕ CAPTURE: на страницах висят ещё два
+   обработчика этой формы (wireRegForm из shared.js и встроенный в tehsil.html);
+   здесь — один, остальные до формы не доходят (stopImmediatePropagation).
    ─────────────────────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
@@ -28,32 +30,28 @@
   var FORM_IDS = ['regForm'];
   var MAX_FILE = 5 * 1024 * 1024;
 
-  /* Разовая оплата (предоплата) — канон цен Кенана, как в карточках tehsil.html. */
-  var PREPAY = {
-    'Ümumi Psixologiya': 3800, 'Общая психология': 3800, 'General Psychology': 3800,
-    'Klinik Psixologiya': 6000, 'Клиническая психология': 6000, 'Clinical Psychology': 6000,
-    'Psixoterapiya Praktikumu': 3000, 'Практикум по психотерапии': 3000, 'Psychotherapy Practicum': 3000,
-    'Ailə Terapiyası': 500, 'Семейная терапия': 500, 'Family Therapy': 500,
-    'Psixoanaliz': 500, 'Психоанализ': 500, 'Psychoanalysis': 500,
-    'Psixodiaqnostika': 500, 'Психодиагностика': 500, 'Psychodiagnostics': 500
-  };
-
   var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
   var T = ({
-    az: { sending: 'Göndərilir…', toPay: 'Ödəniş səhifəsi açılır…',
+    az: { name: 'Ad və soyadı yazın', phone: 'Mobil nömrəni yazın', id: 'Şəxsiyyət vəsiqəsini əlavə edin',
+          sending: 'Göndərilir…', toPay: 'Ödəniş səhifəsi açılır…',
           prog: 'Proqramı seçin', big: '5 MB-dan böyükdür. Faylı kiçildib yenidən cəhd edin.',
           payErr: 'Müraciətiniz qəbul edildi, lakin ödəniş səhifəsini açmaq alınmadı.',
+          sendErr: 'Göndərmək alınmadı. Bir daha cəhd edin və ya',
           retry: 'Ödənişə keç', wa: 'WhatsApp ilə yazın' },
-    ru: { sending: 'Отправляем…', toPay: 'Открываем страницу оплаты…',
+    ru: { name: 'Укажите имя и фамилию', phone: 'Укажите мобильный номер', id: 'Приложите удостоверение личности',
+          sending: 'Отправляем…', toPay: 'Открываем страницу оплаты…',
           prog: 'Выберите программу', big: 'больше 5 МБ. Уменьшите файл и попробуйте снова.',
           payErr: 'Заявка принята, но страницу оплаты открыть не удалось.',
+          sendErr: 'Не удалось отправить. Попробуйте ещё раз или',
           retry: 'Перейти к оплате', wa: 'Напишите в WhatsApp' },
-    en: { sending: 'Sending…', toPay: 'Opening the payment page…',
+    en: { name: 'Enter your first and last name', phone: 'Enter your mobile number', id: 'Attach your ID document',
+          sending: 'Sending…', toPay: 'Opening the payment page…',
           prog: 'Choose a programme', big: 'is larger than 5 MB. Please reduce it and try again.',
           payErr: 'Your application was received, but the payment page could not be opened.',
+          sendErr: 'Could not send. Please try again or',
           retry: 'Go to payment', wa: 'Write to us on WhatsApp' }
   })[L] || null;
-  if (!T) T = { sending: 'Göndərilir…', toPay: '…', prog: 'Proqramı seçin', big: '> 5 MB',
+  if (!T) T = { name: 'Name', phone: 'Phone', id: 'ID', sendErr: 'Error', sending: 'Göndərilir…', toPay: '…', prog: 'Proqramı seçin', big: '> 5 MB',
                 payErr: 'Ödəniş səhifəsini açmaq alınmadı.', retry: 'Ödənişə keç', wa: 'WhatsApp' };
 
   function val(form, name) {
@@ -109,7 +107,7 @@
       name: (val(form, 'ad') + ' ' + val(form, 'soyad')).trim(),
       phone: val(form, 'telefon'),
       program: program,
-      amount: PREPAY[program] || 0,
+      amount: 0,   /* сумму считает сервер по программе */
       months: 0
     };
   }
@@ -134,16 +132,64 @@
     };
   }
 
-  function goPay(form, pay, btn) {
+  function goPay(form, pay, btn, readyUrl) {
     if (btn) btn.textContent = T.toPay;
-    return payPost(pay).then(function (d) {
+    var go = readyUrl
+      ? Promise.resolve({ ok: true, redirect_url: readyUrl })
+      : payPost(pay);
+    return go.then(function (d) {
       if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
       throw new Error((d && d.error) || 'no redirect_url');
     }).catch(function (err) {
       console.warn('[training-pay] ePoint:', err);
       showPayError(form, pay);
-      if (btn) btn.textContent = btn.getAttribute('data-label') || 'Göndər';
+      if (btn) { btn.textContent = btn.getAttribute('data-label') || 'Göndər'; }
     });
+  }
+
+  /* Проверка обязательных полей: имя, фамилия, телефон, удостоверение, программа. */
+  function validate(form) {
+    var ok = true, first = null;
+    function bad(el, msg) {
+      ok = false;
+      if (!el) return;
+      el.setAttribute('data-need', msg);
+      if (typeof regFieldError === 'function') regFieldError(el, true);
+      if (!first) first = el;
+    }
+    function good(el) { if (el && typeof regFieldError === 'function') regFieldError(el, false); }
+    ['ad', 'soyad'].forEach(function (n) {
+      var el = form.querySelector('[name="' + n + '"]');
+      if (el && !String(el.value || '').trim()) bad(el, T.name); else good(el);
+    });
+    var ph = form.querySelector('[name="telefon"]');
+    if (ph && String(ph.value || '').replace(/\D/g, '').length < 7) bad(ph, T.phone); else good(ph);
+    var idIn = form.querySelector('[name="shexsiyyet"]');
+    var n = ((window.regFilePool || {}).shexsiyyet || []).length;
+    if (!n && idIn && idIn.files) n = idIn.files.length;
+    if (!n) bad(idIn, T.id); else good(idIn);
+    var radios = form.querySelector('input[name="proqram"]');
+    if (radios && !form.querySelector('input[name="proqram"]:checked')) bad(radios, T.prog); else good(radios);
+    if (!ok && first) {
+      var tgt = (first.type === 'radio' || first.type === 'file') ? (first.closest('.form-group, .form-field') || first) : first;
+      if (tgt.scrollIntoView) tgt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { if (first.type !== 'radio' && first.type !== 'file') first.focus({ preventScroll: true }); } catch (e) {}
+    }
+    return ok;
+  }
+
+  function showSendFail(form) {
+    var box = form.querySelector('.form-error');
+    if (!box) {
+      box = document.createElement('p');
+      box.className = 'form-error';
+      box.style.cssText = 'margin:14px 0 0;padding:12px 14px;border:1px solid rgba(220,90,90,.5);' +
+        'background:rgba(220,90,90,.08);color:#E8A0A0;font-size:.875rem;line-height:1.6;';
+      form.appendChild(box);
+    }
+    box.style.display = 'block';
+    box.innerHTML = T.sendErr + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener" ' +
+      'style="color:var(--accent);font-weight:700;">' + T.wa + '</a>.';
   }
 
   async function onSubmit(e) {
@@ -153,14 +199,8 @@
     e.stopImmediatePropagation();
     if (form.getAttribute('data-busy') === '1') return;
 
-    if (typeof validateRegForm === 'function' && !validateRegForm(form)) return;
+    if (!validate(form)) return;
     var pay = buildPay(form);
-    if (!pay.program || !pay.amount) {
-      var grp = form.querySelector('input[name="proqram"]');
-      if (grp && grp.scrollIntoView) grp.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      alert(T.prog);
-      return;
-    }
 
     var files = pickFiles(form);
     for (var i = 0; i < files.length; i++) {
@@ -184,9 +224,9 @@
     var payload = {
       type: 'registration',
       fname: val(form, 'ad'), lname: val(form, 'soyad'),
-      phone: pay.phone, email: val(form, 'email'), address: val(form, 'unvan'),
+      phone: pay.phone, email: '', address: '',
       service: pay.program, lang: L,
-      note: ['Ödəniş: ePoint — ' + pay.amount + ' AZN', val(form, 'qeyd')].filter(Boolean).join(' | '),
+      note: '',
       source: location.pathname.replace(/^\//, '') || 'tehsil.html',
       attachments: attachments
     };
@@ -195,12 +235,13 @@
     if (!res || !res.ok) {
       form.removeAttribute('data-busy');
       if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label'); }
-      if (typeof showSendError === 'function') showSendError(form); else alert('Error');
+      showSendFail(form);
       return;
     }
     var err = form.querySelector('.form-error');
     if (err) err.style.display = 'none';
-    await goPay(form, pay, btn);
+    var d = res.data || {};
+    await goPay(form, pay, btn, d.redirect_url || '');
     form.removeAttribute('data-busy');
     if (btn) btn.disabled = false;
   }

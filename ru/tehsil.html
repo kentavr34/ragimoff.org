@@ -856,24 +856,18 @@ input, select, textarea, button {
 
         <!-- Steps -->
         <div class="reg-path">
-          <div class="reg-path-step"><span class="reg-path-num">Шаг 01</span><h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4><p>Фото диплома о высшем образовании и удостоверения личности. Если есть предыдущие сертификаты по психологии — найдите их тоже.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Шаг 02</span><h4>Заполните форму</h4><p>Имя, контактные данные, выбор программы и документы. Занимает 3 минуты.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 01</span><h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4><p>Фото удостоверения личности — лицевая и обратная сторона.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 02</span><h4>Заполните форму</h4><p>Имя, фамилия, телефон, программа и удостоверение личности. Занимает 1 минуту.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Оплата</h4><p>После отправки формы вы автоматически перейдёте на страницу оплаты ePoint — по цене предоплаты программы (со скидкой).</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 04</span><h4>Начинайте</h4><p>Место подтверждается, вас добавляют в Telegram-группу. До старта следующей группы открывается доступ к видеоархиву.</p></div>
         </div>
 
-        <div class="reg-discount">
-          <strong>Проходили ли вы ранее курсы по психологии?</strong>
-          <p>Прикрепите сертификаты предыдущих курсов к форме — это может стать основанием для дополнительной скидки. Часть наших студентов таким образом экономит значительную сумму.</p>
-        </div>
 
         <form class="form-section" id="regForm" enctype="multipart/form-data" action="/api/training-reg" method="POST" novalidate>
           <div class="form-grid">
             <div class="form-group"><label for="tehsil-f1" class="form-label">Имя *</label><input id="tehsil-f1" class="form-input" type="text" name="ad" required placeholder="Ваше имя" aria-label="Ваше имя"></div>
             <div class="form-group"><label for="tehsil-f2" class="form-label">Фамилия *</label><input id="tehsil-f2" class="form-input" type="text" name="soyad" required placeholder="Ваша фамилия" aria-label="Ваша фамилия"></div>
             <div class="form-group"><label for="tehsil-f3" class="form-label">Телефон *</label><input id="tehsil-f3" class="form-input" type="tel" name="telefon" required placeholder="+7 XXX XXX XX XX" aria-label="+7 XXX XXX XX XX"></div>
-            <div class="form-group"><label for="tehsil-f4" class="form-label">E-mail</label><input id="tehsil-f4" class="form-input" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
-<div class="form-group"><label for="tehsil-f6" class="form-label">Адрес проживания</label><input id="tehsil-f6" class="form-input" type="text" name="unvan" placeholder="Город, улица, дом" aria-label="Адрес проживания"></div>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -896,29 +890,12 @@ input, select, textarea, button {
             <label for="km-name" class="form-label">Документы</label>
             <div class="form-file-grid">
               <div class="form-file-item">
-                <span class="form-file-lbl">Диплом о высшем образовании *</span>
-                <input multiple="" type="file" class="form-file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-<div class="form-file-list" data-for="diplom" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-                <span class="form-file-hint">Обе стороны — отдельными файлами (PDF/JPG/PNG, до 5 МБ)</span>
-              </div>
-              <div class="form-file-item">
                 <span class="form-file-lbl">Удостоверение личности *</span>
                 <input multiple="" type="file" class="form-file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
 <div class="form-file-list" data-for="shexsiyyet" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
                 <span class="form-file-hint">Лицевая и обратная сторона — два файла (PDF/JPG/PNG, до 5 МБ)</span>
               </div>
-              <div class="form-file-item">
-                <span class="form-file-lbl">Предыдущие сертификаты</span>
-                <input type="file" class="form-file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
-<div class="form-file-list" data-for="sertifikatlar" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;"></div>
-                <span class="form-file-hint">Для скидки — можно прикрепить несколько файлов</span>
-              </div>
             </div>
-          </div>
-
-          <div class="form-group" style="margin-top:20px;">
-            <label for="tehsil-f5" class="form-label">Дополнительная заметка</label>
-            <textarea id="tehsil-f5" class="form-textarea" name="qeyd" rows="3" placeholder="Ваш вопрос или особые обстоятельства..." aria-label="Ваш вопрос или особые обстоятельства..."></textarea>
           </div>
 
           <div class="form-footer">

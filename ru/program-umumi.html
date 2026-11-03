@@ -720,12 +720,12 @@ input, select, textarea, button {
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 01</span>
             <h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4>
-            <p>Фото диплома о высшем образовании и удостоверения личности. Если есть предыдущие сертификаты — приложите для скидки.</p>
+            <p>Şəxsiyyət vəsiqənizin fotosu — ön və arxa tərəf.</p>
           </div>
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 02</span>
             <h4>Заполните форму</h4>
-            <p>Имя, контактные данные и документы. Займёт 3 минуты.</p>
+            <p>Ad, soyad, telefon, proqram seçimi və şəxsiyyət vəsiqəsi. 1 dəqiqə çəkir.</p>
           </div>
           <div class="reg-path-step">
             <span class="reg-path-num">Шаг 03</span>
@@ -734,26 +734,21 @@ input, select, textarea, button {
           </div>
         </div>
 
-        <div class="reg-discount">
-          <strong>Проходили ли вы ранее курсы по психологии?</strong>
-          <p>Приложите к форме сертификаты предыдущих курсов — это может дать дополнительную скидку. Часть наших слушателей таким образом экономит от 30 до 60 тыс. руб.</p>
-        </div>
 
         <form class="reg-form-wrap" id="regForm" enctype="multipart/form-data" action="/api/training-reg" method="POST" novalidate>
           <div class="form-2col">
             <div class="form-field"><label for="program-umumi-f1">Имя *</label><input id="program-umumi-f1" type="text" name="ad" required placeholder="Ваше имя" aria-label="Ваше имя"></div>
             <div class="form-field"><label for="program-umumi-f2">Фамилия *</label><input id="program-umumi-f2" type="text" name="soyad" required placeholder="Ваша фамилия" aria-label="Ваша фамилия"></div>
             <div class="form-field"><label for="program-umumi-f3">Телефон *</label><input id="program-umumi-f3" type="tel" name="telefon" required placeholder="+7 (XXX) XXX-XX-XX" aria-label="+7 (XXX) XXX-XX-XX"></div>
-            <div class="form-field"><label for="program-umumi-f4">E-mail</label><input id="program-umumi-f4" type="email" name="email" placeholder="email@example.com" aria-label="email@example.com"></div>
           </div>
 
           <div class="form-field" style="margin-top:24px;">
             <label>Программа</label>
             <div class="tile-group cols3">
               <input type="radio" name="proqram" id="p1" value="Общая психология" class="tile-opt" checked />
-              <label for="p2" class="tile-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ак. ч. · Диплом ДПО</span></label>
+              <label for="p1" class="tile-lbl">Общая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ак. ч. · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p2" value="Клиническая психология" class="tile-opt" />
-              <label for="p3" class="tile-lbl">Клиническая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ак. ч. · Диплом ДПО</span></label>
+              <label for="p2" class="tile-lbl">Клиническая психология<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ак. ч. · Диплом ДПО</span></label>
               <input type="radio" name="proqram" id="p3" value="Практикум по психотерапии" class="tile-opt" />
               <label for="p3" class="tile-lbl">Практикум по психотерапии<br /><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ак. ч. · Сертификат IPAS</span></label>
             </div>
@@ -763,26 +758,11 @@ input, select, textarea, button {
             <label for="km-name">Документы</label>
             <div class="upload-grid">
               <div class="upload-item">
-                <span class="upload-lbl">Диплом о высшем образовании *</span>
-                <input type="file" name="diplom" accept=".pdf,.jpg,.jpeg,.png" />
-                <span class="upload-hint">PDF, JPG — макс. 5 МБ</span>
-              </div>
-              <div class="upload-item">
                 <span class="upload-lbl">Удостоверение личности *</span>
                 <input type="file" name="shexsiyyet" accept=".pdf,.jpg,.jpeg,.png" />
                 <span class="upload-hint">PDF, JPG — макс. 5 МБ</span>
               </div>
-              <div class="upload-item">
-                <span class="upload-lbl">Предыдущие сертификаты</span>
-                <input type="file" name="sertifikatlar" accept=".pdf,.jpg,.jpeg,.png" multiple />
-                <span class="upload-hint">Для скидки — несколько файлов</span>
-              </div>
             </div>
-          </div>
-
-          <div class="form-field" style="margin-top:20px;">
-            <label for="program-umumi-f5">Примечания</label>
-            <textarea id="program-umumi-f5" name="qeyd" rows="3" placeholder="Ваши вопросы или особые обстоятельства..." aria-label="Ваши вопросы или особые обстоятельства..."></textarea>
           </div>
 
           <div class="form-footer">

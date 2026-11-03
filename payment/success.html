@@ -40,18 +40,36 @@
   var oid = new URLSearchParams(location.search).get('order_id');
   var box = document.querySelector('.pay__m');
   if (!oid) return;
+  var training = oid.indexOf('TR-') === 0;
+  if (training) {
+    /* Оплата тренинга (не книги): свой текст и без заметки про доставку. */
+    var note = document.querySelector('.pay__note'); if (note) note.style.display = 'none';
+    var back = document.querySelector('.pay__b'); if (back) { back.href = '/tehsil.html'; back.textContent = 'Təhsil səhifəsinə qayıt'; }
+  }
   if (box) box.textContent = 'Ödəniş yoxlanılır…';
-  fetch('https://api.ragimoff.org/api/billing/epoint/next?order_id=' + encodeURIComponent(oid))
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (d && d.ok && !d.done && d.redirect_url) {
-        if (box) box.textContent = 'Növbəti hissəyə keçilir (' + d.part + '/' + d.of + ')…';
-        location.href = d.redirect_url;
-      } else if (d && d.ok && d.done) {
-        if (box) box.textContent = 'Bütün hissələr ödənildi. Təşəkkür edirik!';
-      }
-    })
-    .catch(function () {});
+  var tries = 0;
+  function ask() {
+    fetch('https://api.ragimoff.org/api/billing/epoint/next?order_id=' + encodeURIComponent(oid))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.ok && !d.done && d.redirect_url) {
+          if (box) box.textContent = 'Növbəti hissəyə keçilir (' + d.part + '/' + d.of + ')…';
+          location.href = d.redirect_url;
+        } else if (d && d.ok && !d.done && d.waiting && tries++ < 20) {
+          /* банк ещё подтверждает предыдущую часть — спрашиваем снова */
+          setTimeout(ask, 3000);
+        } else if (d && d.ok && d.done) {
+          var multi = d.parts && d.parts.length > 1;
+          if (box) box.textContent = training
+            ? (multi ? 'Bütün hissələr ödənildi. ' : 'Ödəniş qəbul edildi. ') + 'Qeydiyyatınız təsdiqləndi, tezliklə sizinlə əlaqə saxlanılacaq. Təşəkkür edirik!'
+            : (multi ? 'Bütün hissələr ödənildi. Təşəkkür edirik!' : 'Ödəniş uğurlu oldu. Sifarişiniz qeydə alındı.');
+        } else if (box && training) {
+          box.textContent = 'Qeydiyyatınız və ödənişiniz qəbul edildi. Tezliklə sizinlə əlaqə saxlanılacaq.';
+        }
+      })
+      .catch(function () {});
+  }
+  ask();
 })();
 </script>
 </body>
