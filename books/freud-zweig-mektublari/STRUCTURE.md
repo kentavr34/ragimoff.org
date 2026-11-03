@@ -9,10 +9,10 @@
 |---|---|
 | корень | `books/freud-zweig-mektublari` |
 | языки | az |
-| страниц всего | 80 (из них страниц-переходов 0) |
-| страниц с содержанием | 80 |
+| страниц всего | 79 (из них страниц-переходов 1: №78 → оглавление) |
+| страниц с содержанием | 79 |
 | страниц без ссылки из меню | 0 |
-| пунктов меню всего | 80 |
+| пунктов меню всего | 79 |
 | групп (разделов) | 0 |
 | выпавших подпунктов | 0 |
 | битых ссылок | 0 |
@@ -21,7 +21,7 @@
 
 | язык | страниц | пунктов меню | групп | групп-ссылок | групп-подписей | выпавших | битых | текущих |
 |---|---|---|---|---|---|---|---|---|
-| az | 80 | 80 | 0 | 0 | 0 | 0 | 0 | 0 |
+| az | 79 | 79 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## Главы
 
@@ -105,8 +105,7 @@
 | 76 | 24 iyul 1939 — Tsveyq Freydə | 75-24-iyul-1939-tsveyq-freyde.html | да |
 | 77 | 4 avqust 1939 | 76-4-avqust-1939-istiqamet-bilinmir.html | да |
 | 78 | 14 sentyabr 1939 — Tsveyq Freydə | 77-14-sentyabr-1939-tsveyq-freyde.html | да |
-| 79 | Tarixi bilinmir | 78-tarix-bilinmir-istiqamet-bilinmir.html | да |
-| 80 | Tarixi bilinmir — Freyd Tsveyqə | 79-tarix-bilinmir-freyd-tsveyqe.html | да |
+| 79 | Tarixi bilinmir — Freyd Tsveyqə | 79-tarix-bilinmir-freyd-tsveyqe.html | да |
 
 ## Обязательные проверки
 
