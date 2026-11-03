@@ -1,200 +1,209 @@
 /* ───────────────────────────────────────────────────────────────────────────
-   ЗАЯВКА НА ТРЕНИНГ + ОПЛАТА — один модуль для всех страниц программ.
-   Задание Кенана (21.10.2026):
-     • одна кнопка «Göndər» вместо «Qeydiyyat Formasını Göndər»;
-     • по нажатию — уведомление, что заявка отправлена и её нужно оплатить;
-     • следующий шаг оплаты: адрес, город, e-mail, сумма;
-     • убрать кнопки «Ödəniş et» и «Taksitlə ödəniş üçün müraciət», которые
-       раньше дописывались к форме из этого файла;
-     • «Ali Təhsil Diplomu» — необязательное и второе поле (сделано в HTML).
+   ЗАЯВКА НА ТРЕНИНГ → ОПЛАТА В EPOINT. Один модуль для всех страниц программ
+   (tehsil.html и program-*.html, AZ/RU/EN).
 
-   ПОЧЕМУ БЫЛО СЛОМАНО: форма постила на относительный /api/training-reg —
-   на статическом сайте это 404, заявки не доходили вообще. Теперь адрес
-   абсолютный: https://api.ragimoff.org/api/training-reg (CORS открыт).
+   Задание Кенана (02.11.2026): убрать из формы выбор «рассрочка / предоплата» —
+   ePoint такую рассрочку не поддерживает. После «Göndər» заявка сохраняется, как
+   раньше, и человек СРАЗУ уходит на страницу оплаты ePoint.
+
+   КАК РАБОТАЕТ:
+     1) проверка обязательных полей (validateRegForm из shared.js: имя, фамилия,
+        телефон, удостоверение; диплом — для переподготовки) + выбрана программа;
+     2) заявка с документами (base64) — JSON на /api/training-reg через
+        submitRegistration() из shared.js (при сбое — запасной Apps Script);
+     3) /api/billing/epoint/training {name, phone, program, amount, months:0} →
+        сервер возвращает redirect_url ePoint → location.href.
+     Сумма — цена разовой оплаты (предоплаты) программы из карточек цен.
+
+   ПОЧЕМУ ПЕРЕХВАТ НА document В ФАЗЕ CAPTURE: на страницах висели ещё два
+   обработчика той же формы (wireRegForm из shared.js и встроенный в tehsil.html),
+   а старая версия этого файла слала FormData (multipart), которую сервер
+   отвергал 400 «bad json». Заявка уходила дважды или не уходила вовсе.
+   Здесь — один обработчик; остальные до формы не доходят (stopImmediatePropagation).
    ─────────────────────────────────────────────────────────────────────────── */
 (function () {
   'use strict';
 
-  var API_REG = 'https://api.ragimoff.org/api/training-reg';
-  var API_PAY = 'https://api.ragimoff.org/api/billing/epoint/training';
+  var API = 'https://api.ragimoff.org';
+  var FORM_IDS = ['regForm'];
+  var MAX_FILE = 5 * 1024 * 1024;
 
-  var TXT = {
-    sending: 'Göndərilir…',
-    sent: 'Müraciətiniz göndərildi',
-    sentSub: 'Qeydiyyatı tamamlamaq üçün ödəniş etməlisiniz. Aşağıdakı düymə ilə ödəniş addımına keçin.',
-    pay: 'Ödəniş et',
-    later: 'Sonra',
-    payTitle: 'Ödəniş',
-    paySub: 'Məlumatları təsdiqləyin və ödənişi tamamlayın.',
-    addr: 'Ünvan',
-    city: 'Şəhər',
-    email: 'E-poçt',
-    amount: 'Məbləğ',
-    confirm: 'Ödənişə keç',
-    back: 'Geri',
-    need: 'Ad, soyad və telefon lazımdır',
-    errSend: 'Müraciət göndərilmədi. Yenidən cəhd edin.',
-    errPay: 'Ödənişə keçmək alınmadı. Yenidən cəhd edin.'
+  /* Разовая оплата (предоплата) — канон цен Кенана, как в карточках tehsil.html. */
+  var PREPAY = {
+    'Ümumi Psixologiya': 3800, 'Общая психология': 3800, 'General Psychology': 3800,
+    'Klinik Psixologiya': 6000, 'Клиническая психология': 6000, 'Clinical Psychology': 6000,
+    'Psixoterapiya Praktikumu': 3000, 'Практикум по психотерапии': 3000, 'Psychotherapy Practicum': 3000,
+    'Ailə Terapiyası': 500, 'Семейная терапия': 500, 'Family Therapy': 500,
+    'Psixoanaliz': 500, 'Психоанализ': 500, 'Psychoanalysis': 500,
+    'Psixodiaqnostika': 500, 'Психодиагностика': 500, 'Psychodiagnostics': 500
   };
 
-  function $(s, c) { return (c || document).querySelector(s); }
-  function val(sel) { var el = $(sel); return el ? String(el.value || '').trim() : ''; }
+  var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2);
+  var T = ({
+    az: { sending: 'Göndərilir…', toPay: 'Ödəniş səhifəsi açılır…',
+          prog: 'Proqramı seçin', big: '5 MB-dan böyükdür. Faylı kiçildib yenidən cəhd edin.',
+          payErr: 'Müraciətiniz qəbul edildi, lakin ödəniş səhifəsini açmaq alınmadı.',
+          retry: 'Ödənişə keç', wa: 'WhatsApp ilə yazın' },
+    ru: { sending: 'Отправляем…', toPay: 'Открываем страницу оплаты…',
+          prog: 'Выберите программу', big: 'больше 5 МБ. Уменьшите файл и попробуйте снова.',
+          payErr: 'Заявка принята, но страницу оплаты открыть не удалось.',
+          retry: 'Перейти к оплате', wa: 'Напишите в WhatsApp' },
+    en: { sending: 'Sending…', toPay: 'Opening the payment page…',
+          prog: 'Choose a programme', big: 'is larger than 5 MB. Please reduce it and try again.',
+          payErr: 'Your application was received, but the payment page could not be opened.',
+          retry: 'Go to payment', wa: 'Write to us on WhatsApp' }
+  })[L] || null;
+  if (!T) T = { sending: 'Göndərilir…', toPay: '…', prog: 'Proqramı seçin', big: '> 5 MB',
+                payErr: 'Ödəniş səhifəsini açmaq alınmadı.', retry: 'Ödənişə keç', wa: 'WhatsApp' };
 
-  /* ── цена программы ───────────────────────────────────────────────────── */
-  function findAmount() {
-    var el = $('[data-price], .price, .program-price, .tariff-price');
-    if (el) {
-      var m = String(el.textContent || '').replace(/\s/g, '').match(/(\d{3,6})/);
-      if (m) return parseInt(m[1], 10);
-    }
-    var body = String(document.body.innerText || document.body.textContent || '').replace(/\s/g, '');
-    var m2 = body.match(/(\d{3,6})(?:₼|AZN)/i);
-    return m2 ? parseInt(m2[1], 10) : 0;
+  function val(form, name) {
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? String(el.value || '').trim() : '';
   }
 
-  function findProgram() {
-    var h = $('h1');
-    return (h ? String(h.textContent || '').trim() : document.title).replace(/\s+/g, ' ').slice(0, 120);
-  }
-
-  /* ── модальное окно ───────────────────────────────────────────────────── */
-  function ui() {
-    var style = document.createElement('style');
-    style.textContent =
-      '.trp-scrim{position:fixed;inset:0;background:rgba(8,8,10,.72);z-index:99990;display:none;' +
-      'align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .18s}' +
-      '.trp-scrim.is-on{opacity:1}' +
-      '.trp-box{background:#121214;border:1px solid rgba(201,169,97,.45);max-width:520px;width:100%;' +
-      'padding:28px 26px;color:#eee;font:15px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
-      'max-height:90vh;overflow:auto}' +
-      '.trp-box h3{margin:0 0 8px;font-size:19px;color:#e8d9a8;font-weight:600}' +
-      '.trp-box p{margin:0 0 16px;color:#c9c9cf;font-size:14.5px}' +
-      '.trp-f{margin:0 0 12px}' +
-      '.trp-f label{display:block;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;' +
-      'color:#8f8f98;margin-bottom:6px}' +
-      '.trp-f input{width:100%;box-sizing:border-box;background:#0c0c0e;border:1px solid #2b2b31;' +
-      'color:#eee;padding:11px 13px;font-size:15px;outline:none}' +
-      '.trp-f input:focus{border-color:#c9a961}' +
-      '.trp-row{display:flex;gap:10px;margin-top:18px}' +
-      '.trp-btn{flex:1;padding:14px 16px;border:1px solid #c9a961;background:#c9a961;color:#141414;' +
-      'font:600 14px/1 system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}' +
-      '.trp-btn--ghost{background:transparent;color:#c9a961}' +
-      '.trp-btn[disabled]{opacity:.55;cursor:default}' +
-      '.trp-amt{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;' +
-      'border-top:1px solid #2b2b31;margin-top:6px;font-size:15px}' +
-      '.trp-amt b{color:#e8d9a8;font-size:19px}';
-    document.head.appendChild(style);
-
-    var scrim = document.createElement('div');
-    scrim.className = 'trp-scrim';
-    scrim.innerHTML = '<div class="trp-box" role="dialog" aria-modal="true"></div>';
-    document.body.appendChild(scrim);
-    return {
-      scrim: scrim,
-      box: $('.trp-box', scrim),
-      open: function (html) {
-        this.box.innerHTML = html;
-        scrim.style.display = 'flex';
-        requestAnimationFrame(function () { scrim.classList.add('is-on'); });
-      },
-      close: function () { scrim.classList.remove('is-on'); scrim.style.display = 'none'; }
-    };
-  }
-
-  /* ── шаг 1: заявка отправлена ─────────────────────────────────────────── */
-  function stepSent(m, onPay) {
-    m.open(
-      '<h3>' + TXT.sent + '</h3><p>' + TXT.sentSub + '</p>' +
-      '<div class="trp-row"><button class="trp-btn trp-btn--ghost" data-x="later">' + TXT.later +
-      '</button><button class="trp-btn" data-x="pay">' + TXT.pay + '</button></div>'
-    );
-    $('[data-x="later"]', m.box).onclick = function () { m.close(); };
-    $('[data-x="pay"]', m.box).onclick = function () { stepPay(m, onPay); };
-  }
-
-  /* ── шаг 2: оплата — адрес, город, e-mail, сумма ──────────────────────── */
-  function stepPay(m, data) {
-    var amount = data.amount || findAmount();
-    m.open(
-      '<h3>' + TXT.payTitle + '</h3><p>' + TXT.paySub + '</p>' +
-      '<div class="trp-f"><label>' + TXT.addr + '</label><input id="trp-addr" autocomplete="street-address"></div>' +
-      '<div class="trp-f"><label>' + TXT.city + '</label><input id="trp-city" autocomplete="address-level2"></div>' +
-      '<div class="trp-f"><label>' + TXT.email + '</label><input id="trp-email" type="email" autocomplete="email"></div>' +
-      (amount ? '<div class="trp-amt"><span>' + TXT.amount + '</span><b>' + amount + ' ₼</b></div>' : '') +
-      '<div class="trp-row"><button class="trp-btn trp-btn--ghost" data-x="back">' + TXT.back +
-      '</button><button class="trp-btn" data-x="go">' + TXT.confirm + '</button></div>'
-    );
-    $('[data-x="back"]', m.box).onclick = function () {
-      stepSent(m, data);
-    };
-
-    var go = $('[data-x="go"]', m.box);
-    go.onclick = function () {
-      var payload = {
-        name: data.name, phone: data.phone, program: data.program,
-        amount: amount, months: 0,
-        address: val('#trp-addr'), city: val('#trp-city'),
-        email: val('#trp-email') || data.email
-      };
-      go.disabled = true; go.textContent = TXT.sending;
-      fetch(API_PAY, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).then(function (r) { return r.json(); }).then(function (d) {
-        if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
-        go.disabled = false; go.textContent = TXT.confirm;
-        alert((d && d.error) || TXT.errPay);
-      }).catch(function () {
-        go.disabled = false; go.textContent = TXT.confirm;
-        alert(TXT.errPay);
-      });
-    };
-  }
-
-  /* ── перехват отправки формы ──────────────────────────────────────────── */
-  function boot() {
-    var form = document.getElementById('regForm');
-    if (!form) return;
-
-    var submit = form.querySelector('button[type="submit"]');
-    if (submit) submit.textContent = 'Göndər';
-
-    var m = ui();
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = (val('[name="ad"]') + ' ' + val('[name="soyad"]')).trim();
-      var phone = val('[name="telefon"]');
-      if (!name || !phone) { alert(TXT.need); return; }
-
-      var label = submit ? 'Göndər' : '';
-      if (submit) { submit.disabled = true; submit.textContent = TXT.sending; }
-
-      var data = {
-        name: name, phone: phone,
-        email: val('[name="email"]'),
-        program: findProgram(),
-        amount: findAmount()
-      };
-
-      var fd = new FormData(form);
-      fetch(API_REG, { method: 'POST', body: fd })
-        .then(function (r) { return r.ok ? r : Promise.reject(r.status); })
-        .then(function () {
-          if (submit) { submit.disabled = false; submit.textContent = label; }
-          try { form.reset(); } catch (err) {}
-          stepSent(m, data);
-        })
-        .catch(function (status) {
-          if (submit) { submit.disabled = false; submit.textContent = label; }
-          alert(TXT.errSend + (status ? ' (' + status + ')' : ''));
-        });
+  /* Файлы: на tehsil.html — пул window.regFilePool (input очищается после
+     выбора), на страницах программ — обычные input[type=file]. */
+  function pickFiles(form) {
+    var out = [], pool = window.regFilePool || {}, seen = {};
+    Object.keys(pool).forEach(function (field) {
+      (pool[field] || []).forEach(function (f) { out.push({ field: field, file: f }); });
+      if ((pool[field] || []).length) seen[field] = true;
     });
-
-    console.log('[training-pay] заявка перехвачена; кнопки оплаты больше не добавляются');
+    Array.prototype.forEach.call(form.querySelectorAll('input[type="file"]'), function (inp) {
+      if (seen[inp.name] || !inp.files) return;
+      Array.prototype.forEach.call(inp.files, function (f) { out.push({ field: inp.name, file: f }); });
+    });
+    return out;
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else { boot(); }
+  function toBase64(file) {
+    return new Promise(function (res) {
+      var r = new FileReader();
+      r.onload = function () { res(String(r.result).split(',')[1] || ''); };
+      r.onerror = function () { res(''); };
+      r.readAsDataURL(file);
+    });
+  }
+
+  function regPost(payload) {
+    if (typeof submitRegistration === 'function') return submitRegistration(payload);
+    return fetch(API + '/api/training-reg', {
+      method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return { ok: r.ok }; }, function () { return { ok: false }; });
+  }
+
+  function payPost(pay) {
+    return fetch(API + '/api/billing/epoint/training', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(pay)
+    }).then(function (r) { return r.json(); });
+  }
+
+  /* Данные для ePoint — отдельной функцией, чтобы их можно было проверить
+     без перехода к оплате: window.trainingPayBuild(form). */
+  function buildPay(form) {
+    var prog = form.querySelector('input[name="proqram"]:checked');
+    var program = prog ? prog.value : '';
+    return {
+      name: (val(form, 'ad') + ' ' + val(form, 'soyad')).trim(),
+      phone: val(form, 'telefon'),
+      program: program,
+      amount: PREPAY[program] || 0,
+      months: 0
+    };
+  }
+  window.trainingPayBuild = buildPay;
+
+  function showPayError(form, pay) {
+    var box = form.querySelector('.form-error');
+    if (!box) {
+      box = document.createElement('p');
+      box.className = 'form-error';
+      box.style.cssText = 'margin:14px 0 0;padding:12px 14px;border:1px solid rgba(220,90,90,.5);' +
+        'background:rgba(220,90,90,.08);color:#E8A0A0;font-size:.875rem;line-height:1.6;';
+      form.appendChild(box);
+    }
+    box.style.display = 'block';
+    box.innerHTML = T.payErr + ' <a href="#" class="tp-retry" style="color:var(--accent);font-weight:700;">' +
+      T.retry + '</a> · <a href="https://wa.me/994702200376" target="_blank" rel="noopener" ' +
+      'style="color:var(--accent);font-weight:700;">' + T.wa + '</a>';
+    box.querySelector('.tp-retry').onclick = function (ev) {
+      ev.preventDefault();
+      goPay(form, pay, null);
+    };
+  }
+
+  function goPay(form, pay, btn) {
+    if (btn) btn.textContent = T.toPay;
+    return payPost(pay).then(function (d) {
+      if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
+      throw new Error((d && d.error) || 'no redirect_url');
+    }).catch(function (err) {
+      console.warn('[training-pay] ePoint:', err);
+      showPayError(form, pay);
+      if (btn) btn.textContent = btn.getAttribute('data-label') || 'Göndər';
+    });
+  }
+
+  async function onSubmit(e) {
+    var form = e.target;
+    if (!form || FORM_IDS.indexOf(form.id) < 0) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (form.getAttribute('data-busy') === '1') return;
+
+    if (typeof validateRegForm === 'function' && !validateRegForm(form)) return;
+    var pay = buildPay(form);
+    if (!pay.program || !pay.amount) {
+      var grp = form.querySelector('input[name="proqram"]');
+      if (grp && grp.scrollIntoView) grp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      alert(T.prog);
+      return;
+    }
+
+    var files = pickFiles(form);
+    for (var i = 0; i < files.length; i++) {
+      if (files[i].file.size > MAX_FILE) { alert('"' + files[i].file.name + '" ' + T.big); return; }
+    }
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) {
+      if (!btn.getAttribute('data-label')) btn.setAttribute('data-label', btn.textContent);
+      btn.disabled = true; btn.textContent = T.sending;
+    }
+    form.setAttribute('data-busy', '1');
+
+    var attachments = [];
+    for (var j = 0; j < files.length; j++) {
+      var data = await toBase64(files[j].file);
+      if (data) attachments.push({ field: files[j].field, filename: files[j].file.name,
+                                   mime: files[j].file.type || 'application/octet-stream', data: data });
+    }
+
+    var payload = {
+      type: 'registration',
+      fname: val(form, 'ad'), lname: val(form, 'soyad'),
+      phone: pay.phone, email: val(form, 'email'), address: val(form, 'unvan'),
+      service: pay.program, lang: L,
+      note: ['Ödəniş: ePoint — ' + pay.amount + ' AZN', val(form, 'qeyd')].filter(Boolean).join(' | '),
+      source: location.pathname.replace(/^\//, '') || 'tehsil.html',
+      attachments: attachments
+    };
+
+    var res = await regPost(payload);
+    if (!res || !res.ok) {
+      form.removeAttribute('data-busy');
+      if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label'); }
+      if (typeof showSendError === 'function') showSendError(form); else alert('Error');
+      return;
+    }
+    var err = form.querySelector('.form-error');
+    if (err) err.style.display = 'none';
+    await goPay(form, pay, btn);
+    form.removeAttribute('data-busy');
+    if (btn) btn.disabled = false;
+  }
+
+  document.addEventListener('submit', onSubmit, true);
 })();

@@ -535,6 +535,7 @@ input, select, textarea, button {
 <span>Sertifikat · 2 modul</span>
 </div>
 <p class="price-card-desc">3 aylıq nəzəri təlim və&nbsp;6 aylıq superviziya; tədrisçi — Kənan Rəhimov. Bonus: Ziqmund Freydin 24 kitabı Azərbaycanda ilk dəfə orijinal alman dilindən tərcümə edilib — bu proqramın tələbələri üçün əlçatan olacaq.</p>
+<div class="price-row"><span class="price-row-label">Videoyazılar</span><span class="price-row-value">Limitsiz baxış</span></div>
 <div class="price-row"><span class="price-row-label">Tədris</span><span class="price-row-value">3 ay — həftədə 2×2 saat</span></div>
 <div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">Əyani və ya onlayn</span></div>
 <div class="price-row"><span class="price-row-label">Superviziya</span><span class="price-row-value">6 ay — həftədə 1 dəfə</span></div>
@@ -888,7 +889,7 @@ input, select, textarea, button {
 <div class="reg-path">
 <div class="reg-path-step"><span class="reg-path-num">Addım 01</span><h4 role="heading" aria-level="3" data-a11y-level>Sənədləri hazırlayın</h4><p>Ali təhsil diplomunuzun və şəxsiyyət vəsiqənizin fotosu. Əvvəlki psixologiya sertifikatları varsa — onları da tapın.</p></div>
 <div class="reg-path-step"><span class="reg-path-num">Addım 02</span><h4>Formanı doldurun</h4><p>Ad, əlaqə məlumatı, proqram seçimi və sənədlər. 3 dəqiqə çəkir.</p></div>
-<div class="reg-path-step"><span class="reg-path-num">Addım 03</span><h4>Ödəniş üsulunu seçin</h4><p>Öncədən ödəniş (endirimlə) və ya 3–24 ay hissə-hissə ödəniş — məbləğ formada avtomatik hesablanır. Qərar formanı göndərməzdən əvvəl tələb edilmir.</p></div>
+<div class="reg-path-step"><span class="reg-path-num">Addım 03</span><h4>Ödəniş</h4><p>Formanı göndərdikdən sonra avtomatik olaraq ePoint ödəniş səhifəsinə keçirsiniz — proqramın öncədən ödəniş qiyməti ilə (endirimlə).</p></div>
 <div class="reg-path-step"><span class="reg-path-num">Addım 04</span><h4>Başlayın</h4><p>Yeriniz təsdiqlənir, Telegram qrupuna əlavə edilirsiniz. Növbəti qrup başlamazdan əvvəl video arxivinə giriş açılır.</p></div>
 </div>
 <div class="reg-discount">
@@ -917,21 +918,6 @@ input, select, textarea, button {
 <input class="form-radio-tile" id="p5" name="proqram" type="radio" value="Psixoanaliz"/>
 <label for="p5" class="form-radio-lbl">Psixoanaliz<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">Sertifikat · 2 modul · 600 AZN</span></label>
 </div>
-</div>
-<div class="form-group" style="margin-top:20px;">
-<label class="form-label">Ödəniş üsulu</label>
-<div class="form-radio-group cols2">
-<input class="form-radio-tile" id="pt1" name="odenis_tip" type="radio" value="prepay"/>
-<label for="pt1" class="form-radio-lbl">Öncədən ödəniş<br><span class="pay-sum" id="ptPrepaySum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="pt2" name="odenis_tip" type="radio" value="hisse"/>
-<label for="pt2" class="form-radio-lbl">Hissə-hissə ödəniş<br><span class="pay-sum" id="ptHisseSum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-</div>
-<div id="termWrap" style="display:none;margin-top:14px;">
-<label for="termSel" class="form-label">Neçə aya bölünsün?</label>
-<select id="termSel" class="form-input" style="cursor:pointer;" aria-label="Hissə-hissə ödənişin müddəti" name="termSel" autocomplete="off"></select>
-</div>
-<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(201,169,97,0.35);border-left:2px solid var(--accent);background:rgba(201,169,97,0.06);font-size:0.875rem;line-height:1.9;"></div>
-<input type="hidden" name="odenis" id="odenisHidden"/>
 </div>
 <div class="form-group" style="margin-top:24px;">
 <label for="km-name" class="form-label">Sənədlər</label>
@@ -1451,107 +1437,6 @@ input, select, textarea, button {
 </script>
 <script src="js-hero-fit2.js?v=12"></script>
 
-<script>
-  /* Ödəniş kalkulyatoru (2026-08-28, решение владельца). Bazis — 12 aylıq
-     qiymət (aylıq × 12 из карточек цен). Öncədən ödənişdə endirim; müddət
-     12 aydan qısa olduqca endirim proporsional azalır; 12 aydan uzun
-     müddətdə ikinci il üçün cəmi +600 AZN (aya bölünərək) əlavə olunur.
-     Aylıq məbləğ 5 AZN-ə qədər yuxarı yuvarlaqlaşdırılır, yekun = aylıq × ay
-     (пример владельца: Klinik 9 ay → 6450/9=716.67 → 720 × 9 = 6480).
-     Ailə Terapiyası düsturdan kənardır: 600 AZN tam qiymət (3 ay tədris
-     və 6 ay superviziya daxil), öncədən ödənişdə 500 AZN (−100 AZN),
-     hissə-hissə 3 ay × 200 AZN. Psixoanaliz eyni şərtlərlədir: 600 AZN,
-     öncədən ödənişdə 500 AZN, hissə-hissə 3 ay × 200 AZN. */
-  (function () {
-    var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
-    var PLANS = {
-      'Ümumi Psixologiya':        { base: 4200, prepay: 3800, months: ALL },
-      'Klinik Psixologiya':       { base: 6600, prepay: 6000, months: ALL },
-      'Psixoterapiya Praktikumu': { base: 3600, prepay: 3000, months: ALL,
-        fastNote: 'Müraciət günü ödənişdə əlavə −500 AZN → 2 500 AZN' },
-      'Ailə Terapiyası':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } },
-      'Psixoanaliz':              { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
-    };
-    var form = document.getElementById('regForm');
-    if (!form) return;
-    var termWrap = document.getElementById('termWrap');
-    var termSel  = document.getElementById('termSel');
-    var calcBox  = document.getElementById('payCalc');
-    var hidden   = document.getElementById('odenisHidden');
-    var prepaySum = document.getElementById('ptPrepaySum');
-    var hisseSum  = document.getElementById('ptHisseSum');
-    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
-    function calc(plan, n) {
-      if (plan.fixed && plan.fixed[n]) return { monthly: plan.fixed[n], total: plan.fixed[n] * n };
-      var raw = n <= 12
-        ? plan.base - (plan.base - plan.prepay) * (12 - n) / 12
-        : plan.base + 600 * (n - 12) / 12;
-      var m = raw / n;
-      if (m !== Math.floor(m)) m = Math.ceil(m / 5) * 5;
-      return { monthly: m, total: m * n };
-    }
-    function line(l, v, strong) {
-      var w = strong ? 'font-weight:800;' : '';
-      return '<div style="display:flex;justify-content:space-between;gap:16px;"><span style="opacity:.7;' + w + '">' + l + '</span><span style="' + w + '">' + v + '</span></div>';
-    }
-    function rebuildTerms(plan) {
-      var keep = parseInt(termSel.value, 10);
-      termSel.innerHTML = '';
-      plan.months.forEach(function (n) {
-        var c = calc(plan, n);
-        var o = document.createElement('option');
-        o.value = n;
-        o.textContent = n + ' ay — ' + fmt(c.monthly) + ' AZN/ay (cəmi ' + fmt(c.total) + ' AZN)';
-        termSel.appendChild(o);
-      });
-      if (plan.months.indexOf(keep) !== -1) termSel.value = keep;
-    }
-    function refresh() {
-      var p = form.querySelector('input[name="proqram"]:checked');
-      var plan = p ? PLANS[p.value] : null;
-      if (!plan) {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none';
-        prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
-        return;
-      }
-      prepaySum.textContent = fmt(plan.prepay) + ' AZN' + (plan.base > plan.prepay ? ' (endirim ' + fmt(plan.base - plan.prepay) + ' AZN)' : '');
-      hisseSum.textContent = plan.months.length > 1
-        ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' ay'
-        : plan.months[0] + ' ay — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/ay';
-      var t = form.querySelector('input[name="odenis_tip"]:checked');
-      var rows = [];
-      if (t && t.value === 'hisse') {
-        rebuildTerms(plan);
-        termWrap.style.display = '';
-        var n = parseInt(termSel.value, 10);
-        var c = calc(plan, n);
-        rows.push(line('Kurs qiyməti', fmt(plan.base) + ' AZN'));
-        if (c.total < plan.base) rows.push(line('Endirim', '−' + fmt(plan.base - c.total) + ' AZN'));
-        rows.push(line('Yekun', fmt(c.total) + ' AZN', true));
-        rows.push(line('Aylıq ödəniş', fmt(c.monthly) + ' AZN × ' + n + ' ay'));
-        hidden.value = 'Hissə-hissə ' + n + ' ay — ' + c.monthly + ' AZN/ay, cəmi ' + c.total + ' AZN';
-      } else if (t && t.value === 'prepay') {
-        termWrap.style.display = 'none';
-        var dp = plan.base - plan.prepay;
-        if (dp > 0) rows.push(line('Kurs qiyməti', fmt(plan.base) + ' AZN'));
-        if (dp > 0) rows.push(line('Endirim', '−' + fmt(dp) + ' AZN'));
-        rows.push(line('Yekun', fmt(plan.prepay) + ' AZN', true));
-        if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
-        hidden.value = 'Öncədən ödəniş — ' + plan.prepay + ' AZN' + (dp > 0 ? ' (endirim ' + dp + ' AZN)' : '');
-      } else {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
-        return;
-      }
-      calcBox.innerHTML = rows.join('');
-      calcBox.style.display = '';
-    }
-    form.querySelectorAll('input[name="proqram"], input[name="odenis_tip"]').forEach(function (r) {
-      r.addEventListener('change', refresh);
-    });
-    termSel.addEventListener('change', refresh);
-    refresh();
-  })();
-</script>
 <script src="/books/order-form.js" defer></script>
   <script src="/training-pay.js" defer></script>
 </body>

@@ -489,6 +489,7 @@ input, select, textarea, button {
 <span>Certificate · 2 modules</span>
 </div>
 <p class="price-card-desc">A three-month theory course and&nbsp;six months of supervision; tutor — Kenan Ragimov. Bonus: all 24 books by Sigmund Freud, translated from the original German into Azerbaijani for the first time in Azerbaijan, will be available to the students of this programme.</p>
+<div class="price-row"><span class="price-row-label">Recordings</span><span class="price-row-value">Unlimited viewing</span></div>
 <div class="price-row"><span class="price-row-label">Classes</span><span class="price-row-value">3 months — 2×2 hrs weekly</span></div>
 <div class="price-row"><span class="price-row-label">Format</span><span class="price-row-value">In person or online</span></div>
 <div class="price-row"><span class="price-row-label">Supervision</span><span class="price-row-value">6 months — once a week</span></div>
@@ -853,7 +854,7 @@ input, select, textarea, button {
         <div class="reg-path">
           <div class="reg-path-step"><span class="reg-path-num">Step 01</span><h4 role="heading" aria-level="3" data-a11y-level>Prepare your documents</h4><p>A photo of your higher education diploma and ID. If you have previous psychology certificates — have them ready too.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Step 02</span><h4>Fill in the form</h4><p>Name, contact details, programme choice and documents. Takes 3 minutes.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Step 03</span><h4>Choose a payment method</h4><p>Prepayment (with a discount) or a 3–24-month instalment plan — the amount is calculated automatically in the form. The decision is made before submitting the form.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Step 03</span><h4>Payment</h4><p>After you submit the form, you are taken straight to the ePoint payment page — at the programme’s prepayment price (with the discount).</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Step 04</span><h4>Get started</h4><p>Your place is confirmed and you are added to the Telegram group. Access to the video archive opens before the next group starts.</p></div>
         </div>
 
@@ -885,22 +886,6 @@ input, select, textarea, button {
 <input class="form-radio-tile" id="p5" name="proqram" type="radio" value="Psychoanalysis"/>
 <label for="p5" class="form-radio-lbl">Psychoanalysis<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">Certificate · 2 modules · 600 AZN</span></label>
 </div>
-          </div>
-
-          <div class="form-group" style="margin-top:20px;">
-            <label class="form-label">Payment method</label>
-            <div class="form-radio-group cols2">
-              <input class="form-radio-tile" id="pt1" name="odenis_tip" type="radio" value="prepay"/>
-<label for="pt1" class="form-radio-lbl">Prepayment<br><span class="pay-sum" id="ptPrepaySum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="pt2" name="odenis_tip" type="radio" value="hisse"/>
-<label for="pt2" class="form-radio-lbl">Instalment plan<br><span class="pay-sum" id="ptHisseSum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-            </div>
-<div id="termWrap" style="display:none;margin-top:14px;">
-<label for="termSel" class="form-label">Over how many months?</label>
-<select id="termSel" class="form-input" style="cursor:pointer;" aria-label="Instalment term" name="termSel" autocomplete="off"></select>
-</div>
-<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(201,169,97,0.35);border-left:2px solid var(--accent);background:rgba(201,169,97,0.06);font-size:0.875rem;line-height:1.9;"></div>
-<input type="hidden" name="odenis" id="odenisHidden"/>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -1246,109 +1231,6 @@ input, select, textarea, button {
 
 <!-- END: kitab-modal -->
 
-<script>
-  /* Прайс из карточек этой же страницы. Варианты оплаты у программ разные:
-     у семейной терапии рассрочка только на три месяца, у остальных — на
-     12 или 24. Показываем лишь то, что существует, и сразу с суммой, чтобы
-     человек не считал в уме и не выбирал несуществующее условие. */
-  (function () {
-    /* Payment calculator (owner's decision, 2026-08-28). Base = the 12-month
-       instalment price (monthly × 12). Prepayment carries a discount; under
-       12 months the discount shrinks proportionally; over 12 months the
-       second year adds +600 AZN in total, spread across the months. The
-       monthly amount is rounded up to a multiple of 5; total = monthly ×
-       months. Family Therapy is outside the formula: a fixed full price of
-       600 AZN (3 months of classes and 6 months of supervision included),
-       no prepayment discount, 3 monthly instalments of 200 AZN. */
-    var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
-    var PLANS = {
-      'General Psychology':      { base: 4200, prepay: 3800, months: ALL },
-      'Clinical Psychology':     { base: 6600, prepay: 6000, months: ALL },
-      'Psychotherapy Practicum': { base: 3600, prepay: 3000, months: ALL,
-        fastNote: 'Pay on the day you apply — an extra −500 AZN → 2,500 AZN' },
-      'Family Therapy':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } },
-      'Psychoanalysis':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
-    };
-    var form = document.getElementById('regForm');
-    if (!form) return;
-    var termWrap = document.getElementById('termWrap');
-    var termSel  = document.getElementById('termSel');
-    var calcBox  = document.getElementById('payCalc');
-    var hidden   = document.getElementById('odenisHidden');
-    var prepaySum = document.getElementById('ptPrepaySum');
-    var hisseSum  = document.getElementById('ptHisseSum');
-    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-    function calc(plan, n) {
-      if (plan.fixed && plan.fixed[n]) return { monthly: plan.fixed[n], total: plan.fixed[n] * n };
-      var raw = n <= 12
-        ? plan.base - (plan.base - plan.prepay) * (12 - n) / 12
-        : plan.base + 600 * (n - 12) / 12;
-      var m = raw / n;
-      if (m !== Math.floor(m)) m = Math.ceil(m / 5) * 5;
-      return { monthly: m, total: m * n };
-    }
-    function line(l, v, strong) {
-      var w = strong ? 'font-weight:800;' : '';
-      return '<div style="display:flex;justify-content:space-between;gap:16px;"><span style="opacity:.7;' + w + '">' + l + '</span><span style="' + w + '">' + v + '</span></div>';
-    }
-    function rebuildTerms(plan) {
-      var keep = parseInt(termSel.value, 10);
-      termSel.innerHTML = '';
-      plan.months.forEach(function (n) {
-        var c = calc(plan, n);
-        var o = document.createElement('option');
-        o.value = n;
-        o.textContent = n + ' months — ' + fmt(c.monthly) + ' AZN/mo. (total ' + fmt(c.total) + ' AZN)';
-        termSel.appendChild(o);
-      });
-      if (plan.months.indexOf(keep) !== -1) termSel.value = keep;
-    }
-    function refresh() {
-      var p = form.querySelector('input[name="proqram"]:checked');
-      var plan = p ? PLANS[p.value] : null;
-      if (!plan) {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none';
-        prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
-        return;
-      }
-      prepaySum.textContent = fmt(plan.prepay) + ' AZN' + (plan.base > plan.prepay ? ' (save ' + fmt(plan.base - plan.prepay) + ' AZN)' : '');
-      hisseSum.textContent = plan.months.length > 1
-        ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' months'
-        : plan.months[0] + ' months — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/mo.';
-      var t = form.querySelector('input[name="odenis_tip"]:checked');
-      var rows = [];
-      if (t && t.value === 'hisse') {
-        rebuildTerms(plan);
-        termWrap.style.display = '';
-        var n = parseInt(termSel.value, 10);
-        var c = calc(plan, n);
-        rows.push(line('Course price', fmt(plan.base) + ' AZN'));
-        if (c.total < plan.base) rows.push(line('Discount', '−' + fmt(plan.base - c.total) + ' AZN'));
-        rows.push(line('Total', fmt(c.total) + ' AZN', true));
-        rows.push(line('Monthly', fmt(c.monthly) + ' AZN × ' + n + ' months'));
-        hidden.value = 'Instalment ' + n + ' months — ' + c.monthly + ' AZN/mo., total ' + c.total + ' AZN';
-      } else if (t && t.value === 'prepay') {
-        termWrap.style.display = 'none';
-        var dp = plan.base - plan.prepay;
-        if (dp > 0) rows.push(line('Course price', fmt(plan.base) + ' AZN'));
-        if (dp > 0) rows.push(line('Discount', '−' + fmt(dp) + ' AZN'));
-        rows.push(line('Total', fmt(plan.prepay) + ' AZN', true));
-        if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
-        hidden.value = 'Prepayment — ' + plan.prepay + ' AZN' + (dp > 0 ? ' (discount ' + dp + ' AZN)' : '');
-      } else {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
-        return;
-      }
-      calcBox.innerHTML = rows.join('');
-      calcBox.style.display = '';
-    }
-    form.querySelectorAll('input[name="proqram"], input[name="odenis_tip"]').forEach(function (r) {
-      r.addEventListener('change', refresh);
-    });
-    termSel.addEventListener('change', refresh);
-    refresh();
-  })();
-</script>
 <script src="/../books/order-form.js" defer></script>
   <script src="/training-pay.js" defer></script>
 </body>

@@ -489,6 +489,7 @@ input, select, textarea, button {
 <span>Сертификат · 2 модуля</span>
 </div>
 <p class="price-card-desc">3 месяца теоретического курса и&nbsp;6 месяцев супервизии; преподаватель — Кенан Рагимов. Бонус: все 24 книги Зигмунда Фрейда впервые в Азербайджане переведены с оригинального немецкого на азербайджанский — они будут доступны студентам этой программы.</p>
+<div class="price-row"><span class="price-row-label">Видеозаписи</span><span class="price-row-value">Без ограничений</span></div>
 <div class="price-row"><span class="price-row-label">Обучение</span><span class="price-row-value">3 месяца — 2×2 ч в неделю</span></div>
 <div class="price-row"><span class="price-row-label">Формат</span><span class="price-row-value">Очно или онлайн</span></div>
 <div class="price-row"><span class="price-row-label">Супервизия</span><span class="price-row-value">6 месяцев — 1 раз в неделю</span></div>
@@ -857,7 +858,7 @@ input, select, textarea, button {
         <div class="reg-path">
           <div class="reg-path-step"><span class="reg-path-num">Шаг 01</span><h4 role="heading" aria-level="3" data-a11y-level>Подготовьте документы</h4><p>Фото диплома о высшем образовании и удостоверения личности. Если есть предыдущие сертификаты по психологии — найдите их тоже.</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 02</span><h4>Заполните форму</h4><p>Имя, контактные данные, выбор программы и документы. Занимает 3 минуты.</p></div>
-          <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Выберите способ оплаты</h4><p>Предоплата (со скидкой) или рассрочка на 3–24 месяца — сумма считается в форме автоматически. Решение принимается до отправки формы.</p></div>
+          <div class="reg-path-step"><span class="reg-path-num">Шаг 03</span><h4>Оплата</h4><p>После отправки формы вы автоматически перейдёте на страницу оплаты ePoint — по цене предоплаты программы (со скидкой).</p></div>
           <div class="reg-path-step"><span class="reg-path-num">Шаг 04</span><h4>Начинайте</h4><p>Место подтверждается, вас добавляют в Telegram-группу. До старта следующей группы открывается доступ к видеоархиву.</p></div>
         </div>
 
@@ -889,22 +890,6 @@ input, select, textarea, button {
 <input class="form-radio-tile" id="p5" name="proqram" type="radio" value="Психоанализ"/>
 <label for="p5" class="form-radio-lbl">Психоанализ<br><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">Сертификат · 2 модуля · 600 AZN</span></label>
 </div>
-          </div>
-
-          <div class="form-group" style="margin-top:20px;">
-            <label class="form-label">Способ оплаты</label>
-            <div class="form-radio-group cols2">
-              <input class="form-radio-tile" id="pt1" name="odenis_tip" type="radio" value="prepay"/>
-<label for="pt1" class="form-radio-lbl">Предоплата<br><span class="pay-sum" id="ptPrepaySum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-<input class="form-radio-tile" id="pt2" name="odenis_tip" type="radio" value="hisse"/>
-<label for="pt2" class="form-radio-lbl">Рассрочка<br><span class="pay-sum" id="ptHisseSum" style="font-size:0.6875rem;font-weight:400;opacity:0.7;"></span></label>
-</div>
-<div id="termWrap" style="display:none;margin-top:14px;">
-<label for="termSel" class="form-label">На сколько месяцев?</label>
-<select id="termSel" class="form-input" style="cursor:pointer;" aria-label="Срок рассрочки" name="termSel" autocomplete="off"></select>
-</div>
-<div id="payCalc" style="display:none;margin-top:14px;padding:14px 18px;border:1px solid rgba(201,169,97,0.35);border-left:2px solid var(--accent);background:rgba(201,169,97,0.06);font-size:0.875rem;line-height:1.9;"></div>
-<input type="hidden" name="odenis" id="odenisHidden"/>
           </div>
 
           <div class="form-group" style="margin-top:24px;">
@@ -1250,106 +1235,6 @@ input, select, textarea, button {
 
 <!-- END: kitab-modal -->
 
-<script>
-  /* Калькулятор оплаты (2026-08-28, решение владельца). База — цена за
-     12-месячную рассрочку (месячная × 12 из карточек). При предоплате —
-     скидка; короче 12 месяцев скидка тает пропорционально; дольше 12 —
-     за второй год суммарно +600 AZN, размазанные по месяцам. Месячный
-     платёж округляется вверх до кратного 5, итог = месячный × месяцы
-     (пример владельца: Клиническая 9 мес → 6450/9=716.67 → 720 × 9 = 6480).
-     Семейная терапия вне формулы: 600 AZN фиксированная полная стоимость
-     (3 месяца занятий и 6 месяцев супервизии включены), скидки при предоплате
-     нет, рассрочка 3 месяца × 200 AZN. */
-  (function () {
-    var ALL = [3, 6, 9, 12, 15, 18, 21, 24];
-    var PLANS = {
-      'Общая психология':          { base: 4200, prepay: 3800, months: ALL },
-      'Клиническая психология':    { base: 6600, prepay: 6000, months: ALL },
-      'Практикум по психотерапии': { base: 3600, prepay: 3000, months: ALL,
-        fastNote: 'При оплате в день обращения — дополнительно −500 AZN → 2 500 AZN' },
-      'Семейная терапия':          { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } },
-      'Психоанализ':               { base: 600, prepay: 500, months: [3], fixed: { 3: 200 } }
-    };
-    var form = document.getElementById('regForm');
-    if (!form) return;
-    var termWrap = document.getElementById('termWrap');
-    var termSel  = document.getElementById('termSel');
-    var calcBox  = document.getElementById('payCalc');
-    var hidden   = document.getElementById('odenisHidden');
-    var prepaySum = document.getElementById('ptPrepaySum');
-    var hisseSum  = document.getElementById('ptHisseSum');
-    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
-    function calc(plan, n) {
-      if (plan.fixed && plan.fixed[n]) return { monthly: plan.fixed[n], total: plan.fixed[n] * n };
-      var raw = n <= 12
-        ? plan.base - (plan.base - plan.prepay) * (12 - n) / 12
-        : plan.base + 600 * (n - 12) / 12;
-      var m = raw / n;
-      if (m !== Math.floor(m)) m = Math.ceil(m / 5) * 5;
-      return { monthly: m, total: m * n };
-    }
-    function line(l, v, strong) {
-      var w = strong ? 'font-weight:800;' : '';
-      return '<div style="display:flex;justify-content:space-between;gap:16px;"><span style="opacity:.7;' + w + '">' + l + '</span><span style="' + w + '">' + v + '</span></div>';
-    }
-    function rebuildTerms(plan) {
-      var keep = parseInt(termSel.value, 10);
-      termSel.innerHTML = '';
-      plan.months.forEach(function (n) {
-        var c = calc(plan, n);
-        var o = document.createElement('option');
-        o.value = n;
-        o.textContent = n + ' мес. — ' + fmt(c.monthly) + ' AZN/мес. (итого ' + fmt(c.total) + ' AZN)';
-        termSel.appendChild(o);
-      });
-      if (plan.months.indexOf(keep) !== -1) termSel.value = keep;
-    }
-    function refresh() {
-      var p = form.querySelector('input[name="proqram"]:checked');
-      var plan = p ? PLANS[p.value] : null;
-      if (!plan) {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none';
-        prepaySum.textContent = ''; hisseSum.textContent = ''; hidden.value = '';
-        return;
-      }
-      prepaySum.textContent = fmt(plan.prepay) + ' AZN' + (plan.base > plan.prepay ? ' (скидка ' + fmt(plan.base - plan.prepay) + ' AZN)' : '');
-      hisseSum.textContent = plan.months.length > 1
-        ? plan.months[0] + '–' + plan.months[plan.months.length - 1] + ' мес.'
-        : plan.months[0] + ' мес. — ' + fmt(calc(plan, plan.months[0]).monthly) + ' AZN/мес.';
-      var t = form.querySelector('input[name="odenis_tip"]:checked');
-      var rows = [];
-      if (t && t.value === 'hisse') {
-        rebuildTerms(plan);
-        termWrap.style.display = '';
-        var n = parseInt(termSel.value, 10);
-        var c = calc(plan, n);
-        rows.push(line('Цена курса', fmt(plan.base) + ' AZN'));
-        if (c.total < plan.base) rows.push(line('Скидка', '−' + fmt(plan.base - c.total) + ' AZN'));
-        rows.push(line('Итого', fmt(c.total) + ' AZN', true));
-        rows.push(line('Ежемесячно', fmt(c.monthly) + ' AZN × ' + n + ' мес.'));
-        hidden.value = 'Рассрочка ' + n + ' мес. — ' + c.monthly + ' AZN/мес., итого ' + c.total + ' AZN';
-      } else if (t && t.value === 'prepay') {
-        termWrap.style.display = 'none';
-        var dp = plan.base - plan.prepay;
-        if (dp > 0) rows.push(line('Цена курса', fmt(plan.base) + ' AZN'));
-        if (dp > 0) rows.push(line('Скидка', '−' + fmt(dp) + ' AZN'));
-        rows.push(line('Итого', fmt(plan.prepay) + ' AZN', true));
-        if (plan.fastNote) rows.push('<div style="opacity:.75;margin-top:4px;">' + plan.fastNote + '</div>');
-        hidden.value = 'Предоплата — ' + plan.prepay + ' AZN' + (dp > 0 ? ' (скидка ' + dp + ' AZN)' : '');
-      } else {
-        termWrap.style.display = 'none'; calcBox.style.display = 'none'; hidden.value = '';
-        return;
-      }
-      calcBox.innerHTML = rows.join('');
-      calcBox.style.display = '';
-    }
-    form.querySelectorAll('input[name="proqram"], input[name="odenis_tip"]').forEach(function (r) {
-      r.addEventListener('change', refresh);
-    });
-    termSel.addEventListener('change', refresh);
-    refresh();
-  })();
-</script>
 <script src="/../books/order-form.js" defer></script>
   <script src="/training-pay.js" defer></script>
 </body>
