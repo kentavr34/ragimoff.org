@@ -1,10 +1,10 @@
-/* Тест для студентов: одна страница = один тест.
+/* Тест для студентов: одна страница = один тест (test/<имя>.html, напр. test/aile.html).
    Кенан 03.11.2026: по ссылке, без пароля; ввёл имя и фамилию → «Testə başla» →
    все вопросы на одной странице → «Nəticəni göndər» → результат на сервере и в админке.
 
    Вопросы приходят с сервера (api.ragimoff.org/api/test/<slug>) БЕЗ ключа ответов:
    сайт публичный, ключ в HTML/JS увидел бы любой студент. Проверка — на сервере.
-   Слаг теста — в <body data-test="…">. Новый тест = копия страницы с другим слагом.
+   Слаг теста на сервере — в <body data-test="…">. Новый тест = копия страницы с другим слагом.
 
    Черновик (имя + ответы) хранится в localStorage: случайная перезагрузка
    страницы не стирает ответы. После отправки черновик удаляется. */
@@ -31,7 +31,8 @@
     student: 'Tələbə: ',
     doneT: 'Təşəkkür edirik!',
     doneM: 'Nəticəniz göndərildi və qeydə alındı.',
-    score: 'Düzgün cavablar: '
+    score: 'Düzgün cavablar: ',
+    again: 'Testi yenidən keç'
   };
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -47,15 +48,19 @@
     });
   }
 
-  if (draft.done) { showDone(draft.done); return; }
+  function fetchTest() {
+    return fetch(API + '/api/test/' + encodeURIComponent(SLUG))
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d || !d.ok) throw new Error((d && d.error) || 'load');
+        test = d;
+        return d;
+      });
+  }
 
-  var loading = fetch(API + '/api/test/' + encodeURIComponent(SLUG))
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (!d || !d.ok) throw new Error((d && d.error) || 'load');
-      test = d;
-      return d;
-    });
+  var loading = null;
+  if (draft.done) { showDone(draft.done); return; }
+  loading = fetchTest();
 
   if (draft.fname && draft.lname && draft.started) {
     loading.then(showQuestions, loadFailed);
@@ -150,10 +155,13 @@
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // без preflight
       body: JSON.stringify({ fname: draft.fname, lname: draft.lname, answers: draft.answers,
-                             started: draft.started, source: location.href })
+                             started: draft.started,
+                             elapsed: Math.round((Date.now() - draft.started) / 1000),  // по часам браузера
+                             source: location.href })
     }).then(function (r) { return r.json(); }).then(function (d) {
       if (!d || !d.ok) throw new Error((d && d.error) || 'send');
-      draft = { done: { name: draft.fname + ' ' + draft.lname, score: d.score, total: d.total, percent: d.percent } };
+      draft = { fname: draft.fname, lname: draft.lname,
+                done: { name: draft.fname + ' ' + draft.lname, score: d.score, total: d.total, percent: d.percent } };
       save();
       showDone(draft.done);
     }).catch(function () {
@@ -166,7 +174,16 @@
       '<h2>' + T.doneT + '</h2><p><b>' + esc(d.name) + '</b></p><p>' + T.doneM + '</p>' +
       (typeof d.score === 'number'
         ? '<p class="score">' + T.score + d.score + ' / ' + d.total + ' (' + d.percent + '%)</p>' : '') +
+      '<p class="t-again"><button class="t-btn" type="button" id="t-again">' + T.again + '</button></p>' +
       '</div>';
+    /* Кенан 03.11.2026: тест можно проходить повторно; каждая попытка — отдельная
+       запись на сервере. Имя и фамилия подставляются, ответы — с чистого листа. */
+    $('#t-again').addEventListener('click', function () {
+      draft = { fname: draft.fname, lname: draft.lname };
+      save();
+      loading = fetchTest();   // заново: варианты перемешаются по-новому
+      showIntro();
+    });
     window.scrollTo(0, 0);
   }
 })();
