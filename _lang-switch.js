@@ -105,6 +105,13 @@
     host.querySelector(".lsw-btn").addEventListener("click", function (e) {
       e.preventDefault(); e.stopPropagation(); host.classList.toggle("open");
     });
+    /* явный выбор языка запоминаем (ragimoff_lang) — его учитывают только нейтральные входы: / и /books/ */
+    Array.prototype.forEach.call(host.querySelectorAll(".lsw-menu a[href]:not(.on)"), function (a) {
+      a.addEventListener("click", function () {
+        var m = a.getAttribute("href").match(/^\/(?:[^/]+\/)*?(ru|en|tr)\//);
+        try { localStorage.setItem("ragimoff_lang", m ? m[1] : "az"); } catch (e) {}
+      });
+    });
   }
 
   function render() {

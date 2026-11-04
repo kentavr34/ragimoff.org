@@ -2,57 +2,45 @@
 //  RAGIMOFF.ORG — Shared JS
 // ═══════════════════════════════════════════════
 
-// Auto language redirect — priority: 1) saved choice  2) browser language  3) IP
-// AZ = default(/), RU = /ru/, EN = /en/
+// Язык страницы задаёт её адрес: /ru/… = RU, /en/… = EN, адрес без префикса = AZ.
+// Открытый адрес НИКОГДА не перенаправляем (Кенан 04.11.2026: сохранённый выбор
+// ragimoff_lang=az выбрасывал людей с /ru/… и /en/… на AZ-версию).
+// Автоопределение — сохранённый выбор → язык браузера → IP — только для НЕЙТРАЛЬНОГО входа:
+// главная страница (/ или /index.html), прямой заход (не по ссылке внутри сайта), не робот, без ?lang=.
+// Выбор запоминается только по клику переключателя (обработчики ниже); итог автоопределения
+// тоже сохраняется, чтобы главная не прыгала и IP не запрашивался повторно.
 (function() {
   try {
-    var path    = window.location.pathname;
-    var isRu    = /\/ru\//.test(path);
-    var isEn    = /\/en\//.test(path);
-    var fn      = path.split('/').pop() || 'index.html';
-    var saved   = localStorage.getItem('ragimoff_lang');
+    var path = window.location.pathname;
+    if (path !== '/' && path !== '/index.html') return;             // не нейтральный вход — ничего не делаем
+    if (/[?&]lang=/.test(window.location.search)) return;           // ?lang=az — явный запрос языка
+    if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+    var ref = document.referrer || '';
+    if (ref && ref.indexOf('//' + window.location.host + '/') !== -1) return; // переход внутри сайта
+    var saved = localStorage.getItem('ragimoff_lang');
 
-    // 1. Saved preference — always wins
-    if (saved === 'ru' && !isRu) { window.location.replace('/ru/' + fn); return; }
-    if (saved === 'en' && !isEn) { window.location.replace('/en/' + fn); return; }
-    if (saved === 'az' && (isRu || isEn)) { window.location.replace('/' + fn); return; }
-    if (saved) return;
+    function go(lang) {
+      localStorage.setItem('ragimoff_lang', lang);
+      if (lang === 'az') return;
+      window.location.replace('/' + lang + '/index.html' + window.location.hash);
+    }
 
-    // 2. Browser / device language — instant, no network
+    // 1. Сохранённый выбор (клик переключателя или прошлое автоопределение)
+    if (saved === 'ru' || saved === 'en' || saved === 'az') { go(saved); return; }
+
+    // 2. Язык браузера — мгновенно, без сети
     var navLang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
     var lang2   = navLang.split('-')[0]; // 'ru-RU' → 'ru'
+    if (lang2 === 'ru' || lang2 === 'en') { go(lang2); return; }
+    if (lang2 === 'az' || lang2 === 'tr') { go('az'); return; }
 
-    if (lang2 === 'ru' && !isRu) {
-      localStorage.setItem('ragimoff_lang', 'ru');
-      window.location.replace('/ru/' + fn); return;
-    }
-    if (lang2 === 'en' && !isEn) {
-      localStorage.setItem('ragimoff_lang', 'en');
-      window.location.replace('/en/' + fn); return;
-    }
-    // 'az' or 'tr' (common in AZ) — stay on AZ version, let IP confirm
-    if (lang2 === 'az' || lang2 === 'tr') {
-      // skip IP, just save and stay
-      localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
-      return;
-    }
-
-    // 3. IP geolocation — for any other browser language (or empty)
+    // 3. IP — для остальных языков браузера, не дольше 1,5 с (иначе остаёмся на AZ)
+    var done = false, t = setTimeout(function(){ done = true; }, 1500);
     fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-      var cc = (d && d.country_code) ? d.country_code.toUpperCase() : '';
-      if (cc === 'RU' && !isRu) {
-        localStorage.setItem('ragimoff_lang', 'ru');
-        window.location.replace('/ru/' + fn);
-      } else if (cc !== 'AZ' && cc !== '' && !isEn) {
-        // visitor from any country except AZ → EN
-        localStorage.setItem('ragimoff_lang', 'en');
-        window.location.replace('/en/' + fn);
-      } else {
-        localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
-      }
-    }).catch(function(){
-      localStorage.setItem('ragimoff_lang', isRu ? 'ru' : isEn ? 'en' : 'az');
-    });
+      if (done) return; clearTimeout(t);
+      var cc = (d && d.country_code) ? String(d.country_code).toUpperCase() : '';
+      go(cc === 'RU' ? 'ru' : (cc && cc !== 'AZ') ? 'en' : 'az');
+    }).catch(function(){});
   } catch(e){}
 })();
 

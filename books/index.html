@@ -5,7 +5,9 @@
   /* Язык каталога по региону посетителя (Кенан 31.10.2026). GitHub Pages не видит IP, поэтому:
      1) часовой пояс устройства (мгновенно, без сторонних запросов): Баку → AZ, Россия и СНГ → RU, остальное → EN;
      2) если пояс неопределённый (UTC/Etc) — страна по IP через get.geojs.io (не дольше 1,5 с).
-     Не перенаправляем: переход внутри сайта (в т.ч. переключатель языка), ?lang=az, роботов поисковиков. */
+     Не перенаправляем: переход внутри сайта (в т.ч. переключатель языка), ?lang=az, роботов поисковиков.
+     Приоритет (04.11.2026): сохранённый выбор переключателя ragimoff_lang выше региона — но тоже только при прямом заходе.
+     /books/ru/ и /books/en/ — адреса конкретного языка, их не перенаправляем никогда (скрипта там нет). */
   (function () {
     try {
       if (/[?&]lang=az/.test(location.search)) return;
@@ -19,6 +21,9 @@
       var RU = /^(Europe\/(Moscow|Kaliningrad|Samara|Volgograd|Saratov|Ulyanovsk|Astrakhan|Kirov|Minsk|Chisinau)|Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr|Almaty|Qostanay|Aqtobe|Aqtau|Atyrau|Oral|Qyzylorda|Bishkek|Tashkent|Samarkand|Dushanbe|Ashgabat|Yerevan))$/;
       var RUC = {RU:1,BY:1,KZ:1,KG:1,UZ:1,TJ:1,TM:1,AM:1,MD:1};
       function go(lang) { if (lang !== 'az') location.replace('/books/' + lang + '/' + location.hash); }
+      var saved = ''; try { saved = localStorage.getItem('ragimoff_lang') || ''; } catch (e2) {}
+      if (saved === 'az') return;
+      if (saved === 'ru' || saved === 'en') return go(saved);
       var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
       if (tz === 'Asia/Baku') return;
       if (RU.test(tz)) return go('ru');
