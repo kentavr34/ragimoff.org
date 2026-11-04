@@ -63,16 +63,21 @@
     else if (e.key === 'Escape') { tocOpen(false); closePop(); }
   });
 
-  // свайп влево/вправо — следующая/предыдущая глава
-  var sx = 0, sy = 0, st = 0;
-  document.addEventListener('touchstart', function (e) { if (e.touches.length !== 1) return; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now(); }, { passive: true });
-  document.addEventListener('touchend', function (e) {
-    if (!st || body.classList.contains('toc-open')) return;
-    var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy, dt = Date.now() - st; st = 0;
-    if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8 && dt < 700) {
-      if (dx < 0 && cur < N) show(cur + 1); else if (dx > 0 && cur > 0) show(cur - 1);
-    }
-  }, { passive: true });
+  // свайп влево/вправо — следующая/предыдущая глава; кнопка «наверх» — общий модуль rd-nav.js (04.11.2026)
+  function withNav(cb) {
+    if (window.rdNav && window.rdNav.swipe) return cb(window.rdNav);
+    var s = document.createElement('script'); s.src = '/books/reader/rd-nav.js?v=20261104';
+    s.onload = function () { if (window.rdNav) cb(window.rdNav); };
+    document.head.appendChild(s);
+  }
+  withNav(function (RD) {
+    RD.swipe({
+      left: function () { if (cur < N) show(cur + 1); },
+      right: function () { if (cur > 0) show(cur - 1); },
+      blocked: function () { return body.classList.contains('toc-open') || !!pop; }
+    });
+    RD.toTop();
+  });
 
   // прогресс чтения главы
   function progress() {

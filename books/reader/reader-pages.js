@@ -1,6 +1,6 @@
 /* RAGIMOFF · Элементы читалки для многостраничных книг (Klinik Psixiatriya: глава = страница, около 150 страниц на язык).
    Те же управления, что в читалке серии Фрейда: A−/A+, день/ночь, листание ←/→ и свайпом. Настройки общие с
-   читалкой (localStorage rd-fs, rd-theme), поэтому выбранный размер и тема переходят между книгами. Кенан 31.10.2026. */
+   читалкой (localStorage rd-fs, rd-theme), поэтому выбранный размер и тема переходят между книгами. Кенан 31.10.2026. 04.11.2026: свайп и кнопка «наверх» — общий rd-nav.js, A−/A+ растит и меню с титулом. */
 (function () {
   var root = document.documentElement, body = document.body;
   var store = {
@@ -22,6 +22,14 @@
   var css = '' +
     'body.bk .bk-read{--read-size:calc(18px * var(--rd-k,1))}' +
     '@media(max-width:720px){body.bk .bk-read{--read-size:calc(17.5px * var(--rd-k,1))}}' +
+    /* 04.11.2026 (Кенан): A−/A+ растит и заголовки текста, боковое оглавление, титульную страницу и «Mündəricat»;
+       при множителе 1 (по умолчанию) все кегли равны утверждённым в book.css */
+    'body.bk .bk-read h2{font-size:calc(30px * var(--rd-k,1))}body.bk .bk-read h3{font-size:calc(22px * var(--rd-k,1))}' +
+    'body.bk .bk-read h4{font-size:calc(19px * var(--rd-k,1))}body.bk .bk-note__t{font-size:calc(15px * var(--rd-k,1))}' +
+    'body.bk .bk-chead__h1{font-size:calc(34px * var(--rd-k,1))}@media(max-width:720px){body.bk .bk-chead__h1{font-size:calc(30px * var(--rd-k,1))}}' +
+    'body.bk .bk-sb{--sb-fs:calc(11px * var(--rd-k,1));--sb-num-fs:calc(10px * var(--rd-k,1))}' +
+    'body.bk .bk-toc__t{font-size:calc(clamp(1.15rem,1.5vw,1.4rem) * var(--rd-k,1))}@media(max-width:620px){body.bk .bk-toc__t{font-size:calc(1.1rem * var(--rd-k,1))}}' +
+    'body.bk .bk-toc__n{font-size:calc(.78rem * var(--rd-k,1))}body.bk .bk-toc__row--group .bk-toc__g{font-size:calc(.72rem * var(--rd-k,1))}' +
     '.rdp{display:inline-flex;gap:4px;align-items:center;margin-right:8px}' +
     '.rdp button{min-width:36px;height:36px;padding:0 8px;border:1px solid var(--line-2);border-radius:8px;background:transparent;' +
     'color:var(--fg);font:600 13px/1 var(--f-ui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}' +
@@ -49,7 +57,8 @@
     box.querySelector('#rdp-theme').onclick = function () { theme = theme === 'paper' ? 'night' : 'paper'; applyTheme(); store.set('rd-theme', theme); };
   }
 
-  // листание: ←/→ и свайп → ссылки «предыдущая / следующая» внизу главы
+  // листание: ←/→ и свайп. Соседние страницы — ссылки «предыдущая / следующая» внизу главы, а где их нет
+  // (титул, «Mündəricat», обзоры глав — 56 страниц на язык) — по порядку бокового меню (rd-nav.js, 04.11.2026).
   var prev = null, next = null;
   [].forEach.call(document.querySelectorAll('.bk-pn__a'), function (a) {
     var d = (a.querySelector('.bk-pn__dir') || a).textContent;
@@ -60,14 +69,24 @@
     if (e.key === 'ArrowLeft' && prev) location.href = prev;
     if (e.key === 'ArrowRight' && next) location.href = next;
   });
-  var x0 = null, y0 = 0;
-  document.addEventListener('touchstart', function (e) { if (e.touches.length === 1) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; } }, { passive: true });
-  document.addEventListener('touchend', function (e) {
-    if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
-    if (Math.abs(dx) < 80 || Math.abs(dy) > Math.abs(dx) * .6) return;
-    if (e.target.closest && e.target.closest('table,.tbl-wrap,pre,.bk-sb')) return;  // таблицы прокручиваются вбок — не листать
-    if (dx < 0 && next) location.href = next;
-    if (dx > 0 && prev) location.href = prev;
-  }, { passive: true });
+  function withNav(cb) {
+    if (window.rdNav && window.rdNav.swipe) return cb(window.rdNav);
+    var s = document.createElement('script'); s.src = '/books/reader/rd-nav.js?v=20261104';
+    s.onload = function () { if (window.rdNav) cb(window.rdNav); };
+    document.head.appendChild(s);
+  }
+  withNav(function (RD) {
+    var nb = RD.neighbours('.bk-sb__nav a[href]');
+    if (!prev) prev = nb.prev;
+    if (!next) next = nb.next;
+    RD.swipe({
+      left: function () { if (next) location.href = next; },
+      right: function () { if (prev) location.href = prev; },
+      blocked: function () {
+        var sb = document.getElementById('bk-sb'), m = document.getElementById('kitab-modal');
+        return !!((sb && sb.classList.contains('is-open')) || root.classList.contains('bk-lock') || (m && getComputedStyle(m).display !== 'none'));
+      }
+    });
+    RD.toTop();
+  });
 })();
