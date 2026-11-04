@@ -191,6 +191,9 @@ def sentence_case(t, lang):
         pos += len(w) + 1
         k = w.find('(')
         is_keep = k >= 0 and (start + k + 1) in keep or bool(re.search(r'\d', w))
+        # 05.11: римские цифры («TİP I», «II», «X sindromu») не опускать: иначе «I» → «ı» в az/tr
+        if re.fullmatch(r'[(\[«„]?[IVX]{1,4}[)\]»“.,:;–-]*', w):
+            is_keep = True
         out.append(w if is_keep else lower_l(w, lang))
     s = ' '.join(out)
     # первая буква заглавная
