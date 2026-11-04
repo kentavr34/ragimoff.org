@@ -228,6 +228,9 @@
   var L = (document.documentElement.getAttribute('lang') || 'az').slice(0, 2).toLowerCase();
   if (!MAP || !Object.keys(MAP).length) return;
   if (L !== 'ru' && L !== 'en') L = 'az';
+  /* КЕНАН 04.11.2026: книги Фрейда продаются ТОЛЬКО на азербайджанском —
+     на русской и английской странице книги Фрейда кнопки покупки нет. */
+  if (L !== 'az' && /^freud-/.test((location.pathname.match(/^\/books\/([^\/]+)/) || [])[1] || '')) return;
 
   var TXT = {
     az: { add: 'Səbətə at', short: 'Səbət', added: 'Səbətə əlavə edildi',

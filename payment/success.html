@@ -40,7 +40,7 @@
   var oid = new URLSearchParams(location.search).get('order_id');
   var box = document.querySelector('.pay__m');
   if (!oid) return;
-  var training = oid.indexOf('TR-') === 0;
+  var training = /^TRI?-/.test(oid);   /* TR- сразу, TRI- рассрочка банка */
   if (training) {
     /* Оплата тренинга (не книги): свой текст и без заметки про доставку. */
     var note = document.querySelector('.pay__note'); if (note) note.style.display = 'none';

@@ -239,6 +239,8 @@
           noPrice: 'Qiyməti telefonla dəqiqləşdirəcəyik.', pay: 'Ödənişə keç', payErr: 'Ödənişə keçmək alınmadı. Yenidən cəhd edin.',
           payMethod: 'Ödəniş üsulu', payFull: 'Kartla tam ödəniş', payInst: 'Taksitlə ödəniş',
           payBtn: 'Ödə', instBank: 'bank rəsmiləşdirir', instPer: 'ay',
+          payNow: 'İndi ödə (kartla)', payInst: 'Hissə-hissə — bank taksiti',
+          payHow: 'Ödəniş üsulu',
           orderOnly: 'Sifariş ver — qiyməti telefonla dəqiqləşdirəcəyik',
           discount: 'Bütün Freyd kolleksiyasına endirim',
           payable: 'Ödəniləcək',
@@ -263,6 +265,8 @@
           noPrice: 'Цену уточним по телефону.', pay: 'Перейти к оплате', payErr: 'Не удалось перейти к оплате. Попробуйте снова.',
           payMethod: 'Способ оплаты', payFull: 'Полная оплата картой', payInst: 'Рассрочка',
           payBtn: 'Оплатить', instBank: 'оформляет банк', instPer: 'мес.',
+          payNow: 'Оплатить сейчас (картой)', payInst: 'В рассрочку — через банк',
+          payHow: 'Способ оплаты',
           orderOnly: 'Оформить заказ — цену уточним по телефону',
           discount: 'Скидка на всю коллекцию Фрейда',
           payable: 'К оплате',
@@ -287,6 +291,8 @@
           noPrice: 'We will confirm the price by phone.', pay: 'Proceed to payment', payErr: 'Could not proceed to payment. Please try again.',
           payMethod: 'Payment method', payFull: 'Full card payment', payInst: 'Instalments',
           payBtn: 'Pay', instBank: 'arranged by the bank', instPer: 'mo.',
+          payNow: 'Pay now (card)', payInst: 'Instalments — via bank',
+          payHow: 'Payment method',
           orderOnly: 'Place the order — we will confirm the price by phone',
           discount: 'Full Freud collection discount',
           payable: 'Payable',
@@ -651,7 +657,14 @@
        а вызываются теперь из renderStep2(). Браузер выдавал
        «ReferenceError: epointPay is not defined» — кнопка оплаты не работала.
        Теперь эти функции видны всем трём экранам: корзине, регистрации и заказу. */
-      function epointPay(months) {
+      /* КЕНАН 04.11.2026: способ оплаты выбирают на шаге оплаты двумя кнопками.
+         ПРОВЕРЕНО живыми запросами к ePoint 04.11: один запрос даёт ОДНУ страницу —
+         без is_installment ePoint ведёт прямо на карточную форму PashaBank
+         (рассрочки там нет), с is_installment=1 — на страницу рассрочки
+         (TamKart / BirKart / BolKart, выбор срока). Поэтому mode:
+           'card'        — сразу картой;
+           'installment' — страница рассрочки ePoint (оформляет банк). */
+      function epointPay(mode) {
         var body = document.getElementById('cart-body');
         var list = cartRead();
         if (!list.length) return;
@@ -661,7 +674,7 @@
         if (!nm || !ph || !ad) { alert(cstr('fill')); return; }
         /* Запоминаем профиль: следующий заказ с этого устройства заполнится сам. */
         profileSave({ name: nm, phone: ph, address: ad });
-        var pb = $('#c-pay', body);
+        var pb = $(mode === 'installment' ? '#c-pay-inst' : '#c-pay', body) || $('#c-pay', body);
         var btn = pb;
         var label = btn ? btn.textContent : '';
         if (btn) { btn.disabled = true; btn.textContent = cstr('send'); }
@@ -672,7 +685,8 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
-                                 lang: cartBuyLang(), months: months || 0 })
+                                 lang: cartBuyLang(), months: 0,
+                                 pay_mode: mode === 'installment' ? 'installment' : 'card' })
         }).then(function (r) { return r.json(); }).then(function (d) {
           if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
           if (d && d.ok && d.installment) {
@@ -872,10 +886,15 @@
           '<label class="field"><span>' + cstr('addrL') + '</span>' +
             '<textarea id="c-addr" rows="2" placeholder="' + cstr('addrPh') + '" autocomplete="street-address" required></textarea>' +
             '<button type="button" class="btn btn--ghost" id="c-geo">' + cstr('geoBtn') + '</button></label>' +
-          /* Кнопка с суммой: человек видит, сколько заплатит, ПЕРЕД нажатием. */
-          '<button class="btn btn--main" type="button" id="c-pay" style="width:100%;margin-top:16px;">' +
-            (askOnly ? cstr('orderOnly') : cstr('payBtn') + (sum ? ' <span id="c-pay-sum">' + sum + ' ₼</span>' : '')) +
-          '</button>' +
+          /* Кнопка с суммой: человек видит, сколько заплатит, ПЕРЕД нажатием.
+             Две кнопки (Кенан 04.11.2026): «сразу картой» и «рассрочка — банк». */
+          (askOnly
+            ? '<button class="btn btn--main" type="button" id="c-pay" style="width:100%;margin-top:16px;">' + cstr('orderOnly') + '</button>'
+            : '<p class="cart-step" style="margin-top:14px;">' + cstr('payHow') + '</p>' +
+              '<button class="btn btn--main" type="button" id="c-pay" style="width:100%;margin-top:6px;">' +
+                cstr('payNow') + (sum ? ' <span id="c-pay-sum">' + sum + ' ₼</span>' : '') + '</button>' +
+              '<button class="btn btn--main" type="button" id="c-pay-inst" style="width:100%;margin-top:8px;">' +
+                cstr('payInst') + (sum ? ' <span>' + sum + ' ₼</span>' : '') + '</button>') +
         '</form>' +
         '<button type="button" class="btn btn--ghost" id="c-back" style="width:100%;margin-top:8px;">' +
           cstr('back') + '</button>' +
@@ -887,7 +906,11 @@
       var payB = $('#c-pay', body);
       if (payB) payB.addEventListener('click', function () {
         if (askOnly) { sendOrderOnly(); return; }
-        epointPay(0);   /* 0 = способ оплаты выбирает БАНК на своей странице */
+        epointPay('card');          /* сразу картой — форма банка */
+      });
+      var instB = $('#c-pay-inst', body);
+      if (instB) instB.addEventListener('click', function () {
+        epointPay('installment');   /* страница рассрочки ePoint — оформляет банк */
       });
 
       (function () {
