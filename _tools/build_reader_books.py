@@ -229,6 +229,15 @@ def stub(path, k, title):
 
 
 if __name__ == '__main__':
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    argv = sys.argv[1:]
+    if '--root' in argv:           # корень сайта (rebuild_reader.py собирает книгу во временном корне)
+        i = argv.index('--root')
+        SITE = os.path.abspath(argv[i + 1])
+        del argv[i:i + 2]
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
+    args = [a for a in argv if not a.startswith('--')]
     for lang in (args[1:] or ['az']):
-        build(args[0], lang, stubs='--stubs' in sys.argv)
+        build(args[0], lang, stubs='--stubs' in argv)

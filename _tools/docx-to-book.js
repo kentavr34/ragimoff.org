@@ -26,7 +26,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
+/* child_process больше не нужен: архив DOCX читаем через zlib (см. zipEntry) */
 
 /* ─────────── извлечение параграфов ─────────── */
 function decode(s) {
@@ -86,16 +86,44 @@ function parseTableXml(xml) {
   return { type: 'table', text: '', tbl: true, head: hasHead, rows };
 }
 
-function paragraphs(file) {
-  const os = require('os');
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'docx-'));
-  let xml;
-  try {
-    execFileSync('tar', ['-xf', file, '-C', tmp, 'word/document.xml'], { maxBuffer: 300 * 1024 * 1024 });
-    xml = fs.readFileSync(path.join(tmp, 'word', 'document.xml'), 'utf8');
-  } finally {
-    try { fs.rmSync(tmp, { recursive: true, force: true }); } catch (e) {}
+/* DOCX = zip. Читаем word/document.xml встроенными средствами Node (zlib), без внешнего tar:
+   GNU tar из Git Bash принимает «D:/…» за адрес удалённой машины («Cannot connect to D: resolve failed»),
+   а bsdtar из PowerShell — нет; из-за этого цепочка вела себя по-разному в разных оболочках (04.11.2026). */
+function zipEntry(file, wanted) {
+  const zlib = require('zlib');
+  const buf = fs.readFileSync(file);
+  /* конец центрального каталога (EOCD, сигнатура 0x06054b50) — ищем с хвоста */
+  let eocd = -1;
+  for (let i = buf.length - 22; i >= Math.max(0, buf.length - 70000); i--) {
+    if (buf.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
   }
+  if (eocd < 0) throw new Error('не zip-архив: ' + file);
+  const count = buf.readUInt16LE(eocd + 10);
+  let p = buf.readUInt32LE(eocd + 16);
+  for (let k = 0; k < count; k++) {
+    if (buf.readUInt32LE(p) !== 0x02014b50) throw new Error('повреждён центральный каталог: ' + file);
+    const method = buf.readUInt16LE(p + 10);
+    const csize = buf.readUInt32LE(p + 20);
+    const nlen = buf.readUInt16LE(p + 28);
+    const xlen = buf.readUInt16LE(p + 30);
+    const clen = buf.readUInt16LE(p + 32);
+    const lho = buf.readUInt32LE(p + 42);
+    const name = buf.toString('utf8', p + 46, p + 46 + nlen);
+    if (name === wanted) {
+      if (buf.readUInt32LE(lho) !== 0x04034b50) throw new Error('повреждён локальный заголовок: ' + file);
+      const start = lho + 30 + buf.readUInt16LE(lho + 26) + buf.readUInt16LE(lho + 28);
+      const raw = buf.subarray(start, start + csize);
+      if (method === 0) return Buffer.from(raw);
+      if (method === 8) return zlib.inflateRawSync(raw);
+      throw new Error('неизвестный метод сжатия ' + method + ': ' + file);
+    }
+    p += 46 + nlen + xlen + clen;
+  }
+  throw new Error('в архиве нет ' + wanted + ': ' + file);
+}
+
+function paragraphs(file) {
+  const xml = zipEntry(file, 'word/document.xml').toString('utf8');
   const out = [];
   /* диапазоны таблиц: абзацы внутри <w:tbl> — ячейки, а не заголовки
      (в «Вирусе Вины» в таблицах встречаются «ВВЕДЕНИЕ», «РАЗДЕЛ 2» и подобное) */
@@ -645,7 +673,10 @@ function tocStructure(paras, all) {
     const k2 = w.slice(0, 2).join(' ');
     const k1 = w[0];
     const my = mn(t);
-    const compat = (p) => !my || p.mn === my || (!p.mn && famPresent(my[0]));
+    /* запись без маркера («Приложение. Материалы…», «Введение…») берёт только страницу без маркера:
+       раньше по последнему слову «…поддержка» она забирала «РАЗДЕЛ 4. КОНТАКТЫ И ПОДДЕРЖКА», и в RU/EN
+       «Вирусе вины» приложение открывало раздел 4, а сам раздел 4 оставался без ссылки (04.11.2026) */
+    const compat = (p) => my ? (p.mn === my || (!p.mn && famPresent(my[0]))) : !p.mn;
     const hit = CHAP.test(t)
       ? (pages.find((p) => !used[p.c.file] && compat(p) && p.k2 === k2) ||
          pages.find((p) => !used[p.c.file] && compat(p) && p.k1 === k1) ||
@@ -694,21 +725,37 @@ function indexPage(cfg, lang, all, rel, paras) {
 }
 
 /* ─────────── main ─────────── */
-const cfgPath = process.argv[2];
+/* Запуск: node _tools/docx-to-book.js <config.json> [--root <каталог сайта>] [--langs az,ru]
+   --root  — куда писать books/<slug> (по умолчанию корень сайта = родитель _tools, а НЕ текущий каталог:
+             из-за зависимости от cwd страницы уезжали мимо сайта, а rebuild-concept.py затем «пересобирал»
+             готовую читалку index.html в пустую страницу без .bk-read — симптом 04.11.2026);
+   --langs — собрать только эти языки (атрибуты data-langs/data-lang-url-* по-прежнему из всего cfg.langs). */
+const ARGV = process.argv.slice(2);
+const argOf = (k) => { const i = ARGV.indexOf(k); return i >= 0 ? ARGV[i + 1] : null; };
+let cfgPath = null;
+for (let i = 0; i < ARGV.length; i++) {
+  if (ARGV[i].startsWith('--')) { i++; continue; }      /* флаг и его значение */
+  cfgPath = ARGV[i]; break;
+}
+if (!cfgPath) { console.error('usage: node _tools/docx-to-book.js <config.json> [--root <dir>] [--langs az,ru]'); process.exit(2); }
 const cfg = JSON.parse(fs.readFileSync(cfgPath, 'utf8'));
-const outRoot = path.resolve(cfg.out);
+const SITE = path.resolve(argOf('--root') || path.join(__dirname, '..'));
+const ONLY = argOf('--langs') ? argOf('--langs').split(',').map((s) => s.trim()).filter(Boolean) : null;
+const outRoot = path.isAbsolute(cfg.out) ? cfg.out : path.join(SITE, cfg.out);
 fs.mkdirSync(outRoot, { recursive: true });
 
-/* style.css — копия из эталонной книги */
-if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) {
-  fs.copyFileSync(cfg.styleFrom, path.join(outRoot, 'style.css'));
+/* style.css — копия из эталонной книги (путь styleFrom — от корня сайта) */
+const styleFrom = cfg.styleFrom && (path.isAbsolute(cfg.styleFrom) ? cfg.styleFrom : path.join(SITE, cfg.styleFrom));
+if (styleFrom && fs.existsSync(styleFrom)) {
+  fs.copyFileSync(styleFrom, path.join(outRoot, 'style.css'));
 }
 
 let totalPages = 0;
 cfg.langs.forEach((lang) => {
+  if (ONLY && ONLY.indexOf(lang.code) < 0) return;
   const dir = path.join(outRoot, lang.dir || '');
   fs.mkdirSync(dir, { recursive: true });
-  if (cfg.styleFrom && fs.existsSync(cfg.styleFrom)) fs.copyFileSync(cfg.styleFrom, path.join(dir, 'style.css'));
+  if (styleFrom && fs.existsSync(styleFrom)) fs.copyFileSync(styleFrom, path.join(dir, 'style.css'));
   global.__USE_TOC = !!cfg.useToc;
   global.__LANG = lang.code;
   global.__EXTRA = (cfg.extraChapters && cfg.extraChapters[lang.code]) || [];
@@ -729,7 +776,7 @@ cfg.langs.forEach((lang) => {
   });
   fs.writeFileSync(path.join(dir, 'index.html'), indexPage(cfg, lang, all, rel, paras), 'utf8');
   totalPages++;
-  console.log(`${lang.code}: глав ${all.length} → ${path.relative(process.cwd(), dir) || '.'}`);
+  console.log(`${lang.code}: глав ${all.length} → ${path.relative(SITE, dir) || '.'}`);
   all.slice(0, 6).forEach((c) => console.log('   · ' + c.file + '  ' + c.short.slice(0, 60)));
 });
 

@@ -1382,7 +1382,16 @@ def main():
     ap.add_argument("--sync-covers", action="store_true",
                     help="только титулы: дописать рейку .bk-sb (главы не трогать)")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--root", help="корень сайта (по умолчанию — родитель _tools); "
+                                   "rebuild_reader.py собирает книгу во временном корне")
     a = ap.parse_args()
+    if a.root:
+        global ROOT
+        ROOT = os.path.abspath(a.root)
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")   # консоль cp866/cp1251 не роняет отчёт
+    except Exception:
+        pass
 
     books = a.book or BOOKS
     if a.sync_covers:
