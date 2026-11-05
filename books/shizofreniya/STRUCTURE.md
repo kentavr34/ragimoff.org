@@ -42,7 +42,7 @@
 | 13 | Birinci ara səhnə. Palatadan gələn səs | 12-birinci-ara-sehne-palatadan-gelen-ses.html | да |
 | 14 | Fəsil 10. Freyd və psixikanın qüvvələri: psixoanaliz psixozla qarşılaşır | 13-fesil-10-freyd-ve-psixikanin-quvveleri-psi.html | да |
 | 15 | Fəsil 11. Yunq və kollektiv şüursuzluq: psixiatriya miflə qarşılaşdıqda | 14-fesil-11-yunq-ve-kollektiv-suursuzluq-psix.html | да |
-| 16 | Fəsil 12. Fenomenoloji məktəb: pasiyent olmağı necə öyrənmək olar | 15-fesil-12-fenomenoloji-mekteb-pasiyent-olma.html | да |
+| 16 | Fəsil 12. Fenomenoloji məktəb: xəstə olmağı necə öyrənmək olar | 15-fesil-12-fenomenoloji-mekteb-pasiyent-olma.html | да |
 | 17 | Fəsil 13. Bioloji nəzəriyyələr: beyinə açar axtarışı | 16-fesil-13-bioloji-nezeriyyeler-beyine-acar-.html | да |
 | 18 | Fəsil 14. Beytson və ikiqat bağ: ailə döyüş meydanına çevriləndə | 17-fesil-14-beytson-ve-ikiqat-bag-aile-doyus-.html | да |
 | 19 | Fəsil 15. Antipsixiatriya: Lainq, Bazalya və hərəkatın sərhədləri | 18-fesil-15-antipsixiatriya-lainq-bazalya-ve-.html | да |
