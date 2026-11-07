@@ -117,9 +117,12 @@
     setTimeout(function () { location.href = '/books/#sebet'; }, 350);
   });
 
-  // старт: из адреса (#chN) или с последнего места чтения
+  // старт: только из адреса (#chN). Без хэша (кнопка «Oxu / Читать / Read» и обложка в каталоге) всегда открывается
+  // титульная страница с оглавлением. Раньше без хэша читалка возвращала на последнюю открытую главу (rd-pos-*),
+  // из-за чего у уже открывавшихся книг титул пропускался (07.11.2026, Кенан). Место чтения по-прежнему пишется
+  // в rd-pos-<книга>, но на старт не влияет.
   var m = /^#ch(\d+)$/.exec(location.hash);
-  var start = m ? +m[1] : +(store.get('rd-pos-' + book) || 0);
+  var start = m ? +m[1] : 0;
   if (!(start >= 0 && start <= N)) start = 0;
   show(start, !!m);
   addEventListener('hashchange', function () { var mm = /^#ch(\d+)$/.exec(location.hash); if (mm) show(+mm[1]); });

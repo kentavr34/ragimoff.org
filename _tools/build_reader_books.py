@@ -13,7 +13,7 @@ import sys
 from bs4 import BeautifulSoup
 
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-READER_V = '20261031b'
+READER_V = '20261107a'
 esc = html.escape
 
 BOOKS = {
