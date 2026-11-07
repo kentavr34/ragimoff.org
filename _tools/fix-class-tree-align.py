@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
-"""_tools/fix-class-tree-align.py — «Клиническая психиатрия»: деревья классификаций.
+"""_tools/fix-class-tree-align.py — «Клиническая психиатрия»: деревья классификаций (рейка + оглавление).
 
-Жалоба владельца (2026-10-03): «ссылки глав ведут в неправильные адреса и
-страницы»; заголовок группы в DSM-5-TR и МКБ-10 (28 496 ссылок, добавлены
-2026-10-01) вёл на mundericat.html («Содержание») либо не совпадал с главой:
-группы классификаций (F40–F48 и т.п.) шире одной главы книги, поэтому
-«страница главы со списком её подглав» для них не находилась.
+ВЕРСИЯ 2026-11-07 (замена версии от 2026-10-03). Что изменилось и почему.
+Старая версия копировала дерево XBT-11 (23 главы МКБ-11) в DSM-5-TR и XBT-10, меняя только коды;
+заголовок группы = размах min–max кодов подпунктов («F40–F94», «F42–F63», «F52–F63»), названия
+глав — МКБ-11. Такие блоки не существуют ни в МКБ-10, ни в DSM-5-TR (проверка CODES_CHECK_AZ_20261107).
 
-Что делает скрипт (идемпотентно, все языки AZ/RU/EN/TR, все страницы книги):
- 1. Берёт за образец дерево XBT-11 — оно уже выровнено по главам книги
-    (24 группы = 23 главы + строка «Məlumat bölməsi»).
- 2. Пересобирает по этому образцу деревья DSM-5-TR и XBT-10: те же главы,
-    те же названия (язык страницы), те же ссылки, порядок и раскрытие
-    (data-here/is-on наследуются от XBT-11) — меняются только коды:
-      * заголовок группы — код-диапазон главы в этой классификации
-        (например «F40–F94», «F01–F05 · G30–G31»);
-      * строка расстройства — код страницы в этой классификации.
- 3. Источник кодов — таблица соответствий на самой странице расстройства
-    (XBT-10/МКБ-10/ICD-10 и DSM-5-TR), пустой код — «—».
- 4. Заголовок каждой группы ведёт на страницу главы со списком подглав —
-    проверяется `_tools/check-klinik-links.py` (вердикт WRONG_SEC).
+Теперь:
+  * XBT-11  — как раньше: 23 главы МКБ-11 (в оригинале дерево строится в другом месте, здесь
+              правятся только подписи диапазонов глав по МКБ-11 ВОЗ);
+  * XBT-10  — настоящие блоки МКБ-10 ВОЗ: F00–F09, F10–F19, … F90–F98, F99 + группы «G47 · N94»
+              (коды вне главы V) и «—» (нет соответствия). Блок страницы определяется по коду XBT-10
+              из таблицы соответствий страницы;
+  * DSM-5-TR — главы DSM-5-TR (состав задан явно в _tools/klinik_class_groups.json), подпись
+              группы — перечень кодов её подпунктов («F40–F41 · F93–F94»), не размах;
+  * заголовок группы XBT-10/DSM-5-TR ведёт на mundericat.html (оглавление с теми же группами);
+  * подпункты — коды из таблиц соответствий страниц (XBT-10 / DSM-5-TR), «—» если кода нет;
+  * то же дерево на всех страницах книги (меняется только раскрытая группа и подсветка);
+  * оглавление mundericat.html: панели XBT-10 и DSM-5-TR пересобираются из тех же групп.
+Названия блоков/глав на языках AZ/RU/EN/TR — в _tools/klinik_class_groups.json.
 
-Запуск:
+Запуск (идемпотентно, все языки):
     python _tools/fix-class-tree-align.py --dry
     python _tools/fix-class-tree-align.py
 """
 from __future__ import annotations
 
 import argparse
+import html as htmllib
+import json
 import os
 import re
 import sys
@@ -35,19 +36,33 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOOK = os.path.join(ROOT, "klinik-psixiatriya")
 LANGS = ("", "ru", "en", "tr")
+LKEY = {"": "az", "ru": "ru", "en": "en", "tr": "tr"}
+GROUPS = json.load(open(os.path.join(ROOT, "_tools", "klinik_class_groups.json"), encoding="utf-8"))
 
-TREE_OPEN = '<div class="cls-tree" data-cls="%s"%s>'
 CODE_LBL = ("XBT-10", "МКБ-10", "ICD-10")
-SUB_RE = re.compile(
-    r'(<a class="bk-row bk-row--sub[^"]*" href="(?P<href>[^"]+)">\s*'
-    r'<span class="bk-row__n">)(?P<num>.*?)(</span>)')
-SEC_RE = re.compile(
-    r'(<a class="bk-row bk-row--sec[^"]*" href="(?P<href>[^"]+)">\s*'
-    r'<span class="bk-row__n">)(?P<num>.*?)(</span>)')
-LABEL_ROW_RE = re.compile(
-    r'(?P<pre><a class="bk-row bk-row--(?P<kind>sub|sec|front)" href="(?P<href>[^"]+)"[^>]*>\s*'
-    r'<span class="bk-row__n">)(?P<num>.*?)(?P<mid></span>\s*<span class="bk-row__t">)'
-    r'(?P<name>.*?)(?P<post></span>)', re.S)
+# подписи диапазонов глав МКБ-11 (дерево XBT-11), уточнены по ВОЗ (ICD API 2024-01)
+SEC11_FIX = {
+    "03-6A4-katatoniya.html": "6A40–6A4Z",
+    "04-6A6-ehval-pozuntulari.html": "6A60–6A8Z",
+    "11-6C2-bedensel-disstres.html": "6C20–6C2Z",
+    "22-7AB-yuxu.html": "7A00–7B2Z",
+    "23-HA-cinsi-saglamliq.html": "HA00–HA2Z · HA40",
+}
+SEC11_FIX_TOC = {  # то же, как подписано в оглавлении (tc-range)
+    "03-6A4-katatoniya.html": "6A40–6A4Z",
+    "04-6A6-ehval-pozuntulari.html": "6A60–6A8Z",
+    "11-6C2-bedensel-disstres.html": "6C20–6C2Z",
+    "22-7AB-yuxu.html": "7A00–7B2Z",
+    "23-HA-cinsi-saglamliq.html": "HA00–HA2Z · HA40",
+}
+TOC_TARGET = "mundericat.html"
+
+TREE_RE = re.compile(r'<div class="cls-tree" data-cls="([a-z0-9]+)"([^>]*)>')
+SUBROW_RE = re.compile(r'<a class="bk-row bk-row--sub[^"]*" href="(?P<href>[^"]+)">.*?</a>', re.S)
+SECROW_RE = re.compile(r'<a class="bk-row bk-row--sec[^"]*" href="(?P<href>[^"]+)"><span class="bk-row__n">(?P<num>.*?)</span>'
+                       r'(?P<mid><span class="bk-row__t">)(?P<name>.*?)(?P<post></span>\s*</a>)', re.S)
+NUM_RE = re.compile(r'(<span class="bk-row__n">)(.*?)(</span>)', re.S)
+TOGGLE_RE = re.compile(r'<button class="bk-tgl"[^>]*>.*?</button>', re.S)
 
 
 def clean(s):
@@ -86,47 +101,121 @@ def tokens(code):
     for tok in re.split(r"[/+·,]", code or ""):
         m = re.match(r"^\s*([A-Za-z]+)(\d+)(?:\.(\d+))?", tok)
         if m:
-            out.append((m.group(1).upper(), int(m.group(2)), int(m.group(3) or 0),
-                        len(m.group(2))))
+            out.append((m.group(1).upper(), int(m.group(2)), int(m.group(3) or 0), len(m.group(2))))
     return out
 
 
-def range_label(codes, empty="—"):
-    """Из кодов главы — подпись диапазона: «F40–F94», «F01–F05 · G30–G31»."""
+def sort_key(code, order):
+    t = tokens(code)
+    if not t:
+        return (1, "", 0, 0, order)
+    return (0, t[0][0], t[0][1], t[0][2], order)
+
+
+def icd10_block(code):
+    """Индекс блока МКБ-10 ВОЗ по коду страницы или None (группа вне главы V / нет кода)."""
+    t = tokens(code)
+    if not t:
+        return "none"
+    letter, major = t[0][0], t[0][1]
+    if letter == "F":
+        if major == 99:
+            return 10
+        return min(major // 10, 9)  # F00–F09 → 0 … F90–F98 → 9
+    return "g47n94"
+
+
+def dsm_label(codes):
+    """Подпись главы DSM: перечень диапазонов кодов подпунктов; при >4 фрагментов — общий размах."""
     by = {}
     for c in codes:
         for letter, major, minor, width in tokens(c):
-            by.setdefault(letter, []).append((major, minor, width))
+            if letter not in ("F", "G"):
+                continue   # L98.1 (кожа) и т.п. — не коды психических глав
+            by.setdefault(letter, set()).add((major, width))
     if not by:
-        return empty
-    parts = []
+        return "—"
+    segs, spans = [], []
     for letter in sorted(by):
         vals = sorted(by[letter])
-        lo, hi = vals[0], vals[-1]
-        width = max(v[2] for v in vals)
-        a = f"{letter}{lo[0]:0{width}d}"
-        if lo[0] == hi[0]:
-            parts.append(a)
-        else:
-            parts.append(f"{a}–{letter}{hi[0]:0{width}d}")
-    return " · ".join(parts)
+        width = max(v[1] for v in vals)
+        lo = prev = vals[0][0]
+        run = []
+        for major, _ in vals[1:]:
+            if major - prev <= 2:
+                prev = major
+                continue
+            run.append((lo, prev))
+            lo = prev = major
+        run.append((lo, prev))
+        for a, b in run:
+            segs.append(f"{letter}{a:0{width}d}" + (f"–{letter}{b:0{width}d}" if b != a else ""))
+        spans.append(f"{letter}{vals[0][0]:0{width}d}" + (f"–{letter}{vals[-1][0]:0{width}d}" if vals[-1][0] != vals[0][0] else ""))
+    return " · ".join(segs if len(segs) <= 4 else spans)
 
 
-def build_tree(icd_inner, codes_of, chapter_range):
-    """Копия дерева XBT-11 с кодами другой классификации."""
-    def sub(m):
-        href, num = m.group("href"), m.group("num")
-        new = codes_of.get(href, None)
-        if new is None:
-            return m.group(1) + num + m.group(4)
-        return m.group(1) + (new or "—") + m.group(4)
+def build_groups(lang, subs_order, codes, titles=None):
+    """→ {'icd10': [(range, name, [hrefs])...], 'dsm': [...]}; subs_order — порядок страниц в дереве XBT-11."""
+    key = LKEY[lang]
+    order = {h: i for i, h in enumerate(subs_order)}
+    g10 = GROUPS["icd10"][key]
+    icd10 = []
+    blocks = [[r, n, []] for r, n in g10["blocks"]]
+    extra = {"g47n94": [g10["g47n94"][0], g10["g47n94"][1], []], "none": [g10["none"][0], g10["none"][1], []]}
+    for h in subs_order:
+        b = icd10_block(codes[h][0])
+        (extra[b][2] if isinstance(b, str) else blocks[b][2]).append(h)
+    for grp in blocks + [extra["g47n94"], extra["none"]]:
+        grp[2].sort(key=lambda h: sort_key(codes[h][0], order[h]))
+        if grp[2] or grp[0] == "F99":
+            icd10.append(tuple(grp))
+    dsm = []
+    for i, members in enumerate(GROUPS["dsm"]["members"]):
+        hs = [m + ".html" for m in members if m + ".html" in codes]
+        hs.sort(key=lambda h: sort_key(codes[h][1], order.get(h, 0)))
+        dsm.append((dsm_label([codes[h][1] for h in hs]), GROUPS["dsm"][key]["names"][i], hs))
+    return {"icd10": icd10, "dsm": dsm}
 
-    def sec(m):
-        href = m.group("href")
-        new = chapter_range.get(href)
-        return m.group(1) + (new if new else m.group("num")) + m.group(4)
 
-    return SUB_RE.sub(sub, SEC_RE.sub(sec, icd_inner))
+def esc(s):
+    return s  # названия уже в виде HTML-текста
+
+
+def render_tree(cls, groups, subrow, sectpl, toggle, here, nl):
+    """Разметка содержимого cls-tree."""
+    out = []
+    for i, (rng, name, hs) in enumerate(groups):
+        is_here = "1" if any(h in here for h in hs) else "0"
+        parts = [f'<div class="bk-grp" data-slug="{cls}-{i + 1:02d}" data-here="{is_here}">',
+                 f'<a class="bk-row bk-row--sec" href="{TOC_TARGET}"><span class="bk-row__n">{rng}</span>'
+                 f'<span class="bk-row__t">{name}</span>', "</a>"]
+        if hs:
+            parts.append(toggle)
+            parts.append('<div class="bk-grp__sub">')
+            for h in hs:
+                parts.append(subrow(h, cls))
+            parts.append("</div>")
+        parts.append("</div>")
+        out.append(nl.join(parts))
+    return nl.join(out)
+
+
+def collect_titles(panels_html):
+    t = {}
+    for h, n in re.findall(r'<a href="([^"]+\.html)"><span class="sc">[^<]*</span><span>([^<]*)</span>', panels_html):
+        t.setdefault(h, n)
+    return t
+
+
+def render_panel(cls, groups, codes_idx, titles, empty_txt, nl=""):
+    parts = []
+    for rng, name, hs in groups:
+        items = "".join(f'<a href="{h}"><span class="sc">{codes_idx(h) or "—"}</span><span>{titles[h]}</span></a>' for h in hs)
+        if not items:
+            items = f'<div class="tc-empty">{empty_txt}</div>'
+        parts.append(f'<div class="toc-ch"><div class="tc-head"><span class="tc-range">{rng}</span><span>{name}</span></div>'
+                     f'<div class="tc-list">{items}</div></div>')
+    return "".join(parts)
 
 
 def main():
@@ -138,77 +227,98 @@ def main():
     except Exception:
         pass
 
-    n_files = n_sub = n_sec = n_fix = 0
+    n_files = 0
     for lang in LANGS:
         d = os.path.join(BOOK, lang) if lang else BOOK
         pages = sorted(n for n in os.listdir(d) if n.endswith(".html"))
-        codes = {}
-        for n in pages:
-            codes[n] = page_codes(os.path.join(d, n))
-        # канонические подписи меню — с index.html той же версии
-        canon = {}
-        idx_html = open(os.path.join(d, "index.html"), encoding="utf-8", errors="replace").read()
-        for m in re.finditer(r'<div class="cls-tree" data-cls="([a-z0-9]+)"([^>]*)>', idx_html):
-            a, b = tree_bounds(idx_html, m.end())
-            for r in LABEL_ROW_RE.finditer(idx_html[a:b]):
-                canon[(m.group(1), r.group("kind"), r.group("href"))] = \
-                    (r.group("num"), r.group("name"))
+        codes = {n: page_codes(os.path.join(d, n)) for n in pages}
+        codes = {n: c for n, c in codes.items() if c != ("", "")}
+        # --- эталонный порядок и список страниц расстройств: дерево XBT-11 индекса ---
+        idx = open(os.path.join(d, "index.html"), encoding="utf-8", errors="replace").read()
+        m = TREE_RE.search(idx)
+        a, b = tree_bounds(idx, m.end())
+        subs_order = [h for h in dict.fromkeys(x.group("href") for x in SUBROW_RE.finditer(idx[a:b])) if h in codes]
+        groups = build_groups(lang, subs_order, codes)
+        # --- оглавление: пересобрать панели ---
+        toc_path = os.path.join(d, "mundericat.html")
+        toc = open(toc_path, encoding="utf-8", newline="").read()
+        titles = collect_titles(toc)
+        empty_txt = (re.search(r'<div class="tc-empty">([^<]*)</div>', toc) or [0, "—"])[1]
+        new_toc = toc
+        for cls, idxc in (("dsm", 1), ("icd10", 0)):
+            pm = re.search(r'(<div class="cls-panel" data-cls="%s"[^>]*><p class="toc-meta">)([^<]*)(</p><div class="toc-preview">)' % cls, new_toc)
+            if not pm:
+                print("!! нет панели", cls, lang)
+                continue
+            s0 = pm.end()
+            # конец toc-preview: баланс div, начиная сразу после открывающего <div class="toc-preview">
+            e0, e1 = tree_bounds(new_toc, s0)
+            body = render_panel(cls, groups[cls], lambda h: codes[h][idxc], titles, empty_txt)
+            meta = re.sub(r"\d+(\s*\S+\s*)$", lambda mm: "%d%s" % (len(groups[cls]), mm.group(1)), pm.group(2)) if re.search(r"\d+\s*\S+\s*$", pm.group(2)) else pm.group(2)
+            new_toc = new_toc[:pm.start(2)] + meta + new_toc[pm.end(2):s0] + body + new_toc[e1:]
+        # диапазоны глав XBT-11 в панели icd
+        for href, rng in SEC11_FIX_TOC.items():
+            new_toc = re.sub(r'(<a href="%s"><span class="tc-range">)[^<]*(</span>)' % re.escape(href), lambda mm: mm.group(1) + rng + mm.group(2), new_toc)
+        if new_toc != toc:
+            n_files += 1
+            if not args.dry:
+                with open(toc_path, "w", encoding="utf-8", newline="") as f:
+                    f.write(new_toc)
+        # --- деревья рейки на каждой странице ---
         for name in pages:
             path = os.path.join(d, name)
             html = open(path, encoding="utf-8", newline="").read()
             m = re.search(r'<div class="cls-tree" data-cls="icd"([^>]*)>', html)
             if not m:
                 continue
+            nl = "\r\n" if "\r\n" in html else "\n"
             a, b = tree_bounds(html, m.end())
             icd_inner = html[a:b]
-            chapters = {}
+            # образцы разметки из дерева XBT-11 этой страницы
+            rows = {x.group("href"): x.group(0) for x in SUBROW_RE.finditer(icd_inner)}
+            tgl = TOGGLE_RE.search(icd_inner)
+            toggle = tgl.group(0) if tgl else ""
+            here = set()
             for g in re.split(r'(?=<div class="bk-grp")', icd_inner)[1:]:
-                h = re.search(r'bk-row--sec[^"]*" href="([^"]+)"', g)
-                subs = re.findall(r'<a class="bk-row bk-row--sub"[^>]*href="([^"]+)"', g)
-                if h:
-                    chapters[h.group(1)] = subs
-            new_blocks = {}
-            for cls, idx in (("dsm", 1), ("icd10", 0)):
-                codes_of = {n: codes[n][idx] for n in codes}
-                chapter_range = {ch: range_label([codes[s][idx] for s in subs if s in codes])
-                                 for ch, subs in chapters.items()}
-                new_blocks[cls] = build_tree(icd_inner, codes_of, chapter_range)
+                if re.search(r'data-here="1"', g[:120]):
+                    here |= set(x.group("href") for x in SUBROW_RE.finditer(g))
+            if name in codes:
+                here.add(name)
+
+            def subrow(h, cls, _rows=rows):
+                row = _rows.get(h)
+                if row is None:
+                    return ""
+                idxc = 1 if cls == "dsm" else 0
+                code = codes[h][idxc] or "—"
+                return NUM_RE.sub(lambda mm: mm.group(1) + code + mm.group(3), row, count=1)
+
             out = html
+            # ICD-11: подписи диапазонов глав
+            def fix_sec(mm):
+                new = SEC11_FIX.get(mm.group("href"))
+                if not new:
+                    return mm.group(0)
+                return mm.group(0).replace('<span class="bk-row__n">' + mm.group("num") + "</span>", '<span class="bk-row__n">' + new + "</span>", 1)
+            new_icd = SECROW_RE.sub(fix_sec, icd_inner)
+            if new_icd != icd_inner:
+                out = out[:a] + new_icd + out[b:]
             for cls in ("dsm", "icd10"):
                 mm = re.search(r'<div class="cls-tree" data-cls="%s"(\s+hidden)?>' % cls, out)
                 if not mm:
                     continue
                 x, y = tree_bounds(out, mm.end())
-                if out[x:y] != new_blocks[cls]:
-                    out = out[:x] + new_blocks[cls] + out[y:]
-            # подписи меню → канонические (страницы словаря несли старую версию)
-            def repl(r, cls):
-                key = (cls, r.group("kind"), r.group("href"))
-                ln, lname = canon.get(key, (r.group("num"), r.group("name")))
-                return r.group("pre") + ln + r.group("mid") + lname + r.group("post")
-
-            bounds = []
-            for m2 in re.finditer(r'<div class="cls-tree" data-cls="([a-z0-9]+)"([^>]*)>', out):
-                x, y = tree_bounds(out, m2.end())
-                bounds.append((m2.group(1), x, y))
-            for cls, x, y in sorted(bounds, key=lambda t: -t[1]):   # с конца, чтобы не сдвигать
-                seg = out[x:y]
-                before = [(r.group("num"), r.group("name")) for r in LABEL_ROW_RE.finditer(seg)]
-                seg = LABEL_ROW_RE.sub(lambda r: repl(r, cls), seg)
-                after = [(r.group("num"), r.group("name")) for r in LABEL_ROW_RE.finditer(seg)]
-                n_fix += sum(1 for p, q in zip(before, after) if p != q)
-                out = out[:x] + seg + out[y:]
+                new_inner = render_tree(cls, groups[cls], subrow, None, toggle, here, nl)
+                if out[x:y] != new_inner:
+                    out = out[:x] + new_inner + out[y:]
             if out != html:
                 n_files += 1
-                n_sub += len(re.findall(r'<a class="bk-row bk-row--sub', new_blocks["dsm"]))
-                n_sec += len(re.findall(r'<a class="bk-row bk-row--sec', new_blocks["dsm"]))
                 if not args.dry:
                     with open(path, "w", encoding="utf-8", newline="") as f:
                         f.write(out)
     mode = "DRY" if args.dry else "OK"
-    print(f"[{mode}] языков: {len(LANGS)}; страниц изменено: {n_files}; "
-          f"строк подглав переписано (DSM): {n_sub}; заголовков групп: {n_sec}; "
-          f"подписей меню выровнено: {n_fix}")
+    print(f"[{mode}] языков: {len(LANGS)}; файлов изменено: {n_files}; "
+          f"групп XBT-10: {len(groups['icd10'])}; глав DSM-5-TR: {len(groups['dsm'])}")
 
 
 if __name__ == "__main__":

@@ -217,6 +217,15 @@ def main():
                         add(f"{lc}:{name}:{cls}:{label[:40]}", lc, href, href,
                             "существующий файл", "MISSING")
                         continue
+                    if cls != "icd" and href == "mundericat.html":
+                        # 2026-11-07: группы XBT-10 (блоки ВОЗ) и DSM-5-TR (главы DSM) шире главы книги —
+                        # заголовок ведёт на оглавление с теми же группами
+                        add(f"{lc}:{name}:{cls}:{label[:40]}", lc, href, href,
+                            "оглавление книги (группы XBT-10/DSM-5-TR)", "OK")
+                        for s in subs:
+                            add(f"{lc}:{name}:{cls}:{label[:30]}", lc, s, s, "страница подглавы",
+                                ("REDIRECT_OK" if meta.get(s, {}).get("redirect") else "OK") if s in meta else "MISSING")
+                        continue
                     if href not in pages:
                         add(f"{lc}:{name}:{cls}:{label[:40]}", lc, href, href,
                             "страница главы", "WRONG_SEC")
