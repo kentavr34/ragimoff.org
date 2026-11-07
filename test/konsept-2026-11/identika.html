@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шрифт RAGIM, иконки, палитры · концепт RAGIMOFF</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FBFAF7">
+<link rel="icon" href="/test/images/favicon-32x32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&amp;family=Onest:wght@300..800&amp;display=swap">
+<style>
+body{margin:0;background:#FBFAF7}
+a{color:#2B3A67}a:hover{color:#16161A}
+.sk{fill:none;stroke:#16161A;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}
+.skl{fill:none;stroke:#C46A4A;stroke-width:1.2;stroke-dasharray:3 4}
+.met{stroke:rgba(22,22,26,.18);stroke-width:1}
+.metl{font:500 10px Onest,sans-serif;fill:#6B6862;letter-spacing:.06em}
+.draw{stroke-dasharray:420;stroke-dashoffset:420;animation:drw 4.5s ease-in-out infinite}
+@keyframes drw{0%{stroke-dashoffset:420}50%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+.hand text{fill:transparent;stroke:#2B3A67;stroke-width:1;stroke-dasharray:1600;stroke-dashoffset:1600;animation:hand 7s ease-in-out infinite}
+@keyframes hand{0%{stroke-dashoffset:1600;fill:transparent}55%{stroke-dashoffset:0;fill:transparent}70%,92%{stroke-dashoffset:0;fill:#2B3A67}100%{fill:transparent;stroke-dashoffset:0}}
+.ic{width:48px;height:48px;fill:none;stroke:#16161A;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ic .d{fill:#C46A4A;stroke:none}
+.it{display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 8px;border-radius:16px;background:#FFFFFF;border:1px solid rgba(22,22,26,.08);font:500 12px Onest,sans-serif;color:#3D3B37;text-align:center;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.it:hover{transform:translateY(-3px)}
+.it:hover .d{animation:hop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes hop{50%{transform:translateY(-4px)}}
+.sw{height:84px;border-radius:12px;display:flex;align-items:flex-end;padding:10px;box-sizing:border-box;font:600 11px Onest,sans-serif}
+.curve{fill:none;stroke:#2B3A67;stroke-width:2.5}
+.ball{animation:ball 2.4s cubic-bezier(.2,.8,.2,1) infinite}
+@keyframes ball{0%,10%{transform:translateX(0)}60%,100%{transform:translateX(300px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.draw{stroke-dashoffset:0}.hand text{stroke-dashoffset:0;fill:#2B3A67}}
+</style>
+<style>[data-if]{display:contents}[data-if][hidden]{display:none!important}
+.kx{position:relative;z-index:100;display:flex;align-items:center;gap:4px;overflow-x:auto;height:40px;padding:0 10px;background:#111215;font:500 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;white-space:nowrap}
+.kx a{color:#C9C5BC;text-decoration:none;padding:7px 10px;border-radius:99px}
+.kx a:hover{color:#FFFFFF;background:#26282E}
+.kx a.on{color:#111215;background:#E9E4D8}
+.kx .sep{width:1px;height:16px;background:#3A3C42;margin:0 6px;flex:0 0 1px}
+.kx-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;max-width:calc(100% - 32px);padding:14px 20px;border-radius:14px;background:#111215;color:#F2EDE3;font:500 14px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}</style>
+</head>
+<body>
+<nav class="kx" aria-label="Варианты концепта">
+<a href="./">← Все варианты</a>
+<span class="sep"></span>
+<a href="a.html">A · Рукопись</a>
+<a href="b.html">B · Ноктюрн</a>
+<a href="c.html">C · Тишина</a>
+<span class="sep"></span>
+<a href="issledovanie.html">32 приёма</a>
+<a href="identika.html" class="on">Шрифт и иконки</a>
+</nav>
+<div style="max-width: 1600px; margin: 0 auto; box-sizing: border-box; padding: 88px 96px; background: #FBFAF7; color: #16161A; font-family: Onest, sans-serif; display: flex; flex-direction: column; gap: 72px">
+
+<section style="display: flex; flex-direction: column; gap: 40px">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: end">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font: 600 12px Onest, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #5C5A55">Собственный шрифт · рабочее имя</div>
+<h2 style="margin: 0; font: 400 120px/0.9 'Cormorant Garamond', serif; letter-spacing: -.02em">RAGIM <span style="font-style: italic; color: #2B3A67">Hand</span></h2>
+</div>
+<p style="margin: 0; font: 400 19px/1.65 Alegreya, serif; color: #3D3B37">Одна гарнитура — два характера. <b>RAGIM Text</b> — спокойная гуманистическая антиква для долгого чтения статей и книг. <b>RAGIM Hand</b> — её курсив, построенный не как наклонённая копия, а как почерк врача: входящие и выходящие штрихи соединяют буквы, однопетельная «а», рукописные «к», «д», «т». Кириллица, латиница и азербайджанский алфавит (Əə, Ğğ, Iı, İi, Şş, Çç) — с первого дня.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid rgba(22,22,26,.08); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<svg viewBox="0 0 200 220" width="100%" role="img" aria-label="Построение прямой а"><line class="met" x1="0" x2="200" y1="40" y2="40"></line><line class="met" x1="0" x2="200" y1="80" y2="80"></line><line class="met" x1="0" x2="200" y1="160" y2="160"></line><line class="met" x1="0" x2="200" y1="196" y2="196"></line><text class="metl" x="4" y="36">ВЕРХ</text><text class="metl" x="4" y="76">x · 0,52 em</text><text class="metl" x="4" y="156">ЛИНИЯ</text><text class="metl" x="4" y="192">НИЗ</text><path class="sk draw" d="M66 98C76 80 120 78 126 104V160M126 122C100 116 62 122 62 144C62 166 104 166 126 146"></path><path class="skl" d="M66 98C76 80 120 78 126 104V160"></path></svg>
+<figcaption style="font: 500 13px/1.5 Onest, sans-serif; color: #3D3B37"><b>Text · а</b> — открытая апертура, клиновидные окончания под углом пера 30°.</figcaption>
+</figure>
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid rgba(22,22,26,.08); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<svg viewBox="0 0 200 220" width="100%" role="img" aria-label="Построение рукописной а"><line class="met" x1="0" x2="200" y1="80" y2="80"></line><line class="met" x1="0" x2="200" y1="160" y2="160"></line><line class="met" x1="96" x2="114" y1="196" y2="40" style="stroke: rgba(196,106,74,.4)"></line><text class="metl" x="118" y="52">12°</text><path class="sk draw" d="M30 150C44 156 52 140 58 128M120 92C105 78 70 78 58 100C46 124 60 162 88 160C108 158 118 136 122 110L124 92C118 130 116 150 128 160C136 166 150 160 166 146"></path></svg>
+<figcaption style="font: 500 13px/1.5 Onest, sans-serif; color: #3D3B37"><b>Hand · а</b> — однопетельная, с входом и выходом: соседние буквы сцепляются.</figcaption>
+</figure>
+<figure style="margin: 0; background: #FFFFFF; border: 1px solid rgba(22,22,26,.08); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<svg viewBox="0 0 200 220" width="100%" role="img" aria-label="Построение шва ə"><line class="met" x1="0" x2="200" y1="80" y2="80"></line><line class="met" x1="0" x2="200" y1="160" y2="160"></line><path class="sk draw" d="M124 120H58C58 146 74 162 92 162C114 162 126 142 126 120C126 96 110 80 88 80C74 80 64 86 58 94"></path><path class="skl" d="M124 120H58"></path></svg>
+<figcaption style="font: 500 13px/1.5 Onest, sans-serif; color: #3D3B37"><b>Text · ə</b> — азербайджанская шва нарисована отдельно, не повёрнутая «е».</figcaption>
+</figure>
+<figure style="margin: 0; background: #16161A; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<svg viewBox="0 0 200 220" width="100%" role="img" aria-label="Монограмма R"><path class="draw" d="M60 180V44h50a33 33 0 0 1 0 66H60M98 110l46 70" style="fill: none; stroke: #C9A961; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round"></path><circle cx="160" cy="176" r="8" fill="#C46A4A"></circle></svg>
+<figcaption style="font: 500 13px/1.5 Onest, sans-serif; color: #E8E3D8"><b style="color: #F2EDE3">Монограмма R·</b> — буква из шрифта и «точка внимания» — знак сайта, фавикон, печать.</figcaption>
+</figure>
+</div>
+
+<div style="background: #F4EFE6; border-radius: 24px; padding: 40px 48px; display: flex; flex-direction: column; gap: 8px">
+<div style="font: 600 12px Onest, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #5C5A55">Курсив как почерк — эффект пера</div>
+<svg class="hand" viewBox="0 0 1300 150" width="100%" role="img" aria-label="Разговор, который меняет жизнь"><text x="0" y="112" style="font: italic 500 118px 'Cormorant Garamond', serif">Разговор, который меняет жизнь</text></svg>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font: 400 64px/1.05 Alegreya, serif">Аа Бб Вв Гг Дд Жж Кк Яя</div>
+<div style="font: 400 44px/1.15 Alegreya, serif; color: #3D3B37">Əə Ğğ Iı İi Öö Şş Çç Üü · 0123456789</div>
+<div style="font: italic 400 44px/1.15 'Cormorant Garamond', serif; color: #2B3A67">дорогая рука, живая мысль · psixoterapiya</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 12px; border-top: 1px solid rgba(22,22,26,.15)">
+<p style="margin: 0; font: 400 18px/1.85 Alegreya, serif; max-width: 640px">18 / 1,85 — Депрессия — не лень, а клиническое нарушение. Совет «возьми себя в руки» не работает, потому что проблема не в воле. <i>Психотерапия восстанавливает этот баланс.</i></p>
+<p style="margin: 0; font: 400 16px/1.7 Alegreya, serif; max-width: 640px; color: #3D3B37">16 / 1,7 — Ailə terapiyası: cütlük münasibətləri, valideyn və uşaq əlaqəsi. Psychotherapy that starts with the first conversation.</p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.6; color: #3D3B37">
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(22,22,26,.12)"><b style="color: #16161A">Начертания</b><span>Text 400 / 500 / 700 + Hand 400 / 500. Вариативная ось веса для анимаций.</span></div>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(22,22,26,.12)"><b style="color: #16161A">Пропорции</b><span>Высота строчных 0,52 em, низкий контраст — чёткость на экране 14–18 px и в книжной читалке (Literata заменяется без смены метрик).</span></div>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(22,22,26,.12)"><b style="color: #16161A">Hand</b><span>Наклон 12°, контекстные лигатуры соединяют буквы — курсив выглядит написанным, а не набранным.</span></div>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(22,22,26,.12)"><b style="color: #16161A">Языки</b><span>RU · AZ · EN · TR — около 520 знаков на начертание.</span></div>
+<div style="display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0"><b style="color: #16161A">Важно</b><span>Здесь показаны эскизы ключевых знаков. В макетах стилей текст набран открытыми шрифтами-заместителями с близкими метриками: Alegreya (чтение), Cormorant Garamond Italic (почерк). Файлы RAGIM (woff2) — следующий этап.</span></div>
+</div>
+</div>
+</section>
+
+<div style="height: 1px; background: rgba(22,22,26,.15)"></div>
+
+<section style="display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; justify-content: space-between; align-items: end; gap: 40px">
+<h2 style="margin: 0; font: 400 72px/1 'Cormorant Garamond', serif">Иконки <span style="font-style: italic; color: #C46A4A">с точкой</span></h2>
+<p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 1.6; color: #3D3B37">Сетка 48 px, линия 1,5 px, скруглённые концы. В каждой иконке одна цветная точка — «точка внимания». При наведении точка подпрыгивает. Цвет линии и точки берётся из токенов стиля.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 14px">
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle class="d" cx="40" cy="10" r="3"></circle></svg>Консультация</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="13" width="26" height="22" rx="4"></rect><path d="M31 21l10-6v18l-10-6"></path><circle class="d" cx="11" cy="19" r="2.6"></circle></svg>Онлайн</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40V14c0-6 6-9 14-9s14 3 14 9v26"></path><path d="M6 40h36M20 40V28h8v12"></path><circle class="d" cx="24" cy="17" r="3"></circle></svg>Кабинет</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="31" rx="4"></rect><path d="M6 19h36M15 6v8M33 6v8"></path><circle class="d" cx="30" cy="30" r="3"></circle></svg>Расписание</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="25" r="16"></circle><path d="M24 15v10l6 5"></path><circle class="d" cx="24" cy="6" r="2.6"></circle></svg>50 минут</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6h7l3 9-5 3c2 5 6 9 11 11l3-5 9 3v7c0 3-2 5-5 5C21 44 4 27 4 11c0-3 2-5 5-5"></path><circle class="d" cx="38" cy="10" r="3"></circle></svg>Связь</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="16" cy="15" r="5"></circle><circle cx="32" cy="15" r="5"></circle><path d="M6 40c0-7 4-12 10-12s10 5 10 12"></path><path d="M22 40c0-7 4-12 10-12s10 5 10 12"></path><circle class="d" cx="24" cy="6" r="2.6"></circle></svg>Пара</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="12" r="5"></circle><path d="M8 42c0-9 4-15 10-15s10 6 10 15"></path><circle cx="34" cy="24" r="3.5"></circle><path d="M28 42c0-6 2.5-10 6-10s6 4 6 10"></path><circle class="d" cx="40" cy="14" r="2.6"></circle></svg>Родитель и ребёнок</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 26h8l4-10 6 20 6-26 5 16h11"></path><circle class="d" cx="44" cy="26" r="2.6"></circle></svg>Тревога</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 34a10 10 0 1 1 6-18 12 12 0 0 1 22 6 7 7 0 0 1-2 13H14"></path><path d="M18 42h16"></path><circle class="d" cx="10" cy="12" r="3"></circle></svg>Настроение</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 18l20-10 20 10-20 10z"></path><path d="M12 22v10c3 3 7 5 12 5s9-2 12-5V22"></path><circle class="d" cx="42" cy="32" r="3"></circle></svg>Обучение</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="38" height="25" rx="3"></rect><path d="M12 16h18M12 23h10"></path><path d="M30 33l-2 9 6-3 6 3-2-9"></path><circle class="d" cx="34" cy="27" r="3"></circle></svg>Сертификат</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 12c-5-4-12-5-19-4v30c7-1 14 0 19 4 5-4 12-5 19-4V8c-7-1-14 0-19 4z"></path><path d="M24 12v30"></path><circle class="d" cx="34" cy="19" r="2.6"></circle></svg>Книга</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="9" width="40" height="30" rx="6"></rect><path d="M20 18v12l10-6z"></path><circle class="d" cx="38" cy="15" r="2.6"></circle></svg>Видеоурок</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M3 24s8-13 21-13 21 13 21 13-8 13-21 13S3 24 3 24z"></path><circle cx="24" cy="24" r="6"></circle><circle class="d" cx="24" cy="24" r="2.4"></circle></svg>Супервизия</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="11" width="40" height="27" rx="4"></rect><path d="M4 19h40M10 30h10"></path><circle class="d" cx="37" cy="30" r="3"></circle></svg>Оплата</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>Новое начало</div>
+<div class="it"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 24h30M28 14l10 10-10 10"></path><circle class="d" cx="6" cy="24" r="2.6"></circle></svg>Далее</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="display: flex; align-items: center; gap: 18px; padding: 18px 22px; border-radius: 16px; background: #F4EFE6"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true" style="stroke: #1B1A17"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle cx="40" cy="10" r="3" style="fill: #2B3A67; stroke: none"></circle></svg><span style="font-size: 14px; line-height: 1.5"><b>A</b> — чернила и синяя точка пера</span></div>
+<div style="display: flex; align-items: center; gap: 18px; padding: 18px 22px; border-radius: 16px; background: #07090E; color: #F2EDE3"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true" style="stroke: #F2EDE3"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle cx="40" cy="10" r="3" style="fill: #C9A961; stroke: none"></circle></svg><span style="font-size: 14px; line-height: 1.5"><b>B</b> — молочная линия, золотая точка</span></div>
+<div style="display: flex; align-items: center; gap: 18px; padding: 18px 22px; border-radius: 16px; background: #E6EBE4"><svg class="ic" viewBox="0 0 48 48" aria-hidden="true" style="stroke: #1F2B26"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle cx="40" cy="10" r="3" style="fill: #C46A4A; stroke: none"></circle></svg><span style="font-size: 14px; line-height: 1.5"><b>C</b> — хвойная линия, терракотовая точка</span></div>
+</div>
+</section>
+
+<div style="height: 1px; background: rgba(22,22,26,.15)"></div>
+
+<section style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font: 500 32px 'Cormorant Garamond', serif">A · Рукопись</h3>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="sw" style="background: #F4EFE6; color: #1B1A17; border: 1px solid rgba(0,0,0,.08)">Бумага F4EFE6</div><div class="sw" style="background: #1B1A17; color: #F4EFE6">Чернила 1B1A17</div><div class="sw" style="background: #2B3A67; color: #F4EFE6">Перо 2B3A67</div>
+<div class="sw" style="background: #A9825A; color: #1B1A17">Сепия A9825A</div><div class="sw" style="background: #EAE2D3; color: #1B1A17">Тон EAE2D3</div><div class="sw" style="background: #5C5A55; color: #F4EFE6">Подпись 5C5A55</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font: 500 32px 'Cormorant Garamond', serif">B · Ноктюрн</h3>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="sw" style="background: #07090E; color: #F2EDE3">Ночь 07090E</div><div class="sw" style="background: #12151C; color: #F2EDE3">Слой 12151C</div><div class="sw" style="background: #C9A961; color: #07090E">Золото C9A961</div>
+<div class="sw" style="background: #F2EDE3; color: #07090E; border: 1px solid rgba(0,0,0,.08)">Молоко F2EDE3</div><div class="sw" style="background: #A8A296; color: #07090E">Дым A8A296</div><div class="sw" style="background: #3B4A7A; color: #F2EDE3">Сумерки 3B4A7A</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font: 500 32px 'Cormorant Garamond', serif">C · Тишина</h3>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div class="sw" style="background: #EEF0EA; color: #1F2B26; border: 1px solid rgba(0,0,0,.08)">Камень EEF0EA</div><div class="sw" style="background: #8FA89A; color: #1F2B26">Шалфей 8FA89A</div><div class="sw" style="background: #1F2B26; color: #EEF0EA">Хвоя 1F2B26</div>
+<div class="sw" style="background: #C46A4A; color: #000000">Терракота C46A4A</div><div class="sw" style="background: #A4502F; color: #FFFFFF">Текст-акцент A4502F</div><div class="sw" style="background: #FFFFFF; color: #1F2B26; border: 1px solid rgba(0,0,0,.08)">Свет FFFFFF</div>
+</div>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; background: #FFFFFF; border: 1px solid rgba(22,22,26,.08); border-radius: 24px; padding: 40px 48px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font: 500 40px/1.1 'Cormorant Garamond', serif">Движение: <span style="font-style: italic">спокойная уверенность</span></h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: #3D3B37">Сайт психотерапевта не должен суетиться. Быстрый старт, долгое мягкое торможение — как выдох. Кривая cubic-bezier(.2, .8, .2, 1). Появление 600–900 мс, наведение 300–400 мс, фоновые циклы 6–14 с. При «уменьшить движение» всё статично.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; font-size: 13px; line-height: 1.45">
+<div style="padding: 12px; border-radius: 12px; background: #F4EFE6"><b>A</b><br>перо, шторка, построчно</div>
+<div style="padding: 12px; border-radius: 12px; background: #12151C; color: #F2EDE3"><b>B</b><br>свет, глубина, каскад</div>
+<div style="padding: 12px; border-radius: 12px; background: #E6EBE4"><b>C</b><br>дыхание, стопка, счётчики</div>
+</div>
+</div>
+<svg viewBox="0 0 360 200" width="100%" role="img" aria-label="Кривая плавности"><line x1="20" y1="180" x2="340" y2="180" class="met"></line><line x1="20" y1="20" x2="20" y2="180" class="met"></line><path class="curve" d="M20 180C84 52 84 20 340 20"></path><circle class="ball" cx="20" cy="196" r="6" fill="#C46A4A"></circle><text class="metl" x="24" y="14">cubic-bezier(.2,.8,.2,1)</text></svg>
+</section>
+
+</div>
+<script>(function(){
+var S = {};
+function set(p){for(var k in p){S[k]=p[k];}render();}
+function V(){  return {};  }
+var cur={};
+function each(sel,fn){Array.prototype.forEach.call(document.querySelectorAll(sel),fn);}
+function render(){
+  cur=V();
+  each('[data-t]',function(el){el.textContent=cur[el.getAttribute('data-t')];});
+  each('[data-c]',function(el){var b=el.getAttribute('data-base')||'',x=cur[el.getAttribute('data-c')]||'';el.className=(b+' '+x).replace(/\s+/g,' ').trim();});
+  each('[data-st]',function(el){el.setAttribute('style',el.getAttribute('data-st').replace(/\{\{\s*(\w+)\s*\}\}/g,function(m,k){return cur[k];}));});
+  each('[data-if]',function(el){el.hidden=!cur[el.getAttribute('data-if')];});
+  each('[data-aa]',function(el){var p=el.getAttribute('data-aa').split(':');el.setAttribute(p[0],cur[p[1]]);});
+}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-act]');if(!t)return;var f=cur[t.getAttribute('data-act')];if(typeof f==='function')f(e);});
+document.addEventListener('submit',function(e){e.preventDefault();var old=document.querySelector('.kx-toast');if(old)old.remove();var d=document.createElement('div');d.className='kx-toast';d.setAttribute('role','status');d.textContent='Это демонстрационная форма концепта: данные никуда не отправляются. На боевом сайте здесь открывается оплата ePoint.';document.body.appendChild(d);setTimeout(function(){d.remove();},5000);});
+each('[data-move]',function(el){el.addEventListener('mousemove',function(e){var f=cur[el.getAttribute('data-move')];if(f)f(e);});});
+render();
+})();</script>
+</body>
+</html>

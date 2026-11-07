@@ -121,8 +121,12 @@
 
   @media (max-width:900px){
     .row{grid-template-columns:46px minmax(0,1fr) 44px; gap:14px}
-    .row .fonts{grid-column:2; margin-top:4px}
-    .row .dt{grid-column:2; order:-1; margin-bottom:2px}
+    .row .fonts{grid-column:2; grid-row:3; margin-top:4px}
+    .row .dt{grid-column:2; grid-row:1; margin-bottom:2px}
+    /* явные ячейки: без них авторасстановка сажала .body в колонку 46px */
+    .row .n{grid-column:1; grid-row:2}
+    .row .body{grid-column:2; grid-row:2}
+    .row .arw{grid-column:3; grid-row:2}
     .row .th{display:none}
     .row .arw{width:44px; height:44px}
     .row .name{font-size:clamp(26px,8vw,38px)}
@@ -165,6 +169,18 @@
   </header>
 
   <ol class="idx">
+    <li><a class="row" href="konsept-2026-11/">
+      <span class="n">14</span>
+      <span class="body">
+        <span class="name">KONSEPT · noyabr 2026 <i class="new">yeni</i></span>
+        <span class="about">Üç üslub — «Əlyazma», «Noktürn», «Sükut»: masaüstü və mobil versiya, animasiyalar, 32 dizayn elementinin tədqiqatı, RAGIM şrifti və ikonlar. Səhifələr rus dilindədir.</span>
+      </span>
+      <span class="dt">08.11.2026</span>
+      <span class="fonts canon">Cormorant Garamond · Alegreya · Manrope · Onest</span>
+      <span class="th">light + dark</span>
+      <span class="arw" aria-hidden="true">&#8594;</span>
+    </a></li>
+
     <li><a class="row" href="like/index.html">
       <span class="n">13</span>
       <span class="body">

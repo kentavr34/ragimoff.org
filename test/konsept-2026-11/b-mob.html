@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Стиль B «Ноктюрн» — мобильная · концепт RAGIMOFF</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#07090E">
+<link rel="icon" href="/test/images/favicon-32x32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#07090E}
+a{color:#C9A961}a:hover{color:#F2EDE3}
+.ey{font:500 11px/1.2 Manrope,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#C9A961}
+.pre{position:absolute;inset:0;background:#07090E;z-index:60;display:flex;justify-content:center;padding-top:320px;box-sizing:border-box;pointer-events:none;animation:preUp 1s cubic-bezier(.7,0,.2,1) 1.5s forwards}
+@keyframes preUp{to{clip-path:inset(0 0 100% 0)}}
+.preR{fill:none;stroke:#C9A961;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;animation:drawR 1.2s ease-in-out .1s forwards}
+@keyframes drawR{to{stroke-dashoffset:0}}
+.grain{position:absolute;inset:0;width:100%;height:100%;opacity:.07;pointer-events:none;z-index:40;mix-blend-mode:screen;animation:grain .9s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-2px,1px)}50%{transform:translate(1px,-2px)}75%{transform:translate(-1px,-1px)}}
+.name{font:300 92px/0.82 'Cormorant Garamond',serif;letter-spacing:-.03em;text-align:center}
+.name span{display:inline-block;animation:letter 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes letter{from{transform:translateY(60%);opacity:0;filter:blur(6px)}to{transform:none;opacity:1;filter:none}}
+.halo{position:absolute;left:50%;top:44%;width:360px;height:360px;margin:-180px 0 0 -180px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,97,.38),rgba(201,169,97,.05) 55%,transparent 70%);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.1);opacity:.8}}
+.float{animation:float 8s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.gold{display:flex;align-items:center;justify-content:center;gap:8px;height:54px;border-radius:99px;background:#C9A961;color:#07090E;font:600 15px Manrope,sans-serif;text-decoration:none;border:0;width:100%}
+.gold:hover{color:#07090E}
+.mq{display:flex;gap:24px;width:max-content;animation:mq 26s linear infinite;align-items:center}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mq span{font:italic 400 38px/1 'Cormorant Garamond',serif;color:#F2EDE3;white-space:nowrap}
+.card{position:relative;height:460px;border-radius:24px;overflow:hidden;background:#12151C}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;filter:grayscale(1) brightness(.85)}
+.card .tint{position:absolute;inset:0;background:#C9A961;mix-blend-mode:multiply;opacity:.5}
+.card .shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(7,9,14,.95) 88%)}
+.fact{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:99px;border:1px solid rgba(242,237,227,.25);background:rgba(7,9,14,.35);font:500 12px Manrope,sans-serif;color:#F2EDE3}
+.sw{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 20px 12px}
+.sw>*{scroll-snap-align:center;flex:0 0 280px}
+.prog{border-radius:22px;padding:22px;background:rgba(242,237,227,.04);border:1px solid rgba(242,237,227,.12);display:flex;flex-direction:column;gap:14px;box-sizing:border-box}
+.ic{fill:none;stroke:#F2EDE3;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ic .d{fill:#C9A961;stroke:none}
+.ff{position:relative}
+.ff input{width:100%;height:58px;padding:22px 0 6px;background:transparent;border:0;border-bottom:1px solid rgba(242,237,227,.3);color:#F2EDE3;font:400 16px Manrope,sans-serif;outline:none;box-sizing:border-box;border-radius:0}
+.ff label{position:absolute;left:0;top:22px;font:400 15px Manrope,sans-serif;color:#A8A296;transition:all .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.ff input:focus+label,.ff input:not(:placeholder-shown)+label{top:2px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C9A961}
+.chip{height:44px;padding:0 16px;border-radius:99px;border:1px solid rgba(242,237,227,.25);background:transparent;color:#F2EDE3;font:500 14px Manrope,sans-serif}
+.chip.on{background:#F2EDE3;color:#07090E}
+.menu{position:absolute;inset:0 0 auto 0;height:100vh;z-index:50;background:rgba(7,9,14,.86);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:24px 20px;box-sizing:border-box;display:flex;flex-direction:column;animation:fade .5s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.menu a{color:#F2EDE3;text-decoration:none;font:300 50px/1.12 'Cormorant Garamond',serif;display:block;animation:letter .8s cubic-bezier(.2,.8,.2,1) both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.pre{display:none}}
+</style>
+<style>[data-if]{display:contents}[data-if][hidden]{display:none!important}
+.kx{position:relative;z-index:100;display:flex;align-items:center;gap:4px;overflow-x:auto;height:40px;padding:0 10px;background:#111215;font:500 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;white-space:nowrap}
+.kx a{color:#C9C5BC;text-decoration:none;padding:7px 10px;border-radius:99px}
+.kx a:hover{color:#FFFFFF;background:#26282E}
+.kx a.on{color:#111215;background:#E9E4D8}
+.kx .sep{width:1px;height:16px;background:#3A3C42;margin:0 6px;flex:0 0 1px}
+.kx-toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:200;max-width:calc(100% - 32px);padding:14px 20px;border-radius:14px;background:#111215;color:#F2EDE3;font:500 14px/1.45 system-ui,-apple-system,'Segoe UI',sans-serif;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}</style>
+</head>
+<body>
+<nav class="kx" aria-label="Варианты концепта">
+<a href="./">← Все варианты</a>
+<span class="sep"></span>
+<a href="a-mob.html">A · Рукопись</a>
+<a href="b-mob.html" class="on" aria-current="page">B · Ноктюрн</a>
+<a href="c-mob.html">C · Тишина</a>
+<span class="sep"></span>
+<a href="b.html">Десктоп</a>
+<a href="b-mob.html" class="on">Мобильная</a>
+<span class="sep"></span>
+<a href="issledovanie.html">32 приёма</a>
+<a href="identika.html">Шрифт и иконки</a>
+</nav>
+<div style="width: 100%; max-width: 440px; margin: 0 auto; min-height: 100vh; position: relative; background: #07090E; color: #F2EDE3; font-family: Manrope, sans-serif; overflow: hidden">
+<div class="pre" aria-hidden="true"><svg width="90" height="100" viewBox="0 0 200 220"><path class="preR" d="M60 180V44h50a33 33 0 0 1 0 66H60M98 110l46 70"></path><circle cx="160" cy="176" r="9" fill="#C9A961"></circle></svg></div>
+<svg class="grain" viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true"><filter id="mgn"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="200" height="200" filter="url(#mgn)"></rect></svg>
+
+<div data-if="menuOpen">
+<div class="menu">
+<div style="display: flex; justify-content: flex-end"><button type="button" data-act="toggle" aria-label="Закрыть меню" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(242,237,227,.3); background: transparent; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" style="stroke: #F2EDE3; stroke-width: 1.6; stroke-linecap: round"></path></svg></button></div>
+<nav aria-label="Мобильное меню" style="margin-top: 80px; display: flex; flex-direction: column; gap: 4px">
+<a href="#bm-spec" style="animation-delay: .1s">Специалисты</a><a href="#bm-edu" style="animation-delay: .17s; font-style: italic; color: #C9A961">Обучение</a><a href="#bm-cons" style="animation-delay: .24s">Консультации</a><a href="#bm-books" style="animation-delay: .31s">Книги</a><a href="#bm-reg" style="animation-delay: .38s">Запись</a>
+</nav>
+<span style="margin-top: auto; font: 500 14px Manrope, sans-serif; color: #A8A296">AZ · <b style="color: #F2EDE3">RU</b> · EN</span>
+</div>
+</div>
+
+<header style="position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center; margin: 16px 16px 0; padding: 6px 6px 6px 16px; border-radius: 99px; background: rgba(18,21,28,.6); border: 1px solid rgba(242,237,227,.14); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)">
+<span style="display: flex; align-items: center; gap: 8px"><svg width="22" height="24" viewBox="0 0 200 220" aria-hidden="true"><path d="M60 180V44h50a33 33 0 0 1 0 66H60M98 110l46 70" style="fill: none; stroke: #F2EDE3; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round"></path><circle cx="160" cy="176" r="13" fill="#C9A961"></circle></svg><span style="font: 500 19px 'Cormorant Garamond', serif">Ragimoff</span></span>
+<button type="button" data-act="toggle" aria-label="Открыть меню" style="height: 44px; padding: 0 18px; border-radius: 99px; border: 0; background: #F2EDE3; color: #07090E; font: 600 13px Manrope, sans-serif">Меню</button>
+</header>
+
+<section style="position: relative; padding: 40px 0 32px">
+<div class="name" aria-label="Кенан"><span style="animation-delay: 1.7s">К</span><span style="animation-delay: 1.76s">е</span><span style="animation-delay: 1.82s">н</span><span style="animation-delay: 1.88s">а</span><span style="animation-delay: 1.94s">н</span></div>
+<div style="position: relative; height: 400px">
+<div class="halo"></div>
+<img class="float" src="/images/kenan/photo-portal-crop-removebg-preview.png" alt="Кенан Рагимов" style="position: absolute; left: 50%; top: -40px; width: 300px; margin-left: -150px; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 98%); mask-image: linear-gradient(180deg, #000 70%, transparent 98%)">
+</div>
+<div class="name" aria-label="Рагимов" style="font-style: italic; color: #C9A961; margin-top: -70px; position: relative"><span style="animation-delay: 1.9s">Р</span><span style="animation-delay: 1.96s">а</span><span style="animation-delay: 2.02s">г</span><span style="animation-delay: 2.08s">и</span><span style="animation-delay: 2.14s">м</span><span style="animation-delay: 2.2s">о</span><span style="animation-delay: 2.26s">в</span></div>
+<div style="padding: 28px 20px 0; display: flex; flex-direction: column; gap: 18px">
+<span class="ey" style="text-align: center">Врач-психотерапевт · Амбассадор IPAS</span>
+<p style="margin: 0; text-align: center; font-size: 16px; line-height: 1.65; color: #E5DFD3">23 года клинической психотерапии в Азербайджане. Онлайн и в Баку.</p>
+<a class="gold" href="#bm-reg">Записаться на консультацию ↗</a>
+</div>
+</section>
+
+<section aria-label="Направления" style="border-top: 1px solid rgba(242,237,227,.12); border-bottom: 1px solid rgba(242,237,227,.12); padding: 20px 0; overflow: hidden">
+<div class="mq"><span>Семейная терапия</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg><span>Панические атаки</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg><span>Депрессия</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg><span>Семейная терапия</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg><span>Панические атаки</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg><span>Депрессия</span><svg width="12" height="12" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="#C9A961"></circle></svg></div>
+</section>
+
+<section id="bm-spec" style="padding: 64px 20px 24px; display: flex; flex-direction: column; gap: 18px">
+<span class="ey">Специалисты</span>
+<h2 style="margin: 0; font: 300 52px/0.95 'Cormorant Garamond', serif">Двое, кто <i style="color: #C9A961">слышит</i></h2>
+<article class="card"><img src="/images/kenan/photo-hero-suit.jpg" alt="Кенан Рагимов"><div class="tint"></div><div class="shade"></div><div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; display: flex; flex-direction: column; gap: 10px"><span class="ey">Врач-психотерапевт</span><h3 style="margin: 0; font: 400 42px/0.95 'Cormorant Garamond', serif">Кенан <i style="color: #C9A961">Рагимов</i></h3><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fact">23 года практики</span><span class="fact">IPAS</span><span class="fact">Бехтерева</span></div></div></article>
+<article class="card"><img src="/images/samira/samira-portret.jpg" alt="Самира Рагимова"><div class="tint"></div><div class="shade"></div><div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; display: flex; flex-direction: column; gap: 10px"><span class="ey">Семейный терапевт</span><h3 style="margin: 0; font: 400 42px/0.95 'Cormorant Garamond', serif">Самира <i style="color: #C9A961">Рагимова</i></h3><div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="fact">600+ пациентов</span><span class="fact">IPAS</span><span class="fact">Карвасарского</span></div></div></article>
+</section>
+
+<section id="bm-edu" style="padding: 56px 0 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px"><span class="ey">Обучение · 5 программ</span><h2 style="margin: 0; font: 300 52px/0.95 'Cormorant Garamond', serif">Путь <i style="color: #C9A961">в профессию</i></h2></div>
+<div class="sw">
+<article class="prog" style="border-color: rgba(201,169,97,.5)"><div style="display: flex; justify-content: space-between; align-items: center"><span style="font: italic 400 36px/1 'Cormorant Garamond', serif; color: #C9A961">04</span><span class="fact" style="background: #C9A961; color: #07090E; border-color: #C9A961">Набор открыт</span></div><h3 style="margin: 0; font: 400 32px/1 'Cormorant Garamond', serif">Семейная терапия</h3><span style="font-size: 14px; line-height: 1.55; color: #A8A296">3 мес. обучения + 6 мес. супервизии · Вт и Чт 14–16</span><b style="font-weight: 500; font-size: 15px; padding-top: 12px; border-top: 1px solid rgba(242,237,227,.12)">3 × 200 AZN · 500 AZN сразу</b></article>
+<article class="prog"><div style="display: flex; justify-content: space-between; align-items: center"><span style="font: italic 400 36px/1 'Cormorant Garamond', serif; color: #C9A961">05</span><span class="fact">Сертификат</span></div><h3 style="margin: 0; font: 400 32px/1 'Cormorant Garamond', serif">Психоанализ</h3><span style="font-size: 14px; line-height: 1.55; color: #A8A296">3 + 6 мес. · 24 книги Фрейда на азербайджанском</span><b style="font-weight: 500; font-size: 15px; padding-top: 12px; border-top: 1px solid rgba(242,237,227,.12)">3 × 200 AZN · 500 AZN сразу</b></article>
+<article class="prog"><div style="display: flex; justify-content: space-between; align-items: center"><span style="font: italic 400 36px/1 'Cormorant Garamond', serif; color: #C9A961">02</span><span class="fact">ДПО + IPAS</span></div><h3 style="margin: 0; font: 400 32px/1 'Cormorant Garamond', serif">Клиническая психология</h3><span style="font-size: 14px; line-height: 1.55; color: #A8A296">1 528 ч · старт 05.01.2027</span><b style="font-weight: 500; font-size: 15px; padding-top: 12px; border-top: 1px solid rgba(242,237,227,.12)">от 15 тыс. руб./мес.</b></article>
+</div>
+<div style="display: flex; justify-content: center; gap: 6px"><span style="width: 22px; height: 4px; border-radius: 2px; background: #C9A961"></span><span style="width: 8px; height: 4px; border-radius: 2px; background: rgba(242,237,227,.3)"></span><span style="width: 8px; height: 4px; border-radius: 2px; background: rgba(242,237,227,.3)"></span><span style="width: 8px; height: 4px; border-radius: 2px; background: rgba(242,237,227,.3)"></span><span style="width: 8px; height: 4px; border-radius: 2px; background: rgba(242,237,227,.3)"></span></div>
+</section>
+
+<section id="bm-cons" style="padding: 56px 20px 24px; display: flex; flex-direction: column; gap: 14px">
+<span class="ey">Консультации · 50 минут</span>
+<h2 style="margin: 0 0 8px; font: 300 52px/0.95 'Cormorant Garamond', serif">С чем <i style="color: #C9A961">приходят</i></h2>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><circle cx="16" cy="15" r="5"></circle><circle cx="32" cy="15" r="5"></circle><path d="M6 40c0-7 4-12 10-12s10 5 10 12"></path><path d="M22 40c0-7 4-12 10-12s10 5 10 12"></path><circle class="d" cx="24" cy="6" r="2.6"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Семейная терапия</b></div>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="12" r="5"></circle><path d="M8 42c0-9 4-15 10-15s10 6 10 15"></path><circle cx="34" cy="24" r="3.5"></circle><path d="M28 42c0-6 2.5-10 6-10s6 4 6 10"></path><circle class="d" cx="40" cy="14" r="2.6"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Родитель и ребёнок</b></div>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 26h8l4-10 6 20 6-26 5 16h11"></path><circle class="d" cx="44" cy="26" r="2.6"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Панические атаки</b></div>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 34a10 10 0 1 1 6-18 12 12 0 0 1 22 6 7 7 0 0 1-2 13H14"></path><path d="M18 42h16"></path><circle class="d" cx="10" cy="12" r="3"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Депрессия</b></div>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle class="d" cx="40" cy="10" r="3"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Социофобия</b></div>
+<div style="display: flex; align-items: center; gap: 16px; padding: 18px 0; border-top: 1px solid rgba(242,237,227,.12); border-bottom: 1px solid rgba(242,237,227,.12)"><svg class="ic" width="36" height="36" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg><b style="font: 400 28px 'Cormorant Garamond', serif">Ночной энурез</b></div>
+<div style="display: flex; flex-direction: column; gap: 18px; padding: 24px 0 0 22px; border-left: 1px solid rgba(201,169,97,.5); margin-top: 20px">
+<div style="position: relative"><span style="position: absolute; left: -29px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: #C9A961; box-shadow: 0 0 20px rgba(201,169,97,.7)"></span><b style="font: 400 24px 'Cormorant Garamond', serif">WhatsApp</b><div style="font-size: 14px; color: #A8A296">+994 70 220-03-76, ответ в тот же день</div></div>
+<div style="position: relative"><span style="position: absolute; left: -29px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: #07090E; border: 1px solid #C9A961; box-sizing: border-box"></span><b style="font: 400 24px 'Cormorant Garamond', serif">Формат</b><div style="font-size: 14px; color: #A8A296">Zoom, видео WhatsApp или офис</div></div>
+<div style="position: relative"><span style="position: absolute; left: -29px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: #07090E; border: 1px solid #C9A961; box-sizing: border-box"></span><b style="font: 400 24px 'Cormorant Garamond', serif">Время</b><div style="font-size: 14px; color: #A8A296">Гибко, есть вечерние часы</div></div>
+<div style="position: relative"><span style="position: absolute; left: -29px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: #07090E; border: 1px solid #C9A961; box-sizing: border-box"></span><b style="font: 400 24px 'Cormorant Garamond', serif">Сессия</b><div style="font-size: 14px; color: #A8A296">50 минут: цель и план работы</div></div>
+</div>
+</section>
+
+<section id="bm-reg" style="position: relative; padding: 64px 16px 40px; overflow: hidden">
+<div style="position: absolute; width: 320px; height: 320px; border-radius: 50%; background: #C9A961; filter: blur(70px); opacity: .35; left: -120px; top: 40px"></div>
+<div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; background: #3B4A7A; filter: blur(70px); opacity: .45; right: -120px; bottom: 0"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 16px">
+<span class="ey" style="padding: 0 4px">Регистрация</span>
+<h2 style="margin: 0; padding: 0 4px; font: 300 50px/0.92 'Cormorant Garamond', serif">Ваше место <i style="color: #C9A961">в группе</i></h2>
+<form data-sub="submit" style="padding: 24px 20px; border-radius: 26px; background: rgba(18,21,28,.6); border: 1px solid rgba(242,237,227,.16); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); display: flex; flex-direction: column; gap: 14px">
+<div class="ff"><input id="bm-name" type="text" placeholder=" " autocomplete="given-name" required="required"><label for="bm-name">Имя *</label></div>
+<div class="ff"><input id="bm-sur" type="text" placeholder=" " autocomplete="family-name" required="required"><label for="bm-sur">Фамилия *</label></div>
+<div class="ff"><input id="bm-tel" type="tel" placeholder=" " autocomplete="tel" required="required"><label for="bm-tel">Телефон *</label></div>
+<div class="ff"><input id="bm-id" type="text" placeholder=" " required="required"><label for="bm-id">Удостоверение личности *</label></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 6px"><button type="button" class="chip" data-base="chip" data-c="p3Cls" data-act="setP3">3 × 200 AZN</button><button type="button" class="chip" data-base="chip" data-c="ppCls" data-act="setPP">500 AZN сразу</button></div>
+<button class="gold" type="submit" style="margin-top: 6px">Перейти к оплате · <span data-t="total"></span></button>
+<span style="font-size: 12px; color: #A8A296; text-align: center">Защищённая оплата ePoint, там же рассрочка</span>
+</form>
+</div>
+</section>
+
+<footer style="padding: 40px 20px 130px; display: flex; flex-direction: column; gap: 20px">
+<div style="font: 500 84px/0.85 'Cormorant Garamond', serif; color: transparent; -webkit-text-stroke: 1px rgba(201,169,97,.75); letter-spacing: -.02em">RAGIMOFF</div>
+<div style="font-size: 13px; line-height: 1.7; color: #A8A296">Баку · онлайн<br>Пн–Пт 10:00–20:00 · Сб 10:00–16:00<br>WhatsApp +994 70 220-03-76 · YouTube @kragimoff</div>
+</footer>
+
+<nav aria-label="Быстрые действия" style="position: fixed; left: 50%; transform: translateX(-50%); width: min(408px, calc(100% - 32px)); box-sizing: border-box; bottom: 18px; z-index: 45; display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 99px; background: rgba(18,21,28,.72); border: 1px solid rgba(242,237,227,.16); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px)">
+<a href="#bm-spec" style="flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; color: #F2EDE3; text-decoration: none; font: 500 13px Manrope, sans-serif">Врачи</a>
+<a href="#bm-edu" style="flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; color: #F2EDE3; text-decoration: none; font: 500 13px Manrope, sans-serif">Обучение</a>
+<a href="#bm-reg" style="flex: 1.4; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 99px; background: #C9A961; color: #07090E; text-decoration: none; font: 600 13px Manrope, sans-serif">Записаться</a>
+</nav>
+</div>
+<script>(function(){
+var S = { menu: false, pay: 'p3' };
+function set(p){for(var k in p){S[k]=p[k];}render();}
+function V(){ 
+    const s = S;
+    return {
+      menuOpen: s.menu,
+      toggle: () => set({ menu: !S.menu }),
+      p3Cls: s.pay === 'p3' ? 'on' : '', ppCls: s.pay === 'pp' ? 'on' : '',
+      setP3: () => set({ pay: 'p3' }), setPP: () => set({ pay: 'pp' }),
+      total: s.pay === 'p3' ? '200 AZN' : '500 AZN',
+      submit: (e) => { if (e && e.preventDefault) e.preventDefault(); }
+    };
+   }
+var cur={};
+function each(sel,fn){Array.prototype.forEach.call(document.querySelectorAll(sel),fn);}
+function render(){
+  cur=V();
+  each('[data-t]',function(el){el.textContent=cur[el.getAttribute('data-t')];});
+  each('[data-c]',function(el){var b=el.getAttribute('data-base')||'',x=cur[el.getAttribute('data-c')]||'';el.className=(b+' '+x).replace(/\s+/g,' ').trim();});
+  each('[data-st]',function(el){el.setAttribute('style',el.getAttribute('data-st').replace(/\{\{\s*(\w+)\s*\}\}/g,function(m,k){return cur[k];}));});
+  each('[data-if]',function(el){el.hidden=!cur[el.getAttribute('data-if')];});
+  each('[data-aa]',function(el){var p=el.getAttribute('data-aa').split(':');el.setAttribute(p[0],cur[p[1]]);});
+}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-act]');if(!t)return;var f=cur[t.getAttribute('data-act')];if(typeof f==='function')f(e);});
+document.addEventListener('submit',function(e){e.preventDefault();var old=document.querySelector('.kx-toast');if(old)old.remove();var d=document.createElement('div');d.className='kx-toast';d.setAttribute('role','status');d.textContent='Это демонстрационная форма концепта: данные никуда не отправляются. На боевом сайте здесь открывается оплата ePoint.';document.body.appendChild(d);setTimeout(function(){d.remove();},5000);});
+each('[data-move]',function(el){el.addEventListener('mousemove',function(e){var f=cur[el.getAttribute('data-move')];if(f)f(e);});});
+render();
+})();</script>
+</body>
+</html>
