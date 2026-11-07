@@ -62,6 +62,8 @@ OLD_AUTHOR = {  # устаревшие написания на сайте → п
 }
 REF_RX = re.compile(r'(Mənbələr|Источники|Sources|References|Kaynaklar|Литература|Kaynakça)', re.I)
 METHOD_RX = re.compile(r'(metodik|metodları|metod|методик|методы|methods|yöntem|metodoloj)', re.I)
+# префикс диапазона кодов в заголовке главы: «6A00–6A0Z », «HA00–HA2Z · HA40 » (2026-11-07: «· HA40» раньше оставался в названии)
+CODE_PREFIX_RX = r'^[0-9A-Z]{4}(?:\s*[–-]\s*[0-9A-Z]{4})?(?:\s*·\s*[0-9A-Z]{4}(?:\s*[–-]\s*[0-9A-Z]{4})?)*\s+'
 CODE_RX = re.compile(r'^(.+?)\n([0-9A-Z]{4})(?:[.–-][0-9A-Z.]+)?$')
 
 
@@ -485,7 +487,7 @@ def code_title(doc, rng):
         m = bl[j]['meta']
         if m['r'] == 0 and m['c'] == 1:
             if bl[j]['style'] == 'Heading2':
-                name = re.sub(r'^[0-9A-Z]{4}(?:\s*[–-]\s*[0-9A-Z]{4})?\s+', '', plain(bl[j]))
+                name = re.sub(CODE_PREFIX_RX, '', plain(bl[j]))
             else:
                 en = plain(bl[j])
         j += 1
@@ -539,7 +541,7 @@ def build_lang(lang, only=None, stage=None, apply=False, log=print):
         elif sp['kind'] == 'chapter':
             hi = sp['h1']
             raw = plain(bl[hi])
-            title = re.sub(r'^[0-9A-Z]{4}(?:\s*[–-]\s*[0-9A-Z]{4})?\s+', '', raw)
+            title = re.sub(CODE_PREFIX_RX, '', raw)
             old_nm = old_name_from_title(s)
             nm = display_name(title, re.sub(r'\s*\(.*\)$', '', old_nm) or old_nm, lang)
             sub = []
@@ -601,9 +603,9 @@ def build_lang(lang, only=None, stage=None, apply=False, log=print):
         if stage:
             p = os.path.join(stage, lang, fname)
             os.makedirs(os.path.dirname(p), exist_ok=True)
-            open(p, 'w', encoding='utf-8', newline='').write(out)
+            open(p, 'w', encoding='utf-8', newline='').write(out.replace(chr(13)+chr(10), chr(10)))
         if apply:
-            open(path, 'w', encoding='utf-8', newline='').write(out)
+            open(path, 'w', encoding='utf-8', newline='').write(out.replace(chr(13)+chr(10), chr(10)))
     build_lang.upper = upper
     return res, names
 
@@ -636,7 +638,7 @@ def sync_names(lang, names, upper, apply=False, log=print):
         if t != o:
             changed += 1
             if apply:
-                open(f, 'w', encoding='utf-8', newline='').write(t)
+                open(f, 'w', encoding='utf-8', newline='').write(t.replace(chr(13)+chr(10), chr(10)))
     log(lang, 'синхронизация названий/автора: изменено страниц', changed)
 
 
@@ -648,6 +650,17 @@ def fix_author(s, lang):
     for old, new in OLD_AUTHOR[lang]:
         s = s.replace(old, new)
     return s
+
+
+def rebuild_menu():
+    """Боковое меню (XBT-10 = блоки МКБ-10 ВОЗ, DSM-5-TR = главы DSM) и панели mundericat строит ТОЛЬКО
+    fix-class-tree-align.py; вызывается после любой записи страниц (2026-11-07), чтобы сборка не оставляла старое меню."""
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(SITE, '_tools', 'fix-class-tree-align.py')], cwd=SITE,
+                       capture_output=True, text=True, encoding='utf-8')
+    print((r.stdout or '').strip() or (r.stderr or '').strip())
+    if r.returncode:
+        raise SystemExit('fix-class-tree-align.py: ошибка')
 
 
 def main():
@@ -664,6 +677,8 @@ def main():
         print(lang, 'страниц', len(res))
         if full and (a.apply or a.names_only):
             sync_names(lang, names, build_lang.upper, apply=True)
+    if a.apply or a.names_only:
+        rebuild_menu()
 
 
 if __name__ == '__main__':
