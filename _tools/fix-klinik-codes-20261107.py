@@ -66,6 +66,8 @@ for lang in ("", "en", "tr", "ru"):
                          lambda m: m.group(1) + "F44.8" + m.group(2) + A_ROW[lang] + m.group(3), s, L + ":A 6B64")
         for old, new in B[lang]:
             s = rule_sub(r'([>"]|— )' + re.escape(old) + r'( \||[<"]| \()', lambda m, n=new: m.group(1) + n + m.group(2), s, L + ":B " + old[:24])
+        # D. дубль скобок в h1 страниц глав: «Name (OKP) (OKP)» → «Name (OKP)»
+        s = rule_sub(r'(<h1 class="bk-chead__h1">[^<]*?)(\s\(([^()]+)\))\s\(\3\)(</h1>)', r'\1\2\4', s, L + ":D h1 dup")
         if lang == "":
             for old, new in GLOSS_AZ:
                 if old in s:
@@ -82,6 +84,7 @@ for lang in ("", "en", "tr", "ru"):
             s2 = h1.sub(fixh1, s)
             if s2 != s: bump("az:C h1 artefacts"); s = s2
             s = rule_sub(r' \(ing\. [^()]*\)(</span>)', r'\1', s, "az:C menu '(ing. …)'", flags=0) if base.startswith(("index", "6", "7", "8", "G", "H", "0", "1", "2", "mundericat")) or True else s
+            s = rule_sub(r'(<title>[^<]*?|<meta (?:property="og:title"|name="description"|property="og:description") content="[^"]*?) \(ing\. [^()]*\)', r'\1', s, "az:C title/meta '(ing. …)'")
             s = rule_sub(r'(?i)(pozuntu) \(6D71\)', r'\1', s, "az:C (6D71)")
         if s != o:
             bump("files " + (lang or "az"))

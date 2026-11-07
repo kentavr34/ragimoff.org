@@ -549,7 +549,7 @@ def build_lang(lang, only=None, stage=None, apply=False, log=print):
                 if b['kind'] == 'body' and plain(b):
                     sub.append(plain(b))
             suff = re.search(r'(\s\([^()]*\))$', old_h1(s))
-            h1 = nm + (suff.group(1) if suff else '')
+            h1 = nm + (suff.group(1) if suff and not nm.endswith(suff.group(1).strip()) else '')
             pre = re.sub(r'(<h1 class="bk-chead__h1">)(.*?)(</h1>)', lambda m: m.group(1) + esc(h1) + m.group(3), pre, count=1, flags=re.S)
             pre = re.sub(r'\s*<p class="bk-chead__en">.*?</p>', '', pre, flags=re.S)
             if sub:
@@ -595,7 +595,7 @@ def build_lang(lang, only=None, stage=None, apply=False, log=print):
                 if fname != 'kitab-haqqinda.html':
                     suff = re.search(r'(\s\([^()]*\))$', old_h1(s))
                     pre = re.sub(r'(<h1 class="bk-chead__h1">)(.*?)(</h1>)',
-                                 lambda m: m.group(1) + esc(nm + (suff.group(1) if suff else '')) + m.group(3), pre, count=1, flags=re.S)
+                                 lambda m: m.group(1) + esc(nm + (suff.group(1) if suff and not nm.endswith(suff.group(1).strip()) else '')) + m.group(3), pre, count=1, flags=re.S)
                     pre = set_title(pre, nm, lang)
                     names[fname] = nm
         out = fix_author(pre, lang) + new_body + fix_author(post, lang)
