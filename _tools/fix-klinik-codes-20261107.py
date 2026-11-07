@@ -16,7 +16,7 @@ DRY = "--dry" in sys.argv
 A_ROW = {  # язык → (новое имя в строке XBT-10 для 6B64)
     "": "Digər dissosiativ [konversion] pozuntular (çoxlu şəxsiyyət pozuntusu daxil olmaqla; F44.81 — XBT-10-un ABŞ modifikasiyasının (ICD-10-CM) və DSM-5-TR kodudur, ÜST-in XBT-10-da yoxdur)",
     "en": "Other dissociative [conversion] disorders (including multiple personality disorder; F44.81 is an ICD-10-CM / DSM-5-TR code and does not exist in WHO ICD-10)",
-    "tr": "Diğer disosiyatif [konversiyon] bozukluklar (çoklu kişilik bozukluğu dâhil; F44.81 ICD-10-CM / DSM-5-TR kodudur, DSÖ ICD-10’da yoktur)",
+    "tr": "Diğer disosiyatif [konversiyon] bozukluklar (çoklu kişilik bozukluğu dâhil; F44.81 ICD-10-CM / DSM-5-TR kodudur, DSÖ ICD-10'da yoktur)",
     "ru": "Другие диссоциативные [конверсионные] расстройства (включая расстройство множественной личности; F44.81 — код МКБ-10-CM / DSM-5-TR, в МКБ-10 ВОЗ его нет)",
 }
 B = {  # язык → [(старое, новое)]
