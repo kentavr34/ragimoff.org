@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>100 элементов · исследование · концепт RAGIMOFF</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F4EFE6">
+<link rel="icon" href="/test/images/favicon-32x32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&amp;family=Inter+Tight:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#F4EFE6;color:#141729;font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1E2A61}
+.kx{display:flex;align-items:center;gap:4px;overflow-x:auto;height:40px;padding:0 10px;background:#111215;font:500 12px/1 system-ui,sans-serif;white-space:nowrap}
+.kx a{color:#C9C5BC;text-decoration:none;padding:7px 10px;border-radius:99px}.kx a:hover{color:#fff;background:#26282E}.kx a.on{color:#111215;background:#E9E4D8}
+.kx .sep{width:1px;height:16px;background:#3A3C42;margin:0 6px;flex:0 0 1px}
+.wrap{max-width:1360px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(16px,4vw,48px) 80px}
+.k{font:500 12px/1.2 'Inter Tight',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8C5A2E}
+h1{margin:16px 0 20px;font:300 clamp(56px,9vw,136px)/.9 'Cormorant Garamond',serif;letter-spacing:-.03em}
+h1 i{color:#1E2A61}
+.lead{margin:0;max-width:760px;font-size:clamp(16px,1.5vw,19px);line-height:1.65;color:#3A3833}
+.chips{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:16px 0;margin:40px 0 24px;background:linear-gradient(#F4EFE6 80%,rgba(244,239,230,0))}
+.chip{flex:0 0 auto;height:40px;padding:0 16px;border-radius:99px;border:1px solid rgba(20,23,41,.2);background:transparent;font:500 13px 'Inter Tight',sans-serif;color:#141729;cursor:pointer;transition:all .3s}
+.chip:hover{border-color:#141729}.chip.on{background:#141729;color:#F4EFE6;border-color:#141729}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:#FBF8F2;border:1px solid rgba(20,23,41,.08);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:12px;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-4px);box-shadow:0 24px 48px -28px rgba(20,23,41,.35)}
+.card.used{background:#141729;color:#F4EFE6;border-color:#141729}
+.card.used a{color:#D9C9A3}.card.used p,.card.used .fit{color:#D2CCC0}.card.used .how{background:rgba(244,239,230,.08);color:#E5DFD3}
+.hd{display:flex;align-items:center;gap:10px;font:500 12px 'Inter Tight',sans-serif}
+.no{font:italic 400 24px/1 'Cormorant Garamond',serif;color:#8C5A2E}.used .no{color:#D9C9A3}
+.cat{letter-spacing:.08em;text-transform:uppercase;opacity:.75}
+.sc{margin-left:auto;display:flex;gap:3px}.sc i{width:7px;height:7px;border-radius:50%;border:1px solid currentColor;opacity:.5}.sc i.f{background:currentColor;opacity:1}
+h3{margin:0;font:400 28px/1.05 'Cormorant Garamond',serif}
+p{margin:0;font-size:15px;line-height:1.55;color:#3A3833}
+.how{font:400 12px/1.5 'JetBrains Mono',monospace;background:rgba(20,23,41,.05);border-radius:10px;padding:10px 12px;color:#2A2D40}
+.fit{font-size:14px;line-height:1.5;color:#3A3833}
+.ft{margin-top:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:13px;line-height:1.4;padding-top:10px;border-top:1px solid rgba(127,127,127,.25)}
+.in{font-weight:600;color:#D9C9A3}
+.card[hidden]{display:none}
+.note{margin-top:40px;font-size:14px;line-height:1.6;color:#55524C;max-width:820px}
+</style>
+</head>
+<body>
+<nav class="kx" aria-label="Варианты концепта"><a href="./">← Все варианты</a><span class="sep"></span><a href="d.html">D · Проявление</a><a href="a.html">A · Рукопись</a><a href="b.html">B · Ноктюрн</a><a href="c.html">C · Тишина</a><span class="sep"></span><a href="sto.html" class="on" aria-current="page">100 элементов</a><a href="issledovanie.html">32 приёма</a><a href="identika.html">Шрифт и иконки</a></nav>
+<main class="wrap">
+<span class="k">Исследование · ноябрь 2026</span>
+<h1>100 <i>элементов</i></h1>
+<p class="lead">Лучшие приёмы 2024–2026 годов из Awwwards Elements, примеров библиотеки Motion (motion.dev), Codrops и документации Chrome. Каждый с описанием, техникой реализации и тем, как он может служить сайту психотерапевта. Тёмные карточки — уже работают в концепте D «Проявление».</p>
+<div class="chips" role="group" aria-label="Фильтр"><button type="button" class="chip on" data-f="all">Все · 100</button>
+<button type="button" class="chip" data-f="used">Уже в концепте D · 13</button>
+<button type="button" class="chip" data-f="video-scroll">Видео по скроллу · 16</button>
+<button type="button" class="chip" data-f="hero">Первый экран · 7</button>
+<button type="button" class="chip" data-f="scroll">Скролл · 12</button>
+<button type="button" class="chip" data-f="typography">Типографика · 7</button>
+<button type="button" class="chip" data-f="cursor">Курсор · 5</button>
+<button type="button" class="chip" data-f="navigation">Навигация · 6</button>
+<button type="button" class="chip" data-f="transition">Переходы · 7</button>
+<button type="button" class="chip" data-f="gallery">Галереи · 5</button>
+<button type="button" class="chip" data-f="card">Карточки · 4</button>
+<button type="button" class="chip" data-f="form">Формы · 7</button>
+<button type="button" class="chip" data-f="micro-interaction">Микровзаимодействия · 4</button>
+<button type="button" class="chip" data-f="loader">Загрузка · 3</button>
+<button type="button" class="chip" data-f="background">Фон · 5</button>
+<button type="button" class="chip" data-f="3d-webgl">3D / WebGL · 3</button>
+<button type="button" class="chip" data-f="footer">Подвал · 4</button>
+<button type="button" class="chip" data-f="layout">Страницы · 5</button></div>
+<div class="grid" id="grid">
+<article class="card used" data-c="video-scroll" data-u="1">
+<div class="hd"><span class="no">001</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Apple-скраббинг: секвенция кадров на canvas</h3><p>Герой «застывает» на экране, а прокрутка покадрово проигрывает видео вперёд и назад, как перелистывание флипбука. Полный контроль темпа у пользователя.</p>
+<div class="how">Sticky section (~500-800vh runway) + &lt;canvas&gt;; scroll progress -&gt; frame index; preloaded WebP/AVIF frames (ffmpeg extract), DPR capped at 2, redraw only on change</div>
+<div class="fit"><b>Для сайта:</b> Кабинет «оживает» по мере прокрутки: свет, кресло, открывающаяся дверь</div>
+<div class="ft"><a href="https://css-tricks.com/?p=308477" target="_blank" rel="noopener">CSS-Tricks: Apple product page scroll animation ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">002</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Скраб настоящего видео по скроллу</h3><p>Обычный &lt;video&gt; без автоплея: скролл двигает плейхед, сцена плавно идёт вперёд/назад и останавливается вместе с пальцем.</p>
+<div class="how">Motion scroll((p)=&gt;video.currentTime = p*video.duration, {target}) ; re-encode with all-keyframes (ffmpeg -g 1), guard NaN duration until loadedmetadata, rAF-lerp for smoothing</div>
+<div class="fit"><b>Для сайта:</b> Главный герой-ролик о терапии, управляемый самим посетителем</div>
+<div class="ft"><a href="https://motion.dev/docs/scroll" target="_blank" rel="noopener">Motion docs: scroll() ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">003</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Видео внутри гигантских букв → на весь экран</h3><p>Огромное слово (например, «ДИАЛОГ») залито видео; при скролле буквы растут, пока видео не заполнит весь экран.</p>
+<div class="how">SVG &lt;mask&gt;/&lt;clipPath&gt; text or background-clip:text / mix-blend-mode:screen over &lt;video&gt;; ScrollTrigger scrub or CSS animation-timeline: scroll() scaling the mask 1→40</div>
+<div class="fit"><b>Для сайта:</b> Слово-смысл бренда раскрывается в живое видео приёма</div>
+<div class="ft"><a href="https://webflow.com/made-in-webflow/website/text-masked-video-scroll-animation" target="_blank" rel="noopener">Made in Webflow: Text Masked Video Scroll Animation ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">004</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Zoom-герой: карточка видео вырастает до фуллскрина</h3><p>В центре — небольшое окно с видео; по мере скролла оно плавно масштабируется до краёв экрана, а заголовок уезжает.</p>
+<div class="how">Motion useScroll({target, offset}) + useTransform(scale/clip-path inset) on sticky container; GPU-only transform</div>
+<div class="fit"><b>Для сайта:</b> Вход «внутрь» кабинета из маленького окна — метафора погружения</div>
+<div class="ft"><a href="https://motion.dev/examples/react-scroll-zoom-hero" target="_blank" rel="noopener">Motion example: Scroll Zoom Hero ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">005</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Hero Video Scroll Reveal (health-бренд)</h3><p>Видео в hero раскрывается из узкой маски при прокрутке, текст расходится в стороны — спокойный медицинский тон.</p>
+<div class="how">clip-path: inset() animated by scroll progress (GSAP ScrollTrigger scrub) + split headline translate</div>
+<div class="fit"><b>Для сайта:</b> Прямой аналог для медицинской/терапевтической ниши</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/video-roveia-health" target="_blank" rel="noopener">Awwwards Elements: Roveia Health ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">006</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Шоурил-плеер с SVG-маской</h3><p>Видео проявляется сквозь фигурную SVG-маску, которая морфится и расширяется до плеера по скроллу/клику.</p>
+<div class="how">SVG mask path morph (GSAP MorphSVG, now free) + scroll-linked scale; video as mask content</div>
+<div class="fit"><b>Для сайта:</b> Маска в форме логотипа/инициалов КР</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/showreel-player-logan-circle-group" target="_blank" rel="noopener">Awwwards Elements: LCG (BREACH) ↗</a></div></article>
+<article class="card used" data-c="video-scroll" data-u="1">
+<div class="hd"><span class="no">007</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Фуллскрин-видео сжимается в карточку</h3><p>Начинается с полноэкранного видео, которое при скролле аккуратно уменьшается в скруглённую карточку и «садится» в сетку контента.</p>
+<div class="how">Inverse scale + border-radius on sticky wrapper (Motion useTransform / FLIP via layout animation)</div>
+<div class="fit"><b>Для сайта:</b> Видео-приветствие доктора превращается в карточку «Записаться»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/hero-card-the-explora-journal" target="_blank" rel="noopener">Awwwards Elements: Explora Journeys — Hero Card with Video ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card used" data-c="video-scroll" data-u="1">
+<div class="hd"><span class="no">008</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Sticky-сторителлинг: главы поверх видео</h3><p>Видео/кадр закреплён, а поверх по очереди проявляются главы текста (1 — проблема, 2 — путь, 3 — результат).</p>
+<div class="how">position:sticky media + overlay chapters with Motion inView / animation-timeline: view() opacity+blur; optional currentTime sync per chapter</div>
+<div class="fit"><b>Для сайта:</b> История терапии в 4 главах без давления</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/premotio-scroll-storytelling-library-premotio" target="_blank" rel="noopener">Awwwards Elements: premotio — scroll storytelling ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">009</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Окно иллюминатора: опусти шторку — пойдёт ролик</h3><p>Hero в виде окна самолёта: пользователь опускает шторку (скролл/драг), и за ней начинается видео.</p>
+<div class="how">Scroll/drag-linked clip-path on shade layer + video play() on threshold; Motion drag + useTransform</div>
+<div class="fit"><b>Для сайта:</b> Метафора «открыться» — шторка как первый шаг в терапию</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/cabin-window-hero-lower-the-shade-to-play-the-reel-labellavista" target="_blank" rel="noopener">Awwwards Elements: La Bella Vista ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">010</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Cold open: кинематографичное вступление</h3><p>Сайт открывается как фильм: титры, затемнение, первая сцена — потом мягко передаёт управление скроллу.</p>
+<div class="how">Intro timeline (GSAP/Motion sequence) → video poster handoff → ScrollTrigger scrub</div>
+<div class="fit"><b>Для сайта:</b> Сильное первое впечатление о премиальной практике</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/cold-open-first-december-films" target="_blank" rel="noopener">Awwwards Elements: First December Films ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">011</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Закреплённое раскрытие маски (inset reveal)</h3><p>Кадры лежат стопкой; при скролле верхний «втягивается» вверх, открывая следующий — без резких склеек.</p>
+<div class="how">GSAP ScrollTrigger pin + clip-path: inset(0 0 X% 0) per layer + Lenis</div>
+<div class="fit"><b>Для сайта:</b> Смена сцен: кабинет → группа → лекторий</div>
+<div class="ft"><a href="https://freefrontend.com/code/pinned-split-screen-mask-reveal-2026-02-22/" target="_blank" rel="noopener">freefrontend: Pinned Split-Screen Mask Reveal (gridmorphic, Codrops author) ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">012</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Многослойный зум между раздвигающимся текстом</h3><p>Заголовок раскалывается, а между половинами вырастает медиа-окно с глубиной из нескольких слоёв.</p>
+<div class="how">GSAP ScrollSmoother + ScrollTrigger, layered scale with different speeds, SplitText</div>
+<div class="fit"><b>Для сайта:</b> Раскрытие «внутреннего мира» — слои психики</div>
+<div class="ft"><a href="https://tympanus.net/codrops/?p=102554" target="_blank" rel="noopener">Codrops: Layered Zoom Scroll Effect ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">013</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Видеоплеер, вырастающий из превью</h3><p>Небольшое превью при взаимодействии плавно разворачивается в полноценный плеер с собственным UI.</p>
+<div class="how">FLIP/shared layout (Motion layoutId) + custom controls; scroll-linked scale</div>
+<div class="fit"><b>Для сайта:</b> Лекции доктора Рагимова в элегантном плеере</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/video-player-animation-pda-architecture" target="_blank" rel="noopener">Awwwards Elements: PDA Architecture ↗</a></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">014</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Видео-секция, проявляющаяся на скролле</h3><p>Секция с видео выезжает и масштабируется по мере прокрутки, создавая паузу-вдох между блоками.</p>
+<div class="how">animation-timeline: view() + animation-range: entry 0% cover 50% on scale/radius</div>
+<div class="fit"><b>Для сайта:</b> Пауза-разделитель между услугами</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/section-on-scroll-polpharma-biologics" target="_blank" rel="noopener">Awwwards Elements: Polpharma Biologics ↗</a></div></article>
+<article class="card used" data-c="video-scroll" data-u="1">
+<div class="hd"><span class="no">015</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Портрет, проявляющийся по скроллу</h3><p>Портрет человека проявляется постепенно — из маски/шума — пока посетитель прокручивает.</p>
+<div class="how">Video/image portrait + scroll-linked mask or shader uniform (uProgress)</div>
+<div class="fit"><b>Для сайта:</b> Знакомство с Кенаном и Самирой Рагимовыми</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/portrait-reveal-8am-showcase-26-fall-release" target="_blank" rel="noopener">Awwwards Elements: 8am Showcase ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="video-scroll" data-u="0">
+<div class="hd"><span class="no">016</span><span class="cat">Видео по скроллу</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Видео-отзывы с синхронными субтитрами</h3><p>Видеоотзыв играет, а рядом подсвечивается текст ровно в такт речи — можно смотреть и читать.</p>
+<div class="how">&lt;track&gt; WebVTT cues → highlight words via cuechange; Motion animate on active cue</div>
+<div class="fit"><b>Для сайта:</b> Отзывы выпускников школы (с согласия)</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/reviews-you-can-watch-and-read-along-the-branx-2" target="_blank" rel="noopener">Awwwards Elements: The Branx ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">017</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>От типографики к пространству</h3><p>Крупный шрифтовой hero при скролле раскрывается в объёмное пространство — буквы становятся «комнатой».</p>
+<div class="how">CSS 3D transforms / three.js text geometry driven by scroll progress</div>
+<div class="fit"><b>Для сайта:</b> Слово «Психотерапия» превращается в пространство</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/from-type-to-space-abhay-rohit" target="_blank" rel="noopener">Awwwards Elements: Abhay Rohit ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">018</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Floating Depth — многослойная глубина</h3><p>Слои изображения слегка смещаются от курсора и скролла, создавая тихую объёмную глубину.</p>
+<div class="how">Multi-plane parallax (Motion useSpring on pointer) + depth-map shader option</div>
+<div class="fit"><b>Для сайта:</b> Спокойная глубина без «аттракциона»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/floating-depth-m-stage-group" target="_blank" rel="noopener">Awwwards Elements: M-Stage Group ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">019</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Природный спокойный hero</h3><p>Натуральная фотография, мягкий свет, медленное появление заголовка — ощущение тишины и воздуха.</p>
+<div class="how">Ken Burns slow scale (CSS @keyframes 20s) + staggered text reveal</div>
+<div class="fit"><b>Для сайта:</b> Атмосфера безопасности и покоя</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/hero-home-agrumea-farm" target="_blank" rel="noopener">Awwwards Elements: Agrumea Farm ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">020</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Ткань, накрывающая скульптуру</h3><p>На скульптуру наброшена симулированная ткань, которая колышется и снимается от движения/скролла.</p>
+<div class="how">three.js cloth simulation (Verlet) or pre-rendered sequence; scroll-linked unveil</div>
+<div class="fit"><b>Для сайта:</b> Метафора психоанализа — снятие покрова</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/a-cloth-over-david-paligan" target="_blank" rel="noopener">Awwwards Elements: Paligan ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">021</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Hero-анимация «Прощение»</h3><p>Мягкая иллюстративная анимация вокруг темы прощения: плавные линии, тёплые оттенки.</p>
+<div class="how">Lottie/SVG line animation (stroke-dashoffset) + scroll reveal</div>
+<div class="fit"><b>Для сайта:</b> Тематическая близость: вина, прощение (книга «Вирус вины»)</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/homepage-hero-animation-discover-forgiveness" target="_blank" rel="noopener">Awwwards Elements: Discover Forgiveness ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">022</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Интро-анимация главной</h3><p>Элементы главной собираются на глазах: фото, заголовок и навигация входят каскадом.</p>
+<div class="how">Motion stagger() sequence on load, clip-path reveals</div>
+<div class="fit"><b>Для сайта:</b> Сдержанное премиальное появление</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/homepage-intro-animation-peabody-house" target="_blank" rel="noopener">Awwwards Elements: Peabody House ↗</a></div></article>
+<article class="card" data-c="hero" data-u="0">
+<div class="hd"><span class="no">023</span><span class="cat">Первый экран</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Альпийский кино-hero</h3><p>Широкий кинематографичный пейзаж-видео с крупной засечковой типографикой поверх.</p>
+<div class="how">Background &lt;video&gt; + letterbox crop + mix-blend-mode text</div>
+<div class="fit"><b>Для сайта:</b> Горы/море Баку как образ устойчивости</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/alpine-film-hero-spectup" target="_blank" rel="noopener">Awwwards Elements: Spectup ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">024</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Стопка карточек на скролле</h3><p>Карточки одна за другой «ложатся» сверху, предыдущие слегка уменьшаются и темнеют.</p>
+<div class="how">position:sticky stacked cards + scale by scroll (Motion useTransform / view() timeline)</div>
+<div class="fit"><b>Для сайта:</b> Направления: индивидуальная, семейная, групповая</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/stacking-cards-logan-circle-group" target="_blank" rel="noopener">Awwwards Elements: LCG — Stacking Cards ↗</a></div></article>
+<article class="card used" data-c="scroll" data-u="1">
+<div class="hd"><span class="no">025</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Горизонтальная галерея на вертикальном скролле</h3><p>Секция закрепляется, и вертикальный скролл двигает ленту по горизонтали.</p>
+<div class="how">Sticky container + Motion useScroll → translateX</div>
+<div class="fit"><b>Для сайта:</b> Лента тренингов и семинаров</div>
+<div class="ft"><a href="https://motion.dev/examples/react-scroll-horizontal" target="_blank" rel="noopener">Motion example: Scroll Horizontal Gallery ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">026</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Подсветка строк текста по скроллу</h3><p>Абзац сначала приглушён; строки по очереди «загораются» по мере чтения.</p>
+<div class="how">Split into lines + Motion scroll() opacity per line</div>
+<div class="fit"><b>Для сайта:</b> Цитата-манифест доктора</div>
+<div class="ft"><a href="https://motion.dev/examples/react-scroll-text-lines" target="_blank" rel="noopener">Motion example: Scroll Text Lines ↗</a></div></article>
+<article class="card used" data-c="scroll" data-u="1">
+<div class="hd"><span class="no">027</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Пословное проявление текста</h3><p>Слова манифеста проявляются одно за другим в ритме чтения.</p>
+<div class="how">Split words + useScroll progress mapped per word opacity</div>
+<div class="fit"><b>Для сайта:</b> «Я помогаю вам услышать себя…»</div>
+<div class="ft"><a href="https://motion.dev/examples/react-text-scroll-word-reveal" target="_blank" rel="noopener">Motion example: Scroll word reveal ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">028</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Раскрытие изображения на скролле</h3><p>Фото «раскрывается» из шторки-маски при появлении во вьюпорте.</p>
+<div class="how">clip-path inset + scroll-linked progress</div>
+<div class="fit"><b>Для сайта:</b> Фото кабинета и семинаров</div>
+<div class="ft"><a href="https://motion.dev/examples/react-scroll-image-reveal" target="_blank" rel="noopener">Motion example: Scroll Image Reveal ↗</a></div></article>
+<article class="card used" data-c="scroll" data-u="1">
+<div class="hd"><span class="no">029</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Плавный скролл Lenis</h3><p>Инерционная, «шёлковая» прокрутка, которая делает весь сайт дороже на ощупь.</p>
+<div class="how">Lenis + Motion frame loop sync</div>
+<div class="fit"><b>Для сайта:</b> Базовая плавность всего сайта</div>
+<div class="ft"><a href="https://motion.dev/examples/js-lenis-smooth-scroll" target="_blank" rel="noopener">Motion example: Lenis smooth scroll ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">030</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>История-таймлайн на скролле</h3><p>Хроника лет разворачивается при прокрутке: годы, фото, события — как семейный альбом.</p>
+<div class="how">Sticky year counter + view()-driven entries</div>
+<div class="fit"><b>Для сайта:</b> Биография и путь школы с годами</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/the-vineyard-hotel-s-story-the-vineyard-hotel" target="_blank" rel="noopener">Awwwards Elements: The Vineyard Hotel&#x27;s Story ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">031</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Скролл-интерактив главной (отель)</h3><p>Сдержанная премиальная главная, где секции мягко перетекают друг в друга по скроллу.</p>
+<div class="how">ScrollTrigger crossfades, image scale, serif typography</div>
+<div class="fit"><b>Для сайта:</b> Эталон спокойной «гостеприимной» подачи</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/scroll-animation-interaction-homepage-the-vineyard-hotel" target="_blank" rel="noopener">Awwwards Elements: The Vineyard Hotel ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">032</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Один день — одна длинная прокрутка</h3><p>Сайт рассказывает «день из жизни» как непрерывный скролл от утра к ночи, меняя свет и цвет.</p>
+<div class="how">Scroll-linked CSS custom properties (color/time of day) + sticky scenes</div>
+<div class="fit"><b>Для сайта:</b> Путь клиента: от первого звонка до результата</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/a-day-in-the-life-told-as-one-long-scroll-mind-of-akira" target="_blank" rel="noopener">Awwwards Elements: Mind of Akira ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">033</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Войти через дверь (scroll-through threshold)</h3><p>Скролл буквально проводит через дверь в следующее пространство.</p>
+<div class="how">Scroll-driven scale of door aperture (clip-path) + perspective</div>
+<div class="fit"><b>Для сайта:</b> Порог кабинета — «добро пожаловать»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/scroll-in-through-the-door-its-tomo" target="_blank" rel="noopener">Awwwards Elements: its-tomo ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">034</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Программа по дням</h3><p>Расписание мероприятия по дням с липкими табами и мягкими переходами между днями.</p>
+<div class="how">Sticky day tabs + scroll-spy (IntersectionObserver) + layout animation</div>
+<div class="fit"><b>Для сайта:</b> Программа тренинга / интенсива</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/day-by-day-programme-route-du-rhum-2026" target="_blank" rel="noopener">Awwwards Elements: Route du Rhum 2026 ↗</a></div></article>
+<article class="card" data-c="scroll" data-u="0">
+<div class="hd"><span class="no">035</span><span class="cat">Скролл</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>CSS view()-появления без JS</h3><p>Блоки появляются и исчезают при входе/выходе из экрана, работая плавно даже на слабых телефонах.</p>
+<div class="how">animation-timeline: view(); animation-range: entry/exit (Chrome 115+, Safari 26)</div>
+<div class="fit"><b>Для сайта:</b> Лёгкая анимация для мобильной аудитории</div>
+<div class="ft"><a href="https://ics.media/en/entry/230718/" target="_blank" rel="noopener">ICS MEDIA: CSS Scroll-driven Animations ↗</a></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">036</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Split-text появление заголовков</h3><p>Буквы/слова заголовка поднимаются из-под линии с лёгким каскадом.</p>
+<div class="how">Motion splitText() + animate with stagger(0.03) y:100%→0, overflow:hidden lines</div>
+<div class="fit"><b>Для сайта:</b> Все заголовки разделов</div>
+<div class="ft"><a href="https://motion.dev/examples/js-split-text" target="_blank" rel="noopener">Motion example: Split text ↗</a></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">037</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Text reveal эффект</h3><p>Текст проявляется маской слева направо, как будто его пишут светом.</p>
+<div class="how">clip-path / gradient mask animate + inView</div>
+<div class="fit"><b>Для сайта:</b> Цитаты из книг</div>
+<div class="ft"><a href="https://motion.dev/examples/js-text-reveal" target="_blank" rel="noopener">Motion example: Reveal text effect ↗</a></div></article>
+<article class="card used" data-c="typography" data-u="1">
+<div class="hd"><span class="no">038</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Размытое появление типографики на скролле</h3><p>Слова выходят из размытия в резкость по мере прокрутки — как фокусировка взгляда.</p>
+<div class="how">filter: blur() + opacity per word, scroll-linked (GSAP ScrollTrigger)</div>
+<div class="fit"><b>Для сайта:</b> Метафора «прояснения» в терапии</div>
+<div class="ft"><a href="https://www.github.com/codrops/ScrollBlurTypography" target="_blank" rel="noopener">Codrops GitHub: ScrollBlurTypography ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">039</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Расширение изображения из типографики</h3><p>Внутри строки текста маленькое фото, которое при скролле разрастается и раздвигает слова.</p>
+<div class="how">Inline image span + scroll-linked width/scale (GSAP Flip/ScrollTrigger)</div>
+<div class="fit"><b>Для сайта:</b> Фото в фразе «Семья — это ▢ система»</div>
+<div class="ft"><a href="https://www.github.com/codrops/ImageExpansionTypography" target="_blank" rel="noopener">Codrops GitHub: ImageExpansionTypography ↗</a></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">040</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Текстовый переход между состояниями</h3><p>Заголовок плавно перетекает из одного слова в другое при смене раздела.</p>
+<div class="how">Char-level crossfade/morph with stagger, scroll or route triggered</div>
+<div class="fit"><b>Для сайта:</b> Тревога → Спокойствие; Вина → Свобода</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/text-transition-ultra-red" target="_blank" rel="noopener">Awwwards Elements: Ultra Red — Text Transition ↗</a></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">041</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>SplitText + бесплатные плагины GSAP</h3><p>Набор живых текстовых демо (SplitText, MorphSVG) — после того как GSAP стал полностью бесплатным.</p>
+<div class="how">GSAP 3.13 SplitText (masking, autoSplit), MorphSVG</div>
+<div class="fit"><b>Для сайта:</b> Технологическая база для всей типографики</div>
+<div class="ft"><a href="https://tympanus.net/codrops/2025/05/14/from-splittext-to-morphsvg-5-creative-demos-using-free-gsap-plugins/" target="_blank" rel="noopener">Codrops: From SplitText to MorphSVG ↗</a></div></article>
+<article class="card" data-c="typography" data-u="0">
+<div class="hd"><span class="no">042</span><span class="cat">Типографика</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Вариативный шрифт, «дышащий» по скроллу</h3><p>Насыщенность и ширина шрифта меняются плавно — заголовок как будто вдыхает.</p>
+<div class="how">Variable font font-variation-settings (&#x27;wght&#x27;,&#x27;opsz&#x27;) bound to scroll/hover via CSS custom props</div>
+<div class="fit"><b>Для сайта:</b> Элегантная засечка с оптическим размером</div>
+<div class="ft"><span>General technique (variable fonts)</span></div></article>
+<article class="card used" data-c="cursor" data-u="1">
+<div class="hd"><span class="no">043</span><span class="cat">Курсор</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Магнитный курсор</h3><p>Курсор притягивается к кнопкам, а кнопка слегка тянется навстречу.</p>
+<div class="how">Motion spring on pointer delta within target bounds</div>
+<div class="fit"><b>Для сайта:</b> CTA «Записаться на консультацию»</div>
+<div class="ft"><a href="https://motion.dev/examples/react-cursor-magnetic" target="_blank" rel="noopener">Motion example: Cursor — Magnetic target ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="cursor" data-u="0">
+<div class="hd"><span class="no">044</span><span class="cat">Курсор</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Курсор, обволакивающий цель</h3><p>Круглый курсор при наведении превращается в рамку вокруг ссылки.</p>
+<div class="how">Motion Cursor component, morph to target bounds</div>
+<div class="fit"><b>Для сайта:</b> Навигация и ссылки</div>
+<div class="ft"><a href="https://motion.dev/examples/react-cursor-floating-target" target="_blank" rel="noopener">Motion example: Cursor — Floating target ↗</a></div></article>
+<article class="card" data-c="cursor" data-u="0">
+<div class="hd"><span class="no">045</span><span class="cat">Курсор</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Превью изображения за курсором</h3><p>При наведении на пункт списка рядом с курсором появляется фото, мягко следуя за ним.</p>
+<div class="how">Pointer-follow with spring + image swap on hover</div>
+<div class="fit"><b>Для сайта:</b> Список тренингов с фото</div>
+<div class="ft"><a href="https://motion.dev/examples/react-cursor-hover-follow" target="_blank" rel="noopener">Motion example: Cursor — Image hover ↗</a></div></article>
+<article class="card" data-c="cursor" data-u="0">
+<div class="hd"><span class="no">046</span><span class="cat">Курсор</span><span class="sc" aria-label="Оценка 3 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i></span></div>
+<h3>Флюидный след курсора</h3><p>За курсором тянется мягкий жидкий шлейф, как акварель в воде.</p>
+<div class="how">WebGL fluid simulation (navier-stokes) at low intensity</div>
+<div class="fit"><b>Для сайта:</b> Акварельная мягкость — только на hero</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/fluid-cursor-trail-submission-6ad6c0ea761a0046241231" target="_blank" rel="noopener">Awwwards Elements: King River — Fluid Cursor Trail ↗</a></div></article>
+<article class="card" data-c="cursor" data-u="0">
+<div class="hd"><span class="no">047</span><span class="cat">Курсор</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Морфинг-маска с параллаксом от мыши</h3><p>Фото в маске меняет форму и чуть смещается за курсором на странице контактов.</p>
+<div class="how">SVG/CSS mask morph + pointer parallax</div>
+<div class="fit"><b>Для сайта:</b> Страница контактов</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/contact-morphing-mask-parallax-mouse-effect-logan-circle-group" target="_blank" rel="noopener">Awwwards Elements: LCG — Contact Morphing Mask ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">048</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Underlay-меню (страница отъезжает)</h3><p>При открытии меню сама страница сдвигается/уменьшается, открывая меню под ней.</p>
+<div class="how">Page wrapper transform scale/translate + menu beneath; Motion AnimatePresence</div>
+<div class="fit"><b>Для сайта:</b> Ощущение «приоткрытой двери»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/underlay-menu-first-december-films" target="_blank" rel="noopener">Awwwards Elements: First December Films — Underlay menu ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">049</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Нумерованное редакционное меню</h3><p>Симметричное меню с номерами разделов и активным состоянием, на мобиле — полноэкранное.</p>
+<div class="how">Fullscreen overlay, numbered list, active section indicator</div>
+<div class="fit"><b>Для сайта:</b> 01 Терапия 02 Школа 03 Книги 04 Контакты</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/full-screen-mobile-menu-christen-dijoux-portfolio" target="_blank" rel="noopener">Awwwards Elements: Christen Dijoux ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">050</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Меню с превью страниц</h3><p>При наведении на пункт меню показывается миниатюра страницы.</p>
+<div class="how">Hover-swapped preview images with crossfade</div>
+<div class="fit"><b>Для сайта:</b> Превью разделов «Школа», «Консультации»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/menu-with-page-previews-and-a-1984-desktop-webdrift" target="_blank" rel="noopener">Awwwards Elements: Webdrift ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">051</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Меню с живым переключением языка</h3><p>Язык сайта меняется на лету прямо из меню, без перезагрузки — текст перетекает.</p>
+<div class="how">i18n state + text crossfade/scramble, View Transitions</div>
+<div class="fit"><b>Для сайта:</b> RU / AZ / EN для Баку</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/menu-and-live-language-switch-anthracite-studio" target="_blank" rel="noopener">Awwwards Elements: Anthracite Studio ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">052</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Меню «за страницей»</h3><p>Страница приподнимается как лист бумаги, а меню видно за ней.</p>
+<div class="how">3D rotateX of page + menu layer behind</div>
+<div class="fit"><b>Для сайта:</b> Книжная, «бумажная» эстетика</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/behind-the-page-menu-marco-madonna-portfolio" target="_blank" rel="noopener">Awwwards Elements: Marco Madonna ↗</a></div></article>
+<article class="card" data-c="navigation" data-u="0">
+<div class="hd"><span class="no">053</span><span class="cat">Навигация</span><span class="sc" aria-label="Оценка 3 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i></span></div>
+<h3>Командная палитра ⌘K / поиск</h3><p>Быстрый поиск по сайту в модальной палитре: статьи, курсы, темы.</p>
+<div class="how">cmdk-style dialog, fuzzy search, keyboard nav</div>
+<div class="fit"><b>Для сайта:</b> Поиск по статьям и темам («тревога», «пары»)</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/k-studio-search-meets-the-floppy-disk-garcy-studio" target="_blank" rel="noopener">Awwwards Elements: Garcy Studio — ⌘K ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">054</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Кросс-документные View Transitions</h3><p>Переходы между страницами плавные, как в приложении, без SPA: фото морфится из списка в страницу.</p>
+<div class="how">@view-transition { navigation: auto } + view-transition-name; pageswap/pagereveal (Chrome 126+, Safari 18.2+)</div>
+<div class="fit"><b>Для сайта:</b> Карточка курса → страница курса</div>
+<div class="ft"><a href="https://developer.chrome.com/docs/web-platform/view-transitions/cross-document" target="_blank" rel="noopener">Chrome for Developers: Cross-document view transitions ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">055</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>View-переход через clip-path</h3><p>Новый экран открывается расширяющимся кругом/шторкой из точки клика.</p>
+<div class="how">Motion animateView() + clip-path circle()</div>
+<div class="fit"><b>Для сайта:</b> Переход в форму записи</div>
+<div class="ft"><a href="https://motion.dev/examples/react-animate-view-clip-path" target="_blank" rel="noopener">Motion example: AnimateView — Clip path ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">056</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Модалка через shared layout</h3><p>Карточка разворачивается в модальное окно, сохраняя непрерывность формы.</p>
+<div class="how">Motion layoutId shared element + AnimatePresence</div>
+<div class="fit"><b>Для сайта:</b> Подробности о специалисте</div>
+<div class="ft"><a href="https://motion.dev/examples/react-modal-shared-layout" target="_blank" rel="noopener">Motion example: Modal — Shared layout ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">057</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Карточка в стиле App Store</h3><p>Карточка статьи расширяется на весь экран и становится полноценной статьёй.</p>
+<div class="how">Motion layout animation (FLIP) with border-radius scale correction</div>
+<div class="fit"><b>Для сайта:</b> Блог / статьи</div>
+<div class="ft"><a href="https://motion.dev/examples/js-app-store-layout" target="_blank" rel="noopener">Motion example: iOS App Store layout ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">058</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Одна ткань через все страницы</h3><p>Сквозной визуальный мотив (ткань) переходит со страницы на страницу, связывая сайт.</p>
+<div class="how">Persistent WebGL canvas across routes + state handoff</div>
+<div class="fit"><b>Для сайта:</b> Сквозной мотив бренда</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/one-cloth-across-every-page-paligan" target="_blank" rel="noopener">Awwwards Elements: Paligan ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">059</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Превью работы морфится в кейс</h3><p>Миниатюра из списка плавно превращается в hero следующей страницы.</p>
+<div class="how">Shared element transition (FLIP / view-transition-name)</div>
+<div class="fit"><b>Для сайта:</b> Программа → страница программы</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/work-morphs-into-the-case-study-submission-6ad0f7114e0b0387725049" target="_blank" rel="noopener">Awwwards Elements: Patrick Gibbs ↗</a></div></article>
+<article class="card" data-c="transition" data-u="0">
+<div class="hd"><span class="no">060</span><span class="cat">Переходы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Галерея → слайдер (Flip)</h3><p>Сетка фото плавно перестраивается в полноэкранный слайдер.</p>
+<div class="how">GSAP Flip / Motion layout</div>
+<div class="fit"><b>Для сайта:</b> Фотоархив семинаров</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/gallery-to-slider-flip-animation-ruben-walma" target="_blank" rel="noopener">Awwwards Elements: Ruben Walma ↗</a></div></article>
+<article class="card" data-c="gallery" data-u="0">
+<div class="hd"><span class="no">061</span><span class="cat">Галереи</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Карусель с параллаксом внутри слайда</h3><p>При листании изображение внутри карточки смещается медленнее рамки.</p>
+<div class="how">Offset-linked x of inner image</div>
+<div class="fit"><b>Для сайта:</b> Отзывы / фото</div>
+<div class="ft"><a href="https://motion.dev/examples/react-carousel-parallax" target="_blank" rel="noopener">Motion example: Carousel — Parallax ↗</a></div></article>
+<article class="card used" data-c="gallery" data-u="1">
+<div class="hd"><span class="no">062</span><span class="cat">Галереи</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Бегущая строка, реагирующая на скролл</h3><p>Маркиза тем или логотипов ускоряется и меняет направление от скорости прокрутки.</p>
+<div class="how">Motion Ticker + scroll velocity</div>
+<div class="fit"><b>Для сайта:</b> Лента: «тревога · отношения · утрата · вина»</div>
+<div class="ft"><a href="https://motion.dev/examples/react-ticker-scroll" target="_blank" rel="noopener">Motion example: Ticker — Scroll ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="gallery" data-u="0">
+<div class="hd"><span class="no">063</span><span class="cat">Галереи</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Индекс со превью под курсором</h3><p>Текстовый список работ; при наведении всплывает изображение.</p>
+<div class="how">List + cursor-follow image preview</div>
+<div class="fit"><b>Для сайта:</b> Каталог курсов школы</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/index-with-cursor-preview-chris-williams-art-gallery" target="_blank" rel="noopener">Awwwards Elements: Chris Williams Art ↗</a></div></article>
+<article class="card" data-c="gallery" data-u="0">
+<div class="hd"><span class="no">064</span><span class="cat">Галереи</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Витрина-галерея (скевоморфизм)</h3><p>Фото выставлены как в стеклянной витрине музея, с бликами и тенями.</p>
+<div class="how">CSS layered shadows/reflection + subtle tilt</div>
+<div class="fit"><b>Для сайта:</b> Дипломы и сертификаты как музейные экспонаты</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/vitrine-inspired-photo-gallery-alex-avery-beige-artist" target="_blank" rel="noopener">Awwwards Elements: Beige ↗</a></div></article>
+<article class="card" data-c="gallery" data-u="0">
+<div class="hd"><span class="no">065</span><span class="cat">Галереи</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Таймлайн-вид работ</h3><p>Проекты разложены по горизонтальной шкале времени.</p>
+<div class="how">Horizontal timeline with scroll/drag</div>
+<div class="fit"><b>Для сайта:</b> Хронология выпусков школы</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/timeline-view-gianpaolo-tucci" target="_blank" rel="noopener">Awwwards Elements: Gianpaolo Tucci ↗</a></div></article>
+<article class="card" data-c="card" data-u="0">
+<div class="hd"><span class="no">066</span><span class="cat">Карточки</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Карточки программы (agenda)</h3><p>Аккуратные карточки событий с датами и мягким hover-подъёмом.</p>
+<div class="how">CSS grid cards + Motion whileHover</div>
+<div class="fit"><b>Для сайта:</b> Ближайшие тренинги</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/agenda-cards-fwrd-2026" target="_blank" rel="noopener">Awwwards Elements: FWRD 2026 — Agenda Cards ↗</a></div></article>
+<article class="card" data-c="card" data-u="0">
+<div class="hd"><span class="no">067</span><span class="cat">Карточки</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Карточки-«посадочные талоны»</h3><p>Карточки преподавателей/курсов в виде билетов с перфорацией.</p>
+<div class="how">CSS mask perforation + flip/hover</div>
+<div class="fit"><b>Для сайта:</b> Билет на обучение в школе</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/boarding-pass-tutor-cards-common-language-1" target="_blank" rel="noopener">Awwwards Elements: Common Language — Boarding pass tutor cards ↗</a></div></article>
+<article class="card" data-c="card" data-u="0">
+<div class="hd"><span class="no">068</span><span class="cat">Карточки</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Кинематографичные видео-карточки</h3><p>Карточка оживает коротким видео при наведении.</p>
+<div class="how">Hover play() muted loop + poster crossfade</div>
+<div class="fit"><b>Для сайта:</b> Карточки направлений терапии</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/cinematic-product-cards-huxley-saga" target="_blank" rel="noopener">Awwwards Elements: Huxley Saga (Studio Freight) ↗</a></div></article>
+<article class="card" data-c="card" data-u="0">
+<div class="hd"><span class="no">069</span><span class="cat">Карточки</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Карточки «Почему сейчас»</h3><p>Аргументы в карточках, раскрывающихся по очереди.</p>
+<div class="how">Accordion/expand cards with layout animation</div>
+<div class="fit"><b>Для сайта:</b> «Почему стоит начать терапию сейчас»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/why-now-cards-continuance-1" target="_blank" rel="noopener">Awwwards Elements: Continuance — Why Now Cards ↗</a></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">070</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Пошаговая форма-конфигуратор</h3><p>Запись разбита на короткие шаги с прогрессом — не пугает длиной.</p>
+<div class="how">Multi-step state machine + Motion AnimatePresence slide/fade, progress bar</div>
+<div class="fit"><b>Для сайта:</b> Форма регистрации на курс / консультацию</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/step-by-step-project-configurator-web-smith-digital-agency" target="_blank" rel="noopener">Awwwards Elements: Web Smith — Step-by-step configurator ↗</a></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">071</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Мульти-шаговая проверка</h3><p>Опрос из нескольких вопросов с вариантами-карточками и итогом.</p>
+<div class="how">Card-choice inputs, step transitions, summary screen</div>
+<div class="fit"><b>Для сайта:</b> Мягкий подбор: какой формат вам подходит</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/potential-check-multi-step-form-eezy-inn" target="_blank" rel="noopener">Awwwards Elements: eezy inn — Potential Check ↗</a></div></article>
+<article class="card used" data-c="form" data-u="1">
+<div class="hd"><span class="no">072</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Форма «Расскажите свою историю»</h3><p>Бережная форма для чувствительного рассказа: спокойный тон, приватность, подсказки.</p>
+<div class="how">Accessible long-form textarea, autosave draft, reassuring microcopy</div>
+<div class="fit"><b>Для сайта:</b> Первое обращение к терапевту</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/tell-your-story-cobalt-abortion-fund" target="_blank" rel="noopener">Awwwards Elements: Cobalt — Tell Your Story ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">073</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Контакт-флоу</h3><p>Контакт как диалог: вопросы по одному, ответы складываются в чат.</p>
+<div class="how">Conversational form UI, step-by-step reveals</div>
+<div class="fit"><b>Для сайта:</b> Запись в формате бережного диалога</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/contact-flow-vploss" target="_blank" rel="noopener">Awwwards Elements: VPLOSS — Contact Flow ↗</a></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">074</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Форма в модальном окне</h3><p>Контакт открывается в изящной модалке поверх страницы, не уводя пользователя.</p>
+<div class="how">&lt;dialog&gt; + Motion scale/opacity, focus trap</div>
+<div class="fit"><b>Для сайта:</b> Быстрая запись с любой страницы</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/contact-form-in-modal-kota-studio" target="_blank" rel="noopener">Awwwards Elements: KOTA — Contact Form in Modal ↗</a></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">075</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 3 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i></span></div>
+<h3>Счётчик оставшихся символов</h3><p>Ненавязчивый индикатор длины сообщения, меняющий цвет у лимита.</p>
+<div class="how">Motion animate number/color on input</div>
+<div class="fit"><b>Для сайта:</b> Поле «Опишите запрос»</div>
+<div class="ft"><a href="https://motion.dev/examples/js-characters-remaining" target="_blank" rel="noopener">Motion example: Characters remaining ↗</a></div></article>
+<article class="card" data-c="micro-interaction" data-u="0">
+<div class="hd"><span class="no">076</span><span class="cat">Микровзаимодействия</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Удерживай, чтобы снять печать</h3><p>Действие подтверждается удержанием кнопки: заполняется кольцо, печать «ломается».</p>
+<div class="how">Pointer hold timer + SVG stroke progress + haptic (navigator.vibrate)</div>
+<div class="fit"><b>Для сайта:</b> Символ конфиденциальности при отправке заявки</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/hold-to-break-the-seal-spectup" target="_blank" rel="noopener">Awwwards Elements: Spectup — Hold to Break the Seal ↗</a></div></article>
+<article class="card" data-c="form" data-u="0">
+<div class="hd"><span class="no">077</span><span class="cat">Формы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Двухпанельная форма над тёмным футером</h3><p>Форма разделена на «о вас» и «запрос», лежит на контрастном футере.</p>
+<div class="how">Two-column grid form, floating labels</div>
+<div class="fit"><b>Для сайта:</b> Финальный блок записи</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/two-panel-contact-form-over-a-dark-footer-bd-emerson" target="_blank" rel="noopener">Awwwards Elements: BD Emerson ↗</a></div></article>
+<article class="card" data-c="loader" data-u="0">
+<div class="hd"><span class="no">078</span><span class="cat">Загрузка</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Интро «сердцебиение»</h3><p>Загрузка в ритме пульса: мягкая пульсирующая линия/форма.</p>
+<div class="how">SVG path stroke animation + scale keyframes</div>
+<div class="fit"><b>Для сайта:</b> Дыхание/пульс — успокаивающий ритм</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/heartbeat-intro-alexandra-capitanescu" target="_blank" rel="noopener">Awwwards Elements: Alexandra Capitanescu — Heartbeat intro ↗</a></div></article>
+<article class="card" data-c="loader" data-u="0">
+<div class="hd"><span class="no">079</span><span class="cat">Загрузка</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Интро: набранное приветствие и рукописная подпись</h3><p>Появляется «Здравствуйте», затем от руки дорисовывается подпись.</p>
+<div class="how">Typewriter + SVG signature stroke-dashoffset</div>
+<div class="fit"><b>Для сайта:</b> Подпись доктора Рагимова как знак личного присутствия</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/intro-typed-hello-and-hand-drawn-j-josue-pichot" target="_blank" rel="noopener">Awwwards Elements: Josué Pichot ↗</a></div></article>
+<article class="card" data-c="loader" data-u="0">
+<div class="hd"><span class="no">080</span><span class="cat">Загрузка</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Тихий минималистичный лоадер</h3><p>Короткий, почти беззвучный прелоадер с цифрой и линией.</p>
+<div class="how">Counter + scaleX line, exits with clip reveal</div>
+<div class="fit"><b>Для сайта:</b> Спокойствие с первой секунды</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/loader-still-form" target="_blank" rel="noopener">Awwwards Elements: Still Form — Loader ↗</a></div></article>
+<article class="card" data-c="background" data-u="0">
+<div class="hd"><span class="no">081</span><span class="cat">Фон</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Шейдерный градиент, отвечающий мыши</h3><p>Фон — медленно текущий градиент, который чуть реагирует на курсор.</p>
+<div class="how">WebGL fragment shader (noise-based mesh gradient), pointer uniform</div>
+<div class="fit"><b>Для сайта:</b> Тёплый «живой» фон hero в палитре бренда</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/shaders-animation-with-mouse-interaction-ethiack" target="_blank" rel="noopener">Awwwards Elements: Ethiack — Shaders animation ↗</a></div></article>
+<article class="card" data-c="background" data-u="0">
+<div class="hd"><span class="no">082</span><span class="cat">Фон</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Флюидное движение фона</h3><p>Жидкие органические формы медленно перетекают на фоне.</p>
+<div class="how">WebGL fluid / metaball shader</div>
+<div class="fit"><b>Для сайта:</b> Метафора эмоций — без резкости</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/fluid-motion-m-stage-group" target="_blank" rel="noopener">Awwwards Elements: M-Stage Group — Fluid Motion ↗</a></div></article>
+<article class="card" data-c="background" data-u="0">
+<div class="hd"><span class="no">083</span><span class="cat">Фон</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Световой блик (light leak)</h3><p>Кинематографичные блики плёнки мягко пробегают по кадру.</p>
+<div class="how">Additive-blend video/gradient overlay, mix-blend-mode: screen</div>
+<div class="fit"><b>Для сайта:</b> Тёплый свет на фото кабинета</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/light-leak-first-december-films" target="_blank" rel="noopener">Awwwards Elements: First December Films — Light leak ↗</a></div></article>
+<article class="card" data-c="background" data-u="0">
+<div class="hd"><span class="no">084</span><span class="cat">Фон</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Ботанический линейный рисунок в шапке</h3><p>Тонкая линия папоротника прорисовывается в шапке страницы услуги.</p>
+<div class="how">SVG line art stroke draw-on</div>
+<div class="fit"><b>Для сайта:</b> Рост, природа, бережность</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/service-page-header-with-fern-line-art-memedia-web-experts" target="_blank" rel="noopener">Awwwards Elements: memedia — fern line art ↗</a></div></article>
+<article class="card" data-c="background" data-u="0">
+<div class="hd"><span class="no">085</span><span class="cat">Фон</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Зерно/шум плёнки поверх</h3><p>Едва заметный шум делает цифровые цвета тёплыми и «бумажными».</p>
+<div class="how">SVG feTurbulence or tiled noise PNG, animated steps, pointer-events:none</div>
+<div class="fit"><b>Для сайта:</b> Премиальная «аналоговая» фактура</div>
+<div class="ft"><span>General technique</span></div></article>
+<article class="card" data-c="3d-webgl" data-u="0">
+<div class="hd"><span class="no">086</span><span class="cat">3D / WebGL</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>WebGL-раскрытия и размытие на GSAP</h3><p>Фото проявляются через шейдерную рябь и размытие, реагирующее на скролл.</p>
+<div class="how">GLSL shaders, uniforms animated by GSAP timelines/ScrollTrigger</div>
+<div class="fit"><b>Для сайта:</b> Проявление фото «из тумана»</div>
+<div class="ft"><a href="https://tympanus.net/codrops/?p=102374" target="_blank" rel="noopener">Codrops: How to Animate WebGL Shaders with GSAP ↗</a></div></article>
+<article class="card" data-c="3d-webgl" data-u="0">
+<div class="hd"><span class="no">087</span><span class="cat">3D / WebGL</span><span class="sc" aria-label="Оценка 3 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i></span></div>
+<h3>Бумажные карточки WebGL</h3><p>Карточки изгибаются как бумага при движении мыши.</p>
+<div class="how">Plane geometry vertex bend shader + pointer</div>
+<div class="fit"><b>Для сайта:</b> Страницы книги</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/premotion-webgl-paper-cards-mouse-interaction-premotio" target="_blank" rel="noopener">Awwwards Elements: premotio — WebGL paper cards ↗</a></div></article>
+<article class="card" data-c="3d-webgl" data-u="0">
+<div class="hd"><span class="no">088</span><span class="cat">3D / WebGL</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Раздвинь песчинки</h3><p>Курсор раздвигает частицы песка, оставляя след.</p>
+<div class="how">GPU particles with pointer repulsion</div>
+<div class="fit"><b>Для сайта:</b> Медитативная интерактивность (песочная терапия)</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/part-the-grains-serhii-lastovychenko-portfolio" target="_blank" rel="noopener">Awwwards Elements: Serhii Lastovychenko — Part the grains ↗</a></div></article>
+<article class="card" data-c="micro-interaction" data-u="0">
+<div class="hd"><span class="no">089</span><span class="cat">Микровзаимодействия</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Кнопка с «перекатом» текста</h3><p>При наведении надпись на кнопке прокатывается вверх, сменяясь копией.</p>
+<div class="how">Duplicate text + translateY stagger per char</div>
+<div class="fit"><b>Для сайта:</b> Кнопки «Записаться», «Подробнее»</div>
+<div class="ft"><a href="https://motion.dev/examples/react-rolling-text-button-stagger" target="_blank" rel="noopener">Motion example: Rolling text button (stagger) ↗</a></div></article>
+<article class="card" data-c="micro-interaction" data-u="0">
+<div class="hd"><span class="no">090</span><span class="cat">Микровзаимодействия</span><span class="sc" aria-label="Оценка 3 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i></span></div>
+<h3>Премиальный hover кнопки</h3><p>Кнопка заливается цветом из точки входа курсора.</p>
+<div class="how">Radial fill from pointer position (CSS custom props)</div>
+<div class="fit"><b>Для сайта:</b> CTA по всему сайту</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/button-hover-justin-jefferson" target="_blank" rel="noopener">Awwwards Elements: Justin Jefferson — Button Hover ↗</a></div></article>
+<article class="card" data-c="micro-interaction" data-u="0">
+<div class="hd"><span class="no">091</span><span class="cat">Микровзаимодействия</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Аккордеон FAQ с layout-анимацией</h3><p>Ответы раскрываются плавно, соседние блоки мягко сдвигаются.</p>
+<div class="how">Motion layout animation / CSS interpolate-size: allow-keywords + details</div>
+<div class="fit"><b>Для сайта:</b> FAQ: «Как проходит первая сессия?»</div>
+<div class="ft"><a href="https://motion.dev/examples/vue-layout-animation" target="_blank" rel="noopener">Motion example: Layout animation ↗</a></div></article>
+<article class="card used" data-c="footer" data-u="1">
+<div class="hd"><span class="no">092</span><span class="cat">Подвал</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Футер с раскрывающимся словесным знаком</h3><p>В конце страницы огромный логотип/имя проявляется из-под контента.</p>
+<div class="how">Sticky footer behind content (z-index reveal) + scroll-linked y</div>
+<div class="fit"><b>Для сайта:</b> Огромное «RAGIMOFF» в финале</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/wordmark-reveal-footer-submission-6ad6c0ea761a0046241231" target="_blank" rel="noopener">Awwwards Elements: King River — Wordmark Reveal Footer ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="footer" data-u="0">
+<div class="hd"><span class="no">093</span><span class="cat">Подвал</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Футер, здоровающийся на 7 языках</h3><p>Приветствие в футере сменяется на разных языках.</p>
+<div class="how">Text cycle with crossfade/roll</div>
+<div class="fit"><b>Для сайта:</b> Salam / Здравствуйте / Hello</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/footer-that-says-hello-in-seven-languages-webdrift" target="_blank" rel="noopener">Awwwards Elements: Webdrift ↗</a></div></article>
+<article class="card" data-c="footer" data-u="0">
+<div class="hd"><span class="no">094</span><span class="cat">Подвал</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Редакционный футер</h3><p>Футер как последняя страница журнала: колонки, засечки, воздух.</p>
+<div class="how">Editorial grid, serif typography</div>
+<div class="fit"><b>Для сайта:</b> Контакты, адрес в Баку, соцсети</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/editorial-footer-still-form" target="_blank" rel="noopener">Awwwards Elements: Still Form — Editorial Footer ↗</a></div></article>
+<article class="card" data-c="footer" data-u="0">
+<div class="hd"><span class="no">095</span><span class="cat">Подвал</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Футер с облачным параллаксом</h3><p>Облака слоями плывут в футере, создавая ощущение неба.</p>
+<div class="how">Multi-layer parallax images + scroll</div>
+<div class="fit"><b>Для сайта:</b> Лёгкость и свобода в финале</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/cloud-parallax-footer-enigma-2" target="_blank" rel="noopener">Awwwards Elements: Enigma — Cloud Parallax Footer ↗</a></div></article>
+<article class="card" data-c="layout" data-u="0">
+<div class="hd"><span class="no">096</span><span class="cat">Страницы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Страница «О нас» с наследием</h3><p>Элегантная страница истории с фото, цитатами и годами.</p>
+<div class="how">Editorial asymmetric grid + scroll reveals</div>
+<div class="fit"><b>Для сайта:</b> О докторе Рагимове и семейной практике</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/hotel-about-us-the-vineyard-hotel" target="_blank" rel="noopener">Awwwards Elements: The Vineyard Hotel — About ↗</a></div></article>
+<article class="card used" data-c="layout" data-u="1">
+<div class="hd"><span class="no">097</span><span class="cat">Страницы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Страница-манифест</h3><p>Крупный текст убеждений, разбитый на тезисы, с паузами-пробелами.</p>
+<div class="how">Large type layout + line-by-line reveal</div>
+<div class="fit"><b>Для сайта:</b> Принципы терапии и этика школы</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/manifesto-leadoff" target="_blank" rel="noopener">Awwwards Elements: leadoff — Manifesto ↗</a><span class="in">в концепте D</span></div></article>
+<article class="card" data-c="layout" data-u="0">
+<div class="hd"><span class="no">098</span><span class="cat">Страницы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Список спикеров / преподавателей</h3><p>Список имён с фото, раскрывающийся на скролле/hover.</p>
+<div class="how">List + image reveal on hover, scroll stagger</div>
+<div class="fit"><b>Для сайта:</b> Преподаватели школы психологии</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/speakers-list-diseinuz-1" target="_blank" rel="noopener">Awwwards Elements: Diseinuz — Speakers List ↗</a></div></article>
+<article class="card" data-c="layout" data-u="0">
+<div class="hd"><span class="no">099</span><span class="cat">Страницы</span><span class="sc" aria-label="Оценка 4 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i></span></div>
+<h3>Страница автора</h3><p>Профиль автора с публикациями, фото и цитатами.</p>
+<div class="how">Editorial profile layout</div>
+<div class="fit"><b>Для сайта:</b> Доктор Рагимов как автор книг</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/author-page-continuance" target="_blank" rel="noopener">Awwwards Elements: Continuance — Author Page ↗</a></div></article>
+<article class="card" data-c="layout" data-u="0">
+<div class="hd"><span class="no">100</span><span class="cat">Страницы</span><span class="sc" aria-label="Оценка 5 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i></span></div>
+<h3>Страница книги</h3><p>Презентация книги: обложка, видео, отрывок, авторы.</p>
+<div class="how">Book cover 3D tilt + video + excerpt reveal</div>
+<div class="fit"><b>Для сайта:</b> Страница книги «Вирус вины»</div>
+<div class="ft"><a href="https://www.awwwards.com/inspiration/book-page-les-intranquilles" target="_blank" rel="noopener">Awwwards Elements: Les Intranquilles — Book page ↗</a></div></article>
+</div>
+<p class="note">Ссылки проверены: у 98 элементов из 100 есть адрес источника (два — общие техники без одного автора). Это референсы техник, а не копии чужих сайтов: в концептах всё нарисовано заново под ragimoff.org. motion.so — сервис ИИ-монтажа видео, а не галерея дизайна, поэтому в источниках его нет.</p>
+</main>
+<script>
+(function(){var cs=[].slice.call(document.querySelectorAll('.chip')),cards=[].slice.call(document.querySelectorAll('.card'));
+cs.forEach(function(c){c.addEventListener('click',function(){cs.forEach(function(o){o.classList.toggle('on',o===c);});var f=c.getAttribute('data-f');cards.forEach(function(k){k.hidden=!(f==='all'||(f==='used'?k.getAttribute('data-u')==='1':k.getAttribute('data-c')===f));});});});})();
+</script>
+<script src="motion-gate.js"></script>
+</body>
+</html>

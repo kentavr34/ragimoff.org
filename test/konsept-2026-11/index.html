@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Концепт редизайна · ноябрь 2026 · RAGIMOFF</title>
-<meta name="description" content="Три стиля редизайна ragimoff.org: «Рукопись», «Ноктюрн», «Тишина» — десктоп и мобильная версия, исследование 32 приёмов, шрифт RAGIM и иконки.">
+<meta name="description" content="Четыре стиля редизайна ragimoff.org: «Проявление», «Рукопись», «Ноктюрн», «Тишина» — десктоп и мобильная версия, исследование 32 приёмов, шрифт RAGIM и иконки.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#F3F1EC">
 <link rel="icon" href="/test/images/favicon-32x32.png" sizes="32x32">
@@ -47,6 +47,14 @@ h1 i{color:#2B3A67}
 .arw{flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(22,22,26,.25);display:grid;place-items:center;font-size:16px}
 .note{margin-top:48px;padding-top:24px;border-top:1px solid rgba(22,22,26,.15);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 40px;font-size:14px;line-height:1.6;color:#4A4843}
 .note p{margin:0;max-width:640px}
+.feat{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0;margin-top:clamp(40px,6vw,72px);border-radius:32px;overflow:hidden;background:#141729;color:#F4EFE6;text-decoration:none;transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s}
+.feat:hover{transform:translateY(-6px);box-shadow:0 40px 80px -40px rgba(20,23,41,.6)}
+.feat video{width:100%;height:100%;min-height:320px;object-fit:cover;object-position:64% 50%;display:block;background:#F4EFE6}
+.fb{padding:clamp(24px,3vw,44px);display:flex;flex-direction:column;gap:16px}
+.fb b{font:400 clamp(48px,5vw,76px)/.95 'Cormorant Garamond',serif}.fb b i{color:#D9C9A3}
+.fb>span:not(.ey):not(.go){font-size:15px;line-height:1.65;color:#D2CCC0}
+.go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 24px;border-radius:99px;background:#F4EFE6;color:#141729;font:500 15px Onest,sans-serif;width:max-content}
+@media (max-width:820px){.feat{grid-template-columns:1fr}.feat video{min-height:220px;aspect-ratio:16/10}}
 .rise{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -55,8 +63,13 @@ h1 i{color:#2B3A67}
 <body>
 <main class="wrap">
 <div class="ey rise">ragimoff.org · концепт редизайна · ноябрь 2026</div>
-<h1 class="rise" style="animation-delay:.08s">Три стиля <i>для оценки</i></h1>
-<p class="lead rise" style="animation-delay:.16s">Первый экран, блок о специалистах, обучение, консультации и форма регистрации — в трёх разных характерах. У каждого стиля есть десктопная и мобильная версия с анимациями. Тексты, цены и фото взяты с ragimoff.org и из архива. Боевой сайт не изменён.</p>
+<h1 class="rise" style="animation-delay:.08s">Четыре стиля <i>для оценки</i></h1>
+<p class="lead rise" style="animation-delay:.16s">Первый экран, блок о специалистах, обучение, консультации и форма регистрации — в четырёх разных характерах. У каждого стиля есть десктопная и мобильная версия с анимациями. Тексты, цены и фото взяты с ragimoff.org и из архива. Боевой сайт не изменён.</p>
+
+<a class="feat rise" href="d.html" style="animation-delay:.2s">
+<video src="d/proyavlenie.mp4" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video>
+<span class="fb"><span class="ey" style="color:#8C5A2E">Новое · концепт D</span><b>«<i>Проявление</i>»</b><span>Первый экран — видео, которым управляет прокрутка: чернила в воде собираются в портрет. Дальше: манифест, проявляющийся по словам; горизонтальная лента специалистов; раскрывающиеся колонки программ; бегущая строка, ускоряющаяся от прокрутки; путь консультации, который рисуется; регистрация одним предложением. Плавная прокрутка Lenis, анимации на библиотеке Motion.</span><span class="go">Открыть концепт D →</span></span>
+</a>
 
 <section class="grid" aria-label="Стили">
 <article class="st A rise" style="animation-delay:.22s">
@@ -77,6 +90,7 @@ h1 i{color:#2B3A67}
 </section>
 
 <section class="more" aria-label="Материалы">
+<a class="mc" href="sto.html" style="background:#141729;color:#F4EFE6"><span><b>100 элементов</b><span style="color:#D2CCC0">Исследование Awwwards Elements и Motion: техника, источник, польза для сайта. Фильтры по категориям.</span></span><span class="arw" aria-hidden="true" style="border-color:rgba(244,239,230,.4)">→</span></a>
 <a class="mc" href="issledovanie.html"><span><b>32 приёма</b><span>Исследование трендов 2025–2026 с живыми мини-анимациями и пометками, где какой приём работает.</span></span><span class="arw" aria-hidden="true">→</span></a>
 <a class="mc" href="identika.html"><span><b>Шрифт RAGIM и иконки</b><span>Концепт собственного шрифта (прямое для чтения, курсив-почерк), 18 иконок, палитры, правила движения.</span></span><span class="arw" aria-hidden="true">→</span></a>
 </section>
@@ -86,5 +100,6 @@ h1 i{color:#2B3A67}
 <a href="../">← Архив прежних версий главной</a>
 </div>
 </main>
+<script src="motion-gate.js"></script>
 </body>
 </html>
