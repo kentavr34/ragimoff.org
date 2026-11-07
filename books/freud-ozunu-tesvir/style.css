@@ -899,3 +899,16 @@ span[lang] {
 .content-wrap p{margin:0 0 1.05em;line-height:1.75;text-align:justify}
 
 @media (max-width: 700px){ .site-header .lsw{ margin-left:auto } }
+
+/* ── Мобильная шапка: кнопки и поиск не выходят за правый край (07.11.2026, Кенан) ──────────
+   Причина: поле поиска (flex 0 1 480px) не сжималось ниже собственной ширины, отступы 28px и gap 20px,
+   переключатель языков с inline margin-left 14px → на экране 320–360 px кнопка меню уходила за край. */
+@media(max-width:600px){
+  .site-header{padding:0 12px;gap:8px}
+  .hdr-brand{flex-shrink:1;min-width:0;gap:8px}
+  .hdr-search{flex:1 1 0;min-width:0;margin:0}
+  .hdr-search input{min-width:0}
+  .site-header .lang-switch-bar{margin-left:0!important;flex-shrink:0}
+  .kitab-btn{padding:7px 8px}
+  .site-main,.content-wrap{min-width:0}
+}

@@ -360,3 +360,20 @@
   .kitab-box { padding: 28px 20px 22px; }
   .bk-sb--wide { --sb-num-col: 70px; }
 }
+
+/* ── Мобильная вёрстка: ничего не уходит за правый край (07.11.2026, Кенан) ──────────────
+   Причина: .bk-codes td:first-child{white-space:nowrap} + длинные коды DSM («G31.83 + F02.8x (ağır) / G31.84 …»)
+   растягивали таблицу кодов шире экрана (html/body имеют overflow-x:clip, поэтому полосы прокрутки не было —
+   правая часть просто обрезалась). Диапазон кодов в оглавлении тоже был nowrap. */
+.bk-codes .dh-code, .bk-codes .dh-name, .bk-toc__t, .bk-chead__h1 { overflow-wrap: anywhere; }
+.bk-read img, .bk-read video { max-width: 100%; height: auto; }
+.bk-read pre { max-width: 100%; overflow-x: auto; }
+@media (max-width: 620px) {
+  .bk-codes td:first-child { white-space: normal; width: auto; max-width: 48%; padding-right: 12px; }
+  .bk-codes tr td + td + td { padding-left: 12px; }
+  .bk-toc__r { white-space: normal; overflow-wrap: anywhere; }
+}
+/* Титульная страница (body.bk-cover): колонка с auto-полями в flex-контейнере раздувалась до ширины самого длинного
+   заголовка (Письма Марте Бернайс RU: 481 px при экране 345) — фиксируем ширину контейнера. */
+@media (max-width: 960px) { body.bk-cover .bk-col { width: 100%; min-width: 0; } }
+.bk-tp__title { overflow-wrap: anywhere; }
