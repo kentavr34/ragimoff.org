@@ -142,7 +142,7 @@ def dsm_label(codes):
         lo = prev = vals[0][0]
         run = []
         for major, _ in vals[1:]:
-            if major - prev <= 2:
+            if major - prev <= 4:
                 prev = major
                 continue
             run.append((lo, prev))
@@ -170,10 +170,12 @@ def build_groups(lang, subs_order, codes, titles=None):
         if grp[2] or grp[0] == "F99":
             icd10.append(tuple(grp))
     dsm = []
+    labels = GROUPS["dsm"].get("labels", {})
     for i, members in enumerate(GROUPS["dsm"]["members"]):
+        # порядок глав и расстройств — как в DSM-5-TR (задан явно в klinik_class_groups.json), не по коду
         hs = [m + ".html" for m in members if m + ".html" in codes]
-        hs.sort(key=lambda h: sort_key(codes[h][1], order.get(h, 0)))
-        dsm.append((dsm_label([codes[h][1] for h in hs]), GROUPS["dsm"][key]["names"][i], hs))
+        label = labels.get(str(i)) or dsm_label([codes[h][1] for h in hs])
+        dsm.append((label, GROUPS["dsm"][key]["names"][i], hs))
     return {"icd10": icd10, "dsm": dsm}
 
 
@@ -198,6 +200,32 @@ def render_tree(cls, groups, subrow, sectpl, toggle, here, nl):
         parts.append("</div>")
         out.append(nl.join(parts))
     return nl.join(out)
+
+
+def icd11_key(code, idx):
+    """Порядок кодов ВОЗ внутри главы МКБ-11; коды чужих глав (8A05.0, GA34.41) — в конце группы."""
+    c = (code or "").strip().upper()
+    return (1 if c[:1] in ("8", "G") else 0, c, idx)
+
+
+def reorder_rows(group_html, num_getter):
+    """Переставляет строки подпунктов одной группы по порядку кодов (разделитель между строками сохраняется)."""
+    rows = list(SUBROW_RE.finditer(group_html))
+    if len(rows) < 2:
+        return group_html
+    seps = group_html[rows[0].end():rows[1].start()]
+    body = [(num_getter(r.group(0)), i, r.group(0)) for i, r in enumerate(rows)]
+    body.sort(key=lambda t: icd11_key(t[0], t[1]))
+    return group_html[:rows[0].start()] + seps.join(t[2] for t in body) + group_html[rows[-1].end():]
+
+
+def reorder_icd_tree(inner):
+    num = lambda row: clean((NUM_RE.search(row) or [0, "", ""])[2])
+    parts = re.split(r'(?=<div class="bk-grp")', inner)
+    return parts[0] + "".join(reorder_rows(p, num) for p in parts[1:])
+
+
+TOC_ITEM_RE = re.compile(r'<a href="[^"]+\.html"><span class="sc">(?P<n>[^<]*)</span><span>[^<]*</span></a>')
 
 
 def collect_titles(panels_html):
@@ -259,6 +287,20 @@ def main():
         # диапазоны глав XBT-11 в панели icd
         for href, rng in SEC11_FIX_TOC.items():
             new_toc = re.sub(r'(<a href="%s"><span class="tc-range">)[^<]*(</span>)' % re.escape(href), lambda mm: mm.group(1) + rng + mm.group(2), new_toc)
+        # панель XBT-11: порядок расстройств внутри главы — по кодам ВОЗ
+        pm11 = re.search(r'(<div class="cls-panel" data-cls="icd"[^>]*>)', new_toc)
+        if pm11:
+            e0, e1 = tree_bounds(new_toc, pm11.end())
+            panel = new_toc[pm11.end():e1]
+            def reorder_ch(mc):
+                seg = mc.group(0)
+                items = list(TOC_ITEM_RE.finditer(seg))
+                if len(items) < 2:
+                    return seg
+                body = sorted(((m.group("n"), i, m.group(0)) for i, m in enumerate(items)), key=lambda t: icd11_key(t[0], t[1]))
+                return seg[:items[0].start()] + "".join(t[2] for t in body) + seg[items[-1].end():]
+            panel2 = re.sub(r'<div class="tc-list">.*?</div>', reorder_ch, panel, flags=re.S)
+            new_toc = new_toc[:pm11.end()] + panel2 + new_toc[e1:]
         if new_toc != toc:
             n_files += 1
             if not args.dry:
@@ -300,7 +342,7 @@ def main():
                 if not new:
                     return mm.group(0)
                 return mm.group(0).replace('<span class="bk-row__n">' + mm.group("num") + "</span>", '<span class="bk-row__n">' + new + "</span>", 1)
-            new_icd = SECROW_RE.sub(fix_sec, icd_inner)
+            new_icd = reorder_icd_tree(SECROW_RE.sub(fix_sec, icd_inner))
             if new_icd != icd_inner:
                 out = out[:a] + new_icd + out[b:]
             for cls in ("dsm", "icd10"):
