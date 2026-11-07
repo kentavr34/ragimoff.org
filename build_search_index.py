@@ -33,6 +33,9 @@ from pathlib import Path
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 ROOT = Path(__file__).parent
 BOOK = ROOT / 'klinik-psixiatriya'
+# --lang en|tr|ru — индекс подпапки языка (по умолчанию AZ в корне); 2026-11-07
+if '--lang' in sys.argv:
+    BOOK = BOOK / sys.argv[sys.argv.index('--lang') + 1]
 OUT = BOOK / 'search-index.json'
 APPLY = '--apply' in sys.argv
 
@@ -54,7 +57,7 @@ def visible(fragment: str) -> str:
 
 def page_codes(main: str) -> str:
     """Коды из шапки карточки: XBT-11, XBT-10, DSM-5-TR."""
-    codes = re.findall(r'<span class="dh-code">([^<]{1,16})</span>', main)
+    codes = re.findall(r'<span class="dh-code">([^<]{1,80})</span>', main)
     return ' '.join(dict.fromkeys(H.unescape(c).strip() for c in codes))
 
 
