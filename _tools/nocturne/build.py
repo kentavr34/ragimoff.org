@@ -305,6 +305,7 @@ def nav_labels(lang):
 LABELS = {l: nav_labels(l) for l in LANGS}
 import sys as _sys; _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import short_trainings as ST
+import consult_form as CF
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -740,6 +741,13 @@ def build_page(lang, orig_name, new_rel, key):
         d.pop('art', None)
     if hero is not None:
         hero.extract()
+    if key == 'cons':     # запись на консультацию в одно касание (Кенан 09.11): вместо старой формы
+        reg = main.select_one('section#registration')
+        frag_cf = BeautifulSoup(CF.section_html(lang, LABELS[lang], orig_name.rsplit('/', 1)[-1]), 'html.parser')
+        if reg is not None:
+            reg.replace_with(frag_cf)
+        else:             # страницы без формы записи — форма в конце содержимого
+            main.append(frag_cf)
     for el in main.find_all(True):
         if el.get('data-theme'):
             pass

@@ -52,12 +52,14 @@ az/korporativ/index.html  ←  b2b.html
 az/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html heroes
 az/mutexessisler/kenan-rehimov.html  ←  haqqimda.html
 az/mutexessisler/samire-rehimova.html  ←  samira.html
+az/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
 az/telim/index.html  ←  tehsil.html
 az/telim/klinik-psixologiya.html  ←  program-klinik.html
 az/telim/psixoanaliz.html  ←  program-psixoanaliz.html
 az/telim/psixodiaqnostika.html  ←  program-psixodiaqnostika.html
 az/telim/psixoterapiya-praktikumu.html  ←  program-praktikum.html
 az/telim/qanuni-esaslar.html  ←  qanunlar.html
+az/telim/qisamuddetli.html  ←  generated: short_trainings.py
 az/telim/umumi-psixologiya.html  ←  program-umumi.html
 en/bloq/aile-2.html  ←  en/blog-aile-2.html
 en/bloq/aile-3.html  ←  en/blog-aile-3.html
@@ -110,12 +112,14 @@ en/korporativ/index.html  ←  en/b2b.html
 en/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html heroes
 en/mutexessisler/kenan-rehimov.html  ←  en/haqqimda.html
 en/mutexessisler/samire-rehimova.html  ←  en/samira.html
+en/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
 en/telim/index.html  ←  en/tehsil.html
 en/telim/klinik-psixologiya.html  ←  en/program-klinik.html
 en/telim/psixoanaliz.html  ←  en/program-psixoanaliz.html
 en/telim/psixodiaqnostika.html  ←  en/program-psixodiaqnostika.html
 en/telim/psixoterapiya-praktikumu.html  ←  en/program-praktikum.html
 en/telim/qanuni-esaslar.html  ←  en/qanunlar.html
+en/telim/qisamuddetli.html  ←  generated: short_trainings.py
 en/telim/umumi-psixologiya.html  ←  en/program-umumi.html
 ru/bloq/aile-2.html  ←  ru/blog-aile-2.html
 ru/bloq/aile-3.html  ←  ru/blog-aile-3.html
@@ -168,10 +172,12 @@ ru/korporativ/index.html  ←  ru/b2b.html
 ru/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html heroes
 ru/mutexessisler/kenan-rehimov.html  ←  ru/haqqimda.html
 ru/mutexessisler/samire-rehimova.html  ←  ru/samira.html
+ru/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
 ru/telim/index.html  ←  ru/tehsil.html
 ru/telim/klinik-psixologiya.html  ←  ru/program-klinik.html
 ru/telim/psixoanaliz.html  ←  ru/program-psixoanaliz.html
 ru/telim/psixodiaqnostika.html  ←  ru/program-psixodiaqnostika.html
 ru/telim/psixoterapiya-praktikumu.html  ←  ru/program-praktikum.html
 ru/telim/qanuni-esaslar.html  ←  ru/qanunlar.html
+ru/telim/qisamuddetli.html  ←  generated: short_trainings.py
 ru/telim/umumi-psixologiya.html  ←  ru/program-umumi.html

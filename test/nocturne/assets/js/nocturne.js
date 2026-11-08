@@ -214,6 +214,66 @@
   }
   Array.prototype.forEach.call(document.querySelectorAll('[data-calc]'), calcInit);
 
+  /* оплата ePoint: сумму считает сервер; браузер только ведёт. Язык — для страницы после оплаты. */
+  var PAY_T = { az: { now: 'İndi ödə', inst: 'Hissə-hissə (bank)', one: 'Ödə' }, ru: { now: 'Оплатить сейчас', inst: 'В рассрочку (банк)', one: 'Оплатить' },
+                en: { now: 'Pay now', inst: 'Instalments (bank)', one: 'Pay' } };
+  function payGo(form, data, mode, btn) {
+    try { localStorage.setItem('rgm_pay_lang', form.getAttribute('data-lang') || 'az'); } catch (e) {}
+    if (btn) btn.disabled = true;
+    data.mode = mode;
+    return fetch('https://api.ragimoff.org/api/billing/epoint/training', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; }
+        throw new Error('pay');
+      }).catch(function () {
+        if (btn) btn.disabled = false;
+        var m = form.querySelector('.n-form-msg'); m.hidden = false; m.className = 'n-form-msg is-err';
+        m.innerHTML = form.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';
+      });
+  }
+  function payChoice(form, data, prices, single) {
+    var L = PAY_T[form.getAttribute('data-lang')] || PAY_T.az, box = form.querySelector('.n-pay-choice');
+    var sub = form.querySelector('button[type="submit"]');
+    if (!box) { box = document.createElement('div'); box.className = 'n-pay-choice'; sub.insertAdjacentElement('afterend', box); }
+    sub.hidden = true;
+    box.innerHTML = single || prices.prepay === prices.full
+      ? '<button type="button" class="n-btn" data-m="prepay">' + L.one + ' — ' + prices.prepay + ' AZN</button>'
+      : '<button type="button" class="n-btn" data-m="prepay">' + L.now + ' — ' + prices.prepay + ' AZN</button>' +
+        '<button type="button" class="n-btn n-btn-ghost" data-m="installment">' + L.inst + ' — ' + prices.full + ' AZN</button>';
+    Array.prototype.forEach.call(box.querySelectorAll('button'), function (b) { b.onclick = function () { payGo(form, data, b.getAttribute('data-m'), b); }; });
+  }
+
+  /* запись на консультацию в одно касание (Кенан 09.11.2026) */
+  var cf = document.getElementById('consultForm');
+  if (cf) (function () {
+    var show = JSON.parse(cf.getAttribute('data-show')), out = cf.querySelector('[data-cprice]'), other = cf.querySelector('[data-other]');
+    function pick(n) { return (cf.querySelector('input[name="' + n + '"]:checked') || {}).value || ''; }
+    function upd() {
+      out.textContent = show[(pick('mutexessis') === 'both' ? 'both' : 'one') + '|' + (pick('format') || 'online')] || '';
+      other.hidden = pick('movzu') !== 'other';
+    }
+    cf.addEventListener('change', upd); upd();
+    cf.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var msg = cf.querySelector('.n-form-msg'), btn = cf.querySelector('button[type="submit"]'), ok = true;
+      var need = ['ad', 'telefon']; if (pick('movzu') === 'other') need.push('simptom');
+      need.forEach(function (n) { var el = cf.querySelector('[name="' + n + '"]'); var bad = !el.value.trim(); el.classList.toggle('is-bad', bad); if (bad) ok = false; });
+      if (!ok) { msg.hidden = false; msg.className = 'n-form-msg is-err'; msg.textContent = cf.getAttribute('data-req'); return; }
+      var lab = function (n) { var r = cf.querySelector('input[name="' + n + '"]:checked'); return r ? r.parentNode.textContent.trim() : ''; };
+      var service = 'consult|' + pick('mutexessis') + '|' + pick('format');
+      var note = lab('mutexessis') + ' · ' + lab('format') + ' · ' + lab('movzu') + (pick('movzu') === 'other' ? ': ' + cf.simptom.value.trim() : '');
+      btn.disabled = true; var lbl = btn.textContent; btn.textContent = cf.getAttribute('data-sending');
+      var payload = { type: 'registration', fname: cf.ad.value.trim(), lname: '', phone: cf.telefon.value.trim(), email: '', address: '',
+                      service: service, lang: cf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: [] };
+      var reg = await fetch('https://api.ragimoff.org/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.ok ? r.json().catch(function () { return { ok: true }; }) : null; }, function () { return null; });
+      if (reg && reg.prices) { btn.textContent = lbl; await payGo(cf, { name: payload.fname, phone: payload.phone, program: service, folder: reg.folder || '' }, 'prepay', btn); return; }
+      btn.disabled = false; btn.textContent = lbl; msg.hidden = false;
+      msg.className = 'n-form-msg' + (reg ? '' : ' is-err');
+      msg.innerHTML = reg ? cf.getAttribute('data-ok') : cf.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';
+    });
+  })();
+
   /* short-term trainings form */
   var sf = document.getElementById('shortForm');
   if (sf) (function () {
@@ -240,23 +300,31 @@
         if (bad) ok = false;
       });
       if (!ok) { msg.hidden = false; msg.className = 'n-form-msg is-err'; msg.textContent = sf.getAttribute('data-req'); return; }
-      var prog = sf.querySelector('input[name="proqram"]:checked'), progLbl = prog.parentNode.textContent.trim(), note;
+      var prog = sf.querySelector('input[name="proqram"]:checked'), progLbl = prog.parentNode.textContent.trim(), note, service = prog.value, mode = 'prepay';
       if (prog.value === 'individual') {
         var c = sf.querySelector('[data-calc]');
         var who = sf.querySelector('input[name="f_mutexessis"]:checked'), fmt = sf.querySelector('input[name="f_format"]:checked');
         note = progLbl + ' · ' + who.parentNode.textContent.trim() + ' · ' + fmt.parentNode.textContent.trim() + ' · ' +
                c.getAttribute('data-hours') + ' × ' + c.getAttribute('data-rate-v') + ' = ' + c.getAttribute('data-sum') + ' AZN';
+        service = 'individual|' + who.value + '|' + fmt.value + '|' + c.getAttribute('data-hours');
       } else {
-        var pay = sf.querySelector('input[name="odenis"]:checked');
-        note = progLbl + ' · ' + pay.parentNode.textContent.trim();
+        note = progLbl;
       }
       btn.disabled = true; var lbl = btn.textContent; btn.textContent = sf.getAttribute('data-sending');
       var att = [], f = sf.querySelector('[name="shexsiyyet"]').files[0];
       if (f && f.size < 10 * 1024 * 1024) att.push({ field: 'shexsiyyet', filename: f.name, mime: f.type || 'application/octet-stream', data: await b64(f) });
       var payload = { type: 'registration', fname: sf.ad.value.trim(), lname: sf.soyad.value.trim(), phone: sf.telefon.value.trim(), email: '', address: '',
-                      service: prog.value, lang: sf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: att };
-      var res = await fetch('https://api.ragimoff.org/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
-        .then(function (r) { return r.ok; }, function () { return false; });
+                      service: service, lang: sf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: att };
+      var API = 'https://api.ragimoff.org';
+      var reg = await fetch(API + '/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.ok ? r.json().catch(function () { return { ok: true }; }) : null; }, function () { return null; });
+      var res = !!reg;
+      /* сумму считает сервер по коду программы (канон Кенана 08.11); браузер только ведёт на ePoint */
+      if (reg && reg.prices) {
+        btn.disabled = false; btn.textContent = lbl;
+        payChoice(sf, { name: payload.fname + ' ' + payload.lname, phone: payload.phone, program: service, folder: reg.folder || '' }, reg.prices, service.indexOf('individual|') === 0);
+        return;
+      }
       btn.disabled = false; btn.textContent = lbl; msg.hidden = false;
       msg.className = 'n-form-msg' + (res ? '' : ' is-err');
       msg.innerHTML = res ? sf.getAttribute('data-ok') : sf.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';

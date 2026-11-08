@@ -88,7 +88,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [{"@type": "Question", "name": "How does consultation work?", "acceptedAnswer": {"@type": "Answer", "text": "Online (Zoom/WhatsApp video) and in-office (Baku, Jafar Jabbarli 40). Duration: 50 min. Price: 120 AZN."}}, {"@type": "Question", "name": "What problems do you help with?", "acceptedAnswer": {"@type": "Answer", "text": "Depression, panic attacks, social phobia, OCD, family conflicts, enuresis, sexual disorders."}}]
+  "mainEntity": [{"@type": "Question", "name": "How does consultation work?", "acceptedAnswer": {"@type": "Answer", "text": "Online (Zoom/WhatsApp video) and in-office (Baku, Jafar Jabbarli 40). Duration: 50 min. Price: $60 online, $90 in person."}}, {"@type": "Question", "name": "What problems do you help with?", "acceptedAnswer": {"@type": "Answer", "text": "Depression, panic attacks, social phobia, OCD, family conflicts, enuresis, sexual disorders."}}]
 }
 </script>
 <script type="application/ld+json">
@@ -221,66 +221,21 @@
 </div>
 </section>
 
-<section aria-labelledby="reg-h" id="registration">
-<div class="sec-inner">
-<div class="sec-header">
-<span class="badge">Book a Consultation</span>
-<h2 class="sec-h2" id="reg-h"><span class="sh-line">Book a</span> <span class="sh-line">Consultation</span></h2>
-<p class="sec-sub">
-
-
-<span class="ab-lead-desk">Fill in the form or write on WhatsApp — we reply the same working day.</span>
-</p>
-</div>
-<div class="reg-grid">
-
-<form action="/api/training-reg" id="xidRegForm" method="POST" novalidate="">
-<div>
-<label for="km-name">
-                First Name *
-                <input aria-label="Your name" name="ad" placeholder="Your name" required="" type="text"/>
-</label>
-<label for="km-name">
-                Phone *
-                <input aria-label="+994 XX XXX XX XX" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel"/>
-</label>
-</div>
-<label for="km-name">
-              Format
-              <select name="proqram">
-<option value="Individual Consultation — Online">Online (Zoom / WhatsApp video)</option>
-<option value="Individual Consultation — Office">In the office (Baku)</option>
-<option value="Not decided yet">Not decided yet</option>
-</select>
-</label>
-<label for="km-name">
-              Note (optional)
-              <textarea aria-label="What issue do you need help with?" name="qeyd" placeholder="What issue do you need help with?" rows="3"></textarea>
-</label>
-<button class="btn btn-fill" type="submit">Submit Application</button>
-<p>Your data is used only for communication and is not shared with third parties.</p>
-<div class="form-success" id="xidRegSuccess" style="display:none">
-              Your application has been received. We will contact you within 24 hours.
-            </div>
-</form>
-
-<div>
-<div>
-<span>Direct Contact</span>
-<h3>If you want a faster response</h3>
-<p>Write directly on WhatsApp or call — the coordinator responds the same day.</p>
-<a class="btn btn-fill" href="https://wa.me/994702200376?text=Hello%2C+I+would+like+to+book+a+consultation" target="_blank">Write on WhatsApp</a>
-<a class="btn btn-line" href="tel:+994702200376">+994 70 220-03-76</a>
-</div>
-<div>
-<strong>Working Hours:</strong><br/>
-              Mon – Fri · 10:00 – 20:00<br/>
-              Saturday · 10:00 – 16:00
-            </div>
-</div>
-</div>
-</div>
-</section>
+<section class="n-sec n-sec-alt" id="registration"><div class="n-wrap"><div class="n-sec-head"><div><span class="n-eyebrow">Consultation</span><h2 class="n-h2">Book a consultation</h2></div></div><form class="n-form n-consult" data-err="Could not send. Please write to us on WhatsApp." data-lang="en" data-ok="Your request has been received. Send the receipt to +994 70 220 03 76 and agree on the time." data-req="Please fill in this field" data-sending="Sending…" data-show='{"one|online": "100 AZN · $60", "one|offline": "150 AZN · $90", "both|online": "150 AZN · $90", "both|offline": "200 AZN · $120"}' id="consultForm" novalidate="">
+<fieldset class="n-calc-row"><legend>Specialist</legend>
+<label class="n-chip"><input checked="" name="mutexessis" type="radio" value="kenan"/><span>Kenan Ragimov</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="samira"/><span>Samira Rahimova</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="both"/><span>Both specialists</span></label></fieldset>
+<fieldset class="n-calc-row"><legend>Format</legend>
+<label class="n-chip"><input checked="" name="format" type="radio" value="online"/><span>Online</span></label>
+<label class="n-chip"><input name="format" type="radio" value="offline"/><span>In person</span></label></fieldset>
+<div class="n-calc-out"><span class="n-calc-rate">1 hour</span><span class="n-calc-total"><b data-cprice=""></b></span></div>
+<fieldset class="n-calc-row"><legend>Topic</legend><label class="n-chip"><input checked="" name="movzu" type="radio" value="Family Therapy"/><span>Family Therapy</span></label><label class="n-chip"><input name="movzu" type="radio" value="Child-Parent Therapy"/><span>Child-Parent Therapy</span></label><label class="n-chip"><input name="movzu" type="radio" value="Parents School"/><span>Parents School</span></label><label class="n-chip"><input name="movzu" type="radio" value="Depression"/><span>Depression</span></label><label class="n-chip"><input name="movzu" type="radio" value="Panic Attacks"/><span>Panic Attacks</span></label><label class="n-chip"><input name="movzu" type="radio" value="Social Phobia"/><span>Social Phobia</span></label><label class="n-chip"><input name="movzu" type="radio" value="Nocturnal Enuresis"/><span>Nocturnal Enuresis</span></label><label class="n-chip"><input name="movzu" type="radio" value="other"/><span>Other</span></label></fieldset>
+<label class="n-form-wide" data-other="" hidden=""><span>Briefly describe the symptoms</span><textarea name="simptom" rows="3"></textarea></label>
+<div class="n-form-grid"><label><span>Name</span><input autocomplete="name" name="ad" required=""/></label>
+<label><span>Phone</span><input autocomplete="tel" name="telefon" placeholder="+994" required="" type="tel"/></label></div>
+<p class="n-form-after">After payment, send the receipt to +994 70 220 03 76 and agree on the time of the consultation.</p>
+<button class="n-btn" type="submit">Book and pay</button><p class="n-form-msg" hidden="" role="status"></p></form></div></section>
 <script>
       document.getElementById('xidRegForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();

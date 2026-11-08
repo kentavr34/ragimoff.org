@@ -201,7 +201,7 @@
 <span class="mod-chip">16 lessons</span>
 <span class="mod-chip">twice a week × 2 hours</span>
 </div>
-<p class="mod-price">Total for the programme: 600 AZN <span>— 3 months of classes and 6 months of supervision included; payable at 200 AZN a month × 3 months. The price is the same in person and online.</span></p>
+<p class="mod-price">Total for the programme: 900 AZN <span>— 3 months of classes and 6 months of supervision included; payable at 300 AZN a month × 3 months. The price is the same in person and online.</span></p>
 <span class="mod-open">See the full programme</span>
 </summary>
 <ol class="mod-list">
@@ -240,12 +240,12 @@
 <div class="pricing-tbl-row">
 <div class="pricing-tbl-cell pricing-tbl-name"><strong>1 Session</strong><span>50 minutes</span></div>
 <div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Online</span><span class="pv">$60</span></div>
-<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">In person</span><span class="pv">$120</span></div>
+<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">In person</span><span class="pv">$90</span></div>
 </div>
 <div class="pricing-tbl-row">
 <div class="pricing-tbl-cell pricing-tbl-name"><strong>Monthly Package</strong><span>4 sessions + WhatsApp support (100 min limit)</span></div>
-<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Online</span><span class="pv">$300</span></div>
-<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">In person</span><span class="pv">$590</span></div>
+<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Online</span><span class="pv">$240</span></div>
+<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">In person</span><span class="pv">$360</span></div>
 </div>
 </div>
 <div>
@@ -384,46 +384,21 @@
 </div>
 </section>
 
-<section aria-labelledby="at-reg-h" id="registration">
-<div class="sec-inner">
-<span class="badge">BOOKING</span>
-<h2 class="sec-h2" id="at-reg-h"><span class="sh-line">Book a consultation</span> <span class="sh-line">or the training</span></h2>
-<p class="sec-sub">
-
-
-<span class="ab-lead-desk">Fill in the form or write on WhatsApp — we reply the same day and the format is your choice.</span>
-</p>
-<form action="/api/training-reg" id="atRegForm" method="POST" novalidate="">
-<div class="reg-field">
-<label for="at-ad">Your name</label>
-<input id="at-ad" name="ad" placeholder="Your name" required="" type="text"/>
-</div>
-<div class="reg-field">
-<label for="at-tel">Phone</label>
-<input id="at-tel" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel"/>
-</div>
-<div class="reg-field">
-<label for="at-proqram">What are you interested in?</label>
-<select id="at-proqram" name="proqram">
-<option value="Couple therapy — consultation">Couple therapy — consultation</option>
-<option value="Parent-child relationship — consultation">Parent-child relationship — consultation</option>
-<option value="Training — Module 1, couple therapy">Training — Module 1, couple therapy</option>
-<option value="Training — Module 2, parent-child relationships">Training — Module 2, parent-child relationships</option>
-<option value="Not decided yet">Not decided yet</option>
-</select>
-</div>
-<div class="reg-field">
-<label for="at-qeyd">A short note</label>
-<textarea id="at-qeyd" name="qeyd" placeholder="What do you need help with?" rows="3"></textarea>
-</div>
-<button class="btn btn-fill" type="submit">Send</button>
-</form>
-<div id="atRegSuccess" style="display:none">
-<p>Your request has been received. We will contact you the same day.</p>
-</div>
-<p class="reg-note">Or write to us directly: <a href="https://wa.me/994775395009" rel="noopener" target="_blank">WhatsApp</a></p>
-</div>
-</section>
+<section class="n-sec n-sec-alt" id="registration"><div class="n-wrap"><div class="n-sec-head"><div><span class="n-eyebrow">Consultation</span><h2 class="n-h2">Book a consultation</h2></div></div><form class="n-form n-consult" data-err="Could not send. Please write to us on WhatsApp." data-lang="en" data-ok="Your request has been received. Send the receipt to +994 70 220 03 76 and agree on the time." data-req="Please fill in this field" data-sending="Sending…" data-show='{"one|online": "100 AZN · $60", "one|offline": "150 AZN · $90", "both|online": "150 AZN · $90", "both|offline": "200 AZN · $120"}' id="consultForm" novalidate="">
+<fieldset class="n-calc-row"><legend>Specialist</legend>
+<label class="n-chip"><input checked="" name="mutexessis" type="radio" value="kenan"/><span>Kenan Ragimov</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="samira"/><span>Samira Rahimova</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="both"/><span>Both specialists</span></label></fieldset>
+<fieldset class="n-calc-row"><legend>Format</legend>
+<label class="n-chip"><input checked="" name="format" type="radio" value="online"/><span>Online</span></label>
+<label class="n-chip"><input name="format" type="radio" value="offline"/><span>In person</span></label></fieldset>
+<div class="n-calc-out"><span class="n-calc-rate">1 hour</span><span class="n-calc-total"><b data-cprice=""></b></span></div>
+<fieldset class="n-calc-row"><legend>Topic</legend><label class="n-chip"><input checked="" name="movzu" type="radio" value="Family Therapy"/><span>Family Therapy</span></label><label class="n-chip"><input name="movzu" type="radio" value="Child-Parent Therapy"/><span>Child-Parent Therapy</span></label><label class="n-chip"><input name="movzu" type="radio" value="Parents School"/><span>Parents School</span></label><label class="n-chip"><input name="movzu" type="radio" value="Depression"/><span>Depression</span></label><label class="n-chip"><input name="movzu" type="radio" value="Panic Attacks"/><span>Panic Attacks</span></label><label class="n-chip"><input name="movzu" type="radio" value="Social Phobia"/><span>Social Phobia</span></label><label class="n-chip"><input name="movzu" type="radio" value="Nocturnal Enuresis"/><span>Nocturnal Enuresis</span></label><label class="n-chip"><input name="movzu" type="radio" value="other"/><span>Other</span></label></fieldset>
+<label class="n-form-wide" data-other="" hidden=""><span>Briefly describe the symptoms</span><textarea name="simptom" rows="3"></textarea></label>
+<div class="n-form-grid"><label><span>Name</span><input autocomplete="name" name="ad" required=""/></label>
+<label><span>Phone</span><input autocomplete="tel" name="telefon" placeholder="+994" required="" type="tel"/></label></div>
+<p class="n-form-after">After payment, send the receipt to +994 70 220 03 76 and agree on the time of the consultation.</p>
+<button class="n-btn" type="submit">Book and pay</button><p class="n-form-msg" hidden="" role="status"></p></form></div></section>
 <div class="cta-band">
 <div class="cta-band-inner">
 <h2 class="sec-h2">Book a Session</h2>

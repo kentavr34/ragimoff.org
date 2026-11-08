@@ -41,10 +41,31 @@
   var box = document.querySelector('.pay__m');
   if (!oid) return;
   var training = /^TRI?-/.test(oid);   /* TR- сразу, TRI- рассрочка банка */
+  var consult = /^KS-/.test(oid);       /* KS- консультация (Кенан 09.11.2026) */
+  /* Кенан 09.11.2026: после оплаты — отправить чек на номер и согласовать время (консультация)
+     или подключиться к группе обучения (тренинг). Язык — тот, на котором заполнена форма. */
+  var lang = 'az'; try { lang = localStorage.getItem('rgm_pay_lang') || localStorage.getItem('ragimoff_lang') || 'az'; } catch (e) {}
+  var WA = 'https://wa.me/994702200376', PHONE = '+994 70 220 03 76';
+  var NEXT = {
+    consult: { az: 'Ödəniş qəbul edildi. Ödəniş qəbzini ' + PHONE + ' nömrəsinə göndərin və konsultasiya vaxtını razılaşdırın.',
+               ru: 'Оплата принята. Отправьте чек об оплате на номер ' + PHONE + ' и согласуйте время консультации.',
+               en: 'Payment received. Send the receipt to ' + PHONE + ' and agree on the time of your consultation.' },
+    training: { az: 'Ödəniş qəbul edildi. Ödəniş qəbzini ' + PHONE + ' nömrəsinə göndərin — sizi təlim qrupuna qoşacağıq.',
+                ru: 'Оплата принята. Отправьте чек об оплате на номер ' + PHONE + ' — вас подключат к группе обучения.',
+                en: 'Payment received. Send the receipt to ' + PHONE + ' and we will add you to the training group.' },
+    wa: { az: 'WhatsApp-a yaz', ru: 'Написать в WhatsApp', en: 'Write on WhatsApp' }
+  };
+  function nextText(kind) { return (NEXT[kind][lang] || NEXT[kind].az); }
+  if (consult || training) {
+    var b0 = document.querySelector('.pay__b');
+    if (b0) { b0.href = WA; b0.target = '_blank'; b0.rel = 'noopener'; b0.textContent = NEXT.wa[lang] || NEXT.wa.az; }
+  }
+  if (consult) {
+    var n0 = document.querySelector('.pay__note'); if (n0) n0.style.display = 'none';
+  }
   if (training) {
     /* Оплата тренинга (не книги): свой текст и без заметки про доставку. */
     var note = document.querySelector('.pay__note'); if (note) note.style.display = 'none';
-    var back = document.querySelector('.pay__b'); if (back) { back.href = '/tehsil.html'; back.textContent = 'Təhsil səhifəsinə qayıt'; }
   }
   if (box) box.textContent = 'Ödəniş yoxlanılır…';
   var tries = 0;
@@ -60,11 +81,11 @@
           setTimeout(ask, 3000);
         } else if (d && d.ok && d.done) {
           var multi = d.parts && d.parts.length > 1;
-          if (box) box.textContent = training
-            ? (multi ? 'Bütün hissələr ödənildi. ' : 'Ödəniş qəbul edildi. ') + 'Qeydiyyatınız təsdiqləndi, tezliklə sizinlə əlaqə saxlanılacaq. Təşəkkür edirik!'
+          if (box) box.textContent = consult ? nextText('consult') : training
+            ? (multi && lang === 'az' ? 'Bütün hissələr ödənildi. ' : '') + nextText('training')
             : (multi ? 'Bütün hissələr ödənildi. Təşəkkür edirik!' : 'Ödəniş uğurlu oldu. Sifarişiniz qeydə alındı.');
-        } else if (box && training) {
-          box.textContent = 'Qeydiyyatınız və ödənişiniz qəbul edildi. Tezliklə sizinlə əlaqə saxlanılacaq.';
+        } else if (box && (training || consult)) {
+          box.textContent = nextText(consult ? 'consult' : 'training');
         }
       })
       .catch(function () {});

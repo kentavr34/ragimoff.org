@@ -346,35 +346,21 @@
 </div>
 </section>
 
-<section class="ps dark-bg" id="registration">
-<div class="ps-inner">
-<span class="badge">Qeydiyyat</span>
-<h2 class="sec-h2">Müraciət Formu</h2>
-<p class="sec-lead">Formu doldurun — 24 saat ərzində koordinator sizinlə əlaqə saxlayır.</p>
-<div class="reg-path">
-<div class="reg-path-step"><span class="rp-num">Addım 01</span><h4 aria-level="3" role="heading">Müraciət</h4><p>Formu doldurun, uşağın yaşını yazın</p></div>
-<div class="reg-path-step"><span class="rp-num">Addım 02</span><h4>Zəng</h4><p>24 saat ərzində koordinator əlaqə saxlayır</p></div>
-<div class="reg-path-step"><span class="rp-num">Addım 03</span><h4>İlkin görüş</h4><p>Qiymətləndirmə, diaqnozun təsdiqi</p></div>
-<div class="reg-path-step"><span class="rp-num">Addım 04</span><h4>Kurs başlayır</h4><p>Alarm cihazı + instruksiya — evdə müalicə</p></div>
-</div>
-<form action="/api/training-reg" class="reg-form" id="enRegForm" method="POST" novalidate="">
-<div class="rf2">
-<div class="rfield"><label for="er-name">Valideynin adı soyadı</label><input id="er-name" name="name" placeholder="Ad Soyad" required="" type="text"/></div>
-<div class="rfield"><label for="er-phone">Telefon</label><input id="er-phone" name="phone" placeholder="+994 XX XXX XX XX" required="" type="tel"/></div>
-</div>
-<div class="rf2">
-<div class="rfield"><label for="er-age">Uşağın yaşı</label><input id="er-age" name="child_age" placeholder="Məsələn: 7 yaş" type="text"/></div>
-<div class="rfield"><label for="er-dur">Neçə ildir davam edir?</label><input id="er-dur" name="duration" placeholder="Məsələn: 2 ildir" type="text"/></div>
-</div>
-<div class="rfield"><label for="er-note">Əlavə qeyd (istəyə bağlı)</label><textarea id="er-note" name="note" placeholder="Əvvəlki müalicə cəhdləri, suallar..." rows="3"></textarea></div>
-<div>
-<p>Məlumatlarınız üçüncü şəxslərə ötürülmür.</p>
-<button class="btn btn-fill" type="submit">Müraciət Göndər</button>
-</div>
-<div class="form-success" id="enSuccess"><p>Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlayacağıq.</p></div>
-</form>
-</div>
-</section>
+<section class="n-sec n-sec-alt" id="registration"><div class="n-wrap"><div class="n-sec-head"><div><span class="n-eyebrow">Konsultasiya</span><h2 class="n-h2">Konsultasiyaya yazılın</h2></div></div><form class="n-form n-consult" data-err="Göndərmək alınmadı. Zəhmət olmasa WhatsApp ilə yazın." data-lang="az" data-ok="Müraciətiniz qəbul edildi. Ödəniş qəbzini +994 70 220 03 76 nömrəsinə göndərin və vaxtı razılaşdırın." data-req="Bu sahəni doldurun" data-sending="Göndərilir…" data-show='{"one|online": "100 AZN", "one|offline": "150 AZN", "both|online": "150 AZN", "both|offline": "200 AZN"}' id="consultForm" novalidate="">
+<fieldset class="n-calc-row"><legend>Mütəxəssis</legend>
+<label class="n-chip"><input checked="" name="mutexessis" type="radio" value="kenan"/><span>Kənan Rəhimov</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="samira"/><span>Samirə Rəhimova</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="both"/><span>Hər iki mütəxəssis</span></label></fieldset>
+<fieldset class="n-calc-row"><legend>Format</legend>
+<label class="n-chip"><input checked="" name="format" type="radio" value="online"/><span>Onlayn</span></label>
+<label class="n-chip"><input name="format" type="radio" value="offline"/><span>Əyani</span></label></fieldset>
+<div class="n-calc-out"><span class="n-calc-rate">1 saat</span><span class="n-calc-total"><b data-cprice=""></b></span></div>
+<fieldset class="n-calc-row"><legend>Mövzu</legend><label class="n-chip"><input name="movzu" type="radio" value="Ailə Terapiyası"/><span>Ailə Terapiyası</span></label><label class="n-chip"><input name="movzu" type="radio" value="Aile-Uşaq Terapiyası"/><span>Aile-Uşaq Terapiyası</span></label><label class="n-chip"><input name="movzu" type="radio" value="Valideyn Məktəbi"/><span>Valideyn Məktəbi</span></label><label class="n-chip"><input name="movzu" type="radio" value="Depressiya"/><span>Depressiya</span></label><label class="n-chip"><input name="movzu" type="radio" value="Panik Ataklar"/><span>Panik Ataklar</span></label><label class="n-chip"><input name="movzu" type="radio" value="Sosial Fobiya"/><span>Sosial Fobiya</span></label><label class="n-chip"><input checked="" name="movzu" type="radio" value="Gecə Enurezi"/><span>Gecə Enurezi</span></label><label class="n-chip"><input name="movzu" type="radio" value="other"/><span>Digər</span></label></fieldset>
+<label class="n-form-wide" data-other="" hidden=""><span>Qısaca vəziyyəti təsvir edin</span><textarea name="simptom" rows="3"></textarea></label>
+<div class="n-form-grid"><label><span>Ad</span><input autocomplete="name" name="ad" required=""/></label>
+<label><span>Telefon</span><input autocomplete="tel" name="telefon" placeholder="+994" required="" type="tel"/></label></div>
+<p class="n-form-after">Ödənişdən sonra qəbzi +994 70 220 03 76 nömrəsinə göndərin və konsultasiya vaxtını razılaşdırın.</p>
+<button class="n-btn" type="submit">Yazıl və ödə</button><p class="n-form-msg" hidden="" role="status"></p></form></div></section>
 
 <section class="ps white">
 <div class="ps-inner">

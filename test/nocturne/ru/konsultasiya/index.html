@@ -88,7 +88,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [{"@type": "Question", "name": "Как проходит консультация?", "acceptedAnswer": {"@type": "Answer", "text": "Онлайн (Zoom/WhatsApp видео) и в офисе (Баку, Джеффер Джаббарлы 40). Длительность: 50 мин. Цена: 120 AZN."}}, {"@type": "Question", "name": "С какими проблемами помогаете?", "acceptedAnswer": {"@type": "Answer", "text": "Депрессия, панические атаки, социальная фобия, ОКР, семейные конфликты, энурез, сексуальные расстройства."}}]
+  "mainEntity": [{"@type": "Question", "name": "Как проходит консультация?", "acceptedAnswer": {"@type": "Answer", "text": "Онлайн (Zoom/WhatsApp видео) и в офисе (Баку, Джеффер Джаббарлы 40). Длительность: 50 мин. Цена: онлайн 5 000 руб., очно 7 500 руб."}}, {"@type": "Question", "name": "С какими проблемами помогаете?", "acceptedAnswer": {"@type": "Answer", "text": "Депрессия, панические атаки, социальная фобия, ОКР, семейные конфликты, энурез, сексуальные расстройства."}}]
 }
 </script>
 <script type="application/ld+json">
@@ -221,66 +221,21 @@
 </div>
 </section>
 
-<section aria-labelledby="reg-h" id="registration">
-<div class="sec-inner">
-<div class="sec-header">
-<span class="badge">Запись на консультацию</span>
-<h2 class="sec-h2" id="reg-h"><span class="sh-line">Записаться на</span> <span class="sh-line">консультацию</span></h2>
-<p class="sec-sub">
-
-
-<span class="ab-lead-desk">Заполните форму или напишите в WhatsApp — ответим в тот же рабочий день.</span>
-</p>
-</div>
-<div class="reg-grid">
-
-<form action="/api/training-reg" id="xidRegForm" method="POST" novalidate="">
-<div>
-<label for="km-name">
-                Имя *
-                <input aria-label="Ваше имя" name="ad" placeholder="Ваше имя" required="" type="text"/>
-</label>
-<label for="km-name">
-                Телефон *
-                <input aria-label="+7 XXX XXX XX XX" name="telefon" placeholder="+7 XXX XXX XX XX" required="" type="tel"/>
-</label>
-</div>
-<label for="km-name">
-              Формат
-              <select name="proqram">
-<option value="Индивидуальная консультация — Онлайн">Онлайн (Zoom / видео WhatsApp)</option>
-<option value="Индивидуальная консультация — Офис">В офисе (Баку)</option>
-<option value="Ещё не решил">Ещё не решил</option>
-</select>
-</label>
-<label for="km-name">
-              Заметка (необязательно)
-              <textarea aria-label="С каким вопросом нужна помощь?" name="qeyd" placeholder="С каким вопросом нужна помощь?" rows="3"></textarea>
-</label>
-<button class="btn btn-fill" type="submit">Отправить заявку</button>
-<p>Ваши данные используются только для связи и не передаются третьим лицам.</p>
-<div class="form-success" id="xidRegSuccess" style="display:none">
-              Ваша заявка принята. Мы свяжемся с вами в течение 24 часов.
-            </div>
-</form>
-
-<div>
-<div>
-<span>Прямой контакт</span>
-<h3>Если хотите ответ быстрее</h3>
-<p>Напишите напрямую в WhatsApp или позвоните — координатор отвечает в тот же день.</p>
-<a class="btn btn-fill" href="https://wa.me/994702200376?text=Здравствуйте%2C+хочу+записаться+на+консультацию" target="_blank">Написать в WhatsApp</a>
-<a class="btn btn-line" href="tel:+994702200376">+994 70 220-03-76</a>
-</div>
-<div>
-<strong>Часы работы:</strong><br/>
-              Пн – Пт · 10:00 – 20:00<br/>
-              Суббота · 10:00 – 16:00
-            </div>
-</div>
-</div>
-</div>
-</section>
+<section class="n-sec n-sec-alt" id="registration"><div class="n-wrap"><div class="n-sec-head"><div><span class="n-eyebrow">Консультация</span><h2 class="n-h2">Записаться на консультацию</h2></div></div><form class="n-form n-consult" data-err="Не удалось отправить. Пожалуйста, напишите в WhatsApp." data-lang="ru" data-ok="Заявка принята. Отправьте чек об оплате на номер +994 70 220 03 76 и согласуйте время." data-req="Заполните это поле" data-sending="Отправка…" data-show='{"one|online": "100 AZN · 5 000 руб.", "one|offline": "150 AZN · 7 500 руб.", "both|online": "150 AZN · 7 500 руб.", "both|offline": "200 AZN · 10 000 руб."}' id="consultForm" novalidate="">
+<fieldset class="n-calc-row"><legend>Специалист</legend>
+<label class="n-chip"><input checked="" name="mutexessis" type="radio" value="kenan"/><span>Кенан Рагимов</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="samira"/><span>Самира Рагимова</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="both"/><span>Оба специалиста</span></label></fieldset>
+<fieldset class="n-calc-row"><legend>Формат</legend>
+<label class="n-chip"><input checked="" name="format" type="radio" value="online"/><span>Онлайн</span></label>
+<label class="n-chip"><input name="format" type="radio" value="offline"/><span>Очно</span></label></fieldset>
+<div class="n-calc-out"><span class="n-calc-rate">1 час</span><span class="n-calc-total"><b data-cprice=""></b></span></div>
+<fieldset class="n-calc-row"><legend>Тема</legend><label class="n-chip"><input checked="" name="movzu" type="radio" value="Семейная терапия"/><span>Семейная терапия</span></label><label class="n-chip"><input name="movzu" type="radio" value="Семейно-Детская Терапия"/><span>Семейно-Детская Терапия</span></label><label class="n-chip"><input name="movzu" type="radio" value="Школа родителей"/><span>Школа родителей</span></label><label class="n-chip"><input name="movzu" type="radio" value="Депрессия"/><span>Депрессия</span></label><label class="n-chip"><input name="movzu" type="radio" value="Панические Атаки"/><span>Панические Атаки</span></label><label class="n-chip"><input name="movzu" type="radio" value="Социофобия"/><span>Социофобия</span></label><label class="n-chip"><input name="movzu" type="radio" value="Ночной Энурез"/><span>Ночной Энурез</span></label><label class="n-chip"><input name="movzu" type="radio" value="other"/><span>Другое</span></label></fieldset>
+<label class="n-form-wide" data-other="" hidden=""><span>Коротко опишите симптомы</span><textarea name="simptom" rows="3"></textarea></label>
+<div class="n-form-grid"><label><span>Имя</span><input autocomplete="name" name="ad" required=""/></label>
+<label><span>Телефон</span><input autocomplete="tel" name="telefon" placeholder="+994" required="" type="tel"/></label></div>
+<p class="n-form-after">После оплаты отправьте чек на номер +994 70 220 03 76 и согласуйте время консультации.</p>
+<button class="n-btn" type="submit">Записаться и оплатить</button><p class="n-form-msg" hidden="" role="status"></p></form></div></section>
 <script>
       document.getElementById('xidRegForm')?.addEventListener('submit', async function(e) {
         e.preventDefault();

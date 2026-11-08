@@ -230,7 +230,7 @@
 <span class="mod-chip">16 dərs</span>
 <span class="mod-chip">həftədə 2 dəfə × 2 saat</span>
 </div>
-<p class="mod-price">Proqram üzrə cəmi 600 AZN <span>— 3 ay tədris və 6 ay superviziya daxil; ödəniş ayda 200 AZN × 3 ay. Əyani və onlayn üçün qiymət eynidir.</span></p>
+<p class="mod-price">Proqram üzrə cəmi 900 AZN <span>— 3 ay tədris və 6 ay superviziya daxil; ödəniş ayda 300 AZN × 3 ay. Əyani və onlayn üçün qiymət eynidir.</span></p>
 <span class="mod-open">Tam proqrama bax</span>
 </summary>
 <ol class="mod-list">
@@ -321,8 +321,8 @@ qurulub. Yol böhran vəziyyətindən başlayır və münasibətlərdə sakitli
 </div>
 <div class="pricing-tbl-row">
 <div class="pricing-tbl-cell pricing-tbl-name"><strong>Aylıq Terapiya Paketi</strong><span>4 sessiya + WhatsApp dəstək (limit 100 dəq)</span></div>
-<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Online</span><span class="pv">500 AZN</span></div>
-<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Əyani</span><span class="pv">1000 AZN</span></div>
+<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Online</span><span class="pv">400 AZN</span></div>
+<div class="pricing-tbl-cell pricing-tbl-price"><span class="pl">Əyani</span><span class="pv">600 AZN</span></div>
 </div>
 </div>
 <div>
@@ -434,46 +434,21 @@ qurulub. Yol böhran vəziyyətindən başlayır və münasibətlərdə sakitli
 </div>
 </section>
 
-<section aria-labelledby="at-reg-h" id="registration">
-<div class="sec-inner">
-<span class="badge">QEYDİYYAT</span>
-<h2 class="sec-h2" id="at-reg-h"><span class="sh-line">Konsultasiya</span> <span class="sh-line">və təlimə yazılın</span></h2>
-<p class="sec-sub">
-
-
-<span class="ab-lead-desk">Formu doldurun və ya WhatsApp yazın — cavab həmin gün verilir, format seçimi sizindir.</span>
-</p>
-<form action="/api/training-reg" id="atRegForm" method="POST" novalidate="">
-<div class="reg-field">
-<label for="at-ad">Adınız və soyadınız</label>
-<input id="at-ad" name="ad" placeholder="Adınız və soyadınız" required="" type="text"/>
-</div>
-<div class="reg-field">
-<label for="at-tel">Telefon</label>
-<input id="at-tel" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel"/>
-</div>
-<div class="reg-field">
-<label for="at-proqram">Nə ilə maraqlanırsınız?</label>
-<select id="at-proqram" name="proqram">
-<option value="Cütlük terapiyası — konsultasiya">Cütlük terapiyası — konsultasiya</option>
-<option value="Valideyn-övlad münasibətləri — konsultasiya">Valideyn-övlad münasibətləri — konsultasiya</option>
-<option value="Təlim — Modul 1, Cütlük terapiyası">Təlim — Modul 1, Cütlük terapiyası</option>
-<option value="Təlim — Modul 2, Valideyn-övlad münasibətləri">Təlim — Modul 2, Valideyn-övlad münasibətləri</option>
-<option value="Hələ seçməmişəm">Hələ seçməmişəm</option>
-</select>
-</div>
-<div class="reg-field">
-<label for="at-qeyd">Qısa qeyd</label>
-<textarea id="at-qeyd" name="qeyd" placeholder="Hansı mövzuda kömək lazımdır?" rows="3"></textarea>
-</div>
-<button class="btn btn-fill" type="submit">Göndər</button>
-</form>
-<div id="atRegSuccess" style="display:none">
-<p>Müraciətiniz qəbul edildi. Həmin gün sizinlə əlaqə saxlanılacaq.</p>
-</div>
-<p class="reg-note">Və ya birbaşa yazın: <a href="https://wa.me/994775395009" rel="noopener" target="_blank">WhatsApp</a></p>
-</div>
-</section>
+<section class="n-sec n-sec-alt" id="registration"><div class="n-wrap"><div class="n-sec-head"><div><span class="n-eyebrow">Konsultasiya</span><h2 class="n-h2">Konsultasiyaya yazılın</h2></div></div><form class="n-form n-consult" data-err="Göndərmək alınmadı. Zəhmət olmasa WhatsApp ilə yazın." data-lang="az" data-ok="Müraciətiniz qəbul edildi. Ödəniş qəbzini +994 70 220 03 76 nömrəsinə göndərin və vaxtı razılaşdırın." data-req="Bu sahəni doldurun" data-sending="Göndərilir…" data-show='{"one|online": "100 AZN", "one|offline": "150 AZN", "both|online": "150 AZN", "both|offline": "200 AZN"}' id="consultForm" novalidate="">
+<fieldset class="n-calc-row"><legend>Mütəxəssis</legend>
+<label class="n-chip"><input checked="" name="mutexessis" type="radio" value="kenan"/><span>Kənan Rəhimov</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="samira"/><span>Samirə Rəhimova</span></label>
+<label class="n-chip"><input name="mutexessis" type="radio" value="both"/><span>Hər iki mütəxəssis</span></label></fieldset>
+<fieldset class="n-calc-row"><legend>Format</legend>
+<label class="n-chip"><input checked="" name="format" type="radio" value="online"/><span>Onlayn</span></label>
+<label class="n-chip"><input name="format" type="radio" value="offline"/><span>Əyani</span></label></fieldset>
+<div class="n-calc-out"><span class="n-calc-rate">1 saat</span><span class="n-calc-total"><b data-cprice=""></b></span></div>
+<fieldset class="n-calc-row"><legend>Mövzu</legend><label class="n-chip"><input checked="" name="movzu" type="radio" value="Ailə Terapiyası"/><span>Ailə Terapiyası</span></label><label class="n-chip"><input name="movzu" type="radio" value="Aile-Uşaq Terapiyası"/><span>Aile-Uşaq Terapiyası</span></label><label class="n-chip"><input name="movzu" type="radio" value="Valideyn Məktəbi"/><span>Valideyn Məktəbi</span></label><label class="n-chip"><input name="movzu" type="radio" value="Depressiya"/><span>Depressiya</span></label><label class="n-chip"><input name="movzu" type="radio" value="Panik Ataklar"/><span>Panik Ataklar</span></label><label class="n-chip"><input name="movzu" type="radio" value="Sosial Fobiya"/><span>Sosial Fobiya</span></label><label class="n-chip"><input name="movzu" type="radio" value="Gecə Enurezi"/><span>Gecə Enurezi</span></label><label class="n-chip"><input name="movzu" type="radio" value="other"/><span>Digər</span></label></fieldset>
+<label class="n-form-wide" data-other="" hidden=""><span>Qısaca vəziyyəti təsvir edin</span><textarea name="simptom" rows="3"></textarea></label>
+<div class="n-form-grid"><label><span>Ad</span><input autocomplete="name" name="ad" required=""/></label>
+<label><span>Telefon</span><input autocomplete="tel" name="telefon" placeholder="+994" required="" type="tel"/></label></div>
+<p class="n-form-after">Ödənişdən sonra qəbzi +994 70 220 03 76 nömrəsinə göndərin və konsultasiya vaxtını razılaşdırın.</p>
+<button class="n-btn" type="submit">Yazıl və ödə</button><p class="n-form-msg" hidden="" role="status"></p></form></div></section>
 
 <div class="cta-band">
 <div class="cta-band-inner">
