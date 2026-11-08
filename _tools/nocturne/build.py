@@ -145,74 +145,62 @@ def gen_hero(slug):
     return out
 
 
-VID_DIR = SITE.parent / '_assets' / 'nocturne_video'   # первый экран главной: still.png (+ frames/*.jpg|webp после видео); вне репозитория
+VID_DIR = SITE.parent / '_assets' / 'nocturne_video'   # первый экран главной; вне репозитория
+CINE_FRAMES = VID_DIR / 'jobus_frames'   # кадры видео JobTop (prep_jobus_frames.py): d/ десктоп 1600×900, m/ телефон 1000×1000
 
 
 def cine_assets():
-    """Сцена главной → OUT/images/hero-home/: still.webp, still-m.webp и кадры f000.webp… (если нарезаны)."""
-    from PIL import Image
-    src = VID_DIR / 'still.png'
-    if not src.is_file():
-        return None
-    out = {}
-    for name, w in (('still', 2400), ('still-m', 1400)):
-        rel_ = 'images/hero-home/%s.webp' % name
-        dst = OUT / rel_
-        if not (dst.is_file() and dst.stat().st_mtime >= src.stat().st_mtime):
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            im = Image.open(src).convert('RGB')
-            if im.width > w:
-                im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
-            im.save(dst, 'WEBP', quality=84, method=6)
-        copied.add(rel_)
-        out[name] = rel_
-    frames = sorted([p for p in (VID_DIR / 'frames').glob('*') if p.suffix.lower() in ('.jpg', '.png', '.webp')]) if (VID_DIR / 'frames').is_dir() else []
-    for i, fp in enumerate(frames):
-        rel_ = 'images/hero-home/f%03d.webp' % i
-        dst = OUT / rel_
-        if not (dst.is_file() and dst.stat().st_mtime >= fp.stat().st_mtime):
-            im = Image.open(fp).convert('RGB')
-            if im.width > 1920:
-                im = im.resize((1920, round(im.height * 1920 / im.width)), Image.LANCZOS)
-            im.save(dst, 'WEBP', quality=72, method=4)
-        copied.add(rel_)
-    out['frames'] = len(frames)
-    return out
+    """Кадры первого экрана → OUT/images/hero-home/{d,m}/fNNN.webp (готовые WebP копируются как есть)."""
+    n = 0
+    for sub in ('d', 'm'):
+        src_dir = CINE_FRAMES / sub
+        files = sorted(src_dir.glob('f*.webp')) if src_dir.is_dir() else []
+        for fp in files:
+            rel_ = 'images/hero-home/%s/%s' % (sub, fp.name)
+            dst = OUT / rel_
+            if not (dst.is_file() and dst.stat().st_mtime >= fp.stat().st_mtime):
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(fp, dst)
+            copied.add(rel_)
+        n = len(files)
+    return n
+
+
+QUERY = 'Doctor Ragimoff'
 
 
 def cine_hero(d, lang, new_page):
-    """Первый экран главной: закреплённая сцена, прокрутка ведёт камеру (кадры видео или наезд по картине)."""
-    a = cine_assets()
+    """Первый экран главной: кадры видео по прокрутке (вперёд/назад, плавно), касание → строка поиска,
+    в ней набирается имя, из неё «пишется» заголовок: рукописное «Doctor Ragimoff» + строгое «Psixologiya Məktəbi»."""
+    n = cine_assets()
     w1, w2 = d.get('w1', ''), d.get('w2', '')
-    title = w2 or w1
-    kicker = w1 if w2 else ''
+    hand = (w1 if w2 else '').strip('«»"“” ') or QUERY
+    strong = w2 or w1
     cl = d.get('ctas') or [(rel(new_page, lang + '/' + MAP[k]), LABELS[lang].get(k), False) for k in ('xidmetler.html', 'tehsil.html') if LABELS[lang].get(k)]
     ctas = ''.join('<a class="n-btn%s" href="%s">%s</a>' % ('' if i == 0 else ' n-btn-ghost', H.escape(h), H.escape(t))
                    for i, (h, t, _) in enumerate(cl))
-    media = ''
-    if a:
-        full, mob = rel(new_page, a['still']), rel(new_page, a['still-m'])
-        fr = ''
-        if a['frames']:
-            fr = ' data-frames="%d" data-fsrc="%s"' % (a['frames'], H.escape(rel(new_page, 'images/hero-home/f000.webp').replace('f000', 'f{i}')))
-        media = ('<div class="n-cine-frame"%s><img class="n-cine-img" src="%s" srcset="%s 1400w, %s 2400w" sizes="(max-width: 700px) 1400px, 100vw" alt="" fetchpriority="high">'
-                 '<canvas class="n-cine-cv" aria-hidden="true"></canvas><span class="n-cine-glow" aria-hidden="true"></span>'
-                 '<canvas class="n-cine-dust" aria-hidden="true"></canvas></div>') % (fr, H.escape(full), H.escape(mob), H.escape(full))
-    return '''<section class="n-cine" id="main-content" data-cine>
+    f0 = rel(new_page, 'images/hero-home/d/f000.webp')
+    letters = ''.join('<span style="--i:%d">%s</span>' % (i, H.escape(ch) if ch != ' ' else '&nbsp;') for i, ch in enumerate(strong))
+    font = rel(new_page, 'assets/fonts/marggraff-kursiv.woff')
+    return '''<style>@font-face{font-family:"Marggraff Kursiv";src:url("%s") format("woff");font-display:swap}</style>
+<section class="n-cine n-cine-v" id="main-content" data-cine>
 <div class="n-cine-stick">
-%s
+<div class="n-cine-frame" data-frames="%d" data-fsrc="%s" data-msrc="%s">
+<img class="n-cine-img" src="%s" alt="" fetchpriority="high"><canvas class="n-cine-cv" aria-hidden="true"></canvas>
+<div class="n-cine-search" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="n-cine-q" data-q="%s"></span><i class="n-cine-caret"></i></div>
+</div>
 <div class="n-cine-shade" aria-hidden="true"></div>
 <div class="n-wrap n-cine-beat n-cine-b1">
-<span class="n-eyebrow n-rise">%s</span>
-<h1 class="n-cine-h1 n-rise" style="--d:.15s">%s<span class="n-cine-title">%s</span></h1>
-<div class="n-ctas n-rise" style="--d:.35s">%s</div>
+<span class="n-eyebrow">%s</span>
+<h1 class="n-cine-h1"><span class="n-cine-hand">%s</span><span class="n-cine-strong" aria-label="%s">%s</span></h1>
+<p class="n-cine-lead">%s</p>
+<div class="n-ctas">%s</div>
 </div>
-<div class="n-wrap n-cine-beat n-cine-b2" aria-hidden="true"><p class="n-cine-quote">%s</p></div>
-<div class="n-cine-cue n-rise" style="--d:.8s" aria-hidden="true"><i></i></div>
+<div class="n-cine-cue" aria-hidden="true"><i></i></div>
 <div class="n-cine-out" aria-hidden="true"></div>
-</div></section>''' % (media, H.escape(d.get('badge', '')),
-                       ('<span class="n-cine-kicker">%s</span>' % H.escape(kicker)) if kicker else '', H.escape(title), ctas,
-                       H.escape(d.get('lead', '')))
+</div></section>''' % (H.escape(font), n, H.escape(f0.replace('f000', 'f{i}')), H.escape(f0.replace('/d/f000', '/m/f{i}')), H.escape(f0),
+                         H.escape(QUERY), H.escape(d.get('badge', '')), H.escape(hand), H.escape(strong), letters,
+                         H.escape(d.get('lead', '')), ctas)
 
 
 def home_about(frag):
@@ -464,7 +452,7 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=Oswald:wght@400;500;600&amp;display=swap">
 %s
 <link rel="stylesheet" href="%sassets/css/nocturne.css">
 </head>
