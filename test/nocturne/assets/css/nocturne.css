@@ -106,6 +106,20 @@ body.n-body { margin: 0; background: var(--n-bg); color: var(--n-text); font: 40
 .n-hero-person .n-hero-art::after { content: ""; position: absolute; inset: 0; border-radius: 999px 999px 30px 30px; background: linear-gradient(180deg, rgba(201,169,97,.25), transparent 50%); mix-blend-mode: multiply; pointer-events: none; }
 .n-hero-person .n-h1 { font-size: clamp(56px, 8vw, 132px) !important; }
 @media (max-width: 900px) { .n-hero-has-art .n-hero-in { grid-template-columns: 1fr; } .n-hero-art { max-width: 440px; } .n-hero { padding-top: 130px; } }
+/* painted first screen: full-bleed nocturne painting, subject on the right, headline over the dark left */
+.n-hero-paint { min-height: min(94vh, 900px); }
+.n-hero-paint .n-hero-bg { overflow: hidden; }
+.n-hero-paint .n-hero-bg img { filter: saturate(1.04) brightness(.92); object-position: 72% 50%; transform-origin: 70% 45%; animation: nPaintIn 3.2s var(--n-e) both; will-change: transform; transform: translate3d(0, var(--py, 0px), 0) scale(var(--ps, 1.06)); }
+.n-hero-paint .n-hero-bg::after { background:
+  linear-gradient(90deg, rgba(7,9,14,.94) 0%, rgba(7,9,14,.78) 30%, rgba(7,9,14,.25) 62%, rgba(7,9,14,.05) 100%),
+  linear-gradient(180deg, rgba(7,9,14,.55) 0%, transparent 22%, transparent 62%, var(--n-bg) 100%); }
+.n-hero-paint::before { mix-blend-mode: screen; }
+@keyframes nPaintIn { from { opacity: 0; transform: scale(1.22); filter: saturate(.4) brightness(.5) blur(8px); } to { opacity: 1; transform: scale(1.06); } }
+@media (max-width: 900px) {
+  .n-hero-paint { min-height: 92svh; }
+  .n-hero-paint .n-hero-bg img { object-position: 66% 50%; }
+  .n-hero-paint .n-hero-bg::after { background: linear-gradient(180deg, rgba(7,9,14,.35) 0%, rgba(7,9,14,.2) 30%, rgba(7,9,14,.86) 66%, var(--n-bg) 100%); }
+}
 
 .n-hero-home { min-height: 100vh; min-height: 100svh; align-items: center; padding: 120px 0 56px; }
 .n-hh { position: relative; display: grid; justify-items: center; text-align: center; width: 100%; }

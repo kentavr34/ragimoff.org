@@ -120,6 +120,21 @@
     });
   });
 
+  /* painted first screen: the painting drifts slower than the page and slowly approaches (scroll-linked) */
+  var paint = document.querySelector('[data-paint] img');
+  if (paint) {
+    var hero = paint.closest('.n-hero'), ticking = false;
+    paint.addEventListener('animationend', function () { paint.style.animation = 'none'; upd(); });
+    function upd() {
+      ticking = false;
+      var h = hero.offsetHeight || 1, y = Math.min(window.scrollY, h);
+      var p = y / h;
+      paint.style.setProperty('--py', (y * 0.35).toFixed(1) + 'px');
+      paint.style.setProperty('--ps', (1.06 + p * 0.12).toFixed(4));
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
+  }
+
   /* reveal content blocks as they enter the screen */
   if ('IntersectionObserver' in window) {
     var sel = '.n-body main > section:not(.n-hero) .sec-header, .xid-card, .feat-card, .price-card, .step-card, .opp-card, .adv-card, .review-card, .svc-card, .info-card, .trust-card, .fmt-card, .law-card, .dir-card, .def-card, .video-card, .blog-card, .bc, .process-step, .reg-path-step, .why-item, .stat-item, .n-person, .tl-row, .tl-item';

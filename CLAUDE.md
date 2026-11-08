@@ -197,6 +197,15 @@ Covers: title page, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt > H
 Если инструментов `brain` нет в сессии, эндпоинт вызывается напрямую:
 `http://45.67.216.36:9626/mcp` (streamable-http, JSON-RPC; чтение без токена).
 
+## Доступы, ключи и общая память (Кенан разрешил 08.11.2026)
+
+Значения ключей не печатать и не коммитить — здесь только места.
+- **SSH на оба сервера:** `ssh -i ~/.ssh/claude_deploy_key root@<ip>`.
+- **45.67.216.36** — ЦНС (общая память всех проектов: `python D:/Projects/_MEMORY/tools/cns.py recall <тема>`), Claudia, Chesscoin. Ключи моделей — `/opt/claudia/.env` (DASHSCOPE_KEY_2/3/GTC/RPM/HARNESS, QWEN_API_KEY, DEEPINFRA_API_KEY, OPENROUTER_*). Карта — `/opt/SERVER_MAP.md`.
+- **164.68.114.15** — прод перевода 994. Ключи — `/opt/prod/tools/tr_keys.json` (запись `irada` — DashScope с бесплатной квотой).
+- **Картинки:** DashScope `wan2.5-t2i-preview`; образец — `D:\Projects\Freud\tools\site\gen_covers.py`, для «Ноктюрна» — `_tools/nocturne/gen_hero.py` (запуск на 164, результат в `D:\Projects\Ragimoff\_assets\nocturne_hero\`).
+- Свод правил всех проектов — `D:\Projects\_MEMORY\RULES.md`; платное — только после цены и «да» Кенана.
+
 ## Сайт: что сделано в августе (сверх книги)
 
 - **Контраст.** Тёмный текст на тёмном фоне правится не правилом CSS, а сторожем во

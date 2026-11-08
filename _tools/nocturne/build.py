@@ -121,6 +121,30 @@ def copy_image(site_path):
     return dst_rel
 
 
+GEN_DIR = SITE.parent / '_assets' / 'nocturne_hero'   # картины первых экранов (DashScope wan2.5, gen_hero.py); вне репозитория
+
+
+def gen_hero(slug):
+    """Картина первого экрана для страницы-источника slug → OUT/images/hero-n/<slug>{,-m}.webp (или None)."""
+    src = GEN_DIR / (slug + '.png')
+    if not src.is_file():
+        return None
+    out = {}
+    for suf, w in (('', 2000), ('-m', 900)):
+        dst_rel = 'images/hero-n/%s%s.webp' % (slug, suf)
+        dst = OUT / dst_rel
+        if not (dst.is_file() and dst.stat().st_mtime >= src.stat().st_mtime):
+            from PIL import Image
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            im = Image.open(src).convert('RGB')
+            if im.width > w:
+                im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=82, method=6)
+        copied.add(dst_rel)
+        out[suf or 'full'] = dst_rel
+    return out
+
+
 def resolve(orig_page, url):
     """Адрес из оригинальной страницы → путь от корня сайта (без ведущего /)."""
     u = url.strip()
@@ -309,6 +333,10 @@ def hero_html(d, lang, home=False, crumbs=''):
 </div></section>''' % (H.escape(d.get('badge', '')), w1, letters1, w2, H.escape(d['photo']), H.escape(d.get('alt', '')), H.escape(d.get('lead', '')), ctas)
     art = d.get('art')
     bg = '' if art else '<div class="n-hero-bg" aria-hidden="true"><img src="%s" alt=""></div>' % H.escape(d.get('img', ''))
+    if d.get('paint'):
+        full, mob = d['paint']
+        bg = ('<div class="n-hero-bg n-paint" aria-hidden="true" data-paint><img src="%s" srcset="%s 900w, %s 2000w" '
+              'sizes="100vw" alt="" fetchpriority="high"></div>') % (H.escape(full), H.escape(mob), H.escape(full))
     fig = ('<figure class="n-hero-art n-rise" style="--d:.35s"><img src="%s" alt="%s"></figure>' % (H.escape(art), H.escape(d.get('art_alt', '')))) if art else ''
     return '''<section class="n-hero%s" id="main-content" data-spot>
 %s
@@ -317,7 +345,7 @@ def hero_html(d, lang, home=False, crumbs=''):
 <h1 class="n-h1 n-rise" style="--d:.1s">%s</h1>
 %s
 %s
-</div>%s</div></section>''' % (' n-hero-has-art' if art else '', bg, crumbs, H.escape(d.get('badge', '')), h1,
+</div>%s</div></section>''' % ((' n-hero-has-art' if art else '') + (' n-hero-paint' if d.get('paint') else ''), bg, crumbs, H.escape(d.get('badge', '')), h1,
                        ('<p class="n-lead n-rise" style="--d:.2s">%s</p>' % H.escape(d['lead'])) if d.get('lead') else '',
                        ('<div class="n-ctas n-rise" style="--d:.3s">%s</div>' % ctas) if ctas else '', fig)
 
@@ -557,6 +585,10 @@ def build_page(lang, orig_name, new_rel, key):
             s.body.append(main)
     hero = main.select_one('section.page-hero, section.page-hero-x')
     d = hero_parts(hero, orig_page, new_page)
+    g = gen_hero(orig_name.rsplit('/', 1)[-1][:-5])
+    if g:   # новая картина вместо старой иллюстрации-«лампы»
+        d['paint'] = (rel(new_page, g['full']), rel(new_page, g['-m']))
+        d.pop('art', None)
     if hero is not None:
         hero.extract()
     for el in main.find_all(True):
