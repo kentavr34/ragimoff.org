@@ -54,8 +54,10 @@ function validate() {
     if (CLOSED.has(b.id) && b.collection) throw new Error('закрытая книга в коллекции: ' + b.id);
     for (const code of LANGS) {
       const r = L(b.read, code);
-      if (!isSoon(b) && r && /^\/books\//.test(r) && !fs.existsSync(path.join(SITE, r, 'index.html'))) {
-        console.warn('ВНИМАНИЕ: ссылка «' + r + '» (' + b.id + ', ' + code + ') — нет файла ' + path.join('books', r.replace(/^\/books\//, ''), 'index.html'));
+      /* 09.11.2026: ссылка может вести прямо на страницу .html (работы вне серии внутри прежних сборников) */
+      const file = r && /\.html$/.test(r) ? path.join(SITE, r) : path.join(SITE, r || '', 'index.html');
+      if (!isSoon(b) && r && /^\/books\//.test(r) && !fs.existsSync(file)) {
+        console.warn('ВНИМАНИЕ: ссылка «' + r + '» (' + b.id + ', ' + code + ') — нет файла ' + path.relative(SITE, file));
       }
     }
   }
