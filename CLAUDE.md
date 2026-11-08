@@ -200,6 +200,7 @@ Covers: title page, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt > H
 ## Доступы, ключи и общая память (Кенан разрешил 08.11.2026)
 
 Значения ключей не печатать и не коммитить — здесь только места.
+- **Главный свод ключей (локально, вне git):** `D:\Projects\994\.venv\secrets\` — `pass-key.md`, `api-key.md`, `CONNECTIONS.md` (как подключаться к каждому каналу), `ALIBABA_DEBTS.md`; `D:\Projects\_archiverchive_docs\config\` — `pass.txt` (серверы, SSH, токены ботов) и `api.txt` (все ключи провайдеров); `D:\Projects\_archive\archive_docs\config\` — `pass.txt` (серверы, SSH, токены ботов) и `api.txt` (все ключи провайдеров); архив и карта всех мест — `D:\Projects\_archive\keys\README.md`.
 - **SSH на оба сервера:** `ssh -i ~/.ssh/claude_deploy_key root@<ip>`.
 - **45.67.216.36** — ЦНС (общая память всех проектов: `python D:/Projects/_MEMORY/tools/cns.py recall <тема>`), Claudia, Chesscoin. Ключи моделей — `/opt/claudia/.env` (DASHSCOPE_KEY_2/3/GTC/RPM/HARNESS, QWEN_API_KEY, DEEPINFRA_API_KEY, OPENROUTER_*). Карта — `/opt/SERVER_MAP.md`.
 - **164.68.114.15** — прод перевода 994. Ключи — `/opt/prod/tools/tr_keys.json` (запись `irada` — DashScope с бесплатной квотой).
