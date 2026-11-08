@@ -26,7 +26,8 @@ const SITE = path.resolve(__dirname, '..');
 const OUT = path.join(SITE, 'books');
 const CATALOG = JSON.parse(fs.readFileSync(path.join(__dirname, 'catalog.json'), 'utf8'));
 const CLOSED = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, 'closed-books.json'), 'utf8')).closed);
-const SHELL = (code) => fs.readFileSync(path.join(__dirname, 'catalog-shell', 'books.' + code + '.html'), 'utf8');
+/* оболочка — всегда с LF, как живые страницы (git с autocrlf может выдать её с CRLF) */
+const SHELL = (code) => fs.readFileSync(path.join(__dirname, 'catalog-shell', 'books.' + code + '.html'), 'utf8').replace(/\r\n/g, '\n');
 const LANGS = CATALOG.langs;
 
 /* поле-текст: строка (одна на все языки) или {az, ru, en}. Тексты в catalog.json — уже HTML. */
