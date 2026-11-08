@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090E">
+  <title>Books — RAGIMOFF</title>
+  <meta name="description" content="RAGIMOFF books: Clinical Psychiatry, The Guilt Virus, Schizophrenia, Phoenix Era. Read online and order.">
+  <link rel="canonical" href="https://ragimoff.org/books/en/">
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/books/">
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/books/ru/">
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/books/en/">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
+  <link rel="stylesheet" href="/books/books.css?v=13">
+  <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
+       перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
+       на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
+  <style>[hidden] { display: none !important; }</style>
+</head>
+<body>
+
+  <!-- ─────────────────────── ШАПКА ─────────────────────── -->
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="/en/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">The address of professional reputation</span>
+      </a>
+      <span data-lang-switch data-langs="az,ru,en"></span>
+      <a class="hdr__cart hdr__cart--m" id="site-cart-link-m" href="#sebet" aria-label="Cart" title="Cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count-m" class="hdr__cart-n" hidden>0</span>
+        </a>
+      <nav class="nav" aria-label="Naviqasiya">
+        <a href="/en/">Home</a>
+        <a href="/en/tehsil.html">Education</a>
+        <a href="/books/en/">Books</a>
+        <a href="/en/blog.html">Blog</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Cart" title="Cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ─────────────────────── КНИГИ ─────────────────────── -->
+    <section class="sec" id="kitablar">
+      <h1 class="sr-only">Books</h1>
+
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input type="search" id="q" placeholder="Search by title, author or year…" aria-label="Search books" autocomplete="off">
+        </label>
+        <span class="count" id="count">43 books</span>
+      </div>
+
+      <div class="afilter" id="afilter">
+        <span class="afilter__label">Author</span>
+        <button class="chip is-on" data-author="">All authors</button>
+        <button class="chip" data-author="kenan">Kenan Ragimov</button>
+        <button class="chip" data-author="samira">Samira Ragimova</button>
+        <button class="chip" data-author="freud">Sigmund Freud</button>
+      </div>
+
+      <div class="grid">
+
+<!--@@CARDS@@-->
+
+
+
+
+
+
+
+
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────────── ФУТЕР ─────────────────────── -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <a class="logo" href="/en/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">The address of professional reputation</span>
+      </a>
+      <nav class="ft__nav" aria-label="Futermenü">
+        <a href="/en/">Home</a>
+        <a href="/books/en/">Books</a>
+        <a href="/en/blog.html">Blog</a>
+        <a href="https://t.me/ragimoff">Telegram</a>
+        <a href="mailto:info@ragimoff.org">info@ragimoff.org</a>
+      </nav>
+      <span class="mono">© 2026 RAGIMOFF</span>
+    </div>
+  </footer>
+
+  <!-- ─────────── ФОРМА ЗАКАЗА (та же механика, что на сайте) ─────────── -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="o-title">
+      <button class="modal__x" data-close aria-label="Close">✕</button>
+      <h2 class="h2" id="o-title">Order the book</h2>
+      <p class="modal__sub" id="o-sub"></p>
+      <form id="order-form" action="/api/book-order" method="POST" novalidate>
+        <label class="field">
+          <span>Book</span>
+          <select id="o-book" name="book" required>
+<!--@@OPTIONS@@-->          </select>
+        </label>
+        <label class="field">
+          <span>Full name</span>
+          <input id="o-name" type="text" name="name" placeholder="Your full name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Mobile phone</span>
+          <input id="o-phone" type="tel" name="phone" placeholder="+994 XX XXX XX XX" autocomplete="tel" required>
+        </label>
+        <label class="field">
+          <span>Delivery address</span>
+          <textarea id="o-address" name="address" rows="2" placeholder="Country, city, street, building, apartment, postal code" autocomplete="street-address" required></textarea>
+        </label>
+        <small class="field__hint">The paper copy is sent by post. Delivery and payment terms are confirmed by phone.</small>
+        <button class="btn btn--main" type="submit">Order</button>
+      </form>
+      <div class="modal__ok" id="o-ok" hidden>
+        Thank you!<br>Your order has been received — we will contact you soon.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__booksUI = {"sending":"Sending…","submit":"Order","fill":"Please enter your name and phone number.","empty":"Nothing found","count":"%n books"};
+  </script>
+  <script src="/books/books.js?v=14" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
+<script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n();['cart-count','cart-count-m'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent=c;el.hidden=!c}})}
+  ['site-cart-link','site-cart-link-m'].forEach(function(id){var a=document.getElementById(id);if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}})
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
+</html>
