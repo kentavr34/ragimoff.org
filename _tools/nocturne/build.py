@@ -145,6 +145,94 @@ def gen_hero(slug):
     return out
 
 
+VID_DIR = SITE.parent / '_assets' / 'nocturne_video'   # первый экран главной: still.png (+ frames/*.jpg|webp после видео); вне репозитория
+
+
+def cine_assets():
+    """Сцена главной → OUT/images/hero-home/: still.webp, still-m.webp и кадры f000.webp… (если нарезаны)."""
+    from PIL import Image
+    src = VID_DIR / 'still.png'
+    if not src.is_file():
+        return None
+    out = {}
+    for name, w in (('still', 2400), ('still-m', 1400)):
+        rel_ = 'images/hero-home/%s.webp' % name
+        dst = OUT / rel_
+        if not (dst.is_file() and dst.stat().st_mtime >= src.stat().st_mtime):
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            im = Image.open(src).convert('RGB')
+            if im.width > w:
+                im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=84, method=6)
+        copied.add(rel_)
+        out[name] = rel_
+    frames = sorted([p for p in (VID_DIR / 'frames').glob('*') if p.suffix.lower() in ('.jpg', '.png', '.webp')]) if (VID_DIR / 'frames').is_dir() else []
+    for i, fp in enumerate(frames):
+        rel_ = 'images/hero-home/f%03d.webp' % i
+        dst = OUT / rel_
+        if not (dst.is_file() and dst.stat().st_mtime >= fp.stat().st_mtime):
+            im = Image.open(fp).convert('RGB')
+            if im.width > 1920:
+                im = im.resize((1920, round(im.height * 1920 / im.width)), Image.LANCZOS)
+            im.save(dst, 'WEBP', quality=72, method=4)
+        copied.add(rel_)
+    out['frames'] = len(frames)
+    return out
+
+
+def cine_hero(d, lang, new_page):
+    """Первый экран главной: закреплённая сцена, прокрутка ведёт камеру (кадры видео или наезд по картине)."""
+    a = cine_assets()
+    w1, w2 = d.get('w1', ''), d.get('w2', '')
+    title = w2 or w1
+    kicker = w1 if w2 else ''
+    cl = d.get('ctas') or [(rel(new_page, lang + '/' + MAP[k]), LABELS[lang].get(k), False) for k in ('xidmetler.html', 'tehsil.html') if LABELS[lang].get(k)]
+    ctas = ''.join('<a class="n-btn%s" href="%s">%s</a>' % ('' if i == 0 else ' n-btn-ghost', H.escape(h), H.escape(t))
+                   for i, (h, t, _) in enumerate(cl))
+    media = ''
+    if a:
+        full, mob = rel(new_page, a['still']), rel(new_page, a['still-m'])
+        fr = ''
+        if a['frames']:
+            fr = ' data-frames="%d" data-fsrc="%s"' % (a['frames'], H.escape(rel(new_page, 'images/hero-home/f000.webp').replace('f000', 'f{i}')))
+        media = ('<div class="n-cine-frame"%s><img class="n-cine-img" src="%s" srcset="%s 1400w, %s 2400w" sizes="(max-width: 700px) 1400px, 100vw" alt="" fetchpriority="high">'
+                 '<canvas class="n-cine-cv" aria-hidden="true"></canvas><span class="n-cine-glow" aria-hidden="true"></span>'
+                 '<canvas class="n-cine-dust" aria-hidden="true"></canvas></div>') % (fr, H.escape(full), H.escape(mob), H.escape(full))
+    return '''<section class="n-cine" id="main-content" data-cine>
+<div class="n-cine-stick">
+%s
+<div class="n-cine-shade" aria-hidden="true"></div>
+<div class="n-wrap n-cine-beat n-cine-b1">
+<span class="n-eyebrow n-rise">%s</span>
+<h1 class="n-cine-h1 n-rise" style="--d:.15s">%s<span class="n-cine-title">%s</span></h1>
+<div class="n-ctas n-rise" style="--d:.35s">%s</div>
+</div>
+<div class="n-wrap n-cine-beat n-cine-b2" aria-hidden="true"><p class="n-cine-quote">%s</p></div>
+<div class="n-cine-cue n-rise" style="--d:.8s" aria-hidden="true"><i></i></div>
+<div class="n-cine-out" aria-hidden="true"></div>
+</div></section>''' % (media, H.escape(d.get('badge', '')),
+                       ('<span class="n-cine-kicker">%s</span>' % H.escape(kicker)) if kicker else '', H.escape(title), ctas,
+                       H.escape(d.get('lead', '')))
+
+
+def home_about(frag):
+    """«О специалисте» на главной: без второй копии портрета (он уже в блоке «Специалисты»), кнопка — под хронологией."""
+    sec = frag.select_one('section.sec-2col')
+    if sec is None:
+        return
+    sec['class'] = sec.get('class', []) + ['n-about-home']
+    right = sec.select_one('.about-col-right')
+    if right is not None:
+        btn = right.select_one('a.about-img-btn')
+        content = sec.select_one('.about-content')
+        if btn is not None and content is not None:
+            btn['class'] = ['n-btn', 'n-btn-ghost', 'n-about-more']
+            wrap = frag.new_tag('div', attrs={'class': 'n-about-more-row'})
+            wrap.append(btn.extract())
+            content.append(wrap)
+        right.decompose()
+
+
 def resolve(orig_page, url):
     """Адрес из оригинальной страницы → путь от корня сайта (без ведущего /)."""
     u = url.strip()
@@ -632,7 +720,8 @@ def build_page(lang, orig_name, new_rel, key):
         frag = BeautifulSoup(content, 'html.parser')
         stats = frag.select_one('.stats-strip')
         stats_html = str(stats.extract()) if stats else ''
-        main_html = hero_html(d, lang, home=True) + marquee + stats_html + specialists_block(lang, new_page) + programs_block(lang, new_page) + str(frag)
+        home_about(frag)
+        main_html = cine_hero(d, lang, new_page) + marquee + stats_html + specialists_block(lang, new_page) + programs_block(lang, new_page) + str(frag)
     elif orig_name in ('haqqimda.html', 'samira.html'):
         photo = 'images/kenan/haqqimda-kenan.jpg' if orig_name == 'haqqimda.html' else 'images/samira/samira-portret.jpg'
         main_html = person_hero(lang, orig_name, d, photo, new_page, crumbs) + content
