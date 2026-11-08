@@ -601,3 +601,41 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
   .n-cine-strong { font-size: clamp(24px, 7.4vw, 32px); white-space: normal; }
   .n-cine-lead { font-size: 15.5px; margin-top: 16px; }
 }
+
+/* ═══ Логотип: знак приложения «R.» (жирная R + золотая точка) и сразу за ним AGIMOFF — читается одним словом RAGIMOFF ═══ */
+.n-logo { gap: 0 !important; font: 800 19px/1 var(--n-sans) !important; letter-spacing: .05em !important; }
+.n-logo-r { color: var(--n-milk); }
+.n-logo-r i { display: none; }
+.n-logo-w { position: relative; color: var(--n-milk); padding-right: .42em; }
+.n-logo-w::after { content: ""; position: absolute; right: .04em; bottom: .02em; width: .27em; height: .27em; border-radius: 50%; background: var(--n-gold); }
+
+/* ═══ Первый экран (правки 08.11 вечер): сцена начинается под меню, голова героини не уходит под панель ═══ */
+.n-cine-v .n-cine-stick { --hh: 84px; background: var(--n-bg); }
+.n-cine-v .n-cine-frame { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%); mask-image: linear-gradient(180deg, transparent 0, #000 9%); top: var(--hh); width: max(100%, calc((100vh - var(--hh)) * 1.7778)); width: max(100%, calc((100svh - var(--hh)) * 1.7778)); transform: translate(-50%, 0); }
+.n-cine-hand { font-family: "Monsieur La Doulaise", "Marggraff Kursiv", cursive !important; font-size: clamp(58px, 6vw, 108px) !important; line-height: 1.12 !important; color: var(--n-gold2); padding: .02em .25em .08em 0; }
+.n-cine-strong { margin-top: .5em !important; }
+.n-cine-v .n-cine-b1 .n-ctas { margin-top: 38px; }
+@media (max-width: 700px) {
+  .n-cine-v .n-cine-stick { --hh: 72px; }
+  .n-cine-v .n-cine-frame { top: var(--hh); width: calc(100vh - var(--hh)); width: calc(100svh - var(--hh)); height: auto; aspect-ratio: 1 / 1; transform: translate(-50%, 0); }
+  .n-cine-hand { font-size: clamp(50px, 14.5vw, 66px) !important; }
+  .n-cine-v .n-cine-b1 .n-ctas { margin-top: 26px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   СТАНДАРТ КАРТОЧЕК (Кенан 08.11.2026) — один для всех блоков всех страниц.
+   Поля карточки одинаковы со всех сторон (--n-card-pad); внутренний шаг один (--n-card-gap);
+   кнопки/ссылки действия прижаты к низу → отступ под кнопкой = отступу сверху (математически).
+   Новые карточки получают это правило сами, если их класс есть в списке ниже.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root { --n-card-pad: 32px; --n-card-gap: 14px; --n-card-radius: 22px; }
+@media (max-width: 640px) { :root { --n-card-pad: 24px; } }
+.n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) {
+  display: flex !important; flex-direction: column; gap: var(--n-card-gap); padding: var(--n-card-pad) !important; }
+.n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) > * { margin-top: 0; margin-bottom: 0; }
+.n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) > :is(a.btn:first-of-type, .btn-row, [class*="-cta"], [class*="-actions"], a[class*="-link"]:last-child, a[class*="-more"]:last-child) { margin-top: auto !important; }
+.n-body .price-card > a.btn + a.btn { margin-top: 0 !important; }
+.n-body .price-card .price-total { margin-top: 6px; }
+/* карточка без кнопки действия не растягивается по соседям: высота по содержимому, поля сверху = снизу */
+.n-body :is(.card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card):not(:has(> :is(a.btn, .btn-row, [class*="-cta"], [class*="-actions"], a[class*="-link"], a[class*="-more"]))) { align-self: start; height: auto !important; min-height: 0 !important; }
+.n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) > :last-child:not(a):not(button):not(.btn) { padding-bottom: 0 !important; border-bottom: 0 !important; }

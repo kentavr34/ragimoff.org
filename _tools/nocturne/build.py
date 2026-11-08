@@ -193,14 +193,12 @@ def cine_hero(d, lang, new_page):
 <div class="n-wrap n-cine-beat n-cine-b1">
 <span class="n-eyebrow">%s</span>
 <h1 class="n-cine-h1"><span class="n-cine-hand">%s</span><span class="n-cine-strong" aria-label="%s">%s</span></h1>
-<p class="n-cine-lead">%s</p>
 <div class="n-ctas">%s</div>
 </div>
 <div class="n-cine-cue" aria-hidden="true"><i></i></div>
 <div class="n-cine-out" aria-hidden="true"></div>
 </div></section>''' % (H.escape(font), n, H.escape(f0.replace('f000', 'f{i}')), H.escape(f0.replace('/d/f000', '/m/f{i}')), H.escape(f0),
-                         H.escape(QUERY), H.escape(d.get('badge', '')), H.escape(hand), H.escape(strong), letters,
-                         H.escape(d.get('lead', '')), ctas)
+                         H.escape(QUERY), H.escape(d.get('badge', '')), H.escape(hand), H.escape(strong), letters, ctas)
 
 
 def home_about(frag):
@@ -342,7 +340,7 @@ def header_html(lang, new_page, key):
     mob.append('<div class="n-m-group"><a class="n-m-big" href="/books/">%s ↗</a></div>' % H.escape(L.get('books/', 'Books')))
     return '''<a class="n-skip" href="#main">%s</a>
 <header class="n-head" id="nHead"><div class="n-head-in">
-<a class="n-logo" href="%s" aria-label="RAGIMOFF"><svg width="22" height="24" viewBox="0 0 200 220" aria-hidden="true"><path d="M60 180V44h50a33 33 0 0 1 0 66H60M98 110l46 70" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><circle cx="160" cy="176" r="13" fill="#C9A961"/></svg><span>RAGIMOFF</span></a>
+<a class="n-logo" href="%s" aria-label="RAGIMOFF"><span class="n-logo-r" aria-hidden="true">R<i></i></span><span class="n-logo-w" aria-hidden="true">AGIMOFF</span></a>
 <nav class="n-nav" aria-label="Menu">%s</nav>
 <div class="n-head-r"><div class="n-langs">%s</div><a class="n-cta" href="%s">%s</a><button class="n-burger" type="button" aria-expanded="false" aria-controls="nMob" aria-label="Menu"><i></i><i></i></button></div>
 </div></header>
@@ -452,7 +450,7 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=Oswald:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=Oswald:wght@400;500;600&amp;family=Monsieur+La+Doulaise&amp;display=swap">
 %s
 <link rel="stylesheet" href="%sassets/css/nocturne.css">
 </head>
