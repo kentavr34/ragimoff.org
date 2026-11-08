@@ -43,8 +43,23 @@ def chunk_list(soup):
     return [norm(t) for t in main.stripped_strings if len(norm(t)) > 2]
 
 
+sys.path.insert(0, str(SITE / '_tools' / 'nocturne'))
+import build as B      # канон цен Кенана 08.11 (ЦНС #712) и перенос тренинга Самиры — та же логика, что при сборке
+
+
+def apply_canon(a, orig, new):
+    main = a.find('main') or a.body
+    name = orig.rsplit('/', 1)[-1]
+    if name == 'samira.html' and '/mutexessisler/' in new:
+        for sec in main.find_all('section'):
+            if sec.select_one('.mod-panel') and not sec.find_parent('section'):
+                sec.decompose()
+    B.canon_prices(main, name, new.split('/', 1)[0], new)
+
+
 for new, orig in pairs:
     a = BeautifulSoup((SITE / orig).read_text(encoding='utf-8'), 'lxml')
+    apply_canon(a, orig, new)
     b = BeautifulSoup((OUT / new).read_text(encoding='utf-8'), 'lxml')
     for el in a.find_all(True):
         if any(c.endswith('-mob') for c in el.get('class', [])):

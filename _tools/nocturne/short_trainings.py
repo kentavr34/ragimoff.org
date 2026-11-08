@@ -131,7 +131,8 @@ def page_main(lang, new_page, rel, MAP, hero):
     for code, name, desc in t['tracks']:
         prog = ''
         if code in PROG_LINK:
-            prog = '<a class="btn btn-line" href="%s">%s</a>' % (e(rel(new_page, lang + '/' + MAP[PROG_LINK[code]])), e(t['prog']))
+            target = 'telim/aile-terapiyasi.html' if code == 'aile' else MAP[PROG_LINK[code]]
+            prog = '<a class="btn btn-line" href="%s">%s</a>' % (e(rel(new_page, lang + '/' + target)), e(t['prog']))
         cards.append(
             '<article class="price-card n-short-card" id="t-%s"><div class="price-card-head"><h3>%s</h3></div>'
             '<p class="price-card-desc">%s</p>'

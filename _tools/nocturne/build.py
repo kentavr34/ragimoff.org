@@ -323,7 +323,8 @@ def header_html(lang, new_page, key):
                 sub.append('<a href="%s">%s</a>' % (r(ST.PAGE), H.escape(ST.T[lang]['nav'])))
             for k in kids:
                 lbl = L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k)
-                sub.append('<a href="%s">%s</a>' % (r(MAP[k]), H.escape(lbl)))
+                href = FAM_PAGE if (gid == 'edu' and k == 'samira.html') else MAP[k]
+                sub.append('<a href="%s">%s</a>' % (r(href), H.escape(lbl)))
             hub_lbl = (L.get(hub) if hub else SPEC[lang])
             items.append('<div class="n-dd%s"><a class="n-link" href="%s" aria-haspopup="true">%s<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a><div class="n-dd-panel"><a class="n-dd-hub" href="%s">%s →</a>%s</div></div>' % (on, r(hubpath), H.escape(label), r(hubpath), H.escape(hub_lbl), ''.join(sub)))
         else:
@@ -590,6 +591,72 @@ def restyle(main, s):
             par['class'] = par.get('class', []) + ['n-strip']
 
 
+# ═══ Канон цен Кенана 08.11.2026 (ЦНС #712) — применяется к Ноктюрну при сборке, боевой сайт не трогается ═══
+SHORT_PAGES = {'program-psixoanaliz.html', 'program-psixodiaqnostika.html', 'samira.html', 'aile-terapiyasi.html', 'tehsil.html', 'aile-terapiyasi-usaq.html'}
+SHORT_UNITS = ['price-card', 'info-card', 'stats-strip', 'mod-price', 'mod-meta', 'tile-lbl', 'form-radio-lbl', 'stat-item']
+LONG_SIG = re.compile(r'\d[  ]\d00 AZN|[3-9][  ]?\d00 AZN/ay\b|1[  ]?\d{3} AZN')   # Практикум/ДПО (3 600, 4 200, 6 600…)
+SHORT_SIG = re.compile(r'(?<!\d)(?<!\d )600 AZN')
+REPL = [(re.compile(r'(?<!\d)(?<!\d )600 AZN'), '900 AZN'), (re.compile(r'(?<!\d)(?<!\d )500 AZN'), '800 AZN'), (re.compile(r'(?<!\d)(?<!\d )200 AZN'), '300 AZN')]
+START_DATE = [re.compile(r'Təlimə başlama tarixi\s*—\s*'), re.compile(r'Начало тренинга\s*—\s*'), re.compile(r'The training starts on\s*')]
+canon_log = []
+
+
+def canon_prices(main, orig_name, lang, new_page):
+    name = orig_name.rsplit('/', 1)[-1]
+    if name in SHORT_PAGES:
+        units = set()
+        for el in main.find_all(class_=lambda c: c and any(u in c.split() if isinstance(c, str) else u in c for u in SHORT_UNITS)):
+            units.add(el)
+        for u in units:
+            t = u.get_text(' ', strip=True)
+            if not SHORT_SIG.search(t) and not (('mod-price' in u.get('class', [])) and '300 AZN' not in t):
+                continue
+            if LONG_SIG.search(t):
+                continue
+            for node in u.find_all(string=True):
+                new = str(node)
+                for rx, rep in REPL:
+                    new = rx.sub(rep, new)
+                if new != str(node):
+                    canon_log.append((new_page, str(node).strip()[:70], new.strip()[:70]))
+                    node.replace_with(new)
+        for intro in main.select('.mod-intro'):
+            for node in intro.find_all(string=True):
+                new = str(node)
+                for rx in START_DATE:
+                    new = rx.sub('', new)
+                if new != str(node):
+                    canon_log.append((new_page, str(node).strip()[:70], new.strip()[:70]))
+                    node.replace_with(new)
+    # консультации (AZ, в манатах): один специалист — онлайн 100 / əyani 150; оба — онлайн 150 / əyani 200
+    if lang == 'az':
+        for row in main.select('.pricing-tbl-row'):
+            title = row.get_text(' ', strip=True)
+            both = 'Birgə' in title or 'hər iki' in title
+            single = 'Fərdi Sessiya' in title or title.startswith('1 Sessiya')
+            if not (both or single):
+                continue
+            for cell in row.select('.pricing-tbl-cell'):
+                ct = cell.get_text(' ', strip=True)
+                val = None
+                if ct.lower().startswith('online') or ct.lower().startswith('onlayn'):
+                    val = 150 if both else 100
+                elif ct.startswith('Əyani'):
+                    val = 200 if both else 150
+                if val is None:
+                    continue
+                for node in cell.find_all(string=re.compile(r'\d+\s*AZN')):
+                    new = re.sub(r'\d+\s*AZN', '%d AZN' % val, str(node))
+                    if new != str(node):
+                        canon_log.append((new_page, str(node).strip(), new.strip()))
+                        node.replace_with(new)
+        for node in main.find_all(string=re.compile('Kənan Rəhimovun tarifi ilə hesablanır')):
+            new = re.sub(r'Hər iki mütəxəssisin birgə apardığı sessiyalar Kənan Rəhimovun tarifi ilə hesablanır\.?',
+                         'Bir mütəxəssislə: onlayn 100 AZN, əyani 150 AZN; hər iki mütəxəssislə: onlayn 150 AZN, əyani 200 AZN (1 saat).', str(node))
+            canon_log.append((new_page, str(node).strip()[:70], new.strip()[:70]))
+            node.replace_with(new)
+
+
 def person_hero(lang, orig_name, d, photo, new_page, crumbs):
     d = dict(d)
     name = NAMES[orig_name][lang].split(' ', 1)
@@ -663,6 +730,10 @@ def build_page(lang, orig_name, new_rel, key):
             s.body.append(main)
     hero = main.select_one('section.page-hero, section.page-hero-x')
     d = hero_parts(hero, orig_page, new_page)
+    if orig_name == 'samira.html':      # тренинг — на своей странице (telim/aile-terapiyasi.html), здесь только о Самире
+        for sec in main.find_all('section'):
+            if sec.select_one('.mod-panel') and not sec.find_parent('section'):
+                sec.decompose()
     g = gen_hero(orig_name.rsplit('/', 1)[-1][:-5])
     if g:   # новая картина вместо старой иллюстрации-«лампы»
         d['paint'] = (rel(new_page, g['full']), rel(new_page, g['-m']))
@@ -674,6 +745,7 @@ def build_page(lang, orig_name, new_rel, key):
             pass
     fix_attrs(main, orig_page, new_page)
     restyle(main, s)
+    canon_prices(main, orig_name, lang, new_page)
     content = ''.join(str(c) for c in main.contents)
     foot = s.find('footer')
     footer = footer_html(foot.extract() if foot else None, lang, orig_page, new_page)
@@ -715,6 +787,12 @@ def build_page(lang, orig_name, new_rel, key):
     elif orig_name in ('haqqimda.html', 'samira.html'):
         photo = 'images/kenan/haqqimda-kenan.jpg' if orig_name == 'haqqimda.html' else 'images/samira/samira-portret.jpg'
         main_html = person_hero(lang, orig_name, d, photo, new_page, crumbs) + content
+        if orig_name == 'samira.html':
+            lbl = {'az': ('Təlim proqramı', 'Ətraflı'), 'ru': ('Программа тренинга', 'Подробнее'), 'en': ('Training programme', 'Details')}[lang]
+            main_html += ('<section class="n-sec n-sec-alt"><div class="n-wrap"><div class="n-cta-box"><div><span class="n-eyebrow">%s</span>'
+                          '<h2 class="n-h2">%s</h2><p class="n-lead">%s</p></div><a class="n-btn" href="%s">%s</a></div></div></section>') % (
+                H.escape(lbl[0]), H.escape(LABELS[lang].get('samira.html', '')), H.escape(FAM_T[lang]['cta_l']),
+                rel(new_page, lang + '/' + FAM_PAGE), H.escape(lbl[1]))
     else:
         main_html = hero_html(d, lang, crumbs=crumbs) + content
     page = page_shell(lang, new_page, title, desc, '\n'.join(head_extra), 'n-k-' + key + (' n-home' if home else ''),
@@ -767,6 +845,63 @@ def build_short(lang):
     report.append((new_page, 'generated: short_trainings.py'))
 
 
+FAM_PAGE = 'telim/aile-terapiyasi.html'
+FAM_T = {
+    'az': {'lead_by': 'Təlimi aparır', 'more': 'Mütəxəssis haqqında', 'reg': 'Qeydiyyat', 'cta_t': 'Təlimə yazılın', 'cta_l': '3 ay təhsil + 6 ay qrupda superviziya. Ayda 300 AZN × 3 və ya birdəfəlik 800 AZN.'},
+    'ru': {'lead_by': 'Ведёт тренинг', 'more': 'О специалисте', 'reg': 'Регистрация', 'cta_t': 'Запись на тренинг', 'cta_l': '3 месяца обучения + 6 месяцев супервизии в группе. 300 AZN в месяц × 3 или 800 AZN единовременно.'},
+    'en': {'lead_by': 'Led by', 'more': 'About the specialist', 'reg': 'Register', 'cta_t': 'Sign up for the training', 'cta_l': '3 months of training + 6 months of group supervision. 300 AZN a month × 3 or 800 AZN at once.'},
+}
+
+
+def build_family(lang):
+    """Тренинг «Семейная терапия» (Кенан 08.11): короткий блок «кто ведёт» + подробно о тренинге; без даты; новые цены."""
+    orig_page = PREFIX[lang] + 'samira.html'
+    src = SITE / orig_page
+    if not src.is_file():
+        return
+    new_page = lang + '/' + FAM_PAGE
+    s = soup_of(src)
+    main = s.find('main')
+    hero = main.select_one('section.page-hero, section.page-hero-x')
+    d = hero_parts(hero, orig_page, new_page)
+    d.pop('art', None)
+    g = gen_hero('samira') or gen_hero('aile-terapiyasi')
+    if g:
+        d['paint'] = (rel(new_page, g['full']), rel(new_page, g['-m']))
+    trains = [sec for sec in main.find_all('section') if sec.select_one('.mod-panel') and not sec.find_parent('section')]
+    for sec in trains:
+        fix_attrs(sec, orig_page, new_page)
+    holder = s.new_tag('main')
+    for sec in trains:
+        holder.append(sec.extract())
+    restyle(holder, s)
+    canon_prices(holder, 'samira.html', lang, new_page)
+    F = FAM_T[lang]
+    spec_hero = soup_of(src).select_one('section.page-hero, section.page-hero-x')
+    sd = hero_parts(spec_hero, orig_page, new_page)
+    who = ('<section class="n-sec"><div class="n-wrap"><a class="n-who" href="%s"><img src="%s" alt="%s" loading="lazy">'
+           '<span class="n-who-body"><span class="n-eyebrow">%s</span><span class="n-who-name">%s</span><span class="n-who-lead">%s</span>'
+           '<span class="n-who-more">%s →</span></span></a></div></section>') % (
+        rel(new_page, lang + '/' + MAP['samira.html']), map_url('index.html', new_page, 'images/samira/samira-portret.jpg'),
+        H.escape(NAMES['samira.html'][lang]), H.escape(F['lead_by']), H.escape(NAMES['samira.html'][lang]), H.escape(sd.get('lead', '')), H.escape(F['more']))
+    cta = ('<section class="n-sec n-sec-alt"><div class="n-wrap"><div class="n-cta-box"><div><span class="n-eyebrow">%s</span>'
+           '<h2 class="n-h2">%s</h2><p class="n-lead">%s</p></div><a class="n-btn" href="%s">%s</a></div></div></section>') % (
+        H.escape(F['reg']), H.escape(F['cta_t']), H.escape(F['cta_l']), rel(new_page, lang + '/' + ST.PAGE) + '#qeydiyyat', H.escape(F['reg']))
+    L = LABELS[lang]
+    crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a><span>/</span><a href="%s">%s</a></nav>' % (
+        rel(new_page, lang + '/index.html'), H.escape(L.get('index.html', 'RAGIMOFF')), rel(new_page, lang + '/telim/index.html'), H.escape(L.get('tehsil.html', '')))
+    main_html = hero_html(d, lang, crumbs=crumbs) + who + ''.join(str(c) for c in holder.contents) + cta
+    title = (d.get('w1', '') + ' ' + d.get('w2', '')).strip() or 'RAGIMOFF'
+    R = root_rel(new_page)
+    scripts = '<script src="%sassets/js/shared.js"></script>' % R
+    foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
+    page = page_shell(lang, new_page, title + ' | RAGIMOFF', d.get('lead', ''), '', 'n-k-edu', header_html(lang, new_page, 'edu'), main_html,
+                      footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
+    (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
+    (OUT / new_page).write_text(page, encoding='utf-8', newline=chr(10))
+    report.append((new_page, 'generated: samira.html training sections'))
+
+
 def key_for(new_rel):
     top = new_rel.split('/')[0]
     return {'mutexessisler': 'spec', 'konsultasiya': 'cons', 'telim': 'edu', 'korporativ': 'corp', 'bloq': 'blog'}.get(top, 'home')
@@ -787,11 +922,13 @@ def main():
                 built_all[l].add(n)
         built_all[l].add('mutexessisler/index.html')
         built_all[l].add(ST.PAGE)
+        built_all[l].add(FAM_PAGE)
     for l in LANGS:
         for o, n in MAP.items():
             build_page(l, o, n, key_for(n))
         build_spec_index(l)
         build_short(l)
+        build_family(l)
     # общие скрипты/стили — точные копии с боевого сайта
     js = OUT / 'assets' / 'js'; css = OUT / 'assets' / 'css' / 'legacy'
     js.mkdir(parents=True, exist_ok=True); css.mkdir(parents=True, exist_ok=True)
@@ -804,6 +941,7 @@ def main():
     write_sitemap()
     prune_images()
     print('pages', len(report), 'images', len(copied))
+    (pathlib.Path(__file__).resolve().parent / 'canon_log.txt').write_text(chr(10).join('%s | %s  ->  %s' % x for x in canon_log), encoding='utf-8')
 
 
 ROUTER = '''<!DOCTYPE html>

@@ -687,3 +687,16 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-form-msg.is-err { color: #e8a0a0; }
 .n-body .n-short-card .price-total { flex-direction: row !important; text-align: left !important; }
 @media (max-width: 420px) { .n-body .n-short-card .price-total { flex-direction: column !important; align-items: flex-start; } }
+
+/* ═══ Тренинг «Семейная терапия»: короткий блок «кто ведёт» и плашка записи ═══ */
+.n-who { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 28px; align-items: center; padding: var(--n-card-pad); border-radius: var(--n-card-radius); background: var(--n-glass); border: 1px solid var(--n-line); color: inherit !important; transition: border-color .3s, transform .5s var(--n-e); }
+.n-who:hover { border-color: rgba(201,169,97,.45); transform: translateY(-3px); }
+.n-who img { width: 180px; height: 220px; object-fit: cover; object-position: 50% 20%; border-radius: 16px; filter: grayscale(.15); }
+.n-who-body { display: flex; flex-direction: column; gap: var(--n-card-gap); }
+.n-who-name { font: 400 clamp(30px, 2.6vw, 40px)/1.1 var(--n-serif); color: var(--n-milk); }
+.n-who-lead { font: 400 17px/1.65 var(--n-read); color: var(--n-soft); }
+.n-who-more { font: 500 16px/1.2 var(--n-read); color: var(--n-gold); }
+@media (max-width: 640px) { .n-who { grid-template-columns: 1fr; } .n-who img { width: 100%; height: 260px; } }
+.n-cta-box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: var(--n-card-pad); border-radius: var(--n-card-radius); background: linear-gradient(135deg, rgba(201,169,97,.10), rgba(242,237,227,.03)); border: 1px solid rgba(201,169,97,.3); }
+.n-cta-box .n-h2 { margin: 10px 0 0; }
+.n-cta-box .n-lead { margin-top: 12px !important; }
