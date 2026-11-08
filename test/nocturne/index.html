@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAGIMOFF</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#07090E">
+<link rel="icon" href="/favicon.ico">
+<link rel="alternate" hreflang="az" href="az/index.html">
+<link rel="alternate" hreflang="ru" href="ru/index.html">
+<link rel="alternate" hreflang="en" href="en/index.html">
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#07090E;color:#F2EDE3;font:400 15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.box{text-align:center;padding:24px}
+.mark{font:300 44px/1 Georgia,serif;letter-spacing:.18em;color:#F2EDE3}
+.mark b{color:#C9A961;font-weight:300}
+.row{margin-top:28px;display:flex;gap:10px;justify-content:center}
+.row a{min-width:64px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,97,.5);border-radius:99px;color:#F2EDE3;text-decoration:none;font-weight:600;letter-spacing:.08em}
+.row a:hover{background:#C9A961;color:#07090E}
+</style>
+<script>
+/* Выбор языка новой версии: 1) ?lang= 2) сохранённый выбор (клик переключателя)
+   3) часовой пояс Asia/Baku → az 4) страна по IP (≤1,5 с) 5) язык системы. */
+(function () {
+  var L = ['az', 'ru', 'en'];
+  function go(l) { try { localStorage.setItem('ragimoff_lang', l); } catch (e) {} location.replace(l + '/index.html' + location.hash); }
+  var q = (location.search.match(/[?&]lang=(az|ru|en)/) || [])[1];
+  if (q) return go(q);
+  var saved = null; try { saved = localStorage.getItem('ragimoff_lang'); } catch (e) {}
+  if (L.indexOf(saved) >= 0) return go(saved);
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  if (tz === 'Asia/Baku') return go('az');
+  var nav = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase().split('-')[0];
+  function byNav() { return nav === 'az' || nav === 'tr' ? 'az' : (['ru', 'uk', 'be', 'kk', 'ky', 'uz', 'tg', 'hy', 'ka'].indexOf(nav) >= 0 ? 'ru' : 'en'); }
+  var done = false;
+  var t = setTimeout(function () { if (!done) { done = true; go(byNav()); } }, 1500);
+  fetch('https://get.geojs.io/v1/ip/country.json').then(function (r) { return r.json(); }).then(function (d) {
+    if (done) return; done = true; clearTimeout(t);
+    var c = String((d && d.country) || '').toUpperCase();
+    if (c === 'AZ') return go('az');
+    if (['RU', 'BY', 'KZ', 'KG', 'UZ', 'TJ', 'AM', 'GE', 'MD', 'UA'].indexOf(c) >= 0) return go(nav === 'en' ? 'en' : 'ru');
+    go(byNav());
+  }).catch(function () { if (!done) { done = true; clearTimeout(t); go(byNav()); } });
+})();
+</script>
+</head>
+<body>
+<div class="box">
+<div class="mark">RAGIMOFF<b>.</b></div>
+<div class="row"><a href="az/index.html" hreflang="az">AZ</a><a href="ru/index.html" hreflang="ru">RU</a><a href="en/index.html" hreflang="en">EN</a></div>
+</div>
+</body>
+</html>
