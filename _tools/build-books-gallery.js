@@ -47,7 +47,9 @@ function validate() {
     if (ids.has(b.id)) throw new Error('повтор id в catalog.json: ' + b.id);
     ids.add(b.id);
     if (!CATALOG.sections.some((s) => s.author === b.author)) throw new Error('нет раздела для автора ' + b.author + ' (' + b.id + ')');
-    if (!isSoon(b) && (!b.price || !b.read)) throw new Error('у открытой книги нет цены или ссылки: ' + b.id);
+    /* 09.11.2026 (Кенан): free:true — не книга (предисловие и т. п.): только «Oxu», без цены и корзины, не в коллекции */
+    if (!isSoon(b) && ((!b.price && !b.free) || !b.read)) throw new Error('у открытой книги нет цены или ссылки: ' + b.id);
+    if (b.free && (b.price || b.collection)) throw new Error('free-карточка с ценой или в коллекции: ' + b.id);
     if (CLOSED.has(b.id) && b.status !== 'soon') {
       console.warn('ВНИМАНИЕ: ' + b.id + ' в closed-books.json — собираю как «Hazırlanır» (без Oxu и корзины).');
     }
@@ -93,7 +95,7 @@ function card(b, code) {
   }
   const read = L(b.read, code), price = L(b.price, code);
   const readClass = b.style === 'art' ? 'btn btn--read' : 'btn';
-  const sale = onSale(b, code);
+  const sale = onSale(b, code) && !b.free;
   return '<article class="card" data-author="' + b.author + '" data-title="' + title + '">\n' +
     pad(10) + '<a class="card__cover" href="' + read + '">\n' + cover(b, code) + '\n' + pad(10) + '</a>\n' +
     pad(10) + '<div class="card__body">\n' +
