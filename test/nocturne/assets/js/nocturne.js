@@ -193,6 +193,77 @@
     load(); onScroll();
   })();
 
+  /* individual training calculator: specialist × format × hours → price at once (rates: Kenan 08.11.2026) */
+  function calcInit(box) {
+    var rates = JSON.parse(box.getAttribute('data-rates')), min = +box.getAttribute('data-min') || 20;
+    var lang = document.documentElement.lang || 'az';
+    var H = { az: 'saat', ru: 'ч', en: 'h' }[lang] || 'h';
+    function pick(n) { var el = box.querySelector('input[name$="' + n + '"]:checked'); return el ? el.value : ''; }
+    function upd() {
+      var hrsEl = box.querySelector('input[type="number"]');
+      var hrs = Math.max(min, Math.round(+hrsEl.value || min));
+      var who = pick('mutexessis') === 'both' ? 'both' : 'one', fmt = pick('format') || 'online';
+      var rate = rates[who][fmt], total = rate * hrs;
+      box.querySelector('[data-rate]').textContent = rate + ' AZN × ' + hrs + ' ' + H;
+      box.querySelector('[data-total]').textContent = total.toLocaleString('ru-RU').replace(/ /g, ' ') + ' AZN';
+      box.setAttribute('data-sum', total); box.setAttribute('data-hours', hrs); box.setAttribute('data-rate-v', rate);
+    }
+    box.addEventListener('input', upd); box.addEventListener('change', function (e) {
+      if (e.target.type === 'number' && (+e.target.value || 0) < min) e.target.value = min; upd(); });
+    upd();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-calc]'), calcInit);
+
+  /* short-term trainings form */
+  var sf = document.getElementById('shortForm');
+  if (sf) (function () {
+    var groups = sf.querySelectorAll('[data-for]');
+    function sync() {
+      var v = (sf.querySelector('input[name="proqram"]:checked') || {}).value || '';
+      Array.prototype.forEach.call(groups, function (g) { g.hidden = (g.getAttribute('data-for') === 'individual') !== (v === 'individual'); });
+    }
+    sf.addEventListener('change', sync); sync();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pick]'), function (a) {
+      a.addEventListener('click', function () {
+        var r = sf.querySelector('input[name="proqram"][value="short-' + a.getAttribute('data-pick') + '"]');
+        if (r) { r.checked = true; sync(); }
+      });
+    });
+    function b64(f) { return new Promise(function (res) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1] || ''); }; r.onerror = function () { res(''); }; r.readAsDataURL(f); }); }
+    sf.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var msg = sf.querySelector('.n-form-msg'), btn = sf.querySelector('button[type="submit"]'), ok = true;
+      ['ad', 'soyad', 'telefon', 'shexsiyyet'].forEach(function (n) {
+        var el = sf.querySelector('[name="' + n + '"]');
+        var bad = !el || (el.type === 'file' ? !el.files.length : !el.value.trim());
+        if (el) el.classList.toggle('is-bad', bad);
+        if (bad) ok = false;
+      });
+      if (!ok) { msg.hidden = false; msg.className = 'n-form-msg is-err'; msg.textContent = sf.getAttribute('data-req'); return; }
+      var prog = sf.querySelector('input[name="proqram"]:checked'), progLbl = prog.parentNode.textContent.trim(), note;
+      if (prog.value === 'individual') {
+        var c = sf.querySelector('[data-calc]');
+        var who = sf.querySelector('input[name="f_mutexessis"]:checked'), fmt = sf.querySelector('input[name="f_format"]:checked');
+        note = progLbl + ' · ' + who.parentNode.textContent.trim() + ' · ' + fmt.parentNode.textContent.trim() + ' · ' +
+               c.getAttribute('data-hours') + ' × ' + c.getAttribute('data-rate-v') + ' = ' + c.getAttribute('data-sum') + ' AZN';
+      } else {
+        var pay = sf.querySelector('input[name="odenis"]:checked');
+        note = progLbl + ' · ' + pay.parentNode.textContent.trim();
+      }
+      btn.disabled = true; var lbl = btn.textContent; btn.textContent = sf.getAttribute('data-sending');
+      var att = [], f = sf.querySelector('[name="shexsiyyet"]').files[0];
+      if (f && f.size < 10 * 1024 * 1024) att.push({ field: 'shexsiyyet', filename: f.name, mime: f.type || 'application/octet-stream', data: await b64(f) });
+      var payload = { type: 'registration', fname: sf.ad.value.trim(), lname: sf.soyad.value.trim(), phone: sf.telefon.value.trim(), email: '', address: '',
+                      service: prog.value, lang: sf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: att };
+      var res = await fetch('https://api.ragimoff.org/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.ok; }, function () { return false; });
+      btn.disabled = false; btn.textContent = lbl; msg.hidden = false;
+      msg.className = 'n-form-msg' + (res ? '' : ' is-err');
+      msg.innerHTML = res ? sf.getAttribute('data-ok') : sf.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';
+      if (res) { sf.reset(); sync(); Array.prototype.forEach.call(sf.querySelectorAll('[data-calc]'), function (c) { c.dispatchEvent(new Event('input')); }); }
+    });
+  })();
+
   if (reduce) return;
 
   /* spotlight in the first screen */

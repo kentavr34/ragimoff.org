@@ -303,6 +303,8 @@ def nav_labels(lang):
 
 
 LABELS = {l: nav_labels(l) for l in LANGS}
+import sys as _sys; _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import short_trainings as ST
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -317,6 +319,8 @@ def header_html(lang, new_page, key):
         on = ' is-on' if key == gid else ''
         if kids:
             sub = []
+            if gid == 'edu':
+                sub.append('<a href="%s">%s</a>' % (r(ST.PAGE), H.escape(ST.T[lang]['nav'])))
             for k in kids:
                 lbl = L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k)
                 sub.append('<a href="%s">%s</a>' % (r(MAP[k]), H.escape(lbl)))
@@ -739,6 +743,30 @@ def build_spec_index(lang):
     report.append((new_page, 'generated from haqqimda.html + samira.html heroes'))
 
 
+def build_short(lang):
+    """Краткосрочные тренинги (ЦНС #712) — страница целиком из short_trainings.py."""
+    new_page = lang + '/' + ST.PAGE
+    t = ST.T[lang]
+    L = LABELS[lang]
+    crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a><span>/</span><a href="%s">%s</a></nav>' % (
+        rel(new_page, lang + '/index.html'), H.escape(L.get('index.html', 'RAGIMOFF')), rel(new_page, lang + '/telim/index.html'), H.escape(L.get('tehsil.html', '')))
+    d = {'badge': t['eyebrow'], 'w1': t['title'], 'w2': '', 'lead': t['lead']}
+    g = gen_hero('tehsil')
+    if g:
+        d['paint'] = (rel(new_page, g['full']), rel(new_page, g['-m']))
+    else:
+        d['img'] = map_url('index.html', new_page, HERO_IMG_DEFAULT)
+    main_html = ST.page_main(lang, new_page, rel, MAP, hero_html(d, lang, crumbs=crumbs))
+    R = root_rel(new_page)
+    scripts = '<script src="%sassets/js/shared.js"></script>' % R
+    foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
+    page = page_shell(lang, new_page, t['title'] + ' | RAGIMOFF', t['lead'], '', 'n-k-edu', header_html(lang, new_page, 'edu'), main_html,
+                      footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
+    (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
+    (OUT / new_page).write_text(page, encoding='utf-8', newline=chr(10))
+    report.append((new_page, 'generated: short_trainings.py'))
+
+
 def key_for(new_rel):
     top = new_rel.split('/')[0]
     return {'mutexessisler': 'spec', 'konsultasiya': 'cons', 'telim': 'edu', 'korporativ': 'corp', 'bloq': 'blog'}.get(top, 'home')
@@ -758,10 +786,12 @@ def main():
             if (SITE / PREFIX[l] / o).is_file():
                 built_all[l].add(n)
         built_all[l].add('mutexessisler/index.html')
+        built_all[l].add(ST.PAGE)
     for l in LANGS:
         for o, n in MAP.items():
             build_page(l, o, n, key_for(n))
         build_spec_index(l)
+        build_short(l)
     # общие скрипты/стили — точные копии с боевого сайта
     js = OUT / 'assets' / 'js'; css = OUT / 'assets' / 'css' / 'legacy'
     js.mkdir(parents=True, exist_ok=True); css.mkdir(parents=True, exist_ok=True)
