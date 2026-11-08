@@ -60,6 +60,55 @@
     if (l) { try { localStorage.setItem('ragimoff_lang', l.getAttribute('data-lang')); } catch (er) {} }
   });
 
+  /* photo viewer: every gallery shot opens whole, with arrows and Esc */
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.n-shot'));
+  if (shots.length) {
+    var lb = document.createElement('div');
+    lb.className = 'n-lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<img alt=""><span class="n-lb-cap"></span><button class="n-lb-x" type="button" aria-label="Close">×</button><button class="n-lb-p" type="button" aria-label="Previous">‹</button><button class="n-lb-n" type="button" aria-label="Next">›</button>';
+    document.body.appendChild(lb);
+    var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.n-lb-cap'), cur = 0, group = [];
+    function show(i) {
+      cur = (i + group.length) % group.length;
+      var b = group[cur]; lbImg.src = b.getAttribute('data-full'); lbImg.alt = b.getAttribute('aria-label') || '';
+      lbCap.textContent = (b.querySelector('.n-shot-cap') || {}).textContent || '';
+    }
+    function close() { lb.classList.remove('is-open'); document.documentElement.style.overflow = ''; }
+    shots.forEach(function (b) {
+      b.addEventListener('click', function () {
+        group = Array.prototype.slice.call(b.closest('.n-gallery').querySelectorAll('.n-shot'));
+        show(group.indexOf(b)); lb.classList.add('is-open'); document.documentElement.style.overflow = 'hidden';
+        lb.querySelector('.n-lb-x').focus();
+      });
+    });
+    lb.querySelector('.n-lb-x').addEventListener('click', close);
+    lb.querySelector('.n-lb-p').addEventListener('click', function () { show(cur - 1); });
+    lb.querySelector('.n-lb-n').addEventListener('click', function () { show(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+  }
+
+  /* law cards open / close */
+  Array.prototype.forEach.call(document.querySelectorAll('.law-card-head'), function (h) {
+    function t() { var c = h.closest('.law-card'); var o = c.classList.toggle('is-open'); h.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    h.addEventListener('click', t);
+    h.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t(); } });
+  });
+
+  /* programme strip: drag with the mouse */
+  Array.prototype.forEach.call(document.querySelectorAll('.n-strip'), function (st) {
+    var down = false, sx = 0, sl = 0, moved = false;
+    st.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') return; down = true; moved = false; sx = e.clientX; sl = st.scrollLeft; });
+    window.addEventListener('pointermove', function (e) { if (!down) return; var dx = e.clientX - sx; if (Math.abs(dx) > 4) { moved = true; st.classList.add('is-drag'); } st.scrollLeft = sl - dx; });
+    window.addEventListener('pointerup', function () { if (!down) return; down = false; setTimeout(function () { st.classList.remove('is-drag'); }, 0); });
+    st.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  });
+
   if (reduce) return;
 
   /* spotlight in the first screen */

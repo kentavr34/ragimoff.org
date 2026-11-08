@@ -10,180 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc.css">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="../../assets/css/legacy/site-concept.css">
-<style>
-      /* Hero with photo */
-      .en-hero { background: var(--navy); padding: 64px var(--s-section); position: relative; overflow: hidden; }
-      .en-hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,169,97,0.1) 0%, transparent 68%); pointer-events: none; }
-      .en-hero-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr 480px; gap: 48px; align-items: center; position: relative; z-index: 1; }
-      .en-hero-photo img { width: 100%; height: 400px; object-fit: cover; object-position: center 15%; border: 1px solid rgba(201,169,97,0.15); display: block; }
-      /* Stats bar on accent */
-      .en-stats { background: var(--accent); padding: 0 var(--s-section); }
-      .en-stats-row { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
-      .en-stat { padding: 28px 0; text-align: center; border-right: 1px solid rgba(6,24,38,0.15); }
-      .en-stat:last-child { border-right: none; }
-      .en-stat .n { display: block; font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; font-family: var(--font); }
-      .en-stat .l { display: block; font-size: var(--t-xs); font-weight: 700; color: rgba(6,24,38,0.65); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; }
-      /* Section wrappers */
-      .ps { padding: var(--s-section); }
-      .ps.white { background:#0E1116; }
-      .ps.light-bg { background: var(--clr-bg); }
-      .ps.dark-bg { background: var(--navy); }
-      .ps-inner { max-width: var(--container-max); margin: 0 auto; }
-      /* Definition grid */
-      .def-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
-      .def-card { padding: 36px; border-right: 1px solid var(--clr-border); }
-      .def-card:last-child { border-right: none; }
-      .def-code { display: inline-block; font-family: monospace; font-size: 1rem; font-weight: 800; color: var(--navy); background: rgba(201,169,97,0.12); padding: 4px 12px; border: 1px solid rgba(201,169,97,0.3); margin-bottom: 12px; }
-      .def-title { font-size: 1.125rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 10px; font-family: var(--font); }
-      .def-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.8; margin: 0; }
-      /* Danger band */
-      .danger-band { background: rgba(139,0,0,0.04); border: 1px solid rgba(139,0,0,0.15); border-left: 5px solid #8b0000; padding: 36px 40px; margin-top: 40px; }
-      .danger-band h3 { font-size: 1.125rem; font-weight: 800; color: #ff6b6b; margin-bottom: 12px; font-family: var(--font); }
-      .danger-band p { font-size: 0.9rem; color: var(--navy); line-height: 1.8; margin-bottom: 12px; }
-      .danger-band p:last-child { margin-bottom: 0; }
-      .danger-band strong { color: #ff6b6b; }
-      /* Diff table */
-      .diff-table { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
-      .diff-head { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--navy); padding: 12px 24px; gap: 16px; }
-      .diff-head span { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
-      .diff-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 14px 24px; border-top: 1px solid var(--clr-border); gap: 16px; align-items: start; }
-      .diff-row:hover { background: rgba(201,169,97,0.03); }
-      .diff-cause { color: var(--clr-heading); font-weight: 600; font-size: var(--t-sm); }
-      .diff-what { color: var(--clr-text-muted); font-size: var(--t-sm); }
-      .diff-to { color: var(--accent); font-weight: 700; font-size: 0.8125rem; }
-      /* Trust grid */
-      .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(201,169,97,0.2); margin-top: 40px; }
-      .trust-card { padding: 32px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .trust-card:last-child { border-right: none; }
-      .trust-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
-      .trust-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 10px; font-family: var(--font); }
-      .trust-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
-      /* Instagram block */
-      .ig-block { border: 1px solid rgba(201,169,97,0.25); padding: 40px; margin-top: 40px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
-      .ig-title { font-size: 1.25rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .ig-body { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
-      .ig-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-      .ig-tag { font-size: 0.8125rem; font-weight: 700; color: var(--navy); background: var(--accent); padding: 6px 14px; letter-spacing: 0.04em; }
-      /* Treatment protocol */
-      .treat-line { border: 1px solid var(--clr-border); margin-top: 40px; }
-      .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 0; border-bottom: 1px solid var(--clr-border); }
-      .tl-item:last-child { border-bottom: none; }
-      .tl-num { display: flex; align-items: center; justify-content: center; background: var(--navy); font-size: 1.5rem; font-weight: 800; color: var(--accent); border-right: 1px solid rgba(201,169,97,0.2); font-family: var(--font); }
-      .tl-body { padding: 28px 36px; }
-      .tl-tag { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; display: block; }
-      .tl-title { font-size: 1rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 8px; font-family: var(--font); }
-      .tl-desc { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.75; }
-      .tl-pill { display: inline-block; font-size: 0.75rem; font-weight: 700; background: rgba(201,169,97,0.1); color: var(--accent); border: 1px solid rgba(201,169,97,0.3); padding: 3px 10px; margin-top: 10px; }
-      .tl-pill.red { background: rgba(139,0,0,0.06); color: #ff6b6b; border-color: rgba(139,0,0,0.2); }
-      /* Step scheme */
-      .step-scheme { border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
-      .ss-row { display: grid; grid-template-columns: 40px 1fr; align-items: stretch; border-bottom: 1px solid var(--clr-border); }
-      .ss-row:last-child { border-bottom: none; }
-      .ss-n { background: var(--navy); color: var(--accent); font-size: 0.875rem; font-weight: 800; display: flex; align-items: center; justify-content: center; min-height: 56px; font-family: var(--font); }
-      .ss-body { padding: 16px 24px; font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.7; }
-      .ss-body strong { color: var(--clr-heading); }
-      /* Scientific refs */
-      .refs-list { margin-top: 24px; }
-      .ref-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--clr-border); align-items: start; }
-      .ref-item:last-child { border-bottom: none; }
-      .ref-n { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-align: center; }
-      .ref-text { font-size: 0.8125rem; color: var(--clr-text-muted); line-height: 1.65; }
-      .ref-text em { color: var(--clr-heading); font-style: normal; font-weight: 600; }
-      /* Price table */
-      .price-table { max-width: 780px; border: 1px solid var(--clr-border); overflow: hidden; margin-top: 40px; }
-      .pt-head { padding: 14px 32px; background: rgba(201,169,97,0.04); border-bottom: 2px solid rgba(201,169,97,0.3); }
-      .pt-head span { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-      .pt-row { display: grid; grid-template-columns: 1fr auto; align-items: start; padding: 14px 32px; border-bottom: 1px solid var(--clr-border); }
-      .pt-row:last-child { border-bottom: none; }
-      .pt-row:hover { background: rgba(201,169,97,0.03); }
-      .pt-label { font-size: 0.9375rem; color: var(--clr-heading); font-weight: 600; }
-      .pt-sub { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 3px; }
-      .pt-price { font-size: 1rem; font-weight: 800; color: var(--clr-heading); text-align: right; white-space: nowrap; font-family: var(--font); }
-      .pt-total { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 18px 32px; background: var(--navy); }
-      .pt-total .tl { font-size: 0.875rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
-      .pt-total .tv { font-size: 1.25rem; font-weight: 800; color: var(--accent); font-family: var(--font); }
-      /* Registration form */
-      .reg-path { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid rgba(201,169,97,0.2); margin-bottom: 32px; }
-      .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .reg-path-step:last-child { border-right: none; }
-      .rp-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
-      .reg-path-step h4 { font-size: var(--t-sm); font-weight: 800; color: var(--white); margin-bottom: 6px; font-family: var(--font); }
-      .reg-path-step p { font-size: 0.8125rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
-      .reg-form { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
-      .rf2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      .rfield { display: flex; flex-direction: column; gap: 8px; }
-      .rfield > label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
-      .rfield input, .rfield textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: var(--font); font-size: 0.9375rem; outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-      .rfield input:focus, .rfield textarea:focus { border-color: var(--accent); }
-      .rfield input::placeholder, .rfield textarea::placeholder { color: rgba(255,255,255,0.2); }
-      .form-success { display: none; padding: 24px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.35); text-align: center; margin-top: 16px; }
-      .form-success p { color: var(--accent); font-weight: 700; font-size: 0.9375rem; margin: 0; }
-      /* Reviews */
-      .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-bottom: 40px; }
-      .rv-card { padding: 32px; border-right: 1px solid var(--clr-border); border-bottom: 1px solid var(--clr-border); }
-      .rv-card:nth-child(2n) { border-right: none; }
-      .rv-card:nth-last-child(-n+2) { border-bottom: none; }
-      .rv-name { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-      .rv-text { font-size: 0.9375rem; color: var(--clr-text-muted); line-height: 1.75; font-style: italic; }
-      .rv-meta { font-size: 0.75rem; color: rgba(6,24,38,0.4); margin-top: 14px; }
-      .review-form { background: var(--clr-bg); border: 1px solid var(--clr-border); padding: 40px; }
-      .rv-note { font-size: 0.8125rem; color: var(--clr-text-muted); margin-top: 16px; line-height: 1.6; border-left: 2px solid rgba(201,169,97,0.4); padding-left: 14px; }
-      /* Blog 2 cards */
-      .blog-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 0; border: 1px solid var(--clr-border); }
-      .bc { display: block; background:#0E1116; border-right: 1px solid var(--clr-border); border-top: 4px solid var(--navy); padding: 36px 32px; text-decoration: none; transition: border-top-color 0.2s; }
-      .bc:last-child { border-right: none; }
-      .bc:hover { border-top-color: var(--accent); }
-      .bc-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); display: block; margin-bottom: 12px; }
-      .bc-title { font-size: var(--t-body); font-weight: 700; color: var(--clr-heading); line-height: 1.3; margin-bottom: 12px; }
-      .bc-lead { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65; margin: 0 0 24px; }
-      .bc-more { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
-      /* Responsive */
-      @media (max-width: 1100px) {
-        .en-hero-inner { grid-template-columns: 1fr; }
-        .en-hero-photo { display: none; }
-        .en-stats-row { grid-template-columns: repeat(2,1fr); }
-        .trust-grid, .def-grid { grid-template-columns: 1fr; }
-        .trust-card, .def-card { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
-        .trust-card:last-child, .def-card:last-child { border-bottom: none; }
-        .ig-block { grid-template-columns: 1fr; }
-        .reviews-grid { grid-template-columns: 1fr; }
-        .rv-card { border-right: none; }
-        .rv-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--clr-border); }
-        .rv-card:last-child { border-bottom: none; }
-        .blog-grid-2 { grid-template-columns: 1fr; }
-        .bc { border-right: none; border-bottom: 1px solid var(--clr-border); }
-        .bc:last-child { border-bottom: none; }
-        .reg-path { grid-template-columns: repeat(2,1fr); }
-        .diff-head, .diff-row { grid-template-columns: 1fr 1fr; }
-        .diff-head span:nth-child(3), .diff-row span:nth-child(3) { display: none; }
-      }
-      @media (max-width: 768px) {
-        .en-hero { padding: 40px 24px; }
-        .ps { padding: 40px 24px; }
-        .en-stats { padding: 0 24px; }
-        .rf2 { grid-template-columns: 1fr; }
-        .reg-path { grid-template-columns: 1fr; }
-        .reg-path-step { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
-        .reg-path-step:last-child { border-bottom: none; }
-        .tl-item { grid-template-columns: 1fr; }
-        .tl-num { min-height: 48px; border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); font-size: 1rem; }
-      }
-    </style>
-<style>
-/* Wave 1.4 — Touch targets ≥44px for form controls */
-input, select, textarea, button {
-    min-height: 44px;
-}
-.form-field input, .form-field textarea, .form-field select {
-    min-height: 44px;
-}
-.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-.upload-item input[type="file"] { min-height: 44px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person",
 "name":"Kənan Rəhimov","jobTitle":"Həkim-Psixiatr, Psixoterapevt",
@@ -278,21 +105,21 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Diaqnoz</span>
 <h2 class="sec-h2"><span class="sh-line">Gecə Enurezi və</span> <span class="sh-line">ya BMGE Nədir?</span></h2>
-<p class="sec-lead" style="max-width:480px;margin-bottom:0;">BMGE dəqiq diaqnostikası, digər enurez növlərdən ayırd edilməsi — müalicənin ən düzgün başlanğıcıdır.</p>
+<p class="sec-lead">BMGE dəqiq diaqnostikası, digər enurez növlərdən ayırd edilməsi — müalicənin ən düzgün başlanğıcıdır.</p>
 <div class="def-grid">
 <div class="def-card">
 <span class="badge on-light">Tərif</span>
 <span class="def-code">XBT-10 F98.0</span>
 <h3 class="def-title">Birincil Monosimptomatik Gecə Enurezi (BMGE)</h3>
 <p class="def-body">Uşaqda ən azı 2 həftə sabit <strong>«quru gecələr»</strong> olmamışdır. Bu arada maye qəbuluna məhdudiyyət olduqda — bu nəticə hesab edilmir. Gün ərzində ayıq olduqda sidik qaçırma olmur. Yalnız yuxuda sidik qaçırma baş verir. Diaqnoz <strong>5 yaşdan etibarən</strong> qoyulur — bu yaşa kimi gecə qaçırması ilə bağlı uşağa yalnız özünə nəzarət qaydaları izah edilir.</p>
-<p class="def-body" style="margin-top:8px;">Heç bir «toka vermə», «ot dəmləmə», «belini massaj etmə», akkupunktura və digər əsassız metodlar — yuxudan oyanmaya təsir etmədiyindən — BMGE müalicəsində effektivliyini təsdiqləməyib. Ona baxmayaraq bir çox valideyn ilk bunları sınayır; sabit nəticə olmadığı üçün sonradan heç bir mütəxəssisə etibar etmir.</p>
+<p class="def-body">Heç bir «toka vermə», «ot dəmləmə», «belini massaj etmə», akkupunktura və digər əsassız metodlar — yuxudan oyanmaya təsir etmədiyindən — BMGE müalicəsində effektivliyini təsdiqləməyib. Ona baxmayaraq bir çox valideyn ilk bunları sınayır; sabit nəticə olmadığı üçün sonradan heç bir mütəxəssisə etibar etmir.</p>
 </div>
 <div class="def-card">
 <span class="badge on-light">Mexanizm</span>
 <h3 class="def-title">Bəs Niyə Keçmir?</h3>
 <p class="def-body">Əsas səbəb uşaqda yuxunun dərinlik dərəcəsidir. Dərin yuxuda olarkən ayılma siqnalının uşağı oyatmağa gücü çatmır — ona görə də zamanında yuxudan durma refleksi (vərdişi) formalaşmır. Bu bioloji xüsusiyyətdir, tənbəllik, xəstəlik ya da «pis valideynlik» deyil. İrsi komponent var — valideynlərdə yuxu dərindirsə uşaqda ehtimal 75%-ə qalxır.</p>
-<p class="def-body" style="margin-top:8px;">XBT-10 F98.0 — psixoloji inkişaf pozuntuları bölməsidir. Bu o deməkdir ki, sahə mütəxəssisi psixoterapevt və ya klinik psixoloq — nə nevroloq, nə də uroloq.</p>
-<p class="def-body" style="margin-top:8px;"><strong>Nevroloji (G.) və ya uroloji (R.) enurez ayrıca kateqoriyadır</strong> — bu xəstəliklərdə gündüz də, ayıq olarkən də sidik qaçırma müşahidə olunur. BMGE yalnız yuxu zamanı baş verir. Digər orqanlarda heç bir patologiya aşkar edilmir.</p>
+<p class="def-body">XBT-10 F98.0 — psixoloji inkişaf pozuntuları bölməsidir. Bu o deməkdir ki, sahə mütəxəssisi psixoterapevt və ya klinik psixoloq — nə nevroloq, nə də uroloq.</p>
+<p class="def-body"><strong>Nevroloji (G.) və ya uroloji (R.) enurez ayrıca kateqoriyadır</strong> — bu xəstəliklərdə gündüz də, ayıq olarkən də sidik qaçırma müşahidə olunur. BMGE yalnız yuxu zamanı baş verir. Digər orqanlarda heç bir patologiya aşkar edilmir.</p>
 </div>
 </div>
 </div>
@@ -302,7 +129,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Xəbərdarlıq</span>
 <h2 class="sec-h2"><span class="sh-line">İmipramin (Melipramin)</span> <span class="sh-line">Verilməlidir?</span></h2>
-<p class="sec-lead" style="margin-bottom:0;color:var(--navy);font-weight:600;">Qısa cavab: XEYİR — enurezin birinci xətt müalicəsində yeri yoxdur.</p>
+<p class="sec-lead">Qısa cavab: XEYİR — enurezin birinci xətt müalicəsində yeri yoxdur.</p>
 <div class="danger-band">
 <h3>Qeyri-profil Mütəxəssis Nə Edir?</h3>
 <p>Bəzi nevroloqlar XBT-10 F98.0 diaqnozu ilə gələn uşaqlara imipramin (melipramin) — trisiklik antidepressant — yazır. Bu preparat sidik ləngiməsinin <strong>müvəqqəti effektini</strong> verir, lakin enurezin mexanizmini — oyatma refleksini — formalaşdırmır. Dərman kəsildikdə enurez ~60% hallarda geri qayıdır (residiv).</p>
@@ -316,7 +143,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Differensial Diaqnostika</span>
 <h2 class="sec-h2"><span class="sh-line">Müalicədən Əvvəl</span> <span class="sh-line">Nə İstisna Edilir?</span></h2>
-<p class="sec-lead" style="margin-bottom:0;">Psixoterapevt həkim ikincili enurezi — başqa xəstəlik nəticəsini — mütləq istisna edir. Bunlar BMGE deyil.</p>
+<p class="sec-lead">Psixoterapevt həkim ikincili enurezi — başqa xəstəlik nəticəsini — mütləq istisna edir. Bunlar BMGE deyil.</p>
 <div class="diff-table">
 <div class="diff-head">
 <span>Ehtimal olunan səbəb</span>
@@ -348,21 +175,21 @@ input, select, textarea, button {
 <span class="diff-what">SYİ</span>
 <span class="diff-to">Uroloq</span>
 </div>
-<div class="diff-row" style="border-bottom:none;">
+<div class="diff-row">
 <span class="diff-cause">Sidik yollarının anomaliyaları</span>
 <span class="diff-what">Struktur pozuntular</span>
 <span class="diff-to">Uroloq</span>
 </div>
 </div>
-<p style="font-size:0.8125rem;color:var(--clr-text-muted);margin-top:16px;line-height:1.65;">Üzvi səbəblər istisna edildikdən sonra BMGE diaqnozu təsdiqlənir və müalicəyə başlanır. Əlaqəli mütəxəssisə yönləndirmə psixoterapevt həkimin göstərişi ilə aparılır.</p>
+<p>Üzvi səbəblər istisna edildikdən sonra BMGE diaqnozu təsdiqlənir və müalicəyə başlanır. Əlaqəli mütəxəssisə yönləndirmə psixoterapevt həkimin göstərişi ilə aparılır.</p>
 </div>
 </section>
 
 <section class="ps dark-bg">
 <div class="ps-inner">
 <span class="badge">Niyə Bizə Etibar Edirsiniz?</span>
-<h2 class="sec-h2" style="color:var(--white)"><span class="sh-line">Açıqlıq,</span> <span class="sh-line">Məntiq, Sübut</span></h2>
-<p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:0;">Biz heç nəyi gizlətmirik. Metodologiya, nəticələr, hətta tədris materialları da açıqdır.</p>
+<h2 class="sec-h2"><span class="sh-line">Açıqlıq,</span> <span class="sh-line">Məntiq, Sübut</span></h2>
+<p class="sec-lead">Biz heç nəyi gizlətmirik. Metodologiya, nəticələr, hətta tədris materialları da açıqdır.</p>
 <div class="trust-grid">
 <div class="trust-card">
 <span class="trust-num">Fakt 01</span>
@@ -385,13 +212,13 @@ input, select, textarea, button {
 <div>
 <span class="badge">Instagram — Aktuallar</span>
 <h3 class="ig-title">Mütəxəssis olmayan adamların əlindən uşaqlarınızı qoruyun</h3>
-<p class="ig-body" style="max-width:700px;">Instagram səhifəmizdə xüsusi aktual bölmələr — <strong>SİDİK QAÇIRMA</strong> və <strong>ENUREZ</strong>. Yanlış müalicə üsulları, əlamətlər, valideyn sualları, real keyslərin izahı. Baxın, paylaşın — bu informasiya pulsuz olmalıdır.</p>
+<p class="ig-body">Instagram səhifəmizdə xüsusi aktual bölmələr — <strong>SİDİK QAÇIRMA</strong> və <strong>ENUREZ</strong>. Yanlış müalicə üsulları, əlamətlər, valideyn sualları, real keyslərin izahı. Baxın, paylaşın — bu informasiya pulsuz olmalıdır.</p>
 <div class="ig-tags">
 <span class="ig-tag">SİDİK QAÇIRMA</span>
 <span class="ig-tag">ENUREZ</span>
 </div>
 </div>
-<a class="btn btn-line" href="https://www.instagram.com/dr.ragimoff/" style="border-color:rgba(201,169,97,0.3);color:var(--accent);white-space:nowrap;" target="_blank">Instagram →</a>
+<a class="btn btn-line" href="https://www.instagram.com/dr.ragimoff/" target="_blank">Instagram →</a>
 </div>
 </div>
 </section>
@@ -400,7 +227,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Müalicə Protokolu</span>
 <h2 class="sec-h2"><span class="sh-line">Birincidən</span> <span class="sh-line">Üçüncü Xəttə</span></h2>
-<p class="sec-lead" style="margin-bottom:0;">Beynəlxalq protokola (ICCS 2020, NICE, EAU/ESPU 2019) uyğun addım-addım müalicə sxemi.</p>
+<p class="sec-lead">Beynəlxalq protokola (ICCS 2020, NICE, EAU/ESPU 2019) uyğun addım-addım müalicə sxemi.</p>
 <div class="treat-line">
 <div class="tl-item">
 <div class="tl-num">1</div>
@@ -439,14 +266,14 @@ input, select, textarea, button {
 </div>
 </div>
 </div>
-<h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Yekun Sxem</h3>
+<h3>Yekun Sxem</h3>
 <div class="step-scheme">
 <div class="ss-row"><div class="ss-n">1</div><div class="ss-body"><strong>Psixoterapevtlə məsləhət</strong> — ikincili enurezin istisna edilməsi, diaqnozun təsdiqlənməsi</div></div>
 <div class="ss-row"><div class="ss-n">2</div><div class="ss-body"><strong>İntensiv Alarm + Davranış terapiyası</strong> — 8–12 həftə ərzində həyata keçirilir</div></div>
 <div class="ss-row"><div class="ss-n">3</div><div class="ss-body"><strong>Nətinə olmadıqda</strong> — Alarm terapiya + Xüsusi müalicə kombinasiyası</div></div>
 <div class="ss-row"><div class="ss-n">4</div><div class="ss-body"><strong>Effektin olmaması</strong> — təkrar diaqnostika, diaqnozun yenidən nəzərdən keçirilməsi</div></div>
 </div>
-<h3 style="font-size:1rem;font-weight:800;color:var(--clr-heading);margin:40px 0 0;">Elmi Mənbələr</h3>
+<h3>Elmi Mənbələr</h3>
 <div class="refs-list">
 <div class="ref-item"><span class="ref-n">1</span><div class="ref-text">Glazener C.M., Evans J.H., Peto R.E. <em>Alarm interventions for nocturnal enuresis in children.</em> Cochrane Database Syst Rev. 2005 — alarm-terapiya uzunmüddətli nəticələrə görə bütün digər müdaxilələri üstələyir; BMGE-də seçim metodudur.</div></div>
 <div class="ref-item"><span class="ref-n">2</span><div class="ref-text">Glazener C.M., Evans J.H. <em>Tricyclic and related drugs for nocturnal enuresis in children.</em> Cochrane Review, 2000 — trisiklik antidepressantlar qısamüddətli effekt verir, kardiotoksiklik daxil olmaqla ciddi yan təsirləri var, ləğvdən sonra yüksək residiv.</div></div>
@@ -464,7 +291,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Qiymətlər</span>
 <h2 class="sec-h2"><span class="sh-line">Müalicənin</span> <span class="sh-line">Dəyəri</span></h2>
-<p class="sec-lead" style="margin-bottom:0;">Müalicə kursu — 3 ay üçün 500 AZN; davam etmək zərurəti yaranarsa, əlavə 100 AZN. Kursu BirBank vasitəsilə 18 aya qədər hissə-hissə ödəmək mümkündür.</p>
+<p class="sec-lead">Müalicə kursu — 3 ay üçün 500 AZN; davam etmək zərurəti yaranarsa, əlavə 100 AZN. Kursu BirBank vasitəsilə 18 aya qədər hissə-hissə ödəmək mümkündür.</p>
 <div class="price-table">
 <div class="pt-head"><span>Xidmətlər</span></div>
 <div class="pt-row">
@@ -477,7 +304,7 @@ input, select, textarea, button {
 </div>
 <div class="pt-row">
 <div><div class="pt-label">Şəhid · Qazi · Veteran · Aztəminatlı</div><div class="pt-sub">Təsdiqedici sənəd əsasında — tam ödənişsiz</div></div>
-<div class="pt-price" style="color:var(--accent);">Pulsuz</div>
+<div class="pt-price">Pulsuz</div>
 </div>
 <div class="pt-head"><span>BirBank ilə hissə-hissə ödəniş — 18 aya qədər</span></div>
 <div class="pt-row">
@@ -500,21 +327,21 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section data-theme="dark" style="background:#07090E">
-<div class="sec-inner" style="padding:var(--s-section)">
+<section>
+<div class="sec-inner">
 <span class="badge">FAYDALI OXU</span>
 <h2 class="sec-h2"><span class="sh-line">Gecə Enurezi</span> <span class="sh-line">Haqqında Məqalələr</span></h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Səbəblər, alarm metodu və</span>
-<span class="ab-lead-mob">valideyn addımları barədə.</span>
+
+
 <span class="ab-lead-desk">Gecə enurezinin səbəbləri, alarm metodu və valideynlər üçün praktik addımlar barədə elmi yazılar</span>
 </p>
-<ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(201,169,97,0.22)">
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="../bloq/enurez.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art1-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 8 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="../bloq/enurez-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art3-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 9 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">BMGE — Birincili Monosimptomatik Gecə Enurezi: Tam Bələdçi</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="../bloq/enurez-3.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art2-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 7 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="../bloq/enurez-4.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art4-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 7 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Desmopressin və İmipramin — Enurezdə Dərmanlar</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)"><a href="../bloq/enurez-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art5-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/><span style="flex:1; min-width:0"><span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Məqalə · 7 dəq oxuma</span><span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Valideynlər Üçün 7 Praktik Məsləhət</span></span><span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span></a></li>
+<ul class="n-reading">
+<li><a href="../bloq/enurez.html"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art1-cover.jpg" width="1600"/><span><span>Məqalə · 8 dəq oxuma</span><span>Uşağınız Gecələr Yatağı Isladırsa — 5 Yanlış İnanc</span></span><span>›</span></a></li>
+<li><a href="../bloq/enurez-2.html"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art3-cover.jpg" width="1600"/><span><span>Məqalə · 9 dəq oxuma</span><span>BMGE — Birincili Monosimptomatik Gecə Enurezi: Tam Bələdçi</span></span><span>›</span></a></li>
+<li><a href="../bloq/enurez-3.html"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art2-cover.jpg" width="1600"/><span><span>Məqalə · 7 dəq oxuma</span><span>Alarm Cihazı Necə İşləyir? — Beynəlxalq Protokol</span></span><span>›</span></a></li>
+<li><a href="../bloq/enurez-4.html"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art4-cover.jpg" width="1600"/><span><span>Məqalə · 7 dəq oxuma</span><span>Desmopressin və İmipramin — Enurezdə Dərmanlar</span></span><span>›</span></a></li>
+<li><a href="../bloq/enurez-5.html"><img alt="" height="900" loading="lazy" src="../../images/blog/enurez/art5-cover.jpg" width="1600"/><span><span>Məqalə · 7 dəq oxuma</span><span>Valideynlər Üçün 7 Praktik Məsləhət</span></span><span>›</span></a></li>
 </ul>
 </div>
 </section>
@@ -522,27 +349,27 @@ input, select, textarea, button {
 <section class="ps dark-bg" id="registration">
 <div class="ps-inner">
 <span class="badge">Qeydiyyat</span>
-<h2 class="sec-h2" style="color:var(--white)">Müraciət Formu</h2>
-<p class="sec-lead" style="color:rgba(255,255,255,0.6);margin-bottom:40px;">Formu doldurun — 24 saat ərzində koordinator sizinlə əlaqə saxlayır.</p>
+<h2 class="sec-h2">Müraciət Formu</h2>
+<p class="sec-lead">Formu doldurun — 24 saat ərzində koordinator sizinlə əlaqə saxlayır.</p>
 <div class="reg-path">
-<div class="reg-path-step"><span class="rp-num">Addım 01</span><h4 aria-level="3" data-a11y-level="" role="heading">Müraciət</h4><p>Formu doldurun, uşağın yaşını yazın</p></div>
+<div class="reg-path-step"><span class="rp-num">Addım 01</span><h4 aria-level="3" role="heading">Müraciət</h4><p>Formu doldurun, uşağın yaşını yazın</p></div>
 <div class="reg-path-step"><span class="rp-num">Addım 02</span><h4>Zəng</h4><p>24 saat ərzində koordinator əlaqə saxlayır</p></div>
 <div class="reg-path-step"><span class="rp-num">Addım 03</span><h4>İlkin görüş</h4><p>Qiymətləndirmə, diaqnozun təsdiqi</p></div>
 <div class="reg-path-step"><span class="rp-num">Addım 04</span><h4>Kurs başlayır</h4><p>Alarm cihazı + instruksiya — evdə müalicə</p></div>
 </div>
 <form action="/api/training-reg" class="reg-form" id="enRegForm" method="POST" novalidate="">
-<div class="rf2" style="margin-bottom:20px;">
+<div class="rf2">
 <div class="rfield"><label for="er-name">Valideynin adı soyadı</label><input id="er-name" name="name" placeholder="Ad Soyad" required="" type="text"/></div>
 <div class="rfield"><label for="er-phone">Telefon</label><input id="er-phone" name="phone" placeholder="+994 XX XXX XX XX" required="" type="tel"/></div>
 </div>
-<div class="rf2" style="margin-bottom:20px;">
+<div class="rf2">
 <div class="rfield"><label for="er-age">Uşağın yaşı</label><input id="er-age" name="child_age" placeholder="Məsələn: 7 yaş" type="text"/></div>
 <div class="rfield"><label for="er-dur">Neçə ildir davam edir?</label><input id="er-dur" name="duration" placeholder="Məsələn: 2 ildir" type="text"/></div>
 </div>
-<div class="rfield" style="margin-bottom:20px;"><label for="er-note">Əlavə qeyd (istəyə bağlı)</label><textarea id="er-note" name="note" placeholder="Əvvəlki müalicə cəhdləri, suallar..." rows="3"></textarea></div>
-<div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;">
-<p style="font-size:0.8125rem;color:rgba(255,255,255,0.3);line-height:1.6;max-width:400px;margin:0;">Məlumatlarınız üçüncü şəxslərə ötürülmür.</p>
-<button class="btn btn-fill" style="padding:16px 40px;font-size:0.9375rem;" type="submit">Müraciət Göndər</button>
+<div class="rfield"><label for="er-note">Əlavə qeyd (istəyə bağlı)</label><textarea id="er-note" name="note" placeholder="Əvvəlki müalicə cəhdləri, suallar..." rows="3"></textarea></div>
+<div>
+<p>Məlumatlarınız üçüncü şəxslərə ötürülmür.</p>
+<button class="btn btn-fill" type="submit">Müraciət Göndər</button>
 </div>
 <div class="form-success" id="enSuccess"><p>Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlayacağıq.</p></div>
 </form>
@@ -553,7 +380,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Valideyn Rəyləri</span>
 <h2 class="sec-h2"><span class="sh-line">Uşaqları Sağalanmış</span> <span class="sh-line">Valideynlər Yazır</span></h2>
-<p class="sec-lead" style="margin-bottom:40px;">Rəylər yalnız admin təsdiqi sonrası dərc edilir — spam və kənar reklam yoxdur.</p>
+<p class="sec-lead">Rəylər yalnız admin təsdiqi sonrası dərc edilir — spam və kənar reklam yoxdur.</p>
 <div class="reviews-grid">
 <div class="rv-card">
 <div class="rv-name">Aynur V. — Bakı</div>
@@ -577,24 +404,24 @@ input, select, textarea, button {
 </div>
 </div>
 <div class="review-form">
-<h3 style="font-size:1.125rem;font-weight:800;color:var(--clr-heading);margin-bottom:8px;font-family:var(--font);">Öz Rəyinizi Paylaşın</h3>
-<p style="font-size:0.875rem;color:var(--clr-text-muted);margin-bottom:24px;">Rəy yalnız admin yoxlamasından sonra dərc edilir. Spam, reklam, yanlış məlumat qəbul edilmir.</p>
+<h3>Öz Rəyinizi Paylaşın</h3>
+<p>Rəy yalnız admin yoxlamasından sonra dərc edilir. Spam, reklam, yanlış məlumat qəbul edilmir.</p>
 <form id="reviewForm">
-<div class="rf2" style="margin-bottom:16px;">
+<div class="rf2">
 <div class="rfield">
-<label for="rv-n" style="color:rgba(6,24,38,0.5);">Ad (tam ad lazım deyil)</label>
-<input id="rv-n" name="rv_name" placeholder="Aynur V." required="" style="background:#0E1116;border:1px solid var(--clr-border);color:var(--navy);" type="text"/>
+<label for="rv-n">Ad (tam ad lazım deyil)</label>
+<input id="rv-n" name="rv_name" placeholder="Aynur V." required="" type="text"/>
 </div>
 <div class="rfield">
-<label for="rv-city" style="color:rgba(6,24,38,0.5);">Şəhər</label>
-<input id="rv-city" name="rv_city" placeholder="Bakı" style="background:#0E1116;border:1px solid var(--clr-border);color:var(--navy);" type="text"/>
+<label for="rv-city">Şəhər</label>
+<input id="rv-city" name="rv_city" placeholder="Bakı" type="text"/>
 </div>
 </div>
-<div class="rfield" style="margin-bottom:16px;">
-<label for="rv-txt" style="color:rgba(6,24,38,0.5);">Rəyiniz</label>
-<textarea id="rv-txt" name="rv_text" placeholder="Uşağınız neçə yaşındaydı, müalicə neçə həftə çəkdi, nəticə necə oldu..." required="" rows="4" style="background:#0E1116;border:1px solid var(--clr-border);color:var(--navy);"></textarea>
+<div class="rfield">
+<label for="rv-txt">Rəyiniz</label>
+<textarea id="rv-txt" name="rv_text" placeholder="Uşağınız neçə yaşındaydı, müalicə neçə həftə çəkdi, nəticə necə oldu..." required="" rows="4"></textarea>
 </div>
-<button class="btn btn-fill" style="padding:14px 32px;" type="submit">Rəy Göndər</button>
+<button class="btn btn-fill" type="submit">Rəy Göndər</button>
 <p class="rv-note">Rəyiniz admin tərəfindən yoxlandıqdan sonra saytda dərc ediləcək.</p>
 <div class="form-success" id="rvSuccess"><p>Rəyiniz qəbul edildi. Yoxlamadan sonra dərc ediləcək. Təşəkkür edirik.</p></div>
 </form>
@@ -606,7 +433,7 @@ input, select, textarea, button {
 <div class="ps-inner">
 <span class="badge on-light">Faydalı Oxu</span>
 <h2 class="sec-h2"><span class="sh-line">Mövzuya Aid</span> <span class="sh-line">Məqalələr</span></h2>
-<p class="sec-lead" style="margin-bottom:40px;">Dr. Kənan Rəhimovun enurez mövzusunda yazdığı məqalələr.</p>
+<p class="sec-lead">Dr. Kənan Rəhimovun enurez mövzusunda yazdığı məqalələr.</p>
 <div class="blog-grid-2">
 <a class="bc" href="../bloq/enurez.html">
 <span class="bc-cat">Uşaq Psixologiyası</span>

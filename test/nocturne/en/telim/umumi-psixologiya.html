@@ -10,177 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc.css">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="../../assets/css/legacy/site-concept.css">
-<style>
-      /* ── OVERVIEW ── */
-      .overview-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; margin-top: 40px; align-items: start; }
-      .overview-text p { color: var(--clr-text); line-height: 1.8; margin-bottom: 16px; font-size: var(--t-body); text-align: left; }
-      .overview-text ul { text-align: left; }
-      .highlights-list { list-style: none; padding: 0; margin: 24px 0 0; }
-      .highlights-list li { padding: 10px 0; border-bottom: 1px solid var(--clr-border); font-size: var(--t-sm); color: var(--clr-text); display: flex; align-items: flex-start; gap: 10px; }
-      .highlights-list li::before { content: "—"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
-      .info-card { background: var(--navy); padding: 32px; }
-      .info-card-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 20px; }
-      .info-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); gap: 12px; }
-      .info-row:last-child { border-bottom: none; }
-      .info-lbl { font-size: var(--t-xs); color: rgba(255,255,255,0.45); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0; }
-      .info-val { font-size: var(--t-sm); color: var(--white); font-weight: 600; text-align: right; }
-      .info-val.accent { color: var(--accent); font-weight: 800; font-size: var(--t-body); }
-
-      /* ── CURRICULUM TABLE ── */
-      .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 0; width: 800px; }
-      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 9px 24px; border-bottom: 2px solid rgba(201,169,97,0.25); background: rgba(201,169,97,0.04); margin: 0; }
-      .cur-row { display: flex; align-items: baseline; padding: 9px 24px; border-bottom: 1px solid var(--clr-border); }
-      .cur-row:last-child { border-bottom: none; }
-      .cur-row:hover { background: rgba(201,169,97,0.03); }
-      .cur-row > div:first-child { display: flex; align-items: baseline; flex: 1; overflow: hidden; }
-      .cur-row > div:first-child::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(224,227,236,0.12); margin: 0 10px 3px; min-width: 16px; }
-      .cur-num { font-size: 0.7rem; color: rgba(224, 227, 236, 0.62); font-weight: 700; margin-right: 8px; flex-shrink: 0; }
-      .cur-name { font-size: var(--t-sm); color: #a8a296; white-space: nowrap; }
-      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: #a8a296; white-space: nowrap; flex-shrink: 0; }
-      .cur-hours span { font-size: 0.7rem; font-weight: 400; color: rgba(224,227,236,0.5); margin-left: 2px; }
-      .cur-total { display: flex; justify-content: space-between; align-items: center; background: var(--navy); padding: 16px 24px; }
-      .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
-      .cur-total .tv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
-      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.25); color: #a8a296; padding: 8px 18px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
-      .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
-
-      /* ── ADVANTAGES ── */
-      .adv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(201,169,97,0.2); margin-top: 40px; }
-      .adv-card { padding: 36px 32px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .adv-card:last-child { border-right: none; }
-      .adv-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
-      .adv-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .adv-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
-
-      /* ── OPPORTUNITY ── */
-      .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
-      .opp-card { padding: 40px; border-right: 1px solid var(--clr-border); }
-      .opp-card:last-child { border-right: none; }
-      .opp-label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; display: block; border-left: 2px solid var(--accent); padding-left: 10px; }
-      .opp-title { font-size: 1.25rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 12px; font-family: var(--font); }
-      .opp-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.75; }
-
-      /* ── TELEGRAM BAND ── */
-      .tg-band { background: var(--navy); padding: var(--s-section); border-top: 1px solid rgba(201,169,97,0.15); }
-      .tg-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
-      .tg-text h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .tg-text p { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 560px; }
-      .tg-reviews { display: grid; gap: 16px; min-width: 280px; max-width: 340px; }
-      .tg-review { background: rgba(255,255,255,0.06); border-left: 2px solid var(--accent); padding: 20px 24px; }
-      .tg-review p { font-size: var(--t-sm); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 10px; }
-      .tg-review span { font-size: var(--t-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
-
-      /* ── HOW TO REGISTER ── */
-      .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--clr-border); margin-top: 40px; }
-      .step-card { background: var(--white); padding: 28px 24px; }
-      .step-num { font-size: var(--t-xs); font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
-      .step-title { font-size: var(--t-body); font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-      .step-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7; }
-
-      /* ── REQUIREMENTS ── */
-      .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
-      .req-block-title { font-size: var(--t-sm); font-weight: 800; color: var(--clr-heading); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
-      .req-list { list-style: none; padding: 0; margin: 0; text-align: left; }
-      .req-list li { padding: 8px 0; border-bottom: 1px solid var(--clr-border); font-size: var(--t-sm); color: var(--clr-text); display: flex; gap: 10px; text-align: left; }
-      .req-list li::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
-
-      /* ── LEGAL BLOCK ── */
-      .legal-block { background: var(--navy); padding: var(--s-section); border-top: 1px solid rgba(201,169,97,0.2); }
-      .legal-block-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--s-section); text-align: center; }
-      .legal-block h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px; font-family: var(--font); }
-      .legal-block p { font-size: var(--t-body); color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 32px; line-height: 1.75; }
-      .legal-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-      /* ── REG FORM ── */
-      .reg-path { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(201,169,97,0.2); margin-bottom: 32px; }
-      .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .reg-path-step:last-child { border-right: none; }
-      .reg-path-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
-      .reg-path-step h4 { font-size: var(--t-sm); font-weight: 800; color: var(--white); margin-bottom: 6px; font-family: var(--font); }
-      .reg-path-step p { font-size: var(--t-xs); color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
-      .reg-discount { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.25); border-left: 2px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
-      .reg-discount strong { font-size: var(--t-body); font-weight: 800; color: var(--white); display: block; margin-bottom: 6px; }
-      .reg-discount p { font-size: var(--t-sm); color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
-      .reg-form-wrap { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
-      .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      .form-field { display: flex; flex-direction: column; gap: 8px; }
-      .form-field label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
-      .form-field input[type="text"],
-      .form-field input[type="tel"],
-      .form-field input[type="email"],
-      .form-field textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: var(--font); font-size: var(--t-sm); outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-      .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
-      .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.18); }
-      .tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
-      .tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
-      .tile-opt { display: none; }
-      .tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: var(--t-xs); color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; font-family: var(--font); }
-      .tile-opt:checked + .tile-lbl { background: var(--accent); color: var(--navy); }
-      .tile-lbl:hover { background: rgba(201,169,97,0.1); color: var(--white); }
-      .upload-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 4px; }
-      .upload-item { display: flex; flex-direction: column; gap: 6px; }
-      .upload-lbl { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-      .upload-item input[type="file"] { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); padding: 12px 14px; font-size: var(--t-xs); font-family: var(--font); cursor: pointer; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-      .upload-item input[type="file"]:hover { border-color: var(--accent); }
-      .upload-hint { font-size: var(--t-xs); color: rgba(255,255,255,0.25); }
-      .form-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
-      .form-note { font-size: var(--t-xs); color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 400px; }
-      .form-success { display: none; padding: 24px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.35); text-align: center; margin-top: 16px; }
-      .form-success p { color: var(--accent); font-weight: 700; font-size: var(--t-sm); margin: 0; }
-
-      @media print {
-        header, .mobile-nav, footer, .wa-float, .pg-hero, .stats-strip,
-        .tg-band, .cta-band, #registration { display: none !important; }
-        .cur-wrap { border: 1px solid #ccc !important; }
-        .pdf-btn { display: none !important; }
-      }
-      @media (max-width: 960px) {
-        .overview-grid { grid-template-columns: 1fr; }
-        .adv-grid { grid-template-columns: 1fr; }
-        .adv-card { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
-        .adv-card:last-child { border-bottom: none; }
-        .opp-grid { grid-template-columns: 1fr; }
-        .opp-card { border-right: none; border-bottom: 1px solid var(--clr-border); }
-        .opp-card:last-child { border-bottom: none; }
-        .tg-inner { grid-template-columns: 1fr; }
-        .tg-reviews { max-width: 100%; }
-        .req-grid { grid-template-columns: 1fr; }
-        .reg-path { grid-template-columns: 1fr; }
-        .form-2col { grid-template-columns: 1fr; }
-        .upload-grid { grid-template-columns: 1fr; }
-        .tile-group.cols3 { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 860px) {
-        .cur-wrap { width: 100%; }
-        .steps-row { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 768px) {
-        .cur-group-title, .cur-row, .cur-total { padding-left: 16px; padding-right: 16px; }
-        .reg-form-wrap { padding: 24px 16px !important; }
-      }
-      @media print {
-        body * { visibility: hidden; }
-        #sec-curriculum, #sec-curriculum * { visibility: visible; }
-        #sec-curriculum { position: absolute; left: 0; top: 0; width: 100%; padding: 24px !important; }
-        .cur-wrap { width: 100% !important; box-shadow: none !important; }
-        .pdf-btn { visibility: hidden !important; }
-      }
-    </style>
-<style>
-/* Wave 1.4 — Touch targets ≥44px for form controls */
-input, select, textarea, button {
-    min-height: 44px;
-}
-.form-field input, .form-field textarea, .form-field select {
-    min-height: 44px;
-}
-.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-.upload-item input[type="file"] { min-height: 44px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -250,7 +80,7 @@ input, select, textarea, button {
 
 
 
-<div class="stats-strip" data-theme="dark">
+<div class="stats-strip">
 <div class="stats-inner">
 <div class="stat-item"><span class="stat-num">1,556</span><span class="stat-label">Academic Hours</span></div>
 <div class="stat-div"></div>
@@ -262,12 +92,12 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="umumi-ov-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-ov-h">
+<div class="sec-inner">
 <span class="badge on-light">ABOUT THE PROGRAMME</span>
-<h2 class="sec-h2" id="umumi-ov-h" style="text-align:left;"><span class="sh-line">What is General</span> <span class="sh-line">Psychology?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">22 disciplines, 5 blocks —</span>
-<span class="ab-lead-mob">CPD diploma in the FRDO registry.</span>
+<h2 class="sec-h2" id="umumi-ov-h"><span class="sh-line">What is General</span> <span class="sh-line">Psychology?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">The right to practise counselling under the law of the Republic of Azerbaijan:</span>
 <span class="ab-lead-desk">22 disciplines, 5 blocks and an official CPD diploma in the FRDO registry.</span></p>
 <div class="overview-grid">
@@ -303,15 +133,15 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="umumi-cur-h" data-theme="light" id="sec-curriculum" style="background:var(--white);">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-cur-h" id="sec-curriculum">
+<div class="sec-inner">
 <span class="badge on-light">CURRICULUM</span>
-<h2 class="sec-h2" id="umumi-cur-h" style="text-align:left;"><span class="sh-line">Discipline List</span> <span class="sh-line">— 22 Subjects</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">5 blocks: fundamentals,</span>
-<span class="ab-lead-mob">practice, clinic, assessment.</span>
+<h2 class="sec-h2" id="umumi-cur-h"><span class="sh-line">Discipline List</span> <span class="sh-line">— 22 Subjects</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">5 blocks: psychology fundamentals, applied psychology, the clinical-therapeutic</span>
 <span class="ab-lead-desk">block, professional development and final assessment.</span></p>
-<div style="display:flex;justify-content:flex-end;width:100%;max-width:800px;margin-top:24px;margin-bottom:8px;">
+<div>
 <button class="pdf-btn" onclick="window.print()">
 <svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"></path></svg>
             Download PDF
@@ -368,22 +198,22 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="umumi-adv-h" data-theme="dark" style="background:var(--navy);">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-adv-h">
+<div class="sec-inner">
 <span class="badge">PROGRAMME HIGHLIGHTS</span>
-<h2 class="sec-h2" id="umumi-adv-h" style="text-align:left;">What to Expect</h2>
+<h2 class="sec-h2" id="umumi-adv-h">What to Expect</h2>
 <div class="adv-grid">
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">01 — Theory</span>
 <h3 class="adv-title">Video Lessons + Literature</h3>
 <p class="adv-body">Video recordings of Dr. Ragimov's classes are available for every discipline. You can watch them anytime, from anywhere — through your personal student account. A recommended professional reading list is also provided.</p>
 </div>
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">02 — Practicum</span>
 <h3 class="adv-title">Live Practice with Dr. Ragimov</h3>
 <p class="adv-body">Live demonstration sessions are held every week: real clinical material, supervision, and case analysis. Knowing the theory is not enough — developing counselling skills requires working alongside an experienced professional. This programme takes you from "I know" to "I can do."</p>
 </div>
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">03 — Official Status</span>
 <h3 class="adv-title">CPD Diploma + FRDO Registry</h3>
 <p class="adv-body">A CPD diploma is issued and entered into the FRDO state registry in accordance with the legislation of the Republic of Azerbaijan. No legalisation required. Employers may verify it through the FIS FRDO registry. Graduates are legally entitled to provide psychological counselling services.</p>
@@ -392,11 +222,11 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section>
+<div class="sec-inner">
 <span class="badge on-light">ENROLMENT</span>
-<h2 class="sec-h2" style="text-align:left;">How to Enrol?</h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;">Fill in the form — our team will contact you within 24 hours.</p>
+<h2 class="sec-h2">How to Enrol?</h2>
+<p class="sec-sub">Fill in the form — our team will contact you within 24 hours.</p>
 <div class="steps-row">
 <div class="step-card">
 <span class="step-num">Step 01</span>
@@ -414,26 +244,26 @@ input, select, textarea, button {
 <p class="step-body">You are added to the Telegram group. Access to the video archive is opened. You are notified of the first class date.</p>
 </div>
 </div>
-<div style="margin-top:28px;">
+<div>
 <a class="btn btn-fill" href="#registration">Go to Enrolment Form</a>
 </div>
 </div>
 </section>
 
-<section aria-labelledby="umumi-opp-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-opp-h">
+<div class="sec-inner">
 <span class="badge on-light">CAREER</span>
-<h2 class="sec-h2" id="umumi-opp-h" style="text-align:left;"><span class="sh-line">What Comes</span> <span class="sh-line">After Graduation?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Graduates gain a diploma</span>
-<span class="ab-lead-mob">and job-ready skills.</span>
+<h2 class="sec-h2" id="umumi-opp-h"><span class="sh-line">What Comes</span> <span class="sh-line">After Graduation?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Programme graduates gain not only a diploma, but real, job-ready practical skills.</span></p>
 <div class="opp-grid">
-<div class="opp-card">
+<div class="opp-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="opp-label">RAGIMOFF Centre</span>
 <h3 class="opp-title">Option to See Clients at Our Centre</h3>
 <p class="opp-body">A special opportunity for newly qualified psychologists who have completed the programme: seeing clients at Dr. Ragimov's centre — both in-person and online. This removes the biggest hurdle of a first practice — finding a place to work: your first step starts at our centre.</p>
 </div>
-<div class="opp-card">
+<div class="opp-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="opp-label">Independent Practice</span>
 <h3 class="opp-title">Building Your Own Psychology Practice</h3>
 <p class="opp-body">Most of our graduates open their own private practices within one to two years; some go on to establish their own psychology centres. Among them are today's leading psychologists — former students of Dr. Ragimov.</p>
@@ -442,13 +272,13 @@ input, select, textarea, button {
 </div>
 </section>
 
-<div class="tg-band" data-theme="dark">
+<div class="tg-band">
 <div class="tg-inner">
 <div class="tg-text">
 <span class="badge">Graduate Reviews</span>
 <h2>What Do Students Say?</h2>
-<p style="margin-top:12px;">If you'd like to read reviews from hundreds of students who have completed the programme, visit our Telegram channel. Real testimonials, graduate stories, and current news are all published there.</p>
-<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;">
+<p>If you'd like to read reviews from hundreds of students who have completed the programme, visit our Telegram channel. Real testimonials, graduate stories, and current news are all published there.</p>
+<div>
 <a class="btn btn-fill" href="https://t.me/ragimoff" target="_blank">Telegram Channel</a>
 <a class="btn btn-line" href="#registration">Enrol</a>
 </div>
@@ -466,26 +296,26 @@ input, select, textarea, button {
 </div>
 </div>
 
-<div class="cta-band" data-theme="light">
+<div class="cta-band">
 <div class="cta-band-inner">
 <div>
 <h2>Start Your Enrolment</h2>
 <p>Enrol in the General Psychology programme — 1,556 academic hours. Instalment plan up to 24 months.</p>
 </div>
 <div class="cta-band-btns">
-<a class="btn btn-fill" href="#registration" style="background:var(--navy);color:var(--white);">Enrol Now</a>
-<a class="btn btn-line" href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%BE+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B5+%D0%9E%D0%B1%D1%89%D0%B0%D1%8F+%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F." style="border-color:var(--navy);color:var(--navy);" target="_blank">WhatsApp</a>
+<a class="btn btn-fill" href="#registration">Enrol Now</a>
+<a class="btn btn-line" href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%BE+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B5+%D0%9E%D0%B1%D1%89%D0%B0%D1%8F+%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F." target="_blank">WhatsApp</a>
 </div>
 </div>
 </div>
 
-<section aria-labelledby="umumi-req-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-req-h">
+<div class="sec-inner">
 <span class="badge on-light">ADMISSION REQUIREMENTS</span>
-<h2 class="sec-h2" id="umumi-req-h" style="text-align:left;">Who Can Apply?</h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;">Any adult interested in psychology may apply for this programme.</p>
+<h2 class="sec-h2" id="umumi-req-h">Who Can Apply?</h2>
+<p class="sec-sub">Any adult interested in psychology may apply for this programme.</p>
 <div class="req-grid">
-<div class="req-block">
+<div class="req-block"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><rect height="25" rx="3" width="38" x="5" y="8"></rect><path d="M12 16h18M12 23h10"></path><path d="M30 33l-2 9 6-3 6 3-2-9"></path><circle class="d" cx="34" cy="27" r="3"></circle></svg>
 <div class="req-block-title">Who It Is For</div>
 <ul class="req-list">
 <li>Beginners in psychology — no prior education required</li>
@@ -496,7 +326,7 @@ input, select, textarea, button {
 <li>Those preparing for the Clinical Psychology CPD programme</li>
 </ul>
 </div>
-<div class="req-block">
+<div class="req-block"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><rect height="25" rx="3" width="38" x="5" y="8"></rect><path d="M12 16h18M12 23h10"></path><path d="M30 33l-2 9 6-3 6 3-2-9"></path><circle class="d" cx="34" cy="27" r="3"></circle></svg>
 <div class="req-block-title">Required Documents</div>
 <ul class="req-list">
 <li>Copy of ID document (both sides)</li>
@@ -509,36 +339,19 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="dip-h" class="sec-pad" data-theme="light" id="diplomas" style="background:var(--white);padding-bottom:var(--s-section);">
+<section aria-labelledby="dip-h" class="sec-pad" id="diplomas">
 <div class="sec-inner">
 <div class="sec-header">
 <span class="badge on-light">Official Documents</span>
 <h2 class="sec-h2" id="dip-h"><span class="sh-line">Institute Diplomas</span> <span class="sh-line">and Licences</span></h2>
-<p class="sec-sub"><span class="ab-lead-mob">St. Petersburg CPD Institute diploma</span>
-<span class="ab-lead-mob">and official licences.</span>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Sample diploma from the St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists and official operating licences.</span></p>
 </div>
 </div>
-<div class="gallery-band" data-theme="dark">
-<div class="diploma-gallery" id="diplomaGallery">
-<div class="dg-mains">
-<div class="dg-main-item" data-idx="0"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Clinical Psychology Diploma" height="717" loading="lazy" src="../../images/institute/diplom-psy-b-spb-idpo.jpg" width="1000"/></div>
-<div class="dg-main-item" data-idx="1"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Diploma" height="1573" loading="lazy" src="../../images/institute/diplom-spb-idpo.webp" width="2190"/></div>
-<div class="dg-main-item" data-idx="2"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Psychology Diploma" height="768" loading="lazy" src="../../images/institute/diplom-psy-spb-idpo.webp" width="540"/></div>
-</div>
-<div class="dg-thumbs">
-<div class="dg-thumb" data-idx="3"><img alt="Diploma Supplement" height="1541" loading="lazy" src="../../images/institute/diplom-spb-prilozhenie.webp" width="1113"/></div>
-<div class="dg-thumb" data-idx="4"><img alt="IPAS Certificate — Clinical Psychology" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-clinical.jpg" width="860"/></div>
-<div class="dg-thumb" data-idx="5"><img alt="IPAS Certificate — General Psychology" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-family.jpg" width="860"/></div>
-<div class="dg-thumb" data-idx="6"><img alt="GTC Practicum Certificate" height="860" loading="lazy" src="../../images/certificate/cert-sample-gtc-dark.jpg" width="600"/></div>
-<div class="dg-thumb" data-idx="7"><img alt="Discipline Table" height="1393" loading="lazy" src="../../images/institute/diplom-predmety.webp" width="1020"/></div>
-<div class="dg-thumb" data-idx="8"><img alt="Official Operating Licence" height="600" loading="lazy" src="../../images/institute/licenziya-1.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="9"><img alt="Licence 2" height="600" loading="lazy" src="../../images/institute/licenziya-2.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="10"><img alt="Licence Extract" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="11"><img alt="Licence Extract 2" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska-2.jpg" width="424"/></div>
-</div>
-</div>
-</div>
+
+<div class="n-gallery"><button aria-label="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Clinical Psychology Diploma" class="n-shot" data-full="../../images/institute/diplom-psy-b-spb-idpo.jpg" type="button"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Clinical Psychology Diploma" height="717" loading="lazy" src="../../images/institute/diplom-psy-b-spb-idpo.jpg" width="1000"/><span class="n-shot-cap">St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Clinical Psychology Diploma</span></button><button aria-label="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Diploma" class="n-shot" data-full="../../images/institute/diplom-spb-idpo.webp" type="button"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Diploma" height="1573" loading="lazy" src="../../images/institute/diplom-spb-idpo.webp" width="2190"/><span class="n-shot-cap">St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Diploma</span></button><button aria-label="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Psychology Diploma" class="n-shot" data-full="../../images/institute/diplom-psy-spb-idpo.webp" type="button"><img alt="St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Psychology Diploma" height="768" loading="lazy" src="../../images/institute/diplom-psy-spb-idpo.webp" width="540"/><span class="n-shot-cap">St. Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists — Psychology Diploma</span></button><button aria-label="Diploma Supplement" class="n-shot" data-full="../../images/institute/diplom-spb-prilozhenie.webp" type="button"><img alt="Diploma Supplement" height="1541" loading="lazy" src="../../images/institute/diplom-spb-prilozhenie.webp" width="1113"/><span class="n-shot-cap">Diploma Supplement</span></button><button aria-label="IPAS Certificate — Clinical Psychology" class="n-shot" data-full="../../images/certificate/cert-sample-ipas-clinical.jpg" type="button"><img alt="IPAS Certificate — Clinical Psychology" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-clinical.jpg" width="860"/><span class="n-shot-cap">IPAS Certificate — Clinical Psychology</span></button><button aria-label="IPAS Certificate — General Psychology" class="n-shot" data-full="../../images/certificate/cert-sample-ipas-family.jpg" type="button"><img alt="IPAS Certificate — General Psychology" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-family.jpg" width="860"/><span class="n-shot-cap">IPAS Certificate — General Psychology</span></button><button aria-label="GTC Practicum Certificate" class="n-shot" data-full="../../images/certificate/cert-sample-gtc-dark.jpg" type="button"><img alt="GTC Practicum Certificate" height="860" loading="lazy" src="../../images/certificate/cert-sample-gtc-dark.jpg" width="600"/><span class="n-shot-cap">GTC Practicum Certificate</span></button><button aria-label="Discipline Table" class="n-shot" data-full="../../images/institute/diplom-predmety.webp" type="button"><img alt="Discipline Table" height="1393" loading="lazy" src="../../images/institute/diplom-predmety.webp" width="1020"/><span class="n-shot-cap">Discipline Table</span></button><button aria-label="Official Operating Licence" class="n-shot" data-full="../../images/institute/licenziya-1.jpg" type="button"><img alt="Official Operating Licence" height="600" loading="lazy" src="../../images/institute/licenziya-1.jpg" width="424"/><span class="n-shot-cap">Official Operating Licence</span></button><button aria-label="Licence 2" class="n-shot" data-full="../../images/institute/licenziya-2.jpg" type="button"><img alt="Licence 2" height="600" loading="lazy" src="../../images/institute/licenziya-2.jpg" width="424"/><span class="n-shot-cap">Licence 2</span></button><button aria-label="Licence Extract" class="n-shot" data-full="../../images/institute/licenziya-vypiska.jpg" type="button"><img alt="Licence Extract" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska.jpg" width="424"/><span class="n-shot-cap">Licence Extract</span></button><button aria-label="Licence Extract 2" class="n-shot" data-full="../../images/institute/licenziya-vypiska-2.jpg" type="button"><img alt="Licence Extract 2" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska-2.jpg" width="424"/><span class="n-shot-cap">Licence Extract 2</span></button></div>
+
 </section>
 
 <div class="legal-block">
@@ -552,15 +365,15 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="umumi-reg-h" data-theme="dark" id="registration" style="background:var(--navy);padding:var(--s-section) 0;">
-<div class="sec-inner" style="padding:0 var(--s-section);">
+<section aria-labelledby="umumi-reg-h" id="registration">
+<div class="sec-inner">
 <span class="badge">ENROLMENT</span>
 <h2 class="sec-h2" id="umumi-reg-h"><span class="sh-line">Join the</span> <span class="sh-line">Programme</span></h2>
-<p class="sec-sub" style="color:rgba(255,255,255,0.6);">Fill in the form — we reply within 24 hours. <strong>New cohort: classes start on 05.01.2027.</strong></p>
-<div class="reg-path" style="margin-top:32px;">
+<p class="sec-sub">Fill in the form — we reply within 24 hours. <strong>New cohort: classes start on 05.01.2027.</strong></p>
+<div class="reg-path">
 <div class="reg-path-step">
 <span class="reg-path-num">Step 01</span>
-<h4 aria-level="3" data-a11y-level="" role="heading">Prepare Your Documents</h4>
+<h4 aria-level="3" role="heading">Prepare Your Documents</h4>
 <p>Şəxsiyyət vəsiqənizin fotosu — ön və arxa tərəf.</p>
 </div>
 <div class="reg-path-step">
@@ -580,18 +393,18 @@ input, select, textarea, button {
 <div class="form-field"><label for="program-umumi-f2">Last Name *</label><input aria-label="Your last name" id="program-umumi-f2" name="soyad" placeholder="Your last name" required="" type="text"/></div>
 <div class="form-field"><label for="program-umumi-f3">Phone *</label><input aria-label="+994 (XX) XXX-XX-XX" id="program-umumi-f3" name="telefon" placeholder="+994 (XX) XXX-XX-XX" required="" type="tel"/></div>
 </div>
-<div class="form-field" style="margin-top:24px;">
+<div class="form-field">
 <label>Programme</label>
 <div class="tile-group cols3">
 <input checked="" class="tile-opt" id="p1" name="proqram" type="radio" value="General Psychology"/>
-<label class="tile-lbl" for="p1">General Psychology<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1,556 ac. hrs · CPD Diploma</span></label>
+<label class="tile-lbl" for="p1">General Psychology<br/><span>1,556 ac. hrs · CPD Diploma</span></label>
 <input class="tile-opt" id="p2" name="proqram" type="radio" value="Clinical Psychology"/>
-<label class="tile-lbl" for="p2">Clinical Psychology<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1,528 ac. hrs · CPD Diploma</span></label>
+<label class="tile-lbl" for="p2">Clinical Psychology<br/><span>1,528 ac. hrs · CPD Diploma</span></label>
 <input class="tile-opt" id="p3" name="proqram" type="radio" value="Psychotherapy Practicum"/>
-<label class="tile-lbl" for="p3">Psychotherapy Practicum<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ac. hrs · IPAS Certificate</span></label>
+<label class="tile-lbl" for="p3">Psychotherapy Practicum<br/><span>864 ac. hrs · IPAS Certificate</span></label>
 </div>
 </div>
-<div class="form-field" style="margin-top:24px;">
+<div class="form-field">
 <label for="km-name">Documents</label>
 <div class="upload-grid">
 <div class="upload-item">
@@ -603,7 +416,7 @@ input, select, textarea, button {
 </div>
 <div class="form-footer">
 <p class="form-note">Documents are accepted solely for registration purposes and will not be shared with third parties.</p>
-<button class="btn btn-fill" style="min-width:240px;padding:16px 32px;" type="submit">Submit Application</button>
+<button class="btn btn-fill" type="submit">Submit Application</button>
 </div>
 <div class="form-success" id="regSuccess">
 <p>Your application has been received. You will be contacted within 24 hours.</p>

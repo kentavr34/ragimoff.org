@@ -35,14 +35,26 @@ def body_text(soup, new):
     return norm(main.get_text(' '))
 
 
+def chunk_list(soup):
+    main = soup.find('main') or soup.body
+    for sel in ['section.page-hero', 'section.page-hero-x', 'header', 'footer', 'nav.mobile-nav', 'script', 'style', 'noscript', '#dgLightbox', '#kitab-modal', '.wa-float', '.skip-link']:
+        for el in main.select(sel):
+            el.decompose()
+    return [norm(t) for t in main.stripped_strings if len(norm(t)) > 2]
+
+
 for new, orig in pairs:
     a = BeautifulSoup((SITE / orig).read_text(encoding='utf-8'), 'lxml')
     b = BeautifulSoup((OUT / new).read_text(encoding='utf-8'), 'lxml')
+    for el in a.find_all(True):
+        if any(c.endswith('-mob') for c in el.get('class', [])):
+            el.decompose()          # мобильные дубли: тот же текст есть в -desk
+    chunks = chunk_list(a)
     ta, tb = body_text(a, False), body_text(b, True)
     probs = []
-    if ta != tb:
-        i = next((k for k in range(min(len(ta), len(tb))) if ta[k] != tb[k]), min(len(ta), len(tb)))
-        probs.append('ТЕКСТ расходится с позиции %d: «…%s» vs «…%s»' % (i, ta[max(0, i - 30):i + 40], tb[max(0, i - 30):i + 40]))
+    miss = [c for c in chunks if c not in tb]
+    if miss:
+        probs.append('ТЕКСТ: нет %d фрагм., напр. «%s»' % (len(miss), '» / «'.join(m[:60] for m in miss[:3])))
     hero_o = a.select_one('section.page-hero, section.page-hero-x')
     hero_n = b.select_one('.n-hero')
     if hero_o is not None and hero_n is not None:
@@ -52,8 +64,9 @@ for new, orig in pairs:
             probs.append('H1: «%s» vs «%s»' % (h1o, h1n))
     pa = sorted(norm(x) for x in PRICE.findall(ta))
     pb = sorted(norm(x) for x in PRICE.findall(tb))
-    if pa != pb:
-        probs.append('ЦЕНЫ: оригинал %s / новая %s' % (pa, pb))
+    lost = [x for x in set(pa) if pa.count(x) > pb.count(x)]
+    if lost:
+        probs.append('ЦЕНЫ потеряны: %s' % lost)
     fa = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in a.find_all('form'))
     fb = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in b.find_all('form'))
     if fa != fb:

@@ -10,182 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc.css">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="../../assets/css/legacy/site-concept.css">
-<style>
-      /* Высоту НЕ задаём: её держит штатное `.about-img img` из gtc.css
-         (520px на десктопе), а на ≤768px gtc-dark.css принудительно ставит
-         height:auto !important — сайт намеренно показывает портрет целиком
-         на телефоне, как на главной. Своё правило тут только кадрирует. */
-      .about-img .portrait-photo { object-fit: cover; object-position: center top;
-        border: 1px solid var(--clr-border); }
-
-      /* Раскрывающаяся программа модуля. В gtc.css компонента нет — заводим здесь. */
-      .mod-panel { border: 1px solid var(--clr-border); border-left: 2px solid var(--accent);
-        background: var(--clr-bg-surface); margin-top: 24px; text-align: left; }
-      .mod-panel > summary { cursor: pointer; list-style: none; padding: 28px;
-        font-family: var(--font); display: block; position: relative; }
-      .mod-panel > summary:hover .mod-open { color: var(--accent); }
-      .mod-panel > summary::-webkit-details-marker { display: none; }
-      .mod-panel > summary::after { content: '+'; position: absolute; top: 26px; right: 28px;
-        color: var(--accent); font-size: 1.6rem; line-height: 1; font-weight: 400; }
-      .mod-panel[open] > summary::after { content: '–'; }
-      .mod-open { display: inline-block; margin-top: 16px; font-size: var(--t-xs); font-weight: 700;
-        letter-spacing: .12em; text-transform: uppercase; color: var(--clr-text-muted); }
-      .mod-panel[open] .mod-open { color: var(--accent); }
-      .mod-price { font-size: var(--t-sm); color: var(--clr-heading); font-weight: 700; margin: 14px 0 0; }
-      .mod-price span { color: var(--clr-text-muted); font-weight: 400; }
-      .mod-panel > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-      .mod-list { margin: 0; padding: 0 24px 24px 48px; counter-reset: mod; }
-      .mod-list li { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7;
-        padding: 7px 0; border-top: 1px solid var(--clr-border); }
-      .mod-list li:first-child { border-top: none; }
-
-      .mod-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-      .mod-chip { font-size: var(--t-xs); font-weight: 700; letter-spacing: .06em;
-        color: var(--accent); border: 1px solid var(--clr-border); padding: 6px 12px; }
-      .mod-panel h3 { font-family: var(--font); font-size: 1.2rem; font-weight: 800;
-        color: var(--clr-heading); margin: 0 0 6px; padding-right: 32px; }
-      .mod-panel .mod-sub { font-size: var(--t-xs); color: var(--accent); font-weight: 700;
-        letter-spacing: .12em; text-transform: uppercase; margin: 0 0 10px; }
-      .mod-panel summary p:not(.mod-sub):not(.mod-price) { font-size: var(--t-sm);
-        color: var(--clr-text-muted); line-height: 1.7; margin: 0; }
-      /* Фото поднято на -125px правилом с главной: там заголовок блока
-         короткий («Kənan Rəhimov»), и подъём не мешает. Здесь имя длиннее —
-         «Samirə Rəhimova/Rüstəmova» шириной 769px — и уходило ПОД фото,
-         обрезаясь на «RÜSTƏ». Замер: колонка фото начиналась на y=106,
-         а сетка на y=231. Опускаем фото на уровень сетки. */
-      .sec-2col .about-col-right { margin-top: 0 !important; }
-      /* Кнопка записи — ОТДЕЛЬНОЙ СТРОКОЙ. js-hero-fit2.js (innerRhythm)
-         выравнивает пару «абзац → кнопка» через margin-top РОДИТЕЛЯ кнопки:
-         он берёт родителя и добавляет ему поле, пока зазор до абзаца не
-         станет 32/24 px. Здесь родителем был весь .about-col-right, поэтому
-         поле получала вся колонка (фото + соцсети + абзац): на 390 замер
-         дал margin-top 1375px — та самая пустота от имени и специальности
-         до фото. Своя обёртка только вокруг кнопки возвращает правилу
-         настоящего адресата, а колонка остаётся с полем 0. */
-      .sec-2col .about-cta { display: block; width: 100%; }
-      /* ХРОНИКА — СТОПКОЙ, НА ВСЕХ ШИРИНАХ.
-         Сначала здесь стояла сетка «подпись 130px | текст». Она убирала
-         «ёлочку» (в gtc.css li это flex, а strong имеет ширину по
-         содержимому: 38px у «2021» и 109px у «Müəllimlik» — восемь разных
-         вертикалей, разброс 72px), но платила за это дважды: под короткими
-         подписями зияла пустота, а текст ужимался в остаток колонки.
-         Решение владельца 2026-08-17: жёлтая подпись СВЕРХУ, белый текст под
-         ней во всю ширину. И вертикаль одна, и текст не сжат. */
-      .sec-2col .timeline-list li { display: block !important;
-        padding-left: 34px; padding-bottom: 26px;
-        transition: transform .18s ease, background .18s ease; }
-      .sec-2col .timeline-list strong { display: block; white-space: normal;
-        margin: 0 0 7px !important; overflow-wrap: anywhere;
-        font-size: var(--t-xs); letter-spacing: .12em; }
-      .sec-2col .timeline-list span { display: block; overflow-wrap: anywhere;
-        font-size: var(--t-sm); line-height: 1.75; }
-
-      /* «Ощущение живости реагирования на прикосновение» — слова владельца.
-         В gtc.css при наведении уже растёт точка и светлеет текст; добавляем
-         сдвиг записи и золотую подсветку линии слева. Курсор НЕ меняем на
-         pointer: записи не кликабельны, и курсор-рука обещал бы переход,
-         которого нет. */
-      .sec-2col .timeline-list li { border-radius: 6px; }
-      .sec-2col .timeline-list li:hover { transform: translateX(4px);
-        background: rgba(201,169,97,.055); }
-
-      @media (max-width: 768px) {
-        .sec-2col .timeline-list li { padding-left: 30px; }
-      }
-      /* Кнопка в хронике — маленькая, не спорит с текстом записи. */
-      /* flex + fit-content, а не inline-flex: кнопка встаёт на свою строку,
-         а не втискивается в конец абзаца. */
-      .tl-btn { display: flex; width: fit-content; align-items: center; gap: 6px; margin-top: 12px;
-        padding: 6px 12px; border: 1px solid rgba(201, 169, 97, 0.4);
-        color: var(--accent); font-size: var(--t-xs); font-weight: 700;
-        letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
-        transition: background .2s, border-color .2s; }
-      .tl-btn:hover { background: rgba(201, 169, 97, 0.12); border-color: var(--accent); }
-      .mod-note { font-size: var(--t-sm) !important; color: var(--clr-text-muted) !important; margin: 0 0 10px !important; }
-      /* Тело текста выравнивается ПО ЛЕВОМУ КРАЮ. По центру — только заголовки
-         и подзаголовки: центрированная проза даёт «ёлочку» из строк разной
-         длины, читать её тяжело. Правило Кенана 2026-08-17. */
-      /* Тело текста в разделах — по левому краю, как и .mod-foot. */
-      /* Две кнопки подряд. На десктопе они встают в ряд, и без отступа между
-         ними оставалось 4px — читались как одна полоса. На мобильном кнопки
-         переносятся в столбик, и тот же боковой отступ сдвигал вторую на 25px
-         вправо относительно первой: левые границы не совпадали. */
-      .cta-pair .btn + .btn { margin-left: 16px; }
-      @media (max-width: 768px) {
-        /* В столбик кнопки должны быть одной ширины: btn-fill растягивается на
-           контейнер, а btn-line жмётся по тексту — 295 против 261, и левые
-           границы не совпадали. */
-        .cta-pair .btn { display: block; width: 100%; }
-        .cta-pair .btn + .btn { margin-left: 0; margin-top: 12px; }
-      }
-
-      /* Общая строка над модулями: то, что одинаково для обоих. */
-      .mod-intro { max-width: 640px; margin: 0 auto 24px; text-align: left;
-        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
-      /* Записи тренинга между модулями. Кнопка .tl-btn это flex шириной по
-         содержимому — две подряд встали бы в столбик, поэтому ряд задаём
-         контейнером. */
-      .mod-video { display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
-        max-width: 640px; margin: 20px auto; text-align: left;
-        font-size: var(--t-sm); line-height: 1.7; color: var(--clr-text-muted); }
-      .mod-video .tl-btn { margin-top: 0; }
-
-      .sec-body { max-width: 640px; margin: 28px auto 0; text-align: left;
-        color: var(--clr-text-muted); line-height: 1.75; font-size: var(--t-sm); }
-      .sec-body a { color: var(--accent); font-weight: 700; }
-      .mod-foot { max-width: 640px; margin: 28px auto 0; text-align: left;
-        color: rgba(255,255,255,0.62); line-height: 1.75; font-size: var(--t-sm); }
-      @media (max-width: 900px) { .mod-list { padding-left: 40px; } .mod-panel > summary { padding: 22px; } }
-      /* Шапка приводится к главной. Бейдж и его зазоры живут в компоненте
-         .ph-badge (gtc.css, «PAGE HERO SYSTEM») с волны унификации
-         2026-09-08 — инлайновые дубли сняты. Здесь только page-специфика:
-         двухцветный h1 и оптический letter-spacing. */
-      /* объект 2 — заголовок: на главной обе строки белые, золотом выделено
-         одно слово через <em>. Здесь роль <em> играет вторая строка. */
-      /* Ритм зазоров шапки — из компонентов .ph-h1/.ph-sub (gtc.css), как на
-         остальных 159 страницах. Зазор заголовок→лид задаёт margin-bottom h1:
-         у лида в компоненте margin-top 0, поэтому на flex-контейнере
-         (.page-hero-x-inner) стекования отступов нет. */
-      .page-hero-x .ph-h1 { letter-spacing: 0.4px !important; }
-      .page-hero-x .ph-h1 .ph-h1-w1 { color: rgba(242, 237, 227, 0.85) !important; }
-      .page-hero-x .ph-h1 .ph-h1-w2 { color: var(--accent) !important; }
-      /* объект 3 — лид: ритм — из компонента .ph-sub (gtc.css), здесь только цвет */
-      /* Щель вокруг поисковика.
-         Замер вскрыл настоящую причину провала над панелью: у .ph-search-wrap
-         высота 73 при самой панели 45 — внутри обёртки 28px пустоты СВЕРХУ,
-         которых на главной нет (там обёртка равна панели, 45=45). Из-за них
-         зазор над панелью выходил 57.7px оптически против эталонных 36.8.
-         Обнуляем внутренний отступ; зазор над панелью даёт margin-bottom
-         лида из компонента .ph-sub (var(--s-gap-sub)). */
-      /* Источник провала — margin-top: 28px у самой панели .hero-search-bar;
-         на главной он ноль. Обёртка тут ни при чём, её padding и так 0. */
-      .page-hero-x .ph-search-wrap { padding-top: 0 !important; margin-top: 0 !important; }
-      .page-hero-x .hero-search-bar { margin-top: 0 !important; }
-      /* объект 3 — лид: ритм (0/0 top/bottom) — из компонента .ph-sub (gtc.css), как на остальных 159 страницах. Здесь только цвет */
-      .page-hero-x .ph-sub { color: rgba(242, 237, 227, 0.88) !important; }
-      /* объект 4 — поисковик. Замер главной: лид →32→ поисковик →2→ фото,
-         низ фото = низ шапки. Без фото поисковик ложился ВПЛОТНУЮ на
-         границу (замер 0). Даём ту же единицу, что и сверху, — 24px. */
-      .page-hero-x { padding-bottom: 24px !important; }
-      /* стык шапки со следующим блоком. На главной от полосы буллетов до
-         бейджа 48px, здесь было 20 — бейдж прижимался к верхнему краю. */
-      .stats-strip + section { padding-top: 48px !important; }
-    </style>
-<style>
-/* Wave 1.4 — Touch targets ≥44px for form controls */
-input, select, textarea, button {
-    min-height: 44px;
-}
-.form-field input, .form-field textarea, .form-field select {
-    min-height: 44px;
-}
-.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-.upload-item input[type="file"] { min-height: 44px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -252,17 +77,17 @@ input, select, textarea, button {
 </div></header>
 <div class="n-mob" id="nMob" aria-hidden="true"><div class="n-mob-in"><div class="n-m-group"><a class="n-m-big" href="index.html">Специалисты</a><div class="n-m-sub"><a href="kenan-rehimov.html">Кенан Рагимов</a><a href="samire-rehimova.html">Самира Рагимова</a></div></div><div class="n-m-group"><a class="n-m-big" href="../konsultasiya/index.html">Консультация</a><div class="n-m-sub"><a href="../konsultasiya/aile-terapiyasi.html">Семейная терапия</a><a href="../konsultasiya/aile-usaq-terapiyasi.html">Семейно-Детская Терапия</a><a href="../konsultasiya/valideyn-mektebi.html">Школа родителей</a><a href="../konsultasiya/depressiya.html">Депрессия</a><a href="../konsultasiya/panik-ataklar.html">Панические Атаки</a><a href="../konsultasiya/sosial-fobiya.html">Социофобия</a><a href="../konsultasiya/enurez.html">Ночной Энурез</a></div></div><div class="n-m-group"><a class="n-m-big" href="../telim/index.html">Обучение</a><div class="n-m-sub"><a href="../telim/umumi-psixologiya.html">Общая Психология</a><a href="../telim/klinik-psixologiya.html">Клиническая Психология ДПО</a><a href="../telim/psixoterapiya-praktikumu.html">Практикум по Психотерапии</a><a href="../telim/psixoanaliz.html">Психоанализ</a><a href="../telim/psixodiaqnostika.html">Психодиагностика</a><a href="samire-rehimova.html">Семейная Терапия</a><a href="../telim/qanuni-esaslar.html">Юридические Основы</a></div></div><div class="n-m-group"><a class="n-m-big" href="../korporativ/index.html">Корпоративное</a></div><div class="n-m-group"><a class="n-m-big" href="../bloq/index.html">Блог</a></div><div class="n-m-group"><a class="n-m-big" href="/books/">Книги ↗</a></div><div class="n-m-langs"><a href="../../az/mutexessisler/samire-rehimova.html" hreflang="az" lang="az" class="n-lang" data-lang="az">AZ</a><a href="samire-rehimova.html" hreflang="ru" lang="ru" class="n-lang is-on" data-lang="ru">RU</a><a href="../../en/mutexessisler/samire-rehimova.html" hreflang="en" lang="en" class="n-lang" data-lang="en">EN</a></div></div></div>
 <main id="main" class="page-main">
-<section class="n-hero n-hero-has-art" id="main-content" data-spot>
+<section class="n-hero n-hero-has-art n-hero-person" id="main-content" data-spot>
 
 <div class="n-wrap n-hero-in"><div class="n-hero-text"><nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Специалисты</a></nav>
 <span class="n-eyebrow n-rise">СЕМЕЙНАЯ ТЕРАПИЯ</span>
-<h1 class="n-h1 n-rise" style="--d:.1s"><span class="n-h1-a">Системная</span> <em class="n-h1-b">Семейная терапия</em></h1>
+<h1 class="n-h1 n-rise" style="--d:.1s"><span class="n-h1-a">Самира</span> <em class="n-h1-b">Рагимова</em></h1>
 <p class="n-lead n-rise" style="--d:.2s">Отношения в паре, связь родителя с ребёнком и работа с трудными подростками — терапия и обучение.</p>
 
 </div><figure class="n-hero-art n-rise" style="--d:.35s"><img src="../../images/samira/samira-portret.jpg" alt="Самира Рагимова"></figure></div></section>
 
 
-<div class="stats-strip" data-theme="dark">
+<div class="stats-strip">
 <div class="stats-inner">
 <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Лет практики</span></div>
 <div class="stat-div"></div>
@@ -274,13 +99,13 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="sam-about" class="sec-2col" data-theme="light">
-<div class="sec-inner" style="text-align:center;">
+<section aria-labelledby="sam-about" class="sec-2col">
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge on-light">О специалисте</span>
 <h2 class="sec-h2" id="sam-about"><span class="sh-line">Самира</span> <span class="sh-line">Рагимова/Рустамова</span></h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Клинический психолог · семейный терапевт</span>
+
 <span class="ab-lead-desk">Клинический психолог · специалист и преподаватель семейной терапии</span>
 </p>
 </div>
@@ -334,13 +159,13 @@ input, select, textarea, button {
 <div class="about-img">
 <img alt="Samirə Rəhimova" class="portrait-photo" height="1024" loading="lazy" src="../../images/samira/samira-portret.jpg" width="576"/>
 </div>
-<div class="social-links" style="margin:18px 0;justify-content:center;">
+<div class="social-links">
 <a aria-label="Instagram" class="social-btn" href="https://www.instagram.com/samira.ragimoff" rel="noopener" target="_blank">IG</a>
 <a aria-label="Telegram" class="social-btn" href="https://t.me/samirablog" rel="noopener" target="_blank">TG</a>
 <a aria-label="LinkedIn" class="social-btn" href="https://www.linkedin.com/in/samira-ragimoff-b42b06132" rel="noopener" target="_blank">IN</a>
 <a aria-label="WhatsApp" class="social-btn" href="https://wa.me/994775395009" rel="noopener" target="_blank">WA</a>
 </div>
-<p style="margin:14px 0 0;font-size:14px;line-height:1.6;">Регистрацию нужно пройти заранее: места распределяются между записавшимися в группу тренинга. Без этого &lt;Регистрация открыта — принимаются заявки в следующую группу..</p>
+<p>Регистрацию нужно пройти заранее: места распределяются между записавшимися в группу тренинга. Без этого &lt;Регистрация открыта — принимаются заявки в следующую группу..</p>
 <div class="about-cta">
 <a class="btn btn-fill about-img-btn" href="https://wa.me/994775395009" rel="noopener" target="_blank">Запись</a>
 </div>
@@ -348,13 +173,13 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section data-theme="dark">
-<div class="sec-inner" style="padding:var(--s-section)">
+<section>
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge">ПРОГРАММА ОБУЧЕНИЯ</span>
 <h2 class="sec-h2"><span class="sh-line">Семейная</span> <span class="sh-line">терапия</span></h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Каждый модуль: 48 часов обучения + 48 часов супервизии.</span>
+
 <span class="ab-lead-desk">Каждый модуль: 48 часов обучения (3 месяца, 2 раза в неделю по 2 часа) —</span>
 <span class="ab-lead-desk">и 48 часов супервизии (6 месяцев, раз в неделю). Цена очно и онлайн одинакова.</span>
 </p>
@@ -433,27 +258,27 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section)">
+<section>
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge on-light">КОНСУЛЬТАЦИЯ</span>
 <h2 class="sec-h2">Терапия пары</h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Совместный приём, затем</span>
-<span class="ab-lead-mob">индивидуальный этап и снова вместе.</span>
+
+
 <span class="ab-lead-desk">Работа начинается с совместного приёма,</span>
 <span class="ab-lead-desk">продолжается индивидуально и снова сходится.</span>
 </p>
 </div>
 <p class="sec-body">Терапию ведут два специалиста: с мужской стороной — врач-психиатр <a href="kenan-rehimov.html">Кенан Рагимов</a>, с женской — клинический психолог Самира Рагимова. Работа начинается с совместного первичного приёма: обе стороны выслушиваются в одной комнате, положение оценивается вместе. Затем идёт индивидуальный этап — каждый разбирает свою часть не при партнёре, а в безопасных условиях. На итоговой совместной сессии результаты соединяются и строятся договорённости. Сессия длится 1 час, проходит очно и онлайн. Полное описание процесса и цены — на отдельной странице.</p>
-<div class="cta-pair" style="margin-top:28px;text-align:center;">
+<div class="cta-pair">
 <a class="btn btn-fill" href="../konsultasiya/aile-terapiyasi.html">Формат и цены →</a>
 <a class="btn btn-line" href="../konsultasiya/valideyn-mektebi.html">Школа родителей →</a>
 </div>
 </div>
 </section>
 
-<div class="cta-band" data-theme="dark">
+<div class="cta-band">
 <div class="cta-band-inner">
 <h2 class="sec-h2"><span class="sh-line">Записаться</span> <span class="sh-line">на приём</span></h2>
 <div class="cta-band-btns">
@@ -463,55 +288,55 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section data-theme="dark" style="background:#07090E">
-<div class="sec-inner" style="padding:var(--s-section)">
+<section>
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge">ПОЛЕЗНОЕ ЧТЕНИЕ</span>
 <h2 class="sec-h2"><span class="sh-line">Об отношениях</span> <span class="sh-line">в семье</span></h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Научно обоснованные публикации.</span>
+
 <span class="ab-lead-desk">Научно обоснованные публикации и практические советы по теме.</span>
 </p>
 </div>
-<ul style="list-style:none; padding:0; margin:40px auto 0; max-width:820px; text-align:left; border-top:1px solid rgba(201,169,97,0.22)">
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)">
-<a href="../bloq/aile.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
-<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art4-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/>
-<span style="flex:1; min-width:0">
-<span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
-<span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">5 принципов разрешения семейного конфликта</span>
+<ul class="n-reading">
+<li>
+<a href="../bloq/aile.html">
+<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art4-cover.jpg" width="1600"/>
+<span>
+<span>Статья · 9 мин чтения</span>
+<span>5 принципов разрешения семейного конфликта</span>
 </span>
-<span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+<span>›</span>
 </a>
 </li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)">
-<a href="../bloq/aile-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
-<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art3-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/>
-<span style="flex:1; min-width:0">
-<span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 8 мин чтения</span>
-<span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">7 признаков токсичных отношений — распознать и выйти</span>
+<li>
+<a href="../bloq/aile-2.html">
+<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art3-cover.jpg" width="1600"/>
+<span>
+<span>Статья · 8 мин чтения</span>
+<span>7 признаков токсичных отношений — распознать и выйти</span>
 </span>
-<span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+<span>›</span>
 </a>
 </li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)">
-<a href="../bloq/aile-usaq-2.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
-<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art3-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/>
-<span style="flex:1; min-width:0">
-<span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
-<span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Отношения родителя и ребёнка</span>
+<li>
+<a href="../bloq/aile-usaq-2.html">
+<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art3-cover.jpg" width="1600"/>
+<span>
+<span>Статья · 9 мин чтения</span>
+<span>Отношения родителя и ребёнка</span>
 </span>
-<span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+<span>›</span>
 </a>
 </li>
-<li style="border-bottom:1px solid rgba(201,169,97,0.22)">
-<a href="../bloq/aile-5.html" style="display:flex; align-items:center; gap:20px; padding:20px 4px; text-decoration:none">
-<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art5-cover.jpg" style="flex-shrink:0; width:96px; height:64px; object-fit:cover; border:1px solid rgba(201,169,97,0.22)" width="1600"/>
-<span style="flex:1; min-width:0">
-<span style="display:block; color:var(--accent); font-weight:700; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px">Статья · 9 мин чтения</span>
-<span style="display:block; font-size:1.0625rem; font-weight:600; line-height:1.35">Как вернуть утраченное доверие?</span>
+<li>
+<a href="../bloq/aile-5.html">
+<img alt="" height="900" loading="lazy" src="../../images/blog/aile/art5-cover.jpg" width="1600"/>
+<span>
+<span>Статья · 9 мин чтения</span>
+<span>Как вернуть утраченное доверие?</span>
 </span>
-<span style="flex-shrink:0; color:var(--accent); font-size:1.6rem; line-height:1">›</span>
+<span>›</span>
 </a>
 </li>
 </ul>

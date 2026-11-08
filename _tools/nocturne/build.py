@@ -326,6 +326,7 @@ def footer_html(foot, lang, orig_page, new_page):
     inner = ''
     if foot is not None:
         fix_attrs(foot, orig_page, new_page)
+        strip_styles(foot)
         inner = ''.join(str(c) for c in foot.contents)
     return '''<footer class="n-foot"><div class="n-wrap">
 <a class="n-foot-mark" href="%s" aria-label="RAGIMOFF">RAGIMOFF</a>
@@ -347,10 +348,7 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="%sassets/css/legacy/gtc.css">
-<link rel="stylesheet" href="%sassets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="%sassets/css/legacy/site-concept.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 %s
 <link rel="stylesheet" href="%sassets/css/nocturne.css">
 </head>
@@ -367,7 +365,7 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <script src="%sassets/js/motion-gate.js"></script>
 </body>
 </html>
-''' % (lang, H.escape(title), H.escape(desc), R, R, R, head_extra, R, body_cls, header, main, footer, after, scripts, R, R)
+''' % (lang, H.escape(title), H.escape(desc), head_extra, R, body_cls, header, main, footer, after, scripts, R, R)
 
 
 def collect_scripts(nodes, orig_page, new_page):
@@ -394,6 +392,138 @@ def collect_scripts(nodes, orig_page, new_page):
     return '\n'.join(out)
 
 
+ICONS = {  # свои линейные иконки «с точкой» (концепт RAGIM), по теме направления
+    'aile-terapiyasi.html': '<circle cx="16" cy="15" r="5"/><circle cx="32" cy="15" r="5"/><path d="M6 40c0-7 4-12 10-12s10 5 10 12"/><path d="M22 40c0-7 4-12 10-12s10 5 10 12"/><circle class="d" cx="24" cy="6" r="2.6"/>',
+    'aile-usaq-terapiyasi.html': '<circle cx="18" cy="12" r="5"/><path d="M8 42c0-9 4-15 10-15s10 6 10 15"/><circle cx="34" cy="24" r="3.5"/><path d="M28 42c0-6 2.5-10 6-10s6 4 6 10"/><circle class="d" cx="40" cy="14" r="2.6"/>',
+    'enurez.html': '<path d="M8 26c4-10 10-15 16-15s12 5 16 15"/><path d="M24 11V5M12 16l-4-4M36 16l4-4"/><path d="M4 34h40M10 41h28"/><circle class="d" cx="24" cy="26" r="3"/>',
+    'panik-ataklar.html': '<path d="M4 26h8l4-10 6 20 6-26 5 16h11"/><circle class="d" cx="44" cy="26" r="2.6"/>',
+    'depressiya.html': '<path d="M14 34a10 10 0 1 1 6-18 12 12 0 0 1 22 6 7 7 0 0 1-2 13H14"/><path d="M18 42h16"/><circle class="d" cx="10" cy="12" r="3"/>',
+    'sosial-fobiya.html': '<path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"/><circle class="d" cx="40" cy="10" r="3"/>',
+    'valideyn-mektebi.html': '<path d="M4 18l20-10 20 10-20 10z"/><path d="M12 22v10c3 3 7 5 12 5s9-2 12-5V22"/><circle class="d" cx="42" cy="32" r="3"/>',
+}
+ICON_SET = {
+    'edu': '<path d="M4 18l20-10 20 10-20 10z"/><path d="M12 22v10c3 3 7 5 12 5s9-2 12-5V22"/><circle class="d" cx="42" cy="32" r="3"/>',
+    'check': '<rect x="5" y="8" width="38" height="25" rx="3"/><path d="M12 16h18M12 23h10"/><path d="M30 33l-2 9 6-3 6 3-2-9"/><circle class="d" cx="34" cy="27" r="3"/>',
+    'law': '<path d="M24 12c-5-4-12-5-19-4v30c7-1 14 0 19 4 5-4 12-5 19-4V8c-7-1-14 0-19 4z"/><path d="M24 12v30"/><circle class="d" cx="34" cy="19" r="2.6"/>',
+    'spark': '<path d="M8 26c4-10 10-15 16-15s12 5 16 15"/><path d="M24 11V5M12 16l-4-4M36 16l4-4"/><path d="M4 34h40M10 41h28"/><circle class="d" cx="24" cy="26" r="3"/>',
+}
+GALLERY_SEL = '.diploma-gallery, .students-grid, .dip-grid, .dip-grid-2, .dip-grid-3, .d2, .gallery-1'
+
+
+def strip_styles(node):
+    """Снять встроенное оформление оригинала; оставить только «скрыто» (его включают скрипты форм)."""
+    for el in node.find_all(True):
+        st = el.get('style')
+        if st is not None:
+            if re.search(r'display\s*:\s*none', st):
+                el['style'] = 'display:none'
+            else:
+                del el['style']
+        for a in ('onmouseover', 'onmouseout', 'data-theme', 'data-a11y-level', 'bgcolor', 'width' if el.name in ('table', 'td', 'th') else '_'):
+            if el.has_attr(a):
+                del el[a]
+
+
+def restyle(main, s):
+    """Содержимое оригинала → разметка под компоненты «Ноктюрна». Текст не меняется."""
+    for el in main.find_all(True):
+        if any(c.endswith('-mob') for c in el.get('class', [])):
+            el.decompose()          # мобильные дубли подзаголовков (тот же текст есть в -desk)
+    strip_styles(main)
+    # галереи: каждый кадр целиком, в своих пропорциях, просмотр крупно
+    for g in main.select(GALLERY_SEL):
+        imgs = g.find_all('img')
+        if not imgs:
+            continue
+        new = s.new_tag('div', attrs={'class': 'n-gallery'})
+        for i in imgs:
+            b = s.new_tag('button', attrs={'type': 'button', 'class': 'n-shot', 'data-full': i.get('src', ''), 'aria-label': i.get('alt', '') or 'photo'})
+            im = s.new_tag('img', attrs={'src': i.get('src', ''), 'alt': i.get('alt', ''), 'loading': 'lazy'})
+            if i.get('width') and i.get('height'):
+                im['width'], im['height'] = i['width'], i['height']
+            b.append(im)
+            if i.get('alt'):
+                cap = s.new_tag('span', attrs={'class': 'n-shot-cap'})
+                cap.string = i['alt']
+                b.append(cap)
+            new.append(b)
+        g.replace_with(new)
+    for band in main.select('.gallery-band'):
+        band.unwrap()
+    # статьи законов — раскрываются по нажатию (обработчик в nocturne.js)
+    for h in main.select('.law-card-head'):
+        if h.has_attr('onclick'):
+            del h['onclick']
+        h['role'] = 'button'; h['tabindex'] = '0'; h['aria-expanded'] = 'false'
+    # обложки видео с YouTube
+    for v in main.select('a.video-thumb'):
+        m = re.search(r'(?:youtu\.be/|v=|embed/)([\w-]{11})', v.get('href', ''))
+        if m and not v.find('img'):
+            im = s.new_tag('img', attrs={'src': 'https://i.ytimg.com/vi/%s/hqdefault.jpg' % m.group(1), 'alt': '', 'loading': 'lazy'})
+            v.insert(0, im)
+    # списки «полезное чтение» (ссылка + обложка) → карточки статей
+    for ul in main.find_all('ul'):
+        lis = ul.find_all('li', recursive=False)
+        if len(lis) >= 2 and all(li.find('a') and li.find('img') for li in lis):
+            ul['class'] = ul.get('class', []) + ['n-reading']
+    # иконки направлений консультаций
+    for c in main.select('.xid-card'):
+        a = c.find('a')
+        name = (a.get('href', '') if a else '').split('/')[-1].split('#')[0]
+        if name in ICONS:
+            svg = BeautifulSoup('<svg class="n-ico" viewBox="0 0 48 48" aria-hidden="true">%s</svg>' % ICONS[name], 'html.parser')
+            c.insert(0, svg)
+    # иконки концепта в карточках программ, условий, статей законов
+    for c in main.select('.price-card, .req-block, .law-card-head, .opp-card, .adv-card'):
+        kind = 'edu' if 'price-card' in c.get('class', []) else ('check' if 'req-block' in c.get('class', []) else ('law' if 'law-card-head' in c.get('class', []) else 'spark'))
+        svg = BeautifulSoup('<svg class="n-ico n-ico-sm" viewBox="0 0 48 48" aria-hidden="true">%s</svg>' % ICON_SET[kind], 'html.parser')
+        c.insert(0, svg)
+    # карточки программ с ценами → горизонтальная лента
+    for par in {pc.parent for pc in main.select('.price-card')}:
+        if len(par.find_all(class_='price-card', recursive=False)) >= 3:
+            par['class'] = par.get('class', []) + ['n-strip']
+
+
+def person_hero(lang, orig_name, d, photo, new_page, crumbs):
+    d = dict(d)
+    name = NAMES[orig_name][lang].split(' ', 1)
+    d['w1'], d['w2'] = name[0], name[1] if len(name) > 1 else ''
+    d['art'] = map_url('index.html', new_page, photo)
+    d['art_alt'] = NAMES[orig_name][lang]
+    return hero_html(d, lang, crumbs=crumbs).replace('class="n-hero n-hero-has-art"', 'class="n-hero n-hero-has-art n-hero-person"', 1)
+
+
+def specialists_block(lang, new_page, head=True):
+    cards = []
+    for orig, photo in (('haqqimda.html', 'images/kenan/photo-hero-suit.jpg'), ('samira.html', 'images/samira/samira-portret.jpg')):
+        op = PREFIX[lang] + orig
+        hero = soup_of(SITE / op).select_one('section.page-hero, section.page-hero-x')
+        d = hero_parts(hero, op, new_page)
+        cards.append('''<a class="n-person" href="%s"><img src="%s" alt="%s" loading="lazy"><span class="n-person-tint" aria-hidden="true"></span>
+<span class="n-person-body"><span class="n-eyebrow">%s</span><span class="n-person-name">%s</span><span class="n-person-lead">%s</span></span></a>''' % (
+            rel(new_page, lang + '/' + MAP[orig]), map_url('index.html', new_page, photo), H.escape(NAMES[orig][lang]), H.escape(d.get('badge', '')),
+            H.escape(NAMES[orig][lang]), H.escape(d.get('lead') or (d.get('w1', '') + ' ' + d.get('w2', '')))))
+    hd = ('<div class="n-sec-head"><div><span class="n-eyebrow">RAGIMOFF</span><h2 class="n-h2">%s</h2></div></div>' % H.escape(SPEC[lang])) if head else ''
+    return '<section class="n-sec"><div class="n-wrap">%s<div class="n-people">%s</div></div></section>' % (hd, ''.join(cards))
+
+
+def programs_block(lang, new_page):
+    """Лента программ с ценами — секция «Учебные программы» страницы Обучение (тексты и цены оттуда)."""
+    op = PREFIX[lang] + 'tehsil.html'
+    t = soup_of(SITE / op)
+    sec = t.select_one('section#programs')
+    if sec is None:
+        return ''
+    fix_attrs(sec, op, new_page)
+    restyle(sec, t)
+    for a in sec.select('a[href^="#registration"]'):
+        a['href'] = rel(new_page, lang + '/' + MAP['tehsil.html']) + '#registration'
+    sec['class'] = sec.get('class', []) + ['n-home-programs']
+    if sec.has_attr('id'):
+        del sec['id']
+    return str(sec)
+
+
 def build_page(lang, orig_name, new_rel, key):
     orig_page = PREFIX[lang] + orig_name
     src = SITE / orig_page
@@ -405,8 +535,6 @@ def build_page(lang, orig_name, new_rel, key):
     md = s.find('meta', attrs={'name': 'description'})
     desc = md.get('content', '') if md else ''
     head_extra = []
-    for st in s.head.find_all('style'):
-        head_extra.append('<style>%s</style>' % (st.string or ''))
     for js in s.find_all('script', type='application/ld+json'):
         head_extra.append(str(js))
     main = s.find('main')
@@ -435,6 +563,7 @@ def build_page(lang, orig_name, new_rel, key):
         if el.get('data-theme'):
             pass
     fix_attrs(main, orig_page, new_page)
+    restyle(main, s)
     content = ''.join(str(c) for c in main.contents)
     foot = s.find('footer')
     footer = footer_html(foot.extract() if foot else None, lang, orig_page, new_page)
@@ -467,7 +596,14 @@ def build_page(lang, orig_name, new_rel, key):
         dot = '<i aria-hidden="true"></i>'
         belt = dot.join('<span>%s</span>' % H.escape(w) for w in words) + dot
         marquee = '<div class="n-marquee" aria-hidden="true"><div class="n-belt">%s%s</div></div>' % (belt, belt)
-        main_html = hero_html(d, lang, home=True) + marquee + content
+        # главная по прототипу B: имя и портрет → бегущая строка → цифры → специалисты → программы → остальное
+        frag = BeautifulSoup(content, 'html.parser')
+        stats = frag.select_one('.stats-strip')
+        stats_html = str(stats.extract()) if stats else ''
+        main_html = hero_html(d, lang, home=True) + marquee + stats_html + specialists_block(lang, new_page) + programs_block(lang, new_page) + str(frag)
+    elif orig_name in ('haqqimda.html', 'samira.html'):
+        photo = 'images/kenan/haqqimda-kenan.jpg' if orig_name == 'haqqimda.html' else 'images/samira/samira-portret.jpg'
+        main_html = person_hero(lang, orig_name, d, photo, new_page, crumbs) + content
     else:
         main_html = hero_html(d, lang, crumbs=crumbs) + content
     page = page_shell(lang, new_page, title, desc, '\n'.join(head_extra), 'n-k-' + key + (' n-home' if home else ''),
@@ -482,27 +618,17 @@ def build_page(lang, orig_name, new_rel, key):
 
 def build_spec_index(lang):
     new_page = lang + '/mutexessisler/index.html'
-    cards = []
-    for orig, photo in (('haqqimda.html', 'images/kenan/photo-hero-suit.jpg'), ('samira.html', 'images/samira/samira-portret.jpg')):
-        op = PREFIX[lang] + orig
-        s = soup_of(SITE / op)
-        hero = s.select_one('section.page-hero, section.page-hero-x')
-        d = hero_parts(hero, op, new_page)
-        img = map_url('index.html', new_page, photo)
-        cards.append('''<a class="n-person" href="%s"><img src="%s" alt="%s" loading="lazy"><span class="n-person-tint" aria-hidden="true"></span>
-<span class="n-person-body"><span class="n-eyebrow">%s</span><span class="n-person-name">%s</span><span class="n-person-lead">%s</span></span></a>''' % (
-            rel(new_page, lang + '/' + MAP[orig]), img, H.escape(NAMES[orig][lang]), H.escape(d.get('badge', '')), H.escape(NAMES[orig][lang]), H.escape(d.get('lead') or (d.get('w1', '') + ' ' + d.get('w2', '')))))
     L = LABELS[lang]
     crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a></nav>' % (rel(new_page, lang + '/index.html'), H.escape(L.get('index.html', 'RAGIMOFF')))
     hero = hero_html({'badge': 'RAGIMOFF', 'w1': SPEC[lang], 'w2': '', 'img': map_url('index.html', new_page, HERO_IMG_DEFAULT)}, lang, crumbs=crumbs)
-    main_html = hero + '<section class="n-sec"><div class="n-wrap"><div class="n-people">%s</div></div></section>' % ''.join(cards)
+    main_html = hero + specialists_block(lang, new_page, head=False)
     R = root_rel(new_page)
     scripts = '<script src="%sassets/js/shared.js"></script>' % R
     foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
     page = page_shell(lang, new_page, SPEC[lang] + ' | RAGIMOFF', '', '', 'n-k-spec', header_html(lang, new_page, 'spec'), main_html,
                       footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
     (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
-    (OUT / new_page).write_text(page, encoding='utf-8', newline='\n')
+    (OUT / new_page).write_text(page, encoding='utf-8', newline=chr(10))
     report.append((new_page, 'generated from haqqimda.html + samira.html heroes'))
 
 
@@ -534,9 +660,8 @@ def main():
     js.mkdir(parents=True, exist_ok=True); css.mkdir(parents=True, exist_ok=True)
     for f in ('shared.js', 'training-pay.js'):
         shutil.copy2(SITE / f, js / f)
-    for f in ('gtc.css', 'gtc-dark.css', 'site-concept.css'):
-        shutil.copy2(SITE / f, css / f)
-    for extra in ('images/kenan/photo-portal-crop-removebg-preview.png', 'images/kenan/photo-hero-suit.jpg', 'images/samira/samira-portret.jpg', HERO_IMG_DEFAULT):
+    shutil.rmtree(css, ignore_errors=True)       # старые стили больше не нужны
+    for extra in ('images/kenan/photo-portal-crop-removebg-preview.png', 'images/kenan/photo-hero-suit.jpg', 'images/kenan/haqqimda-kenan.jpg', 'images/samira/samira-portret.jpg', HERO_IMG_DEFAULT):
         copy_image(extra)
     write_router()
     write_sitemap()

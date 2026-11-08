@@ -10,177 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc.css">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="../../assets/css/legacy/site-concept.css">
-<style>
-      /* ── OVERVIEW ── */
-      .overview-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; margin-top: 40px; align-items: start; }
-      .overview-text p { color: var(--clr-text); line-height: 1.8; margin-bottom: 16px; font-size: var(--t-body); text-align: left; }
-      .overview-text ul { text-align: left; }
-      .highlights-list { list-style: none; padding: 0; margin: 24px 0 0; }
-      .highlights-list li { padding: 10px 0; border-bottom: 1px solid var(--clr-border); font-size: var(--t-sm); color: var(--clr-text); display: flex; align-items: flex-start; gap: 10px; }
-      .highlights-list li::before { content: "—"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
-      .info-card { background: var(--navy); padding: 32px; }
-      .info-card-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 20px; }
-      .info-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); gap: 12px; }
-      .info-row:last-child { border-bottom: none; }
-      .info-lbl { font-size: var(--t-xs); color: rgba(255,255,255,0.45); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0; }
-      .info-val { font-size: var(--t-sm); color: var(--white); font-weight: 600; text-align: right; }
-      .info-val.accent { color: var(--accent); font-weight: 800; font-size: var(--t-body); }
-
-      /* ── CURRICULUM TABLE ── */
-      .cur-wrap { border: 1px solid var(--clr-border); background: var(--white); overflow: hidden; margin-top: 0; width: 800px; }
-      .cur-group-title { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); padding: 9px 24px; border-bottom: 2px solid rgba(201,169,97,0.25); background: rgba(201,169,97,0.04); margin: 0; }
-      .cur-row { display: flex; align-items: baseline; padding: 9px 24px; border-bottom: 1px solid var(--clr-border); }
-      .cur-row:last-child { border-bottom: none; }
-      .cur-row:hover { background: rgba(201,169,97,0.03); }
-      .cur-row > div:first-child { display: flex; align-items: baseline; flex: 1; overflow: hidden; }
-      .cur-row > div:first-child::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(224,227,236,0.12); margin: 0 10px 3px; min-width: 16px; }
-      .cur-num { font-size: 0.7rem; color: rgba(224, 227, 236, 0.62); font-weight: 700; margin-right: 8px; flex-shrink: 0; }
-      .cur-name { font-size: var(--t-sm); color: #a8a296; white-space: nowrap; }
-      .cur-hours { font-size: var(--t-sm); font-weight: 700; color: #a8a296; white-space: nowrap; flex-shrink: 0; }
-      .cur-hours span { font-size: 0.7rem; font-weight: 400; color: rgba(224,227,236,0.5); margin-left: 2px; }
-      .cur-total { display: flex; justify-content: space-between; align-items: center; background: var(--navy); padding: 16px 24px; }
-      .cur-total .tl { font-size: var(--t-sm); font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.06em; }
-      .cur-total .tv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
-      .pdf-btn { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.25); color: #a8a296; padding: 8px 18px; font-size: var(--t-xs); font-weight: 700; cursor: pointer; font-family: var(--font); text-transform: uppercase; letter-spacing: 0.06em; transition: all 0.2s; text-decoration: none; }
-      .pdf-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
-
-      /* ── ADVANTAGES ── */
-      .adv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid rgba(201,169,97,0.2); margin-top: 40px; }
-      .adv-card { padding: 36px 32px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .adv-card:last-child { border-right: none; }
-      .adv-num { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; display: block; }
-      .adv-title { font-size: 1.125rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .adv-body { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; }
-
-      /* ── OPPORTUNITY ── */
-      .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--clr-border); margin-top: 40px; }
-      .opp-card { padding: 40px; border-right: 1px solid var(--clr-border); }
-      .opp-card:last-child { border-right: none; }
-      .opp-label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 16px; display: block; border-left: 2px solid var(--accent); padding-left: 10px; }
-      .opp-title { font-size: 1.25rem; font-weight: 800; color: var(--clr-heading); margin-bottom: 12px; font-family: var(--font); }
-      .opp-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.75; }
-
-      /* ── TELEGRAM BAND ── */
-      .tg-band { background: var(--navy); padding: var(--s-section); border-top: 1px solid rgba(201,169,97,0.15); }
-      .tg-inner { max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
-      .tg-text h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .tg-text p { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 560px; }
-      .tg-reviews { display: grid; gap: 16px; min-width: 280px; max-width: 340px; }
-      .tg-review { background: rgba(255,255,255,0.06); border-left: 2px solid var(--accent); padding: 20px 24px; }
-      .tg-review p { font-size: var(--t-sm); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 10px; }
-      .tg-review span { font-size: var(--t-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
-
-      /* ── HOW TO REGISTER ── */
-      .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--clr-border); margin-top: 40px; }
-      .step-card { background: var(--white); padding: 28px 24px; }
-      .step-num { font-size: var(--t-xs); font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
-      .step-title { font-size: var(--t-body); font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-      .step-body { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.7; }
-
-      /* ── REQUIREMENTS ── */
-      .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 40px; }
-      .req-block-title { font-size: var(--t-sm); font-weight: 800; color: var(--clr-heading); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); }
-      .req-list { list-style: none; padding: 0; margin: 0; text-align: left; }
-      .req-list li { padding: 8px 0; border-bottom: 1px solid var(--clr-border); font-size: var(--t-sm); color: var(--clr-text); display: flex; gap: 10px; text-align: left; }
-      .req-list li::before { content: "→"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
-
-      /* ── LEGAL BLOCK ── */
-      .legal-block { background: var(--navy); padding: var(--s-section); border-top: 1px solid rgba(201,169,97,0.2); }
-      .legal-block-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--s-section); text-align: center; }
-      .legal-block h2 { font-size: var(--t-h2); font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 16px; font-family: var(--font); }
-      .legal-block p { font-size: var(--t-body); color: rgba(255,255,255,0.6); max-width: 640px; margin: 0 auto 32px; line-height: 1.75; }
-      .legal-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-      /* ── REG FORM ── */
-      .reg-path { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(201,169,97,0.2); margin-bottom: 32px; }
-      .reg-path-step { padding: 24px 20px; border-right: 1px solid rgba(201,169,97,0.2); }
-      .reg-path-step:last-child { border-right: none; }
-      .reg-path-num { font-size: var(--t-xs); font-weight: 800; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; display: block; }
-      .reg-path-step h4 { font-size: var(--t-sm); font-weight: 800; color: var(--white); margin-bottom: 6px; font-family: var(--font); }
-      .reg-path-step p { font-size: var(--t-xs); color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0; }
-      .reg-discount { background: rgba(201,169,97,0.06); border: 1px solid rgba(201,169,97,0.25); border-left: 2px solid var(--accent); padding: 20px 24px; margin-bottom: 32px; }
-      .reg-discount strong { font-size: var(--t-body); font-weight: 800; color: var(--white); display: block; margin-bottom: 6px; }
-      .reg-discount p { font-size: var(--t-sm); color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
-      .reg-form-wrap { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 40px; }
-      .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      .form-field { display: flex; flex-direction: column; gap: 8px; }
-      .form-field label { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); }
-      .form-field input[type="text"],
-      .form-field input[type="tel"],
-      .form-field input[type="email"],
-      .form-field textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--white); padding: 14px 16px; font-family: var(--font); font-size: var(--t-sm); outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-      .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
-      .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.18); }
-      .tile-group { display: grid; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 4px; }
-      .tile-group.cols3 { grid-template-columns: repeat(3,1fr); }
-      .tile-opt { display: none; }
-      .tile-lbl { display: block; padding: 14px 16px; background: rgba(255,255,255,0.03); cursor: pointer; font-size: var(--t-xs); color: rgba(255,255,255,0.5); font-weight: 600; text-align: center; transition: all 0.2s; user-select: none; line-height: 1.4; font-family: var(--font); }
-      .tile-opt:checked + .tile-lbl { background: var(--accent); color: var(--navy); }
-      .tile-lbl:hover { background: rgba(201,169,97,0.1); color: var(--white); }
-      .upload-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 4px; }
-      .upload-item { display: flex; flex-direction: column; gap: 6px; }
-      .upload-lbl { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-      .upload-item input[type="file"] { background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); color: rgba(255,255,255,0.45); padding: 12px 14px; font-size: var(--t-xs); font-family: var(--font); cursor: pointer; transition: border-color 0.2s; width: 100%; box-sizing: border-box; }
-      .upload-item input[type="file"]:hover { border-color: var(--accent); }
-      .upload-hint { font-size: var(--t-xs); color: rgba(255,255,255,0.25); }
-      .form-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 28px; }
-      .form-note { font-size: var(--t-xs); color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 400px; }
-      .form-success { display: none; padding: 24px; background: rgba(201,169,97,0.08); border: 1px solid rgba(201,169,97,0.35); text-align: center; margin-top: 16px; }
-      .form-success p { color: var(--accent); font-weight: 700; font-size: var(--t-sm); margin: 0; }
-
-      @media print {
-        header, .mobile-nav, footer, .wa-float, .pg-hero, .stats-strip,
-        .tg-band, .cta-band, #registration { display: none !important; }
-        .cur-wrap { border: 1px solid #ccc !important; }
-        .pdf-btn { display: none !important; }
-      }
-      @media (max-width: 960px) {
-        .overview-grid { grid-template-columns: 1fr; }
-        .adv-grid { grid-template-columns: 1fr; }
-        .adv-card { border-right: none; border-bottom: 1px solid rgba(201,169,97,0.2); }
-        .adv-card:last-child { border-bottom: none; }
-        .opp-grid { grid-template-columns: 1fr; }
-        .opp-card { border-right: none; border-bottom: 1px solid var(--clr-border); }
-        .opp-card:last-child { border-bottom: none; }
-        .tg-inner { grid-template-columns: 1fr; }
-        .tg-reviews { max-width: 100%; }
-        .req-grid { grid-template-columns: 1fr; }
-        .reg-path { grid-template-columns: 1fr; }
-        .form-2col { grid-template-columns: 1fr; }
-        .upload-grid { grid-template-columns: 1fr; }
-        .tile-group.cols3 { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 860px) {
-        .cur-wrap { width: 100%; }
-        .steps-row { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 768px) {
-        .cur-group-title, .cur-row, .cur-total { padding-left: 16px; padding-right: 16px; }
-        .reg-form-wrap { padding: 24px 16px !important; }
-      }
-      @media print {
-        body * { visibility: hidden; }
-        #sec-curriculum, #sec-curriculum * { visibility: visible; }
-        #sec-curriculum { position: absolute; left: 0; top: 0; width: 100%; padding: 24px !important; }
-        .cur-wrap { width: 100% !important; box-shadow: none !important; }
-        .pdf-btn { visibility: hidden !important; }
-      }
-    </style>
-<style>
-/* Wave 1.4 — Touch targets ≥44px for form controls */
-input, select, textarea, button {
-    min-height: 44px;
-}
-.form-field input, .form-field textarea, .form-field select {
-    min-height: 44px;
-}
-.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-.upload-item input[type="file"] { min-height: 44px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -250,7 +80,7 @@ input, select, textarea, button {
 
 
 
-<div class="stats-strip" data-theme="dark">
+<div class="stats-strip">
 <div class="stats-inner">
 <div class="stat-item"><span class="stat-num">1 556</span><span class="stat-label">Академических часов</span></div>
 <div class="stat-div"></div>
@@ -262,12 +92,12 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="umumi-ov-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-ov-h">
+<div class="sec-inner">
 <span class="badge on-light">О ПРОГРАММЕ</span>
-<h2 class="sec-h2" id="umumi-ov-h" style="text-align:left;"><span class="sh-line">Что такое общая</span> <span class="sh-line">психология?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">22 дисциплины, 5 блоков —</span>
-<span class="ab-lead-mob">диплом ДПО в реестре ФРДО.</span>
+<h2 class="sec-h2" id="umumi-ov-h"><span class="sh-line">Что такое общая</span> <span class="sh-line">психология?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Право на психологическое консультирование по законодательству АР:</span>
 <span class="ab-lead-desk">22 дисциплины, 5 блоков, официальный диплом ДПО в реестре ФРДО.</span></p>
 <div class="overview-grid">
@@ -303,15 +133,15 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="umumi-cur-h" data-theme="light" id="sec-curriculum" style="background:var(--white);">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-cur-h" id="sec-curriculum">
+<div class="sec-inner">
 <span class="badge on-light">УЧЕБНЫЙ ПЛАН</span>
-<h2 class="sec-h2" id="umumi-cur-h" style="text-align:left;"><span class="sh-line">Список дисциплин</span> <span class="sh-line">— 22 дисциплины</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">5 блоков: основы, практика,</span>
-<span class="ab-lead-mob">клиника, развитие, аттестация.</span>
+<h2 class="sec-h2" id="umumi-cur-h"><span class="sh-line">Список дисциплин</span> <span class="sh-line">— 22 дисциплины</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">5 блоков: основы психологии, прикладная психология, клинико-терапевтический</span>
 <span class="ab-lead-desk">блок, профессиональное развитие и итоговая аттестация.</span></p>
-<div style="display:flex;justify-content:flex-end;width:100%;max-width:800px;margin-top:24px;margin-bottom:8px;">
+<div>
 <button class="pdf-btn" onclick="window.print()">
 <svg fill="currentColor" height="14" viewbox="0 0 24 24" width="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"></path></svg>
             Скачать PDF
@@ -368,22 +198,22 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="umumi-adv-h" data-theme="dark" style="background:var(--navy);">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-adv-h">
+<div class="sec-inner">
 <span class="badge">ПРЕИМУЩЕСТВА ПРОГРАММЫ</span>
-<h2 class="sec-h2" id="umumi-adv-h" style="text-align:left;">Что вас ждёт</h2>
+<h2 class="sec-h2" id="umumi-adv-h">Что вас ждёт</h2>
 <div class="adv-grid">
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">01 — Теоретическая база</span>
 <h3 class="adv-title">Видеоуроки + Литература</h3>
 <p class="adv-body">По каждой дисциплине доступны видеозаписи занятий д-ра Рагимова. Просматривать их можно в любое время и из любого места — через личный кабинет слушателя. Дополнительно предоставляется список рекомендованной профессиональной литературы.</p>
 </div>
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">02 — Практикум</span>
 <h3 class="adv-title">Живая практика с д-ром Рагимовым</h3>
 <p class="adv-body">Каждую неделю проводятся демонстрационные сессии в прямом эфире: реальные клинические материалы, супервизия, разбор случаев. Знать теорию — недостаточно: для развития навыков консультирования необходима совместная работа с опытным специалистом. Эта программа переводит вас из «знаю» в «умею».</p>
 </div>
-<div class="adv-card">
+<div class="adv-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="adv-num">03 — Официальный статус</span>
 <h3 class="adv-title">Диплом ДПО + Реестр ФРДО</h3>
 <p class="adv-body">Выдаётся диплом ДПО, внесённый в государственный реестр ФРДО в соответствии с законодательством АР. Диплом не требует нострификации. Возможна проверка работодателем через реестр ФИС ФРДО. Выпускники вправе законно оказывать услуги психологического консультирования.</p>
@@ -392,12 +222,12 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section>
+<div class="sec-inner">
 <span class="badge on-light">ЗАПИСЬ</span>
-<h2 class="sec-h2" style="text-align:left;"><span class="sh-line">Как пройти</span> <span class="sh-line">запись?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Заполните форму — свяжемся</span>
-<span class="ab-lead-mob">с вами в течение суток.</span>
+<h2 class="sec-h2"><span class="sh-line">Как пройти</span> <span class="sh-line">запись?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Заполните форму — наша команда свяжется с вами в течение 24 часов и ответит на вопросы.</span></p>
 <div class="steps-row">
 <div class="step-card">
@@ -416,26 +246,26 @@ input, select, textarea, button {
 <p class="step-body">Добавляем в Telegram-группу. Открываем доступ к видеоархиву. Сообщаем дату первого занятия.</p>
 </div>
 </div>
-<div style="margin-top:28px;">
+<div>
 <a class="btn btn-fill" href="#registration">Перейти к форме записи</a>
 </div>
 </div>
 </section>
 
-<section aria-labelledby="umumi-opp-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-opp-h">
+<div class="sec-inner">
 <span class="badge on-light">КАРЬЕРА</span>
-<h2 class="sec-h2" id="umumi-opp-h" style="text-align:left;"><span class="sh-line">Что будет</span> <span class="sh-line">после окончания?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Выпускники получают диплом</span>
-<span class="ab-lead-mob">и реальные рабочие навыки.</span>
+<h2 class="sec-h2" id="umumi-opp-h"><span class="sh-line">Что будет</span> <span class="sh-line">после окончания?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Выпускники получают не только диплом, но и реальные рабочие навыки.</span></p>
 <div class="opp-grid">
-<div class="opp-card">
+<div class="opp-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="opp-label">Центр RAGIMOFF</span>
 <h3 class="opp-title">Возможность вести приём в нашем центре</h3>
 <p class="opp-body">Особая возможность для новых психологов-выпускников программы: принимать пациентов на базе центра д-ра Рагимова. Как в офисном формате, так и онлайн. Это устраняет главную проблему первых приёмов — найти своё место: первый шаг начинается с нашего центра.</p>
 </div>
-<div class="opp-card">
+<div class="opp-card"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="opp-label">Собственная практика</span>
 <h3 class="opp-title">Самостоятельная психологическая практика</h3>
 <p class="opp-body">Большинство наших выпускников в течение одного-двух лет открывают собственные частные кабинеты, некоторые — собственные психологические центры. Среди них есть сегодня успешно работающие ведущие психологи — в прошлом студенты д-ра Рагимова.</p>
@@ -444,13 +274,13 @@ input, select, textarea, button {
 </div>
 </section>
 
-<div class="tg-band" data-theme="dark">
+<div class="tg-band">
 <div class="tg-inner">
 <div class="tg-text">
 <span class="badge">Отзывы выпускников</span>
 <h2>Что говорят слушатели?</h2>
-<p style="margin-top:12px;">Если вы хотите прочитать отзывы сотен слушателей, прошедших программу — зайдите в наш Telegram-канал. Там публикуются настоящие отзывы, истории выпускников и актуальная информация.</p>
-<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:28px;">
+<p>Если вы хотите прочитать отзывы сотен слушателей, прошедших программу — зайдите в наш Telegram-канал. Там публикуются настоящие отзывы, истории выпускников и актуальная информация.</p>
+<div>
 <a class="btn btn-fill" href="https://t.me/ragimoff" target="_blank">Telegram-канал</a>
 <a class="btn btn-line" href="#registration">Записаться</a>
 </div>
@@ -468,28 +298,28 @@ input, select, textarea, button {
 </div>
 </div>
 
-<div class="cta-band" data-theme="light">
+<div class="cta-band">
 <div class="cta-band-inner">
 <div>
 <h2>Начните запись</h2>
 <p>Запишитесь на программу «Общая психология» — 1 556 академических часов. Рассрочка до 24 месяцев.</p>
 </div>
 <div class="cta-band-btns">
-<a class="btn btn-fill" href="#registration" style="background:var(--navy);color:var(--white);">Записаться</a>
-<a class="btn btn-line" href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%BE+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B5+%D0%9E%D0%B1%D1%89%D0%B0%D1%8F+%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F." style="border-color:var(--navy);color:var(--navy);" target="_blank">WhatsApp</a>
+<a class="btn btn-fill" href="#registration">Записаться</a>
+<a class="btn btn-line" href="https://wa.me/994702200376?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%BE+%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B5+%D0%9E%D0%B1%D1%89%D0%B0%D1%8F+%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F." target="_blank">WhatsApp</a>
 </div>
 </div>
 </div>
 
-<section aria-labelledby="umumi-req-h" data-theme="light">
-<div class="sec-inner" style="padding:var(--s-section);text-align:left;">
+<section aria-labelledby="umumi-req-h">
+<div class="sec-inner">
 <span class="badge on-light">УСЛОВИЯ ПОСТУПЛЕНИЯ</span>
-<h2 class="sec-h2" id="umumi-req-h" style="text-align:left;"><span class="sh-line">Кто может</span> <span class="sh-line">подать заявку?</span></h2>
-<p class="sec-sub" style="text-align:left;margin-left:0;"><span class="ab-lead-mob">Любой совершеннолетний,</span>
-<span class="ab-lead-mob">кому интересна психология.</span>
+<h2 class="sec-h2" id="umumi-req-h"><span class="sh-line">Кто может</span> <span class="sh-line">подать заявку?</span></h2>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Любой совершеннолетний человек, интересующийся психологией, может подать заявку.</span></p>
 <div class="req-grid">
-<div class="req-block">
+<div class="req-block"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><rect height="25" rx="3" width="38" x="5" y="8"></rect><path d="M12 16h18M12 23h10"></path><path d="M30 33l-2 9 6-3 6 3-2-9"></path><circle class="d" cx="34" cy="27" r="3"></circle></svg>
 <div class="req-block-title">Для кого подходит</div>
 <ul class="req-list">
 <li>Начинающие в психологии — предыдущее образование не требуется</li>
@@ -500,7 +330,7 @@ input, select, textarea, button {
 <li>Готовящиеся к программе ДПО клинической психологии</li>
 </ul>
 </div>
-<div class="req-block">
+<div class="req-block"><svg aria-hidden="true" class="n-ico n-ico-sm" viewbox="0 0 48 48"><rect height="25" rx="3" width="38" x="5" y="8"></rect><path d="M12 16h18M12 23h10"></path><path d="M30 33l-2 9 6-3 6 3-2-9"></path><circle class="d" cx="34" cy="27" r="3"></circle></svg>
 <div class="req-block-title">Необходимые документы</div>
 <ul class="req-list">
 <li>Копия удостоверения личности (обе стороны)</li>
@@ -513,36 +343,19 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="dip-h" class="sec-pad" data-theme="light" id="diplomas" style="background:var(--white);padding-bottom:var(--s-section);">
+<section aria-labelledby="dip-h" class="sec-pad" id="diplomas">
 <div class="sec-inner">
 <div class="sec-header">
 <span class="badge on-light">Официальные документы</span>
 <h2 class="sec-h2" id="dip-h"><span class="sh-line">Дипломы и</span> <span class="sh-line">лицензии института</span></h2>
-<p class="sec-sub"><span class="ab-lead-mob">Диплом Санкт-Петербургского института ДПО</span>
-<span class="ab-lead-mob">и официальные лицензии.</span>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Образец диплома Санкт-Петербургского института дополнительного профессионального образования для психологов и психотерапевтов и официальные лицензии деятельности.</span></p>
 </div>
 </div>
-<div class="gallery-band" data-theme="dark">
-<div class="diploma-gallery" id="diplomaGallery">
-<div class="dg-mains">
-<div class="dg-main-item" data-idx="0"><img alt="СПб Институт дополнительного образования — Диплом клинической психологии" height="717" loading="lazy" src="../../images/institute/diplom-psy-b-spb-idpo.jpg" width="1000"/></div>
-<div class="dg-main-item" data-idx="1"><img alt="СПб Институт дополнительного образования — Диплом" height="1573" loading="lazy" src="../../images/institute/diplom-spb-idpo.webp" width="2190"/></div>
-<div class="dg-main-item" data-idx="2"><img alt="СПб Институт дополнительного образования — Диплом по психологии" height="768" loading="lazy" src="../../images/institute/diplom-psy-spb-idpo.webp" width="540"/></div>
-</div>
-<div class="dg-thumbs">
-<div class="dg-thumb" data-idx="3"><img alt="Приложение к диплому" height="1541" loading="lazy" src="../../images/institute/diplom-spb-prilozhenie.webp" width="1113"/></div>
-<div class="dg-thumb" data-idx="4"><img alt="Сертификат IPAS — Клиническая психология" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-clinical.jpg" width="860"/></div>
-<div class="dg-thumb" data-idx="5"><img alt="Сертификат IPAS — Общая психология" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-family.jpg" width="860"/></div>
-<div class="dg-thumb" data-idx="6"><img alt="Сертификат GTC Практикум" height="860" loading="lazy" src="../../images/certificate/cert-sample-gtc-dark.jpg" width="600"/></div>
-<div class="dg-thumb" data-idx="7"><img alt="Таблица дисциплин" height="1393" loading="lazy" src="../../images/institute/diplom-predmety.webp" width="1020"/></div>
-<div class="dg-thumb" data-idx="8"><img alt="Официальная лицензия деятельности" height="600" loading="lazy" src="../../images/institute/licenziya-1.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="9"><img alt="Лицензия 2" height="600" loading="lazy" src="../../images/institute/licenziya-2.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="10"><img alt="Выписка лицензии" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska.jpg" width="424"/></div>
-<div class="dg-thumb" data-idx="11"><img alt="Выписка лицензии 2" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska-2.jpg" width="424"/></div>
-</div>
-</div>
-</div>
+
+<div class="n-gallery"><button aria-label="СПб Институт дополнительного образования — Диплом клинической психологии" class="n-shot" data-full="../../images/institute/diplom-psy-b-spb-idpo.jpg" type="button"><img alt="СПб Институт дополнительного образования — Диплом клинической психологии" height="717" loading="lazy" src="../../images/institute/diplom-psy-b-spb-idpo.jpg" width="1000"/><span class="n-shot-cap">СПб Институт дополнительного образования — Диплом клинической психологии</span></button><button aria-label="СПб Институт дополнительного образования — Диплом" class="n-shot" data-full="../../images/institute/diplom-spb-idpo.webp" type="button"><img alt="СПб Институт дополнительного образования — Диплом" height="1573" loading="lazy" src="../../images/institute/diplom-spb-idpo.webp" width="2190"/><span class="n-shot-cap">СПб Институт дополнительного образования — Диплом</span></button><button aria-label="СПб Институт дополнительного образования — Диплом по психологии" class="n-shot" data-full="../../images/institute/diplom-psy-spb-idpo.webp" type="button"><img alt="СПб Институт дополнительного образования — Диплом по психологии" height="768" loading="lazy" src="../../images/institute/diplom-psy-spb-idpo.webp" width="540"/><span class="n-shot-cap">СПб Институт дополнительного образования — Диплом по психологии</span></button><button aria-label="Приложение к диплому" class="n-shot" data-full="../../images/institute/diplom-spb-prilozhenie.webp" type="button"><img alt="Приложение к диплому" height="1541" loading="lazy" src="../../images/institute/diplom-spb-prilozhenie.webp" width="1113"/><span class="n-shot-cap">Приложение к диплому</span></button><button aria-label="Сертификат IPAS — Клиническая психология" class="n-shot" data-full="../../images/certificate/cert-sample-ipas-clinical.jpg" type="button"><img alt="Сертификат IPAS — Клиническая психология" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-clinical.jpg" width="860"/><span class="n-shot-cap">Сертификат IPAS — Клиническая психология</span></button><button aria-label="Сертификат IPAS — Общая психология" class="n-shot" data-full="../../images/certificate/cert-sample-ipas-family.jpg" type="button"><img alt="Сертификат IPAS — Общая психология" height="608" loading="lazy" src="../../images/certificate/cert-sample-ipas-family.jpg" width="860"/><span class="n-shot-cap">Сертификат IPAS — Общая психология</span></button><button aria-label="Сертификат GTC Практикум" class="n-shot" data-full="../../images/certificate/cert-sample-gtc-dark.jpg" type="button"><img alt="Сертификат GTC Практикум" height="860" loading="lazy" src="../../images/certificate/cert-sample-gtc-dark.jpg" width="600"/><span class="n-shot-cap">Сертификат GTC Практикум</span></button><button aria-label="Таблица дисциплин" class="n-shot" data-full="../../images/institute/diplom-predmety.webp" type="button"><img alt="Таблица дисциплин" height="1393" loading="lazy" src="../../images/institute/diplom-predmety.webp" width="1020"/><span class="n-shot-cap">Таблица дисциплин</span></button><button aria-label="Официальная лицензия деятельности" class="n-shot" data-full="../../images/institute/licenziya-1.jpg" type="button"><img alt="Официальная лицензия деятельности" height="600" loading="lazy" src="../../images/institute/licenziya-1.jpg" width="424"/><span class="n-shot-cap">Официальная лицензия деятельности</span></button><button aria-label="Лицензия 2" class="n-shot" data-full="../../images/institute/licenziya-2.jpg" type="button"><img alt="Лицензия 2" height="600" loading="lazy" src="../../images/institute/licenziya-2.jpg" width="424"/><span class="n-shot-cap">Лицензия 2</span></button><button aria-label="Выписка лицензии" class="n-shot" data-full="../../images/institute/licenziya-vypiska.jpg" type="button"><img alt="Выписка лицензии" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska.jpg" width="424"/><span class="n-shot-cap">Выписка лицензии</span></button><button aria-label="Выписка лицензии 2" class="n-shot" data-full="../../images/institute/licenziya-vypiska-2.jpg" type="button"><img alt="Выписка лицензии 2" height="600" loading="lazy" src="../../images/institute/licenziya-vypiska-2.jpg" width="424"/><span class="n-shot-cap">Выписка лицензии 2</span></button></div>
+
 </section>
 
 <div class="legal-block">
@@ -556,17 +369,17 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="umumi-reg-h" data-theme="dark" id="registration" style="background:var(--navy);padding:var(--s-section) 0;">
-<div class="sec-inner" style="padding:0 var(--s-section);">
+<section aria-labelledby="umumi-reg-h" id="registration">
+<div class="sec-inner">
 <span class="badge">ЗАПИСЬ</span>
 <h2 class="sec-h2" id="umumi-reg-h"><span class="sh-line">Присоединиться</span> <span class="sh-line">к программе</span></h2>
-<p class="sec-sub" style="color:rgba(255,255,255,0.6);"><span class="ab-lead-mob">Заполните форму — свяжемся</span>
-<span class="ab-lead-mob">с вами в течение суток.</span>
+<p class="sec-sub">
+
 <span class="ab-lead-desk">Заполните форму — наша команда свяжется с вами в течение 24 часов и ответит на вопросы. <strong>Сейчас идёт набор в новую группу — обучение начинается 05.01.2027.</strong></span></p>
-<div class="reg-path" style="margin-top:32px;">
+<div class="reg-path">
 <div class="reg-path-step">
 <span class="reg-path-num">Шаг 01</span>
-<h4 aria-level="3" data-a11y-level="" role="heading">Подготовьте документы</h4>
+<h4 aria-level="3" role="heading">Подготовьте документы</h4>
 <p>Şəxsiyyət vəsiqənizin fotosu — ön və arxa tərəf.</p>
 </div>
 <div class="reg-path-step">
@@ -586,18 +399,18 @@ input, select, textarea, button {
 <div class="form-field"><label for="program-umumi-f2">Фамилия *</label><input aria-label="Ваша фамилия" id="program-umumi-f2" name="soyad" placeholder="Ваша фамилия" required="" type="text"/></div>
 <div class="form-field"><label for="program-umumi-f3">Телефон *</label><input aria-label="+7 (XXX) XXX-XX-XX" id="program-umumi-f3" name="telefon" placeholder="+7 (XXX) XXX-XX-XX" required="" type="tel"/></div>
 </div>
-<div class="form-field" style="margin-top:24px;">
+<div class="form-field">
 <label>Программа</label>
 <div class="tile-group cols3">
 <input checked="" class="tile-opt" id="p1" name="proqram" type="radio" value="Общая психология"/>
-<label class="tile-lbl" for="p1">Общая психология<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 556 ак. ч. · Диплом ДПО</span></label>
+<label class="tile-lbl" for="p1">Общая психология<br/><span>1 556 ак. ч. · Диплом ДПО</span></label>
 <input class="tile-opt" id="p2" name="proqram" type="radio" value="Клиническая психология"/>
-<label class="tile-lbl" for="p2">Клиническая психология<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">1 528 ак. ч. · Диплом ДПО</span></label>
+<label class="tile-lbl" for="p2">Клиническая психология<br/><span>1 528 ак. ч. · Диплом ДПО</span></label>
 <input class="tile-opt" id="p3" name="proqram" type="radio" value="Практикум по психотерапии"/>
-<label class="tile-lbl" for="p3">Практикум по психотерапии<br/><span style="font-size:0.6875rem;font-weight:400;opacity:0.7;">864 ак. ч. · Сертификат IPAS</span></label>
+<label class="tile-lbl" for="p3">Практикум по психотерапии<br/><span>864 ак. ч. · Сертификат IPAS</span></label>
 </div>
 </div>
-<div class="form-field" style="margin-top:24px;">
+<div class="form-field">
 <label for="km-name">Документы</label>
 <div class="upload-grid">
 <div class="upload-item">
@@ -609,7 +422,7 @@ input, select, textarea, button {
 </div>
 <div class="form-footer">
 <p class="form-note">Документы принимаются исключительно для целей регистрации. Третьим лицам не передаются.</p>
-<button class="btn btn-fill" style="min-width:240px;padding:16px 32px;" type="submit">Отправить форму записи</button>
+<button class="btn btn-fill" type="submit">Отправить форму записи</button>
 </div>
 <div class="form-success" id="regSuccess">
 <p>Ваш запрос принят. С вами свяжутся в течение 24 часов.</p>

@@ -10,81 +10,7 @@
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Literata:opsz,wght@7..72,400;7..72,500&amp;display=swap">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc.css">
-<link rel="stylesheet" href="../../assets/css/legacy/gtc-dark.css">
-<link rel="stylesheet" href="../../assets/css/legacy/site-concept.css">
-<style>
-      @media (max-width: 900px) { #registration .reg-grid { grid-template-columns: 1fr !important; } }
-      @media (max-width: 600px) { #registration form > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; } }
-      /* Форма вылезала на 10px за правый край экрана: она грид-элемент, а у
-         таких min-width по умолчанию auto — ниже ширины содержимого элемент
-         не сжимается. Плюс padding 32px с двух сторон съедал 64 из 375.
-         Замер на 375: форма 365 внутри колонки 335, правый край обрезан. */
-      @media (max-width: 600px) {
-        #xidRegForm { min-width: 0; padding: 20px !important; }
-      }
-    </style>
-<style>
-      .ind-card { background: var(--navy); border-top: 4px solid var(--accent); padding: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
-      .ind-card h3 { font-size: 1.75rem; font-weight: 800; color: var(--white); margin-bottom: 12px; line-height: 1.2; font-family: var(--font); }
-      .ind-card-desc { font-size: var(--t-sm); color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 24px; max-width: 560px; }
-      .ind-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-      .ind-meta-item { display: flex; flex-direction: column; gap: 4px; }
-      .ind-meta-label { font-size: var(--t-xs); font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
-      .ind-meta-val { font-size: var(--t-sm); font-weight: 700; color: var(--white); font-family: var(--font); }
-      .ind-price-block { display: flex; flex-direction: column; gap: 12px; min-width: 200px; }
-      .ind-price-option { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,169,97,0.2); padding: 20px 24px; }
-      .ind-price-type { font-size: var(--t-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
-      .ind-price-amt { font-size: 1.5rem; font-weight: 800; color: var(--accent); font-family: var(--font); }
-      .ind-price-sub { font-size: var(--t-xs); color: rgba(255,255,255,0.4); margin-top: 2px; }
-      .svc-prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border: 1px solid var(--clr-border); }
-      .svc-prog-row { display: contents; }
-      .xid-card { background: var(--clr-bg-surface); border-right: 1px solid var(--clr-border); border-top: 4px solid var(--clr-heading); padding: 32px 28px; display: flex; flex-direction: column; transition: border-top-color 0.3s, transform 0.3s; }
-      .xid-card:hover { border-top-color: var(--accent); transform: translateY(-4px); }
-      .xid-card:nth-child(3n) { border-right: none; }
-      .xid-card h4 { font-size: 1.125rem; font-weight: 700; color: var(--clr-heading); margin-bottom: 8px; line-height: 1.25; font-family: var(--font); }
-      .xid-card p { font-size: var(--t-sm); color: var(--clr-text-muted); line-height: 1.65; margin-bottom: auto; padding-bottom: 20px; }
-      .xid-price-block { background: var(--clr-bg-surface); border-left: 2px solid var(--accent); padding: 14px 18px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-      .xid-price-col { display: flex; flex-direction: column; gap: 2px; }
-      .xid-price-label { font-size: var(--t-xs); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
-      .xid-price-val { font-size: 1.25rem; font-weight: 800; color: var(--clr-heading); font-family: var(--font); }
-      .xid-price-note { font-size: var(--t-xs); color: var(--clr-text-muted); }
-      .pay-block { background: var(--navy); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; border-top: 4px solid var(--accent); }
-      .pay-block h3 { font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: 12px; font-family: var(--font); }
-      .pay-block p { font-size: var(--t-sm); color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 20px; }
-      .discount-box { background: rgba(201,169,97,0.1); border: 1px solid rgba(201,169,97,0.3); padding: 24px; }
-      .discount-pct { font-size: 2.5rem; font-weight: 800; color: var(--accent); font-family: var(--font); line-height: 1; margin-bottom: 8px; }
-      .discount-box h4 { font-size: var(--t-body); font-weight: 800; color: var(--accent); margin-bottom: 8px; font-family: var(--font); }
-      .discount-box p { font-size: var(--t-sm); color: rgba(255,255,255,0.65); line-height: 1.7; margin: 0; }
-      @media (max-width: 1100px) { .svc-prog-grid { grid-template-columns: 1fr 1fr; } .xid-card:nth-child(3n) { border-right: 1px solid var(--clr-border); } .xid-card:nth-child(2n) { border-right: none; } .pay-block { grid-template-columns: 1fr; } .ind-card { grid-template-columns: 1fr; } }
-      @media (max-width: 768px) {
-        .svc-prog-grid { grid-template-columns: 1fr; }
-        .xid-card { border-right: none; border-bottom: 1px solid var(--clr-border); }
-        .ind-card { padding: 32px 24px; }
-        .pay-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; }
-        .ind-meta { flex-direction: column; gap: 12px; }
-        .xid-price-block { grid-template-columns: 1fr; }
-        .discount-box { padding: 20px; }
-      }
-      @media (max-width: 480px) {
-        .ind-card { padding: 24px 16px; }
-        .pay-block { padding: 24px 16px; }
-        .ind-price-block { min-width: unset; width: 100%; }
-        .discount-pct { font-size: 2rem; }
-      }
-    </style>
-<style>
-/* Wave 1.4 — Touch targets ≥44px for form controls */
-input, select, textarea, button {
-    min-height: 44px;
-}
-.form-field input, .form-field textarea, .form-field select {
-    min-height: 44px;
-}
-.tile-lbl { min-height: 44px; display: flex; align-items: center; justify-content: center; }
-.upload-item input[type="file"] { min-height: 44px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person",
 "name":"Kənan Rəhimov","jobTitle":"Həkim-Psixiatr, Psixoterapevt",
@@ -157,7 +83,7 @@ input, select, textarea, button {
 
 
 
-<div class="stats-strip" data-theme="dark">
+<div class="stats-strip">
 <div class="stats-inner">
 <div class="stat-item"><span class="stat-num">23+</span><span class="stat-label">İl Klinik Təcrübə</span></div>
 <div class="stat-div"></div>
@@ -169,53 +95,53 @@ input, select, textarea, button {
 </div>
 </div>
 
-<section aria-labelledby="svc-h" data-theme="light" style="background: var(--clr-bg);">
-<div class="sec-inner" style="padding:var(--s-section)">
+<section aria-labelledby="svc-h">
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge">Klinik Psixoterapiya</span>
 <h2 class="sec-h2" id="svc-h"><span class="sh-line">Xarakter Deyil</span> <span class="sh-line">— Diaqnozdur</span></h2>
 <p class="sec-sub">
-<span class="ab-lead-mob">Xarakter yox — öyrənilmiş vəziyyət.</span>
-<span class="ab-lead-mob">Hər birinin dəqiq həll yolu var.</span>
+
+
 <span class="ab-lead-desk">Psixologiya bunu xarakter deyil, öyrənilmiş vəziyyət sayır.</span>
 <span class="ab-lead-desk">Hər bir klinik vəziyyətin dəqiq və sınanmış həll yolu var.</span>
 </p>
 </div>
 </div>
 
-<div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section) var(--s-section);">
+<div>
 <div class="svc-prog-grid">
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><circle cx="16" cy="15" r="5"></circle><circle cx="32" cy="15" r="5"></circle><path d="M6 40c0-7 4-12 10-12s10 5 10 12"></path><path d="M22 40c0-7 4-12 10-12s10 5 10 12"></path><circle class="d" cx="24" cy="6" r="2.6"></circle></svg>
 <span class="card-label">Münasibətlər</span>
-<h4 aria-level="3" data-a11y-level="" role="heading">Ailə Terapiyası</h4>
+<h4 aria-level="3" role="heading">Ailə Terapiyası</h4>
 <p>Cütlüklər döyüşür — bu onların uyğunsuz olduğunu deyil, ünsiyyət alətlərinin olmamasını göstərir. Münaqişənin çox hissəsi valideyn evindən öyrənilmiş patterndən qaynaqlanır. Terapiya bu patternləri görünür edir və dəyişdirir.</p>
 <a class="card-link" href="aile-terapiyasi.html">Həll yoluna bax →</a>
 </div>
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><circle cx="18" cy="12" r="5"></circle><path d="M8 42c0-9 4-15 10-15s10 6 10 15"></path><circle cx="34" cy="24" r="3.5"></circle><path d="M28 42c0-6 2.5-10 6-10s6 4 6 10"></path><circle class="d" cx="40" cy="14" r="2.6"></circle></svg>
 <span class="card-label">Uşaq Davranışı</span>
 <h4>Valideyn–Uşaq Terapiyası</h4>
 <p>«Pis uşaq» adlandırılan davranışın böyük hissəsi anlaşılmamış emosionaldır. Aqressiya, itaətsizlik, məktəbdən imtina — hamısı daxili siqnaldır. Terapiya valideyn-uşaq cütlüyünə bu siqnalları birlikdə oxumağı öyrədir.</p>
 <a class="card-link" href="aile-usaq-terapiyasi.html">Həll yoluna bax →</a>
 </div>
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><path d="M8 26c4-10 10-15 16-15s12 5 16 15"></path><path d="M24 11V5M12 16l-4-4M36 16l4-4"></path><path d="M4 34h40M10 41h28"></path><circle class="d" cx="24" cy="26" r="3"></circle></svg>
 <span class="card-label">Uşaq Sağlamlığı</span>
 <h4>Gecə Enurezi</h4>
 <p>Gecə sidikyolu nəzarətsizliyi iradə zəifliyi deyil — sinir sisteminin yetkinləşmə prosesidir. Uşağı danlamaq problemi dərinləşdirir. Klinik psixoloji metodlarla 5–8 seans ərzində vəziyyətin əhəmiyyətli yaxşılaşması mümkündür.</p>
 <a class="card-link" href="enurez.html">Həll yoluna bax →</a>
 </div>
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><path d="M4 26h8l4-10 6 20 6-26 5 16h11"></path><circle class="d" cx="44" cy="26" r="2.6"></circle></svg>
 <span class="card-label">Narahatlıq</span>
 <h4>Panik Ataklar</h4>
 <p>Panik atak qorxaqlıq deyil — beyinin yanlış tetiklənmiş alarm sistemidir. Ürəkdöyüntüsü, boğulma, ölüm qorxusu — real fizioloji reaksiyadır, sadəcə yanlış vaxtda. Koqnitiv-davranış terapiyası ilə bu alarm söndürülə bilər.</p>
 <a class="card-link" href="panik-ataklar.html">Həll yoluna bax →</a>
 </div>
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><path d="M14 34a10 10 0 1 1 6-18 12 12 0 0 1 22 6 7 7 0 0 1-2 13H14"></path><path d="M18 42h16"></path><circle class="d" cx="10" cy="12" r="3"></circle></svg>
 <span class="card-label">Əhval-Ruhiyyə</span>
 <h4>Depressiya</h4>
 <p>Depressiya tənbəllik deyil — beyin kimyasının klinik pozuntusudur. «Özünü topla» tövsiyəsi effektsizdir, çünki problem müdriklik deyil, neyromediator tarazlığındadır. Psixoterapiya bu tarazlığı bərpa edir.</p>
 <a class="card-link" href="depressiya.html">Həll yoluna bax →</a>
 </div>
-<div class="xid-card">
+<div class="xid-card"><svg aria-hidden="true" class="n-ico" viewbox="0 0 48 48"><path d="M9 13h24a4 4 0 0 1 4 4v11a4 4 0 0 1-4 4H20l-8 6v-6H9a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z"></path><circle class="d" cx="40" cy="10" r="3"></circle></svg>
 <span class="card-label">Sosial Həyat</span>
 <h4>Sosial Fobiya</h4>
 <p>Sosial narahatlıq sadəcə utancaqlıq deyil — müalicə olunan klinik vəziyyətdir. İctimai danışmaqdan qorxu, dəyərləndirilmə həyəcanı — insanların çoxu bunu xarakter xüsusiyyəti hesab edir. Bu yanlışdır. Ekspozisiya terapiyası ilə həll olunur.</p>
@@ -224,32 +150,32 @@ input, select, textarea, button {
 </div>
 </div>
 
-<div style="max-width:var(--container-max);margin:0 auto;padding:0 var(--s-section) var(--s-section);">
+<div>
 <div class="ind-card">
 <div>
 <span class="card-label">Başlanğıc nöqtəsi</span>
 <h3>Fərdi Konsultasiya</h3>
 <p class="ind-card-desc">Hər terapiya yolu ilk görüşdən başlayır. Problemin mahiyyətini birlikdə müəyyənləşdiririk, hansı istiqamətin sizə uyğun olduğunu aydınlaşdırırıq, iş planı qururuq. Stres, narahatlıq, münasibət problemləri, qərar çətinlikləri — hamısı bu görüşdə masaya gəlir.</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;min-width:220px;">
-<div class="ind-meta" style="flex-direction:column;gap:12px;">
+<div>
+<div class="ind-meta">
 <div class="ind-meta-item"><span class="ind-meta-label">Format</span><span class="ind-meta-val">Online / Ofis</span></div>
 <div class="ind-meta-item"><span class="ind-meta-label">Müddət</span><span class="ind-meta-val">50 dəqiqə</span></div>
 </div>
-<a class="btn btn-fill" href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" style="text-align:center;" target="_blank">QƏBULA YAZIL</a>
+<a class="btn btn-fill" href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank">QƏBULA YAZIL</a>
 </div>
 </div>
 </div>
 </section>
 
-<section aria-labelledby="proc-h" class="sec-pad" data-theme="light" style="padding-bottom:var(--s-section);">
+<section aria-labelledby="proc-h" class="sec-pad">
 <div class="sec-inner">
 <div class="sec-header">
 <span class="badge on-light">Necə İşləyir</span>
 <h2 class="sec-h2" id="proc-h"><span class="sh-line">Qeydiyyatdan</span> <span class="sh-line">Sessiyaya 4 Addım</span></h2>
 </div>
 <div class="process-grid">
-<div class="process-step"><span class="process-num">01</span><h4 aria-level="3" data-a11y-level="" role="heading">WhatsApp ilə Əlaqə</h4><p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p></div>
+<div class="process-step"><span class="process-num">01</span><h4 aria-level="3" role="heading">WhatsApp ilə Əlaqə</h4><p>+994 70 220-03-76 nömrəsinə yazın. Müraciəti həmin gün cavablandırılır.</p></div>
 <div class="process-step"><span class="process-num">02</span><h4>Format Seçimi</h4><p>Online (Zoom/WhatsApp video) və ya ofisdə görüş — sizə uyğun olanı seçin.</p></div>
 <div class="process-step"><span class="process-num">03</span><h4>Vaxt Razılaşması</h4><p>Sizə uyğun gün və vaxt müəyyənləşdirilir. Cədvəl çevikdir — axşam saatları mövcuddur.</p></div>
 <div class="process-step"><span class="process-num">04</span><h4>Sessiya</h4><p>50 dəqiqəlik sessiya. İlk görüşdə məqsəd, gözlənti və iş planı müzakirə olunur.</p></div>
@@ -257,54 +183,54 @@ input, select, textarea, button {
 </div>
 </section>
 
-<section aria-labelledby="reg-h" data-theme="dark" id="registration" style="background:#07090E;padding:var(--s-section) 0;">
-<div class="sec-inner" style="padding:0 var(--s-section);max-width:980px;">
+<section aria-labelledby="reg-h" id="registration">
+<div class="sec-inner">
 <div class="sec-header">
 <span class="badge">Konsultasiya Qeydiyyatı</span>
 <h2 class="sec-h2" id="reg-h"><span class="sh-line">Konsultasiyaya</span> <span class="sh-line">Yazılın</span></h2>
 <p class="sec-sub">Formu doldurun və ya WhatsApp yazın — cavab həmin gün.</p>
 </div>
-<div class="reg-grid" style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start;margin-top:40px;">
+<div class="reg-grid">
 
-<form action="/api/training-reg" id="xidRegForm" method="POST" novalidate="" style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,97,0.22);padding:32px;display:flex;flex-direction:column;gap:16px;">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<form action="/api/training-reg" id="xidRegForm" method="POST" novalidate="">
+<div>
+<label for="km-name">
                 Ad *
-                <input aria-label="Adınız" name="ad" placeholder="Adınız" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,97,0.22);font-family:var(--font);font-size:.95rem" type="text"/>
+                <input aria-label="Adınız" name="ad" placeholder="Adınız" required="" type="text"/>
 </label>
-<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name">
                 Telefon *
-                <input aria-label="+994 XX XXX XX XX" name="telefon" placeholder="+994 XX XXX XX XX" required="" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,97,0.22);font-family:var(--font);font-size:.95rem" type="tel"/>
+                <input aria-label="+994 XX XXX XX XX" name="telefon" placeholder="+994 XX XXX XX XX" required="" type="tel"/>
 </label>
 </div>
-<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name">
               Format
-              <select name="proqram" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,97,0.22);font-family:var(--font);font-size:.95rem">
+              <select name="proqram">
 <option value="Fərdi Konsultasiya — Online">Online (Zoom / WhatsApp video)</option>
 <option value="Fərdi Konsultasiya — Ofis">Ofisdə (Bakı)</option>
 <option value="Hələ qərar verməmişəm">Hələ qərar verməmişəm</option>
 </select>
 </label>
-<label for="km-name" style="display:flex;flex-direction:column;gap:6px;font-size:.78rem;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.06em;text-transform:uppercase;">
+<label for="km-name">
               Qeyd (istəyə bağlı)
-              <textarea aria-label="Hansı mövzuda kömək lazımdır?" name="qeyd" placeholder="Hansı mövzuda kömək lazımdır?" rows="3" style="padding:12px 14px;background:rgba(255,255,255,0.06);border:1px solid rgba(201,169,97,0.22);font-family:var(--font);font-size:.95rem;resize:vertical"></textarea>
+              <textarea aria-label="Hansı mövzuda kömək lazımdır?" name="qeyd" placeholder="Hansı mövzuda kömək lazımdır?" rows="3"></textarea>
 </label>
-<button class="btn btn-fill" style="margin-top:8px;padding:14px 28px;" type="submit">Müraciət Göndər</button>
-<p style="font-size:.75rem;color:rgba(255,255,255,0.45);margin:0;">Məlumatlarınız yalnız əlaqə üçün istifadə olunur, üçüncü şəxslərə ötürülmür.</p>
-<div class="form-success" id="xidRegSuccess" style="display:none;background:rgba(132,204,22,0.1);border:1px solid rgba(132,204,22,0.4);padding:16px;color:#bef264;font-weight:600;">
+<button class="btn btn-fill" type="submit">Müraciət Göndər</button>
+<p>Məlumatlarınız yalnız əlaqə üçün istifadə olunur, üçüncü şəxslərə ötürülmür.</p>
+<div class="form-success" id="xidRegSuccess" style="display:none">
               Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.
             </div>
 </form>
 
-<div style="display:flex;flex-direction:column;gap:16px;">
-<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,97,0.22);padding:28px;">
-<span style="display:block;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;">Birbaşa Əlaqə</span>
-<h3 style="font-family:var(--font);font-size:1.125rem;font-weight:700;margin:0 0 12px">Daha tez cavab istəyirsinizsə</h3>
-<p style="color:rgba(255,255,255,0.65);font-size:.9rem;line-height:1.6;margin:0 0 20px;">WhatsApp və ya zəng ilə birbaşa əlaqə saxlayın — koordinator həmin gün cavab verir.</p>
-<a class="btn btn-fill" href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" style="display:block;text-align:center;margin-bottom:10px;" target="_blank">WhatsApp ilə Yazın</a>
-<a class="btn btn-line" href="tel:+994702200376" style="display:block;text-align:center;border-color:rgba(255,255,255,0.4)">+994 70 220-03-76</a>
+<div>
+<div>
+<span>Birbaşa Əlaqə</span>
+<h3>Daha tez cavab istəyirsinizsə</h3>
+<p>WhatsApp və ya zəng ilə birbaşa əlaqə saxlayın — koordinator həmin gün cavab verir.</p>
+<a class="btn btn-fill" href="https://wa.me/994702200376?text=Salam%2C+f%C9%99rdi+konsultasiya+istəyirəm" target="_blank">WhatsApp ilə Yazın</a>
+<a class="btn btn-line" href="tel:+994702200376">+994 70 220-03-76</a>
 </div>
-<div style="font-size:.85rem;color:rgba(255,255,255,0.6);line-height:1.7;">
+<div>
 <strong>İş saatları:</strong><br/>
               B.e – Cümə · 10:00 – 20:00<br/>
               Şənbə · 10:00 – 16:00
