@@ -709,3 +709,16 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-form-after { margin: 0; font: 400 15.5px/1.6 var(--n-read); color: var(--n-gold2); }
 .n-pay-choice { display: flex; flex-wrap: wrap; gap: 12px; }
 .n-body .n-chip span { text-transform: none !important; letter-spacing: .01em !important; font: 500 16px/1.2 var(--n-read) !important; }
+
+/* ═══ Предложение установить приложение (PWA) — сверху, как уведомление ═══ */
+.n-app { position: fixed; left: 50%; top: 12px; z-index: 1000; display: flex; align-items: center; gap: 14px; width: min(560px, calc(100vw - 24px)); padding: 12px 12px 12px 14px;
+  border-radius: 18px; background: rgba(17,20,28,.94); border: 1px solid rgba(201,169,97,.35); box-shadow: 0 20px 50px -18px rgba(0,0,0,.7);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transform: translate(-50%, -140%); transition: transform .55s var(--n-e); }
+.n-app.is-in { transform: translate(-50%, 0); }
+.n-app-ico { position: relative; flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: #061826; color: #fff; display: grid; place-items: center; font: 800 24px/1 var(--n-sans); }
+.n-app-ico i { position: absolute; right: 7px; bottom: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--n-gold); }
+.n-app-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.n-app-txt b { font: 600 15px/1.3 var(--n-sans); color: var(--n-milk); }
+.n-app-txt small { font: 400 13.5px/1.4 var(--n-read); color: var(--n-soft); }
+.n-app-go { flex: 0 0 auto; min-height: 40px; padding: 0 18px; border: 0; border-radius: 99px; background: var(--n-gold); color: var(--n-bg); font: 500 15px/1 var(--n-read); cursor: pointer; }
+.n-app-x { flex: 0 0 auto; width: 34px; height: 34px; border: 0; border-radius: 50%; background: transparent; color: var(--n-smoke); font-size: 22px; cursor: pointer; }

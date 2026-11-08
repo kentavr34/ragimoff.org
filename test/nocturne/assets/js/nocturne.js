@@ -7,6 +7,44 @@
   var burger = document.querySelector('.n-burger');
   var mob = document.getElementById('nMob');
 
+  /* приложение RAGIMOFF (PWA, Кенан 09.11.2026): сохранение открытых страниц и книг на устройстве + предложение установить */
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function () {}); });
+  }
+  (function () {
+    var lang = document.documentElement.lang || 'az';
+    var TX = {
+      az: { t: 'RAGIMOFF tətbiqi', d: 'Saytı və kitabları telefonda açın — internetsiz də oxuyun.', go: 'Quraşdır', ios: 'Safari-də «Paylaş» → «Ana ekrana əlavə et» seçin.' },
+      ru: { t: 'Приложение RAGIMOFF', d: 'Сайт и книги в телефоне — читайте даже без интернета.', go: 'Установить', ios: 'В Safari нажмите «Поделиться» → «На экран „Домой“».' },
+      en: { t: 'RAGIMOFF app', d: 'The site and books on your phone — read even offline.', go: 'Install', ios: 'In Safari tap Share → “Add to Home Screen”.' }
+    }[lang] || null;
+    if (!TX) return;
+    var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    if (standalone) return;
+    var KEY = 'rgm_app_dismiss';
+    try { if (Date.now() - (+localStorage.getItem(KEY) || 0) < 14 * 864e5) return; } catch (e) {}
+    function bar(installFn) {
+      if (document.querySelector('.n-app')) return;
+      var b = document.createElement('div');
+      b.className = 'n-app'; b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', TX.t);
+      b.innerHTML = '<span class="n-app-ico" aria-hidden="true">R<i></i></span><span class="n-app-txt"><b>' + TX.t + '</b><small>' +
+        (installFn ? TX.d : TX.ios) + '</small></span>' + (installFn ? '<button type="button" class="n-app-go">' + TX.go + '</button>' : '') +
+        '<button type="button" class="n-app-x" aria-label="×">×</button>';
+      document.body.appendChild(b);
+      requestAnimationFrame(function () { b.classList.add('is-in'); });
+      function close() { b.classList.remove('is-in'); try { localStorage.setItem(KEY, Date.now()); } catch (e) {} setTimeout(function () { b.remove(); }, 500); }
+      b.querySelector('.n-app-x').onclick = close;
+      if (installFn) b.querySelector('.n-app-go').onclick = function () { installFn().then(close, close); };
+    }
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      var ev = e;
+      setTimeout(function () { bar(function () { ev.prompt(); return ev.userChoice; }); }, 2500);
+    });
+    var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && /safari/i.test(navigator.userAgent) && !/crios|fxios/i.test(navigator.userAgent);
+    if (ios) setTimeout(function () { bar(null); }, 3500);
+  })();
+
   /* header: solid after scroll, hides on scroll down, returns on scroll up */
   var lastY = 0;
   function onScroll() {

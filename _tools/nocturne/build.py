@@ -146,7 +146,7 @@ def gen_hero(slug):
 
 
 VID_DIR = SITE.parent / '_assets' / 'nocturne_video'   # первый экран главной; вне репозитория
-CINE_FRAMES = VID_DIR / 'jobus_frames'   # кадры видео JobTop (prep_jobus_frames.py): d/ десктоп 1600×900, m/ телефон 1000×1000
+CINE_FRAMES = VID_DIR / 'jobus_esr'   # кадры видео JobTop, увеличены Real-ESRGAN realesr-general-x4v3 (09.11): d/ 1920×1080, m/ 1200×1200
 
 
 def cine_assets():
@@ -454,6 +454,10 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#07090E">
 <link rel="icon" href="/favicon.ico">
+<link rel="manifest" href="%sapp.webmanifest">
+<link rel="apple-touch-icon" href="/favicons/android-chrome-192x192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&amp;family=Manrope:wght@400;500;600;700&amp;family=Oswald:wght@400;500;600&amp;family=Monsieur+La+Doulaise&amp;display=swap">
@@ -473,7 +477,7 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 <script src="%sassets/js/motion-gate.js"></script>
 </body>
 </html>
-''' % (lang, H.escape(title), H.escape(desc), head_extra, R, body_cls, header, main, footer, after, scripts, R, R)
+''' % (lang, H.escape(title), H.escape(desc), R, head_extra, R, body_cls, header, main, footer, after, scripts, R, R)
 
 
 def collect_scripts(nodes, orig_page, new_page):
@@ -946,6 +950,7 @@ def main():
     for extra in ('images/kenan/photo-portal-crop-removebg-preview.png', 'images/kenan/photo-hero-suit.jpg', 'images/kenan/haqqimda-kenan.jpg', 'images/samira/samira-portret.jpg', HERO_IMG_DEFAULT):
         copy_image(extra)
     write_router()
+    write_app()
     write_sitemap()
     prune_images()
     print('pages', len(report), 'images', len(copied))
@@ -1014,6 +1019,31 @@ def prune_images():
     for f in (OUT / 'images').rglob('*'):
         if f.is_file() and f.relative_to(OUT).as_posix() not in copied:
             f.unlink()
+
+
+APP_MANIFEST = {
+    "name": "RAGIMOFF — Psixologiya Məktəbi", "short_name": "RAGIMOFF", "lang": "az", "dir": "ltr",
+    "description": "Kənan Rəhimov və Samirə Rəhimova — konsultasiya, təhsil, kitablar və oxu.",
+    "start_url": "/test/nocturne/?source=app", "scope": "/", "id": "/test/nocturne/",
+    "display": "standalone", "orientation": "portrait", "background_color": "#07090E", "theme_color": "#07090E",
+    "icons": [{"src": "/favicons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+              {"src": "/favicons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}],
+    "shortcuts": [{"name": "Kitablar", "url": "/books/"}, {"name": "Konsultasiya", "url": "/test/nocturne/az/konsultasiya/index.html"},
+                  {"name": "Təhsil", "url": "/test/nocturne/az/telim/index.html"}]
+}
+OFFLINE_HTML = """<!DOCTYPE html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAGIMOFF</title><meta name="theme-color" content="#07090E"><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+background:#07090E;color:#F2EDE3;font:400 17px/1.6 Georgia,serif;padding:24px;text-align:center}b{display:block;font:500 34px/1.2 Georgia,serif;color:#C9A961;margin-bottom:14px}
+a{color:#C9A961}</style></head><body><main><b>RAGIMOFF.</b>
+<p>İnternet yoxdur. Əvvəl açdığınız səhifələr və kitablar tətbiqdə qalır — geri qayıdın və oxumağa davam edin.</p>
+<p>Нет интернета. Открытые ранее страницы и книги сохранены в приложении — вернитесь назад и продолжайте читать.</p>
+<p>No internet. Pages and books you opened before are saved in the app — go back and keep reading.</p>
+<p><a href="javascript:history.back()">← Geri · Назад · Back</a></p></main></body></html>"""
+
+
+def write_app():
+    (OUT / 'app.webmanifest').write_text(json.dumps(APP_MANIFEST, ensure_ascii=False, indent=1), encoding='utf-8', newline=chr(10))
+    (OUT / 'offline.html').write_text(OFFLINE_HTML, encoding='utf-8', newline=chr(10))
 
 
 def write_router():
