@@ -26,6 +26,8 @@ const SITE = path.resolve(__dirname, '..');
 const OUT = path.join(SITE, 'books');
 const CATALOG = JSON.parse(fs.readFileSync(path.join(__dirname, 'catalog.json'), 'utf8'));
 const CLOSED = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, 'closed-books.json'), 'utf8')).closed);
+/* 09.11.2026 (Кенан): hidden:true — карточка не выводится (запись в catalog.json сохраняется; напр. предисловие к Шарко включено в «Koka haqqında») */
+CATALOG.books = CATALOG.books.filter((b) => !b.hidden);
 /* оболочка — всегда с LF, как живые страницы (git с autocrlf может выдать её с CRLF) */
 const SHELL = (code) => fs.readFileSync(path.join(__dirname, 'catalog-shell', 'books.' + code + '.html'), 'utf8').replace(/\r\n/g, '\n');
 const LANGS = CATALOG.langs;
