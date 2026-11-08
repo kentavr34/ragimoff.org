@@ -39,7 +39,7 @@
      Каждая позиция: книга + доступные для заказа языки.
      Фрейд — только азербайджанский. Наши книги — все языки. */
   var CATALOG = [
-    { id: 'klinik-psixiatriya', az: 'Klinik Psixiatriya',       price: 30, langs: ['az'] },
+    { id: 'klinik-psixiatriya', az: 'Klinik Psixiatriya',       price: 100, langs: ['az'] },
     { id: 'aile-terapiyasi',    az: 'Ailə Terapiyası',          price: 25, langs: ['az'] },
     { id: 'depressiya',         az: 'Depressiya',               price: 25, langs: ['az'] },
     { id: 'panik-ataklar',      az: 'Panik Ataklar',            price: 25, langs: ['az'] },
@@ -47,14 +47,14 @@
     { id: 'enurez',             az: 'Enurez',                   price: 25, langs: ['az'] },
     { id: 'psixolog-olmaq',     az: 'Psixoloq Olmaq',           price: 25, langs: ['az'] },
     { id: 'yeniyetme',          az: 'Yeniyetmə',                price: 25, langs: ['az'] },
-    { id: 'freud-men-ve-o',     az: 'Mən və O',                 price: 35, langs: ['az'] },
-    { id: 'freud-yuxu-haqqinda',az: 'Yuxu Haqqında',            price: 35, langs: ['az'] },
-    { id: 'freud-gundelik',     az: 'Gündəlik Həyatın Psixopatologiyası', price: 35, langs: ['az'] },
-    { id: 'freud-massen',       az: 'Kütlə Psixologiyası',      price: 35, langs: ['az'] },
-    { id: 'freud-totem',        az: 'Totem və Tabu',            price: 35, langs: ['az'] },
-    { id: 'freud-musa',         az: 'Musa və Təkallahlılıq',    price: 35, langs: ['az'] },
-    { id: 'freud-jenseits',     az: 'Həzz Prinsipinin O Tayında', price: 35, langs: ['az'] },
-    { id: 'freud-medeniyyet',   az: 'Mədəniyyətin Sıxıntıları', price: 35, langs: ['az'] }
+    { id: 'freud-men-ve-o',     az: 'Mən və O',                 price: 30, langs: ['az'] },
+    { id: 'freud-yuxu-haqqinda',az: 'Yuxu Haqqında',            price: 30, langs: ['az'] },
+    { id: 'freud-gundelik',     az: 'Gündəlik Həyatın Psixopatologiyası', price: 30, langs: ['az'] },
+    { id: 'freud-massen',       az: 'Kütlə Psixologiyası',      price: 30, langs: ['az'] },
+    { id: 'freud-totem',        az: 'Totem və Tabu',            price: 30, langs: ['az'] },
+    { id: 'freud-musa',         az: 'Musa və Təkallahlılıq',    price: 30, langs: ['az'] },
+    { id: 'freud-jenseits',     az: 'Həzz Prinsipinin O Tayında', price: 30, langs: ['az'] },
+    { id: 'freud-medeniyyet',   az: 'Mədəniyyətin Sıxıntıları', price: 30, langs: ['az'] }
   ];
 
   var LANG_NAME = { az: 'Azərbaycanca', ru: 'Русский', en: 'English', tr: 'Türkçe', de: 'Deutsch' };
