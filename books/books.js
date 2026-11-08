@@ -328,19 +328,22 @@
          русский, английский).
      Названия ниже — это data-order карточек, то есть ровно то, что попадает
      в корзину. Список менять только вместе с каталогом. */
-  var MY_BOOKS = ['Klinik Psixiatriya', 'Günahkarlıq Virusu',
-                  'Şizofreniya', 'Feniks Erası',
-                  /* те же книги, когда их кладут в корзину с русской или
-                     английской страницы каталога (21.10.2026): иначе корзина
-                     считала их «книгами Фрейда» и навязывала азербайджанский */
-                  'Клиническая психиатрия', 'Вирус вины', 'Шизофрения', 'Эра Феникса',
-                  'Clinical Psychiatry', 'The Guilt Virus', 'Schizophrenia', 'Phoenix Era'];
+  /* 08.11.2026, решение Кенана: книги Кенана и Самиры продаются на всех языках,
+     книги Фрейда — только на азербайджанском. Узнаём «свою» книгу по ключу в
+     названии без учёта регистра: прежний список сверял начало строки с учётом
+     регистра, и «The guilt virus» / «The Phoenix Era» со страниц-читалок EN
+     считались Фрейдом (язык навязывался азербайджанский). Ключи — те же, что
+     на сервере (epoint_routes.py, _MY_BOOK_KEYS). */
+  var MY_BOOK_KEYS = ['klinik psixiatriya', 'клиническая психиатрия', 'clinical psychiatry', 'klinik psikiyatri',
+                      'günahkarlıq virusu', 'вирус вины', 'guilt virus',
+                      'şizofreniya', 'шизофрения', 'schizophrenia',
+                      'feniks', 'феникс', 'phoenix'];
   var BUY_LANGS = [['az', 'AZ'], ['ru', 'RU'], ['en', 'EN']];
 
   function isMyBook(title) {
-    var s = cleanTitle(title || '');
-    for (var i = 0; i < MY_BOOKS.length; i++) {
-      if (s.indexOf(MY_BOOKS[i]) === 0) return true;   // \u043d\u0430\u0447\u0430\u043b\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0430\u0435\u0442
+    var s = cleanTitle(title || '').toLowerCase();
+    for (var i = 0; i < MY_BOOK_KEYS.length; i++) {
+      if (s.indexOf(MY_BOOK_KEYS[i]) !== -1) return true;
     }
     return false;
   }
@@ -684,7 +687,12 @@
         fetch(PAY_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: list, name: nm, phone: ph, address: ad,
+          /* язык — у КАЖДОЙ позиции: книга Фрейда всегда az, книга Кенана — выбранный.
+             Сервер отказывает в оплате Фрейда не на азербайджанском (08.11.2026). */
+          body: JSON.stringify({ items: list.map(function (x) {
+                                   return { title: x.title, qty: x.qty || 1, price: x.price || '',
+                                            lang: isMyBook(x.title) ? cartBuyLang() : 'az' };
+                                 }), name: nm, phone: ph, address: ad,
                                  lang: cartBuyLang(), months: 0,
                                  pay_mode: mode === 'installment' ? 'installment' : 'card' })
         }).then(function (r) { return r.json(); }).then(function (d) {
@@ -877,7 +885,10 @@
                   '<input type="radio" name="buy-lang" value="' + p[0] + '"' +
                   (i === 0 ? ' checked' : '') + '>' + p[1] + '</label>';
               }).join('') +
-              '</div></div>'
+              '</div></div>' +
+              /* смешанная корзина: язык выбирают для книг Кенана, Фрейд — всегда AZ */
+              (cartRead().some(function (x) { return !isMyBook(x.title); })
+                ? '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>' : '')
             : '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>') +
           '<label class="field"><span>' + cstr('nameL') + '</span>' +
             '<input id="c-name" type="text" autocomplete="name" required></label>' +
@@ -942,7 +953,10 @@
                   '<input type="radio" name="buy-lang" value="' + p[0] + '"' +
                   (i === 0 ? ' checked' : '') + '>' + p[1] + '</label>';
               }).join('') +
-              '</div></div>'
+              '</div></div>' +
+              /* смешанная корзина: язык выбирают для книг Кенана, Фрейд — всегда AZ */
+              (cartRead().some(function (x) { return !isMyBook(x.title); })
+                ? '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>' : '')
             : '<p class="cart-note cart-note--lang">' + cstr('freudAzOnly') + '</p>') +
           '<label class="field"><span>' + cstr('nameL') + '</span>' +
             '<input id="c-name" type="text" autocomplete="name" required></label>' +

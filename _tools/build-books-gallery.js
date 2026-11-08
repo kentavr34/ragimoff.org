@@ -33,6 +33,11 @@ const LANGS = CATALOG.langs;
 /* поле-текст: строка (одна на все языки) или {az, ru, en}. Тексты в catalog.json — уже HTML. */
 const L = (v, code) => (v !== null && typeof v === 'object' ? v[code] : v);
 const isSoon = (b) => b.status === 'soon' || CLOSED.has(b.id);
+/* 08.11.2026, решение Кенана: продаётся ли книга на этом языке каталога.
+   saleLangs.<автор> — языки продажи; автора там нет → продаётся на всех языках.
+   Фрейд — только az: на RU/EN карточке нет цены и корзины, только «Читать». */
+const SALE = CATALOG.saleLangs || {};
+const onSale = (b, code) => !isSoon(b) && (!SALE[b.author] || SALE[b.author].includes(code));
 const pad = (n) => ' '.repeat(n);
 
 /* ── проверка данных: закрытые книги не продаются и не читаются ── */
@@ -86,15 +91,16 @@ function card(b, code) {
   }
   const read = L(b.read, code), price = L(b.price, code);
   const readClass = b.style === 'art' ? 'btn btn--read' : 'btn';
+  const sale = onSale(b, code);
   return '<article class="card" data-author="' + b.author + '" data-title="' + title + '">\n' +
     pad(10) + '<a class="card__cover" href="' + read + '">\n' + cover(b, code) + '\n' + pad(10) + '</a>\n' +
     pad(10) + '<div class="card__body">\n' +
     pad(12) + '<h2 class="card__title">' + title + '</h2>\n' +
     pad(12) + '<p class="card__meta">' + meta + '</p>\n' +
-    pad(12) + '<p class="card__price">' + price + '</p>\n' +
+    (sale ? pad(12) + '<p class="card__price">' + price + '</p>\n' : '') +
     pad(12) + '<div class="card__cta">\n' +
     pad(14) + '<a class="' + readClass + '" href="' + read + '">' + ui.read + ' <span aria-hidden="true">→</span></a>\n' +
-    pad(14) + '<button class="btn btn--cart" type="button" data-cart-btn="1" data-order="' + title + '" data-price="' + price + '">' + ui.cart + '</button>\n' +
+    (sale ? pad(14) + '<button class="btn btn--cart" type="button" data-cart-btn="1" data-order="' + title + '" data-price="' + price + '">' + ui.cart + '</button>\n' : '') +
     pad(12) + '</div>\n' +
     pad(10) + '</div>\n' +
     pad(8) + '</article>';
@@ -124,6 +130,7 @@ function banner(code) {
   const coll = CATALOG.collections[key];
   const t = coll && coll.text[code];
   if (!t) return '';
+  if (SALE.freud && !SALE.freud.includes(code)) throw new Error('баннер коллекции Фрейда на языке ' + code + ', где Фрейд не продаётся');
   const v = collectionValues(key);
   const f = (s) => s.replace(/\{(\w+)\}/g, (m, k) => (k in v ? String(v[k]) : m));
   const para = (s) => f(s).split('\n').map((l) => pad(12) + l).join('\n');
@@ -172,7 +179,7 @@ ${para(t.hint)}
 
 /* ── форма заказа (RU/EN): книги вне серии Фрейда с ценой ── */
 function options(code) {
-  return CATALOG.books.filter((b) => b.author !== 'freud' && !isSoon(b) && b.price)
+  return CATALOG.books.filter((b) => b.author !== 'freud' && onSale(b, code) && b.price)
     .map((b) => pad(12) + '<option value="' + L(b.title, code) + ' · ' + L(b.price, code) + '">' + L(b.title, code) + ' — ' + L(b.price, code) + '</option>\n')
     .join('');
 }

@@ -1,5 +1,5 @@
 {
-  "_note": "Каталог книг ragimoff.org/books/ (AZ/RU/EN) — единственный источник для _tools/build-books-gallery.js. Снят с живых страниц 08.11.2026 (_tools/catalog-extract.js). Поля-тексты: строка (одинаково во всех языках) или {az,ru,en}. status:\"soon\" или id в closed-books.json → карточка «Hazırlanır» без Oxu и корзины. collection.freud: книги с collection:\"freud\"; цена набора = Σ цен × (1 − discount/100); в текстах баннера {n} {old} {new} {save} {unit} {per} {disc} подставляются генератором. Форма заказа (RU/EN): книги не из серии Фрейда с ценой.",
+  "_note": "Каталог книг ragimoff.org/books/ (AZ/RU/EN) — единственный источник для _tools/build-books-gallery.js. Снят с живых страниц 08.11.2026 (_tools/catalog-extract.js). Поля-тексты: строка (одинаково во всех языках) или {az,ru,en}. status:\"soon\" или id в closed-books.json → карточка «Hazırlanır» без Oxu и корзины. collection.freud: книги с collection:\"freud\"; цена набора = Σ цен × (1 − discount/100); в текстах баннера {n} {old} {new} {save} {unit} {per} {disc} подставляются генератором. Форма заказа (RU/EN): книги не из серии Фрейда с ценой. 08.11.2026 (решение Кенана): saleLangs — на каких языках книга автора продаётся; автора нет в saleLangs → продаётся на всех языках каталога. Фрейд — только az: на RU/EN карточке нет цены и корзины, только «Читать». Книги Кенана и Самиры оформлены как серия Фрейда (style:\"art\").",
   "langs": [
     "az",
     "ru",
@@ -21,6 +21,11 @@
       "cart": "Add to cart",
       "soon": "In preparation"
     }
+  },
+  "saleLangs": {
+    "freud": [
+      "az"
+    ]
   },
   "sections": [
     {
@@ -84,7 +89,7 @@
     {
       "id": "klinik",
       "author": "kenan",
-      "style": "classic",
+      "style": "art",
       "cover": "klinik.jpg",
       "title": {
         "az": "Klinik Psixiatriya",
@@ -92,9 +97,9 @@
         "en": "Clinical Psychiatry"
       },
       "coverTitle": {
-        "az": "Klinik<br>Psixiatriya",
-        "ru": "Клиническая<br>психиатрия",
-        "en": "Clinical<br>Psychiatry"
+        "az": "Klinik Psixiatriya",
+        "ru": "Клиническая психиатрия",
+        "en": "Clinical Psychiatry"
       },
       "coverAuthor": {
         "az": "KƏNAN RƏHİMOV",
@@ -103,9 +108,9 @@
       },
       "coverYear": "2026",
       "meta": {
-        "az": "Kənan Rəhimov · 2026 · AZ RU EN TR",
-        "ru": "Кенан Рагимов · 2026 · AZ RU EN TR",
-        "en": "Kenan Ragimov · 2026 · AZ RU EN TR"
+        "az": "2026 · AZ RU EN TR",
+        "ru": "2026 · AZ RU EN TR",
+        "en": "2026 · AZ RU EN TR"
       },
       "price": "100 ₼",
       "read": {
@@ -117,17 +122,17 @@
     {
       "id": "guilt",
       "author": "kenan",
-      "style": "classic",
+      "style": "art",
       "cover": "guilt.jpg",
       "title": {
-        "az": "Günahkarlıq Virusu",
+        "az": "Günahkarlıq virusu",
         "ru": "Вирус вины",
         "en": "The Guilt Virus"
       },
       "coverTitle": {
-        "az": "Günahkarlıq<br>Virusu",
-        "ru": "Вирус<br>вины",
-        "en": "The Guilt<br>Virus"
+        "az": "Günahkarlıq virusu",
+        "ru": "Вирус вины",
+        "en": "The Guilt Virus"
       },
       "coverAuthor": {
         "az": "KƏNAN RƏHİMOV",
@@ -136,9 +141,9 @@
       },
       "coverYear": "2024",
       "meta": {
-        "az": "Kənan Rəhimov · 2024 · AZ RU EN",
-        "ru": "Кенан Рагимов · 2024 · AZ RU EN",
-        "en": "Kenan Ragimov · 2024 · AZ RU EN"
+        "az": "2024 · AZ RU EN",
+        "ru": "2024 · AZ RU EN",
+        "en": "2024 · AZ RU EN"
       },
       "price": "30 ₼",
       "read": {
@@ -150,7 +155,7 @@
     {
       "id": "pandemic",
       "author": "kenan",
-      "style": "classic",
+      "style": "art",
       "cover": "pandemic.jpg",
       "title": {
         "az": "Şizofreniya. Cinnət pandemiyası",
@@ -158,9 +163,9 @@
         "en": "Schizophrenia. A Pandemic of Madness"
       },
       "coverTitle": {
-        "az": "Şizofreniya<br>Cinnət Pandemiyası",
-        "ru": "Шизофрения<br>Пандемия безумия",
-        "en": "Schizophrenia<br>A Pandemic of Madness"
+        "az": "Şizofreniya. Cinnət pandemiyası",
+        "ru": "Шизофрения. Пандемия безумия",
+        "en": "Schizophrenia. A Pandemic of Madness"
       },
       "coverAuthor": {
         "az": "KƏNAN RƏHİMOV",
@@ -173,9 +178,9 @@
         "en": "2026"
       },
       "meta": {
-        "az": "Kənan Rəhimov · 2025 · AZ RU EN",
-        "ru": "Кенан Рагимов · 2026 · AZ RU EN",
-        "en": "Kenan Ragimov · 2026 · AZ RU EN"
+        "az": "2025 · AZ RU EN",
+        "ru": "2026 · AZ RU EN",
+        "en": "2026 · AZ RU EN"
       },
       "price": "30 ₼",
       "read": {
@@ -187,17 +192,17 @@
     {
       "id": "phoenix",
       "author": "samira",
-      "style": "classic",
+      "style": "art",
       "cover": "phoenix.jpg",
       "title": {
-        "az": "Feniks Erası",
+        "az": "Feniks erası",
         "ru": "Эра Феникса",
         "en": "Phoenix Era"
       },
       "coverTitle": {
-        "az": "Feniks<br>Erası",
-        "ru": "Эра<br>Феникса",
-        "en": "Phoenix<br>Era"
+        "az": "Feniks erası",
+        "ru": "Эра Феникса",
+        "en": "Phoenix Era"
       },
       "coverAuthor": {
         "az": "SAMİRƏ RƏHİMOVA",
@@ -206,9 +211,9 @@
       },
       "coverYear": "2026",
       "meta": {
-        "az": "Samirə Rəhimova · 2026 · AZ RU EN",
-        "ru": "Самира Рагимова · 2026 · AZ RU EN",
-        "en": "Samira Ragimova · 2026 · AZ RU EN"
+        "az": "2026 · AZ RU EN",
+        "ru": "2026 · AZ RU EN",
+        "en": "2026 · AZ RU EN"
       },
       "price": "30 ₼",
       "read": {

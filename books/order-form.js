@@ -39,7 +39,11 @@
      Каждая позиция: книга + доступные для заказа языки.
      Фрейд — только азербайджанский. Наши книги — все языки. */
   var CATALOG = [
-    { id: 'klinik-psixiatriya', az: 'Klinik Psixiatriya',       price: 100, langs: ['az'] },
+    /* 08.11.2026, решение Кенана: книги Кенана и Самиры — на всех языках; Фрейд — только az */
+    { id: 'klinik-psixiatriya', az: 'Klinik Psixiatriya',       price: 100, langs: ['az', 'ru', 'en'] },
+    { id: 'virus-viny',         az: 'Günahkarlıq virusu',       price: 30, langs: ['az', 'ru', 'en'] },
+    { id: 'shizofreniya',       az: 'Şizofreniya. Cinnət pandemiyası', price: 30, langs: ['az', 'ru', 'en'] },
+    { id: 'phoenix-era',        az: 'Feniks erası',             price: 30, langs: ['az', 'ru', 'en'] },
     { id: 'aile-terapiyasi',    az: 'Ailə Terapiyası',          price: 30, langs: ['az'] },
     { id: 'depressiya',         az: 'Depressiya',               price: 30, langs: ['az'] },
     { id: 'panik-ataklar',      az: 'Panik Ataklar',            price: 30, langs: ['az'] },
