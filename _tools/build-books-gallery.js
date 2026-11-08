@@ -38,6 +38,7 @@ const UI = {
     /* Книги серии Фрейда читаются бесплатно; бумажную версию можно заказать,
        но цена на серию владельцем ещё не установлена, поэтому заказ идёт без цены. */
     paper: 'Kağız nüsxə',
+    soon: 'Hazırlanır',
     submit: 'Sifariş et',
     sending: 'Göndərilir…',
     ok: 'Təşəkkür edirik!<br>Sifarişiniz qeydə alındı — tezliklə sizinlə əlaqə saxlayacağıq.',
@@ -71,6 +72,7 @@ const UI = {
     addressPh: 'Страна, город, улица, дом, квартира, индекс',
     addressHint: 'Бумажный экземпляр отправляется почтой. Условия доставки и оплаты уточняются по телефону.',
     paper: 'Бумажный экземпляр',
+    soon: 'Готовится',
     submit: 'Заказать',
     sending: 'Отправляем…',
     ok: 'Спасибо!<br>Заказ принят — мы скоро свяжемся с вами.',
@@ -104,6 +106,7 @@ const UI = {
     addressPh: 'Country, city, street, building, apartment, postal code',
     addressHint: 'The paper copy is sent by post. Delivery and payment terms are confirmed by phone.',
     paper: 'Paper copy',
+    soon: 'In preparation',
     submit: 'Order',
     sending: 'Sending…',
     ok: 'Thank you!<br>Your order has been received — we will contact you soon.',
@@ -118,6 +121,7 @@ const UI = {
 
 /* Названия — из самих книг: страницы книги психиатрии (4 языка), DOCX «Вина»,
    DOCX «Cinnat/Schizophrenia», страницы «Эры Феникса». Годы и цены — от владельца. */
+const CLOSED = new Set(JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'closed-books.json'), 'utf8')).closed); /* 08.11.2026: закрытые книги не собираем */
 const BOOKS = [
   {
     id: 'klinik',
@@ -861,6 +865,21 @@ function readFor(book, code) {
 }
 
 function card(book, code, ui) {
+  /* 08.11.2026, решение Кенана: книги с чужим переводом закрыты — карточка
+     «Hazırlanır», без ссылки «Oxu» и без корзины (список — _tools/closed-books.json). */
+  if (CLOSED.has(book.id)) {
+    return '        <article class="card card--soon" data-author="' + book.authorKey + '" data-title="' + esc(book.title[code]) + '">\n' +
+      '          <div class="card__cover">\n' +
+      '<div class="cover" style="--tex:url(\'/books/covers/' + book.cover + '\')"><span class="cover__frame" aria-hidden="true"></span>' +
+      '<span class="cover__author">' + esc(book.coverAuthor[code]) + '</span><span class="cover__title">' + book.coverTitle[code] + '</span>' +
+      (book.year ? '<span class="cover__year">' + book.year + '</span>' : '') + '</div>\n          </div>\n' +
+      '          <div class="card__body">\n' +
+      '            <h2 class="card__title">' + esc(book.title[code]) + '</h2>\n' +
+      (book.year ? '            <p class="card__meta">' + esc(book.year) + '</p>\n' : '') +
+      '            <p class="card__price">' + esc(ui.soon) + '</p>\n' +
+      '          </div>\n' +
+      '        </article>';
+  }
   const read = readFor(book, code);
   const cover = '<div class="cover" style="--tex:url(\'/books/covers/' + book.cover + '\')">' +
     '<span class="cover__frame" aria-hidden="true"></span>' +
@@ -903,7 +922,7 @@ function page(code) {
   }).filter(Boolean).join('\n\n');
   /* в форме заказа — только книги с ценой: у бесплатных (price: null) печатного
      тиража нет, и раньше они выводились строкой «Название — null» */
-  const options = BOOKS.filter((b) => b.price).map((b) => '            <option value="' + esc(b.title[code] + ' · ' + b.price) + '">' + esc(b.title[code]) + ' — ' + esc(b.price) + '</option>').join('\n');
+  const options = BOOKS.filter((b) => b.price && !CLOSED.has(b.id)).map((b) => '            <option value="' + esc(b.title[code] + ' · ' + b.price) + '">' + esc(b.title[code]) + ' — ' + esc(b.price) + '</option>').join('\n');
   const alts = ['az', 'ru', 'en'].map((c) =>
     '  <link rel="alternate" hreflang="' + c + '" href="' + SITE + (c === 'az' ? '/books/' : '/books/' + c + '/') + '">').join('\n');
   return `<!doctype html>
@@ -1040,8 +1059,14 @@ ${options}
 `;
 }
 
+/* 08.11.2026: список книг здесь отстаёт от живого каталога (там тома GW, корзина,
+   баннер коллекции) — запись в books/ по умолчанию ЗАПРЕЩЕНА. Без флага
+   --write-live сборка идёт в --out <папка> (или _tools/_gallery_dryrun/) для сравнения. */
+const OUT_ARG = process.argv.indexOf('--out');
+const LIVE = process.argv.includes('--write-live');
+const DEST = LIVE ? OUT : path.resolve(OUT_ARG > 0 ? process.argv[OUT_ARG + 1] : path.join(__dirname, '_gallery_dryrun'));
 ['az', 'ru', 'en'].forEach((code) => {
-  const dir = code === 'az' ? OUT : path.join(OUT, code);
+  const dir = code === 'az' ? DEST : path.join(DEST, code);
   fs.mkdirSync(dir, { recursive: true });
   const target = path.join(dir, 'index.html');
   const next = page(code);

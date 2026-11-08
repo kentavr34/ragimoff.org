@@ -52,6 +52,10 @@ BOOKS = [
     "books/phoenix-era",
     "klinik-psixiatriya",
 ]
+# 08.11.2026: закрытые книги (_tools/closed-books.json) не трогаем
+import json as _json, os as _os
+_CLOSED = set(_json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "closed-books.json"), encoding="utf-8"))["closed"])
+BOOKS = [b for b in BOOKS if (b[0] if isinstance(b, tuple) else b).rstrip("/").split("/")[-1] not in _CLOSED]
 SKIP_DIRS = ("test", ".bak")          # books/phoenix-era/test — не пересобираем
 
 FONT_URL = ("https://fonts.googleapis.com/css2?"

@@ -410,8 +410,9 @@ function patchAz(slug, ru) {
    с аргументами — только перечисленные (чтобы не переписывать уже опубликованные). */
 
 const only = process.argv.slice(2).filter((x) => !x.startsWith('-'));
-const WANTED = only.length ? BOOKS.filter((b) => only.includes(b.slug)) : BOOKS;
-if (only.length && WANTED.length !== only.length) {
+const CLOSED = new Set(JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'closed-books.json'), 'utf8')).closed); /* 08.11.2026: закрытые книги не собираем */
+const WANTED = (only.length ? BOOKS.filter((b) => only.includes(b.slug)) : BOOKS).filter((b) => !CLOSED.has(b.slug) || (console.log(b.slug + ': ЗАКРЫТА — пропуск'), false));
+if (only.length && WANTED.length !== only.filter((s) => !CLOSED.has(s)).length) {
   throw new Error('неизвестный slug: ' + only.filter((s) => !BOOKS.some((b) => b.slug === s)).join(', '));
 }
 

@@ -646,10 +646,12 @@ BOOKS.push({
   ],
 });
 
+const CLOSED = new Set(JSON.parse(require('fs').readFileSync(require('path').join(__dirname, 'closed-books.json'), 'utf8')).closed); /* 08.11.2026: закрытые книги не собираем */
 const only = process.argv[2];
 let n = 0;
 BOOKS.forEach((b) => {
   if (only && b.slug !== only) return;
+  if (CLOSED.has(b.slug)) { console.log(b.slug + ': ЗАКРЫТА (closed-books.json) — пропуск'); return; }
   const list = buildBook(b);
   n += list.length + 1;
   console.log(b.slug + ': глав ' + list.length + ' → books/' + b.slug + '/');
