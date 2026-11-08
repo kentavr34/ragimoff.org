@@ -21,19 +21,44 @@ BOOKS = {
     'shizofreniya': {'art': '/books/covers/pandemic.jpg', 'price': 30, 'order': 'Şizofreniya. Cinnət Pandemiyası'},
     'phoenix-era': {'art': '/books/covers/phoenix.jpg', 'price': 30, 'order': 'Feniks Erası', 'title': {'ru': 'Эра Феникса', 'en': 'The Phoenix Era'}},
 }
+# 08.11 (Кенан): единый стандарт данных книги — как у томов Фрейда (год, языки, печатное издание, страницы, главы).
+# first — год первого издания (haqqimda.html; по языкам — как в _tools/catalog.json); edition — выходные данные Print
+# (колофон «Bakı · 2026 / © 2026»); print — формат и число страниц PDF из D:/Projects/<Книга>/Print по языкам. Ничего не выдумывать.
+META = {
+    'virus-viny': {'first': {'az': '2024', 'ru': '2024', 'en': '2024'}, 'langs': 'AZ · RU · EN', 'edition': '2026',
+                   'print': {'az': ('152×229 mm', 251), 'ru': ('152×229 mm', 248), 'en': ('152×229 mm', 239)}},
+    'shizofreniya': {'first': {'az': '2025', 'ru': '2026', 'en': '2026'}, 'langs': 'AZ · RU · EN', 'edition': '2026',
+                     'print': {'az': ('152×229 mm', 321), 'ru': ('152×229 mm', 381), 'en': ('152×229 mm', 306)}},
+    'phoenix-era': {'first': {'az': '2026', 'ru': '2026', 'en': '2026'}, 'langs': 'AZ · RU · EN', 'edition': '2026',
+                    'print': {'az': ('130×200 mm', 241), 'ru': ('148×210 mm', 260), 'en': ('148×210 mm', 239)}},
+}
+CITY = {'az': 'Bakı', 'ru': 'Баку', 'en': 'Baku'}
+PG = {'az': 'səh.', 'ru': 'стр.', 'en': 'pp.'}
+
+
+def meta_items(slug, lang, u, year=None):
+    m = META.get(slug)
+    if not m:
+        return f'<li>{u["first"]} <b>{year}</b></li>' if year else ''
+    fmt, pages = m['print'][lang]
+    fmt = fmt.replace(' mm', ' мм') if lang == 'ru' else fmt
+    return (f'<li>{u["first"]} <b>{m["first"][lang]}</b></li>\n        <li>{u["langs"]} <b>{m["langs"]}</b></li>\n'
+            f'        <li>{u["edition"]} <b>{CITY[lang]}, {m["edition"]}</b></li>\n        <li>{u["print"]} <b>{fmt} · {pages} {PG[lang]}</b></li>')
+
+
 UI = {
     'az': dict(books='Kitablar', toc='Mündəricat', minus='Şrifti kiçilt', plus='Şrifti böyüt', theme='Gecə / gündüz', buy='Kitabı al',
                buy_t='Çap nüsxəsini səbətə at', close='Bağla', title_page='Titul səhifəsi', skip='Mətnə keç', author='Müəllif',
-               first='İlk nəşr', chapters='Fəsillər', start='Fəsli mündəricatdan seçin və ya səhifəni sola sürüşdürün',
+               first='İlk nəşr', langs='Dillər', edition='Bu nəşr', print='Çap', chapters='Fəsillər', start='Fəsli mündəricatdan seçin və ya səhifəni sola sürüşdürün',
                prev='← Əvvəlki', next='Növbəti →', pager='Fəsillər arasında keçid', hint='Səhifəni sürüşdürün və ya ← → düymələrindən istifadə edin',
                cur='₼'),
     'ru': dict(books='Книги', toc='Оглавление', minus='Уменьшить шрифт', plus='Увеличить шрифт', theme='Ночь / день', buy='Купить',
                buy_t='Добавить печатную книгу в корзину', close='Закрыть', title_page='Титульная страница', skip='К тексту', author='Автор',
-               first='Первое издание', chapters='Глав', start='Выберите главу в оглавлении или листайте влево',
+               first='Первое издание', langs='Языки', edition='Это издание', print='Печать', chapters='Глав', start='Выберите главу в оглавлении или листайте влево',
                prev='← Назад', next='Далее →', pager='Переход между главами', hint='Листайте или используйте клавиши ← →', cur='₼'),
     'en': dict(books='Books', toc='Contents', minus='Smaller text', plus='Larger text', theme='Night / day', buy='Buy',
                buy_t='Add the printed book to cart', close='Close', title_page='Title page', skip='Skip to text', author='Author',
-               first='First edition', chapters='Chapters', start='Pick a chapter from the contents or swipe left',
+               first='First edition', langs='Languages', edition='This edition', print='Print', chapters='Chapters', start='Pick a chapter from the contents or swipe left',
                prev='← Previous', next='Next →', pager='Chapter navigation', hint='Swipe or use the ← → keys', cur='₼'),
 }
 ICON = {
@@ -202,16 +227,19 @@ def build(slug, lang, stubs=False):
             stub(os.path.join(d, r[2]), k, h1)
     url = f'/books/{slug}/' + ('' if lang == 'az' else f'{lang}/')
     alts = ''.join(f' data-lang-url-{L}="/books/{slug}/{"" if L == "az" else L + "/"}"' for L in UI)
-    ld = json.dumps({'@context': 'https://schema.org', '@type': 'Book', 'name': title, 'author': {'@type': 'Person', 'name': author},
-                     'inLanguage': lang, 'bookFormat': 'EBook', 'publisher': 'Ragimoff', 'url': f'https://ragimoff.org{url}'}, ensure_ascii=False)
+    ldd = {'@context': 'https://schema.org', '@type': 'Book', 'name': title, 'author': {'@type': 'Person', 'name': author},
+           'inLanguage': lang, 'bookFormat': 'EBook', 'publisher': 'Ragimoff', 'url': f'https://ragimoff.org{url}'}
+    if slug in META:
+        ldd.update({'numberOfPages': META[slug]['print'][lang][1], 'datePublished': META[slug]['first'][lang]})
+    ld = json.dumps(ldd, ensure_ascii=False)
     yr = re.search(r'\d{4}', year)
     out = PAGE.format(
         lang=lang, alts=alts, title=esc(title), author=esc(author), desc=esc(f'{title} — {author}. {sub}'.strip()), url=url, art=cfg['art'],
         v=READER_V, ld=ld, slug=slug, u=u, back='/books/' + ('' if lang == 'az' else f'{lang}/'), i_back=ICON['back'], i_toc=ICON['toc'],
         i_theme=ICON['theme'], i_cart=ICON['cart'], i_x=ICON['x'], order=esc(cfg['order'] if lang == 'az' else title), price=cfg['price'], toc=''.join(toc),
-        cover=cover_html(cfg['art'], author, title, yr.group() if yr else ''),
+        cover=cover_html(cfg['art'], author, title, META[slug]['first'][lang] if slug in META else (yr.group() if yr else '')),
         sub=f'<p class="rd-sub">{esc(sub)}</p>' if sub else '',
-        year=f'<li>{u["first"]} <b>{yr.group()}</b></li>' if yr else '', nch=N, chapters='\n'.join(chapters))
+        year=meta_items(slug, lang, u, yr.group() if yr else None), nch=N, chapters='\n'.join(chapters))
     open(os.path.join(d, 'index.html'), 'w', encoding='utf-8', newline='\n').write(out)
     print(slug, lang, 'chapters', N, 'parts', sum(1 for r in rows if r[0] == 'part'), len(out) // 1024, 'KB')
 
@@ -228,8 +256,38 @@ def stub(path, k, title):
     open(path, 'w', encoding='utf-8', newline='\n').write(s)
 
 
+def patch_meta(slug, lang):
+    """08.11: на готовой читалке обновить только данные книги (rd-meta, год на обложке, JSON-LD) из META."""
+    f = os.path.join(SITE, 'books', slug, '' if lang == 'az' else lang, 'index.html')
+    s = open(f, encoding='utf-8').read()
+    u, m = UI[lang], META[slug]
+    a = s.index('<ul class="rd-meta">')
+    b = s.index('</ul>', a)
+    blk = s[a:b]
+    au = re.search(r'<li>' + re.escape(u['author']) + r' <b>.*?</b></li>', blk).group(0)
+    ch = re.search(r'<li>' + re.escape(u['chapters']) + r' <b>\d+</b></li>', blk).group(0)
+    s = s[:a] + f'<ul class="rd-meta">\n        {au}\n        {meta_items(slug, lang, u)}\n        {ch}\n      ' + s[b:]
+    s, k = re.subn(r'(<span class="bk-cover__n">)[^<]*(</span>)', lambda x: x.group(1) + m['first'][lang] + x.group(2), s, count=1)
+    i = s.index('<script type="application/ld+json">') + len('<script type="application/ld+json">')
+    j = s.index('</script>', i)
+    ldd = json.loads(s[i:j])
+    ldd.update({'numberOfPages': m['print'][lang][1], 'datePublished': m['first'][lang]})
+    s = s[:i] + json.dumps(ldd, ensure_ascii=False) + s[j:]
+    open(f, 'w', encoding='utf-8', newline='\n').write(s)
+    print('meta', slug, lang, 'cover', k)
+
+
 if __name__ == '__main__':
     argv = sys.argv[1:]
+    if argv[:1] == ['--meta-only']:   # 08.11: python _tools/build_reader_books.py --meta-only [slug ...]
+        try:
+            sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        except Exception:
+            pass
+        for sl in (argv[1:] or list(META)):
+            for L in UI:
+                patch_meta(sl, L)
+        sys.exit()
     if '--root' in argv:           # корень сайта (rebuild_reader.py собирает книгу во временном корне)
         i = argv.index('--root')
         SITE = os.path.abspath(argv[i + 1])
