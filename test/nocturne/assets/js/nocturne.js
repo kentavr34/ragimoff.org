@@ -2,7 +2,11 @@
    Формы, оплата и галереи остаются за shared.js / training-pay.js (копии с боевого сайта). */
 (function () {
   'use strict';
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches && !window.RGM_FORCE_MOTION;
+  /* Кенан 09.11: при выключенной в ОС анимации — мягкий режим, а не статичный сайт: проявления короче и тише,
+     гаснут только бесконечные и параллакс-движения (см. .n-soft в nocturne.css) */
+  var soft = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (soft) document.documentElement.classList.add('n-soft');
+  var reduce = false;
   var head = document.getElementById('nHead');
   var burger = document.querySelector('.n-burger');
   var mob = document.getElementById('nMob');
@@ -167,7 +171,9 @@
     var mob = window.matchMedia('(max-width: 700px)');
     var ctx = cv.getContext('2d'), imgs = [], set = '', target = 0, shown = 0, raf = 0, title = false;
     var QTXT = q ? q.getAttribute('data-q') || '' : '';
-    var T = { video: .8, sqIn: [86, 90], type: [90, 102], title: 106, out: [.9, 1] };   /* frame indices of the tap / typing, scroll fractions */
+    /* moments in frame numbers of the (trimmed) strip: tap → search line, typing, title; from data-marks set by the build */
+    var M = (frame.getAttribute('data-marks') || '19,23,23,35,37').split(',').map(Number);
+    var T = { video: .78, sqIn: [M[0], M[1]], type: [M[2], M[3]], title: M[4], out: [.9, 1] };
     function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
     function seg(v, a, b) { return clamp((v - a) / (b - a)); }
     function load() {
@@ -377,6 +383,93 @@
     });
   })();
 
+  /* закреплённая горизонтальная лента (программы, статьи): вертикальная прокрутка двигает карточки влево по одной;
+     карточка у центра выходит на передний план. После последней карточки страница идёт дальше. (Кенан 09.11) */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-hs]'), function (sec) {
+    var stick = sec.querySelector('.n-hs-stick'), track = sec.querySelector('[data-hs-track]');
+    if (!stick || !track) return;
+    var cards = Array.prototype.slice.call(track.children), dist = 0, cur = 0, target = 0, raf = 0;
+    function measure() {
+      track.style.setProperty('--hx', '0px');
+      dist = Math.max(0, track.scrollWidth - stick.clientWidth);
+      sec.style.height = dist > 0 ? (innerHeight + dist * (innerWidth < 701 ? 1.1 : 0.9)) + 'px' : '';
+      onScroll();
+    }
+    function apply(x) {
+      track.style.setProperty('--hx', (-x).toFixed(1) + 'px');
+      var mid = innerWidth / 2;
+      cards.forEach(function (c) {
+        var r = c.getBoundingClientRect(), d = Math.abs(r.left + r.width / 2 - mid) / innerWidth;
+        c.style.setProperty('--cs', (1 - Math.min(.07, d * .12)).toFixed(3));
+        c.style.setProperty('--co', (1 - Math.min(.5, d * .7)).toFixed(3));
+      });
+    }
+    function loop() {
+      raf = 0; cur += (target - cur) * .16;
+      if (Math.abs(target - cur) < .3) cur = target;
+      apply(cur);
+      if (cur !== target) raf = requestAnimationFrame(loop);
+    }
+    function onScroll() {
+      var r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
+      var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      target = p * dist;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    measure();
+  });
+
+  /* выравнивание рядов карточек (Кенан 09.11): в каждом визуальном ряду соседние элементы карточек
+     (метка, заголовок, текст, ссылка) получают общую высоту → стоят на одной линии; карточки одной высоты */
+  var CARD = '.card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .blog-card, .n-month';
+  function alignRows() {
+    var parents = [];
+    Array.prototype.forEach.call(document.querySelectorAll(CARD), function (c) {
+      if (c.closest('[data-hs]')) return;
+      if (parents.indexOf(c.parentNode) < 0) parents.push(c.parentNode);
+    });
+    parents.forEach(function (par) {
+      var cards = Array.prototype.filter.call(par.children, function (c) { return c.matches(CARD); });
+      if (cards.length < 2) return;
+      cards.forEach(function (c) { Array.prototype.forEach.call(c.children, function (k) { k.style.minHeight = ''; }); });
+      var rows = { all: cards };   /* все карточки группы — одной высоты, даже в разных рядах */
+      Object.keys(rows).forEach(function (t) {
+        var row = rows[t];
+        if (row.length < 2) return;
+        var n = Math.max.apply(null, row.map(function (c) { return c.children.length; }));
+        for (var i = 0; i < n - 1; i++) {      /* последний элемент (ссылка/кнопка) не тянем — его прижимает margin-top: auto */
+          var els = row.map(function (c) { return c.children[i]; }).filter(Boolean);
+          var h = Math.max.apply(null, els.map(function (e) { return e.getBoundingClientRect().height; }));
+          els.forEach(function (e) { if (getComputedStyle(e).display !== 'none') e.style.minHeight = h + 'px'; });
+        }
+      });
+    });
+  }
+  var alT = 0;
+  function alignSoon() { clearTimeout(alT); alT = setTimeout(alignRows, 120); }
+  window.addEventListener('resize', alignSoon);
+  window.addEventListener('load', alignRows);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(alignRows);
+
+  /* кнопки (Кенан 09.11): текст «перекатывается» при наведении, кнопка слегка тянется к курсору (только мышь) */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('.n-btn, .n-body .btn, .n-cta'), function (b) {
+      if (b.querySelector('.n-roll') || b.children.length > 1 || !b.textContent.trim()) return;
+      var t = b.textContent.trim();
+      b.innerHTML = '<span class="n-roll"><span>' + t.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span><span aria-hidden="true">' +
+        t.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span></span>';
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.setProperty('--mxb', ((e.clientX - r.left - r.width / 2) * .18).toFixed(1) + 'px');
+        b.style.setProperty('--myb', ((e.clientY - r.top - r.height / 2) * .28).toFixed(1) + 'px');
+      });
+      b.addEventListener('mouseleave', function () { b.style.setProperty('--mxb', '0px'); b.style.setProperty('--myb', '0px'); });
+    });
+  }
+
   if (reduce) return;
 
   /* spotlight in the first screen */
@@ -405,7 +498,7 @@
 
   /* reveal content blocks as they enter the screen */
   if ('IntersectionObserver' in window) {
-    var sel = '.n-body main > section:not(.n-hero) .sec-header, .xid-card, .feat-card, .price-card, .step-card, .opp-card, .adv-card, .review-card, .svc-card, .info-card, .trust-card, .fmt-card, .law-card, .dir-card, .def-card, .video-card, .blog-card, .bc, .process-step, .reg-path-step, .why-item, .stat-item, .n-person, .tl-row, .tl-item';
+    var sel = '.n-body main > section:not(.n-hero) .sec-header, .xid-card, .feat-card, .price-card, .step-card, .opp-card, .adv-card, .review-card, .svc-card, .info-card, .trust-card, .fmt-card, .law-card, .dir-card, .def-card, .video-card, .blog-card, .bc, .process-step, .reg-path-step, .why-item, .stat-item, .n-person, .tl-row, .tl-item, .timeline-list li, .n-gallery .n-shot, .n-month, .price-card:not(.n-hs .price-card), .card, .n-who, .n-cta-box, .n-foot-mark, .book-card-row';
     var els = document.querySelectorAll(sel);
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -414,9 +507,9 @@
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
     Array.prototype.forEach.call(els, function (el, i) {
       var r = el.getBoundingClientRect();
-      if (r.top < innerHeight) return;           /* already on screen — leave as is */
+      if (r.top < innerHeight || el.closest('[data-hs]')) return;   /* already on screen / inside a pinned ribbon — leave as is */
       el.classList.add('n-io');
-      el.style.transitionDelay = ((i % 4) * 0.08) + 's';
+      el.style.transitionDelay = (el.matches('.timeline-list li') ? (i % 2) * 0.12 : (i % 4) * 0.08) + 's';
       io.observe(el);
     });
   }

@@ -473,10 +473,10 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-io { opacity: 0; transform: translateY(36px); transition: opacity 1s var(--n-e), transform 1.1s var(--n-e); }
 .n-io.is-in { opacity: 1; transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  .n-rise, .n-hh-a span, .n-hh-photo, .n-halo, .n-belt, .n-hero-bg img, .n-hero-art img { animation: none !important; }
-  .n-io { opacity: 1; transform: none; transition: none; }
-}
+/* мягкий режим (ОС просит меньше движения): короткие проявления остаются, бесконечные движения — нет */
+.n-soft .n-io { transform: translateY(12px); transition-duration: .6s, .6s; }
+.n-soft .n-hh-photo, .n-soft .n-halo { animation: none !important; }
+.n-soft .n-belt { animation-duration: 90s !important; }
 
 /* ═══ шрифтовая система концепта RAGIM: Cormorant — заголовки и «почерк», Alegreya — чтение, Manrope — интерфейс ═══ */
 .n-body .n-lead, .n-body .sec-sub, .n-body .sec-lead, .n-body .stud-sub, .n-body .n-person-lead,
@@ -534,7 +534,7 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
   .n-cine-quote { font-size: clamp(23px, 6.4vw, 28px); }
   .n-cine-cue { bottom: 18px; height: 44px; }
 }
-@media (prefers-reduced-motion: reduce) { .n-cine-img, .n-cine-glow, .n-cine-cue i { animation: none !important; } }
+
 
 /* ═══ Главная · «О специалисте»: без второй копии портрета; хронология в две колонки ═══ */
 .n-home .n-about-home .about-grid { grid-template-columns: 1fr; }
@@ -555,7 +555,7 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-home .n-about-home .diploma-label::before { content: ""; width: 34px; height: 1px; background: currentColor; }
 
 /* ═══ Главная · сцена на кадрах видео (JobTop): касание → поиск → заголовок. Переопределяет общий .n-cine выше ═══ */
-.n-body .n-cine-v { height: 340vh; }
+.n-body .n-cine-v { height: 250vh; }
 .n-cine-v .n-cine-frame { width: max(100%, 177.78vh); width: max(100%, 177.78svh); aspect-ratio: 16 / 9; transform-origin: 50% 40%; }
 .n-cine-v .n-cine-img { object-fit: cover; animation: nCineIn 1.8s var(--n-e) both; }
 .n-cine-v .n-cine-cv { opacity: 1; }
@@ -591,7 +591,7 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-cine-v.is-title .n-cine-b1 .n-ctas { opacity: 1; transform: none; transition-delay: 1.95s; }
 .n-cine-v .n-cine-cue { opacity: calc(1 - var(--t2, 0)); }
 @media (max-width: 700px) {
-  .n-body .n-cine-v { height: 300vh; }
+  .n-body .n-cine-v { height: 230vh; }
   .n-cine-v .n-cine-frame { width: 100svh; width: 100vh; height: 100svh; aspect-ratio: 1 / 1; top: 0; transform: translate(-50%, 0) scale(var(--cz)); }
   .n-cine-v .n-cine-shade { background: linear-gradient(0deg, rgba(7,9,14,.97) 0%, rgba(7,9,14,.85) 30%, rgba(7,9,14,calc(var(--sh,.1) * .8)) 52%, transparent 66%), linear-gradient(180deg, rgba(7,9,14,.5) 0%, transparent 16%); }
   .n-cine-search { position: fixed; left: 50%; top: 55%; width: 80vw; height: 50px; margin-left: -40vw; padding: 0 18px; gap: 10px; background: rgba(20,40,70,.45); }
@@ -636,8 +636,6 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) > :is(a.btn:first-of-type, .btn-row, [class*="-cta"], [class*="-actions"], a[class*="-link"]:last-child, a[class*="-more"]:last-child) { margin-top: auto !important; }
 .n-body .price-card > a.btn + a.btn { margin-top: 0 !important; }
 .n-body .price-card .price-total { margin-top: 6px; }
-/* карточка без кнопки действия не растягивается по соседям: высота по содержимому, поля сверху = снизу */
-.n-body :is(.card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card):not(:has(> :is(a.btn, .btn-row, [class*="-cta"], [class*="-actions"], a[class*="-link"], a[class*="-more"]))) { align-self: start; height: auto !important; min-height: 0 !important; }
 .n-body :is(.price-card, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .bc) > :last-child:not(a):not(button):not(.btn) { padding-bottom: 0 !important; border-bottom: 0 !important; }
 
 /* ═══ Краткосрочные тренинги (08.11.2026): карточки, программа по месяцам, калькулятор, форма — по стандарту карточек ═══ */
@@ -722,3 +720,126 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-app-txt small { font: 400 13.5px/1.4 var(--n-read); color: var(--n-soft); }
 .n-app-go { flex: 0 0 auto; min-height: 40px; padding: 0 18px; border: 0; border-radius: 99px; background: var(--n-gold); color: var(--n-bg); font: 500 15px/1 var(--n-read); cursor: pointer; }
 .n-app-x { flex: 0 0 auto; width: 34px; height: 34px; border: 0; border-radius: 50%; background: transparent; color: var(--n-smoke); font-size: 22px; cursor: pointer; }
+
+/* ═══ Программы на главной (Кенан 09.11): закреплённая лента, едет по вертикальной прокрутке;
+   каждая карточка — подсетка из 6 рядов (значок · название · описание · условия · цена · кнопки) → ряды на одной линии ═══ */
+.n-body .n-hs { position: relative; padding: 0 !important; }
+.n-body .n-hs-stick { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 28px; overflow: hidden; padding: 88px 0 24px; box-sizing: border-box; }
+.n-body .n-hs-stick > .sec-inner { width: 100%; max-width: var(--n-wrap); margin: 0 auto; padding: 0 var(--n-pad); }
+.n-body .n-hs-stick > .sec-inner .sec-header { margin: 0 !important; }
+.n-body .n-hs [data-hs-track] { display: grid !important; grid-auto-flow: column; grid-auto-columns: 392px; grid-template-rows: repeat(6, auto); column-gap: 24px; row-gap: 0;
+  width: max-content; max-width: none !important; margin: 0 !important; padding: 0 max(var(--n-pad), calc((100vw - var(--n-wrap)) / 2 + var(--n-pad))) !important;
+  overflow: visible !important; transform: translate3d(var(--hx, 0px), 0, 0); will-change: transform; }
+.n-body .n-hs .price-card { grid-row: span 6; display: grid !important; grid-template-rows: subgrid; row-gap: 14px; gap: 14px; height: auto !important; min-width: 0;
+  transform: scale(var(--cs, 1)); opacity: var(--co, 1); transition: transform .35s var(--n-e), opacity .35s var(--n-e), border-color .3s; transform-origin: 50% 50%; }
+.n-body .n-hs .price-card > * { margin: 0 !important; }
+.n-body .n-hs .price-card-head { display: flex; flex-direction: column; gap: 6px; align-self: start; }
+.n-body .n-hs .price-card-head :is(h3, h4) { margin: 0; white-space: nowrap; font: 400 clamp(22px, 1.7vw, 26px)/1.15 var(--n-serif) !important; color: var(--n-milk); }
+.n-body .n-hs .price-card-head span { font: 600 11.5px/1.3 var(--n-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--n-gold); }
+.n-body .n-hs .price-card-desc { align-self: start; font-size: 15.5px !important; line-height: 1.6 !important; color: var(--n-soft); }
+.n-body .n-hs .n-pc-rows { align-self: start; display: flex; flex-direction: column; }
+.n-body .n-hs .n-pc-rows .price-row { display: flex; justify-content: space-between; gap: 14px; padding: 7px 0; border-top: 1px solid var(--n-line); font: 400 14.5px/1.4 var(--n-read); }
+.n-body .n-hs .n-pc-rows .price-row-value { text-align: right; color: var(--n-text); }
+.n-body .n-hs .price-total { align-self: end; display: flex !important; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 14px; background: rgba(201,169,97,.08); border: 1px solid rgba(201,169,97,.28); text-align: left !important; }
+.n-body .n-hs .price-total .num { font: 500 30px/1 var(--n-serif); color: var(--n-gold); }
+.n-body .n-hs .price-total .lbl { font: 400 14px/1.3 var(--n-read); color: var(--n-smoke); }
+.n-body .n-hs .n-pc-actions { align-self: end; display: flex; flex-direction: column; gap: 10px; }
+.n-body .n-hs .n-pc-actions .btn { width: 100%; min-height: 48px; }
+.n-body .n-hs .price-card > svg, .n-body .n-hs .n-pc-ico { width: 40px; height: 40px; }
+.n-hs-dots { display: flex; gap: 8px; justify-content: center; }
+@media (max-width: 700px) {
+  .n-body .n-hs [data-hs-track] { grid-auto-columns: 84vw; column-gap: 14px; padding: 0 8vw !important; }
+  .n-body .n-hs .n-pc-rows { display: none; }
+  .n-body .n-hs-stick { padding-top: 76px; gap: 18px; }
+  .n-body .n-hs-stick > .sec-inner .sec-sub { display: none; }
+}
+.n-body .n-hs .n-hs-intro { grid-row: 1 / span 5; align-self: center; width: 340px; max-width: none !important; margin: 0 24px 0 0 !important; padding: 0 !important; }
+.n-body .n-hs [data-hs-track] { grid-auto-columns: auto; grid-template-columns: none; }
+.n-body .n-hs .price-card { width: 380px; }
+.n-body .n-hs .n-hs-intro .sec-h2 { font-size: clamp(40px, 3.6vw, 58px) !important; line-height: 1.02 !important; }
+.n-body .n-hs .price-card > svg { display: none; }
+.n-body .n-hs .price-card { grid-row: span 5; }
+.n-body .n-hs [data-hs-track] { grid-template-rows: repeat(5, auto); }
+.n-body .n-hs .n-pc-rows .price-row { padding: 5px 0; font-size: 14px; }
+.n-body .n-hs .price-card-desc { font-size: 15px !important; line-height: 1.55 !important; }
+@media (max-width: 700px) {
+  .n-body .n-hs .n-hs-intro { width: 80vw; margin-right: 6vw !important; }
+  .n-body .n-hs .price-card { width: 82vw; }
+  .n-body .n-hs .price-card { grid-row: span 4; }
+  .n-body .n-hs [data-hs-track] { grid-template-rows: repeat(4, auto); }
+  .n-body .n-hs .n-hs-intro { grid-row: 1 / span 4; }
+}
+.n-body .n-hs .price-card { grid-row: 1 / span 5 !important; }
+@media (max-width: 700px) { .n-body .n-hs .price-card { grid-row: 1 / span 4 !important; } }
+.n-body .n-hs .price-card { margin: 0 !important; }
+
+/* ═══ Ряды карточек (Кенан 09.11): карточки ряда одной высоты; соседние элементы выравнивает nocturne.js (alignRows) ═══ */
+.n-body :is(.card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .blog-card) { align-self: stretch; }
+/* подзаголовок секции: без жёстких переносов — одна строка, если не помещается — две равные (text-wrap: balance) */
+.n-body .sec-sub br { display: none; }
+.n-body .sec-sub :is(span[class*="-desk"], span[class*="-mob"], .sh-line) { display: inline; }
+.n-body .sec-sub [class*="-mob"] { display: none !important; }
+.n-body .sec-header .sec-sub { max-width: 980px !important; text-wrap: balance; }
+.n-body .svc-grid { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 24px !important; }
+@media (max-width: 960px) { .n-body .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 640px) { .n-body .svc-grid { grid-template-columns: 1fr !important; } }
+
+/* ═══ О специалисте (Кенан 09.11): хронология с линией и точками, проявление по одной строке, подсветка при наведении ═══ */
+.n-body .bio-2col.n-one-col { grid-template-columns: 1fr !important; }
+.n-body .timeline-list { position: relative; }
+.n-body .timeline-list li { position: relative; padding-left: 28px !important; border-radius: 14px; transition: background .4s var(--n-e), opacity .9s var(--n-e), transform 1s var(--n-e); }
+.n-body .timeline-list li::before { content: ""; position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, rgba(201,169,97,.55), rgba(201,169,97,.08)); }
+.n-body .timeline-list li::after { content: ""; position: absolute; left: 2px; top: 34px; width: 9px; height: 9px; border-radius: 50%; background: var(--n-bg); border: 1px solid var(--n-gold); transition: background .3s, box-shadow .3s; }
+.n-body .timeline-list li:hover { background: rgba(201,169,97,.05); }
+.n-body .timeline-list li:hover::after { background: var(--n-gold); box-shadow: 0 0 0 6px rgba(201,169,97,.14); }
+.n-body .timeline-list li:hover > strong { text-shadow: 0 0 24px rgba(201,169,97,.45); }
+.n-body .timeline-list li.n-io { transform: translateX(-18px); }
+.n-body .timeline-list li.n-io.is-in { transform: none; }
+/* сертификаты: горизонтальная лента со свайпом и прилипанием */
+.n-body .n-gallery { display: flex !important; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 2px 18px; scrollbar-width: thin; scrollbar-color: rgba(201,169,97,.4) transparent; -webkit-overflow-scrolling: touch; }
+.n-body .n-gallery .n-shot { flex: 0 0 auto; width: clamp(220px, 24vw, 300px); scroll-snap-align: start; transition: transform .5s var(--n-e), box-shadow .5s, opacity .9s var(--n-e); }
+.n-body .n-gallery .n-shot:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -24px rgba(0,0,0,.8); }
+.n-body .n-gallery .n-shot img { width: 100%; height: clamp(160px, 17vw, 210px); object-fit: cover; border-radius: 12px; }
+
+/* ═══ Подвал (Кенан 09.11): 4 колонки в ряд на десктопе, 2 на планшете, 1 на телефоне; знак заливается при подходе ═══ */
+.n-body .n-foot-orig > div, .n-body .n-foot-orig .footer-inner { display: block !important; }
+.n-body .n-foot-orig .footer-grid { display: grid !important; grid-template-columns: 1.35fr 1fr 1fr 1fr !important; gap: 40px !important; align-items: start; }
+.n-body .n-foot-orig .footer-grid > div { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.n-body .n-foot-orig .footer-links { display: flex; flex-direction: column; gap: 8px; }
+.n-body .n-foot-orig .footer-col-title { font: 600 12px/1.4 var(--n-sans); letter-spacing: .2em; text-transform: uppercase; color: var(--n-gold); }
+.n-body .n-foot-orig .social-links { display: flex; gap: 10px; }
+.n-body .n-foot-orig .social-links a { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--n-line2); font: 600 11px/1 var(--n-sans); transition: border-color .3s, color .3s, transform .4s var(--n-e); }
+.n-body .n-foot-orig .social-links a:hover { border-color: var(--n-gold); transform: translateY(-3px); }
+.n-body .n-foot-orig .footer-bottom { margin-top: 48px !important; }
+@media (max-width: 960px) { .n-body .n-foot-orig .footer-grid { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 600px) { .n-body .n-foot-orig .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }
+.n-foot-mark.is-in { background-position: 0 100%; }
+
+/* ═══ Книги: в общей сетке, карточка книги ═══ */
+.n-body .n-books-band { max-width: var(--n-wrap); margin: clamp(56px, 6vw, 88px) auto 0 !important; padding: 0 var(--n-pad) !important; background: none !important; }
+.n-body .books-band-inner { display: flex; flex-direction: column; gap: 18px; padding: 0 !important; max-width: none !important; }
+.n-body .books-band-label { font: 600 12px/1.3 var(--n-sans); letter-spacing: .24em; text-transform: uppercase; color: var(--n-gold); }
+.n-body .book-card-row { display: grid !important; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 32px; align-items: center; padding: var(--n-card-pad); border-radius: var(--n-card-radius); background: var(--n-glass); border: 1px solid var(--n-line); transition: border-color .4s, transform .6s var(--n-e); }
+.n-body .book-card-row:hover { border-color: rgba(201,169,97,.4); transform: translateY(-4px); }
+.n-body .book-spine { width: 120px; height: 168px; border-radius: 6px 14px 14px 6px; background: linear-gradient(90deg, #2a2216 0 10px, #3b2f1c 10px 12px, #17130c 12px), linear-gradient(160deg, #3a2e1b, #120f0a); box-shadow: 0 24px 40px -22px rgba(0,0,0,.9), inset -1px 0 0 rgba(201,169,97,.35); display: grid; place-items: center; padding: 14px; }
+.n-body .book-spine-text { font: italic 400 18px/1.15 var(--n-serif); color: var(--n-gold2); text-align: center; writing-mode: horizontal-tb !important; transform: none !important; }
+.n-body .book-card-info { display: flex; flex-direction: column; gap: 10px; }
+.n-body .book-card-info h3 { margin: 0; font: 400 clamp(28px, 2.4vw, 36px)/1.1 var(--n-serif); color: var(--n-milk); }
+.n-body .book-card-info p { margin: 0; font: 400 16.5px/1.6 var(--n-read); color: var(--n-soft); max-width: 640px; }
+.n-body .book-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.n-body .book-card-tag { padding: 5px 12px; border-radius: 99px; border: 1px solid var(--n-line2); font: 500 12.5px/1.2 var(--n-sans); color: var(--n-soft); }
+@media (max-width: 760px) { .n-body .book-card-row { grid-template-columns: 1fr; justify-items: start; } .n-body .book-spine { width: 96px; height: 132px; } }
+/* простая лента (статьи): карточки одного ряда */
+.n-body .n-hs-simple [data-hs-track] { grid-template-rows: auto !important; align-items: stretch; }
+.n-body .n-hs-simple .n-hs-intro { grid-row: 1 !important; }
+.n-body .n-hs-simple .blog-card { width: 380px; grid-row: 1 !important; margin: 0 !important; transform: scale(var(--cs, 1)); opacity: var(--co, 1); transition: transform .35s var(--n-e), opacity .35s var(--n-e); }
+@media (max-width: 700px) { .n-body .n-hs-simple .blog-card { width: 80vw; } }
+
+/* ═══ Кнопки: перекат текста + притяжение к курсору ═══ */
+.n-roll { position: relative; display: inline-flex; flex-direction: column; height: 1.25em; overflow: hidden; line-height: 1.25em; }
+.n-roll > span { display: block; transition: transform .55s cubic-bezier(.7,0,.2,1); }
+:is(.n-btn, .n-body .btn, .n-cta):hover .n-roll > span { transform: translateY(-100%); }
+:is(.n-btn, .n-body .btn, .n-cta) { translate: var(--mxb, 0px) var(--myb, 0px); transition: translate .35s var(--n-e), transform .5s cubic-bezier(.3,1.6,.5,1), box-shadow .5s, background .3s, border-color .3s, color .3s; }
+.n-body section > .n-books-band { margin-left: auto !important; margin-right: auto !important; width: 100% !important; box-sizing: border-box; }
+.n-body .n-books-band { padding: 0 !important; }
+.n-body .book-spine-text { display: block !important; opacity: 1 !important; color: var(--n-gold2) !important; }

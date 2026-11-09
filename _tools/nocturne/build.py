@@ -149,21 +149,29 @@ VID_DIR = SITE.parent / '_assets' / 'nocturne_video'   # первый экран
 CINE_FRAMES = VID_DIR / 'jobus_esr'   # кадры видео JobTop, увеличены Real-ESRGAN realesr-general-x4v3 (09.11): d/ 1920×1080, m/ 1200×1200
 
 
+# Кенан 09.11: кадры 0–66 — ходьба влево-вправо со смазом (резкость лица 19–35), 104–106 — провал → убраны.
+# Остаются 90 чётких кадров: она у центра, поворот, «говорит», касание, текст.
+CINE_KEEP = [k for k in range(67, 160) if k not in (104, 105, 106)]
+CINE_MARKS = {'sq_in': (86, 90), 'type': (90, 102), 'title': 107}   # в номерах исходных кадров (0–159)
+
+
+def cine_idx(k):
+    """Номер исходного кадра → номер в укороченной ленте."""
+    return min(range(len(CINE_KEEP)), key=lambda i: abs(CINE_KEEP[i] - k))
+
+
 def cine_assets():
-    """Кадры первого экрана → OUT/images/hero-home/{d,m}/fNNN.webp (готовые WebP копируются как есть)."""
-    n = 0
+    """Кадры первого экрана → OUT/images/hero-home/{d,m}/fNNN.webp: только чёткие (CINE_KEEP), перенумерованные подряд."""
     for sub in ('d', 'm'):
-        src_dir = CINE_FRAMES / sub
-        files = sorted(src_dir.glob('f*.webp')) if src_dir.is_dir() else []
-        for fp in files:
-            rel_ = 'images/hero-home/%s/%s' % (sub, fp.name)
+        for i, k in enumerate(CINE_KEEP):
+            fp = CINE_FRAMES / sub / ('f%03d.webp' % k)
+            rel_ = 'images/hero-home/%s/f%03d.webp' % (sub, i)
             dst = OUT / rel_
-            if not (dst.is_file() and dst.stat().st_mtime >= fp.stat().st_mtime):
+            if not (dst.is_file() and dst.stat().st_size == fp.stat().st_size and dst.stat().st_mtime >= fp.stat().st_mtime):
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(fp, dst)
             copied.add(rel_)
-        n = len(files)
-    return n
+    return len(CINE_KEEP)
 
 
 QUERY = 'Doctor Ragimoff'
@@ -185,7 +193,7 @@ def cine_hero(d, lang, new_page):
     return '''<style>@font-face{font-family:"Marggraff Kursiv";src:url("%s") format("woff");font-display:swap}</style>
 <section class="n-cine n-cine-v" id="main-content" data-cine>
 <div class="n-cine-stick">
-<div class="n-cine-frame" data-frames="%d" data-fsrc="%s" data-msrc="%s">
+<div class="n-cine-frame" data-frames="%d" data-fsrc="%s" data-msrc="%s" data-marks="%s">
 <img class="n-cine-img" src="%s" alt="" fetchpriority="high"><canvas class="n-cine-cv" aria-hidden="true"></canvas>
 <div class="n-cine-search" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="n-cine-q" data-q="%s"></span><i class="n-cine-caret"></i></div>
 </div>
@@ -197,7 +205,9 @@ def cine_hero(d, lang, new_page):
 </div>
 <div class="n-cine-cue" aria-hidden="true"><i></i></div>
 <div class="n-cine-out" aria-hidden="true"></div>
-</div></section>''' % (H.escape(font), n, H.escape(f0.replace('f000', 'f{i}')), H.escape(f0.replace('/d/f000', '/m/f{i}')), H.escape(f0),
+</div></section>''' % (H.escape(font), n, H.escape(f0.replace('f000', 'f{i}')), H.escape(f0.replace('/d/f000', '/m/f{i}')),
+                         '%d,%d,%d,%d,%d' % (cine_idx(CINE_MARKS['sq_in'][0]), cine_idx(CINE_MARKS['sq_in'][1]), cine_idx(CINE_MARKS['type'][0]),
+                                            cine_idx(CINE_MARKS['type'][1]), cine_idx(CINE_MARKS['title'])), H.escape(f0),
                          H.escape(QUERY), H.escape(d.get('badge', '')), H.escape(hand), H.escape(strong), letters, ctas)
 
 
@@ -207,6 +217,8 @@ def home_about(frag):
     if sec is None:
         return
     sec['class'] = sec.get('class', []) + ['n-about-home']
+    for bb in sec.select('.books-band'):       # shared.js растягивает .books-band на всю ширину — у Ноктюрна блок в общей сетке
+        bb['class'] = [c if c != 'books-band' else 'n-books-band' for c in bb.get('class', [])]
     right = sec.select_one('.about-col-right')
     if right is not None:
         btn = right.select_one('a.about-img-btn')
@@ -474,10 +486,9 @@ def page_shell(lang, new_page, title, desc, head_extra, body_cls, header, main, 
 %s
 %s
 <script src="%sassets/js/nocturne.js"></script>
-<script src="%sassets/js/motion-gate.js"></script>
 </body>
 </html>
-''' % (lang, H.escape(title), H.escape(desc), R, head_extra, R, body_cls, header, main, footer, after, scripts, R, R)
+''' % (lang, H.escape(title), H.escape(desc), R, head_extra, R, body_cls, header, main, footer, after, scripts, R)
 
 
 def collect_scripts(nodes, orig_page, new_page):
@@ -696,10 +707,100 @@ def programs_block(lang, new_page):
     restyle(sec, t)
     for a in sec.select('a[href^="#registration"]'):
         a['href'] = rel(new_page, lang + '/' + MAP['tehsil.html']) + '#registration'
-    sec['class'] = sec.get('class', []) + ['n-home-programs']
+    sec['class'] = sec.get('class', []) + ['n-home-programs', 'n-hs']
     if sec.has_attr('id'):
         del sec['id']
+    shape_programs(sec, t, lang, new_page)
     return str(sec)
+
+
+def shape_programs(sec, soup, lang, new_page):
+    """Кенан 09.11: без «PDF Yüklə»; психодиагностика — своя карточка; у всех карточек один скелет
+    (значок · название · описание · условия · цена · кнопки) → подсетка ставит каждый ряд на одну линию;
+    лента едет по вертикальной прокрутке (nocturne.js, [data-hs])."""
+    for b in sec.select('.pdf-export-btn, [class*="pdf-export"]'):
+        b.decompose()
+    cards = sec.select('.price-card')
+    if not cards:
+        return
+    track = cards[0].parent
+    track['data-hs-track'] = ''
+    # психодиагностика: ссылка-хвост в карточке психоанализа → отдельная карточка
+    pd_href = None
+    for c in cards:
+        for a in c.find_all('a', recursive=False):
+            if 'btn' not in a.get('class', []) and 'psixodiaqnostika' in (a.get('href') or ''):
+                pd_href = a['href']
+                src = c
+                a.decompose()
+    if pd_href:
+        import copy
+        nc = copy.copy(src)
+        h = nc.select_one('.price-card-head h4, .price-card-head h3')
+        if h is not None:
+            h.string = {'az': 'Psixodiaqnostika', 'ru': 'Психодиагностика', 'en': 'Psychodiagnostics'}[lang]
+        d = nc.select_one('.price-card-desc')
+        if d is not None:
+            d.string = ST.T[lang]['tracks'][0][2]
+        for a in nc.select('a.btn'):
+            if 'psixoanaliz' in (a.get('href') or ''):
+                a['href'] = pd_href
+        src.insert_after(nc)
+        n = len(sec.select('.price-card'))
+        h2 = sec.select_one('h2')
+        if h2 is not None:
+            for node in h2.find_all(string=True):
+                if '5' in node:
+                    node.replace_with(node.replace('5', str(n), 1))
+                    break
+    # один скелет для подсетки
+    for c in sec.select('.price-card'):
+        rows = c.find_all(class_='price-row', recursive=False)
+        if rows:
+            box = soup.new_tag('div', attrs={'class': 'n-pc-rows'})
+            rows[0].insert_before(box)
+            for r in rows:
+                box.append(r.extract())
+        btns = c.find_all('a', class_='btn', recursive=False)
+        if btns:
+            act = soup.new_tag('div', attrs={'class': 'n-pc-actions'})
+            btns[0].insert_before(act)
+            for b in btns:
+                if b.has_attr('style'):
+                    del b['style']
+                act.append(b.extract())
+        if c.find(['svg', 'img'], recursive=False) is None:
+            c.insert(0, soup.new_tag('span', attrs={'class': 'n-pc-ico', 'aria-hidden': 'true'}))
+    # заголовок секции — первая панель ленты (уезжает вместе с карточками)
+    head = sec.select_one('.sec-inner')
+    if head is not None:
+        head['class'] = head.get('class', []) + ['n-hs-intro']
+        track.insert(0, head.extract())
+    # закреплённая сцена: лента внутри «липкого» окна
+    stick = soup.new_tag('div', attrs={'class': 'n-hs-stick'})
+    for ch in list(sec.children):
+        stick.append(ch.extract())
+    sec.append(stick)
+    sec['data-hs'] = ''
+
+
+def make_ribbon(sec, soup, card_sel):
+    """Секция → закреплённая лента: заголовок первой панелью, карточки в ряд (nocturne.js, [data-hs])."""
+    cards = sec.select(card_sel)
+    if len(cards) < 3:
+        return
+    track = cards[0].parent
+    track['data-hs-track'] = ''
+    head = sec.select_one('.sec-inner') or sec.select_one('.sec-header')
+    if head is not None and head is not track and not head.find(attrs={'data-hs-track': True}):
+        head['class'] = head.get('class', []) + ['n-hs-intro']
+        track.insert(0, head.extract())
+    stick = soup.new_tag('div', attrs={'class': 'n-hs-stick'})
+    for ch in list(sec.children):
+        stick.append(ch.extract())
+    sec.append(stick)
+    sec['data-hs'] = ''
+    sec['class'] = sec.get('class', []) + ['n-hs', 'n-hs-simple']
 
 
 def build_page(lang, orig_name, new_rel, key):
@@ -735,6 +836,20 @@ def build_page(lang, orig_name, new_rel, key):
             s.body.append(main)
     hero = main.select_one('section.page-hero, section.page-hero-x')
     d = hero_parts(hero, orig_page, new_page)
+    if orig_name == 'haqqimda.html':    # Кенан 09.11: фото уже в первом экране — второй портрет в «Peşəkar Yol» убрать, текст на всю ширину
+        for im in main.find_all('img', src=re.compile('photo-portal')):
+            col = im.find_parent('div', class_='about-img')
+            col = col.parent if col is not None and col.parent is not None else None
+            grid = col.parent if col is not None else None
+            if col is not None and grid is not None and 'bio-2col' in grid.get('class', []):
+                keep = [a.extract() for a in col.find_all('a')]          # кнопки колонки (запись) — под текстом
+                if keep:
+                    row = s.new_tag('div', attrs={'class': 'n-about-more-row'})
+                    for a in keep:
+                        row.append(a)
+                    grid.insert_after(row)
+                col.decompose()
+                grid['class'] = grid.get('class', []) + ['n-one-col']
     if orig_name == 'samira.html':      # тренинг — на своей странице (telim/aile-terapiyasi.html), здесь только о Самире
         for sec in main.find_all('section'):
             if sec.select_one('.mod-panel') and not sec.find_parent('section'):
@@ -795,6 +910,9 @@ def build_page(lang, orig_name, new_rel, key):
         stats = frag.select_one('.stats-strip')
         stats_html = str(stats.extract()) if stats else ''
         home_about(frag)
+        blog = frag.select_one('section.sec-blog-latest')
+        if blog is not None:      # Кенан 09.11: статьи — лента, которая едет по вертикальной прокрутке
+            make_ribbon(blog, frag, '.blog-card')
         main_html = cine_hero(d, lang, new_page) + marquee + stats_html + specialists_block(lang, new_page) + programs_block(lang, new_page) + str(frag)
     elif orig_name in ('haqqimda.html', 'samira.html'):
         photo = 'images/kenan/haqqimda-kenan.jpg' if orig_name == 'haqqimda.html' else 'images/samira/samira-portret.jpg'
