@@ -845,3 +845,21 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-body .book-spine-text { display: block !important; opacity: 1 !important; color: var(--n-gold2) !important; }
 .n-form-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
 @media (max-width: 760px) { .n-form-grid-3 { grid-template-columns: 1fr !important; } }
+
+/* ═══ Лендинг программы (Кенан 09.11): факты, документ, одна карточка цены ═══ */
+.n-facts { padding: 28px 0 0; }
+.n-facts-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.n-facts-list li { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border-radius: 16px; background: var(--n-glass); border: 1px solid var(--n-line); }
+.n-facts-list span { font: 600 11.5px/1.3 var(--n-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--n-gold); }
+.n-facts-list b { font: 500 17px/1.35 var(--n-read); color: var(--n-milk); }
+.n-doc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+@media (max-width: 900px) { .n-doc-grid { grid-template-columns: 1fr; } }
+.n-doc-text { display: flex; flex-direction: column; gap: 16px; }
+.n-doc-text .n-h2 { margin: 0; font-size: clamp(30px, 3vw, 44px) !important; }
+.n-doc-link { align-self: flex-start; padding: 12px 18px; border-radius: 99px; border: 1px solid rgba(201,169,97,.45); color: var(--n-gold) !important; font: 500 16px/1.3 var(--n-read); transition: background .3s, color .3s; }
+.n-doc-link:hover { background: var(--n-gold); color: var(--n-bg) !important; }
+.n-price-one-card { max-width: 460px; }
+.n-price-one-card .price-card > svg { display: none; }
+.n-who-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 900px) { .n-who-pair { grid-template-columns: 1fr; } }
+.n-who-pair .n-who { grid-template-columns: 130px minmax(0,1fr); } .n-who-pair .n-who img { width: 130px; height: 160px; }

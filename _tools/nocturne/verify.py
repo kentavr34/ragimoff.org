@@ -55,6 +55,8 @@ def apply_canon(a, orig, new):
             if sec.select_one('.mod-panel') and not sec.find_parent('section'):
                 sec.decompose()
     B.canon_prices(main, name, new.split('/', 1)[0], new)
+    if name in B.TL.PROGRAMS and name != 'samira.html':
+        B.TL.prune(main, name, new.split('/', 1)[0])
 
 
 for new, orig in pairs:

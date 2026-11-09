@@ -318,6 +318,7 @@ LABELS = {l: nav_labels(l) for l in LANGS}
 import sys as _sys; _sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import short_trainings as ST
 import consult_form as CF
+import training_landing as TL
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -819,6 +820,55 @@ def make_ribbon(sec, soup, card_sel):
     sec['class'] = sec.get('class', []) + ['n-hs', 'n-hs-simple']
 
 
+def program_card(lang, new_page, orig_name):
+    """Карточка программы с главной (те же цены и строки) для страницы этой программы."""
+    frag = BeautifulSoup(programs_block(lang, new_page), 'html.parser')
+    me = rel(new_page, lang + '/' + MAP[orig_name])
+    for c in frag.select('.price-card'):
+        if any((a.get('href') or '') == me for a in c.select('a.btn')):
+            for a in c.select('a.btn'):
+                if (a.get('href') or '').endswith('#registration'):
+                    a['href'] = '#registration'
+            return c
+    return None
+
+
+CONSULT_WHO = {'depressiya.html': ['haqqimda.html'], 'panik-ataklar.html': ['haqqimda.html'], 'sosial-fobiya.html': ['haqqimda.html'],
+               'enurez.html': ['haqqimda.html'], 'aile-terapiyasi-usaq.html': ['samira.html'], 'valideyn-mektebi.html': ['samira.html'],
+               'aile-terapiyasi.html': ['samira.html', 'haqqimda.html']}
+
+
+def shape_training(main, soup, orig_name, lang, new_page, d):
+    marks = TL.prune(main, orig_name, lang)
+    tops = [x for x in main.find_all('section', recursive=False)]
+    card = program_card(lang, new_page, orig_name)
+    first = tops[0] if tops else None
+    frag = lambda h: BeautifulSoup(h, 'html.parser')
+    if card is not None:
+        main.insert(0, frag(TL.facts_strip(lang, card)))
+    lead = hero_parts(soup_of(SITE / (PREFIX[lang] + TL.PROGRAMS[orig_name]['who'])).select_one('section.page-hero, section.page-hero-x'),
+                      PREFIX[lang] + 'index.html', new_page).get('lead', '')
+    who = frag(TL.who_box(lang, new_page, TL.PROGRAMS[orig_name]['who'], rel, map_url, MAP, NAMES, lead))
+    if first is not None:
+        first.insert_after(who)
+    else:
+        main.append(who)
+    if orig_name == 'program-psixodiaqnostika.html':
+        who_sec = main.select('section')[-1] if first is None else first.find_next_sibling('section')
+        (who_sec or main).insert_after(frag(TL.months_block(lang, ST)))
+    reg = main.select_one('section#registration')
+    doc = frag(TL.doc_block(lang, new_page, TL.PROGRAMS[orig_name]['doc'], orig_name, map_url))
+    price = frag(TL.price_block(lang, str(card))) if card is not None else None
+    if reg is not None:
+        reg.insert_before(doc)
+        if price is not None:
+            reg.insert_before(price)
+    else:
+        main.append(doc)
+        if price is not None:
+            main.append(price)
+
+
 def build_page(lang, orig_name, new_rel, key):
     orig_page = PREFIX[lang] + orig_name
     src = SITE / orig_page
@@ -883,6 +933,15 @@ def build_page(lang, orig_name, new_rel, key):
                 {'az': 'Ali təhsil diplomu (varsa)', 'ru': 'Диплом о высшем образовании (если есть)', 'en': 'University diploma (if any)'}[lang]), 'html.parser')
             box = idf.find_parent(class_='form-group') or idf.find_parent('label') or idf
             box.insert_after(dip)
+    if key == 'cons' and orig_name in CONSULT_WHO:      # короткий блок специалиста после первого раздела (Кенан 09.11)
+        tops = main.find_all('section', recursive=False)
+        boxes = ''.join(TL.who_box(lang, new_page, w, rel, map_url, MAP, NAMES,
+                                   hero_parts(soup_of(SITE / (PREFIX[lang] + w)).select_one('section.page-hero, section.page-hero-x'), PREFIX[lang] + 'index.html', new_page).get('lead', ''))
+                        for w in CONSULT_WHO[orig_name])
+        if len(CONSULT_WHO[orig_name]) > 1:
+            boxes = boxes.replace('<section class="n-sec"><div class="n-wrap">', '', ).replace('</div></section>', '')
+            boxes = '<section class="n-sec"><div class="n-wrap n-who-pair">' + boxes + '</div></section>'
+        (tops[0].insert_after if tops else main.append)(BeautifulSoup(boxes, 'html.parser'))
     if key == 'cons':     # запись на консультацию в одно касание (Кенан 09.11): вместо старой формы
         reg = main.select_one('section#registration')
         frag_cf = BeautifulSoup(CF.section_html(lang, LABELS[lang], orig_name.rsplit('/', 1)[-1]), 'html.parser')
@@ -896,6 +955,8 @@ def build_page(lang, orig_name, new_rel, key):
     fix_attrs(main, orig_page, new_page)
     restyle(main, s)
     canon_prices(main, orig_name, lang, new_page)
+    if orig_name in TL.PROGRAMS and orig_name != 'samira.html':   # единый лендинг программы (Кенан 09.11)
+        shape_training(main, s, orig_name, lang, new_page, d)
     content = ''.join(str(c) for c in main.contents)
     foot = s.find('footer')
     footer = footer_html(foot.extract() if foot else None, lang, orig_page, new_page)
@@ -1043,7 +1104,7 @@ def build_family(lang):
     L = LABELS[lang]
     crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a><span>/</span><a href="%s">%s</a></nav>' % (
         rel(new_page, lang + '/index.html'), H.escape(L.get('index.html', 'RAGIMOFF')), rel(new_page, lang + '/telim/index.html'), H.escape(L.get('tehsil.html', '')))
-    main_html = hero_html(d, lang, crumbs=crumbs) + who + ''.join(str(c) for c in holder.contents) + cta
+    main_html = hero_html(d, lang, crumbs=crumbs) + who + ''.join(str(c) for c in holder.contents) + TL.doc_block(lang, new_page, 'ipas', 'samira.html', map_url) + cta
     title = (d.get('w1', '') + ' ' + d.get('w2', '')).strip() or 'RAGIMOFF'
     R = root_rel(new_page)
     scripts = '<script src="%sassets/js/shared.js"></script>' % R
