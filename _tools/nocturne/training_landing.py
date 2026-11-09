@@ -69,13 +69,13 @@ INST_IMG = ['images/institute/diplom-spb-idpo.jpg', 'images/institute/diplom-spb
 IPAS_IMG = {'samira.html': 'images/certificate/sample-cert-ipas-family.jpg', '*': 'images/certificate/sample-cert-ipas-klinik.jpg'}
 
 
-def who_box(lang, new_page, orig, rel, map_url, MAP, NAMES, lead):
+def who_box(lang, new_page, orig, rel, map_url, MAP, NAMES, lead, eyebrow=None):
     t = T[lang]; e = H.escape
     return ('<section class="n-sec"><div class="n-wrap"><a class="n-who" href="%s"><img src="%s" alt="%s" loading="lazy">'
             '<span class="n-who-body"><span class="n-eyebrow">%s</span><span class="n-who-name">%s</span><span class="n-who-lead">%s</span>'
             '<span class="n-who-more">%s →</span></span></a></div></section>') % (
         rel(new_page, lang + '/' + MAP[orig]), map_url('index.html', new_page, PHOTO[orig]), e(NAMES[orig][lang]),
-        e(t['who']), e(NAMES[orig][lang]), e(lead), e(t['more']))
+        e(eyebrow or t['who']), e(NAMES[orig][lang]), e(lead), e(t['more']))
 
 
 def doc_block(lang, new_page, kind, orig, map_url):

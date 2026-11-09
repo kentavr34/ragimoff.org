@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090E">
+  <title>Книги — RAGIMOFF</title>
+  <meta name="description" content="Книги RAGIMOFF: Клиническая психиатрия, Вирус вины, Шизофрения, Эра Феникса. Чтение онлайн и заказ.">
+  <link rel="canonical" href="https://ragimoff.org/books/ru/">
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/books/">
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/books/ru/">
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/books/en/">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
+  <link rel="stylesheet" href="/books/books.css?v=13">
+  <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
+       перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
+       на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
+  <style>[hidden] { display: none !important; }
+.card__cta{display:flex;flex-wrap:wrap;gap:8px}
+.card__cta .btn{min-width:0;flex:1 1 120px;white-space:nowrap}
+@media(max-width:600px){.card__cta{display:grid;grid-template-columns:1fr}.card__cta .btn{width:100%}}
+
+.coll-banner{max-width:100%;overflow:hidden}
+.coll-banner__inner{min-width:0;max-width:100%}
+.coll-banner__p,.coll-banner__note,.coll-banner__hint{max-width:100%;white-space:normal;overflow-wrap:break-word}
+.coll-banner__btn{max-width:100%;white-space:normal;line-height:1.3}
+.hdr__cart--m{display:none}
+@media(max-width:760px){
+  .coll-banner__inner{padding:18px 16px;gap:16px}
+  .coll-banner__h{font-size:23px}
+  .coll-banner__p{font-size:14px;line-height:1.45}
+  .coll-banner__new{font-size:32px}
+  .coll-banner__btn{font-size:13px;padding:14px 12px}
+  .hdr__cart--m{display:inline-flex;position:fixed;top:12px;right:12px;z-index:95;background:#0d0b07;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+}
+
+@media(max-width:760px){
+  .coll-banner{width:100%!important;max-width:100%!important;margin:1.2rem 0!important;box-sizing:border-box!important}
+  .coll-banner__inner{display:flex!important;flex-direction:column!important;width:100%!important;max-width:100%!important;min-width:0!important;padding:16px!important;box-sizing:border-box!important}
+  .coll-banner__cover,.coll-banner__stack{max-width:100%!important}
+  .coll-banner__p,.coll-banner__note,.coll-banner__hint{width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:break-word!important}
+  .coll-banner__price{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+  .coll-banner__btn{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+}
+
+@media(max-width:760px){
+  .coll-banner{width:calc(100vw - 48px)!important;max-width:calc(100vw - 48px)!important;margin-left:auto!important;margin-right:auto!important;padding:0!important;box-sizing:border-box!important}
+  .coll-banner *{box-sizing:border-box!important}
+}
+</style>
+<style>
+.hdr__cart{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;color:#e9dcc0;text-decoration:none;border:1px solid rgba(201,169,97,.35);background:rgba(255,255,255,.03)}
+.hdr__cart:hover{background:rgba(201,169,97,.12)}
+.hdr__cart-n{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#c9a961;color:#1a1408;font:600 11px/18px Montserrat,Arial,sans-serif;text-align:center}
+.cover__title{font-size:clamp(15px,1.8vw,23px)!important;line-height:1.1!important;max-width:90%;margin-left:auto;margin-right:auto;overflow-wrap:break-word;word-break:normal;text-align:center;max-height:60%;overflow:hidden}
+.card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.25;max-height:2.5em}
+.card__meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.cover__title{font-size:17px!important}.card__title{font-size:15px!important}}
+</style></head>
+<body>
+
+  <!-- ─────────────────────── ШАПКА ─────────────────────── -->
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="/ru/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Адрес профессиональной репутации</span>
+      </a>
+      <span data-lang-switch data-langs="az,ru,en"></span>
+      <a class="hdr__cart hdr__cart--m" id="site-cart-link-m" href="#sebet" aria-label="Səbət" title="Səbət">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count-m" class="hdr__cart-n" hidden>0</span>
+        </a>
+      <nav class="nav" aria-label="Naviqasiya">
+        <a href="/ru/">Главная</a>
+        <a href="/ru/tehsil.html">Обучение</a>
+        <a href="/books/ru/">Книги</a>
+        <a href="/ru/blog.html">Блог</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Корзина" title="Корзина">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ─────────────────────── КНИГИ ─────────────────────── -->
+    <section class="sec" id="kitablar">
+      <h1 class="sr-only">Книги</h1>
+
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input type="search" id="q" placeholder="Поиск по названию, автору или году…" aria-label="Поиск книг" autocomplete="off">
+        </label>
+        <span class="count" id="count">43 книг</span>
+      </div>
+
+      <div class="afilter" id="afilter">
+        <span class="afilter__label">Автор</span>
+        <button class="chip is-on" data-author="">Все авторы</button>
+        <button class="chip" data-author="kenan">Кенан Рагимов</button>
+        <button class="chip" data-author="samira">Самира Рагимова</button>
+        <button class="chip" data-author="freud">Зигмунд Фрейд</button>
+      </div>
+
+      <div class="grid">
+
+        <h2 class="author-sec" data-author="kenan">Кенан Рагимов</h2>
+
+        <article class="card" data-author="kenan" data-title="Клиническая психиатрия">
+          <a class="card__cover" href="/klinik-psixiatriya/ru/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/klinik.jpg&quot;)"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Клиническая психиатрия</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Клиническая психиатрия</h2>
+            <p class="card__meta">2026 · AZ RU EN TR · 887 стр.</p>
+            <p class="card__price">100 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/klinik-psixiatriya/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Клиническая психиатрия" data-price="100 ₼">В корзину</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="Вирус вины">
+          <a class="card__cover" href="/books/virus-viny/ru/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/guilt.jpg&quot;)"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Вирус вины</span><span class="cover__year">2024</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Вирус вины</h2>
+            <p class="card__meta">2024 · AZ RU EN · 248 стр.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/virus-viny/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Вирус вины" data-price="30 ₼">В корзину</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="Шизофрения. Пандемия безумия">
+          <a class="card__cover" href="/books/shizofreniya/ru/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/pandemic.jpg&quot;)"><span class="cover__author">КЕНАН РАГИМОВ</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Шизофрения. Пандемия безумия</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Шизофрения. Пандемия безумия</h2>
+            <p class="card__meta">2026 · AZ RU EN · 381 стр.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/shizofreniya/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Шизофрения. Пандемия безумия" data-price="30 ₼">В корзину</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="samira">Самира Рагимова</h2>
+
+        <article class="card" data-author="samira" data-title="Эра Феникса">
+          <a class="card__cover" href="/books/phoenix-era/ru/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/phoenix.jpg&quot;)"><span class="cover__author">САМИРА РАГИМОВА</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Эра Феникса</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Эра Феникса</h2>
+            <p class="card__meta">2026 · AZ RU EN · 260 стр.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/phoenix-era/ru/">Читать <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Эра Феникса" data-price="30 ₼">В корзину</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="freud" id="freud">Зигмунд Фрейд</h2>
+<article class="card" data-author="freud" data-title="От истерии к психоанализу">
+          <a class="card__cover" href="/books/freud-gw01/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw01.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">От истерии к психоанализу</span><span class="cover__year">Книга 1</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">От истерии к психоанализу</h2>
+            <p class="card__meta">Книга 1 · 1892–1899 · 362 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw01/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Толкование сновидений">
+          <a class="card__cover" href="/books/freud-gw02/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw02.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Толкование сновидений</span><span class="cover__year">Книга 2</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Толкование сновидений</h2>
+            <p class="card__meta">Книга 2 · 1900–1925 · 460 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw02/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Психопатология обыденной жизни">
+          <a class="card__cover" href="/books/freud-gw04/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw04.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Психопатология обыденной жизни</span><span class="cover__year">Книга 3</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Психопатология обыденной жизни</h2>
+            <p class="card__meta">Книга 3 · 1901 · 191 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw04/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Теория сексуальности и случай Доры">
+          <a class="card__cover" href="/books/freud-gw05/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw05.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Теория сексуальности и случай Доры</span><span class="cover__year">Книга 4</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Теория сексуальности и случай Доры</h2>
+            <p class="card__meta">Книга 4 · 1904–1905 · 184 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw05/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Остроумие и его отношение к бессознательному">
+          <a class="card__cover" href="/books/freud-gw06/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw06.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Остроумие и его отношение к бессознательному</span><span class="cover__year">Книга 5</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Остроумие и его отношение к бессознательному</h2>
+            <p class="card__meta">Книга 5 · 1905 · 153 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw06/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Фантазия, детство и навязчивость">
+          <a class="card__cover" href="/books/freud-gw07/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw07.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Фантазия, детство и навязчивость</span><span class="cover__year">Книга 6</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Фантазия, детство и навязчивость</h2>
+            <p class="card__meta">Книга 6 · 1906–1909 · 245 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw07/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Леонардо, Шребер и техника лечения">
+          <a class="card__cover" href="/books/freud-gw08/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw08.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Леонардо, Шребер и техника лечения</span><span class="cover__year">Книга 7</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Леонардо, Шребер и техника лечения</h2>
+            <p class="card__meta">Книга 7 · 1909–1913 · 263 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw08/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Тотем и табу">
+          <a class="card__cover" href="/books/freud-gw09/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw09.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Тотем и табу</span><span class="cover__year">Книга 8</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Тотем и табу</h2>
+            <p class="card__meta">Книга 8 · 1912–1913 · 121 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw09/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Нарциссизм, бессознательное и скорбь">
+          <a class="card__cover" href="/books/freud-gw10/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw10.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Нарциссизм, бессознательное и скорбь</span><span class="cover__year">Книга 9</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Нарциссизм, бессознательное и скорбь</h2>
+            <p class="card__meta">Книга 9 · 1913–1917 · 266 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw10/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Лекции по введению в психоанализ">
+          <a class="card__cover" href="/books/freud-gw11/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw11.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Лекции по введению в психоанализ</span><span class="cover__year">Книга 10</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Лекции по введению в психоанализ</h2>
+            <p class="card__meta">Книга 10 · 1916–1917 · 309 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw11/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Жуткое, «Ребёнка бьют» и детский невроз">
+          <a class="card__cover" href="/books/freud-gw12/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw12.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Жуткое, «Ребёнка бьют» и детский невроз</span><span class="cover__year">Книга 11</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Жуткое, «Ребёнка бьют» и детский невроз</h2>
+            <p class="card__meta">Книга 11 · 1917–1920 · 181 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw12/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="По ту сторону принципа удовольствия">
+          <a class="card__cover" href="/books/freud-gw13/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw13.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">По ту сторону принципа удовольствия</span><span class="cover__year">Книга 12</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">По ту сторону принципа удовольствия</h2>
+            <p class="card__meta">Книга 12 · 1920–1924 · 248 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw13/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Религия, культура и тревога">
+          <a class="card__cover" href="/books/freud-gw14/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw14.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Религия, культура и тревога</span><span class="cover__year">Книга 13</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Религия, культура и тревога</h2>
+            <p class="card__meta">Книга 13 · 1925–1931 · 325 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw14/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Новый цикл лекций по введению в психоанализ">
+          <a class="card__cover" href="/books/freud-gw15/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw15.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Новый цикл лекций по введению в психоанализ</span><span class="cover__year">Книга 14</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Новый цикл лекций по введению в психоанализ</h2>
+            <p class="card__meta">Книга 14 · 1933 · 122 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw15/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Человек Моисей и монотеистическая религия">
+          <a class="card__cover" href="/books/freud-gw16/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw16.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Человек Моисей и монотеистическая религия</span><span class="cover__year">Книга 15</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Человек Моисей и монотеистическая религия</h2>
+            <p class="card__meta">Книга 15 · 1932–1939 · 162 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw16/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Очерк психоанализа и посмертные работы">
+          <a class="card__cover" href="/books/freud-gw17/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw17.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Очерк психоанализа и посмертные работы</span><span class="cover__year">Книга 16</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Очерк психоанализа и посмертные работы</h2>
+            <p class="card__meta">Книга 16 · 1892–1938 · 96 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw17/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Из начал психоанализа: письма Вильгельму Флиссу">
+          <a class="card__cover" href="/books/freud-fliesse-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-fliesse-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Из начал психоанализа: письма Вильгельму Флиссу</span><span class="cover__year">Книга 17</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Из начал психоанализа: письма Вильгельму Флиссу</h2>
+            <p class="card__meta">Книга 17 · 1887–1904 · 341 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-fliesse-mektublari/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Письма Марте Бернайс (1882–1912)">
+          <a class="card__cover" href="/books/freud-sevgi-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sevgi-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Письма Марте Бернайс (1882–1912)</span><span class="cover__year">1882–1912</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Письма Марте Бернайс (1882–1912)</h2>
+            <p class="card__meta">1882–1912 · 55 писем</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sevgi-mektublari/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Переписка Фрейда и Цвейга (1908–1939)">
+          <a class="card__cover" href="/books/freud-zweig-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-zweig-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Переписка Фрейда и Цвейга (1908–1939)</span><span class="cover__year">1908–1939</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Переписка Фрейда и Цвейга (1908–1939)</h2>
+            <p class="card__meta">1908–1939 · 78 писем</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-zweig-mektublari/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="О коке">
+          <a class="card__cover" href="/books/freud-kokain/01-o-koke.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-koka.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">О коке</span><span class="cover__year">1884</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">О коке</h2>
+            <p class="card__meta">1884–1887 · 41 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-kokain/01-o-koke.html">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="К пониманию афазий">
+          <a class="card__cover" href="/books/freud-afaziya/01-afaziyaya-dair.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-afaziya.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">К пониманию афазий</span><span class="cover__year">1891</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">К пониманию афазий</h2>
+            <p class="card__meta">1877–1891 · 119 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-afaziya/01-afaziyaya-dair.html">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Детский церебральный паралич">
+          <a class="card__cover" href="/books/freud-usaq-iflici/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-usaq-iflici.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Детский церебральный паралич</span><span class="cover__year">1897</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Детский церебральный паралич</h2>
+            <p class="card__meta">1897 · 310 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-usaq-iflici/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Рецензии">
+          <a class="card__cover" href="/books/freud-resenziyalar-1887-1910/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-resenziyalar.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Рецензии</span><span class="cover__year">1887–1910</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Рецензии</h2>
+            <p class="card__meta">1887–1910 · 24 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-resenziyalar-1887-1910/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Рефераты">
+          <a class="card__cover" href="/books/freud-referatlar-1884-1885/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-referatlar.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Рефераты</span><span class="cover__year">1884–1885</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Рефераты</h2>
+            <p class="card__meta">1884–1885 · 66 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-referatlar-1884-1885/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Предисловие к книге Р. де Соссюра">
+          <a class="card__cover" href="/books/freud-sossur-on-sozu/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Предисловие к книге Р. де Соссюра</span><span class="cover__year">1922</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Предисловие к книге Р. де Соссюра</h2>
+            <p class="card__meta">1922 · 3 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sossur-on-sozu/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Психопатические персонажи на сцене">
+          <a class="card__cover" href="/books/freud-sehnede-psixopatik-personajlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Психопатические персонажи на сцене</span><span class="cover__year">1942</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Психопатические персонажи на сцене</h2>
+            <p class="card__meta">1942 · 6 стр.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sehnede-psixopatik-personajlar/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Переписка Фрейда и Юнга (1906–1914)">
+          <a class="card__cover" href="/books/freud-yung-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-yung-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Переписка Фрейда и Юнга (1906–1914)</span><span class="cover__year">1906–1914</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Переписка Фрейда и Юнга (1906–1914)</h2>
+            <p class="card__meta">1906–1914 · 366 писем</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-yung-mektublari/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Афоризмы">
+          <a class="card__cover" href="/books/freud-aforizmlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-aforizmlar.jpg?v=20261028c&quot;)"><span class="cover__author">ЗИГМУНД ФРЕЙД</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Афоризмы</span><span class="cover__year"></span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Афоризмы</h2>
+            <p class="card__meta">Антология · 90 цитат</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-aforizmlar/">Читать <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────────── ФУТЕР ─────────────────────── -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <a class="logo" href="/ru/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Адрес профессиональной репутации</span>
+      </a>
+      <nav class="ft__nav" aria-label="Futermenü">
+        <a href="/ru/">Главная</a>
+        <a href="/books/ru/">Книги</a>
+        <a href="/ru/blog.html">Блог</a>
+        <a href="https://t.me/ragimoff">Telegram</a>
+        <a href="mailto:info@ragimoff.org">info@ragimoff.org</a>
+      </nav>
+      <span class="mono">© 2026 RAGIMOFF</span>
+    </div>
+  </footer>
+
+  <!-- ─────────── ФОРМА ЗАКАЗА (та же механика, что на сайте) ─────────── -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="o-title">
+      <button class="modal__x" data-close aria-label="Закрыть">✕</button>
+      <h2 class="h2" id="o-title">Заказ книги</h2>
+      <p class="modal__sub" id="o-sub"></p>
+      <form id="order-form" action="/api/book-order" method="POST" novalidate>
+        <label class="field">
+          <span>Книга</span>
+          <select id="o-book" name="book" required>
+            <option value="Клиническая психиатрия · 100 ₼">Клиническая психиатрия — 100 ₼</option>
+            <option value="Вирус вины · 30 ₼">Вирус вины — 30 ₼</option>
+            <option value="Шизофрения. Пандемия безумия · 30 ₼">Шизофрения. Пандемия безумия — 30 ₼</option>
+            <option value="Эра Феникса · 30 ₼">Эра Феникса — 30 ₼</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Имя и фамилия</span>
+          <input id="o-name" type="text" name="name" placeholder="Ваше имя и фамилия" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Мобильный телефон</span>
+          <input id="o-phone" type="tel" name="phone" placeholder="+994 XX XXX XX XX" autocomplete="tel" required>
+        </label>
+        <label class="field">
+          <span>Адрес доставки</span>
+          <textarea id="o-address" name="address" rows="2" placeholder="Страна, город, улица, дом, квартира, индекс" autocomplete="street-address" required></textarea>
+        </label>
+        <small class="field__hint">Бумажный экземпляр отправляется почтой. Условия доставки и оплаты уточняются по телефону.</small>
+        <button class="btn btn--main" type="submit">Заказать</button>
+      </form>
+      <div class="modal__ok" id="o-ok" hidden>
+        Спасибо!<br>Заказ принят — мы скоро свяжемся с вами.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__booksUI = {"sending":"Отправляем…","submit":"Заказать","fill":"Пожалуйста, укажите имя и телефон.","empty":"Ничего не найдено","count":"%n книг"};
+  </script>
+  <script src="/books/books.js?v=15" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
+<script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n();['cart-count','cart-count-m'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent=c;el.hidden=!c}})}
+  ['site-cart-link','site-cart-link-m'].forEach(function(id){var a=document.getElementById(id);if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}})
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
+</html>

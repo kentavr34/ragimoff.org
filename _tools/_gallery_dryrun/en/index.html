@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090E">
+  <title>Books — RAGIMOFF</title>
+  <meta name="description" content="RAGIMOFF books: Clinical Psychiatry, The Guilt Virus, Schizophrenia, Phoenix Era. Read online and order.">
+  <link rel="canonical" href="https://ragimoff.org/books/en/">
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/books/">
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/books/ru/">
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/books/en/">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
+  <link rel="stylesheet" href="/books/books.css?v=13">
+  <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
+       перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
+       на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
+  <style>[hidden] { display: none !important; }</style>
+</head>
+<body>
+
+  <!-- ─────────────────────── ШАПКА ─────────────────────── -->
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="/en/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">The address of professional reputation</span>
+      </a>
+      <span data-lang-switch data-langs="az,ru,en"></span>
+      <a class="hdr__cart hdr__cart--m" id="site-cart-link-m" href="#sebet" aria-label="Cart" title="Cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count-m" class="hdr__cart-n" hidden>0</span>
+        </a>
+      <nav class="nav" aria-label="Naviqasiya">
+        <a href="/en/">Home</a>
+        <a href="/en/tehsil.html">Education</a>
+        <a href="/books/en/">Books</a>
+        <a href="/en/blog.html">Blog</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Cart" title="Cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ─────────────────────── КНИГИ ─────────────────────── -->
+    <section class="sec" id="kitablar">
+      <h1 class="sr-only">Books</h1>
+
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input type="search" id="q" placeholder="Search by title, author or year…" aria-label="Search books" autocomplete="off">
+        </label>
+        <span class="count" id="count">43 books</span>
+      </div>
+
+      <div class="afilter" id="afilter">
+        <span class="afilter__label">Author</span>
+        <button class="chip is-on" data-author="">All authors</button>
+        <button class="chip" data-author="kenan">Kenan Ragimov</button>
+        <button class="chip" data-author="samira">Samira Ragimova</button>
+        <button class="chip" data-author="freud">Sigmund Freud</button>
+      </div>
+
+      <div class="grid">
+
+        <h2 class="author-sec" data-author="kenan">Kenan Ragimov</h2>
+
+        <article class="card" data-author="kenan" data-title="Clinical Psychiatry">
+          <a class="card__cover" href="/klinik-psixiatriya/en/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/klinik.jpg&quot;)"><span class="cover__author">KENAN RAGIMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Clinical Psychiatry</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Clinical Psychiatry</h2>
+            <p class="card__meta">2026 · AZ RU EN TR · 790 pp.</p>
+            <p class="card__price">100 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/klinik-psixiatriya/en/">Read <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Clinical Psychiatry" data-price="100 ₼">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="The Guilt Virus">
+          <a class="card__cover" href="/books/virus-viny/en/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/guilt.jpg&quot;)"><span class="cover__author">KENAN RAGIMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Guilt Virus</span><span class="cover__year">2024</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Guilt Virus</h2>
+            <p class="card__meta">2024 · AZ RU EN · 239 pp.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/virus-viny/en/">Read <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="The Guilt Virus" data-price="30 ₼">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="Schizophrenia. A Pandemic of Madness">
+          <a class="card__cover" href="/books/shizofreniya/en/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/pandemic.jpg&quot;)"><span class="cover__author">KENAN RAGIMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Schizophrenia. A Pandemic of Madness</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Schizophrenia. A Pandemic of Madness</h2>
+            <p class="card__meta">2026 · AZ RU EN · 306 pp.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/shizofreniya/en/">Read <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Schizophrenia. A Pandemic of Madness" data-price="30 ₼">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="samira">Samira Ragimova</h2>
+
+        <article class="card" data-author="samira" data-title="Phoenix Era">
+          <a class="card__cover" href="/books/phoenix-era/en/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/phoenix.jpg&quot;)"><span class="cover__author">SAMIRA RAGIMOVA</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Phoenix Era</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Phoenix Era</h2>
+            <p class="card__meta">2026 · AZ RU EN · 239 pp.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/phoenix-era/en/">Read <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Phoenix Era" data-price="30 ₼">Add to cart</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="freud" id="freud">Sigmund Freud</h2>
+<article class="card" data-author="freud" data-title="From Hysteria to Psychoanalysis">
+          <a class="card__cover" href="/books/freud-gw01/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw01.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">From Hysteria to Psychoanalysis</span><span class="cover__year">Book 1</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">From Hysteria to Psychoanalysis</h2>
+            <p class="card__meta">Book 1 · 1892–1899 · 362 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw01/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="The Interpretation of Dreams">
+          <a class="card__cover" href="/books/freud-gw02/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw02.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Interpretation of Dreams</span><span class="cover__year">Book 2</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Interpretation of Dreams</h2>
+            <p class="card__meta">Book 2 · 1900–1925 · 460 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw02/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="The Psychopathology of Everyday Life">
+          <a class="card__cover" href="/books/freud-gw04/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw04.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Psychopathology of Everyday Life</span><span class="cover__year">Book 3</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Psychopathology of Everyday Life</h2>
+            <p class="card__meta">Book 3 · 1901 · 191 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw04/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="The Theory of Sexuality and the Case of Dora">
+          <a class="card__cover" href="/books/freud-gw05/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw05.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Theory of Sexuality and the Case of Dora</span><span class="cover__year">Book 4</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Theory of Sexuality and the Case of Dora</h2>
+            <p class="card__meta">Book 4 · 1904–1905 · 184 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw05/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Jokes and Their Relation to the Unconscious">
+          <a class="card__cover" href="/books/freud-gw06/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw06.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Jokes and Their Relation to the Unconscious</span><span class="cover__year">Book 5</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Jokes and Their Relation to the Unconscious</h2>
+            <p class="card__meta">Book 5 · 1905 · 153 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw06/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Fantasy, Childhood and Compulsion">
+          <a class="card__cover" href="/books/freud-gw07/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw07.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Fantasy, Childhood and Compulsion</span><span class="cover__year">Book 6</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Fantasy, Childhood and Compulsion</h2>
+            <p class="card__meta">Book 6 · 1906–1909 · 245 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw07/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Leonardo, Schreber and the Technique of Treatment">
+          <a class="card__cover" href="/books/freud-gw08/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw08.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Leonardo, Schreber and the Technique of Treatment</span><span class="cover__year">Book 7</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Leonardo, Schreber and the Technique of Treatment</h2>
+            <p class="card__meta">Book 7 · 1909–1913 · 263 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw08/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Totem and Taboo">
+          <a class="card__cover" href="/books/freud-gw09/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw09.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Totem and Taboo</span><span class="cover__year">Book 8</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Totem and Taboo</h2>
+            <p class="card__meta">Book 8 · 1912–1913 · 121 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw09/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Narcissism, the Unconscious and Mourning">
+          <a class="card__cover" href="/books/freud-gw10/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw10.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Narcissism, the Unconscious and Mourning</span><span class="cover__year">Book 9</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Narcissism, the Unconscious and Mourning</h2>
+            <p class="card__meta">Book 9 · 1913–1917 · 266 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw10/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Introductory Lectures on Psycho-Analysis">
+          <a class="card__cover" href="/books/freud-gw11/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw11.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Introductory Lectures on Psycho-Analysis</span><span class="cover__year">Book 10</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Introductory Lectures on Psycho-Analysis</h2>
+            <p class="card__meta">Book 10 · 1916–1917 · 309 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw11/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="The Uncanny, “A Child Is Being Beaten” and an Infantile Neurosis">
+          <a class="card__cover" href="/books/freud-gw12/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw12.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Uncanny, “A Child Is Being Beaten” and an Infantile Neurosis</span><span class="cover__year">Book 11</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Uncanny, “A Child Is Being Beaten” and an Infantile Neurosis</h2>
+            <p class="card__meta">Book 11 · 1917–1920 · 181 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw12/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Beyond the Pleasure Principle">
+          <a class="card__cover" href="/books/freud-gw13/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw13.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Beyond the Pleasure Principle</span><span class="cover__year">Book 12</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Beyond the Pleasure Principle</h2>
+            <p class="card__meta">Book 12 · 1920–1924 · 248 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw13/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Religion, Culture and Anxiety">
+          <a class="card__cover" href="/books/freud-gw14/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw14.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Religion, Culture and Anxiety</span><span class="cover__year">Book 13</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Religion, Culture and Anxiety</h2>
+            <p class="card__meta">Book 13 · 1925–1931 · 325 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw14/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="New Introductory Lectures on Psycho-Analysis">
+          <a class="card__cover" href="/books/freud-gw15/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw15.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">New Introductory Lectures on Psycho-Analysis</span><span class="cover__year">Book 14</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">New Introductory Lectures on Psycho-Analysis</h2>
+            <p class="card__meta">Book 14 · 1933 · 122 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw15/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Moses and Monotheism">
+          <a class="card__cover" href="/books/freud-gw16/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw16.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Moses and Monotheism</span><span class="cover__year">Book 15</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Moses and Monotheism</h2>
+            <p class="card__meta">Book 15 · 1932–1939 · 162 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw16/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="An Outline of Psycho-Analysis and Posthumous Writings">
+          <a class="card__cover" href="/books/freud-gw17/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw17.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">An Outline of Psycho-Analysis and Posthumous Writings</span><span class="cover__year">Book 16</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">An Outline of Psycho-Analysis and Posthumous Writings</h2>
+            <p class="card__meta">Book 16 · 1892–1938 · 96 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw17/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="From the Beginnings of Psychoanalysis: Letters to Wilhelm Fliess">
+          <a class="card__cover" href="/books/freud-fliesse-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-fliesse-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">From the Beginnings of Psychoanalysis: Letters to Wilhelm Fliess</span><span class="cover__year">Book 17</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">From the Beginnings of Psychoanalysis: Letters to Wilhelm Fliess</h2>
+            <p class="card__meta">Book 17 · 1887–1904 · 341 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-fliesse-mektublari/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Letters to Martha Bernays (1882–1912)">
+          <a class="card__cover" href="/books/freud-sevgi-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sevgi-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Letters to Martha Bernays (1882–1912)</span><span class="cover__year">1882–1912</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Letters to Martha Bernays (1882–1912)</h2>
+            <p class="card__meta">1882–1912 · 55 letters</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sevgi-mektublari/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Freud–Zweig Letters (1908–1939)">
+          <a class="card__cover" href="/books/freud-zweig-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-zweig-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Freud–Zweig Letters (1908–1939)</span><span class="cover__year">1908–1939</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Freud–Zweig Letters (1908–1939)</h2>
+            <p class="card__meta">1908–1939 · 78 letters</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-zweig-mektublari/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="On Coca">
+          <a class="card__cover" href="/books/freud-kokain/01-o-koke.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-koka.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">On Coca</span><span class="cover__year">1884</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">On Coca</h2>
+            <p class="card__meta">1884–1887 · 41 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-kokain/01-o-koke.html">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="On Aphasia">
+          <a class="card__cover" href="/books/freud-afaziya/01-afaziyaya-dair.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-afaziya.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">On Aphasia</span><span class="cover__year">1891</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">On Aphasia</h2>
+            <p class="card__meta">1877–1891 · 119 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-afaziya/01-afaziyaya-dair.html">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Infantile Cerebral Paralysis">
+          <a class="card__cover" href="/books/freud-usaq-iflici/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-usaq-iflici.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Infantile Cerebral Paralysis</span><span class="cover__year">1897</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Infantile Cerebral Paralysis</h2>
+            <p class="card__meta">1897 · 310 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-usaq-iflici/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Reviews">
+          <a class="card__cover" href="/books/freud-resenziyalar-1887-1910/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-resenziyalar.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Reviews</span><span class="cover__year">1887–1910</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Reviews</h2>
+            <p class="card__meta">1887–1910 · 24 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-resenziyalar-1887-1910/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Abstracts">
+          <a class="card__cover" href="/books/freud-referatlar-1884-1885/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-referatlar.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Abstracts</span><span class="cover__year">1884–1885</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Abstracts</h2>
+            <p class="card__meta">1884–1885 · 66 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-referatlar-1884-1885/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Preface to R. de Saussure’s Book">
+          <a class="card__cover" href="/books/freud-sossur-on-sozu/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Preface to R. de Saussure’s Book</span><span class="cover__year">1922</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Preface to R. de Saussure’s Book</h2>
+            <p class="card__meta">1922 · 3 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sossur-on-sozu/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Psychopathic Characters on the Stage">
+          <a class="card__cover" href="/books/freud-sehnede-psixopatik-personajlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Psychopathic Characters on the Stage</span><span class="cover__year">1942</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Psychopathic Characters on the Stage</h2>
+            <p class="card__meta">1942 · 6 pp.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sehnede-psixopatik-personajlar/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="The Freud–Jung Letters (1906–1914)">
+          <a class="card__cover" href="/books/freud-yung-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-yung-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">The Freud–Jung Letters (1906–1914)</span><span class="cover__year">1906–1914</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">The Freud–Jung Letters (1906–1914)</h2>
+            <p class="card__meta">1906–1914 · 366 letters</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-yung-mektublari/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Aphorisms">
+          <a class="card__cover" href="/books/freud-aforizmlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-aforizmlar.jpg?v=20261028c&quot;)"><span class="cover__author">SIGMUND FREUD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Aphorisms</span><span class="cover__year"></span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Aphorisms</h2>
+            <p class="card__meta">Anthology · 90 quotes</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-aforizmlar/">Read <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─────────────────────── ФУТЕР ─────────────────────── -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <a class="logo" href="/en/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">The address of professional reputation</span>
+      </a>
+      <nav class="ft__nav" aria-label="Futermenü">
+        <a href="/en/">Home</a>
+        <a href="/books/en/">Books</a>
+        <a href="/en/blog.html">Blog</a>
+        <a href="https://t.me/ragimoff">Telegram</a>
+        <a href="mailto:info@ragimoff.org">info@ragimoff.org</a>
+      </nav>
+      <span class="mono">© 2026 RAGIMOFF</span>
+    </div>
+  </footer>
+
+  <!-- ─────────── ФОРМА ЗАКАЗА (та же механика, что на сайте) ─────────── -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="o-title">
+      <button class="modal__x" data-close aria-label="Close">✕</button>
+      <h2 class="h2" id="o-title">Order the book</h2>
+      <p class="modal__sub" id="o-sub"></p>
+      <form id="order-form" action="/api/book-order" method="POST" novalidate>
+        <label class="field">
+          <span>Book</span>
+          <select id="o-book" name="book" required>
+            <option value="Clinical Psychiatry · 100 ₼">Clinical Psychiatry — 100 ₼</option>
+            <option value="The Guilt Virus · 30 ₼">The Guilt Virus — 30 ₼</option>
+            <option value="Schizophrenia. A Pandemic of Madness · 30 ₼">Schizophrenia. A Pandemic of Madness — 30 ₼</option>
+            <option value="Phoenix Era · 30 ₼">Phoenix Era — 30 ₼</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Full name</span>
+          <input id="o-name" type="text" name="name" placeholder="Your full name" autocomplete="name" required>
+        </label>
+        <label class="field">
+          <span>Mobile phone</span>
+          <input id="o-phone" type="tel" name="phone" placeholder="+994 XX XXX XX XX" autocomplete="tel" required>
+        </label>
+        <label class="field">
+          <span>Delivery address</span>
+          <textarea id="o-address" name="address" rows="2" placeholder="Country, city, street, building, apartment, postal code" autocomplete="street-address" required></textarea>
+        </label>
+        <small class="field__hint">The paper copy is sent by post. Delivery and payment terms are confirmed by phone.</small>
+        <button class="btn btn--main" type="submit">Order</button>
+      </form>
+      <div class="modal__ok" id="o-ok" hidden>
+        Thank you!<br>Your order has been received — we will contact you soon.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__booksUI = {"sending":"Sending…","submit":"Order","fill":"Please enter your name and phone number.","empty":"Nothing found","count":"%n books"};
+  </script>
+  <script src="/books/books.js?v=15" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
+<script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n();['cart-count','cart-count-m'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent=c;el.hidden=!c}})}
+  ['site-cart-link','site-cart-link-m'].forEach(function(id){var a=document.getElementById(id);if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}})
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
+</html>

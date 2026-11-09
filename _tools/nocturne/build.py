@@ -20,6 +20,9 @@ from urllib.parse import urlsplit
 from bs4 import BeautifulSoup, Comment
 
 SITE = pathlib.Path(__file__).resolve().parents[2]
+# 09.11.2026: после перехода новой версии на основной адрес исходные страницы старого сайта лежат в _legacy/
+# (в корне на их месте — перенаправления); картинки и общие скрипты — по-прежнему в корне.
+SRC = SITE / '_legacy' if (SITE / '_legacy' / 'index.html').is_file() else SITE
 OUT = SITE / 'test' / 'nocturne'
 LANGS = ['az', 'ru', 'en']
 PREFIX = {'az': '', 'ru': 'ru/', 'en': 'en/'}
@@ -48,7 +51,7 @@ MAP = {
     'blog.html': 'bloq/index.html',
 }
 for lang in LANGS:
-    for p in sorted((SITE / PREFIX[lang]).glob('blog-*.html')):
+    for p in sorted((SRC / PREFIX[lang]).glob('blog-*.html')):
         MAP.setdefault(p.name, 'bloq/' + p.name[5:])
 
 # Подписи, которых нет в меню оригинала (раздел «Специалисты» — слово Кенана 08.11.2026).
@@ -294,7 +297,7 @@ def fix_attrs(node, orig_page, new_page):
 
 
 def nav_labels(lang):
-    s = soup_of(SITE / PREFIX[lang] / 'index.html')
+    s = soup_of(SRC / PREFIX[lang] / 'index.html')
     lab = {}
     for a in s.select('.desktop-nav a'):
         full, _, _ = resolve(PREFIX[lang] + 'index.html', a.get('href', ''))
@@ -305,8 +308,8 @@ def nav_labels(lang):
     lab.update(SKIP_LABEL.get(lang, {}))
     # страницы, которых нет в меню оригинала: подпись = заголовок H1 самой страницы
     for name in MAP:
-        if name not in lab and not name.startswith('blog-') and (SITE / PREFIX[lang] / name).is_file():
-            h1 = soup_of(SITE / PREFIX[lang] / name).find('h1')
+        if name not in lab and not name.startswith('blog-') and (SRC / PREFIX[lang] / name).is_file():
+            h1 = soup_of(SRC / PREFIX[lang] / name).find('h1')
             if h1:
                 lab[name] = txt(h1)
     for k, v in NAMES.items():
@@ -711,7 +714,7 @@ def specialists_block(lang, new_page, head=True):
     cards = []
     for orig, photo in (('haqqimda.html', 'images/kenan/photo-hero-suit.jpg'), ('samira.html', 'images/samira/samira-portret.jpg')):
         op = PREFIX[lang] + orig
-        hero = soup_of(SITE / op).select_one('section.page-hero, section.page-hero-x')
+        hero = soup_of(SRC / op).select_one('section.page-hero, section.page-hero-x')
         d = hero_parts(hero, op, new_page)
         cards.append('''<a class="n-person" href="%s"><img src="%s" alt="%s" loading="lazy"><span class="n-person-tint" aria-hidden="true"></span>
 <span class="n-person-body"><span class="n-eyebrow">%s</span><span class="n-person-name">%s</span><span class="n-person-lead">%s</span></span></a>''' % (
@@ -724,7 +727,7 @@ def specialists_block(lang, new_page, head=True):
 def programs_block(lang, new_page):
     """Лента программ с ценами — секция «Учебные программы» страницы Обучение (тексты и цены оттуда)."""
     op = PREFIX[lang] + 'tehsil.html'
-    t = soup_of(SITE / op)
+    t = soup_of(SRC / op)
     sec = t.select_one('section#programs')
     if sec is None:
         return ''
@@ -860,7 +863,7 @@ def shape_training(main, soup, orig_name, lang, new_page, d):
     frag = lambda h: BeautifulSoup(h, 'html.parser')
     if card is not None:
         main.insert(0, frag(TL.facts_strip(lang, card)))
-    lead = hero_parts(soup_of(SITE / (PREFIX[lang] + TL.PROGRAMS[orig_name]['who'])).select_one('section.page-hero, section.page-hero-x'),
+    lead = hero_parts(soup_of(SRC / (PREFIX[lang] + TL.PROGRAMS[orig_name]['who'])).select_one('section.page-hero, section.page-hero-x'),
                       PREFIX[lang] + 'index.html', new_page).get('lead', '')
     who = frag(TL.who_box(lang, new_page, TL.PROGRAMS[orig_name]['who'], rel, map_url, MAP, NAMES, lead))
     if first is not None:
@@ -885,7 +888,7 @@ def shape_training(main, soup, orig_name, lang, new_page, d):
 
 def build_page(lang, orig_name, new_rel, key):
     orig_page = PREFIX[lang] + orig_name
-    src = SITE / orig_page
+    src = SRC / orig_page
     if not src.is_file():
         return False
     new_page = lang + '/' + new_rel
@@ -960,15 +963,6 @@ def build_page(lang, orig_name, new_rel, key):
                 {'az': 'Ali təhsil diplomu (varsa)', 'ru': 'Диплом о высшем образовании (если есть)', 'en': 'University diploma (if any)'}[lang]), 'html.parser')
             box = idf.find_parent(class_='form-group') or idf.find_parent('label') or idf
             box.insert_after(dip)
-    if key == 'cons' and orig_name in CONSULT_WHO:      # короткий блок специалиста после первого раздела (Кенан 09.11)
-        tops = main.find_all('section', recursive=False)
-        boxes = ''.join(TL.who_box(lang, new_page, w, rel, map_url, MAP, NAMES,
-                                   hero_parts(soup_of(SITE / (PREFIX[lang] + w)).select_one('section.page-hero, section.page-hero-x'), PREFIX[lang] + 'index.html', new_page).get('lead', ''))
-                        for w in CONSULT_WHO[orig_name])
-        if len(CONSULT_WHO[orig_name]) > 1:
-            boxes = boxes.replace('<section class="n-sec"><div class="n-wrap">', '', ).replace('</div></section>', '')
-            boxes = '<section class="n-sec"><div class="n-wrap n-who-pair">' + boxes + '</div></section>'
-        (tops[0].insert_after if tops else main.append)(BeautifulSoup(boxes, 'html.parser'))
     if key == 'cons':     # запись на консультацию в одно касание (Кенан 09.11): вместо старой формы
         reg = main.select_one('section#registration')
         frag_cf = BeautifulSoup(CF.section_html(lang, LABELS[lang], orig_name.rsplit('/', 1)[-1]), 'html.parser')
@@ -979,9 +973,21 @@ def build_page(lang, orig_name, new_rel, key):
     for el in main.find_all(True):
         if el.get('data-theme'):
             pass
+    foot_pre = s.find('footer', class_='site-footer')   # подвал до правки ссылок: иначе (подвал внутри <main>) ссылки правятся дважды и подвал выходит два раза
+    foot_pre = foot_pre.extract() if foot_pre is not None else None
     fix_attrs(main, orig_page, new_page)
     restyle(main, s)
     canon_prices(main, orig_name, lang, new_page)
+    if key == 'cons' and orig_name in CONSULT_WHO:      # (после правки ссылок) короткий блок специалиста после первого раздела (Кенан 09.11)
+        tops = main.find_all('section', recursive=False)
+        boxes = ''.join(TL.who_box(lang, new_page, w, rel, map_url, MAP, NAMES,
+                                   hero_parts(soup_of(SRC / (PREFIX[lang] + w)).select_one('section.page-hero, section.page-hero-x'), PREFIX[lang] + 'index.html', new_page).get('lead', ''),
+                                   {'az': 'Konsultasiyanı aparır', 'ru': 'Ведёт консультации', 'en': 'Consultations by'}[lang])
+                        for w in CONSULT_WHO[orig_name])
+        if len(CONSULT_WHO[orig_name]) > 1:
+            boxes = boxes.replace('<section class="n-sec"><div class="n-wrap">', '', ).replace('</div></section>', '')
+            boxes = '<section class="n-sec"><div class="n-wrap n-who-pair">' + boxes + '</div></section>'
+        (tops[0].insert_after if tops else main.append)(BeautifulSoup(boxes, 'html.parser'))
     if orig_name == 'b2b.html':      # корпоративная страница (Кенан 09.11): темы, мероприятия, форма запроса без оплаты
         tsec, esec, fsec = CORP.sections(lang)
         order = main.select_one('section#order')
@@ -995,7 +1001,7 @@ def build_page(lang, orig_name, new_rel, key):
     if orig_name in TL.PROGRAMS and orig_name != 'samira.html':   # единый лендинг программы (Кенан 09.11)
         shape_training(main, s, orig_name, lang, new_page, d)
     content = ''.join(str(c) for c in main.contents)
-    foot = s.find('footer')
+    foot = foot_pre if foot_pre is not None else s.find('footer')
     footer = footer_html(foot.extract() if foot else None, lang, orig_page, new_page)
     after, scripts = [], []
     started = False
@@ -1082,7 +1088,7 @@ def build_spec_index(lang):
     main_html = hero + specialists_block(lang, new_page, head=False)
     R = root_rel(new_page)
     scripts = '<script src="%sassets/js/shared.js"></script>' % R
-    foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
+    foot = soup_of(SRC / (PREFIX[lang] + 'index.html')).find('footer')
     page = page_shell(lang, new_page, SPEC[lang] + ' | RAGIMOFF', '', '', 'n-k-spec', header_html(lang, new_page, 'spec'), main_html,
                       footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
     (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
@@ -1106,7 +1112,7 @@ def build_short(lang):
     main_html = ST.page_main(lang, new_page, rel, MAP, hero_html(d, lang, crumbs=crumbs))
     R = root_rel(new_page)
     scripts = '<script src="%sassets/js/shared.js"></script>' % R
-    foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
+    foot = soup_of(SRC / (PREFIX[lang] + 'index.html')).find('footer')
     page = page_shell(lang, new_page, t['title'] + ' | RAGIMOFF', t['lead'], '', 'n-k-edu', header_html(lang, new_page, 'edu'), main_html,
                       footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
     (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
@@ -1125,7 +1131,7 @@ FAM_T = {
 def build_family(lang):
     """Тренинг «Семейная терапия» (Кенан 08.11): короткий блок «кто ведёт» + подробно о тренинге; без даты; новые цены."""
     orig_page = PREFIX[lang] + 'samira.html'
-    src = SITE / orig_page
+    src = SRC / orig_page
     if not src.is_file():
         return
     new_page = lang + '/' + FAM_PAGE
@@ -1163,7 +1169,7 @@ def build_family(lang):
     title = (d.get('w1', '') + ' ' + d.get('w2', '')).strip() or 'RAGIMOFF'
     R = root_rel(new_page)
     scripts = '<script src="%sassets/js/shared.js"></script>' % R
-    foot = soup_of(SITE / (PREFIX[lang] + 'index.html')).find('footer')
+    foot = soup_of(SRC / (PREFIX[lang] + 'index.html')).find('footer')
     page = page_shell(lang, new_page, title + ' | RAGIMOFF', d.get('lead', ''), '', 'n-k-edu', header_html(lang, new_page, 'edu'), main_html,
                       footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
     (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
@@ -1187,7 +1193,7 @@ def main():
     built_all = {l: set() for l in LANGS}
     for l in LANGS:
         for o, n in MAP.items():
-            if (SITE / PREFIX[l] / o).is_file():
+            if (SRC / PREFIX[l] / o).is_file():
                 built_all[l].add(n)
         built_all[l].add('mutexessisler/index.html')
         built_all[l].add(ST.PAGE)

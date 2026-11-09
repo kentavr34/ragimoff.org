@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="az" data-theme="dark">
+<head>
+  <script>
+  /* Язык каталога по региону посетителя (Кенан 31.10.2026). GitHub Pages не видит IP, поэтому:
+     1) часовой пояс устройства (мгновенно, без сторонних запросов): Баку → AZ, Россия и СНГ → RU, остальное → EN;
+     2) если пояс неопределённый (UTC/Etc) — страна по IP через get.geojs.io (не дольше 1,5 с).
+     Не перенаправляем: переход внутри сайта (в т.ч. переключатель языка), ?lang=az, роботов поисковиков.
+     Приоритет (04.11.2026): сохранённый выбор переключателя ragimoff_lang выше региона — но тоже только при прямом заходе.
+     /books/ru/ и /books/en/ — адреса конкретного языка, их не перенаправляем никогда (скрипта там нет). */
+  (function () {
+    try {
+      if (/[?&]lang=az/.test(location.search)) return;
+      var ref = document.referrer && document.referrer.indexOf(location.host) !== -1 ? new URL(document.referrer).pathname : '';
+      if (ref) {  /* пришёл со своего сайта: RU/EN-страницы ведут на /books/ — отдаём их язык; переключатель каталога и AZ-страницы не трогаем */
+        var m = ref.match(/\/(ru|en)\//);
+        if (m && !/^\/books\/(ru|en)\//.test(ref)) location.replace('/books/' + m[1] + '/' + location.hash);
+        return;
+      }
+      if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+      var RU = /^(Europe\/(Moscow|Kaliningrad|Samara|Volgograd|Saratov|Ulyanovsk|Astrakhan|Kirov|Minsk|Chisinau)|Asia\/(Yekaterinburg|Omsk|Novosibirsk|Barnaul|Tomsk|Novokuznetsk|Krasnoyarsk|Irkutsk|Chita|Yakutsk|Khandyga|Vladivostok|Ust-Nera|Magadan|Sakhalin|Srednekolymsk|Kamchatka|Anadyr|Almaty|Qostanay|Aqtobe|Aqtau|Atyrau|Oral|Qyzylorda|Bishkek|Tashkent|Samarkand|Dushanbe|Ashgabat|Yerevan))$/;
+      var RUC = {RU:1,BY:1,KZ:1,KG:1,UZ:1,TJ:1,TM:1,AM:1,MD:1};
+      function go(lang) { if (lang !== 'az') location.replace('/books/' + lang + '/' + location.hash); }
+      var saved = ''; try { saved = localStorage.getItem('ragimoff_lang') || ''; } catch (e2) {}
+      if (saved === 'az') return;
+      if (saved === 'ru' || saved === 'en') return go(saved);
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+      if (tz === 'Asia/Baku') return;
+      if (RU.test(tz)) return go('ru');
+      if (tz && !/^(UTC|Etc\/|GMT)/.test(tz)) return go('en');
+      var done = false, t = setTimeout(function () { done = true; }, 1500);
+      fetch('https://get.geojs.io/v1/ip/country.json').then(function (r) { return r.json(); }).then(function (j) {
+        if (done) return; clearTimeout(t);
+        var c = (j && j.country) || '';
+        go(c === 'AZ' ? 'az' : RUC[c] ? 'ru' : 'en');
+      }).catch(function () {});
+    } catch (e) {}
+  })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090E">
+  <title>Kitablar — RAGIMOFF</title>
+  <meta name="description" content="RAGIMOFF kitabları: Klinik Psixiatriya, Günahkarlıq Virusu, Şizofreniya, Feniks Erası. Elektron oxu və sifariş.">
+  <link rel="canonical" href="https://ragimoff.org/books/">
+  <link rel="alternate" hreflang="az" href="https://ragimoff.org/books/">
+  <link rel="alternate" hreflang="ru" href="https://ragimoff.org/books/ru/">
+  <link rel="alternate" hreflang="en" href="https://ragimoff.org/books/en/">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- books.css версионируем: иначе после правки у владельца остаётся старый CSS из кэша -->
+  <link rel="stylesheet" href="/books/books.css?v=13">
+  <!-- страховка на случай уже закэшированного старого books.css: в нём .card{display:flex}
+       перебивал браузерное [hidden]{display:none}, и скрытые фильтром карточки оставались
+       на странице. То же правило есть в books/books.css — здесь оно работает с первой загрузки. -->
+  <style>[hidden] { display: none !important; }
+  /* ── БАННЕР КОЛЛЕКЦИИ: горячее предложение над библиотекой ── */
+  .coll-banner{margin:2.2rem 0 2.6rem;border-radius:22px;overflow:hidden;
+    background:linear-gradient(135deg,#1a1206 0%,#3a2a08 45%,#6b4e0d 100%);
+    border:1px solid rgba(201,162,39,.45);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+  .coll-banner__inner{display:grid;grid-template-columns:260px 1fr;gap:28px;
+    padding:30px 32px;align-items:center}
+  @media(max-width:760px){.coll-banner__inner{grid-template-columns:1fr;gap:20px;padding:24px 20px}}
+  .coll-banner__cover{display:flex;justify-content:center}
+  .coll-banner__stack{position:relative;width:180px;height:250px}
+  .coll-banner__b{position:absolute;inset:0;border-radius:8px;
+    background:linear-gradient(160deg,#c9a227,#8a6d14);box-shadow:0 8px 22px rgba(0,0,0,.5)}
+  .coll-banner__b--1{transform:rotate(-7deg) translate(-12px,6px);opacity:.75}
+  .coll-banner__b--2{transform:rotate(-3deg) translate(-5px,3px);opacity:.9}
+  .coll-banner__front{position:absolute;inset:0;border-radius:8px;
+    background:linear-gradient(160deg,#f4e3a8 0%,#c9a227 55%,#8a6d14 100%);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:16px 14px;color:#1a1206;box-shadow:0 10px 26px rgba(0,0,0,.55)}
+  .coll-banner__author{font-size:11px;letter-spacing:.16em;font-weight:700;opacity:.85}
+  .coll-banner__title{font-size:26px;line-height:1.05;font-weight:800;letter-spacing:.01em}
+  .coll-banner__count{font-size:12px;font-weight:800;letter-spacing:.1em;
+    background:#1a1206;color:#f4e3a8;align-self:flex-start;padding:3px 9px;border-radius:99px}
+  .coll-banner__tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;
+    color:#1a1206;background:#e8c65a;padding:5px 12px;border-radius:99px;margin-bottom:12px}
+  .coll-banner__h{margin:0 0 10px;font-size:clamp(22px,3.2vw,32px);color:#fff;line-height:1.15}
+  .coll-banner__p{margin:0 0 16px;color:#e6dcc0;font-size:16px;line-height:1.6;max-width:60ch}
+  .coll-banner__price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
+  .coll-banner__old{color:#b9ab86;text-decoration:line-through;font-size:19px}
+  .coll-banner__new{color:#fff;font-size:38px;font-weight:900;letter-spacing:-.02em}
+  .coll-banner__save{background:#1f7a3d;color:#fff;font-size:13px;font-weight:800;
+    padding:5px 12px;border-radius:99px}
+  .coll-banner__note{margin:0 0 20px;color:#c8bb98;font-size:13.5px}
+  .coll-banner__btn{background:linear-gradient(135deg,#ffd75e,#c9a227);color:#1a1206;
+    font-weight:900;font-size:17px;padding:16px 34px;border:0;border-radius:14px;
+    box-shadow:0 10px 26px rgba(201,162,39,.42);cursor:pointer;transition:transform .15s,box-shadow .15s}
+  .coll-banner__btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(201,162,39,.55)}
+  .coll-banner__hint{margin:12px 0 0;color:#a89b78;font-size:12.5px}
+
+  .sci-title{margin:3rem 0 1rem;font-size:clamp(20px,2.6vw,26px);color:#e8e6e1;
+    border-top:1px solid rgba(201,162,39,.35);padding-top:1.6rem}
+  .sci-note{background:rgba(201,162,39,.08);border-left:3px solid #c9a227;
+    border-radius:8px;padding:14px 18px;margin:0 0 1.4rem;max-width:70ch}
+  .sci-note p{margin:0;color:#d9d3c4;font-size:14.5px;line-height:1.6}
+
+.card__cta{display:flex;flex-wrap:wrap;gap:8px}
+.card__cta .btn{min-width:0;flex:1 1 120px;white-space:nowrap}
+@media(max-width:600px){.card__cta{display:grid;grid-template-columns:1fr}.card__cta .btn{width:100%}}
+
+.coll-banner{max-width:100%;overflow:hidden}
+.coll-banner__inner{min-width:0;max-width:100%}
+.coll-banner__p,.coll-banner__note,.coll-banner__hint{max-width:100%;white-space:normal;overflow-wrap:break-word}
+.coll-banner__btn{max-width:100%;white-space:normal;line-height:1.3}
+.coll-banner__btn .cb-short{display:none}
+.hdr__cart--m{display:none}
+@media(max-width:760px){
+  .coll-banner__inner{padding:18px 16px;gap:16px}
+  .coll-banner__h{font-size:23px}
+  .coll-banner__p{font-size:14px;line-height:1.45}
+  .coll-banner__new{font-size:32px}
+  .coll-banner__btn{font-size:13px;padding:14px 12px}
+  .coll-banner__btn{white-space:nowrap}
+  .coll-banner__btn .cb-full{display:none}
+  .coll-banner__btn .cb-short{display:inline}
+  .hdr__cart--m{display:inline-flex;position:fixed;top:12px;right:12px;z-index:95;background:#0d0b07;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+}
+
+@media(max-width:760px){
+  .coll-banner{width:100%!important;max-width:100%!important;margin:1.2rem 0!important;box-sizing:border-box!important}
+  .coll-banner__inner{display:flex!important;flex-direction:column!important;width:100%!important;max-width:100%!important;min-width:0!important;padding:16px!important;box-sizing:border-box!important}
+  .coll-banner__cover,.coll-banner__stack{max-width:100%!important}
+  .coll-banner__p,.coll-banner__note,.coll-banner__hint{width:100%!important;max-width:100%!important;white-space:normal!important;overflow-wrap:break-word!important}
+  .coll-banner__price{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+  .coll-banner__btn{width:100%!important;max-width:100%!important;box-sizing:border-box!important}
+}
+
+@media(max-width:760px){
+  .coll-banner{width:calc(100vw - 48px)!important;max-width:calc(100vw - 48px)!important;margin-left:auto!important;margin-right:auto!important;padding:0!important;box-sizing:border-box!important}
+  .coll-banner *{box-sizing:border-box!important}
+}
+</style>
+<style>.cover__title{font-size:clamp(13px,1.35vw,19px)!important;line-height:1.12!important;max-width:88%;margin-left:auto;margin-right:auto;overflow-wrap:anywhere;text-align:center;max-height:55%;overflow:hidden}</style><style>.cover__title,.cover__author,.cover__year{font-family:"DejaVu Sans","Arial Unicode MS",Arial,sans-serif!important}.cover__title{font-size:clamp(13px,1.35vw,19px)!important;line-height:1.12!important;max-width:88%;margin-left:auto;margin-right:auto;overflow-wrap:anywhere;text-align:center;max-height:55%;overflow:hidden}</style><style>
+.cover__title{font-size:clamp(15px,1.8vw,23px)!important;line-height:1.1!important;max-width:90%;margin-left:auto;margin-right:auto;overflow-wrap:break-word;word-break:normal;text-align:center;max-height:60%;overflow:hidden}
+.card__title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.25;max-height:2.5em}
+.card__meta{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.cover__title{font-size:17px!important}.card__title{font-size:15px!important}}
+</style><style>
+.hdr__cart{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;color:#e9dcc0;text-decoration:none;border:1px solid rgba(201,169,97,.35);background:rgba(255,255,255,.03)}
+.hdr__cart:hover{background:rgba(201,169,97,.12)}
+.hdr__cart-n{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#c9a961;color:#1a1408;font:600 11px/18px Montserrat,Arial,sans-serif;text-align:center}
+</style></head>
+<body>
+
+  <!-- ─────────────────────── ШАПКА ─────────────────────── -->
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Peşəkar nüfuzun ünvanı</span>
+      </a>
+      <span data-lang-switch data-langs="az,ru,en"></span>
+      <a class="hdr__cart hdr__cart--m" id="site-cart-link-m" href="#sebet" aria-label="Səbət" title="Səbət">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count-m" class="hdr__cart-n" hidden>0</span>
+        </a>
+      <nav class="nav" aria-label="Naviqasiya">
+        <a href="/">Ana Səhifə</a>
+        <a href="/tehsil.html">Təhsil</a>
+        <a href="/books/">Kitablar</a>
+        <a href="/blog.html">Blog</a>
+        <a class="hdr__cart" id="site-cart-link" href="#sebet" aria-label="Səbət" title="Səbət">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3h2l2.2 12.2a1.6 1.6 0 0 0 1.6 1.3h9.4a1.6 1.6 0 0 0 1.6-1.3L21 7H6"/></svg>
+          <span id="cart-count" class="hdr__cart-n" hidden>0</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ─────────────────────── КНИГИ ─────────────────────── -->
+    <section class="sec" id="kitablar">
+      <h1 class="sr-only">Kitablar</h1>
+
+      <div class="toolbar">
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          <input type="search" id="q" placeholder="Ad, müəllif və ya il üzrə axtarış…" aria-label="Kitab axtarışı" autocomplete="off">
+        </label>
+        <span class="count" id="count">21 kitab</span>
+      </div>
+
+      <div class="afilter" id="afilter">
+        <span class="afilter__label">Müəllif</span>
+        <button class="chip is-on" data-author="">Bütün müəlliflər</button>
+        <button class="chip" data-author="kenan">Kənan Rəhimov</button>
+        <button class="chip" data-author="samira">Samirə Rəhimova</button>
+        <button class="chip" data-author="freud">Ziqmund Freyd</button>
+      </div>
+
+    <section class="coll-banner">
+      <div class="coll-banner__inner">
+        <div class="coll-banner__cover">
+          <div class="coll-banner__stack">
+            <span class="coll-banner__b coll-banner__b--1"></span>
+            <span class="coll-banner__b coll-banner__b--2"></span>
+            <span class="coll-banner__b coll-banner__b--3"></span>
+            <div class="coll-banner__front">
+              <span class="coll-banner__author">ZİQMUND FREYD</span>
+              <span class="coll-banner__title">BÜTÜN<br>ƏSƏRLƏRİ</span>
+              <span class="coll-banner__count">25 KİTAB</span>
+            </div>
+          </div>
+        </div>
+        <div class="coll-banner__body">
+          <span class="coll-banner__tag">TOP SET · ƏN SƏRFƏLİ SEÇİM</span>
+          <h2 class="coll-banner__h">Bütün Freyd kolleksiyası</h2>
+          <p class="coll-banner__p">
+            Freydin bütün <b>25 kitabı</b> bir dəstədə — azərbaycan dilində,
+            tam mətnlə. Ayrı-ayrı almaqdan <b>10% daha sərfəli</b>.
+          </p>
+          <div class="coll-banner__price">
+            <span class="coll-banner__old">750 ₼</span>
+            <span class="coll-banner__new">675 ₼</span>
+            <span class="coll-banner__save">75 ₼ qənaət</span>
+          </div>
+          <p class="coll-banner__note">
+            25 kitab · hər kitab 30 ₼ əvəzinə <b>27.00 ₼</b> · 10% endirim
+          </p>
+          <button class="btn coll-banner__btn" type="button" data-cart-btn="1"
+                  data-order="Bütün Freyd kolleksiyası" data-price="675 ₼"
+                  data-collection="freud" data-discount="10">
+            <span class="cb-full">Bütün kolleksiyanı səbətə at</span><span class="cb-short">Kolleksiyanı səbətə at</span>
+          </button>
+          <p class="coll-banner__hint">
+            Səbətdə ad, telefon və ünvanı doldurub Epoint ilə ödəyirsiniz.
+          </p>
+        </div>
+
+</div>
+    </section>
+    <div class="grid">
+
+        <h2 class="author-sec" data-author="kenan">Kənan Rəhimov</h2>
+
+        <article class="card" data-author="kenan" data-title="Klinik Psixiatriya">
+          <a class="card__cover" href="/klinik-psixiatriya/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/klinik.jpg&quot;)"><span class="cover__author">KƏNAN RƏHİMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Klinik Psixiatriya</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Klinik Psixiatriya</h2>
+            <p class="card__meta">2026 · AZ RU EN TR · 822 səh.</p>
+            <p class="card__price">100 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/klinik-psixiatriya/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Klinik Psixiatriya" data-price="100 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="Günahkarlıq virusu">
+          <a class="card__cover" href="/books/virus-viny/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/guilt.jpg&quot;)"><span class="cover__author">KƏNAN RƏHİMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Günahkarlıq virusu</span><span class="cover__year">2024</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Günahkarlıq virusu</h2>
+            <p class="card__meta">2024 · AZ RU EN · 251 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/virus-viny/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Günahkarlıq virusu" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-author="kenan" data-title="Şizofreniya. Cinnət pandemiyası">
+          <a class="card__cover" href="/books/shizofreniya/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/pandemic.jpg&quot;)"><span class="cover__author">KƏNAN RƏHİMOV</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Şizofreniya. Cinnət pandemiyası</span><span class="cover__year">2025</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Şizofreniya. Cinnət pandemiyası</h2>
+            <p class="card__meta">2025 · AZ RU EN · 321 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/shizofreniya/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Şizofreniya. Cinnət pandemiyası" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="samira">Samirə Rəhimova</h2>
+
+        <article class="card" data-author="samira" data-title="Feniks erası">
+          <a class="card__cover" href="/books/phoenix-era/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/phoenix.jpg&quot;)"><span class="cover__author">SAMİRƏ RƏHİMOVA</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Feniks erası</span><span class="cover__year">2026</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Feniks erası</h2>
+            <p class="card__meta">2026 · AZ RU EN · 241 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/phoenix-era/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Feniks erası" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+
+        <h2 class="author-sec" data-author="freud" id="freud">Ziqmund Freyd</h2>
+<article class="card" data-author="freud" data-title="Histeriyadan psixoanalizə">
+          <a class="card__cover" href="/books/freud-gw01/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw01.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Histeriyadan psixoanalizə</span><span class="cover__year">Kitab 1</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Histeriyadan psixoanalizə</h2>
+            <p class="card__meta">Kitab 1 · 1892–1899 · 362 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw01/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Histeriyadan psixoanalizə" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Yuxuların yozumu">
+          <a class="card__cover" href="/books/freud-gw02/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw02.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Yuxuların yozumu</span><span class="cover__year">Kitab 2</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Yuxuların yozumu</h2>
+            <p class="card__meta">Kitab 2 · 1900–1925 · 460 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw02/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Yuxuların yozumu" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Gündəlik həyatın psixopatologiyası">
+          <a class="card__cover" href="/books/freud-gw04/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw04.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Gündəlik həyatın psixopatologiyası</span><span class="cover__year">Kitab 3</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Gündəlik həyatın psixopatologiyası</h2>
+            <p class="card__meta">Kitab 3 · 1901 · 191 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw04/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Gündəlik həyatın psixopatologiyası" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Cinsəllik nəzəriyyəsi və Dora halı">
+          <a class="card__cover" href="/books/freud-gw05/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw05.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Cinsəllik nəzəriyyəsi və Dora halı</span><span class="cover__year">Kitab 4</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Cinsəllik nəzəriyyəsi və Dora halı</h2>
+            <p class="card__meta">Kitab 4 · 1904–1905 · 184 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw05/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Cinsəllik nəzəriyyəsi və Dora halı" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Zarafat və onun şüursuzla əlaqəsi">
+          <a class="card__cover" href="/books/freud-gw06/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw06.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Zarafat və onun şüursuzla əlaqəsi</span><span class="cover__year">Kitab 5</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Zarafat və onun şüursuzla əlaqəsi</h2>
+            <p class="card__meta">Kitab 5 · 1905 · 153 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw06/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Zarafat və onun şüursuzla əlaqəsi" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Fantaziya, uşaqlıq və məcburiyyət">
+          <a class="card__cover" href="/books/freud-gw07/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw07.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Fantaziya, uşaqlıq və məcburiyyət</span><span class="cover__year">Kitab 6</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Fantaziya, uşaqlıq və məcburiyyət</h2>
+            <p class="card__meta">Kitab 6 · 1906–1909 · 245 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw07/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Fantaziya, uşaqlıq və məcburiyyət" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Leonardo, Şreber və müalicənin texnikası">
+          <a class="card__cover" href="/books/freud-gw08/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw08.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Leonardo, Şreber və müalicənin texnikası</span><span class="cover__year">Kitab 7</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Leonardo, Şreber və müalicənin texnikası</h2>
+            <p class="card__meta">Kitab 7 · 1909–1913 · 263 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw08/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Leonardo, Şreber və müalicənin texnikası" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Totem və tabu">
+          <a class="card__cover" href="/books/freud-gw09/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw09.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Totem və tabu</span><span class="cover__year">Kitab 8</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Totem və tabu</h2>
+            <p class="card__meta">Kitab 8 · 1912–1913 · 121 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw09/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Totem və tabu" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Narsisizm, şüursuz və matəm">
+          <a class="card__cover" href="/books/freud-gw10/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw10.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Narsisizm, şüursuz və matəm</span><span class="cover__year">Kitab 9</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Narsisizm, şüursuz və matəm</h2>
+            <p class="card__meta">Kitab 9 · 1913–1917 · 266 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw10/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Narsisizm, şüursuz və matəm" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Psixoanalizə giriş mühazirələri">
+          <a class="card__cover" href="/books/freud-gw11/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw11.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Psixoanalizə giriş mühazirələri</span><span class="cover__year">Kitab 10</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Psixoanalizə giriş mühazirələri</h2>
+            <p class="card__meta">Kitab 10 · 1916–1917 · 309 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw11/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Psixoanalizə giriş mühazirələri" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Qorxulu, «Uşağı döyürlər» və uşaq nevrozu">
+          <a class="card__cover" href="/books/freud-gw12/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw12.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Qorxulu, «Uşağı döyürlər» və uşaq nevrozu</span><span class="cover__year">Kitab 11</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Qorxulu, «Uşağı döyürlər» və uşaq nevrozu</h2>
+            <p class="card__meta">Kitab 11 · 1917–1920 · 181 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw12/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Qorxulu, «Uşağı döyürlər» və uşaq nevrozu" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Həzz prinsipinin o tayında">
+          <a class="card__cover" href="/books/freud-gw13/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw13.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Həzz prinsipinin o tayında</span><span class="cover__year">Kitab 12</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Həzz prinsipinin o tayında</h2>
+            <p class="card__meta">Kitab 12 · 1920–1924 · 248 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw13/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Həzz prinsipinin o tayında" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Din, mədəniyyət və təşviş">
+          <a class="card__cover" href="/books/freud-gw14/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw14.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Din, mədəniyyət və təşviş</span><span class="cover__year">Kitab 13</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Din, mədəniyyət və təşviş</h2>
+            <p class="card__meta">Kitab 13 · 1925–1931 · 325 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw14/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Din, mədəniyyət və təşviş" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Psixoanalizə giriş: yeni mühazirələr">
+          <a class="card__cover" href="/books/freud-gw15/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw15.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Psixoanalizə giriş: yeni mühazirələr</span><span class="cover__year">Kitab 14</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Psixoanalizə giriş: yeni mühazirələr</h2>
+            <p class="card__meta">Kitab 14 · 1933 · 122 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw15/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Psixoanalizə giriş: yeni mühazirələr" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Musa adamı və monoteist din">
+          <a class="card__cover" href="/books/freud-gw16/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw16.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Musa adamı və monoteist din</span><span class="cover__year">Kitab 15</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Musa adamı və monoteist din</h2>
+            <p class="card__meta">Kitab 15 · 1932–1939 · 162 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw16/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Musa adamı və monoteist din" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Psixoanalizin xülasəsi">
+          <a class="card__cover" href="/books/freud-gw17/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-gw17.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Psixoanalizin xülasəsi</span><span class="cover__year">Kitab 16</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Psixoanalizin xülasəsi</h2>
+            <p class="card__meta">Kitab 16 · 1892–1938 · 96 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-gw17/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Psixoanalizin xülasəsi" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Psixoanalizin başlanğıcından: Flissə məktublar">
+          <a class="card__cover" href="/books/freud-fliesse-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-fliesse-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Psixoanalizin başlanğıcından: Flissə məktublar</span><span class="cover__year">Kitab 17</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Psixoanalizin başlanğıcından: Flissə məktublar</h2>
+            <p class="card__meta">Kitab 17 · 1887–1904 · 341 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-fliesse-mektublari/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Psixoanalizin başlanğıcından: Flissə məktublar" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Sevgi məktubları (1882–1912)">
+          <a class="card__cover" href="/books/freud-sevgi-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sevgi-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Sevgi məktubları (1882–1912)</span><span class="cover__year">1882–1912</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Sevgi məktubları (1882–1912)</h2>
+            <p class="card__meta">1882–1912 · 55 məktub</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sevgi-mektublari/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Sevgi məktubları (1882–1912)" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Freyd–Tsveyq məktubları (1908–1939)">
+          <a class="card__cover" href="/books/freud-zweig-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-zweig-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Freyd–Tsveyq məktubları (1908–1939)</span><span class="cover__year">1908–1939</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Freyd–Tsveyq məktubları (1908–1939)</h2>
+            <p class="card__meta">1908–1939 · 78 məktub</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-zweig-mektublari/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Freyd–Tsveyq məktubları (1908–1939)" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Koka haqqında">
+          <a class="card__cover" href="/books/freud-kokain/01-o-koke.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-koka.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Koka haqqında</span><span class="cover__year">1884</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Koka haqqında</h2>
+            <p class="card__meta">1884–1887 · 41 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-kokain/01-o-koke.html">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Koka haqqında" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Afaziyaların dərk edilməsinə dair">
+          <a class="card__cover" href="/books/freud-afaziya/01-afaziyaya-dair.html">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-afaziya.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Afaziyaların dərk edilməsinə dair</span><span class="cover__year">1891</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Afaziyaların dərk edilməsinə dair</h2>
+            <p class="card__meta">1877–1891 · 119 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-afaziya/01-afaziyaya-dair.html">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Afaziyaların dərk edilməsinə dair" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="İnfantil serebral iflic">
+          <a class="card__cover" href="/books/freud-usaq-iflici/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-usaq-iflici.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">İnfantil serebral iflic</span><span class="cover__year">1897</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">İnfantil serebral iflic</h2>
+            <p class="card__meta">1897 · 310 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-usaq-iflici/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="İnfantil serebral iflic" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Resenziyalar">
+          <a class="card__cover" href="/books/freud-resenziyalar-1887-1910/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-resenziyalar.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Resenziyalar</span><span class="cover__year">1887–1910</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Resenziyalar</h2>
+            <p class="card__meta">1887–1910 · 24 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-resenziyalar-1887-1910/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Resenziyalar" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Referatlar">
+          <a class="card__cover" href="/books/freud-referatlar-1884-1885/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-referatlar.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Referatlar</span><span class="cover__year">1884–1885</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Referatlar</h2>
+            <p class="card__meta">1884–1885 · 66 səh.</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-referatlar-1884-1885/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Referatlar" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="R. de Sossürün kitabına ön söz">
+          <a class="card__cover" href="/books/freud-sossur-on-sozu/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">R. de Sossürün kitabına ön söz</span><span class="cover__year">1922</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">R. de Sossürün kitabına ön söz</h2>
+            <p class="card__meta">1922 · 3 səh.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sossur-on-sozu/">Oxu <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Səhnədə psixopatik personajlar">
+          <a class="card__cover" href="/books/freud-sehnede-psixopatik-personajlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-sarko-on-soz.jpg?v=20261109&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Səhnədə psixopatik personajlar</span><span class="cover__year">1942</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Səhnədə psixopatik personajlar</h2>
+            <p class="card__meta">1942 · 6 səh.</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-sehnede-psixopatik-personajlar/">Oxu <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Freyd–Yunq məktubları (1906–1914)">
+          <a class="card__cover" href="/books/freud-yung-mektublari/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-yung-mektublari.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Freyd–Yunq məktubları (1906–1914)</span><span class="cover__year">1906–1914</span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Freyd–Yunq məktubları (1906–1914)</h2>
+            <p class="card__meta">1906–1914 · 366 məktub</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-yung-mektublari/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Freyd–Yunq məktubları (1906–1914)" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+<article class="card" data-author="freud" data-title="Aforizmlər">
+          <a class="card__cover" href="/books/freud-aforizmlar/">
+<div class="cover cover--art" style="--tex:url(&quot;/books/covers/art-freud-aforizmlar.jpg?v=20261028c&quot;)"><span class="cover__author">ZIQMUND FREYD</span><span class="cover__rule" aria-hidden="true"></span><span class="cover__title">Aforizmlər</span><span class="cover__year"></span></div>
+          </a>
+          <div class="card__body">
+            <h2 class="card__title">Aforizmlər</h2>
+            <p class="card__meta">Antologiya · 90 sitat</p>
+            <p class="card__price">30 ₼</p>
+            <div class="card__cta">
+              <a class="btn btn--read" href="/books/freud-aforizmlar/">Oxu <span aria-hidden="true">→</span></a>
+              <button class="btn btn--cart" type="button" data-cart-btn="1" data-order="Aforizmlər" data-price="30 ₼">Səbətə at</button>
+            </div>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </section>
+</main>
+
+  <!-- ─────────────────────── ФУТЕР ─────────────────────── -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <a class="logo" href="/">
+        <span class="logo__t">RAGIMOFF<em>.</em></span>
+        <span class="logo__s">Peşəkar nüfuzun ünvanı</span>
+      </a>
+      <nav class="ft__nav" aria-label="Futermenü">
+        <a href="/">Ana Səhifə</a>
+        <a href="/books/">Kitablar</a>
+        <a href="/blog.html">Bloq</a>
+        <a href="https://t.me/ragimoff">Telegram</a>
+        <a href="mailto:info@ragimoff.org">info@ragimoff.org</a>
+      </nav>
+      <span class="mono">© 2026 RAGIMOFF</span>
+    </div>
+  </footer>
+
+  <!-- ─────────── ФОРМА ЗАКАЗА (та же механика, что на сайте) ─────────── -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal__scrim" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="o-title">
+      <button class="modal__x" data-close aria-label="Bağla">✕</button>
+      <h2 class="h2" id="o-title">Kitabın sifarişi</h2>
+      <p class="modal__sub" id="o-sub"></p>
+      
+      <div class="modal__ok" id="o-ok" hidden>
+        Təşəkkür edirik!<br>Sifarişiniz qeydə alındı — tezliklə sizinlə əlaqə saxlayacağıq.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.__booksUI = {"sending":"Göndərilir…","submit":"Sifariş et","fill":"Zəhmət olmasa Ad Soyad, Telefon və Çatdırılma ünvanını daxil edin.","empty":"Heç nə tapılmadı","count":"%n kitab"};
+  </script>
+  <script src="/books/books.js?v=15" defer></script>
+  <script src="/_lang-switch.js?v=9" defer></script>
+<script>/* 09.11.2026: числа баннера коллекции считает генератор (_tools/build-books-gallery.js из catalog.json, как и data-price кнопки и сервер); здесь только счётчик книг */(function(){var n=document.querySelectorAll(".card[data-author=freud]").length;document.querySelectorAll("#count").forEach(function(e){e.textContent=n+" kitab"});})();</script><script>
+(function(){
+  function n(){try{return JSON.parse(localStorage.getItem('ragimoff_cart_v1')||'[]').reduce(function(s,i){return s+(i.qty||1)},0)}catch(e){return 0}}
+  function upd(){var c=n();['cart-count','cart-count-m'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent=c;el.hidden=!c}})}
+  ['site-cart-link','site-cart-link-m'].forEach(function(id){var a=document.getElementById(id);if(a){a.addEventListener('click',function(e){e.preventDefault();var f=document.querySelector('.cart-fab');if(f){f.click()}else{upd()}})}})
+  document.addEventListener('click',function(){setTimeout(upd,60)});window.addEventListener('storage',upd);upd();
+})();
+</script></body>
+</html>

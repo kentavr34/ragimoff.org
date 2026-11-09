@@ -73,7 +73,7 @@ def apply_canon(a, orig, new):
 
 
 for new, orig in pairs:
-    a = BeautifulSoup((SITE / orig).read_text(encoding='utf-8'), 'lxml')
+    a = BeautifulSoup((B.SRC / orig).read_text(encoding='utf-8'), 'lxml')
     apply_canon(a, orig, new)
     b0 = (OUT / new).read_text(encoding='utf-8')
     if 'id="consultForm"' in b0:      # старая форма консультации заменена новой (Кенан 09.11) — сравниваем без неё
