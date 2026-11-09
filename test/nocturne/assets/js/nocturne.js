@@ -325,6 +325,34 @@
     });
   })();
 
+  /* корпоративный запрос (Кенан 09.11): без оплаты — заявка с выбранными темами, целью, числом участников, языком */
+  var bf = document.getElementById('b2bForm');
+  if (bf) (function () {
+    var other = bf.querySelector('[data-other]');
+    function vals(n) { return Array.prototype.map.call(bf.querySelectorAll('input[name="' + n + '"]:checked'), function (i) { return i.value; }); }
+    var all = bf.querySelectorAll('input[name="movzu"]'), otherBox = all[all.length - 1];   /* последняя кнопка — «Другое» */
+    function sync() { other.hidden = !otherBox.checked; }
+    bf.addEventListener('change', sync); sync();
+    bf.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var msg = bf.querySelector('.n-form-msg'), btn = bf.querySelector('button[type="submit"]'), ok = true;
+      ['company', 'person', 'telefon', 'count'].forEach(function (n) { var el = bf.querySelector('[name="' + n + '"]'); var bad = !el.value.trim(); el.classList.toggle('is-bad', bad); if (bad) ok = false; });
+      if (!ok) { msg.hidden = false; msg.className = 'n-form-msg is-err'; msg.textContent = bf.getAttribute('data-req'); return; }
+      var note = [bf.company.value.trim(), 'Mövzu: ' + vals('movzu').join(', ') + (other.hidden ? '' : ' — ' + bf.offer.value.trim()),
+                  'Məqsəd: ' + vals('meqsed').join(', '), 'İştirakçı: ' + bf.count.value, 'Dil: ' + vals('dil').join(', '),
+                  'Format: ' + vals('format').join(', '), bf.email.value.trim() ? 'Email: ' + bf.email.value.trim() : ''].filter(Boolean).join(' · ');
+      btn.disabled = true; var lbl = btn.textContent; btn.textContent = bf.getAttribute('data-sending');
+      var payload = { type: 'registration', fname: bf.person.value.trim(), lname: '', phone: bf.telefon.value.trim(), email: bf.email.value.trim(), address: '',
+                      service: 'b2b-request', lang: bf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: [] };
+      var ok2 = await fetch('https://api.ragimoff.org/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .then(function (r) { return r.ok; }, function () { return false; });
+      btn.disabled = false; btn.textContent = lbl; msg.hidden = false;
+      msg.className = 'n-form-msg' + (ok2 ? '' : ' is-err');
+      msg.innerHTML = ok2 ? bf.getAttribute('data-ok') : bf.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';
+      if (ok2) { bf.reset(); sync(); }
+    });
+  })();
+
   /* short-term trainings form */
   var sf = document.getElementById('shortForm');
   if (sf) (function () {
@@ -427,7 +455,7 @@
 
   /* выравнивание рядов карточек (Кенан 09.11): в каждом визуальном ряду соседние элементы карточек
      (метка, заголовок, текст, ссылка) получают общую высоту → стоят на одной линии; карточки одной высоты */
-  var CARD = '.card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .blog-card, .n-month';
+  var CARD = '.n-event, .card, .svc-card, .feat-card, .xid-card, .info-card, .adv-card, .trust-card, .dir-card, .opp-card, .fmt-card, .step-card, .review-card, .def-card, .blog-card, .n-month';
   function alignRows() {
     var parents = [];
     Array.prototype.forEach.call(document.querySelectorAll(CARD), function (c) {

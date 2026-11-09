@@ -55,6 +55,9 @@ def apply_canon(a, orig, new):
             if sec.select_one('.mod-panel') and not sec.find_parent('section'):
                 sec.decompose()
     B.canon_prices(main, name, new.split('/', 1)[0], new)
+    if name == 'b2b.html':          # старая форма заказа без полей заменена формой корпоративного запроса
+        for el in main.select('section#order'):
+            el.decompose()
     if name in B.TL.PROGRAMS and name != 'samira.html':
         B.TL.prune(main, name, new.split('/', 1)[0])
 
@@ -89,7 +92,7 @@ for new, orig in pairs:
     if lost:
         probs.append('ЦЕНЫ потеряны: %s' % lost)
     fa = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in a.find_all('form'))
-    fb = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in b.find_all('form') if f.get('id') != 'consultForm')
+    fb = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in b.find_all('form') if f.get('id') not in ('consultForm', 'b2bForm'))
     fb = sorted((i, tuple(n for n in names if n != 'diplom')) for i, names in fb)
     if fa != fb:
         probs.append('ФОРМЫ: %s vs %s' % (fa, fb))

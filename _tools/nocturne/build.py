@@ -319,6 +319,7 @@ import sys as _sys; _sys.path.insert(0, str(pathlib.Path(__file__).resolve().par
 import short_trainings as ST
 import consult_form as CF
 import training_landing as TL
+import corporate as CORP
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -955,6 +956,16 @@ def build_page(lang, orig_name, new_rel, key):
     fix_attrs(main, orig_page, new_page)
     restyle(main, s)
     canon_prices(main, orig_name, lang, new_page)
+    if orig_name == 'b2b.html':      # корпоративная страница (Кенан 09.11): темы, мероприятия, форма запроса без оплаты
+        tsec, esec, fsec = CORP.sections(lang)
+        order = main.select_one('section#order')
+        tops = [x for x in main.find_all('section', recursive=False) if 'page-hero' not in ' '.join(x.get('class', []))]
+        if order is not None:
+            order.replace_with(BeautifulSoup(fsec, 'html.parser'))
+        else:
+            main.append(BeautifulSoup(fsec, 'html.parser'))
+        if tops:
+            tops[0].insert_after(BeautifulSoup(tsec + esec, 'html.parser'))
     if orig_name in TL.PROGRAMS and orig_name != 'samira.html':   # единый лендинг программы (Кенан 09.11)
         shape_training(main, s, orig_name, lang, new_page, d)
     content = ''.join(str(c) for c in main.contents)

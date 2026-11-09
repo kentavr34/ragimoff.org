@@ -863,3 +863,17 @@ main.page-main > section:nth-of-type(even):not(.n-hero):not(.n-sec) { background
 .n-who-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 @media (max-width: 900px) { .n-who-pair { grid-template-columns: 1fr; } }
 .n-who-pair .n-who { grid-template-columns: 130px minmax(0,1fr); } .n-who-pair .n-who img { width: 130px; height: 160px; }
+
+/* ═══ Корпоративная страница: темы, хроника мероприятий ═══ */
+.n-topics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 960px) { .n-topics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .n-topics { grid-template-columns: 1fr; } }
+.n-topic h3 { margin: 0; font: 400 clamp(24px, 2vw, 30px)/1.15 var(--n-serif); color: var(--n-milk); }
+.n-topic p { margin: 0; font: 400 16.5px/1.6 var(--n-read); color: var(--n-soft); }
+.n-yt { margin-top: 28px; display: inline-block; }
+.n-events { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 900px) { .n-events { grid-template-columns: 1fr; } }
+.n-event { display: flex; flex-direction: column; gap: 10px; padding: var(--n-card-pad); border-radius: var(--n-card-radius); background: var(--n-glass); border: 1px solid var(--n-line); border-top: 2px solid var(--n-gold); }
+.n-event-date { font: 600 12px/1.3 var(--n-sans); letter-spacing: .18em; text-transform: uppercase; color: var(--n-gold); }
+.n-event h4 { margin: 0; font: 400 26px/1.15 var(--n-serif); color: var(--n-milk); }
+.n-event p { margin: 0; font: italic 400 18px/1.45 var(--n-read); color: var(--n-soft); }
