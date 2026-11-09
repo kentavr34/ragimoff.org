@@ -65,6 +65,11 @@ def apply_canon(a, orig, new):
             el.decompose()
     if name in B.TL.PROGRAMS and name != 'samira.html':
         B.TL.prune(main, name, new.split('/', 1)[0])
+        if name == 'program-psixodiaqnostika.html':
+            B.TL.prune_freud_items(main)
+            for st in main.select('.stat-item'):
+                if B.TL.FREUD_H.search(st.get_text(' ', strip=True)):
+                    st.decompose()
 
 
 for new, orig in pairs:
@@ -89,7 +94,7 @@ for new, orig in pairs:
     if hero_o is not None and hero_n is not None:
         h1o = norm(hero_o.find('h1').get_text(' ')) if hero_o.find('h1') else ''
         h1n = norm(hero_n.find('h1').get_text(' '))
-        if h1o.replace(' ', '') != h1n.replace(' ', ''):
+        if h1o.replace(' ', '') != h1n.replace(' ', '') and not B.TL.FREUD_H.search(h1o):
             probs.append('H1: «%s» vs «%s»' % (h1o, h1n))
     pa = sorted(norm(x) for x in PRICE.findall(ta))
     pb = sorted(norm(x) for x in PRICE.findall(tb))

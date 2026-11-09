@@ -465,6 +465,13 @@ def footer_html(foot, lang, orig_page, new_page):
     if foot is not None:
         fix_attrs(foot, orig_page, new_page)
         strip_styles(foot)
+        for fb in foot.select('.footer-bottom'):        # копирайт: после точки — вторая строка (Кенан 09.11)
+            for node in fb.find_all(string=True):
+                txt = str(node)
+                if '. ' in txt.strip():
+                    first, rest = txt.split('. ', 1)
+                    node.replace_with(BeautifulSoup('%s.<br>%s' % (H.escape(first), H.escape(rest)), 'html.parser'))
+                    break
         inner = ''.join(str(c) for c in foot.contents)
     return '''<footer class="n-foot"><div class="n-wrap">
 <a class="n-foot-mark" href="%s" aria-label="RAGIMOFF">RAGIMOFF</a>
@@ -844,6 +851,8 @@ CONSULT_WHO = {'depressiya.html': ['haqqimda.html'], 'panik-ataklar.html': ['haq
 
 
 def shape_training(main, soup, orig_name, lang, new_page, d):
+    if orig_name == 'program-psixodiaqnostika.html':
+        TL.kp_bonus(main, lang, soup)
     marks = TL.prune(main, orig_name, lang)
     tops = [x for x in main.find_all('section', recursive=False)]
     card = program_card(lang, new_page, orig_name)
@@ -905,8 +914,21 @@ def build_page(lang, orig_name, new_rel, key):
             foot0.insert_before(main)
         else:
             s.body.append(main)
+    if orig_name in SHORT_PAGES:      # мета-описание и разметка для поисковиков — тот же канон цен (Кенан 08–09.11)
+        fix = lambda x: re.sub(r'(?<!\d)(?<!\d )200 AZN', '300 AZN', re.sub(r'(?<!\d)(?<!\d )500 AZN', '800 AZN', re.sub(r'(?<!\d)(?<!\d )600 AZN', '900 AZN', x)))
+        fixj = lambda x: re.sub(r'"(price|lowPrice|highPrice)":\s*"?600"?', r'"": "900"', re.sub(r'"(price|lowPrice)":\s*"?500"?', r'"": "800"', x))
+        desc = fix(desc)
+        head_extra = [fixj(fix(h)) for h in head_extra]
+    if orig_name == 'program-psixodiaqnostika.html':
+        desc = TL.kp_text(lang, desc)
+        head_extra = [TL.kp_text(lang, h) for h in head_extra]
+        TL.kp_stats(main, lang)
     hero = main.select_one('section.page-hero, section.page-hero-x')
     d = hero_parts(hero, orig_page, new_page)
+    if orig_name == 'program-psixodiaqnostika.html':
+        d['lead'] = TL.kp_text(lang, d.get('lead', ''))
+        if TL.FREUD_H.search(d.get('w2', '')):     # «Наследие Фрейда» скопировано с психоанализа — как в AZ: «программа»
+            d['w2'] = {'az': 'Proqramı', 'ru': 'Программа', 'en': 'Programme'}[lang]
     if orig_name == 'haqqimda.html':    # Кенан 09.11: фото уже в первом экране — второй портрет в «Peşəkar Yol» убрать, текст на всю ширину
         for im in main.find_all('img', src=re.compile('photo-portal')):
             col = im.find_parent('div', class_='about-img')
@@ -982,6 +1004,8 @@ def build_page(lang, orig_name, new_rel, key):
             continue
         if ch.name == 'script':
             scripts.append(ch)
+            continue
+        if ch.get('id') in ('dgLightbox',) or 'dg-lightbox' in ch.get('class', []):   # старое окно фото — у Ноктюрна своё (.n-lb)
             continue
         fix_attrs(ch, orig_page, new_page)
         after.append(str(ch))

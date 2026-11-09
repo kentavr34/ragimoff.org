@@ -144,3 +144,51 @@ def prune(main, orig, lang):
         elif orig == 'program-psixodiaqnostika.html' and (FREUD_H.search(ht) or sec.get('id') == 'sec-curriculum'):
             sec.decompose()
     return marks
+
+
+KP_URL = '/klinik-psixiatriya'
+KP = {
+ 'az': ('Proqramın əsas mənbəyi — Kənan Rəhimovun «Klinik Psixiatriya» sorğu kitabı: dörd dildə (Azərbaycan, rus, ingilis, türk), beynəlxalq protokollar üzrə ən son diaqnostik meyarlar, diaqnostika və müalicə protokolları, dəqiq diaqnoz və dəqiq müalicə üçün lazım olan bütün alətlər bir yerdə.',
+        'Əsas mənbə: «Klinik Psixiatriya» — dörd dildə, ən son beynəlxalq diaqnostik meyarlar', 'Kitabla tanış olun →'),
+ 'ru': ('Основной источник программы — справочник Кенана Рагимова «Клиническая психиатрия»: на четырёх языках (азербайджанский, русский, английский, турецкий), самые последние диагностические критерии по международным протоколам, протоколы диагностики и лечения и все инструменты для точной диагностики и точного лечения в одном месте.',
+        'Основной источник: «Клиническая психиатрия» — на четырёх языках, последние международные диагностические критерии', 'Познакомиться с книгой →'),
+ 'en': ('The programme’s main source is Kenan Ragimov’s reference book “Clinical Psychiatry”: in four languages (Azerbaijani, Russian, English, Turkish), the latest diagnostic criteria under international protocols, diagnostic and treatment protocols and every tool needed for accurate diagnosis and treatment in one place.',
+        'Main source: “Clinical Psychiatry” — in four languages, the latest international diagnostic criteria', 'Open the book →'),
+}
+
+
+def kp_bonus(main, lang, soup_new):
+    """Психодиагностика: вместо бонуса «книги Фрейда» (это к психоанализу) — «Клиническая психиатрия» со ссылкой (Кенан 09.11)."""
+    para, item, link = KP[lang]
+    for el in main.find_all(['p', 'li']):
+        if FREUD_H.search(el.get_text(' ', strip=True)) and not el.find_parent('form'):
+            el.clear()
+            if el.name == 'p':
+                el.append(para + ' ')
+                a = soup_new.new_tag('a', attrs={'href': KP_URL, 'class': 'n-inline-link'})
+                a.string = link
+                el.append(a)
+            else:
+                el.append(item)
+
+
+def prune_freud_items(main):
+    for el in main.find_all(['p', 'li']):
+        if FREUD_H.search(el.get_text(' ', strip=True)):
+            el.decompose()
+
+
+KP_STAT = {'az': ('4', 'dildə «Klinik Psixiatriya»'), 'ru': ('4', 'языка «Клинической психиатрии»'), 'en': ('4', 'languages of “Clinical Psychiatry”')}
+FREUD_ANY = _re.compile(r'[Bb]onus[^.;"]*?(Freyd|Фрейд|Freud)[^.;"]*|(Freyd|Фрейд|Freud)\w*\s+24\s+\w+\s+bonus\w*|(all\s+)?24\s+\w+\s+(by\s+)?(Freud|Фрейда)[^.;"]*', _re.I)
+
+
+def kp_text(lang, txt):
+    return FREUD_ANY.sub(KP[lang][1], txt)
+
+
+def kp_stats(main, lang):
+    for st in main.select('.stat-item'):
+        if FREUD_H.search(st.get_text(' ', strip=True)):
+            n = st.select_one('.stat-num'); lab = st.select_one('.stat-label')
+            if n is not None and lab is not None:
+                n.string, lab.string = KP_STAT[lang]
