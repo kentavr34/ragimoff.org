@@ -1001,3 +1001,12 @@ html body.n-body main :is(.sec-header, .sec-inner) + :is(.n-gallery, div):not([d
 /* телефон: лента листается внутри себя и НЕ расширяет страницу (иначе браузер уменьшает весь сайт) */
 html body.n-body .n-hs.n-hs-native [data-hs-track] { overflow-x: auto !important; overflow-y: hidden !important; max-width: 100% !important; box-sizing: border-box; }
 html body.n-body .n-hs.n-hs-native .n-hs-stick { overflow-x: clip !important; }
+
+/* закреплённая лента на телефоне (возвращена, Кенан 09.11): содержимое у верха экрана — без пустоты над блоком */
+@media (max-width: 900px) {
+  html body.n-body .n-hs .n-hs-stick { justify-content: flex-start !important; padding-top: 84px !important; padding-bottom: 16px !important; }
+  html body.n-body main .n-hs .price-card { row-gap: 12px !important; gap: 12px !important; }
+  html body.n-body main .n-hs .price-card > .n-pc-actions, html body.n-body main .n-hs .price-card > .price-total + * { margin-top: 0 !important; }
+  html body.n-body main .n-hs .sec-inner > [data-hs-track] { margin-top: var(--r2) !important; }
+}
+@media (max-width: 900px) { html body.n-body .n-hs [data-hs-track] > .n-hs-intro { align-self: start !important; padding-top: 8px !important; } }

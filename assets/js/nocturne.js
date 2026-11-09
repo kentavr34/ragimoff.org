@@ -431,17 +431,10 @@
     var stick = sec.querySelector('.n-hs-stick'), track = sec.querySelector('[data-hs-track]');
     if (!stick || !track) return;
     var cards = Array.prototype.slice.call(track.children), dist = 0, cur = 0, target = 0, raf = 0;
-    var mq = window.matchMedia('(max-width: 900px)');
-    var intro = track.querySelector(':scope > .n-hs-intro');
+    /* и на телефоне, и на компьютере — закреплённая лента (Кенан 09.11: «хороший элемент — вернуть»).
+       Пустоту над лентой убирает CSS: содержимое прижато к верху экрана, а не к центру. */
     function measure() {
       track.style.setProperty('--hx', '0px');
-      if (mq.matches) {                     /* телефон: лента листается пальцем, без закрепления на весь экран (Кенан 09.11) */
-        sec.classList.add('n-hs-native'); sec.style.height = ''; dist = 0; target = cur = 0;
-        if (intro && intro.parentNode === track) track.parentNode.insertBefore(intro, track);   /* заголовок — над лентой */
-        return;
-      }
-      sec.classList.remove('n-hs-native');
-      if (intro && intro.parentNode !== track) track.insertBefore(intro, track.firstChild);
       dist = Math.max(0, track.scrollWidth - stick.clientWidth);
       sec.style.height = dist > 0 ? (innerHeight + dist * (innerWidth < 701 ? 1.1 : 0.9)) + 'px' : '';
       onScroll();
@@ -462,7 +455,6 @@
       if (cur !== target) raf = requestAnimationFrame(loop);
     }
     function onScroll() {
-      if (mq.matches) return;
       var r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
       var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
       target = p * dist;
