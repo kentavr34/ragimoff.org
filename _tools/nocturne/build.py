@@ -323,6 +323,26 @@ for l in LANGS:
     pass
 
 
+HUB_ANCHOR = {'edu': '#programs', 'cons': '#services'}   # Кенан 09.11: страниц-хабов нет — ведём к блоку главной
+
+
+def group_href(gid, hubpath, r):
+    return r('index.html') + HUB_ANCHOR[gid] if gid in HUB_ANCHOR else r(hubpath)
+
+
+def sub_links(gid, kids, lang, r):
+    """Пункты выпадающего меню (десктоп и телефон — один список)."""
+    L = LABELS[lang]
+    out = []
+    if gid == 'edu':
+        out.append((r(ST.PAGE), ST.T[lang]['nav']))
+    for k in kids:
+        lbl = L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k)
+        href = FAM_PAGE if (gid == 'edu' and k == 'samira.html') else MAP[k]
+        out.append((r(href), lbl))
+    return out
+
+
 def header_html(lang, new_page, key):
     L = LABELS[lang]
     r = lambda p: rel(new_page, lang + '/' + p)
@@ -330,18 +350,13 @@ def header_html(lang, new_page, key):
     for gid, hub, hubpath, kids in GROUPS:
         label = SPEC[lang] if gid == 'spec' else L.get(hub, hub)
         on = ' is-on' if key == gid else ''
+        top = group_href(gid, hubpath, r)
         if kids:
-            sub = []
-            if gid == 'edu':
-                sub.append('<a href="%s">%s</a>' % (r(ST.PAGE), H.escape(ST.T[lang]['nav'])))
-            for k in kids:
-                lbl = L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k)
-                href = FAM_PAGE if (gid == 'edu' and k == 'samira.html') else MAP[k]
-                sub.append('<a href="%s">%s</a>' % (r(href), H.escape(lbl)))
-            hub_lbl = (L.get(hub) if hub else SPEC[lang])
-            items.append('<div class="n-dd%s"><a class="n-link" href="%s" aria-haspopup="true">%s<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a><div class="n-dd-panel"><a class="n-dd-hub" href="%s">%s →</a>%s</div></div>' % (on, r(hubpath), H.escape(label), r(hubpath), H.escape(hub_lbl), ''.join(sub)))
+            sub = ''.join('<a href="%s">%s</a>' % (h, H.escape(t)) for h, t in sub_links(gid, kids, lang, r))
+            hub_row = ('<a class="n-dd-hub" href="%s">%s →</a>' % (top, H.escape(SPEC[lang]))) if gid == 'spec' else ''
+            items.append('<div class="n-dd%s"><a class="n-link" href="%s" aria-haspopup="true">%s<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a><div class="n-dd-panel">%s%s</div></div>' % (on, top, H.escape(label), hub_row, sub))
         else:
-            items.append('<a class="n-link%s" href="%s">%s</a>' % (on, r(hubpath), H.escape(label)))
+            items.append('<a class="n-link%s" href="%s">%s</a>' % (on, top, H.escape(label)))
     items.append('<a class="n-link n-books" href="/books/">%s ↗</a>' % H.escape(L.get('books/', 'Books')))
     langs = []
     for l2 in LANGS:
@@ -353,8 +368,8 @@ def header_html(lang, new_page, key):
     mob = []
     for gid, hub, hubpath, kids in GROUPS:
         label = SPEC[lang] if gid == 'spec' else L.get(hub, hub)
-        sub = ''.join('<a href="%s">%s</a>' % (r(MAP[k]), H.escape(L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k))) for k in kids)
-        mob.append('<div class="n-m-group"><a class="n-m-big" href="%s">%s</a>%s</div>' % (r(hubpath), H.escape(label), ('<div class="n-m-sub">' + sub + '</div>') if sub else ''))
+        sub = ''.join('<a href="%s">%s</a>' % (h, H.escape(t)) for h, t in sub_links(gid, kids, lang, r))
+        mob.append('<div class="n-m-group"><a class="n-m-big" href="%s">%s</a>%s</div>' % (group_href(gid, hubpath, r), H.escape(label), ('<div class="n-m-sub">' + sub + '</div>') if sub else ''))
     mob.append('<div class="n-m-group"><a class="n-m-big" href="/books/">%s ↗</a></div>' % H.escape(L.get('books/', 'Books')))
     return '''<a class="n-skip" href="#main">%s</a>
 <header class="n-head" id="nHead"><div class="n-head-in">
@@ -364,7 +379,7 @@ def header_html(lang, new_page, key):
 </div></header>
 <div class="n-mob" id="nMob" aria-hidden="true"><div class="n-mob-in">%s<div class="n-m-langs">%s</div></div></div>''' % (
         {'az': 'Məzmuna keç', 'ru': 'К основному содержимому', 'en': 'Skip to content'}[lang],
-        home, ''.join(items), ''.join(langs), r(MAP['tehsil.html']) + '#registration', H.escape(reg), ''.join(mob), ''.join(langs))
+        home, ''.join(items), ''.join(langs), r('index.html') + '#programs', H.escape(reg), ''.join(mob), ''.join(langs))
 
 
 def hero_parts(hero, orig_page, new_page):
@@ -711,6 +726,7 @@ def programs_block(lang, new_page):
     if sec.has_attr('id'):
         del sec['id']
     shape_programs(sec, t, lang, new_page)
+    sec['id'] = 'programs'
     return str(sec)
 
 
@@ -860,6 +876,13 @@ def build_page(lang, orig_name, new_rel, key):
         d.pop('art', None)
     if hero is not None:
         hero.extract()
+    for idf in main.select('form input[name="shexsiyyet"]'):     # Кенан 09.11: обучение — удостоверение обязательно, диплом — если есть
+        frm = idf.find_parent('form')
+        if frm is not None and frm.select_one('input[name="diplom"]') is None:
+            dip = BeautifulSoup('<div class="form-group n-dip"><label class="form-label">%s</label><input type="file" name="diplom" accept="image/*,.pdf" class="form-input"></div>' % (
+                {'az': 'Ali təhsil diplomu (varsa)', 'ru': 'Диплом о высшем образовании (если есть)', 'en': 'University diploma (if any)'}[lang]), 'html.parser')
+            box = idf.find_parent(class_='form-group') or idf.find_parent('label') or idf
+            box.insert_after(dip)
     if key == 'cons':     # запись на консультацию в одно касание (Кенан 09.11): вместо старой формы
         reg = main.select_one('section#registration')
         frag_cf = BeautifulSoup(CF.section_html(lang, LABELS[lang], orig_name.rsplit('/', 1)[-1]), 'html.parser')
@@ -894,7 +917,7 @@ def build_page(lang, orig_name, new_rel, key):
         hubp = {'spec': 'mutexessisler/index.html', 'cons': 'konsultasiya/index.html', 'edu': 'telim/index.html', 'corp': 'korporativ/index.html', 'blog': 'bloq/index.html'}.get(key)
         home_lbl = L.get('index.html', 'RAGIMOFF')
         crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a>' % (rel(new_page, lang + '/index.html'), H.escape(home_lbl))
-        if sec and hubp and lang + '/' + hubp != new_page:
+        if sec and hubp and lang + '/' + hubp != new_page and key not in HUB_ANCHOR:
             crumbs += '<span>/</span><a href="%s">%s</a>' % (rel(new_page, lang + '/' + hubp), H.escape(sec))
         crumbs += '</nav>'
     if home:
@@ -1069,6 +1092,7 @@ def main():
         copy_image(extra)
     write_router()
     write_app()
+    write_hub_redirects()
     write_sitemap()
     prune_images()
     print('pages', len(report), 'images', len(copied))
@@ -1162,6 +1186,19 @@ a{color:#C9A961}</style></head><body><main><b>RAGIMOFF.</b>
 def write_app():
     (OUT / 'app.webmanifest').write_text(json.dumps(APP_MANIFEST, ensure_ascii=False, indent=1), encoding='utf-8', newline=chr(10))
     (OUT / 'offline.html').write_text(OFFLINE_HTML, encoding='utf-8', newline=chr(10))
+
+
+def write_hub_redirects():
+    """Хабы «Обучение» и «Консультации» убраны (Кенан 09.11): старые адреса ведут к блоку главной."""
+    for l in LANGS:
+        for gid, page in (('edu', 'telim/index.html'), ('cons', 'konsultasiya/index.html')):
+            new_page = l + '/' + page
+            target = rel(new_page, l + '/index.html') + HUB_ANCHOR[gid]
+            (OUT / new_page).write_text('<!DOCTYPE html><html lang="%s"><head><meta charset="utf-8"><meta name="robots" content="noindex">'
+                                        '<meta http-equiv="refresh" content="0; url=%s"><link rel="canonical" href="%s"><title>RAGIMOFF</title></head>'
+                                        '<body style="background:#07090E;color:#F2EDE3"><a href="%s" style="color:#C9A961">RAGIMOFF →</a></body></html>' % (l, target, target, target),
+                                        encoding='utf-8', newline=chr(10))
+            report[:] = [x for x in report if x[0] != new_page]
 
 
 def write_router():

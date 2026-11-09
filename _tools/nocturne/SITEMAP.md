@@ -44,7 +44,6 @@ az/konsultasiya/aile-terapiyasi.html  ←  aile-terapiyasi.html
 az/konsultasiya/aile-usaq-terapiyasi.html  ←  aile-terapiyasi-usaq.html
 az/konsultasiya/depressiya.html  ←  depressiya.html
 az/konsultasiya/enurez.html  ←  enurez.html
-az/konsultasiya/index.html  ←  xidmetler.html
 az/konsultasiya/panik-ataklar.html  ←  panik-ataklar.html
 az/konsultasiya/sosial-fobiya.html  ←  sosial-fobiya.html
 az/konsultasiya/valideyn-mektebi.html  ←  valideyn-mektebi.html
@@ -53,7 +52,6 @@ az/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html her
 az/mutexessisler/kenan-rehimov.html  ←  haqqimda.html
 az/mutexessisler/samire-rehimova.html  ←  samira.html
 az/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
-az/telim/index.html  ←  tehsil.html
 az/telim/klinik-psixologiya.html  ←  program-klinik.html
 az/telim/psixoanaliz.html  ←  program-psixoanaliz.html
 az/telim/psixodiaqnostika.html  ←  program-psixodiaqnostika.html
@@ -104,7 +102,6 @@ en/konsultasiya/aile-terapiyasi.html  ←  en/aile-terapiyasi.html
 en/konsultasiya/aile-usaq-terapiyasi.html  ←  en/aile-terapiyasi-usaq.html
 en/konsultasiya/depressiya.html  ←  en/depressiya.html
 en/konsultasiya/enurez.html  ←  en/enurez.html
-en/konsultasiya/index.html  ←  en/xidmetler.html
 en/konsultasiya/panik-ataklar.html  ←  en/panik-ataklar.html
 en/konsultasiya/sosial-fobiya.html  ←  en/sosial-fobiya.html
 en/konsultasiya/valideyn-mektebi.html  ←  en/valideyn-mektebi.html
@@ -113,7 +110,6 @@ en/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html her
 en/mutexessisler/kenan-rehimov.html  ←  en/haqqimda.html
 en/mutexessisler/samire-rehimova.html  ←  en/samira.html
 en/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
-en/telim/index.html  ←  en/tehsil.html
 en/telim/klinik-psixologiya.html  ←  en/program-klinik.html
 en/telim/psixoanaliz.html  ←  en/program-psixoanaliz.html
 en/telim/psixodiaqnostika.html  ←  en/program-psixodiaqnostika.html
@@ -164,7 +160,6 @@ ru/konsultasiya/aile-terapiyasi.html  ←  ru/aile-terapiyasi.html
 ru/konsultasiya/aile-usaq-terapiyasi.html  ←  ru/aile-terapiyasi-usaq.html
 ru/konsultasiya/depressiya.html  ←  ru/depressiya.html
 ru/konsultasiya/enurez.html  ←  ru/enurez.html
-ru/konsultasiya/index.html  ←  ru/xidmetler.html
 ru/konsultasiya/panik-ataklar.html  ←  ru/panik-ataklar.html
 ru/konsultasiya/sosial-fobiya.html  ←  ru/sosial-fobiya.html
 ru/konsultasiya/valideyn-mektebi.html  ←  ru/valideyn-mektebi.html
@@ -173,7 +168,6 @@ ru/mutexessisler/index.html  ←  generated from haqqimda.html + samira.html her
 ru/mutexessisler/kenan-rehimov.html  ←  ru/haqqimda.html
 ru/mutexessisler/samire-rehimova.html  ←  ru/samira.html
 ru/telim/aile-terapiyasi.html  ←  generated: samira.html training sections
-ru/telim/index.html  ←  ru/tehsil.html
 ru/telim/klinik-psixologiya.html  ←  ru/program-klinik.html
 ru/telim/psixoanaliz.html  ←  ru/program-psixoanaliz.html
 ru/telim/psixodiaqnostika.html  ←  ru/program-psixodiaqnostika.html

@@ -88,6 +88,7 @@ for new, orig in pairs:
         probs.append('ЦЕНЫ потеряны: %s' % lost)
     fa = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in a.find_all('form'))
     fb = sorted((f.get('id'), tuple(sorted({i.get('name') for i in f.find_all(['input', 'select', 'textarea']) if i.get('name')}))) for f in b.find_all('form') if f.get('id') != 'consultForm')
+    fb = sorted((i, tuple(n for n in names if n != 'diplom')) for i, names in fb)
     if fa != fb:
         probs.append('ФОРМЫ: %s vs %s' % (fa, fb))
     if a.find('script', src=re.compile('training-pay')) and not b.find('script', src=re.compile('training-pay')):

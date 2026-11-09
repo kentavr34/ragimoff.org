@@ -38,7 +38,7 @@ T = {
   'fmt': 'Format', 'f_on': 'Onlayn', 'f_off': 'Əyani', 'hours': 'Saat sayı', 'per_h': 'saat', 'total': 'Cəmi',
   'rates': 'Bir mütəxəssis: onlayn 100 AZN/saat, əyani 150 AZN/saat. Hər iki mütəxəssis: onlayn 150 AZN/saat, əyani 200 AZN/saat.',
   'form_eyebrow': 'Qeydiyyat', 'form_title': 'Təlimə yazılın',
-  'f_name': 'Ad', 'f_last': 'Soyad', 'f_phone': 'Telefon', 'f_id': 'Şəxsiyyət vəsiqəsi (şəkil və ya PDF)',
+  'f_name': 'Ad', 'f_last': 'Soyad', 'f_phone': 'Telefon', 'f_id': 'Şəxsiyyət vəsiqəsi (şəkil və ya PDF)', 'f_dip': 'Ali təhsil diplomu (varsa)',
   'f_choice': 'Təlim', 'f_ind': 'Fərdi praktik hazırlıq', 'f_pay': 'Ödəniş', 'f_pay_m': 'Aylıq — 300 AZN × 3', 'f_pay_p': 'Birdəfəlik — 800 AZN',
   'f_send': 'Qeydiyyatdan keç', 'f_after': 'Qeydiyyatdan sonra ödəniş səhifəsi açılacaq. Ödənişdən sonra qəbzi +994 70 220 03 76 nömrəsinə göndərin — sizi təlim qrupuna qoşacağıq.', 'f_sending': 'Göndərilir…',
   'f_ok': 'Müraciətiniz qəbul edildi. Ödəniş və qrup barədə sizinlə əlaqə saxlayacağıq.',
@@ -67,7 +67,7 @@ T = {
   'fmt': 'Формат', 'f_on': 'Онлайн', 'f_off': 'Очно', 'hours': 'Количество часов', 'per_h': 'ч', 'total': 'Итого',
   'rates': 'Один специалист: онлайн 100 AZN/час, очно 150 AZN/час. Оба специалиста: онлайн 150 AZN/час, очно 200 AZN/час.',
   'form_eyebrow': 'Регистрация', 'form_title': 'Запись на тренинг',
-  'f_name': 'Имя', 'f_last': 'Фамилия', 'f_phone': 'Телефон', 'f_id': 'Удостоверение личности (фото или PDF)',
+  'f_name': 'Имя', 'f_last': 'Фамилия', 'f_phone': 'Телефон', 'f_id': 'Удостоверение личности (фото или PDF)', 'f_dip': 'Диплом о высшем образовании (если есть)',
   'f_choice': 'Тренинг', 'f_ind': 'Индивидуальная практическая подготовка', 'f_pay': 'Оплата', 'f_pay_m': 'Помесячно — 300 AZN × 3', 'f_pay_p': 'Единовременно — 800 AZN',
   'f_send': 'Зарегистрироваться', 'f_after': 'После регистрации откроется страница оплаты. После оплаты отправьте чек на номер +994 70 220 03 76 — вас подключат к группе обучения.', 'f_sending': 'Отправка…',
   'f_ok': 'Заявка принята. Мы свяжемся с вами по оплате и группе.',
@@ -96,7 +96,7 @@ T = {
   'fmt': 'Format', 'f_on': 'Online', 'f_off': 'In person', 'hours': 'Hours', 'per_h': 'h', 'total': 'Total',
   'rates': 'One specialist: online 100 AZN/hour, in person 150 AZN/hour. Both specialists: online 150 AZN/hour, in person 200 AZN/hour.',
   'form_eyebrow': 'Registration', 'form_title': 'Sign up for a training',
-  'f_name': 'First name', 'f_last': 'Last name', 'f_phone': 'Phone', 'f_id': 'ID document (photo or PDF)',
+  'f_name': 'First name', 'f_last': 'Last name', 'f_phone': 'Phone', 'f_id': 'ID document (photo or PDF)', 'f_dip': 'University diploma (if any)',
   'f_choice': 'Training', 'f_ind': 'Individual practical training', 'f_pay': 'Payment', 'f_pay_m': 'Monthly — 300 AZN × 3', 'f_pay_p': 'At once — 800 AZN',
   'f_send': 'Register', 'f_after': 'After registering, the payment page opens. After payment, send the receipt to +994 70 220 03 76 and we will add you to the training group.', 'f_sending': 'Sending…',
   'f_ok': 'Your application has been received. We will contact you about payment and the group.',
@@ -151,13 +151,14 @@ def page_main(lang, new_page, rel, MAP, hero):
             '<div class="n-form-grid"><label><span>%s</span><input name="ad" required autocomplete="given-name"></label>'
             '<label><span>%s</span><input name="soyad" required autocomplete="family-name"></label>'
             '<label><span>%s</span><input name="telefon" type="tel" required autocomplete="tel" placeholder="+994"></label>'
-            '<label><span>%s</span><input name="shexsiyyet" type="file" accept="image/*,.pdf" required></label></div>'
+            '<label><span>%s</span><input name="shexsiyyet" type="file" accept="image/*,.pdf" required></label>'
+            '<label><span>%s</span><input name="diplom" type="file" accept="image/*,.pdf"></label></div>'
             '<fieldset class="n-calc-row"><legend>%s</legend>%s</fieldset>'
             '<div class="n-form-group" data-for="individual" hidden>%s</div>'
             '<p class="n-form-after">%s</p>'
             '<button class="n-btn" type="submit">%s</button><p class="n-form-msg" role="status" hidden></p></form>') % (
                 e(t['f_ok']), e(t['f_err']), e(t['f_sending']), e(t['f_req']), lang,
-                e(t['f_name']), e(t['f_last']), e(t['f_phone']), e(t['f_id']), e(t['f_choice']), radios,
+                e(t['f_name']), e(t['f_last']), e(t['f_phone']), e(t['f_id']), e(t['f_dip']), e(t['f_choice']), radios,
                 calc_html(t, 'f_'), e(t['f_after']), e(t['f_send']))
     body = '''<section class="n-sec"><div class="n-wrap">
 <p class="n-short-order">%s</p>

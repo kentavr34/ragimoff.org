@@ -307,18 +307,18 @@
     cf.addEventListener('submit', async function (e) {
       e.preventDefault();
       var msg = cf.querySelector('.n-form-msg'), btn = cf.querySelector('button[type="submit"]'), ok = true;
-      var need = ['ad', 'telefon']; if (pick('movzu') === 'other') need.push('simptom');
+      var need = ['ad', 'soyad', 'telefon']; if (pick('movzu') === 'other') need.push('simptom');
       need.forEach(function (n) { var el = cf.querySelector('[name="' + n + '"]'); var bad = !el.value.trim(); el.classList.toggle('is-bad', bad); if (bad) ok = false; });
       if (!ok) { msg.hidden = false; msg.className = 'n-form-msg is-err'; msg.textContent = cf.getAttribute('data-req'); return; }
       var lab = function (n) { var r = cf.querySelector('input[name="' + n + '"]:checked'); return r ? r.parentNode.textContent.trim() : ''; };
       var service = 'consult|' + pick('mutexessis') + '|' + pick('format');
       var note = lab('mutexessis') + ' · ' + lab('format') + ' · ' + lab('movzu') + (pick('movzu') === 'other' ? ': ' + cf.simptom.value.trim() : '');
       btn.disabled = true; var lbl = btn.textContent; btn.textContent = cf.getAttribute('data-sending');
-      var payload = { type: 'registration', fname: cf.ad.value.trim(), lname: '', phone: cf.telefon.value.trim(), email: '', address: '',
+      var payload = { type: 'registration', fname: cf.ad.value.trim(), lname: cf.soyad.value.trim(), phone: cf.telefon.value.trim(), email: '', address: '',
                       service: service, lang: cf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: [] };
       var reg = await fetch('https://api.ragimoff.org/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.ok ? r.json().catch(function () { return { ok: true }; }) : null; }, function () { return null; });
-      if (reg && reg.prices) { btn.textContent = lbl; await payGo(cf, { name: payload.fname, phone: payload.phone, program: service, folder: reg.folder || '' }, 'prepay', btn); return; }
+      if (reg && reg.prices) { btn.textContent = lbl; await payGo(cf, { name: payload.fname + ' ' + payload.lname, phone: payload.phone, program: service, folder: reg.folder || '' }, 'prepay', btn); return; }
       btn.disabled = false; btn.textContent = lbl; msg.hidden = false;
       msg.className = 'n-form-msg' + (reg ? '' : ' is-err');
       msg.innerHTML = reg ? cf.getAttribute('data-ok') : cf.getAttribute('data-err') + ' <a href="https://wa.me/994702200376" target="_blank" rel="noopener">WhatsApp</a>';
@@ -362,8 +362,11 @@
         note = progLbl;
       }
       btn.disabled = true; var lbl = btn.textContent; btn.textContent = sf.getAttribute('data-sending');
-      var att = [], f = sf.querySelector('[name="shexsiyyet"]').files[0];
-      if (f && f.size < 10 * 1024 * 1024) att.push({ field: 'shexsiyyet', filename: f.name, mime: f.type || 'application/octet-stream', data: await b64(f) });
+      var att = [];
+      for (var fn of ['shexsiyyet', 'diplom']) {      /* удостоверение — обязательно, диплом — если есть */
+        var fe = sf.querySelector('[name="' + fn + '"]'), f = fe && fe.files[0];
+        if (f && f.size < 10 * 1024 * 1024) att.push({ field: fn, filename: f.name, mime: f.type || 'application/octet-stream', data: await b64(f) });
+      }
       var payload = { type: 'registration', fname: sf.ad.value.trim(), lname: sf.soyad.value.trim(), phone: sf.telefon.value.trim(), email: '', address: '',
                       service: service, lang: sf.getAttribute('data-lang'), note: note, source: location.pathname.replace(/^\//, ''), attachments: att };
       var API = 'https://api.ragimoff.org';
