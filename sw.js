@@ -4,7 +4,7 @@
    Страницы: сначала сеть (свежая версия), при отсутствии сети — сохранённая копия.
    Файлы (стили, скрипты, шрифты, картинки, главы читалки): сразу из памяти, в фоне обновляются.
    Заявки и оплата (api.ragimoff.org, POST) не кэшируются никогда. */
-var V = 'rgm-v2';
+var V = 'rgm-v3';
 var PAGES = V + '-pages', FILES = V + '-files';
 var OFFLINE = '/offline.html';
 var CORE = [OFFLINE, '/assets/css/nocturne.css', '/assets/js/nocturne.js', '/favicons/android-chrome-192x192.png'];
