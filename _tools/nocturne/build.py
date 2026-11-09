@@ -61,13 +61,15 @@ NAMES = {  # из <title>/<h1> оригинальных страниц
     'samira.html': {'az': 'Samirə Rəhimova', 'ru': 'Самира Рагимова', 'en': 'Samira Rahimova'},
 }
 SKIP_LABEL = {'ru': {'program-psixodiaqnostika.html': 'Психодиагностика'}, 'en': {'program-psixodiaqnostika.html': 'Psychodiagnostics'}}
+CONS_KIDS = ['aile-terapiyasi.html', 'aile-terapiyasi-usaq.html', 'valideyn-mektebi.html', 'depressiya.html', 'panik-ataklar.html', 'sosial-fobiya.html', 'enurez.html']
 GROUPS = [
     ('spec', None, 'mutexessisler/index.html', ['haqqimda.html', 'samira.html']),
-    ('cons', 'xidmetler.html', 'konsultasiya/index.html', ['aile-terapiyasi.html', 'aile-terapiyasi-usaq.html', 'valideyn-mektebi.html', 'depressiya.html', 'panik-ataklar.html', 'sosial-fobiya.html', 'enurez.html']),
-    ('edu', 'tehsil.html', 'telim/index.html', ['program-umumi.html', 'program-klinik.html', 'program-praktikum.html', 'program-psixoanaliz.html', 'program-psixodiaqnostika.html', 'samira.html', 'qanunlar.html']),
-    ('corp', 'b2b.html', 'korporativ/index.html', []),
+    ('books', None, '/books/', []),
+    ('edu', 'tehsil.html', 'telim/index.html', ['program-umumi.html', 'program-klinik.html', 'program-praktikum.html', 'program-psixoanaliz.html', 'program-psixodiaqnostika.html', 'samira.html', 'qanunlar.html', 'b2b.html']),
+    ('cons', 'xidmetler.html', 'konsultasiya/index.html', CONS_KIDS),
     ('blog', 'blog.html', 'bloq/index.html', []),
-]
+    ('contact', None, 'elaqe/index.html', []),
+]   # порядок меню — Кенан 09.11: специалисты, книги, обучение (вкл. корпоративное), консультации, блог, контакты
 
 HERO_IMG_DEFAULT = 'images/kenan/photo-portal-crop.jpg'
 copied = set()
@@ -324,6 +326,7 @@ import consult_form as CF
 import training_landing as TL
 import corporate as CORP
 import home_copy as HC
+import contact_page as CT
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -333,7 +336,19 @@ HUB_ANCHOR = {'edu': '#programs', 'cons': '#services'}   # Кенан 09.11: с�
 
 
 def group_href(gid, hubpath, r):
+    if hubpath.startswith('/'):
+        return hubpath
     return r('index.html') + HUB_ANCHOR[gid] if gid in HUB_ANCHOR else r(hubpath)
+
+
+def group_label(gid, hub, lang):
+    if gid == 'spec':
+        return SPEC[lang]
+    if gid == 'books':
+        return LABELS[lang].get('books/', 'Books')
+    if gid == 'contact':
+        return CT.T[lang]['nav']
+    return LABELS[lang].get(hub, hub)
 
 
 def sub_links(gid, kids, lang, r):
@@ -344,6 +359,8 @@ def sub_links(gid, kids, lang, r):
         out.append((r(ST.PAGE), ST.T[lang]['nav']))
     for k in kids:
         lbl = L['@' + k] if (gid == 'spec' and '@' + k in L) else L.get(k, k)
+        if k == 'b2b.html':
+            lbl = {'az': 'Korporativ təlimlər', 'ru': 'Корпоративное обучение', 'en': 'Corporate training'}[lang]
         href = FAM_PAGE if (gid == 'edu' and k == 'samira.html') else MAP[k]
         out.append((r(href), lbl))
     return out
@@ -354,8 +371,8 @@ def header_html(lang, new_page, key):
     r = lambda p: rel(new_page, lang + '/' + p)
     items = []
     for gid, hub, hubpath, kids in GROUPS:
-        label = SPEC[lang] if gid == 'spec' else L.get(hub, hub)
-        on = ' is-on' if key == gid else ''
+        label = group_label(gid, hub, lang)
+        on = ' is-on' if (key == gid or (key == 'corp' and gid == 'edu')) else ''
         top = group_href(gid, hubpath, r)
         if kids:
             sub = ''.join('<a href="%s">%s</a>' % (h, H.escape(t)) for h, t in sub_links(gid, kids, lang, r))
@@ -363,7 +380,6 @@ def header_html(lang, new_page, key):
             items.append('<div class="n-dd%s"><a class="n-link" href="%s" aria-haspopup="true">%s<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></a><div class="n-dd-panel">%s%s</div></div>' % (on, top, H.escape(label), hub_row, sub))
         else:
             items.append('<a class="n-link%s" href="%s">%s</a>' % (on, top, H.escape(label)))
-    items.append('<a class="n-link n-books" href="/books/">%s ↗</a>' % H.escape(L.get('books/', 'Books')))
     langs = []
     for l2 in LANGS:
         tgt = new_page.split('/', 1)[1]
@@ -373,10 +389,11 @@ def header_html(lang, new_page, key):
     home = r('index.html')
     mob = []
     for gid, hub, hubpath, kids in GROUPS:
-        label = SPEC[lang] if gid == 'spec' else L.get(hub, hub)
+        label = group_label(gid, hub, lang)
         sub = ''.join('<a href="%s">%s</a>' % (h, H.escape(t)) for h, t in sub_links(gid, kids, lang, r))
-        mob.append('<div class="n-m-group"><a class="n-m-big" href="%s">%s</a>%s</div>' % (group_href(gid, hubpath, r), H.escape(label), ('<div class="n-m-sub">' + sub + '</div>') if sub else ''))
-    mob.append('<div class="n-m-group"><a class="n-m-big" href="/books/">%s ↗</a></div>' % H.escape(L.get('books/', 'Books')))
+        fold = sub and gid != 'spec'       # подпункты обучения и консультаций — по нажатию на стрелку (Кенан 09.11: меньше деталей)
+        tog = '<button class="n-m-tog" type="button" aria-expanded="false" aria-label="+"><svg width="14" height="14" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>' if fold else ''
+        mob.append('<div class="n-m-group%s"><div class="n-m-row"><a class="n-m-big" href="%s">%s</a>%s</div>%s</div>' % (' n-m-fold' if fold else '', group_href(gid, hubpath, r), H.escape(label), tog, ('<div class="n-m-sub">' + sub + '</div>') if sub else ''))
     return '''<a class="n-skip" href="#main">%s</a>
 <header class="n-head" id="nHead"><div class="n-head-in">
 <a class="n-logo" href="%s" aria-label="RAGIMOFF"><span class="n-logo-r" aria-hidden="true">R<i></i></span><span class="n-logo-w" aria-hidden="true">AGIMOFF</span></a>
@@ -975,6 +992,8 @@ def build_page(lang, orig_name, new_rel, key):
             pass
     foot_pre = s.find('footer', class_='site-footer')   # подвал до правки ссылок: иначе (подвал внутри <main>) ссылки правятся дважды и подвал выходит два раза
     foot_pre = foot_pre.extract() if foot_pre is not None else None
+    for sc in s.find_all('script', src=re.compile(r'js-hero-fit')):   # старый «подгонщик» ставит секциям свои отступы — ломает ритм Ноктюрна (Кенан 09.11)
+        sc.decompose()
     fix_attrs(main, orig_page, new_page)
     restyle(main, s)
     canon_prices(main, orig_name, lang, new_page)
@@ -1030,7 +1049,7 @@ def build_page(lang, orig_name, new_rel, key):
         d['photo'] = map_url('index.html', new_page, 'images/kenan/photo-portal-crop-removebg-preview.png')
         d['alt'] = NAMES['haqqimda.html'][lang]
         L = LABELS[lang]
-        words = [L.get(k) for k in GROUPS[1][3] if L.get(k)]
+        words = [L.get(k) for k in CONS_KIDS if L.get(k)]
         dot = '<i aria-hidden="true"></i>'
         belt = dot.join('<span>%s</span>' % H.escape(w) for w in words) + dot
         marquee = '<div class="n-marquee" aria-hidden="true"><div class="n-belt">%s%s</div></div>' % (belt, belt)
@@ -1094,6 +1113,23 @@ def build_spec_index(lang):
     (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
     (OUT / new_page).write_text(page, encoding='utf-8', newline=chr(10))
     report.append((new_page, 'generated from haqqimda.html + samira.html heroes'))
+
+
+def build_contact(lang):
+    """Контакты (Кенан 09.11): адрес, карта, маршрут/такси, WhatsApp, почта — contact_page.py."""
+    new_page = lang + '/' + CT.PAGE
+    t = CT.T[lang]
+    L = LABELS[lang]
+    crumbs = '<nav class="n-crumbs n-rise" aria-label="breadcrumbs"><a href="%s">%s</a></nav>' % (rel(new_page, lang + '/index.html'), H.escape(L.get('index.html', 'RAGIMOFF')))
+    hero = hero_html({'badge': t['eyebrow'], 'w1': t['title'], 'w2': '', 'lead': t['lead'], 'img': map_url('index.html', new_page, HERO_IMG_DEFAULT)}, lang, crumbs=crumbs)
+    R = root_rel(new_page)
+    scripts = '<script src="%sassets/js/shared.js"></script>' % R
+    foot = soup_of(SRC / (PREFIX[lang] + 'index.html')).find('footer')
+    page = page_shell(lang, new_page, t['title'] + ' | RAGIMOFF', t['lead'] + ' ' + ', '.join(t['addr']), '', 'n-k-contact', header_html(lang, new_page, 'contact'),
+                      CT.main_html(lang, hero), footer_html(foot, lang, PREFIX[lang] + 'index.html', new_page), '', scripts)
+    (OUT / new_page).parent.mkdir(parents=True, exist_ok=True)
+    (OUT / new_page).write_text(page, encoding='utf-8', newline=chr(10))
+    report.append((new_page, 'generated: contact_page.py'))
 
 
 def build_short(lang):
@@ -1179,7 +1215,7 @@ def build_family(lang):
 
 def key_for(new_rel):
     top = new_rel.split('/')[0]
-    return {'mutexessisler': 'spec', 'konsultasiya': 'cons', 'telim': 'edu', 'korporativ': 'corp', 'bloq': 'blog'}.get(top, 'home')
+    return {'mutexessisler': 'spec', 'konsultasiya': 'cons', 'telim': 'edu', 'korporativ': 'corp', 'bloq': 'blog', 'elaqe': 'contact'}.get(top, 'home')
 
 
 def main():
@@ -1198,12 +1234,14 @@ def main():
         built_all[l].add('mutexessisler/index.html')
         built_all[l].add(ST.PAGE)
         built_all[l].add(FAM_PAGE)
+        built_all[l].add(CT.PAGE)
     for l in LANGS:
         for o, n in MAP.items():
             build_page(l, o, n, key_for(n))
         build_spec_index(l)
         build_short(l)
         build_family(l)
+        build_contact(l)
     # общие скрипты/стили — точные копии с боевого сайта
     js = OUT / 'assets' / 'js'; css = OUT / 'assets' / 'css' / 'legacy'
     js.mkdir(parents=True, exist_ok=True); css.mkdir(parents=True, exist_ok=True)

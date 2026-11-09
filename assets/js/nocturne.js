@@ -10,6 +10,11 @@
   var head = document.getElementById('nHead');
   var burger = document.querySelector('.n-burger');
   var mob = document.getElementById('nMob');
+  if (mob) mob.addEventListener('click', function (e) {          /* стрелка раскрывает подпункты (Кенан 09.11) */
+    var b = e.target.closest('.n-m-tog'); if (!b) return;
+    var g = b.closest('.n-m-group'), open = !g.classList.contains('is-open');
+    g.classList.toggle('is-open', open); b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
 
   /* приложение RAGIMOFF (PWA, Кенан 09.11.2026): сохранение открытых страниц и книг на устройстве + предложение установить */
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
@@ -58,13 +63,19 @@
 
   /* header: solid after scroll, hides on scroll down, returns on scroll up */
   var lastY = 0;
+  var travel = 0;
   function onScroll() {
     var y = window.scrollY || 0;
     if (head) {
       head.classList.toggle('is-scrolled', y > 30);
-      var menuOpen = mob && mob.classList.contains('is-open');
-      head.classList.toggle('is-hidden', !menuOpen && y > 400 && y > lastY + 4);
-      if (y < lastY - 4) head.classList.remove('is-hidden');
+      /* скрывающаяся шапка (Кенан 09.11): листаешь вниз — уходит и сама не возвращается;
+         потянул вверх на 32 px — выезжает; у верха страницы видна всегда. Путь накапливается, мелкие шаги не дёргают её. */
+      var menuOpen = mob && mob.classList.contains('is-open'), dy = y - lastY;
+      if ((dy > 0) !== (travel > 0)) travel = 0;
+      travel += dy;
+      if (menuOpen || y < 120) head.classList.remove('is-hidden');
+      else if (travel > 48) head.classList.add('is-hidden');
+      else if (travel < -32) head.classList.remove('is-hidden');
     }
     lastY = y;
   }
@@ -420,8 +431,17 @@
     var stick = sec.querySelector('.n-hs-stick'), track = sec.querySelector('[data-hs-track]');
     if (!stick || !track) return;
     var cards = Array.prototype.slice.call(track.children), dist = 0, cur = 0, target = 0, raf = 0;
+    var mq = window.matchMedia('(max-width: 900px)');
+    var intro = track.querySelector(':scope > .n-hs-intro');
     function measure() {
       track.style.setProperty('--hx', '0px');
+      if (mq.matches) {                     /* телефон: лента листается пальцем, без закрепления на весь экран (Кенан 09.11) */
+        sec.classList.add('n-hs-native'); sec.style.height = ''; dist = 0; target = cur = 0;
+        if (intro && intro.parentNode === track) track.parentNode.insertBefore(intro, track);   /* заголовок — над лентой */
+        return;
+      }
+      sec.classList.remove('n-hs-native');
+      if (intro && intro.parentNode !== track) track.insertBefore(intro, track.firstChild);
       dist = Math.max(0, track.scrollWidth - stick.clientWidth);
       sec.style.height = dist > 0 ? (innerHeight + dist * (innerWidth < 701 ? 1.1 : 0.9)) + 'px' : '';
       onScroll();
@@ -442,6 +462,7 @@
       if (cur !== target) raf = requestAnimationFrame(loop);
     }
     function onScroll() {
+      if (mq.matches) return;
       var r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
       var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
       target = p * dist;
@@ -452,6 +473,19 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
     measure();
   });
+
+  /* текст по центру — только 1–2 строки; длиннее — по левому краю (Кенан 09.11: «не пчелиный улей») */
+  function unCenter() {
+    Array.prototype.forEach.call(document.querySelectorAll('main p, main li, main .sec-sub, main .sec-lead, main .n-lead'), function (p) {
+      if (p.classList.contains('n-ta-c')) return;
+      p.style.textAlign = '';
+      var cs = getComputedStyle(p); if (cs.textAlign !== 'center') return;
+      var lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.5;
+      if (p.offsetHeight / lh > 2.4) p.style.textAlign = 'left';
+    });
+  }
+  unCenter(); window.addEventListener('resize', unCenter);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(unCenter);
 
   /* выравнивание рядов карточек (Кенан 09.11): в каждом визуальном ряду соседние элементы карточек
      (метка, заголовок, текст, ссылка) получают общую высоту → стоят на одной линии; карточки одной высоты */

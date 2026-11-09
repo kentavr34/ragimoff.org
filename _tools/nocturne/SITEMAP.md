@@ -39,6 +39,7 @@ az/bloq/sosial-fobiya-4.html  ←  blog-sosial-fobiya-4.html
 az/bloq/sosial-fobiya-5.html  ←  blog-sosial-fobiya-5.html
 az/bloq/sosial-fobiya.html  ←  blog-sosial-fobiya.html
 az/bloq/yeniyetme.html  ←  blog-yeniyetme.html
+az/elaqe/index.html  ←  generated: contact_page.py
 az/index.html  ←  index.html
 az/konsultasiya/aile-terapiyasi.html  ←  aile-terapiyasi.html
 az/konsultasiya/aile-usaq-terapiyasi.html  ←  aile-terapiyasi-usaq.html
@@ -97,6 +98,7 @@ en/bloq/sosial-fobiya-4.html  ←  en/blog-sosial-fobiya-4.html
 en/bloq/sosial-fobiya-5.html  ←  en/blog-sosial-fobiya-5.html
 en/bloq/sosial-fobiya.html  ←  en/blog-sosial-fobiya.html
 en/bloq/yeniyetme.html  ←  en/blog-yeniyetme.html
+en/elaqe/index.html  ←  generated: contact_page.py
 en/index.html  ←  en/index.html
 en/konsultasiya/aile-terapiyasi.html  ←  en/aile-terapiyasi.html
 en/konsultasiya/aile-usaq-terapiyasi.html  ←  en/aile-terapiyasi-usaq.html
@@ -155,6 +157,7 @@ ru/bloq/sosial-fobiya-4.html  ←  ru/blog-sosial-fobiya-4.html
 ru/bloq/sosial-fobiya-5.html  ←  ru/blog-sosial-fobiya-5.html
 ru/bloq/sosial-fobiya.html  ←  ru/blog-sosial-fobiya.html
 ru/bloq/yeniyetme.html  ←  ru/blog-yeniyetme.html
+ru/elaqe/index.html  ←  generated: contact_page.py
 ru/index.html  ←  ru/index.html
 ru/konsultasiya/aile-terapiyasi.html  ←  ru/aile-terapiyasi.html
 ru/konsultasiya/aile-usaq-terapiyasi.html  ←  ru/aile-terapiyasi-usaq.html
