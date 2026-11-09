@@ -47,7 +47,7 @@ window.rhythmScan = async function (pages, W, base) {
     for (const b of L.filter(e => e.matches('a.btn,.btn,button[type=submit]'))) {
       const br = R(b); let bb = -1e9, best = null;
       for (const o of L) {
-        if (o === b || b.contains(o) || o.contains(b) || o.matches('.btn,a.btn,button')) continue;
+        if (o === b || b.contains(o) || o.contains(b) || o.closest('.btn,a.btn,button,.n-btn')) continue;
         const r = R(o); if (r.bottom <= br.top + 1 && r.right > br.left && r.left < br.right && r.bottom > bb) { best = o; bb = r.bottom; }
       }
       if (best) { const g = Math.round(br.top - bb); if (g < 20 && g >= 0) out.btn.push(g + ':' + nm(best) + '→' + b.textContent.trim().slice(0, 16)); }

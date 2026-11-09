@@ -910,6 +910,7 @@ main.page-main > .legal-block, main.page-main > .tg-band, main.page-main > div.s
 .n-body .n-sec-head { margin-bottom: var(--r3) !important; }
 .n-body .sec-header + *, .n-body .sec-sub + *, .n-body .sec-lead + *, .n-body .sec-h2 + div, .n-body .sec-h2 + ul,
 .n-body .stud-sub + *, .n-body .n-lead + :is(div, ul, form, .n-grid) { margin-top: var(--r3) !important; }
+.n-body .n-hs:not(.n-hs-native) [data-hs-track] { margin-top: 0 !important; }
 
 /* r2 — текст → кнопка, цена → кнопка, ряды кнопок, сетки карточек */
 .n-body :is(.svc-actions, .cta-pair, .legal-btns, .cta-band-btns, .n-pc-actions, .form-footer, .conclusion-btns, .n-about-more-row, .book-card-row) { margin-top: var(--r2) !important; }
@@ -977,5 +978,26 @@ html body.n-body main :is(p, ul, ol, .price-total, .prog-price, .rfield, .form-g
 html body.n-body main :is(p, .rfield, .form-group, textarea, div:not([class*="btn"]):not(:has(> .btn))) + :is(a.btn, .btn, button[type=submit]) { margin-top: var(--r2) !important; }
 html body.n-body .n-hs.n-hs-native .sec-inner > [data-hs-track] { margin-top: var(--r3) !important; }
 /* r3 — любой заголовок блока (h2 / подзаголовок) → содержимое-блок (сетка, галерея, список, таблица), кроме текста статьи */
-html body.n-body main :is(h2, .sec-h2, .sec-sub, .sec-lead):not(.article-body *):not(.cta-band *):not(.n-doc-text *) + :is(div, ul, ol, table, .n-gallery, details):not(:has(> :is(a.btn, .btn, button):first-child)) { margin-top: var(--r3) !important; }
-html body.n-body main :is(.sec-header, .sec-inner) + :is(.n-gallery, div) { margin-top: var(--r3) !important; }
+html body.n-body main :is(h2, .sec-h2, .sec-sub, .sec-lead):not(.article-body *):not(.cta-band *):not(.n-doc-text *) + :is(div, ul, ol, table, .n-gallery, details):not([data-hs-track]):not(:has(> :is(a.btn, .btn, button):first-child)) { margin-top: var(--r3) !important; }
+html body.n-body main :is(.sec-header, .sec-inner) + :is(.n-gallery, div):not([data-hs-track]) { margin-top: var(--r3) !important; }
+
+/* плашка приложения — внизу слева, не закрывает меню и не спорит с кнопкой WhatsApp (Кенан 09.11) */
+.n-app { left: 12px !important; right: auto !important; top: auto !important; bottom: 12px !important; width: min(520px, calc(100vw - 100px)) !important; transform: translateY(140%) !important; }
+.n-app.is-in { transform: none !important; }
+@media (max-width: 560px) { .n-app { padding: 10px !important; gap: 10px !important; } .n-app-txt small { display: none; } }
+
+/* закреплённые ленты на компьютере — прежняя плотность карточек (лента рассчитана на высоту экрана) */
+@media (min-width: 901px) {
+  html body.n-body main .n-hs:not(.n-hs-native) .price-card { row-gap: 14px !important; gap: 14px !important; }
+  html body.n-body main .n-hs:not(.n-hs-native) .price-card > .n-pc-actions,
+  html body.n-body main .n-hs:not(.n-hs-native) .price-card > .price-total + * { margin-top: 0 !important; }
+  html body.n-body main .n-hs:not(.n-hs-native) [data-hs-track] { margin-top: 0 !important; }
+  html body.n-body main .n-hs:not(.n-hs-native) .n-hs-stick { padding-top: 84px !important; }
+}
+@media (min-width: 901px) {
+  html body.n-body main .n-hs:not(.n-hs-native) .sec-inner > [data-hs-track] { margin-top: var(--r2) !important; }
+  html body.n-body main .n-hs:not(.n-hs-native) .prog-enroll-note { margin-top: 6px !important; }
+}
+/* телефон: лента листается внутри себя и НЕ расширяет страницу (иначе браузер уменьшает весь сайт) */
+html body.n-body .n-hs.n-hs-native [data-hs-track] { overflow-x: auto !important; overflow-y: hidden !important; max-width: 100% !important; box-sizing: border-box; }
+html body.n-body .n-hs.n-hs-native .n-hs-stick { overflow-x: clip !important; }
