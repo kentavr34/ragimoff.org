@@ -320,6 +320,7 @@ import short_trainings as ST
 import consult_form as CF
 import training_landing as TL
 import corporate as CORP
+import home_copy as HC
 for l in LANGS:
     # подпись кнопки «Книги» и регистрации — из оригинального меню
     pass
@@ -708,8 +709,8 @@ def specialists_block(lang, new_page, head=True):
         cards.append('''<a class="n-person" href="%s"><img src="%s" alt="%s" loading="lazy"><span class="n-person-tint" aria-hidden="true"></span>
 <span class="n-person-body"><span class="n-eyebrow">%s</span><span class="n-person-name">%s</span><span class="n-person-lead">%s</span></span></a>''' % (
             rel(new_page, lang + '/' + MAP[orig]), map_url('index.html', new_page, photo), H.escape(NAMES[orig][lang]), H.escape(d.get('badge', '')),
-            H.escape(NAMES[orig][lang]), H.escape(d.get('lead') or (d.get('w1', '') + ' ' + d.get('w2', '')))))
-    hd = ('<div class="n-sec-head"><div><span class="n-eyebrow">RAGIMOFF</span><h2 class="n-h2">%s</h2></div></div>' % H.escape(SPEC[lang])) if head else ''
+            H.escape(NAMES[orig][lang]), H.escape(HC.SPEC[lang].get(orig) if head else (d.get('lead') or (d.get('w1', '') + ' ' + d.get('w2', ''))))))
+    hd = ('<div class="n-sec-head"><div><span class="n-eyebrow">%s</span><h2 class="n-h2">%s</h2></div></div>' % (H.escape(SPEC[lang]), H.escape(HC.SPEC[lang]['title']))) if head else ''
     return '<section class="n-sec"><div class="n-wrap">%s<div class="n-people">%s</div></div></section>' % (hd, ''.join(cards))
 
 
@@ -729,6 +730,9 @@ def programs_block(lang, new_page):
         del sec['id']
     shape_programs(sec, t, lang, new_page)
     sec['id'] = 'programs'
+    sub = sec.select_one('.sec-sub')
+    if sub is not None:
+        sub.clear(); sub.append(HC.PROG_SUB[lang])
     return str(sec)
 
 
@@ -1005,6 +1009,22 @@ def build_page(lang, orig_name, new_rel, key):
         stats = frag.select_one('.stats-strip')
         stats_html = str(stats.extract()) if stats else ''
         home_about(frag)
+        svc = frag.select_one('section#services')
+        if svc is not None:          # тексты концепта + прямой переход на каждую консультацию (Кенан 09.11)
+            C = HC.SVC[lang]
+            h2 = svc.select_one('h2')
+            if h2 is not None:
+                h2.clear(); h2.append(C['title'])
+            sub = svc.select_one('.sec-sub')
+            if sub is not None:
+                sub.clear(); sub.append(C['sub'])
+            for i, card in enumerate(svc.select('.svc-card')[:len(HC.SVC_PAGES)]):
+                ps = card.find_all('p')
+                if ps:
+                    ps[-1].clear(); ps[-1].append(C['cards'][i])
+                a = frag.new_tag('a', attrs={'class': 'n-card-more', 'href': rel(new_page, lang + '/' + MAP[HC.SVC_PAGES[i]])})
+                a.string = C['more'] + ' →'
+                card.append(a)
         blog = frag.select_one('section.sec-blog-latest')
         if blog is not None:      # Кенан 09.11: статьи — лента, которая едет по вертикальной прокрутке
             make_ribbon(blog, frag, '.blog-card')

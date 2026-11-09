@@ -55,6 +55,11 @@ def apply_canon(a, orig, new):
             if sec.select_one('.mod-panel') and not sec.find_parent('section'):
                 sec.decompose()
     B.canon_prices(main, name, new.split('/', 1)[0], new)
+    if name == 'index.html':         # главная: тексты услуг и подзаголовок программ — из концепта (Кенан 09.11)
+        sv = main.select_one('section#services')
+        if sv is not None:
+            for el in sv.select('h2, .sec-sub, .svc-card p'):
+                el.decompose()
     if name == 'b2b.html':          # старая форма заказа без полей заменена формой корпоративного запроса
         for el in main.select('section#order'):
             el.decompose()
