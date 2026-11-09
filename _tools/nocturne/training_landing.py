@@ -65,6 +65,7 @@ T = {
   'pd_months': 'Programme: three months',
  },
 }
+INST_LOGO = 'images/institute/logo-spb-idpo.webp'   # логотип института (прислал Кенан 09.11)
 INST_IMG = ['images/institute/diplom-spb-idpo.jpg', 'images/institute/diplom-spb-prilozhenie.jpg', 'images/institute/licenziya-1.jpg']
 IPAS_IMG = {'samira.html': 'images/certificate/sample-cert-ipas-family.jpg', '*': 'images/certificate/sample-cert-ipas-klinik.jpg'}
 
@@ -87,7 +88,9 @@ def doc_block(lang, new_page, kind, orig, map_url):
     shots = ''.join('<button class="n-shot" type="button" data-full="%s" aria-label="%s"><img src="%s" alt="%s" loading="lazy"><span class="n-shot-cap">%s</span></button>' % (
         e(map_url('index.html', new_page, im)), e(cap), e(map_url('index.html', new_page, im)), e(cap), e(cap))
         for im, cap in zip(imgs, t[pre + '_cap']))
-    return ('<section class="n-sec n-sec-alt n-doc"><div class="n-wrap"><div class="n-doc-grid"><div class="n-doc-text">'
+    logo = ('<a class="n-doc-logo" href="%s" target="_blank" rel="noopener"><img src="%s" alt="%s" width="484" height="196" loading="lazy"></a>' % (
+        e(url), e(map_url('index.html', new_page, INST_LOGO)), e(t['inst_title']))) if kind == 'inst' else ''
+    return ('<section class="n-sec n-sec-alt n-doc"><div class="n-wrap"><div class="n-doc-grid"><div class="n-doc-text">' + logo +
             '<span class="n-eyebrow">%s</span><h2 class="n-h2">%s</h2><p class="n-lead">%s</p>'
             '<a class="n-doc-link" href="%s" target="_blank" rel="noopener">%s ↗</a></div>'
             '<div class="n-gallery n-doc-shots">%s</div></div></div></section>') % (
