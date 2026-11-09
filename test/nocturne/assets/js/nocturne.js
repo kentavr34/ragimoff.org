@@ -43,6 +43,13 @@
     });
     var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) && /safari/i.test(navigator.userAgent) && !/crios|fxios/i.test(navigator.userAgent);
     if (ios) setTimeout(function () { bar(null); }, 3500);
+    /* Android без встроенной установки (Samsung Internet и др.) — кнопка скачивает APK приложения */
+    var prompted = false;
+    window.addEventListener('beforeinstallprompt', function () { prompted = true; });
+    if (/android/i.test(navigator.userAgent)) setTimeout(function () {
+      if (prompted) return;
+      bar(function () { location.href = '/app/ragimoff.apk'; return Promise.resolve(); });
+    }, 4500);
   })();
 
   /* header: solid after scroll, hides on scroll down, returns on scroll up */
