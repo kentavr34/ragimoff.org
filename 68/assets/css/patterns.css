@@ -449,26 +449,48 @@
 
 .note-line { margin-top: var(--r1); font-size: var(--step--1); color: var(--text-faint); line-height: 1.6; }
 
-/* ── специалисты ── */
-.people { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--r3); }
+/* ── специалисты ──
+   Дизайн эталона (nocturne.css:151-160), Кенан: «блок о специалистах потрясающий
+   дизайн был там вообще... а ты мне сделал хуже». Карточка 546×660, радиус 30:
+   фото во всю карточку сверху вниз, чёрно-белое с яркостью .85 и наездом 1.04,
+   золотая заливка 42 % в режиме multiply, снизу градиент в темноту на 86 %,
+   текст поверх фото снизу. При наведении фото делается цветным, заливка уходит. */
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
 .person {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  gap: var(--r3); align-items: stretch;
-  padding: var(--r3); border: 1px solid var(--border); border-radius: 18px;
-  background: var(--glass); transition: border-color .4s var(--ease), transform .4s var(--ease);
+  position: relative; display: block; min-height: 660px;
+  border-radius: 30px; overflow: hidden; background: var(--bg-2);
+  isolation: isolate;
 }
-.person:hover { border-color: var(--border-strong); transform: translateY(-3px); }
-.person__photo { position: relative; height: 100%; }
-.person__photo img {
-  display: block; width: 100%; height: 100%; aspect-ratio: 3 / 4;
-  object-fit: cover; object-position: 50% 18%;
-  border-radius: 14px; filter: saturate(.92) contrast(1.02);
+.person img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  filter: grayscale(1) brightness(.85); transform: scale(1.04);
+  transition: filter 1s, transform 1.2s var(--ease); z-index: -2;
 }
-.person__body { display: flex; flex-direction: column; height: 100%; }
-.person__name { margin: 0; font-family: var(--font-display); font-size: var(--step-2); font-weight: 500; color: var(--text-strong); }
-.person__role { margin: 6px 0 0; font-size: var(--step--1); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
-.person__text { margin: var(--r1) 0 var(--r2); font-size: var(--step-0); color: var(--text-muted); line-height: 1.62; flex: 1 1 auto; }
-.person__body .btn { margin-top: auto; align-self: flex-start; }
+.person__tint {
+  position: absolute; inset: 0; z-index: -1;
+  background: rgba(201,169,97,.42); mix-blend-mode: multiply;
+  transition: opacity 1s;
+}
+.person::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, transparent 35%, rgba(7,9,14,.94) 86%);
+}
+.person:hover { color: inherit; }
+.person:hover img { filter: none; transform: none; }
+.person:hover .person__tint { opacity: 0; }
+.person__body {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 34px; display: flex; flex-direction: column; gap: 12px;
+}
+.person__name {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(44px, 5vw, 70px); line-height: .95; color: var(--text-strong);
+}
+.person__lead {
+  font-family: var(--font-text); font-size: 16px; line-height: 1.6;
+  color: var(--text-muted); max-width: 520px;
+}
 
 /* ── наставники ── */
 .mentors { display: grid; gap: var(--r2); }
@@ -503,8 +525,9 @@
   .bookrow { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .person { grid-template-columns: 1fr; }
-  .person__photo img { aspect-ratio: 4 / 3; object-position: 50% 22%; }
+  .person { min-height: 520px; border-radius: 24px; }
+  .person__body { padding: 24px; }
+  .person__name { font-size: clamp(36px, 10vw, 52px); }
   .shelf { grid-template-columns: repeat(3, 1fr); }
   .mentor { grid-template-columns: 1fr; }
   .mentor__years { margin-top: 2px; }

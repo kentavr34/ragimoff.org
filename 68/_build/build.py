@@ -34,7 +34,7 @@ TEXTS = {
   "spec": [
     ("Kənan Rəhimov", "Klinik psixoloq, psixoterapevt, IPAS ambassadoru",
      "RAGIMOFF Psixologiya Məktəbinin təsiscisi, «Klinik Psixiatriya» sorğu kitabının müəllifi. 23 il klinik təcrübə, 2008-dən HR Məktəbinin rəhbəri.",
-     "/images/kenan/kenan-removebg-preview.png", "/az/mutexessisler/kenan-rehimov.html"),
+     "/images/kenan/photo-hero-suit.jpg", "/az/mutexessisler/kenan-rehimov.html"),
     ("Samirə Rəhimova", "Ailə terapevti",
      "Cütlüklər, valideyn və uşaq əlaqəsi, çətin yeniyetmələr. Ailə terapiyası modullarını aparır.",
      "/images/samira/samira-portret.jpg", "/az/mutexessisler/samire-rehimova.html"),
@@ -205,7 +205,7 @@ TEXTS = {
   "spec": [
     ("Кенан Рагимов", "Клинический психолог, психотерапевт, амбассадор IPAS",
      "Основатель Школы психологии RAGIMOFF, автор справочника «Клиническая психиатрия». 23 года клинической практики, с 2008 года руководит Школой HR.",
-     "/images/kenan/kenan-removebg-preview.png", "/ru/mutexessisler/kenan-rehimov.html"),
+     "/images/kenan/photo-hero-suit.jpg", "/ru/mutexessisler/kenan-rehimov.html"),
     ("Самира Рагимова", "Семейный терапевт",
      "Пары, связь родителя с ребёнком, трудные подростки. Ведёт модули семейной терапии.",
      "/images/samira/samira-portret.jpg", "/ru/mutexessisler/samire-rehimova.html"),
@@ -376,7 +376,7 @@ TEXTS = {
   "spec": [
     ("Kenan Ragimov", "Clinical psychologist, psychotherapist, IPAS Ambassador",
      "Founder of the RAGIMOFF Psychology School, author of the reference book “Clinical Psychiatry”. 23 years of clinical practice, has led the HR School since 2008.",
-     "/images/kenan/kenan-removebg-preview.png", "/en/mutexessisler/kenan-rehimov.html"),
+     "/images/kenan/photo-hero-suit.jpg", "/en/mutexessisler/kenan-rehimov.html"),
     ("Samira Ragimova", "Family therapist",
      "Couples, the parent–child bond, difficult teenagers. Leads the family therapy modules.",
      "/images/samira/samira-portret.jpg", "/en/mutexessisler/samire-rehimova.html"),
@@ -652,18 +652,29 @@ def hero(t):
 
 
 def specialists(t):
-    cards = "".join(
-        f"""<article class="person reveal">
-      <div class="person__photo"><img src="{img}" alt="{esc(name)}" loading="lazy"></div>
-      <div class="person__body">
-        <h3 class="person__name">{esc(name)}</h3>
-        <p class="person__role">{esc(role)}</p>
-        <p class="person__text">{esc(d)}</p>
-        <a class="btn btn--line btn--sm" href="{href}">{esc(t['spec_more'])}</a>
-      </div>
-    </article>"""
-        for name, role, d, img, href in t["spec"]
-    )
+    """Специалисты — карточки во всю высоту, как в эталоне (546×660, радиус 30).
+    Кенан: «То, что было, блок о специалистах потрясающий дизайн был там вообще.
+    Я попросил узнать, что можно сделать лучше, а ты мне сделал хуже только.
+    Вот это надо исправить... тоже и шрифт, и написание, текст, и как выглядит.»
+
+    Из эталона (nocturne.css:151-160): фото во всю карточку, object-position: top,
+    чёрно-белое с яркостью .85 и увеличением 1.04; золотая заливка 42 % в режиме
+    multiply; снизу градиент в темноту на 86 %; текст лежит поверх фото снизу.
+    При наведении фото становится цветным, заливка уходит.
+    Карточка целиком — ссылка (как в проде).
+    """
+    cards = ""
+    for name, role, d, img, href in t["spec"]:
+        cards += f"""
+    <a class="person reveal" href="{href}">
+      <img src="{img}" alt="{esc(name)}" loading="lazy">
+      <span class="person__tint" aria-hidden="true"></span>
+      <span class="person__body">
+        <span class="eyebrow">{esc(role)}</span>
+        <span class="person__name">{esc(name)}</span>
+        <span class="person__lead">{esc(d)}</span>
+      </span>
+    </a>"""
     return f"""
 <section class="section" id="specialists">
   <div class="wrap">
