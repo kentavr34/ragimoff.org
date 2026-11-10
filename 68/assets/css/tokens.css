@@ -1,0 +1,99 @@
+/* ============================================================
+   RAGIMOFF · DESIGN TOKENS
+   Единственный источник значений. Компоненты используют
+   только семантические токены.
+   ============================================================ */
+:root {
+  color-scheme: dark;
+
+  /* ── палитра ── */
+  --c-ink:        #07090E;
+  --c-ink-2:      #0A0D14;
+  --c-surface:    #0E1118;
+  --c-surface-2:  #141821;
+  --c-milk:       #F2EDE3;
+  --c-text:       #EDE8DD;
+  --c-muted:      #A8A296;
+  --c-faint:      #6F6B63;
+  --c-gold:       #C9A961;
+  --c-gold-2:     #E2CC94;
+
+  /* ── семантика (тема переопределяет только это) ── */
+  --bg:           var(--c-ink);
+  --bg-2:         var(--c-ink-2);
+  --surface:      var(--c-surface);
+  --surface-2:    var(--c-surface-2);
+  --text:         var(--c-text);
+  --text-strong:  var(--c-milk);
+  --text-muted:   var(--c-muted);
+  --text-faint:   var(--c-faint);
+  --border:       rgba(242,237,227,.12);
+  --border-strong:rgba(242,237,227,.22);
+  --accent:       var(--c-gold);
+  --accent-soft:  var(--c-gold-2);
+  --on-accent:    var(--c-ink);
+  --glass:        rgba(242,237,227,.035);
+  --overlay:      rgba(7,9,14,.82);
+  --shadow:       0 30px 80px -30px rgba(0,0,0,.85);
+
+  /* ── шрифты ── */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-text:    'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-read:    'Alegreya', Georgia, serif;
+
+  /* ── шкала 1.25, fluid ── */
+  --step--1: clamp(12px, .72rem + .1vw, 13px);
+  --step-0:  clamp(15px, .9rem + .15vw, 17px);
+  --step-1:  clamp(18px, 1.05rem + .3vw, 21px);
+  --step-2:  clamp(22px, 1.25rem + .5vw, 26px);
+  --step-3:  clamp(27px, 1.5rem + .8vw, 33px);
+  --step-4:  clamp(33px, 1.8rem + 1.2vw, 41px);
+  --step-5:  clamp(40px, 2.1rem + 2vw, 51px);
+  --step-6:  clamp(48px, 2.5rem + 3vw, 64px);
+
+  /* ── пространство: Фибоначчи × u ── */
+  --u: 8px;
+  --r1: calc(var(--u) * 2);
+  --r2: calc(var(--u) * 3);
+  --r3: calc(var(--u) * 5);
+  --r4: calc(var(--u) * 8);
+  --pad-inline: clamp(18px, 4.5vw, 56px);
+  --wrap: 1240px;
+
+  /* ── радиусы, движение ── */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --ease-out: cubic-bezier(.7,0,.2,1);
+  --t-fast: 180ms;
+  --t-base: 320ms;
+  --t-slow: 640ms;
+
+  --z-header: 300;
+  --z-overlay: 400;
+}
+
+@media (min-width: 901px) { :root { --u: 12px; } }
+
+/* ── светлая тема ── */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg:        #F7F4EE;
+  --bg-2:      #EFEAE1;
+  --surface:   #FFFFFF;
+  --surface-2: #F3EEE5;
+  --text:      #24221E;
+  --text-strong:#121110;
+  --text-muted:#6B665D;
+  --text-faint:#8C867B;
+  --border:    rgba(18,17,16,.14);
+  --border-strong:rgba(18,17,16,.26);
+  --accent:    #8A6A22;
+  --accent-soft:#A98534;
+  --on-accent: #FFFFFF;
+  --glass:     rgba(255,255,255,.55);
+  --overlay:   rgba(247,244,238,.88);
+  --shadow:    0 30px 80px -30px rgba(30,25,15,.25);
+}
