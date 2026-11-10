@@ -526,8 +526,12 @@
 }
 @media (max-width: 640px) {
   .person { min-height: 520px; border-radius: 24px; }
-  .person__body { padding: 24px; }
+  /* нижний отступ больше: на мобиле в правом нижнем углу висит кнопка WhatsApp
+     и перекрывает имя, если текст прижат к краю */
+  .person__body { padding: 24px 24px 76px; gap: 9px; }
   .person__name { font-size: clamp(36px, 10vw, 52px); }
+  /* градиент под текстом глубже — на светлом пиджаке золотая подпись терялась */
+  .person::after { background: linear-gradient(180deg, transparent 28%, rgba(7,9,14,.96) 72%); }
   .shelf { grid-template-columns: repeat(3, 1fr); }
   .mentor { grid-template-columns: 1fr; }
   .mentor__years { margin-top: 2px; }
