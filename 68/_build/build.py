@@ -57,11 +57,24 @@ TEXTS = {
   "own_lead": "Dörd kitab və dörd istiqamət. Hər biri universitet dərsliyi səviyyəsində yazılıb; bu gün onların analoqu yoxdur.",
   "own_note": "Üç dildə nəşr olunub, «Klinik Psixiatriya» həm də türk dilindədir. Dillərin sayı artmaqda davam edir.",
   "own": [
-    ("Klinik Psixiatriya", "Əlavə peşə təhsili · Psixoterapiya praktikumu · Psixodiaqnostika", "/books/covers/klinik.jpg"),
-    ("Feniks erası", "Ailə terapiyası · Münasibətlər", "/books/covers/phoenix.jpg"),
-    ("Günahkarlıq virusu", "Maarifləndirmə · Koqnitiv terapiya — yalançı qənaətlə qarşı mübarizə", "/books/covers/guilt.jpg"),
-    ("Şizofreniya. Cinnət pandemiyası", "Maarifləndirmə · Klinik psixiatriya", "/books/covers/pandemic.jpg"),
+    ("Klinik Psixiatriya", "Dörd dildə. 820 səhifə B5 çapda.",
+     "/books/covers/klinik.jpg", "Azərbaycan · Rus · İngilis · Türk",
+     ["Diplomlu təhsil", "Praktikum", "Psixodiaqnostika"],
+     "/books/"),
+    ("Feniks Erası", "Ailə və cütlük terapiyası üzrə əsas mətn.",
+     "/books/covers/phoenix.jpg", "Üç dildə",
+     ["Ailə terapiyası", "Münasibətlər"],
+     "/books/"),
+    ("Günahkarlıq Virusu", "Yanlış təsəvvürlərlə iş: depressiya və narahatlıq doğuran qurğular.",
+     "/books/covers/guilt.jpg", "Üç dildə",
+     ["KBT", "Maarifləndirmə"],
+     "/books/"),
+    ("Şizofreniya. Cinnət pandemiyası", "Xəstəliyi damğadan ayırır. Tələbə üçün ilk düzgün mənbə.",
+     "/books/covers/pandemic.jpg", "Üç dildə",
+     ["Psixiatriya", "Maarifləndirmə"],
+     "/books/"),
   ],
+  "own_open": "Kitaba bax",
   "tb2_eyebrow": "Hazırlanır",
   "tb2_h2": "«Ümumi psixoterapiya»",
   "tb2_text": "Rus dilində cild artıq hazırdır, azərbaycan dilində versiyası hazırlanır. Psixoterapevt hazırlığının əsas kursu — bir cilddə.",
@@ -215,11 +228,24 @@ TEXTS = {
   "own_lead": "Четыре книги и четыре направления. Каждая написана на уровне университетского учебника; на сегодня аналогов в мире нет.",
   "own_note": "Изданы на трёх языках, «Клиническая психиатрия» — ещё и на турецком. Список языков продолжает расти.",
   "own": [
-    ("Клиническая психиатрия", "ДПО · Практикум по психотерапии · Психодиагностика", "/books/covers/klinik.jpg"),
-    ("Эра Феникса", "Семейная терапия · Взаимоотношения", "/books/covers/phoenix.jpg"),
-    ("Вирус вины", "Просвещение · Когнитивная терапия — борьба с ложными установками", "/books/covers/guilt.jpg"),
-    ("Шизофрения. Пандемия безумия", "Просвещение · Клиническая психиатрия", "/books/covers/pandemic.jpg"),
+    ("Клиническая психиатрия", "На четырёх языках. 820 страниц в печати B5.",
+     "/books/covers/klinik.jpg", "Азербайджанский · Русский · Английский · Турецкий",
+     ["ДПО с дипломом", "Практикум", "Психодиагностика"],
+     "/books/"),
+    ("Эра Феникса", "Основной текст по семейной и парной терапии.",
+     "/books/covers/phoenix.jpg", "На трёх языках",
+     ["Семейная терапия", "Взаимоотношения"],
+     "/books/"),
+    ("Вирус вины", "Работа с ложными установками: теми, что дают депрессию и тревогу.",
+     "/books/covers/guilt.jpg", "На трёх языках",
+     ["КПТ", "Просвещение"],
+     "/books/"),
+    ("Шизофрения. Пандемия безумия", "Отделяет болезнь от клейма. Первый честный источник для студента.",
+     "/books/covers/pandemic.jpg", "На трёх языках",
+     ["Психиатрия", "Просвещение"],
+     "/books/"),
   ],
+  "own_open": "Открыть книгу",
   "tb2_eyebrow": "Готовится",
   "tb2_h2": "«Общая психотерапия»",
   "tb2_text": "Том на русском языке уже собран; азербайджанское издание готовится. Базовый курс подготовки психотерапевта уложен в один том.",
@@ -373,11 +399,24 @@ TEXTS = {
   "own_lead": "Four books and four fields. Each is written at university textbook level; today nothing comparable exists.",
   "own_note": "Published in three languages. “Clinical Psychiatry” is also out in Turkish; more languages are being added.",
   "own": [
-    ("Clinical Psychiatry", "CPD · Psychotherapy practicum · Psychodiagnostics", "/books/covers/klinik.jpg"),
-    ("The Phoenix Era", "Family therapy · Relationships", "/books/covers/phoenix.jpg"),
-    ("The Guilt Virus", "Public education · Cognitive therapy — against false beliefs", "/books/covers/guilt.jpg"),
-    ("Schizophrenia. Pandemic of Madness", "Public education · Clinical psychiatry", "/books/covers/pandemic.jpg"),
+    ("Clinical Psychiatry", "In four languages. 820 pages in B5 print.",
+     "/books/covers/klinik.jpg", "Azerbaijani · Russian · English · Turkish",
+     ["CPD with diploma", "Practicum", "Psychodiagnostics"],
+     "/books/"),
+    ("The Phoenix Era", "The core text on family and couples therapy.",
+     "/books/covers/phoenix.jpg", "In three languages",
+     ["Family therapy", "Relationships"],
+     "/books/"),
+    ("The Guilt Virus", "Working with false beliefs — the ones that produce depression and anxiety.",
+     "/books/covers/guilt.jpg", "In three languages",
+     ["CBT", "Public education"],
+     "/books/"),
+    ("Schizophrenia. A Pandemic of Madness", "Separates the illness from the stigma. A student's first honest source.",
+     "/books/covers/pandemic.jpg", "In three languages",
+     ["Psychiatry", "Public education"],
+     "/books/"),
   ],
+  "own_open": "Open the book",
   "tb2_eyebrow": "In preparation",
   "tb2_h2": "“General Psychotherapy”",
   "tb2_text": "The Russian volume is finished; the Azerbaijani edition is in preparation. The core course of psychotherapist training — in a single volume.",
@@ -688,22 +727,48 @@ def freud(t):
 
 
 def own_books(t):
-    cards = "".join(
-        f"""<a class="bookcard reveal" href="/books/">
-      <span class="bookcard__cover"><img src="{cover}" alt="" loading="lazy"></span>
-      <span class="bookcard__meta"><b>{esc(title)}</b><small>{esc(sub)}</small></span>
-    </a>"""
-        for title, sub, cover in t["own"]
-    )
+    """Книги как козырьные карты — горизонтальная галерея, одна за другой.
+    Кенан: «Если мы говорим о доказательствах, надо ставить одну козырную карту,
+    потом расписать её так, чтобы было внятно понятно её преимущество, потом
+    другую... Здесь можно сделать скроллинг, где появляется, как фотогалерея
+    справа налево, сначала обложка нормальная... Потом появляется надпись о том,
+    что эта книга вся включает, то есть что она даёт... не то, что мы делаем,
+    а то, что она даёт студентам, возможности какие, на четырёх языках.»
+
+    Разметка: горизонтальная лента, каждая карточка — обложка + что даёт + теги."""
+    cards = ""
+    for title, gives, cover, langs, tags, href in t["own"]:
+        chips = "".join(f'<span class="give__tag">{esc(x)}</span>' for x in tags)
+        cards += f"""
+    <article class="give">
+      <a class="give__cover" href="{href}" aria-label="{esc(title)}">
+        <img src="{cover}" alt="{esc(title)}" loading="lazy">
+      </a>
+      <div class="give__body">
+        <h3 class="give__title">{esc(title)}</h3>
+        <p class="give__langs">{esc(langs)}</p>
+        <p class="give__text">{esc(gives)}</p>
+        <div class="give__tags">{chips}</div>
+        <a class="give__link" href="{href}">{esc(t['own_open'])} →</a>
+      </div>
+    </article>"""
     return f"""
-<section class="section section--tight" id="ownbooks">
+<section class="section section--give" id="ownbooks">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">{esc(t['own_eyebrow'])}</span>
       <h2>{esc(t['own_h2'])}</h2>
       <p class="lead">{esc(t['own_lead'])}</p>
     </div>
-    <div class="bookrow">{cards}</div>
+  </div>
+  <div class="give__rail" data-rail>
+    <div class="give__track">{cards}</div>
+    <div class="give__nav">
+      <button class="give__arrow" type="button" data-rail-prev aria-label="←">←</button>
+      <button class="give__arrow" type="button" data-rail-next aria-label="→">→</button>
+    </div>
+  </div>
+  <div class="wrap">
     <p class="note-line reveal">{esc(t['own_note'])}</p>
   </div>
 </section>

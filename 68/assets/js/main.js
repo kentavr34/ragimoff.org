@@ -261,6 +261,44 @@
   })();
 
   /* ────────────────────────────────────────────────────────────
+     ГАЛЕРЕЯ КНИГ: одна козырьная карта за другой.
+     Карточка проявляется, когда входит в поле зрения при прокрутке
+     вправо-влево. Стрелки двигают ленту на одну карточку.
+     ──────────────────────────────────────────────────────────── */
+  (function () {
+    const rail = document.querySelector('[data-rail]');
+    if (!rail) return;
+    const track = rail.querySelector('.give__track');
+    const cards = rail.querySelectorAll('.give');
+    if (!track || !cards.length) return;
+
+    /* проявление по входу в поле зрения */
+    function mark() {
+      const vw = window.innerWidth;
+      cards.forEach(function (c) {
+        const r = c.getBoundingClientRect();
+        if (r.left < vw * 0.86 && r.right > vw * 0.10) c.classList.add('is-in');
+      });
+    }
+    track.addEventListener('scroll', mark, { passive: true });
+    window.addEventListener('resize', mark);
+    mark();
+    const t = setInterval(mark, 400);
+    setTimeout(function () { clearInterval(t); }, 12000);
+
+    /* стрелки: на одну карточку */
+    function step(dir) {
+      const c = cards[0];
+      const w = c.getBoundingClientRect().width + 24;
+      track.scrollBy({ left: dir * w, behavior: 'smooth' });
+    }
+    const p = rail.querySelector('[data-rail-prev]');
+    const n = rail.querySelector('[data-rail-next]');
+    if (p) p.addEventListener('click', function () { step(-1); });
+    if (n) n.addEventListener('click', function () { step(1); });
+  })();
+
+  /* ────────────────────────────────────────────────────────────
      SPLIT-TEXT: заголовки секций раскрываются по скроллу.
      Каждое слово — в маске, выезжает снизу с задержкой по порядку.
      Замысел: сайт «раскрывается» и рассказывает, а не выдаёт
