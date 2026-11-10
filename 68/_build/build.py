@@ -491,31 +491,31 @@ TEXTS = {
 }
 
 PROGRAMS = [
-  # (название, изюминка, пояснение, срок, полная цена, со скидкой, в месяц, выделенная, группа)
-  ("Ümumi Psixologiya", "Diplom və hüquq", "Rəsmi Əlavə Təhsil diplomu psixoloq kimi müstəqil fəaliyyət hüququ verir. Nəzəriyyə, hüquqi əsaslar və ilk praktika.", "1 il — 6+6 ay", "4 200 ₼", "3 800 ₼", "200 ₼/ay", False, "dpo"),
-  ("Klinik Psixologiya", "Öz mərkəzin", "Mürəkkəb klinik hallar və öz mərkəziniz üçün tam hüquqi status. IPAS sertifikatı beynəlxalq səviyyədə tanınır.", "1 il — 6+6 ay", "6 600 ₼", "6 000 ₼", "300 ₼/ay", True, "dpo"),
-  ("Psixoterapiya Praktikumu", "Canlı praktika", "Psixoloq və pasiyent rollarında məşqlər, real keyslərin superviziyası. Nəzəriyyə dərhal praktikaya keçir.", "1 il — praktika", "3 600 ₼", "3 000 ₼", "175 ₼/ay", False, "spec"),
-  ("Ailə Terapiyası", "Cütlük və ailə", "Cütlük terapiyası və valideyn-övlad münasibətləri. 3 ay nəzəriyyə, 6 ay superviziya — modulu Samirə Rəhimova aparır.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
-  ("Psixoanaliz", "Freyd mənbələri", "Təlim öz kitabxanamıza söykənir: Freydin 28 cildi doğma dilinizdə, alman orijinalından. Oxu, müzakirə, superviziya.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
-  ("Psixodiaqnostika", "ICD-11 əsasında", "ÜST standartları üzrə diaqnozun əsaslandırılması — praktik vərdişə çevrilir. «Klinik Psixiatriya» dərsliyi ilə birlikdə.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
+  # (название обучения, документ/часы, пояснение, срок, полная цена, со скидкой, в месяц, выделенная, группа)
+  ("Ümumi Psixologiya", "Diplom · 1 556 saat", "AR qanunvericiliyinə uyğun FRDO dövlət reyestrinə daxil edilən rəsmi Əlavə Təhsil diplomu. Psixoloq kimi hüquqi fəaliyyətin başlanğıcı.", "1 il — 6+6 ay", "4 200 ₼", "3 800 ₼", "200 ₼/ay", False, "dpo"),
+  ("Klinik Psixologiya", "Diplom · 1 528 saat", "Mürəkkəb klinik hallar üzərində müstəqil işləmək hüququ. Öz mərkəzinizi açmaq üçün tam hüquqi status. Beynəlxalq IPAS sertifikatı ilə birgə.", "1 il — 6+6 ay", "6 600 ₼", "6 000 ₼", "300 ₼/ay", True, "dpo"),
+  ("Psixoterapiya Praktikumu", "IPAS/BPA sertifikatı · 864 saat", "Psixoloq və pasiyent rollarında canlı məşqlər, real keyslərin superviziyası, konsilium formatı. QR-kodla yoxlanılan beynəlxalq sertifikat.", "1 il — praktika", "3 600 ₼", "3 000 ₼", "175 ₼/ay", False, "spec"),
+  ("Ailə Terapiyası", "IPAS sertifikatı · 2 modul", "Cütlük terapiyası və valideyn-övlad münasibətləri. Ali təhsil tələb olunmur — psixologiya təhsili olanlara daha geniş imkanlar. Məzunlar mərkəzimizdə məsləhətçilik xidməti göstərə bilər.", "3 ay + 6 ay superviziya", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
+  ("Psixoanaliz", "IPAS sertifikatı", "Təlim öz kitabxanamıza söykənir: Freydin 24 kitabı doğma dilinizdə, alman orijinalından. Oxu, müzakirə, superviziya.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
+  ("Psixodiaqnostika", "IPAS sertifikatı", "ÜST standartları üzrə diaqnozun əsaslandırılması — praktik vərdişə çevrilir. «Klinik Psixiatriya» dərsliyi ilə birlikdə.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
 ]
 
 PROGRAMS_RU = [
-  ("Общая психология", "Диплом и право", "Официальный диплом ДПО даёт право самостоятельной практики психолога. Теория, правовые основы и первая практика.", "1 год — 6+6 мес.", "4 200 ₼", "3 800 ₼", "200 ₼/мес.", False, "dpo"),
-  ("Клиническая психология", "Свой центр", "Сложные клинические случаи и полный правовой статус для вашего центра. Сертификат IPAS признаётся на международном уровне.", "1 год — 6+6 мес.", "6 600 ₼", "6 000 ₼", "300 ₼/мес.", True, "dpo"),
-  ("Практикум психотерапии", "Живая практика", "Упражнения в ролях психолога и пациента, супервизия реальных кейсов. Теория сразу переходит в практику.", "1 год — практика", "3 600 ₼", "3 000 ₼", "175 ₼/мес.", False, "spec"),
-  ("Семейная терапия", "Пара и семья", "Парная терапия и детско-родительские отношения. 3 месяца теории, 6 месяцев супервизии — модуль ведёт Самира Рагимова.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
-  ("Психоанализ", "Опора на Фрейда", "Обучение опирается на нашу библиотеку: 28 томов Фрейда на родном языке, с немецких оригиналов. Чтение, разбор, супервизия.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
-  ("Психодиагностика", "По стандартам ВОЗ", "Обоснование диагноза по стандартам ВОЗ и ICD-11 — до уровня устойчивого навыка. Вместе с учебником «Клиническая психиатрия».", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
+  ("Общая психология", "Диплом · 1 556 часов", "Официальный диплом Дополнительного образования, вносимый в государственный реестр ФРДО по законодательству АР. Начало правовой деятельности психолога.", "1 год — 6+6 мес.", "4 200 ₼", "3 800 ₼", "200 ₼/мес.", False, "dpo"),
+  ("Клиническая психология", "Диплом · 1 528 часов", "Право самостоятельной работы со сложными клиническими случаями. Полный правовой статус для открытия своего центра. Вместе с международным сертификатом IPAS.", "1 год — 6+6 мес.", "6 600 ₼", "6 000 ₼", "300 ₼/мес.", True, "dpo"),
+  ("Практикум психотерапии", "Сертификат IPAS/BPA · 864 часа", "Живые упражнения в ролях психолога и пациента, супервизия реальных кейсов, консилиум. Международный сертификат с проверкой по QR.", "1 год — практика", "3 600 ₼", "3 000 ₼", "175 ₼/мес.", False, "spec"),
+  ("Семейная терапия", "Сертификат IPAS · 2 модуля", "Парная терапия и детско-родительские отношения. Высшее образование не требуется — с психологическим образованием больше возможностей. Выпускники могут консультировать в нашем центре.", "3 мес. + 6 мес. супервизии", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
+  ("Психоанализ", "Сертификат IPAS", "Обучение опирается на нашу библиотеку: 24 книги Фрейда на родном языке, с немецкого оригинала. Чтение, разбор, супервизия.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
+  ("Психодиагностика", "Сертификат IPAS", "Обоснование диагноза по стандартам ВОЗ — до уровня устойчивого навыка. Вместе с учебником «Клиническая психиатрия».", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
 ]
 
 PROGRAMS_EN = [
-  ("General Psychology", "Diploma and licence", "The official CPD diploma grants the right to independent psychological practice. Theory, legal foundations and first practice.", "1 year — 6+6 months", "4 200 ₼", "3 800 ₼", "200 ₼/mo", False, "dpo"),
-  ("Clinical Psychology", "Your own centre", "Complex clinical cases and full legal status for your centre. The IPAS certificate is recognised internationally.", "1 year — 6+6 months", "6 600 ₼", "6 000 ₼", "300 ₼/mo", True, "dpo"),
-  ("Psychotherapy Practicum", "Live practice", "Exercises as psychologist and patient, supervision of real cases. Theory turns into practice straight away.", "1 year — practice", "3 600 ₼", "3 000 ₼", "175 ₼/mo", False, "spec"),
-  ("Family Therapy", "Couple and family", "Couples therapy and parent-child relationships. 3 months of theory, 6 months of supervision — the module is led by Samira Ragimova.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
-  ("Psychoanalysis", "Grounded in Freud", "The course rests on our library: 28 volumes of Freud in your own language, from the German originals. Reading, analysis, supervision.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
-  ("Psychodiagnostics", "By WHO standards", "Justifying a diagnosis under WHO and ICD-11 standards, down to a durable skill. Together with the “Clinical Psychiatry” textbook.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
+  ("General Psychology", "Diploma · 1,556 hours", "The official Further Education diploma entered in the state FRDO register under Azerbaijani law. The starting point of lawful practice as a psychologist.", "1 year — 6+6 months", "4 200 ₼", "3 800 ₼", "200 ₼/mo", False, "dpo"),
+  ("Clinical Psychology", "Diploma · 1,528 hours", "The right to work independently with complex clinical cases. Full legal status to open your own centre. Together with the international IPAS certificate.", "1 year — 6+6 months", "6 600 ₼", "6 000 ₼", "300 ₼/mo", True, "dpo"),
+  ("Psychotherapy Practicum", "IPAS/BPA certificate · 864 hours", "Live exercises as psychologist and patient, supervision of real cases, case conference format. An international certificate verified by QR code.", "1 year — practice", "3 600 ₼", "3 000 ₼", "175 ₼/mo", False, "spec"),
+  ("Family Therapy", "IPAS certificate · 2 modules", "Couples therapy and parent-child relationships. No university degree required — a psychology background opens more options. Graduates may counsel at our centre.", "3 mo + 6 mo supervision", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
+  ("Psychoanalysis", "IPAS certificate", "The course rests on our library: 24 volumes of Freud in your own language, from the German originals. Reading, analysis, supervision.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
+  ("Psychodiagnostics", "IPAS certificate", "Justifying a diagnosis under WHO standards, down to a durable skill. Together with the “Clinical Psychiatry” textbook.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
 ]
 
 PROG_BY_LANG = {"az": PROGRAMS, "ru": PROGRAMS_RU, "en": PROGRAMS_EN}
@@ -820,12 +820,12 @@ def film(t):
 
 
 def programs(t, lang):
-    def card(name, hook, desc, dur, full, pre, month, featured):
+    def card(name, doc, desc, dur, full, pre, month, featured):
         cls = "program program--featured" if featured else "program"
         return f"""
     <article class="{cls} reveal">
-      <h3 class="program__hook">{esc(hook)}</h3>
-      <p class="program__name">{esc(name)}</p>
+      <h3 class="program__name">{esc(name)}</h3>
+      <p class="program__doc">{esc(doc)}</p>
       <p class="program__desc">{esc(desc)}</p>
       <div class="program__rows">
         <div class="program__row"><span>{esc(t['prog_dur'])}</span><span>{esc(dur)}</span></div>
