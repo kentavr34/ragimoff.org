@@ -5,7 +5,8 @@
      S — пустота между секциями вне 40…230 px (два поля r4 = 128 + поле карточки/плашки до 32×2 + запас);
      H — шапка блока → содержимое вне 28…64 px (норма r3 = 40 на телефоне);
      B — текст/цена → кнопка меньше 20 px (норма r2 = 24);
-     C — текст по центру длиннее двух строк. */
+     C — текст по центру длиннее двух строк;
+     G — два соседних блока друг под другом ближе 12 px (абзац ↔ карточка и т. п.). */
 window.rhythmScan = async function (pages, W, base) {
   base = base || '/test/nocturne/';
   const res = {};
@@ -27,14 +28,14 @@ window.rhythmScan = async function (pages, W, base) {
     const leafSel = 'h1,h2,h3,h4,p,li,img,a.btn,.btn,button,input,textarea,select,.n-eyebrow,.sec-label,.badge,.price-total,.n-who,iframe,.n-shot,table';
     const ownText = e => [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim());
     const leaves = sc => [...sc.querySelectorAll('*')].filter(e => (e.matches(leafSel) || ownText(e)) && vis(e));
-    let prevB = null, prevName = '';
+    let prevB = null, prevName = '', prevIsHs = false;
     for (const s of [...main.children].filter(e => vis(e) && !e.matches('script,style'))) {
       const L = leaves(s); if (!L.length) continue;
       const top = Math.min(...L.map(e => R(e).top)), bot = Math.max(...L.map(e => R(e).bottom));
-      if (prevB !== null && !s.matches('.n-hero,.n-cine') && !prevName.match(/n-hero|n-cine/)) {
+      if (prevB !== null && !s.matches('.n-hero,.n-cine') && !prevName.match(/n-hero|n-cine/) && !prevIsHs) {
         const g = Math.round(top - prevB); if (g > 230 || g < 40) out.sec.push(g + ':' + prevName + '→' + nm(s));
       }
-      prevB = bot; prevName = nm(s);
+      prevB = bot; prevName = nm(s); prevIsHs = s.matches('[data-hs]');   /* закреплённая лента: её длина — путь прокрутки, не пустота */
     }
     for (const h of main.querySelectorAll('h2')) {
       if (!vis(h) || h.closest('.article-body,.cta-band,.legal-block,.tg-band,.n-person,.n-who,.n-hero')) continue;
@@ -52,11 +53,28 @@ window.rhythmScan = async function (pages, W, base) {
       }
       if (best) { const g = Math.round(br.top - bb); if (g < 20 && g >= 0) out.btn.push(g + ':' + nm(best) + '→' + b.textContent.trim().slice(0, 16)); }
     }
+    /* G — любые два соседних блока друг под другом ближе 12 px (абзац ↔ карточка, карточка ↔ абзац и т. п.) */
+    out.gap = [];
+    const blockish = e => { const d = w.getComputedStyle(e).display; return /block|flex|grid|table|list-item/.test(d) && !/inline/.test(d); };
+    for (const par of main.querySelectorAll('*')) {
+      if (par.closest('[data-hs-track],.btn,button,nav,table,.price-row,.n-pc-rows,.n-cine,.n-hero,.n-belt,.n-marquee,summary,.timeline-list,.cur-list,.n-facts')) continue;
+      const pcs = w.getComputedStyle(par); if (/flex|grid/.test(pcs.display) && pcs.flexDirection !== 'column' && !/grid/.test(pcs.display)) continue;
+      const kids = [...par.children].filter(e => vis(e) && blockish(e) && !e.matches('script,style,br,hr,span,a,b,i,em,strong,small,img,svg,li,dt,dd,tr,label,input,option'));
+      for (let i = 1; i < kids.length; i++) {
+        const a = R(kids[i - 1]), b = R(kids[i]);
+        if (b.top < a.bottom - 1 || b.left >= a.right || a.left >= b.right) continue;
+        const g = Math.round(b.top - a.bottom);
+        const pa = kids[i - 1], pb = kids[i];
+        if (pa.matches('h3,h4,h5,h6,[class*="title"],[class*="label"],[class*="num"],[class*="code"],[class*="year"],[class*="head"]')) continue;   /* подпись → текст внутри карточки */
+        if (nm(pa) === nm(pb) && /-(row|step|item)$/.test(nm(pa))) continue;   /* строки таблицы / хроники — разделитель линией */
+        if (g >= 0 && g < 12) out.gap.push(g + ':' + nm(kids[i - 1]) + '→' + nm(kids[i]));
+      }
+    }
     for (const p of main.querySelectorAll('p,li,.sec-sub,.n-lead')) {
       if (!vis(p)) continue; const cs = w.getComputedStyle(p); const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.5;
       if (cs.textAlign === 'center' && R(p).height / lh > 2.4) out.cen.push(p.textContent.trim().slice(0, 30));
     }
-    if (out.sec.length + out.hdr.length + out.btn.length + out.cen.length) res[pg] = out;
+    if (out.sec.length + out.hdr.length + out.btn.length + out.cen.length + out.gap.length) res[pg] = out;
     f.remove();
   }
   return res;

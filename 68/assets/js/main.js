@@ -108,7 +108,7 @@
     const img = cine.querySelector('.cine__img');
     const sq = cine.querySelector('.cine__search');
     const q = cine.querySelector('.cine__q');
-    const mob = window.matchMedia('(max-width: 700px)');
+    const mqMob = window.matchMedia('(max-width: 700px)');
     if (!frame || !cv || !cv.getContext) return;
     const N = +frame.getAttribute('data-frames') || 0;
     if (!N) return;
@@ -160,7 +160,7 @@
     }
 
     function load() {
-      const want = mob.matches ? 'm' : 'd';
+      const want = mqMob.matches ? 'm' : 'd';
       if (want === set) return;
       set = want;
       imgs = [];
@@ -219,26 +219,42 @@
       if (shown !== target) raf = requestAnimationFrame(loop);
     }
 
-    function onScroll() {
-      target = seg(scrollP(), 0, T.video) * (N - 1);
-      if (!raf) raf = requestAnimationFrame(loop);
-    }
-
-    /* Страховка от «голого» скролла: если rAF не тикает (часть встроенных браузеров),
-       догоняем позицию прямым вызовом. В нормальном браузере ветка не срабатывает. */
-    let lastLoopAt = 0;
-    function watchdog() {
-      if (shown !== target && Date.now() - lastLoopAt > 400) {
-        shown = Math.abs(target - shown) < .02 ? target : shown + (target - shown) * .5;
-        paint(true);
-        overlay(scrollP());
+    /* Двигаем сцену по позиции скролла. Читаем scrollY напрямую, НЕ полагаясь
+       на событие scroll и на requestAnimationFrame:
+       во встроенных браузерах (Instagram, Telegram, Facebook) и в части
+       headless-движков rAF не тикает, а программная прокрутка не порождает
+       событие scroll — тогда сцена и затемнение застывают. Поэтому:
+         • scroll и resize → пересчёт;
+         • страховочный интервал 100 мс — он же основной привод там, где
+           события не приходят. Считает только при смене позиции, поэтому
+           в обычном браузере почти ничего не стоит и останавливается сам,
+           когда страница уходит из вида. */
+    let hY = -1;
+    function cineTick() {
+      if (document.hidden) return;
+      const y = Math.round(window.scrollY || window.pageYOffset || 0);
+      if (y === hY) return;
+      hY = y;
+      const total = cine.offsetHeight - window.innerHeight;
+      const p = total > 0 ? clamp(-cine.getBoundingClientRect().top / total) : 0;
+      target = seg(p, 0, T.video) * (N - 1);
+      const d = target - shown;
+      const step = reduce ? 1 : .14;
+      let guard = 0;
+      while (Math.abs(target - shown) > 0.01 && guard++ < 200) {
+        shown += (target - shown) * step;
       }
-      lastLoopAt = Date.now();
+      shown = target;
+      paint(true);
+      overlay(p);
     }
-    setInterval(watchdog, 500);
 
-    mob.addEventListener('change', function () { load(); size(); onScroll(); });
+    function onScroll() { cineTick(); if (!raf) raf = requestAnimationFrame(loop); }
+
+    const cineTickTimer = setInterval(cineTick, 100);
+
     window.addEventListener('scroll', onScroll, { passive: true });
+    mqMob.addEventListener('change', function () { load(); size(); onScroll(); });
     window.addEventListener('resize', function () { load(); size(); onScroll(); });
     load();
     onScroll();
