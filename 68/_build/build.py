@@ -23,13 +23,13 @@ TEXTS = {
   "hero_query": "Doctor Ragimoff",
   "hero_strong": "Psixologiya Məktəbi",
   "hero_h1": "Psixologiya<br><em>Məktəbi</em>",
-  "hero_sub": "23 il klinik təcrübə. Rəsmi diplom. Beynəlxalq sertifikat. Azərbaycan dilində.",
+  "hero_sub": "İyirmi üç ildir klinik praktikadayam. Rəsmi diplom, beynəlxalq sertifikat — və bütün bunlar Azərbaycan dilində.",
   "hero_btn1": "Təhsil proqramları",
   "hero_btn2": "Konsultasiya",
   "hero_note": "Kənan Rəhimov — klinik psixoloq, psixoterapevt, IPAS ambassadoru",
   "spec_eyebrow": "Mütəxəssislər",
-  "spec_h2": "Sizi eşidən iki mütəxəssis",
-  "spec_lead": "Biri klinik psixiatriyanın müəllifi, digəri ailə terapiyası modullarının rəhbəri. Eyni məktəb — iki fərqli baxış.",
+  "spec_h2": "İki mütəxəssis, bir məktəb",
+  "spec_lead": "Biri klinik psixiatriya dərsliyinin müəllifidir, digəri ailə terapiyası modullarını aparır. Eyni məktəbin iki fərqli baxışı — buna görə mürəkkəb hallarda ikinci rəy almaq mümkündür.",
   "spec_more": "Ətraflı",
   "spec": [
     ("Kənan Rəhimov", "Klinik psixoloq, psixoterapevt, IPAS ambassadoru",
@@ -40,8 +40,8 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/az/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Formalaşma",
-  "ment_h2": "Kimin yanında öyrənib",
-  "ment_lead": "2001–2003, Sankt-Peterburq, V.M. Bexterev adına Psixonevrologiya İnstitutu — qırmızı diplom.",
+  "ment_h2": "Kimin yanında formalaşıb",
+  "ment_lead": "2001–2003-cü illər, Sankt-Peterburq, V.M. Bexterev adına Psixonevrologiya İnstitutu — qırmızı diplom.",
   "ment": [
     ("Viktor D. Vida", "2001–2002", "Beynəlxalq Psixoanalitik Assosiasiyanın (IPA) MDB məkanında ilk diplomlu psixoanalitiki. Psixoanaliz üzrə rəhbəri."),
     ("Boris D. Karvasarski", "2001–2003", "Rusiya Federasiyası Səhiyyə Nazirliyinin baş psixoterapevti, «Ümumi psixoterapiya» dərsliyinin müəllifi."),
@@ -53,8 +53,8 @@ TEXTS = {
   "freud_text": "Oxumaq üçün heç nə yükləmək lazım deyil: brauzerdə açılır, axtarış işləyir, oxuduğunuz yer yadda qalır. Tələbə, praktik və oxucu üçün eyni dərəcədə açıqdır.",
   "freud_btn": "Kitabxanaya keç",
   "own_eyebrow": "Müəllif kitabları",
-  "own_h2": "Hər biri — öz istiqamətinin sübutu",
-  "own_lead": "Dörd kitab. Dörd istiqamət. Hər biri universitet səviyyəsində dərslik kimi yazılıb, analoqu yoxdur.",
+  "own_h2": "Hər kitab — bir istiqamətin sübutu",
+  "own_lead": "Dörd kitab və dörd istiqamət. Hər biri universitet dərsliyi səviyyəsində yazılıb; bu gün onların analoqu yoxdur.",
   "own_note": "Üç dildə nəşr olunub. «Klinik Psixiatriya» həm də türk dilindədir; dillər artırılmaqda davam edir.",
   "own": [
     ("Klinik Psixiatriya", "Əlavə peşə təhsili · Psixoterapiya praktikumu · Psixodiaqnostika", "/books/covers/klinik.jpg"),
@@ -78,11 +78,11 @@ TEXTS = {
   "lib_nums": [("24", "Freyd kitabı"), ("4", "dil"), ("0 ₼", "oxumaq üçün")],
   "lib_btn": "Kitabxananı aç",
   "lib_note": "Bütün kolleksiya: 94 cild — Freyd, Kənan Rəhimov, Samirə Rəhimova.",
-  "tb_eyebrow": "Dərslik",
-  "tb_h2": "«Klinik Psixiatriya» — müəllifi özü",
-  "tb_text": "384 səhifə. DSM-5, ICD-11, beynəlxalq protokollar və konsensus. 4 dildə. Rəsmi dərslik — və onu pulsuz oxumaq mümkündür.",
-  "tb_meta": ["384 səhifə", "4 dil", "2024", "Pulsuz oxu"],
-  "tb_btn1": "Pulsuz oxu",
+  "tb_eyebrow": "Əsas əsər",
+  "tb_h2": "«Klinik Psixiatriya» — dünyada analoqu olmayan dərslik",
+  "tb_text": "384 səhifə, DSM-5 və ICD-11, beynəlxalq protokollar və konsensus. Bu gün dünyada belə bir dərslik yoxdur: həm klinik həkim, həm tələbə, həm də psixoterapiya metodunu seçən oxucu üçün eyni dərəcədə işləkdir. Dörd dilə çevrilib — azərbaycan, rus, ingilis və türk. Azərbaycan dilində rəsmi dərslikdir və hamı üçün açıqdır. Ayrıca vəzifəsi var: elmi olmayan fikirləri və mifləri ayırmaq, düzgün müalicədən yayındıran yanlış təsəvvürləri aradan qaldırmaq.",
+  "tb_meta": ["384 səhifə", "4 dil", "DSM-5 · ICD-11", "Pulsuz oxu"],
+  "tb_btn1": "Aç və bax",
   "tb_btn2": "Çap versiyası",
   "film_eyebrow": "Təcrübədən",
   "film_h2": "«Səbinənin draması»",
@@ -114,9 +114,11 @@ TEXTS = {
   "myth_lead": "Mənbə göstərilir. Yoxlaya bilərsiniz.",
   "myth_label": "MİF", "myth_fact": "Fakt:",
   "myths": [
-    ("«Melipramin oyanma refleksini formalaşdırır»", "Əslində: yataq islatmaya qarşı refleks yaratmır — sidik ifrazını gecikdirir, bu isə dərmanın yan təsiridir. Kardiotoksikdir, ölüm halları məlumdur. Uşaq enurezində tövsiyə olunmur.", "Mənbə: «Klinik Psixiatriya», enurez bölməsi"),
-    ("«Enurezin enurezində istifadə oluna bilər»", "Əslində: Azərbaycan Respublikası Səhiyyə Nazirliyinin sənədləri pediatriyada gecə enurezi üçün tövsiyə etmir.", "Mənbə: Səhiyyə Nazirliyinin PDF sənədi"),
-    ("«Akupunktur enurezi müalicə edir»", "Əslində: kognitiv sfera və davranışa sübut edilmiş təsiri yoxdur. Psixoloji pozuntunun müalicəsində effektivliyi təsdiqlənməyib.", "Mənbə: beynəlxalq protokollar və konsensus"),
+    ("Depressiya", "«Depressiya sadəcə pis əhvaldır, özü keçər»", "Əslində: depressiya diaqnoz qoyulan xəstəlikdir — beyin kimyası, yuxu, iştaha və iş qabiliyyəti dəyişir. Orta hesabla 6–8 ay davam edir və müalicəsiz təkrarlanır. Psixoterapiya və dərman eyni dərəcədə sübut edilmiş üsuldur.", "Mənbə: «Klinik Psixiatriya», depressiya bölməsi", "#textbook", "Kitaba bax →"),
+    ("Sosial fobiya", "«Bu sadəcə utancaqlıqdır, özünü ələ al»", "Əslində: sosial fobiya utancaqlıq deyil — insan danışmaqdan, yeməkdən, telefonla danışmaqdan çəkinir, bədən reaksiyaları başlayır və həyat daralır. KBT ilə nəticə ölçülür: simptomlar azalır, yox olmasa da idarə olunur.", "Mənbə: «Klinik Psixiatriya» + «Virus günahı»", "#ownbooks", "Virus günahına bax →"),
+    ("Gecə enurezi", "«Uşaq tənbəldir, qəsdən edir»", "Əslində: gecə enurezi uşağın iradəsindən asılı deyil — yetkinləşmə, irsiyyət və yuxu dövrləri iştirak edir. Cəza vəziyyəti ağırlaşdırır. Sübut edilmiş yol: rejim, siqnal aparatı, davranış terapiyası.", "Mənbə: «Klinik Psixiatriya», enurez bölməsi", "#textbook", "Kitaba bax →"),
+    ("Panik atak", "«Panik atak ürək tutmasıdır, ölürəm»", "Əslində: panik atak təhlükəli deyil, ölümlə nəticələnmir. Döyüntü, boğulma və ölüm qorxusu adrenalin dalğasıdır və 10–20 dəqiqədə səngəyir. Əsas zərər — qaçma davranışı və gözləmə qorxusudur, terapiya məhz onu hədəfləyir.", "Mənbə: «Klinik Psixiatriya», anksiyete pozuntuları", "#textbook", "Kitaba bax →"),
+    ("Psixoterapiya", "«Söhbət etmək xəstəliyi müalicə etmir»", "Əslində: psixoterapiyanın effektivliyi yüzlərlə randomizə edilmiş tədqiqatda ölçülüb və dərman müalicəsi ilə müqayisə edilir. Əsas şərt — protokola uyğun aparılması və effektin ölçülməsi.", "Mənbə: beynəlxalq protokollar və konsensus", "#programs", "Proqramlara bax →"),
   ],
   "cons_eyebrow": "Konsultasiya",
   "cons_h2": "Üç format. Bir məqsəd.",
@@ -179,13 +181,13 @@ TEXTS = {
   "hero_query": "Doctor Ragimoff",
   "hero_strong": "Школа психологии",
   "hero_h1": "Школа<br><em>психологии</em>",
-  "hero_sub": "23 года клинической практики. Официальный диплом. Международный сертификат. На азербайджанском.",
+  "hero_sub": "Двадцать три года в клинической практике. Официальный диплом, международный сертификат — и всё это на азербайджанском языке.",
   "hero_btn1": "Программы обучения",
   "hero_btn2": "Консультация",
   "hero_note": "Кенан Рагимов — клинический психолог, психотерапевт, амбассадор IPAS",
   "spec_eyebrow": "Специалисты",
-  "spec_h2": "Двое, кто слышит",
-  "spec_lead": "Один — автор справочника по клинической психиатрии, вторая ведёт модули семейной терапии. Одна школа, два разных взгляда.",
+  "spec_h2": "Двое специалистов, одна школа",
+  "spec_lead": "Один — автор учебника по клинической психиатрии, вторая ведёт модули семейной терапии. Две линии одной школы — поэтому в сложных случаях можно получить второе мнение.",
   "spec_more": "Подробнее",
   "spec": [
     ("Кенан Рагимов", "Клинический психолог, психотерапевт, амбассадор IPAS",
@@ -196,7 +198,7 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/ru/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Становление",
-  "ment_h2": "У кого учился",
+  "ment_h2": "Под чьим руководством сформировался",
   "ment_lead": "2001–2003, Санкт-Петербург, Институт психоневрологии имени В. М. Бехтерева — красный диплом.",
   "ment": [
     ("Виктор Д. Вида", "2001–2002", "Первый на территории СНГ дипломированный со стороны Международной психоаналитической ассоциации (IPA) психоаналитик. Научный руководитель по психоанализу."),
@@ -209,8 +211,8 @@ TEXTS = {
   "freud_text": "Для чтения ничего не нужно скачивать: открывается в браузере, работает поиск, место чтения сохраняется. Одинаково доступно студенту, практику и читателю.",
   "freud_btn": "Перейти в библиотеку",
   "own_eyebrow": "Книги автора",
-  "own_h2": "Каждая — доказательство своего направления",
-  "own_lead": "Четыре книги. Четыре направления. Каждая написана на уровне учебника, аналогов в мире нет.",
+  "own_h2": "Каждая книга — доказательство направления",
+  "own_lead": "Четыре книги и четыре направления. Каждая написана на уровне университетского учебника; на сегодня аналогов в мире нет.",
   "own_note": "Изданы на трёх языках. «Клиническая психиатрия» — также на турецком; языки продолжают добавляться.",
   "own": [
     ("Клиническая психиатрия", "ДПО · Практикум по психотерапии · Психодиагностика", "/books/covers/klinik.jpg"),
@@ -234,11 +236,11 @@ TEXTS = {
   "lib_nums": [("24", "книги Фрейда"), ("4", "языка"), ("0 ₼", "за чтение")],
   "lib_btn": "Открыть библиотеку",
   "lib_note": "Вся коллекция: 94 тома — Фрейд, Кенан Рагимов, Самира Рагимова.",
-  "tb_eyebrow": "Учебник",
-  "tb_h2": "«Клиническая психиатрия» — автор он же",
-  "tb_text": "384 страницы. DSM-5, ICD-11, международные протоколы и консенсус. 4 языка. Официальный учебник — и его можно читать бесплатно.",
-  "tb_meta": ["384 страницы", "4 языка", "2024", "Читать бесплатно"],
-  "tb_btn1": "Читать бесплатно",
+  "tb_eyebrow": "Главный труд",
+  "tb_h2": "«Клиническая психиатрия» — учебник без аналогов в мире",
+  "tb_text": "384 страницы, DSM-5 и ICD-11, международные протоколы и консенсус. Такого учебника сегодня в мире нет: он одинаково рабочий и для клинициста, и для студента, и для того, кто выбирает метод терапии. Переведён на четыре языка — азербайджанский, русский, английский и турецкий. В азербайджанском это официальный учебник, и он открыт каждому. У него есть отдельная задача: отделять научное от ненаучного и снимать мифы и заблуждения, которые уводят от правильного лечения.",
+  "tb_meta": ["384 страницы", "4 языка", "DSM-5 · ICD-11", "Читать бесплатно"],
+  "tb_btn1": "Открыть и посмотреть",
   "tb_btn2": "Печатная версия",
   "film_eyebrow": "Из практики",
   "film_h2": "«Драма Сабины»",
@@ -270,9 +272,11 @@ TEXTS = {
   "myth_lead": "Источник указан. Можно проверить.",
   "myth_label": "МИФ", "myth_fact": "Факт:",
   "myths": [
-    ("«Мелипрамин формирует рефлекс пробуждения»", "На самом деле: рефлекс не формирует — вызывает задержку мочеиспускания как побочный эффект. Кардиотоксичен, известны случаи смерти. При энурезе у детей не рекомендован.", "Источник: «Клиническая психиатрия», раздел об энурезе"),
-    ("«Энурезин можно применять при энурезе»", "На самом деле: документы Министерства здравоохранения АР не рекомендуют его в педиатрии для лечения ночного энуреза.", "Источник: PDF Министерства здравоохранения АР"),
-    ("«Акупунктура лечит энурез»", "На самом деле: доказанного влияния на когнитивную сферу и поведение нет. Эффективность при психологическом расстройстве не подтверждена.", "Источник: международные протоколы и консенсус"),
+    ("Депрессия", "«Депрессия — это просто плохое настроение, само пройдёт»", "На самом деле: депрессия — диагностируемое заболевание, меняются биохимия мозга, сон, аппетит и работоспособность. В среднем длится 6–8 месяцев и без лечения повторяется. Психотерапия и медикаменты — равно доказанные методы.", "Источник: «Клиническая психиатрия», раздел о депрессии", "#textbook", "Посмотреть в книге →"),
+    ("Социальная фобия", "«Это просто стеснительность, возьми себя в руки»", "На самом деле: социальная фобия — не стеснительность. Человек избегает говорить, есть, звонить, включаются телесные реакции, жизнь сужается. Эффект КПТ измерим: симптомы снижаются и становятся управляемыми.", "Источник: «Клиническая психиатрия» + «Вирус вины»", "#ownbooks", "Посмотреть «Вирус вины» →"),
+    ("Ночной энурез", "«Ребёнок ленится, делает это назло»", "На самом деле: ночной энурез не зависит от воли ребёнка — участвуют созревание, наследственность и фазы сна. Наказание ухудшает состояние. Доказанный путь: режим, сигнальный аппарат, поведенческая терапия.", "Источник: «Клиническая психиатрия», раздел об энурезе", "#textbook", "Посмотреть в книге →"),
+    ("Паническая атака", "«Паническая атака — это инфаркт, я умираю»", "На самом деле: паническая атака не опасна и не приводит к смерти. Сердцебиение, нехватка воздуха и страх смерти — это волна адреналина, она стихает за 10–20 минут. Главный вред — избегание и страх ожидания; именно их и снимает терапия.", "Источник: «Клиническая психиатрия», тревожные расстройства", "#textbook", "Посмотреть в книге →"),
+    ("Психотерапия", "«Разговоры болезнь не лечат»", "На самом деле: эффективность психотерапии измерена в сотнях рандомизированных исследований и сопоставима с медикаментозным лечением. Условие — работа по протоколу и измерение результата.", "Источник: международные протоколы и консенсус", "#programs", "Посмотреть программы →"),
   ],
   "cons_eyebrow": "Консультации",
   "cons_h2": "Три формата. Одна цель.",
@@ -335,13 +339,13 @@ TEXTS = {
   "hero_query": "Doctor Ragimoff",
   "hero_strong": "School of Psychology",
   "hero_h1": "School of<br><em>Psychology</em>",
-  "hero_sub": "23 years of clinical practice. Official diploma. International certificate. In Azerbaijani.",
+  "hero_sub": "Twenty-three years in clinical practice. An official diploma and an international certificate — all of it in Azerbaijani.",
   "hero_btn1": "Training programs",
   "hero_btn2": "Consultation",
   "hero_note": "Kenan Ragimov — clinical psychologist, psychotherapist, IPAS Ambassador",
   "spec_eyebrow": "Specialists",
-  "spec_h2": "Two who listen",
-  "spec_lead": "One wrote the reference book on clinical psychiatry, the other leads the family therapy modules. One school, two different views.",
+  "spec_h2": "Two specialists, one school",
+  "spec_lead": "One is the author of the clinical psychiatry textbook, the other runs the family therapy modules. Two lines of one school — which is why a second opinion is available in complex cases.",
   "spec_more": "Learn more",
   "spec": [
     ("Kenan Ragimov", "Clinical psychologist, psychotherapist, IPAS Ambassador",
@@ -352,7 +356,7 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/en/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Formation",
-  "ment_h2": "Whom he trained under",
+  "ment_h2": "Under whose guidance he took shape",
   "ment_lead": "2001–2003, Saint Petersburg, Bekhterev Institute of Psychoneurology — graduated with distinction.",
   "ment": [
     ("Viktor D. Vida", "2001–2002", "The first psychoanalyst in the CIS to be certified by the International Psychoanalytical Association (IPA). His supervisor in psychoanalysis."),
@@ -365,8 +369,8 @@ TEXTS = {
   "freud_text": "Nothing to download: it opens in the browser, search works, your place is saved. Equally open to a student, a practitioner and a reader.",
   "freud_btn": "Go to the library",
   "own_eyebrow": "Books by the author",
-  "own_h2": "Each one proves its own field",
-  "own_lead": "Four books. Four fields. Each written at textbook level — nothing comparable exists.",
+  "own_h2": "Every book proves its field",
+  "own_lead": "Four books and four fields. Each is written at university textbook level; today nothing comparable exists.",
   "own_note": "Published in three languages. “Clinical Psychiatry” is also out in Turkish; more languages are being added.",
   "own": [
     ("Clinical Psychiatry", "CPD · Psychotherapy practicum · Psychodiagnostics", "/books/covers/klinik.jpg"),
@@ -390,11 +394,11 @@ TEXTS = {
   "lib_nums": [("24", "Freud books"), ("4", "languages"), ("0 ₼", "to read")],
   "lib_btn": "Open the library",
   "lib_note": "Full collection: 94 volumes — Freud, Kenan Ragimov, Samira Ragimova.",
-  "tb_eyebrow": "Textbook",
-  "tb_h2": "“Clinical Psychiatry” — by the author",
-  "tb_text": "384 pages. DSM-5, ICD-11, international protocols and consensus. 4 languages. The official textbook — free to read.",
-  "tb_meta": ["384 pages", "4 languages", "2024", "Free to read"],
-  "tb_btn1": "Read free",
+  "tb_eyebrow": "The principal work",
+  "tb_h2": "“Clinical Psychiatry” — a textbook with no equivalent",
+  "tb_text": "384 pages, DSM-5 and ICD-11, international protocols and consensus. No such textbook exists in the world today: it works equally well for the clinician, the student and anyone choosing a method of therapy. It has been translated into four languages — Azerbaijani, Russian, English and Turkish. In Azerbaijani it is the official textbook, and it is open to everyone. It carries a further task: separating the scientific from the unscientific and clearing away the myths and misconceptions that divert people from proper treatment.",
+  "tb_meta": ["384 pages", "4 languages", "DSM-5 · ICD-11", "Free to read"],
+  "tb_btn1": "Open and look inside",
   "tb_btn2": "Printed edition",
   "film_eyebrow": "From practice",
   "film_h2": "“Sabina's Drama”",
@@ -426,9 +430,11 @@ TEXTS = {
   "myth_lead": "The source is given. You can verify it.",
   "myth_label": "MYTH", "myth_fact": "Fact:",
   "myths": [
-    ("“Melipramine builds an awakening reflex”", "In fact: it does not build a reflex — it delays urination as a side effect. Cardiotoxic; deaths are known. Not recommended for childhood enuresis.", "Source: “Clinical Psychiatry”, enuresis section"),
-    ("“Enurexin can be used for enuresis”", "In fact: documents of the Ministry of Health of Azerbaijan do not recommend it in paediatrics for nocturnal enuresis.", "Source: Ministry of Health PDF"),
-    ("“Acupuncture cures enuresis”", "In fact: there is no proven effect on cognition or behaviour. Efficacy in a psychological disorder is not confirmed.", "Source: international protocols and consensus"),
+    ("Depression", "“Depression is just a bad mood — it will pass”", "In fact: depression is a diagnosable illness — brain chemistry, sleep, appetite and capacity to work all change. It lasts six to eight months on average and recurs without treatment. Psychotherapy and medication are equally evidenced methods.", "Source: “Clinical Psychiatry”, the depression section", "#textbook", "Open the book →"),
+    ("Social phobia", "“It is just shyness — pull yourself together”", "In fact: social phobia is not shyness. The person avoids speaking, eating, making calls; physical reactions set in and life narrows. The effect of CBT is measurable: symptoms fall and become manageable.", "Source: “Clinical Psychiatry” + “The Virus of Guilt”", "#ownbooks", "See “The Virus of Guilt” →"),
+    ("Nocturnal enuresis", "“The child is lazy and does it on purpose”", "In fact: nocturnal enuresis is not a matter of the child’s will — maturation, heredity and sleep phases are involved. Punishment makes it worse. The evidenced path: routine, alarm device, behavioural therapy.", "Source: “Clinical Psychiatry”, the enuresis section", "#textbook", "Open the book →"),
+    ("Panic attack", "“A panic attack is a heart attack — I am dying”", "In fact: a panic attack is not dangerous and does not cause death. Racing heart, breathlessness and fear of dying are a wave of adrenaline that subsides within ten to twenty minutes. The real damage is avoidance and anticipatory fear — and that is what therapy removes.", "Source: “Clinical Psychiatry”, anxiety disorders", "#textbook", "Open the book →"),
+    ("Psychotherapy", "“Talking does not cure illness”", "In fact: the effectiveness of psychotherapy has been measured in hundreds of randomised trials and is comparable to medication. The condition is working to protocol and measuring the result.", "Source: international protocols and consensus", "#programs", "See the programmes →"),
   ],
   "cons_eyebrow": "Consultations",
   "cons_h2": "Three formats. One goal.",
@@ -766,7 +772,7 @@ def library(t):
 def textbook(t):
     meta = "".join(f'<span class="badge">{esc(x)}</span>' for x in t["tb_meta"])
     return f"""
-<section class="section">
+<section class="section section--ucl" id="textbook">
   <div class="wrap split">
     <div class="reveal">
       <span class="eyebrow">{esc(t['tb_eyebrow'])}</span>
@@ -871,25 +877,40 @@ def timeline(t):
 
 
 def myths(t):
-    cards = "".join(
-        f"""<details class="myth reveal">
-      <summary data-label="{esc(t['myth_label'])}">{esc(q)}</summary>
-      <div class="myth__body">
-        <p class="myth__fact"><b>{esc(t['myth_fact'])}</b> {esc(a)}</p>
-        <p class="myth__src">{esc(src)}</p>
+    """Разрушение мифов — отдельный крупный блок (Кенан 10.11.2026).
+
+    Было: три узкие полоски в сетке из трёх, мрачно и мимо.
+    Кенан: «Взять наиболее популярные, связанные с депрессией, социальной фобией,
+    ночным энурезом... привести со ссылкой именно на страницу книги, именно на
+    этот раздел, чтобы человек кликал и переходил на страницу этой книги, и смог
+    там ознакомиться с другими мифами и со структурой терапии.»
+
+    Стало: каждый миф — широкая строка с темой слева, разбором справа и ссылкой
+    в конец. Темы идут от самых частых обращений."""
+    rows = ""
+    for topic, q, a, src, href, link in t["myths"]:
+        rows += f"""
+    <article class="mythrow reveal">
+      <div class="mythrow__topic">
+        <span class="mythrow__topic-name">{esc(topic)}</span>
+        <span class="mythrow__label">{esc(t['myth_label'])}</span>
       </div>
-    </details>"""
-        for q, a, src in t["myths"]
-    )
+      <div class="mythrow__body">
+        <p class="mythrow__q">{esc(q)}</p>
+        <p class="mythrow__a"><b>{esc(t['myth_fact'])}</b> {esc(a)}</p>
+        <p class="mythrow__src">{esc(src)}
+          <a class="mythrow__link" href="{href}">{esc(link)}</a></p>
+      </div>
+    </article>"""
     return f"""
-<section class="section" id="myths">
+<section class="section section--myths" id="myths">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">{esc(t['myth_eyebrow'])}</span>
       <h2>{esc(t['myth_h2'])}</h2>
       <p class="lead">{esc(t['myth_lead'])}</p>
     </div>
-    <div class="grid-3" style="align-items:start">{cards}</div>
+    <div class="mythlist">{rows}</div>
   </div>
 </section>
 """
@@ -1101,18 +1122,18 @@ def page(lang):
 <main id="main">
 {hero(t)}
 {marquee(t)}
-{specialists(t)}
-{mentors(t)}
 {textbook(t)}
+{mentors(t)}
 {freud(t)}
+{specialists(t)}
 {own_books(t)}
 {upcoming(t)}
 {consultations(t)}
 {film(t)}
 {programs(t, lang)}
 {business(t)}
-{timeline(t)}
 {myths(t)}
+{timeline(t)}
 {events(t)}
 {telegram(t)}
 {blog(t)}

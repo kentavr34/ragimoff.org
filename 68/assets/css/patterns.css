@@ -592,3 +592,108 @@ h2.st.is-in .st-w > i { transform: translateY(0); }
   .foot__mark { font-size: clamp(46px, 17vw, 96px); letter-spacing: -.03em; margin: var(--r3) 0 var(--r2); }
 }
 
+
+/* ════════════════════════════════════════════════════════════════════════════
+   РАЗРУШЕНИЕ МИФОВ — отдельный крупный блок (Кенан 10.11.2026)
+   Было три узкие полоски в ряд, мрачно и мимо задачи.
+   Стало: каждая тема — широкая строка. Слева тема и метка «МИФ»,
+   справа разбор и ссылка в книгу/раздел. Читается сверху вниз, не по кругу.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.section--myths { background: linear-gradient(180deg, transparent 0%, rgba(201,169,97,.045) 50%, transparent 100%); }
+
+.mythlist { display: grid; gap: 0; margin-top: var(--r2); border-top: 1px solid var(--border); }
+
+.mythrow {
+  display: grid; grid-template-columns: 220px 1fr; gap: var(--r3);
+  padding: var(--r3) 0; border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.mythrow__topic { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 96px; }
+.mythrow__topic-name {
+  font-family: var(--font-display); font-size: var(--step-1); font-weight: 500;
+  color: var(--text-strong); letter-spacing: .01em; line-height: 1.15;
+}
+.mythrow__label {
+  align-self: flex-start;
+  font-family: var(--font-sub); font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent);
+  border-radius: 99px; padding: 3px 9px; opacity: .85;
+}
+.mythrow__body { display: grid; gap: 10px; max-width: 74ch; }
+.mythrow__q {
+  margin: 0; font-family: var(--font-read); font-size: var(--step-1);
+  font-style: italic; line-height: 1.4; color: var(--text-strong);
+}
+.mythrow__q::before { content: "— "; color: var(--accent); font-style: normal; }
+.mythrow__a { margin: 0; font-size: var(--step-0); line-height: 1.68; color: var(--text-muted); }
+.mythrow__a b { color: #9BC49B; font-weight: 600; }
+.mythrow__src {
+  margin: 4px 0 0; font-size: 12px; color: var(--text-faint);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+}
+.mythrow__link {
+  font-family: var(--font-sub); font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px; white-space: nowrap;
+  transition: opacity .25s ease;
+}
+.mythrow__link:hover { opacity: .7; }
+
+@media (max-width: 860px) {
+  .mythrow { grid-template-columns: 1fr; gap: var(--r1); padding: var(--r2) 0; }
+  .mythrow__topic { position: static; flex-direction: row; align-items: center; gap: 12px; }
+  .mythrow__body { max-width: none; }
+  .mythrow__q { font-size: var(--step-0); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   ПЕРВЫЙ УДАР — «Клиническая психиатрия» (Кенан 10.11.2026)
+
+   Кенан: «Где начинаем с самых сильных факторов, а потом постепенно переходим
+   ко второму сильному... Клиническая психиатрия и все книги, которые есть —
+   лучший в мире учебник по психиатрии, аналогов нет... переведена на четыре
+   языка и доступна каждому как основное руководство».
+
+   Значит блок должен читаться как заявление, а не как ещё одна карточка:
+   свой фон, крупнее воздух, приподнятая обложка с собственным светом.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.section--ucl {
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 78% 40%, rgba(201,169,97,.10) 0%, transparent 62%),
+    linear-gradient(180deg, transparent 0%, rgba(255,255,255,.017) 50%, transparent 100%);
+}
+.section--ucl::before {
+  content: "";
+  position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .45;
+}
+/* обложка учебника — приподнята и со своим светом, чтобы не выглядела
+   «в пустоте» среди других обложек (замечание Кенана об обложке) */
+.section--ucl .split > div:last-child img {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px -28px rgba(0,0,0,.9), 0 0 0 1px rgba(201,169,97,.22);
+  transition: transform .7s var(--ease), box-shadow .7s var(--ease);
+}
+.section--ucl .split > div:last-child img:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 42px 90px -30px rgba(0,0,0,.95), 0 0 0 1px rgba(201,169,97,.4);
+}
+/* строка «аналогов нет» — курсивом чтения, как личное утверждение */
+.section--ucl .lead { font-family: var(--font-read); font-size: var(--step-1); line-height: 1.62; }
+
+/* фраза-заявление курсивом в любом блоке — роль чтения */
+.u-claim {
+  font-family: var(--font-read); font-style: italic;
+  font-size: var(--step-1); line-height: 1.6; color: var(--text-strong);
+}
+.u-claim::before { content: "— "; color: var(--accent); font-style: normal; }
+
+@media (max-width: 860px) {
+  .section--ucl .split > div:last-child img { width: min(100%, 260px); }
+}
