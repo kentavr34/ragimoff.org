@@ -46,18 +46,8 @@
     lastY = y;
   }, { passive: true });
 
-  /* reveal */
-  var items = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    items.forEach(function (el) { io.observe(el); });
-  } else {
-    items.forEach(function (el) { el.classList.add('is-in'); });
-  }
+  /* reveal — отметка ниже: надёжный движок на scroll+rAF (IO в некоторых
+     движках/встройках не срабатывает при программной прокрутке) */
 
   /* counters */
   document.querySelectorAll('[data-count]').forEach(function (el) {
@@ -243,4 +233,63 @@
     load();
     onScroll();
   })();
+
+  /* ────────────────────────────────────────────────────────────
+     SPLIT-TEXT: заголовки секций раскрываются по скроллу.
+     Каждое слово — в маске, выезжает снизу с задержкой по порядку.
+     Замысел: сайт «раскрывается» и рассказывает, а не выдаёт
+     сухую стену текста.
+     ──────────────────────────────────────────────────────────── */
+  const stHeads = document.querySelectorAll('.sec-head h2, h2.st');
+  stHeads.forEach(function (h) {
+    if (h.dataset.st) return;
+    h.dataset.st = '1';
+    const words = h.textContent.trim().split(/\s+/).filter(Boolean);
+    if (words.length < 2) return;
+    h.textContent = '';
+    words.forEach(function (w, i) {
+      const outer = document.createElement('span');
+      outer.className = 'st-w';
+      const inner = document.createElement('i');
+      inner.textContent = w;
+      inner.style.transitionDelay = (i * 0.055).toFixed(3) + 's';
+      outer.appendChild(inner);
+      h.appendChild(outer);
+      if (i < words.length - 1) h.appendChild(document.createTextNode(' '));
+    });
+    h.classList.add('st');
+  });
+  /* ЗАПУСК ПОЯВЛЕНИЙ: без rAF и без IntersectionObserver.
+     Оба механизма отказывают в части движков (IO не ловит программную прокрутку,
+     rAF не тикает в некоторых встроенных браузерах). Поэтому: прямой вызов по
+     scroll с частотным ограничением + страховочный интервал, который останавливается,
+     как только очередь опустела. Прошедшие элементы из списка убираются, поэтому
+     каждый проход стоит почти ничего. */
+  const pending = Array.prototype.slice.call(document.querySelectorAll('.reveal, h2.st'));
+  let lastCheck = 0;
+  function checkReveal() {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    for (let i = pending.length - 1; i >= 0; i--) {
+      const el = pending[i];
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.88 && r.bottom > 0) {
+        el.classList.add('is-in');
+        pending.splice(i, 1);
+      }
+    }
+    return pending.length;
+  }
+  function queueReveal() {
+    const now = Date.now();
+    if (now - lastCheck < 60) return;
+    lastCheck = now;
+    checkReveal();
+  }
+  window.addEventListener('scroll', queueReveal, { passive: true });
+  window.addEventListener('resize', queueReveal);
+  window.addEventListener('load', checkReveal);
+  checkReveal();
+  const _revealTick = setInterval(function () {
+    if (checkReveal() === 0) clearInterval(_revealTick);
+  }, 350);
 })();

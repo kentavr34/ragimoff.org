@@ -414,9 +414,12 @@
   /* ── reveal ── */
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
   .reveal.is-in { opacity: 1; transform: none; }
+  /* Кенан 10.11 + аудит 09.11: системная настройка «без анимации» гасит ТОЛЬКО резкое
+     (бесконечные петли, полёты, параллакс). Мягкие появления — прозрачность, сдвиг
+     до ~20 px, раскрытие маской — остаются: иначе сайт читается как сухой текст. */
   @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    .marquee__track, .hero__glow { animation: none; }
+    .marquee__track { animation-duration: 90s; }
+    .hero__glow { animation-duration: 14s; }
     html { scroll-behavior: auto; }
   }
 }
@@ -522,9 +525,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cine__img { animation: none; }
-  .cine__cue i { animation: none; }
-  .cine__strong > span { opacity: 1; translate: 0; animation: none; }
+  /* кадр и посимвольный выход заголовка — мягкие, остаются; петля-подсказка замедляется */
+  .cine__cue i { animation-duration: 5s; }
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -617,3 +619,73 @@
 /* ── подпись направления под книгой ── */
 .bookcard__meta { display: grid; gap: 4px; }
 .bookcard__meta small { line-height: 1.5; }
+
+/* ════════════════════════════════════════════════════════════
+   ПРОГРАММЫ ОБУЧЕНИЯ: изюминка — рисованным шрифтом (как в герое)
+   ════════════════════════════════════════════════════════════ */
+
+.program__group {
+  margin: var(--r4) 0 var(--r2);
+  padding-bottom: 12px;
+  font-family: var(--font-display); font-size: var(--step-2); font-weight: 500;
+  color: var(--text-strong); border-bottom: 1px solid var(--border);
+}
+.program__group:first-of-type { margin-top: 0; }
+
+/* изюминка: главное преимущество программы */
+.program__hook {
+  margin: 0 0 10px;
+  font-family: 'Marggraff Kursiv', var(--font-display);
+  font-size: clamp(27px, 2.7vw, 42px); font-weight: 400; line-height: 1.06;
+  letter-spacing: .005em; color: var(--accent-soft);
+}
+.program__name {
+  margin: 0 0 10px;
+  font-family: var(--font-display); font-size: var(--step-1); font-weight: 500;
+  letter-spacing: .01em; color: var(--text-strong);
+}
+.program__desc { margin: 0 0 var(--r1); line-height: 1.6; }
+
+/* подсетка: строки цены и кнопки на одной линии во всех карточках ряда */
+.program { display: grid; grid-template-rows: auto auto auto 1fr auto auto; align-content: start; }
+.program__actions { align-self: end; margin-top: var(--r1); }
+
+@media (max-width: 640px) {
+  .program__hook { font-size: clamp(24px, 7.4vw, 32px); }
+  .program__group { margin-top: var(--r3); }
+}
+
+/* ── split-text: заголовки раскрываются по скроллу ── */
+h2.st { --st-dur: .8s; }
+h2.st .st-w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .06em; }
+h2.st .st-w > i {
+  display: inline-block; font-style: normal;
+  transform: translateY(108%);
+  transition: transform var(--st-dur) cubic-bezier(.19,.86,.22,1);
+  will-change: transform;
+}
+h2.st.is-in .st-w > i { transform: translateY(0); }
+
+
+
+/* ── словесный знак подвала: во всю ширину, раскрывается при подходе ── */
+.foot__mark {
+  margin: var(--r4) 0 var(--r3);
+  padding-top: var(--r3);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: clamp(54px, 12.5vw, 200px);
+  line-height: .86; font-weight: 500;
+  letter-spacing: -.05em;
+  color: var(--text-strong);
+  opacity: .18;
+  transform: translateY(20px);
+  transition: letter-spacing 1.5s cubic-bezier(.19,.86,.22,1),
+              opacity 1.2s ease, transform 1.2s cubic-bezier(.19,.86,.22,1);
+  will-change: letter-spacing, opacity;
+}
+.foot__mark.is-in { letter-spacing: -.012em; opacity: 1; transform: none; }
+@media (max-width: 640px) {
+  .foot__mark { font-size: clamp(46px, 17vw, 96px); letter-spacing: -.03em; margin: var(--r3) 0 var(--r2); }
+}
+

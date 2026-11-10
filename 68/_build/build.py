@@ -89,6 +89,8 @@ TEXTS = {
   "film_text": "Real hadisənin ekranlaşdırılması. 31 dəqiqə. Şərhsiz.",
   "film_btn": "İzlə",
   "prog_eyebrow": "Təhsil",
+  "prog_g_dpo": "Diplomlu əlavə peşə təhsili",
+  "prog_g_spec": "Praktikum və ixtisaslaşmalar",
   "prog_h2": "6 tədris proqramı",
   "prog_lead": "Rəsmi diplom, praktika və beynəlxalq sertifikat. Qiymətlər və müddətlər — açıq.",
   "prog_more": "Proqram",
@@ -243,6 +245,8 @@ TEXTS = {
   "film_text": "Экранизация реального случая. 31 минута. Без комментариев.",
   "film_btn": "Смотреть",
   "prog_eyebrow": "Обучение",
+  "prog_g_dpo": "ДПО с дипломом",
+  "prog_g_spec": "Практикум и специализации",
   "prog_h2": "6 программ обучения",
   "prog_lead": "Официальный диплом, практика и международный сертификат. Цены и сроки — открыто.",
   "prog_more": "Программа",
@@ -397,6 +401,8 @@ TEXTS = {
   "film_text": "A real case, dramatised. 31 minutes. No commentary.",
   "film_btn": "Watch",
   "prog_eyebrow": "Training",
+  "prog_g_dpo": "CPD with diploma",
+  "prog_g_spec": "Practicum and specialisations",
   "prog_h2": "6 training programs",
   "prog_lead": "Official diploma, practice and international certificate. Prices and dates — open.",
   "prog_more": "Program",
@@ -479,30 +485,31 @@ TEXTS = {
 }
 
 PROGRAMS = [
-  ("Ümumi Psixologiya", "Rəsmi Əlavə Təhsil diplomu. Psixoloq kimi hüquqi fəaliyyətin başlanğıcı.", "1 il — 6+6 ay", "4 200 ₼", "3 800 ₼", "200 ₼/ay", False),
-  ("Klinik Psixologiya", "Mürəkkəb klinik hallar, öz mərkəziniz üçün tam hüquqi status. IPAS sertifikatı.", "1 il — 6+6 ay", "6 600 ₼", "6 000 ₼", "300 ₼/ay", True),
-  ("Psixoterapiya Praktikumu", "Psixoloq + pasiyent rollarında canlı məşqlər, real keyslərin superviziyası.", "1 il — praktika", "3 600 ₼", "3 000 ₼", "175 ₼/ay", False),
-  ("Ailə Terapiyası", "Cütlük terapiyası və valideyn-övlad münasibətləri. 3 ay + 6 ay superviziya.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False),
-  ("Psixoanaliz", "3 aylıq nəzəri təlim və 6 aylıq superviziya. Tədrisçi — Kənan Rəhimov.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False),
-  ("Psixodiaqnostika", "ÜST və ICD standartları üzrə diaqnozun əsaslandırılması.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False),
+  # (название, изюминка, пояснение, срок, полная цена, со скидкой, в месяц, выделенная, группа)
+  ("Ümumi Psixologiya", "Diplom və hüquq", "Rəsmi Əlavə Təhsil diplomu psixoloq kimi müstəqil fəaliyyət hüququ verir. Nəzəriyyə, hüquqi əsaslar və ilk praktika.", "1 il — 6+6 ay", "4 200 ₼", "3 800 ₼", "200 ₼/ay", False, "dpo"),
+  ("Klinik Psixologiya", "Öz mərkəzin", "Mürəkkəb klinik hallar və öz mərkəziniz üçün tam hüquqi status. IPAS sertifikatı beynəlxalq səviyyədə tanınır.", "1 il — 6+6 ay", "6 600 ₼", "6 000 ₼", "300 ₼/ay", True, "dpo"),
+  ("Psixoterapiya Praktikumu", "Canlı praktika", "Psixoloq və pasiyent rollarında məşqlər, real keyslərin superviziyası. Nəzəriyyə dərhal praktikaya keçir.", "1 il — praktika", "3 600 ₼", "3 000 ₼", "175 ₼/ay", False, "spec"),
+  ("Ailə Terapiyası", "Cütlük və ailə", "Cütlük terapiyası və valideyn-övlad münasibətləri. 3 ay nəzəriyyə, 6 ay superviziya — modulu Samirə Rəhimova aparır.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
+  ("Psixoanaliz", "Freyd mənbələri", "Təlim öz kitabxanamıza söykənir: Freydin 28 cildi doğma dilinizdə, alman orijinalından. Oxu, müzakirə, superviziya.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
+  ("Psixodiaqnostika", "ICD-11 əsasında", "ÜST standartları üzrə diaqnozun əsaslandırılması — praktik vərdişə çevrilir. «Klinik Psixiatriya» dərsliyi ilə birlikdə.", "3 ay + 6 ay", "900 ₼", "800 ₼", "300 ₼/ay", False, "spec"),
 ]
 
 PROGRAMS_RU = [
-  ("Общая психология", "Официальный диплом ДПО. Начало легальной практики психолога.", "1 год — 6+6 мес.", "4 200 ₼", "3 800 ₼", "200 ₼/мес.", False),
-  ("Клиническая психология", "Сложные клинические случаи, полный правовой статус для своего центра. Сертификат IPAS.", "1 год — 6+6 мес.", "6 600 ₼", "6 000 ₼", "300 ₼/мес.", True),
-  ("Практикум психотерапии", "Живые упражнения в ролях психолога и пациента, супервизия реальных кейсов.", "1 год — практика", "3 600 ₼", "3 000 ₼", "175 ₼/мес.", False),
-  ("Семейная терапия", "Парная терапия и детско-родительские отношения. 3 мес. + 6 мес. супервизии.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False),
-  ("Психоанализ", "3 месяца теории и 6 месяцев супервизии. Преподаёт Кенан Рагимов.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False),
-  ("Психодиагностика", "Обоснование диагноза по стандартам ВОЗ и ICD.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False),
+  ("Общая психология", "Диплом и право", "Официальный диплом ДПО даёт право самостоятельной практики психолога. Теория, правовые основы и первая практика.", "1 год — 6+6 мес.", "4 200 ₼", "3 800 ₼", "200 ₼/мес.", False, "dpo"),
+  ("Клиническая психология", "Свой центр", "Сложные клинические случаи и полный правовой статус для вашего центра. Сертификат IPAS признаётся на международном уровне.", "1 год — 6+6 мес.", "6 600 ₼", "6 000 ₼", "300 ₼/мес.", True, "dpo"),
+  ("Практикум психотерапии", "Живая практика", "Упражнения в ролях психолога и пациента, супервизия реальных кейсов. Теория сразу переходит в практику.", "1 год — практика", "3 600 ₼", "3 000 ₼", "175 ₼/мес.", False, "spec"),
+  ("Семейная терапия", "Пара и семья", "Парная терапия и детско-родительские отношения. 3 месяца теории, 6 месяцев супервизии — модуль ведёт Самира Рагимова.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
+  ("Психоанализ", "Опора на Фрейда", "Обучение опирается на нашу библиотеку: 28 томов Фрейда на родном языке, с немецких оригиналов. Чтение, разбор, супервизия.", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
+  ("Психодиагностика", "По стандартам ВОЗ", "Обоснование диагноза по стандартам ВОЗ и ICD-11 — до уровня устойчивого навыка. Вместе с учебником «Клиническая психиатрия».", "3 мес. + 6 мес.", "900 ₼", "800 ₼", "300 ₼/мес.", False, "spec"),
 ]
 
 PROGRAMS_EN = [
-  ("General Psychology", "Official CPD diploma. The start of lawful psychological practice.", "1 year — 6+6 months", "4 200 ₼", "3 800 ₼", "200 ₼/mo", False),
-  ("Clinical Psychology", "Complex clinical cases, full legal status for your own centre. IPAS certificate.", "1 year — 6+6 months", "6 600 ₼", "6 000 ₼", "300 ₼/mo", True),
-  ("Psychotherapy Practicum", "Live exercises as psychologist and patient, supervision of real cases.", "1 year — practice", "3 600 ₼", "3 000 ₼", "175 ₼/mo", False),
-  ("Family Therapy", "Couples therapy and parent-child relationships. 3 months + 6 months supervision.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False),
-  ("Psychoanalysis", "3 months of theory and 6 months of supervision. Taught by Kenan Ragimov.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False),
-  ("Psychodiagnostics", "Justifying diagnosis under WHO and ICD standards.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False),
+  ("General Psychology", "Diploma and licence", "The official CPD diploma grants the right to independent psychological practice. Theory, legal foundations and first practice.", "1 year — 6+6 months", "4 200 ₼", "3 800 ₼", "200 ₼/mo", False, "dpo"),
+  ("Clinical Psychology", "Your own centre", "Complex clinical cases and full legal status for your centre. The IPAS certificate is recognised internationally.", "1 year — 6+6 months", "6 600 ₼", "6 000 ₼", "300 ₼/mo", True, "dpo"),
+  ("Psychotherapy Practicum", "Live practice", "Exercises as psychologist and patient, supervision of real cases. Theory turns into practice straight away.", "1 year — practice", "3 600 ₼", "3 000 ₼", "175 ₼/mo", False, "spec"),
+  ("Family Therapy", "Couple and family", "Couples therapy and parent-child relationships. 3 months of theory, 6 months of supervision — the module is led by Samira Ragimova.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
+  ("Psychoanalysis", "Grounded in Freud", "The course rests on our library: 28 volumes of Freud in your own language, from the German originals. Reading, analysis, supervision.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
+  ("Psychodiagnostics", "By WHO standards", "Justifying a diagnosis under WHO and ICD-11 standards, down to a durable skill. Together with the “Clinical Psychiatry” textbook.", "3 mo + 6 mo", "900 ₼", "800 ₼", "300 ₼/mo", False, "spec"),
 ]
 
 PROG_BY_LANG = {"az": PROGRAMS, "ru": PROGRAMS_RU, "en": PROGRAMS_EN}
@@ -800,12 +807,12 @@ def film(t):
 
 
 def programs(t, lang):
-    rows = ""
-    for name, desc, dur, full, pre, month, featured in PROG_BY_LANG[lang]:
+    def card(name, hook, desc, dur, full, pre, month, featured):
         cls = "program program--featured" if featured else "program"
-        rows += f"""
+        return f"""
     <article class="{cls} reveal">
-      <h3 class="program__name">{esc(name)}</h3>
+      <h3 class="program__hook">{esc(hook)}</h3>
+      <p class="program__name">{esc(name)}</p>
       <p class="program__desc">{esc(desc)}</p>
       <div class="program__rows">
         <div class="program__row"><span>{esc(t['prog_dur'])}</span><span>{esc(dur)}</span></div>
@@ -819,6 +826,16 @@ def programs(t, lang):
         <a class="btn btn--line btn--sm" href="{t['nav_href'][2]}">{esc(t['prog_more'])}</a>
       </div>
     </article>"""
+
+    dpo = [p for p in PROG_BY_LANG[lang] if p[8] == "dpo"]
+    spec = [p for p in PROG_BY_LANG[lang] if p[8] != "dpo"]
+    groups = ""
+    for label, rows_src in ((t["prog_g_dpo"], dpo), (t["prog_g_spec"], spec)):
+        cards = "".join(card(*p[:8]) for p in rows_src)
+        groups += f"""
+    <h3 class="program__group reveal">{esc(label)}</h3>
+    <div class="grid-2">{cards}</div>"""
+
     return f"""
 <section class="section" id="programs">
   <div class="wrap">
@@ -827,7 +844,7 @@ def programs(t, lang):
       <h2>{esc(t['prog_h2'])}</h2>
       <p class="lead">{esc(t['prog_lead'])}</p>
     </div>
-    <div class="grid-3">{rows}</div>
+    {groups}
   </div>
 </section>
 """
@@ -1040,12 +1057,12 @@ def footer(t, lang):
   <div class="wrap">
     <div class="foot__grid">
       <div class="foot__brand">
-        <div class="foot__word">RAGIMOFF.</div>
         <p class="foot__desc">{esc(t['foot_desc'])}</p>
         <p style="font-size:12px;color:var(--text-faint)">{esc(t['foot_note'])}</p>
       </div>
       {cols}
     </div>
+    <div class="foot__mark reveal" aria-hidden="true">RAGIMOFF.</div>
     <div class="foot__bottom">
       <span>{esc(t['foot_rights'])}</span>
       <span>{esc(t['prose_note'])}</span>
