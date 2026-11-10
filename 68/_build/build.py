@@ -573,7 +573,7 @@ def hero(t):
         for i, ch in enumerate(strong)
     )
     return f"""
-<section class="cine" id="main-content" data-cine>
+<section class="cine cine-v" id="main-content" data-cine>
   <div class="cine__stick">
     <div class="cine__frame" data-frames="90"
          data-fsrc="/images/hero-home/d/f{{i}}.webp"
@@ -597,7 +597,7 @@ def hero(t):
         <a class="btn btn--primary btn--lg" href="{t['nav_href'][2]}">{esc(t['hero_btn1'])}</a>
         <a class="btn btn--line btn--lg" href="{t['nav_href'][3]}">{esc(t['hero_btn2'])}</a>
       </div>
-      <p class="cine__note">{esc(t['hero_note'])}</p>
+      <p class="cine__lead">{esc(t['hero_note'])}</p>
     </div>
     <div class="cine__cue" aria-hidden="true"><i></i></div>
     <div class="cine__out" aria-hidden="true"></div>
@@ -1094,6 +1094,7 @@ def page(lang):
 <link rel="stylesheet" href="{BASE}/assets/css/base.css">
 <link rel="stylesheet" href="{BASE}/assets/css/components.css">
 <link rel="stylesheet" href="{BASE}/assets/css/patterns.css">
+<link rel="stylesheet" href="{BASE}/assets/css/hero.css">
 <script defer src="{BASE}/assets/js/main.js"></script>
 </head>
 <body>

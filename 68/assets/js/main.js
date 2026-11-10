@@ -108,14 +108,14 @@
     const img = cine.querySelector('.cine__img');
     const sq = cine.querySelector('.cine__search');
     const q = cine.querySelector('.cine__q');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mob = window.matchMedia('(max-width: 700px)');
     if (!frame || !cv || !cv.getContext) return;
     const N = +frame.getAttribute('data-frames') || 0;
     if (!N) return;
 
-    const mob = window.matchMedia('(max-width: 900px)');
     const ctx = cv.getContext('2d');
-    let imgs = [], set = '', target = 0, shown = 0, raf = 0, title = false, searched = false;
+    let imgs = [], set = '', target = 0, shown = 0, raf = 0, title = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const QTXT = q ? (q.getAttribute('data-q') || '') : '';
     const M = (frame.getAttribute('data-marks') || '19,23,23,35,37').split(',').map(Number);
     const T = { video: .78, sqIn: [M[0], M[1]], type: [M[2], M[3]], title: M[4], out: [.9, 1] };
@@ -178,9 +178,12 @@
         }, n < 24 ? 0 : 30 + n * 6);
         imgs[i] = im;
       });
+      frame.classList.add('has-frames');
       size();
     }
 
+    /* Прод: cine — сам скролл-контейнер (position: sticky внутри него).
+       scrollP() идёт от верха секции, без вычитания высоты панели. */
     function scrollP() {
       const r = cine.getBoundingClientRect();
       const total = cine.offsetHeight - window.innerHeight;
@@ -189,12 +192,7 @@
 
     function overlay(p) {
       const k = shown;
-      const sOn = k >= T.sqIn[0];
       if (sq) sq.style.setProperty('--sq', (seg(k, T.sqIn[0], T.sqIn[1]) * (title ? 0 : 1)).toFixed(3));
-      if (sOn !== searched) {
-        searched = sOn;
-        cine.classList.toggle('is-search', sOn);
-      }
       if (q) {
         const n = Math.round(seg(k, T.type[0], T.type[1]) * QTXT.length);
         if (q.textContent.length !== n) q.textContent = QTXT.slice(0, n);
@@ -210,8 +208,6 @@
         stick.style.setProperty('--t2', seg(p, .02, .08).toFixed(3));
         stick.style.setProperty('--out', seg(p, T.out[0], T.out[1]).toFixed(3));
       }
-      /* мягкий зум-наезд по мере скролла */
-      frame.style.setProperty('--cz', (1 + .05 * seg(p, .1, .9)).toFixed(4));
     }
 
     function loop() {
@@ -228,6 +224,20 @@
       if (!raf) raf = requestAnimationFrame(loop);
     }
 
+    /* Страховка от «голого» скролла: если rAF не тикает (часть встроенных браузеров),
+       догоняем позицию прямым вызовом. В нормальном браузере ветка не срабатывает. */
+    let lastLoopAt = 0;
+    function watchdog() {
+      if (shown !== target && Date.now() - lastLoopAt > 400) {
+        shown = Math.abs(target - shown) < .02 ? target : shown + (target - shown) * .5;
+        paint(true);
+        overlay(scrollP());
+      }
+      lastLoopAt = Date.now();
+    }
+    setInterval(watchdog, 500);
+
+    mob.addEventListener('change', function () { load(); size(); onScroll(); });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () { load(); size(); onScroll(); });
     load();

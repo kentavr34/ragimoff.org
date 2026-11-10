@@ -1,0 +1,100 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   ГЕРОЙ — КОПИЯ ПРОДА 1:1 (Кенан 10.11.2026: «можно было просто скопировать
+   и ничего не менять»).
+
+   Источник: assets/css/nocturne.css, блоки .n-cine (493–535) и
+   .n-cine-v (557–605). Геометрия, размеры, кривые, задержки, фазы — НЕ изменены.
+   Переименование только классов: n-cine → cine, чтобы попасть в /68.
+   Переменные --n-bg / --n-milk / --n-gold / --n-soft / --n-serif / --n-e и т. д.
+   заменены на токены /68 с теми же значениями.
+
+   Геометрия кадра — ключ к тому, чтобы фото не растягивалось:
+   width: max(100%, 177.78svh) + aspect-ratio 16/9 + transform-origin 50% 40%.
+   Прошлая версия /68 ставила object-fit: cover на узкий бокс и обрезала кадр.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+.cine { position: relative; height: 240vh; padding: 0 !important; background: var(--bg); }
+.cine > .cine__stick { max-width: none !important; width: 100%; margin: 0 !important; padding: 0 !important; }
+.cine__stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; isolation: isolate; }
+.cine__frame { --cz: 1; --cx: 0px; position: absolute; left: 50%; top: 50%; width: max(100%, 179.3vh); width: max(100%, 179.3svh); aspect-ratio: 1664 / 928;
+  transform-origin: 50% 40%; transform: translate(-50%, -50%) translate3d(var(--cx), 0, 0) scale(var(--cz)); }
+.cine__img, .cine__cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cine__img { object-fit: cover; animation: cineIn 2.4s var(--ease) both; }
+.cine__cv { opacity: 0; transition: opacity .6s; }
+.cine__frame.has-frames .cine__cv { opacity: 1; }
+.cine__shade { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 26%, rgba(7,9,14,.55) 40%, transparent 56%, transparent 80%, rgba(7,9,14,.7) 100%); }
+.cine__beat { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); }
+.cine__b1 { --t1: 1; --y1: 0px; opacity: var(--t1); translate: 0 var(--y1); }
+.cine__b1 > * { max-width: 620px; }
+.cine__h1 { margin: 26px 0 0; font-weight: 300; color: var(--text-strong); }
+.cine__kicker { display: block; margin-bottom: 14px; font: 400 clamp(19px, 1.7vw, 25px)/1.2 var(--font-display); letter-spacing: .04em; color: var(--text-muted); }
+.cine__title { display: block; font: italic 300 clamp(46px, 5.6vw, 88px)/1 var(--font-display); letter-spacing: -.015em; color: var(--text-strong); text-wrap: balance; }
+.cine__b1 .cine__cta { margin-top: 38px; }
+.cine__cue { position: absolute; left: 50%; bottom: 26px; width: 1px; height: 64px; background: var(--border-strong); overflow: hidden; opacity: calc(1 - var(--t2, 0)); }
+.cine__cue i { position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--accent); animation: cineCue 2.2s var(--ease2) infinite; }
+.cine__out { position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg) 0%, rgba(7,9,14,.7) 100%); opacity: var(--out, 0); pointer-events: none; }
+.cine + .marquee { position: relative; z-index: 1; margin-top: 0; }
+
+@media (max-width: 900px) {
+  .cine { height: 220vh; }
+  .cine__frame { width: auto; height: 68vh; height: 68svh; top: 7svh; transform-origin: 62% 70%; transform: translate(-60%, 0) translate3d(var(--cx), 0, 0) scale(var(--cz)); }
+  .cine__shade { background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 26%, rgba(7,9,14,.55) 40%, transparent 56%, transparent 80%, rgba(7,9,14,.7) 100%); }
+  .cine__beat { top: auto; bottom: 84px; transform: none; }
+  .cine__title { font-size: clamp(40px, 11.5vw, 54px); }
+  .cine__b1 .cine__cta { margin-top: 28px; }
+  .cine__cue { bottom: 18px; height: 44px; }
+}
+
+/* ═══ Главная · сцена на кадрах видео (JobTop): касание → поиск → заголовок ═══ */
+.cine-v { height: 250vh; }
+.cine-v .cine__frame { width: max(100%, 177.78vh); width: max(100%, 177.78svh); aspect-ratio: 16 / 9; transform-origin: 50% 40%; }
+.cine-v .cine__img { object-fit: cover; animation: cineIn 1.8s var(--ease) both; }
+.cine-v .cine__cv { opacity: 1; }
+.cine-v .cine__shade { background:
+  linear-gradient(90deg, rgba(7,9,14,var(--sh,.15)) 0%, rgba(7,9,14,calc(var(--sh,.15) * .75)) 34%, transparent 62%),
+  linear-gradient(0deg, rgba(7,9,14,.7) 0%, transparent 26%), linear-gradient(180deg, rgba(7,9,14,.45) 0%, transparent 18%); }
+/* строка поиска — на месте светящейся строки из видео (21–51 % ширины, 35–41 % высоты кадра) */
+.cine__search { position: absolute; left: 21.4%; top: 34.6%; width: 30%; height: 6.4%; display: flex; align-items: center; gap: .8vw; padding: 0 1.4vw;
+  border-radius: 999px; color: #EAF6FF; background: rgba(160,205,255,.12); border: 1px solid rgba(200,230,255,.7);
+  box-shadow: 0 0 22px rgba(120,190,255,.55), inset 0 0 18px rgba(150,210,255,.22); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: var(--sq, 0); transform: scale(calc(.94 + var(--sq, 0) * .06)); pointer-events: none; }
+.cine__search svg { flex: 0 0 auto; width: 1.25vw; height: 1.25vw; min-width: 14px; min-height: 14px; opacity: .9; }
+.cine__q { font: 500 clamp(13px, 1.25vw, 22px)/1 var(--font-text); letter-spacing: .02em; white-space: nowrap; overflow: hidden; }
+.cine__caret { width: 1.5px; height: 42%; background: #EAF6FF; animation: cineCaret 1s steps(1) infinite; }
+/* заголовок: рукописное имя «пишется», строгая строка встаёт по буквам */
+.cine-v .cine__b1 { opacity: 1; translate: none; visibility: visible; pointer-events: none; }
+.cine-v .cine__b1 > * { max-width: 640px; }
+.cine-v .cine__b1 .cine__h1 { max-width: none; }
+.cine-v .cine__b1 .eyebrow, .cine-v .cine__lead, .cine-v .cine__b1 .cine__cta { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform 1s var(--ease); }
+.cine-v .cine__h1 { margin: 18px 0 0; }
+.cine__hand { display: block; padding: .08em .1em .12em 0; font: 400 clamp(56px, 6.2vw, 112px)/1.05 'Marggraff Kursiv', var(--font-display); color: var(--accent-soft);
+  text-shadow: 0 6px 40px rgba(7,9,14,.7); white-space: nowrap; clip-path: inset(-20% 100% -30% 0); transition: clip-path 1.9s cubic-bezier(.55,.1,.3,1); }
+.cine__strong { display: block; margin-top: .1em; font: 600 clamp(30px, 3.3vw, 56px)/1 var(--font-text); letter-spacing: .06em; text-transform: uppercase; color: var(--text-strong); white-space: nowrap; }
+.cine__strong span { display: inline-block; opacity: 0; transform: translateY(.6em) rotateX(-70deg); transform-origin: 50% 100%; transition: opacity .6s var(--ease), transform .9s var(--ease); transition-delay: calc(1.1s + var(--i) * .035s); }
+.cine__lead { margin: 30px 0 0; font: 400 clamp(16px, 1.25vw, 19px)/1.65 var(--font-read); color: var(--text-muted); text-shadow: 0 2px 18px rgba(7,9,14,.9); }
+.cine-v .cine__b1 .cine__cta { margin-top: 30px; }
+.cine-v.is-title .cine__b1 { pointer-events: auto; }
+.cine-v.is-title .cine__hand { clip-path: inset(-20% -5% -30% 0); }
+.cine-v.is-title .cine__strong span { opacity: 1; transform: none; }
+.cine-v.is-title .cine__b1 .eyebrow { opacity: 1; transform: none; transition-delay: .2s; }
+.cine-v.is-title .cine__lead { opacity: 1; transform: none; transition-delay: 1.7s; }
+.cine-v.is-title .cine__b1 .cine__cta { opacity: 1; transform: none; transition-delay: 1.95s; }
+.cine-v .cine__cue { opacity: calc(1 - var(--t2, 0)); }
+
+@media (max-width: 700px) {
+  .cine-v { height: 230vh; }
+  /* мобильный кадр — квадрат на всю высоту экрана (143 кадра m/), НЕ растяжка */
+  .cine-v .cine__frame { width: 100svh; width: 100vh; height: 100svh; aspect-ratio: 1 / 1; top: 0; transform: translate(-50%, 0) scale(var(--cz)); }
+  .cine-v .cine__shade { background: linear-gradient(0deg, rgba(7,9,14,.97) 0%, rgba(7,9,14,.85) 30%, rgba(7,9,14,calc(var(--sh,.1) * .8)) 52%, transparent 66%), linear-gradient(180deg, rgba(7,9,14,.5) 0%, transparent 16%); }
+  .cine__search { position: fixed; left: 50%; top: 55%; width: 80vw; height: 50px; margin-left: -40vw; padding: 0 18px; gap: 10px; background: rgba(20,40,70,.45); }
+  .cine__search svg { width: 18px; height: 18px; }
+  .cine__q { font-size: 16px; }
+  .cine__hand { font-size: clamp(38px, 11.6vw, 56px); }
+  .cine__strong { font-size: clamp(24px, 7.4vw, 32px); white-space: normal; }
+  .cine__lead { font-size: 15.5px; margin-top: 16px; }
+}
+
+@keyframes cineIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cineCue { 0% { top: -40%; } 100% { top: 100%; } }
+@keyframes cineCaret { 50% { opacity: 0; } }
