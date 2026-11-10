@@ -1,17 +1,21 @@
 @layer components {
   /* ── buttons ── */
+  /* Кнопки — по замерам эталона: 17 px, вес 500, Alegreya, высота 54 px,
+     поля 0 30px. Кенан: «внутри шрифты кнопок... ужасно не нравится, крайне
+     сильно бросается в глаза» (было: мелкий uppercase весом 700). */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 48px;
-    padding: 0 22px;
+    min-height: 54px;
+    padding: 0 30px;
     border-radius: var(--radius-pill);
-    font-size: var(--step--1);
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+    font-family: var(--font-read);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-transform: none;
     white-space: nowrap;
     transition: transform var(--t-base) var(--ease),
                 background var(--t-base), color var(--t-base),
@@ -27,8 +31,8 @@
   [data-theme="light"] .badge { border-color: rgba(18,17,16,.25); }
   .btn--ghost { color: var(--accent); padding-inline: 0; min-height: 0; }
   .btn--ghost:hover { color: var(--accent-soft); }
-  .btn--sm { min-height: 40px; padding: 0 16px; font-size: 11px; }
-  .btn--lg { min-height: 56px; padding: 0 28px; }
+  .btn--sm { min-height: 44px; padding: 0 20px; font-size: 15.5px; }
+  .btn--lg { min-height: 54px; padding: 0 30px; font-size: 17px; }
   .btn--block { width: 100%; }
 
   /* ── badge ── */

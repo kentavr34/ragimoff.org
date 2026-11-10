@@ -40,13 +40,13 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/az/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Formalaşma",
-  "ment_h2": "Kimin yanında formalaşıb",
-  "ment_lead": "2001–2003-cü illər, Sankt-Peterburq, V.M. Bexterev adına Psixonevrologiya İnstitutu. Qırmızı diplom — və dərslikləri bu gün də psixoterapevt hazırlayan iki rəhbər.",
+  "ment_h2": "Kimin məktəbini keçib",
+  "ment_lead": "2001–2003-cü illər, Sankt-Peterburq, V.M. Bexterev adına Psixonevrologiya İnstitutu. Qırmızı diplom — və dərslikləri bu gün də Rusiyada və ondan kənarda psixoterapevt hazırlayan iki insan.",
   "ment": [
-    ("Viktor D. Vida", "2001–2002", "Beynəlxalq Psixoanalitik Assosiasiyanın (IPA) MDB məkanında ilk diplomlu psixoanalitiki. Psixoanaliz üzrə rəhbəri."),
-    ("Boris D. Karvasarski", "2001–2003", "Rusiya Federasiyası Səhiyyə Nazirliyinin baş psixoterapevti, «Ümumi psixoterapiya» dərsliyinin müəllifi."),
+    ("Viktor Davidoviç Vida", "2001–2002", "Tibb elmləri doktoru, professor, V.M. Bexterev adına Psixiatriya və Nevrologiya Milli Tədqiqat Mərkəzinin baş elmi işçisi. Rusiyada ilk diplomlu psixoanalitik — Alman Psixoanaliz Akademiyası, Berlin və Münhen. «Şizofreniyanın psixoterapiyası» monoqrafiyasının müəllifi. Psixoanalitik hazırlığa rəhbərlik edib."),
+    ("Boris Dmitriyeviç Karvasarski", "2001–2003", "Tibb elmləri doktoru, professor, RF əməkdar elm xadimi. Rusiya Federasiyası Səhiyyə Nazirliyinin baş psixoterapevti, Leninqrad psixoterapiya məktəbinin yaradıcısı. «Psixoterapiya» dərsliyinin və «Psixoterapevtik ensiklopediya»nın baş redaktoru, 215 elmi işin müəllifi. Psixoterapiya üzrə hazırlığa rəhbərlik edib."),
   ],
-  "ment_note": "Hər iki rəhbərin dərslikləri bu gün də psixoterapevt hazırlığının əsasını təşkil edir.",
+  "ment_note": "Karvasarskinin rəhbərliyi altında 100-dən çox namizədlik və 27 doktorluq dissertasiyası müdafiə olunub. Hər iki rəhbərin dərslikləri bu gün də psixoterapevt hazırlığının əsasını təşkil edir.",
   "freud_eyebrow": "İlk dəfə Azərbaycanda",
   "freud_h2": "Freyd — doğma dilinizdə",
   "freud_lead": "Alman orijinalından tərcümə edilib: əsərlər, mühazirələr, məktublar, klinik qeydlər. Təkrar nəşrlər deyil — mətnlərin özü.",
@@ -80,8 +80,8 @@ TEXTS = {
   "lib_note": "Bütün kolleksiya: 94 cild — Freyd, Kənan Rəhimov, Samirə Rəhimova.",
   "tb_eyebrow": "Əsas əsər",
   "tb_h2": "«Klinik Psixiatriya» — dünyada analoqu olmayan dərslik",
-  "tb_text": "384 səhifə, DSM-5 və ICD-11, beynəlxalq protokollar və konsensus. Bu gün dünyada belə bir dərslik yoxdur: həm klinik həkim, həm tələbə, həm də psixoterapiya metodunu seçən oxucu üçün eyni dərəcədə işləkdir. Dörd dilə çevrilib — azərbaycan, rus, ingilis və türk. Azərbaycan dilində rəsmi dərslikdir və hamı üçün açıqdır. Ayrıca vəzifəsi var: elmi olmayan fikirləri və mifləri ayırmaq, düzgün müalicədən yayındıran yanlış təsəvvürləri aradan qaldırmaq.",
-  "tb_meta": ["384 səhifə", "4 dil", "DSM-5 · ICD-11", "Pulsuz oxu"],
+  "tb_text": "820 səhifə (B5 çap), DSM-5 və ICD-11, beynəlxalq protokollar və konsensus. Bu gün dünyada belə bir dərslik yoxdur: həm klinik həkim, həm tələbə, həm də psixoterapiya metodunu seçən oxucu üçün eyni dərəcədə işləkdir. Dörd dilə çevrilib — azərbaycan, rus, ingilis və türk. Azərbaycan dilində rəsmi dərslikdir və hamı üçün açıqdır. Ayrıca vəzifəsi var: elmi olmayan fikirləri və mifləri ayırmaq, düzgün müalicədən yayındıran yanlış təsəvvürləri aradan qaldırmaq.",
+  "tb_meta": ["820 səhifə · B5", "4 dil", "DSM-5 · ICD-11", "Pulsuz oxu"],
   "tb_btn1": "Aç və bax",
   "tb_btn2": "Çap versiyası",
   "film_eyebrow": "Təcrübədən",
@@ -132,7 +132,7 @@ TEXTS = {
   "books_eyebrow": "Kitablar",
   "books_h2": "Oxu — pulsuz. İstəsən — çap.",
   "books": [
-    ("Klinik Psixiatriya", "384 səh., 4 dil", "28 ₼", "/books/covers/klinik.jpg"),
+    ("Klinik Psixiatriya", "820 səh. (B5), 4 dil", "28 ₼", "/books/covers/klinik.jpg"),
     ("Günahkarlıq virusu", "224 səh.", "22 ₼", "/books/covers/guilt.jpg"),
     ("Şizofreniya. Cinnət pandemiyası", "312 səh.", "26 ₼", "/books/covers/pandemic.jpg"),
     ("Feniks erası", "288 səh.", "24 ₼", "/books/covers/phoenix.jpg"),
@@ -198,13 +198,13 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/ru/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Становление",
-  "ment_h2": "Под чьим руководством сформировался",
-  "ment_lead": "2001–2003 годы, Санкт-Петербург, Институт психоневрологии имени В. М. Бехтерева. Красный диплом — и два руководителя, чьи учебники до сих пор готовят психотерапевтов.",
+  "ment_h2": "У кого прошёл школу",
+  "ment_lead": "2001–2003 годы, Санкт-Петербург, Институт психоневрологии имени В. М. Бехтерева. Красный диплом — и два человека, чьи учебники до сих пор готовят психотерапевтов в России и за её пределами.",
   "ment": [
-    ("Виктор Д. Вида", "2001–2002", "Первый на территории СНГ дипломированный со стороны Международной психоаналитической ассоциации (IPA) психоаналитик. Научный руководитель по психоанализу."),
-    ("Борис Д. Карвасарский", "2001–2003", "Главный психотерапевт Министерства здравоохранения Российской Федерации, автор учебника «Общая психотерапия»."),
+    ("Виктор Давыдович Вида", "2001–2002", "Доктор медицинских наук, профессор, главный научный сотрудник НМИЦ психиатрии и неврологии имени В. М. Бехтерева. Первый в России дипломированный психоаналитик — Немецкая академия психоанализа, Берлин и Мюнхен. Автор монографии «Психотерапия шизофрении». Руководил психоаналитической подготовкой."),
+    ("Борис Дмитриевич Карвасарский", "2001–2003", "Доктор медицинских наук, профессор, заслуженный деятель науки РФ. Главный психотерапевт Министерства здравоохранения Российской Федерации, создатель Ленинградской школы психотерапии. Главный редактор учебника «Психотерапия» и «Психотерапевтической энциклопедии», автор 215 научных работ. Руководил подготовкой по психотерапии."),
   ],
-  "ment_note": "Виктор Д. Вида — первый дипломированный психоаналитик IPA на постсоветском пространстве. Борис Д. Карвасарский — главный психотерапевт Минздрава России.",
+  "ment_note": "Под руководством Карвасарского защищено более 100 кандидатских и 27 докторских диссертаций. Оба руководителя — авторы учебников, по которым учатся психотерапевты до сих пор.",
   "freud_eyebrow": "Впервые в Азербайджане",
   "freud_h2": "Фрейд — на родном языке",
   "freud_lead": "Переведено с немецкого оригинала: труды, лекции, переписка, клинические записи. Не пересказы и не хрестоматии — сами тексты.",
@@ -238,8 +238,8 @@ TEXTS = {
   "lib_note": "Вся коллекция: 94 тома — Фрейд, Кенан Рагимов, Самира Рагимова.",
   "tb_eyebrow": "Главный труд",
   "tb_h2": "«Клиническая психиатрия» — учебник без аналогов в мире",
-  "tb_text": "384 страницы, DSM-5 и ICD-11, международные протоколы и консенсус. Такого учебника сегодня в мире нет: он одинаково рабочий и для клинициста, и для студента, и для того, кто выбирает метод терапии. Переведён на четыре языка — азербайджанский, русский, английский и турецкий. В азербайджанском это официальный учебник, и он открыт каждому. У него есть отдельная задача: отделять научное от ненаучного и снимать мифы и заблуждения, которые уводят от правильного лечения.",
-  "tb_meta": ["384 страницы", "4 языка", "DSM-5 · ICD-11", "Читать бесплатно"],
+  "tb_text": "820 страниц в печати (формат B5), DSM-5 и ICD-11, международные протоколы и консенсус. Такого учебника сегодня в мире нет: он одинаково рабочий и для клинициста, и для студента, и для того, кто выбирает метод терапии. Переведён на четыре языка — азербайджанский, русский, английский и турецкий. В азербайджанском это официальный учебник, и он открыт каждому. У него есть отдельная задача: отделять научное от ненаучного и снимать мифы и заблуждения, которые уводят от правильного лечения.",
+  "tb_meta": ["820 страниц · B5", "4 языка", "DSM-5 · ICD-11", "Читать бесплатно"],
   "tb_btn1": "Открыть и посмотреть",
   "tb_btn2": "Печатная версия",
   "film_eyebrow": "Из практики",
@@ -290,7 +290,7 @@ TEXTS = {
   "books_eyebrow": "Книги",
   "books_h2": "Читайте бесплатно, в печати — по желанию",
   "books": [
-    ("Клиническая психиатрия", "384 с., 4 языка", "28 ₼", "/books/covers/klinik.jpg"),
+    ("Клиническая психиатрия", "820 с. (B5), 4 языка", "28 ₼", "/books/covers/klinik.jpg"),
     ("Вирус вины", "224 с.", "22 ₼", "/books/covers/guilt.jpg"),
     ("Шизофрения. Пандемия безумия", "312 с.", "26 ₼", "/books/covers/pandemic.jpg"),
     ("Эра Феникса", "288 с.", "24 ₼", "/books/covers/phoenix.jpg"),
@@ -356,11 +356,11 @@ TEXTS = {
      "/images/samira/samira-portret.jpg", "/en/mutexessisler/samire-rehimova.html"),
   ],
   "ment_eyebrow": "Formation",
-  "ment_h2": "Under whose guidance he took shape",
-  "ment_lead": "2001–2003, Saint Petersburg, the Bekhterev Institute of Psychoneurology. Graduated with distinction — under two supervisors whose textbooks still train psychotherapists today.",
+  "ment_h2": "Whose school he came through",
+  "ment_lead": "2001–2003, Saint Petersburg, the Bekhterev Institute of Psychoneurology. Graduated with distinction — under two men whose textbooks still train psychotherapists in Russia and beyond.",
   "ment": [
-    ("Viktor D. Vida", "2001–2002", "The first psychoanalyst in the CIS to be certified by the International Psychoanalytical Association (IPA). His supervisor in psychoanalysis."),
-    ("Boris D. Karvasarsky", "2001–2003", "Chief psychotherapist of the Ministry of Health of the Russian Federation, author of the textbook “General Psychotherapy”."),
+    ("Viktor Davydovich Vida", "2001–2002", "Doctor of Medical Sciences, professor, chief researcher at the Bekhterev National Medical Research Centre for Psychiatry and Neurology. The first certified psychoanalyst in Russia — German Academy of Psychoanalysis, Berlin and Munich. Author of the monograph “Psychotherapy of Schizophrenia”. Supervised the psychoanalytic training."),
+    ("Boris Dmitrievich Karvasarsky", "2001–2003", "Doctor of Medical Sciences, professor, Honoured Scientist of the Russian Federation. Chief Psychotherapist of the Ministry of Health of the Russian Federation, founder of the Leningrad school of psychotherapy. Editor-in-chief of the textbook “Psychotherapy” and of the “Psychotherapeutic Encyclopaedia”; author of 215 scientific works. Supervised the psychotherapy training."),
   ],
   "ment_note": "Both supervisors' textbooks still form the basis of psychotherapy training today.",
   "freud_eyebrow": "First time in Azerbaijan",
@@ -396,8 +396,8 @@ TEXTS = {
   "lib_note": "Full collection: 94 volumes — Freud, Kenan Ragimov, Samira Ragimova.",
   "tb_eyebrow": "The principal work",
   "tb_h2": "“Clinical Psychiatry” — a textbook with no equivalent",
-  "tb_text": "384 pages, DSM-5 and ICD-11, international protocols and consensus. No such textbook exists in the world today: it works equally well for the clinician, the student and anyone choosing a method of therapy. It has been translated into four languages — Azerbaijani, Russian, English and Turkish. In Azerbaijani it is the official textbook, and it is open to everyone. It carries a further task: separating the scientific from the unscientific and clearing away the myths and misconceptions that divert people from proper treatment.",
-  "tb_meta": ["384 pages", "4 languages", "DSM-5 · ICD-11", "Free to read"],
+  "tb_text": "820 pages in print (B5 format), DSM-5 and ICD-11, international protocols and consensus. No such textbook exists in the world today: it works equally well for the clinician, the student and anyone choosing a method of therapy. It has been translated into four languages — Azerbaijani, Russian, English and Turkish. In Azerbaijani it is the official textbook, and it is open to everyone. It carries a further task: separating the scientific from the unscientific and clearing away the myths and misconceptions that divert people from proper treatment.",
+  "tb_meta": ["820 pages · B5", "4 languages", "DSM-5 · ICD-11", "Free to read"],
   "tb_btn1": "Open and look inside",
   "tb_btn2": "Printed edition",
   "film_eyebrow": "From practice",
@@ -448,7 +448,7 @@ TEXTS = {
   "books_eyebrow": "Books",
   "books_h2": "Read free. Order print if you prefer.",
   "books": [
-    ("Clinical Psychiatry", "384 pp., 4 languages", "28 ₼", "/books/covers/klinik.jpg"),
+    ("Clinical Psychiatry", "820 pp. (B5), 4 languages", "28 ₼", "/books/covers/klinik.jpg"),
     ("The Guilt Virus", "224 pp.", "22 ₼", "/books/covers/guilt.jpg"),
     ("Schizophrenia. Pandemic of Madness", "312 pp.", "26 ₼", "/books/covers/pandemic.jpg"),
     ("The Phoenix Era", "288 pp.", "24 ₼", "/books/covers/phoenix.jpg"),
@@ -729,8 +729,15 @@ def upcoming(t):
 
 
 def marquee(t):
-    items = "".join(f"<span>{esc(x)}</span>" for x in t["marquee"])
-    return f'<div class="marquee" aria-hidden="true"><div class="marquee__track">{items}{items}</div></div>'
+    """Бегущая строка — как в эталоне (замер: высота 122 px, буквы 68 px,
+    курсив Cormorant 300, золотые точки между словами, 90s linear).
+    Кенан: «у тебя какой-то зависшая во времени полосочка. А там конкретно идёт
+    полоса, крупные буквы, читаемые, не микро какие-то.»"""
+    items = "".join(
+        f"<span>{esc(x)}</span><i aria-hidden=\"true\"></i>" for x in t["marquee"]
+    )
+    return (f'<div class="marquee" aria-hidden="true">'
+            f'<div class="marquee__track">{items}{items}</div></div>')
 
 
 def stats(t):
