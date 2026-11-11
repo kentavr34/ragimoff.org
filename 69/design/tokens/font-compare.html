@@ -1,0 +1,95 @@
+<!doctype html>
+<!--
+  СРАВНЕНИЕ ШРИФТОВ — служебная страница, не входит в сайт.
+  Цель: выбрать роли осознанно. Владелец просил к мелким шрифтам подойти
+  избирательнее: в книгах стояли стандартные, нужны дизайнерские.
+  Одна строка набранa всеми ролями — видно характер каждой.
+-->
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сравнение шрифтов</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Oswald:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Monsieur+La+Doulaise&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.generated.css">
+<style>
+  body { background: var(--color-bg); color: var(--color-text); margin: 0; padding: 0 0 80px; }
+  .hd { padding: 40px var(--layout-pad-inline) 24px; border-bottom: 1px solid var(--color-border); }
+  .hd h1 { font-size: 40px; margin: 0 0 8px; }
+  .hd p { color: var(--color-text-faint); font-size: 14px; margin: 0; }
+  .row { padding: 32px var(--layout-pad-inline); border-bottom: 1px solid var(--color-border); }
+  .lbl { font-family: var(--font-num); font-size: 12px; letter-spacing: .1em;
+         text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px; }
+  .famline { font-family: var(--font-num); font-size: 12px; color: var(--color-text-faint); margin-bottom: 14px; }
+  .s1 { font-size: 56px; line-height: 1.15; margin-bottom: 12px; }
+  .s2 { font-size: 34px; line-height: 1.25; margin-bottom: 12px; }
+  .s3 { font-size: 22px; line-height: 1.4; margin-bottom: 12px; }
+  .s4 { font-size: 17px; line-height: 1.7; margin-bottom: 10px; max-width: 656px; }
+  .s5 { font-size: 13px; line-height: 1.7; letter-spacing: .04em; max-width: 656px; }
+  .az { color: var(--color-accent-soft); }
+  .num { font-variant-numeric: tabular-nums; }
+  .note { font-family: var(--font-num); font-size: 12px; color: var(--color-text-faint); margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="hd">
+  <h1 style="font-family:var(--font-display)">Сравнение шрифтов</h1>
+  <p>Одна и та же фраза всеми ролями — на русском и азербайджанском. Смотришь характер, а не название.</p>
+</div>
+
+<div class="row">
+  <div class="lbl">hand · рукописный — подпись, лозунг</div>
+  <div class="famline">'Monsieur La Doulaise', 'Marggraff Kursiv'</div>
+  <div class="s1" style="font-family:var(--font-hand)">Doctor Ragimoff</div>
+  <div class="s2 az" style="font-family:var(--font-hand)">Kənаn Rəhimov · Psixoterapiya</div>
+  <div class="note">Проверка Ə: если вместо буквы пусто или квадратик — шрифт не годен для азербайджанского.</div>
+</div>
+
+<div class="row">
+  <div class="lbl">display · заголовочный — H1, H2</div>
+  <div class="famline">'Cormorant Garamond', Georgia, 'Times New Roman'</div>
+  <div class="s1" style="font-family:var(--font-display)">Клиническая психиатрия</div>
+  <div class="s2" style="font-family:var(--font-display)">Пять книг одного направления</div>
+  <div class="s3" style="font-family:var(--font-display)">Мифы и ложные убеждения</div>
+  <div class="s2 az" style="font-family:var(--font-display)">Klinik psixiatriya · Ailə terapiyası</div>
+</div>
+
+<div class="row">
+  <div class="lbl">sub · подзаголовочный выразительный — бейджи, рубрики</div>
+  <div class="famline">'Oswald', 'Manrope'</div>
+  <div class="s2" style="font-family:var(--font-sub); text-transform:uppercase; letter-spacing:.06em">Два специалиста, одна школа</div>
+  <div class="s3" style="font-family:var(--font-sub)">Дополнительное профессиональное образование</div>
+  <div class="s3 az" style="font-family:var(--font-sub); text-transform:uppercase; letter-spacing:.06em">Əlavə peşə təhsili</div>
+</div>
+
+<div class="row">
+  <div class="lbl">text · основной — интерфейс, карточки, кнопки</div>
+  <div class="famline">'Manrope', system-ui, 'Segoe UI'</div>
+  <div class="s3" style="font-family:var(--font-text); font-weight:600">Записаться на консультацию</div>
+  <div class="s4" style="font-family:var(--font-text)">Индивидуальная работа, семейная терапия, детско-родительские
+    отношения. Программы для специалистов: клиническая психология, практикум психотерапии.</div>
+  <div class="s5 az" style="font-family:var(--font-text)">Fərdi konsultasiya, ailə terapiyası, uşaq-valideyn münasibətləri</div>
+</div>
+
+<div class="row">
+  <div class="lbl">read · для чтения — книги, длинные тексты</div>
+  <div class="famline">'Alegreya' — <b>стоял в проде</b> · ниже для сравнения 'Literata'</div>
+  <div class="s4" style="font-family:var(--font-read)">Депрессия — это не слабость характера и не лень. Это состояние,
+    у которого есть механизмы, течение и лечение. Миф о том, что «надо просто взять себя в руки»,
+    стоит людям лет жизни.</div>
+  <div class="s4" style="font-family:'Literata', Georgia, serif">Депрессия — это не слабость характера и не лень. Это состояние,
+    у которого есть механизмы, течение и лечение. Миф о том, что «надо просто взять себя в руки»,
+    стоит людям лет жизни. <span class="note">← это Literata, для сравнения</span></div>
+  <div class="s5 az" style="font-family:var(--font-read)">Depressiya zəiflik deyil. Onun mexanizmləri, gedişatı və müalicəsi var.</div>
+</div>
+
+<div class="row">
+  <div class="lbl">num · цифры — метрики, цены, подписи</div>
+  <div class="famline">'IBM Plex Mono'</div>
+  <div class="s1 num" style="font-family:var(--font-num)">820 · 104 · 23</div>
+  <div class="s3 num" style="font-family:var(--font-num)">100 / 150 AZN · 2000 / 3000 AZN</div>
+  <div class="s5 num" style="font-family:var(--font-num)">22.11.2026 · 20 часов · IPAS-AMBASSADOR-2022</div>
+</div>
+
+</body>
+</html>

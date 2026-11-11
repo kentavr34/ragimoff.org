@@ -1,0 +1,119 @@
+/* ═══════════════════════════════════════════════════════════════════
+   FOUNDATIONS · ДВИЖЕНИЕ
+   ═══════════════════════════════════════════════════════════════════
+   ВАЖНО ПРО ЭТУ МАШИНУ: владелец системно держит «уменьшить движение»
+   в Windows, поэтому браузеры глушат анимацию. Корректный код выглядит
+   сломанным, и жалоба приходит как «текст сухой», а не как «CSS сломан».
+
+   ПОЛИТИКА: глушим только РЕЗКОЕ движение — бесконечные циклы, параллакс,
+   большие пролёты. МЯГКИЕ появления (opacity, сдвиг на несколько px,
+   выход из маски) — ОСТАВЛЯЕМ: именно они делают страницу живой.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ ──────────────────────────────────────
+   Класс .reveal ставится на элемент, .is-in — когда он вошёл в кадр.
+   Движение: подъём на 24 px + проявление. Мягкое — остаётся при
+   reduced-motion (см. ниже). */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--motion-reveal) var(--motion-ease),
+    transform var(--motion-reveal) var(--motion-ease);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* каскад: каждый следующий элемент приходит чуть позже */
+.reveal[style*="--d"] { transition-delay: var(--d, 0s); }
+
+/* ── ПОЯВЛЕНИЕ СТРОК ИЗ МАСКИ (заголовки) ─────────────────────────
+   Слово едет из-под маски вверх. Маска — на обёртке, не на наблюдаемом
+   элементе (clip-path на наблюдаемом ломает IntersectionObserver). */
+.mask-line { display: block; overflow: hidden; }
+.mask-line > i {
+  display: block;
+  font-style: inherit;
+  transform: translateY(108%);
+  transition: transform var(--motion-reveal) var(--motion-ease);
+}
+.is-in .mask-line > i { transform: none; }
+
+/* ── ХОВЕРЫ ───────────────────────────────────────────────────────
+   L1: микродвижение. Дёшево, без JS. */
+.hover-lift {
+  transition: transform var(--motion-base) var(--motion-ease-spring),
+              box-shadow var(--motion-base) var(--motion-ease);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-cta);
+}
+
+/* ── БЕГУЩАЯ СТРОКА ───────────────────────────────────────────────
+   Эталон: высота полосы 122 px, буквы 68 px, шаг 90s linear infinite. */
+.belt {
+  overflow: hidden;
+  padding-block: var(--space-u5);
+  border-block: 1px solid var(--color-border);
+}
+.belt__track {
+  display: flex;
+  gap: var(--space-u5);
+  white-space: nowrap;
+  width: max-content;
+  animation: belt var(--motion-belt) linear infinite;
+}
+.belt__track > * {
+  font-family: var(--font-display);
+  font-size: var(--size-marquee);
+  font-weight: 300;
+  color: var(--color-text-strong);
+}
+@keyframes belt {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── ЗЕРНО (шум поверх страницы) ──────────────────────────────────
+   Фиксированный слой, не перехватывает мышь. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+
+/* ── РАСКРЫТИЕ КАРТИНКИ МАСКОЙ ── */
+.grow-in {
+  overflow: hidden;
+}
+.grow-in > img {
+  transform: scale(1.06);
+  transition: transform 1.2s var(--motion-ease);
+}
+.is-in.grow-in > img, .grow-in.is-in > img { transform: none; }
+
+/* ═══ ПОЛИТИКА УМЕНЬШЕННОГО ДВИЖЕНИЯ ══════════════════════════════
+   Глушим ТОЛЬКО резкое. Мягкие появления остаются включёнными. */
+@media (prefers-reduced-motion: reduce) {
+  /* циклы: не останавливаем, а сильно замедляем — страница жива, но не мешает */
+  .belt__track { animation-duration: 300s; }
+
+  /* параллакс и большие пролёты — выключаем */
+  .hover-lift:hover { transform: none; }
+  .grow-in > img { transform: none; }
+
+  /* мягкие появления — СОЗНАТЕЛЬНО оставляем:
+     opacity, подъём на 24 px, выход из маски. Именно их отсутствие
+     делает сайт «сухим машинным текстом». */
+  .reveal {
+    transform: translateY(12px);   /* меньше амплитуда, но не ноль */
+    transition-duration: 500ms;
+  }
+  .mask-line > i { transition-duration: 500ms; }
+}

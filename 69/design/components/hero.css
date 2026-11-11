@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════════════
+   COMPONENTS · ГЕРОЙ
+   ═══════════════════════════════════════════════════════════════════
+   Взято с прода: полноэкранная секция с кадром, рукописное имя, строгая
+   строка под ним, две кнопки, указатель внизу.
+
+   ЗАМЕРЫ ПРОДА (ETALON_METRICS.md), воспроизводятся здесь:
+     секция 2.5 экрана, sticky на один экран
+     кадр: top 84px, ширина max(100%, 177.78svh), соотношение 16/9
+     рукописное имя 86.4px, строгая строка 47.52px трекинг 2.85 (0.06em)
+     кнопки 54px высотой, радиус 99
+
+   ЧТО ИСПРАВЛЕНО ПРОТИВ ПРОДА (владелец указал):
+     1. Затемнение шло рывком в самом конце — теперь плавная шкала по прокрутке.
+     2. Кнопок было три стиля — теперь два правила: главная и второстепенная.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  /* 2.5 экрана: хватает на прокрутку с затемнением, но не тянется бесконечно */
+  min-height: calc(100svh * var(--hero-section-ratio));
+}
+
+.hero__stick {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ── КАДР ───────────────────────────────────────────────────────── */
+.hero__frame {
+  position: absolute;
+  left: 50%;
+  top: var(--hero-frame-top);
+  transform: translateX(-50%);
+  /* кадр держит 16/9 и заполняет экран по большей стороне */
+  width: var(--hero-frame-width);
+  aspect-ratio: var(--hero-frame-aspect);
+  transform-origin: var(--hero-frame-origin);
+  z-index: var(--z-behind);
+}
+.hero__frame img,
+.hero__frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* маска убирает жёсткий край кадра под шапкой */
+  mask-image: var(--hero-mask);
+  -webkit-mask-image: var(--hero-mask);
+}
+
+/* ── ЗАТЕМНЕНИЕ: ГЛАВНОЕ ИСПРАВЛЕНИЕ ──────────────────────────────
+   В проде затемнение включалось рывком на последних процентах прокрутки.
+   Здесь шкала ровная: 0 → 0.35 → 0.75 → 1 на протяжении всей прокрутки.
+   Ставится инлайном из скрипта, значение приходит сюда переменной.   */
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--color-bg);
+  opacity: var(--shade, 0);
+}
+
+/* ── СОДЕРЖИМОЕ ─────────────────────────────────────────────────── */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* ПРИЧИНА: на первом прогоне указатель прокрутки стоял слишком близко
+     к кнопкам — композиция «сжималась» внизу. Отступ увеличен так, чтобы
+     между кнопками и указателем оставалось не меньше 60px воздуха. */
+  padding-bottom: clamp(140px, 20svh, 210px);
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: var(--space-u3);
+  font-family: var(--font-sub);
+  font-size: var(--size-step-1);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* рукописное имя: эталон 86.4px */
+.hero__hand {
+  font-family: var(--font-hand);
+  font-size: var(--size-hero-hand);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--color-accent-soft);
+  /* курсив выходит за линию слева — компенсируем отступом */
+  padding-left: 0.06em;
+  /* ПРИЧИНА ОТСТУПА: при первом прогоне имя и строгая строка визуально
+     слиплись — менее 20px. Курсивное имя имеет выносные элементы внизу,
+     поэтому обычных 16px мало. Даём воздух по шкале. */
+  margin-bottom: var(--space-u3);
+}
+
+/* строгая строка: эталон 47.52px, трекинг 0.06em */
+.hero__strict {
+  font-family: var(--font-sub);
+  font-size: var(--size-hero-display);
+  font-weight: 500;
+  letter-spacing: var(--size-hero-track);
+  text-transform: uppercase;
+  line-height: 1.24;
+  color: var(--color-text-strong);
+  max-width: 20ch;
+}
+
+.hero__lead {
+  margin-top: var(--space-u3);
+  font-family: var(--font-read);
+  font-size: clamp(15px, 1.05vw, 17px);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  max-width: 46ch;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-u2);
+  margin-top: var(--space-u5);
+}
+
+/* ── УКАЗАТЕЛЬ ПРОКРУТКИ ── */
+.hero__cue {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.hero__cue span {
+  font-family: var(--font-num);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+.hero__cue i {
+  display: block;
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, transparent 100%);
+}
+
+@media (max-width: 900px) {
+  .hero__strict { font-size: clamp(24px, 7vw, 34px); max-width: 16ch; }
+  .hero__hand { font-size: clamp(46px, 13vw, 70px); }
+}
+@media (max-width: 560px) {
+  .hero { min-height: calc(100svh * 1.9); }
+  .hero__ctas { gap: 10px; margin-top: 24px; }
+  .hero__cue { display: none; }
+}
+
+/* ── ДВИЖЕНИЕ ─────────────────────────────────────────────────────
+   Владелец держит «уменьшить движение» в системе. Здесь: параллакс кадра
+   и большой пролёт заголовка глушатся, а проявление текста ОСТАЁТСЯ —
+   именно оно делает первый экран живым. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__frame { transform: translateX(-50%); }
+}

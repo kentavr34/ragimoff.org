@@ -1,0 +1,120 @@
+<!doctype html>
+<!--
+  ЗАМЕР ШРИФТОВ — служебная страница, не входит в сайт.
+  Отвечает на один вопрос: рисует ли каждый шрифт все 14 азербайджанских знаков.
+  Метод: canvas сравнивает отрисовку символа в нужном шрифте с отрисовкой
+  через заведомо отсутствующий шрифт. Совпало = глифа нет, подставился запасной.
+  Так ловится «квадратик», который на глаз можно принять за нормальный символ.
+-->
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Замер шрифтов</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Oswald:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Monsieur+La+Doulaise&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script>
+/* Документные шрифты должны быть ЗАГРУЖЕНЫ до замера. Без этого canvas
+   молча подставляет запасной шрифт, и проверка показывает «всё есть»
+   даже для шрифта, в котором нет ни одного азербайджанского знака.
+   Проверять ТОЛЬКО после document.fonts.ready. */
+window.fontsReady = document.fonts.ready.then(async () => {
+  const fams = ['Cormorant Garamond','Alegreya','Manrope','Oswald','IBM Plex Mono','Monsieur La Doulaise','Literata'];
+  await Promise.all(fams.map(f => document.fonts.load('48px "' + f + '"', 'əƏıİşŞçÇğĞöÖüÜ').catch(()=>{})));
+  return fams.filter(f => document.fonts.check('48px "' + f + '"', 'A'));
+});
+</script>
+<style>
+  body { background:#07090E; color:#E3DDD1; font:16px/1.6 system-ui, sans-serif; margin:0; padding:32px; }
+  h1 { font-size:28px; font-weight:600; margin:0 0 8px; }
+  p.sub { color:#A8A296; margin:0 0 28px; font-size:14px; }
+  table { border-collapse:collapse; width:100%; font-size:15px; }
+  th, td { text-align:left; padding:12px 14px; border-bottom:1px solid rgba(242,237,227,.12); vertical-align:middle; }
+  th { color:#C9A961; font-weight:500; font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
+  .ok { color:#7FD18A; font-weight:600; }
+  .bad { color:#FF8A8A; font-weight:700; }
+  .sample { font-size:22px; color:#E2CC94; white-space:nowrap; }
+  .fam { color:#CFC8BB; font-size:13px; }
+  #summary { margin-top:24px; padding:18px 20px; border-radius:12px; border:1px solid rgba(242,237,227,.12); background:#0A0D14; font-size:15px; }
+  #json { display:none; }
+</style>
+</head>
+<body>
+<h1>Замер азербайджанских знаков</h1>
+<p class="sub">Набор: ə Ə ı İ ş Ş ç Ç ğ Ğ ö Ö ü Ü — 14 знаков. Проверка разбором отрисовки, не глазами.</p>
+<table id="t">
+  <thead><tr><th>Роль</th><th>Шрифт</th><th>Образец</th><th>Результат</th></tr></thead>
+  <tbody></tbody>
+</table>
+<div id="summary"></div>
+<div id="json"></div>
+
+<script>
+const AZ = 'əƏıİşŞçÇğĞöÖüÜ';
+const ROLES = {
+  hand:    "'Monsieur La Doulaise', 'Marggraff Kursiv', cursive",
+  display: "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+  sub:     "'Oswald', 'Manrope', system-ui, sans-serif",
+  text:    "'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif",
+  read:    "'Alegreya', Georgia, serif",
+  num:     "'IBM Plex Mono', ui-monospace, monospace",
+};
+
+const cv = document.createElement('canvas');
+cv.width = 80; cv.height = 80;
+const ctx = cv.getContext('2d');
+
+function draw(ch, font) {
+  ctx.clearRect(0, 0, 80, 80);
+  ctx.font = '48px ' + font;
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = '#000';
+  ctx.fillText(ch, 6, 6);
+  return cv.toDataURL();
+}
+
+function check(fam) {
+  const missing = [];
+  for (const ch of AZ) {
+    const real = draw(ch, fam);
+    const noFont = draw(ch, '"__NoSuchFontXYZ__", monospace');
+    const fallback = draw(ch, 'monospace');
+    // глифа нет, если отрисовка не отличается от «заведомо отсутствующего шрифта»
+    if (real === noFont || real === fallback) missing.push(ch);
+  }
+  return missing;
+}
+
+const tb = document.querySelector('#t tbody');
+
+window.fontsReady.then(async loaded => {
+  const result = {};
+
+  for (const [role, fam] of Object.entries(ROLES)) {
+    // шрифт роли: первое семейство, оно же должно быть в списке загруженных
+    const primary = fam.split(',')[0].replace(/['"]/g, '').trim();
+    const isLoaded = await document.fonts.load('48px "' + primary + '"', AZ).then(() => true).catch(() => false);
+
+    const missing = check(fam);
+    result[role] = { font: primary, loaded: isLoaded, missing };
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + role + '</td>' +
+      '<td class="fam">' + fam + '</td>' +
+      '<td class="sample" style="font-family:' + fam + '">' + AZ + '</td>' +
+      '<td>' + (missing.length === 0
+          ? '<span class="ok">все 14 есть ✓</span>'
+          : '<span class="bad">нет: ' + missing.join(' ') + '</span>') + '</td>';
+    tb.appendChild(tr);
+  }
+
+  const bad = Object.entries(result).filter(([, r]) => r.missing.length);
+  document.getElementById('summary').innerHTML = bad.length === 0
+    ? '<b class="ok">ИТОГ: все шесть ролей рисуют все 14 азербайджанских знаков.</b><br>Набор шрифтов годен для азербайджанских страниц.'
+    : '<b class="bad">ИТОГ: ' + bad.length + ' ролей без полного покрытия.</b><br>' +
+      bad.map(([r, v]) => '<b>' + r + '</b> (' + v.font + ')').join(', ') +
+      '.<br>Для этих ролей нужен запасной шрифт. Запас задавать ЯЗЫКОЗАВИСИМО (<code>html[lang=az]</code>), а не общим списком.';
+  document.getElementById('json').textContent = JSON.stringify(result);
+});
+
+</script>
+</body>
+</html>

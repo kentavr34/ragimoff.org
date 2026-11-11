@@ -1,0 +1,115 @@
+/* ═══════════════════════════════════════════════════════════════════
+   COMPONENTS · МЕНЮ (шапка сайта)
+   Взято с прода: фиксированная шапка, логотип слева, навигация по центру,
+   переключатель языка и кнопка справа. При прокрутке шапка уплотняется.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.head {
+  position: fixed;
+  inset: 16px var(--layout-pad-inline) auto;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  gap: var(--space-u3);
+  height: 62px;
+  padding-inline: 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  transition: background var(--motion-base) var(--motion-ease),
+              border-color var(--motion-base) var(--motion-ease),
+              backdrop-filter var(--motion-base) var(--motion-ease);
+}
+/* шапка становится видимой только когда герой прокручен */
+.head.is-solid {
+  background: var(--color-overlay);
+  border-color: var(--color-border);
+  backdrop-filter: blur(14px);
+}
+
+.head__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sub);
+  font-size: var(--size-menu-logo);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-strong);
+  white-space: nowrap;
+}
+.head__logo:hover { color: var(--color-accent); }
+.head__logo b { font-weight: 600; color: var(--color-accent); }
+
+.head__nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-inline: auto;
+}
+.head__link {
+  position: relative;
+  padding: 8px 12px;
+  font-family: var(--font-text);
+  font-size: var(--size-menu-link);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: color var(--motion-base) var(--motion-ease);
+}
+.head__link:hover { color: var(--color-text-strong); }
+/* подчёркивание растёт от центра — мягкий моушен */
+.head__link::after {
+  content: "";
+  position: absolute;
+  left: 12px; right: 12px; bottom: 4px;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 50% 50%;
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+.head__link:hover::after { transform: scaleX(1); }
+
+.head__right { display: flex; align-items: center; gap: 10px; }
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+}
+.lang a {
+  padding: 5px 9px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-num);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  transition: background var(--motion-base) var(--motion-ease), color var(--motion-base) var(--motion-ease);
+}
+.lang a:hover { color: var(--color-text-strong); }
+.lang a[aria-current="true"] {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+@media (max-width: 1080px) { .head__nav { display: none; } }
+@media (max-width: 760px) {
+  .head { inset: 10px 12px auto; height: 56px; padding-inline: 14px; gap: 8px; }
+  .head__logo { font-size: 15px; letter-spacing: 0.06em; }
+  /* ПРИЧИНА: на 390px кнопка «Записаться» уходила за правый край —
+     в шапке не хватало места. РЕШЕНИЕ: на узком экране кнопка убирается
+     в подвал страницы, а в шапке остаётся только язык. Так же поступает
+     прод: главное действие всё равно продублировано в герое. */
+  .head__right .btn { display: none; }
+  .lang a { padding: 4px 7px; font-size: 11px; }
+}
+@media (max-width: 400px) {
+  .head__logo { font-size: 13.5px; }
+  .head__logo b { display: none; }
+}

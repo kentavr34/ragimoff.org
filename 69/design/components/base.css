@@ -1,0 +1,166 @@
+/* ═══════════════════════════════════════════════════════════════════
+   COMPONENTS · БАЗОВЫЕ (для проверки системы)
+   Кнопки, карточка, бейдж. Каждый — на токенах, без литеральных значений.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── КНОПКА ───────────────────────────────────────────────────────
+   Эталон прода: высота 54 px, радиус 99, кегль 17 px (Alegreya/Manrope),
+   заливка — золото, текст — цвет фона. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-u1);
+  height: 54px;
+  padding-inline: 30px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-text);
+  font-size: var(--size-step0);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--motion-base) var(--motion-ease-spring),
+              background var(--motion-base) var(--motion-ease),
+              color var(--motion-base) var(--motion-ease),
+              box-shadow var(--motion-base) var(--motion-ease);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.btn--primary:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-on-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-cta);
+}
+
+.btn--line {
+  border: 1px solid var(--color-accent);
+  color: var(--color-text-strong);
+}
+.btn--line:hover {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-accent-soft);
+}
+
+.btn--ghost { color: var(--color-text-muted); }
+.btn--ghost:hover { color: var(--color-accent); }
+
+.btn--sm { height: 44px; padding-inline: 22px; font-size: var(--size-step-1); }
+
+/* ── БЕЙДЖ ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-glass);
+  font-family: var(--font-sub);
+  font-size: var(--size-step-1);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.badge--accent {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+}
+
+/* ── КАРТОЧКА ─────────────────────────────────────────────────────
+   Одинаковая высота в ряду и общие базовые линии — требование владельца.
+   Кнопка в подвале карточки прижата вниз через margin-top: auto. */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-u5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  transition: border-color var(--motion-base) var(--motion-ease),
+              transform var(--motion-base) var(--motion-ease);
+}
+.card:hover { border-color: var(--color-border-strong); }
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--size-step2);
+  font-weight: 500;
+  color: var(--color-text-strong);
+  margin-bottom: var(--space-in-card);
+}
+.card__text {
+  font-size: var(--size-step-1);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+.card__foot {
+  margin-top: auto;
+  padding-top: var(--space-u3);
+}
+
+/* ── ПОЛОСА КНИГИ («выстрел») ─────────────────────────────────────
+   Формат по указанию владельца: обложка → что книга ДАЁТ → теги.
+   Не карточка в сетке. */
+.give__cover {
+  width: 132px;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  object-fit: cover;
+}
+.give__title {
+  font-family: var(--font-display);
+  font-size: var(--size-step2);
+  font-weight: 500;
+  color: var(--color-text-strong);
+}
+.give__gives {
+  font-size: var(--size-step-1);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-top: var(--space-u1);
+}
+.give__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--space-u2);
+}
+.tag {
+  font-family: var(--font-num);
+  font-size: var(--size-step-2);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 4px 10px;
+}
+
+/* ── ЦИФРА-МЕТРИКА ── */
+.metric-box { text-align: center; }
+.metric-box .metric { display: block; }
+.metric-box .meta { display: block; margin-top: var(--space-u1); }
+
+/* ── ПОЛЕ ВВОДА ── */
+.field {
+  width: 100%;
+  height: 52px;
+  padding-inline: var(--space-u3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-size: var(--size-step0);
+  transition: border-color var(--motion-base) var(--motion-ease);
+}
+.field::placeholder { color: var(--color-text-faint); }
+.field:focus { outline: none; border-color: var(--color-accent); }
