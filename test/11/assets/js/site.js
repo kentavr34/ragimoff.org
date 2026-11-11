@@ -1,7 +1,7 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS } from './content.js?v=11112204';
-import { regRender, regOpen } from './reg.js?v=11112204';
-import { initLight } from './light.js?v=11112204';
+import { T, LINKS2 as LINKS } from './content.js?v=11112229';
+import { regRender, regOpen } from './reg.js?v=11112229';
+import { initLight } from './light.js?v=11112229';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -43,7 +43,7 @@ function render() {
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
   const cov = ['klinik', 'freud', 'phoenix', 'guilt', 'pandemic'];
-  const bkAll = t.books.b.map((b, i) => ({ b, href: L.books[i], img: `assets/img/book-${cov[i]}-${lang}.jpg` })).concat(t.books.soon ? [{ b: t.books.soon, href: L.shop, img: '' }] : []);
+  const bkAll = t.books.b.map((b, i) => ({ b, href: L.books[i], img: `assets/img/book-${cov[i]}-${lang}.jpg` })).concat(t.books.soon ? [{ b: t.books.soon, href: L.shop, img: `assets/img/book-therapy-${lang}.jpg` }] : []);
   $('#shelf').innerHTML = bkAll.map(({ b, href, img }) => `<article class="bk"><div class="bk__scene"><a class="bk__obj${img ? '' : ' bk__obj--txt'}" href="${href}" aria-label="${esc(b.t)}">${img ? `<img src="${img}" alt="${esc(b.t)}" loading="lazy">` : `<span class="bk__ct"><i>${esc(b.a)}</i><b>${esc(b.t)}</b><u>Doctor Ragimoff</u></span>`}</a></div>
     <div class="bk__txt">${b.k ? `<p class="bk__k">${esc(b.k)}</p>` : ''}<h3 class="bk__t">${esc(b.t)}</h3><p class="bk__a">${esc(b.a)}</p>
     <ul class="bk__f">${b.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
@@ -57,8 +57,7 @@ function render() {
   const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = '#reg'; cb.dataset.reg = 'consult'; cb.removeAttribute('target'); $('#fab').href = L.wa;
   const wb = $('#consWa'); wb.textContent = t.cons.wa; wb.href = L.wa;
 
-  $('#corpTags').innerHTML = t.corp.t.map(x => `<li>${esc(x)}</li>`).join('');
-  $('#corpClients').innerHTML = (t.corp.clients || []).map(x => `<li>${esc(x)}</li>`).join('');
+  $('#corpList').innerHTML = (t.corp.list || []).map(x => `<div class="qual"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('');
   const fc = t.foot.cols || [], fl = L.foot || [];
   $('#footCols').innerHTML = fc.map((c, i) => `<div class="foot__col"><h3>${esc(c.h)}</h3><ul>${c.l.map((x, j) => { const u = (fl[i] || [])[j]; return `<li>${u ? `<a href="${u}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${esc(x)}</a>` : esc(x)}</li>`; }).join('')}</ul></div>`).join('');
   $('#footCopy').innerHTML = (t.foot.copy || []).map(x => `<span>${esc(x)}</span>`).join('');
@@ -67,7 +66,7 @@ function render() {
   $('#myths').innerHTML = t.enl.m.map((m, i) => `<a class="mth rv" href="${L.myths[i] || L.books[0]}" style="--d:${i * .06}s"><span class="mth__k">${esc(t.enl.myth)} · ${esc(m[0])}</span><span class="mth__q">${esc(m[1])}</span><span class="mth__go">${esc(t.enl.go)} ${ARR}</span></a>`).join('');
 
   $('#posts').innerHTML = t.blog.p.map((p, i) => `<a class="post rv" href="${L.blog[i]}" style="--d:${i * .1}s"><div class="post__i"><img src="assets/img/blog-${i + 1}.jpg" alt="" loading="lazy"></div><div class="post__b"><span class="post__k">${esc(p[0])}</span><h3 class="post__t">${esc(p[1])}</h3></div></a>`).join('');
-  $('#tgBtn').href = L.tg;
+  $('#socList').innerHTML = (t.soc.l || []).map((x, i) => `<li><a href="${L.soc[i]}" target="_blank" rel="noopener">${esc(x)}</a></li>`).join('');
   const vid = (id, title) => `<button type="button" class="vid" data-yt="${id}" aria-label="${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="vid__play" aria-hidden="true"></span></button>`;
   GAL = (t.edu.gal || []).map(g => ({ src: 'assets/img/proof/' + g[0] + '.jpg', cap: g[1] }));
   $('#proofs').innerHTML = GAL.slice(0, 3).map((g, i) => `<button type="button" class="proof rv" data-gal="${i}" style="--d:${i * .08}s"><span class="proof__i"><img src="${g.src}" alt="${esc(g.cap)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(g.cap)}</span></button>`).join('');

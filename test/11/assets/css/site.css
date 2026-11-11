@@ -747,3 +747,27 @@ main, .foot { position: relative; z-index: 1; }
 @media (max-width: 760px) and (min-height: 800px) { .bk__stick { --w: min(44vw, 27svh); } }
 
 @media (max-width: 760px) and (min-height: 880px) { .bk__stick { --w: min(46vw, 28svh); } .bk__f li { padding: var(--s3) 0; font-size: 16.5px; } }
+
+/* ═══ замечания владельца 11.11 (ночь) ═══ */
+/* шапка на компьютере: между темой, языком и «Записаться» — нормальные зазоры */
+@media (min-width: 1181px) { .head__r { gap: var(--p20); } }
+@media (min-width: 1181px) and (max-width: 1500px) { .head__r { gap: var(--p14); } .nav__l { padding: 0 var(--p8); } }
+/* фото героя на компьютере — выше (тёмная полоса над головой меньше); телефон не меняется */
+@media (min-width: 761px) { :root { --hero-top: 64px; } }
+/* специалисты: лица одного масштаба */
+.person:nth-child(1) .person__ph img { transform: translateY(var(--py, 0)) scale(1.2); transform-origin: 46% 30%; }
+/* подзаголовок раздела — заметный, а не «примечание мелким шрифтом» */
+.sh__s { font-size: clamp(19px, 1.55vw, 23px); line-height: 1.5; color: var(--milk); opacity: .9; }
+@media (max-width: 760px) { .sh__s { font-size: 18px; line-height: 1.45; } }
+/* тренинги: три одинаковых модуля, как «Квалификация» */
+.lead__g--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .lead__g--3 { grid-template-columns: 1fr; gap: var(--r1); } }
+/* соцсети: тонкая строка вместо большой плашки */
+.sec--soc { padding-bottom: var(--hs); }
+.soc { display: flex; align-items: center; justify-content: space-between; gap: var(--r2); padding: var(--r1) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.soc__h { font: 400 clamp(21px, 1.8vw, 27px)/1.2 var(--f-display); color: var(--milk); }
+.soc__l { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.soc__l a { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 var(--p20); border-radius: 99px; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); color: var(--milk); font: 600 15px/1 var(--f-sub); transition: background var(--t1), color var(--t1); }
+.soc__l a:hover { background: var(--gold); color: var(--on-gold); }
+@media (max-width: 760px) { .soc { flex-direction: column; align-items: flex-start; gap: var(--s3); } }
+/* книга без обложки-заглушки больше нет: у всех шести — настоящая обложка */

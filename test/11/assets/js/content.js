@@ -41,7 +41,7 @@ export const T = {
           { k: 'Просвещение', t: 'Шизофрения. Пандемия безумия', a: 'Кенан Рагимов', f: ['История шизофрении: от неолитических хирургов до наших дней.', 'Крепелин и Блейлер, малярия, инсулин, лоботомия: как менялись диагноз и лечение.', 'В приложении — как распознать настоящего специалиста.'] }],
       next: 'Скоро среди наших книг — «Общая психотерапия»: том на русском уже готов.',
       lib: 'В течение 2027 года библиотека пополнится профессиональной литературой.' },
-    edu: { eye: '', h: 'Обучение', sub: 'Семь программ с дипломом или международным сертификатом.', more: 'Подробнее',
+    edu: { eye: '', h: 'Обучение', sub: 'Семь программ с дипломом или сертификатом.', more: 'Подробнее',
       p: [{ t: 'Общая психология', d: 'Диплом Института ДПО Санкт-Петербурга', m: ['1\u00A0556 часов', '1 год: 6 + 6 месяцев'], price: 'от 200 AZN в месяц' },
           { t: 'Клиническая психология', d: 'Диплом Института ДПО Санкт-Петербурга', m: ['1\u00A0528 часов', '1 год: 6 + 6 месяцев'], price: 'от 300 AZN в месяц' },
           { t: 'Практикум по психотерапии', d: 'Международный сертификат', m: ['864 часа', '1 год — практика'], price: 'от 175 AZN в месяц' },
@@ -286,3 +286,22 @@ const REG = {
     pay: { now: 'Pay now', inst: 'In instalments (bank)' }, req: 'Please fill in the highlighted fields.', sending: 'Sending…', ok: 'Your request has been received. We will contact you.', err: 'The request could not be sent. Write to us on' },
 };
 for (const l of Object.keys(REG)) T[l].reg = REG[l];
+
+/* ── OWNER_1111F: тренинги списком и соцсети (слова владельца 11.11, ночь) ── */
+const OWN2 = {
+  ru: { list: [['Школа HR', 'Работает с\u00a02008\u00a0года и\u00a0подготовила более 2\u00a0000\u00a0человек.'],
+               ['Тренинги', 'Более 3\u00a0000\u00a0человек прошли тренинги лично у\u00a0Кенана Рагимова: управление персоналом, лидерство, командная работа, коммуникации и\u00a0продажи.'],
+               ['Мероприятия для бизнеса', 'Корпоративные тренинги и\u00a0деловые встречи для компаний MG, Unibank, DNS\u00a0Computers и\u00a0серия Business Party by Ragimoff.']],
+        soc: { h: 'Следите за\u00a0нами в\u00a0социальных сетях', l: ['Telegram', 'Instagram', 'YouTube', 'Facebook'] } },
+  az: { list: [['HR məktəbi', '2008-ci ildən fəaliyyət göstərir və 2\u00a0000-dən çox nəfər hazırlayıb.'],
+               ['Təlimlər', '3\u00a0000-dən çox insan Kənan Rəhimovun şəxsən keçirdiyi təlimlərdə iştirak edib: heyətin idarə olunması, liderlik, komanda işi, ünsiyyət və satış.'],
+               ['Biznes üçün tədbirlər', 'MG, Unibank, DNS Computers şirkətləri üçün korporativ təlimlər və işgüzar görüşlər, Business Party by Ragimoff silsiləsi.']],
+        soc: { h: 'Bizi sosial şəbəkələrdə izləyin', l: ['Telegram', 'Instagram', 'YouTube', 'Facebook'] } },
+  en: { list: [['HR School', 'Working since 2008; it has trained more than 2,000 people.'],
+               ['Training', 'More than 3,000 people have attended trainings led by Kenan Ragimov in person: people management, leadership, teamwork, communication and sales.'],
+               ['Events for business', 'Corporate trainings and business meetings for MG, Unibank and DNS Computers, and the Business Party by Ragimoff series.']],
+        soc: { h: 'Follow us on social media', l: ['Telegram', 'Instagram', 'YouTube', 'Facebook'] } },
+};
+for (const l of Object.keys(OWN2)) { T[l].corp.list = OWN2[l].list; T[l].soc = OWN2[l].soc; }
+const _LINKS0 = LINKS;
+export function LINKS2(l) { const L = _LINKS0(l); L.soc = [L.tg, 'https://www.instagram.com/dr.ragimoff', 'https://youtube.com/@kragimoff', 'https://www.facebook.com/Ragimoff.az']; return L; }

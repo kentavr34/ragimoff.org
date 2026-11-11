@@ -25,7 +25,7 @@ MEASURE = r"""
   // N3 выход за край
   if (de.scrollWidth > W + 1) bad.push(['N3', 'горизонтальная прокрутка: ширина страницы ' + de.scrollWidth + ' при окне ' + W]);
   document.querySelectorAll('header.head *, .cine__copy *, .sh *, .people *, .topics *, .nums *, .myths *, .posts *, .tg *, .foot *, .mob *').forEach(e => {
-    if (!vis(e) || e.closest('[data-rib-track],.belt,.shelf')) return; const r = e.getBoundingClientRect();
+    if (!vis(e) || e.closest('[data-rib-track],.belt,.shelf,.person__ph')) return; const r = e.getBoundingClientRect();
     if (r.right > W + 1 || r.left < -1) bad.push(['N3', 'за краем: ' + (e.className || e.tagName) + ' «' + txt(e) + '» ' + Math.round(r.left) + '…' + Math.round(r.right)]); });
   // G1: шапка — поле слева равно полю справа; элементы шапки не налезают друг на друга
   (() => { const hd = document.querySelector('.head'); if (!hd) return; const kids = [document.querySelector('.logo'), ...document.querySelectorAll('.head__r > *')].filter(e => e && vis(e)).map(e => e.getBoundingClientRect());

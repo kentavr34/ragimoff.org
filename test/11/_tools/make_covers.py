@@ -9,7 +9,7 @@ OUT = ROOT / 'assets' / 'img'
 PORT = os.environ.get('PORT', '8812')
 SHOT = os.environ.get('SHOT', str(pathlib.Path(os.environ.get('TEMP', '.')) / 'shot.py'))
 SRC = {'klinik': ('klinik-a.png', .42, 1.0), 'phoenix': ('phoenix.png', 0, .70), 'guilt': ('guilt.png', .42, 1.0),
-       'pandemic': ('pandemic.png', .30, 1.0), 'freud': ('freud.png', .40, 1.0)}     # файл, доля сдвига сверху, используемая доля высоты
+       'pandemic': ('pandemic.png', .30, 1.0), 'freud': ('freud.png', .40, 1.0), 'therapy': ('therapy.png', .55, 1.0)}     # файл, доля сдвига сверху, используемая доля высоты
 
 for book, (fn, off, keep) in SRC.items():
     im = Image.open(ART / fn).convert('RGB')
@@ -26,7 +26,7 @@ for book, (fn, off, keep) in SRC.items():
 tmp = pathlib.Path(os.environ.get('TEMP', '.'))
 for book in SRC:
     for lang in ('az', 'ru', 'en'):
-        env = dict(os.environ, NOMOB='1', WAIT='3.5')
+        env = dict(os.environ, NOMOB='1', WAIT='7')          # ждём загрузки расширенных наборов шрифта (Ə, İ, Ş, Ğ)
         pref = str(tmp / ('cov_%s_%s' % (book, lang)))
         subprocess.run([sys.executable, SHOT, 'http://127.0.0.1:%s/test/11/_agent/art/cover.html?b=%s&l=%s' % (PORT, book, lang), '800', '1200', pref, '0'],
                        env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
