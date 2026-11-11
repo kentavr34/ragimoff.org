@@ -1,0 +1,176 @@
+/* ЭСКИЗ 11 — первый экран: свет, росчерк, нить, четыре двери.
+   Всё управляется отсюда: токены ниже + три темы. Страница и сцены (свет, нить) читают только эти переменные. */
+
+:root {
+  /* шрифты — набор прода */
+  --f-hand: "Monsieur La Doulaise", cursive;
+  --f-display: "Cormorant Garamond", Georgia, serif;
+  --f-sub: "Oswald", "Arial Narrow", sans-serif;
+  --f-text: "Manrope", system-ui, sans-serif;
+  --f-read: "Alegreya", Georgia, serif;
+  --f-num: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* ритм: отступ = Фибоначчи × u */
+  --u: 8px;
+  --r1: calc(var(--u) * 2); --r2: calc(var(--u) * 3); --r3: calc(var(--u) * 5); --r4: calc(var(--u) * 8); --r5: calc(var(--u) * 13);
+  --wrap: 1240px; --pad: 20px;
+
+  /* движение */
+  --e: cubic-bezier(.22, .8, .2, 1);
+  --t1: .35s; --t2: .7s; --t3: 1.4s;
+}
+@media (min-width: 901px) { :root { --u: 12px; --pad: 48px; } }
+
+/* ── темы: три настроения ── */
+[data-theme="night"] {            /* кабинет вечером: чернила и золото */
+  --bg: #07090E; --layer: #0F131B; --text: #CFC9BD; --milk: #F2EDE3; --smoke: #8E897F; --line: rgba(242, 237, 227, .13);
+  --gold: #C9A961; --gold-hi: #E6CE93; --on-gold: #0B0D12;
+  --light-a: #D9B25F; --light-b: #2B3A66; --light-mode: 1; --dust: #F2D9A0;
+  color-scheme: dark;
+}
+[data-theme="paper"] {            /* день, чтение: слоновая кость и тушь */
+  --bg: #F3EEE4; --layer: #FBF8F1; --text: #3A352D; --milk: #15130F; --smoke: #6E675B; --line: rgba(21, 19, 15, .14);
+  --gold: #8A6718; --gold-hi: #6F5210; --on-gold: #FBF8F1;
+  --light-a: #FFFDF6; --light-b: #D9CDB6; --light-mode: 0; --dust: #B08A3C;
+  color-scheme: light;
+}
+[data-theme="sepia"] {            /* архив: тёплая печать */
+  --bg: #E7D9BE; --layer: #F0E4CB; --text: #44351F; --milk: #23180A; --smoke: #7A6648; --line: rgba(35, 24, 10, .17);
+  --gold: #7C4A17; --gold-hi: #5E360D; --on-gold: #F6ECD6;
+  --light-a: #F7EBD0; --light-b: #C2A878; --light-mode: 0; --dust: #8A5A22;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 17px/1.65 var(--f-read); overflow-x: hidden; transition: background-color var(--t2) var(--e), color var(--t2) var(--e); }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: 100%; max-width: calc(var(--wrap) + var(--pad) * 2); margin: 0 auto; padding: 0 var(--pad); }
+
+/* ── живой свет (Three.js) и нить ── */
+.light { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 1.6s var(--e); }
+.light.is-on { opacity: 1; }
+.thread { position: absolute; left: 0; top: 0; width: 100%; z-index: 1; pointer-events: none; overflow: visible; }
+.thread path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.thread__ghost { stroke: var(--line); stroke-width: 1; }
+.thread__line { stroke: var(--gold); stroke-width: 1.6; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--gold) 55%, transparent)); }
+[data-theme="paper"] .thread__line, [data-theme="sepia"] .thread__line { filter: none; }
+.thread circle { fill: var(--bg); stroke: var(--line); stroke-width: 1; transition: fill var(--t2) var(--e), stroke var(--t2) var(--e), r var(--t2) var(--e); }
+.thread circle.is-on { fill: var(--gold); stroke: var(--gold); }
+main, .head, .fab { position: relative; z-index: 2; }
+
+/* ── шапка ── */
+.head { position: fixed; left: 0; right: 0; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px var(--pad); transition: transform var(--t2) var(--e); }
+.head.is-hidden { transform: translateY(-110%); }
+.logo { display: inline-flex; align-items: baseline; gap: 5px; color: var(--milk); }
+.logo__r { position: relative; font: 500 26px/1 var(--f-display); padding-right: 7px; }
+.logo__r i { position: absolute; right: 0; bottom: 3px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.logo__w { font: 500 13px/1 var(--f-sub); letter-spacing: .34em; }
+.head__r { display: flex; align-items: center; gap: 10px; }
+.seg { display: inline-flex; padding: 4px; border-radius: 99px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.seg button { min-width: 36px; height: 36px; padding: 0 9px; border-radius: 99px; display: grid; place-items: center; font: 500 11.5px/1 var(--f-text); letter-spacing: .08em; color: var(--smoke); transition: background var(--t1), color var(--t1); }
+.seg button[aria-pressed="true"] { background: var(--gold); color: var(--on-gold); }
+.dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--line); }
+.dot--night { background: #0B0E15; border-color: #C9A961; } .dot--paper { background: #F7F2E8; border-color: #8A6718; } .dot--sepia { background: #D9C39A; border-color: #7C4A17; }
+.seg button[aria-pressed="true"] .dot { box-shadow: 0 0 0 2px var(--on-gold); }
+
+/* ── герой ── */
+.hero { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--r3) + 56px) 0 var(--r3); }
+.hero__in { display: flex; flex-direction: column; }
+.eyebrow { margin: 0; display: inline-flex; align-items: center; gap: 12px; font: 500 12.5px/1.3 var(--f-sub); letter-spacing: .32em; text-transform: uppercase; color: var(--gold); }
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+.sign { margin: var(--r2) 0 0; font: 400 clamp(64px, 10.4vw, 168px)/.95 var(--f-hand); color: var(--gold-hi); letter-spacing: .01em; white-space: nowrap; }
+.sign__ink { display: inline-block; padding: .12em .22em .22em .04em; margin: -.12em -.22em -.22em -.04em; clip-path: inset(-10% 100% -20% 0); }
+.is-in .sign__ink { clip-path: inset(-10% -6% -20% 0); transition: clip-path 2s cubic-bezier(.6, .1, .25, 1) .25s; }
+.ask { margin: var(--r2) 0 0; max-width: 18ch; font: 300 clamp(30px, 3.5vw, 52px)/1.08 var(--f-display); color: var(--milk); opacity: 0; transform: translateY(18px); }
+.is-in .ask { opacity: 1; transform: none; transition: opacity var(--t3) var(--e) 1.5s, transform var(--t3) var(--e) 1.5s; }
+
+/* двери */
+.doors { margin-top: var(--r3); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--r2); }
+.door { position: relative; display: flex; flex-direction: column; text-align: left; opacity: 0; transform: translateY(26px); }
+.is-in .door { opacity: 1; transform: none; transition: opacity var(--t3) var(--e) calc(1.9s + var(--i) * .12s), transform var(--t3) var(--e) calc(1.9s + var(--i) * .12s); }
+.door__arch { position: relative; height: clamp(190px, 27vh, 260px); border-radius: 999px 999px 0 0; perspective: 900px; }
+.door__glow { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; border: 1px solid var(--line); border-bottom: 0;
+  background: radial-gradient(120% 90% at 50% 100%, color-mix(in srgb, var(--gold) 70%, transparent), color-mix(in srgb, var(--gold) 18%, transparent) 46%, transparent 72%); }
+.door__leaf { position: absolute; inset: 0; border-radius: inherit; background: var(--layer); border: 1px solid var(--line); border-bottom: 0; transform-origin: 0 50%; transition: transform var(--t2) var(--e), box-shadow var(--t2) var(--e), background-color var(--t2) var(--e); backface-visibility: hidden; }
+.door__leaf::before { content: ""; position: absolute; left: 14%; right: 14%; top: 22%; bottom: 0; border: 1px solid var(--line); border-bottom: 0; border-radius: 999px 999px 0 0; }
+.door__leaf::after { content: ""; position: absolute; right: 13px; top: 62%; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.door__num { position: absolute; left: 50%; top: 46%; transform: translateX(-50%); font: 400 12px/1 var(--f-num); letter-spacing: .12em; color: var(--smoke); }
+.door:hover .door__leaf, .door:focus-visible .door__leaf { transform: rotateY(-24deg); box-shadow: 18px 0 40px -18px rgba(0, 0, 0, .55); }
+.door[aria-current="true"] .door__leaf { transform: rotateY(-46deg); box-shadow: 22px 0 46px -18px rgba(0, 0, 0, .6); }
+.door__cap { padding-top: var(--r2); display: flex; flex-direction: column; gap: 6px; }
+.door__title { font: 400 clamp(21px, 1.7vw, 27px)/1.15 var(--f-display); color: var(--milk); transition: color var(--t1); }
+.door__sub { font: 400 14.5px/1.45 var(--f-read); color: var(--smoke); }
+.door:hover .door__title, .door[aria-current="true"] .door__title { color: var(--gold-hi); }
+.door:focus-visible { outline: none; } .door:focus-visible .door__title { text-decoration: underline; text-underline-offset: 5px; }
+
+/* ── путь ── */
+.path { padding: var(--r5) 0 var(--r4); }
+.path__in { padding-left: calc(var(--pad) + 44px); }
+.path__title { margin: var(--r1) 0 0; font: 300 clamp(38px, 5vw, 76px)/1 var(--f-display); letter-spacing: -.01em; color: var(--milk); max-width: 16ch; }
+.path__sub { margin: var(--r1) 0 0; max-width: 46ch; font: 400 17px/1.6 var(--f-read); color: var(--smoke); }
+.steps { list-style: none; margin: var(--r3) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--r3); }
+.step { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--r2) var(--r3); align-items: center; opacity: .28; transform: translateY(14px); transition: opacity var(--t3) var(--e), transform var(--t3) var(--e); }
+.step.is-on { opacity: 1; transform: none; }
+.step__n { font: 400 12px/1 var(--f-num); letter-spacing: .14em; color: var(--gold); }
+.step__t { margin: 10px 0 0; font: 400 clamp(24px, 2.4vw, 36px)/1.12 var(--f-display); color: var(--milk); }
+.step__d { margin: 8px 0 0; max-width: 40ch; font: 400 16px/1.55 var(--f-read); color: var(--text); }
+.motif { position: relative; height: 110px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.motif svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.motif path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.motif__cap { position: absolute; left: 0; bottom: -26px; font: 400 11.5px/1 var(--f-num); letter-spacing: .1em; color: var(--smoke); white-space: nowrap; }
+.path__cta { margin-top: var(--r4); display: flex; flex-wrap: wrap; align-items: center; gap: var(--r2); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 30px; border-radius: 99px; background: var(--gold); color: var(--on-gold); font: 500 17px/1 var(--f-read); transition: transform var(--t1) var(--e), box-shadow var(--t1) var(--e); box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--gold) 80%, transparent); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -16px color-mix(in srgb, var(--gold) 90%, transparent); }
+.link { font: 400 16px/1.3 var(--f-read); color: var(--smoke); border-bottom: 1px solid var(--line); padding-bottom: 3px; transition: color var(--t1), border-color var(--t1); }
+.link:hover { color: var(--gold-hi); border-color: var(--gold); }
+
+/* обзор, пока дверь не выбрана */
+.over { list-style: none; margin: var(--r3) 0 0; padding: 0; display: flex; flex-direction: column; }
+.over__row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2fr) auto; gap: var(--r2); align-items: baseline; padding: var(--r2) 0; border-top: 1px solid var(--line); text-align: left; width: 100%; transition: padding-left var(--t2) var(--e); }
+.over__row:last-child { border-bottom: 1px solid var(--line); }
+.over__row:hover { padding-left: 12px; }
+.over__t { font: 400 clamp(22px, 2vw, 30px)/1.15 var(--f-display); color: var(--milk); }
+.over__s { font: 400 15px/1.5 var(--f-read); color: var(--smoke); }
+.over__a { font: 400 13px/1 var(--f-num); color: var(--gold); }
+
+/* ── подвал эскиза ── */
+.foot { padding: var(--r4) 0 calc(var(--r4) + 70px); }
+.foot__in { display: flex; flex-direction: column; align-items: flex-start; gap: var(--r2); padding-left: calc(var(--pad) + 44px); }
+.foot__sign { font: 400 clamp(44px, 5vw, 72px)/1 var(--f-hand); color: var(--gold-hi); }
+.foot__note { margin: 0; max-width: 60ch; font: 400 13.5px/1.6 var(--f-text); color: var(--smoke); }
+
+/* ── одна кнопка действия ── */
+.fab { position: fixed; right: var(--pad); bottom: 22px; z-index: 30; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 99px;
+  background: color-mix(in srgb, var(--layer) 88%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); color: var(--milk); font: 500 15.5px/1 var(--f-read);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity var(--t2) var(--e), transform var(--t2) var(--e), background var(--t1), color var(--t1); }
+.fab.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.fab:hover { background: var(--gold); color: var(--on-gold); }
+
+/* ── телефон ── */
+@media (max-width: 760px) {
+  .hero { align-items: flex-start; padding-top: calc(var(--r4) + 64px); }
+  .sign { font-size: clamp(60px, 20vw, 100px); line-height: .8; white-space: normal; }
+  .hero { overflow-x: clip; }
+  .sign__w { display: block; } .sign__w + .sign__w { padding-left: .3em; }
+  .head { padding: 12px var(--pad); gap: 8px; } .head__r { gap: 6px; }
+  .seg { padding: 3px; } .seg button { min-width: 30px; height: 30px; padding: 0 6px; font-size: 10.5px; }
+  .logo__w { letter-spacing: .22em; font-size: 12px; }
+  .ask { font-size: clamp(27px, 7.6vw, 36px); }
+  .doors { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--r3) var(--r2); }
+  .door__arch { height: 150px; }
+  .path__in, .foot__in { padding-left: calc(var(--pad) + 30px); }
+  .step { grid-template-columns: 1fr; }
+  .motif { height: 84px; margin-bottom: 44px; }
+  .motif__cap { white-space: normal; bottom: auto; top: calc(100% + 10px); line-height: 1.5; }
+  .over__row { grid-template-columns: 1fr auto; } .over__s { grid-column: 1 / -1; grid-row: 2; }
+  .fab { right: 14px; bottom: 14px; }
+}
+
+/* «уменьшить движение»: анимация остаётся видимой, но короче и без пролётов */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  :root { --t2: .4s; --t3: .6s; }
+  .ask, .door, .step { transform: none !important; }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Doctor Ragimoff — эскиз 11</title>
+<script>
+/* тема и язык — до первой отрисовки, чтобы страница не мигала */
+(function () {
+  var t = null, l = null;
+  try { t = localStorage.getItem('r11_theme'); l = localStorage.getItem('r11_lang'); } catch (e) {}
+  if (!t) { var h = new Date().getHours(); t = (h >= 8 && h < 19) ? 'paper' : 'night'; }   /* по времени суток у посетителя */
+  document.documentElement.setAttribute('data-theme', t);
+  document.documentElement.lang = l || 'ru';
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Monsieur+La+Doulaise&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sketch.css">
+<script type="importmap">{"imports":{"three":"../vendor/three.module.js"}}</script>
+</head>
+<body>
+<canvas class="light" id="light" aria-hidden="true"></canvas>
+<svg class="thread" id="thread" aria-hidden="true"><path class="thread__ghost" id="threadGhost"/><path class="thread__line" id="threadLine"/><g id="threadDots"></g></svg>
+
+<header class="head" id="head">
+  <a class="logo" href="#top" aria-label="Doctor Ragimoff"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a>
+  <div class="head__r">
+    <div class="seg" id="themes" role="group" aria-label="Theme">
+      <button type="button" data-theme-btn="night" title="Ночь"><span class="dot dot--night"></span></button>
+      <button type="button" data-theme-btn="paper" title="Бумага"><span class="dot dot--paper"></span></button>
+      <button type="button" data-theme-btn="sepia" title="Сепия"><span class="dot dot--sepia"></span></button>
+    </div>
+    <div class="seg seg--lang" id="langs" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="az">AZ</button>
+      <button type="button" data-lang-btn="ru">RU</button>
+      <button type="button" data-lang-btn="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="wrap hero__in">
+      <p class="eyebrow" data-i="school"></p>
+      <h1 class="sign" id="sign"><span class="sign__ink"><span class="sign__w">Doctor</span> <span class="sign__w">Ragimoff</span></span></h1>
+      <p class="ask" data-i="ask"></p>
+      <div class="doors" id="doors" role="list"></div>
+    </div>
+  </section>
+
+  <section class="path" id="path">
+    <div class="wrap path__in">
+      <p class="eyebrow" data-i="pathEyebrow"></p>
+      <h2 class="path__title" id="pathTitle"></h2>
+      <p class="path__sub" id="pathSub"></p>
+      <ol class="steps" id="steps"></ol>
+      <div class="path__cta"><a class="btn" id="pathBtn" href="#top"></a><button class="link" type="button" id="pathReset" data-i="other"></button></div>
+    </div>
+  </section>
+
+  <footer class="foot" id="foot">
+    <div class="wrap foot__in">
+      <span class="foot__sign" id="footSign">Doctor Ragimoff</span>
+      <p class="foot__note" data-i="note"></p>
+    </div>
+  </footer>
+</main>
+
+<a class="fab" id="fab" href="#path"><span id="fabText"></span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+
+<script type="module" src="sketch.js"></script>
+</body>
+</html>
