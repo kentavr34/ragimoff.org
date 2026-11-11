@@ -4,7 +4,7 @@
   --f-hand: "Monsieur La Doulaise", cursive;
   --f-display: "Cormorant Garamond", Georgia, serif;
   --f-sub: "Oswald", "Arial Narrow", sans-serif;
-  --f-text: "Manrope", system-ui, sans-serif;
+  --f-text: "Inter", system-ui, sans-serif;
   --f-read: "Alegreya", Georgia, serif;
   --f-num: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -305,7 +305,7 @@ main, .foot { position: relative; z-index: 1; }
 @media (prefers-reduced-motion: reduce) { :root { --t2: .4s; --t3: .6s; } .belt__track { animation-duration: 120s; } }
 
 /* ═══ ПРАВКИ ПО РАЗБОРУ ДВУХ КРИТИКОВ (11.11.2026) — одна система: три гарнитуры, две высоты кнопок, один шаг секций ═══ */
-:root { --f-sub: "Manrope", system-ui, sans-serif; --f-num: "Manrope", system-ui, sans-serif; --hs: clamp(40px, 5.6vw, 88px); --sec: var(--hs); --btn-h: 54px; --btn-h-sm: 46px; }
+:root { --f-sub: "Inter", system-ui, sans-serif; --f-num: "Inter", system-ui, sans-serif; --hs: clamp(40px, 5.6vw, 88px); --sec: var(--hs); --btn-h: 54px; --btn-h-sm: 46px; }
 [data-theme="night"] { --layer: #101114; --layer2: #17181C; }             /* один чёрный: карточки нейтральные, без холодной синевы на тёплом фоне */
 
 /* гарнитуры: антиква для заголовков, антиква для текста, один гротеск для меток, меню и чисел; конденсед — только строка героя */
@@ -516,3 +516,20 @@ main, .foot { position: relative; z-index: 1; }
 .lb img { max-width: min(1100px, 100%); max-height: 78vh; width: auto; height: auto; border-radius: 10px; background: #fff; } .lb figcaption { font: 400 16px/1.4 var(--f-read); color: #F2EDE3; text-align: center; }
 .lb__x { position: absolute; top: 14px; right: 14px; width: var(--tap); height: var(--tap); border-radius: 50%; border: 1px solid rgba(242, 237, 227, .4); color: #F2EDE3; font: 300 26px/1 var(--f-sub); }
 @media (max-width: 760px) { .proofs, .vids, .film { grid-template-columns: 1fr; } .film { gap: var(--r2); } }
+
+/* ═══ КРУГ 03 ═══ */
+/* N3 / 3.3: подпись героя помещается на телефоне во всех языках */
+.cine__school { letter-spacing: .26em; max-width: 100%; }
+@media (max-width: 760px) { .cine__school { font-size: clamp(13px, 4.1vw, 18px); letter-spacing: .16em; } }
+/* 10.15 / 10.16: панель программ во весь экран, содержимое по центру, без швов и боковых полос */
+.rib__stick { min-height: 100vh; min-height: 100svh; justify-content: center; padding: var(--hs) 0; background: transparent; }
+.rib__stick::before, .rib__stick::after { display: none; }
+/* 5.5: в тёмной теме книга стоит на тёплом свету */
+[data-theme="night"] .bk__scene::after { background: radial-gradient(closest-side, color-mix(in srgb, var(--gold) 46%, transparent), transparent); filter: blur(12px); height: 34px; opacity: 1; }
+/* 10.23: все фото и кадры в одной тональности; цвет — по наведению */
+.vid img, .proof:nth-child(3) .proof__i img { filter: grayscale(1) sepia(.2) contrast(1.05) brightness(.9); } .vid:hover img, .proof:nth-child(3):hover .proof__i img { filter: grayscale(.2) sepia(.06); }
+/* 10.4 / 10.30 / 9.9 */
+.pc__m span { font-size: 14px; } .myth__btn { min-height: var(--tap); } .foot__col li { text-wrap: balance; }
+.film__go { margin-top: var(--r2); }
+@media (max-width: 760px) { .seg--lang button { min-width: 34px; } }
+@media (max-width: 359px) { .seg--lang button { min-width: 30px; } }

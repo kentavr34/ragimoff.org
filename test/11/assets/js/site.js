@@ -26,12 +26,12 @@ function render() {
     { k: 'books', href: '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]) },
     { k: 'edu', href: '#edu', sub: t.edu.p.map((p, i) => [L.prog[i], p.t]).concat([[L.law, t.nav.law]]) },
     { k: 'cons', href: '#cons', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
-    { k: 'corp', href: '#corp', sub: [] }, { k: 'blog', href: '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
+    { k: 'corp', href: '#corp', sub: t.corp.t.map(x => [L.corp, x]) }, { k: 'blog', href: '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
   ];
   $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#headCta').textContent = t.nav.cta;
-  $('#mobIn').insertAdjacentHTML('beforeend', `<a class="btn mob__cta" href="#cons">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
+  $('#mobIn').insertAdjacentHTML('afterbegin', `<a class="btn mob__cta" href="#cons">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
 
   $('#school').innerHTML = [...t.hero.school].map((ch, i) => ch === ' ' ? ' ' : `<span style="--i:${i}">${esc(ch)}</span>`).join('');   /* строгая строка встаёт по буквам */
   $('#heroBtns').innerHTML = ['#cons', '#edu', '#books', '#corp'].map((h, i) => `<a href="${h}" style="--i:${i}">${esc(t.hero.b[i])}</a>`).join('');
@@ -70,7 +70,8 @@ function render() {
   $('#tgBtn').href = L.tg;
   const vid = (id, title) => `<button type="button" class="vid" data-yt="${id}" aria-label="${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="vid__play" aria-hidden="true"></span></button>`;
   $('#proofs').innerHTML = (t.edu.proofs || []).map((c, i) => `<button type="button" class="proof rv" data-lb="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" style="--d:${i * .08}s"><span class="proof__i"><img src="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" alt="${esc(c)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(c)}</span></button>`).join('');
-  const fm = t.cons.film; $('#film').innerHTML = fm ? `${vid(fm.id, fm.t)}<div class="film__b"><h3 class="film__t">${esc(fm.t)}</h3><p class="film__d">${esc(fm.d)}</p></div>` : '';
+  const fm = t.cons.film; $('#film').innerHTML = fm ? `${vid(fm.id, fm.t)}<div class="film__b"><h3 class="film__t">${esc(fm.t)}</h3><p class="film__d">${esc(fm.d)}</p>${fm.cta ? `<button type="button" class="btn btn--line film__go">${esc(fm.cta)}</button>` : ''}</div>` : '';
+  const ax = t.a11y; if (ax) { document.title = ax.title; $('#nav').setAttribute('aria-label', ax.menu); $('#burger').setAttribute('aria-label', ax.menu); $('#themes').setAttribute('aria-label', ax.theme); $('#langs').setAttribute('aria-label', ax.lang); $$('[data-theme-btn]').forEach(b => b.setAttribute('aria-label', ax[b.dataset.themeBtn])); }
   $('#corpVids').innerHTML = (t.corp.vids || []).map(v => `<figure class="vids__i rv">${vid(v[1], v[0])}<figcaption>${esc(v[0])}</figcaption></figure>`).join('');
   const ea = $('#enlAll'); ea.innerHTML = esc(t.enl.more) + ' ' + ARR; ea.href = L.books[0];
 
@@ -181,7 +182,7 @@ document.addEventListener('click', e => {
   if (e.target.closest('#mob a')) setMenu(false);
   const mf = e.target.closest('.myth__f'); if (mf) { mf.closest('.myth').classList.add('is-flip'); return; }
   const mb = e.target.closest('.myth__b'); if (mb && !e.target.closest('a')) { mb.closest('.myth').classList.remove('is-flip'); return; }
-  const yt = e.target.closest('.vid[data-yt]'); if (yt) { yt.outerHTML = `<div class="vid vid--on"><iframe src="https://www.youtube-nocookie.com/embed/${yt.dataset.yt}?autoplay=1&rel=0" title="${yt.getAttribute('aria-label')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; return; }
+  const go = e.target.closest('.film__go'); const yt = go ? $('#film .vid[data-yt]') : e.target.closest('.vid[data-yt]'); if (go && !yt) return; if (yt) { yt.outerHTML = `<div class="vid vid--on"><iframe src="https://www.youtube-nocookie.com/embed/${yt.dataset.yt}?autoplay=1&rel=0" title="${yt.getAttribute('aria-label')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; return; }
   const pf = e.target.closest('[data-lb]'); if (pf) { $('#lbImg').src = pf.dataset.lb; $('#lbCap').textContent = pf.querySelector('.proof__c').textContent; $('#lb').classList.add('is-open'); $('#lb').setAttribute('aria-hidden', 'false'); return; }
   if (e.target.closest('#lb')) { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); return; }
   if (e.target.closest('#bkPrev')) { bkGo(-1); return; } if (e.target.closest('#bkNext')) { bkGo(1); return; }

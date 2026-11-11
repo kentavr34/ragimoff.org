@@ -28,6 +28,10 @@ MEASURE = r"""
     if (r.right > W + 1 || r.left < -1) bad.push(['N3', 'за краем: ' + (e.className || e.tagName) + ' «' + txt(e) + '» ' + Math.round(r.left) + '…' + Math.round(r.right)]); });
   // N2 имя в одну строку
   const sign = document.querySelector('.sign'); if (sign) { const l = lines(sign); info.signLines = l; if (l > 1) bad.push(['N2', '«Doctor Ragimoff» в ' + l + ' строки']); }
+  // N3: подпись героя и кнопки героя — по ширине текста, даже пока скрыты
+  document.querySelectorAll('.cine__school, .sign, .cine__btns').forEach(e => { const r = document.createRange(); r.selectNodeContents(e); const b = r.getBoundingClientRect(); if (b.width > W - 16) bad.push(['N3', 'шире экрана: ' + e.className + ' ' + Math.round(b.width) + ' при окне ' + W]); });
+  // 10.29: один вес и шрифт у всех кнопок
+  const bw = new Set(); document.querySelectorAll('.btn, .head__cta, .cine__btns a').forEach(e => { const s = getComputedStyle(e); bw.add(s.fontFamily.split(',')[0] + ' ' + s.fontWeight + ' ' + s.fontSize); }); if (bw.size > 1) bad.push(['10.29', 'кнопки разные: ' + [...bw].join(' | ')]);
   // N6 / 10.18 заголовки и подзаголовки; 10.13 / 10.14 математика отступов
   document.querySelectorAll('section.sec').forEach(sec => {
     const h = sec.querySelector('.sh__h'), s = sec.querySelector('.sh__s'); if (!h) return;
@@ -67,6 +71,20 @@ MEASURE = r"""
   info.cards = { people: document.querySelectorAll('#people > *').length, books: document.querySelectorAll('#shelf > *').length, progs: document.querySelectorAll('#progs > *').length, topics: document.querySelectorAll('#topics > *').length, myths: document.querySelectorAll('#myths > *').length, posts: document.querySelectorAll('#posts > *').length };
   info.links = [...new Set([...document.querySelectorAll('a[href]')].map(a => a.getAttribute('href')))].filter(h => h && !h.startsWith('#'));
   return { bad, info };
+})()
+"""
+
+
+AZ_LETTERS = r"""
+(async () => {
+  const chars = ['Ə', 'ə', 'İ', 'ı', 'Ş', 'ş', 'Ğ', 'ğ', 'Ç', 'ç', 'Ö', 'ö', 'Ü', 'ü', 'Ж', 'я'];
+  const fams = new Set(); document.querySelectorAll('body *').forEach(e => { const r = e.getBoundingClientRect(); if (r.width > 1 && [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) fams.add(getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()); });
+  const out = [];
+  for (const f of fams) { for (const w of ['300', '400', '500', '600']) { try { await document.fonts.load(w + ' 40px "' + f + '"', chars.join('')); } catch (e) {} } }
+  await new Promise(r => setTimeout(r, 1200));
+  const c = document.createElement('canvas').getContext('2d'); const w = (f, ch) => { c.font = '40px ' + f; return c.measureText(ch).width; };
+  for (const f of fams) { const hand = /Monsieur/.test(f); const m = chars.filter(ch => !(hand && /[Жя]/.test(ch)) && Math.abs(w('"' + f + '", monospace', ch) - w('"' + f + '", serif', ch)) > .01); if (m.length && !hand) out.push('в гарнитуре ' + f + ' нет букв: ' + m.join(' ')); }
+  return out;
 })()
 """
 
@@ -113,6 +131,10 @@ async def main():
                     await asyncio.sleep(1.5)                                  # дождаться конца появления: замер после движения
                     key = '%s|%s|%d' % (lg, th, W)
                     res = await ev(MEASURE) or {'bad': [['?', 'замер не выполнен']], 'info': {}}
+                    if lg == 'az' and th == 'night':                             # N4: все буквы азербайджанского алфавита и кириллица есть в каждой гарнитуре страницы
+                        miss = await ev(AZ_LETTERS)
+                        for m in (miss or []):
+                            res['bad'].append(['N4', m])
                     report[key] = res
                     print(key, 'нарушений', len(res['bad']))
                     if (lg, th) in SHOTS and (W, H) in SHOT_W:
