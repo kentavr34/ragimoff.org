@@ -188,6 +188,38 @@ def check_canon_files(r):
                   '%d байт' % os.path.getsize(p))
 
 
+def check_css_balance(r):
+    """БАЛАНС ФИГУРНЫХ СКОБОК В СТИЛЯХ.
+
+    ЗАЧЕМ ОТДЕЛЬНАЯ ПРОВЕРКА. Найдено 11.11.2026: в hero.css стоял
+    медиа-запрос без закрывающей скобки. Файл выглядел ЦЕЛЫМ, ошибок
+    в консоли не было, но браузер молча отбрасывал все 200 строк стилей
+    после места ошибки — включая цвета текста героя.
+
+    ЧТО ЭТО ЗНАЧИЛО ДЛЯ ВЛАДЕЛЬЦА: «в светлой теме буквы не видны
+    на некоторых местах». Он видел следствие, а причина была в одной
+    пропущенной скобке за 80 строк до конца файла.
+
+    Это самый коварный класс дефектов в проекте: ни синтаксическая
+    проверка, ни глаз, ни консоль браузера его не показывают. Показывает
+    только подсчёт скобок — поэтому он теперь обязателен.
+    """
+    import glob
+    import re as _re
+    for f in sorted(glob.glob(os.path.join(PROJ, 'design', '**', '*.css'), recursive=True)):
+        try:
+            s = io.open(f, encoding='utf-8').read()
+        except Exception:
+            continue
+        # комментарии исключаем: их содержимое — текст, а не код
+        clean = _re.sub(r'/\*.*?\*/', '', s, flags=_re.S)
+        o, c = clean.count('{'), clean.count('}')
+        if o != c:
+            r.add(BLOCK, 'Нарушен баланс скобок в стилях',
+                  '%s: открывающих %d, закрывающих %d' % (os.path.basename(f), o, c),
+                  'браузер молча отбросит часть правил')
+
+
 def main():
     ap = argparse.ArgumentParser(description='Проверка страницы против канона')
     ap.add_argument('--page', default=os.path.join(PROJ, 'index.html'),
@@ -197,6 +229,7 @@ def main():
 
     r = Report()
     check_canon_files(r)
+    check_css_balance(r)
     if os.path.isfile(a.page):
         check_html(a.page, r)
         check_texts(a.page, r)
