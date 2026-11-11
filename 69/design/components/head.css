@@ -90,6 +90,15 @@
   padding: 3px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--color-border);
+  /* ПРИЧИНА: переключатель языка и переключатель темы стояли вплотную и
+     читались как ОДИН элемент — на проверке это отметили отдельно.
+     РЕШЕНИЕ: вертикальный разделитель между ними. */
+  margin-left: 4px;
+}
+.head__right .themes + .lang {
+  padding-left: 10px;
+  border-left: 1px solid var(--color-border);
+  border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
 }
 .lang a {
   padding: 5px 9px;
