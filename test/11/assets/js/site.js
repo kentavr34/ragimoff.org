@@ -40,7 +40,7 @@ function render() {
   $('#people').innerHTML = t.spec.p.map((p, i) => `<a class="person rv" href="${L.spec[i]}" style="--d:${i * .12}s"><div class="person__ph"><img src="assets/img/${i ? 'samira' : 'kenan'}.jpg" alt="${esc(p.n)}" loading="lazy"></div>
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
-  const cov = ['klinik', 'phoenix', 'guilt', 'pandemic', 'freud'];
+  const cov = ['klinik', 'freud', 'phoenix', 'guilt', 'pandemic'];
   $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${cov[i]}-${lang}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
     <div class="bk__txt"><p class="bk__k rv">${esc(b.k)}</p><h3 class="bk__t rv" style="--d:.06s">${esc(b.t)}</h3><p class="bk__a rv" style="--d:.1s">${esc(b.a)}</p>
     <ul class="bk__f">${b.f.map((f, j) => `<li class="rv" style="--d:${.14 + j * .08}s"><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
@@ -55,6 +55,11 @@ function render() {
 
   $('#nums').innerHTML = t.corp.n.map((n, i) => `<div class="num rv" style="--d:${i * .08}s"><b data-count="${esc(n[0])}">${esc(n[0])}</b><span>${esc(n[1])}</span></div>`).join('');
   $('#corpTags').innerHTML = t.corp.t.map(x => `<li>${esc(x)}</li>`).join('');
+  $('#corpClients').innerHTML = (t.corp.clients || []).map(x => `<li>${esc(x)}</li>`).join('');
+  const fc = t.foot.cols || [], fl = L.foot || [];
+  $('#footCols').innerHTML = fc.map((c, i) => `<div class="foot__col"><h3>${esc(c.h)}</h3><ul>${c.l.map((x, j) => { const u = (fl[i] || [])[j]; return `<li>${u ? `<a href="${u}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${esc(x)}</a>` : esc(x)}</li>`; }).join('')}</ul></div>`).join('');
+  $('#footCopy').innerHTML = (t.foot.copy || []).map(x => `<span>${esc(x)}</span>`).join('');
+  bkPos();
   const kb = $('#corpBtn'); kb.innerHTML = esc(t.corp.cta) + ' ' + ARR; kb.href = L.corp;
 
   $('#myths').innerHTML = t.enl.m.map((m, i) => `<div class="myth rv" style="--d:${i * .08}s"><div class="myth__in">
@@ -146,7 +151,7 @@ function onScroll() {
   const y = scrollY, vh = innerHeight, dy = y - lastY; if ((dy > 0) !== (travel > 0)) travel = 0; travel += dy; lastY = y;
   const overHero = cine.getBoundingClientRect().bottom > 70;
   head.classList.toggle('on-dark', overHero); head.classList.toggle('is-solid', !overHero);
-  const menuOpen = $('#mob').classList.contains('is-open');
+  const menuOpen = $('#mob').classList.contains('is-open'); head.classList.toggle('is-menu', menuOpen);
   if (y < 120 || menuOpen) head.classList.remove('is-hidden'); else if (travel > 48) head.classList.add('is-hidden'); else if (travel < -32) head.classList.remove('is-hidden');
   fab.classList.toggle('is-on', !overHero);
   const rr = rib.getBoundingClientRect(); fab.classList.toggle('is-off', rr.top <= 1 && rr.bottom >= vh - 1);   /* в закреплённой ленте кнопка не закрывает карточки */
@@ -158,14 +163,23 @@ addEventListener('scroll', onScroll, { passive: true });
 let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { cineLoad(); cineSize(); ribMeasure(); onScroll(); }, 120); });
 
 /* ───────── нажатия ───────── */
-function setMenu(open) { $('#mob').classList.toggle('is-open', open); $('#mob').setAttribute('aria-hidden', String(!open)); $('#burger').setAttribute('aria-expanded', String(open)); document.documentElement.style.overflow = open ? 'hidden' : ''; if (open) head.classList.remove('is-hidden'); }
+function setMenu(open) { $('#mob').classList.toggle('is-open', open); $('#mob').setAttribute('aria-hidden', String(!open)); $('#burger').setAttribute('aria-expanded', String(open)); document.documentElement.style.overflow = open ? 'hidden' : ''; if (open) head.classList.remove('is-hidden'); head.classList.toggle('is-menu', open); }
+/* книги: лента по одной, стрелки и свайп */
+const shelf = $('#shelf');
+function bkIdx() { return Math.round(shelf.scrollLeft / Math.max(1, shelf.clientWidth)); }
+function bkPos() { const n = shelf.children.length, i = Math.min(n - 1, bkIdx()); $('#bkPos').textContent = n ? String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0') : ''; $('#bkPrev').disabled = i <= 0; $('#bkNext').disabled = i >= n - 1; }
+function bkGo(d) { shelf.scrollTo({ left: (bkIdx() + d) * shelf.clientWidth, behavior: 'smooth' }); }
+let bkT = 0; shelf.addEventListener('scroll', () => { clearTimeout(bkT); bkT = setTimeout(bkPos, 60); }, { passive: true });
 document.addEventListener('click', e => {
   const tog = e.target.closest('.mob__tog'); if (tog) { tog.closest('.mob__g').classList.toggle('is-open'); return; }
   if (e.target.closest('#burger')) { setMenu(!$('#mob').classList.contains('is-open')); return; }
   if (e.target.closest('#mob a')) setMenu(false);
   const mf = e.target.closest('.myth__f'); if (mf) { mf.closest('.myth').classList.add('is-flip'); return; }
   const mb = e.target.closest('.myth__b'); if (mb && !e.target.closest('a')) { mb.closest('.myth').classList.remove('is-flip'); return; }
-  const th = e.target.closest('[data-theme-btn]'); if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); if (light) light.setTheme(); render(); return; }
+  if (e.target.closest('#bkPrev')) { bkGo(-1); return; } if (e.target.closest('#bkNext')) { bkGo(1); return; }
+  let th = e.target.closest('[data-theme-btn]');
+  if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
+  if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); if (light) light.setTheme(); render(); return; }
   const lg = e.target.closest('[data-lang-btn]'); if (lg) { lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
   const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - (el.matches('.sec--rib') ? 0 : 10), behavior: 'smooth' }); } }
 });
