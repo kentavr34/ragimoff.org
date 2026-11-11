@@ -82,8 +82,8 @@ export const PROGRAMS = {
           d: 'Диплом выдаёт Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов; программа профессиональной переподготовки утверждена руководством института. Сведения о дипломе вносятся в государственный реестр ФИС ФРДО, диплом не требует нострификации, и работодатель может проверить его через реестр.'
         },
         price: {
-          rows: [['Полная стоимость', '210 тыс. руб.'], ['При полной оплате (−10%)', '190 тыс. руб.'], ['Рассрочка 12 мес.', '18 тыс. руб./мес.'], ['Рассрочка 24 мес.', '10 тыс. руб./мес.']],
-          note: 'Рассрочка до 24 месяцев — от 10 тыс. руб./мес.'
+          rows: [['Полная стоимость', '4 200 AZN'], ['При полной оплате (−400 AZN)', '3 800 AZN'], ['Рассрочка 12 мес.', '350 AZN/мес.'], ['Рассрочка 24 мес.', '200 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 200 AZN в месяц.'
         },
         faq: [...FAQ_RU, ['Нужно ли предыдущее образование по психологии?', 'Нет. Для программы «Общая психология» предыдущее образование по психологии не требуется: подать заявку может любой совершеннолетний человек, интересующийся психологией.']]
       },
@@ -164,8 +164,8 @@ export const PROGRAMS = {
           d: 'The diploma is issued by the St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists; the professional retraining programme is approved by the institute’s management. The diploma is entered in the state register FIS FRDO, requires no nostrification and can be checked by an employer through the register.'
         },
         price: {
-          rows: [['Full price', '$2,500'], ['Full payment (−10%)', '$2,250'], ['12-month instalment', '$210/mo.'], ['24-month instalment', '$120/mo.']],
-          note: 'Instalment plan up to 24 months — from $120/mo.'
+          rows: [['Full price', '4,200 AZN'], ['Full payment (−400 AZN)', '3,800 AZN'], ['12-month instalment', '350 AZN/mo.'], ['24-month instalment', '200 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 200 AZN a month.'
         },
         faq: [...FAQ_EN, ['Is a previous psychology education required?', 'No. The General Psychology programme does not require any previous psychology education: any adult interested in psychology may apply.']]
       }
@@ -213,8 +213,8 @@ export const PROGRAMS = {
           d: 'Диплом выдаёт Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов; сведения о дипломе вносятся в государственный реестр ФИС ФРДО, нострификация не требуется. Параллельно выдаётся международный сертификат IPAS/BPA с проверкой по QR-коду, действительный и за пределами Азербайджана.'
         },
         price: {
-          rows: [['Полная стоимость', '330 тыс. руб.'], ['При полной оплате (−10%)', '300 тыс. руб.'], ['Рассрочка 12 мес.', '28 тыс. руб./мес.'], ['Рассрочка 24 мес.', '15 тыс. руб./мес.']],
-          note: 'Минимальный ежемесячный платёж — 15 тыс. руб. Оплата банковским переводом или через СБП.'
+          rows: [['Полная стоимость', '6 600 AZN'], ['При полной оплате (−600 AZN)', '6 000 AZN'], ['Рассрочка 12 мес.', '550 AZN/мес.'], ['Рассрочка 24 мес.', '300 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 300 AZN в месяц.'
         },
         faq: [...FAQ_RU, ['Нужно ли высшее образование?', 'Да. Для программы «Клиническая психология» требуется диплом о высшем образовании (любое направление; предпочтение — психология, медицина, педагогика и социальная работа).']]
       },
@@ -297,8 +297,8 @@ export const PROGRAMS = {
           d: 'The diploma is issued by the St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists; it is entered in the state register FIS FRDO and requires no nostrification. An international IPAS/BPA certificate, verifiable by QR code and valid outside Azerbaijan, is issued alongside it.'
         },
         price: {
-          rows: [['Full price', '$3,900'], ['Full payment (−10%)', '$3,550'], ['12-month instalment', '$330/mo.'], ['24-month instalment', '$180/mo.']],
-          note: 'Payment by bank transfer or SWIFT.'
+          rows: [['Full price', '6,600 AZN'], ['Full payment (−600 AZN)', '6,000 AZN'], ['12-month instalment', '550 AZN/mo.'], ['24-month instalment', '300 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 300 AZN a month.'
         },
         faq: [...FAQ_EN, ['Is a higher education degree required?', 'Yes. The Clinical Psychology programme requires a higher education diploma (any field; preference is given to graduates in psychology, medicine, education and social work).']]
       }
@@ -345,8 +345,8 @@ export const PROGRAMS = {
           d: 'Сертификат International Psychotherapy Accreditation Society (IPAS) и BPA выдаётся успешно прошедшим итоговую аттестацию. Подлинность проверяется по QR-коду на сертификате или на сайте ассоциации (intpas.com).'
         },
         price: {
-          rows: [['Полная стоимость', '180 тыс. руб.'], ['При полной оплате (−20%)', '150 тыс. руб.'], ['Рассрочка 12 мес.', '15 тыс. руб./мес.'], ['Рассрочка 24 мес.', '9 тыс. руб./мес.']],
-          note: 'Оплата банковским переводом или через СБП.'
+          rows: [['Полная стоимость', '3 600 AZN'], ['При полной оплате (−600 AZN)', '3 000 AZN'], ['Рассрочка 12 мес.', '300 AZN/мес.'], ['Рассрочка 24 мес.', '175 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 175 AZN в месяц.'
         },
         faq: []
       },
@@ -427,8 +427,8 @@ export const PROGRAMS = {
           d: 'The IPAS (International Psychotherapy Accreditation Society) and BPA certificate is issued to those who pass the final assessment. Its authenticity can be verified online via the QR code on it or on the association’s website (intpas.com).'
         },
         price: {
-          rows: [['Full price', '$2,150'], ['Full payment (−20%)', '$1,800'], ['12-month instalment', '$180/mo.'], ['24-month instalment', '$110/mo.']],
-          note: 'Payment by bank transfer or SWIFT.'
+          rows: [['Full price', '3,600 AZN'], ['Full payment (−600 AZN)', '3,000 AZN'], ['12-month instalment', '300 AZN/mo.'], ['24-month instalment', '175 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 175 AZN a month.'
         },
         faq: []
       }
@@ -565,19 +565,19 @@ export const PROGRAMS = {
       reg: 4,
       sample: 'cert',
       ru: {
-        title: 'Когнитивно-поведенческая терапия (КПТ)',
-        lead: 'Основы когнитивно-поведенческой терапии и практическое применение.',
-        forWhom: [],
+        title: "Когнитивно-поведенческая терапия",
+        lead: "Основы когнитивно-поведенческой терапии (КПТ): модель, техники, протоколы и современные направления — с практикой на каждом занятии.",
+        forWhom: ["Психологи, психотерапевты и врачи", "Студенты психологических факультетов и начинающие специалисты", "Те, кто хочет освоить структурированный метод работы с тревогой и депрессией"],
         teachers: [['Кенан Рагимов', 'ведёт программу']],
         facts: [
           ['Длительность', '3 месяца обучения + 6 месяцев групповой супервизии'],
-          ['Объём', 'Супервизия: 1 раз в неделю, 6 месяцев'],
-          ['Формат', ''],
+          ["Объём", "48 часов: 2 занятия в неделю по 2 часа + 24 сессии супервизии"],
+          ["Формат", "Очно или онлайн"],
           ['Начало', 'Запись открыта'],
           ['Документ', 'Международный сертификат']
         ],
-        includes: [],
-        program: [],
+        includes: ["24 занятия: теория, демонстрация и практика в парах", "Рабочие бланки: дневник мыслей, концептуализация случая, иерархия экспозиции", "6 месяцев групповой супервизии на собственных случаях", "Аттестация по завершении программы"],
+        program: [{"t": "Модуль 1 — Основы КПТ", "items": ["История КПТ и три «волны». Когнитивная модель А. Бека и модель ABC А. Эллиса", "Структура терапии и сессии. Терапевтический альянс, совместный эмпиризм", "Когнитивная концептуализация случая", "Оценка, цели, психообразование, план лечения"]}, {"t": "Модуль 2 — Когнитивные техники", "items": ["Автоматические мысли. Дневник мыслей", "Когнитивные искажения. Сократовский диалог", "Когнитивная реструктуризация. Промежуточные убеждения и правила", "Глубинные убеждения. «Падающая стрела». Поведенческие эксперименты"]}, {"t": "Модуль 3 — Поведенческие техники", "items": ["Поведенческая активация и планирование активности", "Экспозиция: принципы, иерархия, типичные ошибки", "Навыки: решение проблем, ассертивность, релаксация и дыхание", "Домашние задания, профилактика рецидива, завершение терапии"]}, {"t": "Модуль 4 — Протоколы КПТ", "items": ["Депрессия", "Паническое расстройство и агорафобия", "Социальная тревога и генерализованное тревожное расстройство", "Обсессивно-компульсивное расстройство: экспозиция с предотвращением реакции", "ПТСР: травма-фокусированная КПТ и пролонгированная экспозиция", "Бессонница и расстройства пищевого поведения — обзор"]}, {"t": "Модуль 5 — Современные направления", "items": ["Рационально-эмотивно-поведенческая терапия А. Эллиса", "Схема-терапия Дж. Янга", "Терапия принятия и ответственности (ACT)", "Диалектическая поведенческая терапия, терапия на основе осознанности, терапия, сфокусированная на сострадании"]}, {"t": "Модуль 6 — Сравнение школ и интеграция", "items": ["КПТ и другие школы: логотерапия, личностно-ориентированная (реконструктивная) психотерапия, клиент-центрированная терапия — в чём разница", "Разбор случаев, итоговая аттестация, переход к супервизии"]}, {"t": "Супервизия · 6 месяцев (1 раз в неделю)", "items": ["Еженедельные супервизионные сессии на собственных случаях (материал анонимизируется, разбор — в группе) · 24 сессии"]}],
         doc: { t: 'Международный сертификат', d: '' },
         price: {
           rows: [['Помесячно', '300 AZN × 3 месяца'], ['Единовременно (3 месяца обучения + 6 месяцев супервизии)', '800 AZN']],
@@ -586,19 +586,19 @@ export const PROGRAMS = {
         faq: []
       },
       az: {
-        title: 'Koqnitiv-davranış terapiyası (KDT)',
-        lead: 'Koqnitiv-davranış terapiyasının əsasları və praktik tətbiqi.',
-        forWhom: [],
+        title: "Koqnitiv-davranış terapiyası",
+        lead: "Koqnitiv-davranış terapiyasının (KDT) əsasları: model, texnikalar, protokollar və müasir istiqamətlər — hər dərsdə praktika ilə.",
+        forWhom: ["Psixoloqlar, psixoterapevtlər və həkimlər", "Psixologiya fakültələrinin tələbələri və fəaliyyətə yeni başlayan mütəxəssislər", "Təşviş və depressiya ilə strukturlaşdırılmış iş metodunu mənimsəmək istəyənlər"],
         teachers: [['Kənan Rəhimov', 'proqramı aparır']],
         facts: [
           ['Müddət', '3 ay təlim + 6 ay qrupda superviziya'],
-          ['Həcm', 'Superviziya: həftədə 1 dəfə, 6 ay'],
-          ['Format', ''],
+          ["Həcm", "48 saat: həftədə 2 dərs, hər biri 2 saat + 24 superviziya sessiyası"],
+          ["Format", "Əyani və ya onlayn"],
           ['Başlanğıc', 'Qeydiyyat açıqdır'],
           ['Sənəd', 'Beynəlxalq sertifikat']
         ],
-        includes: [],
-        program: [],
+        includes: ["24 dərs: nəzəriyyə, nümayiş və cütlərdə praktika", "İş blankları: fikir gündəliyi, hadisənin konseptuallaşdırılması, ekspozisiya iyerarxiyası", "Öz hadisələriniz üzrə 6 ay qrup superviziyası", "Proqramın sonunda attestasiya"],
+        program: [{"t": "Modul 1 — KDT-nin əsasları", "items": ["KDT-nin tarixi və üç «dalğa». A. Bekin koqnitiv modeli və A. Ellisin ABC modeli", "Terapiyanın və sessiyanın strukturu. Terapevtik alyans, birgə empirizm", "Hadisənin koqnitiv konseptuallaşdırılması", "Qiymətləndirmə, məqsədlər, psixoloji maarifləndirmə, müalicə planı"]}, {"t": "Modul 2 — Koqnitiv texnikalar", "items": ["Avtomatik fikirlər. Fikir gündəliyi", "Koqnitiv təhriflər. Sokrat dialoqu", "Koqnitiv restrukturizasiya. Aralıq inanclar və qaydalar", "Dərin inanclar. «Düşən ox» texnikası. Davranış eksperimentləri"]}, {"t": "Modul 3 — Davranış texnikaları", "items": ["Davranış aktivasiyası və fəaliyyətin planlaşdırılması", "Ekspozisiya: prinsiplər, iyerarxiya, tipik səhvlər", "Bacarıqlar: problem həlli, assertivlik, relaksasiya və nəfəs", "Ev tapşırıqları, residivin profilaktikası, terapiyanın tamamlanması"]}, {"t": "Modul 4 — KDT protokolları", "items": ["Depressiya", "Panik pozuntusu və aqorafobiya", "Sosial təşviş və generalizə olunmuş təşviş pozuntusu", "Obsessiv-kompulsiv pozuntu: ekspozisiya və reaksiyanın qarşısının alınması", "PTSP: travmaya fokuslanmış KDT və uzadılmış ekspozisiya", "Yuxusuzluq və qida qəbulu pozuntuları — icmal"]}, {"t": "Modul 5 — Müasir istiqamətlər", "items": ["A. Ellisin rasional-emotiv-davranış terapiyası", "C. Yanqın sxem-terapiyası", "Qəbul və məsuliyyət terapiyası (ACT)", "Dialektik davranış terapiyası, şüurluluğa əsaslanan terapiya, şəfqətə fokuslanmış terapiya"]}, {"t": "Modul 6 — Məktəblərin müqayisəsi və inteqrasiya", "items": ["KDT və digər məktəblər: loqoterapiya, şəxsiyyətə yönəlmiş (rekonstruktiv) psixoterapiya, kliyentə mərkəzləşmiş terapiya — fərq nədədir", "Hadisələrin təhlili, yekun attestasiya, superviziyaya keçid"]}, {"t": "Superviziya · 6 ay (həftədə 1 dəfə)", "items": ["Öz hadisələriniz üzrə həftəlik superviziya sessiyaları (material anonimləşdirilir, təhlil qrupda aparılır) · 24 sessiya"]}],
         doc: { t: 'Beynəlxalq sertifikat', d: '' },
         price: {
           rows: [['Aylıq ödəniş', '300 AZN × 3 ay'], ['Birdəfəlik ödəniş (3 ay təhsil + 6 ay superviziya)', '800 AZN']],
@@ -607,19 +607,19 @@ export const PROGRAMS = {
         faq: []
       },
       en: {
-        title: 'Cognitive Behavioural Therapy (CBT)',
-        lead: 'Foundations of cognitive behavioural therapy and its practical use.',
-        forWhom: [],
+        title: "Cognitive Behavioural Therapy",
+        lead: "Foundations of cognitive behavioural therapy (CBT): the model, techniques, protocols and modern approaches — with practice in every class.",
+        forWhom: ["Psychologists, psychotherapists and physicians", "Psychology students and early-career specialists", "Those who want a structured method for working with anxiety and depression"],
         teachers: [['Kenan Ragimov', 'leads the programme']],
         facts: [
           ['Duration', '3 months of training + 6 months of group supervision'],
-          ['Volume', 'Supervision: weekly, 6 months'],
-          ['Format', ''],
+          ["Volume", "48 hours: 2 classes a week, 2 hours each + 24 supervision sessions"],
+          ["Format", "In person or online"],
           ['Start', 'Enrolment is open'],
           ['Document', 'International certificate']
         ],
-        includes: [],
-        program: [],
+        includes: ["24 classes: theory, demonstration and practice in pairs", "Worksheets: thought record, case conceptualisation, exposure hierarchy", "6 months of group supervision on your own cases", "Assessment at the end of the programme"],
+        program: [{"t": "Module 1 — Foundations of CBT", "items": ["History of CBT and its three “waves”. A. Beck’s cognitive model and A. Ellis’s ABC model", "Structure of therapy and of a session. Therapeutic alliance, collaborative empiricism", "Cognitive case conceptualisation", "Assessment, goals, psychoeducation, treatment plan"]}, {"t": "Module 2 — Cognitive techniques", "items": ["Automatic thoughts. Thought record", "Cognitive distortions. Socratic dialogue", "Cognitive restructuring. Intermediate beliefs and rules", "Core beliefs. The downward arrow. Behavioural experiments"]}, {"t": "Module 3 — Behavioural techniques", "items": ["Behavioural activation and activity scheduling", "Exposure: principles, hierarchy, common mistakes", "Skills: problem solving, assertiveness, relaxation and breathing", "Homework, relapse prevention, ending therapy"]}, {"t": "Module 4 — CBT protocols", "items": ["Depression", "Panic disorder and agoraphobia", "Social anxiety and generalised anxiety disorder", "Obsessive-compulsive disorder: exposure and response prevention", "PTSD: trauma-focused CBT and prolonged exposure", "Insomnia and eating disorders — an overview"]}, {"t": "Module 5 — Modern approaches", "items": ["A. Ellis’s rational emotive behaviour therapy", "J. Young’s schema therapy", "Acceptance and commitment therapy (ACT)", "Dialectical behaviour therapy, mindfulness-based cognitive therapy, compassion-focused therapy"]}, {"t": "Module 6 — Comparing schools and integration", "items": ["CBT and other schools: logotherapy, personality-oriented (reconstructive) psychotherapy, client-centred therapy — what differs", "Case reviews, final assessment, transition to supervision"]}, {"t": "Supervision · 6 months (weekly)", "items": ["Weekly supervision sessions on your own cases (material is anonymised and discussed in the group) · 24 sessions"]}],
         doc: { t: 'International certificate', d: '' },
         price: {
           rows: [['Monthly', '300 AZN × 3 months'], ['Paid at once (3 months of training + 6 months of supervision)', '800 AZN']],

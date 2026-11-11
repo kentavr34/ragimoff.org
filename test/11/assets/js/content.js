@@ -314,3 +314,11 @@ const PP = {
   en: { back: 'All programmes', long: 'Long programme', short: 'Short programme', forWhom: 'Who it is for', teachers: 'Who teaches', includes: 'What is included', program: 'Curriculum', doc: 'Document', faq: 'Questions and answers', price: 'Price', reg: 'Register', sample: 'Sample document', other: 'Other programmes' },
 };
 for (const l of Object.keys(PP)) T[l].pp = PP[l];
+
+/* ── ENUREZ_1112: ночной энурез — своя цена (слово владельца 11.11): первичная консультация 50 AZN, курс лечения 500 AZN, ведёт Кенан Рагимов ── */
+const ENU = {
+  ru: { l: 'Что нужно', o: [['first', 'Первичная консультация'], ['course', 'Курс лечения']], sub: { first: 'первичная консультация · Кенан Рагимов', course: 'курс лечения · Кенан Рагимов' } },
+  az: { l: 'Nə lazımdır', o: [['first', 'İlkin konsultasiya'], ['course', 'Müalicə kursu']], sub: { first: 'ilkin konsultasiya · Kənan Rəhimov', course: 'müalicə kursu · Kənan Rəhimov' } },
+  en: { l: 'What you need', o: [['first', 'First consultation'], ['course', 'Treatment course']], sub: { first: 'first consultation · Kenan Ragimov', course: 'treatment course · Kenan Ragimov' } },
+};
+for (const l of Object.keys(ENU)) T[l].reg.enu = ENU[l];

@@ -3,9 +3,10 @@
 const API = 'https://api.ragimoff.org';
 const WA = 'https://wa.me/994702200376';
 const RATE = { one: { online: 100, offline: 150 }, both: { online: 150, offline: 200 } };          /* AZN, слово владельца 08.11 */
+const ENU = 3, ENU_P = { first: 50, course: 500 };                                                    /* ночной энурез (тема № 4): слово владельца 11.11 */
 const PROG = ['Общая психология', 'Клиническая психология', 'Практикум по психотерапии', 'short-psixodiaqnostika', 'short-kdt', 'short-psixoanaliz', 'short-aile'];   /* коды сервера оплаты */
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const st = { kind: 'consult', who: 'kenan', fmt: 'online', topic: 0, prog: 0, hours: 20, btopic: [0], goal: 0, count: 1, blang: 0, place: 0 };
+const st = { kind: 'consult', who: 'kenan', fmt: 'online', topic: 0, prog: 0, hours: 20, enu: 'first', btopic: [0], goal: 0, count: 1, blang: 0, place: 0 };
 let T = null, lang = 'ru', box = null;
 
 const chips = (name, opts, cur, multi) => `<div class="chips" role="group">${opts.map((o, i) => { const v = Array.isArray(o) ? o[0] : i, l = Array.isArray(o) ? o[1] : o; const on = multi ? cur.includes(v) : cur === v;
@@ -15,6 +16,7 @@ const row = (label, html) => `<div class="frow"><span class="frow__l">${esc(labe
 
 function price() {
   const r = T.reg, who = st.who === 'both' ? 'both' : 'one';
+  if (st.kind === 'consult' && st.topic === ENU) return { main: ENU_P[st.enu] + ' AZN', sub: r.enu.sub[st.enu] };
   if (st.kind === 'consult') return { main: RATE[who][st.fmt] + ' AZN', sub: r.perHour };
   if (st.kind === 'ind') return { main: (RATE[who][st.fmt] * st.hours).toLocaleString('ru-RU').replace(/\s/g, ' ') + ' AZN', sub: st.hours + ' × ' + RATE[who][st.fmt] + ' AZN' };
   if (st.kind === 'edu') return { main: T.edu.p[st.prog].price, sub: T.edu.p[st.prog].m.join(' · ') };
@@ -27,7 +29,7 @@ function html() {
   const head = `<div class="reg__kinds" role="tablist">${r.kinds.map(x => `<button type="button" role="tab" class="reg__kind${x[0] === k ? ' is-on' : ''}" data-set="kind" data-v="${x[0]}" aria-selected="${x[0] === k}">${esc(x[1])}</button>`).join('')}</div>`;
   const who = row(r.who.l, chips('who', r.who.o, st.who)), fmt = row(r.fmt.l, chips('fmt', r.fmt.o, st.fmt));
   let body = '';
-  if (k === 'consult') body = who + fmt + row(r.topic, chips('topic', topics, st.topic)) + (st.topic === topics.length - 1 ? field('other', r.f.other, 'text', 'maxlength="160"') : '');
+  if (k === 'consult') body = row(r.topic, chips('topic', topics, st.topic)) + (st.topic === ENU ? row(r.enu.l, chips('enu', r.enu.o, st.enu)) : who + fmt) + (st.topic === topics.length - 1 ? field('other', r.f.other, 'text', 'maxlength="160"') : '');
   if (k === 'edu') body = row(r.prog, chips('prog', T.edu.p.map(p => p.t), st.prog)) + files();
   if (k === 'ind') body = who + fmt + row(r.hours.l, `<div class="step"><button type="button" class="step__b" data-step="-5" aria-label="−5">−</button><output class="step__v">${st.hours}</output><button type="button" class="step__b" data-step="5" aria-label="+5">+</button><span class="step__h">${esc(r.hours.min)}</span></div>`) + files();
   if (k === 'b2b') body = field('company', r.f.company, 'text', 'autocomplete="organization" maxlength="120"') + row(r.b2b.topic, chips('btopic', T.corp.t.concat([r.b2b.other]), st.btopic, true))
@@ -57,7 +59,7 @@ async function submit(form) {
   if (!ok) { say(r.req, true); return; }
   const lab = (o, v) => { const x = o.find(a => a[0] === v); return x ? x[1] : ''; };
   let service = '', note = '';
-  if (k === 'consult') { service = `consult|${st.who}|${st.fmt}`; const tp = st.topic < T.cons.t.length ? T.cons.t[st.topic][0] : r.topicOther + ': ' + g('other'); note = [lab(r.who.o, st.who), lab(r.fmt.o, st.fmt), tp].join(' · '); }
+  if (k === 'consult') { const en = st.topic === ENU; service = en ? 'consult|kenan|enurez-' + st.enu : `consult|${st.who}|${st.fmt}`; const tp = st.topic < T.cons.t.length ? T.cons.t[st.topic][0] : r.topicOther + ': ' + g('other'); note = (en ? [lab(r.who.o, 'kenan'), tp, lab(r.enu.o, st.enu)] : [lab(r.who.o, st.who), lab(r.fmt.o, st.fmt), tp]).join(' · '); }
   if (k === 'edu') { service = PROG[st.prog]; note = T.edu.p[st.prog].t; }
   if (k === 'ind') { const rate = RATE[st.who === 'both' ? 'both' : 'one'][st.fmt]; service = `individual|${st.who}|${st.fmt}|${st.hours}`; note = [lab(r.who.o, st.who), lab(r.fmt.o, st.fmt), `${st.hours} × ${rate} = ${st.hours * rate} AZN`].join(' · '); }
   if (k === 'b2b') { service = 'b2b-request'; const all = T.corp.t.concat([r.b2b.other]); note = [g('company'), r.b2b.topic + ': ' + st.btopic.map(i => all[i]).join(', '), r.b2b.goal.l + ': ' + r.b2b.goal.o[st.goal], r.b2b.count.l + ': ' + r.b2b.count.o[st.count], r.b2b.lang.l + ': ' + r.b2b.lang.o[st.blang], r.b2b.place.l + ': ' + r.b2b.place.o[st.place]].join(' · '); }
@@ -71,7 +73,7 @@ async function submit(form) {
   if (!reg) { say(r.err, true, true); return; }
   if (k === 'b2b' || !reg.prices) { say(r.ok); return; }
   try { localStorage.setItem('rgm_pay_lang', lang); } catch (e) {}
-  const data = { name: payload.fname + ' ' + payload.lname, phone: payload.phone, program: service, folder: reg.folder || '' };
+  const data = { name: payload.fname + ' ' + payload.lname, phone: payload.phone, program: service, folder: reg.folder || '', lang };
   const go = (mode, b) => { if (b) b.disabled = true; data.mode = mode;
     return fetch(API + '/api/billing/epoint/training', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(x => x.json())
       .then(d => { if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; } throw new Error('pay'); }).catch(() => { if (b) b.disabled = false; say(r.err, true, true); }); };
