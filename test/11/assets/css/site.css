@@ -596,3 +596,48 @@ main, .foot { position: relative; z-index: 1; }
 
 /* подпись героя на телефоне: крупнее (с запасом по ширине на трёх языках) и ближе к кнопкам — зазоры «имя → подпись» и «подпись → кнопки» равны (владелец, 11.11) */
 @media (max-width: 760px) { .cine__school { font-size: clamp(15px, 5.1vw, 22px); letter-spacing: .12em; margin-top: 19px; line-height: 1; display: block; } .cine__btns { margin-top: 20px; } }
+
+/* ═══ книги: закреплённый блок, прокрутка листает по одной; одна кнопка; слайд на одном экране (владелец, 11.11 вечер) ═══ */
+.sec--bk { padding: 0; }
+.bk__stick { position: sticky; top: 0; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: var(--hs) 0 var(--r2); overflow: hidden; }
+.bk__stick .sh { margin-bottom: calc(var(--h) * .5); }
+.shelf__clip { overflow: hidden; }
+.shelf { overflow: visible; scroll-snap-type: none; transform: translate3d(var(--bx, 0%), 0, 0); will-change: transform; }
+.bk { scroll-snap-align: none; } .bk__btns .btn { min-width: 220px; }
+.shelf__lib { margin-top: var(--r3); max-width: 62ch; }
+.bk__obj--txt { display: grid; place-items: center; aspect-ratio: 5 / 7; width: var(--w); background: linear-gradient(160deg, #141a2a, #07090e 70%); border: 1px solid rgba(201, 169, 97, .5); border-radius: 3px 6px 6px 3px; }
+.bk__obj--txt::before, .bk__obj--txt::after { display: none; }
+.bk__ct { display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 86%; padding: 0 10%; text-align: center; }
+.bk__ct i { font: 500 calc(var(--w) * .042)/1.2 var(--f-sub); letter-spacing: .28em; text-transform: uppercase; color: #C9A961; font-style: normal; }
+.bk__ct b { font: 400 calc(var(--w) * .12)/1.08 var(--f-display); color: #F2EDE3; text-transform: uppercase; letter-spacing: .04em; }
+.bk__ct u { font: 400 calc(var(--w) * .1)/1 var(--f-hand); color: #E6CE93; text-decoration: none; }
+@media (max-width: 760px) {
+  .bk__stick { padding: 70px 0 var(--r1); justify-content: flex-start; } .bk__stick .sh { margin-bottom: var(--r1); } .bk__stick .sh__s { margin-top: 8px; }
+  .bk__obj { --w: min(34vw, 22svh); } .bk__btns { flex-direction: row; } .bk__btns .btn { width: 100%; min-width: 0; }
+  .shelf__nav { margin-top: 10px; }
+}
+
+/* ═══ КРУГ 05 ═══ */
+:root { --s1: calc(var(--u) * .5); --s2: var(--u); --s3: calc(var(--u) * 1.5); }
+/* закреплённые панели: высота по содержимому, место на экране задаёт скрипт (по центру) */
+.rib__stick, .bk__stick { min-height: 0; justify-content: flex-start; padding: 0; }
+.bk__stick .sh, .rib__stick .sh { margin-bottom: var(--h); } .bk__stick .sh__s { margin-top: calc(var(--h) * .5); }
+.sec--bk, .sec--rib { margin-top: var(--hs); }
+@media (max-width: 760px) { .bk__stick, .rib__stick { padding: 0; } .bk__stick .sh, .rib__stick .sh { margin-bottom: var(--r2); } }
+/* документы: кнопка галереи над рядом, ряд сразу под лентой */
+.proofwrap { margin-top: var(--r3); } .proofs { margin-top: var(--r1); } .proofs__top { display: flex; justify-content: flex-end; } .shelf__lib { margin-top: var(--r3); }
+@media (max-width: 760px) { .proofs__top { justify-content: center; } }
+/* карточка программы: строка условий не обрезается, зазоры из шкалы */
+.pc { gap: var(--s3); } .pc__d { min-height: 0; } .pc__m { gap: var(--s1); min-height: 0; } .pc__m span { white-space: normal; overflow: visible; }
+/* мифы: ссылка сразу под текстом — внутри карточки нет дыры */
+.mth { gap: var(--s2); } .mth__go { margin-top: 0; } .mth__k { min-height: 2.6em; }
+@media (max-width: 760px) { .mth__k { min-height: 0; } .mth { gap: var(--s1); } .seg--lang button { min-width: var(--tap); } .head { gap: var(--s1); } .head__r { gap: var(--s1); } }
+@media (max-width: 359px) { .seg--lang button { min-width: 34px; } }
+/* герой на телефоне: зазоры от имени до подписи и от подписи до кнопок равны на глаз */
+@media (max-width: 760px) { .cine__school { margin-top: var(--s3); } .cine__btns { margin-top: calc(var(--s3) + var(--s2)); } }
+/* руководители: год — отдельной колонкой одной ширины; висячие слова */
+.lead__y { grid-template-columns: 9.5em minmax(0, 1fr); } .lead__y span, .lead__l span, .topic__s, .film__d, .corp__lead { text-wrap: pretty; }
+@media (max-width: 760px) { .lead__y { grid-template-columns: 1fr; } .lead__l li { grid-template-columns: 28px minmax(0, 1fr); } .lead__l b { font-size: 22px; } }
+.facts li::before { top: 50%; }
+
+@media (max-width: 760px) { .bk__stick .sh, .rib__stick .sh { margin-bottom: var(--h); } }

@@ -1,6 +1,6 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS } from './content.js?v=11111853';
-import { initLight } from './light.js?v=11111853';
+import { T, LINKS } from './content.js?v=11111933';
+import { initLight } from './light.js?v=11111933';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -42,10 +42,12 @@ function render() {
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
   const cov = ['klinik', 'freud', 'phoenix', 'guilt', 'pandemic'];
-  $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${cov[i]}-${lang}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
-    <div class="bk__txt"><p class="bk__k rv">${esc(b.k)}</p><h3 class="bk__t rv" style="--d:.06s">${esc(b.t)}</h3><p class="bk__a rv" style="--d:.1s">${esc(b.a)}</p>
-    <ul class="bk__f">${b.f.map((f, j) => `<li class="rv" style="--d:${.14 + j * .08}s"><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
-    <div class="bk__btns rv" style="--d:.4s"><a class="btn" href="${L.books[i]}">${esc(t.books.read)}</a><a class="btn btn--line" href="${L.shop}">${esc(t.books.order)}</a></div></div></article>`).join('');
+  const bkAll = t.books.b.map((b, i) => ({ b, href: L.books[i], img: `assets/img/book-${cov[i]}-${lang}.jpg` })).concat(t.books.soon ? [{ b: t.books.soon, href: L.shop, img: '' }] : []);
+  $('#shelf').innerHTML = bkAll.map(({ b, href, img }) => `<article class="bk"><div class="bk__scene"><a class="bk__obj${img ? '' : ' bk__obj--txt'}" href="${href}" aria-label="${esc(b.t)}">${img ? `<img src="${img}" alt="${esc(b.t)}" loading="lazy">` : `<span class="bk__ct"><i>${esc(b.a)}</i><b>${esc(b.t)}</b><u>Doctor Ragimoff</u></span>`}</a></div>
+    <div class="bk__txt">${b.k ? `<p class="bk__k">${esc(b.k)}</p>` : ''}<h3 class="bk__t">${esc(b.t)}</h3><p class="bk__a">${esc(b.a)}</p>
+    <ul class="bk__f">${b.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
+    <div class="bk__btns"><a class="btn" href="${href}">${esc(t.books.read)}</a></div></div></article>`).join('');
+  bkMeasure(); bkScroll();
 
   $('#progs').innerHTML = t.edu.p.map((p, i) => `<article class="pc"><span class="pc__n">0${i + 1} / 07</span><h3 class="pc__t">${esc(p.t)}</h3><p class="pc__d">${esc(p.d)}</p><div class="pc__m">${p.m.map(m => `<span>${esc(m)}</span>`).join('')}</div><p class="pc__p">${esc(p.price)}</p><a class="btn btn--line btn--sm" href="${L.prog[i]}">${esc(t.edu.more)} ${ARR}</a></article>`).join('');
 
@@ -59,7 +61,6 @@ function render() {
   const fc = t.foot.cols || [], fl = L.foot || [];
   $('#footCols').innerHTML = fc.map((c, i) => `<div class="foot__col"><h3>${esc(c.h)}</h3><ul>${c.l.map((x, j) => { const u = (fl[i] || [])[j]; return `<li>${u ? `<a href="${u}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${esc(x)}</a>` : esc(x)}</li>`; }).join('')}</ul></div>`).join('');
   $('#footCopy').innerHTML = (t.foot.copy || []).map(x => `<span>${esc(x)}</span>`).join('');
-  bkPos();
   const kb = $('#corpBtn'); kb.innerHTML = esc(t.corp.cta) + ' ' + ARR; kb.href = L.corp;
 
   $('#myths').innerHTML = t.enl.m.map((m, i) => `<a class="mth rv" href="${L.myths[i] || L.books[0]}" style="--d:${i * .06}s"><span class="mth__k">${esc(t.enl.myth)} · ${esc(m[0])}</span><span class="mth__q">${esc(m[1])}</span><span class="mth__go">${esc(t.enl.go)} ${ARR}</span></a>`).join('');
@@ -135,8 +136,9 @@ function cineScroll() {
 /* ───────── 4. закреплённая лента программ ───────── */
 const rib = $('[data-rib]'), ribStick = $('.rib__stick', rib), track = $('[data-rib-track]', rib);
 let ribDist = 0, ribCur = 0, ribTarget = 0, ribRaf = 0;
+function stickTop(el) { el.style.top = Math.max(innerWidth < 761 ? 60 : 0, Math.round((innerHeight - el.offsetHeight) / 2)) + 'px'; }
 function ribMeasure() {
-  track.style.setProperty('--x', '0px');
+  track.style.setProperty('--x', '0px'); stickTop(ribStick);
   ribDist = Math.max(0, track.scrollWidth - ribStick.clientWidth);
   rib.style.height = (ribStick.offsetHeight + ribDist * (innerWidth < 761 ? 1.05 : .9)) + 'px';   /* высота = панель + путь ленты: после неё нет пустого экрана */
 }
@@ -149,7 +151,7 @@ function ribLoop() {
   if (ribCur !== ribTarget) ribRaf = requestAnimationFrame(ribLoop);
 }
 function ribScroll() {
-  const r = rib.getBoundingClientRect(), total = rib.offsetHeight - ribStick.offsetHeight, p = total > 0 ? clamp(-r.top / total) : 0;
+  const r = rib.getBoundingClientRect(), total = rib.offsetHeight - ribStick.offsetHeight, p = total > 0 ? clamp((parseFloat(ribStick.style.top) - r.top) / total) : 0;
   ribTarget = p * ribDist; if (!ribRaf) ribRaf = requestAnimationFrame(ribLoop);
 }
 
@@ -167,8 +169,8 @@ function onScroll() {
   $$('.bk__obj').forEach(o => { const r = o.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; const k = clamp(1 - (r.top + r.height / 2) / vh); o.style.setProperty('--ry', (-38 + seg(k, .1, .6) * 22).toFixed(1) + 'deg'); });   /* книга поворачивается к читателю */
   $$('.person__ph img').forEach(im => { const r = im.parentNode.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return; im.style.setProperty('--py', (-(r.top + r.height / 2 - vh / 2) / vh * 7).toFixed(2) + '%'); });
 }
-addEventListener('scroll', onScroll, { passive: true });
-let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { cineLoad(); cineSize(); ribMeasure(); onScroll(); }, 120); });
+addEventListener('scroll', onScroll, { passive: true }); addEventListener('scroll', bkScroll, { passive: true });
+let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { cineLoad(); cineSize(); ribMeasure(); bkMeasure(); bkScroll(); onScroll(); }, 120); });
 
 /* ───────── нажатия ───────── */
 function setMenu(open) { $('#mob').classList.toggle('is-open', open); $('#mob').setAttribute('aria-hidden', String(!open)); $('#burger').setAttribute('aria-expanded', String(open)); document.documentElement.style.overflow = open ? 'hidden' : ''; if (open) head.classList.remove('is-hidden'); head.classList.toggle('is-menu', open); }
@@ -177,11 +179,19 @@ function galShow(i) { if (!GAL.length) return; galI = (i + GAL.length) % GAL.len
 function galClose() { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); }
 addEventListener('keydown', e => { if (!$('#lb').classList.contains('is-open')) return; if (e.key === 'Escape') galClose(); if (e.key === 'ArrowRight') galShow(galI + 1); if (e.key === 'ArrowLeft') galShow(galI - 1); });
 let lbX0 = null; $('#lb').addEventListener('touchstart', e => { lbX0 = e.touches[0].clientX; }, { passive: true }); $('#lb').addEventListener('touchend', e => { if (lbX0 == null) return; const d = e.changedTouches[0].clientX - lbX0; lbX0 = null; if (Math.abs(d) > 40) galShow(galI + (d < 0 ? 1 : -1)); }, { passive: true });
-const shelf = $('#shelf');
-function bkIdx() { return Math.round(shelf.scrollLeft / Math.max(1, shelf.clientWidth)); }
-function bkPos() { const n = shelf.children.length, i = Math.min(n - 1, bkIdx()); $('#bkPos').textContent = n ? String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0') : ''; $('#bkPrev').disabled = i <= 0; $('#bkNext').disabled = i >= n - 1; }
-function bkGo(d) { shelf.scrollTo({ left: (bkIdx() + d) * shelf.clientWidth, behavior: 'smooth' }); }
-let bkT = 0; shelf.addEventListener('scroll', () => { clearTimeout(bkT); bkT = setTimeout(bkPos, 60); }, { passive: true });
+const shelf = $('#shelf'), bkSec = $('[data-bk]'), bkStick = $('.bk__stick');
+let bkI = 0, bkStep = 1;
+function bkMeasure() { const n = shelf.children.length; stickTop(bkStick); bkStep = Math.round(innerHeight * (innerWidth < 761 ? .75 : .6)); bkSec.style.height = (bkStick.offsetHeight + Math.max(0, n - 1) * bkStep) + 'px'; }
+function bkScroll() {                                   /* прокрутка листает книги по одной: большую часть шага книга стоит, переход — в середине */
+  const n = shelf.children.length; if (!n) return;
+  const r = bkSec.getBoundingClientRect(), total = bkSec.offsetHeight - bkStick.offsetHeight, p = total > 0 ? clamp((parseFloat(bkStick.style.top) - r.top) / total) : 0;
+  const x = p * (n - 1), k = Math.floor(x), f = x - k, e = f < .3 ? 0 : f > .7 ? 1 : (f - .3) / .4, pos = Math.min(n - 1, k + e * e * (3 - 2 * e));
+  shelf.style.setProperty('--bx', (-pos * 100).toFixed(2) + '%');
+  const i = Math.round(pos); if (i !== bkI || !$('#bkPos').textContent) { bkI = i; $('#bkPos').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0'); $('#bkPrev').disabled = i <= 0; $('#bkNext').disabled = i >= n - 1; }
+}
+function bkGo(d) { const n = shelf.children.length, i = Math.max(0, Math.min(n - 1, bkI + d)); scrollTo({ top: bkSec.getBoundingClientRect().top + scrollY - parseFloat(bkStick.style.top) + i * bkStep + 2, behavior: 'smooth' }); }
+let bkX0 = null; shelf.addEventListener('touchstart', e => { bkX0 = [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
+shelf.addEventListener('touchend', e => { if (!bkX0) return; const dx = e.changedTouches[0].clientX - bkX0[0], dy = e.changedTouches[0].clientY - bkX0[1]; bkX0 = null; if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) bkGo(dx < 0 ? 1 : -1); }, { passive: true });
 document.addEventListener('click', e => {
   const tog = e.target.closest('.mob__tog'); if (tog) { tog.closest('.mob__g').classList.toggle('is-open'); return; }
   if (e.target.closest('#burger')) { setMenu(!$('#mob').classList.contains('is-open')); return; }

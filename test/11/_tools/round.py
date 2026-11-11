@@ -40,7 +40,7 @@ MEASURE = r"""
     if (s && vis(s)) { const sl = lines(s); if (sl > 2) bad.push(['N6', id + ': подзаголовок в ' + sl + ' строки «' + txt(s) + '»']);
       const gap = s.getBoundingClientRect().top - h.getBoundingClientRect().bottom; if (Math.abs(gap - fs / 2) > 6) bad.push(['10.14', id + ': заголовок→подзаголовок ' + Math.round(gap) + ' px при кегле ' + Math.round(fs) + ' (нужно ' + Math.round(fs / 2) + ')']);
       if (s.getBoundingClientRect().width > h.closest('.sh').getBoundingClientRect().width + 1) bad.push(['10.18', id + ': подзаголовок шире шапки блока']); }
-    const top = h.getBoundingClientRect().top - sec.getBoundingClientRect().top; if (Math.abs(top - fs) > 8 && !sec.matches('.sec--rib')) bad.push(['10.13', id + ': до заголовка ' + Math.round(top) + ' px при кегле ' + Math.round(fs)]);
+    const top = h.getBoundingClientRect().top - sec.getBoundingClientRect().top; if (Math.abs(top - fs) > 8 && !sec.matches('.sec--rib, .sec--bk')) bad.push(['10.13', id + ': до заголовка ' + Math.round(top) + ' px при кегле ' + Math.round(fs)]);
     const sh = h.closest('.sh'), nx = sh && sh.nextElementSibling; if (nx && vis(nx)) { const after = nx.getBoundingClientRect().top - sh.getBoundingClientRect().bottom; if (Math.abs(after - fs) > 8) bad.push(['10.13', id + ': после группы заголовка ' + Math.round(after) + ' px при кегле ' + Math.round(fs)]); }
   });
   // N7 равная высота в рядах
