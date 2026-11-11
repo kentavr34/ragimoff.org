@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#07090E}
+.c{position:relative;width:800px;height:1200px;overflow:hidden;background:#090C14 url(klinik-art.jpg) center/cover;color:#F2EDE3;font-family:"Cormorant Garamond",serif}
+.c::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,14,.72) 0%,rgba(7,9,14,0) 26%,rgba(7,9,14,0) 58%,rgba(7,9,14,.86) 82%,rgba(7,9,14,.96) 100%)}
+.c::after{content:"";position:absolute;inset:26px;border:1px solid rgba(201,169,97,.42)}
+.k,.a,.t,.s,.b{position:absolute;left:0;right:0;text-align:center;z-index:1}
+.k{top:76px;font:600 19px/1 "Cormorant Garamond",serif;letter-spacing:.44em;color:#C9A961;padding-left:.44em}
+.a{top:116px;font:500 36px/1 "Cormorant Garamond",serif;letter-spacing:.2em;padding-left:.2em}
+.t{top:836px;font:500 76px/.98 "Cormorant Garamond",serif;letter-spacing:.04em;padding:0 60px;text-transform:uppercase}
+.t.long{font-size:62px}
+.s{top:1030px;font:400 17px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:#C9A961}
+.b{top:1104px;font:500 19px/1 "Oswald",sans-serif;letter-spacing:.4em;padding-left:.4em}
+.b i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#C9A961;margin-left:4px}
+</style></head><body><div class="c"><div class="k" id="k"></div><div class="a" id="a"></div><div class="t" id="t"></div><div class="s" id="s"></div><div class="b">RAGIMOFF<i></i></div></div>
+<script>
+const D={az:['DƏRSLİK','KƏNAN RƏHİMOV','Klinik<br>Psixiatriya','DSM-5 · XBT-11 · beynəlxalq protokollar'],
+ru:['УЧЕБНИК','КЕНАН РАГИМОВ','Клиническая<br>психиатрия','DSM-5 · МКБ-11 · международные протоколы'],
+en:['TEXTBOOK','KENAN RAGIMOV','Clinical<br>Psychiatry','DSM-5 · ICD-11 · international protocols']};
+const l=new URLSearchParams(location.search).get('l')||'az',d=D[l]; document.documentElement.lang=l;
+k.textContent=d[0];a.textContent=d[1];t.innerHTML=d[2];s.textContent=d[3]; if(l==='ru') t.classList.add('long');
+</script></body></html>

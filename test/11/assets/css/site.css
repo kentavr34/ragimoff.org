@@ -12,6 +12,7 @@
   --u: 8px;
   --r1: calc(var(--u) * 2); --r2: calc(var(--u) * 3); --r3: calc(var(--u) * 5); --r4: calc(var(--u) * 8); --r5: calc(var(--u) * 13);
   --wrap: 1240px; --pad: 20px; --rad: 22px;
+  --hero-top: 58px;
   --e: cubic-bezier(.22, .8, .2, 1);
   --t1: .35s; --t2: .7s; --t3: 1.2s;
 }
@@ -102,12 +103,17 @@ main, .foot { position: relative; z-index: 1; }
 .mob__sub { display: none; flex-direction: column; padding: 6px 0 10px; }
 .mob__g.is-open .mob__sub { display: flex; }
 .mob__sub a { padding: 9px 0; font: 400 17px/1.3 var(--f-read); color: var(--text); }
+@media (max-width: 1320px) { .nav__l { padding: 0 9px; font-size: 13.5px; } .head { gap: var(--r1); } }
 @media (max-width: 1180px) { .nav, .head__cta { display: none; } .burger { display: grid; } }
 
 /* ── 1. ГЕРОЙ ── */
 .cine { position: relative; z-index: 2; height: 280vh; background: #07090E; --milk: #F2EDE3; --gold: #C9A961; --gold-hi: #E6CE93; --on-gold: #0B0D12; --smoke: #B9B3A7; --line: rgba(242, 237, 227, .2); }
 .cine__stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-.cine__frame { position: absolute; left: 50%; top: 50%; width: max(100%, 177.78vh); width: max(100%, 177.78svh); aspect-ratio: 16 / 9; transform: translate(-50%, -50%); }
+/* голова героини не заходит под меню (требование владельца): кадр опущен на высоту шапки и сверху растворяется в фоне — без прямой полосы */
+.cine__frame { --pan: 0%; position: absolute; left: 50%; top: var(--hero-top); width: max(100%, 177.78vh); width: max(100%, 177.78svh); aspect-ratio: 16 / 9; transform: translate(calc(-50% + var(--pan)), 0); transition: transform 1.8s var(--e);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 13%), linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(180deg, transparent 0, #000 13%), linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-composite: intersect; }
+@media (min-width: 761px) { .cine.is-title .cine__frame { --pan: 4.5%; } }   /* на названии кадр уходит вправо — имя не ложится на героиню */
 .cine__img, .cine__cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
 .cine__shade { position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, rgba(7, 9, 14, calc(var(--sh, 0) * .86)) 0%, rgba(7, 9, 14, calc(var(--sh, 0) * .62)) 36%, transparent 64%),
@@ -120,8 +126,7 @@ main, .foot { position: relative; z-index: 1; }
 .cine__caret { width: 1.5px; height: 42%; background: #EAF6FF; animation: caret 1s steps(1) infinite; }
 @keyframes caret { 50% { opacity: 0; } }
 .cine__copy { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-46%); pointer-events: none; }
-.sign { font: 400 clamp(72px, 8.6vw, 150px)/.78 var(--f-hand); color: var(--gold-hi); text-shadow: 0 6px 40px rgba(7, 9, 14, .7); }
-.sign__w { display: block; } .sign__w + .sign__w { padding-left: .34em; }
+.sign { font: 400 clamp(56px, 6vw, 112px)/1 var(--f-hand); color: var(--gold-hi); white-space: nowrap; text-shadow: 0 6px 40px rgba(7, 9, 14, .7); }
 .cine__school { margin-top: var(--r2); font: 500 clamp(22px, 2.5vw, 40px)/1 var(--f-sub); letter-spacing: .14em; text-transform: uppercase; color: var(--milk); white-space: nowrap; }
 .cine__school span { display: inline-block; opacity: 0; transform: translateY(.6em) rotateX(-70deg); transform-origin: 50% 100%; transition: opacity .6s var(--e), transform .9s var(--e); transition-delay: calc(.9s + var(--i) * .035s); }
 .cine.is-title .cine__school span { opacity: 1; transform: none; }
@@ -147,10 +152,12 @@ main, .foot { position: relative; z-index: 1; }
 
 /* ── секции ── */
 .sec { position: relative; padding: var(--r5) 0; }
-.sh { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: var(--r4); }
-.sh__h { margin-top: var(--r1); font: 300 clamp(40px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.015em; color: var(--milk); max-width: 21ch; text-wrap: balance; }
+/* МАТЕМАТИКА ЗАГОЛОВКА (владелец, 11.11): после группы заголовка отступ = размеру шрифта заголовка (--h);
+   внутри группы (метка → заголовок → подзаголовок) — половина размера. Меняется одним числом --h. */
+.sh { --h: clamp(40px, 5.6vw, 88px); display: flex; flex-direction: column; align-items: flex-start; margin-bottom: var(--h); }
+.sh__h { margin-top: calc(var(--h) * .5); font: 300 var(--h)/1 var(--f-display); letter-spacing: -.015em; color: var(--milk); max-width: 21ch; text-wrap: balance; }
 .sh__h em { font-style: italic; color: var(--gold-hi); }
-.sh__s { margin-top: var(--r2); max-width: 66ch; font: 400 clamp(17px, 1.25vw, 19px)/1.6 var(--f-read); color: var(--text); text-wrap: pretty; }
+.sh__s { margin-top: calc(var(--h) * .5); max-width: 66ch; font: 400 clamp(17px, 1.25vw, 19px)/1.6 var(--f-read); color: var(--text); text-wrap: pretty; }
 .sh--row { flex-direction: row; align-items: flex-end; justify-content: space-between; gap: var(--r2); flex-wrap: wrap; }
 .sh__link { font: 400 16px/1.3 var(--f-read); color: var(--gold-hi); border-bottom: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); padding-bottom: 4px; }
 
@@ -197,7 +204,7 @@ main, .foot { position: relative; z-index: 1; }
 /* ── 4. обучение: закреплённая лента — прокрутка открывает программы справа налево ── */
 .sec--rib { padding: 0; }
 .rib__stick { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: var(--r3); overflow: hidden; padding: 76px 0 var(--r2); }
-.sec--rib .sh { margin-bottom: 0; }
+.sec--rib .sh { margin-bottom: 0; --h: clamp(36px, 4.4vw, 68px); }
 .rib__track { display: flex; gap: var(--r2); padding: 0 var(--pad); width: max-content; transform: translate3d(var(--x, 0px), 0, 0); will-change: transform; }
 .pc { width: clamp(280px, 24vw, 350px); display: flex; flex-direction: column; gap: var(--r1); padding: var(--r2); border-radius: var(--rad); background: var(--layer); border: 1px solid var(--line); transform: scale(var(--s, 1)); opacity: var(--o, 1); transition: border-color var(--t1), box-shadow var(--t1); }
 .pc:hover { border-color: color-mix(in srgb, var(--gold) 60%, transparent); box-shadow: 0 30px 60px -36px var(--shadow); }
@@ -272,17 +279,17 @@ main, .foot { position: relative; z-index: 1; }
 @media (max-width: 760px) {
   .cine { height: 260vh; }
   .cine__frame { width: 100vh; width: 100svh; height: 100%; aspect-ratio: auto; }
+  :root { --hero-top: 46px; }
   .cine__shade { background: linear-gradient(0deg, rgba(7, 9, 14, calc(.3 + var(--sh, 0) * .68)) 0%, rgba(7, 9, 14, calc(var(--sh, 0) * .8)) 34%, transparent 62%), linear-gradient(180deg, rgba(7, 9, 14, .5) 0%, transparent 16%); }
   .cine__search { position: fixed; left: 50%; top: 54%; width: 80vw; height: 50px; margin-left: -40vw; padding: 0 18px; gap: 10px; background: rgba(20, 40, 70, .45); }
   .cine__search svg { width: 18px; height: 18px; } .cine__q { font-size: 16px; }
   .cine__copy { top: auto; bottom: 44px; transform: none; }
-  .sign { font-size: clamp(58px, 19vw, 96px); }
+  .sign { font-size: clamp(40px, 12.4vw, 62px); }
   .cine__school { font-size: clamp(19px, 5.6vw, 26px); }
   .cine__btns { margin-top: var(--r2); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .cine__btns a { justify-content: center; min-height: 46px; padding: 0 10px; font-size: 15px; }
   .cine__cue { display: none; }
   .head { padding: 10px var(--pad); } .seg button { min-width: 29px; height: 29px; padding: 0 5px; font-size: 10px; }
-  .sh { margin-bottom: var(--r3); }
   .people { grid-template-columns: 1fr; }
   .bk { grid-template-columns: 1fr; gap: var(--r2); } .bk:nth-child(even) .bk__scene { order: 0; }
   .bk__obj { --w: 46vw; }

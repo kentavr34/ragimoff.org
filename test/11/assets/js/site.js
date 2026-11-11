@@ -26,7 +26,7 @@ function render() {
     { k: 'books', href: '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]) },
     { k: 'edu', href: '#edu', sub: t.edu.p.map((p, i) => [L.prog[i], p.t]).concat([[L.law, t.nav.law]]) },
     { k: 'cons', href: '#cons', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
-    { k: 'corp', href: '#corp', sub: [] }, { k: 'enl', href: '#enl', sub: [] }, { k: 'blog', href: '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
+    { k: 'corp', href: '#corp', sub: [] }, { k: 'blog', href: '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
   ];
   $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
@@ -40,7 +40,7 @@ function render() {
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
   const cov = ['klinik', 'phoenix', 'guilt', 'pandemic', 'freud'];
-  $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${cov[i]}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
+  $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${i === 0 ? 'klinik-' + lang : cov[i]}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
     <div class="bk__txt"><p class="bk__k rv">${esc(b.k)}</p><h3 class="bk__t rv" style="--d:.06s">${esc(b.t)}</h3><p class="bk__a rv" style="--d:.1s">${esc(b.a)}</p>
     <ul class="bk__f">${b.f.map((f, j) => `<li class="rv" style="--d:${.14 + j * .08}s"><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
     <div class="bk__btns rv" style="--d:.4s"><a class="btn" href="${L.books[i]}">${esc(t.books.read)}</a><a class="btn btn--line" href="${L.shop}">${esc(t.books.order)}</a></div></div></article>`).join('');
