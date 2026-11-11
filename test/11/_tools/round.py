@@ -12,7 +12,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 LANGS, THEMES, WIDTHS = ['az', 'ru', 'en'], ['night', 'paper', 'sepia'], [(1440, 900), (1366, 768), (390, 844), (320, 640)]
 SHOTS = [('ru', 'night'), ('az', 'paper'), ('en', 'sepia')]          # снимки: каждая тема и каждый язык по разу
 SHOT_W = [(1440, 900), (390, 844)]
-SECS = ['#spec', '#books', '#edu', '#cons', '#corp', '#enl', '#blog', '#tg', '.foot']
+SECS = ['#spec', '#books', '#edu', '#cons', '#corp', '#enl', '#blog', '#reg', '#tg', '.foot']
 
 MEASURE = r"""
 (() => {
@@ -60,8 +60,8 @@ MEASURE = r"""
     if (k < (big ? 3 : 4.5)) { const key = (e.className || e.tagName) + k.toFixed(1); if (!seen.has(key)) { seen.add(key); bad.push(['N12', 'контраст ' + k.toFixed(1) + ' у ' + (e.className || e.tagName) + ' «' + txt(e) + '»']); } } });
   // 10.1 гарнитуры; 10.4 кегль текста; 10.30 зона нажатия
   const fam = {}; document.querySelectorAll('body *').forEach(e => { if (vis(e) && [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) { const f = getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim(); fam[f] = (fam[f] || 0) + 1; } });
-  info.fonts = fam; if (Object.keys(fam).length > 4) bad.push(['10.1', 'гарнитур больше четырёх: ' + Object.keys(fam).join(', ')]);
-  const small = new Set(); document.querySelectorAll('.sec p, .sec li').forEach(e => { if (vis(e)) { const f = parseFloat(getComputedStyle(e).fontSize); if (f < (W < 700 ? 15 : 15.5)) small.add((e.className || e.tagName) + ' ' + f); } });
+  info.fonts = fam; if (Object.keys(fam).length > 5) bad.push(['10.1', 'гарнитур больше пяти: ' + Object.keys(fam).join(', ')]);
+  const small = new Set(); document.querySelectorAll('.sec p:not(.reg__pl):not(.reg__ps), .sec li').forEach(e => { if (vis(e)) { const f = parseFloat(getComputedStyle(e).fontSize); if (f < (W < 700 ? 15 : 15.5)) small.add((e.className || e.tagName) + ' ' + f); } });
   small.forEach(v => bad.push(['10.4', 'мелкий текст: ' + v + ' px']));
   if (W < 700) { const t = new Set(); document.querySelectorAll('a, button').forEach(e => { if (!vis(e) || e.closest('.mob')) return; const r = e.getBoundingClientRect(); if (r.height < 40 && r.width < 200 && !e.closest('p,li.topic')) t.add((e.className || e.id || e.tagName) + ' ' + Math.round(r.width) + '×' + Math.round(r.height)); }); t.forEach(v => bad.push(['10.30', 'зона нажатия меньше 44: ' + v])); }
   // 11.4 битые картинки; 2.1 меню

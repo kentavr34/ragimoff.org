@@ -641,3 +641,49 @@ main, .foot { position: relative; z-index: 1; }
 .facts li::before { top: 50%; }
 
 @media (max-width: 760px) { .bk__stick .sh, .rib__stick .sh { margin-bottom: var(--h); } }
+
+/* ═══ форма записи: одна форма, выбор нажатием, всё выбрано по умолчанию (владелец, 11.11 вечер) ═══ */
+.reg { max-width: 1080px; margin: 0 auto; }
+.reg__kinds { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s2); }
+.reg__kind { min-height: var(--btn-h); padding: 0 var(--s2); border-radius: 99px; border: 1px solid var(--line); background: var(--layer); color: var(--text); font: 600 15px/1.15 var(--f-sub); transition: background var(--t1), color var(--t1), border-color var(--t1); }
+.reg__kind:hover { border-color: color-mix(in srgb, var(--gold) 60%, transparent); } .reg__kind.is-on { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+.reg__f { margin-top: var(--r2); display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: var(--r2); align-items: start; }
+.reg__main, .reg__side { padding: var(--r2); border-radius: var(--rad); background: var(--layer); border: 1px solid var(--line); display: flex; flex-direction: column; gap: var(--r1); }
+.reg__side { position: sticky; top: 90px; border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.frow { display: flex; flex-direction: column; gap: var(--s2); } .frow__l, .fld > span { font: 600 12.5px/1.3 var(--f-sub); letter-spacing: .14em; text-transform: uppercase; color: var(--smoke); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.chip { min-height: var(--tap); padding: 0 var(--s3); border-radius: 99px; border: 1px solid var(--line); color: var(--text); font: 500 15px/1.2 var(--f-sub); text-align: left; transition: background var(--t1), color var(--t1), border-color var(--t1); }
+.chip:hover { border-color: color-mix(in srgb, var(--gold) 60%, transparent); } .chip.is-on { background: color-mix(in srgb, var(--gold) 18%, transparent); border-color: var(--gold); color: var(--milk); }
+.reg__me { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s3); padding-top: var(--r1); border-top: 1px solid var(--line); }
+.fld { display: flex; flex-direction: column; gap: var(--s1); min-width: 0; }
+.inp { width: 100%; min-height: var(--btn-h-sm); padding: 0 var(--s3); border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--milk); font: 400 17px/1.2 var(--f-read); transition: border-color var(--t1); }
+.inp:focus { outline: none; border-color: var(--gold); } .inp.is-bad { border-color: #C0563F; } .inp[type="file"] { padding: 10px var(--s3); font-size: 14px; font-family: var(--f-sub); color: var(--text); }
+.reg__files { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); } .fld--file > span { letter-spacing: .04em; text-transform: none; font-weight: 500; font-size: 14px; }
+.step { display: inline-flex; align-items: center; gap: var(--s3); } .step__b { width: var(--tap); height: var(--tap); border-radius: 50%; border: 1px solid var(--line); color: var(--milk); font: 400 22px/1 var(--f-sub); }
+.step__b:hover { border-color: var(--gold); } .step__v { min-width: 2.2em; text-align: center; font: 400 30px/1 var(--f-display); color: var(--milk); font-variant-numeric: lining-nums tabular-nums; } .step__h { font: 400 14px/1.3 var(--f-sub); color: var(--smoke); }
+.reg__pl { font: 600 12.5px/1.3 var(--f-sub); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.reg__p { font: 400 clamp(30px, 3vw, 44px)/1.05 var(--f-display); color: var(--milk); font-variant-numeric: lining-nums; } .reg__ps { font: 400 15px/1.4 var(--f-sub); color: var(--smoke); margin-top: calc(var(--s2) * -1); }
+.reg__note { font: 400 16px/1.5 var(--f-read); color: var(--text); padding-top: var(--r1); border-top: 1px solid var(--line); } .reg__go { width: 100%; white-space: normal; text-align: center; padding: var(--s2) var(--s3); line-height: 1.2; }
+.reg__pay { display: flex; flex-direction: column; gap: var(--s2); } .reg__pay .btn { white-space: normal; padding: var(--s2) var(--s3); line-height: 1.2; }
+.reg__msg { font: 500 15px/1.45 var(--f-sub); color: var(--gold-hi); } .reg__msg.is-err { color: #D0705A; } .reg__msg a { text-decoration: underline; }
+@media (max-width: 900px) { .reg__f { grid-template-columns: 1fr; } .reg__side { position: static; } }
+@media (max-width: 760px) { .reg__kinds { grid-template-columns: 1fr 1fr; } .reg__kind { font-size: 14px; min-height: var(--btn-h-sm); } .reg__me, .reg__files { grid-template-columns: 1fr; } .reg__main, .reg__side { padding: var(--r1); } .chip { padding: 0 var(--s2); font-size: 14.5px; } }
+
+/* ═══ подпись героя — как на действующем сайте: узкий жирный шрифт, крупнее; текст на фото выше, до кнопок — воздух (владелец, 11.11) ═══ */
+.cine__school { font-family: "Oswald", "Inter", sans-serif; font-weight: 600; font-size: clamp(28px, 3.1vw, 50px); letter-spacing: .045em; line-height: 1.05; margin-top: var(--s2); }
+.cine__btns { margin-top: var(--r2); }
+@media (max-width: 760px) {
+  .cine__copy { bottom: clamp(72px, 12svh, 120px); }
+  .cine__school { font-size: clamp(26px, 8.2vw, 40px); letter-spacing: .04em; margin-top: var(--s2); }
+  .cine__btns { margin-top: calc(var(--r1) + var(--s2)); }
+}
+
+/* ═══ квалификация: четыре одинаковых модуля в одну линию, текст по одной вертикали (владелец, 11.11) ═══ */
+.lead { max-width: none; padding-left: 0; border-left: 0; margin-top: var(--r4); }
+.lead__h { text-align: left; margin-bottom: var(--r1); }
+.lead__g { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--r2); }
+.qual { display: flex; flex-direction: column; gap: var(--s2); padding-left: var(--r1); border-left: 2px solid var(--gold); }
+.qual b { font: 400 clamp(21px, 1.7vw, 26px)/1.15 var(--f-display); color: var(--gold-hi); font-variant-numeric: lining-nums; }
+.qual span { font: 400 17px/1.55 var(--f-read); color: var(--text); text-wrap: pretty; }
+@media (max-width: 1100px) { .lead__g { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .lead { margin-top: var(--r3); padding-left: 0; } .lead__g { grid-template-columns: 1fr; gap: var(--r1); } .qual { padding-left: var(--r1); } .qual b { font-size: 21px; } }

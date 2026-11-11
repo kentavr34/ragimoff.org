@@ -1,6 +1,7 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS } from './content.js?v=11111933';
-import { initLight } from './light.js?v=11111933';
+import { T, LINKS } from './content.js?v=11112004';
+import { regRender, regOpen } from './reg.js?v=11112004';
+import { initLight } from './light.js?v=11112004';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -32,7 +33,7 @@ function render() {
   $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#headCta').textContent = t.nav.cta;
-  $('#mobIn').insertAdjacentHTML('afterbegin', `<a class="btn mob__cta" href="#cons">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
+  $('#mobIn').insertAdjacentHTML('afterbegin', `<a class="btn mob__cta" href="#reg" data-reg="consult">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
 
   $('#school').innerHTML = [...t.hero.school].map((ch, i) => ch === ' ' ? ' ' : `<span style="--i:${i}">${esc(ch)}</span>`).join('');   /* строгая строка встаёт по буквам */
   $('#heroBtns').innerHTML = ['#cons', '#edu', '#books', '#corp'].map((h, i) => `<a href="${h}" style="--i:${i}">${esc(t.hero.b[i])}</a>`).join('');
@@ -53,7 +54,7 @@ function render() {
 
   $('#topics').innerHTML = t.cons.t.map((x, i) => `<li class="topic rv" style="--d:${i * .05}s"><a href="${L.cons[i]}"><span class="topic__n">0${i + 1}</span><span class="topic__t">${esc(x[0])}</span><span class="topic__s">${esc(x[1])}</span><span class="topic__a arrow">→</span></a></li>`).join('')
     + `<li class="topic topic--other rv"><a href="${L.wa}" target="_blank" rel="noopener"><span class="topic__n">+</span><span class="topic__t">${esc(t.cons.other[0])}</span><span class="topic__s">${esc(t.cons.other[1])}</span><span class="topic__a arrow">→</span></a></li>`;   /* клиент может обратиться с любой темой */
-  const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = L.form; cb.removeAttribute('target'); $('#fab').href = L.wa;
+  const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = '#reg'; cb.dataset.reg = 'consult'; cb.removeAttribute('target'); $('#fab').href = L.wa;
   const wb = $('#consWa'); wb.textContent = t.cons.wa; wb.href = L.wa;
 
   $('#corpTags').innerHTML = t.corp.t.map(x => `<li>${esc(x)}</li>`).join('');
@@ -61,7 +62,7 @@ function render() {
   const fc = t.foot.cols || [], fl = L.foot || [];
   $('#footCols').innerHTML = fc.map((c, i) => `<div class="foot__col"><h3>${esc(c.h)}</h3><ul>${c.l.map((x, j) => { const u = (fl[i] || [])[j]; return `<li>${u ? `<a href="${u}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${esc(x)}</a>` : esc(x)}</li>`; }).join('')}</ul></div>`).join('');
   $('#footCopy').innerHTML = (t.foot.copy || []).map(x => `<span>${esc(x)}</span>`).join('');
-  const kb = $('#corpBtn'); kb.innerHTML = esc(t.corp.cta) + ' ' + ARR; kb.href = L.corp;
+  const kb = $('#corpBtn'); kb.innerHTML = esc(t.corp.cta) + ' ' + ARR; kb.href = '#reg'; kb.dataset.reg = 'b2b';
 
   $('#myths').innerHTML = t.enl.m.map((m, i) => `<a class="mth rv" href="${L.myths[i] || L.books[0]}" style="--d:${i * .06}s"><span class="mth__k">${esc(t.enl.myth)} · ${esc(m[0])}</span><span class="mth__q">${esc(m[1])}</span><span class="mth__go">${esc(t.enl.go)} ${ARR}</span></a>`).join('');
 
@@ -71,11 +72,12 @@ function render() {
   GAL = (t.edu.gal || []).map(g => ({ src: 'assets/img/proof/' + g[0] + '.jpg', cap: g[1] }));
   $('#proofs').innerHTML = GAL.slice(0, 3).map((g, i) => `<button type="button" class="proof rv" data-gal="${i}" style="--d:${i * .08}s"><span class="proof__i"><img src="${g.src}" alt="${esc(g.cap)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(g.cap)}</span></button>`).join('');
   $('#galBtn').textContent = t.edu.galBtn + ' · ' + GAL.length;
-  const ld = t.spec.lead; $('#lead').innerHTML = ld ? `<h3 class="lead__h">${esc(ld.h)}</h3><ol class="lead__l">${ld.items.map(x => `<li><b>${esc(x[0])}</b><span>${esc(x[1])}</span></li>`).join('')}</ol><p class="lead__y"><b>${esc(ld.study[0])}</b><span>${esc(ld.study[1])}</span></p><p class="lead__y"><b>${esc(ld.now[0])}</b><span>${esc(ld.now[1])}</span></p>` : '';
+  const ld = t.spec.lead; $('#lead').innerHTML = ld ? `<h3 class="lead__h">${esc(ld.h)}</h3><div class="lead__g">${ld.items.map(x => `<div class="qual"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('')}</div>` : '';
   if (t.a11y && t.a11y.prev) { $('#bkPrev').setAttribute('aria-label', t.a11y.prev); $('#bkNext').setAttribute('aria-label', t.a11y.next); $('#lbPrev').setAttribute('aria-label', t.a11y.prev); $('#lbNext').setAttribute('aria-label', t.a11y.next); $('#lbX').setAttribute('aria-label', t.a11y.close); }
   const fm = t.cons.film; $('#film').innerHTML = fm ? `${vid(fm.id, fm.t)}<div class="film__b"><h3 class="film__t">${esc(fm.t)}</h3><p class="film__d">${esc(fm.d)}</p>${fm.cta ? `<button type="button" class="btn btn--line film__go">${esc(fm.cta)}</button>` : ''}</div>` : '';
   const ax = t.a11y; if (ax) { document.title = ax.title; $('#nav').setAttribute('aria-label', ax.menu); $('#burger').setAttribute('aria-label', ax.menu); $('#themes').setAttribute('aria-label', ax.theme); $('#langs').setAttribute('aria-label', ax.lang); $$('[data-theme-btn]').forEach(b => b.setAttribute('aria-label', ax[b.dataset.themeBtn])); }
   $('#corpVids').innerHTML = (t.corp.vids || []).map(v => `<figure class="vids__i rv">${vid(v[1], v[0])}<figcaption>${esc(v[0])}</figcaption></figure>`).join('');
+  regRender(t, lang);
   const ea = $('#enlAll'); ea.innerHTML = esc(t.enl.more) + ' ' + ARR; ea.href = L.books[0];
 
   $$('[data-lang-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.langBtn === lang)));
@@ -208,6 +210,7 @@ document.addEventListener('click', e => {
   if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
   if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); if (light) light.setTheme(); render(); return; }
   const lg = e.target.closest('[data-lang-btn]'); if (lg) { lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
+  const rg = e.target.closest('[data-reg]'); if (rg) regOpen(rg.dataset.reg);
   const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - (el.matches('.sec--rib') ? 0 : 10), behavior: 'smooth' }); } }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
