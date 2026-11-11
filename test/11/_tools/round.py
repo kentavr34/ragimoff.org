@@ -61,7 +61,7 @@ MEASURE = r"""
   small.forEach(v => bad.push(['10.4', 'мелкий текст: ' + v + ' px']));
   if (W < 700) { const t = new Set(); document.querySelectorAll('a, button').forEach(e => { if (!vis(e) || e.closest('.mob')) return; const r = e.getBoundingClientRect(); if (r.height < 40 && r.width < 200 && !e.closest('p,li.topic')) t.add((e.className || e.id || e.tagName) + ' ' + Math.round(r.width) + '×' + Math.round(r.height)); }); t.forEach(v => bad.push(['10.30', 'зона нажатия меньше 44: ' + v])); }
   // 11.4 битые картинки; 2.1 меню
-  const br = [...document.images].filter(i => i.complete && !i.naturalWidth).map(i => i.src.split('/').pop()); if (br.length) bad.push(['11.4', 'битые картинки: ' + br.join(', ')]);
+  const br = [...document.images].filter(i => i.getAttribute('src') && i.complete && !i.naturalWidth).map(i => i.src.split('/').pop()); if (br.length) bad.push(['11.4', 'битые картинки: ' + br.join(', ')]);
   info.menu = [...document.querySelectorAll('#nav > *')].map(e => (e.querySelector('a,button') || e).textContent.trim().split('\n')[0].trim());
   info.order = [...document.querySelectorAll('main > section, main > div.belt')].map(e => e.id || e.className);
   info.cards = { people: document.querySelectorAll('#people > *').length, books: document.querySelectorAll('#shelf > *').length, progs: document.querySelectorAll('#progs > *').length, topics: document.querySelectorAll('#topics > *').length, myths: document.querySelectorAll('#myths > *').length, posts: document.querySelectorAll('#posts > *').length };

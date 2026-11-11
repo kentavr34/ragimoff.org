@@ -68,6 +68,11 @@ function render() {
 
   $('#posts').innerHTML = t.blog.p.map((p, i) => `<a class="post rv" href="${L.blog[i]}" style="--d:${i * .1}s"><div class="post__i"><img src="assets/img/blog-${i + 1}.jpg" alt="" loading="lazy"></div><div class="post__b"><span class="post__k">${esc(p[0])}</span><h3 class="post__t">${esc(p[1])}</h3></div></a>`).join('');
   $('#tgBtn').href = L.tg;
+  const vid = (id, title) => `<button type="button" class="vid" data-yt="${id}" aria-label="${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="vid__play" aria-hidden="true"></span></button>`;
+  $('#proofs').innerHTML = (t.edu.proofs || []).map((c, i) => `<button type="button" class="proof rv" data-lb="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" style="--d:${i * .08}s"><span class="proof__i"><img src="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" alt="${esc(c)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(c)}</span></button>`).join('');
+  const fm = t.cons.film; $('#film').innerHTML = fm ? `${vid(fm.id, fm.t)}<div class="film__b"><h3 class="film__t">${esc(fm.t)}</h3><p class="film__d">${esc(fm.d)}</p></div>` : '';
+  $('#corpVids').innerHTML = (t.corp.vids || []).map(v => `<figure class="vids__i rv">${vid(v[1], v[0])}<figcaption>${esc(v[0])}</figcaption></figure>`).join('');
+  const ea = $('#enlAll'); ea.innerHTML = esc(t.enl.more) + ' ' + ARR; ea.href = L.books[0];
 
   $$('[data-lang-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.langBtn === lang)));
   $$('[data-theme-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeBtn === document.documentElement.dataset.theme)));
@@ -130,7 +135,7 @@ let ribDist = 0, ribCur = 0, ribTarget = 0, ribRaf = 0;
 function ribMeasure() {
   track.style.setProperty('--x', '0px');
   ribDist = Math.max(0, track.scrollWidth - ribStick.clientWidth);
-  rib.style.height = (innerHeight + ribDist * (innerWidth < 761 ? 1.05 : .9)) + 'px';
+  rib.style.height = (ribStick.offsetHeight + ribDist * (innerWidth < 761 ? 1.05 : .9)) + 'px';   /* высота = панель + путь ленты: после неё нет пустого экрана */
 }
 function ribLoop() {
   ribRaf = 0; ribCur += (ribTarget - ribCur) * .15; if (Math.abs(ribTarget - ribCur) < .3) ribCur = ribTarget;
@@ -141,7 +146,7 @@ function ribLoop() {
   if (ribCur !== ribTarget) ribRaf = requestAnimationFrame(ribLoop);
 }
 function ribScroll() {
-  const r = rib.getBoundingClientRect(), total = rib.offsetHeight - innerHeight, p = total > 0 ? clamp(-r.top / total) : 0;
+  const r = rib.getBoundingClientRect(), total = rib.offsetHeight - ribStick.offsetHeight, p = total > 0 ? clamp(-r.top / total) : 0;
   ribTarget = p * ribDist; if (!ribRaf) ribRaf = requestAnimationFrame(ribLoop);
 }
 
@@ -176,6 +181,9 @@ document.addEventListener('click', e => {
   if (e.target.closest('#mob a')) setMenu(false);
   const mf = e.target.closest('.myth__f'); if (mf) { mf.closest('.myth').classList.add('is-flip'); return; }
   const mb = e.target.closest('.myth__b'); if (mb && !e.target.closest('a')) { mb.closest('.myth').classList.remove('is-flip'); return; }
+  const yt = e.target.closest('.vid[data-yt]'); if (yt) { yt.outerHTML = `<div class="vid vid--on"><iframe src="https://www.youtube-nocookie.com/embed/${yt.dataset.yt}?autoplay=1&rel=0" title="${yt.getAttribute('aria-label')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; return; }
+  const pf = e.target.closest('[data-lb]'); if (pf) { $('#lbImg').src = pf.dataset.lb; $('#lbCap').textContent = pf.querySelector('.proof__c').textContent; $('#lb').classList.add('is-open'); $('#lb').setAttribute('aria-hidden', 'false'); return; }
+  if (e.target.closest('#lb')) { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); return; }
   if (e.target.closest('#bkPrev')) { bkGo(-1); return; } if (e.target.closest('#bkNext')) { bkGo(1); return; }
   let th = e.target.closest('[data-theme-btn]');
   if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
