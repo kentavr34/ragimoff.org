@@ -10,6 +10,7 @@ BASE = sys.argv[2] if len(sys.argv) > 2 else 'http://127.0.0.1:8812/test/11/'
 OUT = pathlib.Path(__file__).resolve().parents[1] / '_agent' / 'shots' / ('krug-' + NN)
 OUT.mkdir(parents=True, exist_ok=True)
 LANGS, THEMES, WIDTHS = ['az', 'ru', 'en'], ['night', 'paper', 'sepia'], [(1440, 900), (1366, 768), (390, 844), (320, 640)]
+EXTRA_W = [(430, 932), (412, 915), (375, 812), (360, 780), (390, 700), (360, 620)]   # ширины телефона; последние две — экран с панелями браузера
 SHOTS = [('ru', 'night'), ('az', 'paper'), ('en', 'sepia')]          # снимки: каждая тема и каждый язык по разу
 SHOT_W = [(1440, 900), (390, 844)]
 SECS = ['#spec', '#books', '#edu', '#cons', '#corp', '#enl', '#blog', '#reg', '#tg', '.foot']
@@ -26,6 +27,34 @@ MEASURE = r"""
   document.querySelectorAll('header.head *, .cine__copy *, .sh *, .people *, .topics *, .nums *, .myths *, .posts *, .tg *, .foot *, .mob *').forEach(e => {
     if (!vis(e) || e.closest('[data-rib-track],.belt,.shelf')) return; const r = e.getBoundingClientRect();
     if (r.right > W + 1 || r.left < -1) bad.push(['N3', 'за краем: ' + (e.className || e.tagName) + ' «' + txt(e) + '» ' + Math.round(r.left) + '…' + Math.round(r.right)]); });
+  // G1: шапка — поле слева равно полю справа; элементы шапки не налезают друг на друга
+  (() => { const hd = document.querySelector('.head'); if (!hd) return; const kids = [document.querySelector('.logo'), ...document.querySelectorAll('.head__r > *')].filter(e => e && vis(e)).map(e => e.getBoundingClientRect());
+    if (!kids.length) return; const L = Math.round(Math.min(...kids.map(r => r.left))), Rr = Math.round(W - Math.max(...kids.map(r => r.right)));
+    if (Math.abs(L - Rr) > 1) bad.push(['G1', 'шапка: поле слева ' + L + ' px, справа ' + Rr + ' px']);
+    kids.sort((a, b) => a.left - b.left); for (let i = 1; i < kids.length; i++) if (kids[i].left - kids[i - 1].right < 3) bad.push(['G1', 'шапка: элементы ближе 4 px (' + Math.round(kids[i].left - kids[i - 1].right) + ')']); })();
+  // G2: каждый блок внутри .wrap стоит в полях страницы (кроме лент, которые листаются)
+  (() => { const w0 = document.querySelector('.sec .wrap'); if (!w0) return; const pl = parseFloat(getComputedStyle(w0).paddingLeft);
+    document.querySelectorAll('.wrap > *, .wrap > * > *').forEach(e => { if (!vis(e) || e.closest('[data-rib-track], .shelf, .belt, .lb, .cine') || e.matches('[data-rib-track], .shelf')) return; const r = e.getBoundingClientRect(); if (r.width < 8) return;
+      if (r.left < pl - 1.5 || r.right > W - pl + 1.5) bad.push(['G2', 'вне полей: ' + (e.className || e.tagName) + ' ' + Math.round(r.left) + '…' + Math.round(W - r.right) + ' при поле ' + Math.round(pl)]); }); })();
+  // G3: герой — близость (зазор «подпись → кнопки» не меньше двух зазоров «имя → подпись»), подпись не шире имени, низ кнопок не ближе 24 px к низу экрана, левый край трёх строк на одной вертикали
+  (() => { const s = document.querySelector('.sign'), c = document.querySelector('#school'), b = document.querySelector('#heroBtns'); if (!s || !c || !b) return;
+    const rs = s.getBoundingClientRect(), rc = c.getBoundingClientRect(), rb = b.getBoundingClientRect(), g1 = rc.top - rs.bottom, g2 = rb.top - rc.bottom;
+    if (g2 < Math.max(16, g1 * 2) - 1) bad.push(['G3', 'герой: имя→подпись ' + Math.round(g1) + ' px, подпись→кнопки ' + Math.round(g2) + ' px (нужно не меньше двух первых и не меньше 16)']);
+    const rg = document.createRange(); rg.selectNodeContents(c); const wc = rg.getBoundingClientRect().width; rg.selectNodeContents(s); const ws = rg.getBoundingClientRect().width;
+    if (wc > ws * 1.1) bad.push(['G3', 'герой: подпись шире имени (' + Math.round(wc) + ' против ' + Math.round(ws) + ')']);
+    if (W < 761 && wc < ws * .6) bad.push(['G3', 'герой: подпись уже 60 % имени (' + Math.round(wc) + ' против ' + Math.round(ws) + ')']);
+    if (Math.abs(rc.left - rb.left) > 1.5) bad.push(['G3', 'герой: подпись и кнопки не на одной вертикали (' + Math.round(rc.left) + ' и ' + Math.round(rb.left) + ')']); })();
+  // G4: закреплённые блоки — в момент закрепления всё содержимое в видимой области; кнопки всех книг на одной линии и одной ширины
+  (() => { const y0 = scrollY, sec = document.querySelector('[data-bk]'); if (!sec) return;
+    scrollTo(0, sec.getBoundingClientRect().top + scrollY + 6); const H = innerHeight;
+    const bs = [...sec.querySelectorAll('.bk__btns .btn')].map(b => b.getBoundingClientRect()); const tops = bs.map(r => Math.round(r.top)), ws = bs.map(r => Math.round(r.width));
+    if (bs.length && Math.max(...tops) - Math.min(...tops) > 1) bad.push(['G4', 'книги: кнопки на разной высоте ' + [...new Set(tops)].join('/')]);
+    if (bs.length && (bs[0].bottom > H - 6 || bs[0].top < 56)) bad.push(['G4', 'книги: кнопка вне видимой области (низ ' + Math.round(bs[0].bottom) + ' при высоте экрана ' + H + ')']);
+    if (bs.length && W < 761 && bs[0].width > (W - 40) * .8) bad.push(['G4', 'книги: кнопка слишком широкая ' + Math.round(bs[0].width) + ' px']);
+    const cov = sec.querySelector('.bk__obj'); if (cov && cov.getBoundingClientRect().top < 56) bad.push(['G4', 'книги: обложка под шапкой']);
+    const rib = document.querySelector('[data-rib]'), st = rib && rib.querySelector('.rib__stick'); if (rib && st) { scrollTo(0, rib.getBoundingClientRect().top + scrollY - parseFloat(st.style.top || 0) + 6);
+      const pc = rib.querySelector('.pc'); if (pc) { const r = pc.getBoundingClientRect(); if (r.bottom > H - 4 || r.top < 56) bad.push(['G4', 'программы: карточка не целиком на экране (' + Math.round(r.top) + '…' + Math.round(r.bottom) + ' при ' + H + ')']); } }
+    scrollTo(0, y0); })();
   // N2 имя в одну строку
   const sign = document.querySelector('.sign'); if (sign) { const l = lines(sign); info.signLines = l; if (l > 1) bad.push(['N2', '«Doctor Ragimoff» в ' + l + ' строки']); }
   // N3: подпись героя и кнопки героя — по ширине текста, даже пока скрыты
@@ -38,10 +67,10 @@ MEASURE = r"""
     const fs = parseFloat(getComputedStyle(h).fontSize), hl = lines(h), id = sec.id;
     if (hl > 2) bad.push(['N6', id + ': заголовок в ' + hl + ' строки «' + txt(h) + '»']);
     if (s && vis(s)) { const sl = lines(s); if (sl > 2) bad.push(['N6', id + ': подзаголовок в ' + sl + ' строки «' + txt(s) + '»']);
-      const gap = s.getBoundingClientRect().top - h.getBoundingClientRect().bottom; if (Math.abs(gap - fs / 2) > 6) bad.push(['10.14', id + ': заголовок→подзаголовок ' + Math.round(gap) + ' px при кегле ' + Math.round(fs) + ' (нужно ' + Math.round(fs / 2) + ')']);
+      const gap = s.getBoundingClientRect().top - h.getBoundingClientRect().bottom; if (Math.abs(gap - fs / 2) > 6 && !sec.matches('.sec--bk')) bad.push(['10.14', id + ': заголовок→подзаголовок ' + Math.round(gap) + ' px при кегле ' + Math.round(fs) + ' (нужно ' + Math.round(fs / 2) + ')']);
       if (s.getBoundingClientRect().width > h.closest('.sh').getBoundingClientRect().width + 1) bad.push(['10.18', id + ': подзаголовок шире шапки блока']); }
     const top = h.getBoundingClientRect().top - sec.getBoundingClientRect().top; if (Math.abs(top - fs) > 8 && !sec.matches('.sec--rib, .sec--bk')) bad.push(['10.13', id + ': до заголовка ' + Math.round(top) + ' px при кегле ' + Math.round(fs)]);
-    const sh = h.closest('.sh'), nx = sh && sh.nextElementSibling; if (nx && vis(nx)) { const after = nx.getBoundingClientRect().top - sh.getBoundingClientRect().bottom; if (Math.abs(after - fs) > 8) bad.push(['10.13', id + ': после группы заголовка ' + Math.round(after) + ' px при кегле ' + Math.round(fs)]); }
+    const sh = h.closest('.sh'), nx = sh && sh.nextElementSibling; if (nx && vis(nx)) { const after = nx.getBoundingClientRect().top - sh.getBoundingClientRect().bottom; if (Math.abs(after - fs) > 8 && !sec.matches('.sec--bk')) bad.push(['10.13', id + ': после группы заголовка ' + Math.round(after) + ' px при кегле ' + Math.round(fs)]); }
   });
   // N7 равная высота в рядах
   [['#people', 'специалисты'], ['#progs', 'программы'], ['#nums', 'числа'], ['#myths', 'мифы'], ['#posts', 'блог']].forEach(([q, n]) => {
@@ -118,10 +147,12 @@ async def main():
             return (await cmd('Runtime.evaluate', expression=expr, returnByValue=True, awaitPromise=True)).get('result', {}).get('value')
 
         await cmd('Page.enable'); await cmd('Runtime.enable')
-        for (W, H) in WIDTHS:
+        for (W, H) in WIDTHS + EXTRA_W:
             await cmd('Emulation.setDeviceMetricsOverride', width=W, height=H, deviceScaleFactor=1, mobile=W < 700)
             for lg in LANGS:
                 for th in THEMES:
+                    if (W, H) in EXTRA_W and th != 'night':
+                        continue
                     await cmd('Page.navigate', url=BASE + 'index.html')
                     await asyncio.sleep(.6)
                     await ev("localStorage.setItem('r11_lang','%s');localStorage.setItem('r11_theme','%s');1" % (lg, th))
@@ -129,7 +160,7 @@ async def main():
                     await asyncio.sleep(3.0)
                     await ev("document.querySelectorAll('.rv').forEach(e=>e.classList.add('is-in'));1")
                     await asyncio.sleep(1.5)                                  # дождаться конца появления: замер после движения
-                    key = '%s|%s|%d' % (lg, th, W)
+                    key = '%s|%s|%d' % (lg, th, W) if (W, H) in WIDTHS else '%s|%s|%dx%d' % (lg, th, W, H)
                     res = await ev(MEASURE) or {'bad': [['?', 'замер не выполнен']], 'info': {}}
                     if lg == 'az' and th == 'night':                             # N4: все буквы азербайджанского алфавита и кириллица есть в каждой гарнитуре страницы
                         miss = await ev(AZ_LETTERS)

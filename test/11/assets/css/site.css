@@ -687,3 +687,60 @@ main, .foot { position: relative; z-index: 1; }
 .qual span { font: 400 17px/1.55 var(--f-read); color: var(--text); text-wrap: pretty; }
 @media (max-width: 1100px) { .lead__g { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .lead { margin-top: var(--r3); padding-left: 0; } .lead__g { grid-template-columns: 1fr; gap: var(--r1); } .qual { padding-left: var(--r1); } .qual b { font-size: 21px; } }
+
+/* ═══ шапка на телефоне: поле слева = полю справа на любой ширине; логотип плотнее, элементы справа сдвинуты влево (владелец, 11.11) ═══ */
+@media (max-width: 760px) {
+  .head { justify-content: space-between; gap: var(--s2); padding-left: var(--pad); padding-right: var(--pad); }
+  .logo { flex: 0 1 auto; min-width: 0; gap: 4px; } .logo__r { font-size: 25px; padding-right: 6px; } .logo__w { font-size: 11.5px; letter-spacing: .2em; }
+  .head__r { flex: 0 0 auto; gap: var(--s1); margin-left: 0; }
+  #themes { padding: 0; border: 0; background: none; } #themes button { min-width: var(--tap); height: var(--tap); border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 55%, transparent); }
+  .seg--lang { padding: 2px; } .seg--lang button { min-width: 34px; height: 40px; padding: 0; }
+  .burger { width: var(--tap); height: var(--tap); flex: 0 0 var(--tap); }
+}
+@media (max-width: 349px) { .logo__w { display: none; } }
+
+/* ═══ шапка на компьютере: поле слева = полю справа; при нехватке места меню плотнее, затем уходит в кнопку ═══ */
+@media (min-width: 761px) { .head { justify-content: space-between; } .nav { margin: 0; min-width: 0; } .head__r { margin-left: 0; } }
+@media (min-width: 761px) and (max-width: 1500px) { .head { gap: var(--s2); } .nav { gap: 0; } .nav__l { padding: 0 9px; font-size: 13.5px; } .head__r { gap: var(--s1); } .head__cta { padding: 0 16px; } }
+@media (min-width: 761px) and (max-width: 1180px) { .nav { display: none; } .burger { display: grid; } }
+
+/* ═══ книги: блок по высоте видимой области, кнопки всех книг на одной линии (владелец, 11.11) ═══ */
+.bk__stick { --w: clamp(230px, 22vw, 330px); }
+.shelf { align-items: stretch; } .bk { align-items: stretch; }
+.bk__txt { display: flex; flex-direction: column; justify-content: flex-start; min-height: 0; } .bk__scene { align-self: center; }
+.bk__t { min-height: 2.1em; display: flex; align-items: flex-end; } .bk__f { margin-bottom: var(--r1); }
+.bk__btns { margin-top: auto; } .bk__btns .btn { width: auto; min-width: 0; flex: 0 0 auto; padding: 0 var(--r2); }
+@media (max-width: 760px) {
+  .bk__stick { --w: min(30vw, 17svh); height: 100vh; height: 100svh; min-height: 0; padding: 62px 0 var(--s3); justify-content: flex-start; }
+  .bk__stick > .wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .bk__stick .sh { margin-bottom: var(--s3); --h: 30px; } .bk__stick .sh__s { margin-top: var(--s1); font-size: 15px; line-height: 1.35; }
+  .shelf__clip { flex: 1; min-height: 0; position: relative; display: flex; } .shelf { flex: 1; min-height: 0; }
+  .bk { display: flex; flex-direction: column; gap: var(--s2); min-height: 0; } .bk__scene { padding: 0; background: none; } .bk__scene::after { display: none; }
+  .bk__obj { --w: inherit; } .bk__txt { flex: 1; }
+  .bk__t { font-size: 23px; line-height: 1.1; min-height: 2.2em; margin: 0; } .bk__a { margin: 2px 0 0; font-size: 14.5px; }
+  .bk__f { margin: var(--s2) 0 var(--s2); } .bk__f li { padding: 6px 0; font-size: 15px; line-height: 1.35; }
+  .bk__btns { flex-direction: row; margin-top: auto; } .bk__btns .btn { width: auto; min-height: var(--btn-h-sm); padding: 0 var(--r1); }
+  .shelf__nav { position: absolute; left: 0; right: 0; top: calc(var(--w) * .7 - 22px); margin: 0; justify-content: space-between; pointer-events: none; z-index: 3; }
+  .shelf__nav .arw { pointer-events: auto; width: var(--tap); height: var(--tap); background: color-mix(in srgb, var(--bg) 60%, transparent); } .shelf__pos { display: none; }
+  .bk__stick > .wrap { position: relative; }
+}
+
+/* закреплённые блоки помещаются в видимую область и на невысоких экранах */
+.bk__a { font-size: 16px; }
+@media (min-width: 761px) { .bk__stick { --w: min(22vw, 34vh, 330px); } .bk__obj { --w: inherit; } }
+@media (min-width: 761px) and (max-height: 860px) { .bk__stick .sh, .rib__stick .sh { --h: clamp(34px, 3.6vw, 52px); margin-bottom: calc(var(--h) * .6); } .bk__t { font-size: clamp(28px, 3vw, 44px); min-height: 0; } .bk__f li { padding: 9px 0; } .bk__f { margin-top: var(--r1); } }
+@media (max-width: 760px) { .bk__stick .sh { margin-bottom: var(--h); } .bk__stick .sh__s { margin-top: calc(var(--h) * .5); } .bk__a { font-size: 16px; } }
+@media (max-width: 760px) and (max-height: 720px) { .bk__stick { --w: min(26vw, 14svh); } .bk__stick .sh__s { display: none; } .bk__stick .sh { margin-bottom: var(--s2); } .bk__f li { padding: 4px 0; font-size: 15px; } .bk__t { font-size: 21px; } }
+
+@media (max-width: 760px) { .shelf { min-width: 0; width: 100%; } .bk { min-width: 0; width: 100%; flex: 0 0 100%; } .bk__txt, .bk__f, .bk__f li { min-width: 0; } }
+
+@media (max-width: 760px) and (min-height: 760px) { .bk__stick { --w: min(38vw, 23svh); } }
+
+/* книга на телефоне: кнопка сразу под тремя строками (строки одной высоты — кнопки всех книг на одной линии), группа по центру панели — без пустоты внутри */
+@media (max-width: 760px) { .bk { justify-content: flex-start; } .bk__txt { flex: 1; } .bk__f { flex: 1; justify-content: center; margin: var(--s1) 0; } .bk__btns { margin-top: 0; } .bk__a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
+@media (max-width: 760px) and (min-height: 800px) { .bk__stick { --w: min(44vw, 27svh); } .bk__f li { padding: 10px 0; font-size: 16px; } .bk__t { font-size: 25px; } }
+
+/* размер обложки на телефоне — от высоты видимой области: слайд заполняет экран без пустот */
+@media (max-width: 760px) { .bk__stick { --w: min(40vw, 24svh); } }
+@media (max-width: 760px) and (max-height: 660px) { .bk__stick { --w: min(30vw, 18svh); } }
+@media (max-width: 760px) and (min-height: 800px) { .bk__stick { --w: min(44vw, 27svh); } }

@@ -1,7 +1,7 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS } from './content.js?v=11112004';
-import { regRender, regOpen } from './reg.js?v=11112004';
-import { initLight } from './light.js?v=11112004';
+import { T, LINKS } from './content.js?v=11112122';
+import { regRender, regOpen } from './reg.js?v=11112122';
+import { initLight } from './light.js?v=11112122';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -183,7 +183,7 @@ addEventListener('keydown', e => { if (!$('#lb').classList.contains('is-open')) 
 let lbX0 = null; $('#lb').addEventListener('touchstart', e => { lbX0 = e.touches[0].clientX; }, { passive: true }); $('#lb').addEventListener('touchend', e => { if (lbX0 == null) return; const d = e.changedTouches[0].clientX - lbX0; lbX0 = null; if (Math.abs(d) > 40) galShow(galI + (d < 0 ? 1 : -1)); }, { passive: true });
 const shelf = $('#shelf'), bkSec = $('[data-bk]'), bkStick = $('.bk__stick');
 let bkI = 0, bkStep = 1;
-function bkMeasure() { const n = shelf.children.length; stickTop(bkStick); bkStep = Math.round(innerHeight * (innerWidth < 761 ? .75 : .6)); bkSec.style.height = (bkStick.offsetHeight + Math.max(0, n - 1) * bkStep) + 'px'; }
+function bkMeasure() { const n = shelf.children.length; if (innerWidth < 761) bkStick.style.top = '0px'; else stickTop(bkStick); bkStep = Math.round(innerHeight * (innerWidth < 761 ? .75 : .6)); bkSec.style.height = (bkStick.offsetHeight + Math.max(0, n - 1) * bkStep) + 'px'; }
 function bkScroll() {                                   /* прокрутка листает книги по одной: большую часть шага книга стоит, переход — в середине */
   const n = shelf.children.length; if (!n) return;
   const r = bkSec.getBoundingClientRect(), total = bkSec.offsetHeight - bkStick.offsetHeight, p = total > 0 ? clamp((parseFloat(bkStick.style.top) - r.top) / total) : 0;
