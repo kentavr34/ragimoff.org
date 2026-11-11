@@ -12,7 +12,7 @@
   --u: 8px;
   --r1: calc(var(--u) * 2); --r2: calc(var(--u) * 3); --r3: calc(var(--u) * 5); --r4: calc(var(--u) * 8); --r5: calc(var(--u) * 13);
   --wrap: 1240px; --pad: 20px; --rad: 22px;
-  --hero-top: 58px;
+  --hero-top: 86px;
   --e: cubic-bezier(.22, .8, .2, 1);
   --t1: .35s; --t2: .7s; --t3: 1.2s;
 }
@@ -279,7 +279,7 @@ main, .foot { position: relative; z-index: 1; }
 @media (max-width: 760px) {
   .cine { height: 260vh; }
   .cine__frame { width: 100vh; width: 100svh; height: 100%; aspect-ratio: auto; }
-  :root { --hero-top: 46px; }
+  :root { --hero-top: 68px; }
   .cine__shade { background: linear-gradient(0deg, rgba(7, 9, 14, calc(.3 + var(--sh, 0) * .68)) 0%, rgba(7, 9, 14, calc(var(--sh, 0) * .8)) 34%, transparent 62%), linear-gradient(180deg, rgba(7, 9, 14, .5) 0%, transparent 16%); }
   .cine__search { position: fixed; left: 50%; top: 54%; width: 80vw; height: 50px; margin-left: -40vw; padding: 0 18px; gap: 10px; background: rgba(20, 40, 70, .45); }
   .cine__search svg { width: 18px; height: 18px; } .cine__q { font-size: 16px; }
@@ -390,3 +390,8 @@ main, .foot { position: relative; z-index: 1; }
   .cine__btns a { min-height: 46px; }
   .sh__s { font-size: 16.5px; }
 }
+
+/* «другая тема» — клиент пишет сам, с чем обращается (владелец, 11.11) */
+.topic--other .topic__t { font-style: italic; color: var(--gold-hi); }
+.topic--other .topic__n { font-size: 18px; }
+.cons__cta .note { flex-basis: 100%; max-width: 62ch; }

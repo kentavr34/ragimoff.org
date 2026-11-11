@@ -48,8 +48,10 @@ function render() {
 
   $('#progs').innerHTML = t.edu.p.map((p, i) => `<article class="pc"><span class="pc__n">0${i + 1} / 07</span><h3 class="pc__t">${esc(p.t)}</h3><p class="pc__d">${esc(p.d)}</p><div class="pc__m">${p.m.map(m => `<span>${esc(m)}</span>`).join('')}</div><p class="pc__p">${esc(p.price)}</p><a class="btn btn--line btn--sm" href="${L.prog[i]}">${esc(t.edu.more)} ${ARR}</a></article>`).join('');
 
-  $('#topics').innerHTML = t.cons.t.map((x, i) => `<li class="topic rv" style="--d:${i * .05}s"><a href="${L.cons[i]}"><span class="topic__n">0${i + 1}</span><span class="topic__t">${esc(x[0])}</span><span class="topic__s">${esc(x[1])}</span><span class="topic__a arrow">→</span></a></li>`).join('');
-  const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = L.wa; $('#fab').href = L.wa;
+  $('#topics').innerHTML = t.cons.t.map((x, i) => `<li class="topic rv" style="--d:${i * .05}s"><a href="${L.cons[i]}"><span class="topic__n">0${i + 1}</span><span class="topic__t">${esc(x[0])}</span><span class="topic__s">${esc(x[1])}</span><span class="topic__a arrow">→</span></a></li>`).join('')
+    + `<li class="topic topic--other rv"><a href="${L.wa}" target="_blank" rel="noopener"><span class="topic__n">+</span><span class="topic__t">${esc(t.cons.other[0])}</span><span class="topic__s">${esc(t.cons.other[1])}</span><span class="topic__a arrow">→</span></a></li>`;   /* клиент может обратиться с любой темой */
+  const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = L.form; cb.removeAttribute('target'); $('#fab').href = L.wa;
+  const wb = $('#consWa'); wb.textContent = t.cons.wa; wb.href = L.wa;
 
   $('#nums').innerHTML = t.corp.n.map((n, i) => `<div class="num rv" style="--d:${i * .08}s"><b data-count="${esc(n[0])}">${esc(n[0])}</b><span>${esc(n[1])}</span></div>`).join('');
   $('#corpTags').innerHTML = t.corp.t.map(x => `<li>${esc(x)}</li>`).join('');
