@@ -11,7 +11,7 @@ float noise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.0-2.0*f);
 float fbm(vec2 p){ float v = 0.0, a = 0.5; for(int i=0;i<5;i++){ v += a*noise(p); p = p*2.03 + 17.0; a *= 0.5; } return v; }
 void main(){
   vec2 uv = gl_FragCoord.xy / uRes; float asp = uRes.x / uRes.y; vec2 p = vec2(uv.x * asp, uv.y);
-  vec2 lamp = vec2(0.26 * asp + (uM.x - 0.5) * 0.30, 0.66 + (uM.y - 0.5) * 0.20);
+  vec2 lamp = vec2((0.26 + 0.42 * (0.5 + 0.5 * sin(uT * 0.045))) * asp + (uM.x - 0.5) * 0.30, 0.62 + 0.16 * sin(uT * 0.031) + (uM.y - 0.5) * 0.20);
   float d = distance(p, lamp);
   float n = fbm(p * 1.5 + vec2(uT * 0.020, -uT * 0.014));
   float n2 = fbm(p * 3.1 - vec2(uT * 0.026, uT * 0.010));
@@ -20,7 +20,7 @@ void main(){
   vec3 col;
   float vig = smoothstep(1.20, 0.30, length((uv - 0.5) * vec2(1.15, 1.0)));
   if (uMode > 0.5) {
-    col = uBg + uA * glow * 0.40 * uK + uB * g2 * 0.55 * uK;
+    col = uBg + uA * glow * 0.27 * uK + uB * g2 * 0.42 * uK;
     col *= mix(0.72, 1.0, vig);
   } else {
     col = mix(uBg * (0.955 + 0.045 * n), uA, clamp(glow * 0.80 * uK, 0.0, 1.0));
@@ -82,7 +82,7 @@ export function initLight(canvas) {
     raf = requestAnimationFrame(frame);
     U.uT.value = (now - t0) / 1000;
     U.uM.value.x += (mouse.x - U.uM.value.x) * .04; U.uM.value.y += (mouse.y - U.uM.value.y) * .04;
-    const target = 1 - Math.min(1, scrollY / (innerHeight * 1.1)) * .5;           /* за героем свет вдвое тише, но не гаснет */
+    const target = 1 - Math.min(1, scrollY / (innerHeight * 1.1)) * .62;           /* за героем свет вдвое тише, но не гаснет */
     k += (target - k) * .06; U.uK.value = k;
     U.uBg.value.lerp(T.bg, .07); U.uA.value.lerp(T.a, .07); U.uB.value.lerp(T.b, .07); DU.uC.value.lerp(T.dust, .07);
     U.uMode.value += (T.mode - U.uMode.value) * .2; if (Math.abs(T.mode - U.uMode.value) < .02) U.uMode.value = T.mode;

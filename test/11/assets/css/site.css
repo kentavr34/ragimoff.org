@@ -303,3 +303,90 @@ main, .foot { position: relative; z-index: 1; }
   .cons__cta .btn, .corp__row .btn, .bk__btns .btn { width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) { :root { --t2: .4s; --t3: .6s; } .belt__track { animation-duration: 120s; } }
+
+/* ═══ ПРАВКИ ПО РАЗБОРУ ДВУХ КРИТИКОВ (11.11.2026) — одна система: три гарнитуры, две высоты кнопок, один шаг секций ═══ */
+:root { --f-sub: "Manrope", system-ui, sans-serif; --f-num: "Manrope", system-ui, sans-serif; --hs: clamp(40px, 5.6vw, 88px); --sec: var(--hs); --btn-h: 54px; --btn-h-sm: 46px; }
+[data-theme="night"] { --layer: #101114; --layer2: #17181C; }             /* один чёрный: карточки нейтральные, без холодной синевы на тёплом фоне */
+
+/* гарнитуры: антиква для заголовков, антиква для текста, один гротеск для меток, меню и чисел; конденсед — только строка героя */
+.cine__school { font-family: "Oswald", "Arial Narrow", sans-serif; }
+.eyebrow, .person__r, .bk__k, .post__k, .myth__k { font: 600 11.5px/1.35 var(--f-sub); letter-spacing: .22em; }
+.sh__h, .num b, .pc__p, .pc__t, .bk__t, .topic__t, .tg__h, .post__t, .person__n { font-variant-numeric: lining-nums; }
+.pc__n, .topic__n, .bk__f b, .pc__m span { font-family: var(--f-num); font-variant-numeric: lining-nums tabular-nums; }
+.bk__f b { font-size: 13px; font-weight: 600; line-height: 2; } .pc__m span { font-size: 12.5px; } .pc__n, .topic__n { font-size: 12.5px; font-weight: 600; }
+
+/* секции: отступ до заголовка и после блока = размеру шрифта заголовка (--hs) — одно число на всё */
+.sh { --h: var(--hs); }
+.sec { padding: var(--sec) 0; } .sec--rib { padding: 0; } .foot { padding-top: var(--sec); }
+.sec--rib .sh { --h: clamp(34px, 4.2vw, 64px); }
+
+/* кнопки: две высоты, без свечения */
+.btn { min-height: var(--btn-h); box-shadow: none; } .btn:hover { box-shadow: none; transform: translateY(-2px); background: var(--gold-hi); }
+.btn--line:hover { background: var(--gold); } .btn--sm { min-height: var(--btn-h-sm); }
+.head__cta { height: 44px; } .cine__btns a { min-height: var(--btn-h); }
+.seg button { min-width: 28px; height: 28px; } .dot { width: 10px; height: 10px; }
+.mob__cta { margin-top: var(--r3); width: 100%; }
+
+/* кнопка WhatsApp — в палитре сайта, меньше, не кричит */
+.fab { width: 50px; height: 50px; right: 22px; bottom: 22px; background: color-mix(in srgb, var(--layer) 94%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 70%, transparent); color: var(--gold); box-shadow: 0 14px 30px -14px var(--shadow); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.fab svg { width: 24px; height: 24px; } .fab svg path:last-child { fill: var(--layer); }
+.fab:hover { background: var(--gold); color: var(--on-gold); } .fab.is-off { opacity: 0; pointer-events: none; transform: scale(.6); }
+
+/* лента подтверждений растворяется по краям */
+.belt { -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
+
+/* специалисты: единая обработка портретов, чистый обрез, линия глаз на одной высоте */
+.person__ph { border-bottom: 1px solid color-mix(in srgb, var(--gold) 34%, transparent); }
+.person__ph::after { display: none; }
+.person__ph img, .person.is-in .person__ph img { filter: grayscale(.72) sepia(.16) contrast(1.06) brightness(.96); }
+.person:hover .person__ph img { filter: none; }
+.person:nth-child(1) .person__ph img { object-position: 50% 4%; } .person:nth-child(2) .person__ph img { object-position: 50% 26%; }
+.facts li::before { top: calc(13px + .78em); } .person__b .facts { margin-top: auto; }
+
+/* книги: том крупнее, стоит на «полу»; придуманных ярлыков нет */
+.bk__k { display: none; } .bk__t { margin-top: 0; }
+.bk__obj { --w: clamp(230px, 25vw, 350px); }
+.bk__scene { grid-template-rows: auto auto; }
+.bk__scene::after { content: ""; width: min(78%, 420px); height: 30px; margin-top: 26px; background: radial-gradient(closest-side, var(--shadow), transparent); filter: blur(7px); opacity: .9; }
+.bk__obj::after { box-shadow: none !important; }
+.bk__a { color: var(--text); }
+
+/* программы: карточки одного устройства и на одной линии, края ленты уходят в фон */
+.pc { transform: none; } .pc__t { min-height: 3.35em; } .pc__d { min-height: 3em; }
+.rib__stick::before, .rib__stick::after { content: ""; position: absolute; top: 0; bottom: 0; width: calc(var(--pad) * 1.6); z-index: 2; pointer-events: none; }
+.rib__stick::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); } .rib__stick::after { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+
+/* консультации: стрелка в круге, описание крупнее */
+.topic a { grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.05fr) 44px; }
+.topic__s { font-size: 17px; }
+.topic__a { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font: 400 17px/1 var(--f-text); color: var(--gold); transition: background var(--t1), color var(--t1), border-color var(--t1), transform var(--t1) var(--e); }
+.topic a:hover .topic__a { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+
+/* тренинги: четыре равные колонки, цифры одной высоты */
+.nums { gap: var(--r3); } .num, .num + .num { padding: var(--r3) 0; border-left: 0; }
+.num b { font-size: clamp(52px, 6.2vw, 96px); letter-spacing: -.01em; }
+
+/* просвещение: 2 × 2, высота по содержимому, без дыр внутри карточек */
+.myths { grid-template-columns: repeat(2, minmax(0, 1fr)); } .myth { min-height: 0; }
+.myth__in { display: grid; min-height: 0; } .myth__f, .myth__b { position: relative; inset: auto; grid-area: 1 / 1; min-height: 250px; }
+.myth__q { font-size: clamp(24px, 2.2vw, 32px); } .myth__a { font-size: 17.5px; }
+
+/* блог: шапка в общей схеме, фотографии в одной обработке */
+.sh--row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: var(--r2); }
+.sh__g { display: flex; flex-direction: column; align-items: flex-start; }
+.post__i { position: relative; aspect-ratio: 3 / 2; }
+.post__i img { filter: grayscale(1) contrast(1.06) brightness(.9); transition: transform 1.4s var(--e), filter .8s var(--e); }
+.post__i::after { content: ""; position: absolute; inset: 0; background: var(--gold); mix-blend-mode: color; opacity: .32; transition: opacity .8s var(--e); pointer-events: none; }
+.post:hover .post__i img { filter: none; } .post:hover .post__i::after { opacity: 0; }
+.cine__cue { font-size: 11.5px; bottom: 26px; }
+
+@media (max-width: 760px) {
+  .bk__obj { --w: 58vw; } .pc__t, .pc__d { min-height: 0; }
+  .myths { grid-template-columns: 1fr; } .myth__f, .myth__b { min-height: 0; gap: var(--r2); }
+  .topic a { grid-template-columns: 30px minmax(0, 1fr) 42px; }
+  .nums { gap: 0 var(--r2); } .num:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .fab { width: 46px; height: 46px; right: 14px; bottom: 14px; }
+  .sh--row { grid-template-columns: 1fr; }
+  .cine__btns a { min-height: 46px; }
+  .sh__s { font-size: 16.5px; }
+}

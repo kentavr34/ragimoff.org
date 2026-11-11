@@ -18,7 +18,7 @@ function render() {
   const t = T[lang], L = LINKS(lang);
   document.documentElement.lang = lang;
   $$('[data-i]').forEach(e => { const v = pick(t, e.dataset.i); if (v != null) e.textContent = v; });
-  $$('[data-h]').forEach(h => { const s = t[h.dataset.h]; h.innerHTML = `<p class="eyebrow rv">${esc(s.eye)}</p><h2 class="sh__h rv" style="--d:.08s">${esc(s.h)}</h2>${s.sub ? `<p class="sh__s rv" style="--d:.16s">${esc(s.sub)}</p>` : ''}${h.dataset.h === 'blog' ? `<a class="sh__link rv" href="${L.blogAll}">${esc(s.all)} ${ARR}</a>` : ''}`; });
+  $$('[data-h]').forEach(h => { const s = t[h.dataset.h]; const row = h.dataset.h === 'blog'; h.innerHTML = `${row ? '<div class="sh__g">' : ''}<p class="eyebrow rv">${esc(s.eye)}</p><h2 class="sh__h rv" style="--d:.08s">${esc(s.h)}</h2>${s.sub ? `<p class="sh__s rv" style="--d:.16s">${esc(s.sub)}</p>` : ''}${row ? `</div><a class="sh__link rv" href="${L.blogAll}">${esc(s.all)} ${ARR}</a>` : ''}`; });
 
   /* меню: заголовки, под ними — подзаголовки (на телефоне по стрелке) */
   const groups = [
@@ -31,6 +31,7 @@ function render() {
   $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#headCta').textContent = t.nav.cta;
+  $('#mobIn').insertAdjacentHTML('beforeend', `<a class="btn mob__cta" href="#cons">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
 
   $('#school').innerHTML = [...t.hero.school].map((ch, i) => ch === ' ' ? ' ' : `<span style="--i:${i}">${esc(ch)}</span>`).join('');   /* строгая строка встаёт по буквам */
   $('#heroBtns').innerHTML = ['#cons', '#edu', '#books', '#corp'].map((h, i) => `<a href="${h}" style="--i:${i}">${esc(t.hero.b[i])}</a>`).join('');
@@ -40,7 +41,7 @@ function render() {
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
   const cov = ['klinik', 'phoenix', 'guilt', 'pandemic', 'freud'];
-  $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${i === 0 ? 'klinik-' + lang : cov[i]}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
+  $('#shelf').innerHTML = t.books.b.map((b, i) => `<article class="bk"><div class="bk__scene rv"><a class="bk__obj" href="${L.books[i]}" aria-label="${esc(b.t)}"><img src="assets/img/book-${cov[i]}-${lang}.jpg" alt="${esc(b.t)}" loading="lazy"></a></div>
     <div class="bk__txt"><p class="bk__k rv">${esc(b.k)}</p><h3 class="bk__t rv" style="--d:.06s">${esc(b.t)}</h3><p class="bk__a rv" style="--d:.1s">${esc(b.a)}</p>
     <ul class="bk__f">${b.f.map((f, j) => `<li class="rv" style="--d:${.14 + j * .08}s"><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
     <div class="bk__btns rv" style="--d:.4s"><a class="btn" href="${L.books[i]}">${esc(t.books.read)}</a><a class="btn btn--line" href="${L.shop}">${esc(t.books.order)}</a></div></div></article>`).join('');
@@ -146,6 +147,7 @@ function onScroll() {
   const menuOpen = $('#mob').classList.contains('is-open');
   if (y < 120 || menuOpen) head.classList.remove('is-hidden'); else if (travel > 48) head.classList.add('is-hidden'); else if (travel < -32) head.classList.remove('is-hidden');
   fab.classList.toggle('is-on', !overHero);
+  const rr = rib.getBoundingClientRect(); fab.classList.toggle('is-off', rr.top <= 1 && rr.bottom >= vh - 1);   /* в закреплённой ленте кнопка не закрывает карточки */
   cineScroll(); ribScroll();
   $$('.bk__obj').forEach(o => { const r = o.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; const k = clamp(1 - (r.top + r.height / 2) / vh); o.style.setProperty('--ry', (-38 + seg(k, .1, .6) * 22).toFixed(1) + 'deg'); });   /* книга поворачивается к читателю */
   $$('.person__ph img').forEach(im => { const r = im.parentNode.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return; im.style.setProperty('--py', (-(r.top + r.height / 2 - vh / 2) / vh * 7).toFixed(2) + '%'); });

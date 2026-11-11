@@ -17,6 +17,10 @@ ART = {
     'klinik-a': 'A human brain seen in profile, sculpted from thousands of fine luminous golden threads like a map of neural pathways, floating in darkness, a few threads drifting upward like sparks.',
     'klinik-b': 'An antique anatomical engraving of the human brain reinterpreted in gold leaf on dark blue lacquer, delicate gilded lines, a thin golden meridian circle around it like an astrolabe.',
     'klinik-c': 'A translucent crystal human brain lit from within by warm golden light, standing on an invisible surface, soft reflections, dark blue studio background, museum object photography.',
+    'phoenix':  'A phoenix bird rising with wide spread wings, drawn from thousands of fine luminous golden threads, a few threads drifting upward like sparks.',
+    'guilt':    'A single spherical virus particle with a crown of spikes, drawn from thousands of fine luminous golden threads, cracked open on one side with warm light spilling out.',
+    'pandemic': 'A circular labyrinth maze, drawn from thousands of fine luminous golden threads, one brighter thread finding its way out to the edge and drifting upward.',
+    'freud':    'A classic psychoanalytic couch with a patterned oriental rug and a round pillow, an empty armchair behind it, all drawn from thousands of fine luminous golden threads.',
 }
 
 

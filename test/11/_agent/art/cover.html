@@ -1,23 +1,41 @@
 <!doctype html><html><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Oswald:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- Обложки книг для сайта: рисунок (DashScope) + надписи шрифтом. Открыть: cover.html?b=klinik&l=az -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;background:#07090E}
-.c{position:relative;width:800px;height:1200px;overflow:hidden;background:#090C14 url(klinik-art.jpg) center/cover;color:#F2EDE3;font-family:"Cormorant Garamond",serif}
-.c::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,14,.72) 0%,rgba(7,9,14,0) 26%,rgba(7,9,14,0) 58%,rgba(7,9,14,.86) 82%,rgba(7,9,14,.96) 100%)}
+.c{position:relative;width:800px;height:1200px;overflow:hidden;background:#080B14 center/cover no-repeat;color:#F2EDE3;font-family:"Cormorant Garamond",serif}
+.c::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,14,.78) 0%,rgba(7,9,14,0) 27%,rgba(7,9,14,0) 56%,rgba(7,9,14,.9) 78%,rgba(7,9,14,.98) 100%)}
 .c::after{content:"";position:absolute;inset:26px;border:1px solid rgba(201,169,97,.42)}
 .k,.a,.t,.s,.b{position:absolute;left:0;right:0;text-align:center;z-index:1}
-.k{top:76px;font:600 19px/1 "Cormorant Garamond",serif;letter-spacing:.44em;color:#C9A961;padding-left:.44em}
-.a{top:116px;font:500 36px/1 "Cormorant Garamond",serif;letter-spacing:.2em;padding-left:.2em}
-.t{top:836px;font:500 76px/.98 "Cormorant Garamond",serif;letter-spacing:.04em;padding:0 60px;text-transform:uppercase}
-.t.long{font-size:62px}
-.s{top:1030px;font:400 17px/1.4 "IBM Plex Mono",monospace;letter-spacing:.08em;color:#C9A961}
-.b{top:1104px;font:500 19px/1 "Oswald",sans-serif;letter-spacing:.4em;padding-left:.4em}
+.k{top:76px;font:600 19px/1 "Cormorant Garamond",serif;letter-spacing:.44em;color:#C9A961;padding-left:.44em;text-transform:uppercase}
+.a{top:116px;font:500 34px/1 "Cormorant Garamond",serif;letter-spacing:.2em;padding-left:.2em;text-transform:uppercase}
+.t{bottom:214px;font:500 76px/.98 "Cormorant Garamond",serif;letter-spacing:.035em;padding:0 56px;text-transform:uppercase}
+.t.m{font-size:64px}.t.s2{font-size:56px}
+.s{top:1022px;font:400 19px/1.35 "Manrope",sans-serif;letter-spacing:.06em;color:#C9A961;padding:0 70px}
+.b{top:1108px;font:600 17px/1 "Manrope",sans-serif;letter-spacing:.42em;padding-left:.42em}
 .b i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#C9A961;margin-left:4px}
-</style></head><body><div class="c"><div class="k" id="k"></div><div class="a" id="a"></div><div class="t" id="t"></div><div class="s" id="s"></div><div class="b">RAGIMOFF<i></i></div></div>
+</style></head><body><div class="c" id="c"><div class="k" id="k"></div><div class="a" id="a"></div><div class="t" id="t"></div><div class="s" id="s"></div><div class="b">RAGIMOFF<i></i></div></div>
 <script>
-const D={az:['DƏRSLİK','KƏNAN RƏHİMOV','Klinik<br>Psixiatriya','DSM-5 · XBT-11 · beynəlxalq protokollar'],
-ru:['УЧЕБНИК','КЕНАН РАГИМОВ','Клиническая<br>психиатрия','DSM-5 · МКБ-11 · международные протоколы'],
-en:['TEXTBOOK','KENAN RAGIMOV','Clinical<br>Psychiatry','DSM-5 · ICD-11 · international protocols']};
-const l=new URLSearchParams(location.search).get('l')||'az',d=D[l]; document.documentElement.lang=l;
-k.textContent=d[0];a.textContent=d[1];t.innerHTML=d[2];s.textContent=d[3]; if(l==='ru') t.classList.add('long');
+/* [метка, автор, название, подпись] */
+const D={
+ klinik:{az:['Dərslik','Kənan Rəhimov','Klinik<br>psixiatriya','DSM-5 · XBT-11 · beynəlxalq protokollar'],
+         ru:['Учебник','Кенан Рагимов','Клиническая<br>психиатрия','DSM-5 · МКБ-11 · международные протоколы'],
+         en:['Textbook','Kenan Ragimov','Clinical<br>Psychiatry','DSM-5 · ICD-11 · international protocols']},
+ phoenix:{az:['','Samirə Rəhimova','Feniks<br>erası','Şüurlu münasibətlərə aparan yol'],
+          ru:['','Самира Рагимова','Эра<br>Феникса','Путь к осознанным отношениям'],
+          en:['','Samira Rahimova','The Phoenix<br>Era','The way to conscious relationships']},
+ guilt:{az:['','Kənan Rəhimov','Günahkarlıq<br>virusu','Həyatı dağıdan hissdən necə azad olmaq'],
+        ru:['','Кенан Рагимов','Вирус<br>вины','Как освободиться от чувства, разрушающего жизнь'],
+        en:['','Kenan Ragimov','The Guilt<br>Virus','How to break free from the feeling that destroys a life']},
+ pandemic:{az:['','Kənan Rəhimov','Şizofreniya','Cinnət pandemiyası'],
+           ru:['','Кенан Рагимов','Шизофрения','Пандемия безумия'],
+           en:['','Kenan Ragimov','Schizophrenia','A pandemic of madness']},
+ freud:{az:['Azərbaycan dilində','','Ziqmund<br>Freyd','Əsərləri'],
+        ru:['На азербайджанском языке','','Зигмунд<br>Фрейд','Собрание сочинений'],
+        en:['In Azerbaijani','','Sigmund<br>Freud','Collected works']}};
+const q=new URLSearchParams(location.search), b=q.get('b')||'klinik', l=q.get('l')||'az', d=D[b][l];
+document.documentElement.lang=l;                                   /* az: i → İ, ə → Ə при переводе в прописные */
+document.getElementById('c').style.backgroundImage='url(art-'+b+'.jpg)';
+k.textContent=d[0]; a.textContent=d[1]; t.innerHTML=d[2]; s.textContent=d[3];
+const longest=Math.max(...d[2].split('<br>').map(x=>x.length)); if(longest>10) t.classList.add('m'); if(longest>11) t.classList.add('s2');
 </script></body></html>
