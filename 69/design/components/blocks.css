@@ -13,7 +13,7 @@
   display: block;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--color-surface);
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   /* ПРИЧИНА: при первом прогоне карточка имела разную высоту — до 53px,
      текст вылезал наружу. Причина: фотографии разного размера (335×600
@@ -132,7 +132,7 @@
   border-bottom: 1px solid var(--color-border);
   transition: background var(--motion-base) var(--motion-ease);
 }
-.book:hover { background: var(--color-surface-glass); }
+.book:hover { background-color: var(--color-surface-glass); }
 
 /* Обложка: фиксированная высота, а не ширина.
    Иначе разные исходники (300×400 против 1024×1536) дают разную высоту
@@ -143,7 +143,7 @@
   width: auto;
   object-fit: cover;
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
+  background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   transition: transform var(--motion-base) var(--motion-ease-spring);
 }
@@ -201,7 +201,7 @@
   padding: clamp(20px, 2.2vw, 30px);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  background-color: var(--color-bg-elevated);
   transition: border-color var(--motion-base) var(--motion-ease),
               transform var(--motion-base) var(--motion-ease);
 }
@@ -258,7 +258,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 12px;
-  background: var(--color-surface-glass);
+  background-color: var(--color-surface-glass);
 }
 .proof img {
   width: 100%;
@@ -266,7 +266,7 @@
   object-fit: cover;
   object-position: 50% 40%;
   border-radius: var(--radius-sm);
-  background: var(--color-surface);
+  background-color: var(--color-surface);
 }
 .proof span {
   display: block;
@@ -305,7 +305,7 @@
 }
 @media (max-width: 900px) { .topics { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .topics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.topic:hover { border-color: var(--color-accent); background: var(--color-surface-glass); }
+.topic:hover { border-color: var(--color-accent); background-color: var(--color-surface-glass); }
 .topic b {
   font-family: var(--font-display);
   font-size: var(--size-step1);
@@ -332,7 +332,7 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   aspect-ratio: 16 / 10;
-  background: var(--color-surface);
+  background-color: var(--color-surface);
 }
 .case__media img { width: 100%; height: 100%; object-fit: cover; }
 .case__play {
@@ -355,7 +355,7 @@
   transition: transform var(--motion-base) var(--motion-ease-spring),
               background var(--motion-base) var(--motion-ease);
 }
-.case__media:hover .case__play i { transform: scale(1.08); background: var(--color-accent); color: var(--color-on-accent); }
+.case__media:hover .case__play i { transform: scale(1.08); background-color: var(--color-accent); color: var(--color-on-accent); }
 
 @media (max-width: 860px) {
   .case { grid-template-columns: minmax(0, 1fr); }
@@ -429,7 +429,7 @@
   padding: 22px 22px 20px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  background-color: var(--color-bg-elevated);
   transition: border-color var(--motion-base) var(--motion-ease);
 }
 .mythcard:hover { border-color: var(--color-border-strong); }
@@ -507,12 +507,12 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   overflow: hidden;
-  background: var(--color-bg-elevated);
+  background-color: var(--color-bg-elevated);
   transition: border-color var(--motion-base) var(--motion-ease),
               transform var(--motion-base) var(--motion-ease);
 }
 .post:hover { border-color: var(--color-border-strong); transform: translateY(-2px); }
-.post__img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; background: var(--color-surface); }
+.post__img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; background-color: var(--color-surface); }
 .post__body { padding: 20px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
 .post__date {
   font-family: var(--font-num);
@@ -570,7 +570,7 @@
 .foot {
   border-top: 1px solid var(--color-border);
   padding-block: var(--space-u8) var(--space-u5);
-  background: var(--color-bg-elevated);
+  background-color: var(--color-bg-elevated);
 }
 .foot__top {
   display: grid;

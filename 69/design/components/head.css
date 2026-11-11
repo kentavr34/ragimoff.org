@@ -12,7 +12,8 @@
   align-items: center;
   gap: var(--space-u3);
   height: 62px;
-  padding-inline: 18px;
+  /* воздух внутри шапки: логотип и кнопка не липнут к краям */
+  padding-inline: 22px;
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
   transition: background var(--motion-base) var(--motion-ease),
@@ -21,7 +22,7 @@
 }
 /* шапка становится видимой только когда герой прокручен */
 .head.is-solid {
-  background: var(--color-overlay);
+  background-color: var(--color-overlay);
   border-color: var(--color-border);
   backdrop-filter: blur(14px);
 }
@@ -41,11 +42,19 @@
 .head__logo:hover { color: var(--color-accent); }
 .head__logo b { font-weight: 600; color: var(--color-accent); }
 
+/* ПРИЧИНА (найдено 11.11.2026): было margin-inline: auto — навигация
+   отжимала края, контент не влезал, и правая кнопка выдавливалась за
+   внутренний отступ: слева до края 23px, справа всего 2px. Асимметрия
+   бросалась в глаза.
+   РЕШЕНИЕ: навигация занимает свободное место (flex: 1) и центрирует
+   свои пункты внутри себя. Тогда отступы слева и справа равны. */
 .head__nav {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  margin-inline: auto;
+  min-width: 0;
 }
 .head__link {
   position: relative;
@@ -65,14 +74,14 @@
   position: absolute;
   left: 12px; right: 12px; bottom: 4px;
   height: 1px;
-  background: var(--color-accent);
+  background-color: var(--color-accent);
   transform: scaleX(0);
   transform-origin: 50% 50%;
   transition: transform var(--motion-base) var(--motion-ease);
 }
 .head__link:hover::after { transform: scaleX(1); }
 
-.head__right { display: flex; align-items: center; gap: 10px; }
+.head__right { display: flex; align-items: center; gap: 14px; }
 
 .lang {
   display: inline-flex;
@@ -94,7 +103,7 @@
 }
 .lang a:hover { color: var(--color-text-strong); }
 .lang a[aria-current="true"] {
-  background: var(--color-accent);
+  background-color: var(--color-accent);
   color: var(--color-on-accent);
 }
 
@@ -112,4 +121,47 @@
 @media (max-width: 400px) {
   .head__logo { font-size: 13.5px; }
   .head__logo b { display: none; }
+}
+
+/* ── ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ─────────────────────────────────────────────
+   ТРЕБОВАНИЕ ВЛАДЕЛЬЦА (дважды: 09.11 и 11.11.2026):
+   «как на мобильных телефонах выбирает тему — нажимаешь, и везде
+   во всех настройках тема меняется. У нас на сайте должна быть такая
+   фишка». В первом прогоне переключателя НЕ БЫЛО ВООБЩЕ — это упущение.
+
+   ТРИ ТЕМЫ (обоснование выбора):
+     ночь  — основа сайта, принятый стиль «Ноктюрн»
+     день  — для яркого помещения и светлых экранов
+     сепия — РАБОЧАЯ тема читалки книг: тёплый фон не утомляет при
+             долгом чтении. Это попадание прямо в блок книг. */
+.themes {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+}
+.themes button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-faint);
+  font-size: 13px;
+  line-height: 1;
+  transition: background var(--motion-base) var(--motion-ease),
+              color var(--motion-base) var(--motion-ease);
+}
+.themes button:hover { color: var(--color-text-strong); }
+.themes button[aria-pressed="true"] {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+/* символы тем: месяц, солнце, раскрытая книга */
+.themes button::before { content: attr(data-icon); }
+
+@media (max-width: 760px) {
+  .themes button { width: 26px; height: 24px; font-size: 12px; }
 }

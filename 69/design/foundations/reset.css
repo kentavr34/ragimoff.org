@@ -14,13 +14,20 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
+  /* ВАЖНО: именно background-color, а НЕ шорткат background.
+     ПРИЧИНА (найдено 11.11.2026 при проверке переключателя тем):
+     при шорткате `background: var(--color-bg)` браузер применил фон
+     ОДИН РАЗ при загрузке и НЕ пересчитал при смене темы. Переменная
+     менялась (#07090E → #F7F4EE → #F2E8D5), а фон на экране оставался
+     прежним. Это ломало самую заметную функцию — смену темы.
+     РЕШЕНИЕ: явное background-color — пересчитывается всегда. */
+  background-color: var(--color-bg);
   color: var(--color-text);
   font: 400 var(--size-step0) / 1.65 var(--font-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background var(--motion-slow) var(--motion-ease),
+  transition: background-color var(--motion-slow) var(--motion-ease),
               color var(--motion-slow) var(--motion-ease);
 }
 
@@ -82,14 +89,14 @@ table { border-collapse: collapse; width: 100%; }
   left: -9999px;
   top: 0;
   z-index: calc(var(--z-header) + 10);
-  background: var(--color-accent);
+  background-color: var(--color-accent);
   color: var(--color-on-accent);
   padding: 12px 18px;
   border-radius: 0 0 var(--radius-md) 0;
 }
 .skip-link:focus { left: 0; color: var(--color-on-accent); }
 
-::selection { background: var(--color-accent); color: var(--color-on-accent); }
+::selection { background-color: var(--color-accent); color: var(--color-on-accent); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

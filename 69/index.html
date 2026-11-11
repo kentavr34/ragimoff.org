@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-page="home">
+<html lang="ru" data-page="home" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,18 @@
 <body>
 
 <a class="skip-link" href="#main">К содержимому</a>
+<script>
+/* ТЕМА ПРИМЕНЯЕТСЯ ДО ОТРИСОВКИ.
+   Если ставить её обычным скриптом в конце, при перезагрузке сначала
+   мелькает тёмный фон, потом светлый — это заметно и дёшево выглядит. */
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    var sys = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', saved || sys);
+  } catch (e) {}
+})();
+</script>
 <div class="grain" aria-hidden="true"></div>
 
 <!-- ═══════════ ШАПКА ═══════════ -->
@@ -40,6 +52,11 @@
     <a class="head__link" href="/az/bloq/index.html">Блог</a>
   </nav>
   <div class="head__right">
+    <div class="themes" role="group" aria-label="Тема оформления">
+      <button type="button" data-theme-set="dark"  data-icon="◐" aria-pressed="true"  title="Ночная тема"></button>
+      <button type="button" data-theme-set="light" data-icon="○" aria-pressed="false" title="Дневная тема"></button>
+      <button type="button" data-theme-set="sepia" data-icon="▤" aria-pressed="false" title="Сепия — для чтения книг"></button>
+    </div>
     <div class="lang">
       <a href="#" aria-current="true">AZ</a>
       <a href="/ru/index.html">RU</a>
@@ -57,14 +74,13 @@
     <div class="hero__frame">
       <img src="/images/hero-home/d/f000.webp" alt="">
     </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__shade" id="shade"></div>
 
     <div class="hero__inner wrap">
-      <span class="hero__eyebrow">IPAS Ambassador · с 2004 года</span>
+      <h1 class="hero__strict">Школа психологии</h1>
       <div class="hero__hand">Doctor Ragimoff</div>
-      <h1 class="hero__strict">Психология и&nbsp;школа психотерапии</h1>
-      <p class="hero__lead">Клиническая психология и психотерапия. Учебник, по которому
-        учатся специалисты, и практика, по которой к нам приходят пациенты.</p>
+      <p class="hero__lead">Клиническая психология и психотерапия</p>
       <div class="hero__ctas">
         <a class="btn btn--primary" href="/az/konsultasiya/index.html">Записаться на консультацию</a>
         <a class="btn btn--line" href="/az/telim/index.html">Программы обучения</a>
@@ -123,9 +139,10 @@
   <div class="wrap">
     <div class="section__head">
       <span class="eyebrow">Книги</span>
-      <h2>Пять книг одного направления</h2>
-      <p class="lead">Каждая закрывает свою часть работы. Вместе они дают то, чего
-        раньше на азербайджанском языке не было.</p>
+      <h2>Пять книг, которых не было</h2>
+      <p class="lead">Ни одной из них не существовало на азербайджанском — кроме
+        учебника, который теперь вышел на четырёх языках. Каждая закрывает свою
+        часть работы.</p>
     </div>
 
     <div class="bookstrip">
@@ -232,14 +249,14 @@
   <div class="wrap">
     <div class="section__head">
       <span class="eyebrow">Обучение</span>
-      <h2>Программы для специалистов</h2>
-      <p class="lead">Обучение построено так, что человек выходит с документом
-        и с практикой, а не только с конспектом.</p>
+      <h2>Три программы — три разных права</h2>
+      <p class="lead">Программы различаются не темой, а тем, что человек может
+        делать после. Ниже — что именно даёт каждая.</p>
     </div>
 
     <div class="cards grid--3" style="display:grid">
       <article class="program reveal">
-        <span class="program__form">ДПО с дипломом</span>
+        <span class="program__form">Диплом ДПО</span>
         <h3 class="program__title">Клиническая психология</h3>
         <p class="program__gain">Даёт право работать: <b>диплом с регистрацией</b>,
           полная программа по учебнику «Клиническая психиатрия».</p>
@@ -252,8 +269,8 @@
       </article>
 
       <article class="program reveal">
-        <span class="program__form">Практикум</span>
-        <h3 class="program__title">Психотерапия</h3>
+        <span class="program__form">Международный сертификат</span>
+        <h3 class="program__title">Практикум психотерапии</h3>
         <p class="program__gain">Даёт возможность <b>вести приём под супервизией</b>:
           живые часы работы с разбором каждого случая.</p>
         <div class="program__facts">
@@ -265,7 +282,7 @@
       </article>
 
       <article class="program reveal">
-        <span class="program__form">Семейный модуль</span>
+        <span class="program__form">Сертификат IPAS</span>
         <h3 class="program__title">Семейная терапия</h3>
         <p class="program__gain">Даёт метод работы с парой и с ребёнком: <b>два уровня
           подготовки</b> — базовый и полный, с разбором собственных случаев.</p>
@@ -337,13 +354,13 @@
 
     <div class="case" style="margin-top:var(--space-u8)">
       <a class="case__media reveal" href="#" style="text-decoration:none">
-        <img src="https://i.ytimg.com/vi/rb68nHEF9-o/maxresdefault.jpg" alt="Сабина Драмасы">
+        <img src="https://i.ytimg.com/vi/rb68nHEF9-o/maxresdefault.jpg" alt="Драма Сабины">
         <span class="case__play"><i>▶</i></span>
       </a>
       <div>
         <span class="eyebrow">Пример работы</span>
         <h3 style="font-family:var(--font-display);font-size:var(--size-step3);margin-top:10px">
-          Сабина Драмасы</h3>
+          Драма Сабины</h3>
         <p class="prose" style="margin-inline:0;margin-block:var(--space-u3)">
           Разбор одного случая: что происходило, как шла работа и к чему пришли.
           Это не реклама услуги — это возможность увидеть метод, а не обещание
@@ -653,6 +670,28 @@
     if (!head) return;
     head.classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.72);
   }, { passive: true });
+})();
+
+/* ── ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ────────────────────────────────────────────
+   Одно нажатие меняет весь сайт. Выбор сохраняется. */
+(function () {
+  var btns = [].slice.call(document.querySelectorAll('.themes button'));
+  if (!btns.length) return;
+
+  function apply(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    btns.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false');
+    });
+    try { localStorage.setItem('theme', t); } catch (e) {}
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.getAttribute('data-theme-set')); });
+  });
+
+  /* отметить текущую тему на кнопках при загрузке */
+  apply(document.documentElement.getAttribute('data-theme') || 'dark');
 })();
 </script>
 </body>
