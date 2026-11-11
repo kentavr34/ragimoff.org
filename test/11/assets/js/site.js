@@ -1,6 +1,6 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS } from './content.js';
-import { initLight } from './light.js';
+import { T, LINKS } from './content.js?v=11111826';
+import { initLight } from './light.js?v=11111826';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -10,6 +10,7 @@ const clamp = v => (v < 0 ? 0 : v > 1 ? 1 : v), seg = (v, a, b) => clamp((v - a)
 const CHEV = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
 const ARR = '<span class="arrow">→</span>';
 
+let GAL = [], galI = 0;
 let lang = T[document.documentElement.lang] ? document.documentElement.lang : 'ru';
 const light = initLight($('#light'));
 
@@ -18,7 +19,7 @@ function render() {
   const t = T[lang], L = LINKS(lang);
   document.documentElement.lang = lang;
   $$('[data-i]').forEach(e => { const v = pick(t, e.dataset.i); if (v != null) e.textContent = v; });
-  $$('[data-h]').forEach(h => { const s = t[h.dataset.h]; const row = h.dataset.h === 'blog'; h.innerHTML = `${row ? '<div class="sh__g">' : ''}<p class="eyebrow rv">${esc(s.eye)}</p><h2 class="sh__h rv" style="--d:.08s">${esc(s.h)}</h2>${s.sub ? `<p class="sh__s rv" style="--d:.16s">${esc(s.sub)}</p>` : ''}${row ? `</div><a class="sh__link rv" href="${L.blogAll}">${esc(s.all)} ${ARR}</a>` : ''}`; });
+  $$('[data-h]').forEach(h => { const s = t[h.dataset.h]; const row = h.dataset.h === 'blog'; h.innerHTML = `${row ? '<div class="sh__g">' : ''}<h2 class="sh__h rv" style="--d:.08s">${esc(s.h)}</h2>${s.sub ? `<p class="sh__s rv" style="--d:.16s">${esc(s.sub)}</p>` : ''}${row ? `</div><a class="sh__link rv" href="${L.blogAll}">${esc(s.all)} ${ARR}</a>` : ''}`; });
 
   /* меню: заголовки, под ними — подзаголовки (на телефоне по стрелке) */
   const groups = [
@@ -53,7 +54,6 @@ function render() {
   const cb = $('#consBtn'); cb.textContent = t.cons.cta; cb.href = L.form; cb.removeAttribute('target'); $('#fab').href = L.wa;
   const wb = $('#consWa'); wb.textContent = t.cons.wa; wb.href = L.wa;
 
-  $('#nums').innerHTML = t.corp.n.map((n, i) => `<div class="num rv" style="--d:${i * .08}s"><b data-count="${esc(n[0])}">${esc(n[0])}</b><span>${esc(n[1])}</span></div>`).join('');
   $('#corpTags').innerHTML = t.corp.t.map(x => `<li>${esc(x)}</li>`).join('');
   $('#corpClients').innerHTML = (t.corp.clients || []).map(x => `<li>${esc(x)}</li>`).join('');
   const fc = t.foot.cols || [], fl = L.foot || [];
@@ -62,14 +62,16 @@ function render() {
   bkPos();
   const kb = $('#corpBtn'); kb.innerHTML = esc(t.corp.cta) + ' ' + ARR; kb.href = L.corp;
 
-  $('#myths').innerHTML = t.enl.m.map((m, i) => `<div class="myth rv" style="--d:${i * .08}s"><div class="myth__in">
-    <button class="myth__f" type="button"><span class="myth__k">${esc(m[0])}</span><span class="myth__q">${esc(m[1])}</span><span class="myth__btn">${esc(t.enl.flip)}</span></button>
-    <div class="myth__b"><span class="myth__k">${esc(m[0])}</span><p class="myth__a">${esc(m[2])}</p><a class="myth__btn" href="${L.myths[i]}">${esc(t.enl.more)} ${ARR}</a></div></div></div>`).join('');
+  $('#myths').innerHTML = t.enl.m.map((m, i) => `<a class="mth rv" href="${L.myths[i] || L.books[0]}" style="--d:${i * .06}s"><span class="mth__k">${esc(t.enl.myth)} · ${esc(m[0])}</span><span class="mth__q">${esc(m[1])}</span><span class="mth__go">${esc(t.enl.go)} ${ARR}</span></a>`).join('');
 
   $('#posts').innerHTML = t.blog.p.map((p, i) => `<a class="post rv" href="${L.blog[i]}" style="--d:${i * .1}s"><div class="post__i"><img src="assets/img/blog-${i + 1}.jpg" alt="" loading="lazy"></div><div class="post__b"><span class="post__k">${esc(p[0])}</span><h3 class="post__t">${esc(p[1])}</h3></div></a>`).join('');
   $('#tgBtn').href = L.tg;
   const vid = (id, title) => `<button type="button" class="vid" data-yt="${id}" aria-label="${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="vid__play" aria-hidden="true"></span></button>`;
-  $('#proofs').innerHTML = (t.edu.proofs || []).map((c, i) => `<button type="button" class="proof rv" data-lb="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" style="--d:${i * .08}s"><span class="proof__i"><img src="assets/img/proof/${['diploma', 'cert', 'group'][i]}.jpg" alt="${esc(c)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(c)}</span></button>`).join('');
+  GAL = (t.edu.gal || []).map(g => ({ src: 'assets/img/proof/' + g[0] + '.jpg', cap: g[1] }));
+  $('#proofs').innerHTML = GAL.slice(0, 3).map((g, i) => `<button type="button" class="proof rv" data-gal="${i}" style="--d:${i * .08}s"><span class="proof__i"><img src="${g.src}" alt="${esc(g.cap)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(g.cap)}</span></button>`).join('');
+  $('#galBtn').textContent = t.edu.galBtn + ' · ' + GAL.length;
+  const ld = t.spec.lead; $('#lead').innerHTML = ld ? `<h3 class="lead__h">${esc(ld.h)}</h3><ol class="lead__l">${ld.items.map(x => `<li><b>${esc(x[0])}</b><span>${esc(x[1])}</span></li>`).join('')}</ol><p class="lead__y"><b>${esc(ld.study[0])}</b><span>${esc(ld.study[1])}</span></p><p class="lead__y"><b>${esc(ld.now[0])}</b><span>${esc(ld.now[1])}</span></p>` : '';
+  if (t.a11y && t.a11y.prev) { $('#bkPrev').setAttribute('aria-label', t.a11y.prev); $('#bkNext').setAttribute('aria-label', t.a11y.next); $('#lbPrev').setAttribute('aria-label', t.a11y.prev); $('#lbNext').setAttribute('aria-label', t.a11y.next); $('#lbX').setAttribute('aria-label', t.a11y.close); }
   const fm = t.cons.film; $('#film').innerHTML = fm ? `${vid(fm.id, fm.t)}<div class="film__b"><h3 class="film__t">${esc(fm.t)}</h3><p class="film__d">${esc(fm.d)}</p>${fm.cta ? `<button type="button" class="btn btn--line film__go">${esc(fm.cta)}</button>` : ''}</div>` : '';
   const ax = t.a11y; if (ax) { document.title = ax.title; $('#nav').setAttribute('aria-label', ax.menu); $('#burger').setAttribute('aria-label', ax.menu); $('#themes').setAttribute('aria-label', ax.theme); $('#langs').setAttribute('aria-label', ax.lang); $$('[data-theme-btn]').forEach(b => b.setAttribute('aria-label', ax[b.dataset.themeBtn])); }
   $('#corpVids').innerHTML = (t.corp.vids || []).map(v => `<figure class="vids__i rv">${vid(v[1], v[0])}<figcaption>${esc(v[0])}</figcaption></figure>`).join('');
@@ -160,7 +162,7 @@ function onScroll() {
   const menuOpen = $('#mob').classList.contains('is-open'); head.classList.toggle('is-menu', menuOpen);
   if (y < 120 || menuOpen) head.classList.remove('is-hidden'); else if (travel > 48) head.classList.add('is-hidden'); else if (travel < -32) head.classList.remove('is-hidden');
   fab.classList.toggle('is-on', !overHero);
-  const rr = rib.getBoundingClientRect(); fab.classList.toggle('is-off', rr.top <= 1 && rr.bottom >= vh - 1);   /* в закреплённой ленте кнопка не закрывает карточки */
+  const rr = rib.getBoundingClientRect(); fab.classList.toggle('is-off', (rr.top <= 1 && rr.bottom >= vh - 1) || (innerWidth < 761 && head.classList.contains('is-hidden')));   /* на телефоне при чтении вниз кнопка уходит вместе с шапкой и не закрывает текст */   /* в закреплённой ленте кнопка не закрывает карточки */
   cineScroll(); ribScroll();
   $$('.bk__obj').forEach(o => { const r = o.getBoundingClientRect(); if (r.bottom < -100 || r.top > vh + 100) return; const k = clamp(1 - (r.top + r.height / 2) / vh); o.style.setProperty('--ry', (-38 + seg(k, .1, .6) * 22).toFixed(1) + 'deg'); });   /* книга поворачивается к читателю */
   $$('.person__ph img').forEach(im => { const r = im.parentNode.getBoundingClientRect(); if (r.bottom < 0 || r.top > vh) return; im.style.setProperty('--py', (-(r.top + r.height / 2 - vh / 2) / vh * 7).toFixed(2) + '%'); });
@@ -171,6 +173,10 @@ let rt = 0; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout
 /* ───────── нажатия ───────── */
 function setMenu(open) { $('#mob').classList.toggle('is-open', open); $('#mob').setAttribute('aria-hidden', String(!open)); $('#burger').setAttribute('aria-expanded', String(open)); document.documentElement.style.overflow = open ? 'hidden' : ''; if (open) head.classList.remove('is-hidden'); head.classList.toggle('is-menu', open); }
 /* книги: лента по одной, стрелки и свайп */
+function galShow(i) { if (!GAL.length) return; galI = (i + GAL.length) % GAL.length; $('#lbImg').src = GAL[galI].src; $('#lbCap').textContent = GAL[galI].cap; $('#lbN').textContent = (galI + 1) + ' / ' + GAL.length; $('#lb').classList.add('is-open'); $('#lb').setAttribute('aria-hidden', 'false'); }
+function galClose() { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); }
+addEventListener('keydown', e => { if (!$('#lb').classList.contains('is-open')) return; if (e.key === 'Escape') galClose(); if (e.key === 'ArrowRight') galShow(galI + 1); if (e.key === 'ArrowLeft') galShow(galI - 1); });
+let lbX0 = null; $('#lb').addEventListener('touchstart', e => { lbX0 = e.touches[0].clientX; }, { passive: true }); $('#lb').addEventListener('touchend', e => { if (lbX0 == null) return; const d = e.changedTouches[0].clientX - lbX0; lbX0 = null; if (Math.abs(d) > 40) galShow(galI + (d < 0 ? 1 : -1)); }, { passive: true });
 const shelf = $('#shelf');
 function bkIdx() { return Math.round(shelf.scrollLeft / Math.max(1, shelf.clientWidth)); }
 function bkPos() { const n = shelf.children.length, i = Math.min(n - 1, bkIdx()); $('#bkPos').textContent = n ? String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0') : ''; $('#bkPrev').disabled = i <= 0; $('#bkNext').disabled = i >= n - 1; }
@@ -183,8 +189,10 @@ document.addEventListener('click', e => {
   const mf = e.target.closest('.myth__f'); if (mf) { mf.closest('.myth').classList.add('is-flip'); return; }
   const mb = e.target.closest('.myth__b'); if (mb && !e.target.closest('a')) { mb.closest('.myth').classList.remove('is-flip'); return; }
   const go = e.target.closest('.film__go'); const yt = go ? $('#film .vid[data-yt]') : e.target.closest('.vid[data-yt]'); if (go && !yt) return; if (yt) { yt.outerHTML = `<div class="vid vid--on"><iframe src="https://www.youtube-nocookie.com/embed/${yt.dataset.yt}?autoplay=1&rel=0" title="${yt.getAttribute('aria-label')}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`; return; }
-  const pf = e.target.closest('[data-lb]'); if (pf) { $('#lbImg').src = pf.dataset.lb; $('#lbCap').textContent = pf.querySelector('.proof__c').textContent; $('#lb').classList.add('is-open'); $('#lb').setAttribute('aria-hidden', 'false'); return; }
-  if (e.target.closest('#lb')) { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); return; }
+  const pf = e.target.closest('[data-gal]'); if (pf) { galShow(+pf.dataset.gal); return; }
+  if (e.target.closest('#galBtn')) { galShow(0); return; }
+  if (e.target.closest('#lbNext')) { galShow(galI + 1); return; } if (e.target.closest('#lbPrev')) { galShow(galI - 1); return; }
+  if (e.target.closest('#lb')) { if (!e.target.closest('figure') || e.target.closest('#lbX')) galClose(); return; }
   if (e.target.closest('#bkPrev')) { bkGo(-1); return; } if (e.target.closest('#bkNext')) { bkGo(1); return; }
   let th = e.target.closest('[data-theme-btn]');
   if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */

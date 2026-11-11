@@ -533,3 +533,63 @@ main, .foot { position: relative; z-index: 1; }
 .film__go { margin-top: var(--r2); }
 @media (max-width: 760px) { .seg--lang button { min-width: 34px; } }
 @media (max-width: 359px) { .seg--lang button { min-width: 30px; } }
+
+
+/* ═══ ЗАМЕЧАНИЯ ВЛАДЕЛЬЦА 11.11 (вечер) ═══ */
+/* руководители: слева, с золотой линией — разрыв между специалистами и книгами */
+.lead { margin-top: var(--r4); padding-left: var(--r3); border-left: 2px solid var(--gold); max-width: 900px; text-align: left; } .lead:empty { display: none; }
+.lead__h { font: 600 12.5px/1.3 var(--f-sub); letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: var(--r2); }
+.lead__l { display: flex; flex-direction: column; gap: var(--r2); counter-reset: ld; }
+.lead__l li { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 8px; counter-increment: ld; } .lead__l li::before { content: counter(ld, decimal-leading-zero); grid-row: 1 / 3; font: 600 13px/2.2 var(--f-num); color: var(--gold); }
+.lead__l b { font: 400 clamp(23px, 2.1vw, 31px)/1.15 var(--f-display); color: var(--milk); } .lead__l span { margin-top: 6px; font: 400 17px/1.55 var(--f-read); color: var(--text); max-width: 60ch; }
+.lead__y { margin-top: var(--r2); padding-top: var(--r2); border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(120px, max-content) minmax(0, 1fr); gap: var(--r2); align-items: baseline; }
+.lead__y b { font: 400 clamp(21px, 1.8vw, 27px)/1.2 var(--f-display); color: var(--gold-hi); font-variant-numeric: lining-nums; white-space: nowrap; } .lead__y span { font: 400 17px/1.55 var(--f-read); color: var(--text); max-width: 60ch; }
+
+/* карточка программы: один стандарт — название в одну строку, документ в две, две строки условий, цена, кнопка; без пустот */
+.pc { gap: 14px; } .pc__t { font-size: clamp(21px, 1.6vw, 24px); line-height: 1.15; min-height: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc__d { min-height: 2.9em; } .pc__m { flex-direction: column; align-items: flex-start; gap: 6px; min-height: 68px; } .pc__m span { white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.pc__p { margin-top: 0; }
+
+/* мифы: пять компактных карточек — на телефоне две видны сразу */
+.myths { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--r1); }
+.mth { display: flex; flex-direction: column; gap: 10px; padding: var(--r2) var(--r1) var(--r1); border-radius: calc(var(--rad) * .7); background: var(--layer); border: 1px solid var(--line); text-align: left; transition: transform var(--t2) var(--e), border-color var(--t1); }
+.mth:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--gold) 60%, transparent); }
+.mth__k { font: 600 11.5px/1.3 var(--f-sub); letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+.mth__q { font: 400 italic clamp(19px, 1.45vw, 22px)/1.25 var(--f-display); color: var(--milk); } .mth__q::before { content: "«"; } .mth__q::after { content: "»"; }
+.mth__go { margin-top: auto; min-height: var(--tap); display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 var(--f-sub); color: var(--gold-hi); }
+
+/* галерея: листание в окне просмотра */
+.lb figure { position: relative; } .lb__n { font: 600 12.5px/1 var(--f-num); letter-spacing: .14em; color: #B9B3A7; }
+.lb__a { position: absolute; top: 50%; width: 54px; height: 54px; margin-top: -27px; border-radius: 50%; border: 1px solid rgba(242, 237, 227, .4); color: #F2EDE3; font: 300 30px/1 var(--f-sub); display: grid; place-items: center; z-index: 2; background: rgba(5, 6, 9, .5); }
+.lb__a--p { left: 14px; } .lb__a--n { right: 14px; } .lb { cursor: default; } .lb img { cursor: default; }
+
+/* Telegram: кнопка обычного размера */
+.tg .btn { min-height: var(--btn-h-sm); padding: 0 26px; width: auto; align-self: center; } .tg { padding: var(--r3) var(--r2); gap: var(--r1); } .tg__h { font-size: clamp(30px, 3.6vw, 54px); }
+
+@media (max-width: 1100px) { .myths { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .lead { padding-left: var(--r2); margin-top: var(--r3); } .lead__y { grid-template-columns: 1fr; gap: 4px; }
+  .myths { grid-template-columns: 1fr; } .mth { padding: var(--r1) var(--r1) 4px; gap: 6px; } .mth__q { font-size: 19px; }
+  /* книга на телефоне: обложка сверху, описание под ней — всё на одном экране */
+  .bk { gap: 10px; align-content: start; } .bk__scene { padding: 6px 0 0; } .bk__obj { --w: 34vw; } .bk__scene::after { height: 16px; margin-top: 2px; }
+  .bk__t { margin-top: 0; font-size: 27px; } .bk__a { margin-top: 4px; font-size: 15.5px; } .bk__f { margin-top: 10px; } .bk__f li { padding: 8px 0; font-size: 16px; line-height: 1.4; grid-template-columns: 28px 1fr; }
+  .bk__btns { margin-top: 12px; gap: 8px; flex-wrap: nowrap; } .bk__btns .btn { width: auto; flex: 1 1 0; min-height: var(--btn-h-sm); padding: 0 10px; font-size: 14px; }
+  .shelf__nav { margin-top: var(--r1); }
+  .pc { width: 82vw; } .rib__stick { padding: 76px 0 var(--r2); }
+  .lb__a { width: 44px; height: 44px; margin-top: -22px; } .lb__a--p { left: 4px; } .lb__a--n { right: 4px; }
+}
+
+/* ═══ доводка: зоны нажатия, зазоры, кегль ═══ */
+.person__more, .sh__link { min-height: var(--tap); display: inline-flex; align-items: center; gap: 8px; }
+.facts li, .proof__c, .vids__i figcaption { font-size: 17px; }
+.proofs { margin-top: var(--r2); } .rib__bar { margin-top: var(--r2); }
+@media (min-width: 761px) { .rib__stick { padding-bottom: var(--r2); } }
+@media (max-width: 760px) { .seg--lang button { min-width: 40px; } .bk__btns .btn { font-size: 15px; padding: 0 8px; } .head { gap: 6px; } .head__r { gap: 5px; } }
+@media (max-width: 359px) { .seg--lang button { min-width: 32px; } }
+
+/* ═══ после просмотра снимков ═══ */
+.mth__q::before, .mth__q::after { content: none; }
+@media (max-width: 760px) { .bk__btns { flex-direction: column; flex-wrap: nowrap; } .bk__btns .btn { width: 100%; flex: 0 0 auto; } }
+
+/* подпись героя на телефоне: буквы плотнее, с запасом по ширине (владелец, 11.11) */
+@media (max-width: 760px) { .cine__school { font-size: clamp(12.5px, 3.7vw, 16px); letter-spacing: .1em; } .sign { max-width: 100%; } }
