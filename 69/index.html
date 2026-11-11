@@ -74,6 +74,7 @@
     <div class="hero__frame">
       <img src="/images/hero-home/d/f000.webp" alt="">
     </div>
+    <canvas class="hero__net" id="heroNet" aria-hidden="true"></canvas>
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__shade" id="shade"></div>
 
@@ -616,6 +617,41 @@
     </div>
   </div>
 </footer>
+
+<script type="module">
+/* ── СЕТЬ ИНТЕЛЛЕКТА В ГЕРОЕ ────────────────────────────────────────
+   Зачем: владелец отверг прежний визуал («нет визуала который вызывает
+   уважение»). Смысл, который обязана передать сцена — интеллект,
+   развитие и движение к цели («достичь своих жизненных целей,
+   пользуясь своим интеллектом»).
+
+   Визуал: поток узлов и связей, идущий слева вправо и собирающийся
+   к цели. Не симметричная сфера — та читалась как «скринсейвер».
+
+   Если модуль не загрузится, герой остаётся рабочим: фото и текст
+   на месте, просто без слоя сети. Поэтому всё в try/catch. */
+try {
+  /* Прямой путь вместо importmap: тот не разрешал спецификатор 'three'
+     и сеть молча не запускалась. */
+  const THREE = await import('./vendor/three.module.js');
+  const mod = await import('./design/components/hero-net.js');
+  const cv = document.getElementById('heroNet');
+  const net = (cv && mod.initHeroNet) ? mod.initHeroNet(cv, { THREE }) : null;
+  if (net) {
+    const hero = document.getElementById('hero');
+    const onScroll = function () {
+      if (!hero) return;
+      const h = hero.offsetHeight - window.innerHeight;
+      net.setProgress(h > 0 ? Math.max(0, Math.min(1, window.scrollY / h)) : 0);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    window.__heroNet = net;
+  }
+} catch (e) {
+  if (window.console) console.warn('сеть героя не запустилась:', e && e.message);
+}
+</script>
 
 <script>
 /* ── ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ ───────────────────────────────────────
