@@ -304,7 +304,8 @@ const OWN2 = {
 };
 for (const l of Object.keys(OWN2)) { T[l].corp.list = OWN2[l].list; T[l].soc = OWN2[l].soc; }
 const _LINKS0 = LINKS;
-export function LINKS2(l) { const L = _LINKS0(l); L.soc = [L.tg, 'https://instagram.com/doctor.ragimoff', 'https://youtube.com/@kragimoff', 'https://www.facebook.com/Ragimoff.az']; return L; }
+export function LINKS2(l) { const L = _LINKS0(l); L.prog = ['general', 'clinical', 'practicum', 'psychodiagnostics', 'cbt', 'psychoanalysis', 'family'].map(s => 'program.html?p=' + s);   /* страницы программ — один шаблон */
+  L.soc = [L.tg, 'https://instagram.com/doctor.ragimoff', 'https://youtube.com/@kragimoff', 'https://www.facebook.com/Ragimoff.az']; return L; }
 
 /* ── PP_LABELS: подписи страницы программы (один шаблон на все программы) ── */
 const PP = {
