@@ -593,3 +593,6 @@ main, .foot { position: relative; z-index: 1; }
 
 /* подпись героя на телефоне: буквы плотнее, с запасом по ширине (владелец, 11.11) */
 @media (max-width: 760px) { .cine__school { font-size: clamp(12.5px, 3.7vw, 16px); letter-spacing: .1em; } .sign { max-width: 100%; } }
+
+/* подпись героя на телефоне: крупнее (с запасом по ширине на трёх языках) и ближе к кнопкам — зазоры «имя → подпись» и «подпись → кнопки» равны (владелец, 11.11) */
+@media (max-width: 760px) { .cine__school { font-size: clamp(15px, 5.1vw, 22px); letter-spacing: .12em; margin-top: 19px; line-height: 1; display: block; } .cine__btns { margin-top: 20px; } }
