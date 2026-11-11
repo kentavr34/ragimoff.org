@@ -34,3 +34,17 @@ import subprocess, sys
 r = subprocess.run([sys.executable, '_tools/css_scale.py', 'check'], capture_output=True, text=True, encoding='utf-8', errors='replace')
 if r.returncode:
     print('ВНИМАНИЕ:', r.stdout.strip(), '— выполните: python _tools/css_scale.py fix')
+
+# все страницы и все сценарии новой версии (оболочки внутренних страниц, блоки) — та же метка
+import glob
+for pg in glob.glob('*.html'):
+    x = io.open(pg, encoding='utf-8').read()
+    y = re.sub(r'(assets/(?:css|js)/[\w-]+\.(?:css|js))(\?v=\d+)?', r'\1?v=' + v, x)
+    if y != x:
+        io.open(pg, 'w', encoding='utf-8', newline='\n').write(y)
+for f in glob.glob('assets/js/*.js'):
+    x = io.open(f, encoding='utf-8').read()
+    y = re.sub(r"(from '\./[\w-]+\.js)(\?v=\d+)?'", r"\1?v=" + v + "'", x)
+    y = re.sub(r"const V = '\d+';", "const V = '" + v + "';", y)
+    if y != x:
+        io.open(f, 'w', encoding='utf-8', newline='\n').write(y)

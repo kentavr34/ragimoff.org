@@ -1,7 +1,7 @@
 /* test/11 — страница программы обучения: один шаблон на все программы. Данные — programs.js, подписи — content.js (T[l].pp), форма — reg.js. */
-import { PROGRAMS } from './programs.js?v=11112338';
-import { initChrome, esc, ARR, progUrl } from './chrome.js?v=11112338';
-import { regRender, regOpen } from './reg.js?v=11112338';
+import { PROGRAMS } from './programs.js?v=11120219';
+import { initChrome, esc, ARR, progUrl } from './chrome.js?v=11120219';
+import { regRender, regOpen } from './reg.js?v=11120219';
 
 const $ = s => document.querySelector(s);
 const slug = (() => { const p = new URLSearchParams(location.search).get('p'); return PROGRAMS.items[p] ? p : PROGRAMS.order[0]; })();

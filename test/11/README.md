@@ -50,3 +50,20 @@ test/11/
 Проверено 11.11.2026 (Chrome без окна): 1440 / 834 / 390, три языка — заголовки ≤ 2 строк, ширина страницы = экрану,
 битых картинок 0, ошибок в консоли 0. Азербайджанские и английские тексты требуют вычитки. Фото Кенана увеличено из 335×600 —
 нужен исходник в высоком разрешении. На обложке «Клинической психиатрии» в имени автора вместо буквы Ə стоят квадраты — это в самом файле обложки.
+
+## Внутренние страницы (12.11.2026) — один движок из блоков
+
+Все разделы сайта собраны внутри `test/11` и не зависят от старых папок (`/ru/…`, `/az/…`, `/en/…`, `/images/…`).
+
+```
+specialist.html?s=kenan|samira   специалисты          data/spec/<slug>.<lang>.json
+consult.html?c=<slug>            консультации (7)     data/cons/<slug>.<lang>.json
+contact.html · corporate.html · law.html              data/page/<slug>.<lang>.json
+blog.html · article.html?a=<slug>   блог (37–38 статей на язык)   data/blog/<slug>.<lang>.json, index.<lang>.json
+program.html?p=<slug>            программы обучения   assets/js/programs.js
+```
+- `assets/js/blocks.js` — все виды блоков и перевод старых адресов в новые (`fixUrl`); `assets/js/page.js` — загрузка данных, герой, блог, форма записи с готовым выбором; рама — `chrome.js`; стили — `site.css`, раздел «PG».
+- Формат данных — `_agent/docs/DATA_SCHEMA.md`. Тексты перенесены с действующего сайта дословно; цены консультаций — только из `content.js` (`T[l].pg.prices`), в манатах.
+- Инструменты: `_tools/make_shells.py` (оболочки страниц из рамы `program.html`), `_tools/build_blog.py` (статьи и список блога), `_tools/collect_images.py` (картинки → `assets/img/site/`), `_tools/verify_data.py --all` (сторож дословности и разметки), `_tools/clean_data.py`, `_tools/patch_data_1112.py`, `_tools/pages_check.py` (автоматическая проверка всех страниц × 3 языка × 3 ширины), `_tools/stamp.py` (метка версии на все страницы и сценарии).
+- Порядок перед публикацией: `verify_data.py --all` → `collect_images.py` → `stamp.py` → `pages_check.py` (0 нарушений) → критик → коммит только путей `test/11`.
+- Страница тестов (`/test/`) и админка (`api.ragimoff.org/admin`) не тронуты; на тесты ведёт ссылка в подвале и в нижней навигации.

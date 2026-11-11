@@ -322,3 +322,30 @@ const ENU = {
   en: { l: 'What you need', o: [['first', 'First consultation'], ['course', 'Treatment course']], sub: { first: 'first consultation · Kenan Ragimov', course: 'treatment course · Kenan Ragimov' } },
 };
 for (const l of Object.keys(ENU)) T[l].reg.enu = ENU[l];
+
+/* ── PG_1112: внутренние страницы из блоков (специалисты, консультации, контакты, тренинги, право, блог) — подписи и цены в одном месте ── */
+const PG = {
+  ru: { back: { spec: 'Специалисты', cons: 'Консультации', page: 'Главная', blog: 'Блог', post: 'Все статьи' }, book: 'Записаться', other: { spec: 'Специалисты', cons: 'Другие консультации', page: 'Разделы' },
+        author: 'Автор', sources: 'Источники', all: 'Все', read: 'Читать', none: 'Страница не найдена', home: 'На главную', pages: { contact: 'Контакты', corporate: 'Тренинги для компаний', law: 'Правовые основы', tests: 'Тесты' },
+        prices: { consult: { rows: [['Встреча с одним специалистом, онлайн', '100 AZN', '1 час'], ['Встреча с одним специалистом, очно', '150 AZN', '1 час'], ['Встреча с обоими специалистами, онлайн', '150 AZN', '1 час'], ['Встреча с обоими специалистами, очно', '200 AZN', '1 час'], ['Пакет на месяц, онлайн', '400 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)'], ['Пакет на месяц, очно', '600 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)']] },
+                  enurez: { rows: [['Первичная консультация', '50 AZN', 'Кенан Рагимов'], ['Курс лечения', '500 AZN', 'Кенан Рагимов']] } } },
+  az: { back: { spec: 'Mütəxəssislər', cons: 'Konsultasiyalar', page: 'Ana səhifə', blog: 'Bloq', post: 'Bütün məqalələr' }, book: 'Yazılın', other: { spec: 'Mütəxəssislər', cons: 'Digər konsultasiyalar', page: 'Bölmələr' },
+        author: 'Müəllif', sources: 'Mənbələr', all: 'Hamısı', read: 'Oxu', none: 'Səhifə tapılmadı', home: 'Ana səhifəyə', pages: { contact: 'Əlaqə', corporate: 'Şirkətlər üçün təlimlər', law: 'Qanuni əsaslar', tests: 'Testlər' },
+        prices: { consult: { rows: [['Bir mütəxəssislə görüş, online', '100 AZN', '1 saat'], ['Bir mütəxəssislə görüş, əyani', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, online', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, əyani', '200 AZN', '1 saat'], ['Aylıq terapiya paketi, online', '400 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)'], ['Aylıq terapiya paketi, əyani', '600 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)']] },
+                  enurez: { rows: [['İlkin konsultasiya', '50 AZN', 'Kənan Rəhimov'], ['Müalicə kursu', '500 AZN', 'Kənan Rəhimov']] } } },
+  en: { back: { spec: 'Specialists', cons: 'Consultations', page: 'Home', blog: 'Blog', post: 'All articles' }, book: 'Book', other: { spec: 'Specialists', cons: 'Other consultations', page: 'Sections' },
+        author: 'Author', sources: 'Sources', all: 'All', read: 'Read', none: 'Page not found', home: 'Home', pages: { contact: 'Contact', corporate: 'Training for companies', law: 'Legal basis', tests: 'Tests' },
+        prices: { consult: { rows: [['Session with one specialist, online', '100 AZN', '1 hour'], ['Session with one specialist, in person', '150 AZN', '1 hour'], ['Session with both specialists, online', '150 AZN', '1 hour'], ['Session with both specialists, in person', '200 AZN', '1 hour'], ['Monthly package, online', '400 AZN', '4 sessions + WhatsApp support (100 min limit)'], ['Monthly package, in person', '600 AZN', '4 sessions + WhatsApp support (100 min limit)']] },
+                  enurez: { rows: [['First consultation', '50 AZN', 'Kenan Ragimov'], ['Treatment course', '500 AZN', 'Kenan Ragimov']] } } },
+};
+for (const l of Object.keys(PG)) { T[l].pg = PG[l]; T[l].foot.cols[1].l.push(PG[l].pages.tests); for (const k of Object.keys(PG[l].prices)) PG[l].prices[k].note = T[l].cons.note; }
+/* адреса новой версии: все разделы ведут на страницы внутри неё (одно место) */
+export const CONS = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'aile-usaq-terapiyasi', 'valideyn-mektebi'];
+const _LINKS1 = LINKS2;
+export function LINKS3(l) { const L = _LINKS1(l);
+  L.spec = ['specialist.html?s=kenan', 'specialist.html?s=samira'];
+  L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi'].map(c => 'consult.html?c=' + c).concat('index.html#cons');
+  L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
+  L.contact = 'contact.html'; L.law = 'law.html'; L.tests = '/test/';
+  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'law.html', '/test/'], [L.wa, L.tg, 'contact.html']];
+  return L; }
