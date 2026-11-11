@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="design/components/head.css">
 <link rel="stylesheet" href="design/components/hero.css">
 <link rel="stylesheet" href="design/components/blocks.css">
+<link rel="stylesheet" href="design/components/forms.css">
 </head>
 <body>
 
@@ -322,6 +323,62 @@
         </div>
       </div>
     </div>
+    <div id="short-programs" style="margin-top:var(--space-u8)">
+      <div class="section__head" style="align-items:flex-start;text-align:left;margin-bottom:var(--space-u5)">
+        <span class="eyebrow">Краткосрочные</span>
+        <h3 style="font-family:var(--font-display);font-size:var(--size-step3)">Четыре короткие программы</h3>
+        <p class="lead">Не заменяют основное обучение, а закрывают конкретную нехватку:
+          направление, инструмент, основу или правовую сторону работы.</p>
+      </div>
+      <div class="cards grid--4" style="display:grid">
+      <article class="program reveal">
+        <span class="program__form">Курс</span>
+        <h3 class="program__title">Психоанализ</h3>
+        <p class="program__gain">Даёт язык для работы с бессознательным: <b>теория и практика в одном курсе</b> — от фрейдовских оснований до современных техник.</p>
+        <div class="program__facts">
+          <span>864 часа</span><span>направление</span><span>ведёт Кенан</span>
+        </div>
+        <div class="program__foot">
+          <a class="btn btn--line btn--sm" href="/ru/telim/psixoanaliz.html">Программа</a>
+        </div>
+      </article>
+      <article class="program reveal">
+        <span class="program__form">Курс</span>
+        <h3 class="program__title">Психодиагностика</h3>
+        <p class="program__gain">Даёт инструмент для постановки диагноза: <b>методики и их границы</b> — что показывает тест, а что приписывают ему зря.</p>
+        <div class="program__facts">
+          <span>864 часа</span><span>инструменты</span><span>практика</span>
+        </div>
+        <div class="program__foot">
+          <a class="btn btn--line btn--sm" href="/ru/telim/psixodiaqnostika.html">Программа</a>
+        </div>
+      </article>
+      <article class="program reveal">
+        <span class="program__form">Базовая программа</span>
+        <h3 class="program__title">Общая психология</h3>
+        <p class="program__gain">Даёт основу профессии: <b>системное представление о психике</b> для тех, кто начинает путь в психологии.</p>
+        <div class="program__facts">
+          <span>556 часов</span><span>основы</span><span>с нуля</span>
+        </div>
+        <div class="program__foot">
+          <a class="btn btn--line btn--sm" href="/ru/telim/umumi-psixologiya.html">Программа</a>
+        </div>
+      </article>
+      <article class="program reveal">
+        <span class="program__form">Для практикующих</span>
+        <h3 class="program__title">Юридические основы</h3>
+        <p class="program__gain">Даёт защиту в работе: <b>правовая база деятельности</b> — границы ответственности, документы, что можно и чего нельзя.</p>
+        <div class="program__facts">
+          <span>правовая база</span><span>документы</span><span>для практики</span>
+        </div>
+        <div class="program__foot">
+          <a class="btn btn--line btn--sm" href="/ru/telim/qanuni-esaslar.html">Программа</a>
+        </div>
+      </article>
+      </div>
+    </div>
+
+
   </div>
 </section>
 
@@ -369,6 +426,184 @@
         </p>
         <a class="btn btn--line btn--sm" href="/az/konsultasiya/depressiya.html">Смотреть разбор</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ РЕГИСТРАЦИЯ: ЧЕТЫРЕ ФОРМЫ (канон, правило 65) ═══════════ -->
+<section class="section section--lined" id="registration">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <span class="eyebrow">Регистрация</span>
+      <h2>Записаться</h2>
+      <p class="lead">Четыре направления — четыре отдельные формы. Заполните ту,
+        которая вам нужна: заявка попадает к специалисту напрямую.</p>
+    </div>
+
+    <div class="reg reveal" data-req="Заполните выделенные поля" data-sending="Отправляем…"
+         data-ok="Заявка принята. Мы свяжемся с вами."
+         data-err="Не удалось отправить заявку.">
+
+      <div class="reg__tabs" role="tablist" aria-label="Направление">
+        <button class="reg__tab" type="button" data-tab="training" role="tab" aria-selected="true">
+          Обучение<small>Получить диплом или сертификат</small>
+        </button>
+        <button class="reg__tab" type="button" data-tab="individual" role="tab" aria-selected="false">
+          Индивидуальный тренинг<small>Личная работа со специалистом</small>
+        </button>
+        <button class="reg__tab" type="button" data-tab="consult" role="tab" aria-selected="false">
+          Консультация<small>Один или вдвоём, онлайн или очно</small>
+        </button>
+        <button class="reg__tab" type="button" data-tab="b2b" role="tab" aria-selected="false">
+          Для организаций<small>Тренинг для команды</small>
+        </button>
+      </div>
+
+      <!-- 1. ОБУЧЕНИЕ -->
+      <div class="reg__panel is-on" data-panel="training">
+        <form class="reg__form" id="regTraining" novalidate>
+          <label class="reg__field">
+            <span class="reg__label">Имя</span>
+            <input class="reg__input" type="text" name="fname" autocomplete="given-name">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Телефон</span>
+            <input class="reg__input" type="tel" name="phone" autocomplete="tel" placeholder="+994 __ ___ __ __">
+          </label>
+          <label class="reg__field reg__field--wide">
+            <span class="reg__label">Программа</span>
+            <select class="reg__select" name="program">
+              <option value="">Выберите программу</option>
+              <option>Клиническая психология — диплом ДПО, 2392 часа</option>
+              <option>Практикум по психотерапии — 864 часа</option>
+              <option>Системная семейная терапия</option>
+              <option>Психоанализ — 864 часа</option>
+              <option>Психодиагностика — 864 часа</option>
+              <option>Общая психология — 556 часов</option>
+              <option>Юридические основы деятельности</option>
+            </select>
+          </label>
+          <label class="reg__field reg__field--wide">
+            <span class="reg__label">Вопрос, если есть</span>
+            <textarea class="reg__textarea" name="question"></textarea>
+          </label>
+          <div class="reg__row">
+            <span class="reg__note">Стоимость программ установлена. Порядок оплаты
+              и начало занятий подтвердит специалист.</span>
+            <button class="btn btn--gold" type="submit">Отправить заявку</button>
+          </div>
+          <div class="reg__msg" hidden></div>
+        </form>
+      </div>
+
+      <!-- 2. ИНДИВИДУАЛЬНЫЙ ТРЕНИНГ -->
+      <div class="reg__panel" data-panel="individual">
+        <form class="reg__form" id="regIndividual" novalidate>
+          <label class="reg__field">
+            <span class="reg__label">Имя</span>
+            <input class="reg__input" type="text" name="fname" autocomplete="given-name">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Телефон</span>
+            <input class="reg__input" type="tel" name="phone" autocomplete="tel">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Часов занятий</span>
+            <input class="reg__input" type="text" name="hours" placeholder="минимум 20">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Тема</span>
+            <input class="reg__input" type="text" name="topic">
+          </label>
+          <div class="reg__field reg__field--wide">
+            <span class="reg__label">Кто ведёт</span>
+            <div class="reg__row" style="gap:18px">
+              <label><input type="radio" name="who" value="kenan" checked> Кенан Рагимов</label>
+              <label><input type="radio" name="who" value="samira"> Самира Рагимова</label>
+              <label><input type="radio" name="who" value="both"> Оба специалиста</label>
+            </div>
+          </div>
+          <div class="reg__price">от 2000 AZN за одного специалиста · 3000 AZN, если ведут оба</div>
+          <div class="reg__row">
+            <span class="reg__note">Минимум 20 часов. При добавлении человека цена
+              на одного снижается, общая — растёт.</span>
+            <button class="btn btn--gold" type="submit">Отправить заявку</button>
+          </div>
+          <div class="reg__msg" hidden></div>
+        </form>
+      </div>
+
+      <!-- 3. КОНСУЛЬТАЦИЯ -->
+      <div class="reg__panel" data-panel="consult">
+        <form class="reg__form" id="regConsult" novalidate>
+          <label class="reg__field">
+            <span class="reg__label">Имя</span>
+            <input class="reg__input" type="text" name="fname" autocomplete="given-name">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Телефон</span>
+            <input class="reg__input" type="tel" name="phone" autocomplete="tel">
+          </label>
+          <div class="reg__field reg__field--wide">
+            <span class="reg__label">Кто участвует</span>
+            <div class="reg__row" style="gap:18px">
+              <label><input type="radio" name="who" value="one" checked> Один человек</label>
+              <label><input type="radio" name="who" value="both"> Вдвоём</label>
+            </div>
+          </div>
+          <div class="reg__field reg__field--wide">
+            <span class="reg__label">Формат</span>
+            <div class="reg__row" style="gap:18px">
+              <label><input type="radio" name="format" value="online" checked> Онлайн</label>
+              <label><input type="radio" name="format" value="offline"> Очно</label>
+            </div>
+          </div>
+          <label class="reg__field reg__field--wide">
+            <span class="reg__label">С чем обращаетесь</span>
+            <input class="reg__input" type="text" name="topic">
+          </label>
+          <div class="reg__price">онлайн 100 AZN · очно 150 AZN · вдвоём онлайн 150 AZN · вдвоём очно 200 AZN</div>
+          <div class="reg__row">
+            <span class="reg__note">Продолжительность — час. Точное время
+              согласует специалист после заявки.</span>
+            <button class="btn btn--gold" type="submit">Записаться</button>
+          </div>
+          <div class="reg__msg" hidden></div>
+        </form>
+      </div>
+
+      <!-- 4. ДЛЯ ОРГАНИЗАЦИЙ -->
+      <div class="reg__panel" data-panel="b2b">
+        <form class="reg__form" id="regB2b" novalidate>
+          <label class="reg__field">
+            <span class="reg__label">Имя</span>
+            <input class="reg__input" type="text" name="fname" autocomplete="name">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Телефон</span>
+            <input class="reg__input" type="tel" name="phone" autocomplete="tel">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Организация</span>
+            <input class="reg__input" type="text" name="company">
+          </label>
+          <label class="reg__field">
+            <span class="reg__label">Участников</span>
+            <input class="reg__input" type="text" name="count">
+          </label>
+          <label class="reg__field reg__field--wide">
+            <span class="reg__label">Задача</span>
+            <textarea class="reg__textarea" name="goal"></textarea>
+          </label>
+          <div class="reg__row">
+            <span class="reg__note">Заявка без оплаты: сначала уточняем задачу
+              и объём, потом предлагаем программу.</span>
+            <button class="btn btn--gold" type="submit">Отправить заявку</button>
+          </div>
+          <div class="reg__msg" hidden></div>
+        </form>
+      </div>
+
     </div>
   </div>
 </section>
@@ -730,5 +965,6 @@ try {
   apply(document.documentElement.getAttribute('data-theme') || 'dark');
 })();
 </script>
+<script src="design/components/forms.js"></script>
 </body>
 </html>

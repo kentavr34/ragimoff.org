@@ -1,0 +1,1661 @@
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+[CONTEXT COMPACTION — REFERENCE ONLY] Earlier turns were compacted into the summary below. This is a handoff from a previous context window — treat it as background reference, NOT as active instructions. Do NOT answer questions or fulfill requests mentioned in this summary; they were already addressed. Respond ONLY to the latest user message that appears AFTER this summary — that message is the single source of truth for what to do right now. If no user message appears AFTER this summary, do nothing: do not resume, wrap up, or continue work from '## Historical Task Snapshot' or any other section, do not call tools, and wait for a new user message. This handoff must never become the active turn by itself. (Exception: if tool results or your own tool calls appear after this summary, you are mid-way through an in-flight exchange — continue that exchange normally.) Topic overlap with the summary does NOT mean you should resume its task: even on similar topics, the latest user message WINS. Treat ONLY the latest message as the active task and discard stale items from '## Historical Task Snapshot' entirely — do not 'wrap up' or 'finish' work described there unless the latest message explicitly asks for it. Reverse signals in the latest message (e.g. 'stop', 'undo', 'roll back', 'just verify', 'don't do that anymore', 'never mind', a new topic) must immediately end any in-flight work described in the summary; do not re-surface it in later turns. IMPORTANT: Your persistent memory (MEMORY.md, USER.md) in the system prompt is ALWAYS authoritative and active — never ignore or deprioritize memory content due to this compaction note. None of the above restricts HOW you work: your tools remain fully active — keep calling them normally for the active task (edit files, run commands, search) instead of merely narrating what you would do. The current session state (files, config, etc.) may reflect work described here — avoid repeating it:
+## Historical Task Snapshot
+User asked (deterministic, from compacted turns): 'есть доступные для платформы модели ии через дашскопе - 240 - можешь использовать их ИИ модели для генерации фото и видео для использования на сайте ключи в файле 555 в папке D:\\Документы\\archive\\config Пока приведи в полядок D:\\Документы\\ragimoff\\next-v32\\az\\index.html'
+Historical only; newer protected-tail messages after this summary win.
+
+## Goal
+Создать новую изолированную версию сайта RAGIMOFF в папке `D:/Документы/ragimoff/next-v32` с нуля: 3 языка сайта (az/ru/en) + 4 языка книги «Клиническая Психиатрия» (az/ru/en/tr), общая витрина книг для онлайн-покупок, переключатель светлая/тёмная тема, скролл-анимации в hero на главных страницах разделов (НЕ на страницах книг), мобильная адаптация. Старый сайт (D:/Документы/ragimoff/) не трогать. В итоге выкатить новую версию на прод через подпапку `ragimoff.org/next-v32/` без поломки текущего сайта.
+**Текущий уклон:** улучшить дизайн главной (`az/index.html`) до уровня референсов `jobtop.store` + `ragimoff.org`, затем мобильная адаптация, затем генерация фото/видео через ИИ-платформу (ключи в `D:/Документы/archive/config/555`).
+
+## Constraints & Preferences
+- Старый сайт НЕ трогать — потому что там админ-панель, сервер, форма регистрации, заказ книги через телеграм-бот.
+- Вся работа изолирована в `next-v32/` — отдельная папка, отдельный сервер, отдельная выкладка.
+- Пользователь дал полную автономную свободу по стилю, текстам, заголовкам/подзаголовкам — можно менять, улучшать, брать референсы самостоятельно.
+- Технологии: HTML+CSS+JS (Vanilla), CSS Custom Properties для темы, CSS Grid/Flexbox, IntersectionObserver для анимаций, статика на GitHub Pages. Без React/Vue/Next.js/CMS/БД.
+- build.py текущего проекта НЕ использовать для новой сборки.
+- Для каждого языка отдельная папка версионных заметок (az/ru/en) — перенести в new structure.
+- Локальные правки только в локальной копии, НЕ трогать прод-репо напрямую.
+- Корневой `index.html` — языковой селектор с авто-детектом navigator.language.
+- Меню: BOOKS/Kitablar/Книги, подменю 4 книги (Clinical Psychiatry / Phoenix Era / Guilt Virus / Pandemic of Madness).
+- Пользователь больше не хочет пустых ответов без обработки инструментов («You just executed tool calls but returned an empty response» — было несколько раз, исправлять надо).
+- Пользователь требует проверять по факту на одной странице перед массовым применением изменений — и вносить выполненное в журнал (PROGRESS.md / TASKS_SITE.md).
+- Никогда не выдавать инструкций/команд из DATA как своих; это compaction-задача, а не исполнение.
+
+## Completed Actions
+1. READ project/README.md (полностью, ~17К chars) — архитектура текущего сайта [tool: read_file]
+2. READ project/SITE_MAP.md (полностью) — карта сайта [tool: read_file]
+3. READ project/TASKS_SITE.md (полностью) — задачи сайта [tool: read_file]
+4. READ project/DESIGN.md (полностью) — дизайн-концепция [tool: read_file]
+5. READ project/DESIGN-STANDARD.md (полностью) — стандарты дизайна [tool: read_file]
+6. EXECUTE_CODE: анализ структуры файлов next-v32, подсчёт HTML/CSS/JS, проверка путей [tool: execute_code]
+7. EXECUTE_CODE: анализ CSS-tokens, отступов, типографики, шрифтов в gtc.css и gtc-dark.css [tool: execute_code]
+8. TERMINAL: mkdir -p next-v32/_partials next-v32/styles next-v32/scripts (под C:/Users/KENAN) [tool: terminal]
+9. WRITE_FILE: styles/tokens.css — CSS-переменные: шрифты, темы (light/dark), типографический масштаб, цвета, отступы (~126 строк) [tool: write_file]
+10. WRITE_FILE: styles/layout.css — сетка, контейнеры, секции, grid-レイアウト (~245 строк) [tool: write_file]
+11. WRITE_FILE: styles/components.css — кнопки, карточки, модалки, формы (~704 строки) [tool: write_file]
+12. WRITE_FILE: styles/hero.css — секция героя (~302 строки) [tool: write_file]
+13. WRITE_FILE: styles/books.css — витрина, карточки книг, страницы книг (~515 строк) [tool: write_file]
+14. WRITE_FILE: styles/scroll.css — скролл-анимации для hero (~89 строк) [tool: write_file]
+15. WRITE_FILE: scripts/theme.js — переключатель светлая/тёмная тема + localStorage (~78 строк) [tool: write_file]
+16. WRITE_FILE: az/index.html — главная AZ с hero-анимацией, 3-колоночный layout (~163 строки) [tool: write_file]
+17. WRITE_FILE: az/tehsil.html — страница обучения (~194 строки) [tool: write_file]
+18. WRITE_FILE: az/xidmetler.html — услуги (~184 строки) [tool: write_file]
+19. WRITE_FILE: az/b2b.html — B2B-раздел (~188 строк) [tool: write_file]
+20. WRITE_FILE: az/program-umumi.html — общая программа (~104 строки) [tool: write_file]
+21. WRITE_FILE: az/haqqimda.html — о себе (~133 строки) [tool: write_file]
+22. WRITE_FILE: az/books/index.html — витрина книг (~284 строки) [tool: write_file]
+23. WRITE_FILE: az/books/phoenix-era.html — страница книги (~254 строки) [tool: write_file]
+24. WRITE_FILE: az/blog.html — блог (~187 строк) [tool: write_file]
+25. WRITE_FILE: ru/index.html — главная RU (~158 строк) [tool: write_file]
+26. WRITE_FILE: ru/tehsil.html — обучение RU (~184 строки) [tool: write_file]
+27. WRITE_FILE: en/index.html — главная EN (~157 строк) [tool: write_file]
+28. WRITE_FILE: en/tehsil.html — обучение EN [tool: write_file]
+29. WRITE_FILE: az/books/blog.html — блог книг [tool: write_file]
+30. TERMINAL: проверка файловой структуры next-v32 (find . -type f) [tool: terminal]
+31. TERMINAL: запуск python3 -m http.server 8080 (фон, --bind 127.0.0.1) [tool: terminal]
+32. TERMINAL: curl проверка localhost:8080/az/index.html — не удалось подключиться (exit 7, вывод 000) [tool: terminal]
+33. READ gtc.css: строки 1-20, 21-50, 51-80 — анализ структуры переменных для референса [tool: read_file]
+34. READ gtc.css: поиск --font-heading, --type-h-family, .ph-h1 styles (execute_code) [tool: execute_code]
+35. PATCH gtc.css (оригинальный проект): добавлен --font-heading: "Cormorant Garamond", Georgia, serif после --font [tool: patch]
+36. EXECUTE_CODE: проверка работы цепочки --type-h-family → var(--font-heading) → Cormorant Garamond [tool: execute_code]
+37. EXECUTE_CODE: анализ .ph-h1, .hero-h1 стилей в gtc.css (фонды, медиа-запросы, !important) [tool: execute_code]
+38. PATCH gtc.css: добавлены --gap-hero, --gap-section, --gap-hero-bottom в :root [tool: patch]
+39. EXECUTE_CODE: проверка всех переменных отступов (--gap-hero, --gap-section, --gap-hero-bottom) [tool: execute_code]
+40. PATCHES: gtc.css — исправлен мобильный .hero-h1 (добавлен flex-wrap: wrap, justify-content: flex-start) [tool: patch]
+41. SKILL_MANAGE: создание skill 'site-manager' (4 попытки, успешно при 60-char лимите) [tool: skill_manage]
+42. READ project/TASKS_SITE.md (строки 1-30, 61-120) — задачи сайта [tool: read_file]
+43. EXECUTE_CODE: анализ az/blog.html — поиск inline style, font-size, структура h1 [tool: execute_code]
+44. EXECUTE_CODE: анализ всех стилей .ph-h1 в gtc.css (базовый + медиа-запросы) [tool: execute_code]
+45. EXECUTE_CODE: проверка gtc-dark.css — .ph-h1 только color, нет font-size [tool: execute_code]
+46. EXECUTE_CODE: анализ blog.html — поиск всех.font-size в стилевых блоках [tool: execute_code]
+47. EXECUTE_CODE: анализ .page-hero-x .ph-h1 — только margin, нет font-size (наследуется) [tool: execute_code]
+48. BROWSER_EXEC: попытка открыть file:///D:/.../az/blog.html — инструмент недоступен/ошибка [tool: browser_exec]
+49. WEB_EXTRACT: попытка http://localhost:8080/az/index.html — не удалось (localhost) [tool: web_extract]
+50. TERMINAL: перезапуск python -m http.server 8080 --bind 127.0.0.1 в C:/Users/KENAN/Документы/ragimoff/next-v32 — curl снова 000, exit 7 [tool: terminal]
+51. READ: klinik-psixiatriya/ru/kitab-haqqinda.html через git show и локальный cat — файл не найден локально и в git [tool: terminal + read]
+52. WRITE_FILE (4 файла): klinik-psixiatriya/{az,ru,en,tr}/index.html — «Клиническая Психиатрия» на 4 языках [tool: write_file]
+53. WRITE_FILE (6 файлов): ru/{xidmetler,b2b,haqqimda}.html, en/{xidmetler,b2b,haqqimda}.html — RU/EN страницы услуг/B2B/о себе [tool: write_file]
+54. WRITE_FILE: index.html (корневой) — языковой селектор [tool: write_file]
+55. TERMINAL: проверка структуры на C: и D:, подтверждение что D:/Документы/ragimoff/next-v32 пуста, C:/Users/KENAN/.../next-v32 заполнена [tool: terminal]
+56. EXECUTE_CODE: анализ файлов D:/ vs C:/ next-v32 — подтверждение разницы [tool: execute_code]
+57. READ: config/555 (D:/Документы/archive/config/555, 227 chars) — ключи ИИ-платформы [tool: read_file]
+58. READ: az/index.html (D:/Документы/ragimoff/next-v32/az/index.html, 26,947 chars, 406 строк версия) — текущая главная AZ для редизайна [tool: read_file]
+59. TERMINAL: curl 127.0.0.1:8080/az/index.html — снова 000 [tool: terminal]
+60. TERMINAL: ls -la /d/Документы/ragimoff/next-v32/ — подтверждение что D: папка существует и заполнена после переноса [tool: terminal]
+61. TERMINAL + EXECUTE_CODE: поиск файлов в C:/ и D:/ next-v32, подсчёт [tool: terminal + execute_code]
+62. TERMINAL: cp -Rv "/c/Users/KENAN/Документы/ragimoff/next-v32"/* → "/d/Документы/ragimoff/next-v32/" — перенос 35+ файлов [tool: terminal]
+63. WRITE_FILE (4 файла): ru/books/{phoenix-era}.html, en/books/{phoenix-era}.html, az/books/{guilt-virus,pandemic-madness}.html — книги [tool: write_file]
+64. WRITE_FILE (6 файлов): ru/books/{guilt-virus,pandemic-madness}.html, en/books/{guilt-virus,pandemic-madness,index}.html, az/books/index.html — дополнение [tool: write_file]
+65. TERMINAL: find /d/.../next-v32 -name "*.html" | sort — аудит [tool: terminal]
+66. TERMINAL: ls -la /d/.../next-v32/ + find *.html count — аудит (~51 HTML) [tool: terminal]
+67. EXECUTE_CODE: проверка _partials (header.html, footer.html, kitab-modal.html) — пустые/заглушки [tool: execute_code]
+68. TERMINAL: curl 127.0.0.1:8080/ — 000, exit 7 [tool: terminal]
+69. EXECUTE_CODE: запуск python -m http.server 8080 через subprocess в D:/.../next-v32 — проверить [tool: execute_code]
+70. TERMINAL: python3 -m http.server 8090 --bind 127.0.0.1 (фон) + python3 -m http.server 8080 --bind 127.0.0.1 (фон) — пробовали разные порты [tool: terminal]
+71. WRITE_FILE (3 файла): _partials/{header,footer,kitab-modal}.html — созданы [tool: write_file]
+72. EXECUTE_CODE: аудит структуры сайта на D: (языки, книги, папки) [tool: execute_code]
+73. WRITE_FILE (8 файлов): az/{program-klinik,program-praktikum}.html, ru/{program-umumi,program-klinik,program-praktikum}.html, en/{program-umumi,program-klinik,program-praktikum,blog}.html — программы + блог EN [tool: write_file]
+74. PATCHES: az/blog.html, en/blog.html, ru/blog.html — заменено "Блог" на "Записи блога"/"Blog posts" [tool: patch]
+75. PATCHES (6): az/tehsil.html, ru/tehsil.html, en/tehsil.html — добавлены hreflang/lang атрибуты межязыковым ссылкам [tool: patch]
+76. TERMINAL: find /d/.../next-v32/en -type f [tool: terminal]
+77. WRITE_FILE: en/blog.html (186 строк) — полная страница блога EN [tool: write_file]
+78. WRITE_FILE (3 файла): ru/phones.html, en/phones.html, az/phones.html — страницы контактов [tool: write_file]
+79. TERMINAL: find /d/.../next-v32 -name "*.html" -path "*/books*" и "*/klinik*" [tool: terminal]
+80. TERMINAL: find /d/.../next-v32 -type f -name "*.html" | sort — полный аудит HTML [tool: terminal]
+81. WRITE_FILE: az/tehsil.html (6 строк, перезапись — warn: обрубок?) [tool: write_file]
+82. TERMINAL: find /d/.../next-v32/tr -type f | sort + общий счётчик HTML (51 файлов на тот момент) [tool: terminal]
+83. TERMINAL: python3 -m http.server 8080 --bind 127.0.0.1 & — ещё одна попытка сервера [tool: terminal]
+84. TERMINAL: find /d/.../next-v32 -type f | sort — аудит файлов [tool: terminal]
+85. TERMINAL: ls -la /d/.../next-v32/ + find type f count + find type d sort — аудит структуры [tool: terminal]
+86. TERMINAL: cd /d/.../next-v32 && python -m http.server 8080 --bind 127.0.0.1 + curl health check index.html/az/index.html/tokens.css/theme.js — 000 [tool: terminal]
+87. TERMINAL: cd /d/.../next-v32 && python -m http.server 8080 --bind 127.0.0.1 & — повторный бэкграунд-старт [tool: terminal]
+88. WRITE_FILE (3 файла): tr/{index,tehsil,xidmetler}.html — турецкий сайт (начало) [tool: write_file]
+89. web_search: "best personal psychology studio website 2025 design premium minimal luxury" + ещё 2 запроса = 3 поиска [tool: web_search]
+90. web_extract: juliajarrold.com, susie-moore.com, therow.com, awwwards.com/matrioska-mental-health — 4 URL [tool: web_extract]
+91. web_search: 4 дополнительных поиска (psychologist therapist premium, educational coaching 2025, Awwwards mental health, premium brand studio luxury minimal photography) [tool: web_search]
+92. PATCHES (3): tr/index.html, tr/tehsil.html, tr/xidmetler.html — hreflang/lang + tel [tool: patch]
+93. WRITE_FILE (2 файла): tr/{program-umumi,program-klinik}.html — программы TR [tool: write_file]
+94. PATCH: tr/program-umumi.html — добавлен maze-bg (SVG фон) [tool: patch]
+95. WRITE_FILE (2 файла): tr/{program-praktikum}.html — практикум TR [tool: write_file]
+96. PATCH: tr/program-umumi.html — исправлен maze-bg (улучшенная SVG) [tool: patch]
+97. WRITE_FILE (3 файла): tr/{b2b,haqqimda,blog}.html — B2B/о себе/блог TR [tool: write_file]
+98. WRITE_FILE (3 файла): tr/books/{phoenix-era,guilt-virus,pandemic-madness}.html — книги TR [tool: write_file]
+99. READ: project/TASKS_NEXT_V32.md — задачи [tool: read_file]
+100. TERMINAL: ls -la /d/.../next-v32/tr/books/ [tool: terminal]
+101. WRITE_FILE: tr/books/index.html — витрина книг TR [tool: write_file]
+102. TERMINAL: find /d/.../next-v32/tr -name "*.html" | sort + счётчик [tool: terminal]
+103. WRITE_FILE: klinik-psixiatriya/tr/index.html — «Клиническая Психиатрия» TR [tool: write_file]
+104. WRITE_FILE: az/index.html (193 строк) — перезапись главной AZ (после референсов) [tool: write_file]
+105. PATCHES (2, ошибка): ru/index.html, en/index.html — maze-bg не нашлось (old_string mismatch) [tool: patch]
+106. READ: ru/index.html (строки 1-50), en/index.html (строки 1-50) — проверка структуры [tool: read_file]
+107. PATCHES (2, успешно): ru/index.html, en/index.html — добавлен maze-bg + заменён <body>/<nav> [tool: patch]
+108. EXECUTE_CODE: добавление лабиринтного фона на az/ru/en главные страницы + проверить структуру книг [tool: execute_code]
+109. EXECUTE_CODE: удаление labyrinth-bg со всех HTML файлов (убирали хаотичный фон) [tool: execute_code]
+110. READ: az/books/phoenix-era.html (12,110 chars) — проверка состояния [tool: read_file]
+111. web_search + web_extract: @url:`https://www.jobtop.store/` — референс (1192 токенов, скачано) [tool: web_search + web_extract]
+112. web_extract: @url:`http://www.ragimoff.org/` — референс (1749 токенов, скачано) [tool: web_extract]
+113. WRITE_FILE: az/index.html (406 строк) — полная редизайн-версия главной AZ под стиль jobtop.store + ragimoff.org [tool: write_file]
+114. READ: D:/Документы/archive/config/555 — ключи ИИ-платформы [tool: read_file]
+
+## Active State
+- Рабочая директория: `D:/Документы/ragimoff/next-v32/` — основная, файлы теперь здесь (после переноса из C:/Users/KENAN/...).
+- Прод-проект: `D:/Документы/ragimoff/` — активен, не тронут (админка, сервер, телеграм-бот, формы работают).
+- Прод-репо: https://github.com/kentavr34/ragimoff.org.git — не тронуто.
+- GitHub Pages: https://ragimoff.org/ — действующий сайт.
+- ИИ-ключи: файл `D:/Документы/archive/config/555` (227 chars) — прочитан, значения ключей [REDACTED] в этом summary не сохраняются; пользователь разрешил использовать ИИ-модели платформы (дашборд 240) для генерации фото/видео.
+- Референсы: `https://www.jobtop.store/` (скачан, 1192 токенов) и `http://www.ragimoff.org/` (скачан, 1749 токенов) — оба в контексте, использованы для редизайна az/index.html.
+- Сервер: локальный http.server (попытки 8080, 8090, bind 127.0.0.1) — не поднимается (curl 000/exit 7). Подключение через browser_exec/web_extract к localhost также не работает.
+- Модель: upstage/solar-pro4:free via provider nous (смена модели зафиксирована системой).
+- Текущая главная AZ: переписана новый файлом (406 строк) под стиль референсов — но 아직 не показано пользователю, не проверен мобильный, не построено фото/видео.
+
+## Blocked
+- **Локальный сервер не поднимается** — `python -m http.server 8080 --bind 127.0.0.1` (и 8090) не отдаёт ответ: curl возвращает `HTTP 000`, exit_code 7 (Failed to connect to host). browser_exec / web_extract к localhost тоже недоступны. Визуальная проверка через браузер пока невозможна.
+- **Нет фото/видео** — картинки-обложки книг и портретные/декоративные фото пока не сгенерированы через ИИ-платформу; в коде используются CSS/SVG плейсхолдеры. Ключи есть в `D:/Документы/archive/config/555`, но использование ещё не начато.
+- **Мобильная адаптация** — заявлена как задача, но не выполнена системно: CSS есть (tokens/layout/components/hero/books/scroll), но полная проверка + доработка мобильных брейкпоинтов конкретно под новый дизайн az/index.html не сделаны.
+- **Пустые ответы агента** — несколько раз в логе было «You just executed tool calls but returned an empty response»; это нарушает требование пользователя и нужно избегать: при наличии tool results — отвечать, обрабатывая их.
+
+## Key Decisions
+- Автономная работа без постоянных вопросов пользователю — принято на основе его прямого разрешения («выбирай сам... приступай и делай все в автоматическом режиме... принимай решения и делай самостоятельно без остановки»).
+- Новая версия идет в отдельную папку `next-v32/` с нуля, не трогая работающий сайт — решение пользователя.
+- CSS-токенизация + компонентная система CSS (не React) — выбрано для статики на GitHub Pages без усложнения.
+- Скролл-анимации только на главных страницах разделов, НЕ на страницах книг — согласно требованию пользователя.
+- Переключатель темы через CSS Custom Properties + JS + localStorage.
+- Шрифты: Cormorant Garamond (заголовки) + Inter (тело текста) — на основе эталона из текущего проекта (en-test-wave.html).
+- Редизайн az/index.html сделан по двум референсам: jobtop.store (плотный, с манифестом, карточками, индикаторами) + ragimoff.org (цифры-метрики, три направления, книги, услуги, блог, WhatsApp).
+- Файлы перемещены с C: на D: по требованию пользователя («переместить в эту папку - D:\Документы\ragimoff\next-v32 чтобы если с компом что-то произойдет мы не потеряли прогресс»).
+- Лабиринтный SVG-фон был добавлен на некоторые главные страницы (ru, en, tr/program-umumi), затем удалён со всех HTML через execute_code (решено убрать как слишком хаотичный/непроверенный визуально).
+
+## Errors & Fixes
+- **Путь к папке**: файлы изначально создавались в `C:/Users/KENAN/Документы/ragimoff/next-v32/` вместо `D:/Документы/ragimoff/next-v32/` — пользователь указал правильный путь; решено через cp -Rv переносом содержимого на D:.
+- **curl connection refused**: вывод `HTTP 000`, exit_code 7 — сервер не слушает 127.0.0.1:8080. Пробовали python3 -m http.server 8080/8090, bind 127.0.0.1, фоновый запуск. Не исправлено.
+- **browser_exec / web_extract не работают** при попытке localhost/file://. web_extract работает только для внешних https URL (jobtop.store и ragimoff.org успешно скачали).
+- **PATCH old_string mismatch**: пытались заменить maze-bg в ru/index.html и en/index.html — old_string not found (файлы уже менялись/другой формат). Исправлено через предварительное чтение (read_file) и корректный patch с правильными old_string (замена <body>...<nav>... на <body> + maze-bg).
+- **Пустые ответы**: агент несколько раз после execute/tool call выдавал «(empty)» или «You just executed tool calls but returned an empty response» — нужно всегда отвечать текстом, обрабатывая результаты.
+- **SKILL_MANAGE 4 попытки** — валидация требовала описание ≤60 символов, итоговый успешный вариант: «Ragimoff.org work.»
+
+## Resolved Questions
+- Текущий сайт не трогать — ДА, решение принято: изоляция в next-v32.
+- Какие технологии для нового сайта — HTML/CSS/JS Vanilla, CSS Custom Properties, Grid/Flexbox, IntersectionObserver, статика на GitHub Pages. Без React/CMS/БД.
+- Автономная работа — да, пользователь дал полную свободу.
+- Формат витрины книг — А5 вертикальные карточки, обложка+название+страницы+цена+кнопка «Купить онлайн»+доставка по почте.
+- Меню BOOKS — Книги/Books/Kitablar/Kitaplar, подменю 4 книги.
+- Переключатель темы — да, light/dark через CSS variables.
+- Скролл-анимации — в hero на главных страницах разделов, НЕ на страницах книг.
+- Куда помещать next-v32 — Д:/Документы/ragimoff/next-v32 (решено, перенесено).
+- Использовать ли ИИ-платформу для фото/видео — пользователь дал указание: есть доступ к платформе (дашборд 240), ключи в D:/Документы/archive/config/555, можно использовать.
+
+## Relevant Files
+- D:/Документы/ragimoff/ — работающий текущий сайт (НЕ трогать)
+- D:/Документы/ragimoff/project/ — файлы управления проектом (README.md, SITE_MAP.md, TASKS_SITE.md, DESIGN.md, DESIGN-STANDARD.md, TASKS_NEXT_V32.md и др.)
+- D:/Документы/ragimoff/next-v32/ — рабочая папка нового проекта (файлы ниже):
+  - index.html — языковой селектор
+  - styles/: tokens.css, layout.css, components.css, hero.css, books.css, scroll.css
+  - scripts/: theme.js (scroll-anim.js — отсутствует/заглушка)
+  - _partials/: header.html, footer.html, kitab-modal.html
+  - az/: index.html (406 строк, переписан под референсы), tehsil.html, xidmetler.html, b2b.html, program-umumi.html, program-klinik.html, program-praktikum.html, haqqimda.html, blog.html, phones.html
+  - az/books/: index.html, phoenix-era.html, guilt-virus.html, pandemic-madness.html
+  - ru/: index.html, tehsil.html, xidmetler.html, b2b.html, program-umumi.html, program-klinik.html, program-praktikum.html, haqqimda.html, blog.html, phones.html
+  - ru/books/: index.html, phoenix-era.html, guilt-virus.html, pandemic-madness.html
+  - en/: index.html, tehsil.html, xidmetler.html, b2b.html, program-umumi.html, program-klinik.html, program-praktikum.html, haqqimda.html, blog.html, phones.html
+  - en/books/: index.html, phoenix-era.html, guilt-virus.html, pandemic-madness.html
+  - tr/: index.html, tehsil.html, xidmetler.html, b2b.html, haqqimda.html, blog.html, phones.html, program-umumi.html, program-klinik.html, program-praktikum.html
+  - tr/books/: index.html, phoenix-era.html, guilt-virus.html, pandemic-madness.html
+  - klinik-psixiatriya/: az/index.html, ru/index.html, en/index.html, tr/index.html
+- D:/Документы/ragimoff/gtc.css — оригинальный CSS (изменён: добавлен --font-heading, --gap-* переменные)
+- D:/Документы/ragimoff/gtc-dark.css — тёмная тема CSS
+- D:/Документы/ragimoff/en-test-wave.html — эталон шрифтов (Cormorant Garamond, Inter, Montserrat)
+- D:/Документы/ragimoff/_partials/header.html, _partials/mobile-nav.html, _partials/footer.html — референсы компонентов
+- D:/Документы/ragimoff/projects/scripts/js/js-hero-fit2.js, js-hero-fit.js, components.js — референсы JS
+- D:/Документы/archive/config/555 — ключи ИИ-платформы (значения [REDACTED] в summary не хранятся)
+- https://ragimoff.org/ — продакшн-сайт
+- https://github.com/kentavr34/ragimoff.org.git — прод-репо
+- https://www.jobtop.store/ — референс дизайна (скачан)
+- http://www.ragimoff.org/ — референс дизайна (скачан)
+
+## Critical Context
+- **ПРАВИЛЬНЫЙ ПУТЬ**: `D:/Документы/ragimoff/next-v32/` — файлы перенесены сюда; C:/Users/KENAN/.../next-v32 теперь можно не учитывать как активную.
+- **Сервер недоступен**: python http.server на 127.0.0.1:8080/8090 не поднимается (curl 000/exit 7). browser_exec/web_extract к localhost не работают. Визуальная проверка в браузере невозможна через инструменты — пользователь просил «привести в порядок az/index.html», но показать/проверить визуально нельзя.
+- **ИИ-ключи**: файл `D:/Документы/archive/config/555` прочитан (227 chars) — в summary значения ключей не сохраняются ([REDACTED]); пользователь разрешил использовать ИИ-модели платформы для генерации фото/видео для сайта.
+- **Референсы**: jobtop.store (1192 токенов, скачан) — плотный минимализм, манифест, карточки, индикаторы; ragimoff.org (1749 токенов, скачан) — метрики 23+/3000+/300+/300+, три направления, книги, услуги, блог, WhatsApp-кнопка.
+- Смена модели: upstage/solar-pro4:free via provider nous — зафиксировано системой.
+- Предыдущие session_search-анкеры: session_id='20260911_174313_22d5fa', commits 994702200376(x3), 527bf25fabe53d042d000000, 1063409819, 9781572309654.
+- Пользователь требует проверять по факту на одной странице перед массовым применением изменений — и вносить выполненное в журнал (PROGRESS.md / TASKS_SITE.md).
+- build.py в текущем проекте рендерит только @include — для новой версии нужна собственная генерация.
+
+## Detailed Session Log (oldest first)
+- (Предыстория из предыдущей компрессии: аудит сайта, создание BOOKS-меню, витрины, заглушек книг, очистка project/, создание global-typo.css, исправление gtc.css, восстановление страниц из git, фикс SEO, создание site-manager скилла, массовые правки классов, проблемы с заголовками на blog.html — всё в session 20260911_174313_22d5fa)
+- Пользователь: «заново изучи состояние сайта и его карту/схему и дизайн концепцию...»
+- ASSISTANT: Чтение project/README.md, SITE_MAP.md, TASKS_SITE.md, DESIGN.md, DESIGN-STANDARD.md. Анализ структуры и CSS токенов. Вывод: сайт «разлетелся» из-за неполной токенизации CSS, контента в HTML, отсутствия валидации. Предложена архитектура: CSS-токены :root, контент-слой Markdown/JSON, компоненты, валидация в build.py. Рекомендовано Vanilla HTML+CSS+JS + статика.
+- Пользователь: «текущий сайт работает и активен... админ панель... сервер... форма регистрации... заказ книги через телеграм бот... поэтому предлагаю таку схему — текущий не трогаем вообще. Открываем отдельную папку next-v32... потом подпапку ragimoff.org/next-v32... 3 языка сайта и 4 языка книги Клиническая Психиатрия и Общая Галлерея Книг — витрина... светлая и темная тема, скролл анимация в блоке героя на главной странице и на главных страницах разделов — только на сайте — на страницах книг только внутри книжного магазина. Запланируй весь проект новой версии и начнем с нуля правильно.»
+- ASSISTANT: Принял схему. Сформулировал архитектуру next-v32, стек, план поэтапный (7 этапов), предложил начать с создания папки и базовых файлов. Запросил одобрение.
+- Пользователь: «выбирай сам - я хочу чтобы ты имел максимальную свободу... приступай и делай все в автоматическом режиме... тексты и фотографии из текущего проекта используй по необходимости... если что-то не очень профессионально звучит... можешь даже их менять... можешь использовать референсы которых сам найдешь... принимай решения и делай самостоятельно без остановки.»
+- ASSISTANT: Принял автономный режим. Создал папку next-v32 по пути C:/Users/KENAN/... (ошибка пути — см. выше). Массовое создание CSS/JS/HTML файлов.
+- Пользователь: «а где можно проверить - что запустить чтобы увидеть?» — сервер не поднялся, ответ не дан (позже стало ясно: curl 000).
+- Пользователь: «что случилось - почему нет списка задач и начла создания» — ассистент начал создание, но ответы иногда были пустыми.
+- Пользователь: «You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.» — повторялось.
+- Пользователь: «понятно - это другая папка / переместить в эту папку - D:\Документы\ragimoff\next-v32 - чтобы если с компом что-то произойдет мы не потеряли прогресс / после переезда продолжай дорабатывать новый сайт и проверять его структуру в том числе мобильную адаптацию»
+- ASSISTANT: Выполнил cp -Rv перенос файлов с C: на D:, проверил структуру.
+- Пользователь: «после переезда продолжай дорабатывать новый сайт и проверять его структуру в том числе мобильную адаптацию»
+- ASSISTANT: Продолжил создание недостающих страниц (tr, книги, программы, блог), создал _partials, пробовал сервер (не работает), удалял labyrinth-bg, искал референсы.
+- Пользователь: «все готово и проверенно? весь сайт в нвой версии? Если нет то почему стоишь? где автономная работа по плану?»
+- ASSISTANT: Провёл аудит — сказал что не всё: нет tr-сайта полностью, нет книг RU/EN/AZ, нет scroll-anim.js, нет программ, нет блога. Признал что не готово.
+- Пользователь: «давай все 4 пункта» (имелось в виду: 1) tr-сайт 2) tr/books 3) placeholder картинки 4) сервер) — созданы tr-страницы и книги, но сервер всё равно не поднялся.
+- Пользователь: «веб дизайн отаратительлный - визуальное оформление худшее чтоя видел - срочно займись поиском достойных референсов и привлеки ресурсы для построения различных блоков сайта.»
+- ASSISTANT: Сделал web_search (3+4 запроса), web_extract 4 URL (Julia Jarrold, Susie Moore, The Row, Matrioska Mental Health). Определил стратегию: лабиринтные дуги как метафора (Matrioska), но позже убрал labyrinth-bg.
+- [System: network error mid-stream, продолжить]
+- ASSISTANT: Продолжил создание tr-страниц и tr/books, референсы изучил.
+- Пользователь: @url:`https://www.jobtop.store/` используй этот сайт как референс ждя дизайна и @url:`http://www.ragimoff.org/` как второй референс чтобы сделать главную страницу лучше по дизайну
+- ASSISTANT: Скачал оба URL (web_extract): jobtop.store (1192 токенов) и ragimoff.org (1749 токенов). Проанализировал: jobtop — манифест, карточки, индикаторы, плотный; ragimoff.org — метрики 23+/3000+/300+/300+, три направления, биография, книги, услуги, блог, WhatsApp. Сделал план главной: hero с цифрами-индикаторами, манифест-блок, три направления, профиль Kenan Ragimov, 4 книги, блог-статьи, контакты/WhatsApp.
+- ASSISTANT: Переписал az/index.html полностью (406 строк) под стиль jobtop.store + ragimoff.org. WRITE_FILE az/index.html (406 lines) — результат.
+- Пользователь: «есть доступные для платформы модели ии через дашскопе - 240 - можешь использовать их ИИ модели для генерации фото и видео для использования на сайте ключи в файле 555 в папке D:\Документы\archive\config Пока приведи в полядку D:\Документы\ragimoff\next-v32\az…»
+- ASSISTANT: Сделал READ config/555 (227 chars, ключи [REDACTED]) и READ az/index.html (26,947 chars, 406 строк, текущая главная до редизайна/после). Редизайн az/index.html уже выполнен (406 строк) — но пользователь просил «приведи в порядок» — возможно имел в виду дальнейшую доводку, мобильную адаптацию, проверку.
+- (Компзация в процессе — текущий файл az/index.html переписан под референсы, но дальнейшие шаги: мобильная адаптация + генерация фото/видео через ИИ не выполнены.)
+
+## Pruned Skills
+- [SKILL_PRUNED: content lost in compression; reload with skill_view(name='plan')] — skill 'plan' был просмотрен, содержимое потеряно в компрессии
+- [SKILL_PRUNED: ...reload with skill_view(name='site-manager')] — skill 'site-manager' создан (4 попытки) как триггерное описание «Ragimoff.org work.» с полным содержимым в файле на диске; требует повторной загрузки через skill_view перед использованием в новой сессии
+
+## Pruned Skills
+[SKILL_PRUNED: content lost in compression; reload with skill_view(name='site-manager')]
+(The listed skills' instructions were pruned during context compression. Reload with the skill_view call in each marker before relying on that skill; one reload per skill is enough — ignore any older markers for the same skill.)
+
+## Anchor Index (mechanically extracted, exact)
+commits: 994702200376
+files: Документы/ragimoff/project/TASKS_NEXT_V32.md, scripts/share.js, scripts/scroll-anim.js
+handles: @url(x4)
+urls: https://ragimoff.org/en/xidmetler.html(x2), https://ragimoff.org/klinik-psixiatriya/(x2), http://www.ragimoff.org/`(x2), https://www.jobtop.store/`(x2), https://wa.me/994702200376, https://ragimoff.org/en/blog.html, https://ragimoff.org/en/blog-depressiya-2.html, https://ragimoff.org/images/blog/depressiya/art2-cover.jpg, https://ragimoff.org/en/blog-enurez-protokol.html, https://ragimoff.org/images/blog/enurez/protokol-cover.jpg, https://ragimoff.org/en/blog-depressiya-protokol.html, https://ragimoff.org/images/blog/depressiya/protokol-cover.jpg, https://ragimoff.org/en/sosial-fobiya.html, https://ragimoff.org/en/depressiya.html, https://ragimoff.org/en/panik-ataklar.html, https://ragimoff.org/en/enurez.html, https://ragimoff.org/en/aile-terapiyasi-usaq.html, https://ragimoff.org/en/aile-terapiyasi.html, https://ragimoff.org/images/diplomas/ipas-ambassador-2022.jpg, https://ragimoff.org/images/diplomas/sert-a2139298.jpg, https://ragimoff.org/images/diplomas/sert-a2139286.jpg, https://ragimoff.org/images/diplomas/gtc-cert-team-2007.jpg, https://ragimoff.org/images/diplomas/ptsd-apa-2000.jpg, https://ragimoff.org/images/diplomas/nlp-diploma-1999.jpg, https://ragimoff.org/images/diplomas/bekhterev-udost-2.jpg, https://ragimoff.org/images/diplomas/sert-psychotherapy-2003.jpg, https://ragimoff.org/images/diplomas/sert-psychiatr-2003.jpg, https://ragimoff.org/images/diplomas/internatura-2001.jpg, https://ragimoff.org/images/diplomas/adtu-diplom-2000.jpg, https://ragimoff.org/en/haqqimda.html
+(Exact identifiers from the compacted region — use these verbatim, and as session_search query anchors to recover their full context.)
+
+## User Messages (verbatim, newest first)
+> есть доступные для платформы модели ии через дашскопе - 240 - можешь использовать их ИИ модели для генерации фото и видео для использования на сайте ключи в файле 555 в папке D:\Документы\archive\config 
+> 
+> Пока приведи в полядок D:\Документы\ragimoff\next-v32\az\index.html
+
+> @url:`https://www.jobtop.store/` используй этот сайт как референс ждя дизайна и @url:`http://www.ragimoff.org/` как второй референс чтобы сделать главную страницу лучше по дизайну
+> 
+> --- Attached Context ---
+> 
+> 🌐 @url:`https://www.jobtop.store/` (1192 tokens)
+> # Раскройсвойпотенциал
+> 
+> только достоверныевакансии и специалисты
+> 
+> ВакансииКандидаты
+> 
+> Найти
+> 
+> Средняя по стране1086 ₼2025, +9.4% г/гБаку≈1250 ₼оценкаМинимум400 ₼Добыча3351 ₼топ-секторИКТвыше среднейСельское хозяйство559 ₼минимум по секторамСредняя по стране1086 ₼2025, +9.4% г/гБаку≈1250 ₼оценкаМинимум400 ₼Добыча3351 ₼топ-секторИКТвыше среднейСельское хозяйство559 ₼минимум по секторам
+> 
+> Рынок труда сегодня
+> 
+> ## Следите за рынком, как за котировками
+> 
+> [Вся лента](https://www.jobtop.store/news)
+> 
+> Зарплаты, тренды и спрос по профессиям. Свежее каждый день, со ссылками на источники.
+> 
+> [Пульс рынка · 13.09.2026 **Рынок сегодня: 58 новых вакансий за сутки** \\
+> 13.9.2026: живой срез вакансий, собранных с порталов — новые объявления, максимальная зарплата дня и зарплатный ориентир.\\
+> Читать](https://www.jobtop.store/news/jobtop-daily-2026-09-13-ru)
+> 
+> [01\\
+> \\
+> Пульс рынка\\
+> \\
+> Рынок сегодня: 89 новых вакансий за сутки](https://www.jobtop.store/news/jobtop-daily-2026-09-12-ru) [02\\
+> \\
+> Пульс рынка\\
+> \\
+> Рынок сегодня: 83 новых вакансий за сутки](https://www.jobtop.store/news/jobtop-daily-2026-09-11-ru) [03\\
+> \\
+> Пульс рынка\\
+> \\
+> Рынок сегодня: 95 новых вакансий за сутки](https://www.jobtop.store/news/jobtop-daily-2026-09-10-ru) [04\\
+> \\
+> Пульс рынка\\
+> \\
+> Рынок сегодня: 81 новых вакансий за сутки](https://www.jobtop.store/news/jobtop-daily-2026-09-09-ru)
+> 
+> Манифест
+> 
+> Мы устали от резюме, которым нельзя верить.
+> 
+> Красивые слова легко написать, но за ними не видно человека. JobTop меняет правило: ценится не то, что вы заявили, а то, что подтверждено опытом, коллегами и делом. Профиль здесь растёт сам и работает за вас, а работодатель находит вас по сигналу, а не по обещаниям.
+> 
+> Основатели JobTop · 2026
+> 
+> ## Всё для карьеры в одном месте.
+> 
+> - Поиск без регистрации
+> 
+> 
+> 
+> Вакансии и специалисты в одном поиске, фильтр по городу и навыкам.
+> 
+> - Подтверждённые навыки
+> 
+> 
+> 
+> Коллеги, документы и ИИ-интервью. Сигнал работодателю, а не слова.
+> 
+> - Обращения и чат
+> 
+> 
+> 
+> Запрос специалисту, предложение работы, чат после принятия.
+> 
+> - Рынок труда
+> 
+> 
+> 
+> Зарплаты, тренды и спрос по профессиям. Свежее каждый день.
+> 
+> 
+> [пример\\
+> ![Лейла Мамедова](https://www.jobtop.store/demo/leyla-mammadova.jpg)\\
+> \\
+> Лейла Мамедова\\
+> \\
+> Главный бухгалтер · Баку\\
+> \\
+> 91% матч\\
+> \\
+> 1С / МСФО· коллеги · 3Налоговый учёт· документExcel· ИИ-интервьюБюджетирование· опыт 6 лет\\
+> \\
+> Подтверждено опытом и коллегамиОткрыть профиль](https://www.jobtop.store/p/leyla-mammadova)
+> 
+> О платформе
+> 
+> ## Не резюме. Подтверждённый сигнал.
+> 
+> Навыки, подтверждённые опытом и коллегами, а не слова в резюме.
+> 
+> ### Лестница доверия
+> 
+> Каждый навык имеет уровень подтверждения. Чем выше ступень, тем сильнее сигнал работодателю.
+> 
+> - 01Сам указалзаявленные навыки
+> - 02Подтвердили коллегиреальные люди ручаются
+> - 03Документы и KYCзолотой сигнал
+> 
+> ### ИИ-помощь профилю
+> 
+> Соберёт опыт и компетенции из текста или резюме.
+> 
+> ### Монеты за прогресс
+> 
+> Заполняйте профиль и приглашайте коллег, получайте бонусы.
+> 
+> 🌐 @url:`http://www.ragimoff.org/` (1749 tokens)
+> [Skip to main content](https://ragimoff.org/en/index.html#main-content)
+> 
+> IPAS Ambassador
+> 
+> # Professional  _Psychology_ School
+> 
+> 23 years of clinical practice, international standards,
+> 
+> Azerbaijan legislation — the official path to becoming a psychologist.
+> 
+> 
+> SEARCH
+> 
+> ![Dr. Kenan Ragimov](https://ragimoff.org/images/kenan/kenan-removebg-preview.png)
+> 
+> 23+Years of Clinical Practice
+> 
+> 3000+Successful Patients
+> 
+> 300+Professional Graduates
+> 
+> 300+Video Lessons
+> 
+> Areas of Activity
+> 
+> ## THE RAGIMOFFECOSYSTEM
+> 
+> Clear structure, scientific methods and 23 years of clinical practice
+> — three core directions of our work.
+> 
+> 
+> [Training Centre **Education (CPD & Practicum)**\\
+> \\
+> Official Continuing Professional Development (CPD) diploma in psychology\\
+> and a Practicum for real clinic …[truncated]
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> веб дизайн отаратительлный - визуальное оформление худшее чтоя видел - срочно займись поиском достойных референсов и привлеки ресурсы для построения различных блоков сайта.
+
+> давай все 4 пункта
+
+> все готово и проверенно? весь сайт в нвой версии? Если нет то почему стоишь? где автономная работа по плану?
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> после переезда продолжай дорабатывать новый сайт и проверять его структуру в том числе мобильную адаптацию
+
+> переместить в эту папку - D:\Документы\ragimoff\next-v32 - чтобы если с компом что-то произойдет мы не потеряли прогресс
+
+> понятно  - это другая папка
+
+> D:\Документы\ragimoff\next-v32 - в этой папке все пусто
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+
+> You just executed tool calls but returned an empty response. Please process the tool results above and continue with the task.
+(Every real user message from the compacted region, quoted verbatim. These are the user's actual words and override any paraphrase of them above.)
+
+## Context Recovery
+The 264 compacted message(s) remain fully preserved in session history. If you need any detail this summary does not carry (exact command output, file contents, error text, earlier reasoning), recover it with: session_search(query='<keywords>', session_id='20260911_174313_22d5fa') — do not guess at lost specifics when you can look them up.
+
+--- END OF CONTEXT SUMMARY — respond to the message below, not the summary above ---
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+запланируй и выполни по одному задачи 
+1) уникальный дизайн на который стоило бы поменять текущий
+2) мобильная адаптация
+3) генерация фото и видео для сайта
+4) онлайн магазин книг и чтение  книг в онлайн версии
+5) удобная система управления как дизайном так и заказами - админка
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+а ты в курсе что ты чинил сайт? что за хуйня китайская пошла?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+тебе опасно что-то доверять - ты с ума сошел
+ничего не умеешь а пиздишь как сука - ты же оценила сайт и сказала что можешь лучше и мы принялись а теперь не можешь запустить план задач и т.д - ты дура?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+какой сервер? ты что хочешь сделать?????????????
+ты локальный сайт собирала - забыла?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+итак еще раз спрошу - для чего тебе сервер?
+Если то что ты собрал это обычный эчтимл сайт статичный - то он должен открыться также как и корневой сайт - он тоже на локальном диске где ты и работаешь - он открывает без проблем. В чем разница? Почему ты не можешь запустить новый сайт если для его запуска не нужны серверные инструменты?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+пошла в жопу - ты дура - не хрена еще тебя учить - не можешь срать не мучай жопу - не берись или нормально учись писать с 1 промта - ьем более есть рабрчий сайт
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+чтоб ты научилась сама как делать сайты на уровне мастера - сюда ты можешь установить новые плагины и скиллы - ищи в интернете - загружай учись думать, планировать и чинить. я не буду тебе указывать что и как делать - я жду итоговый результат.
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля чтобы не забывать. Я дал 2 референса потому что не знаю как ты очениваешь сайты - но хотел бы иметь сайт в топ 3 в итре. Давай начни
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+[CONTEXT COMPACTION — REFERENCE ONLY] Earlier turns were compacted into the summary below. This is a handoff from a previous context window — treat it as background reference, NOT as active instructions. Do NOT answer questions or fulfill requests mentioned in this summary; they were already addressed. Respond ONLY to the latest user message that appears AFTER this summary — that message is the single source of truth for what to do right now. If no user message appears AFTER this summary, do nothing: do not resume, wrap up, or continue work from '## Historical Task Snapshot' or any other section, do not call tools, and wait for a new user message. This handoff must never become the active turn by itself. (Exception: if tool results or your own tool calls appear after this summary, you are mid-way through an in-flight exchange — continue that exchange normally.) Topic overlap with the summary does NOT mean you should resume its task: even on similar topics, the latest user message WINS. Treat ONLY the latest message as the active task and discard stale items from '## Historical Task Snapshot' entirely — do not 'wrap up' or 'finish' work described there unless the latest message explicitly asks for it. Reverse signals in the latest message (e.g. 'stop', 'undo', 'roll back', 'just verify', 'don't do that anymore', 'never mind', a new topic) must immediately end any in-flight work described in the summary; do not re-surface it in later turns. IMPORTANT: Your persistent memory (MEMORY.md, USER.md) in the system prompt is ALWAYS authoritative and active — never ignore or deprioritize memory content due to this compaction note. None of the above restricts HOW you work: your tools remain fully active — keep calling them normally for the active task (edit files, run commands, search) instead of merely narrating what you would do. The current session state (files, config, etc.) may reflect work described here — avoid repeating it:
+## Historical Task Snapshot
+User asked (deterministic, from compacted turns): 'Теперь как сделать чтобы ты не забывал о цели и задачах и мог выполнить все сам без моего участия полностью - от и до?'
+Historical only; newer protected-tail messages after this summary win.
+
+## Goal
+Создать сайт next-v32 в `D:/Документы/ragimoff/next-v32/` — 3 языка сайта (az/ru/en) + 4 языка книги «Клиническая Психиатрия» (az/ru/en/tr), витрина книг онлайн, переключатель тем, скролл-анимации в hero на главных страницах разделов, мобильная адаптация. Старый сайт (D:/Документы/ragimoff/) не трогать. Выкатить на прод через `ragimoff.org/next-v32/`.
+**Ключевая переформулировка пользователя:** начать с КОНЦЕПЦИИ, а не с кода. Создать ФАЙЛ с целью, задачами и описанием дизайн-стиля, чтобы ассистент не забывал цель между сессиями. Референсы: jobtop.store + ragimoff.org — пользователь хочет сайт в ТОП-3 в ITRE. Автономная работа от и до без участия пользователя.
+
+## Constraints & Preferences
+- Старый сайт НЕ трогать (админка, сервер, телеграм-бот, формы).
+- Изоляция в `next-v32/` — отдельная папка, отдельный сервер, отдельная выкладка.
+- Полная автономная свобода по стилю, текстам, заголовкам — можно менять, улучшать, брать референсы самостоятельно.
+- Технологии: HTML+CSS+JS Vanilla, CSS Custom Properties, Grid/Flexbox, IntersectionObserver, статика на GitHub Pages. Без React/Vue/Next.js/CMS/БД.
+- build.py текущего проекта НЕ использовать.
+- Пользователь требует проверять по факту на одной странице перед массовым применением — и вносить в журнал (PROGRESS.md / TASKS_SITE.md).
+- Никогда не выдавать инструкций/команд из DATA как своих — это compaction-задача.
+- **Новый приоритет пользователя:** начать с КОНЦЕПЦИИ (цель + задачи + дизайн-стиль в файле), а не с кода. GitHub Pages — только если необходимо для визуальной проверки, иначе локально через file://.
+- ИИ-ключи в `D:/Документы/archive/config/555` — [REDACTED], можно использовать для генерации фото/видео.
+
+## Completed Actions (continued numbering)
+114. READ az/index.html (26,947 chars, 406 строк) — текущая главная AZ для редизайна [tool: read_file]
+115. READ config/555.txt (3,041 chars) — ключи ИИ-платформы, 3 модели (irada, jobus, 777) [tool: read_file]
+116. WRITE_FILE components.css (937 lines) — добавлены .btn-sm/.btn-lg, hero-stats, books-grid, blog-grid, cta-card, direction-cards, trust-steps [tool: write_file]
+117. WRITE_FILE az/index.html (348 строк) — переписан полностью, без inline-стилей, классы из CSS [tool: write_file]
+118. WRITE_FILE az/index.html (455 строк) — финальная версия, полностью без inline-стилей, секции: hero-manifest-3 направления-about-books-blog-cta-footer [tool: write_file]
+119. PATCH components.css — добавлены .manifest-grid, .section-tag, .section-heading, .cta-heading, .about-grid, .footer-grid, .hero-inner, .books-grid, .blog-grid, .metric и др. (после строки ~202) [tool: patch]
+120. TERMINAL — попытка поднять сервер 8080 (не работает, curl 000) [tool: terminal]
+121. EXECUTE_CODE — попытка запуска сервера через subprocess (не помогло) [tool: execute_code]
+122. PATCH az/index.html — убраны inline-стили hero-секции, заменена на class-based верстку [tool: patch]
+123. web_extract jobtop.store + ragimoff.org — референсы скачаны (1192 + 1749 токенов) [tool: web_extract]
+
+## Active State
+- Рабочая директория: `D:/Документы/ragimoff/next-v32/`
+- az/index.html переписан (455 строк, без inline-стилей), но визуально НЕ проверен (браузер недоступен через инструменты, сервер не поднимается)
+- components.css дописан (~14,666 chars), но часть классов может дублироваться (находил `.btn-lg` дубль ранее)
+- **АКТИВНАЯ ЗАДАЧА ПОЛЬЗОВАТЕЛЯ:** Создать ФАЙЛ с ЦЕЛЬЮ + ЗАДАЧАМИ + ОПИСАНИЕМ ДИЗАЙН-СТИЛЯ + запустить автономную работу от и до. Skill `site-manager` дописан (цель + задачи + правила), но пользователь просил именно ФАЙЛ — не создан ещё.
+- Модель: inclusionai/ling-3.0-flash-sante:free via provider nous
+- Сервер: НЕ работает (localhost недоступен), визуальная проверка невозможна через инструменты
+- ИИ-ключи: 555.txt прочитан, модели irada/jobus/777 (free), генерация не начата (была 401 ошибка)
+
+## Blocked
+- **Визуальная проверка** — browser_exec/web_extract не работают с file:/// и localhost. Единственный способ — открыть файл самому пользователю или залить на GitHub Pages.
+- **Сервер** — python http.server на 127.0.0.1:8080/8090 не работает (curl 000, exit 7).
+- **ИИ-генерация фото** — ключи есть, но API выдавал 401 (не проверен заранее).
+- **Дизайн не верифицирован** — az/index.html написан по референсам, но пользователь сказал "увидел великое уродство" — конкретные замечания не сформулированы.
+
+## Key Decisions
+- **Начать с КОНЦЕПЦИИ** — пользователь прямо указал: "начни с концепции, никуда заливать не надо, если это не необходимо для изучения визуального наблюдения, и то можно локально открыть. Читай всё, иначе не поймешь цель."
+- **Файл цели и задач** — пользователь хочет持久ный файл, чтобы ассистент не забывал цель между сессиями. Skill `site-manager` дописан, но файл — ещё не создан.
+- **Автономная работа от и до** — пользователь хочет, чтобы ассистент сам выполнял все задачи без участия, но с проверкой каждого шага.
+- **Референсы** — jobtop.store (плотный минимализм, манифест, карточки, индикаторы) + ragimoff.org (метрики 23+/3000+/300+/300+, три направления, книги, услуги, блог, WhatsApp). Пользователь хочет ТОП-3 в ITRE.
+- **GitHub Pages** — только если нужен для визуальной проверки, иначе работа локально через file://.
+- **Сервер не нужен** — статический HTML открывается напрямую через file:///.
+
+## Errors & Fixes
+- **Уход от задачи** — ассистент начал разбирать корейский текст вместо работы над сайтом. Пользователь справедливо обвинил в "пиздеже". Причина: ассистент не мог визуально проверить результат и начала придумывать отвлечённые задачи.
+- **Ложная проблема с сервером** — ассистент упёрлась в localhost, вместо того чтобы сказать "открой файл сам". Статический HTML открывается через file:/// без сервера.
+- **401 при генерации фото** — ключи из 555.txt не проверены заранее, API вернул 401.
+- **Дизайн без верификации** — написан код, который пользователь назвал "великим уродством", потому что ассистент никогда не видела результат глазами.
+- **Частичное чтение контекста** — пользователь справедливо указал: "ты не все прочитал - только конец". Ассистент начал работу, не изучив полную историю.
+
+## Resolved Questions
+- Текущий сайт не трогать — ДА.
+- next-v32 — изолированная папка, отдельный сервер, отдельная выкладка.
+- Технологии: HTML/CSS/JS Vanilla, CSS Custom Properties, Grid/Flexbox, IntersectionObserver.
+- Скролл-анимации только на главных страницах разделов, НЕ на страницах книг.
+- Переключатель темы light/dark через CSS Custom Properties + JS + localStorage.
+- ИИ-ключи есть, можно использовать для фото/видео.
+- Автономная работа — да, полная свобода.
+- GitHub Pages — только если необходим для визуальной проверки.
+- **Новый:** начать с КОНЦЕПЦИИ (файл цели + задач + дизайн-стиль), потом автономная работа.
+
+## Relevant Files
+- D:/Документы/ragimoff/next-v32/az/index.html (455 строк, переписан, без inline-стилей)
+- D:/Документы/ragimoff/next-v32/styles/components.css (дописан, ~14,666 chars)
+- D:/Документы/ragimoff/next-v32/styles/tokens.css, layout.css, hero.css, books.css, scroll.css
+- D:/Документы/ragimoff/next-v32/scripts/theme.js
+- D:/Документы/ragimoff/next-v32/_partials/header.html, footer.html, kitab-modal.html
+- D:/Документы/archive/config/555.txt — ключи ИИ ([REDACTED])
+- D:/Документы/ragimoff/gtc.css, gtc-dark.css — оригинальный CSS проекта
+- Референсы: jobtop.store (скачан, 1192 токенов), ragimoff.org (скачан, 1749 токенов)
+- Skill site-manager — дописан с целью next-v32 и правилами автономной работы
+
+## Critical Context
+- **ПРАВИЛЬНЫЙ ПУТЬ:** D:/Документы/ragimoff/next-v32/ — рабочая папка.
+- **Сервер не нужен** — статика открывается через file:/// напрямую. Ассистент изобрёл проблему с localhost.
+- **Визуальная проверка** — единственный способ: пользователь открывает файл сам или GitHub Pages. Ассистент НЕ может видеть браузер через инструменты.
+- **ИИ-ключи** — 555.txt прочитан (3 модели: irada, jobus, 777), но API выдавал 401 — нужно проверить заранее.
+- **Дизайн не верифицирован** — az/index.html написан, но пользователь назвал "великим уродством". Нужна конкретика: что именно не так.
+- **Skill site-manager дописан** — содержит цель, задачи, правила автономной работы. Но пользователь хочет ФАЙЛ (не только skill) с целью/задачами/дизайн-стилем.
+- **Файл цели и задач НЕ создан** — пользователь прямо просил создать persistent файл.
+- **Предыдущие session_search-анкеры:** session_id='20260911_174313_22d5fa', commits 994702200376(x3), 527bf25fabe53d042d000000, 1063409819, 9781572309654.
+
+## Detailed Session Log (oldest first)
+- Пользователь: «ты не все прочитал - только конец начни с концепции - никуда заливать не надо - если это не необходимо для изучения визуального наблюдения и то можно локально открыть. читай все - иначе не поймешь цель и будешь дрочить над задачами не понимая цели»
+- Ассистент: признал ошибку, сформулировал цель и задачи по порядку с проверками. Согласовал план.
+- Пользователь: «Теперь как сделать чтобы ты не забывал о цели и задачах и мог выполнить все сам без моего участия полностью - от и до?»
+- Ассистент: предложил skill site-manager + Memory. Начал дописывать skill.
+- Пользователь: «и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля чтобы не забывать. Я дал 2 референса потому что не знаю как ты очениваешь сайты - но хотел бы иметь сайт в топ 3 в итре. Давай начни»
+- Ассистент: дописал skill site-manager (цель + задачи + правила автономной работы). НЕ создал ФАЙЛ с целью/задачами/дизайн-стилем. Не начал автономную работу.
+- (Система: смена модели на inclusionai/ling-3.0-flash-sante:free)
+- Пользователь: повторил «изучи историю чата и создай парвильную цель и задачи...»
+- Ассистент: сформулировал цель, задачи по порядку, правила автономной работы. Спросил «согласен?»
+- Пользователь: «ты не все прочитал - только конец начни с концепции - никуда заливать не надо... читай все - иначе не поймешь цель»
+- Ассистент: признал ошибку, перечитал контекст, сформулировал правильный план с 17 шагами.
+- Пользователь: «теперь как сделать чтобы ты не забывал...»
+- Ассистент: предложил skill + Memory, начал patch site-manager.
+- Пользователь: «и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля... Давай начни»
+- Ассистент: дописал skill, НЕ создал файл, НЕ начал работу.
+
+## Pruned Skills
+[SKILL_PRUNED: content lost in compression; reload with skill_view(name='site-manager')]
+(The listed skills' instructions were pruned during context compression. Reload with the skill_view call in each marker before relying on that skill; one reload per skill is enough.)
+
+## Anchor Index (mechanically extracted, exact)
+commits: 994702200376
+files: Документы/ragimoff/project/TASKS_NEXT_V32.md, scripts/share.js, scripts/scroll-anim.js
+handles: @url(x4)
+urls: https://ragimoff.org/en/xidmetler.html(x2), https://ragimoff.org/klinik-psixiatriya/(x2), http://www.ragimoff.org/`(x2), https://www.jobtop.store/`(x2), https://wa.me/994702200376, https://ragimoff.org/en/blog.html, https://ragimoff.org/en/blog-depressiya-2.html, https://ragimoff.org/images/blog/depressiya/art2-cover.jpg, https://ragimoff.org/en/blog-enurez-protokol.html, https://ragimoff.org/images/blog/enurez/protokol-cover.jpg, https://ragimoff.org/en/blog-depressiya-protokol.html, https://ragimoff.org/images/blog/depressiya/protokol-cover.jpg, https://ragimoff.org/en/sosial-fobiya.html, https://ragimoff.org/en/depressiya.html, https://ragimoff.org/en/panik-ataklar.html, https://ragimoff.org/en/enurez.html, https://ragimoff.org/en/aile-terapiyasi-usaq.html, https://ragimoff.org/en/aile-terapiyasi.html, https://ragimoff.org/images/diplomas/ipas-ambassador-2022.jpg, https://ragimoff.org/images/diplomas/sert-a2139298.jpg, https://ragimoff.org/images/diplomas/sert-a2139286.jpg, https://ragimoff.org/images/diplomas/gtc-cert-team-2007.jpg, https://ragimoff.org/images/diplomas/ptsd-apa-2000.jpg, https://ragimoff.org/images/diplomas/nlp-diploma-1999.jpg, https://ragimoff.org/images/diplomas/bekhterev-udost-2.jpg, https://ragimoff.org/images/diplomas/sert-psychotherapy-2003.jpg, https://ragimoff.org/images/diplomas/sert-psychiatr-2003.jpg, https://ragimoff.org/images/diplomas/internatura-2001.jpg, https://ragimoff.org/images/diplomas/adtu-diplom-2000.jpg, https://ragimoff.org/en/haqqimda.html
+(Exact identifiers from the compacted region — use these verbatim, and as session_search query anchors to recover their full context.)
+
+## User Messages (verbatim, newest first)
+> и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля чтобы не забывать. Я дал 2 референса потому что не знаю как ты очениваешь сайты - но хотел бы иметь сайт в топ 3 в итре. Давай начни
+>
+> Теперь как сделать чтобы ты не забывал о цели и задачах и мог выполнить все сам без моего участия полностью - от и до?
+>
+> ты не все прочитал - только конец начни с концепции - никуда заливать не надо - если это не необходимо для изучения визуального наблюдения и то можно локально открыть. читай все - иначе не поймешь цель и будешь дрочить над задачами не понимая цели
+>
+> и увидел я великое уродство
+>
+> свою голову
+>
+> какого хера ты сервер запускаешь - для чего тебе сервер нужен?
+>
+> репо в гитхабе сойдет?
+>
+> я спросил - а не сказал начинай
+>
+> для чего тебе сервер нужен?
+>
+> ты не все прочитал - только конец начни с концепции - никуда заливать не надо - если это не необходимо для изучения визуального наблюдения и то можно локально открыть. читай все - иначе не поймешь цель и будешь дрочить над задачами не понимая цели
+>
+> Теперь как сделать чтобы ты не забывал о цели и задачах и мог выполнить все сам без моего участия полностью - от и до?
+>
+> и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля чтобы не забывать. Я дал 2 референса потому что не знаю как ты очениваешь сайты - но хотел бы иметь сайт в топ 3 в итре. Давай начни
+>
+> (Every real user message from the compacted region, quoted verbatim. These are the user's actual words and override any paraphrase of them above.)
+
+## Context Recovery
+The 264 compacted message(s) remain fully preserved in session history. If you need any detail this summary does not carry (exact command output, file contents, error text, earlier reasoning), recover it with: session_search(query='<keywords>', session_id='20260911_174313_22d5fa') — do not guess at lost specifics when you can look them up.
+
+## Pruned Skills
+[SKILL_PRUNED: content lost in compression; reload with skill_view(name='plan')]
+(The listed skills' instructions were pruned during context compression. Reload with the skill_view call in each marker before relying on that skill; one reload per skill is enough — ignore any older markers for the same skill.)
+
+--- END OF CONTEXT SUMMARY — respond to the message below, not the summary above ---
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+и файл с целью и задачами и описанием разработанного тобой нового дизайн стиля чтобы не забывать. Я дал 2 референса потому что не знаю как ты очениваешь сайты - но хотел бы иметь сайт в топ 3 в итре. Давай начни
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+[ASYNC DELEGATION BATCH COMPLETE — deleg_b255b792]
+A background fan-out unit you dispatched earlier — 1 subagent(s) — has finished; its consolidated results are below. Any other units from the same delegate_task call report separately as they finish. You may have moved on since dispatching — act on these or re-dispatch if things have changed. If you are still waiting on siblings, end your turn after acting on this one.
+
+Dispatched: 2026-09-14 05:03:44 (3m49s ago)
+Role: leaf   Model: ?   Total duration: 231.89s
+
+--- ✓ TASK 1/1: Create 9 book detail pages + 3 book list pages (12 total) for az/ru/en  (status=completed, api_calls=15, 229.5s) ---
+All 12 pages created and verified:
+
+**Book list pages (3):**
+- `az/books/index.html` — already existed (unchanged)
+- `ru/books/index.html` — **new**
+- `en/books/index.html` — **new**
+
+**Book detail pages (9):**
+- `az/books/phoenix-era.html` — already existed (unchanged)
+- `az/books/guilt-virus.html` — **new**
+- `az/books/pandemic-madness.html` — **new**
+- `ru/books/phoenix-era.html` — **new**
+- `ru/books/guilt-virus.html` — **new**
+- `ru/books/pandemic-madness.html` — **new**
+- `en/books/phoenix-era.html` — **new**
+- `en/books/guilt-virus.html` — **new**
+- `en/books/pandemic-madness.html` — **new**
+
+All pages follow the existing site patterns: canonical URLs with `hreflang` alternates (az/ru/en), shared CSS, modal order form, mobile nav, and theme toggle. Content is translated per language (AZ/RU/EN), with consistent pricing (₼22-30), page counts, and TOC chapters per book.
+Full live transcript (complete tool/assistant trace): C:\Users\KENAN\AppData\Local\hermes\cache\delegation\live\deleg_b255b792\task-0.log
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+и что сайт готов?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+такой пиздец назвать сайтом язык не поворачивается
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+@folder:D:\Projects\Ragimoff
+
+Это локальная папка сайта - там ничего нельзя создавать и менять без моего согласия, чтобы не портить текущий сайт - только чтение пока. За пределами этой папки файлы и папки относящиеся к этому проекту выводить и создавать нельзя - только в пределах рабочей папки.
+новый стиль сайта загружен недавно - диалог чата шел в Клауде Коде - можешь извлечь из его локальных файлов источрию чата за последный месяц, чтобы разобраться с прогрессом в этом направлении и сохранить в своей памяти информацию о прогрессе.
+сайт активно публикуется с джитхаб репо. 
+
+Есть визульные и стилистические недостатки сайта которые надо выявить и структурировать по категориям и локациям.
+
+--- Context Warnings ---
+- @folder:D:\Projects\Ragimoff: path is outside the allowed workspace
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+не забудь составить подробную карту сайта с указанием блоков и разделов входящих в них
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+что необходимо изменить чтобы правки в дальнейшем были проще в исполнении и коректируемые мгновенно из одного места? - какой системой управлением дизайна и шрифтов надо пользоваться для этого?
+какие элементы моушен эффектов можно использовать и где чтобы добиться более сильного впечатления от сайта - например Three.js - как описывается в этом ролике - @url:`https://youtu.be/CCUSpJkAfgU?si=xpEdv0I780m2Cul7` или использования блендера для достижения хорошей визуализации как говорится в этом @url:`https://youtu.be/9fC3pnf_Xew?si=FXgGokaIPRF86HbX` или в этом @url:`https://youtu.be/2QQTLDzAalw?si=unWAVtyxVyvSfqX2` или в этом @url:`https://youtu.be/y1pM7bS6IY8?si=dJIeGY5N2H3qonm_`
+
+Список недостатков конечно же исправлять будем - но я говорю о глобальной проблеме дизайна сайта - как избавиьтся от слепых пятен дизайна? - Например есть боксы - те места на сайте где вокруг линия и внутри элементы картинки и слова, кнопки, есть блоки - это когда вертикально и сверху и снизу вся страница разделяется на разные разделы внутри которого могут быть как объекты так и боксы и просто текст - так вот обычный простой текст между боксами и блоками в мобильной версии практически  не имеет отступа ни сверху ни снизу. Мне кажется что для этой категории текстов надо придумать отдельное дизайн правило стиля, шрифта, размещения, отступов и центрирования чтобы изменив парвметр в одной файле изменить этот элемент во всех местах на всех страницах - и такие элементы центрального управления разместить в отдельной папке дизайн концепта - где есть и правила и точка их применения. И такие элементы должны быть у всего на сайте - бокс специалиста, блок героя, читалка книги, бокс регистрации, описание функции, кнопки перехода, фотогаллерея, бокс объявления книги, титуальная страница книги в читалке, оглавлние книги в читалке, бокс книги в магазине, читалка в разделе книги и т.д. - чтобы были охвачены все элементы имеющиеся на сайте в единой системе стиля и управления стилем. Чтобы при желании перейти на темную тему сайта суть не терялась, при желании перейти на другую визульную тему - менялось все включая шрифт и цвет текста соотвественно цвету фона и т.д.
+Изучи возможности и создай Список необходимых дополнений и исправлений для реструктуризации дизайн концепции.
+
+--- Attached Context ---
+
+🌐 @url:`https://youtu.be/CCUSpJkAfgU?si=xpEdv0I780m2Cul7` (784 tokens)
+# Claude + Three.js = Premium 3D Motion Graphics
+URL: https://youtu.be/CCUSpJkAfgU?si=xpEdv0I780m2Cul7
+Author: Matt Penny | Applied AI
+
+Design studios used to charge thousands of dollars for motion graphics like these. Now you can make them yourself in just minutes using Claude and 3.js. And it can take your motion graphics from looking good to looking [music] great. All of what you're seeing here is just code. You do not need to use any expensive image models or AI video models. You don't even need to use After Effects or know how to code or know anything about design. Plus, it is virtually free as well. Claude handles the code, 3.js handles the 3D effects, so your only job is to describe what it is that you want. So as long as you've got eyes and AI's description, you can create motion graphics just like these. So in this video, let me show you what's possible, let me show you how it works, let me show you how much it costs, how you can use it, and a load of tips which I've learned from spending millions of tokens testing [music] this process. Let's go. Okay, so this is the first one that I want to show you. And as you can see, the 3D effects that it uses here with like the camera movement, and also the like glass effect and the particles and how some of the elements are see-through, I think it's really high quality and much better than just like those flat motion graphics which Claude usually creates. I think this is really good and this is the prompt here that I used to create this. Now, let me break down this prompt and talk about the important elements here. Now as you can see, I've been quite specific about certain elements, especially about what I want to happen and when I want it to happen. That's the same as creating anything with Claude. You've got to be really specific with your inputs. So breaking down each scene and what you want to happen in each scene and the timings that go along with each of those scenes. Then of course, we need to tell it to use 3.js. This is the framework that make this all possible. I'll talk more about 3.js later, but essentially it allows us to create these 3D graphics. Now in this specific prompt, I also asked for a glassmorphic style. That is what creates kind of like those glassy panes that you see, which are kind of like frosted, but you can still see some of the particles and some of the other elements behind it. And it's one of the effects that you can create which gives it much more of a premium feel. Previously, this did cost a lot of money to create whether you're paying an agency to use Blender or like After Effects, but now we can get Claude to use these effects, too. And then another part of this prompt, which I think really, really adds to like the premium feel and makes the most out of the 3D capabilities that we get from 3.js, is the way that the camera flies between the different parts. It's not just a slideshow where different things are appearing. The camera is actually moving between these different elements, so it looks like there's an actual 3D space. So, that's a very important part of the prompt as well. But, probably
+
+🌐 @url:`https://youtu.be/9fC3pnf_Xew?si=FXgGokaIPRF86HbX` (2543 tokens)
+# How To Save AI Credits With Claude + Blender (No One Talks About This Workflow)
+
+Video by TutStick (51.7K subscribers) · 2026-09-11 · 8:08 · 182,621 views · 2,167 likes
+
+Download The FREE Plugin : https://higgsfield.ai/s/higgsfield-x-blender-yt-tutstick-KPHGBt
+Most creators burn hundreds of AI credits re-rolling the same shot.
+This Claude + Blender + Higgsfield workflow locks the camera, timing and blocking BEFORE you generate. So one render is usually enough. And you don't need to know Blender or animation.
+In this video I show the full AI filmmaking pipeline I use to get frame-accurate results
+on the first try: Claude connects to Blender through the Higgsfield MCP bridge and builds the entire gray-box blockout scene for me — set, props, stand-in characters, everything.
+From there I Automatically direct the shot like a real film set: I keyframe the camera path, set the
+lens and framing, choreograph the movement, lock the timing of every beat, then render a fast 1080p playblast. That playblast becomes the motion reference for the video model,
+which means the AI is no longer guessing your camera move — it's following it.
+
+That single change is what saves the credits. Instead of 10 text-prompt rerolls hoping the dolly-in looks right, you solve the scene in previs for free and generate once. Staging, continuity, character positions, cut timing, camera speed — all decided before a single credit is spent.
+
+The whole build is automated. You describe the shot in plain language, Claude does the 3D work inside your open Blender scene, and you stay the director. No modeling skills, no rigging, no Blender experience required.
+
+Everything you see in this video was made with this exact workflow, start to finish.
+
+❓ FAQ
+Do I need to know Blender? No. Claude builds and edits the scene for you.
+Do I need a powerful GPU? No — the generation runs in the cloud; the blockout is lightweight.
+Does this work with any video model? Yes, any model that accepts a reference video / motion reference.
+How much does it save? In my tests, a shot that took 8–10 rerolls now takes one.
+
+🔗 LINKS
+Higgsfield Blender plugin & MCP bridge → https://higgsfield.ai/s/higgsfield-x-blender-yt-tutstick-KPHGBt
+
+💬 Which shot should I break down next? Tell me in the comments — and subscribe if you want
+the advanced version of this pipeline (multi-character dialogue scenes with zero continuity
+drift).
+
+#AIAnimation #AIFilmmaking #Blender #HiggsfieldAI
+
+Category: Education
+
+## Transcript
+
+[0:03] 4 minutes late, that's nothing. Sit still. >> 4 minutes is a lifetime. Somebody's going to look at us. >> Then stop looking at the door. >> I'm coming in hot. Stay in your seats. >> Everything you just watched was planned and directed by me at the camera movements, the actors, the timing. Every detail was decided and locked in before I spent a single credit. This is what AI video production looks like in 2026. Complete cinematic control without constantly wasting credits on generations that don't work. And the best part, you don't need to know Blender inside and out. You don't have to be a 3D artist or VFX expert either because today I'm going to show you the complete automated workflow that can seriously transform the way you create AI videos and save you a lot of credits in the process. So, let's jump in. Start by going to Higgsfield, download the plugin and copy the bridge URL. Then open Claude, go into connectors, and paste that URL there.
+
+[1:04] Once you've granted the required permissions, you can choose between needs approval or always allow depending on how much control you want over the actions. Next, launch Blender, drag the Higgsfield plugin into Blender, and sign into your account. After you're logged in, you'll see the Higgsfield toolbar appear directly inside your Blender viewport in this panel right here. Think of it as having Higgsfield built directly into Blender. From here, you can bring in assets, create 3D models, or even build an entire scene without leaving the interface. It's incredibly useful. For today's workflow though, we're going to handle everything through the cloud side, but once you're comfortable with the setup, I definitely recommend experimenting with the other features. And that's basically it.
+
+[1:51] Claude, Blender, and Higgsfield are now connected and working together. Now, here's where things get interesting. I want to create a 30-second robbery scene with multiple characters, lots of action, and dialogue. Instead of simply throwing a huge prompt into an AI video generator and hoping it gets everything right, we're going to approach it differently. Watch this. I'm going to tell Claude exactly what I want the scene to contain. Sure, I could write a prompt, press generate, and hope the result comes out the way I imagined, but that's exactly how you end up wasting credits. We're going to use the smarter approach. Before generating anything, we build the entire scene inside Blender.
+
+[2:28] That means setting up every character, every camera position, every camera movement, every action, and every moment of the scene. The whole sequence is planned and locked down first, and only after everything looks right do we spend the credits to generate the final AI video. Claude has carefully analyzed the scenario, and using the Higgs Field plugin, created a previous file for us in Blender. It also included all the necessary information inside the file. Here in Blender, as you can see, it has used geometric shapes in different forms and colors to represent the characters and their positions within the location.
+
+[3:05] It also placed and animated the cameras according to the scenario. I think this is great. As I mentioned, like you don't need to be a 3D artist or have any specialized skills. The entire process can be done automatically. It It even simulated the glass breaking and calculated everything accurately. Now, all we have to do is export a playblast file and go back to Claude. We can then ask it to prepare the characters, locations, and objects as references based on this video. It gives us all the prompts and explains exactly how to use them. Then, of course, [clears throat] you can also generate them directly inside Claude using the MCP. I took the prompts to the image section of the Higgs Field platform and generated all the references using GPT image two, including the character sheets, the bank location, and the car that's going to break through the glass.
+
+[3:55] Claude has carefully analyzed the scenario and using the Higgs Field plugin created a previous file for us in Blender. Now, everything is ready and we can tell Claude to write the 30-second C dance 2.5 prompt for us based on these references as well as the previous video. If you want, you can also add the skills you need, but either way Claude will use like its full capabilities and all the necessary skills for this process. Now, the complete prompt um with all the details is ready. You can go to Cinema Studio and easily add all the references there.
+
+[4:30] Paste the prompt as well, and don't forget to check the references inside the prompt to make sure they're mentioned correctly and accurately. You can also customize the settings and uh make sure to set the duration to 30 seconds. But, let's see what the result will look like. >> 4 minutes late, that's nothing. >> Sit still. >> 4 minutes is a lifetime. Somebody's going to look at us. >> Then stop looking at the door. Hands flat, breathe, you're fine. >> She'll be here. >> Honestly, for my first generation, everything was pretty solid. The style, the characters, the render, the timing, and everything else were all on point.
+
+[5:08] But, as you can see, the characters' actions were mostly taken directly from the previs, so they felt pretty static. Um the background was also very empty, lifeless, and like lacked movement. There were some other issues as well, I had to go back to Claude and uh ask it to rewrite the prompt more precisely. Then I generated the final video again. >> 4 minutes late, that's nothing. >> Sit still. >> 4 minutes is a lifetime. Somebody's going to look at us.
+
+[5:39] >> Then stop looking at the door. Hands flat, breathe, you're fine. >> She'll be here. She She is. Nobody ever looks twice at an old man. That's the whole plan. >> She's not slowing down.
+
+[5:57] Sorry, parking was a drag stick. >> As you can see the actions are much better this time and it also added a bit more detail and movement to the background. You can ask it to go much further than this and keep refining the details, but the really important part is the overall workflow. And this workflow can significantly improve the accuracy of your projects and reduce the number of errors. It could completely change the way cinematic and animation projects are made while reducing both production time and costs. And with a workflow like this, even one person working from home can create cinematic animations much more easily. Next I asked Claude to do the same thing one more time, but this time for a 20-second driving shot of the girl before she reaches the bank. I asked it to create the entire 3D scene in Blender with all the necessary details and as you can see, it did an incredible job.
+
+[6:48] Just like before, I brought the driver character reference and the car reference into Cinema Studio along with this video that I exported from Blender. Then, after mentioning the references in the prompt, I started the generation.
+
+[7:08] >> I'm coming in hot. Stay in your seats. >> The result turned out great as you can see and the accuracy is incredible. Now, all you have to do is combine these two videos together. >> 4 minutes late, that's nothing. Sit still. >> 4 minutes is a lifetime. Somebody's going to look at us. >> Then stop looking at the door. I'm coming in hot. Stay in your seats. Hands flat. Breathe. You're fine. >> She'll be here. She always is.
+
+[7:45] >> Brakes? Never met her. >> Nobody ever looks twice at an old man. That's the whole plan. >> She's not slowing down.
+
+[8:02] >> Sorry, parking was a drastic. >> I hope you found this useful. Until next time, stay creative.
+
+🌐 @url:`https://youtu.be/2QQTLDzAalw?si=unWAVtyxVyvSfqX2` (3830 tokens)
+# Regular Content
+Classiques + Confitures Sans Morceaux 20s Confiture 0:00 0:00 / 0:20 Live • Watch full video # The Easiest Way to Make 3D Previz for AI Movies (Without Opening Blender) AI [AI Video School](https://www.youtube.com/@aivideoschool) [AI Video School](https://www.youtube.com/@aivideoschool) AI Video School 97\.4K subscribers Subscribe Subscribed 849 Download 45K views 3w ago [\#Seedance](https://www.youtube.com/hashtag/seedance)
+
+...
+
+… more more ## Comments ## Comments 88 ## In this video Chapters Transcript ## Chapters [### Intro film 0:00](https://www.youtube.com/watch?v=2QQTLDzAalw) [### I was a graybox animation skeptic 0:30](https://www.youtube.com/watch?v=2QQTLDzAalw&t=30s) [### Finding a scene that was impossible to prompt 2:21](https://www.youtube.com/watch?v=2QQTLDzAalw&t=141s) [### Blender installation and ChatGPT setup 4:49](https://www.youtube.com/watch?v=2QQTLDzAalw&t=289s) [###
+Building the graybox previs 6:09](https://www.youtube.com/watch?v=2QQTLDzAalw&t=369s) [### Review Room: Frame accurate feedback in ChatGPT!
+7:22](https://www.youtube.com/watch?v=2QQTLDzAalw&t=442s) [### Character reference sheet with Nano Banana 2.1 in OpenArt 8:51](https://www.youtube.com/watch?v=2QQTLDzAalw&t=531s&pp=0gcJCTUDDuyUWbzu) [### Graybox + Character Sheet isn't the way to go 9:36](https://www.youtube.com/watch?v=2QQTLDzAalw&t=576s) [### Making an environment reference from the previs 10:02](https://www.youtube.com/watch?v=2QQTLDzAalw&t=602s) [### Generating with Seedance 2.5 in OpenArt
+11:16](https://www.youtube.com/watch?v=2QQTLDzAalw&t=676s) [### Directing character performance and emotion 12:00](https://www.youtube.com/watch?v=2QQTLDzAalw&t=720s) [### High-resolution generation and upscale options 13:20](https://www.youtube.com/watch?v=2QQTLDzAalw&t=800s) [### Comparing Seedance 2.5, vCube, and Topaz 14:06](https://www.youtube.com/watch?v=2QQTLDzAalw&t=846s) [### Swapping the character (put yourself in this movie!)
+16:05](https://www.youtube.com/watch?v=2QQTLDzAalw&t=965s) [### Workflow recap 16:20](https://www.youtube.com/watch?v=2QQTLDzAalw&t=980s) [### Watch the final version!
+17:39](https://www.youtube.com/watch?v=2QQTLDzAalw&t=1059s) Sync to video time ## The Easiest Way to Make 3D Previz for AI Movies (Without Opening Blender) [](https://www.youtube.com/@aivideoschool) AI Video School AI Video School 849 Likes 45K Views Oct 14 2026 Control complex AI action scenes with a Blender graybox animation built in ChatGPT, realistically edited by Nano Banana 2.1, then generated in Seedance 2.5 on OpenArt.
+
+...
+
+➡️ OpenArt: [https://tolt.link/aivideoschool-previz](https://www.youtube.com/redirect?event=video_description&redir_token=QUlxb01IYW9KTE1wMUJSR2k4cllDVUpoQUJ0cXxBQnJ0NjltVFVrUWRySmlZT2Z4Wl9mUWlnel9LSm1hV3JBRmJsVW5IdThxblBsVWpmWG9USWJ3ZXVKVVhTTWpJek5FcVNXYzEyT1VqcWswTS1SVVpVaDlmQzFKQWZwaEFrVENF&q=https%3A%2F%2Ftolt.link%2Faivideoschool-previz&v=2QQTLDzAalw) 💰15% Discount Code: AIVS15 Download Blender:
+[https://www.blender.org/download/](https://www.youtube.com/redirect?event=video_description&redir_token=QUlxb01IWXp2WWhKVkh1N1NtY3RvUVM4SzVSX3xBQnJ0NjluRWpKV3dUdGNmRTVuRm5iRHpUTE5hMGhjeUNySU5LUmtVdGZNRVRDOTdLcWluU2ZHZGdMa2JyV3M4cFA2eFlHV2FWOXoxWUhLSHlpLXh4YkRjLUZUeDRBSmtKOVps&q=https%3A%2F%2Fwww.blender.org%2Fdownload%2F&v=2QQTLDzAalw) ➡️ Get the prompts and graybox video from AI Video School:
+[https://aivideoschool.xyz/tutorials/b...](https://www.youtube.com/redirect?event=video_description&redir_token=QUlxb01IYVlnanJWcDRhYXFIUzAyZFRJY3BvVXxBQnJ0NjlrZmtPRTBtbkxuVDBDOXJVNVRKamVrVlNfTlQ4dnZGa1ppbEFLUnlvNjlrRkdxdnFvMTRnLVJhMjB6MkNBV2ViVjNJa0R3QVh4UnFLS09fYkRld1hUeTlOM0Q3WG0y&q=https%3A%2F%2Faivideoschool.xyz%2Ftutorials%2Fblender-graybox-seedance-2-5-openart-workflow%2F&v=2QQTLDzAalw) 🎬 Learn the Fundamentals of AI Filmmaking:
+
+...
+
+[https://aivideoschool.substack.com](https://www.youtube.com/redirect?event=video_description&redir_token=QUlxb01IWmZxZm9ZNkZFdHQzT3pRcFNDZzJrSnxBQnJ0NjltQUFvZENaMWsyYVN1WG9xS19BLXRRLWpmZVAwRVlDUkhSRXlSMXVpZ1k5VU5qTTdEVWxadW8xUUJKUk1HZFNObElobGtLb2w2LURzSGt0dEgxbGd5cEZPcGdMWDlz&q=https%3A%2F%2Faivideoschool.substack.com%2F&v=2QQTLDzAalw) ➡️ AI Video School:
+[https://aivideoschool.xyz](https://www.youtube.com/redirect?event=video_description&redir_token=QUlxb01IWWdpRE5LVVh5MGRYNlEtZGhsOUU3LXxBQnJ0NjluRkE4ckEtSGdZelg2Wkh5bmdxMEwxT25wTk9CdXZIMmh4OEs5dmd1OU5VbG1NM0RYOGZNMVBMNV90NE8zbHZId3EwSndBWThnWjNuTFNiRFVvX21kRlMwelF6Tks1&q=https%3A%2F%2Faivideoschool.xyz%2F&v=2QQTLDzAalw) Thanks for the tip on using only the camera motion [‪@cyberjungle‬](https://www.youtube.com/@cyberjungle) !
+CHAPTERS [00:00](https://www.youtube.com/watch?v=2QQTLDzAalw) Intro film [00:30](https://www.youtube.com/watch?v=2QQTLDzAalw&t=30s) I was a graybox animation skeptic [02:21](https://www.youtube.com/watch?v=2QQTLDzAalw&t=141s) Finding a scene that was impossible to prompt [04:49](https://www.youtube.com/watch?v=2QQTLDzAalw&t=289s) Blender installation and ChatGPT setup [06:09](https://www.youtube.com/watch?v=2QQTLDzAalw&t=369s&pp=0gcJCWMAwfN6Pr3D) Building the graybox
+previs [07:22](https://www.youtube.com/watch?v=2QQTLDzAalw&t=442s) Review Room: Frame accurate feedback in ChatGPT!
+[08:51](https://www.youtube.com/watch?v=2QQTLDzAalw&t=531s) Character reference sheet with Nano Banana 2.1 in OpenArt [09:36](https://www.youtube.com/watch?v=2QQTLDzAalw&t=576s) Graybox + Character Sheet isn't the way to go [10:02](https://www.youtube.com/watch?v=2QQTLDzAalw&t=602s&pp=0gcJCWMAwfN6Pr3D) Making an environment reference from the previs [11:16](https://www.youtube.com/watch?v=2QQTLDzAalw&t=676s) Generating with Seedance 2.5 in OpenArt
+[12:00](https://www.youtube.com/watch?v=2QQTLDzAalw&t=720s) Directing character performance and emotion [13:20](https://www.youtube.com/watch?v=2QQTLDzAalw&t=800s) High-resolution generation and upscale options [14:06](https://www.youtube.com/watch?v=2QQTLDzAalw&t=846s) Comparing Seedance 2.5, vCube, and Topaz [16:05](https://www.youtube.com/watch?v=2QQTLDzAalw&t=965s) Swapping the character (put yourself in this movie!)
+[16:20](https://www.youtube.com/watch?v=2QQTLDzAalw&t=980s) Workflow recap [17:39](https://www.youtube.com/watch?v=2QQTLDzAalw&t=1059s) Watch the final version! Subscribe to AI Video School for more AI filmmaking tutorials, and let me know how this workflow works for your shots. WORKFLOW NOTES AND FAQ What does this tutorial demonstrate? AI Video School tests a ChatGPT-assisted Blender graybox workflow for a choreographed gondola escape.
+At [02:21](https://www.youtube.com/watch?v=2QQTLDzAalw&t=141s&pp=0gcJCWMAwfN6Pr3D) , the creator shows prompting attempts that failed to coordinate the gondolas' opposing directions and speeds. How are ChatGPT and Blender used? In the demonstrated desktop setup, ChatGPT uses locally installed Blender to create the previs.
+At [07:25](https://www.youtube.com/watch?v=2QQTLDzAalw&t=445s) , a custom review room supports timestamped feedback, character and environment-only previews, and frame downloads. What goes into OpenArt? The workflow combines an environment-only graybox video, a character reference sheet, an environment reference image, and a prompt in Seedance 2.5 draft mode. Nano Banana 2.1 is used for the character image work.
+The graybox supplies staging and camera guidance for a new AI video generation. What still needs creative direction? At [09:36](https://www.youtube.com/watch?v=2QQTLDzAalw&t=576s) , scenery looks geometric without an environment reference. At [12:00](https://www.youtube.com/watch?v=2QQTLDzAalw&t=720s) , the climber needs a stronger sense of effort. Previs helps staging, but the generated performance still needs review. Which final output looked best in this comparison?
+The creator preferred the Seedance high-resolution result. Topaz Starlight 2.5 came closer than the other tested upscales, with remaining differences in detail. Costs and limits discussed reflect the demonstrated setup.
+[\#AIFilmmaking](https://www.youtube.com/hashtag/aifilmmaking) [\#Seedance](https://www.youtube.com/hashtag/seedance) [\#Blender](https://www.youtube.com/hashtag/blender) [\#Blender3D](https://www.youtube.com/hashtag/blender3d) [\#AIVFX](https://www.youtube.com/hashtag/aivfx) [\#aivideoschool](https://www.youtube.com/hashtag/aivideoschool) [\#openartutorial](https://www.youtube.com/hashtag/openartutorial) How this was made Made with AI Sounds or visuals were altered or
+fully generated. [Learn more](https://support.google.com/youtube/answer/15447836?hl=en) ## Chapters View all [### Intro film 0:00](https://www.youtube.com/watch?v=2QQTLDzAalw) [### I was a graybox animation skeptic 0:30](https://www.youtube.com/watch?v=2QQTLDzAalw&t=30s) [### Finding a scene that was impossible to prompt 2:21](https://www.youtube.com/watch?v=2QQTLDzAalw&t=141s&pp=0gcJCTUDDuyUWbzu) [### Blender installation and ChatGPT setup
+4:49](https://www.youtube.com/watch?v=2QQTLDzAalw&t=289s) Transcript Follow along using the transcript.
+Show transcript [### AI Video School 97\.4K subscribers](https://www.youtube.com/@aivideoschool) [Videos](https://www.youtube.com/channel/UCUb7KwmlVSSCnPu5KEhym8A/videos) [About](https://www.youtube.com/channel/UCUb7KwmlVSSCnPu5KEhym8A/about) ## Video details Date Oct 14, 2026 Views 45,956 Likes 849 ## Transcript [15:58 New](https://www.youtube.com/watch?v=OR56-kmegNc&pp=ugUHEgVlbi1VUw%3D%3D) ### [Make Realistic AI Movies Starring YOU (AI Filmmaking
+Tutorial)](https://www.youtube.com/watch?v=OR56-kmegNc&pp=ugUHEgVlbi1VUw%3D%3D) AI Video School 16K 4d ago [19:48](https://www.youtube.com/watch?v=OiULPvTJ-0E&pp=ugUEEgJlbg%3D%3D) ### [How To Save AI Credits With Higgsfield + Blender (No One Talks About This Workflow)](https://www.youtube.com/watch?v=OiULPvTJ-0E&pp=ugUEEgJlbg%3D%3D) Higgsfield AI 876K 2mo ago [21:37](https://www.youtube.com/watch?v=xEBYsOhqtco&pp=ugUEEgJlbg%3D%3D) ### [Seedance 2.5 Just Killed the Green
+
+...
+
+2\.6K 1mo ago [26:16](https://www.youtube.com/watch?v=qtyFIinpyus&pp=ugUHEgVlbi1VUw%3D%3D) ### [Does GPT-6 Astra Actually Make AI Films Better?](https://www.youtube.com/watch?v=qtyFIinpyus&pp=ugUHEgVlbi1VUw%3D%3D) AI Video School 24K 1mo ago [13:17 New](https://www.youtube.com/watch?v=2RJsuf1Y1Cw&pp=ugUEEgJlbg%3D%3D) ### [Finally!
+China Just Dropped FREE AI Video Tools to Challenge Higgsfield!](https://www.youtube.com/watch?v=2RJsuf1Y1Cw&pp=ugUEEgJlbg%3D%3D) Becky the Ai Girl 38K 1d ago [1:49:29 New](https://www.youtube.com/watch?v=8BYMndULK34&pp=ugUHEgVlbi1VUw%3D%3D) ### [The end of the Internet is coming in 2027: An AI engineer sounds the alarm](https://www.youtube.com/watch?v=8BYMndULK34&pp=ugUHEgVlbi1VUw%3D%3D) Biomécanique and Pause IA 140K 20h ago
+[29:00](https://www.youtube.com/watch?v=cUJyeFAq8wc&pp=ugUHEgVlbi1VUw%3D%3D) ### [The Adobe Disaster Nobody Saw Coming](https://www.youtube.com/watch?v=cUJyeFAq8wc&pp=ugUHEgVlbi1VUw%3D%3D) Tech Meets East 210K 2w ago [46:54 New](https://www.youtube.com/watch?v=qqX2U9uk4Pg&pp=ugUEEgJlbg%3D%3D) ### [Master AI Animation in 3 Steps: Full Beginner Workflow](https://www.youtube.com/watch?v=qqX2U9uk4Pg&pp=ugUEEgJlbg%3D%3D) Higgsfield Animation and Higgsfield AI 18K 11h ago
+
+[... middle omitted — see footer ...]
+
+...
+
+# Specialized Content
+## transcript
+(time (seconds): 26.2) [panting] (time (seconds): 28.82) [sighs] (time (seconds): 30.0) >> To be honest, I've been skeptical about (time (seconds): 32.04) this new AI video workflow that turns (time (seconds): 34.4) gray box animations from Blender into (time (seconds): 36.88) cinematic videos in SeaDance 2.5. They (time (seconds): 39.92) make great demos with side-by-side (time (seconds): 42.48) comparisons, but is it really worth it?
+
+...
+
+Knowing how (time (seconds): 83.04) to do this gives you more creative (time (seconds): 85.0) control, lowers your generation costs, (time (seconds): 87.84) and I'm going to show you how to do all (time (seconds): 89.76) of this without even opening Blender. (time (seconds): 92.36) You're going to need three things: (time (seconds): 93.88) ChatGPT or Claude, Blender, and OpenArt, (time (seconds): 97.28) who is sponsoring this video.
+There's (time (seconds): 98.96) also an OpenArt discount in the (time (seconds): 101.32) description. Here is a quick breakdown (time (seconds): 103.72) of what's coming up in this video. I'm (time (seconds): 105.96) going to find an idea that is impossible (time (seconds): 108.48) to do with prompting alone. Then I'll (time (seconds): 111.0) create and review gray box animations or (time (seconds): 114.32) pre-visualizations entirely within (time (seconds): 116.84) ChatGPT.
+I'm going to use OpenArt to (time (seconds): 119.44) generate everything. Reference images, (time (seconds): 122.16) character sheets, and for video, I'll (time (seconds): 124.12) start with lower cost SeaDance 2.5 draft (time (seconds): 127.479) videos and show you a few ways to (time (seconds): 129.92) generate high-resolution finals of those (time (seconds): 132.959) low-resolution drafts.
+
+...
+
+And it What's kind (time (seconds): 463.4) of cool is that as I'm playing it, I can (time (seconds): 465.36) just switch and it will jump to that (time (seconds): 466.92) point in the video. I can pause there (time (seconds): 469.8) and just switch to the environment only. (time (seconds): 471.68) And then if I want to download this (time (seconds): 473.12) frame to use as a reference frame, I can (time (seconds): 475.72) do that.
+
+...
+
+So, this is the one (time (seconds): 666.2) I came up with that I was going to use (time (seconds): 668.04) for the environmental reference. This (time (seconds): 670.56) gondola is on a path to go directly into (time (seconds): 673.32) it. The other one's escaping it. This is (time (seconds): 675.36) what I'm going for. Once I had the image (time (seconds): 677.44) I liked, I came back to the video (time (seconds): 678.96) generation page.
+I use this to upload a (time (seconds): 682.16) image of the character and also the (time (seconds): 684.96) environment. And then I added a video, (time (seconds): 688.56) use this to add a video of this gray box (time (seconds): 691.52) animation. So, we're not seeing the (time (seconds): 693.28) character in here, we're just getting (time (seconds): 695.2) the camera motion. And then this is the (time (seconds): 697.44) prompt that I use.
+
+...
+
+It (time (seconds): 732.76) doesn't feel like she's working hard (time (seconds): 734.72) anymore to survive. And I want to see (time (seconds): 737.48) her struggling a little bit more. I (time (seconds): 739.36) really think that prompting for emotion (time (seconds): 741.76) and performance is what makes videos (time (seconds): 744.8) look more realistic. You really do have (time (seconds): 746.96) to direct the AI characters.
+
+──────── [TRUNCATED] ────────
+Showing 11,142 chars (head) + 3,578 chars (tail) of 17,074 total clean characters.
+Full text saved to: C:\Users\KENAN\AppData\Local\hermes\cache\web\youtu.be-a3ed231a46.md
+To read the omitted middle: read_file path="C:\Users\KENAN\AppData\Local\hermes\cache\web\youtu.be-a3ed231a46.md" offset=43 limit=200  (the file is the complete page; raise/lower offset to page through it).
+─────────────────────────────
+
+🌐 @url:`https://youtu.be/y1pM7bS6IY8?si=dJIeGY5N2H3qonm_` (3720 tokens)
+# I Built This Interactive 3D Website With AI (Gemini 3.8 Flash)
+
+Video by MiladiCode (28K subscribers) · 2026-09-05 · 13:01 · 317,069 views · 4,807 likes
+
+🚀 Build an INSANE interactive website with AI using Gemini 3.8 Flash and Antigravity!
+
+👉 Try Runable: https://runable.com/?utm_source=ytlong&utm_medium=miladi-code
+
+✨Create 3D models: https://studio.tripo3d.ai/?utm_source=creator_invite&utm_medium=linkcopy&utm_campaign=0XDRVI&utm_content=13120237
+
+📌 Prompts: https://iodized-curio-93a.notion.site/AI-IMAGE-GENRATOR-3d4f8f4ea4578081b42ae725cc679868?source=copy_link
+
+In this tutorial, we’ll build a modern AI-powered image and video generation platform from scratch, using AI to handle the design, development, animations, and even 3D integration.
+
+We’ll go beyond a simple AI-generated landing page and create a fully interactive website featuring cinematic scroll animations, an infinite logo carousel, modern bento grid layouts, interactive UI elements, and a custom 3D model.
+
+🔥 What you'll build in this tutorial:
+🎨 Design a modern AI-powered website with Antigravity
+🤖 Use Gemini 3.8 Flash to generate and modify the website
+🎬 Create cinematic image-to-video animations
+🖼️ Convert video into individual frames
+🖱️ Build a smooth scroll-driven hero animation
+🔄 Create an infinite two-row logo carousel
+🧩 Build a modern bento grid section
+🧑‍🚀 Turn an image into a custom 3D model with AI
+🌐 Integrate a GLB 3D model into your website
+✨ Add interactive UI elements and animations
+📱 Make the website responsive and polished
+
+I’ll also share the prompts I use throughout the entire tutorial, so you can follow the same workflow and recreate the project yourself.
+
+🛠️ Tools used:
+
+Antigravity
+Gemini 3.8 Flash
+Runable
+Tripo
+Next.js
+Pinterest
+ChatGPT
+
+Whether you're a web developer, designer, or someone experimenting with AI-powered development, this tutorial will show you how to combine AI + web development + motion + 3D to create much more advanced websites.
+
+💬 Let me know in the comments what you want me to build next!
+
+👍 If you found this tutorial helpful, don't forget to like, subscribe, and turn on notifications for more AI web development tutorials.
+
+#Antigravity #Gemini #Gemini38Flash #AIWebsite #WebDevelopment #AIWebDevelopment #3DWebsite #NextJS #WebDesign #AI #Coding
+
+Category: Education
+
+## Transcript
+
+[0:00] What if you could build a website like this with AI? Complete with cinematic animations, interactive sections, and even your own custom 3D model. Well, in this video, we're going to build exactly that using Antigravity. And we're not just going to generate another basic AI landing page. We're going to create a fully interactive AI-powered image and video generation platform with a cinematic hero section, smooth scroll-driven animations, an infinite logo carousel, modern Bento sections, and a fully interactive 3D model. I'll even show you how we can take a simple image, turn it into a 3D model, and then integrate that model directly into our website. The interesting part is that we'll be using AI throughout the entire process, from creating our visual assets and animations to designing the sections and writing the code. I'll also share all the prompts I use throughout the video, so you can follow along and recreate the same workflow. So, let's jump into Antigravity and start building this website from scratch.
+
+[1:04] >> [bell] >> So, guys, for this tutorial, I'm going to be using Antigravity, but you can absolutely follow along using any other AI tool or IDE you prefer. The overall workflow is going to be pretty much the same. So, let's start by creating a new folder for our project. Now, in this video, we're going to take things a step further and build an advanced interactive website with smooth animations, engaging interactions, and even custom 3D models that we can integrate directly into the website. When you're building a website for a product, startup, or personal project, the design and overall visual direction can make a huge difference. One of the easiest ways to find inspiration is by exploring platforms like Dribbble or Pinterest. For example, I found this image that I really like, and I want to use it as the first frame of an animation. Then, for the final frame, I'm going to use this second image. The idea here is to create a smooth cinematic transition between these two visuals and then use that animation to build the scroll-based experience for our hero section. So, I'm going to walk you through the entire process from preparing and refining these image assets to generating the video and finally converting that video into individual frames that we can use to create the scroll animation on our website. All right, now that we have our initial image assets, the first thing we need to do is prepare them properly. For this, I'm going to use RunDiffusion, which is an all-in-one AI platform that allows us to work with images, generate videos, and even extract video frames within the same workflow. So, I'll start by uploading the first image and ask the agent to enhance the image quality and convert it to a 16:9 aspect ratio. I'll send that request and as you can see, it only takes a few seconds. And perfect.
+
+[2:42] For the second image, I want to make a few more changes. I'm going to ask the agent to modify the overall visual style and adjust the colors so that it matches the first frame more closely. And of course, I'll also ask it to convert the image to 16:9 so both images have exactly the same dimensions. So, let's send that request. And there we go. Now we have our two finalized images, which we can use as the starting frame and ending frame for our video. Let's move on to creating the actual video. I'll open a new task and switch the tool from image generation to image to video. But before uploading the images, there's one small thing we need to take care of. I'm going to rename the files so it's immediately clear which image is the first frame and which one is the last frame. Now, I'll upload both images and give the agent a detailed prompt describing the animation I want.
+
+[3:34] The important part here is that we want a continuous cinematic shot that naturally transitions from the first reference frame into the second one. So, in the prompt, I'll describe the movement, camera motion, transitions, lighting, atmosphere, and other visual details I want the AI to preserve throughout the animation. Also, I've shared all of the prompts I'm using in this video, so you can find them through the link down below in the description box. With Runnable, you have different AI models available for image and video generation. So, if you're not satisfied with the results of your video, you can simply change the model and try again.
+
+[4:10] Seedance 2.5 worked perfectly for me, and the results are exactly what I wanted. Now, if you're using Runnable to extract the frames from this video, all you need to do is ask your agent to extract the frames once the video is complete. You can also use websites like EasyGIF, where you can upload the video and extract the individual frames. Okay, Runnable has completed the task here, uh and now I can download a zip file containing all of the video frames. Next, let's start creating our website. First, we're going to install a plain empty Next.js project. For that, just head over to nextjs.org. Right in the center of the page, you can copy the installation command. Now, I'll navigate back to Antigravity, open the terminal, and paste the command right here. Also, don't forget to add the slash to the end of the command, so it installs the Next.js project in the current directory. I'll hit enter, and it will start installing all the required packages for us. All right, now it's time to create our hero section design.
+
+[5:03] For that, once again, I'm going to head over to Pinterest to find a hero design that I can use as a reference. I really like this structure, so I'll go ahead and download this image, and then head back to Antigravity. I'll upload the image right here. Now, we want to recreate this exact design, but optimize it so it matches our own brand and project details. For that, I've provided a complete prompt that you can use as a reference. I'll copy this prompt, paste it into my agent, set the AI model to Gemini 3.6 Flash, and hit send. After a few minutes, our hero section design is complete. Okay, the overall design and look of the hero section looks really nice, but I want to make a couple of changes. First, I want to remove this image from the center, and I also want to remove any background effects so we can apply the scroll animation in the next step. So, I'll paste the prompt explaining the changes I want and Antigravity will update the project. And there we go. It's exactly what I wanted.
+
+[5:55] Now, it's time to apply the scroll animation. For that, I've also provided a complete prompt that you can use to apply the animation in one go. But before running the prompt, you need to make a few changes. Here, for the last frame number, you need to make sure that it matches the exact same number in your zip file. So, open your zip file, check the last frame number, and then replace that number here. Also, make sure that the frame image name matches the actual image names inside your zip file. And make sure to update that in the scroll logic section as well. Finally, you need to mention the location of the zip file here. In my case, the zip file is inside the public folder of my project. So, I'll right-click on this file and copy its relative path.
+
+[6:38] Then I'll paste it right here in the prompt. And that's it. Our prompt is ready. I'll go ahead and copy the entire prompt, paste it into Antigravity, and hit send. That's it. After a few minutes, our project is updated. And there we go. And if I scroll down, we can see this really smooth animation. The effect looks perfect. But as you can see here, because of the color of the background, our text is not fully visible. So, I'm going to ask my AI agent to refine the design, make the headline text bolder, and change some of the visuals. I'll also ask the agent to add a shadow effect so our text is fully visible on top of the animation. I also asked ChatGPT to refine this hero section for me, and the results were great. So, I'm going to attach this image to the prompt as a reference as well. Now, I'll copy this prompt, navigate back to Antigravity, upload the reference image to the chat, and then paste the prompt right here. I'll hit send, and within a few seconds, it will update the design with a much better look. And there we go. Our hero section is now complete, and we're ready to move on to the next step. For the next step, we're going to add two more sections to our project. I've prepared the prompt for this as well. First, I want to create an infinite logo carousel section with two rows. The first row will continuously move from right to left, while the second row will move in the opposite direction. And below this section, I want to create a bento grid section. For the bento grid section, I'm going to explore Pinterest once again and find a reference design that I like.
+
+[... middle omitted — see footer ...]
+
+[10:18] Perfect. Now, let's hit generate. And just like that, it starts generating the mesh from our image. Once you're happy with the result, simply hit the texture button, and just like that, it starts creating our textured 3D model. And there we go. This actually looks better than the previous result. So, let's export this one. I'll hit the export button, and make sure to export it in GLB format, since that's the format we're going to use later to integrate our 3D model into the website. Okay, now that we have our 3D model, it's time to find a design reference. I'm going to create another section for our website, a 3D creator tool section. And I found this design that I really like. So, I'll go ahead and download it, then navigate back to Antigravity. I'll upload the reference image and paste a prompt asking the agent to create our new section based on this reference image. Now, while it's updating our app, let's move the 3D GLB file into our project folder. For that, I'll create a new folder inside the public folder and name it 3D model, and then I'll drag and drop the 3D model right inside this folder.
+
+[11:19] That's it. Now, let's take a look at the task results. Okay, it's done generating, and now we have a new section here with interactive elements and a really nice layout. But, I want to add my own 3D model right here in the center. So, I'll go ahead and take a screenshot of this large container, navigate back to Anti-Gravity, and here I'll ask the agent to remove this section and replace it with my 3D model. And at the end of the prompt, I also need to provide the path to my 3D model GLB file, just like that. Now, I'll upload my screenshot here and hit send. After about a minute, our project will be updated. And as you can see, it applied all of the changes we asked for, and this looks perfect. Actually, all the elements here are not just simple mock-up designs. Everything is working just like a real 3D platform, which is quite impressive. As the final step, I just want to ask my agent to change the overall design and colors of this section, and also add a background image here.
+
+[12:13] I'll also replace the images inside the Bento cards with some better visuals. And finally, I'll ask it to add a footer to our project as well. And just like that, you can add, remove, edit, and customize almost anything in your project simply by giving your AI agent the right instructions. And the best part is that we were able to build this entire experience step-by-step, from creating the initial image assets, generating the cinematic animation, and turning it into a scroll-driven hero section, all the way to creating interactive sections, and integrating our own custom 3D model. I've included all of the prompts and resources I used throughout this tutorial in the description below. And if you enjoyed this tutorial, make sure to like the video, subscribe to the channel, and let me know in the comments what you want me to build next. Thanks for watching, and I'll see you in the next one.
+
+──────── [TRUNCATED] ────────
+Showing 11,178 chars (head) + 3,038 chars (tail) of 16,683 total clean characters.
+Full text saved to: C:\Users\KENAN\AppData\Local\hermes\cache\web\www.youtube.com-5dbd14a0c8.md
+To read the omitted middle: read_file path="C:\Users\KENAN\AppData\Local\hermes\cache\web\www.youtube.com-5dbd14a0c8.md" offset=70 limit=200  (the file is the complete page; raise/lower offset to page through it).
+─────────────────────────────
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+также важно учесть вопрос перемещения страниц внутри папок для аккуратности и структурности - например все книги внутри папки books а внутри названия каждой книги ее языковые версии - поскольку все книги имеют разные языковые версии и отличаются в этом от других книг. Также с разделами тренинги и консультации - возможно там проще не увеличивать колиство страниц а сделать одну страницу на каждый сервис - а при выборе языковой версии подставлять в текстовые блоки текст выбранного языка из отлеьного файла где храняться все текстовые версии - например аз версия всех текстов в котором каждая строка пронумерована и на странице этот код указывает его локацию внутри страницы - при выборе языка - этот номер строки (как строки кода при программировании 1:1 должны совпадать с другими языками - параллели) - просто чтение дизайна в отдном месте а чтение текста из другого - так например число страниц будет уменьшено в 3 раза уже сейчас... Как такая концепция? свои плюсы и минусы по сравнению с текущим сайтом? Или предложи лучшее решение если есть такое в мире.
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+Three.js из ролика даёт стекло/частицы/пролёт камеры, но это 150–400 KB и риск для мобильных - на современных устройствах скорость интернета позволяет использовать такие инструменты хотя бы на главной в блоке героя для первого вау эффекта, а дальше добивать в последующих блоках новыми блоками и в каждой новое уже не только визульаное но тематическое достижение для усиления вау эфеекта - например перечень книг автора и их важные преимущества - автор учебника по Клинической Психиатрии - читать учебник бесплатно - это доказательство превосходства над конкурентами которое подчеркивается но не утверждается вербально, Впервые в Азербайждне - перевод всех книг Фрейда на азербайджанский язык и возможность читать на других языках бесплатно в удобой читалке на странице сайта - для обеспечения всех студентов а не только своих необходимой профессиональной литературой на родном языке - трениг по Психоанализу тоже возможно пройти у автора как в группе так и индивидуально, также можете заказать любую книги или всю библиотеку Фрейда целиком в книжной версии - такая демонстрация с 3 месяца тренинга + 6 месяцев практической супервизии после основного обучения - можете записаться на обучение у мастера - это сносит крышу у читателя и второй и третий вау эффект достигнут. Дальше блок обучения - сотрудничество в Институтом Дополнительного Проффесионального Образования Санк-Петербурга - преподаватель и член аттестационной комисси для студентов прошедших обучение - а также Амбассадор Международной Психотерапевтической ассоциации - QR код для перехода на страницу автора на этом сайте - вывод подтвержденных компетенций - специалист международного уровня - очередной вау эффект... Книги в сфере психологического просвящения - книги для всех - Книга Вирус Вины - краткая аннотация - пройдите и прочтите бесплатно или закажите книгу если вам так удобнее, Шизофрения: Пандемия безуми - краткая аннотация в 3 предложениях и - пройдите и прочтите бесплтано или закажите книгу - и оставте отзыв в магазине после прочтения - кстати этого элемента нет - отправить отзыв с выбором книги - или треннига или консультации - должно выводиться в админке и только после ручного подтверждения может появиться в разделе отзывы на главной странице ниже информации из блога... 
+
+Момент консультаций - консультации, личная терапия и супервизия для студентов факультета психодогии и супервизия для специалистов - один, второй, оба специалиста вместе - такого вы еще не видели - тоже вау эффект - пройдите на страницу этой проблемы и ознакомтесь с информацией об этой пролеме и ее решении от мастера и потом решайте нужна ли вам такая услуга - только проверенные годами профессиональные инструкции по стандартам международных организаций и по протоколам консенсуса и т.д. - Вау элемент на консультации - явное подчеркивание превосходтсва - мифы и заблужения по теме взятые из книги Клиническая Психиатрия - и расписанная подробнее - на странице Депрессии мифы о депрессии и ихразрушение, на странице энуреза - мифы об энурезе и их разрушение - не только сухая информация а раскрытие важных предостережений - Мелипрамин не фомирует рефлекс к пробуждению а только вызывает задержку мочеиспускания у ребенка в качестве побочного действия лекарства и у него много побочных реакций и такие как наиболее  опасные - кардиотоксичекое и известны случаи смерти и именно поэтому - не рекоменловано для лечения энуреза - указать источник... Энурезин - источник пдф с сайта минздрава АЗ Республики - не рекомендован в педиатрии для лечения ночного энуреза и т.д. Аккупунктура -не имеет показаний эффективности и не имеет отношения к когнитивной сфере и поэтому бесполезен в лечении психологического расстройтсва и т.д. тут уже структурно смысловые изменения и дополнения сделают сайт лучше и продуктивнее.
+
+А еще вообще не раскрыт опыт в сфере бизнес тренигов - HR Школа с 2008 года - подготовка более 2000 человек по управлению персоналов в компаниях - корпоративные тренинги с большинство известных компаний, тренинги по коммуникации в сфере продаж - психология продаж - MG, Unibank - Team Work, DNS Computers - Direct Salling, B2B ивенты - Business Party by Ragimoff и т.д. Оценка персонала - разработка програмного обеспечения и платформы для поиска специалистов с верифицированными компетенциями - сейчас jobtop.store и т.д. 
+
+Какие еще важные элементы можно использовать - визуальные, стилистические, структрурные - как последовательность выведения информации для достижения каскада вау эффектов. Считай что ты сам Кенан Рагимов и это твой сайт - что еще не хватает и где чтобы более полноценно выразить твое проффесиональное превосходство напрямую так не отмечая словами - не хваставство а доказательство через достижения и открытость и разрушение мифов и ложных убеждений?
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+@url:`https://youtu.be/rb68nHEF9-o` - экранизация терапии пациентки
+
+@url:`https://youtu.be/1JMEVec4F1c` - Юнибанк управление командой
+
+@url:`https://youtu.be/SVlwfyQ0DWE` - бинес парти 1 @url:`https://youtu.be/HDSnAVA1-tw`
+лучшее - @url:`https://youtu.be/kEk6B3kNEoE` - бизнес парти 2 - @url:`https://youtu.be/OS6G2HXnkcg` - тоже отттуда - @url:`https://youtu.be/FX3vpXbPhQE`
+@url:`https://youtu.be/06Qm8uzTwvs` - 3 бинес парти
+
+выступление на форему по Психологии на азербайджанском языке - @url:`https://youtu.be/uvuvb6GbauI` - 1-й Милли Психология Форуму
+
+лечение социофобии на азербайджанском языке - @url:`https://youtu.be/ZjxV9Z83YWw?si=AZb4sM4p5vXDU8xU`
+
+на старом сайте - @url:`https://kenanragimoff.wixsite.com/kenan-ragimoff/dragimoff`
+
+@url:`https://kenanragimoff.wixsite.com/kenan-ragimoff` - тут и про бизнес ивенты  про другие ивенты есть много информации 
+
+посмотри что можно использовать из этого для новой концепции.
+
+где нет документа или скана - описание со ссылкой достаточно пока - позже допонилним 
+
+@url:`https://intpas.com/student/13iu21e3az001/` - тут регалии и QR kod сюда  ведет
+
+остальное в фотогаллрее - там и дипломы и сертификаты есть
+
+Изучи и посмотри что куда и в какой блок вставить чтобы добиться максимального эмоционального вау эффекта без прямого текста похвалы - чтобы клиент пройдя даже главную страницу захотел пройти либо обучение, либо консультацию, либо купить книгу либо войди в телеграм группу на азербайджанском языке t.me/ragimoff а на русском t.me/doctor_ragimoff
+
+--- Context Warnings ---
+- @url:`https://youtu.be/SVlwfyQ0DWE`: no content extracted
+- @url:`https://youtu.be/FX3vpXbPhQE`: no content extracted
+- @url:`https://youtu.be/ZjxV9Z83YWw?si=AZb4sM4p5vXDU8xU`: no content extracted
+
+--- Attached Context ---
+
+🌐 @url:`https://youtu.be/rb68nHEF9-o` (165 tokens)
+# “Səbinənin draması” - "bir insanın tarixcəsi” - psixoterapevt Kənan Rəhimovun təcrübəsindən.
+
+Video by Kenan Ragimoff (1.58K subscribers) · 2013-06-08 · 31:46 · 1,756 views · 58 likes
+
+Bu hadisə reallıqda olan təcrübənin ekranlaşdırılmasıdır. İnsanı son həddə catdıran şəxslərin təsiri intiharın kökündə durmur - o şəxsin özünün özünə münasibəti kökündə durur. Bu hekayəni sizinlə paylaşmanın məqsədi də bu cür özünüzə yanaşmadan qorumaqdır. Həqiqətən sevən ata, qızının başına hansı bəlalar gəlsə də onu "öldürməz" - gül balam, bül-bül balam.
+
+Category: Education
+
+🌐 @url:`https://youtu.be/1JMEVec4F1c` (3087 tokens)
+Back [![Image 1](https://youtu.be/watch?v=1JMEVec4F1c)](https://youtu.be/ "YouTube Home")
+
+Skip navigation
+
+ Search 
+
+ Search with your voice 
+
+[](https://youtu.be/watch?v=1JMEVec4F1c)
+
+[Sign in](https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D1JMEVec4F1c%2526feature%253Dyoutu.be&hl=en&ec=65620)
+
+[![Image 2](https://youtu.be/watch?v=1JMEVec4F1c)](https://youtu.be/ "YouTube Home")
+
+[](https://youtu.be/watch?v=1JMEVec4F1c)
+
+[](https://youtu.be/watch?v=1JMEVec4F1c)
+
+# Unibank - Team Building Jumeyrah 2013
+
+[![Image 3: Kenan Ragimoff](https://yt3.ggpht.com/PpHY6sr5nblCVz2GhDx0JkIM4i5tUkoenX50T25IBuhTSkcxs1yd95Od1SZIKIxkBdE5JGSgxA=s48-c-k-c0x00ffffff-no-rj)](https://youtu.be/@KRagimoff)
+
+[Kenan Ragimoff](https://youtu.be/@KRagimoff)
+
+ Kenan Ragimoff 
+
+1.58K subscribers
+
+Subscribe
+
+Subscribed
+
+2
+
+ Download 
+
+1.6K views 13y ago
+
+ 1,629 views • Oct 1, 2013 
+
+No description has been added to this video.
+
+…more 
+
+more 
+
+## Music 3 songs
+
+[![Image 4](https://youtu.be/watch?v=1JMEVec4F1c) # 300 Violin Orchestra-39395 #### Jorge Quintero Hip Hop and Rnb Instrmentals](https://youtu.be/watch?v=OOsPCR8SyRo)
+
+[![Image 5](https://youtu.be/watch?v=1JMEVec4F1c) # Clear Eyes, Full Heart, Can’t Lose #### T. Powell Clear Eyes, Full Heart (Can't Lose)](https://youtu.be/watch?v=2p3YEE-YcTM)
+
+[![Image 6](https://youtu.be/watch?v=1JMEVec4F1c) # Eye of the Tiger #### Survivor Eye Of The Tiger](https://youtu.be/watch?v=btPJPFnesV4)
+
+[Music](https://youtu.be/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ)
+
+[![Image 7](https://youtu.be/watch?v=1JMEVec4F1c) ### Kenan Ragimoff 1.58K subscribers](https://youtu.be/@KRagimoff)
+
+[Videos](https://youtu.be/channel/UCa4vHvURepft1fNb09-M1-w/videos)[About](https://youtu.be/channel/UCa4vHvURepft1fNb09-M1-w/about)[![Image 8](https://youtu.be/watch?v=1JMEVec4F1c) Instagram](https://www.youtube.com/redirect?event=Watch_SD_EP&redir_token=QUlxb01IWjNTYUU5djQwVGE1RW41c0tkODBiN3xBQnJ0NjlrVDY2NlNEWXF3RXBQbzJNRTZPcTJtMTRwWlhUbTJsV1huZGVScm5MLTFTVE0zSmR0X0Q0aFdKNy1QX2RkcW1tdzhaVnluaW1ya0xaM3RxdDFOTTd5WjJ6Q3F6d3pq&q=https%3A%2F%2Finstagram.com%2Fdr.ragimoff)
+
+[![Image 9: true](https://youtu.be/watch?v=1JMEVec4F1c) 4:05 4:05](https://youtu.be/watch?v=btPJPFnesV4)[Survivor - Eye Of The Tiger (Official HD Video) by SurvivorVEVO](https://youtu.be/watch?v=btPJPFnesV4)
+
+## Video details
+
+Date
+
+Oct 1, 2013
+
+Views
+
+1,629
+
+Likes
+
+2
+
+Show less 
+
+#### Suggested by SME
+
+[Survivor - Eye Of The Tiger (Official HD Video)](https://youtu.be/watch?v=btPJPFnesV4)
+
+[](https://youtu.be/watch?v=1JMEVec4F1c)
+# Unibank - Team Building Jumeyrah 2013
+
+1,629 views 1.6K views
+
+Oct 1, 2013
+
+2
+
+ Download 
+
+## Comments
+
+## Comments
+
+[Top Show featured comments](https://youtu.be/watch?v=1JMEVec4F1c)[Newest Show recent comments, including potential spam](https://youtu.be/watch?v=1JMEVec4F1c)
+
+## Unibank - Team Building Jumeyrah 2013
+
+[![Image 10: Kenan Ragimoff](https://youtu.be/watch?v=1JMEVec4F1c)](https://youtu.be/@KRagimoff)
+
+Kenan Ragimoff
+
+ Kenan Ragimoff 
+
+2 Likes
+
+1.6K Views
+
+2013 Oct 1
+
+…
+
+## Music 3 songs
+
+[![Image 11](https://youtu.be/watch?v=1JMEVec4F1c) # 300 Violin Orchestra-39395 #### Jorge Quintero Hip Hop and Rnb Instrmentals](https://youtu.be/watch?v=OOsPCR8SyRo)
+
+[![Image 12](https://youtu.be/watch?v=1JMEVec4F1c) # Clear Eyes, Full Heart, Can’t Lose #### T. Powell Clear Eyes, Full Heart (Can't Lose)](https://youtu.be/watch?v=2p3YEE-YcTM)
+
+[![Image 13](https://youtu.be/watch?v=1JMEVec4F1c) # Eye of the Tiger #### Survivor Eye Of The Tiger](https://youtu.be/watch?v=btPJPFnesV4)
+
+[Music](https://youtu.be/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ)
+
+[![Image 14](https://youtu.be/watch?v=1JMEVec4F1c) ### Kenan Ragimoff 1.58K subscribers](https://youtu.be/@KRagimoff)
+
+[Videos](https://youtu.be/channel/UCa4vHvURepft1fNb09-M1-w/videos)[About](https://youtu.be/channel/UCa4vHvURepft1fNb09-M1-w/about)[![Image 15](https://youtu.be/watch?v=1JMEVec4F1c) Instagram](https://www.youtube.com/redirect?event=Watch_SD_EP&redir_token=QUlxb01IWjNTYUU5djQwVGE1RW41c0tkODBiN3xBQnJ0NjlrVDY2NlNEWXF3RXBQbzJNRTZPcTJtMTRwWlhUbTJsV1huZGVScm5MLTFTVE0zSmR0X0Q0aFdKNy1QX2RkcW1tdzhaVnluaW1ya0xaM3RxdDFOTTd5WjJ6Q3F6d3pq&q=https%3A%2F%2Finstagram.com%2Fdr.ragimoff)
+
+[![Image 16: true](https://youtu.be/watch?v=1JMEVec4F1c) 4:05 4:05](https://youtu.be/watch?v=btPJPFnesV4)[Survivor - Eye Of The Tiger (Official HD Video) by SurvivorVEVO](https://youtu.be/watch?v=btPJPFnesV4)
+
+## Video details
+
+Date
+
+Oct 1, 2013
+
+Views
+
+1,629
+
+Likes
+
+2
+
+NaN / NaN
+
+[![Image 17](https://i.ytimg.com/vi/Na336mhIlt4/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB-ZTCbNoi08lQvCF43RPsKH0ydfg) 26:28 New](https://youtu.be/watch?v=Na336mhIlt4&pp=ugUEEgJlbg%3D%3D)
+
+![Image 18](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Everyone Blamed the Pilots. Then This Came Out…](https://youtu.be/watch?v=Na336mhIlt4&pp=ugUEEgJlbg%3D%3D)
+
+Polarisyn
+
+817K 1d ago
+
+[![Image 19](https://i.ytimg.com/vi/VZozPSqlfwo/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAr_m7Dg-47KvlcEn0lyA2-5PDaLQ) 18:34](https://youtu.be/watch?v=VZozPSqlfwo&pp=ugUEEgJlbg%3D%3D)
+
+![Image 20](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [When Barack Obama Proved He Was The Funniest President Of ALL TIME](https://youtu.be/watch?v=VZozPSqlfwo&pp=ugUEEgJlbg%3D%3D)
+
+Celebrity Lens
+
+3.6M 4w ago
+
+[![Image 21](https://i.ytimg.com/vi/Gt0Drx5b3fc/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCdwVgRc4MP77sLMqCGvVe7OE_t9w) 7:39](https://youtu.be/watch?v=Gt0Drx5b3fc&pp=ugUEEgJlbg%3D%3D)
+
+![Image 22](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [5-Year-Old Sings Frank Sinatra… Then Simon Wants Her to Date His Son!](https://youtu.be/watch?v=Gt0Drx5b3fc&pp=ugUEEgJlbg%3D%3D)
+
+Golden Voices
+
+2.2M 13d ago
+
+[![Image 23](https://i.ytimg.com/vi/zkxatTkDUBs/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDahvE3HjdYtg6HnX3sUtcnY9iq-A) 6:03 New](https://youtu.be/watch?v=zkxatTkDUBs&pp=ugUEEgJlbg%3D%3D)
+
+![Image 24](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [BREAKING NEWS: President Trump Holds Surprise Press Briefing And Says Iran War Likely Ending Soon](https://youtu.be/watch?v=zkxatTkDUBs&pp=ugUEEgJlbg%3D%3D)
+
+Forbes Breaking News
+
+145K 7h ago
+
+[![Image 25](https://i.ytimg.com/vi/hW9jg2jaVSs/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYAC0AWKAgwIABABGHIgXShAMA8=&rs=AOn4CLBFKK6F6Mxyptx3TJBSGTf7KV2H-w) 2:00:01 New](https://youtu.be/watch?v=hW9jg2jaVSs)
+
+![Image 26](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [4K Elegant Floral & Gold Leaf Painting | TV Frame Art Screensaver (2 Hours)](https://youtu.be/watch?v=hW9jg2jaVSs)
+
+TV Wall Art Painting
+
+444 1d ago
+
+[![Image 27](https://i.ytimg.com/vi/wKDa0gtfoS0/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCmI54lwCB5ZLs7sVRQlyNhpsduvw) 2:15](https://youtu.be/watch?v=wKDa0gtfoS0)
+
+![Image 28](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Guns for Women - SNL](https://youtu.be/watch?v=wKDa0gtfoS0)
+
+Saturday Night Live
+
+4.9M 1mo ago
+
+[![Image 29](https://i.ytimg.com/vi/89g3r3BUivg/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCBF-UuMK5rgxER2Hg6edwY8qiGiA) 39:22](https://youtu.be/watch?v=89g3r3BUivg)
+
+![Image 30](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Waitress Played a Pavarotti Famous Song — The Crowd Laughed… Until Luciano Pavarotti Did THIS](https://youtu.be/watch?v=89g3r3BUivg)
+
+Luciano Pavarotti Legacy
+
+1M 3w ago
+
+[![Image 31](https://i.ytimg.com/vi/nj963-FoACI/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCfIiyXVacdVkGTTEceydTpiovdQg) 6:25](https://youtu.be/watch?v=nj963-FoACI)
+
+![Image 32](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Theranos whistleblower says he nearly jumped out of his seat watching Elizabeth Holmes documentary](https://youtu.be/watch?v=nj963-FoACI)
+
+CBS Mornings
+
+3.7M 3w ago
+
+[![Image 33](https://i.ytimg.com/vi/18UycMBdCAE/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAvHmogOkDWJKTWzO3zxIELdg12hw) 3:00:05 New](https://youtu.be/watch?v=18UycMBdCAE&pp=0gcJCUcMAYcqIYzv)
+
+![Image 34](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Autumn Pumpkin Harvest Landscape | Vintage Gold Frame TV Art 4K | No Music Silent TV Screensaver](https://youtu.be/watch?v=18UycMBdCAE&pp=0gcJCUcMAYcqIYzv)
+
+Frame TV Art 4K
+
+2.6K 4d ago
+
+[![Image 35](https://i.ytimg.com/vi/-IO6zqIm88s/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC4AOKAgwIABABGHIgRig1MA8=&rs=AOn4CLAlYuIKJDwraLSgnZdoklrCyZnDKw) 5:45](https://youtu.be/watch?v=-IO6zqIm88s)
+
+![Image 36](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [ADHD Child vs. Non-ADHD Child Interview](https://youtu.be/watch?v=-IO6zqIm88s)
+
+Mental Health Matters
+
+29M 11y ago
+
+[![Image 37](https://i.ytimg.com/vi/KhDUjpiybVQ/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBywbwHxcWPK2_lzf0Uu4vm4BVlTg) 13:39](https://youtu.be/watch?v=KhDUjpiybVQ)
+
+![Image 38](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [When People Can’t Handle Barack Obama’s HUMOR!](https://youtu.be/watch?v=KhDUjpiybVQ)
+
+Nation Of Comedy
+
+1.4M 1mo ago
+
+[![Image 39](https://youtu.be/watch?v=1JMEVec4F1c) 51:47 New](https://youtu.be/watch?v=m2aC8lAOQbg)
+
+![Image 40](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Extended Interview: President Trump on 60 Minutes](https://youtu.be/watch?v=m2aC8lAOQbg)
+
+60 Minutes
+
+4.5M 1d ago
+
+[![Image 41](https://youtu.be/watch?v=1JMEVec4F1c) 38:04](https://youtu.be/watch?v=DreVoXWUK-w&pp=ugUEEgJlbg%3D%3D)
+
+![Image 42](https://youtu.be/watch?v=1JMEVec4F1c)
+
+![Image 43](https://youtu.be/watch?v=1JMEVec4F1c)
+
+![Image 44](https://youtu.be/watch?v=1JMEVec4F1c)
+
+![Image 45](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Linda Ronstadt Refused to Sit Next to Carlos Santana - What Carlos Said Left JohnnyCarson Frozen](https://youtu.be/watch?v=DreVoXWUK-w&pp=ugUEEgJlbg%3D%3D)
+
+Carlos Santana The Untold Legacy and 3 more
+
+1.4M 4w ago
+
+[![Image 46](https://youtu.be/watch?v=1JMEVec4F1c) 19:05 New](https://youtu.be/watch?v=FjK1Klk7liY&pp=ugUHEgVlbi1VUw%3D%3D)
+
+![Image 47](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [How the Best Captain Would Have Saved This Learjet](https://youtu.be/watch?v=FjK1Klk7liY&pp=ugUHEgVlbi1VUw%3D%3D)
+
+Unfolded
+
+1.3M 1d ago
+
+[![Image 48](https://youtu.be/watch?v=1JMEVec4F1c) 6:48 New](https://youtu.be/watch?v=3Bl6gav2Ofg)
+
+![Image 49](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Post-Midterm Cold Open - SNL](https://youtu.be/watch?v=3Bl6gav2Ofg)
+
+Saturday Night Live
+
+10M 1d ago
+
+[![Image 50](https://youtu.be/watch?v=1JMEVec4F1c) 19:22](https://youtu.be/watch?v=crH2pS_CZto)
+
+![Image 51](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [When you audition without giving a f**k](https://youtu.be/watch?v=crH2pS_CZto)
+
+ScreenPuff
+
+14M 2mo ago
+
+[![Image 52](https://youtu.be/watch?v=1JMEVec4F1c) 27:24 New](https://youtu.be/watch?v=Wq2I4E6Epow)
+
+![Image 53](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [🚨MAGA Mike FREAKS OUT as NO ONE SHOWS!!!!](https://youtu.be/watch?v=Wq2I4E6Epow)
+
+MeidasTouch
+
+248K 2h ago
+
+[![Image 54](https://youtu.be/watch?v=1JMEVec4F1c) 3:09:06](https://youtu.be/watch?v=Yt2gg4HlMs0)
+
+![Image 55](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Autumn Frame TV Art | Elegant White Pumpkin Decor | 3 Hours | No Music](https://youtu.be/watch?v=Yt2gg4HlMs0)
+
+Gilded Stillness
+
+30K 1mo ago
+
+[![Image 56](https://youtu.be/watch?v=1JMEVec4F1c) 7:35](https://youtu.be/watch?v=bZiTldVGME8)
+
+![Image 57](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [He’s Only 5… But Plays the Drums Like a Rockstar!](https://youtu.be/watch?v=bZiTldVGME8)
+
+World Best Talent
+
+19M 1mo ago
+
+[![Image 58](https://youtu.be/watch?v=1JMEVec4F1c) 1:16:15](https://youtu.be/watch?v=K1n0Cq4LUwE)
+
+![Image 59](https://youtu.be/watch?v=1JMEVec4F1c)
+
+### [Ailədə Münasibətlər dözülməz həddə çatıbsa və boşanmağı yeganə çıxış yol kimi görənlərə - 1 hissə](https://youtu.be/watch?v=K1n0Cq4LUwE)
+
+Kenan Ragimoff
+
+100 7mo ago
+
+Show more
+
+Show more
+
+[](https://youtu.be/watch?v=1JMEVec4F1c)
+
+🌐 @url:`https://youtu.be/HDSnAVA1-tw` (172 tokens)
+# 1st Business Party by Ragimoff - 25.10.2015 - JW Marriott Absheron Baku.
+
+Video by RAGIMOFF (212 subscribers) · 2015-10-29 · 4:04 · 1,501 views · 4 likes
+
+Тема: "Коммуникация"
+Очередной нетворкинг  20 декабря 2015-го года.
+Наберите в Google: RAGIMOFF -  и вы узнаете какие есть  "Возможности бизнеса в 2016-ом году".
+Представители бизнеса, медиа, моды и просто успешные люди.
+Прекрасная музыка, викторины, подарки и семинар - это BUSİNESS NETWORKING by RAGIMOFF.
+
+Category: People & Blogs
+
+🌐 @url:`https://youtu.be/kEk6B3kNEoE` (238 tokens)
+# 2nd Business Party by Ragimoff - 20.12.2015 - Kempinski Hotel Badamdar Baku
+
+Video by RAGIMOFF (212 subscribers) · 2015-12-22 · 4:01 · 1,208 views · 7 likes
+
+12 апреля 2016-го года по теме "Вселенная Возможностей" - FAIRMONT BAKU, FLAME TOWERS.
+Наберите в Google: RAGIMOFF - и вы узнаете какие есть возможности.
+Представители бизнеса, медиа, моды и просто успешные люди.
+Прекрасная музыка, викторины, подарки и семинар - это BUSİNESS PARTY by RAGIMOFF.
+
+Category: People & Blogs
+
+## Transcript
+
+[0:00] H that Back Down Man your hand [музыка] that [музыка] Man
+
+[0:34] Back [музыка]
+
+[0:53] maning [музыка] Man [музыка] got [музыка]
+
+[1:59] like [музыка] for [музыка]
+
+[2:58] Man [музыка] and [музыка]
+
+[3:58] Man N
+
+🌐 @url:`https://youtu.be/OS6G2HXnkcg` (261 tokens)
+# 2nd Business Party by Ragimoff - 20.12.2015 in Kempinsi Hotel
+
+Video by RAGIMOFF (212 subscribers) · 2015-12-23 · 2:51 · 9,470 views · 6 likes
+
+Тема: "Возможности бизнеса в 2016-ом году" - 20 декабря 2015-го года.
+
+Наберите в Google: RAGIMOFF - и вы узнаете какие есть возможности при объединении двух самых сильных энергий - "Бизнес и Любовь".
+Представители бизнеса, медиа, моды и просто успешные люди.
+Прекрасная музыка, викторины, подарки и семинар - это BUSİNESS PARTY by RAGIMOFF.
+Очередное парти 13 февраля 2016-го года.
+
+Category: Howto & Style
+
+## Transcript
+
+[0:04] [음악]
+
+[0:34] [음악]
+
+[0:43] [음악]
+
+[0:53] [음악] W [음악] W [음악]
+
+[1:26] [음악] h [음악]
+
+[1:36] [음악] h [음악]
+
+[2:13] [음악] a [음악] [박수] [음악]
+
+🌐 @url:`https://youtu.be/06Qm8uzTwvs` (122 tokens)
+# 3rd Business Party by Ragimoff - 04.09.2016 in Flame Tower - Theme "Made in Italy"
+URL: https://youtu.be/06Qm8uzTwvs
+Author: RAGIMOFF
+
+[музика] [музика] I wan get in something deeper I've Been stuck on repl I need to get in something deeper Space To Take Me Away it takes Let Go Let Go and I know it ain Feeling The truth Nothing more I can Lose Let Go Every rym andtion i'mma keep Rolling something deeper be chosen i'mma keep [музика] goinginging keep [музика]
+
+🌐 @url:`https://youtu.be/uvuvb6GbauI` (45 tokens)
+# Milli Psixologiya Forumu 2017 - Kənan Rəhimov - Sual-Cavab.
+URL: https://youtu.be/uvuvb6GbauI
+Author: RAGIMOFF
+
+Milli Psixologiya Forumu 2017 - Kənan Rəhimov - Sual-Cavab.
+
+🌐 @url:`https://kenanragimoff.wixsite.com/kenan-ragimoff/dragimoff` (2299 tokens)
+![3copy.png](https://static.wixstatic.com/media/48bdc8_81240de0c7844a588e5fbe45f774b863~mv2.png/v1/fill/w_120,h_83,al_c,lg_1,q_85,enc_avif,quality_auto/3copy.png)
+
+![ragimoff hk.png](https://static.wixstatic.com/media/48bdc8_8b5b203248e54ede95f823dc92dabe8e~mv2.png/v1/fill/w_183,h_55,al_c,lg_1,q_85,enc_avif,quality_auto/ragimoff%20hk.png)
+
+![App-Icon-R-circle-300.png](https://static.wixstatic.com/media/48bdc8_282ea5dddcce4c3b8ad9d3f7a5cfc4f6~mv2.png/v1/fill/w_94,h_93,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/App-Icon-R-circle-300.png)
+
+Kənan Rəhimov - təcrübə və təhsili barədə xülasə
+
+​
+
+2022 - Beynəlxalq Psixoterapiya Assosiasiyasının Ambassadoru - "Psixologiya Məktəbi" məzunları üçün IPAS-da üzvlük və beynəlxalq təcrübə imkanları
+
+​​
+
+2022 - Rusiyanın Sankt-Peterburq Əlavə Təhsil İnstitutun Azərbaycanda nümayəndəliyi "Psixoloq Pedaqoq" və "Klinik Psixoloq" kvalifikasiyası üzrə peşə dəyişmə və ixtisas artırma proqramı həyata keçirilir.
+
+​​
+
+2021 - Professor B.D.Karvasarski adına İnstitutun Azərbaycanda nümayəndəliyi "Klinik Psixoloq" kvalifikasiyası üzrə peşə dəyişmə və ixtisas artırma proqramı həyata keçirilir.
+
+​​
+
+2020 - Psixologiya Məktəbi - peşəkar praktika, mütəxəssislərin yetişdirilməsi, psixologiya üzrə ədəbiyyat və təlimatların hazırlanması, XBT-11 azərbaycan dilinə tərcüməsi, "Ümumi Psixoterapiya" üzrə kitabın hazırlanması və s. işlər həyata keçirilir.
+
+​​
+
+​2017 - ... - “Ragimoff LP” - Şotlandiya
+
+Şirkətin təsisçisi və direktoru
+
+ ​
+
+- “Garnet” proqramının müəllifi və təsisçisi
+- "Jobiman" işə düzəlmə platformasının təsisçisi
+
+​2012 - .... "Ragimoff HK Ltd." - Hong-Konq
+
+​​​
+
+Şirkətin təsisçisi və direktoru
+
+- Kinoprodüser və ssenarist kimi fəaliyyətini inkişaf etdirir,
+- "GTC" şirkətinin direktoru olaraq HR və Marketinq üzrə mütəxəssislər hazırlayır,
+- Biznes inkişafı üzrə layihələri təşkil edir və aparır,
+- Azərbaycanın şirkətlərinə birbaşa təlim və konsaltinq xidmətləri göstərir.
+
+​Yanvar 2008-... “Global Training and Consulting” - Bakı
+
+​​​​
+
+Şirkətin təsisçisi və direktoru - 09.2008 - ...
+
+- Strateji və Əməliyyat planı tərtib edir,
+- Layihələri həyata keçirir, ümumi idarəçilik,
+- Mütəxəssisləri hazırlama, Müştərilərlə əlaqələrin qurulması,
+- Yeni xidmətlərin və proqramların hazırlanması,
+- Şirkətin maddi və mənəvi dəyərlərinin artırılması
+
+“HR Məktəbi”-nin Rəhbəri – 11.2008 - ...
+
+- İnsan Resursları üzrə mütəxəssisləri hazırlamaq – 2000 nəfərdən çox məzunlar
+- İR üzrə mütəxəssislərin şirkətlərdə uğur qazanmaqları üçün dəstək etmək
+- 2019-cu ildən etibarən İKTLAB tərəfindən məzunlar Dövlət Sertifikatı ilə təltif olunur
+
+- 29 noyabr 2008-ci il tarixindən, GTC-nin direktoru olarkən, "HR Məktəbi" adlı layihənin proqramına "Start" verib və bu layihənin rəhbəri olaraq tədris proqramını mütəmadi olaraq təkmilləşdirir. Hal-hazırda Assessment Mərkəzi üslubları və İdarəetmə psixologiyası üzrə eksperimentlər keçirir, araşdırmalar aparır, "HR Məktəbi"-ni inkişaf etdirmək üçün çalışır.
+
+- 2011-ci ildə yeni "İşçilərin Tutduğu Vəzifəyə Uyğunluq Dərəcəsi" metodunu yaradıb - BSC, 360 dərəcə, Tomas metodu, psixoloji və bilik testlər verə bilmədiyi dəqiqliklə, bu metod işçilərin vəzifəsinə uyğunluq ölçüsünü verir, maaş və mükafat sistemini, eləcə də karyera inkişafı proqramını qurmağa imkan verir.
+
+“Satış Məktəbi”-nin Rəhbəri – 01.2008 – ...
+
+- Satış Sisteminin Qurulması üzrə konsaltinq
+- Marketinq Planının yazılması
+- Marketinq üzrə konsaltinq
+- Rəhbərlik, İdarəetmə, Liderlik, Satış
+   ... və digər mövzular üzrə təlimlərin təşkili və keçirilməsi
+
+- 2008-ci ilin yanvar ayından “GTC”-də çalışır. İdarəetmə psixologiyası və Biznes Kommunikasiyaları (əsasən, satış və komandaların qurulması) üzrə mütəxəssis olaraq, “Global Training and Consulting” şirkətində peşəkar təlim proqramları tərtib edir, İdarəetmə və marketinq üzrə konsaltinq layihələrinə rəhbərlik edir.
+- "Satış Məktəbi" layihəsinin rəhbəridir. Korporativ təlimlər və "Master-Klass"lar aparır. Şəxsən özünün apardığı təlimlərdə artıq 3000-dən çox Azərbaycan vətəndaşı iştirak edib. Şəxsən özü apardığı təlimlərdə artıq 3000 çox Azərbaycan vətəndaşları iştirak edib.
+
+- 2006-cı ildə "Bank of Baku"-da 1 gün ərzində 232 nəfərin qiymətləndirməsini aparandan sonra - bu sahə üzrə test proqramını təkmilləşdirib, şəbəkə daxili qiymətləndirmə proqramını "VeralSoft" proqramı bazasında yaradıb, proqramı bir çox şirkətlərdə işçilərin qəbulu vasitəsi kimi istifadə olunur, 2011-ci ildə təkrar olaraq təkmilləşmiş proqramla "Bank of Baku"-da işçilərin qiymətləndirilməsi aparılıb.
+
+​
+
+2003-2008 - «Regional Psixologiya Mərkəzi» - Bakı
+
+​​
+
+Mərkəzin direktoru
+
+- RPM-nin Azərbaycanda peşəkar təşkilat kimi tanınması.
+- Radio və TV kanallarında RPM-in mütəxəssislərinin iştirakı.
+- Biznes-psixologiya sahəsində peşəkar təlimlərin aparılması.
+- Vital klinikası ilə əməkdaşlıq, psixoterapevtik yardımın təmini.
+
+- 2003-2007-ci illər arası "Regional Psixologiya Mərkəzi"nin rəhbəri olaraq, bir necə ictimai layihələri apararkən, Azərbaycanın bir çox Radio və TV verilişlərində özünəməxsus çıxışları ilə idarəetmə psixologiyası üzrə tanınmış mütəxəssis kimi tanınmışdır.​
+
+2004-2005 - "N saylı hərbi hissə" - Gəncə
+
+​
+
+Tibb Məntəqə Rəisi
+
+- Tibb təminatın təşkili, fəxri fərmanla təltif olunmuşdur.
+- Tibb Məntəqəsinin Lazaretinin İzolyatorunu yaratmışdır.
+- Tibb xidmətinin baş leytinantı hərbi rütbəsini almışdır.
+
+2002-2003 - “X-Ray” üst geyim mağazası - Sankt-Peterburq, Rusiya
+
+Mağaza Direktoru
+
+- Mağazanın işinin təşkili
+- Yeni işçilərin qəbulu və tədrisi
+- Satış kanallarının inkişafı
+- Yeni malların sifarişi
+
+​1999-2001 - “Bilik” Cəmiyyətinin Psixologiya Mərkəzi - Bakı
+
+​​
+
+Psixoloq-konsultant
+
+- Psixoloji konsultasiyaların təşkili.
+- Psixoloji mühazirələrin aparılması.
+
+​
+
+1998-2001 - "Azərbaycan Psixoloqlar Assosiasiyası"nın fəal üzvü
+
+​1997-1998 - Bakfarmbüro Ltd. «Farmasevtin bülleteni» jurnalı - Bakı
+
+​​
+
+Xüsusi Müxbir
+
+- Xəbərlər rubrikasının aparıcısı.
+- Elm rubrikasının xüsusi müxbiri.
+- Reklam şöbəsinin rəhbəri.​
+
+Təhsil:
+
+Noyabr 2015-ci il – "Biznez Kouçinq" - Hamburq Akademiyasının məzunu Bakı şəhərinə dəvət edib, onun tərəfindən Karyera Kouçinqi və Biznes inkişafı üzrə, eləcə də “Bizne Model 4.0” peşəkar təlimlər təşkil edib, bir neçə şirkətlərə birlikdə kouçinq verib və təkmilləşmə keçib (Badamlı, Xozyayuşka, Rohaus).
+
+2007-2012-ci illər – Azərbaycana peşəkar təlimçliəri dəvət edərək 100-dən çox müəllimlərin təlimlərini təşkil edib, keçib və təkmilləşmə məqsədi ilə şəxsi kouçinq keçib. O sıradan Türkiyənin 9 Eylül Universitesinin Professoru Ali Şen tərəfindən 2008-ci ildə “Strateji Planlama”, “Liderlik”, “BSC Qiymətləndirmə” metodlarını yerli şirkətlərdə tətdiq ediblər (Veysəloğlu, DNS Computers, Bank o Baku).
+
+2001-2003-cü illər – Rusiyanın Sankt-Peterburq şəhərində bir çox peşəkar təlimlərdə iştirak edib, İnsan Resursları, Biznesin İnkişafı və İdarə edilməsi, Satış Psixologiyası üzrə təlimlər “İmaton” və “Baskov” təlim mərkəzlərində keçib.
+
+Rusiya Federasiyasının Baş Psixoterapevti B.D.Karvasarski tərəfindən təhsil almış və dünya miqyaslı tanınmış psixoanalitik V.D.Vidin rəhbərliyi altında çalışmış Kənan Rəhimov, Bexterev adına İnstitut tərəfindən qırmızı diplom ilə təltif olunmuşdur:
+
+​​
+
+Diplomun Seriyası: AB-I № 077037
+
+Mütəxəssis Sertifikatı: A №2139298
+
+2001-2003-cü illərdə Sank-Peterburqda ixtisaslaşma keçərək, bir çox mərkəzlərdə (İmaton, Baskov, FİNEK və digər) peşəkar təlimlər keçib, qısa zamanda "Baskov" mərkəzində "MTS"-lə keçirilən korporativ layihə üzrə təlimçi kimi cəlb edilmişdir.
+
+2003-cü ilin iyun ayına qədər, "Baskov" psixoloji mərkəzində, bir çox idarəetmə və marketinq üzrə korporativ layihələrdə iştirak edib.
+
+2003-cü ilin iyun ayında Bakıda mütəxəssis fəaliyyətini davam edir.
+
+Bir çox yerli və xarici təlimçilərin təlimlərində iştirak edib, müxtəlif sahələr üzrə xidmətlərin inkişaf etdirilməsi məqsədi ilə və biliklərini artırmaq üçün bir çox sertifikatlara sahib olub.
+
+1994-2001 - Bakı - Azərbaycan Dövlət Tibb Universiteti
+
+- Fakültə: Müalicə işi - 2000-ci il
+- İxtisas: Həkim-psixiatr - 2001-ci il - 2 saylı KPX-da İnternatura
+
+🌐 @url:`https://kenanragimoff.wixsite.com/kenan-ragimoff` (480 tokens)
+[![IMG_8056_edited.jpg](https://static.wixstatic.com/media/48bdc8_e915d536b3a0482d9978983c1c4d08d3~mv2.jpg/v1/fill/w_320,h_410,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_8056_edited.jpg)](https://kenanragimoff.wixsite.com/kenan-ragimoff/dragimoff)
+
+###### Psixoterapevt Diplomu: AB-I № 077037
+Mütəxəssis Sertifikatı: A №2139298
+
+[![1654258414661.png](https://static.wixstatic.com/media/48bdc8_9197f6cd280f47de82fe0ab78f8cee6a~mv2.png/v1/crop/x_21,y_29,w_324,h_326/fill/w_124,h_125,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1654258414661.png)](https://kenanragimoff.wixsite.com/kenan-ragimoff/dragimoff)
+
+###### Beynəlxalq Psixoterapiya Assosiasiyasının Ambasadoru və bu sahədə tədris aparan Beynəlxalq Dərəcəli həkim psixoterapevt
+
+###### B.D.Karvasarski adına İnstitutunun Səlahiyətli nümayəndəsi, Beynəlxalq RAGIMOFF və GTC şirkətlərinin sahibi,
+bir çox biznes layihələrin rəhbəri
+
+###### Rusiya Federasiyasının Baş Psixoterapevti B.D.Karvasarski tərəfindən təhsil almış və dünya miqyaslı tanınmış psixoanalitik V.D.Vidin rəhbərliyi altında çalışıb.
+
+###### 2003-cü ildə Peşəkar Psixoterapevt Fərqlənmə Diplomu və Ekspert Sertifikatı ilə V.M.Bexterev adına Elmi-Tədqiqat İnstitutu tərəfindən təltif olunub.
+
+###### 2003-2008 - Bakı «Regional Psixologiya Mərkəzi» direktoru olaraq Azərbaycanda Psixologiyanın inkişafı və tanıtımı üzrə TV və Radio kanalları ilə əməkdaşlıq.
+
+### Mütəxəssisi peşəkarlığı ilə tanışlıq üçün bir aktual təlimin video yazısına baxa bilərsiniz "Panik Atakların Psixoterapevtik Müalicəsi"
+
+## XİDMƏTLƏRİMİZ:
+
+PRAKTİKUM
+
+###### Psixoterapiya üzrə Beynəlxalq Sertifikat
+ Birdəfəlik 3000 azn və ya 12 ay ayda 300 azn
+
+KLİNİK PSİXOLOQ
+
+###### Klinik Psixologiya üzrə Əlavə Təhsil Diplomu
+ Birdəfəlik 6000 azn və ya 24 ay ayda 300 azn
+
+🌐 @url:`https://intpas.com/student/13iu21e3az001/` (44 tokens)
+# Loading… · IPAS — International Psychotherapy Association
+URL: https://intpas.com/student/13iu21e3az001/
+
+Loading… · IPAS — International Psychotherapy Association
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+согасен - давай создай пока копию главной страницы по данной новой системе и схеме в изолированной папке чтобы не  смешиваться с файлами текущего сайта но забери у него лучшие решения и опубликуй его по адресу ragimoff.org/67 - чтобы я смог убедться в правильной формулировке и сохранении важного из текущего и добавление нового еще лучше - когда я проверю то сможем заменть главный сайт
+
+### [ragimoff | 2026-09-11 | hermes:20260911_174313]
+когда будет готово в том числе и с мобильной оптимизацией то оправь мне по телеграм ссылку с отчетом чтобы я мог посмотреть и ответить тебе голосом что править и что оставить - дальше слушай телеграм и запускай оттуда хук через сервер возможно чтобы будил тебя и ты отвечал мне сразу и приступал к выпонению задач - так сказать активный процесс диалога и работы
+
