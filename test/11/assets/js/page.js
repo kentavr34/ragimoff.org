@@ -1,11 +1,11 @@
 /* test/11 — внутренняя страница из блоков: один сценарий на специалистов, консультации, контакты, тренинги, право, блог и статью.
    Вид страницы — <body data-kind="spec|cons|page|blog|post" data-slug="…">; данные — data/<папка>/<slug>.<lang>.json; рама — chrome.js; форма — reg.js. */
-import { initChrome, esc } from './chrome.js?v=11120219';
-import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11120219';
-import { regRender, regOpen } from './reg.js?v=11120219';
-import { CONS } from './content.js?v=11120219';
+import { initChrome, esc } from './chrome.js?v=11120255';
+import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11120255';
+import { regRender, regOpen } from './reg.js?v=11120255';
+import { CONS } from './content.js?v=11120255';
 
-const V = '11120219';
+const V = '11120255';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const kind = document.body.dataset.kind || 'page';
 const q = new URLSearchParams(location.search);
@@ -31,7 +31,7 @@ function hero(d, u, back, backHref, cta) {
 
 function blogPage(d, u) {
   const f = d.featured, its = d.items.filter(x => (cat === 'all' ? !(f && x.slug === f.slug) : x.cat === cat)), fi = f && d.items.find(x => x.slug === f.slug);
-  const chips = `<div class="chips pg__cats" role="group">${d.cats.map(c => `<button type="button" class="chip${c[0] === cat ? ' is-on' : ''}" data-cat="${esc(c[0])}" aria-pressed="${c[0] === cat}">${esc(c[1])}</button>`).join('')}</div>`;
+  const chips = `<div class="chips pg__cats" role="group">${d.cats.filter(c => c[0] === 'all' || d.items.some(x => x.cat === c[0])).map(c => `<button type="button" class="chip${c[0] === cat ? ' is-on' : ''}" data-cat="${esc(c[0])}" aria-pressed="${c[0] === cat}">${esc(c[1])}</button>`).join('')}</div>`;
   const feat = f && cat === 'all' ? `<a class="feat rv" href="article.html?a=${esc(f.slug)}">${fi && fi.cover ? `<span class="feat__ph"><img src="${esc(fixImg(fi.cover))}" alt="" width="1600" height="900"></span>` : ''}<span class="feat__b"><span class="pst__m">${esc(f.badge)}</span><b class="feat__t">${esc(f.title)}</b><span class="pst__m">${esc(f.meta)}</span><span class="feat__d">${esc(f.excerpt)}</span><span class="btn">${esc(f.cta)}</span></span></a>` : '';
   const grid = `<div class="posts posts--grid">${its.map(a => `<a class="pst rv" href="article.html?a=${esc(a.slug)}">${a.cover ? `<span class="pst__ph"><img src="${esc(fixImg(a.cover))}" alt="" loading="lazy" width="1600" height="900"></span>` : ''}<span class="pst__b"><span class="pst__m">${esc(a.meta || a.catLabel)}</span><b class="pst__t">${esc(a.title)}</b><span class="pst__d">${esc(a.excerpt)}</span></span></a>`).join('')}</div>`;
   return `<section class="sec sec--blog"><div class="wrap">${chips}${feat}${grid}</div></section>`;
@@ -50,9 +50,11 @@ const page = initChrome({
     const backHref = { spec: 'index.html#spec', cons: 'index.html#cons', page: 'index.html', blog: 'index.html#blog', post: 'blog.html' }[kind];
     const cta = kind === 'spec' || kind === 'cons' || slug === 'corporate' ? t.nav.cta : '';
     hero(d, u, u.back[kind], backHref, cta);
-    let blocks = d.blocks || [];
+    let blocks = (d.blocks || []).slice();
+    while (blocks.length && blocks[blocks.length - 1].type === 'cta') blocks.pop();                    /* призыв прямо перед формой записи лишний: форма ниже */
+    let seenArt = false; blocks = blocks.filter(b => { if (b.type !== 'articles') return true; if (seenArt) return false; seenArt = true; return true; });   /* второй список статей подряд не нужен */
     if (kind === 'post') { blocks = blocks.map(b => (b.type === 'sources' ? Object.assign({}, b, { h: u.sources, sub: b.t }) : b)); if (d.author) { const i = blocks.findIndex(b => b.type === 'articles'); blocks.splice(i < 0 ? blocks.length : i, 0, { type: 'note', h: u.author, t: d.author[0], d: d.author[1] }); } }
-    $('#pgBlocks').innerHTML = kind === 'blog' ? blogPage(d, u) + (d.cta ? renderBlocks([Object.assign({ type: 'cta' }, d.cta)], u, { t, blog }) : '') : renderBlocks(blocks, u, { t, blog });
+    $('#pgBlocks').innerHTML = kind === 'blog' ? blogPage(d, u) : renderBlocks(blocks, u, { t, blog });
     /* нижняя навигация: соседние страницы раздела */
     let other = '';
     if (kind === 'spec') other = `<span>${esc(u.other.spec)}</span>` + t.spec.p.map((p, i) => [i ? 'samira' : 'kenan', p.n]).filter(x => x[0] !== slug).map(x => `<a href="specialist.html?s=${x[0]}">${esc(x[1])}</a>`).join('');
@@ -60,7 +62,9 @@ const page = initChrome({
     if (kind === 'page' || kind === 'blog' || kind === 'post') other = `<span>${esc(u.other.page)}</span>` + [['contact.html', u.pages.contact, 'contact'], ['corporate.html', u.pages.corporate, 'corporate'], ['law.html', u.pages.law, 'law'], ['blog.html', t.nav.blog, 'index'], [L.tests, u.pages.tests, '']].filter(x => !(x[2] === slug && kind !== 'post')).map(x => `<a href="${x[0]}">${esc(x[1])}</a>`).join('');
     $('#ppOther').innerHTML = other;
     /* форма уже настроена на эту страницу */
-    if (kind === 'spec') regOpen('consult', null, null, slug);
+    const TOPIC = [['panik', 0], ['depressiya', 1], ['sosial-fobiya', 2], ['enurez', 3], ['aile', 4], ['yeniyetme', 4]];
+    if (kind === 'spec') regOpen('consult', slug === 'samira' ? 4 : null, null, slug);
+    else if (kind === 'post') { const m = TOPIC.find(x => slug.indexOf(x[0]) === 0); if (m) regOpen('consult', m[1], null, m[1] === 4 ? 'samira' : 'kenan'); }
     else if (kind === 'cons') { const i = CONS.indexOf(slug); regOpen('consult', i >= 0 && i < 5 ? i : (slug === 'aile-usaq-terapiyasi' ? 4 : t.cons.t.length), null, i >= 4 ? 'samira' : null); }
     else if (slug === 'corporate') regOpen('b2b');
     $$('#pgBlocks table').forEach(tb => { const hd = [...tb.querySelectorAll('thead th')].map(x => x.textContent.trim()); tb.classList.toggle('tbl--nohead', !hd.length); tb.querySelectorAll('tbody tr').forEach(tr => [...tr.children].forEach((td, i) => { if (hd[i]) td.dataset.l = hd[i]; })); });

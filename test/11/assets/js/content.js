@@ -346,6 +346,6 @@ export function LINKS3(l) { const L = _LINKS1(l);
   L.spec = ['specialist.html?s=kenan', 'specialist.html?s=samira'];
   L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi'].map(c => 'consult.html?c=' + c).concat('index.html#cons');
   L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
-  L.contact = 'contact.html'; L.law = 'law.html'; L.tests = '/test/';
-  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'law.html', '/test/'], [L.wa, L.tg, 'contact.html']];
+  L.contact = 'contact.html'; L.law = 'law.html'; L.tests = '/test/aile.html';
+  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'law.html', '/test/aile.html'], [L.wa, L.tg, 'contact.html']];
   return L; }

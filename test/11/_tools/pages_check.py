@@ -24,7 +24,7 @@ JS = r"""
   document.querySelectorAll('.rv').forEach(e => e.classList.add('is-in'));
   await new Promise(r => setTimeout(r, 700));
   for (let k = 0; k < 30 && [...document.images].some(i => !i.complete); k++) await new Promise(r => setTimeout(r, 250));
-  const W = innerWidth;
+  const W = __W__;                      /* заданная ширина экрана: при переполнении браузер сам расширяет окно просмотра */
   out.over = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - W;
   const skip = e => e.closest('.tblw, .pg__cats, .mob, .lb, .nav__dd, .head');
   out.out = [...document.querySelectorAll('main *, footer *')].filter(e => { if (skip(e)) return false; const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1); }).slice(0, 5).map(e => e.tagName + '.' + String(e.className).slice(0, 30));
@@ -38,6 +38,7 @@ JS = r"""
   out.raw = (txt.match(/<\/?(strong|em|a|br|p|span)\b[^>]{0,20}>|&(amp|nbsp|lt|gt|quot);/g) || []).slice(0, 4);
   out.empty = [...document.querySelectorAll('#pgBlocks .pg__bd')].filter(e => !e.innerText.trim() && !e.querySelector('img')).length;
   out.h2long = [...document.querySelectorAll('#pgBlocks .pp__h')].filter(e => e.getBoundingClientRect().height / parseFloat(getComputedStyle(e).lineHeight) > 4.2).map(e => e.textContent.slice(0, 40)).slice(0, 3);
+  out.vw = innerWidth;
   out.tap = W < 700 ? [...document.querySelectorAll('main a.btn, main button, main summary')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height < 43.5; }).slice(0, 4).map(e => e.tagName + '.' + String(e.className).slice(0, 24) + ' ' + Math.round(e.getBoundingClientRect().height)) : [];
   out.small = [...document.querySelectorAll('#pgBlocks p, #pgBlocks li, #pgBlocks span, #pgBlocks td')].filter(e => e.children.length === 0 && e.textContent.trim() && parseFloat(getComputedStyle(e).fontSize) < 12).slice(0, 3).map(e => e.className + ' ' + getComputedStyle(e).fontSize);
   out.links = [...new Set([...document.querySelectorAll('main a[href], footer a[href], #nav a[href]')].map(a => a.getAttribute('href')).filter(h => h && !/^(https?:|mailto:|tel:|#)/.test(h)))];
@@ -108,11 +109,12 @@ async def main():
                         await cmd("Runtime.evaluate", expression="localStorage.setItem('r11_lang','%s')" % lang)
                         await cmd("Page.navigate", url=BASE + pg)
                         await asyncio.sleep(1.1 if art else 1.5)
-                        r = await cmd("Runtime.evaluate", expression=JS, returnByValue=True, awaitPromise=True)
+                        r = await cmd("Runtime.evaluate", expression=JS.replace("__W__", str(W)), returnByValue=True, awaitPromise=True)
                         o = r.get("result", {}).get("value") or {"fail": "нет ответа страницы"}
                         v = []
                         if o.get("fail"): v.append(o["fail"])
                         if errs: v.append("ошибки: " + "; ".join(sorted(set(errs))[:4]))
+                        if o.get("vw", W) > W + 1: v.append("страница раздвинута до %d px" % o["vw"])
                         if o.get("over", 0) > 1: v.append("шире экрана на %d px" % o["over"])
                         if o.get("out"): v.append("за краем: " + ", ".join(o["out"]))
                         if o.get("img"): v.append("битые картинки: " + ", ".join(o["img"]))

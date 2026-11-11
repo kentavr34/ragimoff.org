@@ -1,7 +1,7 @@
 /* test/11 — общая «рама» внутренних страниц: шапка, меню, тема, язык, соцсети, подвал. Тексты — из content.js, стили — из site.css.
    Страница передаёт onRender(t, L, lang): он вызывается при загрузке и при каждой смене языка. */
-import { T, LINKS3 as LINKS } from './content.js?v=11120219';
-import { PROGRAMS } from './programs.js?v=11120219';
+import { T, LINKS3 as LINKS } from './content.js?v=11120255';
+import { PROGRAMS } from './programs.js?v=11120255';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
