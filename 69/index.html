@@ -1,638 +1,448 @@
 <!doctype html>
-<html lang="ru" data-page="home" data-theme="dark">
+<html lang="ru" dir="ltr" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Доктор Рагимов — клиническая психология и психотерапия</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor Ragimoff — Школа психологии. Клиническая психология и психотерапия</title>
 <meta name="description" content="Два специалиста, одна школа. Клиническая психология, психотерапия, семейная терапия. Учебник и книги, программы обучения, консультации.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Manrope:wght@400;500;600;700&family=Oswald:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Monsieur+La+Doulaise&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-
-<!-- порядок обязателен: токены → сброс → основы → компоненты -->
+<link rel="canonical" href="https://ragimoff.org/69/">
+<script>
+/* ТЕМА ПРИМЕНЯЕТСЯ ДО ОТРИСОВКИ — иначе при загрузке мигает тёмным.
+   Ключ в хранилище читается синхронно, до первого кадра. */
+(function(){try{var t=localStorage.getItem('ragimoff-theme')||'dark';
+document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <link rel="stylesheet" href="design/tokens/tokens.generated.css">
 <link rel="stylesheet" href="design/foundations/reset.css">
 <link rel="stylesheet" href="design/foundations/typography.css">
 <link rel="stylesheet" href="design/foundations/layout.css">
-<link rel="stylesheet" href="design/foundations/prose.css">
-<link rel="stylesheet" href="design/foundations/motion.css">
 <link rel="stylesheet" href="design/components/base.css">
-<link rel="stylesheet" href="design/components/head.css">
 <link rel="stylesheet" href="design/components/hero.css">
 <link rel="stylesheet" href="design/components/blocks.css">
+<link rel="stylesheet" href="design/components/pages.css">
+<link rel="stylesheet" href="design/components/motion.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main">К содержимому</a>
-<script>
-/* ТЕМА ПРИМЕНЯЕТСЯ ДО ОТРИСОВКИ.
-   Если ставить её обычным скриптом в конце, при перезагрузке сначала
-   мелькает тёмный фон, потом светлый — это заметно и дёшево выглядит. */
-(function () {
-  try {
-    var saved = localStorage.getItem('theme');
-    var sys = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', saved || sys);
-  } catch (e) {}
-})();
-</script>
-<div class="grain" aria-hidden="true"></div>
-
-<!-- ═══════════ ШАПКА ═══════════ -->
-<header class="head">
-  <a class="head__logo" href="#">Doctor <b>Ragimoff</b></a>
-  <nav class="head__nav">
-    <a class="head__link" href="/az/mutexessisler/index.html">Специалисты</a>
-    <a class="head__link" href="#books">Книги</a>
-    <a class="head__link" href="/az/telim/index.html">Обучение</a>
-    <a class="head__link" href="/az/konsultasiya/index.html">Консультации</a>
-    <a class="head__link" href="/az/korporativ/index.html">Бизнес-тренинги</a>
-    <a class="head__link" href="#myths">Просвещение</a>
-    <a class="head__link" href="/az/bloq/index.html">Блог</a>
-  </nav>
-  <div class="head__right">
-    <div class="themes" role="group" aria-label="Тема оформления">
-      <button type="button" data-theme-set="dark"  data-icon="◐" aria-pressed="true"  title="Ночная тема"></button>
-      <button type="button" data-theme-set="light" data-icon="○" aria-pressed="false" title="Дневная тема"></button>
-      <button type="button" data-theme-set="sepia" data-icon="▤" aria-pressed="false" title="Сепия — для чтения книг"></button>
+  <header class="hdr" id="hdr">
+    <div class="hdr__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__name">Doctor Ragimoff</span>
+        <span class="brand__sub">Школа психологии</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a class="nav__link" href="#specialists">Специалисты</a>
+        <a class="nav__link" href="#books">Книги</a>
+        <a class="nav__link" href="#training">Обучение</a>
+        <a class="nav__link" href="#consult">Консультации</a>
+        <a class="nav__link" href="#business">Тренинги</a>
+        <a class="nav__link" href="#myths">Просвещение</a>
+        <a class="nav__link" href="../../ru/bloq/index.html">Блог</a>
+      </nav>
+      <div class="hdr__tools">
+        <div class="themes" id="themes" role="group" aria-label="Тема оформления">
+        <button class="theme__btn" data-theme-set="dark" type="button" aria-label="Ночь"><span></span></button>
+        <button class="theme__btn" data-theme-set="light" type="button" aria-label="День"><span></span></button>
+        <button class="theme__btn" data-theme-set="sepia" type="button" aria-label="Сепия"><span></span></button>
+        </div>
+        <div class="lang" id="lang" role="group" aria-label="Язык">
+        <a class="lang__btn" data-lang="az" href="index.html">AZ</a>
+        <a class="lang__btn is-active" data-lang="ru" href="index.html">RU</a>
+        <a class="lang__btn" data-lang="en" href="index.html">EN</a>
+        </div>
+        <a class="btn btn--gold btn--sm" href="#consult">Записаться</a>
+      </div>
+      <button class="burger" id="burger" type="button" aria-label="Меню"><span></span></button>
     </div>
-    <div class="lang">
-      <a href="#" aria-current="true">AZ</a>
-      <a href="/ru/index.html">RU</a>
-      <a href="/en/index.html">EN</a>
-    </div>
-    <a class="btn btn--primary btn--sm" href="/az/konsultasiya/index.html">Записаться</a>
-  </div>
-</header>
+  </header>
 
 <main id="main">
-
-<!-- ═══════════ 1. ГЕРОЙ ═══════════ -->
 <section class="hero" id="hero">
   <div class="hero__stick">
-    <div class="hero__frame">
-      <img src="/images/hero-home/d/f000.webp" alt="">
+    <div class="hero__media">
+      <img src="../../images/kenan/photo-hero-suit.jpg" alt="Кенан Рагимов, врач-психотерапевт" class="hero__img" loading="lazy" decoding="async">
     </div>
     <canvas class="hero__net" id="heroNet" aria-hidden="true"></canvas>
     <div class="hero__scrim" aria-hidden="true"></div>
-    <div class="hero__shade" id="shade"></div>
-
-    <div class="hero__inner wrap">
+    <div class="hero__inner">
+      <p class="hero__hand">Doctor Ragimoff</p>
       <h1 class="hero__strict">Школа психологии</h1>
-      <div class="hero__hand">Doctor Ragimoff</div>
       <p class="hero__lead">Клиническая психология и психотерапия</p>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="/az/konsultasiya/index.html">Записаться на консультацию</a>
-        <a class="btn btn--line" href="/az/telim/index.html">Программы обучения</a>
+      <div class="hero__actions">
+          <a class="btn btn--gold" href="#consult">Записаться на консультацию</a>
+          <a class="btn btn--line" href="#training">Программы обучения</a>
       </div>
     </div>
-
-    <div class="hero__cue" aria-hidden="true">
-      <span>Листайте</span>
-      <i></i>
-    </div>
+    <div class="hero__scroll" aria-hidden="true"><span>Листайте</span><i></i></div>
   </div>
 </section>
 
-<!-- ═══════════ 2. СПЕЦИАЛИСТЫ ═══════════ -->
 <section class="section" id="specialists">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Специалисты</span>
-      <h2>Два специалиста, одна школа</h2>
-      <p class="lead">Разные темы, один подход к работе. Можно выбрать одного
-        или прийти вдвоём — тема определяет, кто поведёт.</p>
-    </div>
-
-    <div class="pair">
-      <a class="person reveal" href="/az/mutexessisler/kenan-rehimov.html">
-        <img class="person__photo" src="/images/kenan/photo-hero-suit.jpg" alt="Кенан Рагимов">
-        <span class="person__veil" aria-hidden="true"></span>
-        <span class="person__body">
-          <span class="person__role">Клиническая психология</span>
-          <span class="person__name">Кенан Рагимов</span>
-          <span class="person__lead">Автор учебника «Клиническая психиатрия», 820 страниц
-            на четырёх языках. Психотерапия, психодиагностика, работа с тревожными
-            и депрессивными состояниями, бизнес-тренинги.</span>
-          <span class="person__more">Подробнее о специалисте →</span>
-        </span>
-      </a>
-
-      <a class="person reveal" href="/az/mutexessisler/samire-rehimova.html">
-        <img class="person__photo" src="/images/samira/samira-portret.jpg" alt="Самира Рагимова">
-        <span class="person__veil" aria-hidden="true"></span>
-        <span class="person__body">
-          <span class="person__role">Семейная терапия</span>
-          <span class="person__name">Самира Рагимова</span>
-          <span class="person__lead">Работа с парами, детско-родительские отношения,
-            «Родительская школа», сложные подростки. Соавтор книги «Эра Феникса».
-            Ведёт модули семейной терапии.</span>
-          <span class="person__more">Подробнее о специалисте →</span>
-        </span>
-      </a>
+    <header class="section__head reveal">
+      <p class="kicker">Кто вас встретит</p>
+      <h2>Специалисты школы</h2>
+      <p class="lead">Прежде чем выбирать услугу, посмотрите, кто за ней стоит.</p>
+    </header>
+    <div class="people">
+        <article class="person reveal">
+          <div class="person__photo"><img src="../../images/kenan/photo-hero-suit.jpg" alt="Кенан Рагимов" class="person__img" loading="lazy" decoding="async"></div>
+          <div class="person__veil" aria-hidden="true"></div>
+          <div class="person__body">
+            <h3 class="person__name">Кенан Рагимов</h3>
+            <p class="person__role">Врач-психотерапевт, клинический психолог</p>
+            <ul class="person__facts">
+              <li>Амбассадор Международной психотерапевтической ассоциации, 2022</li>
+              <li>Врач-психотерапевт с 2003 года, Санкт-Петербург</li>
+              <li>Автор учебников и книг по психотерапии для студентов и профессионалов</li>
+            </ul>
+            <p class="person__link"><a href="#books" class="link--arrow">Подробнее</a></p>
+          </div>
+        </article>
+        <article class="person reveal">
+          <div class="person__photo"><img src="../../images/samira/samira-portret.jpg" alt="Самира Рагимова" class="person__img" loading="lazy" decoding="async"></div>
+          <div class="person__veil" aria-hidden="true"></div>
+          <div class="person__body">
+            <h3 class="person__name">Самира Рагимова</h3>
+            <p class="person__role">Семейный психотерапевт</p>
+            <ul class="person__facts">
+              <li>Семейная терапия и работа с парами</li>
+              <li>Автор книги «Эра Феникса» и методологии Феникса</li>
+              <li>Авторская программа по анализу межличностных отношений</li>
+            </ul>
+            <p class="person__link"><a href="#books" class="link--arrow">Подробнее</a></p>
+          </div>
+        </article>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 3. КНИГИ — ПЯТЬ «ВЫСТРЕЛОВ» ═══════════ -->
-<section class="section section--lined" id="books">
+<section class="section section--books" id="books">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Книги</span>
+    <header class="section__head reveal">
+      <p class="kicker">Труды, которых не было</p>
       <h2>Пять книг, которых не было</h2>
-      <p class="lead">Ни одной из них не существовало на азербайджанском — кроме
-        учебника, который теперь вышел на четырёх языках. Каждая закрывает свою
-        часть работы.</p>
+      <p class="lead">Книги — единственный товар, который можно изучить до того, как за него заплатили. Каждая из этих пяти отвечает на вопрос «почему именно эта».</p>
+    </header>
+    <div class="books">
+        <article class="book reveal">
+          <div class="book__cover"><img src="../../books/covers/klinik-cover.jpg" alt="Клиническая психиатрия" class="book__img" loading="lazy" decoding="async"></div>
+          <div class="book__body">
+            <h3 class="book__title">Клиническая психиатрия</h3>
+
+            <ul class="book__why">
+            <li>Исчерпывающая информация по международным стандартам диагностики и лечения: МКБ-10, МКБ-11 и DSM-5 — в одной книге.</li>
+            <li>Все международные протоколы ведущих организаций собраны вместе: и для процесса обучения, и как настольная книга профессионала.</li>
+            <li>Подготовлена на четырёх языках — открыта для чтения прямо сейчас.</li>
+            </ul>
+            <p class="book__read"><a href="../../klinik-psixiatriya/" class="btn btn--line btn--sm">Читать бесплатно</a></p>
+          </div>
+        </article>
+        <article class="book reveal">
+          <div class="book__cover"><img src="../../books/covers/phoenix-cover.jpg" alt="Эра Феникса" class="book__img" loading="lazy" decoding="async"></div>
+          <div class="book__body">
+            <h3 class="book__title">Эра Феникса</h3>
+<p class="book__co">В соавторстве с Самирой Рагимовой</p>
+            <ul class="book__why">
+            <li>Полное руководство по анализу межличностных отношений и поиску дисфункциональных связей.</li>
+            <li>Включает авторскую игру и программы обучения методологии Феникса.</li>
+            <li>Чтение книги само по себе является терапевтическим циклом — это история пациента.</li>
+            </ul>
+            <p class="book__read"><a href="../../books/phoenix/" class="btn btn--line btn--sm">Читать бесплатно</a></p>
+          </div>
+        </article>
+        <article class="book reveal">
+          <div class="book__cover"><img src="../../books/covers/guilt-cover.jpg" alt="Вирус вины" class="book__img" loading="lazy" decoding="async"></div>
+          <div class="book__body">
+            <h3 class="book__title">Вирус вины</h3>
+
+            <ul class="book__why">
+            <li>Разбирает вину как механизм, который управляет решениями и держит человека в неподвижности.</li>
+            <li>Показывает, чем вина отличается от ответственности — и почему первая не лечится усилием воли.</li>
+            <li>Практические шаги выхода из цикла самонаказания.</li>
+            </ul>
+            <p class="book__read"><a href="../../books/guilt/" class="btn btn--line btn--sm">Читать бесплатно</a></p>
+          </div>
+        </article>
+        <article class="book reveal">
+          <div class="book__cover"><img src="../../books/covers/pandemic-cover.jpg" alt="Шизофрения" class="book__img" loading="lazy" decoding="async"></div>
+          <div class="book__body">
+            <h3 class="book__title">Шизофрения</h3>
+
+            <ul class="book__why">
+            <li>Отделяет научное знание о расстройстве от бытовых страхов и мифов.</li>
+            <li>Описывает современные подходы к лечению и реальные прогнозы.</li>
+            <li>Написана для родственников и специалистов: язык понятен, содержание профессионально.</li>
+            </ul>
+            <p class="book__read"><a href="../../books/schizophrenia/" class="btn btn--line btn--sm">Читать бесплатно</a></p>
+          </div>
+        </article>
+        <article class="book reveal">
+          <div class="book__cover"><img src="../../books/covers/freud.jpg" alt="Пандемия безумия" class="book__img" loading="lazy" decoding="async"></div>
+          <div class="book__body">
+            <h3 class="book__title">Пандемия безумия</h3>
+
+            <ul class="book__why">
+            <li>Разбирает, как массовые состояния меняют мышление и поведение людей.</li>
+            <li>Показывает связь между общественным давлением и личным выбором.</li>
+            <li>Опирается на клинический опыт, а не на публицистику.</li>
+            </ul>
+            <p class="book__read"><a href="../../books/pandemic/" class="btn btn--line btn--sm">Читать бесплатно</a></p>
+          </div>
+        </article>
     </div>
-
-    <div class="bookstrip">
-
-      <article class="book reveal">
-        <img class="book__cover" src="/books/covers/klinik-cover.jpg" alt="Клиническая психиатрия">
-        <div>
-          <div class="book__no">01 · главное</div>
-          <h3 class="book__title">Клиническая психиатрия</h3>
-          <p class="book__gives">По этому учебнику учатся специалисты и строятся
-            программы подготовки. Он даёт основу: диагностика, механизмы расстройств,
-            методы лечения — системно, а не разрозненными статьями.</p>
-          <div class="book__tags">
-            <span class="tag">820 страниц B5</span>
-            <span class="tag">4 языка</span>
-            <span class="tag">104 главы</span>
-            <span class="tag">разбор мифов</span>
-          </div>
-        </div>
-        <div class="book__side">
-          <a class="btn btn--line btn--sm" href="/klinik-psixiatriya/index.html">Читать</a>
-        </div>
-      </article>
-
-      <article class="book reveal">
-        <img class="book__cover" src="/books/covers/art-freud-gw01.jpg" alt="Полное собрание Фрейда">
-        <div>
-          <div class="book__no">02 · впервые</div>
-          <h3 class="book__title">Полное собрание Фрейда</h3>
-          <p class="book__gives">Впервые на азербайджанском языке. Даёт студенту
-            профессиональную литературу на родном языке — не пересказ и не выжимку,
-            а полный текст основоположника направления.</p>
-          <div class="book__tags">
-            <span class="tag">первый перевод</span>
-            <span class="tag">открытый доступ</span>
-            <span class="tag">читалка</span>
-          </div>
-        </div>
-        <div class="book__side">
-          <a class="btn btn--line btn--sm" href="/klinik-psixiatriya/index.html">Читать</a>
-        </div>
-      </article>
-
-      <article class="book reveal">
-        <img class="book__cover" src="/books/covers/phoenix-cover.jpg" alt="Эра Феникса">
-        <div>
-          <div class="book__no">03 · соавторство</div>
-          <h3 class="book__title">Эра Феникса</h3>
-          <p class="book__gives">О семейных отношениях и о том, как пара восстанавливается
-            после кризиса. Даёт язык, которым можно говорить о том, что происходит
-            между людьми. Написана вдвоём с Самирой Рагимовой.</p>
-          <div class="book__tags">
-            <span class="tag">Самира Рагимова</span>
-            <span class="tag">семейная терапия</span>
-          </div>
-        </div>
-        <div class="book__side">
-          <a class="btn btn--line btn--sm" href="/books/phoenix-era/index.html">Читать</a>
-        </div>
-      </article>
-
-      <article class="book reveal">
-        <img class="book__cover" src="/books/covers/guilt-cover.jpg" alt="Вирус вины">
-        <div>
-          <div class="book__no">04 · практика</div>
-          <h3 class="book__title">Вирус вины</h3>
-          <p class="book__gives">О ложных установках, которые человек носит годами
-            и принимает за собственные мысли. Даёт инструменты когнитивной работы —
-            те, что применяются на консультации.</p>
-          <div class="book__tags">
-            <span class="tag">КПТ</span>
-            <span class="tag">ложные убеждения</span>
-          </div>
-        </div>
-        <div class="book__side">
-          <a class="btn btn--line btn--sm" href="/books/virus-viny/index.html">Читать</a>
-        </div>
-      </article>
-
-      <article class="book reveal">
-        <img class="book__cover" src="/books/covers/pandemic-cover.jpg" alt="Шизофрения. Пандемия безумия">
-        <div>
-          <div class="book__no">05 · просвещение</div>
-          <h3 class="book__title">Шизофрения. Пандемия безумия</h3>
-          <p class="book__gives">Самая стигматизированная тема в психиатрии. Книга
-            говорит о ней без мистики и без пренебрежения — так, чтобы человек
-            перестал бояться и начал разбираться.</p>
-          <div class="book__tags">
-            <span class="tag">против стигмы</span>
-            <span class="tag">для родственников</span>
-          </div>
-        </div>
-        <div class="book__side">
-          <a class="btn btn--line btn--sm" href="/books/shizofreniya/index.html">Читать</a>
-        </div>
-      </article>
-
+    <div class="freud reveal">
+      <h3 class="freud__title">Все книги Фрейда</h3>
+      <ul class="freud__list">
+          <li>Впервые в Азербайджане: полное собрание книг Фрейда переведено на азербайджанский язык.</li>
+          <li>Перевод выполнен без сокращений, доступен для чтения бесплатно и без регистрации.</li>
+          <li>Заходите в читальный зал и знакомьтесь с первоисточником, а не с пересказами.</li>
+      </ul>
+      <p><a href="../../az/books/freud/" class="btn btn--line btn--sm">Открыть читальный зал</a></p>
+    </div>
+    <div class="coming reveal">
+      <h3 class="coming__title">Что готовится</h3>
+      <ul class="coming__list">
+          <li>«Общая психотерапия» — в редакционном этапе, скоро появится в разделе книг.</li>
+          <li>В течение 2027 года библиотека профессиональной литературы будет пополняться.</li>
+          <li>Переводы учебников ведущих университетов станут доступны на азербайджанском языке.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 4. ОБУЧЕНИЕ ═══════════ -->
-<section class="section" id="programs">
+<section class="section" id="training">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Обучение</span>
-      <h2>Три программы — три разных права</h2>
-      <p class="lead">Программы различаются не темой, а тем, что человек может
-        делать после. Ниже — что именно даёт каждая.</p>
-    </div>
-
-    <div class="cards grid--3" style="display:grid">
-      <article class="program reveal">
-        <span class="program__form">Диплом ДПО</span>
-        <h3 class="program__title">Клиническая психология</h3>
-        <p class="program__gain">Даёт право работать: <b>диплом с регистрацией</b>,
-          полная программа по учебнику «Клиническая психиатрия».</p>
-        <div class="program__facts">
-          <span>1528 часов</span><span>11 месяцев</span><span>модули + практика</span>
-        </div>
-        <div class="program__foot">
-          <a class="btn btn--line btn--sm" href="/az/telim/klinik-psixologiya.html">Программа</a>
-        </div>
-      </article>
-
-      <article class="program reveal">
-        <span class="program__form">Международный сертификат</span>
-        <h3 class="program__title">Практикум психотерапии</h3>
-        <p class="program__gain">Даёт возможность <b>вести приём под супервизией</b>:
-          живые часы работы с разбором каждого случая.</p>
-        <div class="program__facts">
-          <span>864 часа</span><span>9 месяцев</span><span>супервизия</span>
-        </div>
-        <div class="program__foot">
-          <a class="btn btn--line btn--sm" href="/az/telim/psixoterapiya-praktikumu.html">Программа</a>
-        </div>
-      </article>
-
-      <article class="program reveal">
-        <span class="program__form">Сертификат IPAS</span>
-        <h3 class="program__title">Семейная терапия</h3>
-        <p class="program__gain">Даёт метод работы с парой и с ребёнком: <b>два уровня
-          подготовки</b> — базовый и полный, с разбором собственных случаев.</p>
-        <div class="program__facts">
-          <span>3 и 6 месяцев</span><span>два уровня</span><span>ведёт Самира</span>
-        </div>
-        <div class="program__foot">
-          <a class="btn btn--line btn--sm" href="/az/telim/aile-terapiyasi.html">Программа</a>
-        </div>
-      </article>
-    </div>
-
-    <div style="margin-top:var(--space-u8)">
-      <div class="section__head" style="align-items:flex-start;text-align:left;margin-bottom:var(--space-u5)">
-        <span class="eyebrow">Что остаётся на руках</span>
-        <h3 style="font-family:var(--font-display);font-size:var(--size-step3)">Диплом, сертификат, практика</h3>
-        <p class="lead">Документы выдаются с проверяемой регистрацией, а не
-          «за участие». Это не обещание — это то, что можно проверить.</p>
-      </div>
-      <div class="proofs">
-        <div class="proof">
-          <img src="/images/diplomas/adtu-diplom-2000.jpg" alt="Диплом ДПО">
-          <span>Диплом ДПО</span>
-        </div>
-        <div class="proof">
-          <img src="/images/diplomas/ipas-ambassador-2022.jpg" alt="Сертификат IPAS">
-          <span>Сертификат IPAS · QR-проверка</span>
-        </div>
-        <div class="proof">
-          <img src="/images/certificate/cert-sample-ipas-clinical.jpg" alt="Сертификат амбассадора">
-          <span>Амбассадор IPAS, 2022</span>
-        </div>
-        <div class="proof">
-          <img src="/images/students/cert-1.jpg" alt="Со студентами">
-          <span>Выпуск со студентами</span>
-        </div>
-      </div>
+    <header class="section__head reveal">
+      <p class="kicker">Обучение</p>
+      <h2>Программы обучения</h2>
+      <p class="lead">Семь программ: три длительные и четыре короткие. Каждая — вход в отдельный кабинет школы.</p>
+    </header>
+    <div class="progs">
+        <article class="prog reveal">
+          <p class="prog__label">Диплом ДПО</p>
+          <h3 class="prog__title">Клиническая психология</h3>
+          <p class="prog__hours">1528 часов</p>
+          <p class="prog__go"><a href="../../az/telim/klinik-psixologiya.html" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Международный сертификат</p>
+          <h3 class="prog__title">Психотерапия: практикум</h3>
+          <p class="prog__hours">Программа практикума</p>
+          <p class="prog__go"><a href="../../az/telim/psixoterapiya.html" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Сертификат IPAS</p>
+          <h3 class="prog__title">Семейная терапия</h3>
+          <p class="prog__hours">Семейный модуль</p>
+          <p class="prog__go"><a href="../../az/telim/aile-terapiyasi.html" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Авторская программа</p>
+          <h3 class="prog__title">Методология Феникса</h3>
+          <p class="prog__hours">Работа с парами</p>
+          <p class="prog__go"><a href="../../az/telim/feniks.html" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Для специалистов</p>
+          <h3 class="prog__title">Клиническая психиатрия</h3>
+          <p class="prog__hours">Диагностика и лечение</p>
+          <p class="prog__go"><a href="../../klinik-psixiatriya/" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Практический курс</p>
+          <h3 class="prog__title">Психодиагностика</h3>
+          <p class="prog__hours">Инструменты и тесты</p>
+          <p class="prog__go"><a href="../../az/telim/psixodiaqnostika.html" class="link--arrow">Подробнее</a></p>
+        </article>
+        <article class="prog reveal">
+          <p class="prog__label">Для практикующих</p>
+          <h3 class="prog__title">Супервизия</h3>
+          <p class="prog__hours">Разбор случаев</p>
+          <p class="prog__go"><a href="../../az/telim/superviza.html" class="link--arrow">Подробнее</a></p>
+        </article>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 5. КОНСУЛЬТАЦИИ ═══════════ -->
-<section class="section section--lined" id="services">
+<section class="section" id="consult">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Консультации</span>
+    <header class="section__head reveal">
+      <p class="kicker">Консультации</p>
       <h2>С чем приходят</h2>
-      <p class="lead">Тему выбирает человек, а не специалист за него. По каждой теме
-        есть отдельная страница: как проходит работа, сколько длится, что делать дальше.</p>
+      <p class="lead">Депрессия, тревога, панические состояния, зависимости, отношения, детско-родительские конфликты, профессиональное выгорание.</p>
+    </header>
+    <div class="prices">
+        <article class="price reveal">
+          <h3 class="price__title">Онлайн</h3>
+          <p class="price__num">5000 ₽</p>
+          <p class="price__note">час</p>
+        </article>
+        <article class="price reveal">
+          <h3 class="price__title">Очно</h3>
+          <p class="price__num">7500 ₽</p>
+          <p class="price__note">час</p>
+        </article>
+        <article class="price reveal">
+          <h3 class="price__title">Вдвоём онлайн</h3>
+          <p class="price__num">7500 ₽</p>
+          <p class="price__note">час</p>
+        </article>
+        <article class="price reveal">
+          <h3 class="price__title">Вдвоём очно</h3>
+          <p class="price__num">10000 ₽</p>
+          <p class="price__note">час</p>
+        </article>
     </div>
-
+    <p class="note reveal">Индивидуальный тренинг — от 20 часов.</p>
     <div class="topics">
-      <a class="topic" href="/az/konsultasiya/depressiya.html"><b>Депрессия</b><span>работа с состоянием</span></a>
-      <a class="topic" href="/az/konsultasiya/panik-ataklar.html"><b>Панические атаки</b><span>тревожные состояния</span></a>
-      <a class="topic" href="/az/konsultasiya/sosial-fobiya.html"><b>Социальная фобия</b><span>работа с тревогой в среде</span></a>
-      <a class="topic" href="/az/konsultasiya/enurez.html"><b>Ночной энурез</b><span>детский приём</span></a>
-      <a class="topic" href="/az/konsultasiya/aile-terapiyasi.html"><b>Семейная терапия</b><span>пары</span></a>
-      <a class="topic" href="/az/konsultasiya/aile-usaq-terapiyasi.html"><b>Детско-родительские отношения</b><span>родители и дети</span></a>
-      <a class="topic" href="/az/konsultasiya/valideyn-mektebi.html"><b>Родительская школа</b><span>в рамках семейной терапии</span></a>
-    </div>
-
-    <div class="prose" style="margin-top:var(--space-u8);max-width:none">
-      <p style="font-family:var(--font-read);color:var(--color-text-muted);max-width:64ch;margin-inline:0">
-        Формат один и тот же: разговор, в котором определяется, что именно происходит
-        и что с этим делать. Темы ведут оба специалиста — выбор остаётся за человеком.
-        Стоимость зависит от формата и числа участников и обсуждается до начала работы.
-      </p>
-    </div>
-
-    <div class="case" style="margin-top:var(--space-u8)">
-      <a class="case__media reveal" href="#" style="text-decoration:none">
-        <img src="https://i.ytimg.com/vi/rb68nHEF9-o/maxresdefault.jpg" alt="Драма Сабины">
-        <span class="case__play"><i>▶</i></span>
-      </a>
-      <div>
-        <span class="eyebrow">Пример работы</span>
-        <h3 style="font-family:var(--font-display);font-size:var(--size-step3);margin-top:10px">
-          Драма Сабины</h3>
-        <p class="prose" style="margin-inline:0;margin-block:var(--space-u3)">
-          Разбор одного случая: что происходило, как шла работа и к чему пришли.
-          Это не реклама услуги — это возможность увидеть метод, а не обещание
-          результата.
-        </p>
-        <a class="btn btn--line btn--sm" href="/az/konsultasiya/depressiya.html">Смотреть разбор</a>
-      </div>
+        <article class="topic reveal">
+          <h3 class="topic__title">Депрессия</h3>
+          <p class="topic__go"><a href="../../klinik-psixiatriya/6A70.html#6a70-10-mifler" class="link--arrow">Разобрать подробно</a></p>
+        </article>
+        <article class="topic reveal">
+          <h3 class="topic__title">Тревожные расстройства</h3>
+          <p class="topic__go"><a href="../../klinik-psixiatriya/6B00.html#6b00-10-mifler" class="link--arrow">Разобрать подробно</a></p>
+        </article>
+        <article class="topic reveal">
+          <h3 class="topic__title">ОКР</h3>
+          <p class="topic__go"><a href="../../klinik-psixiatriya/6B20.html#6b20-10-mifler" class="link--arrow">Разобрать подробно</a></p>
+        </article>
+        <article class="topic reveal">
+          <h3 class="topic__title">Энурез</h3>
+          <p class="topic__go"><a href="../../klinik-psixiatriya/6C00.html#6c00-10-mifler" class="link--arrow">Разобрать подробно</a></p>
+        </article>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 6. БИЗНЕС-ТРЕНИНГИ ═══════════ -->
-<section class="section" id="b2b">
+<section class="section" id="business">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Бизнес-тренинги</span>
-      <h2>Для компаний и коллективов</h2>
-      <p class="lead">Работа с командой: выгорание, конфликты, коммуникация в паре
-        руководитель — подчинённый. Формат подбирается под запрос, а не наоборот.</p>
-    </div>
-
-    <div class="b2b">
-      <div class="b2b__row">
-        <b>Выгорание</b>
-        <span>Что происходит с человеком, когда он долго работает на пределе, и что
-          с этим можно сделать внутри компании.</span>
-      </div>
-      <div class="b2b__row">
-        <b>Конфликты в команде</b>
-        <span>Откуда берутся и почему дисциплиной не решаются. Работа с ролями
-          и договорённостями.</span>
-      </div>
-      <div class="b2b__row">
-        <b>Коммуникация руководителя</b>
-        <span>Как говорить так, чтобы слышали, и как слышать, что происходит
-          на самом деле.</span>
-      </div>
-      <div class="b2b__row">
-        <b>Подбор и адаптация</b>
-        <span>Как читать психологический профиль сотрудника и не ошибаться
-          при найме.</span>
-      </div>
-    </div>
-
-    <div style="margin-top:var(--space-u8)">
-      <span class="eyebrow">Проведено для</span>
-      <div class="events">
-        <span class="event"><b>JW Marriott</b> · Absheron, 2015</span>
-        <span class="event"><b>Kempinski</b> · Badamdar, 2015</span>
-        <span class="event"><b>Fairmont</b> · Flame Towers, 2016</span>
-      </div>
-    </div>
-
-    <div style="margin-top:var(--space-u8);display:flex;flex-wrap:wrap;gap:var(--space-u3)">
-      <a class="btn btn--primary" href="/az/korporativ/index.html">Заказать корпоративный тренинг</a>
-      <a class="btn btn--line" href="/az/korporativ/index.html">Программы тренингов</a>
+    <header class="section__head reveal">
+      <p class="kicker">Тренинги</p>
+      <h2>Тренинги для организаций</h2>
+      <p class="lead">Работа с командами: конфликты, выгорание, коммуникация, устойчивость под давлением.</p>
+    </header>
+    <div class="myths">
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Управление конфликтом</h3>
+          <p class="mythcard__text">Как ссоры внутри команды перестают стоить денег.</p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Профилактика выгорания</h3>
+          <p class="mythcard__text">Что делать до того, как люди начнут уходить.</p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Коммуникация</h3>
+          <p class="mythcard__text">Как говорить так, чтобы слышали, и слышать, что говорят.</p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Устойчивость под давлением</h3>
+          <p class="mythcard__text">Поведение людей в стрессе и как им управлять.</p>
+        </article>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ 7. ПРОСВЕЩЕНИЕ И МИФЫ ═══════════ -->
-<section class="section section--lined" id="myths">
+<section class="section" id="myths">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Просвещение</span>
-      <h2>Мифы, из-за которых не начинают лечение</h2>
-      <p class="lead">В каждой главе учебника есть раздел «Мифы и ложные убеждения» —
-        104 главы, около тысячи разборов. Здесь четыре из них: те, что чаще всего
-        стоят между человеком и помощью.</p>
+    <header class="section__head reveal">
+      <p class="kicker">Просвещение</p>
+      <h2>Пропаганда правильных методов</h2>
+      <p class="lead">Чтобы каждый, кому нужна помощь, мог найти верный путь лечения, а не блуждать годами в поиске эффективного способа.</p>
+    </header>
+    <div class="myths">
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Депрессия — это лень</h3>
+          <p class="mythcard__text">Расстройство, у которого есть диагностические критерии и протокол лечения.</p>
+          <p class="mythcard__foot"><a href="../../klinik-psixiatriya/6A70.html#6a70-10-mifler" class="link--arrow">Разбор мифа</a></p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Аутизм — это необучаемость</h3>
+          <p class="mythcard__text">Состояние, при котором обучение требует другого подхода, а не отказа от него.</p>
+          <p class="mythcard__foot"><a href="../../klinik-psixiatriya/" class="link--arrow">Разбор мифа</a></p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Социофобия — это стеснительность</h3>
+          <p class="mythcard__text">Тревожное расстройство, которое лечится, а не перевоспитывается.</p>
+          <p class="mythcard__foot"><a href="../../klinik-psixiatriya/" class="link--arrow">Разбор мифа</a></p>
+        </article>
+        <article class="mythcard reveal">
+          <h3 class="mythcard__title">Тревога не лечится, надо терпеть</h3>
+          <p class="mythcard__text">Лечится. Терпеть — не метод, а привычка, из которой выходят.</p>
+          <p class="mythcard__foot"><a href="../../klinik-psixiatriya/6B00.html#6b00-10-mifler" class="link--arrow">Разбор мифа</a></p>
+        </article>
     </div>
-
-    <div class="myth">
-
-      <article class="mythcard reveal">
-        <span class="mythcard__topic">Депрессия</span>
-        <p class="mythcard__claim">«Депрессия — это просто грусть,
-          её можно убрать усилием воли»</p>
-        <p class="mythcard__truth">Депрессия — состояние с механизмами, течением
-          и лечением. Усилие воли не работает не потому, что человек слабый,
-          а потому что болезнь так устроена. Антидепрессанты не формируют
-          зависимость и не меняют личность — это один из семи мифов главы.</p>
-        <p class="mythcard__src">«Клиническая психиатрия» · глава о депрессивных
-          расстройствах · 11 мифов с разбором</p>
-        <div class="mythcard__foot">
-          <a class="mythcard__link" href="/klinik-psixiatriya/ru/6A70.html#6a70-10-mifler">
-            Полный список мифов о депрессии <i>→</i></a>
-        </div>
-      </article>
-
-      <article class="mythcard reveal">
-        <span class="mythcard__topic">Тревожные расстройства</span>
-        <p class="mythcard__claim">«Тревога — обычное чувство,
-          а не медицинское состояние»</p>
-        <p class="mythcard__truth">Тревожное расстройство — диагноз с критериями,
-          а не черта характера. И лечится не «усилием не тревожиться»: человек
-          не может волевым порядком научиться не тревожиться, как не может
-          приказом себе не болеть.</p>
-        <p class="mythcard__src">«Клиническая психиатрия» · глава о тревожных
-          расстройствах · 10 мифов с разбором</p>
-        <div class="mythcard__foot">
-          <a class="mythcard__link" href="/klinik-psixiatriya/ru/6B00.html#6b00-10-mifler">
-            Полный список мифов о тревоге <i>→</i></a>
-        </div>
-      </article>
-
-      <article class="mythcard reveal">
-        <span class="mythcard__topic">Обсессивно-компульсивное</span>
-        <p class="mythcard__claim">«ОКП — просто черта характера,
-          связанная с чистоплотностью»</p>
-        <p class="mythcard__truth">ОКП — расстройство, в котором человек теряет
-          контроль над собственными действиями, и разрешить себе выполнять
-          компульсии не успокаивает, а закрепляет симптом. «Сила воли» здесь
-          не инструмент, а часть ловушки.</p>
-        <p class="mythcard__src">«Клиническая психиатрия» · глава об ОКП ·
-          7 мифов с разбором</p>
-        <div class="mythcard__foot">
-          <a class="mythcard__link" href="/klinik-psixiatriya/ru/6B20.html#6b20-10-mifler">
-            Полный список мифов об ОКП <i>→</i></a>
-        </div>
-      </article>
-
-      <article class="mythcard reveal">
-        <span class="mythcard__topic">Ночной энурез</span>
-        <p class="mythcard__claim">«Наказание или упрёки
-          заставят ребёнка перестать»</p>
-        <p class="mythcard__truth">Энурез — не упрямство и не лень, и наказание
-          его не лечит, а добавляет ребёнку стыд, который мешает родителям
-          вовремя обратиться. Это одна из шести ошибок, разобранных в главе.</p>
-        <p class="mythcard__src">«Клиническая психиатрия» · глава об энурезе ·
-          6 мифов с разбором</p>
-        <div class="mythcard__foot">
-          <a class="mythcard__link" href="/klinik-psixiatriya/ru/6C00.html#6c00-10-mifler">
-            Полный список мифов об энурезе <i>→</i></a>
-        </div>
-      </article>
-
-    </div>
-
-    <p class="note" style="margin-top:var(--space-u5)">
-      Ссылки ведут в раздел мифов книги на том языке, с которого открыт сайт.
-      Всего в учебнике 104 главы с такими разделами.
-    </p>
   </div>
 </section>
 
-<!-- ═══════════ 8. БЛОГ ═══════════ -->
 <section class="section" id="blog">
   <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Блог</span>
-      <h2>Разборы и заметки</h2>
-      <p class="lead">Тексты о том, что спрашивают чаще всего: коротко, по делу,
-        без обещаний.</p>
-    </div>
-
-    <div class="posts">
-      <article class="post reveal">
-        <img class="post__img" src="/images/blog/depressiya/art1-cover.jpg" alt="">
-        <div class="post__body">
-          <span class="post__date">12 ноября 2026</span>
-          <h3 class="post__title">Как понять, что пора к специалисту</h3>
-          <p class="post__lead">Границы нормы размыты не потому, что медицина
-            не знает ответа, а потому что человек привыкает к своему состоянию.</p>
-          <span class="post__more">Читать →</span>
-        </div>
-      </article>
-
-      <article class="post reveal">
-        <img class="post__img" src="/images/blog/enurez/art1-cover.jpg" alt="">
-        <div class="post__body">
-          <span class="post__date">5 ноября 2026</span>
-          <h3 class="post__title">Почему ребёнок не хочет учиться</h3>
-          <p class="post__lead">За отказом почти всегда стоит не лень. Разбираем,
-            какие механизмы видны за поведением.</p>
-          <span class="post__more">Читать →</span>
-        </div>
-      </article>
-
-      <article class="post reveal">
-        <img class="post__img" src="/images/blog/aile/art1-cover.jpg" alt="">
-        <div class="post__body">
-          <span class="post__date">28 октября 2026</span>
-          <h3 class="post__title">Что происходит в семье после кризиса</h3>
-          <p class="post__lead">Пара не распадается в один день. О том, какие
-            этапы проходит семья и на каком можно вернуться.</p>
-          <span class="post__more">Читать →</span>
-        </div>
-      </article>
-    </div>
-
-    <div class="topics" style="margin-top:var(--space-u5)">
-      <a class="topic" href="/az/bloq/depressiya.html"><b>Депрессия</b><span>как отличить состояние от болезни</span></a>
-      <a class="topic" href="/az/bloq/enurez.html"><b>Ночной энурез</b><span>что делать родителю</span></a>
-      <a class="topic" href="/az/bloq/aile.html"><b>Семейные отношения</b><span>кризис и восстановление</span></a>
-      <a class="topic" href="/az/bloq/panik.html"><b>Тревога и паника</b><span>почему не проходит сама</span></a>
-      <a class="topic" href="/az/bloq/index.html"><b>Детско-родительские</b><span>как говорить с ребёнком</span></a>
-      <a class="topic" href="/az/bloq/index.html"><b>Профессия психолога</b><span>как в неё приходят</span></a>
-    </div>
-
-    <div style="margin-top:var(--space-u5)">
-      <a class="btn btn--line" href="/az/bloq/index.html">Все статьи</a>
+    <header class="section__head reveal">
+      <p class="kicker">Блог</p>
+      <h2>Рубрики</h2>
+      <p class="lead">Просвещение продолжается в текстах: разборы, объяснения, ответы на частые вопросы.</p>
+    </header>
+    <div class="topics">
+        <article class="topic reveal">
+          <h3 class="topic__title">Психолог и психотерапевт: в чём разница</h3>
+          <p class="topic__go"><a href="../../az/bloq/index.html" class="link--arrow">Читать</a></p>
+        </article>
+        <article class="topic reveal">
+          <h3 class="topic__title">Семья и отношения</h3>
+          <p class="topic__go"><a href="../../az/bloq/index.html" class="link--arrow">Читать</a></p>
+        </article>
+        <article class="topic reveal">
+          <h3 class="topic__title">Как выбрать специалиста</h3>
+          <p class="topic__go"><a href="../../az/bloq/index.html" class="link--arrow">Читать</a></p>
+        </article>
     </div>
   </div>
 </section>
-
-<!-- ═══════════ 9. TELEGRAM ═══════════ -->
-<section class="section" id="telegram" style="padding-top:0">
-  <div class="wrap">
-    <div class="tg reveal">
-      <div>
-        <h2 class="tg__title">Продолжение — в Telegram</h2>
-        <p class="tg__lead">Разборы случаев, ответы на вопросы, отрывки из книг
-          и то, что не помещается в статью. Пишим туда чаще, чем на сайт.</p>
-      </div>
-      <a class="btn btn--primary" href="/az/elaqe/index.html">Перейти в канал</a>
-    </div>
-  </div>
-</section>
-
 </main>
 
-<!-- ═══════════ ПОДВАЛ ═══════════ -->
-<footer class="foot" id="contacts">
-  <div class="wrap">
-    <div class="foot__top">
-      <div>
-        <div class="foot__brand">Doctor <b>Ragimoff</b></div>
-        <p class="foot__about">Клиническая психология и психотерапия.
-          Учебник, книги и практика — на четырёх языках.</p>
-      </div>
-      <div class="foot__col">
-        <h4>Работа</h4>
-        <a href="#specialists">Специалисты</a>
-        <a href="#services">Консультации</a>
-        <a href="#b2b">Бизнес-тренинги</a>
-      </div>
-      <div class="foot__col">
-        <h4>Обучение</h4>
-        <a href="#programs">Программы</a>
-        <a href="#books">Книги</a>
-        <a href="#myths">Мифы и убеждения</a>
-      </div>
-      <div class="foot__col">
-        <h4>Связь</h4>
-        <a href="#blog">Блог</a>
-        <a href="#telegram">Telegram</a>
-        <a href="#">Контакты</a>
-      </div>
+<footer class="foot" id="footer">
+  <div class="wrap foot__inner">
+    <div class="foot__lead">
+      <h2 class="foot__title">Остаёмся на связи</h2>
+      <p class="foot__text">Написать напрямую, посмотреть разборы, задать вопрос.</p>
+      <a class="btn btn--gold" href="https://t.me/doctor_ragimoff">Написать в Telegram</a>
     </div>
-    <div class="foot__bottom">
-      <span>© 2026 Ragimoff. Все права защищены.</span>
-      <span>Баку · Азербайджан</span>
+    <div class="foot__cols">
+        <div class="foot__col">
+          <h4 class="foot__ctitle">Разделы</h4>
+          <ul class="foot__links">
+            <li><a href="#specialists">Специалисты</a></li>
+            <li><a href="#books">Книги</a></li>
+            <li><a href="#training">Обучение</a></li>
+            <li><a href="#consult">Консультации</a></li>
+          </ul>
+        </div>
+        <div class="foot__col">
+          <h4 class="foot__ctitle">Книги</h4>
+          <ul class="foot__links">
+            <li><a href="../../klinik-psixiatriya/">Клиническая психиатрия</a></li>
+            <li><a href="../../az/books/freud/">Все книги Фрейда</a></li>
+            <li><a href="../../az/books/">Читальный зал</a></li>
+          </ul>
+        </div>
     </div>
   </div>
+  <p class="foot__copy">Doctor Ragimoff — Школа психологии</p>
 </footer>
 
 <script type="module">
 /* ── СЕТЬ ИНТЕЛЛЕКТА В ГЕРОЕ ────────────────────────────────────────
-   Зачем: владелец отверг прежний визуал («нет визуала который вызывает
-   уважение»). Смысл, который обязана передать сцена — интеллект,
-   развитие и движение к цели («достичь своих жизненных целей,
-   пользуясь своим интеллектом»).
+   Смысл, который передаёт сцена: узлы и связи — мышление, движение
+   по связям — развитие, сборка к цели при прокрутке — путь к своей
+   цели. Не симметричная сфера («штамп»), а НАПРАВЛЕННЫЙ ПОТОК.
 
-   Визуал: поток узлов и связей, идущий слева вправо и собирающийся
-   к цели. Не симметричная сфера — та читалась как «скринсейвер».
+   Сеть живёт в свободных зонах кадра: замер показал, что портрет
+   занимает центр, поэтому узлы там не создаются — «паутина на лице»
+   исключена расчётом.
 
-   Если модуль не загрузится, герой остаётся рабочим: фото и текст
-   на месте, просто без слоя сети. Поэтому всё в try/catch. */
+   Любая ошибка здесь не должна ломать страницу: модуль в try/catch. */
 try {
-  /* Прямой путь вместо importmap: тот не разрешал спецификатор 'three'
-     и сеть молча не запускалась. */
   const THREE = await import('./vendor/three.module.js');
   const mod = await import('./design/components/hero-net.js');
   const cv = document.getElementById('heroNet');
@@ -653,82 +463,6 @@ try {
 }
 </script>
 
-<script>
-/* ── ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ ───────────────────────────────────────
-   Обычный обработчик, а не только IntersectionObserver: при включённом
-   «уменьшить движение» наблюдатель не срабатывает, и страница остаётся
-   серым текстом. Это уже случалось — владелец видел «сухой» сайт. */
-(function () {
-  var pending = [].slice.call(document.querySelectorAll('.reveal'));
-  function check() {
-    var h = window.innerHeight || document.documentElement.clientHeight;
-    for (var i = pending.length - 1; i >= 0; i--) {
-      var r = pending[i].getBoundingClientRect();
-      if (r.top < h * 0.9 && r.bottom > 0) {
-        pending[i].classList.add('is-in');
-        pending.splice(i, 1);
-      }
-    }
-  }
-  window.addEventListener('scroll', check, { passive: true });
-  window.addEventListener('resize', check);
-  window.addEventListener('load', function () { check(); setTimeout(check, 300); });
-  check();
-})();
-
-/* ── ГЕРОЙ: ЗАТЕМНЕНИЕ БЕЗ РЫВКА ──────────────────────────────────
-   В проде затемнение включалось скачком на последних процентах.
-   Здесь ровная шкала: 0 → 0.35 → 0.7 → 1 по мере прокрутки героя. */
-(function () {
-  var hero = document.getElementById('hero');
-  var shade = document.getElementById('shade');
-  if (!hero || !shade) return;
-
-  function frame() {
-    var rect = hero.getBoundingClientRect();
-    var total = rect.height - window.innerHeight;
-    if (total <= 0) { shade.style.setProperty('--shade', 0); return; }
-    var p = Math.min(1, Math.max(0, -rect.top / total));
-    /* ступенчатая, но БЕЗ разрыва: три отрезка со сглаживанием */
-    var v;
-    if (p < 0.5)      v = (p / 0.5) * 0.35;
-    else if (p < 0.8) v = 0.35 + ((p - 0.5) / 0.3) * 0.35;
-    else              v = 0.70 + ((p - 0.8) / 0.2) * 0.30;
-    shade.style.setProperty('--shade', Math.min(1, v).toFixed(3));
-  }
-  window.addEventListener('scroll', function () { window.requestAnimationFrame(frame); }, { passive: true });
-  window.addEventListener('resize', frame);
-  frame();
-
-  /* шапка уплотняется, когда герой прокручен */
-  var head = document.querySelector('.head');
-  window.addEventListener('scroll', function () {
-    if (!head) return;
-    head.classList.toggle('is-solid', window.scrollY > window.innerHeight * 0.72);
-  }, { passive: true });
-})();
-
-/* ── ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ ────────────────────────────────────────────
-   Одно нажатие меняет весь сайт. Выбор сохраняется. */
-(function () {
-  var btns = [].slice.call(document.querySelectorAll('.themes button'));
-  if (!btns.length) return;
-
-  function apply(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    btns.forEach(function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === t ? 'true' : 'false');
-    });
-    try { localStorage.setItem('theme', t); } catch (e) {}
-  }
-
-  btns.forEach(function (b) {
-    b.addEventListener('click', function () { apply(b.getAttribute('data-theme-set')); });
-  });
-
-  /* отметить текущую тему на кнопках при загрузке */
-  apply(document.documentElement.getAttribute('data-theme') || 'dark');
-})();
-</script>
+<script src="design/components/motion.js"></script>
 </body>
 </html>
