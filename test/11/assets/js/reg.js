@@ -43,7 +43,7 @@ function keep() { const o = {}; box.querySelectorAll('input:not([type=file])').f
 function draw(vals) { box.innerHTML = html(); if (vals) Object.keys(vals).forEach(n => { const i = box.querySelector(`input[name="${n}"]`); if (i && vals[n]) i.value = vals[n]; }); }
 
 export function regRender(t, l) { T = t; lang = l; box = document.getElementById('regBox'); if (!box || !t.reg) return; draw(box.querySelector('form') ? keep() : null); }
-export function regOpen(kind, topic) { if (!box) return; const v = keep(); if (kind) st.kind = kind; if (topic != null) st.topic = topic; draw(v); }
+export function regOpen(kind, topic, prog) { if (!box) return; const v = keep(); if (kind) st.kind = kind; if (topic != null) st.topic = topic; if (prog != null) st.prog = prog; draw(v); }
 
 const b64 = f => new Promise(res => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1] || ''); r.onerror = () => res(''); r.readAsDataURL(f); });
 function say(text, bad, wa) { const m = box.querySelector('.reg__msg'); m.hidden = false; m.className = 'reg__msg' + (bad ? ' is-err' : ''); m.innerHTML = esc(text) + (wa ? ` <a href="${WA}" target="_blank" rel="noopener">WhatsApp</a>` : ''); }

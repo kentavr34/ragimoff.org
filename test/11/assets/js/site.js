@@ -1,7 +1,7 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS2 as LINKS } from './content.js?v=11112229';
-import { regRender, regOpen } from './reg.js?v=11112229';
-import { initLight } from './light.js?v=11112229';
+import { T, LINKS2 as LINKS } from './content.js?v=11112306';
+import { regRender, regOpen } from './reg.js?v=11112306';
+import { initLight } from './light.js?v=11112306';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

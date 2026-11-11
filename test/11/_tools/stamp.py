@@ -15,6 +15,18 @@ io.open(p, 'w', encoding='utf-8', newline='\n').write(t)
 t = io.open(p, encoding='utf-8').read()
 t, e = re.subn(r"(from '\./reg\.js)(\?v=\d+)?'", r"\1?v=" + v + "'", t)
 io.open(p, 'w', encoding='utf-8', newline='\n').write(t)
+import os
+for pg, js in (('program.html', 'page-program'),):
+    if os.path.exists(pg):
+        x = io.open(pg, encoding='utf-8').read()
+        x = re.sub(r'(assets/css/site\.css)(\?v=\d+)?', r'\1?v=' + v, x); x = re.sub(r'(assets/js/' + js + r'\.js)(\?v=\d+)?', r'\1?v=' + v, x)
+        io.open(pg, 'w', encoding='utf-8', newline='\n').write(x)
+for js in ('chrome', 'page-program'):
+    f = 'assets/js/' + js + '.js'
+    if os.path.exists(f):
+        x = io.open(f, encoding='utf-8').read()
+        x = re.sub(r"(from '\./[a-z-]+\.js)(\?v=\d+)?'", r"\1?v=" + v + "'", x)
+        io.open(f, 'w', encoding='utf-8', newline='\n').write(x)
 print('версия', v, '| css', a, 'js', b, 'content', c, 'light', d)
 
 # перед публикацией: отступы только из шкалы (канон N22 / 15.5)

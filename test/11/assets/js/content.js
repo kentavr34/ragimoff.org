@@ -304,4 +304,12 @@ const OWN2 = {
 };
 for (const l of Object.keys(OWN2)) { T[l].corp.list = OWN2[l].list; T[l].soc = OWN2[l].soc; }
 const _LINKS0 = LINKS;
-export function LINKS2(l) { const L = _LINKS0(l); L.soc = [L.tg, 'https://www.instagram.com/dr.ragimoff', 'https://youtube.com/@kragimoff', 'https://www.facebook.com/Ragimoff.az']; return L; }
+export function LINKS2(l) { const L = _LINKS0(l); L.soc = [L.tg, 'https://instagram.com/doctor.ragimoff', 'https://youtube.com/@kragimoff', 'https://www.facebook.com/Ragimoff.az']; return L; }
+
+/* ── PP_LABELS: подписи страницы программы (один шаблон на все программы) ── */
+const PP = {
+  ru: { back: 'Все программы', long: 'Долгосрочная программа', short: 'Краткосрочная программа', forWhom: 'Для кого', teachers: 'Кто ведёт', includes: 'Что входит', program: 'Программа', doc: 'Документ', faq: 'Вопросы и ответы', price: 'Стоимость', reg: 'Пройти регистрацию', sample: 'Образец документа', other: 'Другие программы' },
+  az: { back: 'Bütün proqramlar', long: 'Uzunmüddətli proqram', short: 'Qısamüddətli proqram', forWhom: 'Kimlər üçün', teachers: 'Dərsləri kim aparır', includes: 'Nə daxildir', program: 'Proqram', doc: 'Sənəd', faq: 'Suallar və cavablar', price: 'Qiymət', reg: 'Qeydiyyatdan keçin', sample: 'Sənəd nümunəsi', other: 'Digər proqramlar' },
+  en: { back: 'All programmes', long: 'Long programme', short: 'Short programme', forWhom: 'Who it is for', teachers: 'Who teaches', includes: 'What is included', program: 'Curriculum', doc: 'Document', faq: 'Questions and answers', price: 'Price', reg: 'Register', sample: 'Sample document', other: 'Other programmes' },
+};
+for (const l of Object.keys(PP)) T[l].pp = PP[l];
