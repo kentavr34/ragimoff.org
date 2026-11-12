@@ -104,20 +104,20 @@ export const PROGRAMS = {
         facts: [
           ['Müddət', '1 il (6+6 ay)'],
           ['Həcm', '1 556 akademik saat, 22 fənn'],
-          ['Format', 'Onlayn + oflayn'],
+          ['Format', 'Onlayn + əyani'],
           ['Başlanğıc', 'Qeydiyyat açıqdır'],
           ['Sənəd', 'Peşə yenidənhazırlanması üzrə Əlavə Təhsil Diplomu, Sankt-Peterburq Əlavə Təhsil İnstitutu']
         ],
         includes: [
           'Psixoterapiya Praktikumu proqrama daxildir',
           'Hər fənn üzrə Dr. Rəhimovun video dərsləri və tövsiyə olunan ədəbiyyat siyahısı',
-          'Hər tələbəyə fərdi klinik supervisor təyin edilir',
+          'Hər tələbəyə fərdi klinik supervizor təyin edilir',
           'RAGIMOFF mərkəzində öz pasiyentlərini qəbul etmək imkanı'
         ],
         program: [
           { t: 'Blok I — Psixologiyanın əsasları', items: ['Ümumi psixologiya · 72 saat', 'Psixologiya tarixi · 80 saat', 'Psixologiyanın metodoloji əsasları · 80 saat', 'Sosial psixologiya · 80 saat'] },
-          { t: 'Blok II — Tətbiqi psixologiya', items: ['Pedaqoji psixologiya · 80 saat', 'İnkişaf psixologiyası · 80 saat', 'İnkişaf psixologiyası — genişləndirilmiş kurs · 88 saat', 'Ailə psixologiyası · 72 saat', 'Stress və psixoloji dözümlülük · 80 saat', 'Konfliktologiya · 80 saat', 'Təşkilati psixologiya · 88 saat'] },
-          { t: 'Blok III — Klinik-terapevtik blok', items: ['Klinik psixologiyaya giriş · 72 saat', 'Neyropsixologiya əsasları · 80 saat', 'Psixoloji konsultasiya · 88 saat', 'Koqnitiv-davranış terapiyası (KDT) · 88 saat', 'Gəştalt terapiyası · 88 saat', 'Analitik psixologiya · 80 saat'] },
+          { t: 'Blok II — Tətbiqi psixologiya', items: ['Pedaqoji psixologiya · 80 saat', 'İnkişaf psixologiyası · 80 saat', 'İnkişaf psixologiyası — genişləndirilmiş kurs · 88 saat', 'Ailə psixologiyası · 72 saat', 'Stres və psixoloji dözümlülük · 80 saat', 'Konfliktologiya · 80 saat', 'Təşkilati psixologiya · 88 saat'] },
+          { t: 'Blok III — Klinik-terapevtik blok', items: ['Klinik psixologiyaya giriş · 72 saat', 'Neyropsixologiya əsasları · 80 saat', 'Psixoloji konsultasiya · 88 saat', 'Koqnitiv-davranış terapiyası (KDT) · 88 saat', 'Geştalt terapiyası · 88 saat', 'Analitik psixologiya · 80 saat'] },
           { t: 'Blok IV — Peşəkar inkişaf', items: ['Psixoloji etika və peşəkar standartlar · 80 saat', 'Öz psixoloji praktikanı qurmaq · 56 saat'] },
           { t: 'Blok V — Yekun attestasiya', items: ['Aralıq attestasiya · 2 saat', 'Buraxılış işi · 40 saat', 'Yekun test imtahanı · 2 saat'] }
         ],
@@ -223,7 +223,7 @@ export const PROGRAMS = {
       },
       az: {
         title: 'Klinik Psixologiya (Əlavə Təhsil)',
-        lead: 'Proqram DSM-5 və ICD-11 üzrə psixi pozuntuların diaqnostikasını, əsas psixoterapevtik yanaşmaları (KDT, EMDR elementləri) və real klinik praktikanı əhatə edir. Öz sahəsində aktiv çalışan ya çalışmağı planlaşdıran mütəxəssislər üçün nəzərdə tutulmuşdur.',
+        lead: 'Proqram DSM-5 və XBT-11 üzrə psixi pozuntuların diaqnostikasını, əsas psixoterapevtik yanaşmaları (KDT, EMDR elementləri) və real klinik praktikanı əhatə edir. Öz sahəsində aktiv çalışan ya çalışmağı planlaşdıran mütəxəssislər üçün nəzərdə tutulmuşdur.',
         forWhom: [
           'Ali təhsil diplomu olan mütəxəssislər (istənilən sahə)',
           'Ümumi psixologiya proqramını tamamlayanlar',
@@ -235,7 +235,7 @@ export const PROGRAMS = {
         facts: [
           ['Müddət', '1 il (6+6 ay)'],
           ['Həcm', '1 528 akademik saat, 23 fənn'],
-          ['Format', 'Onlayn + oflayn'],
+          ['Format', 'Onlayn + əyani'],
           ['Başlanğıc', 'Qeydiyyat açıqdır'],
           ['Sənəd', 'Peşə yenidənhazırlanması üzrə Əlavə Təhsil Diplomu, Sankt-Peterburq Əlavə Təhsil İnstitutu, + beynəlxalq IPAS sertifikatı']
         ],
@@ -244,12 +244,12 @@ export const PROGRAMS = {
           'Psixoterapiya Praktikumu proqrama daxildir',
           'Beynəlxalq IPAS/BPA sertifikatı — Əlavə Təhsil diplomu ilə paralel',
           'Hər fənn üzrə Dr. Rəhimovun video dərsləri və həftəlik canlı praktika',
-          'Real klinik keyslərin supervisor nəzarəti altında analizi'
+          'Real klinik keyslərin supervizor nəzarəti altında analizi'
         ],
         program: [
           { t: 'Blok I — Neyroloji və fiziologiya əsasları', items: ['Mərkəzi sinir sisteminin anatomiyası · 52 saat', 'Mərkəzi sinir sisteminin fiziologiyası · 47 saat', 'Psixofiziologiya · 48 saat', 'Neyropsixologiya · 56 saat'] },
           { t: 'Blok II — Klinik psixologiyanın nəzəri əsasları', items: ['Patopsixologiya · 53 saat', 'Klinik psixologiyaya giriş · 47 saat', 'Psixosomatika və bədən psixologiyası · 94 saat', 'Psixoterapiya: nəzəriyyə və praktika · 66 saat', 'Diferensial psixologiya · 47 saat', 'Klinik psixologiyada şəxsiyyət nəzəriyyələri · 11 saat', 'Psixodiaqnostika · 67 saat', 'Psixoloji konsultasiyanın əsasları · 30 saat', 'Psixoloji inkişaf pozuntuları · 104 saat', 'Gerontologiyada klinik psixologiya · 63 saat', 'Deviantologiya · 50 saat'] },
-          { t: 'Blok III — Əlavə klinik modullar', items: ['Psixiatriyanın əsasları · 100 saat', 'Böhran psixologiyası (PTSS) · 80 saat', 'Asılılıq psixologiyası · 63 saat'] },
+          { t: 'Blok III — Əlavə klinik modullar', items: ['Psixiatriyanın əsasları · 100 saat', 'Böhran psixologiyası (PTSP) · 80 saat', 'Asılılıq psixologiyası · 63 saat'] },
           { t: 'Blok IV — Praktikum', items: ['Neyropsixologiya praktikumu · 112 saat', 'Patopsixologiya praktikumu · 161 saat', 'Psixodiaqnostika praktikumu · 105 saat', 'Uşaq klinik psixologiyası praktikumu · 60 saat'] },
           { t: 'Blok V — Yekun attestasiya', items: ['Yekun fənlərarası imtahan · 12 saat'] }
         ],
@@ -358,16 +358,16 @@ export const PROGRAMS = {
         lead: 'Psixologiya əsas kursunu tamamlamış mütəxəssislər üçün: nəzəriyyə minimuma endirilir, praktika maksimuma çıxarılır. 12 ay, hər ay 72 saat — 36 saat canlı seans (rol oyunları, keys müzakirəsi, konsilium) və 36 saat video yazıları.',
         forWhom: [
           'Əsas ali təhsili psixologiya sahəsində olanlar (üstünlük verilir)',
-          'Psixologiya Əlavə Təhsili olanlar (İnstitut və ya digər akkreditasiya olunmuş mərkəz)',
+          'Psixologiya üzrə əlavə təhsili olanlar (İnstitut və ya digər akkreditasiya olunmuş mərkəz)',
           'Psixologiya sahəsinə yaxın sahələrdə çalışan və psixoterapiya üzrə təkmilləşmə ehtiyacı olanlar',
           'Rəsmi kouçinq sahəsi ilə məşğul olan və bu sahədə fəaliyyət göstərmək istəyən şəxslər',
-          'Mental sağlamlıq sahəsində peşəkar bilik və bacarıqlarını artırmaq istəyən şəxslər'
+          'Psixi sağlamlıq sahəsində peşəkar bilik və bacarıqlarını artırmaq istəyən şəxslər'
         ],
         teachers: [['Kənan Rəhimov', 'real seansların canlı nümayişi, superviziya, yekun attestasiya']],
         facts: [
           ['Müddət', '12 ay'],
           ['Həcm', '864 saat: ayda 72 saat (36 canlı + 36 video); superviziya — ayda 2 fərdi sessiya'],
-          ['Format', 'Onlayn + oflayn; maksimum 8 nəfərlik qruplar'],
+          ['Format', 'Onlayn + əyani; maksimum 8 nəfərlik qruplar'],
           ['Başlanğıc', 'Qeydiyyat açıqdır'],
           ['Sənəd', 'Beynəlxalq IPAS/BPA sertifikatı (QR kodla yoxlanılır)']
         ],
@@ -379,10 +379,10 @@ export const PROGRAMS = {
         ],
         program: [
           { t: 'I rüb', items: ['Ay 1 — İlkin qiymətləndirmə və anamnez toplama · 72 saat', 'Ay 2 — Psixodiaqnostika: test batareyası praktikası · 72 saat', 'Ay 3 — Uyğunlaşma pozuntularında ilk seans · 72 saat'] },
-          { t: 'II rüb', items: ['Ay 4 — Depressiya və əhval pozuntularında iş · 72 saat', 'Ay 5 — Narahatlıq və panik ataklar: ekspozisiya texnikaları · 72 saat', 'Ay 6 — Travma: stabilizasiya mərhələsi · 72 saat'] },
-          { t: 'III rüb', items: ['Ay 7 — Ailə dinamikası: sistem yanaşması · 72 saat', 'Ay 8 — Uşaq psixologiyası: inkişaf pozuntuları · 72 saat', 'Ay 9 — Şəxsiyyət pozuntuları: uzunmüddətli iş · 72 saat'] },
-          { t: 'IV rüb', items: ['Ay 10 — Psixosomatika: bədən ilə iş · 72 saat', 'Ay 11 — Superviziya: mürəkkəb keyslərin müzakirəsi · 72 saat', 'Ay 12 — Yekun attestasiya: real keys təhlili · 72 saat'] },
-          { t: 'Praktika formatları', items: ['Rol oyunları — iştirakçılar növbəli olaraq psixoloq və pasiyent rollarını oynayır, supervizor canlı feedback verir', 'Keys müzakirəsi — həqiqi (anonimləşdirilmiş) klinik keyslərin qrup şəklində müzakirəsi', 'Konsilium — mürəkkəb keyslərin psixiatr, psixoloq və psixoterapevt nöqteyi-nəzərindən multidisiplinar müzakirəsi', 'Video arxiv — 100+ real seans yazısına çıxış', 'Yekun attestasiya — komissiya qarşısında real keys üzərində 30 dəqiqəlik iş: anamnez, diaqnoz, müalicə planı, proqnoz'] }
+          { t: 'II rüb', items: ['Ay 4 — Depressiya və əhval pozuntularında iş · 72 saat', 'Ay 5 — Təşviş və panik tutmaları: ekspozisiya texnikaları · 72 saat', 'Ay 6 — Travma: stabilizasiya mərhələsi · 72 saat'] },
+          { t: 'III rüb', items: ['Ay 7 — Ailə dinamikası: sistemli yanaşma · 72 saat', 'Ay 8 — Uşaq psixologiyası: inkişaf pozuntuları · 72 saat', 'Ay 9 — Şəxsiyyət pozuntuları: uzunmüddətli iş · 72 saat'] },
+          { t: 'IV rüb', items: ['Ay 10 — Psixosomatika: bədənlə iş · 72 saat', 'Ay 11 — Superviziya: mürəkkəb keyslərin müzakirəsi · 72 saat', 'Ay 12 — Yekun attestasiya: real keys təhlili · 72 saat'] },
+          { t: 'Praktika formatları', items: ['Rol oyunları — iştirakçılar növbəli olaraq psixoloq və pasiyent rollarını oynayır, supervizor canlı əks-əlaqə verir', 'Keys müzakirəsi — həqiqi (anonimləşdirilmiş) klinik keyslərin qrup şəklində müzakirəsi', 'Konsilium — mürəkkəb keyslərin psixiatr, psixoloq və psixoterapevt nöqteyi-nəzərindən multidisiplinar müzakirəsi', 'Video arxiv — 100+ real seans yazısına çıxış', 'Yekun attestasiya — komissiya qarşısında real keys üzərində 30 dəqiqəlik iş: anamnez, diaqnoz, müalicə planı, proqnoz'] }
         ],
         doc: {
           t: 'Beynəlxalq IPAS/BPA sertifikatı',
@@ -600,8 +600,8 @@ export const PROGRAMS = {
           ['Başlanğıc', 'Qeydiyyat açıqdır'],
           ['Sənəd', 'Beynəlxalq sertifikat']
         ],
-        includes: ["24 dərs: nəzəriyyə, nümayiş və cütlərdə praktika", "İş blankları: fikir gündəliyi, hadisənin konseptuallaşdırılması, ekspozisiya iyerarxiyası", "Öz hadisələriniz üzrə 6 ay qrup superviziyası", "Proqramın sonunda attestasiya"],
-        program: [{"t": "Modul 1 — KDT-nin əsasları", "items": ["KDT-nin tarixi və üç «dalğa». A. Bekin koqnitiv modeli və A. Ellisin ABC modeli", "Terapiyanın və sessiyanın strukturu. Terapevtik alyans, birgə empirizm", "Hadisənin koqnitiv konseptuallaşdırılması", "Qiymətləndirmə, məqsədlər, psixoloji maarifləndirmə, müalicə planı"]}, {"t": "Modul 2 — Koqnitiv texnikalar", "items": ["Avtomatik fikirlər. Fikir gündəliyi", "Koqnitiv təhriflər. Sokrat dialoqu", "Koqnitiv restrukturizasiya. Aralıq inanclar və qaydalar", "Dərin inanclar. «Düşən ox» texnikası. Davranış eksperimentləri"]}, {"t": "Modul 3 — Davranış texnikaları", "items": ["Davranış aktivasiyası və fəaliyyətin planlaşdırılması", "Ekspozisiya: prinsiplər, iyerarxiya, tipik səhvlər", "Bacarıqlar: problem həlli, assertivlik, relaksasiya və nəfəs", "Ev tapşırıqları, residivin profilaktikası, terapiyanın tamamlanması"]}, {"t": "Modul 4 — KDT protokolları", "items": ["Depressiya", "Panik pozuntusu və aqorafobiya", "Sosial təşviş və generalizə olunmuş təşviş pozuntusu", "Obsessiv-kompulsiv pozuntu: ekspozisiya və reaksiyanın qarşısının alınması", "PTSP: travmaya fokuslanmış KDT və uzadılmış ekspozisiya", "Yuxusuzluq və qida qəbulu pozuntuları — icmal"]}, {"t": "Modul 5 — Müasir istiqamətlər", "items": ["A. Ellisin rasional-emotiv-davranış terapiyası", "C. Yanqın sxem-terapiyası", "Qəbul və məsuliyyət terapiyası (ACT)", "Dialektik davranış terapiyası, şüurluluğa əsaslanan terapiya, şəfqətə fokuslanmış terapiya"]}, {"t": "Modul 6 — Məktəblərin müqayisəsi və inteqrasiya", "items": ["KDT və digər məktəblər: loqoterapiya, şəxsiyyətə yönəlmiş (rekonstruktiv) psixoterapiya, kliyentə mərkəzləşmiş terapiya — fərq nədədir", "Hadisələrin təhlili, yekun attestasiya, superviziyaya keçid"]}, {"t": "Superviziya · 6 ay (həftədə 1 dəfə)", "items": ["Öz hadisələriniz üzrə həftəlik superviziya sessiyaları (material anonimləşdirilir, təhlil qrupda aparılır) · 24 sessiya"]}],
+        includes: ["24 dərs: nəzəriyyə, nümayiş və cütlərdə praktika", "İş blankları: fikir gündəliyi, keysin konseptuallaşdırılması, ekspozisiya iyerarxiyası", "Öz keysləriniz üzrə 6 ay qrup superviziyası", "Proqramın sonunda attestasiya"],
+        program: [{"t": "Modul 1 — KDT-nin əsasları", "items": ["KDT-nin tarixi və üç «dalğa». A. Bekin koqnitiv modeli və A. Ellisin ABC modeli", "Terapiyanın və sessiyanın strukturu. Terapevtik alyans, birgə empirizm", "Keysin koqnitiv konseptuallaşdırılması", "Qiymətləndirmə, məqsədlər, psixoedukasiya, müalicə planı"]}, {"t": "Modul 2 — Koqnitiv texnikalar", "items": ["Avtomatik fikirlər. Fikir gündəliyi", "Koqnitiv təhriflər. Sokrat dialoqu", "Koqnitiv yenidən strukturlaşdırma. Aralıq inanclar və qaydalar", "Dərin inanclar. «Düşən ox» texnikası. Davranış eksperimentləri"]}, {"t": "Modul 3 — Davranış texnikaları", "items": ["Davranış aktivasiyası və fəaliyyətin planlaşdırılması", "Ekspozisiya: prinsiplər, iyerarxiya, tipik səhvlər", "Bacarıqlar: problem həlli, assertivlik, relaksasiya və nəfəs", "Ev tapşırıqları, residivin profilaktikası, terapiyanın tamamlanması"]}, {"t": "Modul 4 — KDT protokolları", "items": ["Depressiya", "Panik pozuntusu və aqorafobiya", "Sosial təşviş və ümumiləşmiş təşviş pozuntusu", "Obsessiv-kompulsiv pozuntu: ekspozisiya və reaksiyanın qarşısının alınması", "PTSP: travmaya yönəlmiş KDT və uzadılmış ekspozisiya", "Yuxusuzluq və qida qəbulu pozuntuları — icmal"]}, {"t": "Modul 5 — Müasir istiqamətlər", "items": ["A. Ellisin rasional-emotiv-davranış terapiyası", "C. Yanqın sxem-terapiyası", "Qəbul və məsuliyyət terapiyası (ACT)", "Dialektik davranış terapiyası, şüurluluğa əsaslanan terapiya, şəfqətə yönəlmiş terapiya"]}, {"t": "Modul 6 — Məktəblərin müqayisəsi və inteqrasiya", "items": ["KDT və digər məktəblər: loqoterapiya, şəxsiyyətə yönəlmiş (rekonstruktiv) psixoterapiya, kliyentə mərkəzləşmiş terapiya — fərq nədədir", "Keyslərin təhlili, yekun attestasiya, superviziyaya keçid"]}, {"t": "Superviziya · 6 ay (həftədə 1 dəfə)", "items": ["Öz keysləriniz üzrə həftəlik superviziya sessiyaları (material anonimləşdirilir, təhlil qrupda aparılır) · 24 sessiya"]}],
         doc: { t: 'Beynəlxalq sertifikat', d: '' },
         price: {
           rows: [['Aylıq ödəniş', '300 AZN × 3 ay'], ['Birdəfəlik ödəniş (3 ay təhsil + 6 ay superviziya)', '800 AZN']],
@@ -655,7 +655,7 @@ export const PROGRAMS = {
           ['Документ', 'Международный сертификат IPAS']
         ],
         includes: [
-          'Бонус: все 24 книги Зигмунда Фрейда впервые в Азербайджане переведены с оригинального немецкого языка на азербайджанский и будут доступны студентам программы',
+          'Бонус: все 25 книг Зигмунда Фрейда впервые в Азербайджане переведены с оригинального немецкого языка на азербайджанский и будут доступны студентам программы',
           'Видеозаписи занятий — просмотр без ограничений',
           'Небольшие группы — индивидуальное внимание каждому участнику',
           'Аттестация по завершении программы'
@@ -692,7 +692,7 @@ export const PROGRAMS = {
           ['Sənəd', 'Beynəlxalq IPAS sertifikatı']
         ],
         includes: [
-          'Bonus: Ziqmund Freydin 24 kitabı Azərbaycanda ilk dəfə orijinal alman dilindən Azərbaycan dilinə tərcümə edilib və proqramın tələbələri üçün əlçatan olacaq',
+          'Bonus: Ziqmund Freydin 25 kitabı Azərbaycanda ilk dəfə orijinal alman dilindən Azərbaycan dilinə tərcümə edilib və proqramın tələbələri üçün əlçatan olacaq',
           'Dərslərin videoyazılarına limitsiz baxış',
           'Kiçik qruplar — hər iştirakçıya fərdi diqqət',
           'Proqramın sonunda attestasiya'
@@ -729,7 +729,7 @@ export const PROGRAMS = {
           ['Document', 'International IPAS certificate']
         ],
         includes: [
-          'Bonus: all 24 books by Sigmund Freud, translated from the original German into Azerbaijani for the first time in Azerbaijan, will be available to the students of this programme',
+          'Bonus: all 25 books by Sigmund Freud, translated from the original German into Azerbaijani for the first time in Azerbaijan, will be available to the students of this programme',
           'Unlimited viewing of class video recordings',
           'Small groups — individual attention for every participant',
           'Attestation at the end of the programme'
@@ -794,7 +794,7 @@ export const PROGRAMS = {
       },
       az: {
         title: 'Ailə terapiyası',
-        lead: 'Kişi-qadın münasibətləri, valideyn-övlad bağı və çətin yeniyetmələrlə iş — terapiya və təlim. İki modul: «Cütlük Terapiyası» və «Valideyn-Övlad Münasibətləri».',
+        lead: 'Kişi-qadın münasibətləri, valideyn-övlad bağı və çətin yeniyetmələrlə iş — terapiya və təlim. İki modul: «Cütlük terapiyası» və «Valideyn-övlad münasibətləri».',
         forWhom: [
           'Psixoloqlar və məktəb psixoloqları',
           'Müəllimlər və koçlar',
@@ -816,8 +816,8 @@ export const PROGRAMS = {
           'Kursun sonunda imtahan və Beynəlxalq Psixoterapiya Assosiasiyasının sertifikatı'
         ],
         program: [
-          { t: 'Modul 1 — Cütlük Terapiyası (kişi-qadın münasibətləri)', items: ['Ailə sistemində disharmoniyanın müəyyən edilməsi — diaqnostika', 'Cütlük terapiyasında ilkin qəbul', 'Münaqişəli vəziyyətin təhlili', 'Genoqramma — ailənin həyat dövrü', 'Ailə sistemində rolların müəyyən olunması və gərgin sərhədlər', 'Psixodrama — ailə modelində psixoterapevtik texnikalar', 'Yazılmayan qaydalar — öhdəliklərin paylaşılması və pozulduqda cəzası', 'Münasibətlərdə patternlərin müəyyən olunması', 'Ailə terapiyasında klassik və müasir məktəblərinin metodların tətbiqi', 'Sistemli Ailə Terapiyasının həll etdiyi problemlər dairəsi', 'Şəxsi ehtiyacların ödənilməsi və seçim azadlığı', 'Kommunikasiya metodları (Q. Beytson nəzəriyyəsi)', 'Ailə münasibətlərində psixoterapevtik üsullar və hazır keyslər', 'Kritik dönəmdə iş prosesi (xəyanət, təcavüz, boşanma ərəfəsində psixoterapevtik yanaşma)', 'Asılılığın müxtəlif formalarından (alkoqol, narkotik, qumar və s.) əziyyət çəkənlə münasibətin təhlili', 'Ailə terapiyasında dəstəkləyici mərhələ'] },
-          { t: 'Modul 2 — Valideyn-Övlad Münasibətləri (valideynlər üçün ailə terapiyası)', items: ['Uşağın psixo-fizioloji inkişaf mərhələləri', 'İnkişaf mərhələlərində kritik məqamlar', 'Ailə terapiyasında əlamətlərə görə diaqnostika', 'Ailə daxilində funksional pozuntular', 'Ailə əhvalatlarının sistemli təhlil prosesi', 'Uşaqla ünsiyyət modelinin qurulması', 'Gərgin münasibətlərdən çıxış yolları, valideynlərin tərbiyə metodlarının korreksiyası', 'Problemli ailələrdə uşaqların davranış modelləri', 'Uşaqlarda nevrotik və davranış pozuntuları', 'Oyun terapiyası — davranış modelinin korreksiyası', 'Uşaqlarda aqressiv davranışlar — cəza modeli', 'Uşaqlarda qorxular və praktiki çıxış yolları', 'Tədris və təhsildən geridə qalma problemləri', 'Natamam ailədə uşaqların psixikasının tənzimlənməsi', 'Ailədə cinsi tərbiyə metodları', 'Xüsusi xəstəlik və ya davranış məhdudiyyəti olan insanlarla ailə münasibətlərinin idarə olunması'] }
+          { t: 'Modul 1 — Cütlük terapiyası (kişi-qadın münasibətləri)', items: ['Ailə sistemində disharmoniyanın müəyyən edilməsi — diaqnostika', 'Cütlük terapiyasında ilkin qəbul', 'Münaqişəli vəziyyətin təhlili', 'Genoqramma — ailənin həyat dövrü', 'Ailə sistemində rolların müəyyən olunması və gərgin sərhədlər', 'Psixodrama — ailə modelində psixoterapevtik texnikalar', 'Yazılmayan qaydalar — öhdəliklərin paylaşılması və pozulduqda cəzası', 'Münasibətlərdə nümunələrin müəyyən olunması', 'Ailə terapiyasında klassik və müasir məktəblərin metodlarının tətbiqi', 'Sistemli ailə terapiyasının həll etdiyi problemlər dairəsi', 'Şəxsi ehtiyacların ödənilməsi və seçim azadlığı', 'Ünsiyyət metodları (Q. Beytson nəzəriyyəsi)', 'Ailə münasibətlərində psixoterapevtik metodlar və hazır keyslər', 'Kritik dönəmdə iş prosesi (xəyanət, təcavüz, boşanma ərəfəsində psixoterapevtik yanaşma)', 'Asılılığın müxtəlif formalarından (alkoqol, narkotik, qumar və s.) əziyyət çəkənlə münasibətin təhlili', 'Ailə terapiyasında dəstəkləyici mərhələ'] },
+          { t: 'Modul 2 — Valideyn-övlad münasibətləri (valideynlər üçün ailə terapiyası)', items: ['Uşağın psixofizioloji inkişaf mərhələləri', 'İnkişaf mərhələlərində kritik məqamlar', 'Ailə terapiyasında əlamətlərə görə diaqnostika', 'Ailə daxilində funksional pozuntular', 'Ailə əhvalatlarının sistemli təhlil prosesi', 'Uşaqla ünsiyyət modelinin qurulması', 'Gərgin münasibətlərdən çıxış yolları, valideynlərin tərbiyə metodlarının korreksiyası', 'Problemli ailələrdə uşaqların davranış modelləri', 'Uşaqlarda nevrotik və davranış pozuntuları', 'Oyun terapiyası — davranış modelinin korreksiyası', 'Uşaqlarda aqressiv davranışlar — cəza modeli', 'Uşaqlarda qorxular və praktiki çıxış yolları', 'Tədris və təhsildən geridə qalma problemləri', 'Natamam ailədə uşaqların psixikasının tənzimlənməsi', 'Ailədə cinsi tərbiyə metodları', 'Xüsusi xəstəlik və ya davranış məhdudiyyəti olan insanlarla ailə münasibətlərinin idarə olunması'] }
         ],
         doc: {
           t: 'Beynəlxalq Psixoterapiya Assosiasiyasının (IPAS) sertifikatı',

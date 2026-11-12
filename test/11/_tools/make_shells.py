@@ -26,6 +26,19 @@ for name, (kind, slug) in SHELLS.items():
     io.open(os.path.join(D, name + ".html"), "w", encoding="utf-8", newline="\n").write(h)
     print("оболочка:", name + ".html")
 
+# прототип книжного магазина и страницы книги: та же рама, свой сценарий
+SHOP_MAIN = """<main id="top" class="pp shp">
+  <section class="pp__hero"><div class="wrap" id="shpHero"></div></section>
+  <div id="shpBody"></div>
+  <section class="sec sec--soc"><div class="wrap"><div class="soc rv"><p class="soc__h" id="socH"></p><ul class="soc__l" id="socList"></ul></div></div></section>
+</main>"""
+for name, kind in (("shop", "shop"), ("book", "book")):
+    h = re.sub(r"<main.*?</main>", lambda m: SHOP_MAIN, src, flags=re.S)
+    h = h.replace('<body class="inner">', '<body class="inner" data-kind="%s">' % kind).replace("assets/js/page-program.js", "assets/js/page-shop.js")
+    assert "page-shop.js" in h and 'data-kind="%s"' % kind in h, name
+    io.open(os.path.join(D, name + ".html"), "w", encoding="utf-8", newline=chr(10)).write(h)
+    print("оболочка:", name + ".html")
+
 # индекс консультаций: названия для нижней навигации
 for lang in ("ru", "az", "en"):
     items = []

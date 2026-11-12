@@ -1,8 +1,8 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11120915';
-import { T, LINKS3 as LINKS } from './content.js?v=11120915';
-import { regRender, regOpen } from './reg.js?v=11120915';
-import { initLight } from './light.js?v=11120915';
+import { initTop } from './totop.js?v=11121014';
+import { T, LINKS3 as LINKS } from './content.js?v=11121014';
+import { regRender, regOpen } from './reg.js?v=11121014';
+import { initLight } from './light.js?v=11121014';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -26,7 +26,7 @@ function render() {
   /* меню: заголовки, под ними — подзаголовки (на телефоне по стрелке) */
   const groups = [
     { k: 'spec', href: '#spec', sub: t.spec.p.map((p, i) => [L.spec[i], p.n]) },
-    { k: 'books', href: '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]) },
+    { k: 'books', href: '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]).concat(L.shop && t.books.allBooks ? [[L.shop, t.books.allBooks]] : []) },
     { k: 'edu', href: '#edu', sub: t.edu.p.map((p, i) => [L.prog[i], p.t]).concat([[L.law, t.nav.law]]) },
     { k: 'cons', href: '#cons', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
     { k: 'corp', href: '#corp', sub: t.corp.t.map(x => [L.corp, x]) }, { k: 'blog', href: '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },

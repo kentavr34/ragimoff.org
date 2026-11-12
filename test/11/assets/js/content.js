@@ -35,7 +35,7 @@ export const T = {
           { n: 'Самира Рагимова', r: 'Психолог', f: ['Клинический психолог', 'Семейный терапевт', 'Автор книги «Эра Феникса»'] }] },
     books: { eye: '', h: 'Книги', sub: 'Учебник, авторские книги и Фрейд на азербайджанском.', read: 'Читать бесплатно', order: 'Заказать печатную книгу',
       b: [{ k: 'Учебник', t: 'Клиническая психиатрия', a: 'Кенан Рагимов', f: ['МКБ-10, МКБ-11 и DSM-5 собраны в одной книге.', '820 печатных страниц формата B5 — для учёбы и для работы с пациентами.', 'Читать можно на азербайджанском, русском, английском и турецком.'] },
-          { k: 'Впервые на азербайджанском', t: 'Зигмунд Фрейд', a: 'Перевод на азербайджанский', f: ['В издание вошли 22 книги Фрейда.', 'Перевод сделан с немецкого оригинала.', 'Читать бесплатно: откройте и сверьте перевод сами.'] },
+          { k: 'Впервые на азербайджанском', t: 'Зигмунд Фрейд', a: 'Перевод на азербайджанский', f: ['В издание вошли 25 книг Фрейда.', 'Перевод сделан с немецкого оригинала.', 'Читать бесплатно: откройте и сверьте перевод сами.'] },
           { k: 'Методология психотерапии', t: 'Эра Феникса', a: 'Самира Рагимова, соавтор — Кенан Рагимов', f: ['Книга о пути к осознанным взаимоотношениям.', 'Двенадцать моделей взаимоотношений — от «Лилит» до «Феникса».', 'В конце — диагностический тест, игровая практика и колода «Феникс».'] },
           { k: 'Просвещение', t: 'Вирус вины', a: 'Кенан Рагимов', f: ['Книга о том, как освободиться от чувства вины.', 'Три части: диагноз, источники вины и путь к выздоровлению.', 'В приложении — тесты для самопроверки и рекомендуемая литература.'] },
           { k: 'Просвещение', t: 'Шизофрения. Пандемия безумия', a: 'Кенан Рагимов', f: ['История шизофрении: от неолитических хирургов до наших дней.', 'Крепелин и Блейлер, малярия, инсулин, лоботомия: как менялись диагноз и лечение.', 'В приложении — как распознать настоящего специалиста.'] }],
@@ -85,11 +85,11 @@ export const T = {
     belt: ['Psixoterapiya', 'Psixoloqların təhsili', 'Kitablar', 'Superviziya', 'Ailə terapiyası', 'Təlimlər'],
     spec: { eye: '', h: 'Mütəxəssislər', sub: 'Hər biri haqqında ətraflı — öz səhifəsində.', more: 'Ətraflı',
       mentors: 'Kənan Rəhimov 2001–2003-cü illərdə Bexterev adına İnstitutda professorlar Boris Dmitriyeviç Karvasarski və Viktor Davidoviç Viddən dərs alıb.',
-      p: [{ n: 'Kənan Rəhimov', r: 'Psixoterapevt', f: ['2003-cü ildən Sankt-Peterburqda həkim-psixoterapevt', '2022-ci ildən Beynəlxalq Psixoterapevtik Assosiasiyanın səfiri', 'Psixoterapiya üzrə dərsliklərin və kitabların müəllifi'] },
+      p: [{ n: 'Kənan Rəhimov', r: 'Psixoterapevt', f: ['2003-cü ildən Sankt-Peterburqda həkim-psixoterapevt', '2022-ci ildən Beynəlxalq Psixoterapiya Assosiasiyasının səfiri', 'Psixoterapiya üzrə dərsliklərin və kitabların müəllifi'] },
           { n: 'Samirə Rəhimova', r: 'Psixoloq', f: ['Klinik psixoloq', 'Ailə terapevti', '«Feniks erası» kitabının müəllifi'] }] },
     books: { eye: '', h: 'Kitablar', sub: 'Dərslik, müəllif kitabları və Azərbaycan dilində Freyd.', read: 'Pulsuz oxuyun', order: 'Çap nüsxəsini sifariş edin',
       b: [{ k: 'Dərslik', t: 'Klinik Psixiatriya', a: 'Kənan Rəhimov', f: ['XBT-10, XBT-11 və DSM-5 bir kitabda toplanıb.', 'B5 formatında 820 çap səhifəsi: həm öyrənmək, həm praktik iş üçün.', 'Azərbaycan, rus, ingilis və türk dillərində oxumaq olar.'] },
-          { k: 'Azərbaycan dilində ilk dəfə', t: 'Ziqmund Freyd', a: 'Azərbaycan dilinə tərcümə', f: ['Nəşrə Freydin 22 kitabı daxildir.', 'Tərcümə alman dilindəki orijinaldan edilib.', 'Pulsuz oxumaq olar: açın və tərcüməni özünüz yoxlayın.'] },
+          { k: 'Azərbaycan dilində ilk dəfə', t: 'Ziqmund Freyd', a: 'Azərbaycan dilinə tərcümə', f: ['Nəşrə Freydin 25 kitabı daxildir.', 'Tərcümə alman dilindəki orijinaldan edilib.', 'Pulsuz oxumaq olar: açın və tərcüməni özünüz yoxlayın.'] },
           { k: 'Psixoterapiya metodologiyası', t: 'Feniks erası', a: 'Samirə Rəhimova, həmmüəllif — Kənan Rəhimov', f: ['Şüurlu münasibətlərə aparan yol haqqında kitab.', 'On iki münasibət modeli — «Lilit»dən «Feniks»ə qədər.', 'Sonda diaqnostik test, oyun praktikası və «Feniks» dəsti var.'] },
           { k: 'Maarifləndirmə', t: 'Günahkarlıq virusu', a: 'Kənan Rəhimov', f: ['Günahkarlıq hissindən azad olmaq haqqında kitab.', 'Üç hissə: diaqnoz, günahkarlığın mənbələri və sağalma yolu.', 'Əlavədə özünü yoxlama testləri və tövsiyə olunan ədəbiyyat var.'] },
           { k: 'Maarifləndirmə', t: 'Şizofreniya. Cinnət pandemiyası', a: 'Kənan Rəhimov', f: ['Şizofreniyanın tarixi: neolit cərrahlarından bu günə qədər.', 'Kraepelin və Bleyler, malyariya, insulin, lobotomiya: diaqnoz və müalicə necə dəyişib.', 'Əlavədə mütəxəssisi necə ayırd etməyin yolları göstərilir.'] }],
@@ -112,7 +112,7 @@ export const T = {
           ['Gecə enurezi (gecə sidik ifrazı)', '23 ildə 1\u00A0000-dən çox uşaq; 2025-ci ildə 250-dən çox, onlardan 100-dən çoxu ödənişsiz.'],
           ['Ailə terapiyası', 'Cütlüklərlə və valideyn–uşaq münasibətləri ilə işləyirik.'],
           ['Təşviş və qorxu ilə əlaqəli pozuntular', 'Daimi təşviş, qorxular və fobiyalar: aydın diaqnostik meyarları və müalicəsi var.'],
-          ['Obsessiv-kompulsiv pozuntu (OKP)', 'Sarışan fikirlər və hərəkətlər xarakter xüsusiyyəti deyil, pozuntudur.']] },
+          ['Obsessiv-kompulsiv pozuntu (OKP)', 'Müdaxiləedici fikirlər və hərəkətlər xarakter xüsusiyyəti deyil, pozuntudur.']] },
     corp: { eye: '', h: 'Təlimlər', sub: 'Şirkətlər, komandalar və korporativ tədbirlər üçün.', lead: 'HR məktəbi 2008-ci ildən fəaliyyət göstərir və 2\u00A0000-dən çox nəfər hazırlayıb.', cta: 'Təlim sifariş edin',
       clientsH: 'Müştərilər və tədbirlər:', clients: ['MG', 'Unibank', 'DNS Computers', 'Business Party by Ragimoff'], n: [],
       t: ['Satış məktəbi', 'Liderlik', 'İdarəetmə bacarıqları', 'İnsan resurslarının idarə olunması (HR)', 'Vaxtın idarə olunması (taym-menecment)', 'Komanda quruculuğu (timbildinq)', 'Stresin idarə olunması (stres-menecment)'] },
@@ -120,8 +120,8 @@ export const T = {
       m: [['Depressiya', '«Antidepressant şəxsiyyəti dəyişdirir»', 'Antidepressantlar simptomları azaldır, şəxsiyyəti dəyişmir. İnsan «özümü hiss etmirəm» deyirsə, bu yan təsirdir: həkim preparatı dəyişir və ya dozanı azaldır.'],
           ['Sosial təşviş', '«Sosial təşviş adi utancaqlıqdır, müalicə tələb etmir»', 'Sosial təşviş pozuntusu təhsilə və işə mane olur, depressiya və alkoqol istifadəsi riskini artırır. Bu, sadəcə utancaqlıq deyil, tibbi vəziyyətdir.'],
           ['Təşviş pozuntuları', '«Ümumiləşmiş təşvişi yalnız relaksasiya və ya yoga sağaldır»', 'Relaksasiya və yoga yalnız mülayim köməkçi təsir göstərir. Orta və ağır halda koqnitiv-davranış terapiyası, dərmanlar və ya hər ikisi lazımdır.'],
-          ['OKP', '«OKP sadəcə təmizkarlıqla bağlı xarakter xüsusiyyətidir»', 'OKP təşviş doğurur və gündəlik həyatı pozur. Diaqnoz xarakter xüsusiyyətlərinə görə deyil, klinik meyarlarla qoyulur.'],
-          ['Gecə enurezi', '«Cəza və ya təhqir uşağı düzəldər»', 'Cəza əks-göstərişdir: özünə qiyməti azaldır, depressiya riskini artırır. Müsbət gücləndirmə daha yaxşı işləyir.']] },
+          ['OKP', '«OKP sadəcə təmizkarlıqla bağlı xarakter xüsusiyyətidir»', 'OKP təşviş doğurur və gündəlik həyata mane olur. Diaqnoz xarakter xüsusiyyətlərinə görə deyil, klinik meyarlarla qoyulur.'],
+          ['Gecə enurezi', '«Cəza və ya təhqir uşağı düzəldər»', 'Cəza əks-göstərişdir: özünüqiyməti aşağı salır, depressiya riskini artırır. Müsbət gücləndirmə daha yaxşı işləyir.']] },
     blog: { eye: '', h: 'Bloq', sub: '', all: 'Bütün məqalələr', p: [['Depressiya', 'Depressiya kədərdən necə fərqlənir?'], ['Gecə enurezi', 'Uşağınız gecələr yatağı isladırsa — 5 yanlış inanc'], ['Ailə münasibətləri', 'Ailə münaqişəsini həll etmənin 5 prinsipi']] },
     tg: { h: 'Yeni materiallar — Telegram-da', sub: 'Kanalımıza abunə olun.', cta: 'Kanala keçin' },
     a11y: { title: 'Doctor Ragimoff — Psixologiya Məktəbi', menu: 'Menyu', theme: 'Rəng mövzusu', night: 'Gecə', paper: 'Kağız', sepia: 'Sepiya', lang: 'Dil' },
@@ -143,7 +143,7 @@ export const T = {
           { n: 'Samira Ragimova', r: 'Psychologist', f: ['Clinical psychologist', 'Family therapist', 'Author of the book “Phoenix Era”'] }] },
     books: { eye: '', h: 'Books', sub: 'Textbook, books by Kenan and Samira, Freud in Azerbaijani.', read: 'Read for free', order: 'Order a printed copy',
       b: [{ k: 'Textbook', t: 'Clinical Psychiatry', a: 'Kenan Ragimov', f: ['ICD-10, ICD-11 and DSM-5 are brought together in one book.', '820 printed pages in B5 format, for study and for work with patients.', 'You can read it in Azerbaijani, Russian, English and Turkish.'] },
-          { k: 'First in Azerbaijani', t: 'Sigmund Freud', a: 'Azerbaijani translation', f: ['The edition includes 22 books by Freud.', 'The translation was made from the German original.', 'Free to read: open a volume and judge the translation for yourself.'] },
+          { k: 'First in Azerbaijani', t: 'Sigmund Freud', a: 'Azerbaijani translation', f: ['The edition includes 25 books by Freud.', 'The translation was made from the German original.', 'Free to read: open a volume and judge the translation for yourself.'] },
           { k: 'Psychotherapy methodology', t: 'Phoenix Era', a: 'Samira Ragimova, co-author Kenan Ragimov', f: ['A book on the path to conscious relationships.', 'Twelve relationship models, from “Lilith” to “Phoenix”.', 'At the end: a diagnostic test, game-based practice and the “Phoenix” deck.'] },
           { k: 'Psychoeducation', t: 'The Guilt Virus', a: 'Kenan Ragimov', f: ['A book on how to free yourself from guilt.', 'Three parts: the diagnosis, the sources of guilt and the way to recovery.', 'The appendix has self-assessment tests and recommended reading.'] },
           { k: 'Psychoeducation', t: 'Schizophrenia. A Pandemic of Madness', a: 'Kenan Ragimov', f: ['The history of schizophrenia, from Neolithic surgeons to the present day.', 'Kraepelin and Bleuler, malaria, insulin, lobotomy: how diagnosis and treatment changed.', 'The appendix explains how to recognise a true specialist.'] }],
@@ -193,7 +193,7 @@ const MEDIA = {
         film: { id: 'rb68nHEF9-o', t: 'Драма Сабины', d: 'Экранизация реального случая. 31 минута.', cta: 'Смотреть фильм' },
         vids: [['Unibank — командный тренинг', '1JMEVec4F1c'], ['Business Party by Ragimoff', 'kEk6B3kNEoE']],
         more: 'Более 3\u00A0000 человек прошли тренинги лично у Кенана Рагимова.' },
-  az: { proofs: ['Peşə yenidənhazırlığı haqqında diplom — nümunə', 'Beynəlxalq sertifikat — nümunə', '«Psixologiya Məktəbi»nin qrupu müəllimlə birlikdə'],
+  az: { proofs: ['Peşə yenidənhazırlanması haqqında diplom — nümunə', 'Beynəlxalq sertifikat — nümunə', '«Psixologiya Məktəbi»nin qrupu müəllimlə birlikdə'],
         film: { id: 'rb68nHEF9-o', t: 'Səbinənin draması', d: 'Real hadisə əsasında çəkilmiş film. 31 dəqiqə.', cta: 'Filmə baxın' },
         vids: [['Unibank — komanda təlimi', '1JMEVec4F1c'], ['Business Party by Ragimoff', 'kEk6B3kNEoE']],
         more: 'Kənan Rəhimovun şəxsən keçirdiyi təlimlərdə 3\u00A0000-dən çox insan iştirak edib.' },
@@ -218,7 +218,7 @@ const OWN = {
     booksH: 'Kitablarımız', booksSub: 'Mütəxəssislərimizin kitabları və dərslik tərcümələri.',
     enlSub: 'İxtisaslı köməyə mane olan ən çox yayılmış yanlış təsəvvürlər.',
     myth: 'Mif', go: 'Ətraflı', kpt: 'KDT', galBtn: 'Fotoqalereya',
-    gal: [['diploma', 'Peşə yenidənhazırlığı haqqında diplom — nümunə'], ['cert', 'Beynəlxalq sertifikat — nümunə'], ['group', '«Psixologiya Məktəbi»nin qrupu müəllimlə birlikdə'],
+    gal: [['diploma', 'Peşə yenidənhazırlanması haqqında diplom — nümunə'], ['cert', 'Beynəlxalq sertifikat — nümunə'], ['group', '«Psixologiya Məktəbi»nin qrupu müəllimlə birlikdə'],
           ['supplement', 'Diploma əlavə: fənlər və saatlar'], ['cert-family', 'Ailə terapiyası üzrə beynəlxalq sertifikat — nümunə'], ['meeting', 'Kənan Rəhimov qrupla görüşdə'], ['outdoor', 'Dinləyicilər qrupu']] },
   en: {
     lead: { h: 'Qualifications', items: [['2001–2003', 'Kenan Ragimov trained in psychotherapy at the V. M. Bekhterev Institute.'], ['Supervisor', 'Professor B. D. Karvasarsky — chief psychotherapist of the Ministry of Health of the Russian Federation until 2012.'], ['Supervisor', 'Professor V. D. Vid — the first psychoanalyst in the CIS countries officially certified by the International Psychoanalytical Association.'], ['Since 2003', 'He works with the B. D. Karvasarsky Institute and the Saint Petersburg Institute of Continuing Professional Education: he teaches and sits on the attestation commission.']] },
@@ -333,15 +333,16 @@ const PG = {
         prices: { consult: { rows: [['Встреча с одним специалистом, онлайн', '100 AZN', '1 час'], ['Встреча с одним специалистом, очно', '150 AZN', '1 час'], ['Встреча с обоими специалистами, онлайн', '150 AZN', '1 час'], ['Встреча с обоими специалистами, очно', '200 AZN', '1 час'], ['Пакет на месяц, онлайн', '400 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)'], ['Пакет на месяц, очно', '600 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)']] },
                   enurez: { rows: [['Первичная консультация', '50 AZN', 'Кенан Рагимов'], ['Курс лечения', '500 AZN', 'Кенан Рагимов']] } } },
   az: { back: { spec: 'Mütəxəssislər', cons: 'Konsultasiyalar', page: 'Ana səhifə', blog: 'Bloq', post: 'Bütün məqalələr' }, book: 'Yazılın', other: { spec: 'Mütəxəssislər', cons: 'Digər konsultasiyalar', page: 'Bölmələr' },
-        author: 'Müəllif', sources: 'Mənbələr', all: 'Hamısı', read: 'Oxu', none: 'Səhifə tapılmadı', home: 'Ana səhifəyə', pages: { contact: 'Əlaqə', corporate: 'Şirkətlər üçün təlimlər', law: 'Fəaliyyətin hüquqi əsasları', tests: 'Testlər' },
-        prices: { consult: { rows: [['Bir mütəxəssislə görüş, online', '100 AZN', '1 saat'], ['Bir mütəxəssislə görüş, əyani', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, online', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, əyani', '200 AZN', '1 saat'], ['Aylıq terapiya paketi, online', '400 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)'], ['Aylıq terapiya paketi, əyani', '600 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)']] },
+        author: 'Müəllif', sources: 'Mənbələr', all: 'Hamısı', read: 'Oxuyun', none: 'Səhifə tapılmadı', home: 'Ana səhifəyə', pages: { contact: 'Əlaqə', corporate: 'Şirkətlər üçün təlimlər', law: 'Fəaliyyətin hüquqi əsasları', tests: 'Testlər' },
+        prices: { consult: { rows: [['Bir mütəxəssislə görüş, onlayn', '100 AZN', '1 saat'], ['Bir mütəxəssislə görüş, əyani', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, onlayn', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, əyani', '200 AZN', '1 saat'], ['Aylıq terapiya paketi, onlayn', '400 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)'], ['Aylıq terapiya paketi, əyani', '600 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)']] },
                   enurez: { rows: [['İlkin konsultasiya', '50 AZN', 'Kənan Rəhimov'], ['Müalicə kursu', '500 AZN', 'Kənan Rəhimov']] } } },
   en: { back: { spec: 'Specialists', cons: 'Consultations', page: 'Home', blog: 'Blog', post: 'All articles' }, book: 'Book', other: { spec: 'Specialists', cons: 'Other consultations', page: 'Sections' },
         author: 'Author', sources: 'Sources', all: 'All', read: 'Read', none: 'Page not found', home: 'Home', pages: { contact: 'Contact', corporate: 'Training for companies', law: 'Legal basis for practice', tests: 'Tests' },
         prices: { consult: { rows: [['Session with one specialist, online', '100 AZN', '1 hour'], ['Session with one specialist, in person', '150 AZN', '1 hour'], ['Session with both specialists, online', '150 AZN', '1 hour'], ['Session with both specialists, in person', '200 AZN', '1 hour'], ['Monthly package, online', '400 AZN', '4 sessions + WhatsApp support (100 min limit)'], ['Monthly package, in person', '600 AZN', '4 sessions + WhatsApp support (100 min limit)']] },
                   enurez: { rows: [['First consultation', '50 AZN', 'Kenan Ragimov'], ['Treatment course', '500 AZN', 'Kenan Ragimov']] } } },
 };
-for (const l of Object.keys(PG)) { T[l].pg = PG[l]; T[l].foot.cols[1].l.push(PG[l].pages.tests); for (const k of Object.keys(PG[l].prices)) PG[l].prices[k].note = T[l].cons.note; }
+const ALLBOOKS = { ru: 'Все книги', az: 'Bütün kitablar', en: 'All books' };
+for (const l of Object.keys(PG)) { T[l].pg = PG[l]; T[l].books.allBooks = ALLBOOKS[l]; T[l].foot.cols[1].l.push(PG[l].pages.tests); for (const k of Object.keys(PG[l].prices)) PG[l].prices[k].note = T[l].cons.note; }
 /* адреса новой версии: все разделы ведут на страницы внутри неё (одно место) */
 export const CONS = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp', 'aile-usaq-terapiyasi', 'valideyn-mektebi'];
 /* страница консультации → номер темы в форме записи (порядок тем — T[l].cons.t) */
@@ -351,6 +352,7 @@ export function LINKS3(l) { const L = _LINKS1(l);
   L.spec = ['specialist.html?s=kenan', 'specialist.html?s=samira'];
   L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp'].map(c => 'consult.html?c=' + c);
   L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
+  L.shop = 'shop.html';                                             /* прототип книжного магазина в новой системе */
   L.contact = 'contact.html'; L.law = 'program.html?p=general#law'; L.tests = '/test/aile.html';
   L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'program.html?p=general#law', '/test/aile.html'], [L.wa, L.tg, 'contact.html']];
   return L; }

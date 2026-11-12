@@ -107,6 +107,8 @@ def walk(o, lang, name, key=None, btype=None):
 
 n = 0
 for fn in sorted(glob.glob(os.path.join(D, "data", "*", "*.json"))):
+    if os.sep + "shop" + os.sep in fn:      # названия книг — имена собственные
+        continue
     name = os.path.relpath(fn, os.path.join(D, "data")).replace(os.sep, "/")
     raw = io.open(fn, encoding="utf-8").read()
     d = json.loads(raw)
