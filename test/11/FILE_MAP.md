@@ -71,6 +71,7 @@
 
 | книга (папка) | название | языки | глав | знаков, тыс. |
 |---|---|---|---|---|
+| `freud-afaziya` | Afaziyaların dərk edilməsinə dair | az | 2 | 330 |
 | `freud-aforizmlar` | Aforizmlər | az | 12 | 34 |
 | `freud-fliesse-mektublari` | Psixoanalizin başlanğıcından: Flissə məktublar | az | 119 | 766 |
 | `freud-gw01` | Histeriyadan psixoanalizə | az | 15 | 1043 |
@@ -89,7 +90,13 @@
 | `freud-gw15` | Psixoanalizə giriş: yeni mühazirələr | az | 8 | 340 |
 | `freud-gw16` | Musa adamı və monoteist din | az | 16 | 443 |
 | `freud-gw17` | Psixoanalizin xülasəsi | az | 15 | 241 |
+| `freud-kokain` | Koka haqqında | az | 2 | 100 |
+| `freud-referatlar-1884-1885` | Referatlar | az | 1 | 151 |
+| `freud-resenziyalar-1887-1910` | Resenziyalar | az | 1 | 48 |
+| `freud-sehnede-psixopatik-personajlar` | Səhnədə psixopatik personajlar | az | 1 | 12 |
 | `freud-sevgi-mektublari` | Sevgi məktubları | az | 56 | 227 |
+| `freud-sossur-on-sozu` | R. de Sossürün kitabına ön söz | az | 1 | 3 |
+| `freud-usaq-iflici` | İnfantil serebral iflic | az | 11 | 803 |
 | `freud-yung-mektublari` | Freyd–Yunq məktubları | az | 366 | 966 |
 | `freud-zweig-mektublari` | Freyd–Tsveyq məktubları | az | 79 | 86 |
 | `klinik-psixiatriya` | Клиническая психиатрия | az ru en tr | 137/137/137/137 | 1334/1349/1251/1201 |
@@ -125,6 +132,7 @@
 | `_tools\build_klinik.py` | Книга «Клиническая психиатрия» -> библиотека новой системы (12.11.2026). |
 | `_tools\build_law.py` | Блок «Юридические основы деятельности» для страниц «Общая психология» и «Клиническая психология». |
 | `_tools\build_library.py` | Библиотека книг новой системы: текст хранится отдельно от страницы (решение владельца 12.11.2026). |
+| `_tools\build_library_legacy.py` | Библиотека: работы Фрейда вне серии, которые лежат в прежнем формате читалки (страницы глав с <main class="site-main">): |
 | `_tools\build_shop.py` | Каталог для прототипа книжного магазина (test/11/shop.html, book.html). |
 | `_tools\clean_data.py` | Чистка данных внутренних страниц: в строках остаются только strong, em, b, i, a, br, sup, sub. Статьи блога (prose) не трогаются. |
 | `_tools\collect_images.py` | Картинки внутренних страниц: всё, на что ссылаются data/**/*.json (/images/…), копируется в assets/img/site/ — новая версия не зависит от старых папок. |
