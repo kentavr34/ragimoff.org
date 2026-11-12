@@ -6,11 +6,11 @@ const RATE = { one: { online: 100, offline: 150 }, both: { online: 150, offline:
 const ENU = 3, ENU_P = { first: 50, course: 500 };                                                    /* ночной энурез (тема № 4): слово владельца 11.11 */
 const PROG = ['Общая психология', 'Клиническая психология', 'Практикум по психотерапии', 'short-psixodiaqnostika', 'short-kdt', 'short-psixoanaliz', 'short-aile'];   /* коды сервера оплаты */
 /* долгие программы (общая, клиническая, практикум): [цена при оплате сразу, цена в рассрочку], AZN — как на сервере оплаты; слово владельца 12.11 */
-const LONG_P = [[3800, 4200], [6000, 6600], [3000, 3600]], LONG_M = 12;
+const LONG_P = [[3800, 4200], [6000, 6600], [3000, 3600]], LONG_M = 24;   /* наибольший срок рассрочки в платёжной системе; фактический срок одобряет банк */
 const LONG_T = {
-  ru: { inst: 'в рассрочку на {m} месяцев — {x} AZN в месяц', now: 'При оплате сразу — {a} AZN, скидка {d} AZN', note: 'После регистрации система направит вас на страницу оплаты. Там можно оплатить всю сумму сразу со скидкой или выбрать рассрочку через официальную платёжную систему — на срок до 24 месяцев.' },
-  az: { inst: '{m} aylıq hissə-hissə ödəniş — ayda {x} AZN', now: 'Birdəfəlik ödənişdə — {a} AZN, endirim {d} AZN', note: 'Qeydiyyatdan sonra sistem sizi ödəniş səhifəsinə yönləndirəcək. Orada məbləğin hamısını endirimlə birdəfəlik ödəyə və ya rəsmi ödəniş sistemi vasitəsilə 24 aya qədər hissə-hissə ödənişi seçə bilərsiniz.' },
-  en: { inst: 'in instalments over {m} months — {x} AZN a month', now: 'If paid at once — {a} AZN, you save {d} AZN', note: 'After you register, the system will take you to the payment page. There you can pay the full amount at once with a discount or choose instalments through the official payment system — for up to 24 months.' },
+  ru: { inst: 'в рассрочку до {m} месяцев — от {x} AZN в месяц', now: 'При оплате сразу — {a} AZN, скидка {d} AZN', note: 'После регистрации система направит вас на страницу оплаты. Там можно оплатить всю сумму сразу со скидкой или выбрать рассрочку через официальную платёжную систему — на срок до 24 месяцев. Срок рассрочки одобряет банк.' },
+  az: { inst: '{m} ayadək hissə-hissə ödəniş — ayda {x} AZN-dən', now: 'Birdəfəlik ödənişdə — {a} AZN, endirim {d} AZN', note: 'Qeydiyyatdan sonra sistem sizi ödəniş səhifəsinə yönləndirəcək. Orada məbləğin hamısını endirimlə birdəfəlik ödəyə və ya rəsmi ödəniş sistemi vasitəsilə 24 aya qədər hissə-hissə ödənişi seçə bilərsiniz. Hissə-hissə ödənişin müddətini bank təsdiqləyir.' },
+  en: { inst: 'in instalments for up to {m} months — from {x} AZN a month', now: 'If paid at once — {a} AZN, you save {d} AZN', note: 'After you register, the system will take you to the payment page. There you can pay the full amount at once with a discount or choose instalments through the official payment system — for up to 24 months. The instalment term is approved by the bank.' },
 };
 const money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
 const fill = (t, o) => t.replace(/\{(\w)\}/g, (m, k) => o[k]);
