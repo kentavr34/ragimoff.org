@@ -1,8 +1,8 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11121108';
-import { T, LINKS3 as LINKS } from './content.js?v=11121108';
-import { regRender, regOpen } from './reg.js?v=11121108';
-import { initLight } from './light.js?v=11121108';
+import { initTop } from './totop.js?v=11121155';
+import { T, LINKS3 as LINKS } from './content.js?v=11121155';
+import { regRender, regOpen } from './reg.js?v=11121155';
+import { initLight } from './light.js?v=11121155';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -40,11 +40,11 @@ function render() {
   $('#heroBtns').innerHTML = ['#cons', '#edu', '#books', '#corp'].map((h, i) => `<a href="${h}" style="--i:${i}">${esc(t.hero.b[i])}</a>`).join('');
   const beltHtml = t.belt.map(x => `<span>${esc(x)}</span>`).join(''); $('#belt').innerHTML = beltHtml + beltHtml;
 
-  $('#people').innerHTML = t.spec.p.map((p, i) => `<a class="person rv" href="${L.spec[i]}" style="--d:${i * .12}s"><div class="person__ph"><img src="assets/img/${i ? 'samira' : 'kenan'}.jpg" alt="${esc(p.n)}" loading="lazy"></div>
+  $('#people').innerHTML = t.spec.p.map((p, i) => `<a class="person rv" href="${L.spec[i]}" style="--d:${i * .12}s"><div class="person__ph"><img src="assets/img/specialists/${i ? 'samira' : 'kenan'}.jpg" alt="${esc(p.n)}" loading="lazy"></div>
     <div class="person__b"><span class="person__r">${esc(p.r)}</span><h3 class="person__n">${esc(p.n)}</h3><ul class="facts">${p.f.map(f => `<li>${esc(f)}</li>`).join('')}</ul><span class="person__more">${esc(t.spec.more)} ${ARR}</span></div></a>`).join('');
 
   const cov = ['klinik', 'freud', 'phoenix', 'guilt', 'pandemic'];
-  const bkAll = t.books.b.map((b, i) => ({ b, href: L.books[i], img: `assets/img/book-${cov[i]}-${lang}.jpg` })).concat(t.books.soon ? [{ b: t.books.soon, href: L.shop, img: `assets/img/book-therapy-${lang}.jpg` }] : []);
+  const bkAll = t.books.b.map((b, i) => ({ b, href: L.books[i], img: `assets/img/books/covers/${cov[i]}-${lang}.jpg` })).concat(t.books.soon ? [{ b: t.books.soon, href: L.shop, img: `assets/img/books/covers/therapy-${lang}.jpg` }] : []);
   $('#shelf').innerHTML = bkAll.map(({ b, href, img }) => `<article class="bk"><div class="bk__scene"><a class="bk__obj${img ? '' : ' bk__obj--txt'}" href="${href}" aria-label="${esc(b.t)}">${img ? `<img src="${img}" alt="${esc(b.t)}" loading="lazy">` : `<span class="bk__ct"><i>${esc(b.a)}</i><b>${esc(b.t)}</b><u>Doctor Ragimoff</u></span>`}</a></div>
     <div class="bk__txt">${b.k ? `<p class="bk__k">${esc(b.k)}</p>` : ''}<h3 class="bk__t">${esc(b.t)}</h3><p class="bk__a">${esc(b.a)}</p>
     <ul class="bk__f">${b.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>
@@ -66,10 +66,10 @@ function render() {
 
   $('#myths').innerHTML = t.enl.m.map((m, i) => `<a class="mth rv" href="${L.myths[i] || L.books[0]}" style="--d:${i * .06}s"><span class="mth__k">${esc(t.enl.myth)} · ${esc(m[0])}</span><span class="mth__q">${esc(m[1])}</span><span class="mth__go">${esc(t.enl.go)} ${ARR}</span></a>`).join('');
 
-  $('#posts').innerHTML = t.blog.p.map((p, i) => `<a class="post rv" href="${L.blog[i]}" style="--d:${i * .1}s"><div class="post__i"><img src="assets/img/blog-${i + 1}.jpg" alt="" loading="lazy"></div><div class="post__b"><span class="post__k">${esc(p[0])}</span><h3 class="post__t">${esc(p[1])}</h3></div></a>`).join('');
+  $('#posts').innerHTML = t.blog.p.map((p, i) => `<a class="post rv" href="${L.blog[i]}" style="--d:${i * .1}s"><div class="post__i"><img src="assets/img/home/blog-${i + 1}.jpg" alt="" loading="lazy"></div><div class="post__b"><span class="post__k">${esc(p[0])}</span><h3 class="post__t">${esc(p[1])}</h3></div></a>`).join('');
   $('#socList').innerHTML = (t.soc.l || []).map((x, i) => `<li><a href="${L.soc[i]}" target="_blank" rel="noopener">${esc(x)}</a></li>`).join('');
   const vid = (id, title) => `<button type="button" class="vid" data-yt="${id}" aria-label="${esc(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="vid__play" aria-hidden="true"></span></button>`;
-  GAL = (t.edu.gal || []).map(g => ({ src: 'assets/img/proof/' + g[0] + '.jpg', cap: g[1] }));
+  GAL = (t.edu.gal || []).map(g => ({ src: 'assets/img/programs/proof/' + g[0] + '.jpg', cap: g[1] }));
   $('#proofs').innerHTML = GAL.slice(0, 3).map((g, i) => `<button type="button" class="proof rv" data-gal="${i}" style="--d:${i * .08}s"><span class="proof__i"><img src="${g.src}" alt="${esc(g.cap)}" loading="lazy" width="1500" height="1070"></span><span class="proof__c">${esc(g.cap)}</span></button>`).join('');
   $('#galBtn').textContent = t.edu.galBtn + ' · ' + GAL.length;
   const ld = t.spec.lead; $('#lead').innerHTML = ld ? `<h3 class="lead__h">${esc(ld.h)}</h3><div class="lead__g">${ld.items.map(x => `<div class="qual"><b>${esc(x[0])}</b><span>${esc(x[1])}</span></div>`).join('')}</div>` : '';

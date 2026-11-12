@@ -28,6 +28,8 @@ def book_id(img, href):
 
 
 AZ_PRICE = {}
+LIB = set(os.listdir(os.path.join(D, "books"))) if os.path.isdir(os.path.join(D, "books")) else set()      # книги, перенесённые в библиотеку
+LIB_ID = {"guilt": "virus-viny", "pandemic": "shizofreniya", "phoenix": "phoenix-era"}
 for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
     soup = BeautifulSoup(io.open(os.path.join(ROOT, rel), encoding="utf-8").read(), "html.parser")
     groups, cur = [], None
@@ -63,6 +65,9 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
             if toc:
                 it["toc"] = toc[:16]
                 it["tocMore"] = max(0, len(toc) - 16)
+        lib = LIB_ID.get(it["id"], it["id"])
+        if lib in LIB:
+            it["read_new"] = "read.html?b=" + lib               # единая читалка новой системы
         if lang == "az":
             AZ_PRICE[it["id"]] = it["price"]
         elif not it["price"] and AZ_PRICE.get(it["id"]):

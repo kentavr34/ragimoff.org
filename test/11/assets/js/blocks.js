@@ -1,6 +1,6 @@
 /* test/11 — блоки внутренних страниц: один набор на специалистов, консультации, контакты, тренинги, право, блог.
    Данные — data/<kind>/<slug>.<lang>.json (формат: _agent/docs/DATA_SCHEMA.md), подписи — content.js (T[l].pg), стили — site.css (раздел PG). */
-import { esc } from './chrome.js?v=11121108';
+import { esc } from './chrome.js?v=11121155';
 
 /* старые адреса сайта → адреса новой версии (одно место на весь сайт) */
 const PROG = { 'umumi-psixologiya': 'general', 'klinik-psixologiya': 'clinical', 'psixoterapiya-praktikumu': 'practicum', psixodiaqnostika: 'psychodiagnostics', qisamuddetli: 'cbt', psixoanaliz: 'psychoanalysis', 'aile-terapiyasi': 'family' };
@@ -25,7 +25,7 @@ export function fixUrl(u) {
   if (/^\/(index\.html)?$/.test(q)) return 'index.html' + hash;
   return u;                                        /* книги, учебник и прочее — как есть */
 }
-export const fixImg = u => (u && u.indexOf('/images/') === 0 ? 'assets/img/site/' + u.slice(8) : u);
+export const fixImg = u => (u && u.indexOf('/images/') === 0 ? 'assets/img/' + u.slice(8) : u);
 
 /* строка с разрешённой разметкой: strong, em, b, i, a, br, sup, sub — всё остальное экранируется */
 export function rich(s) {
@@ -46,7 +46,7 @@ const R = {
   timeline: (b) => `<ol class="tl">${b.items.map(x => `<li class="tl__i rv"><span class="tl__y">${esc(x.y || '')}</span><div class="tl__b">${x.t ? `<h3 class="tl__t">${rich(x.t)}</h3>` : ''}${x.d ? `<p class="tl__d">${rich(x.d)}</p>` : ''}${x.a ? `<a class="tl__a" href="${esc(fixUrl(x.a[1]))}">${esc(x.a[0])}</a>` : ''}</div></li>`).join('')}</ol>`,
   gallery: (b) => `<div class="gal">${b.items.map(x => `<button type="button" class="gal__i rv" data-zoom="${esc(fixImg(x.src))}" data-cap="${esc(x.cap || '')}"><img src="${esc(fixImg(x.src))}" alt="${esc(x.cap || '')}" loading="lazy"><span>${esc(x.cap || '')}</span></button>`).join('')}</div>`,
   videos: (b, u) => `<div class="vds">${b.items.map(x => `<a class="vd rv" href="https://youtu.be/${esc(x.yt)}" target="_blank" rel="noopener"><span class="vd__ph"><img src="https://i.ytimg.com/vi/${esc(x.yt)}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><i aria-hidden="true"></i></span><b class="vd__t">${rich(x.t || '')}</b>${x.d ? `<span class="vd__d">${rich(x.d)}</span>` : ''}</a>`).join('')}</div>${b.channel ? btns([b.channel]) : ''}`,
-  who: (b, u, ctx) => `<div class="tchs">${(b.ids || []).map(id => { const i = id === 'samira' ? 1 : 0, p = ctx.t.spec.p[i]; return `<a class="tch rv" href="specialist.html?s=${i ? 'samira' : 'kenan'}"><span class="tch__ph"><img src="assets/img/${i ? 'samira' : 'kenan'}.jpg" alt="${esc(p.n)}" loading="lazy" width="96" height="96"></span><span class="tch__b"><b>${esc(p.n)}</b><span>${esc(p.r)}</span></span></a>`; }).join('')}</div>`,
+  who: (b, u, ctx) => `<div class="tchs">${(b.ids || []).map(id => { const i = id === 'samira' ? 1 : 0, p = ctx.t.spec.p[i]; return `<a class="tch rv" href="specialist.html?s=${i ? 'samira' : 'kenan'}"><span class="tch__ph"><img src="assets/img/specialists/${i ? 'samira' : 'kenan'}.jpg" alt="${esc(p.n)}" loading="lazy" width="96" height="96"></span><span class="tch__b"><b>${esc(p.n)}</b><span>${esc(p.r)}</span></span></a>`; }).join('')}</div>`,
   prices: (b, u) => {
     if (b.set && u.prices[b.set]) { const P = u.prices[b.set]; return `<div class="prices rv">${P.rows.map(r => `<div class="prow"><span>${esc(r[0])}${r[2] ? `<small>${esc(r[2])}</small>` : ''}</span><b>${esc(r[1])}</b></div>`).join('')}<p class="pnote">${esc(P.note)}</p></div>`; }
     return `<div class="prices rv">${(b.rows || []).map(r => `<div class="prow"><span>${rich(r[0])}</span><b>${rich(r[1])}</b></div>`).join('')}${b.note ? `<p class="pnote">${rich(b.note)}</p>` : ''}</div>`;

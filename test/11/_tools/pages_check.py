@@ -26,10 +26,10 @@ JS = r"""
   for (let k = 0; k < 30 && [...document.images].some(i => !i.complete); k++) await new Promise(r => setTimeout(r, 250));
   const W = __W__;                      /* заданная ширина экрана: при переполнении браузер сам расширяет окно просмотра */
   out.over = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - W;
-  const skip = e => e.closest('.shp__chips, .gal--docs, .tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
+  const skip = e => e.closest('.rdr__toc, .rdr__tw, .shp__chips, .gal--docs, .tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
   out.out = [...document.querySelectorAll('main *, footer *')].filter(e => { if (skip(e)) return false; const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1); }).slice(0, 5).map(e => e.tagName + '.' + String(e.className).slice(0, 30));
   out.img = [...document.images].filter(i => i.complete && !i.naturalWidth && i.getAttribute('src')).map(i => i.getAttribute('src')).slice(0, 6);
-  const h1 = document.querySelector('h1');
+  const h1 = [...document.querySelectorAll('h1')].find(h => h.getBoundingClientRect().height > 0) || document.querySelector('h1');   /* в читалке заголовков два: титул и глава — берём видимый */
   out.h1 = h1 ? Math.round(h1.getBoundingClientRect().height / parseFloat(getComputedStyle(h1).lineHeight)) : 0;
   out.h1t = h1 ? h1.textContent.trim().slice(0, 60) : '';
   out.blocks = document.querySelectorAll('#pgBlocks > section').length;
@@ -92,7 +92,7 @@ NEWLOCK = {}
 def pages(mode):
     if mode == "accept":
         return LOCKED
-    ps = ["index.html", "test.html", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
+    ps = ["index.html", "test.html", "read.html?b=virus-viny", "read.html?b=virus-viny&c=3", "read.html?b=freud-gw02&c=2", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
     ps += ["consult.html?c=" + os.path.basename(f).split(".")[0] for f in sorted(glob.glob(os.path.join(D, "data", "cons", "*.ru.json"))) if "index." not in f]
     ps += ["program.html?p=" + s for s in ["general", "clinical", "practicum", "psychodiagnostics", "cbt", "psychoanalysis", "family"]]
     if mode != "quick":
@@ -174,7 +174,7 @@ async def main():
                                     if a != b:
                                         v.append("ЗАМОК: согласованный раздел «%s» изменился: было %s → стало %s (намеренно — python pages_check.py accept)" % (sec, json.dumps(a, ensure_ascii=False), json.dumps(b, ensure_ascii=False)))
                         if o.get("img"): v.append("битые картинки: " + ", ".join(o["img"]))
-                        if not pg.startswith(("program", "index", "shop", "book", "test")) and o.get("blocks", 0) < 1: v.append("нет блоков")
+                        if not pg.startswith(("program", "index", "shop", "book", "test", "read")) and o.get("blocks", 0) < 1: v.append("нет блоков")
                         if o.get("bad"): v.append("мусор в тексте: " + ",".join(o["bad"]))
                         if o.get("raw"): v.append("сырая разметка: " + ",".join(o["raw"]))
                         if o.get("empty"): v.append("пустых блоков: %d" % o["empty"])
@@ -184,7 +184,7 @@ async def main():
                         if o.get("tap"): v.append("мелкая область нажатия: " + ", ".join(o["tap"]))
                         if o.get("small"): v.append("мелкий текст: " + ", ".join(o["small"]))
                         if o.get("lang") != lang: v.append("язык страницы %s" % o.get("lang"))
-                        if not o.get("reg") and not pg.startswith(("shop", "book", "test")): v.append("нет формы записи")
+                        if not o.get("reg") and not pg.startswith(("shop", "book", "test", "read")): v.append("нет формы записи")
                         for h in o.get("links", []):
                             links.setdefault(h, pg)
                         rep.append({"page": pg, "lang": lang, "w": W, "viol": v, "h1": o.get("h1"), "blocks": o.get("blocks")})

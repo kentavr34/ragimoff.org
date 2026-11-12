@@ -1,7 +1,7 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11121108';
+import { initChrome, esc, ARR } from './chrome.js?v=11121155';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11120953', kind = document.body.dataset.kind, cache = {};
@@ -15,12 +15,12 @@ async function load(lang) {
 }
 /* обложка: готовая картинка или фактура с набранными автором и названием (буква Ə не превращается в квадрат) */
 const cover = (it, lang, big) => OWN.includes(it.id)
-  ? `<img src="assets/img/book-${it.id}-${lang}.jpg" alt="${esc(it.t)}" loading="lazy" width="600" height="900">`
+  ? `<img src="assets/img/books/covers/${it.id}-${lang}.jpg" alt="${esc(it.t)}" loading="lazy" width="600" height="900">`
   : `<span class="shp__tex" style="background-image:url('${esc(it.img)}')"></span><span class="shp__ct"><i>${esc(it.a)}</i><b${it.t.length > 34 ? ' class="is-long"' : ''}>${esc(it.t)}</b><u>${esc(it.y)}</u></span>`;
 const book3d = (it, lang, href) => `<a class="shp__obj${OWN.includes(it.id) ? '' : ' shp__obj--tex'}" href="${href}" aria-label="${esc(it.t)}">${cover(it, lang)}</a>`;
 const url = it => 'book.html?b=' + encodeURIComponent(it.id);
 const price = (it, u) => it.price ? `<p class="shp__price"><span>${esc(u.price)}</span><b>${esc(it.price)}</b></p>` : '';
-const btns = (it, d) => `<div class="shp__btns">${it.read ? `<a class="btn" href="${esc(it.href)}">${esc(d.u.read)}</a>` : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${it.price ? `<a class="btn btn--line" href="${esc(d.orderUrl)}">${esc(d.u.order)}</a>` : ''}</div>`;
+const btns = (it, d) => `<div class="shp__btns">${it.read ? `<a class="btn" href="${esc(it.read_new || it.href)}">${esc(d.u.read)}</a>` : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${it.price ? `<a class="btn btn--line" href="${esc(d.orderUrl)}">${esc(d.u.order)}</a>` : ''}</div>`;
 
 function shop(d, lang) {
   const all = d.groups.flatMap(g => g.items);
@@ -42,7 +42,7 @@ function book(d, lang) {
   const it = all.find(x => x.id === bid); if (!it) { location.replace('shop.html'); return; }                 /* нет такой книги — в каталог */
   const sib = all.filter(x => x.g.id === it.g.id && x.id !== it.id), lead = all.filter(x => x.id !== it.id && x.f && x.g.id !== it.g.id), seen = {};
   const other = (sib.length >= 3 ? sib : sib.concat(lead)).filter(x => !seen[x.id] && (seen[x.id] = 1)).slice(0, 8);   /* shp__nf: без повторов */
-  $('#shpHero').innerHTML = `<div class="shp__bk"><div class="shp__scene shp__scene--big">${book3d(it, lang, it.read ? esc(it.href) : '#')}</div>
+  $('#shpHero').innerHTML = `<div class="shp__bk"><div class="shp__scene shp__scene--big">${book3d(it, lang, it.read ? esc(it.read_new || it.href) : '#')}</div>
     <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a><p class="pp__kind">${esc(it.k || it.g.name)}</p><h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
       ${it.k ? `<p class="shp__au">${esc(it.g.name)}</p>` : ''}<p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d)}</div></div>`;
   const toc = it.toc ? `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div><p class="shp__note rv">${esc(d.u.azNote)}</p><ol class="shp__toc rv" lang="az">${it.toc.map(x => `<li>${esc(x)}</li>`).join('')}</ol>${it.tocMore ? `<p class="shp__note">${esc(d.u.more)} ${it.tocMore}…</p>` : ''}</div></div></section>` : '';

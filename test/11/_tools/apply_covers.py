@@ -14,9 +14,9 @@ for png in sorted(glob.glob(os.path.join(SRC, "*.png"))):
     im = Image.open(png).convert("RGB")
     im.thumbnail((1440, 1440))
     if slug in HERO:
-        rel = "hero-n/%s.webp" % slug
-        os.makedirs("assets/img/site/hero-n", exist_ok=True)
-        im.save("assets/img/site/" + rel, "WEBP", quality=84)
+        rel = "consult/%s.webp" % slug
+        os.makedirs("assets/img/consult", exist_ok=True)
+        im.save("assets/img/" + rel, "WEBP", quality=84)
         for fn in glob.glob("data/cons/%s.*.json" % slug):
             d = json.load(io.open(fn, encoding="utf-8"))
             if d.get("img") != "/images/" + rel:
@@ -43,7 +43,7 @@ for png in sorted(glob.glob(os.path.join(SRC, "*.png"))):
         print("НЕТ в списке блога:", slug)
         continue
     rel = os.path.dirname(old)[len("/images/"):] + "/%s-art.webp" % slug
-    im.save("assets/img/site/" + rel, "WEBP", quality=84)
+    im.save("assets/img/" + rel, "WEBP", quality=84)
     for fn in glob.glob("data/blog/%s.*.json" % slug):
         d = json.load(io.open(fn, encoding="utf-8"))
         if d.get("img") != "/images/" + rel:

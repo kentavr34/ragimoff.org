@@ -56,6 +56,25 @@ assert "page-test.js" in h and "/test/quiz.js" in h and 'data-test="sistemli-ail
 io.open(os.path.join(D, "test.html"), "w", encoding="utf-8", newline=chr(10)).write(h)
 print("оболочка: test.html")
 
+# единая читалка библиотеки: одна страница на все книги и языки (текст — books/<книга>/<язык>/NN.html)
+READ_MAIN = """<main id="top" class="pp rdr">
+  <div class="rdr__prog" id="rdProg"></div>
+  <div class="rdr__bar" id="rdBar"></div>
+  <section class="pp__hero"><div class="wrap">
+    <div id="rdTitle"></div>
+    <article class="rdr__chap" id="rdChap" hidden></article>
+    <nav class="rdr__pager" id="rdPager" hidden><button type="button" id="rdPrev"><i></i><span></span></button><button type="button" id="rdNext"><i></i><span></span></button></nav>
+  </div></section>
+  <aside class="rdr__toc" id="rdToc"><div class="rdr__toch"><h2 id="rdTocT"></h2><button type="button" id="rdTocX">×</button></div><ol id="rdTocL"></ol></aside>
+  <div class="rdr__scrim" id="rdScrim"></div>
+  <div class="rdr__pop" id="rdPop" hidden></div>
+</main>"""
+h = re.sub(r"<main.*?</main>", lambda m: READ_MAIN, src, flags=re.S)
+h = h.replace('<body class="inner">', '<body class="inner" data-kind="read">').replace("assets/js/page-program.js", "assets/js/reader.js")
+assert "reader.js" in h and 'data-kind="read"' in h
+io.open(os.path.join(D, "read.html"), "w", encoding="utf-8", newline=chr(10)).write(h)
+print("оболочка: read.html")
+
 # индекс консультаций: названия для нижней навигации
 for lang in ("ru", "az", "en"):
     items = []
