@@ -1249,3 +1249,14 @@ body[data-kind="read"] .pp__hero { padding-top: var(--r2); }
 
 /* REG (12.11): цена при оплате сразу — строкой под ценой в рассрочку */
 .reg__now { font: 500 16px/1.4 var(--f-sub); color: var(--gold-hi); }
+
+/* SHP (12.11, вечер): единая карточка книги с двумя кнопками, набор «Все книги Фрейда», ссылка на корзину */
+.shp__ctl { color: inherit; } .shp__cb em { margin-top: 0; }
+.shp__acts { display: flex; flex-wrap: wrap; gap: var(--p8); margin-top: auto; padding-top: var(--p10); }
+.shp__acts .btn { flex: 1 1 auto; min-height: var(--tap); padding: 0 var(--p14); font-size: 14px; white-space: nowrap; }
+.shp__acts .btn.is-added { background: var(--gold); color: var(--on-gold); }
+.shp__btns { flex-direction: column; align-items: flex-start; } .shp__btns .shp__acts { margin-top: 0; padding-top: 0; } .shp__btns .shp__acts .btn { flex: 0 1 auto; min-height: var(--btn-h); padding: 0 var(--p24); font-size: 15px; }
+.shp__cart { min-height: 0; } .shp__cart:empty { display: none; } .shp__cart .btn { min-height: var(--tap); }
+.shp__set { display: flex; align-items: center; justify-content: space-between; gap: var(--r1); flex-wrap: wrap; margin-top: var(--r2); padding: var(--r1) var(--r2); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-radius: var(--p16); background: color-mix(in srgb, var(--gold) 7%, transparent); }
+.shp__sett { font: 400 clamp(22px, 2.2vw, 30px)/1.15 var(--f-display); color: var(--milk); } .shp__setm { font: 400 15px/1.5 var(--f-sub); color: var(--text); margin-top: var(--p6); } .shp__setm b { color: var(--gold-hi); font-weight: 600; }
+@media (max-width: 760px) { .shp__acts .btn { flex: 1 1 100%; } .shp__set { padding: var(--r1); } .shp__set .btn { width: 100%; white-space: normal; } }

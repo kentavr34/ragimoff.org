@@ -1,12 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11122256';
+import { initChrome, esc, ARR } from './chrome.js?v=11122344';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11120953', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams(location.search).get('b') || '';
-import { fixImg } from './blocks.js?v=11122256';
+import { ORD } from './shop-order.js?v=11122344';
+import { fixImg } from './blocks.js?v=11122344';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -20,28 +21,44 @@ const cover = (it, lang, big) => it.small ? `<span class="shp__ct shp__ct--plain
 const book3d = (it, lang, href) => `<a class="shp__obj${it.cov ? '' : ' shp__obj--tex'}" href="${href}" aria-label="${esc(it.t)}">${cover(it, lang)}</a>`;
 const url = it => 'book.html?b=' + encodeURIComponent(it.id);
 const price = (it, u) => it.price ? `<p class="shp__price"><span>${esc(u.price)}</span><b>${esc(it.price)}</b></p>` : '';
-const btns = (it, d) => `<div class="shp__btns">${it.read ? `<a class="btn" href="${esc(it.read_new || it.href)}">${esc(d.u.read)}</a>` : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${it.price ? `<a class="btn btn--line" href="${esc(d.orderUrl)}">${esc(d.u.order)}</a>` : ''}</div>`;
+/* корзина — общая со страницей заказа /books/ (тот же ключ в памяти браузера): здесь книга добавляется, оформление и оплата — там */
+const CKEY = 'ragimoff_cart_v1';
+const CT = {
+  ru: { read: 'Читать бесплатно', add: 'В корзину', added: 'Добавлено', cart: 'Корзина', go: 'оформить заказ', set: 'Все книги Фрейда одним набором', setN: 'книг', setOld: 'вместо', setOff: 'скидка', setAdd: 'Весь набор в корзину' },
+  az: { read: 'Pulsuz oxuyun', add: 'Səbətə at', added: 'Əlavə edildi', cart: 'Səbət', go: 'sifarişi rəsmiləşdirin', set: 'Freydin bütün kitabları bir dəstdə', setN: 'kitab', setOld: 'əvəzinə', setOff: 'endirim', setAdd: 'Bütün dəsti səbətə atın' },
+  en: { read: 'Read for free', add: 'Add to cart', added: 'Added', cart: 'Cart', go: 'place the order', set: 'All of Freud’s books as one set', setN: 'books', setOld: 'instead of', setOff: 'discount', setAdd: 'Add the whole set to cart' },
+};
+const ct = lang => CT[lang] || CT.ru;
+const cartRead = () => { try { return JSON.parse(localStorage.getItem(CKEY) || '[]') || []; } catch (e) { return []; } };
+function cartAdd(o) { const a = cartRead(), x = a.find(i => i.title === o.o); if (x) x.qty = (x.qty || 1) + 1; else a.push({ title: o.o, qty: 1, price: o.p }); try { localStorage.setItem(CKEY, JSON.stringify(a)); } catch (e) {} }
+function cartNote(lang) { const n = cartRead().reduce((s2, i) => s2 + (i.qty || 1), 0), T = ct(lang); $$('.shp__cart').forEach(el => { el.innerHTML = n ? `<a class="btn btn--line btn--sm" href="/books/#sebet">${esc(T.cart)}: ${n} · ${esc(T.go)}</a>` : ''; }); }
+/* две кнопки книги: читать и в корзину — одни и те же в карточке каталога и на странице книги */
+const acts = (it, lang) => { const T = ct(lang), o = ORD.items[it.id];
+  return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : ''}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
+const btns = (it, d, lang) => `<div class="shp__btns">${it.read ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}<p class="shp__cart"></p></div>`;
 
-/* ЕДИНАЯ КАРТОЧКА КНИГИ: обложка, название, сведения, цена. Используется в каталоге и в блоке «Другие книги» —
+/* ЕДИНАЯ КАРТОЧКА КНИГИ: обложка, название, сведения, цена, две кнопки. Одна на все книги каталога и на блок «Другие книги» —
    изменение здесь меняет вид всех книг сразу. Малые тексты (несколько страниц) выводятся строкой без обложки. */
-const card = (it, lang) => `<a class="shp__card rv" href="${url(it)}"><span class="shp__cv">${cover(it, lang)}</span><span class="shp__cb"><b>${esc(it.t)}</b><span>${esc(it.meta)}</span>${it.price ? `<em>${esc(it.price)}</em>` : ''}</span></a>`;
+const card = (it, lang) => `<article class="shp__card rv"><a class="shp__cv" href="${url(it)}" aria-label="${esc(it.t)}">${cover(it, lang)}</a><div class="shp__cb"><a class="shp__ctl" href="${url(it)}"><b>${esc(it.t)}</b></a><span>${esc(it.meta)}</span>${it.price ? `<em>${esc(it.price)}</em>` : ''}${acts(it, lang)}</div></article>`;
 const line = it => `<li><a href="${esc(it.read_new || it.href)}"><b>${esc(it.t)}</b><span>${esc(it.meta)}</span></a></li>`;
 const grid = (items, lang) => items.length ? `<div class="shp__grid">${items.map(it => card(it, lang)).join('')}</div>` : '';
 
 function shop(d, lang) {
-  const all = d.groups.flatMap(g => g.items);
+  const all = d.groups.flatMap(g => g.items), T = ct(lang);
   $('#shpHero').innerHTML = `<h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>
-    <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div>`;
+    <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div><p class="shp__cart"></p>`;
   if (filter !== 'all' && !d.groups.some(g => g.id === filter)) filter = 'all';
+  const yr = it => +((String(it.meta).match(/\b(1[89]\d\d|20\d\d)\b/) || [0, 9999])[1]);
   $('#shpBody').innerHTML = d.groups.filter(g => filter === 'all' || filter === g.id).map(g => {
-    const lead = g.items.filter(it => it.f), rest = g.items.filter(it => !it.f);
-    return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>
-      ${lead.map((it, i) => `<article class="shp__row rv${i % 2 ? ' shp__row--rev' : ''}"><div class="shp__scene">${book3d(it, lang, url(it))}</div><div class="shp__txt">${it.k ? `<p class="shp__k">${esc(it.k)}</p>` : ''}<h3 class="shp__t"><a href="${url(it)}">${esc(it.t)}</a></h3><p class="shp__m">${esc(it.meta)}</p>
-        <ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>${price(it, d.u)}${btns(it, d)}</div></article>`).join('')}
-      ${g.sub ? g.sub.map(sb => { const its = rest.filter(it => it.sec === sb.id); return `<h3 class="shp__sh rv"><span>${esc(sb.t)}</span><i>${sb.n}</i></h3>` + (sb.id === 'small' ? `<p class="shp__note rv">${esc(g.smallNote || '')}</p><ul class="shp__lines rv">${its.map(line).join('')}</ul>` : grid(its, lang)); }).join('') : grid(rest, lang)}
-    </div></section>`;
+    const books = g.items.filter(it => !it.small), small = g.items.filter(it => it.small), B = ORD.bundle;
+    /* книги Фрейда — одним списком по времени написания, от ранних к поздним */
+    const items = g.id === 'freud' ? books.map((it, i) => [yr(it), i, it]).sort((x, y) => x[0] - y[0] || x[1] - y[1]).map(x => x[2]) : books;
+    const set = g.id === 'freud' && B ? `<div class="shp__set rv"><div><h3 class="shp__sett">${esc(T.set)}</h3><p class="shp__setm">${B.n} ${esc(T.setN)} · <b>${esc(B.p.replace('₼', 'AZN'))}</b> ${esc(T.setOld)} ${B.full} AZN · ${esc(T.setOff)} ${Math.round(100 - 100 * parseInt(B.p, 10) / B.full)} %</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
+    const sm = small.length ? `<h3 class="shp__sh rv"><span>${esc(((g.sub || []).find(x => x.id === 'small') || {}).t || '')}</span><i>${small.length}</i></h3><p class="shp__note rv">${esc(g.smallNote || '')}</p><ul class="shp__lines rv">${small.map(line).join('')}</ul>` : '';
+    return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>${set}${grid(items, lang)}${sm}</div></section>`;
   }).join('');
   document.title = d.title + ' — Doctor Ragimoff';
+  cartNote(lang);
 }
 
 /* оглавление страницы книги — из паспорта книги в библиотеке (один источник с читалкой) */
@@ -64,12 +81,13 @@ function book(d, lang) {
   const other = (sib.length >= 3 ? sib : sib.concat(lead)).filter(x => !seen[x.id] && (seen[x.id] = 1)).slice(0, 8);   /* shp__nf: без повторов */
   $('#shpHero').innerHTML = `<div class="shp__bk"><div class="shp__scene shp__scene--big">${book3d(it, lang, it.read ? esc(it.read_new || it.href) : '#')}</div>
     <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a><p class="pp__kind">${esc(it.k || it.g.name)}</p><h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
-      ${it.k ? `<p class="shp__au">${esc(it.g.name)}</p>` : ''}<p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d)}</div></div>`;
+      ${it.k ? `<p class="shp__au">${esc(it.g.name)}</p>` : ''}<p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d, lang)}</div></div>`;
   const toc = `<div id="shpToc"></div>`; passToc(it, d, lang);
   const tocOld = it.toc ? `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div><p class="shp__note rv">${esc(d.u.azNote)}</p><ol class="shp__toc rv" lang="az">${it.toc.map(x => `<li>${esc(x)}</li>`).join('')}</ol>${it.tocMore ? `<p class="shp__note">${esc(d.u.more)} ${it.tocMore}…</p>` : ''}</div></div></section>` : '';
   $('#shpBody').innerHTML = toc + `<section class="sec"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(d.u.other)}</h2><a class="sh__link" href="shop.html">${esc(d.title)} ${ARR}</a></header>
     ${grid(other, lang)}</div></section>`;
   document.title = it.t + ' — Doctor Ragimoff';
+  cartNote(lang);
 }
 
 const page = initChrome({
@@ -83,6 +101,8 @@ const page = initChrome({
 });
 page.watch();
 document.addEventListener('click', e => {
+  const cb = e.target.closest('[data-cart]');
+  if (cb) { const lang = document.documentElement.lang, o = cb.dataset.cart === 'bundle' ? ORD.bundle : ORD.items[cb.dataset.cart]; if (o) { cartAdd(o); cb.textContent = ct(lang).added; cb.classList.add('is-added'); cartNote(lang); } return; }
   const c = e.target.closest('.shp__chips .chip'); if (!c) return;
   filter = c.dataset.f; const lang = document.documentElement.lang; if (cache[lang]) { shop(cache[lang], lang); setTimeout(() => page.watch(), 0); }
 });
