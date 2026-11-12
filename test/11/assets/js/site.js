@@ -1,7 +1,8 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { T, LINKS3 as LINKS } from './content.js?v=11120255';
-import { regRender, regOpen } from './reg.js?v=11120255';
-import { initLight } from './light.js?v=11120255';
+import { initTop } from './totop.js?v=11120813';
+import { T, LINKS3 as LINKS } from './content.js?v=11120813';
+import { regRender, regOpen } from './reg.js?v=11120813';
+import { initLight } from './light.js?v=11120813';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -218,3 +219,5 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(fals
 render(); cineLoad();
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => { ribMeasure(); onScroll(); });
 addEventListener('load', () => { cineSize(); ribMeasure(); onScroll(); });
+
+initTop();

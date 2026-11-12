@@ -35,6 +35,9 @@ const FAQ_EN = [
   ['Where can graduates work?', 'Under the Education Agreement between Russia and Azerbaijan (Law of the Republic of Azerbaijan No. 455-IIQ, 13 May 2003), the diploma of the St Petersburg Institute is an officially recognised document in Azerbaijan. Provided they meet employer requirements, graduates may work in both public and private institutions.']
 ];
 
+/* Эти вопросы выводятся блоком «Юридические основы деятельности» (data/law, собирает _tools/build_law.py), а не в общих вопросах программы. */
+export const LAW_FAQ = { ru: FAQ_RU, az: FAQ_AZ, en: FAQ_EN };
+
 /* ---------- Программы ---------- */
 
 export const PROGRAMS = {
@@ -85,7 +88,7 @@ export const PROGRAMS = {
           rows: [['Полная стоимость', '4 200 AZN'], ['При полной оплате (−400 AZN)', '3 800 AZN'], ['Рассрочка 12 мес.', '350 AZN/мес.'], ['Рассрочка 24 мес.', '200 AZN/мес.']],
           note: 'Рассрочка до 24 месяцев — от 200 AZN в месяц.'
         },
-        faq: [...FAQ_RU, ['Нужно ли предыдущее образование по психологии?', 'Нет. Для программы «Общая психология» предыдущее образование по психологии не требуется: подать заявку может любой совершеннолетний человек, интересующийся психологией.']]
+        faq: [['Нужно ли предыдущее образование по психологии?', 'Нет. Для программы «Общая психология» предыдущее образование по психологии не требуется: подать заявку может любой совершеннолетний человек, интересующийся психологией.']]
       },
       az: {
         title: 'Ümumi Psixologiya',
@@ -126,7 +129,7 @@ export const PROGRAMS = {
           rows: [['Tam qiymət', '4 200 AZN'], ['Öncədən ödənişdə (−400 AZN)', '3 800 AZN'], ['Taksit 12 ay', '350 AZN/ay'], ['Taksit 24 ay', '200 AZN/ay']],
           note: '24 aya qədər taksit imkanı — aylıq minimum 200 AZN.'
         },
-        faq: [...FAQ_AZ, ['Əvvəlki psixologiya təhsili tələb olunurmu?', 'Xeyr. «Ümumi Psixologiya» proqramı üçün əvvəlki psixologiya təhsili tələb olunmur: psixologiyaya maraq göstərən hər bir yetkin şəxs müraciət edə bilər.']]
+        faq: [['Əvvəlki psixologiya təhsili tələb olunurmu?', 'Xeyr. «Ümumi Psixologiya» proqramı üçün əvvəlki psixologiya təhsili tələb olunmur: psixologiyaya maraq göstərən hər bir yetkin şəxs müraciət edə bilər.']]
       },
       en: {
         title: 'General Psychology',
@@ -167,7 +170,7 @@ export const PROGRAMS = {
           rows: [['Full price', '4,200 AZN'], ['Full payment (−400 AZN)', '3,800 AZN'], ['12-month instalment', '350 AZN/mo.'], ['24-month instalment', '200 AZN/mo.']],
           note: 'Instalment plan up to 24 months — from 200 AZN a month.'
         },
-        faq: [...FAQ_EN, ['Is a previous psychology education required?', 'No. The General Psychology programme does not require any previous psychology education: any adult interested in psychology may apply.']]
+        faq: [['Is a previous psychology education required?', 'No. The General Psychology programme does not require any previous psychology education: any adult interested in psychology may apply.']]
       }
     },
 
@@ -216,7 +219,7 @@ export const PROGRAMS = {
           rows: [['Полная стоимость', '6 600 AZN'], ['При полной оплате (−600 AZN)', '6 000 AZN'], ['Рассрочка 12 мес.', '550 AZN/мес.'], ['Рассрочка 24 мес.', '300 AZN/мес.']],
           note: 'Рассрочка до 24 месяцев — от 300 AZN в месяц.'
         },
-        faq: [...FAQ_RU, ['Нужно ли высшее образование?', 'Да. Для программы «Клиническая психология» требуется диплом о высшем образовании (любое направление; предпочтение — психология, медицина, педагогика и социальная работа).']]
+        faq: [['Нужно ли высшее образование?', 'Да. Для программы «Клиническая психология» требуется диплом о высшем образовании (любое направление; предпочтение — психология, медицина, педагогика и социальная работа).']]
       },
       az: {
         title: 'Klinik Psixologiya (Əlavə Təhsil)',
@@ -258,7 +261,7 @@ export const PROGRAMS = {
           rows: [['Tam qiymət', '6 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '6 000 AZN'], ['Taksit 12 ay', '550 AZN/ay'], ['Taksit 24 ay', '300 AZN/ay']],
           note: '24 aya qədər taksit imkanı — aylıq minimum 300 AZN.'
         },
-        faq: [...FAQ_AZ, ['Ali təhsil tələb olunurmu?', 'Bəli. «Klinik Psixologiya» proqramı üçün ali təhsil diplomu tələb olunur (istənilən sahə; psixologiya, tibb, pedaqogika və sosial iş sahələrinə üstünlük verilir).']]
+        faq: [['Ali təhsil tələb olunurmu?', 'Bəli. «Klinik Psixologiya» proqramı üçün ali təhsil diplomu tələb olunur (istənilən sahə; psixologiya, tibb, pedaqogika və sosial iş sahələrinə üstünlük verilir).']]
       },
       en: {
         title: 'Clinical Psychology (CPD)',
@@ -300,7 +303,7 @@ export const PROGRAMS = {
           rows: [['Full price', '6,600 AZN'], ['Full payment (−600 AZN)', '6,000 AZN'], ['12-month instalment', '550 AZN/mo.'], ['24-month instalment', '300 AZN/mo.']],
           note: 'Instalment plan up to 24 months — from 300 AZN a month.'
         },
-        faq: [...FAQ_EN, ['Is a higher education degree required?', 'Yes. The Clinical Psychology programme requires a higher education diploma (any field; preference is given to graduates in psychology, medicine, education and social work).']]
+        faq: [['Is a higher education degree required?', 'Yes. The Clinical Psychology programme requires a higher education diploma (any field; preference is given to graduates in psychology, medicine, education and social work).']]
       }
     },
 

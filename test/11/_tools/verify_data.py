@@ -18,7 +18,7 @@ def norm(s):
     s = re.sub(r"\s+", " ", s)
     s = re.sub(r"\s+([,.;:!?»)”])", r"\1", s)
     s = re.sub(r"([«(“])\s+", r"\1", s)
-    return s.strip().lower()
+    return s.strip().lower().replace(u"i̇", "i").replace(u"ı", "i")      # азербайджанские İ/I/ı сравниваются как одна буква
 
 
 def is_url(s):
@@ -44,6 +44,8 @@ def leaves(o, key=None, path=""):
 
 
 def check(fn):
+    if os.sep + "law" + os.sep in fn:      # блок «Юридические основы» — свой формат, собирается build_law.py из проверенной страницы
+        return []
     d = json.load(io.open(fn, encoding="utf-8"))
     bad = []
     for k in ("slug", "lang", "src", "title", "blocks"):
@@ -60,6 +62,8 @@ def check(fn):
         if "blocks" in path and re.search(r"<(?!/?(strong|em|b|i|a|br|sup|sub)[ >/])[a-zA-Z/]", s) and not any(x.get("type") in ("prose", "sources") for x in d["blocks"]):
             bad.append((path, "неразрешённая разметка: " + s[:100]))
         n = norm(s)
+        if d.get("edited"):          # страница правлена владельцем после переноса (поле edited — дата и суть правки): дословность со старой страницей не требуется
+            continue
         if n and n not in page:
             bad.append((path, s[:140]))
     return bad

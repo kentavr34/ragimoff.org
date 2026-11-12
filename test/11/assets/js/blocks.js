@@ -1,6 +1,6 @@
 /* test/11 — блоки внутренних страниц: один набор на специалистов, консультации, контакты, тренинги, право, блог.
    Данные — data/<kind>/<slug>.<lang>.json (формат: _agent/docs/DATA_SCHEMA.md), подписи — content.js (T[l].pg), стили — site.css (раздел PG). */
-import { esc } from './chrome.js?v=11120255';
+import { esc } from './chrome.js?v=11120813';
 
 /* старые адреса сайта → адреса новой версии (одно место на весь сайт) */
 const PROG = { 'umumi-psixologiya': 'general', 'klinik-psixologiya': 'clinical', 'psixoterapiya-praktikumu': 'practicum', psixodiaqnostika: 'psychodiagnostics', qisamuddetli: 'cbt', psixoanaliz: 'psychoanalysis', 'aile-terapiyasi': 'family' };
@@ -17,7 +17,7 @@ export function fixUrl(u) {
   if ((m = q.match(/^\/konsultasiya\/([\w-]+)\.html$/))) return 'consult.html?c=' + m[1];
   if (/^\/bloq\/(index\.html)?$/.test(q)) return 'blog.html';
   if ((m = q.match(/^\/bloq\/([\w-]+)\.html$/))) return 'article.html?a=' + m[1];
-  if (/^\/telim\/qanuni-esaslar/.test(q)) return 'law.html';
+  if (/^\/telim\/qanuni-esaslar/.test(q)) return 'program.html?p=general#law';
   if (/^\/telim\/(index\.html)?$/.test(q)) return 'index.html#edu';
   if ((m = q.match(/^\/telim\/([\w-]+)\.html$/)) && PROG[m[1]]) return 'program.html?p=' + PROG[m[1]];
   if (/^\/korporativ\//.test(q)) return 'corporate.html';
@@ -51,7 +51,7 @@ const R = {
     if (b.set && u.prices[b.set]) { const P = u.prices[b.set]; return `<div class="prices rv">${P.rows.map(r => `<div class="prow"><span>${esc(r[0])}${r[2] ? `<small>${esc(r[2])}</small>` : ''}</span><b>${esc(r[1])}</b></div>`).join('')}<p class="pnote">${esc(P.note)}</p></div>`; }
     return `<div class="prices rv">${(b.rows || []).map(r => `<div class="prow"><span>${rich(r[0])}</span><b>${rich(r[1])}</b></div>`).join('')}${b.note ? `<p class="pnote">${rich(b.note)}</p>` : ''}</div>`;
   },
-  articles: (b, u, ctx) => `<div class="posts">${(b.items || []).map(s => { const a = ctx.blog[s]; if (!a) return ''; return `<a class="pst rv" href="article.html?a=${esc(s)}">${a.cover ? `<span class="pst__ph"><img src="${esc(fixImg(a.cover))}" alt="" loading="lazy" width="1600" height="900"></span>` : ''}<span class="pst__b"><span class="pst__m">${esc(a.meta || a.catLabel || '')}</span><b class="pst__t">${esc(a.title)}</b>${b.full && a.excerpt ? `<span class="pst__d">${esc(a.excerpt)}</span>` : ''}</span></a>`; }).join('')}</div>`,
+  articles: (b, u, ctx) => `<div class="psts">${(b.items || []).map(s => { const a = ctx.blog[s]; if (!a) return ''; return `<a class="pst rv" href="article.html?a=${esc(s)}">${a.cover ? `<span class="pst__ph"><img src="${esc(fixImg(a.cover))}" alt="" loading="lazy" width="1600" height="900"></span>` : ''}<span class="pst__b"><span class="pst__m">${esc(a.meta || a.catLabel || '')}</span><b class="pst__t">${esc(a.title)}</b>${b.full && a.excerpt ? `<span class="pst__d">${esc(a.excerpt)}</span>` : ''}</span></a>`; }).join('')}</div>`,
   faq: (b) => `<div class="accs">${b.items.map(q => `<details class="acc rv"><summary><span>${rich(q[0])}</span><i aria-hidden="true"></i></summary><p>${rich(q[1])}</p></details>`).join('')}</div>`,
   list: (b) => `<ul class="facts pp__list rv">${b.items.map(x => `<li><span>${rich(x)}</span></li>`).join('')}</ul>`,
   text: (b) => `<div class="txt rv">${(b.p || []).map(x => `<p>${rich(x)}</p>`).join('')}</div>`,

@@ -5,8 +5,8 @@ import io, os, re, json, glob, sys
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SHELLS = {"specialist": ("spec", ""), "consult": ("cons", ""), "contact": ("page", "contact"), "corporate": ("page", "corporate"),
-          "law": ("page", "law"), "blog": ("blog", ""), "article": ("post", "")}
-CONS = ["panik-ataklar", "depressiya", "sosial-fobiya", "enurez", "aile-terapiyasi", "aile-usaq-terapiyasi", "valideyn-mektebi"]
+          "blog": ("blog", ""), "article": ("post", "")}
+CONS = ["panik-ataklar", "depressiya", "sosial-fobiya", "enurez", "aile-terapiyasi", "tesvis-pozuntulari", "okp", "aile-usaq-terapiyasi", "valideyn-mektebi"]
 MAIN = """<main id="top" class="pp pg">
   <section class="pp__hero"><div class="wrap pg__hero" id="pgHero"></div></section>
   <div id="pgBlocks"></div>

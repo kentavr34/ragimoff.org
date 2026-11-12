@@ -1,121 +1,134 @@
 # -*- coding: utf-8 -*-
-"""Слова владельца 11.11 (вечер): все цены в манатах на всех языках; энурез — консультация 50, курс 500;
-программа КПТ (24 занятия, заголовки); форма передаёт язык на страницу оплаты."""
-import io, re, json, shutil, time, os
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ST = time.strftime('%m%d_%H%M')
-def rd(p): return io.open(os.path.join(ROOT, p), encoding='utf-8').read()
-def wr(p, s):
-    os.makedirs(os.path.join(ROOT, '_agent/backup'), exist_ok=True)
-    shutil.copy2(os.path.join(ROOT, p), os.path.join(ROOT, '_agent/backup', os.path.basename(p) + '.' + ST))
-    io.open(os.path.join(ROOT, p), 'w', encoding='utf-8', newline='\n').write(s)
-def rep(s, a, b, n=1):
-    assert s.count(a) == n, 'ожидалось %d, найдено %d: %s' % (n, s.count(a), a[:80])
-    return s.replace(a, b)
-J = lambda o: json.dumps(o, ensure_ascii=False)
+"""Правки владельца от 12.11.2026 (ответы на список расхождений). Повторный запуск ничего не меняет.
+ 1. Энурез: фраза о возможном назначении психотропных препаратов убрана (три языка).
+ 2. Протоколы: практика 2003–2026 (23 года); энурез — более 1 000 детей, более 250 в 2025 году, из них более 100 бесплатно.
+ 5. Энурез: название «Ночной энурез (ночное мочеиспускание)» и единый герой на трёх языках.
+ 6. Блог называется RAGIMOFF Bloq на всех языках, подзаголовок единый.
+ 7. Иероглиф в русском тексте семейной терапии.
+ 8. «Этап 4. Тщательная проработка».
+ 9. Языковые аномалии азербайджанской страницы тренингов для компаний.
+12. Кенан: три книги в хронологии есть на всех языках.
+Запуск: python patch_owner_1112.py"""
+import io, os, sys, json, glob
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+os.chdir(D)
+LOG = []
 
-# ───────── 1. programs.js: манаты ─────────
-p = rd('assets/js/programs.js')
-AZN = [  # (полная, предоплата, скидка, 12 мес, 24 мес)
-    ('4 200', '3 800', '400', '350', '200'), ('6 600', '6 000', '600', '550', '300'), ('3 600', '3 000', '600', '300', '175')]
-def ru_price(a):
-    return "rows: [['Полная стоимость', '%s AZN'], ['При полной оплате (−%s AZN)', '%s AZN'], ['Рассрочка 12 мес.', '%s AZN/мес.'], ['Рассрочка 24 мес.', '%s AZN/мес.']],\n          note: 'Рассрочка до 24 месяцев — от %s AZN в месяц.'" % (a[0], a[2], a[1], a[3], a[4], a[4])
-def en_price(a):
-    c = lambda x: x.replace(' ', ',')
-    return "rows: [['Full price', '%s AZN'], ['Full payment (−%s AZN)', '%s AZN'], ['12-month instalment', '%s AZN/mo.'], ['24-month instalment', '%s AZN/mo.']],\n          note: 'Instalment plan up to 24 months — from %s AZN a month.'" % (c(a[0]), a[2], c(a[1]), a[3], a[4], a[4])
-blocks = [m for m in re.finditer(r"rows: \[[^\n]*\],\n\s*note: '[^\n]*'", p) if ('руб' in m.group(0) or '$' in m.group(0))]
-assert len(blocks) == 6, len(blocks)
-out, last = [], 0
-for i, m in enumerate(blocks):
-    out.append(p[last:m.start()]); out.append((ru_price if i % 2 == 0 else en_price)(AZN[i // 2])); last = m.end()
-out.append(p[last:]); p = ''.join(out)
-assert 'руб' not in p and not re.search(r"\$\d", p)
 
-# ───────── 2. programs.js: программа КПТ ─────────
-CBT = {
- 'ru': dict(
-  title='Когнитивно-поведенческая терапия', lead='Основы когнитивно-поведенческой терапии (КПТ): модель, техники, протоколы и современные направления — с практикой на каждом занятии.',
-  forWhom=['Психологи, психотерапевты и врачи', 'Студенты психологических факультетов и начинающие специалисты', 'Те, кто хочет освоить структурированный метод работы с тревогой и депрессией'],
-  vol='48 часов: 2 занятия в неделю по 2 часа + 24 сессии супервизии', fmt='Очно или онлайн',
-  includes=['24 занятия: теория, демонстрация и практика в парах', 'Рабочие бланки: дневник мыслей, концептуализация случая, иерархия экспозиции', '6 месяцев групповой супервизии на собственных случаях', 'Аттестация по завершении программы'],
-  program=[
-   {'t': 'Модуль 1 — Основы КПТ', 'items': ['История КПТ и три «волны». Когнитивная модель А. Бека и модель ABC А. Эллиса', 'Структура терапии и сессии. Терапевтический альянс, совместный эмпиризм', 'Когнитивная концептуализация случая', 'Оценка, цели, психообразование, план лечения']},
-   {'t': 'Модуль 2 — Когнитивные техники', 'items': ['Автоматические мысли. Дневник мыслей', 'Когнитивные искажения. Сократовский диалог', 'Когнитивная реструктуризация. Промежуточные убеждения и правила', 'Глубинные убеждения. «Падающая стрела». Поведенческие эксперименты']},
-   {'t': 'Модуль 3 — Поведенческие техники', 'items': ['Поведенческая активация и планирование активности', 'Экспозиция: принципы, иерархия, типичные ошибки', 'Навыки: решение проблем, ассертивность, релаксация и дыхание', 'Домашние задания, профилактика рецидива, завершение терапии']},
-   {'t': 'Модуль 4 — Протоколы КПТ', 'items': ['Депрессия', 'Паническое расстройство и агорафобия', 'Социальная тревога и генерализованное тревожное расстройство', 'Обсессивно-компульсивное расстройство: экспозиция с предотвращением реакции', 'ПТСР: травма-фокусированная КПТ и пролонгированная экспозиция', 'Бессонница и расстройства пищевого поведения — обзор']},
-   {'t': 'Модуль 5 — Современные направления', 'items': ['Рационально-эмотивно-поведенческая терапия А. Эллиса', 'Схема-терапия Дж. Янга', 'Терапия принятия и ответственности (ACT)', 'Диалектическая поведенческая терапия, терапия на основе осознанности, терапия, сфокусированная на сострадании']},
-   {'t': 'Модуль 6 — Сравнение школ и интеграция', 'items': ['КПТ и другие школы: логотерапия, личностно-ориентированная (реконструктивная) психотерапия, клиент-центрированная терапия — в чём разница', 'Разбор случаев, итоговая аттестация, переход к супервизии']},
-   {'t': 'Супервизия · 6 месяцев (1 раз в неделю)', 'items': ['Еженедельные супервизионные сессии на собственных случаях (материал анонимизируется, разбор — в группе) · 24 сессии']}]),
- 'az': dict(
-  title='Koqnitiv-davranış terapiyası', lead='Koqnitiv-davranış terapiyasının (KDT) əsasları: model, texnikalar, protokollar və müasir istiqamətlər — hər dərsdə praktika ilə.',
-  forWhom=['Psixoloqlar, psixoterapevtlər və həkimlər', 'Psixologiya fakültələrinin tələbələri və fəaliyyətə yeni başlayan mütəxəssislər', 'Təşviş və depressiya ilə strukturlaşdırılmış iş metodunu mənimsəmək istəyənlər'],
-  vol='48 saat: həftədə 2 dərs, hər biri 2 saat + 24 superviziya sessiyası', fmt='Əyani və ya onlayn',
-  includes=['24 dərs: nəzəriyyə, nümayiş və cütlərdə praktika', 'İş blankları: fikir gündəliyi, hadisənin konseptuallaşdırılması, ekspozisiya iyerarxiyası', 'Öz hadisələriniz üzrə 6 ay qrup superviziyası', 'Proqramın sonunda attestasiya'],
-  program=[
-   {'t': 'Modul 1 — KDT-nin əsasları', 'items': ['KDT-nin tarixi və üç «dalğa». A. Bekin koqnitiv modeli və A. Ellisin ABC modeli', 'Terapiyanın və sessiyanın strukturu. Terapevtik alyans, birgə empirizm', 'Hadisənin koqnitiv konseptuallaşdırılması', 'Qiymətləndirmə, məqsədlər, psixoloji maarifləndirmə, müalicə planı']},
-   {'t': 'Modul 2 — Koqnitiv texnikalar', 'items': ['Avtomatik fikirlər. Fikir gündəliyi', 'Koqnitiv təhriflər. Sokrat dialoqu', 'Koqnitiv restrukturizasiya. Aralıq inanclar və qaydalar', 'Dərin inanclar. «Düşən ox» texnikası. Davranış eksperimentləri']},
-   {'t': 'Modul 3 — Davranış texnikaları', 'items': ['Davranış aktivasiyası və fəaliyyətin planlaşdırılması', 'Ekspozisiya: prinsiplər, iyerarxiya, tipik səhvlər', 'Bacarıqlar: problem həlli, assertivlik, relaksasiya və nəfəs', 'Ev tapşırıqları, residivin profilaktikası, terapiyanın tamamlanması']},
-   {'t': 'Modul 4 — KDT protokolları', 'items': ['Depressiya', 'Panik pozuntusu və aqorafobiya', 'Sosial təşviş və generalizə olunmuş təşviş pozuntusu', 'Obsessiv-kompulsiv pozuntu: ekspozisiya və reaksiyanın qarşısının alınması', 'PTSP: travmaya fokuslanmış KDT və uzadılmış ekspozisiya', 'Yuxusuzluq və qida qəbulu pozuntuları — icmal']},
-   {'t': 'Modul 5 — Müasir istiqamətlər', 'items': ['A. Ellisin rasional-emotiv-davranış terapiyası', 'C. Yanqın sxem-terapiyası', 'Qəbul və məsuliyyət terapiyası (ACT)', 'Dialektik davranış terapiyası, şüurluluğa əsaslanan terapiya, şəfqətə fokuslanmış terapiya']},
-   {'t': 'Modul 6 — Məktəblərin müqayisəsi və inteqrasiya', 'items': ['KDT və digər məktəblər: loqoterapiya, şəxsiyyətə yönəlmiş (rekonstruktiv) psixoterapiya, kliyentə mərkəzləşmiş terapiya — fərq nədədir', 'Hadisələrin təhlili, yekun attestasiya, superviziyaya keçid']},
-   {'t': 'Superviziya · 6 ay (həftədə 1 dəfə)', 'items': ['Öz hadisələriniz üzrə həftəlik superviziya sessiyaları (material anonimləşdirilir, təhlil qrupda aparılır) · 24 sessiya']}]),
- 'en': dict(
-  title='Cognitive Behavioural Therapy', lead='Foundations of cognitive behavioural therapy (CBT): the model, techniques, protocols and modern approaches — with practice in every class.',
-  forWhom=['Psychologists, psychotherapists and physicians', 'Psychology students and early-career specialists', 'Those who want a structured method for working with anxiety and depression'],
-  vol='48 hours: 2 classes a week, 2 hours each + 24 supervision sessions', fmt='In person or online',
-  includes=['24 classes: theory, demonstration and practice in pairs', 'Worksheets: thought record, case conceptualisation, exposure hierarchy', '6 months of group supervision on your own cases', 'Assessment at the end of the programme'],
-  program=[
-   {'t': 'Module 1 — Foundations of CBT', 'items': ['History of CBT and its three “waves”. A. Beck’s cognitive model and A. Ellis’s ABC model', 'Structure of therapy and of a session. Therapeutic alliance, collaborative empiricism', 'Cognitive case conceptualisation', 'Assessment, goals, psychoeducation, treatment plan']},
-   {'t': 'Module 2 — Cognitive techniques', 'items': ['Automatic thoughts. Thought record', 'Cognitive distortions. Socratic dialogue', 'Cognitive restructuring. Intermediate beliefs and rules', 'Core beliefs. The downward arrow. Behavioural experiments']},
-   {'t': 'Module 3 — Behavioural techniques', 'items': ['Behavioural activation and activity scheduling', 'Exposure: principles, hierarchy, common mistakes', 'Skills: problem solving, assertiveness, relaxation and breathing', 'Homework, relapse prevention, ending therapy']},
-   {'t': 'Module 4 — CBT protocols', 'items': ['Depression', 'Panic disorder and agoraphobia', 'Social anxiety and generalised anxiety disorder', 'Obsessive-compulsive disorder: exposure and response prevention', 'PTSD: trauma-focused CBT and prolonged exposure', 'Insomnia and eating disorders — an overview']},
-   {'t': 'Module 5 — Modern approaches', 'items': ['A. Ellis’s rational emotive behaviour therapy', 'J. Young’s schema therapy', 'Acceptance and commitment therapy (ACT)', 'Dialectical behaviour therapy, mindfulness-based cognitive therapy, compassion-focused therapy']},
-   {'t': 'Module 6 — Comparing schools and integration', 'items': ['CBT and other schools: logotherapy, personality-oriented (reconstructive) psychotherapy, client-centred therapy — what differs', 'Case reviews, final assessment, transition to supervision']},
-   {'t': 'Supervision · 6 months (weekly)', 'items': ['Weekly supervision sessions on your own cases (material is anonymised and discussed in the group) · 24 sessions']}]),
-}
-i = p.index('    cbt: {'); j = p.index('psychoanalysis: {', i)
-blk = p[i:j]
-for l, c in CBT.items():
-    a = blk.index('      %s: {' % l); b = min([x for x in [blk.find('      %s: {' % o, a + 5) for o in ('ru', 'az', 'en')] if x > a] + [len(blk)])
-    seg = blk[a:b]
-    seg = re.sub(r"title: '[^']*'", lambda m: 'title: ' + J(c['title']), seg, 1)
-    seg = re.sub(r"lead: '[^']*'", lambda m: 'lead: ' + J(c['lead']), seg, 1)
-    seg = rep(seg, 'forWhom: []', 'forWhom: ' + J(c['forWhom']))
-    seg = rep(seg, 'includes: []', 'includes: ' + J(c['includes']))
-    seg = rep(seg, 'program: []', 'program: ' + J(c['program']))
-    rows = re.findall(r"\['[^']*', '[^']*'\]", seg[seg.index('facts:'):seg.index('includes:')])
-    assert len(rows) == 5, rows
-    lab = lambda r: re.match(r"\['([^']*)'", r).group(1)
-    seg = rep(seg, rows[1], J([lab(rows[1]), c['vol']])); seg = rep(seg, rows[2], J([lab(rows[2]), c['fmt']]))
-    blk = blk[:a] + seg + blk[b:]
-p = p[:i] + blk + p[j:]
-wr('assets/js/programs.js', p)
+def edit(fn, pairs, need=True):
+    """pairs: [(старое, новое)] — по тексту файла. Старого нет, а новое есть → уже применено."""
+    s = io.open(fn, encoding="utf-8").read()
+    o = s
+    for a, b in pairs:
+        if a in s:
+            s = s.replace(a, b)
+        elif b in s or not need:
+            continue
+        else:
+            raise SystemExit("НЕ НАЙДЕНО в %s: %s" % (fn, a[:90]))
+    if s != o:
+        json.loads(s)
+        io.open(fn, "w", encoding="utf-8", newline="\n").write(s)
+        LOG.append(fn)
 
-# ───────── 3. content.js: подписи энуреза ─────────
-c = rd('assets/js/content.js')
-if 'ENUREZ_1112' not in c:
-    c += """
-/* ── ENUREZ_1112: ночной энурез — своя цена (слово владельца 11.11): первичная консультация 50 AZN, курс лечения 500 AZN, ведёт Кенан Рагимов ── */
-const ENU = {
-  ru: { l: 'Что нужно', o: [['first', 'Первичная консультация'], ['course', 'Курс лечения']], sub: { first: 'первичная консультация · Кенан Рагимов', course: 'курс лечения · Кенан Рагимов' } },
-  az: { l: 'Nə lazımdır', o: [['first', 'İlkin konsultasiya'], ['course', 'Müalicə kursu']], sub: { first: 'ilkin konsultasiya · Kənan Rəhimov', course: 'müalicə kursu · Kənan Rəhimov' } },
-  en: { l: 'What you need', o: [['first', 'First consultation'], ['course', 'Treatment course']], sub: { first: 'first consultation · Kenan Ragimov', course: 'treatment course · Kenan Ragimov' } },
-};
-for (const l of Object.keys(ENU)) T[l].reg.enu = ENU[l];
-"""
-    wr('assets/js/content.js', c)
 
-# ───────── 4. reg.js: энурез и язык страницы оплаты ─────────
-r = rd('assets/js/reg.js')
-if 'ENU_P' not in r:
-    r = rep(r, "const PROG = [", "const ENU = 3, ENU_P = { first: 50, course: 500 };                                                    /* ночной энурез (тема № 4): слово владельца 11.11 */\nconst PROG = [")
-    r = rep(r, "hours: 20, btopic:", "hours: 20, enu: 'first', btopic:")
-    r = rep(r, "  if (st.kind === 'consult') return { main: RATE[who][st.fmt] + ' AZN', sub: r.perHour };",
-               "  if (st.kind === 'consult' && st.topic === ENU) return { main: ENU_P[st.enu] + ' AZN', sub: r.enu.sub[st.enu] };\n  if (st.kind === 'consult') return { main: RATE[who][st.fmt] + ' AZN', sub: r.perHour };")
-    r = rep(r, "  if (k === 'consult') body = who + fmt + row(r.topic, chips('topic', topics, st.topic)) + (",
-               "  if (k === 'consult') body = row(r.topic, chips('topic', topics, st.topic)) + (st.topic === ENU ? row(r.enu.l, chips('enu', r.enu.o, st.enu)) : who + fmt) + (")
-    r = rep(r, "  if (k === 'consult') { service = `consult|${st.who}|${st.fmt}`; const tp =", "  if (k === 'consult') { const en = st.topic === ENU; service = en ? 'consult|kenan|enurez-' + st.enu : `consult|${st.who}|${st.fmt}`; const tp =")
-    r = rep(r, "note = [lab(r.who.o, st.who), lab(r.fmt.o, st.fmt), tp].join(' · '); }", "note = (en ? [lab(r.who.o, 'kenan'), tp, lab(r.enu.o, st.enu)] : [lab(r.who.o, st.who), lab(r.fmt.o, st.fmt), tp]).join(' · '); }")
-    r = rep(r, "program: service, folder: reg.folder || '' };", "program: service, folder: reg.folder || '', lang };")
-    wr('assets/js/reg.js', r)
-print('готово')
+# ---------- 1. энурез: без фразы о психотропных препаратах ----------
+edit("data/cons/enurez.ru.json", [(
+    "следующий этап включает двунаправленное лечение — с учётом глубины сна, в исключительных случаях и только под строгим кардиологическим контролем может рассматриваться назначение психотропных препаратов. При доказанном",
+    "следующий этап включает двунаправленное лечение. При доказанном")])
+edit("data/cons/enurez.az.json", [(
+    "növbəti mərhələdə 2 istiqamətli müalicə davam edir — yuxunun dərinliyini nəzərə alaraq yalnız ciddi kardioloji nəzarət altında istisnai hallarda psixotrop preparatların təyini nəzərə alına bilər. Bu siyahıda mayenin həcmi də çox olduqda",
+    "növbəti mərhələdə 2 istiqamətli müalicə davam edir. Mayenin həcmi çox olduqda")])
+edit("data/cons/enurez.en.json", [(
+    "the next stage involves bidirectional treatment — taking sleep depth into account; in exceptional cases and only under strict cardiological monitoring, psychotropic drugs may be considered. Where",
+    "the next stage involves bidirectional treatment. Where")])
+
+# ---------- 5. энурез: название и герой ----------
+NAME = {"ru": "Ночной энурез (ночное мочеиспускание)", "az": "Gecə enurezi (gecə sidik ifrazı)", "en": "Nocturnal enuresis (bedwetting)"}
+LEAD = {"ru": "1 000+ детей за 23 года. Без единого медикамента. Только терапия по международным протоколам: комплексная диагностика и лечение.",
+        "az": "23 ildə 1 000+ uşaq. Bir dənə də dərman olmadan. Yalnız beynəlxalq protokollar üzrə terapiya: kompleks diaqnostika və müalicə.",
+        "en": "1,000+ children over 23 years. Without a single medication. Therapy only, following international protocols: comprehensive assessment and treatment."}
+for l in NAME:
+    fn = "data/cons/enurez.%s.json" % l
+    d = json.load(io.open(fn, encoding="utf-8"))
+    if d["title"] != NAME[l] or d["lead"] != LEAD[l]:
+        d["title"], d["lead"] = NAME[l], LEAD[l]
+        json.dump(d, io.open(fn, "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)
+        LOG.append(fn)
+    fn = "data/cons/index.%s.json" % l
+    d = json.load(io.open(fn, encoding="utf-8"))
+    for it in d["items"]:
+        if it["slug"] == "enurez" and it["title"] != NAME[l]:
+            it["title"] = NAME[l]
+            json.dump(d, io.open(fn, "w", encoding="utf-8", newline="\n"), ensure_ascii=False)
+            LOG.append(fn)
+
+# ---------- 2. протоколы: годы практики ----------
+edit("data/blog/depressiya-protokol.ru.json", [("клиническая практика 2008–2025", "клиническая практика 2003–2026"), ("Клиническая практика 2008–2025", "Клиническая практика 2003–2026"),
+                                               ("17 лет", "23 года"), ("Этап 4. Всестороннее проработка", "Этап 4. Тщательная проработка")], need=False)
+edit("data/blog/depressiya-protokol.az.json", [("klinik praktika 2008–2025", "klinik praktika 2003–2026"), ("Klinik praktika 2008–2025", "Klinik praktika 2003–2026"),
+                                               ("17 illik", "23 illik"), ("Etap 4. Hərtərəfli işləmə", "Etap 4. Dərindən işləmə")], need=False)
+edit("data/blog/depressiya-protokol.en.json", [("clinical practice 2008–2025", "clinical practice 2003–2026"), ("Clinical practice 2008–2025", "Clinical practice 2003–2026"),
+                                               ("17 years", "23 years"), ("Stage 4. Comprehensive Working-Through", "Stage 4. Thorough working-through")], need=False)
+edit("data/blog/enurez-protokol.ru.json", [
+    ("клиническая практика 2018–2025", "клиническая практика 2003–2026"),
+    ("на основе клинической практики n=240 пациентов: 80% полная ремиссия", "на основе клинической практики 2003–2026 годов (более 1 000 детей): 80% полная ремиссия"),
+    ("Клиническая практика 2018–2025 (детский энурез). Баку, n=240.", "Клиническая практика 2003–2026, Баку. Детский энурез: более 1 000 детей; только в 2025 году — более 250, из них более 100 бесплатно (дети шахидов, гази, ветеранов и малообеспеченных семей).")], need=False)
+edit("data/blog/enurez-protokol.az.json", [
+    ("klinik praktika 2018–2025", "klinik praktika 2003–2026"),
+    ("n=240 pasiyent klinik praktikası əsasında 80% halda tam remissiya nəticəsi", "2003–2026-cı illərin klinik praktikası (1 000-dən çox uşaq) əsasında 80% halda tam remissiya nəticəsi"),
+    ("Klinik praktika 2018–2025 (uşaq enurezi). Bakı, n=240.", "Klinik praktika 2003–2026, Bakı. Uşaq enurezi: 1 000-dən çox uşaq; yalnız 2025-ci ildə 250-dən çox, onlardan 100-dən çoxu ödənişsiz (şəhid, qazi, veteran və aztəminatlı ailələrin uşaqları).")], need=False)
+edit("data/blog/enurez-protokol.en.json", [
+    ("clinical practice 2018–2025", "clinical practice 2003–2026"),
+    ("based on clinical practice with n=240 patients: 80% full remission", "based on clinical practice in 2003–2026 (more than 1,000 children): 80% full remission"),
+    ("Clinical practice 2018–2025 (childhood enuresis). Baku, n=240.", "Clinical practice 2003–2026, Baku. Childhood enuresis: more than 1,000 children; over 250 in 2025 alone, more than 100 of them free of charge (children of martyrs, war veterans and low-income families).")], need=False)
+edit("data/blog/index.ru.json", [("клиническая практика 2008–2025", "клиническая практика 2003–2026"), ("17 лет практики", "23 года практики"), ("На основе 17 лет клинической практики", "На основе 23 лет клинической практики"),
+                                 ("n=240 клинических случаев, полная ремиссия в 80% случаев", "Более 1 000 детей за 2003–2026 годы, полная ремиссия в 80% случаев")], need=False)
+edit("data/blog/index.az.json", [("klinik praktika 2008–2025", "klinik praktika 2003–2026"), ("17 illik", "23 illik"),
+                                 ("n=240 klinik praktika, 80% halda tam remissiya", "2003–2026-cı illərdə 1 000-dən çox uşaq, 80% halda tam remissiya")], need=False)
+edit("data/blog/index.en.json", [("clinical practice 2008–2025", "clinical practice 2003–2026"), ("17 years", "23 years"),
+                                 ("n=240 clinical cases, full remission in 80% of cases", "More than 1,000 children in 2003–2026, full remission in 80% of cases")], need=False)
+
+# ---------- 6. блог ----------
+BLOG = {"ru": ("RAGIMOFF Bloq", "Клинические статьи, научные исследования, психологические решения и терапевтические протоколы."),
+        "az": ("RAGIMOFF Bloq", "Klinik məqalələr, elmi araşdırmalar, psixoloji həll yolları və terapevtik protokollar."),
+        "en": ("RAGIMOFF Bloq", "Clinical articles, scientific research, psychological solutions and therapeutic protocols.")}
+for l, (t, ld) in BLOG.items():
+    fn = "data/blog/index.%s.json" % l
+    d = json.load(io.open(fn, encoding="utf-8"))
+    if d.get("title") != t or d.get("lead") != ld:
+        d["title"], d["lead"] = t, ld
+        json.dump(d, io.open(fn, "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)
+        LOG.append(fn)
+
+# ---------- 7. иероглиф ----------
+edit("data/cons/aile-terapiyasi.ru.json", [("более長 длительной", "более длительной")], need=False)
+
+# ---------- 9. азербайджанская страница тренингов ----------
+edit("data/page/corporate.az.json", [("Oflayn / Online", "Əyani / Onlayn"), ("Fərdi offer", "Fərdi təklif"), ("Burn-out profilaktikası", "Tükənmənin profilaktikası"),
+                                     ("Onboarding psixologiyası", "Yeni işçinin adaptasiyası psixologiyası"), ("Metodologiya: KBT, NLP", "Metodologiya: KDT, NLP"),
+                                     ("Stres idarəetməsi sahə işçiləri üçün", "Səyyar işçilər üçün stresin idarə olunması"), ("Emosional intellekt satışda", "Satışda emosional intellekt")], need=False)
+edit("data/page/corporate.ru.json", [("Офлайн / Онлайн", "Очно / Онлайн"), ("Методология: КБТ, НЛП", "Методология: КПТ, НЛП"), ("Психология онбординга", "Психология адаптации нового сотрудника")], need=False)
+edit("data/page/corporate.en.json", [("Offline / Online", "In person / Online")], need=False)
+
+# ---------- 12. Кенан: книги в хронологии на всех языках ----------
+BOOKS = {
+    "ru": [{"y": "2026", "t": "Зигмунд Фрейд — на азербайджанском языке", "d": "Впервые в Азербайджане — перевод всех книг Зигмунда Фрейда на азербайджанский язык.", "a": ["Познакомиться с книгами →", "/books/"]},
+           {"y": "2025", "t": "Шизофрения: пандемия безумия", "d": "Книга о клинической и психологической картине психоза.", "a": ["Познакомиться с книгой →", "/books/shizofreniya/"]},
+           {"y": "2024", "t": "Вирус вины", "d": "Книга об освобождении от чувства вины, разрушающего жизнь.", "a": ["Познакомиться с книгой →", "/books/virus-viny/"]}],
+    "en": [{"y": "2026", "t": "Sigmund Freud — in Azerbaijani", "d": "A first for Azerbaijan — the translation of all of Sigmund Freud’s books into Azerbaijani.", "a": ["See the books →", "/books/"]},
+           {"y": "2025", "t": "Schizophrenia: the pandemic of madness", "d": "A book on the clinical and psychological picture of psychosis.", "a": ["See the book →", "/books/shizofreniya/"]},
+           {"y": "2024", "t": "The guilt virus", "d": "A book about freeing yourself from the guilt that ruins a life.", "a": ["See the book →", "/books/virus-viny/"]}]}
+for l, add in BOOKS.items():
+    fn = "data/spec/kenan.%s.json" % l
+    d = json.load(io.open(fn, encoding="utf-8"))
+    for b in d["blocks"]:
+        if b["type"] == "timeline" and len(b["items"]) == 12:
+            b["items"][1:1] = add
+            json.dump(d, io.open(fn, "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)
+            LOG.append(fn)
+
+for f in sorted(set(LOG)):
+    print("изменён", f)
+print("файлов изменено:", len(set(LOG)))

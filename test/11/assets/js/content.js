@@ -26,7 +26,7 @@ export const LINKS = l => {
 export const T = {
   /* ───────────────────────────── РУССКИЙ ───────────────────────────── */
   ru: {
-    nav: { spec: 'Специалисты', books: 'Книги', edu: 'Обучение', cons: 'Консультации', corp: 'Тренинги', enl: 'Просвещение', blog: 'Блог', contact: 'Контакты', cta: 'Записаться', law: 'Правовые основы' },
+    nav: { spec: 'Специалисты', books: 'Книги', edu: 'Обучение', cons: 'Консультации', corp: 'Тренинги', enl: 'Просвещение', blog: 'Блог', contact: 'Контакты', cta: 'Записаться', law: 'Юридические основы' },
     hero: { school: 'Школа психологии', q: 'Doctor Ragimoff', scroll: 'Листайте вниз', b: ['Консультации', 'Обучение', 'Книги', 'Тренинги'] },
     belt: ['Психотерапия', 'Обучение психологов', 'Книги', 'Супервизия', 'Семейная терапия', 'Тренинги'],
     spec: { eye: '', h: 'Специалисты', sub: 'Подробнее о каждом — на личной странице.', more: 'Подробнее',
@@ -51,16 +51,17 @@ export const T = {
           { t: 'Семейная терапия', d: 'Международный сертификат', m: ['3 месяца + 6 месяцев супервизии', '800 AZN при предоплате'], price: '300 AZN в месяц' }] },
     cons: { eye: '', h: 'Консультации', sub: 'Выберите тему или напишите свою.', cta: 'Записаться на консультацию', wa: 'Написать в WhatsApp',
       who: 'Вы выбираете, к кому записаться: к Кенану Рагимову, к Самире Рагимовой или к обоим.',
-      other: ['Другая тема', 'Напишите в WhatsApp, что вас беспокоит, — подскажем, к кому записаться.'], note: 'После регистрации вы перейдёте в платёжную систему. Оплатив, отправьте чек в WhatsApp на +994 70 220 03 76 — мы подтвердим время.',
+      other: ['Другая тема', 'Напишите в WhatsApp, что вас беспокоит, — подскажем, к кому записаться.'], note: 'После регистрации вы перейдёте в платёжную систему. Оплатив, отправьте чек в WhatsApp на +994 70 220 03 76 — мы подтвердим время.',
       t: [['Панические атаки', 'Приступ реален: тело отвечает страхом там, где опасности нет.'],
           ['Депрессия', 'Не слабость воли, а состояние, с которым работает психотерапия.'],
           ['Социальная фобия', 'Страх выступлений и чужой оценки — не черта характера.'],
-          ['Ночной энурез', 'За годы практики — более 1\u00A0000 пациентов: 250 в 2025 году, более 100 — в этом году.'],
+          ['Ночной энурез (ночное мочеиспускание)', 'За годы практики — более 1\u00A0000 пациентов: 250 в 2025 году, более 100 — в этом году.'],
           ['Семейная терапия', 'Работаем с парами и с детско-родительскими отношениями.'],
-          ['Тревожные расстройства и ОКР', 'У тревоги и навязчивостей есть чёткие критерии диагноза и лечение.']] },
+          ['Тревожные расстройства', 'Постоянная тревога, страхи и фобии: есть чёткие критерии диагноза и лечение.'],
+          ['Обсессивно-компульсивное расстройство (ОКР)', 'Навязчивые мысли и действия — расстройство, а не черта характера.']] },
     corp: { eye: '', h: 'Тренинги', sub: 'Для компаний, команд и корпоративных мероприятий.', lead: 'Школа HR работает с 2008 года и подготовила более 2\u00A0000 человек.', cta: 'Заказать тренинг',
       clientsH: 'Среди клиентов и событий:', clients: ['MG', 'Unibank', 'DNS Computers', 'Business Party by Ragimoff'], n: [],
-      t: ['Управление персоналом', 'Лидерство', 'Командная работа', 'Коммуникации и продажи'] },
+      t: ['Школа продаж', 'Лидерство', 'Управленческие навыки', 'Управление персоналом (HR)', 'Тайм-менеджмент', 'Командообразование (тимбилдинг)', 'Стресс-менеджмент'] },
     enl: { eye: '', h: 'Просвещение', sub: 'Пять заблуждений о психических расстройствах и их лечении.', flip: 'Что на самом деле', back: 'Миф', more: 'Читать в учебнике',
       m: [['Депрессия', '«Антидепрессанты меняют личность человека»', 'Антидепрессанты уменьшают симптомы, но не меняют личность. Если человек «не чувствует себя собой», это побочный эффект: врач меняет препарат или снижает дозу.'],
           ['Социальная тревога', '«Социальная тревога — обычная застенчивость, лечения не требует»', 'Социальное тревожное расстройство мешает учёбе и работе, повышает риск депрессии и употребления алкоголя. Это медицинское состояние, а не просто застенчивость.'],
@@ -71,9 +72,9 @@ export const T = {
     tg: { h: 'Новые материалы — в Telegram', sub: 'Подписывайтесь на наш канал.', cta: 'Перейти в канал' },
     a11y: { title: 'Doctor Ragimoff — Школа психологии', menu: 'Меню', theme: 'Тема', night: 'Ночь', paper: 'Бумага', sepia: 'Сепия', lang: 'Язык' },
     foot: {
-      cols: [{ h: 'Терапия', l: ['Панические атаки', 'Депрессия', 'Социальная фобия', 'Ночной энурез', 'Семейная терапия', 'Тревожные расстройства и ОКР'] },
+      cols: [{ h: 'Терапия', l: ['Панические атаки', 'Депрессия', 'Социальная фобия', 'Ночной энурез (ночное мочеиспускание)', 'Семейная терапия', 'Тревожные расстройства', 'Обсессивно-компульсивное расстройство (ОКР)'] },
              { h: 'Образование', l: ['Долгосрочные программы', 'Краткосрочные программы', 'Правовые основы'] },
-             { h: 'Контакты', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Баку, Джафар Джаббарлы 40, Caspian Business Center, 9 этаж'] }],
+             { h: 'Контакты', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Баку, Джафар Джаббарлы 40, Caspian Business Center, 9 этаж'] }],
       copy: ['© 2026 Doctor Ragimoff.', 'Все права защищены.'] },
   },
 
@@ -104,16 +105,17 @@ export const T = {
           { t: 'Ailə terapiyası', d: 'Beynəlxalq sertifikat', m: ['3 ay + 6 ay superviziya', 'əvvəlcədən ödənişdə 800 AZN'], price: 'ayda 300 AZN' }] },
     cons: { eye: '', h: 'Konsultasiyalar', sub: 'Mövzunu seçin və ya öz mövzunuzu yazın.', cta: 'Konsultasiyaya yazılın', wa: 'WhatsApp-da yazın',
       who: 'Qəbulu Kənan Rəhimov, Samirə Rəhimova və ya hər iki mütəxəssis birlikdə aparır — seçim sizindir.',
-      other: ['Başqa mövzu', 'Sizi nə narahat edir — WhatsApp-da yazın, hansı mütəxəssisin uyğun olduğunu deyərik.'], note: 'Qeydiyyatdan sonra ödəniş sisteminə keçəcəksiniz. Ödənişdən sonra qəbzi +994 70 220 03 76 nömrəsinə WhatsApp ilə göndərin — görüş vaxtını təsdiqləyəcəyik.',
+      other: ['Başqa mövzu', 'Sizi nə narahat edir — WhatsApp-da yazın, hansı mütəxəssisin uyğun olduğunu deyərik.'], note: 'Qeydiyyatdan sonra ödəniş sisteminə keçəcəksiniz. Ödənişdən sonra qəbzi +994 70 220 03 76 nömrəsinə WhatsApp ilə göndərin — görüş vaxtını təsdiqləyəcəyik.',
       t: [['Panik tutmaları', 'Tutma real hadisədir: bədən təhlükə olmayan yerdə qorxu ilə cavab verir.'],
           ['Depressiya', 'İradə zəifliyi deyil, psixoterapiya ilə müalicə olunan vəziyyətdir.'],
           ['Sosial fobiya', 'İctimai çıxış və başqalarının qiymətləndirməsi qorxusu xarakter xüsusiyyəti deyil.'],
-          ['Gecə enurezi', 'Təcrübə illərində 1\u00A0000-dən çox pasiyent, 2025-ci ildə 250, bu il isə 100-dən çox.'],
+          ['Gecə enurezi (gecə sidik ifrazı)', 'Təcrübə illərində 1\u00A0000-dən çox pasiyent, 2025-ci ildə 250, bu il isə 100-dən çox.'],
           ['Ailə terapiyası', 'Cütlüklərlə və valideyn–uşaq münasibətləri ilə işləyirik.'],
-          ['Təşviş pozuntuları və OKP', 'Təşviş və obsessiyaların aydın diaqnostik meyarları və müalicəsi var.']] },
+          ['Təşviş və qorxu ilə əlaqəli pozuntular', 'Daimi təşviş, qorxular və fobiyalar: aydın diaqnostik meyarları və müalicəsi var.'],
+          ['Obsessiv-kompulsiv pozuntu (OKP)', 'Sarışan fikirlər və hərəkətlər xarakter xüsusiyyəti deyil, pozuntudur.']] },
     corp: { eye: '', h: 'Təlimlər', sub: 'Şirkətlər, komandalar və korporativ tədbirlər üçün.', lead: 'HR məktəbi 2008-ci ildən fəaliyyət göstərir və 2\u00A0000-dən çox nəfər hazırlayıb.', cta: 'Təlim sifariş edin',
       clientsH: 'Müştərilər və tədbirlər:', clients: ['MG', 'Unibank', 'DNS Computers', 'Business Party by Ragimoff'], n: [],
-      t: ['Heyətin idarə olunması', 'Liderlik', 'Komanda işi', 'Ünsiyyət və satış'] },
+      t: ['Satış məktəbi', 'Liderlik', 'İdarəetmə bacarıqları', 'İnsan resurslarının idarə olunması (HR)', 'Vaxtın idarə olunması (taym-menecment)', 'Komanda quruculuğu (timbildinq)', 'Stresin idarə olunması (stres-menecment)'] },
     enl: { eye: '', h: 'Maarifləndirmə', sub: 'Psixi pozuntular və müalicə haqqında beş yanlış təsəvvür.', flip: 'Əslində necədir', back: 'Mif', more: 'Dərslikdə oxuyun',
       m: [['Depressiya', '«Antidepressant şəxsiyyəti dəyişdirir»', 'Antidepressantlar simptomları azaldır, şəxsiyyəti dəyişmir. İnsan «özümü hiss etmirəm» deyirsə, bu yan təsirdir: həkim preparatı dəyişir və ya dozanı azaldır.'],
           ['Sosial təşviş', '«Sosial təşviş adi utancaqlıqdır, müalicə tələb etmir»', 'Sosial təşviş pozuntusu təhsilə və işə mane olur, depressiya və alkoqol istifadəsi riskini artırır. Bu, sadəcə utancaqlıq deyil, tibbi vəziyyətdir.'],
@@ -124,9 +126,9 @@ export const T = {
     tg: { h: 'Yeni materiallar — Telegram-da', sub: 'Kanalımıza abunə olun.', cta: 'Kanala keçin' },
     a11y: { title: 'Doctor Ragimoff — Psixologiya Məktəbi', menu: 'Menyu', theme: 'Rəng mövzusu', night: 'Gecə', paper: 'Kağız', sepia: 'Sepiya', lang: 'Dil' },
     foot: {
-      cols: [{ h: 'Terapiya', l: ['Panik tutmaları', 'Depressiya', 'Sosial fobiya', 'Gecə enurezi', 'Ailə terapiyası', 'Təşviş pozuntuları və OKP'] },
+      cols: [{ h: 'Terapiya', l: ['Panik tutmaları', 'Depressiya', 'Sosial fobiya', 'Gecə enurezi (gecə sidik ifrazı)', 'Ailə terapiyası', 'Təşviş və qorxu ilə əlaqəli pozuntular', 'Obsessiv-kompulsiv pozuntu (OKP)'] },
              { h: 'Təhsil', l: ['Uzunmüddətli proqramlar', 'Qısamüddətli proqramlar', 'Hüquqi əsaslar'] },
-             { h: 'Əlaqə', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Bakı, Cəfər Cabbarlı küçəsi 40, Caspian Business Center, 9-cu mərtəbə'] }],
+             { h: 'Əlaqə', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Bakı, Cəfər Cabbarlı küçəsi 40, Caspian Business Center, 9-cu mərtəbə'] }],
       copy: ['© 2026 Doctor Ragimoff.', 'Bütün hüquqlar qorunur.'] },
   },
 
@@ -157,16 +159,17 @@ export const T = {
           { t: 'Family therapy', d: 'International certificate', m: ['3 months + 6 months of supervision', '800 AZN if prepaid'], price: '300 AZN a month' }] },
     cons: { eye: '', h: 'Consultations', sub: 'Choose a topic or write your own.', cta: 'Book a consultation', wa: 'Message on WhatsApp',
       who: 'You choose whom to see: Kenan Ragimov, Samira Ragimova or both.',
-      other: ['Another topic', 'Tell us on WhatsApp what is troubling you, and we will suggest whom to see.'], note: 'After you register, you will be taken to the payment page. Once you have paid, send the receipt via WhatsApp to +994 70 220 03 76 and we will confirm the time.',
+      other: ['Another topic', 'Tell us on WhatsApp what is troubling you, and we will suggest whom to see.'], note: 'After you register, you will be taken to the payment page. Once you have paid, send the receipt via WhatsApp to +994 70 220 03 76 and we will confirm the time.',
       t: [['Panic attacks', 'The attack is real: the body answers with fear where there is no danger.'],
           ['Depression', 'Not a weakness of will but a condition that psychotherapy treats.'],
           ['Social phobia', 'Fear of speaking and of being judged is not a character trait.'],
-          ['Nocturnal enuresis', 'More than 1,000 patients over the years of practice, 250 in 2025, more than 100 this year.'],
+          ['Nocturnal enuresis (bedwetting)', 'More than 1,000 patients over the years of practice, 250 in 2025, more than 100 this year.'],
           ['Family therapy', 'We work with couples and with parent–child relationships.'],
-          ['Anxiety disorders and OCD', 'Anxiety and obsessions have clear diagnostic criteria and treatment.']] },
+          ['Anxiety disorders', 'Constant anxiety, fears and phobias have clear diagnostic criteria and treatment.'],
+          ['Obsessive-compulsive disorder (OCD)', 'Intrusive thoughts and actions are a disorder, not a character trait.']] },
     corp: { eye: '', h: 'Training', sub: 'For companies, teams and corporate events.', lead: 'The HR School has worked since 2008 and has trained more than 2,000 people.', cta: 'Request a training',
       clientsH: 'Clients and events include:', clients: ['MG', 'Unibank', 'DNS Computers', 'Business Party by Ragimoff'], n: [],
-      t: ['People management', 'Leadership', 'Teamwork', 'Communication and sales'] },
+      t: ['Sales school', 'Leadership', 'Management skills', 'Human resources management (HR)', 'Time management', 'Team building', 'Stress management'] },
     enl: { eye: '', h: 'Psychoeducation', sub: 'Five misconceptions about mental disorders and treatment.', flip: 'What is true', back: 'The myth', more: 'Read in the textbook',
       m: [['Depression', '“Antidepressants change a person’s personality”', 'Antidepressants reduce symptoms but do not change personality. If someone “no longer feels like themselves”, it is a side effect: the doctor changes the drug or lowers the dose.'],
           ['Social anxiety', '“Social anxiety is ordinary shyness and needs no treatment”', 'Social anxiety disorder interferes with study and work and raises the risk of depression and alcohol use. It is a medical condition, not just shyness.'],
@@ -177,9 +180,9 @@ export const T = {
     tg: { h: 'New materials are on Telegram', sub: 'Subscribe to our channel (in Azerbaijani).', cta: 'Open the channel' },
     a11y: { title: 'Doctor Ragimoff — School of Psychology', menu: 'Menu', theme: 'Theme', night: 'Night', paper: 'Paper', sepia: 'Sepia', lang: 'Language' },
     foot: {
-      cols: [{ h: 'Therapy', l: ['Panic attacks', 'Depression', 'Social phobia', 'Nocturnal enuresis', 'Family therapy', 'Anxiety disorders and OCD'] },
+      cols: [{ h: 'Therapy', l: ['Panic attacks', 'Depression', 'Social phobia', 'Nocturnal enuresis (bedwetting)', 'Family therapy', 'Anxiety disorders', 'Obsessive-compulsive disorder (OCD)'] },
              { h: 'Education', l: ['Long-term programmes', 'Short-term programmes', 'Legal basis'] },
-             { h: 'Contact', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Baku, Jafar Jabbarly 40, Caspian Business Center, 9th floor'] }],
+             { h: 'Contact', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Baku, Jafar Jabbarly 40, Caspian Business Center, 9th floor'] }],
       copy: ['© 2026 Doctor Ragimoff.', 'All rights reserved.'] },
   },
 };
@@ -239,7 +242,7 @@ const ruTypo = x => {
   return x.replace(re, '$1$2' + NB).replace(re, '$1$2' + NB)
     .replace(/ — /g, NB + '— ')
     .replace(/(\d) (?=(?:год|лет|мес|час|AZN|страниц|человек|этаж|минут))/g, '$1' + NB)
-    .replace(/\+994 70 220 03 76/g, '+994' + NB + '70' + NB + '220' + NB + '03' + NB + '76');
+    .replace(/\+994 70 220 03 76/g, '+994' + NB + '70' + NB + '220' + NB + '03' + NB + '76');
 };
 const ruWalk = o => { for (const k of Object.keys(o)) { const v = o[k]; if (typeof v === 'string') o[k] = ruTypo(v); else if (v && typeof v === 'object') ruWalk(v); } };
 ruWalk(T.ru);
@@ -269,7 +272,7 @@ const REG = {
     f: { fname: 'Ad', lname: 'Soyad', phone: 'Telefon', company: 'Şirkət', other: 'Sizin mövzunuz', id: 'Şəxsiyyət vəsiqəsi — foto və ya skan', dip: 'Ali təhsil haqqında diplom — varsa' },
     who: { l: 'Mütəxəssis', o: [['kenan', 'Kənan Rəhimov'], ['samira', 'Samirə Rəhimova'], ['both', 'Hər iki mütəxəssis']] }, fmt: { l: 'Format', o: [['online', 'Onlayn'], ['offline', 'Əyani']] },
     topic: 'Mövzu', topicOther: 'Başqa mövzu', prog: 'Proqram', hours: { l: 'Saatların sayı', min: 'ən azı 20' },
-    b2b: { topic: 'Mövzu', other: 'Digər', free: 'Ödənişsiz müraciət', goal: { l: 'Məqsəd', o: ['Komandanın inkişafı', 'Rəhbərlərin hazırlanması', 'Satışların artırılması', 'Stress və tükənmə', 'Korporativ tədbir'] },
+    b2b: { topic: 'Mövzu', other: 'Digər', free: 'Ödənişsiz müraciət', goal: { l: 'Məqsəd', o: ['Komandanın inkişafı', 'Rəhbərlərin hazırlanması', 'Satışların artırılması', 'Stres və tükənmə', 'Korporativ tədbir'] },
       count: { l: 'İştirakçı sayı', o: ['10-a qədər', '10–20', '20–50', '50-dən çox'] }, lang: { l: 'Dil', o: ['Azərbaycan dili', 'Rus dili', 'İngilis dili'] }, place: { l: 'Harada', o: ['Sizin ofisdə', 'Onlayn', 'Səyyar format'] } },
     price: 'Qiymət', perHour: 'bir görüş, 1 saat', noteB2b: 'Bu mərhələdə ödəniş yoxdur: mütəxəssisimiz sizinlə əlaqə saxlayacaq.',
     send: { consult: 'Yazılın və ödənişə keçin', edu: 'Müraciəti göndərin', ind: 'Yazılın və ödənişə keçin', b2b: 'Müraciəti göndərin' },
@@ -326,26 +329,28 @@ for (const l of Object.keys(ENU)) T[l].reg.enu = ENU[l];
 /* ── PG_1112: внутренние страницы из блоков (специалисты, консультации, контакты, тренинги, право, блог) — подписи и цены в одном месте ── */
 const PG = {
   ru: { back: { spec: 'Специалисты', cons: 'Консультации', page: 'Главная', blog: 'Блог', post: 'Все статьи' }, book: 'Записаться', other: { spec: 'Специалисты', cons: 'Другие консультации', page: 'Разделы' },
-        author: 'Автор', sources: 'Источники', all: 'Все', read: 'Читать', none: 'Страница не найдена', home: 'На главную', pages: { contact: 'Контакты', corporate: 'Тренинги для компаний', law: 'Правовые основы', tests: 'Тесты' },
+        author: 'Автор', sources: 'Источники', all: 'Все', read: 'Читать', none: 'Страница не найдена', home: 'На главную', pages: { contact: 'Контакты', corporate: 'Тренинги для компаний', law: 'Юридические основы деятельности', tests: 'Тесты' },
         prices: { consult: { rows: [['Встреча с одним специалистом, онлайн', '100 AZN', '1 час'], ['Встреча с одним специалистом, очно', '150 AZN', '1 час'], ['Встреча с обоими специалистами, онлайн', '150 AZN', '1 час'], ['Встреча с обоими специалистами, очно', '200 AZN', '1 час'], ['Пакет на месяц, онлайн', '400 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)'], ['Пакет на месяц, очно', '600 AZN', '4 сессии + поддержка в WhatsApp (лимит 100 мин)']] },
                   enurez: { rows: [['Первичная консультация', '50 AZN', 'Кенан Рагимов'], ['Курс лечения', '500 AZN', 'Кенан Рагимов']] } } },
   az: { back: { spec: 'Mütəxəssislər', cons: 'Konsultasiyalar', page: 'Ana səhifə', blog: 'Bloq', post: 'Bütün məqalələr' }, book: 'Yazılın', other: { spec: 'Mütəxəssislər', cons: 'Digər konsultasiyalar', page: 'Bölmələr' },
-        author: 'Müəllif', sources: 'Mənbələr', all: 'Hamısı', read: 'Oxu', none: 'Səhifə tapılmadı', home: 'Ana səhifəyə', pages: { contact: 'Əlaqə', corporate: 'Şirkətlər üçün təlimlər', law: 'Qanuni əsaslar', tests: 'Testlər' },
+        author: 'Müəllif', sources: 'Mənbələr', all: 'Hamısı', read: 'Oxu', none: 'Səhifə tapılmadı', home: 'Ana səhifəyə', pages: { contact: 'Əlaqə', corporate: 'Şirkətlər üçün təlimlər', law: 'Fəaliyyətin hüquqi əsasları', tests: 'Testlər' },
         prices: { consult: { rows: [['Bir mütəxəssislə görüş, online', '100 AZN', '1 saat'], ['Bir mütəxəssislə görüş, əyani', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, online', '150 AZN', '1 saat'], ['Hər iki mütəxəssislə görüş, əyani', '200 AZN', '1 saat'], ['Aylıq terapiya paketi, online', '400 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)'], ['Aylıq terapiya paketi, əyani', '600 AZN', '4 sessiya + WhatsApp dəstək (limit 100 dəq)']] },
                   enurez: { rows: [['İlkin konsultasiya', '50 AZN', 'Kənan Rəhimov'], ['Müalicə kursu', '500 AZN', 'Kənan Rəhimov']] } } },
   en: { back: { spec: 'Specialists', cons: 'Consultations', page: 'Home', blog: 'Blog', post: 'All articles' }, book: 'Book', other: { spec: 'Specialists', cons: 'Other consultations', page: 'Sections' },
-        author: 'Author', sources: 'Sources', all: 'All', read: 'Read', none: 'Page not found', home: 'Home', pages: { contact: 'Contact', corporate: 'Training for companies', law: 'Legal basis', tests: 'Tests' },
+        author: 'Author', sources: 'Sources', all: 'All', read: 'Read', none: 'Page not found', home: 'Home', pages: { contact: 'Contact', corporate: 'Training for companies', law: 'Legal basis for practice', tests: 'Tests' },
         prices: { consult: { rows: [['Session with one specialist, online', '100 AZN', '1 hour'], ['Session with one specialist, in person', '150 AZN', '1 hour'], ['Session with both specialists, online', '150 AZN', '1 hour'], ['Session with both specialists, in person', '200 AZN', '1 hour'], ['Monthly package, online', '400 AZN', '4 sessions + WhatsApp support (100 min limit)'], ['Monthly package, in person', '600 AZN', '4 sessions + WhatsApp support (100 min limit)']] },
                   enurez: { rows: [['First consultation', '50 AZN', 'Kenan Ragimov'], ['Treatment course', '500 AZN', 'Kenan Ragimov']] } } },
 };
 for (const l of Object.keys(PG)) { T[l].pg = PG[l]; T[l].foot.cols[1].l.push(PG[l].pages.tests); for (const k of Object.keys(PG[l].prices)) PG[l].prices[k].note = T[l].cons.note; }
 /* адреса новой версии: все разделы ведут на страницы внутри неё (одно место) */
-export const CONS = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'aile-usaq-terapiyasi', 'valideyn-mektebi'];
+export const CONS = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp', 'aile-usaq-terapiyasi', 'valideyn-mektebi'];
+/* страница консультации → номер темы в форме записи (порядок тем — T[l].cons.t) */
+export const CONS_TOPIC = { 'panik-ataklar': 0, depressiya: 1, 'sosial-fobiya': 2, enurez: 3, 'aile-terapiyasi': 4, 'aile-usaq-terapiyasi': 4, 'tesvis-pozuntulari': 5, okp: 6 };
 const _LINKS1 = LINKS2;
 export function LINKS3(l) { const L = _LINKS1(l);
   L.spec = ['specialist.html?s=kenan', 'specialist.html?s=samira'];
-  L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi'].map(c => 'consult.html?c=' + c).concat('index.html#cons');
+  L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp'].map(c => 'consult.html?c=' + c);
   L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
-  L.contact = 'contact.html'; L.law = 'law.html'; L.tests = '/test/aile.html';
-  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'law.html', '/test/aile.html'], [L.wa, L.tg, 'contact.html']];
+  L.contact = 'contact.html'; L.law = 'program.html?p=general#law'; L.tests = '/test/aile.html';
+  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'program.html?p=general#law', '/test/aile.html'], [L.wa, L.tg, 'contact.html']];
   return L; }
