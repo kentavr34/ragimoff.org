@@ -1,234 +1,27 @@
-# CLAUDE.md — Initialization Brief for AI Agents
+# CLAUDE.md — сайт ragimoff.org (новая система, корень с 12.11.2026)
 
-> **First action in any new session:** read this file, then `PROGRESS.md`, then `README.md`, then `HISTORY.json`, then `PROJECTS.json`. Only after that, touch code.
+Владелец — Кенан Рагимов. В чате только по-русски. Общий свод правил: `D:\Projects\_MEMORY\RULES.md`.
 
-## Working directory
-`D:\Документы\ragimoff` — always operate from here.
+## С чего начинать
+1. `README.md` — как устроен сайт и журнал изменений.
+2. `FILE_MAP.md` — карта файлов (пересобирается: `python _tools/structure_check.py map`).
+3. `_agent/docs/КАНОН_ГЛАВНАЯ.md` — канон вида, блоков, структуры и системы книг (на диске, не публикуется).
+4. Память проекта: `python D:/Projects/_MEMORY/tools/cns.py recall ragimoff`.
 
-The old path `C:\Users\SAM\Desktop\sayt2` no longer exists. 41 legacy scripts still
-hardcode it and will fail if run; the live toolchain resolves paths from
-`Path(__file__).parent`. See "Script inventory" below before running anything.
+## Устройство
+- Сайт — один набор: тексты в `data/` и `assets/js/content.js`, показ в `assets/js/`, стили в одном файле `assets/css/site.css`, язык меняется без перезагрузки (AZ/RU/EN), темы night/paper/sepia.
+- Библиотека книг: `books/<книга>/book.json` (паспорт) и `books/<книга>/<язык>/NNN.html` (главы); одна читалка `read.html?b=<книга>`.
+- Прежний сайт целиком лежит в `D:\Projects\Ragimoff\old_versions\2026-11-12_site_before_v11\` (на GitHub — метка `site-before-v11-20261112` и ветка `archive/site-2026-11-12`). Оттуда сборщики только читают; менять там ничего нельзя.
+- Оставлено от прежнего сайта в корне, потому что на это завязана работа: `payment/` (страницы возврата оплаты), `test/aile.html` и `test/quiz.*` (тест), `books/index.html`, `books/ru/`, `books/en/`, `books/books.js`, `books/books.css`, `books/order-form.js`, `books/covers/`, `_lang-switch.js` (страница заказа книг и корзина — временно, до переноса заказа в новую систему), `app/`, значки, `CNAME`.
+- `404.html` переводит прежние адреса на новые страницы.
 
-## Owner
-Dr. Kənan Rəhimov — clinical psychiatrist. The repository serves his practice site (`ragimoff.org`) and his Azerbaijani-language Clinical Psychiatry textbook ("Klinik Psixiatriya").
+## Перед публикацией — все стражи должны показать ноль
+Локальный сервер: `python -m http.server 8812` из корня сайта.
+`verify_data.py --all`, `parity_check.py` (одно известное: blog/klinik-psixiatriya только на az), `css_collide.py`, `css_scale.py`, `sentence_case.py show`, `structure_check.py`, `pages_check.py quick`, `form_check.py`; версия — `stamp.py`.
 
-## Two parallel projects in this repo
-1. **Main website** — multilingual (AZ / RU / EN) static site on GitHub Pages. See `README.md` for the partials/build.py architecture.
-2. **Klinik Psixiatriya textbook** — separate subsystem under `klinik-psixiatriya/` + master sources under `_supplements/`. Excluded from `build.py` by design.
-
-`build.py`'s `SKIP_DIRS` / `SKIP_FILES` keep these two from interfering.
-
-## Language and terminology (textbook)
-Academic Azerbaijani medical register. Always use:
-- `Klinik təzahürlər` (not *mənzərə*)
-- `Vahid diaqnostik meyarlar` (not *çek-list*)
-- `İnstrumental müayinələr` (not *Alət*)
-- `pasiyent` (not *xəstə*)
-- `psixi pozuntu` (not *ruhi*)
-- `metodları` (not *üsulları*)
-- `təfəkkür`, `şüur`
-
-## Source whitelist (textbook citations)
-Only authoritative sources are allowed:
-NICE · APA · WFSBP · Cochrane · DSM-5-TR · XBT-11 (ICD-11) · AAP · AACAP · FDA · EMA · CANMAT · NIMH · ISSTD · ICCS · WPATH · VA-DoD · SAMHSA · AASM · AUA · EAU · ISSWSH · ISSM · ACOG · USPSTF · RCPsych · AGS (Beers) · ISPMD
-
-## Session-start ritual (читай каждый раз)
-В начале сессии, перед любой содержательной работой над книгой:
-1. Прочитать `TYPOGRAPHY.md` (правила, особенно §0c — терминологический синхронизм)
-2. Прочитать `PROGRESS.md` (последняя сессия)
-3. **Проверить по факту:** `checkup.py` (12 проверок) → `regress.py` (сторож исправленных дефектов) → `refcheck.py` (цитаты против списка литературы) → `numcheck.py` (числа между языками) → `paracheck.py` (абзацы) → `xrefcheck.py` (отсылки в тексте) → `build_headers.py`, `build_sections.py`, `fix_orthography.py`, `lang_tags.py` (все должны показать 0 изменений).
-4. Если правились справочные страницы — `_build_abbreviatur.py`; если меню — `fix_sidebar.py`; если коды — `fix_toc_codes.py`. Все три идемпотентны.
-
-Виджета правок «Düzəliş et» и всей его обвязки больше нет: кнопка снята
-2026-08-09, а конвейер (`duzelis.js/css`, воркер Cloudflare, `PENDING.json`,
-`_term_sync.py`, `admin-corrections.html`) удалён 2026-08-10.
-
-## Script inventory (2026-08-09)
-74 скрипта в корне. Прежде чем запускать любой — посмотрите, в какую группу он входит.
-
-**Живые, идемпотентные — можно запускать всегда:**
-`checkup.py`, `regress.py`, `refcheck.py`, `wordcheck.py`, `progress_map.py`,
-`build_headers.py`, `build_sections.py`, `build_search_index.py`,
-`apply_global.py`, `apply_fixes.py`, `fix_quotes.py`, `fix_space.py`,
-`fix_dash.py`, `fix_punct.py`, `fix_strong.py`, `fix_glossary.py`,
-`fix_sidebar.py`, `fix_toc_codes.py`, `fix_code_table.py`, `_build_abbreviatur.py`,
-`fix_orthography.py`, `lang_tags.py`, `numcheck.py`, `paracheck.py`,
-`xrefcheck.py`.
-
-**Только локально, на сайт не идёт:** `graphify-out/` — граф знаний по книге,
-регенерируемый артефакт; в `.gitignore`, на GitHub Pages не попадает.
-
-**Мёртвые — путь `C:\Users\SAM\Desktop\sayt2` не существует (41 шт.):**
-все `fix_dsm_*`, `fix_xbt_*`, `fix_nav_*`, `fix_search_*`, `add_*`, `build_terminoloji.py`,
-`build_search_index.py`, `merge_qisaltmalar.py`, `update_docx.py`, `read_docx.py` и др.
-Запуск завершится ошибкой пути — это единственное, что защищает данные.
-
-**Одноразовые и опасные — НЕ запускать (проверено в изолированном worktree):**
-| скрипт | что сделает при запуске |
-|---|---|
-| `_inject_abbr.py` | обернёт 4215 сокращений в `<abbr>` |
-| `_unwrap_abbr.py` | снимет их обратно в 160 файлах |
-| `_replace_pille.py` | 10 файлов |
-| `_sync_17_23.py` | перезапишет 7 страниц глав из `_supplements` |
-| `_reorder_front.py` | переставит вводные страницы |
-
-**Конфликт генераторов:** `abbreviatur.html` умеют перезаписывать восемь скриптов;
-источник истины — `_build_abbreviatur.py`. `build_terminoloji.py` — его старый
-конкурент с другими данными (в нём AAP всё ещё «атипичные антипсихотики»).
-
-**Шумный инструмент:** `_audit_grammar.py` показывает 105 538 «двойных пробелов»
-и 2790 «опечаток» — это отступы HTML и разный регистр одного слова. В видимом
-тексте двойных пробелов ноль (проверено). Сигнала в отчёте почти нет.
-
-## Орфографические решения владельца (2026-08-10)
-Пять пар, где книга годами держала обе формы, сведены к одной. Решение Кенана,
-язык от языка разное; закреплено в `fix_orthography.py` (идемпотентен) и в
-`regress.py`:
-
-| | азербайджанский | турецкий |
-|---|---|---|
-| депрессия | `depressiv`, `depressiya`, `antidepressant` (двойное s) | `depresif` (одно s) |
-| апноэ | `apnoe`, `apnoesi` | `apne`, `apnesi` |
-| суффикс | `-ergik` (dopaminergik) | `-erjik` (dopaminerjik) |
-| СДВГ / ПТСР | `DDHP`, `PTSP` | `DEHB`, `TSSB` |
-
-Английский текст сохраняет `ADHD`/`PTSD`, русский — `СДВГ`/`ПТСР`. Аббревиатуру
-НЕ трогают там, где она часть английского имени («Adult ADHD Self-Report Scale»,
-«PTSD Checklist», строка DSM в шапке), в `<meta>` (поисковые запросы пишутся
-международной формой) и на страницах-расшифровщиках `abbreviatur.html` и
-`terminoloji-luget.html`. За этим следит соседнее слово, не окно контекста.
-
-6B82 называется **AŞIRI QİDALANMA POZUNTUSU** — и в каноне, и в заголовке, и в
-`_build_abbreviatur.py`, и в навигации. Старое `KEÇİRTMƏ İLƏ YEMƏ POZUNTUSU`
-снято везде.
-
-## Метки языка (2026-08-10)
-Страница помечена одним языком (`<html lang="tr">`), но внутри неё законно
-живут чужие. Без метки такой кусок неотличим от родной прозы, и любая
-проверка орфографии считает его ошибкой — так «stress» в турецком дереве
-выглядел дефектом в 478 местах, а на деле 476 были именами файлов и слагами,
-а остальные — английскими названиями.
-
-Метки ставит **`lang_tags.py`** (идемпотентен), пять этапов:
-
-| этап | что метит | сколько |
-|---|---|---|
-| A | контейнеры по разметке: `<div class="dh-en" lang="en">`, `<ol class="ref-list" lang="en">` | 208 на дерево |
-| B | английские названия в прозе → `<span lang="en">` | ~2170 |
-| C | азербайджанские вставки в ru/en/tr → `<span lang="az">` | 454 |
-| D | английский термин в кавычках или скобках → `<span lang="en">` | 387 |
-| E | русская колонка глоссария в az/en/tr → `<span lang="ru">` | 909 |
-
-Этап B ищет по уликам, а не по форме: словарь строится из самой книги —
-английский корпус из дерева `en/`, родной из тех отрезков своего дерева, где
-есть родная буква. Улика частая в английском и почти отсутствующая в родном
-(`Guideline`, `Therapy`, `Scale`), поэтому турецкое `RUHSAL BOZUKLUKLAR`
-в заглавном регистре английским не считается.
-
-Этап C узнаёт азербайджанский по `ə ı İ ş ğ ç`. Буквы `ü` и `ö` в набор НЕ
-входят: на них ловились шведская фамилия Öst, немецкая Wölfling и турецкое
-слово «kültür» в глоссарии.
-
-**Что намеренно не метится:** фамилии авторов («Barkley», «Frank E.»,
-«Blank et al.»), аббревиатуры («EIP», «M-CHAT-R/F»), международные имена
-лекарств (`donanemab`), латынь (`lupus`, `herpes`). Помечать их английским
-значило бы соврать. Сплошная разметка одиночных слов проверена и отвергнута:
-из 1336 непомеченных латинских слов в аз. дереве почти все именно такие.
-
-**Разметкой владеют три скрипта, все трое её знают:** `build_headers.py`
-печатает `lang="en"` на `dh-en`; `checkup.py` ищет `<ol class="ref-list"[^>]*>`
-с атрибутами; `_build_abbreviatur.py` сам размечает таблицу канонических
-терминов — колонка «İzah / qarşılıq» целиком английская (`<td lang="en">`),
-а процитированные внутри неё иноязычные слова записываются в данных как
-`{tr:kültür}` и `{az:xəstə}`. Запись разворачивается функцией `lang_spans()`
-уже ПОСЛЕ `html.escape`, поэтому термин остаётся экранированным, а в разметку
-попадает только метка языка — произвольный HTML в данные таблицы не пускается.
-После перегенерации `abbreviatur.html` инструмент `lang_tags.py` находит
-0 правок: генератор выдаёт готовую разметку сам.
-
-Читателю метка видна тихо: `span[lang]` получает пунктир снизу (`style.css`,
-четыре дерева). Правило простое, потому что span с атрибутом `lang` в книге
-бывает только у иноязычного куска. Контейнеры — не span и не подчёркиваются:
-там чужой язык очевиден и без знака.
-
-## Единственный источник истины (2026-08-09)
-Изданные деревья `klinik-psixiatriya/{,ru,en,tr}` — и всё. Производные копии
-удалены: `klinik-psixiatriya/preview/` (121 файл), `_translate/` (1871),
-`_supplements/chapters-v2/` (95). Все три держали СТАРУЮ привязку кодов —
-6C90↔6C91 переставлены местами, 6C41 значился опиоидами, 6B60 — ДРИ, — то есть
-публиковать их было бы прямой ошибкой. Вместе с ними удалены пять скриптов,
-у которых не осталось входных данных: `_build_preview.py`,
-`_inject_chapters_v2.py`, `_fix_terminology3.py`, `_fix_terminology4.py`,
-`_fix_all_v5.py`. Всё это лежит в истории git и в архиве
-`stale-trees-2026-08-09.zip`.
-
-## Typography / verstka rules
-**Read `TYPOGRAPHY.md` BEFORE any DOCX or book-HTML layout work.**
-
-The book follows **ICD-11 РФ 2022** visual style (138×228 mm reference, but our pages are A4). Reference PDF: `_supplements/ICD-11_RU_2022_reference.pdf`. Our font stays Times New Roman (professional medical textbook proportions).
-
-Skill: `.claude/skills/book-typography-icd11/SKILL.md` (also mirrored at `~/.claude/skills/book-typography-icd11/SKILL.md`).
-
-Covers: title page, heading hierarchy (H1 28pt > H2 20pt > H3 14pt > H4 12pt > H5 11pt), page-break (only chapters + disorder ICD-titled H2, never sub-sections), TOC depth 2 with dot leaders, alternating page headers/footers, terminology blacklist, source whitelist, Düzəliş et widget. Do not ask the user to repeat these rules.
-
-## Hard rules
-- `index.html` (root AZ) is the design etalon. Never modify without explicit user permission. `build.py` skips it via `SKIP_FILES`.
-- `klinik-psixiatriya/` has its own structure; `build.py` skips it via `SKIP_DIRS`.
-- Before mass edits, create a `backup-before-<topic>` git tag.
-- Never push without committing. Never commit secrets or large binaries (a `pandoc-*.msi` was caught and unstaged earlier).
-- Never amend commits — always create new ones.
-- Do not auto-create `.md` docs unless the user asks; `PROGRESS.md`, `HISTORY.json`, `PROJECTS.json` are the canonical state files.
-- CRLF warnings on Windows are expected — do not "fix" them.
-
-## Где память этого проекта (проверено по факту 2026-08-21)
-
-ЦНС отвечает по проекту только из PostgreSQL. `recall("ragimoff …")` возвращает
-«No relevant context found» — в граф LightRAG проект не индексирован, и это не сбой
-связи: `memory_status` показывает LightRAG healthy. Поэтому контекст поднимают так:
-
-    dialog_history(project='ragimoff', days=…, limit=…)   — точные строки
-    search_memory('ragimoff' | 'psixiatriya', limit=…)    — поиск по всем проектам
-
-⚠️ **До 12.08.2026 история писалась под проектом `994`.** Апрель–июль (книга на сайте,
-вычитка, переключатель языков) ищутся только через `search_memory` без указания проекта.
-Запрос с `project='ragimoff'` за тот период честно вернёт пустоту — это не значит,
-что работы не было.
-
-Если инструментов `brain` нет в сессии, эндпоинт вызывается напрямую:
-`http://45.67.216.36:9626/mcp` (streamable-http, JSON-RPC; чтение без токена).
-
-## Доступы, ключи и общая память (Кенан разрешил 08.11.2026)
-
-Значения ключей не печатать и не коммитить — здесь только места.
-- **Главный свод ключей (локально, вне git):** `D:\Projects\994\.venv\secrets\` — `pass-key.md`, `api-key.md`, `CONNECTIONS.md` (как подключаться к каждому каналу), `ALIBABA_DEBTS.md`; `D:\Projects\_archiverchive_docs\config\` — `pass.txt` (серверы, SSH, токены ботов) и `api.txt` (все ключи провайдеров); `D:\Projects\_archive\archive_docs\config\` — `pass.txt` (серверы, SSH, токены ботов) и `api.txt` (все ключи провайдеров); архив и карта всех мест — `D:\Projects\_archive\keys\README.md`.
-- **SSH на оба сервера:** `ssh -i ~/.ssh/claude_deploy_key root@<ip>`.
-- **45.67.216.36** — ЦНС (общая память всех проектов: `python D:/Projects/_MEMORY/tools/cns.py recall <тема>`), Claudia, Chesscoin. Ключи моделей — `/opt/claudia/.env` (DASHSCOPE_KEY_2/3/GTC/RPM/HARNESS, QWEN_API_KEY, DEEPINFRA_API_KEY, OPENROUTER_*). Карта — `/opt/SERVER_MAP.md`.
-- **164.68.114.15** — прод перевода 994. Ключи — `/opt/prod/tools/tr_keys.json` (запись `irada` — DashScope с бесплатной квотой).
-- **Картинки:** DashScope `wan2.5-t2i-preview`; образец — `D:\Projects\Freud\tools\site\gen_covers.py`, для «Ноктюрна» — `_tools/nocturne/gen_hero.py` (запуск на 164, результат в `D:\Projects\Ragimoff\_assets\nocturne_hero\`).
-- Свод правил всех проектов — `D:\Projects\_MEMORY\RULES.md`; платное — только после цены и «да» Кенана.
-
-## Сайт: что сделано в августе (сверх книги)
-
-- **Контраст.** Тёмный текст на тёмном фоне правится не правилом CSS, а сторожем во
-  время исполнения (`js-hero-fit2.js`, `guardContrast`): правила по `data-theme` промахивались,
-  потому что атрибут секции противоречил её же инлайновому фону.
-- **Доступность** (`fix_a11y.py`): 367 `for=`, 96 id полей, 268 aria-label, 616 размеров
-  изображений, 166 skip-link. Сенсорные цели 44px — в `gtc-dark.css`.
-- **Пары «заголовок ↔ подзаголовок»** сведены по ширине на мобильном; ритм разделов
-  (бейдж → заголовок → подзаголовок) отдан переменным `--s-gap-*`, ручные inline-отступы
-  сняты со всех страниц (`fix_rhythm.py`).
-- **Запись на обучение** — четыре программы, оплата по действующему прайсу, та же форма
-  продублирована на странице Самиры: переход между страницами терял клиента.
-- WhatsApp: страницы Самиры и семейной терапии — `994775395009`; шапка и подвал сайта —
-  `994702200376`.
-
-## Active state snapshot (update at end of every session)
-- See `PROOFREADING.md` — живой список правок вычитки: что ждёт, что решено, что сверено с первоисточником. Не терять между сессиями.
-- See `PROGRESS.md` for the human-readable session log.
-- See `HISTORY.json` for the structured transformation log.
-- See `PROJECTS.json` for the per-project status.
-
-## Editor preferences
-- Use `Edit` for in-place changes; `Write` only for new files or full rewrites.
-- Prefer minimal, surgical diffs. Match existing style exactly.
-- No emojis in files unless explicitly requested.
+## Жёсткие правила
+- В git добавлять файлы только по явному списку путей, никогда `git add .` / `-a`. Личные документы `_agent/docs/…`, `_agent/kpt/`, `_agent/server/`, `_agent/shots/` не публикуются.
+- Сервер оплаты и заявок (`api.ragimoff.org`) — боевой: менять только по слову владельца; платёж не завершать; пробных заявок на сервер не слать (form_check.py подменяет отправку).
+- Ничего не удалять (сначала копия); ключи и пароли не печатать; платные вызовы — после цены и «да» владельца.
+- Согласованный вид закреплён замком (`_agent/lock/layout.json`); намеренное изменение принимается командой `pages_check.py accept`.
+- Скрипты с кавычками и обратной чертой писать инструментом Write: heredoc в этой оболочке портит текст.

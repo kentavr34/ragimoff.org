@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru" data-theme="night">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Doctor Ragimoff</title>
+<script>
+/* Прежние адреса сайта → страницы новой системы (переход 12.11.2026). GitHub Pages отдаёт эту страницу на любой
+   несуществующий адрес; если адрес узнан — человек сразу попадает на новую страницу, иначе видит сообщение ниже. */
+(function () {
+  var p = location.pathname, h = location.hash || '', to = null, m, lang = null;
+  var PROG = { 'umumi-psixologiya': 'general', 'klinik-psixologiya': 'clinical', 'psixoterapiya-praktikumu': 'practicum', 'psixodiaqnostika': 'psychodiagnostics', 'qisamuddetli': 'cbt', 'psixoanaliz': 'psychoanalysis', 'aile-terapiyasi': 'family' };
+  var SPEC = { 'kenan-rehimov': 'kenan', 'samire-rehimova': 'samira' };
+  var BOOKS = ['freud-afaziya', 'freud-aforizmlar', 'freud-fliesse-mektublari', 'freud-gw01', 'freud-gw02', 'freud-gw04', 'freud-gw05', 'freud-gw06', 'freud-gw07', 'freud-gw08', 'freud-gw09', 'freud-gw10', 'freud-gw11', 'freud-gw12', 'freud-gw13', 'freud-gw14', 'freud-gw15', 'freud-gw16', 'freud-gw17', 'freud-kokain', 'freud-referatlar-1884-1885', 'freud-resenziyalar-1887-1910', 'freud-sehnede-psixopatik-personajlar', 'freud-sevgi-mektublari', 'freud-sossur-on-sozu', 'freud-usaq-iflici', 'freud-yung-mektublari', 'freud-zweig-mektublari', 'phoenix-era', 'shizofreniya', 'virus-viny', 'klinik-psixiatriya'];
+  if ((m = p.match(/^\/test\/11\/(.*)$/))) to = '/' + m[1] + location.search + h;                                   /* адреса тестовой версии */
+  else if ((m = p.match(/^\/klinik-psixiatriya\/(?:(ru|en|tr)\/)?(?:([\w-]+)\.html)?$/))) {                        /* книга «Клиническая психиатрия» */
+    to = '/read.html?b=klinik-psixiatriya' + (m[2] && m[2] !== 'index' ? '&p=' + m[2] : '') + h;
+    if (m[1] === 'tr') { try { localStorage.setItem('r11_rd_lang_klinik-psixiatriya', 'tr|' + (localStorage.getItem('r11_lang') || 'ru')); } catch (e) {} } else lang = m[1] || 'az';
+  }
+  else if ((m = p.match(/^\/books\/([\w-]+)\/(?:(ru|en)\/)?/)) && m[1] !== 'ru' && m[1] !== 'en' && m[1] !== 'covers') {  /* прежние читалки книг */
+    to = BOOKS.indexOf(m[1]) >= 0 ? '/read.html?b=' + m[1] + (/^#ch\d+$/.test(h) ? h : '') : '/shop.html'; lang = m[2] || null;
+  }
+  else if ((m = p.match(/^\/(az|ru|en)\/(.*)$/))) {                                                                 /* страницы прежнего сайта по языкам */
+    lang = m[1]; var r = m[2].replace(/index\.html$/, ''), k;
+    if ((k = r.match(/^telim\/([\w-]+)\.html/))) to = PROG[k[1]] ? '/program.html?p=' + PROG[k[1]] : '/index.html#edu';
+    else if ((k = r.match(/^konsultasiya\/([\w-]+)\.html/))) to = '/consult.html?c=' + k[1];
+    else if (/^konsultasiya/.test(r)) to = '/index.html#cons';
+    else if ((k = r.match(/^mutexessisler\/([\w-]+)\.html/))) to = SPEC[k[1]] ? '/specialist.html?s=' + SPEC[k[1]] : '/index.html#spec';
+    else if ((k = r.match(/^bloq\/([\w-]+)\.html/))) to = '/article.html?a=' + k[1];
+    else if (/^bloq/.test(r)) to = '/blog.html';
+    else if (/^elaqe/.test(r)) to = '/contact.html';
+    else if (/^korporativ/.test(r)) to = '/corporate.html';
+    else to = '/index.html';
+  }
+  else if ((m = p.match(/^\/blog-([\w-]+)\.html$/))) to = '/article.html?a=' + m[1];
+  else if (/^\/(blog|bloq)\/?$/.test(p)) to = '/blog.html';
+  else if (/^\/(tehsil|telim|b2b|aile-terapiyasi|aile-terapiyasi-usaq|depressiya|enurez|panik|sosial-fobiya)[\w-]*\.html$/.test(p)) to = '/index.html';
+  if (lang) { try { localStorage.setItem('r11_lang', lang); } catch (e) {} }
+  if (to) location.replace(to);
+  else { var t = null, l = null; try { t = localStorage.getItem('r11_theme'); l = localStorage.getItem('r11_lang'); } catch (e) {} document.documentElement.setAttribute('data-theme', t || 'night'); document.documentElement.lang = l || 'ru'; }
+})();
+</script>
+<link rel="stylesheet" href="/assets/css/site.css?v=11121647">
+</head>
+<body class="inner">
+<main class="pp" style="min-height:100vh;display:grid;place-items:center;text-align:center">
+  <div class="wrap">
+    <p class="pp__kind">404</p>
+    <h1 class="pp__t" id="nfT">Страница не найдена</h1>
+    <p class="pp__cta"><a class="btn" href="/index.html" id="nfB">На главную</a></p>
+  </div>
+</main>
+<script>
+(function () { var l = document.documentElement.lang, T = { az: ['Səhifə tapılmadı', 'Ana səhifə'], en: ['Page not found', 'Home'] }[l]; if (T) { document.getElementById('nfT').textContent = T[0]; document.getElementById('nfB').textContent = T[1]; } })();
+</script>
+</body>
+</html>
