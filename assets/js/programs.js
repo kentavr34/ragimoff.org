@@ -85,8 +85,8 @@ export const PROGRAMS = {
           d: 'Диплом выдаёт Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов; программа профессиональной переподготовки утверждена руководством института. Сведения о дипломе вносятся в государственный реестр ФИС ФРДО, диплом не требует нострификации, и работодатель может проверить его через реестр.'
         },
         price: {
-          rows: [['Полная стоимость', '4 200 AZN'], ['При полной оплате (−400 AZN)', '3 800 AZN'], ['Рассрочка 12 мес.', '350 AZN/мес.'], ['Рассрочка 24 мес.', '200 AZN/мес.']],
-          note: 'Рассрочка до 24 месяцев — от 200 AZN в месяц.'
+          rows: [['Полная стоимость', '4 200 AZN'], ['При полной оплате (−400 AZN)', '3 800 AZN'], ['Рассрочка 12 мес.', '350 AZN/мес.'], ['Рассрочка 24 мес.', '175 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 175 AZN в месяц.'
         },
         faq: [['Нужно ли предыдущее образование по психологии?', 'Нет. Для программы «Общая психология» предыдущее образование по психологии не требуется: подать заявку может любой совершеннолетний человек, интересующийся психологией.']]
       },
@@ -126,8 +126,8 @@ export const PROGRAMS = {
           d: 'Diplomu Sankt-Peterburq Əlavə Təhsil İnstitutu verir; peşəkar yenidənhazırlanma proqramı institutun rəhbərliyi tərəfindən təsdiq edilib. Diplom haqqında məlumat FİS FRDO dövlət reyestrinə daxil edilir, nostrifikasiya tələb olunmur, işəgötürən diplomu reyestr vasitəsilə yoxlaya bilər.'
         },
         price: {
-          rows: [['Tam qiymət', '4 200 AZN'], ['Öncədən ödənişdə (−400 AZN)', '3 800 AZN'], ['Taksit 12 ay', '350 AZN/ay'], ['Taksit 24 ay', '200 AZN/ay']],
-          note: '24 aya qədər taksit imkanı — aylıq minimum 200 AZN.'
+          rows: [['Tam qiymət', '4 200 AZN'], ['Öncədən ödənişdə (−400 AZN)', '3 800 AZN'], ['Taksit 12 ay', '350 AZN/ay'], ['Taksit 24 ay', '175 AZN/ay']],
+          note: '24 aya qədər taksit imkanı — aylıq minimum 175 AZN.'
         },
         faq: [['Əvvəlki psixologiya təhsili tələb olunurmu?', 'Xeyr. «Ümumi Psixologiya» proqramı üçün əvvəlki psixologiya təhsili tələb olunmur: psixologiyaya maraq göstərən hər bir yetkin şəxs müraciət edə bilər.']]
       },
@@ -167,8 +167,8 @@ export const PROGRAMS = {
           d: 'The diploma is issued by the St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists; the professional retraining programme is approved by the institute’s management. The diploma is entered in the state register FIS FRDO, requires no nostrification and can be checked by an employer through the register.'
         },
         price: {
-          rows: [['Full price', '4,200 AZN'], ['Full payment (−400 AZN)', '3,800 AZN'], ['12-month instalment', '350 AZN/mo.'], ['24-month instalment', '200 AZN/mo.']],
-          note: 'Instalment plan up to 24 months — from 200 AZN a month.'
+          rows: [['Full price', '4,200 AZN'], ['Full payment (−400 AZN)', '3,800 AZN'], ['12-month instalment', '350 AZN/mo.'], ['24-month instalment', '175 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 175 AZN a month.'
         },
         faq: [['Is a previous psychology education required?', 'No. The General Psychology programme does not require any previous psychology education: any adult interested in psychology may apply.']]
       }
@@ -216,8 +216,8 @@ export const PROGRAMS = {
           d: 'Диплом выдаёт Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов; сведения о дипломе вносятся в государственный реестр ФИС ФРДО, нострификация не требуется. Параллельно выдаётся международный сертификат IPAS/BPA с проверкой по QR-коду, действительный и за пределами Азербайджана.'
         },
         price: {
-          rows: [['Полная стоимость', '6 600 AZN'], ['При полной оплате (−600 AZN)', '6 000 AZN'], ['Рассрочка 12 мес.', '550 AZN/мес.'], ['Рассрочка 24 мес.', '300 AZN/мес.']],
-          note: 'Рассрочка до 24 месяцев — от 300 AZN в месяц.'
+          rows: [['Полная стоимость', '6 600 AZN'], ['При полной оплате (−600 AZN)', '6 000 AZN'], ['Рассрочка 12 мес.', '550 AZN/мес.'], ['Рассрочка 24 мес.', '275 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 275 AZN в месяц.'
         },
         faq: [['Нужно ли высшее образование?', 'Да. Для программы «Клиническая психология» требуется диплом о высшем образовании (любое направление; предпочтение — психология, медицина, педагогика и социальная работа).']]
       },
@@ -258,8 +258,8 @@ export const PROGRAMS = {
           d: 'Diplomu Sankt-Peterburq Əlavə Təhsil İnstitutu verir; diplom haqqında məlumat FİS FRDO dövlət reyestrinə daxil edilir, nostrifikasiya tələb olunmur. Paralel olaraq QR kodla yoxlanıla bilən, Azərbaycandan kənarda da keçərli olan beynəlxalq IPAS/BPA sertifikatı verilir.'
         },
         price: {
-          rows: [['Tam qiymət', '6 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '6 000 AZN'], ['Taksit 12 ay', '550 AZN/ay'], ['Taksit 24 ay', '300 AZN/ay']],
-          note: '24 aya qədər taksit imkanı — aylıq minimum 300 AZN.'
+          rows: [['Tam qiymət', '6 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '6 000 AZN'], ['Taksit 12 ay', '550 AZN/ay'], ['Taksit 24 ay', '275 AZN/ay']],
+          note: '24 aya qədər taksit imkanı — aylıq minimum 275 AZN.'
         },
         faq: [['Ali təhsil tələb olunurmu?', 'Bəli. «Klinik Psixologiya» proqramı üçün ali təhsil diplomu tələb olunur (istənilən sahə; psixologiya, tibb, pedaqogika və sosial iş sahələrinə üstünlük verilir).']]
       },
@@ -300,8 +300,8 @@ export const PROGRAMS = {
           d: 'The diploma is issued by the St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists; it is entered in the state register FIS FRDO and requires no nostrification. An international IPAS/BPA certificate, verifiable by QR code and valid outside Azerbaijan, is issued alongside it.'
         },
         price: {
-          rows: [['Full price', '6,600 AZN'], ['Full payment (−600 AZN)', '6,000 AZN'], ['12-month instalment', '550 AZN/mo.'], ['24-month instalment', '300 AZN/mo.']],
-          note: 'Instalment plan up to 24 months — from 300 AZN a month.'
+          rows: [['Full price', '6,600 AZN'], ['Full payment (−600 AZN)', '6,000 AZN'], ['12-month instalment', '550 AZN/mo.'], ['24-month instalment', '275 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 275 AZN a month.'
         },
         faq: [['Is a higher education degree required?', 'Yes. The Clinical Psychology programme requires a higher education diploma (any field; preference is given to graduates in psychology, medicine, education and social work).']]
       }
@@ -348,8 +348,8 @@ export const PROGRAMS = {
           d: 'Сертификат International Psychotherapy Association (IPAS) и BPA выдаётся успешно прошедшим итоговую аттестацию. Подлинность проверяется по QR-коду на сертификате или на сайте ассоциации (intpas.com).'
         },
         price: {
-          rows: [['Полная стоимость', '3 600 AZN'], ['При полной оплате (−600 AZN)', '3 000 AZN'], ['Рассрочка 12 мес.', '300 AZN/мес.'], ['Рассрочка 24 мес.', '175 AZN/мес.']],
-          note: 'Рассрочка до 24 месяцев — от 175 AZN в месяц.'
+          rows: [['Полная стоимость', '3 600 AZN'], ['При полной оплате (−600 AZN)', '3 000 AZN'], ['Рассрочка 12 мес.', '300 AZN/мес.'], ['Рассрочка 24 мес.', '150 AZN/мес.']],
+          note: 'Рассрочка до 24 месяцев — от 150 AZN в месяц.'
         },
         faq: []
       },
@@ -389,8 +389,8 @@ export const PROGRAMS = {
           d: 'International Psychotherapy Association (IPAS) və BPA sertifikatı yekun attestasiyadan uğurla keçənlərə verilir. Sertifikatın həqiqiliyini üzərindəki QR-kodla və ya assosiasiyanın saytında (intpas.com) yoxlamaq olar.'
         },
         price: {
-          rows: [['Tam qiymət', '3 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '3 000 AZN'], ['Taksit 12 ay', '300 AZN/ay'], ['Taksit 24 ay', '175 AZN/ay']],
-          note: '24 aya qədər taksit imkanı — aylıq minimum 175 AZN.'
+          rows: [['Tam qiymət', '3 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '3 000 AZN'], ['Taksit 12 ay', '300 AZN/ay'], ['Taksit 24 ay', '150 AZN/ay']],
+          note: '24 aya qədər taksit imkanı — aylıq minimum 150 AZN.'
         },
         faq: []
       },
@@ -430,8 +430,8 @@ export const PROGRAMS = {
           d: 'The IPAS (International Psychotherapy Accreditation Society) and BPA certificate is issued to those who pass the final assessment. Its authenticity can be verified online via the QR code on it or on the association’s website (intpas.com).'
         },
         price: {
-          rows: [['Full price', '3,600 AZN'], ['Full payment (−600 AZN)', '3,000 AZN'], ['12-month instalment', '300 AZN/mo.'], ['24-month instalment', '175 AZN/mo.']],
-          note: 'Instalment plan up to 24 months — from 175 AZN a month.'
+          rows: [['Full price', '3,600 AZN'], ['Full payment (−600 AZN)', '3,000 AZN'], ['12-month instalment', '300 AZN/mo.'], ['24-month instalment', '150 AZN/mo.']],
+          note: 'Instalment plan up to 24 months — from 150 AZN a month.'
         },
         faq: []
       }
