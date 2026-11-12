@@ -1,8 +1,8 @@
 /* test/11 — общая «рама» внутренних страниц: шапка, меню, тема, язык, соцсети, подвал. Тексты — из content.js, стили — из site.css.
    Страница передаёт onRender(t, L, lang): он вызывается при загрузке и при каждой смене языка. */
-import { initTop } from './totop.js?v=11121647';
-import { T, LINKS3 as LINKS } from './content.js?v=11121647';
-import { PROGRAMS } from './programs.js?v=11121647';
+import { initTop } from './totop.js?v=11122055';
+import { T, LINKS3 as LINKS } from './content.js?v=11122055';
+import { PROGRAMS } from './programs.js?v=11122055';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -20,10 +20,10 @@ export function initChrome({ home = 'index.html', onRender }) {
     document.documentElement.lang = lang;
     const groups = [
       { k: 'spec', href: home + '#spec', sub: t.spec.p.map((p, i) => [L.spec[i], p.n]) },
-      { k: 'books', href: home + '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]).concat(L.shop && t.books.allBooks ? [[L.shop, t.books.allBooks]] : []) },
-      { k: 'edu', href: home + '#edu', sub: PROGRAMS.order.map(s => [progUrl(s), PROGRAMS.items[s][lang].title]) },
-      { k: 'cons', href: home + '#cons', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
-      { k: 'corp', href: home + '#corp', sub: [] }, { k: 'blog', href: home + '#blog', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
+      { k: 'books', href: L.shop || home + '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]).concat(L.shop && t.books.allBooks ? [[L.shop, t.books.allBooks]] : []) },
+      { k: 'edu', href: 'program.html', sub: PROGRAMS.order.map(s => [progUrl(s), PROGRAMS.items[s][lang].title]) },
+      { k: 'cons', href: 'consult.html?c=index', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
+      { k: 'corp', href: L.corp || 'corporate.html', sub: [] }, { k: 'blog', href: L.blogAll || 'blog.html', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
     ];
     $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
     $('#mobIn').innerHTML = `<a class="btn mob__cta" href="#reg">${esc(t.nav.cta)}</a>` + groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');

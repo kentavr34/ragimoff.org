@@ -1,11 +1,11 @@
 /* test/11 — внутренняя страница из блоков: один сценарий на специалистов, консультации, контакты, тренинги, право, блог и статью.
    Вид страницы — <body data-kind="spec|cons|page|blog|post" data-slug="…">; данные — data/<папка>/<slug>.<lang>.json; рама — chrome.js; форма — reg.js. */
-import { initChrome, esc } from './chrome.js?v=11121647';
-import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11121647';
-import { regRender, regOpen } from './reg.js?v=11121647';
-import { CONS, CONS_TOPIC } from './content.js?v=11121647';
+import { initChrome, esc } from './chrome.js?v=11122055';
+import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11122055';
+import { regRender, regOpen } from './reg.js?v=11122055';
+import { CONS, CONS_TOPIC } from './content.js?v=11122055';
 
-const V = '11121647';
+const V = '11122055';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const kind = document.body.dataset.kind || 'page';
 const q = new URLSearchParams(location.search);
@@ -41,7 +41,9 @@ const page = initChrome({
   async onRender(t, L, lang) {
     const my = ++turn, u = t.pg;
     const h = t.reg; $('#regH').textContent = h.h; $('#regS').textContent = h.sub; regRender(t, lang);
-    const d = await load(DIR[kind], slug, lang); if (my !== turn) return;
+    let d = await load(DIR[kind], slug, lang); if (my !== turn) return;
+    /* общая страница раздела «Консультации» (consult.html?c=index): список всех консультаций из data/cons/index.<язык>.json */
+    if (d && !d.title && Array.isArray(d.items)) d = { title: t.nav.cons, blocks: [{ type: 'links', items: d.items.map(x => [x.title, 'consult.html?c=' + x.slug]) }] };
     if (!d) { document.title = u.none + ' — Doctor Ragimoff'; $('#pgHero').innerHTML = `<div class="pg__ht"><h1 class="pp__t">${esc(u.none)}</h1><p class="pp__cta"><a class="btn" href="index.html">${esc(u.home)}</a></p></div>`; $('#pgBlocks').innerHTML = ''; return; }
     document.title = d.title.replace(/<[^>]+>/g, '') + ' — Doctor Ragimoff';
     const needBlog = kind === 'post' || (d.blocks || []).some(b => b.type === 'articles');

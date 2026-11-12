@@ -5,6 +5,15 @@ const WA = 'https://wa.me/994702200376';
 const RATE = { one: { online: 100, offline: 150 }, both: { online: 150, offline: 200 } };          /* AZN, слово владельца 08.11 */
 const ENU = 3, ENU_P = { first: 50, course: 500 };                                                    /* ночной энурез (тема № 4): слово владельца 11.11 */
 const PROG = ['Общая психология', 'Клиническая психология', 'Практикум по психотерапии', 'short-psixodiaqnostika', 'short-kdt', 'short-psixoanaliz', 'short-aile'];   /* коды сервера оплаты */
+/* долгие программы (общая, клиническая, практикум): [цена при оплате сразу, цена в рассрочку], AZN — как на сервере оплаты; слово владельца 12.11 */
+const LONG_P = [[3800, 4200], [6000, 6600], [3000, 3600]], LONG_M = 12;
+const LONG_T = {
+  ru: { inst: 'в рассрочку на {m} месяцев — {x} AZN в месяц', now: 'При оплате сразу — {a} AZN, скидка {d} AZN', note: 'После регистрации система направит вас на страницу оплаты. Там можно оплатить всю сумму сразу со скидкой или выбрать рассрочку через официальную платёжную систему — на срок до 24 месяцев.' },
+  az: { inst: '{m} aylıq hissə-hissə ödəniş — ayda {x} AZN', now: 'Birdəfəlik ödənişdə — {a} AZN, endirim {d} AZN', note: 'Qeydiyyatdan sonra sistem sizi ödəniş səhifəsinə yönləndirəcək. Orada məbləğin hamısını endirimlə birdəfəlik ödəyə və ya rəsmi ödəniş sistemi vasitəsilə 24 aya qədər hissə-hissə ödənişi seçə bilərsiniz.' },
+  en: { inst: 'in instalments over {m} months — {x} AZN a month', now: 'If paid at once — {a} AZN, you save {d} AZN', note: 'After you register, the system will take you to the payment page. There you can pay the full amount at once with a discount or choose instalments through the official payment system — for up to 24 months.' },
+};
+const money = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+const fill = (t, o) => t.replace(/\{(\w)\}/g, (m, k) => o[k]);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const st = { kind: 'consult', who: 'kenan', fmt: 'online', topic: 0, prog: 0, hours: 20, enu: 'first', btopic: [0], goal: 0, count: 1, blang: 0, place: 0 };
 let T = null, lang = 'ru', box = null;
@@ -19,6 +28,8 @@ function price() {
   if (st.kind === 'consult' && st.topic === ENU) return { main: ENU_P[st.enu] + ' AZN', sub: r.enu.sub[st.enu] };
   if (st.kind === 'consult') return { main: RATE[who][st.fmt] + ' AZN', sub: r.perHour };
   if (st.kind === 'ind') return { main: (RATE[who][st.fmt] * st.hours).toLocaleString('ru-RU').replace(/\s/g, ' ') + ' AZN', sub: st.hours + ' × ' + RATE[who][st.fmt] + ' AZN' };
+  if (st.kind === 'edu' && LONG_P[st.prog]) { const [a, b] = LONG_P[st.prog], L = LONG_T[lang] || LONG_T.ru;
+    return { main: money(b) + ' AZN', sub: fill(L.inst, { m: LONG_M, x: money(Math.round(b / LONG_M)) }), now: fill(L.now, { a: money(a), d: money(b - a) }), note: L.note }; }
   if (st.kind === 'edu') return { main: T.edu.p[st.prog].price, sub: T.edu.p[st.prog].m.join(' · ') };
   return { main: '', sub: '' };
 }
@@ -35,8 +46,8 @@ function html() {
   if (k === 'b2b') body = field('company', r.f.company, 'text', 'autocomplete="organization" maxlength="120"') + row(r.b2b.topic, chips('btopic', T.corp.t.concat([r.b2b.other]), st.btopic, true))
     + row(r.b2b.goal.l, chips('goal', r.b2b.goal.o, st.goal)) + row(r.b2b.count.l, chips('count', r.b2b.count.o, st.count)) + row(r.b2b.lang.l, chips('blang', r.b2b.lang.o, st.blang)) + row(r.b2b.place.l, chips('place', r.b2b.place.o, st.place));
   const who3 = `<div class="reg__me">${field('fname', r.f.fname, 'text', 'autocomplete="given-name" maxlength="60"')}${field('lname', r.f.lname, 'text', 'autocomplete="family-name" maxlength="60"')}${field('phone', r.f.phone, 'tel', 'autocomplete="tel" inputmode="tel" value="+994 " maxlength="24"')}</div>`;
-  const side = `<aside class="reg__side">${pr.main ? `<p class="reg__pl">${esc(r.price)}</p><p class="reg__p">${esc(pr.main)}</p><p class="reg__ps">${esc(pr.sub)}</p>` : `<p class="reg__pl">${esc(r.b2b.free)}</p>`}
-    <p class="reg__note">${esc(k === 'b2b' ? r.noteB2b : T.cons.note)}</p><button type="submit" class="btn reg__go">${esc(r.send[k])}</button><div class="reg__pay" hidden></div><p class="reg__msg" role="status" hidden></p></aside>`;
+  const side = `<aside class="reg__side">${pr.main ? `<p class="reg__pl">${esc(r.price)}</p><p class="reg__p">${esc(pr.main)}</p><p class="reg__ps">${esc(pr.sub)}</p>${pr.now ? `<p class="reg__now">${esc(pr.now)}</p>` : ''}` : `<p class="reg__pl">${esc(r.b2b.free)}</p>`}
+    <p class="reg__note">${esc(k === 'b2b' ? r.noteB2b : (pr.note || T.cons.note))}</p><button type="submit" class="btn reg__go">${esc(r.send[k])}</button><div class="reg__pay" hidden></div><p class="reg__msg" role="status" hidden></p></aside>`;
   return `${head}<form class="reg__f" novalidate><div class="reg__main">${body}${who3}</div>${side}</form>`;
 }
 function files() { const r = T.reg; return `<div class="reg__files"><label class="fld fld--file"><span>${esc(r.f.id)}</span><input class="inp" name="idcard" type="file" accept="image/*,.pdf"></label><label class="fld fld--file"><span>${esc(r.f.dip)}</span><input class="inp" name="diploma" type="file" accept="image/*,.pdf"></label></div>`; }
