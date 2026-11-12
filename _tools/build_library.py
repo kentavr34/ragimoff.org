@@ -90,9 +90,12 @@ def split_body(bdir, lang, title, body):
     return out
 
 
+PRINT_BOOKS = {"phoenix-era"}
 catalog, wrote = [], 0
 for bdir in sorted(os.listdir(SRC)):
     if ONLY and bdir not in ONLY:
+        continue
+    if bdir in PRINT_BOOKS:                                  # книга сайта собирается из печатной версии (build_book_print.py), прежняя читалка — не источник
         continue
     passport = {"id": bdir, "src": "books/" + bdir, "langs": [], "cover": "", "t": {}, "kicker": {}, "sub": {}, "meta": {}, "toc": {}}
     for lang, sub in LANGDIR.items():

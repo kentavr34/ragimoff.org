@@ -1,8 +1,8 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11122127';
-import { T, LINKS3 as LINKS } from './content.js?v=11122127';
-import { regRender, regOpen } from './reg.js?v=11122127';
-import { initLight } from './light.js?v=11122127';
+import { initTop } from './totop.js?v=11122256';
+import { T, LINKS3 as LINKS } from './content.js?v=11122256';
+import { regRender, regOpen } from './reg.js?v=11122256';
+import { initLight } from './light.js?v=11122256';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
