@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11130044';
+import { initChrome, esc, ARR } from './chrome.js?v=11130309';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11120953', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams(location.search).get('b') || '';
-import { ORD } from './shop-order.js?v=11130044';
-import { fixImg } from './blocks.js?v=11130044';
+import { ORD } from './shop-order.js?v=11130309';
+import { fixImg } from './blocks.js?v=11130309';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {

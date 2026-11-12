@@ -14,7 +14,7 @@ from docx.text.paragraph import Paragraph
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 os.chdir(D)
-PROJECT = {"phoenix-era": "Phoenix"}          # книга сайта → папка проекта с Print
+PROJECT = {"phoenix-era": "Phoenix", "shizofreniya": "Pandemia", "virus-viny": "Virus"}          # книга сайта → папка проекта с Print
 bid = sys.argv[1] if len(sys.argv) > 1 else "phoenix-era"
 PR = os.path.join("D:/Projects", PROJECT[bid], "Print")
 approved = json.load(io.open(os.path.join(PR, "print.json"), encoding="utf-8"))["approved"]

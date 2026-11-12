@@ -90,7 +90,7 @@ def split_body(bdir, lang, title, body):
     return out
 
 
-PRINT_BOOKS = {"phoenix-era"}
+PRINT_BOOKS = {"phoenix-era", "shizofreniya", "virus-viny"}
 catalog, wrote = [], 0
 for bdir in sorted(os.listdir(SRC)):
     if ONLY and bdir not in ONLY:

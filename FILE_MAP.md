@@ -113,7 +113,7 @@
 | `freud-gw14` | Din, mədəniyyət və təşviş | az | 34 | 897 |
 | `freud-gw15` | Psixoanalizə giriş: yeni mühazirələr | az | 8 | 340 |
 | `freud-gw16` | Musa adamı və monoteist din | az | 16 | 443 |
-| `freud-gw17` | Psixoanalizin xülasəsi | az | 30 | 454 |
+| `freud-gw17` | Psixoanalizin xülasəsi | az | 15 | 241 |
 | `freud-koka-afaziya` | Koka və afaziya: psixoanalizdən əvvəlki əsərlər | az | 11 | 429 |
 | `freud-kokain` | Koka haqqında | az | 7 | 100 |
 | `freud-referatlar-1884-1885` | Referatlar | az | 2 | 151 |
