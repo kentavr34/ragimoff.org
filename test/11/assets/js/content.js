@@ -55,7 +55,7 @@ export const T = {
       t: [['Панические атаки', 'Приступ реален: тело отвечает страхом там, где опасности нет.'],
           ['Депрессия', 'Не слабость воли, а состояние, с которым работает психотерапия.'],
           ['Социальная фобия', 'Страх выступлений и чужой оценки — не черта характера.'],
-          ['Ночной энурез (ночное мочеиспускание)', 'За 23 года — более 1 000 детей; в 2025 году — более 250, из них более 100 бесплатно.'],
+          ['Ночной энурез (ночное недержание мочи)', 'За 23 года — более 1 000 детей; в 2025 году — более 250, из них более 100 бесплатно.'],
           ['Семейная терапия', 'Работаем с парами и с детско-родительскими отношениями.'],
           ['Тревожные расстройства', 'Постоянная тревога, страхи и фобии: есть чёткие критерии диагноза и лечение.'],
           ['Обсессивно-компульсивное расстройство (ОКР)', 'Навязчивые мысли и действия — расстройство, а не черта характера.']] },
@@ -72,7 +72,7 @@ export const T = {
     tg: { h: 'Новые материалы — в Telegram', sub: 'Подписывайтесь на наш канал.', cta: 'Перейти в канал' },
     a11y: { title: 'Doctor Ragimoff — Школа психологии', menu: 'Меню', theme: 'Тема', night: 'Ночь', paper: 'Бумага', sepia: 'Сепия', lang: 'Язык' },
     foot: {
-      cols: [{ h: 'Терапия', l: ['Панические атаки', 'Депрессия', 'Социальная фобия', 'Ночной энурез (ночное мочеиспускание)', 'Семейная терапия', 'Тревожные расстройства', 'Обсессивно-компульсивное расстройство (ОКР)'] },
+      cols: [{ h: 'Терапия', l: ['Панические атаки', 'Депрессия', 'Социальная фобия', 'Ночной энурез (ночное недержание мочи)', 'Семейная терапия', 'Тревожные расстройства', 'Обсессивно-компульсивное расстройство (ОКР)'] },
              { h: 'Образование', l: ['Долгосрочные программы', 'Краткосрочные программы', 'Юридические основы'] },
              { h: 'Контакты', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Баку, Джафар Джаббарлы 40, Caspian Business Center, 9 этаж'] }],
       copy: ['© 2026 Doctor Ragimoff.', 'Все права защищены.'] },
@@ -109,7 +109,7 @@ export const T = {
       t: [['Panik tutmaları', 'Tutma real hadisədir: bədən təhlükə olmayan yerdə qorxu ilə cavab verir.'],
           ['Depressiya', 'İradə zəifliyi deyil, psixoterapiya ilə müalicə olunan vəziyyətdir.'],
           ['Sosial fobiya', 'İctimai çıxış və başqalarının qiymətləndirməsi qorxusu xarakter xüsusiyyəti deyil.'],
-          ['Gecə enurezi (gecə sidik ifrazı)', '23 ildə 1\u00A0000-dən çox uşaq; 2025-ci ildə 250-dən çox, onlardan 100-dən çoxu ödənişsiz.'],
+          ['Gecə enurezi (gecə sidik saxlamama)', '23 ildə 1\u00A0000-dən çox uşaq; 2025-ci ildə 250-dən çox, onlardan 100-dən çoxu ödənişsiz.'],
           ['Ailə terapiyası', 'Cütlüklərlə və valideyn–uşaq münasibətləri ilə işləyirik.'],
           ['Təşviş və qorxu ilə əlaqəli pozuntular', 'Daimi təşviş, qorxular və fobiyalar: aydın diaqnostik meyarları və müalicəsi var.'],
           ['Obsessiv-kompulsiv pozuntu (OKP)', 'Müdaxiləedici fikirlər və hərəkətlər xarakter xüsusiyyəti deyil, pozuntudur.']] },
@@ -126,7 +126,7 @@ export const T = {
     tg: { h: 'Yeni materiallar — Telegram-da', sub: 'Kanalımıza abunə olun.', cta: 'Kanala keçin' },
     a11y: { title: 'Doctor Ragimoff — Psixologiya Məktəbi', menu: 'Menyu', theme: 'Rəng mövzusu', night: 'Gecə', paper: 'Kağız', sepia: 'Sepiya', lang: 'Dil' },
     foot: {
-      cols: [{ h: 'Terapiya', l: ['Panik tutmaları', 'Depressiya', 'Sosial fobiya', 'Gecə enurezi (gecə sidik ifrazı)', 'Ailə terapiyası', 'Təşviş və qorxu ilə əlaqəli pozuntular', 'Obsessiv-kompulsiv pozuntu (OKP)'] },
+      cols: [{ h: 'Terapiya', l: ['Panik tutmaları', 'Depressiya', 'Sosial fobiya', 'Gecə enurezi (gecə sidik saxlamama)', 'Ailə terapiyası', 'Təşviş və qorxu ilə əlaqəli pozuntular', 'Obsessiv-kompulsiv pozuntu (OKP)'] },
              { h: 'Təhsil', l: ['Uzunmüddətli proqramlar', 'Qısamüddətli proqramlar', 'Hüquqi əsaslar'] },
              { h: 'Əlaqə', l: ['WhatsApp +994 70 220 03 76', 'Telegram', 'Bakı, Cəfər Cabbarlı küçəsi 40, Caspian Business Center, 9-cu mərtəbə'] }],
       copy: ['© 2026 Doctor Ragimoff.', 'Bütün hüquqlar qorunur.'] },
@@ -352,7 +352,8 @@ export function LINKS3(l) { const L = _LINKS1(l);
   L.spec = ['specialist.html?s=kenan', 'specialist.html?s=samira'];
   L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp'].map(c => 'consult.html?c=' + c);
   L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
-  L.shop = 'shop.html';                                             /* прототип книжного магазина в новой системе */
+  L.shop = 'shop.html';
+  L.books = ['read.html?b=klinik-psixiatriya', 'shop.html', 'read.html?b=phoenix-era', 'read.html?b=virus-viny', 'read.html?b=shizofreniya'];   /* книги открываются в единой читалке */                                             /* прототип книжного магазина в новой системе */
   L.contact = 'contact.html'; L.law = 'program.html?p=general#law'; L.tests = 'test.html';
   L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'program.html?p=general#law', 'test.html'], [L.wa, L.tg, 'contact.html']];
   return L; }

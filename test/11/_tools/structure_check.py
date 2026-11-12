@@ -113,6 +113,20 @@ for b in books:
             bad.append("книга %s: папка языка %s не указана в паспорте" % (b, l))
     if len(set(counts.values())) > 1 and b not in ALLOW_DIFF:
         bad.append("книга %s: число глав по языкам разное %s — сверить переводы (или внести в _tools/structure_allow.txt с причиной)" % (b, counts))
+    if any("id" in x for l in P.get("langs", []) for x in P["toc"].get(l, [])):          # книга с устойчивыми адресами страниц (klinik-psixiatriya): id уникальны, одинаковы на всех языках, деревья ссылаются на существующие
+        idl = dict((l, [x.get("id") for x in P["toc"][l]]) for l in P["langs"])
+        for l, v in idl.items():
+            if None in v or len(set(v)) != len(v):
+                bad.append("книга %s, язык %s: у пунктов оглавления нет id или id повторяются" % (b, l))
+            if v != idl[P["langs"][0]]:
+                bad.append("книга %s, язык %s: состав или порядок id не совпадает с языком %s" % (b, l, P["langs"][0]))
+        for l, T in (P.get("trees") or {}).items():
+            known = set(idl.get(l, []))
+            for k in T.get("order", []):
+                for g in T.get(k, []):
+                    for it in ([g] if g.get("id") else []) + g["items"]:
+                        if it["id"] not in known:
+                            bad.append("книга %s, дерево %s/%s: нет страницы %s" % (b, l, k, it["id"]))
     stat.append((b, P, counts))
 
 for x in bad:

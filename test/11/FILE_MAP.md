@@ -92,6 +92,7 @@
 | `freud-sevgi-mektublari` | Sevgi məktubları | az | 56 | 227 |
 | `freud-yung-mektublari` | Freyd–Yunq məktubları | az | 366 | 966 |
 | `freud-zweig-mektublari` | Freyd–Tsveyq məktubları | az | 79 | 86 |
+| `klinik-psixiatriya` | Клиническая психиатрия | az ru en tr | 137/137/137/137 | 1334/1349/1251/1201 |
 | `phoenix-era` | Эра Феникса | az ru en | 21/21/22 | 255/290/311 |
 | `shizofreniya` | Шизофрения. Пандемия безумия | az ru en | 36/36/36 | 507/499/518 |
 | `virus-viny` | Вирус вины | az ru en | 28/29/28 | 346/320/335 |
@@ -121,6 +122,7 @@
 |---|---|
 | `_tools\apply_covers.py` | Новые обложки статей и картины героя (владелец 12.11.2026, п. 11): картинки из gen_blog_covers.py |
 | `_tools\build_blog.py` | Блог → данные test/11: статьи <lang>/bloq/*.html → data/blog/<slug>.<lang>.json, список → data/blog/index.<lang>.json. |
+| `_tools\build_klinik.py` | Книга «Клиническая психиатрия» -> библиотека новой системы (12.11.2026). |
 | `_tools\build_law.py` | Блок «Юридические основы деятельности» для страниц «Общая психология» и «Клиническая психология». |
 | `_tools\build_library.py` | Библиотека книг новой системы: текст хранится отдельно от страницы (решение владельца 12.11.2026). |
 | `_tools\build_shop.py` | Каталог для прототипа книжного магазина (test/11/shop.html, book.html). |

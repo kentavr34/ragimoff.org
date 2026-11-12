@@ -116,5 +116,15 @@ for bdir in sorted(os.listdir(SRC)):
                     "chapters": dict((l, len(passport["toc"][l])) for l in passport["langs"]), "chars": dict((l, sum(x["n"] for x in passport["toc"][l])) for l in passport["langs"])})
     print("%-34s %s  глав: %s" % (bdir, ",".join(passport["langs"]), "/".join(str(len(passport["toc"][l])) for l in passport["langs"])))
 if not ONLY:
+    # книги, которых нет в старых читалках (собираются своими инструментами, например build_klinik.py), — в картотеку из их паспортов
+    have = set(c["id"] for c in catalog)
+    for pj in sorted(glob.glob(os.path.join(OUT, "*", "book.json"))):
+        P = json.load(io.open(pj, encoding="utf-8"))
+        if P["id"] in have:
+            continue
+        catalog.append({"id": P["id"], "t": P["t"], "kicker": P["kicker"], "langs": P["langs"], "cover": P["cover"],
+                        "chapters": dict((l, len(P["toc"][l])) for l in P["langs"]), "chars": dict((l, sum(x["n"] for x in P["toc"][l]) ) for l in P["langs"])})
+        print("%-34s %s  (паспорт из папки)" % (P["id"], ",".join(P["langs"])))
+    catalog.sort(key=lambda c: c["id"])
     wrote += write(os.path.join(OUT, "index.json"), json.dumps({"about": "Картотека библиотеки: одна запись — одна книга. Текст — в папке книги по языкам, паспорт — book.json.", "books": catalog}, ensure_ascii=False, indent=1) + "\n")
 print("книг: %d, файлов записано: %d" % (len(catalog), wrote))

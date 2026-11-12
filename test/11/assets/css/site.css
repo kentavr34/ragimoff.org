@@ -1122,3 +1122,95 @@ body[data-kind="post"] .pg__art { aspect-ratio: 16 / 10; max-width: 620px; } bod
 #rdTitle:empty { min-height: 80vh; }
 @media (max-width: 900px) { .rdr__tp, .rdr__contents { grid-template-columns: 1fr; gap: var(--r1); } .rdr__cover { width: min(64vw, 260px); } .rdr__meta { grid-template-columns: 1fr; } .rdr__lib { font-size: 0; } .rdr__lib::before { content: "←"; font-size: 20px; } .rdr__pager { grid-template-columns: 1fr; } #rdNext { text-align: left; align-items: flex-start; } .rdr__body { hyphens: manual; } }
 .rdr__toc { visibility: hidden; transition: transform var(--t2) var(--e), visibility var(--t2); } .rd-toc-open .rdr__toc { visibility: visible; }
+/* RDR: дерево классификаций и поиск по книге в панели оглавления (книги с полем trees в book.json) */
+.rdr__q { margin-bottom: var(--p14); }
+.rdr__q input { width: 100%; min-height: var(--tap); padding: 0 var(--p18); border: 1px solid var(--line); border-radius: 99px; background: var(--layer); color: var(--text); font: 400 16px/1 var(--f-read); }
+.rdr__q input:focus { outline: none; border-color: var(--gold); }
+.rdr__sr { margin: var(--p8) 0 0; } .rdr__sr .rdr__no { padding: var(--p10) 0; font: 400 15px/1.4 var(--f-read); color: var(--smoke); }
+.rdr__sr li a, .rdr__fb li a, .rdr__contents .rdr__tl .rdr__fb li a, .rdr__toc .rdr__fb li a { grid-template-columns: calc(var(--u) * 9) minmax(0, 1fr); }
+.rdr__tl { min-width: 0; }
+.rdr__cts { display: flex; gap: var(--p6); margin: var(--p14) 0; }
+.rdr__ct { flex: 1 1 0; min-height: var(--tap); padding: 0 var(--p8); border: 1px solid var(--line); border-radius: 99px; font: 500 13px/1 var(--f-sub); letter-spacing: .06em; color: var(--text); transition: border-color var(--t1), color var(--t1); }
+.rdr__ct:hover { border-color: var(--gold); } .rdr__ct[aria-pressed="true"] { border-color: var(--gold); color: var(--gold-hi); background: color-mix(in srgb, var(--gold) 10%, transparent); }
+.rdr__g { display: grid; grid-template-columns: minmax(0, 1fr) var(--tap); align-items: center; border-bottom: 1px solid var(--line); }
+.rdr .rdr__tl .rdr__ga, .rdr .rdr__tl .rdr__gi a { border-bottom: 0; display: grid; grid-template-columns: calc(var(--u) * 9) minmax(0, 1fr); gap: var(--p10); align-items: baseline; text-align: left; }
+.rdr .rdr__tl .rdr__ga { padding: var(--p10) 0; }
+.rdr .rdr__tl .rdr__ga span, .rdr .rdr__tl .rdr__gi span { font: 600 12px/1.3 var(--f-num); color: var(--gold); }
+.rdr .rdr__tl .rdr__ga b { font: 400 18px/1.25 var(--f-display); color: var(--milk); transition: color var(--t1); } .rdr .rdr__tl .rdr__ga:hover b { color: var(--gold-hi); }
+.rdr__gt { width: var(--tap); height: var(--tap); color: var(--gold); } .rdr__gt::before { content: "›"; display: inline-block; font-size: 24px; line-height: 1; transition: transform var(--t1); } .rdr__g.is-open .rdr__gt::before { transform: rotate(90deg); }
+.rdr__gi { grid-column: 1 / -1; padding: 0 0 var(--p8); }
+.rdr .rdr__tl .rdr__gi a { padding: var(--p8) 0 var(--p8) var(--p12); } .rdr .rdr__tl .rdr__gi b { font: 400 16px/1.3 var(--f-read); color: var(--text); } .rdr .rdr__tl .rdr__gi a:hover b, .rdr .rdr__tl .rdr__gi a[aria-current="true"] b, .rdr .rdr__tl .rdr__ga[aria-current="true"] b { color: var(--gold-hi); }
+.rdr__fb ol { margin: 0; } .rdr__en { margin-top: var(--p8); font: italic 400 17px/1.3 var(--f-read); color: var(--smoke); }
+.rdr__contents .rdr__tree { max-width: 52rem; }
+@media (max-width: 900px) { .rdr .rdr__tl .rdr__ga, .rdr .rdr__tl .rdr__gi a, .rdr__sr li a, .rdr__fb li a { grid-template-columns: calc(var(--u) * 9) minmax(0, 1fr); } }
+
+/* RDK: содержимое книги «Клиническая психиатрия» в читалке. Классы — как в тексте (books/klinik-psixiatriya/<язык>/NNN.html); цвета, шрифты и отступы — только из переменных сайта, три темы работают сами */
+.rdr[data-book="klinik-psixiatriya"] .rdr__body h2 { margin-top: 2em; padding-bottom: var(--p8); border-bottom: 1px solid var(--line); font: 400 1.55em/1.2 var(--f-display); color: var(--milk); scroll-margin-top: calc(var(--hd76) + var(--r3)); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body h3, .rdr[data-book="klinik-psixiatriya"] .rdr__body h4 { scroll-margin-top: calc(var(--hd76) + var(--r3)); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body ul, .rdr[data-book="klinik-psixiatriya"] .rdr__body ol { padding-left: var(--r2); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body ul { list-style: disc; } .rdr[data-book="klinik-psixiatriya"] .rdr__body ol { list-style: decimal; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body li { margin-top: .4em; } .rdr[data-book="klinik-psixiatriya"] .rdr__body li::marker { color: var(--gold); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body ul ul, .rdr[data-book="klinik-psixiatriya"] .rdr__body ol ul, .rdr[data-book="klinik-psixiatriya"] .rdr__body ul ol { margin-top: .4em; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body strong, .rdr[data-book="klinik-psixiatriya"] .rdr__body th { color: var(--milk); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body dt { margin-top: 1.2em; padding-top: var(--p10); border-top: 1px solid var(--line); font-weight: 600; color: var(--milk); } .rdr[data-book="klinik-psixiatriya"] .rdr__body dd { margin: var(--p6) 0 0; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body span[lang] { text-decoration: underline dotted var(--smoke); text-underline-offset: .2em; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body [id] { scroll-margin-top: calc(var(--hd76) + var(--r3)); }
+.rdr__body .bk-chead__sub { font-style: italic; color: var(--smoke); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body .tbl-wrap { max-width: 100%; margin: 1.4em 0; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--p12); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body .tbl-wrap table { margin: 0; min-width: 30rem; } .rdr[data-book="klinik-psixiatriya"] .rdr__body .tbl-wrap td p { margin: 0; }
+.rdr__body .kod-cell { font: 500 .8em/1.4 var(--f-num); white-space: nowrap; color: var(--gold); }
+.rdr__body .sc, .rdr__body .tc-range { font: 500 .78em/1.4 var(--f-num); color: var(--gold); overflow-wrap: anywhere; }
+.rdr__body .bk-codes { width: 100%; margin: 0 0 1.6em; border-collapse: collapse; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: .88em; }
+.rdr__body .bk-codes td { padding: var(--p8) var(--p10); border-top: 1px solid var(--line); vertical-align: middle; }
+.rdr__body .bk-codes tr:first-child td { border-top: 0; } .rdr__body .bk-codes td.dh-meta { width: 34%; padding-left: 0; white-space: normal; }
+.rdr__body .dh-lbl { display: block; font: 500 .72em/1.3 var(--f-sub); letter-spacing: .14em; text-transform: uppercase; color: var(--smoke); }
+.rdr__body .dh-code { display: block; font: 500 1em/1.35 var(--f-num); color: var(--gold); overflow-wrap: anywhere; }
+.rdr__body .dh-name { color: var(--text); overflow-wrap: anywhere; }
+.rdr__body .page-toc { display: flex; flex-wrap: wrap; gap: var(--p6); margin: 0 0 1.6em; padding-bottom: var(--p14); border-bottom: 1px solid var(--line); }
+.rdr__body .page-toc a { padding: var(--p6) var(--p12); border: 1px solid var(--line); border-radius: 99px; font: 500 .72em/1.3 var(--f-sub); letter-spacing: .1em; text-transform: uppercase; color: var(--smoke); transition: color var(--t1), border-color var(--t1); }
+.rdr__body .page-toc a:hover { color: var(--gold-hi); border-color: var(--gold); }
+.rdr__body .ref-list { font-size: .86em; line-height: 1.55; color: var(--smoke); } .rdr__body .ref-list li { margin-top: .5em; overflow-wrap: anywhere; }
+.rdr__body .method-num > li { margin-top: .9em; padding-left: var(--p4); } .rdr__body .method-num > li::marker { font-family: var(--f-num); color: var(--gold); }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body .tbl-box { display: inline-block; width: .95em; height: .95em; border: 1px solid currentColor; border-radius: 2px; vertical-align: -.08em; }
+.rdr__body .mk-ok { color: var(--gold-hi); } .rdr__body .mk-no { color: var(--smoke); }
+.rdr__body .pre-line { white-space: pre-line; }
+.rdr__body .front-page { max-width: 100%; } .rdr__body .front-page > * + * { margin-top: 1em; }
+.rdr__body .h-section { font: 600 .78em/1.3 var(--f-sub); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); border-bottom: 0; }
+.rdr__body .book-chapter { margin-top: 2.4em; }
+.rdr__body .cari-box { margin: 1.6em 0; padding: var(--p18) var(--p20); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 0 var(--p12) var(--p12) 0; background: color-mix(in srgb, var(--gold) 6%, transparent); }
+.rdr__body .cari-box h2 { margin-top: 0; padding-bottom: 0; border-bottom: 0; font-size: 1.2em; }
+.rdr[data-book="klinik-psixiatriya"] .rdr__body .cari-box .tbl-wrap { border-color: var(--line); }
+.rdr__body .author-note { padding: var(--p18) 0 0; border-top: 1px solid var(--line); }
+.rdr__body .author-note-title { margin-top: 0; font: 400 1.7em/1.2 var(--f-display); color: var(--milk); } .rdr__body .author-note-sign { font: italic 400 1em/1.4 var(--f-read); color: var(--smoke); }
+.rdr__body .home-cards { display: grid; gap: var(--p10); margin-top: 1.6em; }
+.rdr__body .home-card { display: flex; flex-direction: column; gap: var(--p4); padding: var(--p14) var(--p18); border: 1px solid var(--line); border-radius: var(--p12); background: var(--layer); transition: border-color var(--t1); }
+.rdr__body .home-card:hover { border-color: var(--gold); } .rdr__body .home-card b { font: 400 1.15em/1.25 var(--f-display); color: var(--milk); } .rdr__body .home-card span { font-size: .88em; color: var(--smoke); }
+.rdr__body .cls-tabs { display: flex; flex-wrap: wrap; gap: var(--p8); margin: 0 0 1.4em; }
+.rdr__body .cls-tab { min-height: var(--tap); padding: 0 var(--p16); border: 1px solid var(--line); border-radius: 99px; font: 500 .8em/1 var(--f-sub); letter-spacing: .08em; text-transform: uppercase; color: var(--text); transition: border-color var(--t1), color var(--t1); }
+.rdr__body .cls-tab:hover { border-color: var(--gold); } .rdr__body .cls-tab.is-active { border-color: var(--gold); color: var(--gold-hi); background: color-mix(in srgb, var(--gold) 10%, transparent); }
+.rdr__body .cls-panel[hidden] { display: none; }
+.rdr__body .toc-meta { margin: 0 0 var(--p14); font: 500 .8em/1.3 var(--f-num); color: var(--smoke); }
+.rdr__body .toc-preview { display: grid; gap: var(--p14); }
+.rdr__body .toc-ch { border: 1px solid var(--line); border-radius: var(--p12); background: var(--layer); overflow: hidden; }
+.rdr__body .toc-ch > a, .rdr__body .toc-ch .tc-head { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: var(--p12); align-items: baseline; padding: var(--p12) var(--p16); border-bottom: 1px solid var(--line); font: 400 1.05em/1.3 var(--f-display); color: var(--milk); }
+.rdr__body .toc-ch > a:hover { color: var(--gold-hi); }
+.rdr__body .tc-list { display: flex; flex-direction: column; }
+.rdr__body .tc-list a { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: var(--p12); align-items: baseline; padding: var(--p8) var(--p16); border-top: 1px solid var(--line); font-size: .84em; line-height: 1.4; color: var(--text); }
+.rdr__body .tc-list a:first-child { border-top: 0; } .rdr__body .tc-list a:hover { color: var(--gold-hi); }
+.rdr__body .tc-empty { padding: var(--p10) var(--p16); font-size: .86em; color: var(--smoke); }
+.rdr__body .bk-toc__list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.rdr__body .bk-toc__row { margin: 0; border-bottom: 1px solid var(--line); } .rdr__body .bk-toc__a { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: var(--p12); align-items: baseline; padding: var(--p10) 0; }
+.rdr__body .bk-toc__n { font: 500 .8em/1.4 var(--f-num); color: var(--gold); } .rdr__body .bk-toc__t { color: var(--milk); overflow-wrap: anywhere; } .rdr__body a.bk-toc__a:hover .bk-toc__t { color: var(--gold-hi); }
+.rdr__body .bk-toc__r { display: block; margin-top: var(--p4); font: 500 .75em/1.3 var(--f-num); color: var(--smoke); }
+@media (max-width: 900px) { .rdr__body .toc-ch > a, .rdr__body .toc-ch .tc-head, .rdr__body .tc-list a, .rdr__body .bk-toc__a { grid-template-columns: 4.4rem minmax(0, 1fr); gap: var(--p8); } .rdr__body .bk-codes td.dh-meta { width: 40%; } }
+
+/* SHP: разделы каталога и список малых текстов (12.11.2026) */
+.shp__sh { display: flex; align-items: baseline; gap: var(--p12); margin-top: var(--r3); padding-bottom: var(--p10); border-bottom: 1px solid var(--line); font: 400 clamp(22px, 2vw, 30px)/1.15 var(--f-display); color: var(--milk); }
+.shp__sh i { font: 400 13px/1 var(--f-num); font-style: normal; letter-spacing: .14em; color: var(--gold); }
+.shp__sh + .shp__note { margin-top: var(--p14); max-width: 70ch; }
+.shp__lines { list-style: none; margin: var(--p14) 0 0; padding: 0; border-top: 1px solid var(--line); }
+.shp__lines a { display: flex; align-items: baseline; justify-content: space-between; gap: var(--r1); min-height: var(--tap); padding: var(--p12) 0; border-bottom: 1px solid var(--line); }
+.shp__lines b { font: 400 clamp(18px, 1.4vw, 21px)/1.3 var(--f-display); color: var(--milk); transition: color var(--t1); } .shp__lines a:hover b { color: var(--gold-hi); }
+.shp__lines span { flex: 0 0 auto; font: 400 13px/1.3 var(--f-num); color: var(--smoke); }
+@media (max-width: 760px) { .shp__lines a { flex-direction: column; gap: var(--p4); } }

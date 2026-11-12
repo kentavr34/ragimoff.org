@@ -26,7 +26,7 @@ JS = r"""
   for (let k = 0; k < 30 && [...document.images].some(i => !i.complete); k++) await new Promise(r => setTimeout(r, 250));
   const W = __W__;                      /* заданная ширина экрана: при переполнении браузер сам расширяет окно просмотра */
   out.over = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - W;
-  const skip = e => e.closest('.rdr__toc, .rdr__tw, .shp__chips, .gal--docs, .tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
+  const skip = e => e.closest('.rdr__toc, .rdr__tw, .tbl-wrap, .shp__chips, .gal--docs, .tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
   out.out = [...document.querySelectorAll('main *, footer *')].filter(e => { if (skip(e)) return false; const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1); }).slice(0, 5).map(e => e.tagName + '.' + String(e.className).slice(0, 30));
   out.img = [...document.images].filter(i => i.complete && !i.naturalWidth && i.getAttribute('src')).map(i => i.getAttribute('src')).slice(0, 6);
   const h1 = [...document.querySelectorAll('h1')].find(h => h.getBoundingClientRect().height > 0) || document.querySelector('h1');   /* в читалке заголовков два: титул и глава — берём видимый */
@@ -92,7 +92,7 @@ NEWLOCK = {}
 def pages(mode):
     if mode == "accept":
         return LOCKED
-    ps = ["index.html", "test.html", "read.html?b=virus-viny", "read.html?b=virus-viny&c=3", "read.html?b=freud-gw02&c=2", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
+    ps = ["index.html", "test.html", "read.html?b=virus-viny", "read.html?b=virus-viny&c=3", "read.html?b=klinik-psixiatriya", "read.html?b=klinik-psixiatriya&p=6B00", "read.html?b=klinik-psixiatriya&p=mundericat", "read.html?b=klinik-psixiatriya&p=abbreviatur", "read.html?b=freud-gw02&c=2", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
     ps += ["consult.html?c=" + os.path.basename(f).split(".")[0] for f in sorted(glob.glob(os.path.join(D, "data", "cons", "*.ru.json"))) if "index." not in f]
     ps += ["program.html?p=" + s for s in ["general", "clinical", "practicum", "psychodiagnostics", "cbt", "psychoanalysis", "family"]]
     if mode != "quick":

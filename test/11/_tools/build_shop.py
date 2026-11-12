@@ -23,13 +23,37 @@ def book_id(img, href):
     base = os.path.basename(img).split("?")[0].rsplit(".", 1)[0] if img else ""
     if base in ("klinik", "guilt", "pandemic", "phoenix"):
         return base
-    parts = [x for x in href.strip("/").split("/") if x and x not in ("books", "ru", "en", "az")]
+    parts = [x for x in href.strip("/").split("/") if x and x not in ("books", "ru", "en", "az") and not x.endswith(".html")]      # адрес — папка книги, не файл главы
     return parts[-1] if parts else base
 
 
 AZ_PRICE = {}
+# разделы каталога Фрейда: название раздела на языках; порядок разделов — как в списке
+SUBS = [("series", {"ru": "Собрание сочинений", "az": "Toplu əsərlər", "en": "Collected works"}),
+        ("letters", {"ru": "Переписка", "az": "Məktublar", "en": "Correspondence"}),
+        ("early", {"ru": "Ранние и отдельные работы", "az": "Erkən və ayrı əsərlər", "en": "Early and separate works"}),
+        ("anthology", {"ru": "Антология", "az": "Antologiya", "en": "Anthology"}),
+        ("small", {"ru": "Малые тексты", "az": "Kiçik mətnlər", "en": "Short texts"})]
+SMALL_NOTE = {"ru": "Тексты в несколько страниц. Отдельными книгами они не издавались — их место в томе собрания сочинений будет уточнено по немецкому изданию.",
+              "az": "Bir neçə səhifəlik mətnlər. Ayrıca kitab kimi nəşr olunmayıb — toplu əsərlərin cildindəki yeri alman nəşrinə əsasən dəqiqləşdiriləcək.",
+              "en": "Texts of a few pages. They were never published as separate books — their place in a volume of the collected works will be settled against the German edition."}
+
+
+def section(it):
+    """К какому разделу каталога относится книга Фрейда: по сведениям о книге (номер книги, письма, число страниц)."""
+    m = re.match(r"^(?:Книга|Kitab|Book)\s+(\d+)", it["meta"])
+    if m:
+        return "series", int(m.group(1))
+    if re.search(r"писем|məktub|letters", it["meta"]):
+        return "letters", 0
+    if "aforizm" in it["id"]:
+        return "anthology", 0
+    pg = re.search(r"(\d+)\s*(?:стр|səh|pp)", it["meta"])
+    if pg and int(pg.group(1)) <= 10:
+        return "small", int(pg.group(1))
+    return "early", 0
 LIB = set(os.listdir(os.path.join(D, "books"))) if os.path.isdir(os.path.join(D, "books")) else set()      # книги, перенесённые в библиотеку
-LIB_ID = {"guilt": "virus-viny", "pandemic": "shizofreniya", "phoenix": "phoenix-era"}
+LIB_ID = {"klinik": "klinik-psixiatriya", "guilt": "virus-viny", "pandemic": "shizofreniya", "phoenix": "phoenix-era"}
 for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
     soup = BeautifulSoup(io.open(os.path.join(ROOT, rel), encoding="utf-8").read(), "html.parser")
     groups, cur = [], None
@@ -81,6 +105,25 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
                     mp = re.search(r"(\d{3,4})\s*(стр|səh|pp|pages)", it["meta"])         # число страниц в описании — как в сведениях о книге
                     if mp:
                         it["f"] = [re.sub(r"\b8[0-9]{2}\b(?=\s*(печатн|çap|printed))", mp.group(1), x) for x in it["f"]]
+    for g in groups:
+        if g["id"] != "freud":
+            continue
+        buckets = dict((k, []) for k, _ in SUBS)
+        for it in g["items"]:
+            k, order = section(it)
+            it["_o"] = order
+            if k == "small":
+                it["small"] = True
+            buckets[k].append(it)
+        buckets["series"].sort(key=lambda x: x["_o"])
+        g["sub"] = [{"id": k, "t": names[lang], "n": len(buckets[k])} for k, names in SUBS if buckets[k]]
+        g["items"] = []
+        for k, _ in SUBS:
+            for it in buckets[k]:
+                it["sec"] = k
+                it.pop("_o", None)
+                g["items"].append(it)
+        g["smallNote"] = SMALL_NOTE[lang]
     h = H[lang]
     out = {"lang": lang, "src": rel, "title": h[0], "lead": h[1], "u": {"all": h[2], "read": h[3], "order": h[4], "about": h[5], "other": h[6], "price": h[7], "soon": h[8], "toc": h[9], "azNote": h[10], "more": h[11]},
            "orderUrl": "/" + rel.replace("index.html", ""), "groups": [g for g in groups if g["items"]]}

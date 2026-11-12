@@ -2,7 +2,7 @@
 """Правки владельца от 12.11.2026 (ответы на список расхождений). Повторный запуск ничего не меняет.
  1. Энурез: фраза о возможном назначении психотропных препаратов убрана (три языка).
  2. Протоколы: практика 2003–2026 (23 года); энурез — более 1 000 детей, более 250 в 2025 году, из них более 100 бесплатно.
- 5. Энурез: название «Ночной энурез (ночное мочеиспускание)» и единый герой на трёх языках.
+ 5. Энурез: название «Ночной энурез (ночное недержание мочи)» и единый герой на трёх языках.
  6. Блог называется RAGIMOFF Bloq на всех языках, подзаголовок единый.
  7. Иероглиф в русском тексте семейной терапии.
  8. «Этап 4. Тщательная проработка».
@@ -45,7 +45,7 @@ edit("data/cons/enurez.en.json", [(
     "the next stage involves bidirectional treatment. Where")])
 
 # ---------- 5. энурез: название и герой ----------
-NAME = {"ru": "Ночной энурез (ночное мочеиспускание)", "az": "Gecə enurezi (gecə sidik ifrazı)", "en": "Nocturnal enuresis (bedwetting)"}
+NAME = {"ru": "Ночной энурез (ночное недержание мочи)", "az": "Gecə enurezi (gecə sidik saxlamama)", "en": "Nocturnal enuresis (bedwetting)"}
 LEAD = {"ru": "1 000+ детей за 23 года. Без единого медикамента. Только терапия по международным протоколам: комплексная диагностика и лечение.",
         "az": "23 ildə 1 000+ uşaq. Bir dənə də dərman olmadan. Yalnız beynəlxalq protokollar üzrə terapiya: kompleks diaqnostika və müalicə.",
         "en": "1,000+ children over 23 years. Without a single medication. Therapy only, following international protocols: comprehensive assessment and treatment."}
