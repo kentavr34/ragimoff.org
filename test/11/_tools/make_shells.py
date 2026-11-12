@@ -39,6 +39,23 @@ for name, kind in (("shop", "shop"), ("book", "book")):
     io.open(os.path.join(D, name + ".html"), "w", encoding="utf-8", newline=chr(10)).write(h)
     print("оболочка:", name + ".html")
 
+# страница теста для студентов: рама сайта + прежний движок /test/quiz.js (слаг теста — в data-test)
+TEST_MAIN = """<main id="top" class="pp">
+  <section class="pp__hero"><div class="wrap tst">
+    <a class="pp__back" id="tstBack" href="index.html#edu"></a>
+    <p class="pp__kind">Test</p>
+    <h1 class="pp__t">Sistemli ailə terapiyası</h1>
+    <div id="test-app"><p class="t-who">Yüklənir…</p></div>
+  </div></section>
+  <section class="sec sec--soc"><div class="wrap"><div class="soc rv"><p class="soc__h" id="socH"></p><ul class="soc__l" id="socList"></ul></div></div></section>
+</main>"""
+h = re.sub(r"<main.*?</main>", lambda m: TEST_MAIN, src, flags=re.S)
+h = h.replace('<body class="inner">', '<body class="inner" data-kind="test" data-test="sistemli-aile-terapiyasi">').replace("assets/js/page-program.js", "assets/js/page-test.js")
+h = h.replace("</body>", '<script src="/test/quiz.js"></script>' + chr(10) + "</body>")
+assert "page-test.js" in h and "/test/quiz.js" in h and 'data-test="sistemli-aile-terapiyasi"' in h
+io.open(os.path.join(D, "test.html"), "w", encoding="utf-8", newline=chr(10)).write(h)
+print("оболочка: test.html")
+
 # индекс консультаций: названия для нижней навигации
 for lang in ("ru", "az", "en"):
     items = []

@@ -353,6 +353,6 @@ export function LINKS3(l) { const L = _LINKS1(l);
   L.cons = ['panik-ataklar', 'depressiya', 'sosial-fobiya', 'enurez', 'aile-terapiyasi', 'tesvis-pozuntulari', 'okp'].map(c => 'consult.html?c=' + c);
   L.form = 'index.html#reg'; L.corp = 'corporate.html'; L.blogAll = 'blog.html'; L.blog = ['depressiya', 'enurez', 'aile'].map(a => 'article.html?a=' + a);
   L.shop = 'shop.html';                                             /* прототип книжного магазина в новой системе */
-  L.contact = 'contact.html'; L.law = 'program.html?p=general#law'; L.tests = '/test/aile.html';
-  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'program.html?p=general#law', '/test/aile.html'], [L.wa, L.tg, 'contact.html']];
+  L.contact = 'contact.html'; L.law = 'program.html?p=general#law'; L.tests = 'test.html';
+  L.foot = [L.cons, ['index.html#edu', 'index.html#edu', 'program.html?p=general#law', 'test.html'], [L.wa, L.tg, 'contact.html']];
   return L; }

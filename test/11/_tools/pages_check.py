@@ -92,7 +92,7 @@ NEWLOCK = {}
 def pages(mode):
     if mode == "accept":
         return LOCKED
-    ps = ["index.html", "shop.html", "book.html?b=klinik", "book.html?b=art-freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
+    ps = ["index.html", "test.html", "shop.html", "book.html?b=klinik", "book.html?b=art-freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
     ps += ["consult.html?c=" + os.path.basename(f).split(".")[0] for f in sorted(glob.glob(os.path.join(D, "data", "cons", "*.ru.json"))) if "index." not in f]
     ps += ["program.html?p=" + s for s in ["general", "clinical", "practicum", "psychodiagnostics", "cbt", "psychoanalysis", "family"]]
     if mode != "quick":
@@ -155,6 +155,7 @@ async def main():
                         o = r.get("result", {}).get("value") or {"fail": "нет ответа страницы"}
                         v = []
                         if o.get("fail"): v.append(o["fail"])
+                        if pg.startswith("test") and "localhost" in BASE: errs[:] = [e for e in errs if "Failed to fetch" not in e and "quiz.js" not in e]   # сервер тестов отвечает только живому адресу сайта
                         if errs: v.append("ошибки: " + "; ".join(sorted(set(errs))[:4]))
                         if o.get("vw", W) > W + 1: v.append("страница раздвинута до %d px" % o["vw"])
                         if o.get("over", 0) > 1: v.append("шире экрана на %d px" % o["over"])
@@ -173,7 +174,7 @@ async def main():
                                     if a != b:
                                         v.append("ЗАМОК: согласованный раздел «%s» изменился: было %s → стало %s (намеренно — python pages_check.py accept)" % (sec, json.dumps(a, ensure_ascii=False), json.dumps(b, ensure_ascii=False)))
                         if o.get("img"): v.append("битые картинки: " + ", ".join(o["img"]))
-                        if not pg.startswith(("program", "index", "shop", "book")) and o.get("blocks", 0) < 1: v.append("нет блоков")
+                        if not pg.startswith(("program", "index", "shop", "book", "test")) and o.get("blocks", 0) < 1: v.append("нет блоков")
                         if o.get("bad"): v.append("мусор в тексте: " + ",".join(o["bad"]))
                         if o.get("raw"): v.append("сырая разметка: " + ",".join(o["raw"]))
                         if o.get("empty"): v.append("пустых блоков: %d" % o["empty"])
@@ -183,7 +184,7 @@ async def main():
                         if o.get("tap"): v.append("мелкая область нажатия: " + ", ".join(o["tap"]))
                         if o.get("small"): v.append("мелкий текст: " + ", ".join(o["small"]))
                         if o.get("lang") != lang: v.append("язык страницы %s" % o.get("lang"))
-                        if not o.get("reg") and not pg.startswith(("shop", "book")): v.append("нет формы записи")
+                        if not o.get("reg") and not pg.startswith(("shop", "book", "test")): v.append("нет формы записи")
                         for h in o.get("links", []):
                             links.setdefault(h, pg)
                         rep.append({"page": pg, "lang": lang, "w": W, "viol": v, "h1": o.get("h1"), "blocks": o.get("blocks")})
