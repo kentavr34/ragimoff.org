@@ -92,7 +92,7 @@ NEWLOCK = {}
 def pages(mode):
     if mode == "accept":
         return LOCKED
-    ps = ["index.html", "test.html", "shop.html", "book.html?b=klinik", "book.html?b=art-freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
+    ps = ["index.html", "test.html", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
     ps += ["consult.html?c=" + os.path.basename(f).split(".")[0] for f in sorted(glob.glob(os.path.join(D, "data", "cons", "*.ru.json"))) if "index." not in f]
     ps += ["program.html?p=" + s for s in ["general", "clinical", "practicum", "psychodiagnostics", "cbt", "psychoanalysis", "family"]]
     if mode != "quick":

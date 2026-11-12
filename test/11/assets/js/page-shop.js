@@ -1,7 +1,7 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11121036';
+import { initChrome, esc, ARR } from './chrome.js?v=11121108';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11120953', kind = document.body.dataset.kind, cache = {};
@@ -24,7 +24,7 @@ const btns = (it, d) => `<div class="shp__btns">${it.read ? `<a class="btn" href
 
 function shop(d, lang) {
   const all = d.groups.flatMap(g => g.items);
-  $('#shpHero').innerHTML = `<p class="pp__kind">Doctor Ragimoff</p><h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>
+  $('#shpHero').innerHTML = `<h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>
     <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div>`;
   $('#shpBody').innerHTML = d.groups.filter(g => filter === 'all' || filter === g.id).map(g => {
     const lead = g.items.filter(it => it.f), rest = g.items.filter(it => !it.f);
@@ -39,12 +39,14 @@ function shop(d, lang) {
 
 function book(d, lang) {
   const all = d.groups.flatMap(g => g.items.map(it => Object.assign({ g }, it)));
-  const it = all.find(x => x.id === bid) || all[0];
-  const sib = all.filter(x => x.g.id === it.g.id && x.id !== it.id).slice(0, 8), other = sib.length >= 3 ? sib : all.filter(x => x.id !== it.id && x.f).concat(sib).slice(0, 8);
+  const it = all.find(x => x.id === bid); if (!it) { location.replace('shop.html'); return; }                 /* нет такой книги — в каталог */
+  const sib = all.filter(x => x.g.id === it.g.id && x.id !== it.id), lead = all.filter(x => x.id !== it.id && x.f && x.g.id !== it.g.id), seen = {};
+  const other = (sib.length >= 3 ? sib : sib.concat(lead)).filter(x => !seen[x.id] && (seen[x.id] = 1)).slice(0, 8);   /* shp__nf: без повторов */
   $('#shpHero').innerHTML = `<div class="shp__bk"><div class="shp__scene shp__scene--big">${book3d(it, lang, it.read ? esc(it.href) : '#')}</div>
-    <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a>${it.k ? `<p class="pp__kind">${esc(it.k)}</p>` : `<p class="pp__kind">${esc(it.y)}</p>`}<h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
-      <p class="shp__au">${esc(it.g.name)}</p><p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d)}</div></div>`;
-  $('#shpBody').innerHTML = `<section class="sec"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(d.u.other)}</h2><a class="sh__link" href="shop.html">${esc(d.title)} ${ARR}</a></header>
+    <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a><p class="pp__kind">${esc(it.k || it.g.name)}</p><h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
+      ${it.k ? `<p class="shp__au">${esc(it.g.name)}</p>` : ''}<p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d)}</div></div>`;
+  const toc = it.toc ? `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div><p class="shp__note rv">${esc(d.u.azNote)}</p><ol class="shp__toc rv" lang="az">${it.toc.map(x => `<li>${esc(x)}</li>`).join('')}</ol>${it.tocMore ? `<p class="shp__note">${esc(d.u.more)} ${it.tocMore}…</p>` : ''}</div></div></section>` : '';
+  $('#shpBody').innerHTML = toc + `<section class="sec"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(d.u.other)}</h2><a class="sh__link" href="shop.html">${esc(d.title)} ${ARR}</a></header>
     <div class="shp__grid">${other.map(x => `<a class="shp__card rv" href="${url(x)}"><span class="shp__cv">${cover(x, lang)}</span><span class="shp__cb"><b>${esc(x.t)}</b><span>${esc(x.meta)}</span>${x.price ? `<em>${esc(x.price)}</em>` : ''}</span></a>`).join('')}</div></div></section>`;
   document.title = it.t + ' — Doctor Ragimoff';
 }
