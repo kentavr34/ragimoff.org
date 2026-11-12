@@ -6,6 +6,8 @@ books/<книга>/az/NNN.html. Источник (site/books/<книга>/) не
 затем python build_library.py (он дочитывает паспорта в картотеку)."""
 import io, os, re, sys, json, glob
 from bs4 import BeautifulSoup
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import libcommon
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ROOT = os.path.abspath(os.path.join(D, "..", ".."))
@@ -47,6 +49,51 @@ def body_of(soup):
     return title, html.strip()
 
 
+def split(html, title):
+    """Сборник делится на отдельные тексты: каждая рецензия, каждое приложение, каждый год рефератов — своя глава с названием.
+    Сноска, на которую ссылается глава, переносится вместе с ней (иначе всплывающее окно сноски было бы пустым)."""
+    soup = BeautifulSoup("<div id='x'>" + html + "</div>", "html.parser")
+    root = soup.select_one("#x")
+    kids = [c for c in root.find_all(recursive=False)]
+    reviews = [c for c in kids if c.name == "section" and "rd-review" in (c.get("class") or [])]
+    by_review = 2 <= len(reviews) <= 30
+
+    def starts(c):
+        cl = c.get("class") or []
+        if c.name == "section" and "rd-appendix" in cl and (c.get("id") or "").startswith("elave"):
+            return True
+        if c.name == "section" and "rd-review" in cl and by_review:
+            return True
+        return c.name == "h2" and "sec" in cl and (c.get("id") or "").startswith("y") and len(reviews) > 30
+
+    if not any(starts(c) for c in kids):
+        return [(title, html)]
+    chunks, cur_t, cur = [], title, []
+    for c in list(root.contents):
+        if getattr(c, "name", None) and starts(c):
+            if "".join(str(x) for x in cur).strip():
+                chunks.append((cur_t, cur))
+            h = c if c.name == "h2" else c.find(["h2", "h3", "h4"])
+            cur_t = h.get_text(" ", strip=True) if h else title
+            if h is not None and c.name != "h2":
+                h.extract()                                   # заголовок текста выводит читалка
+            cur = [] if c.name == "h2" else [c]
+        else:
+            cur.append(c)
+    if "".join(str(x) for x in cur).strip():
+        chunks.append((cur_t, cur))
+    notes = dict((n.get("id"), n) for n in root.select(".rd-notes [id]"))
+    out = []
+    for t, parts in chunks:
+        h = "".join(str(x) for x in parts)
+        need = [i for i in dict.fromkeys(re.findall(r'href="#([^"]+)"', h)) if i in notes and 'id="%s"' % i not in h]
+        if need:
+            h += '<aside class="rd-notes">' + "".join(str(notes[i]) for i in need) + "</aside>"
+        if len(re.sub(r"<[^>]+>", "", h).strip()) >= 40:
+            out.append((t, h.strip()))
+    return out
+
+
 wrote = 0
 for b in BOOKS:
     d = os.path.join(SRC, b)
@@ -61,20 +108,23 @@ for b in BOOKS:
         t, html = body_of(s)
         if len(re.sub(r"<[^>]+>", "", html)) < 40:
             continue
-        n += 1
-        wrote += write(os.path.join(OUT, b, "az", "%03d.html" % n), html + "\n")
-        toc.append({"t": t or book_title, "n": len(re.sub(r"<[^>]+>", "", html))})
+        for ct, ch in split(html, t or book_title):
+            n += 1
+            wrote += write(os.path.join(OUT, b, "az", "%03d.html" % n), ch + "\n")
+            toc.append({"t": ct or book_title, "n": len(re.sub(r"<[^>]+>", "", ch))})
     t, html = body_of(idx)                               # главная страница книги: у малых работ это весь текст, у больших — сведения об издании
     if len(re.sub(r"<[^>]+>", "", html)) >= 40:
-        n += 1
-        wrote += write(os.path.join(OUT, b, "az", "%03d.html" % n), html + "\n")
-        toc.append({"t": (book_title if not files else "Nəşr haqqında"), "n": len(re.sub(r"<[^>]+>", "", html))})
+        for ct, ch in split(html, (book_title if not files else "Nəşr haqqında")):
+            n += 1
+            wrote += write(os.path.join(OUT, b, "az", "%03d.html" % n), ch + "\n")
+            toc.append({"t": ct or book_title, "n": len(re.sub(r"<[^>]+>", "", ch))})
     for old in glob.glob(os.path.join(OUT, b, "az", "*.html")):
         if int(os.path.basename(old)[:-5]) > n:
             os.remove(old)
     it = SHOP.get(b, {})
     P = {"id": b, "src": "books/" + b, "langs": ["az"], "cover": it.get("img", ""), "t": {"az": it.get("t") or book_title}, "kicker": {"az": "Ziqmund Freyd"}, "sub": {"az": ""},
          "meta": {"az": [["Müəllif", "Ziqmund Freyd"]] + ([["Nəşr", it["meta"]]] if it.get("meta") else [])}, "toc": {"az": toc}}
+    libcommon.finish(P)
     wrote += write(os.path.join(OUT, b, "book.json"), json.dumps(P, ensure_ascii=False, indent=1) + "\n")
     print("%-40s глав: %d  знаков: %d" % (b, n, sum(x["n"] for x in toc)))
 print("файлов записано:", wrote)

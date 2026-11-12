@@ -13,6 +13,8 @@
 import io, os, re, sys, json, time
 from urllib.parse import unquote
 from bs4 import BeautifulSoup
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import libcommon
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SRC = os.path.abspath(os.path.join(D, "..", "..", "klinik-psixiatriya"))
@@ -275,6 +277,7 @@ def main():
                     if i["id"] not in ids:
                         badtree.append("%s/%s: %s" % (lang, k, i["id"]))
     print("в деревьях ссылок на несуществующие страницы: %d %s" % (len(badtree), badtree[:5]))
+    libcommon.finish(P)
     wrote += write(os.path.join(OUT, "book.json"), json.dumps(P, ensure_ascii=False, indent=1) + "\n")
     print("внутренних ссылок переписано: %d" % stats["rewritten"])
     print("битых внутренних ссылок (страницы нет): %d %s" % (len(stats["broken"]), stats["broken"][:10]))

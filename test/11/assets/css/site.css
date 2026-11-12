@@ -1219,3 +1219,20 @@ body[data-kind="post"] .pg__art { aspect-ratio: 16 / 10; max-width: 620px; } bod
 .rdr__body .front-line { text-align: center; font-size: .92em; color: var(--smoke); }
 .rdr__body .sci-note { padding: var(--p14) var(--p20); border: 1px solid var(--line); border-radius: var(--p12); background: var(--layer); font-size: .9em; color: var(--smoke); }
 .rdr__body .rd-appendix, .rdr__body .book-toc { margin-top: 2.4em; padding-top: var(--r1); border-top: 1px solid var(--line); font-size: .9em; color: var(--smoke); } .rdr__body .rd-appendix p + p, .rdr__body .book-toc p + p { margin-top: .6em; }
+
+/* RDR, круг PG-05: язык книги в полосе чтения, непрозрачная полоса, крупная область сноски, готовая обложка на титуле, поиск всегда на виду */
+.rdr__bar { background: var(--bg); }
+.rdr__lg { display: inline-flex; padding: var(--p2); border-radius: 99px; border: 1px solid var(--line); } .rdr__tools .rdr__lg button { min-width: 0; min-height: calc(var(--tap) - var(--p4) - 2px); padding: 0 var(--p10); border: 0; font: 600 12.5px/1 var(--f-sub); letter-spacing: .08em; color: var(--smoke); }
+.rdr__tools .rdr__lg button[aria-pressed="true"] { background: var(--gold); color: var(--on-gold); }
+.rdr__cover--img { padding: 0; background: none; } .rdr__cover--img::before { display: none; } .rdr__cover--img img { width: 100%; height: 100%; object-fit: cover; }
+.rdr__body .fn-ref a { display: inline-block; min-width: 1.9em; padding: .55em .35em; margin: -.55em -.1em; text-align: center; font-size: .78em; }
+.rdr__more { font-size: 15.5px; }
+.rdr__toch { position: sticky; top: calc(var(--r2) * -1); z-index: 2; margin: calc(var(--r2) * -1) calc(var(--r1) * -1) var(--p14); padding: var(--r1) var(--r1) var(--p10); background: var(--bg); }
+@media (max-width: 760px) { .rdr__bt { display: none; } .rdr__tools { flex: 1 1 auto; justify-content: flex-end; } .rdr__tools #rdTocB { padding: 0 var(--p10); } }
+
+/* SHP, круг PG-05: малые тексты — обложка без картинки; ссылки оглавления на странице книги */
+.shp__ct--plain { background: linear-gradient(160deg, color-mix(in srgb, var(--gold) 14%, #0A0D14), #07090E 70%); border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); text-shadow: none; }
+.shp__toc li a { color: inherit; transition: color var(--t1); } .shp__toc li a:hover { color: var(--gold-hi); }
+.rdr__tools .rdr__lg button { min-height: var(--tap); } .rdr__lg--toc { display: none; }
+@media (max-width: 900px) { .rdr__bar .rdr__lg { display: none; } .rdr__lg--toc { display: flex; flex-wrap: wrap; gap: var(--p6); margin-bottom: var(--p14); padding: 0; border: 0; }
+  .rdr__lg--toc button { min-height: var(--tap); padding: 0 var(--p14); border-radius: 99px; border: 1px solid var(--line); font: 500 14px/1 var(--f-sub); color: var(--text); } .rdr__lg--toc button[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--on-gold); } }

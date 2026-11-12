@@ -92,7 +92,7 @@ NEWLOCK = {}
 def pages(mode):
     if mode == "accept":
         return LOCKED
-    ps = ["index.html", "test.html", "read.html?b=virus-viny", "read.html?b=virus-viny&c=3", "read.html?b=klinik-psixiatriya", "read.html?b=klinik-psixiatriya&p=6B00", "read.html?b=klinik-psixiatriya&p=mundericat", "read.html?b=klinik-psixiatriya&p=abbreviatur", "read.html?b=freud-gw02&c=2", "read.html?b=freud-kokain&c=1", "read.html?b=freud-sossur-on-sozu&c=1", "shop.html", "book.html?b=klinik", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
+    ps = ["index.html", "test.html", "read.html?b=virus-viny", "read.html?b=virus-viny&c=3", "read.html?b=klinik-psixiatriya", "read.html?b=klinik-psixiatriya&p=6B00", "read.html?b=klinik-psixiatriya&p=mundericat", "read.html?b=klinik-psixiatriya&p=abbreviatur", "read.html?b=freud-gw02&c=2", "read.html?b=freud-kokain&c=1", "read.html?b=freud-sossur-on-sozu&c=1", "shop.html", "book.html?b=klinik-psixiatriya", "book.html?b=freud-gw02", "specialist.html?s=kenan", "specialist.html?s=samira", "contact.html", "corporate.html", "blog.html"]
     ps += ["consult.html?c=" + os.path.basename(f).split(".")[0] for f in sorted(glob.glob(os.path.join(D, "data", "cons", "*.ru.json"))) if "index." not in f]
     ps += ["program.html?p=" + s for s in ["general", "clinical", "practicum", "psychodiagnostics", "cbt", "psychoanalysis", "family"]]
     if mode != "quick":

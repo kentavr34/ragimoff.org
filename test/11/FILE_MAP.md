@@ -51,7 +51,7 @@
 | раздел | что лежит | файлов |
 |---|---|---|
 | `assets/img/home/` | главная | 3 |
-| `assets/img/books/` | обложки книг | 18 |
+| `assets/img/books/` | обложки книг | 45 |
 | `assets/img/specialists/` | портреты и дипломы специалистов | 16 |
 | `assets/img/programs/` | обучение: документы института, образцы, фото групп | 30 |
 | `assets/img/consult/` | картины героя страниц консультаций | 9 |
@@ -71,7 +71,7 @@
 
 | книга (папка) | название | языки | глав | знаков, тыс. |
 |---|---|---|---|---|
-| `freud-afaziya` | Afaziyaların dərk edilməsinə dair | az | 2 | 330 |
+| `freud-afaziya` | Afaziyaların dərk edilməsinə dair | az | 4 | 330 |
 | `freud-aforizmlar` | Aforizmlər | az | 12 | 34 |
 | `freud-fliesse-mektublari` | Psixoanalizin başlanğıcından: Flissə məktublar | az | 119 | 766 |
 | `freud-gw01` | Histeriyadan psixoanalizə | az | 15 | 1043 |
@@ -90,9 +90,9 @@
 | `freud-gw15` | Psixoanalizə giriş: yeni mühazirələr | az | 8 | 340 |
 | `freud-gw16` | Musa adamı və monoteist din | az | 16 | 443 |
 | `freud-gw17` | Psixoanalizin xülasəsi | az | 15 | 241 |
-| `freud-kokain` | Koka haqqında | az | 2 | 100 |
-| `freud-referatlar-1884-1885` | Referatlar | az | 1 | 151 |
-| `freud-resenziyalar-1887-1910` | Resenziyalar | az | 1 | 48 |
+| `freud-kokain` | Koka haqqında | az | 7 | 100 |
+| `freud-referatlar-1884-1885` | Referatlar | az | 2 | 151 |
+| `freud-resenziyalar-1887-1910` | Resenziyalar | az | 11 | 48 |
 | `freud-sehnede-psixopatik-personajlar` | Səhnədə psixopatik personajlar | az | 1 | 12 |
 | `freud-sevgi-mektublari` | Sevgi məktubları | az | 56 | 227 |
 | `freud-sossur-on-sozu` | R. de Sossürün kitabına ön söz | az | 1 | 3 |
@@ -141,6 +141,7 @@
 | `_tools\form_check.py` | Проверка формы записи на всех видах страниц БЕЗ создания заявок: сетевой вызов в браузере подменён, |
 | `_tools\gen_art.py` | test/11 — иллюстрации через DashScope wan2.7-image (бесплатная квота воркспейса irada). |
 | `_tools\gen_blog_covers.py` | test/11 — обложки статей блога и картины героя новых страниц через DashScope wan2.7-image |
+| `_tools\libcommon.py` | Общее для сборщиков библиотеки: единый вид паспорта книги (book.json). |
 | `_tools\library_find.py` | Поиск по библиотеке: в какой книге, в какой главе и в каком абзаце написано (как по картотеке). |
 | `_tools\make_covers.py` | test/11 — сборка обложек: рисунок (_agent/art/<книга>.png) → кадр 2:3 → надписи шрифтом (cover.html) → assets/img/book-<книга>-<язык>.jpg |
 | `_tools\make_shells.py` | Оболочки внутренних страниц: рама (шапка, подвал, окно просмотра, кнопка WhatsApp) берётся из program.html — один источник. |

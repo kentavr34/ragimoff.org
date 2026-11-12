@@ -5,6 +5,8 @@
 Результат: data/shop/index.<lang>.json. Запуск: python build_shop.py"""
 import io, os, re, sys, json, subprocess
 from bs4 import BeautifulSoup
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import libcommon
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ROOT = os.path.abspath(os.path.join(D, "..", ".."))
@@ -13,7 +15,7 @@ H = {"ru": ("Книги", "Учебник, авторские книги и по
      "az": ("Kitablar", "Dərslik, müəllif kitabları və Azərbaycan dilində Freydin tam külliyyatı. Pulsuz oxumaq olar; çap nüsxəsini sifariş etmək mümkündür.", "Hamısı", "Pulsuz oxuyun", "Çap nüsxəsini sifariş edin", "Kitab haqqında", "Digər kitablar", "Çap nüsxəsinin qiyməti", "Tezliklə", "Mündəricat", "Kitab Azərbaycan dilində nəşr olunub", "və daha"),
      "en": ("Books", "A textbook, our own books and the complete Freud in Azerbaijani. Read for free; order a printed copy.", "All", "Read for free", "Order a printed copy", "About the book", "Other books", "Price of the printed book", "Coming soon", "Contents", "The book is published in Azerbaijani", "and more")}
 # описания с главной: номер в T[l].books.b → название карточки магазина (азербайджанское, как data-title)
-FACTS_FOR = {0: "klinik", 2: "phoenix", 3: "guilt", 4: "pandemic"}
+FACTS_FOR = {0: "klinik-psixiatriya", 2: "phoenix-era", 3: "virus-viny", 4: "shizofreniya"}
 
 js = ("import('file:///%s/assets/js/content.js').then(m => { const o = {}; for (const l of ['ru','az','en']) o[l] = m.T[l].books.b.map(x => ({k: x.k, f: x.f})); process.stdout.write(JSON.stringify(o)); })" % D.replace("\\", "/"))
 facts = json.loads(subprocess.run(["node", "--input-type=module", "-e", js], capture_output=True, check=True).stdout.decode("utf-8"))
@@ -21,8 +23,8 @@ facts = json.loads(subprocess.run(["node", "--input-type=module", "-e", js], cap
 def book_id(img, href):
     """Свой адрес у каждой книги: у авторских — по обложке (klinik, guilt…), у томов Фрейда — по адресу чтения."""
     base = os.path.basename(img).split("?")[0].rsplit(".", 1)[0] if img else ""
-    if base in ("klinik", "guilt", "pandemic", "phoenix"):
-        return base
+    if base in libcommon.OWN_BY_KEY:
+        return libcommon.OWN_BY_KEY[base]                       # адрес книги = имя её папки в библиотеке
     parts = [x for x in href.strip("/").split("/") if x and x not in ("books", "ru", "en", "az") and not x.endswith(".html")]      # адрес — папка книги, не файл главы
     return parts[-1] if parts else base
 
@@ -53,7 +55,7 @@ def section(it):
         return "small", int(pg.group(1))
     return "early", 0
 LIB = set(os.listdir(os.path.join(D, "books"))) if os.path.isdir(os.path.join(D, "books")) else set()      # книги, перенесённые в библиотеку
-LIB_ID = {"klinik": "klinik-psixiatriya", "guilt": "virus-viny", "pandemic": "shizofreniya", "phoenix": "phoenix-era"}
+LIB_ID = {}
 for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
     soup = BeautifulSoup(io.open(os.path.join(ROOT, rel), encoding="utf-8").read(), "html.parser")
     groups, cur = [], None
@@ -90,6 +92,15 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
                 it["toc"] = toc[:16]
                 it["tocMore"] = max(0, len(toc) - 16)
         lib = LIB_ID.get(it["id"], it["id"])
+        if it["id"] in libcommon.OWN:
+            it["cov"] = libcommon.OWN[it["id"]]                  # готовая обложка: assets/img/books/covers/<cov>-<язык>.jpg
+            it["img"] = ""
+        else:
+            it["img"] = libcommon.local_cover(it["img"])
+        pj = os.path.join(D, "books", lib, "book.json")
+        if os.path.isfile(pj):                                  # название книги — из её паспорта (один источник)
+            PT = json.load(io.open(pj, encoding="utf-8"))["t"]
+            it["t"] = PT.get(lang) or it["t"]
         if lib in LIB:
             it["read_new"] = "read.html?b=" + lib               # единая читалка новой системы
         if lang == "az":
@@ -125,7 +136,7 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
                 g["items"].append(it)
         g["smallNote"] = SMALL_NOTE[lang]
     h = H[lang]
-    out = {"lang": lang, "src": rel, "title": h[0], "lead": h[1], "u": {"all": h[2], "read": h[3], "order": h[4], "about": h[5], "other": h[6], "price": h[7], "soon": h[8], "toc": h[9], "azNote": h[10], "more": h[11]},
+    out = {"lang": lang, "src": rel, "title": h[0], "lead": h[1], "u": {"all": h[2], "read": h[3], "order": h[4], "about": h[5], "other": h[6], "price": h[7], "soon": h[8], "toc": h[9], "azNote": h[10], "more": h[11], "none": {"ru": "Книга не найдена", "az": "Kitab tapılmadı", "en": "Book not found"}[lang]},
            "orderUrl": "/" + rel.replace("index.html", ""), "groups": [g for g in groups if g["items"]]}
     os.makedirs(os.path.join(D, "data", "shop"), exist_ok=True)
     json.dump(out, io.open(os.path.join(D, "data", "shop", "index.%s.json" % lang), "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)

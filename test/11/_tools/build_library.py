@@ -13,6 +13,8 @@
 Поиск по библиотеке: python library_find.py <слова>"""
 import io, os, re, sys, json, glob
 from bs4 import BeautifulSoup
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import libcommon
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ROOT = os.path.abspath(os.path.join(D, "..", ".."))
@@ -111,8 +113,9 @@ for bdir in sorted(os.listdir(SRC)):
         passport["langs"].append(lang)
     if not passport["langs"]:
         continue
+    libcommon.finish(passport)
     wrote += write(os.path.join(OUT, bdir, "book.json"), json.dumps(passport, ensure_ascii=False, indent=1) + "\n")
-    catalog.append({"id": bdir, "t": passport["t"], "kicker": passport["kicker"], "langs": passport["langs"], "cover": passport["cover"],
+    catalog.append({"id": bdir, "t": passport["t"], "kicker": passport["kicker"], "langs": passport["langs"], "cover": passport["cover"], "coverKey": passport.get("coverKey", ""),
                     "chapters": dict((l, len(passport["toc"][l])) for l in passport["langs"]), "chars": dict((l, sum(x["n"] for x in passport["toc"][l])) for l in passport["langs"])})
     print("%-34s %s  глав: %s" % (bdir, ",".join(passport["langs"]), "/".join(str(len(passport["toc"][l])) for l in passport["langs"])))
 if not ONLY:

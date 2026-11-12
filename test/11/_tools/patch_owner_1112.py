@@ -45,7 +45,7 @@ edit("data/cons/enurez.en.json", [(
     "the next stage involves bidirectional treatment. Where")])
 
 # ---------- 5. энурез: название и герой ----------
-NAME = {"ru": "Ночной энурез (ночное недержание мочи)", "az": "Gecə enurezi (gecə sidik saxlamama)", "en": "Nocturnal enuresis (bedwetting)"}
+NAME = {"ru": "Ночной энурез (ночное недержание мочи)", "az": "Gecə enurezi (gecə sidik buraxma)", "en": "Nocturnal enuresis (bedwetting)"}
 LEAD = {"ru": "1 000+ детей за 23 года. Без единого медикамента. Только терапия по международным протоколам: комплексная диагностика и лечение.",
         "az": "23 ildə 1 000+ uşaq. Bir dənə də dərman olmadan. Yalnız beynəlxalq protokollar üzrə terapiya: kompleks diaqnostika və müalicə.",
         "en": "1,000+ children over 23 years. Without a single medication. Therapy only, following international protocols: comprehensive assessment and treatment."}
