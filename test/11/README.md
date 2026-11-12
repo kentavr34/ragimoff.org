@@ -93,3 +93,8 @@ program.html?p=<slug>            программы обучения   assets/js
 - **Поиск по библиотеке**: `python _tools/library_find.py <слова> [--book …] [--lang …]` — книга, глава, абзац, адрес.
 - **Картинки по разделам**: `assets/img/{home,books,specialists,programs,consult,training,blog}/` (`_tools/reorg_images.py`); в данных — `/images/<раздел>/…`.
 - **Страж структуры и карта файлов**: `python _tools/structure_check.py map` — проверяет раскладку и пересобирает `FILE_MAP.md`. Известные расхождения книг по языкам — `_tools/structure_allow.txt`.
+
+### 12.11.2026, вечер — читалка как отдельный режим
+- _tools/patch_reader_1112b.py: в читалке нет меню сайта; один выбор языка (язык книги = язык подписей, включая турецкий); выходы: логотип → главная, «Все книги» → каталог; темы в полосе чтения.
+- _tools/build_library.py (SPLITS): «Вирус вины» — 29 глав на трёх языках, «Эра Феникса» — 22 на трёх.
+- _tools/structure_check.py: сверка объёма глав между языками (замечания).

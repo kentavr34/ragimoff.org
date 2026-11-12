@@ -183,7 +183,13 @@ async def main():
                         if o.get("h2long"): v.append("длинный заголовок раздела: " + " | ".join(o["h2long"]))
                         if o.get("tap"): v.append("мелкая область нажатия: " + ", ".join(o["tap"]))
                         if o.get("small"): v.append("мелкий текст: " + ", ".join(o["small"]))
-                        if o.get("lang") != lang: v.append("язык страницы %s" % o.get("lang"))
+                        want_lang = lang
+                        if pg.startswith("read"):                       # в читалке язык страницы = язык книги: перевода на язык сайта может не быть (К10)
+                            import json as _j, re as _r
+                            _b = _r.search(r"[?&]b=([\w-]+)", pg)
+                            _L = _j.load(io.open("books/%s/book.json" % _b.group(1), encoding="utf-8"))["langs"] if _b else [lang]
+                            want_lang = lang if lang in _L else _L[0]
+                        if o.get("lang") != want_lang: v.append("язык страницы %s" % o.get("lang"))
                         if not o.get("reg") and not pg.startswith(("shop", "book", "test", "read")): v.append("нет формы записи")
                         for h in o.get("links", []):
                             links.setdefault(h, pg)

@@ -113,6 +113,14 @@ for b in books:
             bad.append("книга %s: папка языка %s не указана в паспорте" % (b, l))
     if len(set(counts.values())) > 1 and b not in ALLOW_DIFF:
         bad.append("книга %s: число глав по языкам разное %s — сверить переводы (или внести в _tools/structure_allow.txt с причиной)" % (b, counts))
+    if len(set(counts.values())) == 1 and len(counts) > 1:                             # объём одной и той же главы на разных языках: заметно короткая — признак пропущенного текста (B8)
+        ls = P["langs"]
+        for i in range(len(P["toc"][ls[0]])):
+            ns = dict((l, P["toc"][l][i]["n"]) for l in ls)
+            if max(ns.values()) > 3000 and min(ns.values()) < 0.72 * max(ns.values()):
+                short = min(ns, key=ns.get)
+                msg = "книга %s, глава %d «%s»: на языке %s текст заметно короче (%s знаков) — сверить с базой истины" % (b, i + 1, P["toc"][ls[0]][i]["t"][:40], short, ns)
+                if (b + ":" + str(i + 1)) not in ALLOW_DIFF: warn.append(msg)
     if any("id" in x for l in P.get("langs", []) for x in P["toc"].get(l, [])):          # книга с устойчивыми адресами страниц (klinik-psixiatriya): id уникальны, одинаковы на всех языках, деревья ссылаются на существующие
         idl = dict((l, [x.get("id") for x in P["toc"][l]]) for l in P["langs"])
         for l, v in idl.items():

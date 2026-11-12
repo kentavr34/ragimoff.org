@@ -100,9 +100,9 @@
 | `freud-yung-mektublari` | Freyd–Yunq məktubları | az | 366 | 966 |
 | `freud-zweig-mektublari` | Freyd–Tsveyq məktubları | az | 79 | 86 |
 | `klinik-psixiatriya` | Клиническая психиатрия | az ru en tr | 137/137/137/137 | 1334/1349/1251/1201 |
-| `phoenix-era` | Эра Феникса | az ru en | 21/21/22 | 255/290/311 |
+| `phoenix-era` | Эра Феникса | az ru en | 22/22/22 | 255/290/311 |
 | `shizofreniya` | Шизофрения. Пандемия безумия | az ru en | 36/36/36 | 507/499/518 |
-| `virus-viny` | Вирус вины | az ru en | 28/29/28 | 346/320/335 |
+| `virus-viny` | Вирус вины | az ru en | 29/29/29 | 346/320/335 |
 
 ## Сценарии и стили — `assets/`
 

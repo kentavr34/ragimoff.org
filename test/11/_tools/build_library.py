@@ -68,6 +68,28 @@ def write(path, text):
     raise SystemExit("не записан: " + path)
 
 
+# Одна и та же часть книги на всех языках — отдельная глава (12.11.2026). В источнике она местами не отделена:
+# стоит внутри соседней главы под своим заголовком. (книга, язык) → [(метка начала в тексте, название главы)].
+SPLITS = {
+    ("phoenix-era", "az"): [("<h3>PROLOQ</h3>\n<p>ELMİ ƏSAS</p>", "Proloq · elmi əsas")],
+    ("phoenix-era", "ru"): [("<h3>ПОСЛЕСЛОВИЕ.</h3>\n<h3>ОБРАЩЕНИЕ К ПУТЕШЕСТВЕННИКУ</h3>", "Послесловие · обращение к путешественнику")],
+    ("virus-viny", "az"): [("<p>YEKUN MESAJ</p>", "Yekun mesaj")],
+    ("virus-viny", "en"): [("<p>A FINAL MESSAGE</p>", "A final message")],
+}
+
+
+def split_body(bdir, lang, title, body):
+    """Глава → одна или несколько глав по меткам SPLITS; метка (заголовок части) в текст не идёт — её выводит читалка."""
+    out = [(title, body)]
+    for mark, t2 in SPLITS.get((bdir, lang), []):
+        t, b = out[-1]
+        if mark in b:
+            a, z = b.split(mark, 1)
+            out[-1] = (t, a.strip())
+            out.append((t2, z.strip()))
+    return out
+
+
 catalog, wrote = [], 0
 for bdir in sorted(os.listdir(SRC)):
     if ONLY and bdir not in ONLY:
@@ -92,19 +114,19 @@ for bdir in sorted(os.listdir(SRC)):
         passport["sub"][lang] = g(".rd-sub")
         passport["meta"][lang] = [[re.sub(r"\s+", " ", li.get_text(" ", strip=True).replace(li.b.get_text(" ", strip=True), "", 1)).strip(), li.b.get_text(" ", strip=True)] for li in (tp.select(".rd-meta li") if tp else []) if li.b]
         toc = []
-        for i, art in enumerate(soup.select("article.rd-chap"), 1):
-            title = clean_title(art.get("data-title") or (art.h2.get_text(" ", strip=True) if art.h2 else str(i)), lang)
+        for art in soup.select("article.rd-chap"):
+            title = clean_title(art.get("data-title") or (art.h2.get_text(" ", strip=True) if art.h2 else str(len(toc) + 1)), lang)
             part = art.select_one(".rd-chap__part")
             for x in art.select(".rd-chap__n, .rd-orn, .rd-chap__part"):
                 x.decompose()
             if art.h2:
                 art.h2.decompose()                                   # заголовок главы выводит читалка — из оглавления
-            body = art.decode_contents().strip()
-            wrote += write(os.path.join(OUT, bdir, lang, "%03d.html" % i), body + "\n")
-            item = {"t": title, "n": len(re.sub(r"<[^>]+>", "", body))}
-            if part:
-                item["part"] = part.get_text(" ", strip=True)
-            toc.append(item)
+            for k, (title, body) in enumerate(split_body(bdir, lang, title, art.decode_contents().strip())):
+                wrote += write(os.path.join(OUT, bdir, lang, "%03d.html" % (len(toc) + 1)), body + "\n")
+                item = {"t": title, "n": len(re.sub(r"<[^>]+>", "", body))}
+                if part and not k:
+                    item["part"] = part.get_text(" ", strip=True)
+                toc.append(item)
         # лишние файлы глав (если глав стало меньше) убираем из папки языка
         for old in glob.glob(os.path.join(OUT, bdir, lang, "*.html")):
             if (int(os.path.basename(old)[:-5]) > len(toc) or len(os.path.basename(old)) != 8):

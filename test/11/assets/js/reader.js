@@ -3,7 +3,7 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11121321';
+import { initChrome, esc } from './chrome.js?v=11121504';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11121146', q = new URLSearchParams(location.search), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
@@ -14,11 +14,15 @@ const U = {
         only: 'Bu kitab bu dildə nəşr olunub:', other: 'Başqa dildə oxuyun:', none: 'Kitab tapılmadı', ch: 'Fəsil', of: '/', close: 'Bağlayın', search: 'Kitabda axtarış', searchPh: 'Ad və ya kod, məsələn 6B00', nores: 'Heç nə tapılmadı', toggle: 'Qrupu açın və ya bağlayın', names: { az: 'Azərbaycan dili', ru: 'rus dili', en: 'ingilis dili', tr: 'türk dili' }, short: { az: 'Azərbaycanca', ru: 'По-русски', en: 'English', tr: 'Türkçe' } },
   en: { about: 'About the book, price and ordering a printed copy', toc: 'Contents', start: 'Start reading', cont: 'Continue reading', prev: 'Back', next: 'Next', title: 'Title page', lib: 'All books', notes: 'Notes', fs: 'Font size',
         only: 'This book is published in:', other: 'Read in another language:', none: 'Book not found', ch: 'Chapter', of: 'of', close: 'Close', search: 'Search the book', searchPh: 'Title or code, e.g. 6B00', nores: 'Nothing found', toggle: 'Open or close the group', names: { az: 'Azerbaijani', ru: 'Russian', en: 'English', tr: 'Turkish' }, short: { az: 'Azərbaycanca', ru: 'По-русски', en: 'English', tr: 'Türkçe' } },
+  tr: { about: 'Kitap hakkında, fiyat ve basılı kitap siparişi', toc: 'İçindekiler', start: 'Okumaya başlayın', cont: 'Okumaya devam edin', prev: 'Geri', next: 'İleri', title: 'Başlık sayfası', lib: 'Tüm kitaplar', notes: 'Notlar', fs: 'Yazı boyutu',
+        only: 'Bu kitabın yayımlandığı dil:', other: 'Başka dilde okuyun:', none: 'Kitap bulunamadı', ch: 'Bölüm', of: '/', close: 'Kapat', search: 'Kitapta arama', searchPh: 'Ad veya kod, örneğin 6B00', nores: 'Hiçbir şey bulunamadı', toggle: 'Grubu aç veya kapat', names: { az: 'Azerbaycan dili', ru: 'Rusça', en: 'İngilizce', tr: 'Türkçe' }, short: { az: 'Azərbaycanca', ru: 'По-русски', en: 'English', tr: 'Türkçe' } },
 };
+for (const k of Object.keys(U)) Object.assign(U[k], { home: { ru: 'На главную', az: 'Ana səhifə', en: 'Home', tr: 'Ana sayfa' }[k], theme: { ru: 'Тема', az: 'Mövzu', en: 'Theme', tr: 'Tema' }[k], lng: { ru: 'Язык книги', az: 'Kitabın dili', en: 'Book language', tr: 'Kitabın dili' }[k] });
+const SITE = ['az', 'ru', 'en'];
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
-let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = store.get('r11_rd_lang_' + bid) || '';
+let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = '';
 let fs = Math.min(1.5, Math.max(.9, parseFloat(store.get('r11_rd_fs') || '1.1')));
-const u = () => U[site] || U.ru, toc = () => (B && B.toc[lang]) || [], N = () => toc().length;
+const u = () => U[B ? lang : site] || U[site] || U.ru, toc = () => (B && B.toc[lang]) || [], N = () => toc().length;
 const idxById = id => { const k = toc().findIndex(x => x.id === id); return k < 0 ? 0 : k + 1; };
 const cd = c => esc(c).replace(/–/g, '⁠–⁠');
 const pad = n => String(n).padStart(2, '0');
@@ -77,23 +81,30 @@ function search(v) {
   const hit = []; toc().forEach((x, i) => { const h = (x.t + ' ' + (x.code || '') + ' ' + (x.en || '') + ' ' + (extra[x.id] || '')).toLowerCase(); if (w.every(k => h.indexOf(k) >= 0)) hit.push(i); });
   box.innerHTML = hit.length ? hit.slice(0, 20).map(i => `<li><a href="${hrefOf(i + 1)}" data-go="${i + 1}"><span>${toc()[i].code ? cd(toc()[i].code) : '—'}</span><b>${esc(toc()[i].t)}</b></a></li>`).join('') : `<li class="rdr__no">${esc(u().nores)}</li>`;
 }
+const themes = t => `<span class="seg rdr__th" role="group" aria-label="${esc(t.theme)}">${['night', 'paper', 'sepia'].map(k => `<button type="button" data-theme-btn="${k}" aria-label="${k}" aria-pressed="${String(document.documentElement.dataset.theme === k)}"><span class="dot dot--${k}"></span></button>`).join('')}</span>`;
+/* язык книги: выбранный в читалке (турецкий хранится отдельно — у сайта его нет), иначе язык сайта, иначе первый язык издания */
+function pick() {
+  const f = (store.get('r11_rd_lang_' + bid) || '').split('|');
+  if (f[0] && f[1] === site && B.langs.indexOf(f[0]) >= 0) return f[0];
+  return B.langs.indexOf(site) >= 0 ? site : B.langs[0];
+}
 function frame() {
   const t = u(), saved = +(store.get(posKey()) || 0);
   document.documentElement.style.setProperty('--rd-fs', fs + 'rem');
   $('#rdTocT').textContent = t.toc; $('#rdTocX').setAttribute('aria-label', t.close);
   { let g = $('#rdTocLg'); if (!g) { g = document.createElement('div'); g.id = 'rdTocLg'; g.className = 'rdr__lg rdr__lg--toc'; $('.rdr__toch').after(g); }      /* на телефоне язык книги выбирается здесь */
-    g.hidden = B.langs.length < 2; g.innerHTML = B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${esc((t.short && t.short[l]) || l.toUpperCase())}</button>`).join(''); }
+    g.innerHTML = (B.langs.length > 1 ? B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${esc((t.short && t.short[l]) || l.toUpperCase())}</button>`).join('') : '') + themes(t); }
   $('#rdTocL').innerHTML = `<li><a href="#" data-go="0"><span>—</span><b>${esc(t.title)}</b></a></li>` + toc().map(li).join('');
-  $('#rdBar').innerHTML = `<a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${B.langs.length > 1 ? `<span class="rdr__lg" role="group">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB">${esc(t.toc)}</button></span>`;
+  $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}${themes(t)}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB">${esc(t.toc)}</button></span>`;
   const others = B.langs.filter(l => l !== lang);
-  const note = (B.langs.indexOf(site) < 0 ? `<p class="rdr__note">${esc(t.only)} ${B.langs.map(l => esc(t.names[l] || l)).join(', ')}.</p>` : '') + (others.length ? `<p class="rdr__langs"><span>${esc(t.other)}</span>${others.map(l => `<button type="button" class="chip" data-rl="${l}">${esc(t.short[l] || l)}</button>`).join('')}</p>` : '');
+  const note = (others.length ? `<p class="rdr__langs"><span>${esc(t.other)}</span>${others.map(l => `<button type="button" class="chip" data-rl="${l}">${esc(t.short[l] || l)}</button>`).join('')}</p>` : '');
   $('#rdTitle').innerHTML = `<div class="rdr__tp">${cover()}<div class="rdr__ti">${B.kicker[lang] ? `<p class="pp__kind">${esc(B.kicker[lang])}</p>` : ''}<h1 class="pp__t${B.t[lang].length > 40 ? ' pp__t--long' : ''}">${esc(B.t[lang])}</h1>${B.sub[lang] ? `<p class="pp__lead">${esc(B.sub[lang])}</p>` : ''}
     <dl class="rdr__meta">${(B.meta[lang] || []).map(m => `<div><dt>${esc(m[0])}</dt><dd>${esc(m[1])}</dd></div>`).join('')}</dl>${note}
     <p class="rdr__more"><a class="sh__link" href="book.html?b=${bid}">${esc(t.about)}</a></p>
     <p class="pp__cta"><button type="button" class="btn" data-go="${saved > 0 && saved <= N() ? saved : 1}">${esc(saved > 0 && saved <= N() ? t.cont : t.start)}</button></p></div></div>
     <nav class="rdr__contents" aria-label="${esc(t.toc)}"><h2 class="pp__h">${esc(t.toc)}</h2><ol>${toc().map(li).join('')}</ol></nav>`;
   renderTocs();
-  document.title = B.t[lang] + ' — Doctor Ragimoff';
+  document.title = B.t[lang] + ' — Doctor Ragimoff'; document.documentElement.lang = lang;
 }
 
 async function show(i, push, hash) {
@@ -126,12 +137,11 @@ function progress() { const d = document.documentElement, h = d.scrollHeight - i
 
 const page = initChrome({
   async onRender(t, L, l) {
-    if (site !== l && B && B.langs.indexOf(l) >= 0) { forced = ''; store.set('r11_rd_lang_' + bid, ''); }
-    site = l;
+    if (!forced || SITE.indexOf(forced) < 0) site = l;
     const hc = $('#headCta'); if (hc) hc.href = L.form || 'index.html#reg';
     if (!bid || !(await passport())) { $('#rdTitle').innerHTML = `<div class="rdr__ti"><h1 class="pp__t">${esc(u().none)}</h1><p class="pp__cta"><a class="btn" href="shop.html">${esc(u().lib)}</a></p></div>`; $('#rdTitle').hidden = false; return; }
     document.querySelector('.rdr').dataset.book = bid;
-    const want = forced && B.langs.indexOf(forced) >= 0 ? forced : (B.langs.indexOf(site) >= 0 ? site : B.langs[0]);
+    const want = forced && B.langs.indexOf(forced) >= 0 ? forced : pick();
     const init = !$('#rdTocL').children.length, keep = curId; lang = want;
     frame();
     const oldCh = (location.hash.match(/^#ch(\d+)$/) || [])[1];
@@ -142,7 +152,9 @@ page.watch();
 
 document.addEventListener('click', e => {
   const go = e.target.closest('[data-go]'); if (go) { e.preventDefault(); show(+go.dataset.go, true); return; }
-  const rl = e.target.closest('[data-rl]'); if (rl) { const keep = curId; forced = rl.dataset.rl; store.set('r11_rd_lang_' + bid, forced); lang = forced; frame(); show(keep ? idxById(keep) : 0, false); return; }
+  const rl = e.target.closest('[data-rl]'); if (rl) { const keep = curId; forced = rl.dataset.rl; lang = forced;
+    if (SITE.indexOf(lang) >= 0) { site = lang; store.set('r11_lang', lang); store.set('r11_rd_lang_' + bid, ''); } else store.set('r11_rd_lang_' + bid, lang + '|' + site);   /* язык сайта идёт за языком книги */
+    frame(); show(keep ? idxById(keep) : 0, false); return; }
   const tg = e.target.closest('[data-tg]'); if (tg) { const g = tg.closest('.rdr__g'), op = g.classList.toggle('is-open'); g.querySelector('.rdr__gi').hidden = !op; g.querySelector('.rdr__gt').setAttribute('aria-expanded', String(op)); return; }
   const ct = e.target.closest('.rdr__ct, #rdChap .cls-tab'); if (ct) { setCls(ct.dataset.cls); return; }
   const ia = e.target.closest('.rdr__body a[href]');
