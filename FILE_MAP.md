@@ -113,7 +113,8 @@
 | `freud-gw14` | Din, mədəniyyət və təşviş | az | 34 | 897 |
 | `freud-gw15` | Psixoanalizə giriş: yeni mühazirələr | az | 8 | 340 |
 | `freud-gw16` | Musa adamı və monoteist din | az | 16 | 443 |
-| `freud-gw17` | Psixoanalizin xülasəsi | az | 15 | 241 |
+| `freud-gw17` | Psixoanalizin xülasəsi | az | 30 | 454 |
+| `freud-koka-afaziya` | Koka və afaziya: psixoanalizdən əvvəlki əsərlər | az | 11 | 429 |
 | `freud-kokain` | Koka haqqında | az | 7 | 100 |
 | `freud-referatlar-1884-1885` | Referatlar | az | 2 | 151 |
 | `freud-resenziyalar-1887-1910` | Resenziyalar | az | 11 | 48 |
@@ -143,6 +144,7 @@
 | `assets/js\programs.js` | Данные семи образовательных программ (ru / az / en). |
 | `assets/js\reader.js` | test/11 — единая читалка библиотеки: read.html?b=<книга>&c=<глава>. |
 | `assets/js\reg.js` | test/11 — единая форма записи: сначала «на что», дальше поля меняются. Всё, что можно, выбирается нажатием и уже выбрано по умолчанию. |
+| `assets/js\shop-order.js` | Позиции корзины: название и цена каждой книги, как на странице заказа /books/ (собирает _tools/patch_shop_1112b.py). |
 | `assets/js\site.js` | test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. |
 | `assets/js\totop.js` | test/11 — кнопка «наверх»: одна на все страницы (главная и внутренние). Появляется после первого экрана, стоит над кнопкой WhatsApp. |
 | `assets/css\site.css` | test/11 — ГЛАВНАЯ. Единое управление: токены и три темы в начале файла; все блоки читают только эти переменные. |
@@ -171,6 +173,7 @@
 | `_tools\library_find.py` | Поиск по библиотеке: в какой книге, в какой главе и в каком абзаце написано (как по картотеке). |
 | `_tools\make_covers.py` | test/11 — сборка обложек: рисунок (_agent/art/<книга>.png) → кадр 2:3 → надписи шрифтом (cover.html) → assets/img/book-<книга>-<язык>.jpg |
 | `_tools\make_shells.py` | Оболочки внутренних страниц: рама (шапка, подвал, окно просмотра, кнопка WhatsApp) берётся из program.html — один источник. |
+| `_tools\merge_books.py` | Комплектация коротких работ Фрейда в книги (слово владельца 13.11.2026: короче 100 страниц отдельной книгой не продаём). |
 | `_tools\pages_check.py` | Автоматическая проверка ВСЕХ внутренних страниц test/11 (Chrome без окна). |
 | `_tools\parity_check.py` | Сверка языков: у каждой страницы на ru / az / en должен быть один и тот же состав — |
 | `_tools\reg_test.py` | Проверка формы записи на живой странице: одна тестовая заявка на консультацию (имя TEST), до оплаты не доходит. |

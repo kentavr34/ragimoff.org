@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11122344';
+import { initChrome, esc, ARR } from './chrome.js?v=11130044';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11120953', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams(location.search).get('b') || '';
-import { ORD } from './shop-order.js?v=11122344';
-import { fixImg } from './blocks.js?v=11122344';
+import { ORD } from './shop-order.js?v=11130044';
+import { fixImg } from './blocks.js?v=11130044';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -33,8 +33,8 @@ const cartRead = () => { try { return JSON.parse(localStorage.getItem(CKEY) || '
 function cartAdd(o) { const a = cartRead(), x = a.find(i => i.title === o.o); if (x) x.qty = (x.qty || 1) + 1; else a.push({ title: o.o, qty: 1, price: o.p }); try { localStorage.setItem(CKEY, JSON.stringify(a)); } catch (e) {} }
 function cartNote(lang) { const n = cartRead().reduce((s2, i) => s2 + (i.qty || 1), 0), T = ct(lang); $$('.shp__cart').forEach(el => { el.innerHTML = n ? `<a class="btn btn--line btn--sm" href="/books/#sebet">${esc(T.cart)}: ${n} · ${esc(T.go)}</a>` : ''; }); }
 /* две кнопки книги: читать и в корзину — одни и те же в карточке каталога и на странице книги */
-const acts = (it, lang) => { const T = ct(lang), o = ORD.items[it.id];
-  return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : ''}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
+const acts = (it, lang) => { const T = ct(lang), o = ORD.items[it.ord || it.id];
+  return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : ''}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.ord || it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
 const btns = (it, d, lang) => `<div class="shp__btns">${it.read ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}<p class="shp__cart"></p></div>`;
 
 /* ЕДИНАЯ КАРТОЧКА КНИГИ: обложка, название, сведения, цена, две кнопки. Одна на все книги каталога и на блок «Другие книги» —
@@ -53,7 +53,10 @@ function shop(d, lang) {
     const books = g.items.filter(it => !it.small), small = g.items.filter(it => it.small), B = ORD.bundle;
     /* книги Фрейда — одним списком по времени написания, от ранних к поздним */
     const items = g.id === 'freud' ? books.map((it, i) => [yr(it), i, it]).sort((x, y) => x[0] - y[0] || x[1] - y[1]).map(x => x[2]) : books;
-    const set = g.id === 'freud' && B ? `<div class="shp__set rv"><div><h3 class="shp__sett">${esc(T.set)}</h3><p class="shp__setm">${B.n} ${esc(T.setN)} · <b>${esc(B.p.replace('₼', 'AZN'))}</b> ${esc(T.setOld)} ${B.full} AZN · ${esc(T.setOff)} ${Math.round(100 - 100 * parseInt(B.p, 10) / B.full)} %</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
+    /* набор: число книг и полная цена считаются по каталогу, цена набора — та, что берёт сервер оплаты; порядок слов — по языку */
+    const nSet = books.filter(it => it.price).length, fullSet = books.reduce((s2, it) => s2 + (parseInt(it.price, 10) || 0), 0), pSet = B ? parseInt(B.p, 10) : 0, off = fullSet ? Math.round(100 - 100 * pSet / fullSet) : 0;
+    const money = lang === 'az' ? `${fullSet} AZN ${esc(T.setOld)} <b>${pSet} AZN</b>` : `<b>${pSet} AZN</b> ${esc(T.setOld)} ${fullSet} AZN`;
+    const set = g.id === 'freud' && B && pSet < fullSet ? `<div class="shp__set rv"><div><h3 class="shp__sett">${esc(T.set)}</h3><p class="shp__setm">${nSet} ${esc(T.setN)} · ${money}${off >= 5 ? ` · ${esc(T.setOff)} ${off} %` : ''}</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
     const sm = small.length ? `<h3 class="shp__sh rv"><span>${esc(((g.sub || []).find(x => x.id === 'small') || {}).t || '')}</span><i>${small.length}</i></h3><p class="shp__note rv">${esc(g.smallNote || '')}</p><ul class="shp__lines rv">${small.map(line).join('')}</ul>` : '';
     return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>${set}${grid(items, lang)}${sm}</div></section>`;
   }).join('');
