@@ -1,11 +1,11 @@
 /* test/11 — внутренняя страница из блоков: один сценарий на специалистов, консультации, контакты, тренинги, право, блог и статью.
    Вид страницы — <body data-kind="spec|cons|page|blog|post" data-slug="…">; данные — data/<папка>/<slug>.<lang>.json; рама — chrome.js; форма — reg.js. */
-import { initChrome, esc } from './chrome.js?v=11120813';
-import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11120813';
-import { regRender, regOpen } from './reg.js?v=11120813';
-import { CONS, CONS_TOPIC } from './content.js?v=11120813';
+import { initChrome, esc } from './chrome.js?v=11120915';
+import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11120915';
+import { regRender, regOpen } from './reg.js?v=11120915';
+import { CONS, CONS_TOPIC } from './content.js?v=11120915';
 
-const V = '11120813';
+const V = '11120915';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const kind = document.body.dataset.kind || 'page';
 const q = new URLSearchParams(location.search);
@@ -26,7 +26,7 @@ let cat = 'all', turn = 0;
 function hero(d, u, back, backHref, cta) {
   const im = d.img ? fixImg(d.img) : '';
   $('#pgHero').className = 'wrap pg__hero' + (im ? ' pg__hero--art' : '') + (kind === 'spec' ? ' pg__hero--face' : '');
-  $('#pgHero').innerHTML = `<div class="pg__ht"><a class="pp__back" href="${backHref}">← ${esc(back)}</a>${d.eye ? `<p class="pp__kind">${esc(d.eye)}</p>` : ''}<h1 class="pp__t">${rich(d.title)}</h1>${d.lead ? `<p class="pp__lead">${rich(d.lead)}</p>` : ''}${cta ? `<p class="pp__cta"><a class="btn" href="#reg">${esc(cta)}</a></p>` : ''}</div>${im ? `<figure class="pg__art"><img src="${esc(im)}" alt="${esc(d.title)}" width="1200" height="900"></figure>` : ''}`;
+  $('#pgHero').innerHTML = `<div class="pg__ht"><a class="pp__back" href="${backHref}">← ${esc(back)}</a>${d.eye ? `<p class="pp__kind">${esc(d.eye)}</p>` : ''}<h1 class="pp__t${String(d.title || '').length > 64 ? ' pp__t--long' : ''}">${rich(d.title)}</h1>${d.lead ? `<p class="pp__lead">${rich(d.lead)}</p>` : ''}${cta ? `<p class="pp__cta"><a class="btn" href="#reg">${esc(cta)}</a></p>` : ''}</div>${im ? `<figure class="pg__art"><img src="${esc(im)}" alt="${esc(d.title)}" width="1200" height="900"${d.imgPos ? ` style="object-position:${esc(d.imgPos)}"` : ''}></figure>` : ''}`;
 }
 
 function blogPage(d, u) {

@@ -979,3 +979,33 @@ body[data-kind="post"] .pp__t { font-size: clamp(30px, 4.1vw, 60px); line-height
 
 /* Поля формы в одном ряду: подпись в две строки не сдвигает поле — поля стоят на одной линии (страж «ряд карточек») */
 .fld { justify-content: flex-end; }
+
+/* Движение в герое внутренних страниц и статей (владелец 12.11.2026, п. 11): картина «дышит» — медленный наезд со сдвигом
+   и проходящий по ней тёплый свет; текст героя выходит по строкам. При «уменьшить движение» всё стоит на месте. */
+.pg__art, .feat__ph { position: relative; isolation: isolate; }
+.pg__art img, .feat__ph img { transform-origin: 62% 42%; animation: heroDrift 26s var(--e) infinite alternate; will-change: transform; }
+.pg__art::after, .feat__ph::after { content: ""; position: absolute; inset: -20%; z-index: 1; pointer-events: none; background: linear-gradient(105deg, transparent 38%, color-mix(in srgb, var(--gold-hi) 16%, transparent) 50%, transparent 62%); transform: translateX(-70%); animation: heroSheen 9s var(--e) 1.2s infinite; mix-blend-mode: screen; }
+.pg__ht > * { animation: heroRise .9s var(--e) both; } .pg__ht > *:nth-child(2) { animation-delay: .08s; } .pg__ht > *:nth-child(3) { animation-delay: .16s; } .pg__ht > *:nth-child(4) { animation-delay: .26s; } .pg__ht > *:nth-child(5) { animation-delay: .36s; }
+.pg__hero .pg__art { animation: heroOpen 1.2s var(--e) both; }
+@keyframes heroDrift { from { transform: scale(1.02) translate3d(0, 0, 0); } to { transform: scale(1.12) translate3d(-1.6%, -1.2%, 0); } }
+@keyframes heroSheen { 0% { transform: translateX(-70%); } 55%, 100% { transform: translateX(70%); } }
+@keyframes heroRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes heroOpen { from { opacity: 0; clip-path: inset(0 0 0 100% round var(--rad)); } to { opacity: 1; clip-path: inset(0 0 0 0 round var(--rad)); } }
+@media (prefers-reduced-motion: reduce) { .pg__art img, .feat__ph img, .pg__art::after, .feat__ph::after, .pg__ht > *, .pg__hero .pg__art { animation: none; } .pg__art::after, .feat__ph::after { display: none; } }
+
+/* Длинный заголовок статьи (больше 64 знаков) набирается меньшим кеглем — не больше трёх строк на компьютере */
+.pg .pp__t--long { font-size: clamp(28px, 3vw, 44px); line-height: 1.1; max-width: 26ch; }
+
+.law__c { font: 500 15px/1.4 var(--f-read); color: var(--gold-hi); }
+
+/* Круг критика PG-03: картина героя не обрезает главное; место под героя и блоки занято до загрузки текста (страница не прыгает) */
+body[data-kind="post"] .pg__art { aspect-ratio: 16 / 10; max-width: 620px; } body[data-kind="post"] .pg__art img { object-position: 50% 35%; }
+@media (max-width: 900px) { .pg__art { aspect-ratio: 5 / 4; max-height: none; } body[data-kind="post"] .pg__art { aspect-ratio: 16 / 10; max-width: none; } }
+#pgHero:empty { min-height: 72vh; } #pgBlocks:empty { min-height: 140vh; }
+/* Круг критика PG-03, мелочи: документы правового блока на телефоне листаются одной лентой (вопросы сразу под ней); подпись закона обычным набором; черта пункта — у первой строки */
+.law__n { font: 500 15px/1.4 var(--f-read); letter-spacing: 0; text-transform: none; color: var(--smoke); }
+.pg .facts li { align-items: flex-start; } .pg .facts li::before { top: calc(var(--p12) + .75em); }
+@media (max-width: 760px) {
+  .gal--docs { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: var(--p12); padding-bottom: var(--p8); -webkit-overflow-scrolling: touch; }
+  .gal--docs .gal__i { flex: 0 0 62%; scroll-snap-align: start; }
+}

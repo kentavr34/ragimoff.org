@@ -26,7 +26,7 @@ JS = r"""
   for (let k = 0; k < 30 && [...document.images].some(i => !i.complete); k++) await new Promise(r => setTimeout(r, 250));
   const W = __W__;                      /* заданная ширина экрана: при переполнении браузер сам расширяет окно просмотра */
   out.over = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - W;
-  const skip = e => e.closest('.tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
+  const skip = e => e.closest('.gal--docs, .tblw, .pg__cats, .mob, .lb, .nav__dd, .head, .cine, .belt, .rib, .shelf, .rail, [data-rail]');
   out.out = [...document.querySelectorAll('main *, footer *')].filter(e => { if (skip(e)) return false; const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1); }).slice(0, 5).map(e => e.tagName + '.' + String(e.className).slice(0, 30));
   out.img = [...document.images].filter(i => i.complete && !i.naturalWidth && i.getAttribute('src')).map(i => i.getAttribute('src')).slice(0, 6);
   const h1 = document.querySelector('h1');

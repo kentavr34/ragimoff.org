@@ -1,8 +1,8 @@
 /* test/11 — страница программы обучения: один шаблон на все программы. Данные — programs.js, подписи — content.js (T[l].pp), форма — reg.js. */
-import { PROGRAMS } from './programs.js?v=11120813';
-import { initChrome, esc, ARR, progUrl } from './chrome.js?v=11120813';
-import { rich, fixImg } from './blocks.js?v=11120813';
-import { regRender, regOpen } from './reg.js?v=11120813';
+import { PROGRAMS } from './programs.js?v=11120915';
+import { initChrome, esc, ARR, progUrl } from './chrome.js?v=11120915';
+import { rich, fixImg } from './blocks.js?v=11120915';
+import { regRender, regOpen } from './reg.js?v=11120915';
 
 const $ = s => document.querySelector(s);
 const slug = (() => { const p = new URLSearchParams(location.search).get('p'); return PROGRAMS.items[p] ? p : PROGRAMS.order[0]; })();
@@ -15,7 +15,7 @@ async function lawRender(lang) {
   const d = lawCache[lang]; if (!d || document.documentElement.lang !== lang) return;
   $('#hLaw').textContent = d.h; $('#sLaw').textContent = d.sub; $('#hLawDocs').textContent = d.docs;
   $('#ppLawDocs').innerHTML = d.gallery.map(x => `<button type="button" class="gal__i rv" data-zoom="${esc(fixImg(x.src))}" data-cap="${esc(x.cap || '')}"><img src="${esc(fixImg(x.src))}" alt="${esc(x.cap || '')}" loading="lazy" width="400" height="300"><span>${esc(x.cap || '')}</span></button>`).join('');
-  $('#ppLaw').innerHTML = d.items.map((x, i) => `<details class="acc acc--law rv"${i === 0 ? ' open' : ''}><summary><span>${esc(x.q)}</span><i aria-hidden="true"></i></summary><div class="law__a"><p>${esc(x.a)}</p>${x.law ? `<p class="law__n">${esc(x.law)}</p>` : ''}${(x.quotes || []).map(q => `<blockquote class="law__q">${rich(q)}</blockquote>`).join('')}${[].concat(x.link ? [x.link] : [], x.links || []).map(a => `<a class="law__l" href="${esc(a[1])}"${ext(a[1])}>${esc(a[0])} ↗</a>`).join('')}</div></details>`).join('');
+  $('#ppLaw').innerHTML = d.items.map((x, i) => `<details class="acc acc--law rv"${i === 0 ? ' open' : ''}><summary><span>${esc(x.q)}</span><i aria-hidden="true"></i></summary><div class="law__a"><p>${esc(x.a)}</p>${x.law ? `<p class="law__n">${esc(x.law)}</p>` : ''}${(x.quotes || []).map(q => `${q[0] ? `<p class="law__c">${esc(q[0])}</p>` : ''}${q[2] ? `<blockquote class="law__q">${rich(q[1])}</blockquote>` : `<p>${rich(q[1])}</p>`}`).join('')}${[].concat(x.link ? [x.link] : [], x.links || []).map(a => `<a class="law__l" href="${esc(a[1])}"${ext(a[1])}>${esc(a[0])} ↗</a>`).join('')}</div></details>`).join('');
   sec('law', true); setTimeout(() => page && page.watch(), 0);
   if (location.hash === '#law' && !lawRender.done) { lawRender.done = true; setTimeout(() => $('#law').scrollIntoView(), 60); }   /* переход по ссылке «Юридические основы» */
 }
@@ -51,3 +51,5 @@ document.addEventListener('click', e => {
   const z = e.target.closest('.gal__i'); if (z) { const lb = $('#lb'); $('#lbImg').src = z.dataset.zoom; $('#lbCap').textContent = z.dataset.cap; lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false'); return; }
   if (e.target.closest('#lb')) { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); }
 });
+
+addEventListener('keydown', e => { if (e.key === 'Escape' && $('#lb').classList.contains('is-open')) { $('#lb').classList.remove('is-open'); $('#lb').setAttribute('aria-hidden', 'true'); } });

@@ -7,7 +7,7 @@
 
 const FAQ_RU = [
   ['Нужна ли нострификация диплома?', 'Нет. Диплом о дополнительном профессиональном образовании (ДПО) даёт законное право работать в Азербайджане без процедуры подтверждения (нострификации) в Министерстве образования. Приступать к деятельности можно сразу после получения диплома.'],
-  ['Кто выдаёт диплом?', 'Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов — учебное заведение, лицензированное Министерством образования России. Кенан Рагимов — преподаватель института и его официальный представитель в Азербайджане.'],
+  ['Кто выдаёт диплом?', 'Санкт-Петербургский институт дополнительного профессионального образования для психологов и психотерапевтов — учебное заведение с бессрочной государственной лицензией на образовательную деятельность. Кенан Рагимов — преподаватель института и его официальный представитель в Азербайджане.'],
   ['Как проверить диплом и лицензию?', 'Номер диплома проверяется в российском федеральном реестре (ФИС ФРДО), лицензия института — на сайте Рособрнадзора. Имя «Рагимов Кенан Ровшанович» можно найти в списке преподавателей на сайте института.'],
   ['Даёт ли диплом право называться психологом и оказывать психологическую помощь?', 'Да. По Закону Азербайджанской Республики «О психологической помощи» (ст. 1.0.2 и 3.2) психологом признаётся и тот, кто получил специальность психолога в форме дополнительного образования; слова «психолог», «психотерапия» и другие допускается использовать лицам, имеющим право оказывать психологическую помощь.'],
   ['Признаётся ли дополнительное образование официальным?', 'Да. Статья 24 Закона Азербайджанской Республики «Об образовании» признаёт дополнительное образование официальной формой образования. Диплом Санкт-Петербургского института относится именно к этой категории.'],
@@ -17,7 +17,7 @@ const FAQ_RU = [
 
 const FAQ_AZ = [
   ['Diplomun nostrifikasiyasına ehtiyac varmı?', 'Xeyr. Əlavə Təhsil diplomu Azərbaycan Respublikasında təsdiqlənmə (nostrifikasiya) prosedurundan keçmədən işləməyə qanuni hüquq verir. Diplomu aldıqdan dərhal sonra fəaliyyətə başlaya bilərsiniz.'],
-  ['Diplomu kim verir?', 'Sankt-Peterburq Əlavə Təhsil İnstitutu — Rusiya Təhsil Nazirliyi tərəfindən lisenziyalanmış rəsmi təhsil müəssisəsi. Kənan Rəhimov institutun müəllimi və Azərbaycandakı rəsmi nümayəndəsidir.'],
+  ['Diplomu kim verir?', 'Sankt-Peterburq Əlavə Təhsil İnstitutu — təhsil fəaliyyəti üzrə müddətsiz dövlət lisenziyası olan rəsmi təhsil müəssisəsi. Kənan Rəhimov institutun müəllimi və Azərbaycandakı rəsmi nümayəndəsidir.'],
   ['Diplomu və lisenziyanı necə yoxlamaq olar?', 'Diplomun nömrəsi Rusiyanın federal reyestrində (FİS FRDO), institutun lisenziyası isə Rosobrnadzor saytında yoxlanıla bilər. «Рагимов Кенан Ровшанович» adını institutun saytında müəllimlər siyahısında tapa bilərsiniz.'],
   ['Diplom «psixoloq» adlanmaq və psixoloji yardım göstərmək hüququ verirmi?', 'Bəli. «Psixoloji yardım haqqında» Azərbaycan Respublikası Qanununa (maddə 1.0.2 və 3.2) əsasən psixoloq ixtisasını əlavə təhsil formasında əldə edən şəxs də psixoloq sayılır; «psixoloq», «psixoterapiya» və digər sözlərdən psixoloji yardım göstərmək hüququ olan şəxslər istifadə edə bilər.'],
   ['Əlavə təhsil rəsmi təhsil formasıdırmı?', 'Bəli. «Təhsil haqqında» Azərbaycan Respublikası Qanununun 24-cü maddəsi əlavə təhsili rəsmi təhsil forması kimi tanıyır. Sankt-Peterburq İnstitutunun diplomu məhz bu kateqoriyaya aiddir.'],
@@ -27,7 +27,7 @@ const FAQ_AZ = [
 
 const FAQ_EN = [
   ['Is nostrification of the diploma required?', 'No. A diploma of additional professional education (CPD) gives the legal right to work in the Republic of Azerbaijan without a confirmation procedure (nostrification) by the Ministry of Education. You may begin practice immediately after receiving the diploma.'],
-  ['Who issues the diploma?', 'The St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists, an official educational institution licensed by the Russian Ministry of Education. Kenan Ragimov is an instructor at the institute and its official representative in Azerbaijan.'],
+  ['Who issues the diploma?', 'The St Petersburg Institute of Additional Professional Education for Psychologists and Psychotherapists, an official educational institution holding a permanent state licence for educational activity. Kenan Ragimov is an instructor at the institute and its official representative in Azerbaijan.'],
   ['How can the diploma and licence be verified?', 'The diploma number can be checked in the Russian federal register (FIS FRDO) and the institute’s licence on the Rosobrnadzor website. The name “Ragimov Kenan Rovshanovich” can be found in the faculty list on the institute’s website.'],
   ['Does the diploma give the right to use the title “psychologist” and provide psychological assistance?', 'Yes. Under the Law of the Republic of Azerbaijan “On Psychological Assistance” (Articles 1.0.2 and 3.2), a person who has acquired the specialty of psychologist through additional education is also a psychologist; the words “psychologist”, “psychotherapy” and others may be used by persons entitled to provide psychological assistance.'],
   ['Is additional education recognised as official?', 'Yes. Article 24 of the Law of the Republic of Azerbaijan “On Education” recognises additional education as an official form of education. The diploma of the St Petersburg Institute falls precisely within this category.'],
@@ -115,14 +115,14 @@ export const PROGRAMS = {
           'RAGIMOFF mərkəzində öz pasiyentlərini qəbul etmək imkanı'
         ],
         program: [
-          { t: 'Blok I — Psixologiyanın Əsasları', items: ['Ümumi psixologiya · 72 saat', 'Psixologiya tarixi · 80 saat', 'Psixologiyanın metodoloji əsasları · 80 saat', 'Sosial psixologiya · 80 saat'] },
-          { t: 'Blok II — Tətbiqi Psixologiya', items: ['Pedaqoji psixologiya · 80 saat', 'İnkişaf psixologiyası · 80 saat', 'İnkişaf psixologiyası — genişləndirilmiş kurs · 88 saat', 'Ailə psixologiyası · 72 saat', 'Stress və psixoloji dözümlülük · 80 saat', 'Konfliktologiya · 80 saat', 'Təşkilati psixologiya · 88 saat'] },
-          { t: 'Blok III — Klinik-Terapevtik Blok', items: ['Klinik psixologiyaya giriş · 72 saat', 'Neyropsixologiya əsasları · 80 saat', 'Psixoloji konsultasiya · 88 saat', 'Koqnitiv-davranış terapiyası (KDT) · 88 saat', 'Gəştalt terapiyası · 88 saat', 'Analitik psixologiya · 80 saat'] },
-          { t: 'Blok IV — Peşəkar İnkişaf', items: ['Psixoloji etika və peşəkar standartlar · 80 saat', 'Öz psixoloji praktikanı qurmaq · 56 saat'] },
-          { t: 'Blok V — Yekun Attestasiya', items: ['Aralıq attestasiya · 2 saat', 'Buraxılış işi · 40 saat', 'Yekun test imtahanı · 2 saat'] }
+          { t: 'Blok I — Psixologiyanın əsasları', items: ['Ümumi psixologiya · 72 saat', 'Psixologiya tarixi · 80 saat', 'Psixologiyanın metodoloji əsasları · 80 saat', 'Sosial psixologiya · 80 saat'] },
+          { t: 'Blok II — Tətbiqi psixologiya', items: ['Pedaqoji psixologiya · 80 saat', 'İnkişaf psixologiyası · 80 saat', 'İnkişaf psixologiyası — genişləndirilmiş kurs · 88 saat', 'Ailə psixologiyası · 72 saat', 'Stress və psixoloji dözümlülük · 80 saat', 'Konfliktologiya · 80 saat', 'Təşkilati psixologiya · 88 saat'] },
+          { t: 'Blok III — Klinik-terapevtik blok', items: ['Klinik psixologiyaya giriş · 72 saat', 'Neyropsixologiya əsasları · 80 saat', 'Psixoloji konsultasiya · 88 saat', 'Koqnitiv-davranış terapiyası (KDT) · 88 saat', 'Gəştalt terapiyası · 88 saat', 'Analitik psixologiya · 80 saat'] },
+          { t: 'Blok IV — Peşəkar inkişaf', items: ['Psixoloji etika və peşəkar standartlar · 80 saat', 'Öz psixoloji praktikanı qurmaq · 56 saat'] },
+          { t: 'Blok V — Yekun attestasiya', items: ['Aralıq attestasiya · 2 saat', 'Buraxılış işi · 40 saat', 'Yekun test imtahanı · 2 saat'] }
         ],
         doc: {
-          t: 'Peşə yenidənhazırlanması üzrə Əlavə Təhsil Diplomu',
+          t: 'Peşə yenidənhazırlanması üzrə Əlavə Təhsil diplomu',
           d: 'Diplomu Sankt-Peterburq Əlavə Təhsil İnstitutu verir; peşəkar yenidənhazırlanma proqramı institutun rəhbərliyi tərəfindən təsdiq edilib. Diplom haqqında məlumat FİS FRDO dövlət reyestrinə daxil edilir, nostrifikasiya tələb olunmur, işəgötürən diplomu reyestr vasitəsilə yoxlaya bilər.'
         },
         price: {
@@ -156,11 +156,11 @@ export const PROGRAMS = {
           'The option to see clients at the RAGIMOFF centre'
         ],
         program: [
-          { t: 'Block I — Psychology Fundamentals', items: ['General Psychology · 72 hrs', 'History of Psychology · 80 hrs', 'Methodological Foundations of Psychology · 80 hrs', 'Social Psychology · 80 hrs'] },
-          { t: 'Block II — Applied Psychology', items: ['Educational Psychology · 80 hrs', 'Developmental Psychology · 80 hrs', 'Developmental Psychology — Advanced Course · 88 hrs', 'Family Psychology · 72 hrs', 'Stress and Psychological Resilience · 80 hrs', 'Conflict Resolution · 80 hrs', 'Organisational Psychology · 88 hrs'] },
-          { t: 'Block III — Clinical & Therapeutic Block', items: ['Introduction to Clinical Psychology · 72 hrs', 'Foundations of Neuropsychology · 80 hrs', 'Psychological Counselling · 88 hrs', 'Cognitive Behavioural Therapy (CBT) · 88 hrs', 'Gestalt Therapy · 88 hrs', 'Analytical Psychology · 80 hrs'] },
-          { t: 'Block IV — Professional Development', items: ['Psychology Ethics and Professional Standards · 80 hrs', 'Building Your Own Psychology Practice · 56 hrs'] },
-          { t: 'Block V — Final Assessment', items: ['Mid-Term Assessment · 2 hrs', 'Graduation Thesis · 40 hrs', 'Final Examination · 2 hrs'] }
+          { t: 'Block I — Psychology fundamentals', items: ['General Psychology · 72 hrs', 'History of Psychology · 80 hrs', 'Methodological Foundations of Psychology · 80 hrs', 'Social Psychology · 80 hrs'] },
+          { t: 'Block II — Applied psychology', items: ['Educational Psychology · 80 hrs', 'Developmental Psychology · 80 hrs', 'Developmental Psychology — Advanced Course · 88 hrs', 'Family Psychology · 72 hrs', 'Stress and Psychological Resilience · 80 hrs', 'Conflict Resolution · 80 hrs', 'Organisational Psychology · 88 hrs'] },
+          { t: 'Block III — Clinical & therapeutic block', items: ['Introduction to Clinical Psychology · 72 hrs', 'Foundations of Neuropsychology · 80 hrs', 'Psychological Counselling · 88 hrs', 'Cognitive Behavioural Therapy (CBT) · 88 hrs', 'Gestalt Therapy · 88 hrs', 'Analytical Psychology · 80 hrs'] },
+          { t: 'Block IV — Professional development', items: ['Psychology Ethics and Professional Standards · 80 hrs', 'Building Your Own Psychology Practice · 56 hrs'] },
+          { t: 'Block V — Final assessment', items: ['Mid-Term Assessment · 2 hrs', 'Graduation Thesis · 40 hrs', 'Final Examination · 2 hrs'] }
         ],
         doc: {
           t: 'Diploma of professional retraining (CPD)',
@@ -247,11 +247,11 @@ export const PROGRAMS = {
           'Real klinik keyslərin supervisor nəzarəti altında analizi'
         ],
         program: [
-          { t: 'Blok I — Neyroloji və Fiziologiya Əsasları', items: ['Mərkəzi sinir sisteminin anatomiyası · 52 saat', 'Mərkəzi sinir sisteminin fiziologiyası · 47 saat', 'Psixofiziologiya · 48 saat', 'Neyropsixologiya · 56 saat'] },
-          { t: 'Blok II — Klinik Psixologiyanın Nəzəri Əsasları', items: ['Patopsixologiya · 53 saat', 'Klinik psixologiyaya giriş · 47 saat', 'Psixosomatika və bədən psixologiyası · 94 saat', 'Psixoterapiya: nəzəriyyə və praktika · 66 saat', 'Diferensial psixologiya · 47 saat', 'Klinik psixologiyada şəxsiyyət nəzəriyyələri · 11 saat', 'Psixodiaqnostika · 67 saat', 'Psixoloji konsultasiyanın əsasları · 30 saat', 'Psixoloji inkişaf pozuntuları · 104 saat', 'Gerontologiyada klinik psixologiya · 63 saat', 'Deviantologiya · 50 saat'] },
-          { t: 'Blok III — Əlavə Klinik Modullar', items: ['Psixiatriyanın əsasları · 100 saat', 'Böhran psixologiyası (PTSS) · 80 saat', 'Asılılıq psixologiyası · 63 saat'] },
+          { t: 'Blok I — Neyroloji və fiziologiya əsasları', items: ['Mərkəzi sinir sisteminin anatomiyası · 52 saat', 'Mərkəzi sinir sisteminin fiziologiyası · 47 saat', 'Psixofiziologiya · 48 saat', 'Neyropsixologiya · 56 saat'] },
+          { t: 'Blok II — Klinik psixologiyanın nəzəri əsasları', items: ['Patopsixologiya · 53 saat', 'Klinik psixologiyaya giriş · 47 saat', 'Psixosomatika və bədən psixologiyası · 94 saat', 'Psixoterapiya: nəzəriyyə və praktika · 66 saat', 'Diferensial psixologiya · 47 saat', 'Klinik psixologiyada şəxsiyyət nəzəriyyələri · 11 saat', 'Psixodiaqnostika · 67 saat', 'Psixoloji konsultasiyanın əsasları · 30 saat', 'Psixoloji inkişaf pozuntuları · 104 saat', 'Gerontologiyada klinik psixologiya · 63 saat', 'Deviantologiya · 50 saat'] },
+          { t: 'Blok III — Əlavə klinik modullar', items: ['Psixiatriyanın əsasları · 100 saat', 'Böhran psixologiyası (PTSS) · 80 saat', 'Asılılıq psixologiyası · 63 saat'] },
           { t: 'Blok IV — Praktikum', items: ['Neyropsixologiya praktikumu · 112 saat', 'Patopsixologiya praktikumu · 161 saat', 'Psixodiaqnostika praktikumu · 105 saat', 'Uşaq klinik psixologiyası praktikumu · 60 saat'] },
-          { t: 'Blok V — Yekun Attestasiya', items: ['Yekun fənlərarası imtahan · 12 saat'] }
+          { t: 'Blok V — Yekun attestasiya', items: ['Yekun fənlərarası imtahan · 12 saat'] }
         ],
         doc: {
           t: 'Peşə yenidənhazırlanması üzrə Əlavə Təhsil Diplomu + IPAS sertifikatı',
@@ -289,11 +289,11 @@ export const PROGRAMS = {
           'Real clinical case analysis under supervision'
         ],
         program: [
-          { t: 'Block I — Neurological & Physiological Foundations', items: ['Anatomy of the Central Nervous System · 52 hrs', 'Physiology of the Central Nervous System · 47 hrs', 'Psychophysiology · 48 hrs', 'Neuropsychology · 56 hrs'] },
-          { t: 'Block II — Theoretical Foundations of Clinical Psychology', items: ['Pathopsychology · 53 hrs', 'Introduction to Clinical Psychology · 47 hrs', 'Psychosomatics and Body-Oriented Psychology · 94 hrs', 'Psychotherapy: Theory and Practice · 66 hrs', 'Differential Psychology · 47 hrs', 'Personality Theories in Clinical Psychology · 11 hrs', 'Psychodiagnostics · 67 hrs', 'Foundations of Psychological Counselling · 30 hrs', 'Psychological Developmental Disorders · 104 hrs', 'Clinical Psychology in Gerontology · 63 hrs', 'Deviantology · 50 hrs'] },
-          { t: 'Block III — Additional Clinical Modules', items: ['Fundamentals of Psychiatry · 100 hrs', 'Crisis Psychology (PTSD) · 80 hrs', 'Psychology of Addictions · 63 hrs'] },
+          { t: 'Block I — Neurological & physiological foundations', items: ['Anatomy of the Central Nervous System · 52 hrs', 'Physiology of the Central Nervous System · 47 hrs', 'Psychophysiology · 48 hrs', 'Neuropsychology · 56 hrs'] },
+          { t: 'Block II — Theoretical foundations of Clinical Psychology', items: ['Pathopsychology · 53 hrs', 'Introduction to Clinical Psychology · 47 hrs', 'Psychosomatics and Body-Oriented Psychology · 94 hrs', 'Psychotherapy: Theory and Practice · 66 hrs', 'Differential Psychology · 47 hrs', 'Personality Theories in Clinical Psychology · 11 hrs', 'Psychodiagnostics · 67 hrs', 'Foundations of Psychological Counselling · 30 hrs', 'Psychological Developmental Disorders · 104 hrs', 'Clinical Psychology in Gerontology · 63 hrs', 'Deviantology · 50 hrs'] },
+          { t: 'Block III — Additional clinical modules', items: ['Fundamentals of Psychiatry · 100 hrs', 'Crisis Psychology (PTSD) · 80 hrs', 'Psychology of Addictions · 63 hrs'] },
           { t: 'Block IV — Practicum', items: ['Neuropsychology Practicum · 112 hrs', 'Pathopsychology Practicum · 161 hrs', 'Psychodiagnostics Practicum · 105 hrs', 'Child Clinical Psychology Practicum · 60 hrs'] },
-          { t: 'Block V — Final Assessment', items: ['Final Interdisciplinary Examination · 12 hrs'] }
+          { t: 'Block V — Final assessment', items: ['Final Interdisciplinary Examination · 12 hrs'] }
         ],
         doc: {
           t: 'Diploma of professional retraining (CPD) + IPAS certificate',
@@ -345,7 +345,7 @@ export const PROGRAMS = {
         ],
         doc: {
           t: 'Международный сертификат IPAS/BPA',
-          d: 'Сертификат International Psychotherapy Accreditation Society (IPAS) и BPA выдаётся успешно прошедшим итоговую аттестацию. Подлинность проверяется по QR-коду на сертификате или на сайте ассоциации (intpas.com).'
+          d: 'Сертификат International Psychotherapy Association (IPAS) и BPA выдаётся успешно прошедшим итоговую аттестацию. Подлинность проверяется по QR-коду на сертификате или на сайте ассоциации (intpas.com).'
         },
         price: {
           rows: [['Полная стоимость', '3 600 AZN'], ['При полной оплате (−600 AZN)', '3 000 AZN'], ['Рассрочка 12 мес.', '300 AZN/мес.'], ['Рассрочка 24 мес.', '175 AZN/мес.']],
@@ -386,7 +386,7 @@ export const PROGRAMS = {
         ],
         doc: {
           t: 'Beynəlxalq IPAS/BPA sertifikatı',
-          d: 'International Psychotherapy Accreditation Society (IPAS) və BPA sertifikatı yekun attestasiyadan uğurla keçənlərə verilir. Sertifikatın həqiqiliyini üzərindəki QR-kodla və ya assosiasiyanın saytında (intpas.com) yoxlamaq olar.'
+          d: 'International Psychotherapy Association (IPAS) və BPA sertifikatı yekun attestasiyadan uğurla keçənlərə verilir. Sertifikatın həqiqiliyini üzərindəki QR-kodla və ya assosiasiyanın saytında (intpas.com) yoxlamaq olar.'
         },
         price: {
           rows: [['Tam qiymət', '3 600 AZN'], ['Öncədən ödənişdə (−600 AZN)', '3 000 AZN'], ['Taksit 12 ay', '300 AZN/ay'], ['Taksit 24 ay', '175 AZN/ay']],

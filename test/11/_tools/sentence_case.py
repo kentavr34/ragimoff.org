@@ -41,12 +41,15 @@ def conv(s, lang, name):
     if not free or len(caps) * 10 < len(cand) * 6:
         return s
     out, inq, prev = [], False, ""
+    # «Блок II — Название», «Модуль 3 — Название», «2-ci ay — Mövzu»: после номера и тире идёт название — его первое слово остаётся с заглавной
+    dash = words.index(u"—") if u"—" in words else -1
+    label = dash > 0 and dash <= 3 and any(any(ch.isdigit() for ch in w) or w.strip(".") in ("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X") for w in words[:dash])
     for i, w in enumerate(words):
         c = cores[i]
         opened = w[:1] in u"«“„"
         if opened:
             inq = True
-        if i > 0 and c and not inq and not re.search(u"[.!?…:]$", prev) and prev not in (u"·", "/", "|", u"•"):
+        if i > 0 and c and not inq and not (label and i == dash + 1) and not re.search(u"[.!?…:]$", prev) and prev not in (u"·", "/", "|", u"•"):
             parts = c.split("-")
             if (cores[i - 1] + " " + c) in PHR or (i + 1 < len(cores) and (c + " " + cores[i + 1]) in PHR):
                 out.append(w); prev = w                      # составное имя собственное — слово остаётся как есть
@@ -83,7 +86,7 @@ def walk(o, lang, name, key=None, btype=None):
             if isinstance(v, str):
                 if k == "html":
                     o[k] = html_heads(v, lang, name)
-                elif k in HEAD_KEYS and not (k == "t" and bt == "quotes") and not (name.startswith("spec/") and (bt in ("timeline", "gallery") or k in ("title", "cap"))):
+                elif k in HEAD_KEYS and not (k == "t" and bt == "quotes") and not (name.startswith("spec/") and ((bt in ("timeline", "gallery") and k != "h" and lang != "ru") or k == "title")):
                     o[k] = conv(v, lang, name)
             else:
                 walk(v, lang, name, k, bt)

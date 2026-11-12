@@ -67,3 +67,13 @@ program.html?p=<slug>            программы обучения   assets/js
 - Инструменты: `_tools/make_shells.py` (оболочки страниц из рамы `program.html`), `_tools/build_blog.py` (статьи и список блога), `_tools/collect_images.py` (картинки → `assets/img/site/`), `_tools/verify_data.py --all` (сторож дословности и разметки), `_tools/clean_data.py`, `_tools/patch_data_1112.py`, `_tools/pages_check.py` (автоматическая проверка всех страниц × 3 языка × 3 ширины), `_tools/stamp.py` (метка версии на все страницы и сценарии).
 - Порядок перед публикацией: `verify_data.py --all` → `collect_images.py` → `stamp.py` → `pages_check.py` (0 нарушений) → критик → коммит только путей `test/11`.
 - Страница тестов (`/test/`) и админка (`api.ragimoff.org/admin`) не тронуты; на тесты ведёт ссылка в подвале и в нижней навигации.
+
+## Правки 12.11.2026 (по решениям владельца)
+
+- **Юридические основы деятельности** — не страница, а блок на программах «Общая психология» и «Клиническая психология» (сразу после образца диплома): документы института, вопросы и ответы с цитатами законов и ссылками на e-qanun.az. Данные: `data/law/law.<lang>.json`, сборка `_tools/build_law.py`; `law.html` — переадресация на блок.
+- **Тревожные расстройства** и **ОКР** — две отдельные страницы консультаций (`tesvis-pozuntulari`, `okp`), тексты и названия по книге «Клиническая психиатрия».
+- **Три языка 1:1**: `_tools/parity_check.py` (состав блоков, число элементов, чужая письменность).
+- **Заголовки как предложения**: `_tools/sentence_case.py` (+ `sentence_case_keep.txt`, `sentence_case_phrases.txt`).
+- **Замок согласованного**: `_tools/pages_check.py` сверяет устройство разделов со снимком `_agent/lock/layout.json`; намеренное изменение — `pages_check.py accept`. Стражи: ряд карточек на одном уровне, номер телефона не рвётся, кнопка «наверх», блог на главной в ряд. `_tools/css_collide.py` — селектор главной нельзя заново объявлять для внутренних страниц.
+- **Обложки**: `_tools/gen_blog_covers.py` (бесплатная квота DashScope на сервере 164), подстановка `_tools/apply_covers.py`.
+- **Перед публикацией** (все — 0): `verify_data.py --all`, `parity_check.py`, `css_collide.py`, `css_scale.py`, `sentence_case.py show`, `pages_check.py quick`. В git добавлять файлы только поимённо.
