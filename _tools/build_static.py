@@ -247,10 +247,13 @@ def head_block(kind, slug, lang, langs, o, q=""):
 
 
 def finish(doc, kind, slug, lang, langs, o, q):
-    doc = re.sub(r"<!--seo-->.*?<!--/seo-->", "", doc, flags=re.S)
+    doc = re.sub(r"<!--seo-->.*?<!--/seo-->\n*", "", doc, flags=re.S)
     doc = re.sub(r"<html\b[^>]*>", '<html lang="%s" data-theme="night" data-static="1">' % lang, doc, count=1)
     doc = re.sub(r"<title>.*?</title>", "<title>%s</title>" % E(o["title"]), doc, count=1, flags=re.S)
     doc = doc.replace("<head>", "<head>\n" + head_block(kind, slug, lang, langs, o, q), 1)
+    # 13.11 (Кенан: публиковать порционно, без лишних файлов): номер версии stamp.py в снимках не нужен — GitHub Pages обновляет
+    # кэш файлов через 10 мин; без него снимок меняется только при смене текста страницы, и в коммит идут только изменённые страницы
+    doc = re.sub(r'((?:href|src)="assets/[^"?]+\.(?:css|js))\?v=\d+"', r'\1"', doc)
     return relink(doc, lang)
 
 
@@ -259,6 +262,8 @@ GRAB = r"""
 (async () => {
   const txt = () => (document.querySelector('main') || document.body).innerText.trim().length;
   for (let k = 0; k < 40 && (document.readyState !== 'complete' || txt() < 120); k++) await new Promise(r => setTimeout(r, 150));
+  /* 13.11: ждать, пока страница перейдёт на язык снимка (иначе заголовок мог остаться на языке шаблона) */
+  for (let k = 0; k < 40 && document.documentElement.lang !== '__L__'; k++) await new Promise(r => setTimeout(r, 100));
   document.querySelectorAll('.rv').forEach(e => e.classList.add('is-in'));
   await new Promise(r => setTimeout(r, 350));
   const pick = sels => { for (const s of sels) { for (const e of document.querySelectorAll(s)) { const t = (e.innerText || '').trim(); if (t.length > 40) return t; } } return ''; };
@@ -301,7 +306,7 @@ async def snap_pages(todo):
                 await cmd("Runtime.evaluate", expression="localStorage.setItem('r11_lang','%s')" % lang)
                 await cmd("Page.navigate", url=BASE + u)
                 await asyncio.sleep(.6)
-                r = await cmd("Runtime.evaluate", expression=GRAB, returnByValue=True, awaitPromise=True)
+                r = await cmd("Runtime.evaluate", expression=GRAB.replace("__L__", lang), returnByValue=True, awaitPromise=True)
                 o = (r.get("result") or {}).get("value")
                 if not o:
                     print("  нет ответа:", lang, u)
@@ -318,7 +323,18 @@ async def snap_pages(todo):
 def build_pages():
     todo = [(u, s, kind, l, langs) for (u, s, kind, langs) in page_list() for l in langs]
     print("страниц для снимков:", len(todo))
+    # 13.11.2026: страж — сервер упал посреди сборки, и вместо страниц записалась страница ошибки Chrome (262 снимка).
+    # Перед сборкой сервер должен отвечать; снимок с признаками страницы ошибки или без содержимого не записывается.
+    try:
+        urllib.request.urlopen(BASE + "index.html", timeout=5)
+    except Exception as e:
+        raise SystemExit("СТОП: локальный сервер %s не отвечает (%s) — запустите python -m http.server 8812 из корня сайта" % (BASE, e))
     res = asyncio.run(snap_pages(todo))
+    bad = [(u, lang) for (u, slug, kind, lang, langs, o) in res
+           if re.search(r"neterror|ERR_CONNECTION|ERR_NAME_NOT|id=\"main-frame-error\"", o["html"]) or 'data-kind=' not in o["html"] and 'id="top"' not in o["html"]]
+    if bad or len(res) != len(todo):
+        raise SystemExit("СТОП: %d снимков похожи на страницу ошибки браузера, %d страниц без ответа — ничего не записано. Примеры: %s"
+                         % (len(bad), len(todo) - len(res), bad[:5]))
     w, az_head = 0, {}
     for (u, slug, kind, lang, langs, o) in res:
         q = "?" + u.split("?", 1)[1] if "?" in u else ""
@@ -340,7 +356,7 @@ def build_pages():
         kind, slug, langs, oo, q = v
         p = "index.html" if tpl == "index.html" else tpl
         s = io.open(p, encoding="utf-8").read()
-        s = re.sub(r"<!--seo-->.*?<!--/seo-->", "", s, flags=re.S)
+        s = re.sub(r"<!--seo-->.*?<!--/seo-->\n*", "", s, flags=re.S)
         blk = head_block(kind, slug, "az", langs, oo, "").replace('<base href="/">', "")
         blk = re.sub(r"<script>window.__LANG=.*?</script>", "", blk)        # корень остаётся живым: язык выбирает посетитель
         s = s.replace("<head>", "<head>\n" + blk, 1)
@@ -350,7 +366,7 @@ def build_pages():
     if base:
         for p in ("book.html", "read.html", "program.html", "specialist.html", "article.html"):
             s = io.open(p, encoding="utf-8").read()
-            s = re.sub(r"<!--seo-->.*?<!--/seo-->", "", s, flags=re.S)
+            s = re.sub(r"<!--seo-->.*?<!--/seo-->\n*", "", s, flags=re.S)
             oo = base[3]
             blk = ('<!--seo--><meta name="description" content="%s"><meta property="og:site_name" content="Doctor Ragimoff"><meta property="og:type" content="website">'
                    '<meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:image" content="%s"><meta property="og:locale" content="az_AZ">'
@@ -363,7 +379,7 @@ def build_pages():
 # ---------- главы книг: шаблон читалки + текст главы
 def build_chapters():
     tpl = io.open("read.html", encoding="utf-8").read()
-    tpl = re.sub(r"<!--seo-->.*?<!--/seo-->", "", tpl, flags=re.S)
+    tpl = re.sub(r"<!--seo-->.*?<!--/seo-->\n*", "", tpl, flags=re.S)
     w, urls = 0, []
     for bid, P in BOOKS.items():
         langs = BOOK_LANGS[bid]
