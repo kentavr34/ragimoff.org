@@ -59,6 +59,27 @@ JS = r"""
       else if (new Set(names).size === 1 && tops[0].length && tops[0].some((_, i) => Math.max(...tops.map(t => t[i])) - Math.min(...tops.map(t => t[i])) > 2)) out.rows.push(String(ch[0].className).split(' ')[0] + ' низ ' + tops.map(t => t.join('+')).join(' / '));
     });
   });
+  /* 13.11.2026, слово Кенана (обязательное требование к дизайну): в карточках одного ряда (книги, тренинги, услуги…) меняется
+     только длина названия, поэтому КАЖДОЕ поле — сведения, страницы, цена, кнопки — стоит на одной высоте во всех карточках ряда.
+     Поле — блок с собственным текстом, кнопка или картинка; сравниваются поля с одинаковым путём классов внутри карточки. */
+  out.align = [];
+  /* не поля: надписи на рисунке обложки и фото с параллаксом (это изображение, а не сведения карточки) */
+  const isField = e => { if (e.closest('.shp__cv, .shp__obj, .bk__obj, .person__ph')) return false; const cs = getComputedStyle(e); if (cs.display === 'inline' && !e.matches('a.btn, button')) return false;
+    return e.matches('a.btn, button, img') || [...e.childNodes].some(n => n.nodeType === 3 && n.nodeValue.trim()); };
+  const path = (e, c) => { const a = []; for (let x = e; x && x !== c; x = x.parentElement) a.unshift(x.tagName + '.' + String(x.className).split(' ')[0]); return a.join('>'); };
+  [...document.querySelectorAll('main *')].forEach(p => {
+    const d = getComputedStyle(p).display; if (d.indexOf('grid') < 0 && d.indexOf('flex') < 0) return;
+    const ch = [...p.children].filter(c => c.getBoundingClientRect().width > 0);
+    if (ch.length < 2 || !ch[0].className || ch.some(c => String(c.className).split(' ')[0] !== String(ch[0].className).split(' ')[0] || c.children.length < 2)) return;
+    const rows = {}; ch.forEach(c => { const r = c.getBoundingClientRect(); (rows[Math.round(r.top / 4)] = rows[Math.round(r.top / 4)] || []).push(c); });
+    Object.values(rows).forEach(g => { if (g.length < 2) return;
+      const maps = g.map(c => { const r0 = c.getBoundingClientRect().top, m = {};
+        c.querySelectorAll('*').forEach(e => { if (e.getBoundingClientRect().height <= 0 || !isField(e)) return; const k = path(e, c); if (!(k in m)) m[k] = Math.round(e.getBoundingClientRect().top - r0); }); return m; });
+      Object.keys(maps[0]).filter(k => maps.every(m => k in m)).forEach(k => { const t = maps.map(m => m[k]);
+        if (Math.max(...t) - Math.min(...t) > 2) out.align.push(String(ch[0].className).split(' ')[0] + ' ' + k.split('>').pop() + ' ' + t.join('/')); });
+    });
+  });
+  out.align = [...new Set(out.align)].slice(0, 4);
   out.rows = [...new Set(out.rows)].slice(0, 4);
   /* номер телефона не должен рваться по строкам: либо неразрывные пробелы, либо .nw */
   out.tel = []; { const tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n; while ((n = tw.nextNode())) { if (/\+\d[\d ]*\d \d/.test(n.nodeValue) && /\+\d[\d ]{8,16}\d/.test(n.nodeValue) && !n.parentElement.closest('.nw, script, style')) out.tel.push(n.nodeValue.trim().slice(0, 50)); } out.tel = out.tel.slice(0, 3); }
@@ -163,6 +184,7 @@ async def main():
                         if o.get("over", 0) > 1: v.append("шире экрана на %d px" % o["over"])
                         if o.get("out") and not pg.startswith("index"): v.append("за краем: " + ", ".join(o["out"]))
                         if o.get("rows"): v.append("ряд карточек не выровнен: " + "; ".join(o["rows"]))
+                        if o.get("align"): v.append("поля карточек ряда на разной высоте (слово Кенана 13.11): " + "; ".join(o["align"]))
                         if o.get("tel"): v.append("номер телефона может разорваться: " + "; ".join(o["tel"]))
                         if o.get("top") is False: v.append("нет кнопки «наверх»")
                         if o.get("postsRow", 1) > 1: v.append("блог на главной не в один ряд")

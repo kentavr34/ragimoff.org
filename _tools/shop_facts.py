@@ -6,7 +6,8 @@
   • Страницы — по печатному PDF из папки Print проекта (тот же файл, что прошёл ворота печати); язык каталога без своей
     печатной книги (Фрейд выходит только на азербайджанском) — страницы азербайджанского издания.
     Книги без печатного B5 — оценка по объёму текста на сайте: знаков на страницу = медиана серии Фрейда (помечается est).
-  • Год — год нашего издания (для Фрейда — Ragimoff, 2026); порядок Фрейда в каталоге — по году написания (поле wy).
+  • Год в карточке: у книг Кенана — год издания; у Фрейда — годы написания (WRITTEN, слово Кенана 13.11.2026),
+    порядок Фрейда — хронологический по году написания (поле wy), сборники писем и рукописей — в конце (COLL).
 Пишет _tools/shop_facts.json (отчёт: откуда каждое число) и поля meta / y / pages / year / wy в data/shop/index.<lang>.json.
 Запускать ПОСЛЕДНИМ: build_shop.py → merge_books.py → shop_facts.py. Повторный запуск ничего не меняет.
   python _tools/shop_facts.py [--check]     # --check: только показать расхождения, ничего не писать"""
@@ -32,7 +33,7 @@ SRC = {
     "freud-gw11": (2026, 1916, {"az": FK % "10"}), "freud-gw12": (2026, 1917, {"az": FK % "11"}), "freud-gw13": (2026, 1920, {"az": FK % "12"}),
     "freud-gw14": (2026, 1925, {"az": FK % "13"}), "freud-gw15": (2026, 1933, {"az": FK % "14"}), "freud-gw16": (2026, 1932, {"az": FK % "15"}),
     # 13.11: работы вне серии свёрстаны в формате Letter (не B5) — до вёрстки B5 страницы этих книг считаются оценкой по объёму
-    "freud-gw17": (2026, 1892, None),                     # Kitab_16 (B5, 96) + рефераты, рецензии, предисловие, «Психопатические персонажи» (Letter)
+    "freud-gw17": (2026, 1884, None),                     # Kitab_16 (B5, 96) + рефераты, рецензии, предисловие, «Психопатические персонажи» (Letter)
     "freud-fliesse-mektublari": (2026, 1887, {"az": FK % "17"}),
     # 13.11: письма Марте, переписка с Цвейгом и «Афоризмы» — одна книга (merge_books.py); прежние id в каталоге больше не стоят
     "freud-mektublar-aforizmler": (2026, 1882, {"az": VS % "Mektublar_ve_aforizmler_AZ_v*.pdf"}),
@@ -40,6 +41,24 @@ SRC = {
     "freud-usaq-iflici": (2026, 1897, None),              # Print/vne_serii — Letter, 309 стр.
     "freud-koka-afaziya": (2026, 1884, None),             # Print/vne_serii — Letter, 41 + 119 стр.
 }
+
+# 13.11.2026, слово Кенана: у книг Фрейда в карточке стоят ГОДЫ НАПИСАНИЯ (как на прежнем сайте), а не год нашего издания;
+# порядок — хронологический, от ранних к поздним; сборники (письма, афоризмы, рукописи разных лет) — в конце.
+# Годы — с прежнего сайта (old_versions/2026-11-12_site_before_v11/_tools/catalog.json); объединённые книги — от ранней части до поздней.
+WRITTEN = {
+    "freud-koka-afaziya": "1884–1891", "freud-gw01": "1892–1899", "freud-usaq-iflici": "1897",
+    "freud-gw02": "1900–1925", "freud-gw04": "1901", "freud-gw05": "1904–1905", "freud-gw06": "1905",
+    "freud-gw07": "1906–1909", "freud-gw08": "1909–1913", "freud-gw09": "1912–1913", "freud-gw10": "1913–1917",
+    "freud-gw11": "1916–1917", "freud-gw12": "1917–1920", "freud-gw13": "1920–1924", "freud-gw14": "1925–1931",
+    "freud-gw15": "1933", "freud-gw16": "1932–1939",
+    # сборники
+    "freud-gw17": "1884–1942", "freud-fliesse-mektublari": "1887–1904", "freud-yung-mektublari": "1906–1914",
+    "freud-mektublar-aforizmler": "1882–1939",
+}
+COLL = {"freud-gw17", "freud-fliesse-mektublari", "freud-yung-mektublari", "freud-mektublar-aforizmler"}
+for k in SRC:
+    if k.startswith("freud") and k not in WRITTEN:
+        raise SystemExit("у книги Фрейда %s нет годов написания в WRITTEN shop_facts.py" % k)
 
 
 def pdf_pages(pat):
@@ -60,7 +79,8 @@ CPP = ratio[len(ratio) // 2]
 
 facts = {"_": "собрано _tools/shop_facts.py; страницы — печатные PDF B5 (Print), est — оценка по объёму, %d знаков на страницу" % CPP}
 for k, (year, wy, pdfs) in SRC.items():
-    f = {"year": year, "wy": wy, "pages": {}, "src": {}}
+    # yrs — что показывает карточка; wy — ключ порядка (сборники после всех отдельных трудов, внутри — по годам)
+    f = {"year": year, "yrs": WRITTEN.get(k, str(year)), "wy": (3000 + wy if k in COLL else wy), "pages": {}, "src": {}}
     if pdfs is None:
         f["pages"]["az"] = max(1, round(ix[k]["chars"]["az"] / CPP))
         f["src"]["az"] = "оценка: %d знаков / %d" % (ix[k]["chars"]["az"], CPP)
@@ -76,7 +96,7 @@ for k, (year, wy, pdfs) in SRC.items():
 
 def meta(f, lang):
     n = f["pages"].get(lang) or f["pages"]["az"]
-    return "%d · %d %s" % (f["year"], n, UNIT[lang])
+    return "%s · %d %s" % (f["yrs"], n, UNIT[lang])
 
 
 check = "--check" in sys.argv
@@ -92,7 +112,7 @@ for lang in ("az", "ru", "en"):
             if not f:
                 raise SystemExit("книги %s нет в SRC shop_facts.py — добавь её (страницы по печатному PDF)" % it["id"])
             seen.add(it["id"])
-            new = {"meta": meta(f, lang), "y": str(f["year"]), "year": f["year"], "wy": f["wy"],
+            new = {"meta": meta(f, lang), "y": f["yrs"], "year": f["year"], "wy": f["wy"],
                    "pages": f["pages"].get(lang) or f["pages"]["az"]}
             for kk, vv in new.items():
                 if it.get(kk) != vv:

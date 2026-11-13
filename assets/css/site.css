@@ -738,7 +738,7 @@ main, .foot { position: relative; z-index: 1; }
 @media (max-width: 760px) and (min-height: 760px) { .bk__stick { --w: min(38vw, 23svh); } }
 
 /* книга на телефоне: кнопка сразу под тремя строками (строки одной высоты — кнопки всех книг на одной линии), группа по центру панели — без пустоты внутри */
-@media (max-width: 760px) { .bk { justify-content: flex-start; } .bk__txt { flex: 1; } .bk__f { flex: 1; justify-content: center; margin: var(--s1) 0; } .bk__btns { margin-top: 0; } .bk__a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
+@media (max-width: 760px) { .bk { justify-content: flex-start; } .bk__txt { flex: 1; } .bk__f { flex: 1; justify-content: flex-start; margin: var(--s1) 0; }   /* 13.11: список от верха — пункты всех книг полки на одной высоте */ .bk__btns { margin-top: 0; } .bk__a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
 @media (max-width: 760px) and (min-height: 800px) { .bk__stick { --w: min(44vw, 27svh); } .bk__f li { padding: var(--p10) 0; font-size: 16px; } .bk__t { font-size: 25px; } }
 
 /* размер обложки на телефоне — от высоты видимой области: слайд заполняет экран без пустот */
@@ -1259,6 +1259,20 @@ body[data-kind="read"] .pp__hero { padding-top: var(--r2); }
 .shp__cart { min-height: 0; } .shp__cart:empty { display: none; } .shp__cart .btn { min-height: var(--tap); }
 .shp__set { display: flex; align-items: center; justify-content: space-between; gap: var(--r1); flex-wrap: wrap; margin-top: var(--r2); padding: var(--r1) var(--r2); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-radius: var(--p16); background: color-mix(in srgb, var(--gold) 7%, transparent); }
 .shp__sett { font: 400 clamp(22px, 2.2vw, 30px)/1.15 var(--f-display); color: var(--milk); } .shp__setm { font: 400 15px/1.5 var(--f-sub); color: var(--text); margin-top: var(--p6); } .shp__setm b { color: var(--gold-hi); font-weight: 600; }
+/* 13.11.2026, слово Кенана: в ряду карточек книг меняется только длина названия — сведения, цена и кнопки каждой карточки стоят
+   на одной высоте с соседними. Карточка — подсетка из 5 строк общей сетки ряда: обложка, название, сведения, цена, кнопки. */
+.shp__grid { align-items: start; }
+.shp__card { display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: var(--p4); height: auto; align-content: start; }
+.shp__card > .shp__cv { grid-row: 1; margin-bottom: var(--p8); } .shp__card > .shp__cb { display: contents; }
+/* то же правило для всех сеток карточек: услуги и преимущества (.pc2), мифы (.mth), статьи блога сеткой (.pst), поля загрузки файлов */
+.pcs { align-items: start; } .pcs > .pc2 { display: grid; grid-template-rows: subgrid; grid-row: span 3; align-content: start; }
+.pc2 > .pc2__n { grid-row: 1; } .pc2 > .pc2__t { grid-row: 2; } .pc2 > .pc2__d { grid-row: 3; }
+.myths > .mth { display: grid; grid-template-rows: subgrid; grid-row: span 3; align-content: start; }
+.mth > .mth__k { grid-row: 1; } .mth > .mth__q { grid-row: 2; } .mth > .mth__go { grid-row: 3; align-self: end; }
+.psts--grid > .pst { grid-template-rows: subgrid; grid-row: span 4; row-gap: var(--p6); } .psts--grid > .pst > .pst__b { display: contents; }
+.psts--grid .pst__ph { grid-row: 1; margin-bottom: var(--p6); } .psts--grid .pst__m { grid-row: 2; } .psts--grid .pst__t { grid-row: 3; } .psts--grid .pst__d { grid-row: 4; }
+.reg__files > .fld { display: grid; grid-template-rows: subgrid; grid-row: span 2; align-content: start; } .reg__files > .fld > span { align-self: start; }
+.shp__cb > .shp__ctl { grid-row: 2; } .shp__cb > span { grid-row: 3; } .shp__cb > em { grid-row: 4; margin-top: 0; padding-top: var(--p6); } .shp__cb > .shp__acts { grid-row: 5; margin-top: 0; align-self: start; }
 @media (max-width: 760px) { .shp__acts .btn { flex: 1 1 100%; } .shp__set { padding: var(--r1); } .shp__set .btn { width: 100%; white-space: normal; } }
 
 /* APP (13.11): плашка «Приложение RAGIMOFF» — сверху по центру, выезжает и уходит; показ — app.js (не навязчиво) */

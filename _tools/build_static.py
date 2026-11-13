@@ -90,7 +90,7 @@ def book_desc(bid, lang):
     it = ITEMS[lang].get(bid) or ITEMS["az"].get(bid) or {}
     f = FACTS.get(bid, {})
     pg = (f.get("pages") or {}).get(lang) or (f.get("pages") or {}).get("az")
-    meta = " %s · %s %s." % (f.get("year", ""), pg, PAGE_W[lang]) if pg else ""
+    meta = " %s · %s %s." % (f.get("yrs") or f.get("year", ""), pg, PAGE_W[lang]) if pg else ""   # 13.11: у Фрейда — годы написания
     if bid.startswith("freud"):
         az_t = (ITEMS["az"].get(bid) or {}).get("t", "")
         sub = (FT.get(az_t) or {}).get("sub", "") if lang == "az" else ""
