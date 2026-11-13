@@ -1,10 +1,11 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11131356';
-import { T, LINKS3 as LINKS } from './content.js?v=11131356';
-import { regRender, regOpen } from './reg.js?v=11131356';
-import { initLight } from './light.js?v=11131356';
-import { initApp } from './app.js?v=11131356';
-import { initSeo, switchLang } from './seo.js?v=11131356';
+import { initTop } from './totop.js?v=11131714';
+import { T, LINKS3 as LINKS } from './content.js?v=11131714';
+import { regRender, regOpen } from './reg.js?v=11131714';
+import { initLight } from './light.js?v=11131714';
+import { initStats } from './stats.js?v=11131714';
+import { initApp } from './app.js?v=11131714';
+import { initSeo, switchLang } from './seo.js?v=11131714';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -218,7 +219,7 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 /* ───────── запуск ───────── */
-render(); cineLoad(); initSeo(() => lang); initApp(() => lang);
+render(); cineLoad(); initSeo(() => lang); initApp(() => lang); initStats(() => lang);
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => { ribMeasure(); onScroll(); });
 addEventListener('load', () => { cineSize(); ribMeasure(); onScroll(); });
 

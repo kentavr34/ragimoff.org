@@ -17,6 +17,20 @@
   var BOOK_API = 'https://api.ragimoff.org/api/book-order';
   /* создание платежа Epoint: сумму считает СЕРВЕР, браузеру доверять нельзя */
   var PAY_API = 'https://api.ragimoff.org/api/billing/epoint/create';
+  /* 13.11.2026: статистика сайта (как assets/js/stats.js): просмотр страницы заказа и переход к оплате */
+  function rgmStat(t, x) {
+    if (!/(^|\.)ragimoff\.org$/.test(location.hostname) || navigator.webdriver) return;
+    try {
+      var v = localStorage.getItem('rgm_vid') || (Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
+      localStorage.setItem('rgm_vid', v);
+      var s = sessionStorage.getItem('rgm_sid') || (Math.random().toString(36).slice(2, 10) + Date.now().toString(36));
+      sessionStorage.setItem('rgm_sid', s);
+      var e = { t: t, v: v, s: s, p: location.pathname + location.search, l: document.documentElement.lang || 'az', x: x || '' };
+      if (t === 'pv') { e.r = document.referrer || ''; e.d = innerWidth < 700 ? 'mob' : innerWidth < 1100 ? 'tab' : 'desk'; }
+      navigator.sendBeacon('https://api.ragimoff.org/api/s', new Blob([JSON.stringify([e])], { type: 'text/plain' }));
+    } catch (er) {}
+  }
+  rgmStat('pv');
   var ORDER_API = 'https://script.google.com/macros/s/AKfycbw-ejwk4wslNpEhMB11Yknj5cjPBZJkoc4nf8BTMP8lxROc8ZxtAWkkXtgv5E8GLzxyfw/exec';
 
   /* строки интерфейса — из страницы (window.__booksUI), запас — азербайджанский */
@@ -684,6 +698,7 @@
         function back() {
           if (btn) { btn.disabled = false; btn.textContent = label; }
         }
+        rgmStat('pay', 'pay:books');
         fetch(PAY_API, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -80,6 +80,7 @@ async function submit(form) {
   const payload = { type: 'registration', fname: g('fname').trim(), lname: g('lname').trim(), phone: g('phone').trim(), email: '', address: '', service, lang, note, source: location.pathname.replace(/^\//, ''), attachments: att };
   const reg = await fetch(API + '/api/training-reg', { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
     .then(x => x.ok ? x.json().catch(() => ({ ok: true })) : null, () => null);
+  if (reg) dispatchEvent(new CustomEvent('rgm:stat', { detail: { t: 'reg', x: 'reg:' + (payload.service || payload.kind || k || '') } }));   /* статистика 13.11 */
   btn.textContent = lbl; btn.disabled = false;
   if (!reg) { say(r.err, true, true); return; }
   if (k === 'b2b' || !reg.prices) { say(r.ok); return; }
@@ -87,7 +88,7 @@ async function submit(form) {
   const data = { name: payload.fname + ' ' + payload.lname, phone: payload.phone, program: service, folder: reg.folder || '', lang };
   const go = (mode, b) => { if (b) b.disabled = true; data.mode = mode;
     return fetch(API + '/api/billing/epoint/training', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(x => x.json())
-      .then(d => { if (d && d.ok && d.redirect_url) { location.href = d.redirect_url; return; } throw new Error('pay'); }).catch(() => { if (b) b.disabled = false; say(r.err, true, true); }); };
+      .then(d => { if (d && d.ok && d.redirect_url) { dispatchEvent(new CustomEvent('rgm:stat', { detail: { t: 'pay', x: 'pay:training' } })); location.href = d.redirect_url; return; } throw new Error('pay'); }).catch(() => { if (b) b.disabled = false; say(r.err, true, true); }); };
   const p = reg.prices, single = k !== 'edu' || p.prepay === p.full;
   if (single) { btn.disabled = true; go('prepay', btn); return; }
   btn.hidden = true; const pb = box.querySelector('.reg__pay'); pb.hidden = false;

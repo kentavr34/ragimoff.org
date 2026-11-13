@@ -1,6 +1,6 @@
 /* test/11 — блоки внутренних страниц: один набор на специалистов, консультации, контакты, тренинги, право, блог.
    Данные — data/<kind>/<slug>.<lang>.json (формат: _agent/docs/DATA_SCHEMA.md), подписи — content.js (T[l].pg), стили — site.css (раздел PG). */
-import { esc } from './chrome.js?v=11131356';
+import { esc } from './chrome.js?v=11131714';
 
 /* старые адреса сайта → адреса новой версии (одно место на весь сайт) */
 const PROG = { 'umumi-psixologiya': 'general', 'klinik-psixologiya': 'clinical', 'psixoterapiya-praktikumu': 'practicum', psixodiaqnostika: 'psychodiagnostics', qisamuddetli: 'cbt', psixoanaliz: 'psychoanalysis', 'aile-terapiyasi': 'family' };
