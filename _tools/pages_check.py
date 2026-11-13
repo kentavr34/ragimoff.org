@@ -108,13 +108,15 @@ async def main():
     p = subprocess.Popen([CHROME, "--headless=new", "--remote-debugging-port=%d" % PORT, "--user-data-dir=" + prof, "--hide-scrollbars", "about:blank"],
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     ws_url = None
-    for _ in range(60):
+    for _ in range(300):   # до 60 с: свежий Chrome после обновления поднимается дольше 12 с (13.11.2026)
         try:
             tabs = json.load(urllib.request.urlopen("http://127.0.0.1:%d/json" % PORT))
             ws_url = [t for t in tabs if t["type"] == "page"][0]["webSocketDebuggerUrl"]
             break
         except Exception:
             time.sleep(.2)
+    if not ws_url:
+        raise SystemExit("Chrome не поднял порт %d за 60 с" % PORT)
     rep, bad_total, links = [], 0, {}
     try:
         async with websockets.connect(ws_url, max_size=80_000_000) as ws:
