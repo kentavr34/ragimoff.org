@@ -3,10 +3,10 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11130541';
+import { initChrome, esc } from './chrome.js?v=11131300';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const V = '11121146', q = new URLSearchParams(location.search), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
+const V = '11121146', q = new URLSearchParams((location.search || window.__Q || '')), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
 const U = {
   ru: { about: 'О книге, цена и заказ печатного издания', toc: 'Содержание', start: 'Начать чтение', cont: 'Продолжить чтение', prev: 'Назад', next: 'Дальше', title: 'Титульная страница', lib: 'Все книги', notes: 'Примечания', fs: 'Размер шрифта',
         only: 'Эта книга издана на языке:', other: 'Читать на другом языке:', none: 'Книга не найдена', ch: 'Глава', of: 'из', close: 'Закрыть', search: 'Поиск по книге', searchPh: 'Название или код, например 6B00', nores: 'Ничего не найдено', toggle: 'Открыть или закрыть группу', names: { az: 'азербайджанском', ru: 'русском', en: 'английском', tr: 'турецком' }, short: { az: 'Azərbaycanca', ru: 'По-русски', en: 'English', tr: 'Türkçe' } },
@@ -20,13 +20,15 @@ const U = {
 for (const k of Object.keys(U)) Object.assign(U[k], { home: { ru: 'На главную', az: 'Ana səhifə', en: 'Home', tr: 'Ana sayfa' }[k], theme: { ru: 'Тема', az: 'Mövzu', en: 'Theme', tr: 'Tema' }[k], lng: { ru: 'Язык книги', az: 'Kitabın dili', en: 'Book language', tr: 'Kitabın dili' }[k] });
 const SITE = ['az', 'ru', 'en'];
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
-let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = '';
+let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = window.__LANG || '';   /* снимок главы: язык книги = язык адреса */
 let fs = Math.min(1.5, Math.max(.9, parseFloat(store.get('r11_rd_fs') || '1.1')));
 const u = () => U[B ? lang : site] || U[site] || U.ru, toc = () => (B && B.toc[lang]) || [], N = () => toc().length;
 const idxById = id => { const k = toc().findIndex(x => x.id === id); return k < 0 ? 0 : k + 1; };
 const cd = c => esc(c).replace(/–/g, '⁠–⁠');
 const pad = n => String(n).padStart(2, '0');
-const hrefOf = i => 'read.html?b=' + bid + (toc()[i - 1] && toc()[i - 1].id ? '&p=' + encodeURIComponent(toc()[i - 1].id) : '&c=' + i);
+const hrefDyn = i => 'read.html?b=' + bid + (toc()[i - 1] && toc()[i - 1].id ? '&p=' + encodeURIComponent(toc()[i - 1].id) : '&c=' + i);
+/* на постоянной странице (/<язык>/read/<книга>/<глава>.html) адрес главы — тоже постоянный, чтобы ссылкой можно было поделиться с превью */
+const hrefOf = i => window.__LANG && lang === window.__LANG ? '/' + lang + '/read/' + bid + '/' + (i ? (toc()[i - 1] && toc()[i - 1].id ? encodeURIComponent(toc()[i - 1].id) : i) : 'index') + '.html' : hrefDyn(i);
 const trees = () => (B && B.trees && B.trees[lang]) || null;
 const startIdx = () => { const p = q.get('p'); return p ? idxById(p) : (+(q.get('c') || 0) || 0); };
 const posKey = () => 'r11_rd_pos_' + bid + '_' + lang;
@@ -114,7 +116,7 @@ async function show(i, push, hash) {
   $('#rdTitle').hidden = cur !== 0; $('#rdChap').hidden = cur === 0; $('#rdPager').hidden = cur === 0;
   curId = cur ? (toc()[cur - 1].id || '') : '';
   markTree();
-  const url = (cur ? hrefOf(cur) : 'read.html?b=' + bid) + (hash || '');
+  const url = (cur || (window.__LANG && lang === window.__LANG) ? hrefOf(cur) : 'read.html?b=' + bid) + (hash || '');
   if (push) history.pushState({ c: cur }, '', url); else history.replaceState({ c: cur }, '', url);
   if (cur > 0) {
     store.set(posKey(), cur);
@@ -152,7 +154,7 @@ page.watch();
 
 document.addEventListener('click', e => {
   const go = e.target.closest('[data-go]'); if (go) { e.preventDefault(); show(+go.dataset.go, true); return; }
-  const rl = e.target.closest('[data-rl]'); if (rl) { const keep = curId; forced = rl.dataset.rl; lang = forced;
+  const rl = e.target.closest('[data-rl]'); if (rl) { const alt = window.__LANG && document.querySelector('link[rel="alternate"][hreflang="' + rl.dataset.rl + '"]'); if (alt) { location.href = new URL(alt.href).pathname; return; } const keep = curId; forced = rl.dataset.rl; lang = forced;
     if (SITE.indexOf(lang) >= 0) { site = lang; store.set('r11_lang', lang); store.set('r11_rd_lang_' + bid, ''); } else store.set('r11_rd_lang_' + bid, lang + '|' + site);   /* язык сайта идёт за языком книги */
     frame(); show(keep ? idxById(keep) : 0, false); return; }
   const tg = e.target.closest('[data-tg]'); if (tg) { const g = tg.closest('.rdr__g'), op = g.classList.toggle('is-open'); g.querySelector('.rdr__gi').hidden = !op; g.querySelector('.rdr__gt').setAttribute('aria-expanded', String(op)); return; }
@@ -176,7 +178,8 @@ document.addEventListener('click', e => {
   if (e.target.closest('.fn-back')) { e.preventDefault(); return; }
   if (!e.target.closest('#rdPop')) pop.hidden = true;
 });
-addEventListener('popstate', () => { const sp = new URLSearchParams(location.search), p = sp.get('p'); show(p ? idxById(p) : (+(sp.get('c') || 0) || 0), false, location.hash); });
+addEventListener('popstate', () => { const sp = new URLSearchParams(location.search), m = location.pathname.match(/\/read\/[\w-]+\/([^/]+)\.html$/), x = m && !sp.get('b') ? decodeURIComponent(m[1]) : '';
+  const p = x ? (/^\d+$/.test(x) || x === 'index' ? '' : x) : sp.get('p'), c = x ? (x === 'index' ? 0 : +x || 0) : +(sp.get('c') || 0) || 0; show(p ? idxById(p) : c, false, location.hash); });
 document.addEventListener('input', e => { if (e.target.id === 'rdQ') search(e.target.value); });
 addEventListener('scroll', progress, { passive: true });
 document.addEventListener('keydown', e => {

@@ -1,14 +1,14 @@
 /* test/11 — внутренняя страница из блоков: один сценарий на специалистов, консультации, контакты, тренинги, право, блог и статью.
    Вид страницы — <body data-kind="spec|cons|page|blog|post" data-slug="…">; данные — data/<папка>/<slug>.<lang>.json; рама — chrome.js; форма — reg.js. */
-import { initChrome, esc } from './chrome.js?v=11130541';
-import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11130541';
-import { regRender, regOpen } from './reg.js?v=11130541';
-import { CONS, CONS_TOPIC } from './content.js?v=11130541';
+import { initChrome, esc } from './chrome.js?v=11131300';
+import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11131300';
+import { regRender, regOpen } from './reg.js?v=11131300';
+import { CONS, CONS_TOPIC } from './content.js?v=11131300';
 
-const V = '11130541';
+const V = '11131300';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const kind = document.body.dataset.kind || 'page';
-const q = new URLSearchParams(location.search);
+const q = new URLSearchParams((location.search || window.__Q || ''));
 const DIR = { spec: 'spec', cons: 'cons', page: 'page', blog: 'blog', post: 'blog' };
 const DEF = { spec: 'kenan', cons: CONS[0], page: 'contact', blog: 'index', post: 'depressiya' };
 const slug = kind === 'blog' ? 'index' : ((document.body.dataset.slug || q.get('s') || q.get('c') || q.get('a') || DEF[kind]).replace(/[^\w-]/g, '') || DEF[kind]);

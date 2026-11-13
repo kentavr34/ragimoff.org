@@ -31,14 +31,14 @@ SRC = {
     "freud-gw08": (2026, 1909, {"az": FK % "07"}), "freud-gw09": (2026, 1912, {"az": FK % "08"}), "freud-gw10": (2026, 1913, {"az": FK % "09"}),
     "freud-gw11": (2026, 1916, {"az": FK % "10"}), "freud-gw12": (2026, 1917, {"az": FK % "11"}), "freud-gw13": (2026, 1920, {"az": FK % "12"}),
     "freud-gw14": (2026, 1925, {"az": FK % "13"}), "freud-gw15": (2026, 1933, {"az": FK % "14"}), "freud-gw16": (2026, 1932, {"az": FK % "15"}),
-    "freud-gw17": (2026, 1892, {"az": [FK % "16", VS % "Referatlar_AZ_*.pdf", VS % "Resenziyalar_AZ_*.pdf", VS % "Saussure_Preface_AZ_*.pdf", VS % "Psychopathische_Personen_AZ_*.pdf"]}),
+    # 13.11: работы вне серии свёрстаны в формате Letter (не B5) — до вёрстки B5 страницы этих книг считаются оценкой по объёму
+    "freud-gw17": (2026, 1892, None),                     # Kitab_16 (B5, 96) + рефераты, рецензии, предисловие, «Психопатические персонажи» (Letter)
     "freud-fliesse-mektublari": (2026, 1887, {"az": FK % "17"}),
-    "freud-sevgi-mektublari": (2026, 1882, {"az": VS % "Sevgi_mektublari_AZ_*.pdf"}),
-    "freud-zweig-mektublari": (2026, 1908, {"az": VS % "Freud_Tsveyq_Mektublar_AZ_*.pdf"}),
-    "freud-yung-mektublari": (2026, 1906, None),          # печатного B5 нет (в books.yaml — draft): оценка по объёму
-    "freud-usaq-iflici": (2026, 1897, {"az": VS % "Cerebrallaehmung_AZ_*.pdf"}),
-    "freud-aforizmlar": (2026, 1940, None),               # антология — в конце серии; печатного B5 нет: оценка по объёму
-    "freud-koka-afaziya": (2026, 1884, {"az": [VS % "Ueber_Coca_AZ_*.pdf", VS % "Aphasien_AZ_*.pdf"]}),
+    # 13.11: письма Марте, переписка с Цвейгом и «Афоризмы» — одна книга (merge_books.py); прежние id в каталоге больше не стоят
+    "freud-mektublar-aforizmler": (2026, 1882, {"az": VS % "Mektublar_ve_aforizmler_AZ_v*.pdf"}),
+    "freud-yung-mektublari": (2026, 1906, {"az": VS % "Freud_Jung_Mektublar_AZ_v*.pdf"}),   # B5 13.11.2026, 581 стр.
+    "freud-usaq-iflici": (2026, 1897, None),              # Print/vne_serii — Letter, 309 стр.
+    "freud-koka-afaziya": (2026, 1884, None),             # Print/vne_serii — Letter, 41 + 119 стр.
 }
 
 

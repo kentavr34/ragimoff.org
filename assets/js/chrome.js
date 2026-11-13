@@ -1,8 +1,9 @@
 /* test/11 — общая «рама» внутренних страниц: шапка, меню, тема, язык, соцсети, подвал. Тексты — из content.js, стили — из site.css.
    Страница передаёт onRender(t, L, lang): он вызывается при загрузке и при каждой смене языка. */
-import { initTop } from './totop.js?v=11130541';
-import { T, LINKS3 as LINKS } from './content.js?v=11130541';
-import { PROGRAMS } from './programs.js?v=11130541';
+import { initTop } from './totop.js?v=11131300';
+import { T, LINKS3 as LINKS } from './content.js?v=11131300';
+import { PROGRAMS } from './programs.js?v=11131300';
+import { initSeo, switchLang } from './seo.js?v=11131300';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -12,7 +13,7 @@ const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { 
 export const progUrl = slug => 'program.html?p=' + slug;
 
 export function initChrome({ home = 'index.html', onRender }) {
-  let lang = T[document.documentElement.lang] ? document.documentElement.lang : 'ru';
+  let lang = T[document.documentElement.lang] ? document.documentElement.lang : 'az';
   const head = $('#head');
 
   function render() {
@@ -48,7 +49,7 @@ export function initChrome({ home = 'index.html', onRender }) {
     let th = e.target.closest('[data-theme-btn]');
     if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }
     if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); render(); return; }
-    const lg = e.target.closest('[data-lang-btn]'); if (lg) { lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
+    const lg = e.target.closest('[data-lang-btn]'); if (lg) { if (switchLang(lg.dataset.langBtn)) return; lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
     const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - 10, behavior: 'smooth' }); } }
   });
   let lastY = 0, travel = 0;
@@ -61,6 +62,7 @@ export function initChrome({ home = 'index.html', onRender }) {
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
   const watch = () => $$('.rv:not(.is-in)').forEach(el => io.observe(el));
   render(); watch();
+  initSeo(() => lang);
   return { render, watch, get lang() { return lang; } };
 }
 

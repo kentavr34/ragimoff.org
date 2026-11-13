@@ -23,6 +23,14 @@ MERGE = [
      "parts": [("freud-kokain", "Koka haqqında (1884–1887)"), ("freud-afaziya", "Afaziyaların dərk edilməsinə dair (1891)")],
      "t": {"az": "Koka və afaziya: psixoanalizdən əvvəlki əsərlər", "ru": "Кока и афазия: работы до психоанализа", "en": "Coca and Aphasia: Pre-Psychoanalytic Writings"},
      "meta": {"az": "1884–1891 · 160 səh.", "ru": "1884–1891 · 160 стр.", "en": "1884–1891 · 160 pp."}, "pages": 160},
+    # 13.11.2026 (Кенан): письма Цвейгу (49 стр.) и «Афоризмы» (~12 стр.) отдельно не продаются — вместе с письмами Марте одна книга.
+    # print: главы сайта строит _tools/build_book_print_freud.py из печатного Word (Print/vne_serii/Mektublar_ve_aforizmler_AZ_v*.docx);
+    # здесь — только паспорт (если его нет), пометки merged у частей, картотека и каталог магазина. Цена — как у одной книги (ord).
+    {"into": "freud-mektublar-aforizmler", "new": True, "print": True, "cover_from": "freud-sevgi-mektublari", "order": "freud-sevgi-mektublari", "sec": "letters",
+     "src_item": "freud-sevgi-mektublari", "years": "1882–1939",
+     "parts": [("freud-sevgi-mektublari", ""), ("freud-zweig-mektublari", ""), ("freud-aforizmlar", "")],
+     "t": {"az": "Məktublar və aforizmlər", "ru": "Письма и афоризмы", "en": "Letters and Aphorisms"},
+     "meta": {"az": "", "ru": "", "en": ""}, "pages": 0},
 ]
 
 
@@ -44,6 +52,23 @@ n = 0
 gone = {}
 for m in MERGE:
     tgt = "books/" + m["into"]
+    if m.get("print"):
+        # книга собрана в печати целиком: части не копируются, главы строит build_book_print_freud.py
+        if os.path.exists(tgt + "/book.json"):
+            P = jload(tgt + "/book.json")
+        else:
+            src0 = jload("books/%s/book.json" % m["cover_from"])
+            P = {"id": m["into"], "src": "Print", "langs": ["az"], "cover": src0.get("cover", ""), "t": {"az": m["t"]["az"]},
+                 "kicker": {"az": "Ziqmund Freyd"}, "sub": {"az": ""}, "meta": {"az": [["Müəllif", "Ziqmund Freyd"], ["Yazılıb", m["years"]], ["Nəşr", "Ragimoff, 2026"]]},
+                 "toc": {"az": []}}
+        for src, _ in m["parts"]:
+            S = jload("books/%s/book.json" % src)
+            if S.get("merged") != m["into"]:
+                S["merged"] = m["into"]
+                n += jsave("books/%s/book.json" % src, S)
+            gone[src] = m["into"]
+        n += jsave(tgt + "/book.json", P)
+        continue
     if m["new"]:
         src0 = jload("books/%s/book.json" % m["cover_from"])
         P = {"id": m["into"], "src": "сборник: " + " + ".join(p for p, _ in m["parts"]), "langs": ["az"], "cover": src0.get("cover", ""), "t": {"az": m["t"]["az"]},
@@ -102,20 +127,22 @@ for lang in ("az", "ru", "en"):
     for g in d["groups"]:
         if g["id"] != "freud":
             continue
+        news = [m for m in MERGE if m["new"]]
+        prev = {it["id"]: it for it in g["items"]}
         items = []
         for it in g["items"]:
-            if it["id"] in gone or it["id"] == "freud-koka-afaziya":
+            if it["id"] in gone or any(it["id"] == m["into"] for m in news):
                 continue
-            if it["id"] == "freud-gw17":
-                it["meta"] = re.sub(r"\b96\b", str(96 + MERGE[0]["pages_add"]), it["meta"])
             items.append(it)
-        m = MERGE[1]
-        src = next(it for it in g["items"] if it["id"] == "freud-afaziya") if any(it["id"] == "freud-afaziya" for it in g["items"]) else None
-        base = dict(src) if src else next(it for it in jload("data/shop/index.%s.json" % lang)["groups"][-1]["items"] if it["id"] == "freud-koka-afaziya")
-        base.update({"id": m["into"], "t": m["t"][lang], "meta": m["meta"][lang], "read_new": "read.html?b=" + m["into"], "href": "read.html?b=" + m["into"], "ord": m["order"], "sec": "early"})
-        base.pop("toc", None)
-        base.pop("tocMore", None)
-        items.append(base)
+        for m in news:   # сборник встаёт в каталог; сведения (год · страницы) потом ставит shop_facts.py
+            sid = m.get("src_item", m.get("order"))
+            base = dict(prev.get(m["into"]) or prev.get(sid) or prev.get("freud-afaziya") or {})
+            assert base, ("нет исходной карточки для", m["into"])
+            base.update({"id": m["into"], "t": m["t"][lang], "meta": m["meta"][lang] or base.get("meta", ""), "read_new": "read.html?b=" + m["into"],
+                         "href": "read.html?b=" + m["into"], "ord": m["order"], "sec": m.get("sec", "early")})
+            base.pop("toc", None)
+            base.pop("tocMore", None)
+            items.append(base)
         g["items"] = items
         for sb in g.get("sub", []):
             sb["n"] = sum(1 for it in items if it.get("sec") == sb["id"])

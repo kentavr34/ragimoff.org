@@ -21,7 +21,8 @@ os.chdir(D)
 PR = "D:/Projects/Freud/Print"
 BOOKS = {"freud-gw01": 1, "freud-gw02": 2, "freud-gw04": 3, "freud-gw05": 4, "freud-gw06": 5, "freud-gw07": 6, "freud-gw08": 7, "freud-gw09": 8,
          "freud-gw10": 9, "freud-gw11": 10, "freud-gw12": 11, "freud-gw13": 12, "freud-gw14": 13, "freud-gw15": 14, "freud-gw16": 15,
-         "freud-gw17": 16, "freud-fliesse-mektublari": 17}          # книга сайта → номер Kitab_NN
+         "freud-gw17": 16, "freud-fliesse-mektublari": 17,          # книга сайта → номер Kitab_NN
+         "freud-mektublar-aforizmler": "vne_serii/Mektublar_ve_aforizmler_AZ_v*.docx"}   # 13.11: книга вне серии — путь в Print
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 esc = lambda s: html.escape(s, quote=False)
 NOTES_H = {"az": "Qeydlər", "ru": "Примечания", "en": "Notes"}
@@ -119,7 +120,7 @@ def render(parts, fnum):
 
 
 def build(bid, no):
-    f = glob.glob("%s/Kitab_%02d *.docx" % (PR, no))
+    f = glob.glob("%s/%s" % (PR, no)) if isinstance(no, str) else glob.glob("%s/Kitab_%02d *.docx" % (PR, no))
     assert len(f) == 1, (no, f)
     path = f[0]
     d = docx.Document(path)

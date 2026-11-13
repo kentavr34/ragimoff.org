@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-theme="night">
+<html lang="az" data-theme="night">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,10 +38,11 @@
   else if (/^\/(tehsil|telim|b2b|aile-terapiyasi|aile-terapiyasi-usaq|depressiya|enurez|panik|sosial-fobiya)[\w-]*\.html$/.test(p)) to = '/index.html';
   if (lang) { try { localStorage.setItem('r11_lang', lang); } catch (e) {} }
   if (to) location.replace(to);
-  else { var t = null, l = null; try { t = localStorage.getItem('r11_theme'); l = localStorage.getItem('r11_lang'); } catch (e) {} document.documentElement.setAttribute('data-theme', t || 'night'); document.documentElement.lang = l || 'ru'; }
+  else { var t = null, l = null; try { t = localStorage.getItem('r11_theme'); l = localStorage.getItem('r11_lang'); } catch (e) {} document.documentElement.setAttribute('data-theme', t || 'night'); var b = (navigator.language || '').slice(0, 2).toLowerCase();
+  document.documentElement.lang = window.__LANG || l || (b === 'ru' || b === 'en' ? b : 'az');   /* 13.11: по умолчанию AZ, иначе язык браузера */ }
 })();
 </script>
-<link rel="stylesheet" href="/assets/css/site.css?v=11130541">
+<link rel="stylesheet" href="/assets/css/site.css?v=11131300">
 </head>
 <body class="inner">
 <main class="pp" style="min-height:100vh;display:grid;place-items:center;text-align:center">

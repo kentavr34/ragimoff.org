@@ -1,8 +1,9 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11130541';
-import { T, LINKS3 as LINKS } from './content.js?v=11130541';
-import { regRender, regOpen } from './reg.js?v=11130541';
-import { initLight } from './light.js?v=11130541';
+import { initTop } from './totop.js?v=11131300';
+import { T, LINKS3 as LINKS } from './content.js?v=11131300';
+import { regRender, regOpen } from './reg.js?v=11131300';
+import { initLight } from './light.js?v=11131300';
+import { initSeo, switchLang } from './seo.js?v=11131300';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -13,7 +14,7 @@ const CHEV = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-
 const ARR = '<span class="arrow">→</span>';
 
 let GAL = [], galI = 0;
-let lang = T[document.documentElement.lang] ? document.documentElement.lang : 'ru';
+let lang = T[document.documentElement.lang] ? document.documentElement.lang : 'az';
 const light = initLight($('#light'));
 
 /* ───────── отрисовка ───────── */
@@ -209,14 +210,14 @@ document.addEventListener('click', e => {
   let th = e.target.closest('[data-theme-btn]');
   if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
   if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); if (light) light.setTheme(); render(); return; }
-  const lg = e.target.closest('[data-lang-btn]'); if (lg) { lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
+  const lg = e.target.closest('[data-lang-btn]'); if (lg) { if (switchLang(lg.dataset.langBtn)) return; lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
   const rg = e.target.closest('[data-reg]'); if (rg) regOpen(rg.dataset.reg);
   const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - (el.matches('.sec--rib') ? 0 : 10), behavior: 'smooth' }); } }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 /* ───────── запуск ───────── */
-render(); cineLoad();
+render(); cineLoad(); initSeo(() => lang);
 (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => { ribMeasure(); onScroll(); });
 addEventListener('load', () => { cineSize(); ribMeasure(); onScroll(); });
 
