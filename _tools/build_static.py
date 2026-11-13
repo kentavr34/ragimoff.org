@@ -335,6 +335,23 @@ def build_pages():
     if bad or len(res) != len(todo):
         raise SystemExit("СТОП: %d снимков похожи на страницу ошибки браузера, %d страниц без ответа — ничего не записано. Примеры: %s"
                          % (len(bad), len(todo) - len(res), bad[:5]))
+    # 13.11.2026: страж — статья снялась недогруженной (title «Doctor Ragimoff», без текста) и затёрла хороший снимок.
+    # Недогруженные снимаются ещё раз; если и повтор такой же — прежний файл остаётся, страница называется в отчёте.
+    half = lambda o: o["title"].strip() in ("", "Doctor Ragimoff") and not o["h1"].strip()
+    redo = [r[:5] for r in res if half(r[5]) and not r[0].split("?")[0].endswith("index.html")]
+    if redo:
+        again = {r[0] + r[3]: r for r in asyncio.run(snap_pages(redo))}
+        keep = []
+        for r in res:
+            if half(r[5]) and not r[0].split("?")[0].endswith("index.html"):
+                n = again.get(r[0] + r[3])
+                if n and not half(n[5]):
+                    keep.append(n)
+                else:
+                    print("ПРОПУЩЕНО (недогружено дважды, прежний снимок оставлен):", r[0], r[3])
+            else:
+                keep.append(r)
+        res = keep
     w, az_head = 0, {}
     for (u, slug, kind, lang, langs, o) in res:
         q = "?" + u.split("?", 1)[1] if "?" in u else ""
