@@ -97,23 +97,23 @@
 |---|---|---|---|---|
 | `freud-afaziya` | Afaziyaların dərk edilməsinə dair | az | 4 | 330 |
 | `freud-aforizmlar` | Aforizmlər | az | 12 | 34 |
-| `freud-fliesse-mektublari` | Psixoanalizin başlanğıcından: Flissə məktublar | az | 119 | 766 |
-| `freud-gw01` | Histeriyadan psixoanalizə | az | 15 | 1043 |
-| `freud-gw02` | Yuxuların yozumu | az | 11 | 1315 |
-| `freud-gw04` | Gündəlik həyatın psixopatologiyası | az | 12 | 522 |
+| `freud-fliesse-mektublari` | Psixoanalizin başlanğıcından: Flissə məktublar | az | 119 | 767 |
+| `freud-gw01` | Histeriyadan psixoanalizə | az | 15 | 1044 |
+| `freud-gw02` | Yuxuların yozumu | az | 11 | 1318 |
+| `freud-gw04` | Gündəlik həyatın psixopatologiyası | az | 12 | 523 |
 | `freud-gw05` | Cinsəllik nəzəriyyəsi və Dora halı | az | 6 | 535 |
-| `freud-gw06` | Zarafat və onun şüursuzla əlaqəsi | az | 7 | 431 |
-| `freud-gw07` | Fantaziya, uşaqlıq və məcburiyyət | az | 16 | 699 |
-| `freud-gw08` | Leonardo, Şreber və müalicənin texnikası | az | 25 | 721 |
+| `freud-gw06` | Zarafat və onun şüursuzla əlaqəsi | az | 7 | 432 |
+| `freud-gw07` | Fantaziya, uşaqlıq və məcburiyyət | az | 16 | 700 |
+| `freud-gw08` | Leonardo, Şreber və müalicənin texnikası | az | 25 | 722 |
 | `freud-gw09` | Totem və tabu | az | 5 | 335 |
-| `freud-gw10` | Narsisizm, şüursuz və matəm | az | 28 | 705 |
-| `freud-gw11` | Psixoanalizə giriş mühazirələri | az | 28 | 846 |
+| `freud-gw10` | Narsisizm, şüursuz və matəm | az | 28 | 706 |
+| `freud-gw11` | Psixoanalizə giriş mühazirələri | az | 28 | 847 |
 | `freud-gw12` | Qorxulu, «Uşağı döyürlər» və uşaq nevrozu | az | 15 | 507 |
-| `freud-gw13` | Həzz prinsipinin o tayında | az | 24 | 674 |
-| `freud-gw14` | Din, mədəniyyət və təşviş | az | 34 | 897 |
+| `freud-gw13` | Həzz prinsipinin o tayında | az | 24 | 675 |
+| `freud-gw14` | Din, mədəniyyət və təşviş | az | 34 | 898 |
 | `freud-gw15` | Psixoanalizə giriş: yeni mühazirələr | az | 8 | 340 |
-| `freud-gw16` | Musa adamı və monoteist din | az | 16 | 443 |
-| `freud-gw17` | Psixoanalizin xülasəsi | az | 15 | 241 |
+| `freud-gw16` | Musa adamı və monoteist din | az | 16 | 444 |
+| `freud-gw17` | Psixoanalizin xülasəsi | az | 30 | 454 |
 | `freud-koka-afaziya` | Koka və afaziya: psixoanalizdən əvvəlki əsərlər | az | 11 | 429 |
 | `freud-kokain` | Koka haqqında | az | 7 | 100 |
 | `freud-referatlar-1884-1885` | Referatlar | az | 2 | 151 |
@@ -156,6 +156,7 @@
 | `_tools\apply_covers.py` | Новые обложки статей и картины героя (владелец 12.11.2026, п. 11): картинки из gen_blog_covers.py |
 | `_tools\build_blog.py` | Блог → данные test/11: статьи <lang>/bloq/*.html → data/blog/<slug>.<lang>.json, список → data/blog/index.<lang>.json. |
 | `_tools\build_book_print.py` | Книга сайта из печатной версии (12.11.2026): текст библиотеки собирается из свёрстанного Word папки Print — |
+| `_tools\build_book_print_freud.py` | Книги серии Фрейда на сайте — из печатных версий (13.11.2026). |
 | `_tools\build_klinik.py` | Книга «Клиническая психиатрия» -> библиотека новой системы (12.11.2026). |
 | `_tools\build_law.py` | Блок «Юридические основы деятельности» для страниц «Общая психология» и «Клиническая психология». |
 | `_tools\build_library.py` | Библиотека книг новой системы: текст хранится отдельно от страницы (решение владельца 12.11.2026). |
