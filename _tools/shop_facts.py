@@ -11,6 +11,7 @@
 Пишет _tools/shop_facts.json (отчёт: откуда каждое число) и поля meta / y / pages / year / wy в data/shop/index.<lang>.json.
 Запускать ПОСЛЕДНИМ: build_shop.py → merge_books.py → shop_facts.py. Повторный запуск ничего не меняет.
   python _tools/shop_facts.py [--check]     # --check: только показать расхождения, ничего не писать"""
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from term_fix import fix_text  # слово Кенана 13.11.2026
 import io, os, re, sys, glob, json
 import pymupdf
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
@@ -122,6 +123,7 @@ for lang in ("az", "ru", "en"):
                     changed += 1
     if not check:
         s = json.dumps(d, ensure_ascii=False, indent=1) + "\n"
+        s = fix_text(s)[0] if p.endswith(".az.json") else s
         if io.open(p, encoding="utf-8").read() != s:
             io.open(p + ".new", "w", encoding="utf-8", newline="\n").write(s)
             os.replace(p + ".new", p)

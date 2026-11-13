@@ -3,7 +3,10 @@
 «О коке», «К пониманию афазий», «Детский церебральный паралич», «Рецензии», «Рефераты», предисловие к Соссюру,
 «Психопатические персонажи на сцене». Результат — тот же, что у остальных книг: books/<книга>/book.json и
 books/<книга>/az/NNN.html. Источник (site/books/<книга>/) не меняется. Запуск: python build_library_legacy.py,
-затем python build_library.py (он дочитывает паспорта в картотеку)."""
+затем python build_library.py (он дочитывает паспорта в картотеку).
+ВНИМАНИЕ (13.11.2026): паспорта book.json этот сборщик пишет по старым данным — у freud-kokain, -afaziya, -referatlar, -resenziyalar,
+-sehnede, -sossur он стирает обложку и меняет название, у freud-usaq-iflici — страницы. После запуска вернуть паспорта:
+git checkout -- books/<книга>/book.json (главы az/NNN.html он пишет верно, термины — через term_fix)."""
 import io, os, re, sys, json, glob
 from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +21,11 @@ shop = json.load(io.open(os.path.join(D, "data", "shop", "index.az.json"), encod
 SHOP = dict((it["id"], it) for g in shop["groups"] for it in g["items"])
 
 
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from term_fix import fix_text  # названия болезней по принятой номенклатуре (слово Кенана 13.11.2026)
+
+
 def write(path, text):
+    text = fix_text(text)[0] if "/az/" in path.replace("\\", "/") or path.endswith("book.json") else text
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if os.path.exists(path) and io.open(path, encoding="utf-8").read() == text:
         return 0

@@ -3,6 +3,7 @@
 Источник — действующий магазин site/books/{,ru/,en/}index.html (сам магазин не меняется): названия, авторы, обложки,
 цены, сведения о книге, адрес чтения. Короткие описания «почему эта книга» — из content.js (блок книг главной).
 Результат: data/shop/index.<lang>.json. Запуск: python build_shop.py"""
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from term_fix import fix_text  # слово Кенана 13.11.2026
 import io, os, re, sys, json, subprocess
 from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -139,5 +140,6 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
     out = {"lang": lang, "src": rel, "title": h[0], "lead": h[1], "u": {"all": h[2], "read": h[3], "order": h[4], "about": h[5], "other": h[6], "price": h[7], "soon": h[8], "toc": h[9], "azNote": h[10], "more": h[11], "none": {"ru": "Книга не найдена", "az": "Kitab tapılmadı", "en": "Book not found"}[lang]},
            "orderUrl": "/" + rel.replace("index.html", ""), "groups": [g for g in groups if g["items"]]}
     os.makedirs(os.path.join(D, "data", "shop"), exist_ok=True)
-    json.dump(out, io.open(os.path.join(D, "data", "shop", "index.%s.json" % lang), "w", encoding="utf-8", newline="\n"), ensure_ascii=False, indent=1)
+    s = json.dumps(out, ensure_ascii=False, indent=1)
+    io.open(os.path.join(D, "data", "shop", "index.%s.json" % lang), "w", encoding="utf-8", newline="\n").write(fix_text(s)[0] if lang == "az" else s)
     print(lang, [(g["id"], len(g["items"])) for g in out["groups"]], sum(1 for g in groups for it in g["items"] if it.get("f")))

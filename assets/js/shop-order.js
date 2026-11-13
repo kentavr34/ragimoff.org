@@ -102,7 +102,7 @@ export const ORD = {
    "p": "30 ₼"
   },
   "freud-usaq-iflici": {
-   "o": "İnfantil serebral iflic",
+   "o": "Uşaq serebral iflici",
    "p": "30 ₼"
   },
   "freud-resenziyalar-1887-1910": {

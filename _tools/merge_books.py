@@ -8,6 +8,7 @@
  • «О коке» и «К пониманию афазий» — работы до психоанализа, в GW не входят (у немцев изданы отдельно:
    Schriften über Kokain; Zur Auffassung der Aphasien). Вместе — одна книга «Кока и афазия».
 Прежние папки коротких работ остаются в библиотеке (старые ссылки открываются), в паспорте помечены merged — в каталоге их нет."""
+import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); from term_fix import fix_text  # слово Кенана 13.11.2026
 import io, os, re, sys, json, shutil
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -40,6 +41,7 @@ def jload(p):
 
 def jsave(p, o):
     s = json.dumps(o, ensure_ascii=False, indent=1) + "\n"
+    s = fix_text(s)[0] if p.endswith(".az.json") or p.endswith("book.json") else s
     if os.path.exists(p) and io.open(p, encoding="utf-8").read() == s:
         return 0
     t = p + ".new"

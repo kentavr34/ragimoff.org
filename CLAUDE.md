@@ -20,9 +20,11 @@
 
 - Карточки (книги, тренинги, услуги — любые в ряд): меняется только длина названия, все остальные поля — сведения, страницы, цена, кнопки — стоят на одной высоте во всех карточках ряда (слово Кенана 13.11.2026, обязательное требование). Сетки — подсеткой (`subgrid`) в site.css, ленты — `assets/js/align.js`. Страж — `pages_check.py` («поля карточек ряда на разной высоте»).
 
+- Названия болезней (слово Кенана 13.11.2026, обязательное): в названиях книг, оглавлениях и текстах — только принятая AZ-номенклатура; «детский» в диагнозе = «uşaq», не «infantil» (Uşaq serebral iflici; infantil — только термин: infantil seksuallıq, infantilizm); один диагноз — одна форма (məcburiyyət nevrozu, nevropsixoz). Правила и склонение — `_tools/term_fix.py` (его вызывают все сборщики каталога и библиотеки); новый термин — сначала `python D:/Projects/_MEMORY/tools/term.py <слово>`, затем правило сюда. Перечень и сверка — `_agent/docs/ДИАГНОЗЫ_AZ_ПЕРЕЧЕНЬ.md`. Сверка всех книг по базе истины, по этапам (названия → главы → тексты): `python _tools/term_audit.py titles|toc|text` (`refresh` — обновить выгрузку базы). Печать (все проекты книг) — `Freud/tools/print/term_patch_print.py` (`--lang`, `--out` — кандидат для print_gate).
+
 ## Перед публикацией — все стражи должны показать ноль
 Локальный сервер: `python -m http.server 8812` из корня сайта.
-`verify_data.py --all`, `parity_check.py` (одно известное: blog/klinik-psixiatriya только на az), `css_collide.py`, `css_scale.py`, `sentence_case.py show`, `structure_check.py`, `pages_check.py quick`, `form_check.py`; версия — `stamp.py`.
+`verify_data.py --all`, `parity_check.py` (одно известное: blog/klinik-psixiatriya только на az), `css_collide.py`, `css_scale.py`, `sentence_case.py show`, `structure_check.py`, `pages_check.py quick`, `form_check.py`, `term_fix.py --check`; версия — `stamp.py`.
 
 ## Жёсткие правила
 - В git добавлять файлы только по явному списку путей, никогда `git add .` / `-a`. Личные документы `_agent/docs/…`, `_agent/kpt/`, `_agent/server/`, `_agent/shots/` не публикуются.
