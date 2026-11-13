@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11131300';
+import { initChrome, esc, ARR } from './chrome.js?v=11131356';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11131215', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams((location.search || window.__Q || '')).get('b') || '';
-import { ORD } from './shop-order.js?v=11131300';
-import { fixImg } from './blocks.js?v=11131300';
+import { ORD } from './shop-order.js?v=11131356';
+import { fixImg } from './blocks.js?v=11131356';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -23,6 +23,8 @@ const url = it => 'book.html?b=' + encodeURIComponent(it.id);
 const price = (it, u) => it.price ? `<p class="shp__price"><span>${esc(u.price)}</span><b>${esc(it.price)}</b></p>` : '';
 /* корзина — общая со страницей заказа /books/ (тот же ключ в памяти браузера): здесь книга добавляется, оформление и оплата — там */
 const CKEY = 'ragimoff_cart_v1';
+const SET_OFF = 10;   /* скидка набора Фрейда, %; цену набора считает и сервер оплаты: число книг × 30 − 10 % (13.11.2026) */
+let SET_P = 0;
 const CT = {
   ru: { read: 'Читать бесплатно', add: 'В корзину', added: 'Добавлено', cart: 'Корзина', go: 'оформить заказ', set: 'Все книги Фрейда одним набором', setN: 'книг', setOld: 'вместо', setOff: 'скидка', setAdd: 'Весь набор в корзину' },
   az: { read: 'Pulsuz oxuyun', add: 'Səbətə at', added: 'Əlavə edildi', cart: 'Səbət', go: 'sifarişi rəsmiləşdirin', set: 'Freydin bütün kitabları bir dəstdə', setN: 'kitab', setOld: 'əvəzinə', setOff: 'endirim', setAdd: 'Bütün dəsti səbətə atın' },
@@ -54,8 +56,9 @@ function shop(d, lang) {
     /* книги Фрейда — одним списком по времени написания, от ранних к поздним */
     const items = g.id === 'freud' ? books.map((it, i) => [yr(it), i, it]).sort((x, y) => x[0] - y[0] || x[1] - y[1]).map(x => x[2]) : books;
     /* набор: число книг и полная цена считаются по каталогу, цена набора — та, что берёт сервер оплаты; порядок слов — по языку */
-    const nSet = books.filter(it => it.price).length, fullSet = books.reduce((s2, it) => s2 + (parseInt(it.price, 10) || 0), 0), pSet = B ? parseInt(B.p, 10) : 0, off = fullSet ? Math.round(100 - 100 * pSet / fullSet) : 0;
+    const nSet = books.filter(it => it.price).length, fullSet = books.reduce((s2, it) => s2 + (parseInt(it.price, 10) || 0), 0), pSet = Math.round(fullSet * (100 - SET_OFF) / 100), off = fullSet ? Math.round(100 - 100 * pSet / fullSet) : 0;
     const money = lang === 'az' ? `${fullSet} AZN ${esc(T.setOld)} <b>${pSet} AZN</b>` : `<b>${pSet} AZN</b> ${esc(T.setOld)} ${fullSet} AZN`;
+    if (g.id === 'freud') SET_P = pSet;
     const set = g.id === 'freud' && B && pSet < fullSet ? `<div class="shp__set rv"><div><h3 class="shp__sett">${esc(T.set)}</h3><p class="shp__setm">${nSet} ${esc(T.setN)} · ${money}${off >= 5 ? ` · ${esc(T.setOff)} ${off} %` : ''}</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
     const sm = small.length ? `<h3 class="shp__sh rv"><span>${esc(((g.sub || []).find(x => x.id === 'small') || {}).t || '')}</span><i>${small.length}</i></h3><p class="shp__note rv">${esc(g.smallNote || '')}</p><ul class="shp__lines rv">${small.map(line).join('')}</ul>` : '';
     return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>${set}${grid(items, lang)}${sm}</div></section>`;
@@ -105,7 +108,7 @@ const page = initChrome({
 page.watch();
 document.addEventListener('click', e => {
   const cb = e.target.closest('[data-cart]');
-  if (cb) { const lang = document.documentElement.lang, o = cb.dataset.cart === 'bundle' ? ORD.bundle : ORD.items[cb.dataset.cart]; if (o) { cartAdd(o); cb.textContent = ct(lang).added; cb.classList.add('is-added'); cartNote(lang); } return; }
+  if (cb) { const lang = document.documentElement.lang, o = cb.dataset.cart === 'bundle' ? Object.assign({}, ORD.bundle, SET_P ? { p: SET_P + ' ₼' } : {}) : ORD.items[cb.dataset.cart]; if (o) { cartAdd(o); cb.textContent = ct(lang).added; cb.classList.add('is-added'); cartNote(lang); } return; }
   const c = e.target.closest('.shp__chips .chip'); if (!c) return;
   filter = c.dataset.f; const lang = document.documentElement.lang; if (cache[lang]) { shop(cache[lang], lang); setTimeout(() => page.watch(), 0); }
 });

@@ -124,8 +124,8 @@ export const ORD = {
  },
  "bundle": {
   "o": "Bütün Freyd kolleksiyası",
-  "p": "675 ₼",
-  "n": 25,
-  "full": 750
+  "p": "567 ₼",
+  "n": 21,
+  "full": 630
  }
 };

@@ -1111,6 +1111,22 @@
     fineQ.addEventListener && fineQ.addEventListener('change', function () { fine = fineQ.matches; });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-  else boot();
+  /* 13.11.2026 (Кенан): цифры набора Фрейда не вписываются руками — число книг берётся из каталога сайта,
+     цена = число × 30 − 10 % (так же считает сервер оплаты) */
+  function collFromCatalog() {
+    fetch('/data/shop/index.az.json', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      var n = 0; (d.groups || []).forEach(function (g) { if (g.id === 'freud') (g.items || []).forEach(function (it) { if (it.price && !it.small) n++; }); });
+      if (n < 10 || n > 60) return;
+      var full = n * 30, price = Math.round(full * 0.9), save = full - price, per = (price / n).toFixed(2);
+      var q = function (s) { return document.querySelector(s); };
+      var p = q('.coll-banner__p b'); if (p) p.textContent = n + ' kitabı';
+      var o = q('.coll-banner__old'); if (o) o.textContent = full + ' ₼';
+      var w = q('.coll-banner__new'); if (w) w.textContent = price + ' ₼';
+      var sv = q('.coll-banner__save'); if (sv) sv.textContent = save + ' ₼ qənaət';
+      var nt = q('.coll-banner__note'); if (nt) nt.innerHTML = n + ' kitab · hər kitab 30 ₼ əvəzinə <b>' + per + ' ₼</b> · 10% endirim';
+      var bt = q('.coll-banner__btn'); if (bt) bt.setAttribute('data-price', price + ' ₼');
+    }).catch(function () {});
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { boot(); collFromCatalog(); });
+  else { boot(); collFromCatalog(); }
 })();
