@@ -4,7 +4,7 @@
 import { initChrome, esc, ARR } from './chrome.js?v=11130541';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const V = '11120953', kind = document.body.dataset.kind, cache = {};
+const V = '11131215', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams(location.search).get('b') || '';
 import { ORD } from './shop-order.js?v=11130541';
 import { fixImg } from './blocks.js?v=11130541';
@@ -48,7 +48,7 @@ function shop(d, lang) {
   $('#shpHero').innerHTML = `<h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>
     <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div><p class="shp__cart"></p>`;
   if (filter !== 'all' && !d.groups.some(g => g.id === filter)) filter = 'all';
-  const yr = it => +((String(it.meta).match(/\b(1[89]\d\d|20\d\d)\b/) || [0, 9999])[1]);
+  const yr = it => it.wy || 9999;   /* год написания — из единого источника сведений (_tools/shop_facts.py) */
   $('#shpBody').innerHTML = d.groups.filter(g => filter === 'all' || filter === g.id).map(g => {
     const books = g.items.filter(it => !it.small), small = g.items.filter(it => it.small), B = ORD.bundle;
     /* книги Фрейда — одним списком по времени написания, от ранних к поздним */
@@ -83,8 +83,8 @@ function book(d, lang) {
   const sib = all.filter(x => x.g.id === it.g.id && x.id !== it.id && !x.small && (!it.sec || x.sec === it.sec || it.small)), lead = all.filter(x => x.id !== it.id && x.f && x.g.id !== it.g.id), seen = {};
   const other = (sib.length >= 3 ? sib : sib.concat(lead)).filter(x => !seen[x.id] && (seen[x.id] = 1)).slice(0, 8);   /* shp__nf: без повторов */
   $('#shpHero').innerHTML = `<div class="shp__bk"><div class="shp__scene shp__scene--big">${book3d(it, lang, it.read ? esc(it.read_new || it.href) : '#')}</div>
-    <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a><p class="pp__kind">${esc(it.k || it.g.name)}</p><h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
-      ${it.k ? `<p class="shp__au">${esc(it.g.name)}</p>` : ''}<p class="shp__m">${esc(it.meta)}</p>${it.f ? `<ul class="shp__f">${it.f.map((f, j) => `<li><b>0${j + 1}</b><span>${esc(f)}</span></li>`).join('')}</ul>` : ''}${price(it, d.u)}${btns(it, d, lang)}</div></div>`;
+    <div class="shp__txt"><a class="pp__back" href="shop.html">← ${esc(d.title)}</a><p class="pp__kind">${esc(it.g.name)}</p><h1 class="pp__t${it.t.length > 40 ? ' pp__t--long' : ''}">${esc(it.t)}</h1>
+      <p class="shp__m">${esc(it.meta)}</p>${price(it, d.u)}${btns(it, d, lang)}</div></div>`;   /* 13.11 (Кенан): у всех книг один набор — автор, название, год · страницы, цена, кнопки */
   const toc = `<div id="shpToc"></div>`; passToc(it, d, lang);
   const tocOld = it.toc ? `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div><p class="shp__note rv">${esc(d.u.azNote)}</p><ol class="shp__toc rv" lang="az">${it.toc.map(x => `<li>${esc(x)}</li>`).join('')}</ol>${it.tocMore ? `<p class="shp__note">${esc(d.u.more)} ${it.tocMore}…</p>` : ''}</div></div></section>` : '';
   $('#shpBody').innerHTML = toc + `<section class="sec"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(d.u.other)}</h2><a class="sh__link" href="shop.html">${esc(d.title)} ${ARR}</a></header>
