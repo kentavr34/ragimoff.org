@@ -73,6 +73,29 @@ def table(t):
     return "<table>" + "".join(rows) + "</table>"
 
 
+KEEP_UP = {"DSM", "ICD", "PHQ", "CBT", "KDT", "ОКР", "OKP", "ПТСР", "PTSD", "PTSP", "FAQ", "II", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII", "HR", "MKB", "МКБ", "XBT", "BBC"}
+
+
+def tidy(t, lang):
+    """Слово, набранное ПРОПИСНЫМИ в печатном оглавлении («GİRİŞ», «CHAPTER 1», «1-Cİ FƏSİL»), — строчными с заглавной в начале фразы;
+    аббревиатуры (DSM, PTSD, II…) остаются прописными. Смешанный регистр не трогается."""
+    low = (lambda w: w.replace("I", "ı").replace("İ", "i").lower()) if lang == "az" else (lambda w: w.lower())
+    up1 = (lambda ch: "İ" if ch == "i" and lang == "az" else ch.upper())
+    out, start = [], True
+    for w in t.split(" "):
+        core = re.sub(r"[^\w]", "", w)
+        if len(core) >= 2 and core.isupper() and core not in KEEP_UP and not re.match(r"^[IVXLC]+$", core):
+            w = low(w)
+            m = re.search(r"[^\W\d_]", w)
+            if start and m and not w[:1].isdigit():
+                w = w[:m.start()] + up1(w[m.start()]) + w[m.start() + 1:]
+        elif start and w[:1].islower() and not w[:1].isdigit():
+            w = up1(w[0]) + w[1:]
+        start = bool(re.search(r"[.!?]$", w))
+        out.append(w)
+    return " ".join(out)
+
+
 def book(lang, path):
     d = docx.Document(path)
     titles = [re.sub(r"\t\d+\s*$", "", p.text).strip() for p in d.paragraphs if p.style.name in ("TOC Chapter", "TOC Part")]
@@ -112,7 +135,7 @@ def book(lang, path):
         if st == "Heading 1":
             flush_list()
             started = True
-            cur = {"t": title_for(txt), "html": [], "part": ""}
+            cur = {"t": tidy(title_for(txt), lang), "html": [], "part": ""}
             chapters.append(cur)
             continue
         if not txt:
@@ -120,7 +143,7 @@ def book(lang, path):
         if st == "Part Title":                              # страница части (сезон): со своим текстом — отдельная глава, без текста — подпись к следующей главе
             flush_list()
             started = True
-            cur = {"t": title_for(txt), "html": [], "part": ""}
+            cur = {"t": tidy(title_for(txt), lang), "html": [], "part": ""}
             chapters.append(cur)
             continue
         if not started or st == "Part Kicker":
