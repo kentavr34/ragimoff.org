@@ -1,11 +1,11 @@
 /* test/11 — внутренняя страница из блоков: один сценарий на специалистов, консультации, контакты, тренинги, право, блог и статью.
    Вид страницы — <body data-kind="spec|cons|page|blog|post" data-slug="…">; данные — data/<папка>/<slug>.<lang>.json; рама — chrome.js; форма — reg.js. */
-import { initChrome, esc } from './chrome.js?v=11132210';
-import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11132210';
-import { regRender, regOpen } from './reg.js?v=11132210';
-import { CONS, CONS_TOPIC } from './content.js?v=11132210';
+import { initChrome, esc } from './chrome.js?v=11140607';
+import { renderBlocks, fixImg, fixUrl, rich } from './blocks.js?v=11140607';
+import { regRender, regOpen } from './reg.js?v=11140607';
+import { CONS, CONS_TOPIC } from './content.js?v=11140607';
 
-const V = '11132210';
+const V = '11140607';
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const kind = document.body.dataset.kind || 'page';
 const q = new URLSearchParams((location.search || window.__Q || ''));

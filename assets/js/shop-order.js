@@ -38,7 +38,7 @@ export const ORD = {
    "p": "30 ₼"
   },
   "freud-gw07": {
-   "o": "Fantaziya, uşaqlıq və məcburiyyət",
+   "o": "Fantaziya, uşaqlıq və sarışan hallar",
    "p": "30 ₼"
   },
   "freud-gw08": {

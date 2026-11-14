@@ -41,7 +41,7 @@ def jload(p):
 
 def jsave(p, o):
     s = json.dumps(o, ensure_ascii=False, indent=1) + "\n"
-    s = fix_text(s)[0] if p.endswith(".az.json") or p.endswith("book.json") else s
+    s = fix_text(s, path=p)[0] if p.endswith(".az.json") or p.endswith("book.json") else s
     if os.path.exists(p) and io.open(p, encoding="utf-8").read() == s:
         return 0
     t = p + ".new"

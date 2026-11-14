@@ -59,7 +59,7 @@ import os as _o, sys as _s; _s.path.insert(0, _o.path.dirname(_o.path.abspath(__
 
 
 def write(path, text):
-    text = fix_text(text)[0] if "/az/" in path.replace("\\", "/") or path.endswith("book.json") else text
+    text = fix_text(text, path=path)[0] if "/az/" in path.replace("\\", "/") or path.endswith("book.json") else text
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if os.path.exists(path) and io.open(path, encoding="utf-8").read() == text:
         return 0

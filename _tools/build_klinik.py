@@ -284,6 +284,8 @@ def main():
     print("битых якорей (id нет на странице): %d %s" % (len(stats["broken_anchor"]), stats["broken_anchor"][:10]))
     print("ссылок наружу и на остальной сайт (не тронуты): %d; прочих непонятных: %d %s" % (stats["ext"], len(stats["other"]), stats["other"][:5]))
     print("файлов записано: %d" % wrote)
+    import klinik_title_fix                       # 14.11.2026: обрезанные названия диагнозов из прежнего сайта (МКБ-11)
+    klinik_title_fix.main(True)
     return 1 if (stats["broken"] or badtree) else 0
 
 
