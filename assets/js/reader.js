@@ -92,12 +92,12 @@ function pick() {
 }
 function frame() {
   const t = u(), saved = +(store.get(posKey()) || 0);
-  document.documentElement.style.setProperty('--rd-fs', fs + 'rem');
+  document.documentElement.style.setProperty('--rd-fs', fs + 'rem'); document.documentElement.style.setProperty('--rd-k', (fs / 1.1).toFixed(3));
   $('#rdTocT').textContent = t.toc; $('#rdTocX').setAttribute('aria-label', t.close);
   { let g = $('#rdTocLg'); if (!g) { g = document.createElement('div'); g.id = 'rdTocLg'; g.className = 'rdr__lg rdr__lg--toc'; $('.rdr__toch').after(g); }      /* на телефоне язык книги выбирается здесь */
     g.innerHTML = (B.langs.length > 1 ? B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${esc((t.short && t.short[l]) || l.toUpperCase())}</button>`).join('') : '') + themes(t); }
   $('#rdTocL').innerHTML = `<li><a href="#" data-go="0"><span>—</span><b>${esc(t.title)}</b></a></li>` + toc().map(li).join('');
-  $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}${themes(t)}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB">${esc(t.toc)}</button></span>`;
+  $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}${themes(t)}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB" aria-label="${esc(t.toc)}"><span class="rdr__tocw">${esc(t.toc)}</span><span class="rdr__toci" aria-hidden="true">☰</span></button></span>`;
   const others = B.langs.filter(l => l !== lang);
   const note = (others.length ? `<p class="rdr__langs"><span>${esc(t.other)}</span>${others.map(l => `<button type="button" class="chip" data-rl="${l}">${esc(t.short[l] || l)}</button>`).join('')}</p>` : '');
   $('#rdTitle').innerHTML = `<div class="rdr__tp">${cover()}<div class="rdr__ti">${B.kicker[lang] ? `<p class="pp__kind">${esc(B.kicker[lang])}</p>` : ''}<h1 class="pp__t${B.t[lang].length > 40 ? ' pp__t--long' : ''}">${esc(B.t[lang])}</h1>${B.sub[lang] ? `<p class="pp__lead">${esc(B.sub[lang])}</p>` : ''}
@@ -171,7 +171,7 @@ document.addEventListener('click', e => {
   if (e.target.closest('#rdPrev')) { show(cur - 1, true); return; }
   if (e.target.closest('#rdNext')) { show(cur + 1, true); return; }
   const fm = e.target.closest('#rdFsM'), fp = e.target.closest('#rdFsP');
-  if (fm || fp) { fs = Math.min(1.5, Math.max(.9, +(fs + (fp ? .06 : -.06)).toFixed(2))); document.documentElement.style.setProperty('--rd-fs', fs + 'rem'); store.set('r11_rd_fs', fs); return; }
+  if (fm || fp) { fs = Math.min(1.5, Math.max(.9, +(fs + (fp ? .06 : -.06)).toFixed(2))); document.documentElement.style.setProperty('--rd-fs', fs + 'rem'); document.documentElement.style.setProperty('--rd-k', (fs / 1.1).toFixed(3)); store.set('r11_rd_fs', fs); return; }
   /* сноска: текст примечания показывается во всплывающем окне, а не прыжком в конец главы */
   const ref = e.target.closest('.fn-ref a'); const pop = $('#rdPop');
   if (ref) { e.preventDefault(); const n = document.getElementById((ref.getAttribute('href') || '').slice(1)); if (n) { const c = n.cloneNode(true); c.querySelectorAll('.fn-back').forEach(x => x.remove()); pop.innerHTML = `<b>${esc(u().notes)} · ${esc(ref.textContent)}</b><p>${c.innerHTML}</p>`; pop.hidden = false; } return; }

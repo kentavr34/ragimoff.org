@@ -1288,3 +1288,41 @@ body[data-kind="read"] .pp__hero { padding-top: var(--r2); }
 .app-bar__go { flex: 0 0 auto; min-height: var(--tap, 2.75rem); padding: 0 1.1rem; border: 0; border-radius: 99px; background: var(--gold); color: var(--on-gold); font: 500 .95rem/1 var(--f-read); cursor: pointer; }
 .app-bar__x { flex: 0 0 auto; width: var(--tap, 2.75rem); height: var(--tap, 2.75rem); border: 0; border-radius: 50%; background: transparent; color: var(--smoke); font-size: 1.4rem; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { .app-bar { transition: none; } }
+
+/* RDR 15.11.2026 (слово Кенана): 1) выбор темы — в шапке читалки и на телефоне (не в оглавлении);
+   2) A−/A+ масштабирует ВЕСЬ текст читалки: заголовки, название книги, оглавление, панель, титул, кнопки —
+   как в старом ридере (коэффициент --rd-k = размер/1.1, задаётся в reader.js). */
+.rdr__toci { display: none; }
+@media (max-width: 900px) {
+  .rdr__bar .rdr__th { display: inline-flex; } .rdr__lg--toc .rdr__th { display: none; }
+  .rdr__tools { gap: var(--p4); } .rdr__tools .rdr__th button { min-width: 26px; height: 32px; padding: 0 2px; }
+  .rdr__tools #rdFsM, .rdr__tools #rdFsP { min-width: 36px; padding: 0 var(--p6); }
+  .rdr__tools #rdTocB { min-width: 40px; padding: 0 var(--p8); } .rdr__tocw { display: none; } .rdr__toci { display: inline; font-size: calc(18px * var(--rd-k, 1)); }
+}
+body[data-kind="read"] .rdr__bt { font-size: calc(17px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__lib, body[data-kind="read"] .rdr__tools button { font-size: calc(14px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__tools .rdr__lg button { font-size: calc(12.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__n, body[data-kind="read"] .rdr__pt { font-size: calc(12.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__h { font-size: calc(clamp(28px, 3vw, 44px) * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__toch h2 { font-size: calc(30px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__contents li span, body[data-kind="read"] .rdr__toc li span { font-size: calc(12.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__contents li b, body[data-kind="read"] .rdr__toc li b { font-size: calc(clamp(18px, 1.4vw, 21px) * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__part { font-size: calc(12.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga b { font-size: calc(18px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr .rdr__tl .rdr__gi b { font-size: calc(16px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga span, body[data-kind="read"] .rdr .rdr__tl .rdr__gi span { font-size: calc(12px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__q input, body[data-kind="read"] .rdr__lg--toc button { font-size: calc(15px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__ct { font-size: calc(clamp(20px, 2vw, 28px) * var(--rd-k, 1)); } body[data-kind="read"] .rdr__ca { font-size: calc(12px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__meta dt { font-size: calc(14.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__meta dd { font-size: calc(15.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__note, body[data-kind="read"] .rdr__langs, body[data-kind="read"] .rdr__more { font-size: calc(15.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__en { font-size: calc(17px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__pager i { font-size: calc(12.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__pager span { font-size: calc(17px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__pop { font-size: calc(16.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__pop b { font-size: calc(12.5px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__sr .rdr__no { font-size: calc(15px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__ti .pp__t { font-size: calc(clamp(40px, 6vw, 92px) * var(--rd-k, 1)); } body[data-kind="read"] .rdr__ti .pp__t--long { font-size: calc(clamp(28px, 3vw, 44px) * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr__ti .pp__kind { font-size: calc(12.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__ti .pp__lead { font-size: calc(clamp(19px, 1.55vw, 23px) * var(--rd-k, 1)); }
+@media (max-width: 900px) {
+  body[data-kind="read"] .rdr__lib { font-size: 0; } body[data-kind="read"] .rdr__lib::before { font-size: calc(20px * min(var(--rd-k, 1), 1.15)); }
+  body[data-kind="read"] .rdr__tools button { font-size: calc(14px * min(var(--rd-k, 1), 1.15)); }
+  .rdr__bar { padding: 0 var(--p12); gap: var(--p8); } .rdr__home { margin-right: 0; }
+}
