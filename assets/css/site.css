@@ -1326,3 +1326,11 @@ body[data-kind="read"] .rdr__ti .pp__kind { font-size: calc(12.5px * var(--rd-k,
   body[data-kind="read"] .rdr__tools button { font-size: calc(14px * min(var(--rd-k, 1), 1.15)); }
   .rdr__bar { padding: 0 var(--p12); gap: var(--p8); } .rdr__home { margin-right: 0; }
 }
+
+/* читалка: тема — ОДНОЙ кругляшкой с точкой текущей темы, как на главной (слово Кенана 15.11.2026: три кнопки сужали шапку) */
+.rdr__th button[aria-pressed="false"] { display: none; }
+.rdr__bar .rdr__th { display: inline-flex; padding: 0; border: 0; background: none; } .rdr__lg--toc .rdr__th { display: none; }
+.rdr__tools .rdr__th button, .rdr__bar .rdr__th button { width: var(--tap); min-width: var(--tap); height: var(--tap); padding: 0; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 99px; background: color-mix(in srgb, var(--bg) 55%, transparent); }
+.rdr__th .dot { width: 16px; height: 16px; }
+@media (max-width: 900px) { .rdr__bar .rdr__th { display: inline-flex; } .rdr__lg--toc .rdr__th { display: none; } }
+.rdr__bar .rdr__th button[aria-pressed="false"], .rdr__tools .rdr__th button[aria-pressed="false"] { display: none; }

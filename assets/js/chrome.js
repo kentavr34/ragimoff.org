@@ -49,7 +49,7 @@ export function initChrome({ home = 'index.html', onRender }) {
     if (e.target.closest('#burger')) { setMenu(!$('#mob').classList.contains('is-open')); return; }
     if (e.target.closest('#mob a')) setMenu(false);
     let th = e.target.closest('[data-theme-btn]');
-    if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }
+    if (th && (innerWidth < 761 || th.closest('.rdr__th')) && th.getAttribute('aria-pressed') === 'true') { const grp = th.closest('.rdr__th'), all = grp ? [...grp.querySelectorAll('[data-theme-btn]')] : $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }
     if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); render(); return; }
     const lg = e.target.closest('[data-lang-btn]'); if (lg) { if (switchLang(lg.dataset.langBtn)) return; lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
     const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - 10, behavior: 'smooth' }); } }
