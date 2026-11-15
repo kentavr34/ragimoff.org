@@ -480,7 +480,17 @@ def fix_freud_obs(t, path=""):
     p = (path or "").lower()
     if not ("freud" in p or "kitab_" in p or "jung" in p or "fliess" in p):
         return t, 0
-    return OBS_FREUD.subn(lambda m: "Sarışan" if m.group(1)[0] in "OZ" else "sarışan", t)
+    # слово Кенана 15.11.2026: в НАЗВАНИИ клиническое понятие — латинский термин («obsessiv»), симптом в тексте — «sarışan»
+    keep = [k for k in OBS_KEEP if k in t]
+    for i, k in enumerate(keep):
+        t = t.replace(k, "\x00OBSKEEP%d\x00" % i)
+    t, n = OBS_FREUD.subn(lambda m: "Sarışan" if m.group(1)[0] in "OZ" else "sarışan", t)
+    for i, k in enumerate(keep):
+        t = t.replace("\x00OBSKEEP%d\x00" % i, k)
+    return t, n
+
+
+OBS_KEEP = ["Plastik obsessiv təsəvvürün mifoloji paraleli"]   # GW X, статья 1916 (Mythologische Parallele zu einer plastischen Zwangsvorstellung)
 
 
 def fix_turk(t, path=""):
