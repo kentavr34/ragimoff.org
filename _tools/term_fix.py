@@ -48,21 +48,12 @@ EXACT = [
     ("infantil ailəvi affeksiyalara", "uşaqlarda ailəvi affeksiyalara"),
     ("infantil xəstəlikdə", "uşaq xəstəliyində"),
     ("bu infantil xəstəliyi", "bu uşaq xəstəliyini"),
-    # Zwangsneurose: серия Фрейда — «məcburiyyət nevrozu» (438 мест, подзаголовок Kitab 7 «Məcburiyyət nevrozu halı»); «obsessiv nevroz» — разнобой (37, письма Юнгу)
-    ("obsessiv nevrozu analiz", "məcburiyyət nevrozunu analiz"),
-    ("obsessiv nevrozlu", "məcburiyyət nevrozlu"),
-    ("obsessiv nevrozun", "məcburiyyət nevrozunun"),
-    ("obsessiv nevrozdan", "məcburiyyət nevrozundan"),
-    ("obsessiv nevrozda", "məcburiyyət nevrozunda"),
-    ("obsessiv nevrozdur", "məcburiyyət nevrozudur"),
-    ("obsessiv nevroza", "məcburiyyət nevrozuna"),
-    ("obsessiv nevrozu", "məcburiyyət nevrozu"),
-    ("obsessiv nevroz", "məcburiyyət nevrozu"),
+    # 16.11.2026: Zwangsneurose = «obsessiv nevroz» (слово Кенана 15–16.11: диагноз — латинский термин); прежние замены obsessiv → məcburiyyət сняты
     # Neuropsychose: замок-глоссарий — «nevro-», «neyro-» — искажение (nevropsixoz 26 : neyropsixoz 4)
     ("neyropsixoz", "nevropsixoz"),
 ]
 # отвергнутые формы для стража (после исправления их не должно остаться в азербайджанском тексте)
-REJECT = re.compile(r"[İIi]nfantil ([Ss]erebral|uşaq iflic|spinal iflic|psevdo|xoreya|lobar|ensefalit|beyin|atetoz|affeksiya|ailəvi affeks)|[Ss]erebral uşaq iflic|[Oo]bsessiv nevroz|[Nn]eyropsixoz")
+REJECT = re.compile(r"[İIi]nfantil ([Ss]erebral|uşaq iflic|spinal iflic|psevdo|xoreya|lobar|ensefalit|beyin|atetoz|affeksiya|ailəvi affeks)|[Ss]erebral uşaq iflic|[Nn]eyropsixoz")   # 16.11.2026: «obsessiv nevroz» снят из отвергнутых (Zwangsneurose = obsessiv nevroz)
 # формы, отвергнутые словом Кенана 14.11.2026 — проверяются только в азербайджанском тексте (в турецком sinirlilik, kimlik — норма)
 REJECT_AZ = re.compile(r"[Mm]əcburiyyət nevroz|(?<!etik )(?<!əxlaqi )(?<!mənəvi )(?<!əxlaq )[Pp]ozğunlu[qğ]|[Mm]əcburi (?:fikir|ideya|düşüncə|təsəvvür)|[Ss]inirlili[kyğ]|[Dd]issosiativ kimlik|[Yy]etişkin")
 
@@ -206,7 +197,6 @@ NEURO = ("freud-usaq-iflici", "freud-afaziya", "freud-koka-afaziya", "freud-refe
          "Cerebrallaehmung", "Aphasien", "Referatlar", "Ueber_Coca", "Coca", "GW17_cerebral",
          "klinik-psixiatriya", "Klinik_Psixiatriya")   # Klinik: «məcburi hərəkətlər» = насильственные (моторный автоматизм)
 SERIES_Z = [("uşaqlıq və məcburiyyət", "uşaqlıq və sarışan hallar"),   # название Kitab 6 (GW VII: Zwangshandlungen, Zwangsneurose)
-            ("məcburiyyət nevroz", "sarışan hallar nevroz"), ("məcburiyyət nevrotik", "sarışan hallar nevrotik"),
             ("məcburiyyət xəstə", "sarışan hallar xəstə"), ("məcburiyyət xəstəliy", "sarışan hallar xəstəliy")]
 _ZN = "hərəkət|ideya|düşüncə|təsəvvür|fikir|fikr|ritual|mərasim|qorxu|impuls|təkan|affekt|simptom|şübhə|ittiham"
 # неоднозначные («xarakter», «vəziyyət», «əmr», «qadağa», «söz», «hal», «istək», «əməl»…: Zwang = и навязчивость, и принуждение) —
@@ -265,6 +255,36 @@ def _plain(stem, rest):
     return base + suf
 
 
+_ZW_RX = re.compile(r"\b([Ss]arışan hallar|[Mm]əcburiyyət) (nevroz|nevrotik)([a-zəıöüğşç]*)")
+_ZW_CASE = {"ularının": "ların", "ularında": "larda", "uları": "lar", "larının": "ların", "larında": "larda", "ları": "lar",
+            "larına": "lara", "ların": "ların", "undakı": "dakı", "unun": "un", "unda": "da", "undan": "dan", "una": "a",
+            "unu": "u", "udur": "dur", "u": "", "lu": "lu", "": ""}
+_ZW_PERSON = {"lular": "lər", "lularının": "lərin", "luları": "ləri", "lulara": "lərə", "lularda": "lərdə"}
+_ZW_TIK = {"i": "", "inin": "in", "ləri": "lər", "lərin": "lərin", "lərinin": "lərin", "lərimizdə": "lərimizdə"}
+
+
+def fix_obs_neurosis(t):
+    """16.11.2026: изафет «sarışan hallar nevrozu» / «məcburiyyət nevrozu» → «obsessiv nevroz» с перестройкой падежей
+    (nevrozunun→nevrozun, nevrozunda→nevrozda …); лицо → «obsessiv nevrotik(lər)». Проверено критиком GLM (22 образца)."""
+    n = 0
+
+    def rep(m):
+        nonlocal n
+        head, stem, end = m.group(1), m.group(2), m.group(3)
+        obs = "Obsessiv" if head[0] in "SM" else "obsessiv"
+        if stem == "nevrotik":
+            r = obs + " nevrotik" + _ZW_TIK.get(end, end)
+        elif end in _ZW_PERSON:
+            r = obs + " nevrotik" + _ZW_PERSON[end]
+        elif end in _ZW_CASE:
+            r = obs + " nevroz" + _ZW_CASE[end]
+        else:
+            return m.group(0)
+        n += 1
+        return r
+    return _ZW_RX.sub(rep, t), n
+
+
 def fix_zwang(t, neuro=False):
     """Zwang- у Фрейда и в психиатрических текстах → sarışan (слово Кенана 14.11.2026)."""
     n = 0
@@ -273,11 +293,7 @@ def fix_zwang(t, neuro=False):
             if fa in t:
                 n += t.count(fa); t = t.replace(fa, fb)
 
-    t, k3 = re.subn(r"(arışan hallar nevroz)(?=\s|[,.;:)»”])", r"\1u", t)
-    n += k3
-    t, k2 = re.subn(r"(arışan hallar nevroz)(da|dan|a|un|dur|dakı)(?![%s])" % W,
-                    lambda m: m.group(1) + {"da": "unda", "dan": "undan", "a": "una", "un": "unun", "dur": "udur", "dakı": "undakı"}[m.group(2)], t)
-    n += k2
+    t, k = fix_obs_neurosis(t); n += k
 
     def noun(m):
         nonlocal n
