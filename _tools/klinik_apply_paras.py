@@ -11,8 +11,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="repla
 D = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 os.chdir(D)
 dry = "--dry" in sys.argv
+LANG = sys.argv[sys.argv.index("--lang") + 1] if "--lang" in sys.argv else "az"
 P = json.load(io.open(sys.argv[1], encoding="utf-8"))
-COPIES = {"books": "books/klinik-psixiatriya/az/*.html", "read": "az/read/klinik-psixiatriya/*.html"}
+COPIES = {"books": "books/klinik-psixiatriya/%s/*.html" % LANG, "read": "%s/read/klinik-psixiatriya/*.html" % LANG}
 
 
 def variants(t):
