@@ -5,7 +5,7 @@
 полей (и без документа на программах обучения) отправки нет.
 Запуск из корня сайта (сервер: python -m http.server 8812 из корня сайта): python _tools/form_check.py
 Код возврата 1 при расхождениях."""
-import asyncio, json, sys, subprocess, time, urllib.request, os, tempfile, io, re
+import asyncio, json, sys, subprocess, time, urllib.request, os, tempfile, io, re, shutil
 import websockets
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -108,6 +108,12 @@ async def main():
                 print(("✗ " if v else "ok ") + pg.ljust(42) + (" ‖ ".join(v) if v else info))
     finally:
         p.terminate()
+        # временный профиль Chrome удалять всегда: каждый весит ~230 МБ (18.11.2026 — 36,7 ГБ мусора на C:)
+        try:
+            p.wait(timeout=10)
+        except Exception:
+            p.kill()
+        shutil.rmtree(prof, ignore_errors=True)
     print("ПРОВЕРЕНО форм: %d, РАСХОЖДЕНИЙ: %d (на сервер ничего не отправлялось)" % (len(CASES), bad))
     sys.exit(1 if bad else 0)
 

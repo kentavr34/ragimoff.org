@@ -1,7 +1,7 @@
 """Круг проверки главной по канону: замеры во всех сочетаниях (язык × тема × окно) и снимки блоков для критиков.
 Запуск: python round.py NN [база=http://127.0.0.1:8812/]   → _agent/shots/krug-NN/ (снимки, zamery.json)
 Нужен локальный сервер из корня сайта: python -m http.server 8812"""
-import asyncio, json, sys, subprocess, base64, time, urllib.request, tempfile, pathlib
+import asyncio, json, sys, subprocess, base64, time, urllib.request, tempfile, pathlib, shutil
 import websockets
 
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
@@ -192,6 +192,12 @@ async def main():
                             s = await cmd('Page.captureScreenshot', format='jpeg', quality=68)
                             (OUT / ('%s_menu.jpg' % tag)).write_bytes(base64.b64decode(s['data']))
     p.terminate()
+    # временный профиль Chrome удалять всегда: каждый весит ~230 МБ (18.11.2026 — 36,7 ГБ мусора на C:)
+    try:
+        p.wait(timeout=10)
+    except Exception:
+        p.kill()
+    shutil.rmtree(prof, ignore_errors=True)
     # проверка ссылок (один раз, по русской версии)
     links = set()
     for k, v in report.items():

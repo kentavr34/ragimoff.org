@@ -7,7 +7,7 @@
   python _tools/pages_check.py quick      — без статей блога
   python _tools/pages_check.py consult    — только адреса, где встречается слово
 Код возврата 1, если есть нарушения. Отчёт: _agent/shots/pages_check.json"""
-import asyncio, json, sys, subprocess, time, urllib.request, os, tempfile, glob, io
+import asyncio, json, sys, subprocess, time, urllib.request, os, tempfile, glob, io, shutil
 import websockets
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 CHROME = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -240,6 +240,12 @@ async def main():
                     print("✗ битая ссылка: %s (на %s)" % (h, where))
     finally:
         p.terminate()
+        # временный профиль Chrome удалять всегда: каждый весит ~230 МБ (18.11.2026 — 36,7 ГБ мусора на C:)
+        try:
+            p.wait(timeout=10)
+        except Exception:
+            p.kill()
+        shutil.rmtree(prof, ignore_errors=True)
     json.dump(rep, io.open(os.path.join(D, "_agent", "shots", "pages_check.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     if mode == "accept" or not LOCK:
         os.makedirs(os.path.dirname(LOCKF), exist_ok=True)

@@ -1,7 +1,7 @@
 """Проверка формы записи на живой странице: одна тестовая заявка на консультацию (имя TEST), до оплаты не доходит.
 Заполняет форму как человек (выбор по умолчанию), нажимает «Записаться», записывает ответы сервера и адрес, куда ведёт оплата.
 Запуск: python reg_test.py [адрес страницы]   — ТОЛЬКО по слову владельца: создаёт настоящую запись на сервере."""
-import asyncio, json, sys, subprocess, time, urllib.request, tempfile
+import asyncio, json, sys, subprocess, time, urllib.request, tempfile, shutil
 import websockets
 
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
@@ -76,5 +76,11 @@ async def main():
         msg = await ev("(() => { try { const m = document.querySelector('#regBox .reg__msg'); return { url: location.href.slice(0, 120), msg: m && !m.hidden ? m.textContent : '', pay: (document.querySelector('#regBox .reg__pay') || {}).innerText || '' }; } catch (e) { return String(e); } })()")
         print('СТРАНИЦА ПОСЛЕ ОТПРАВКИ:', json.dumps(msg, ensure_ascii=False))
     p.terminate()
+    # временный профиль Chrome удалять всегда: каждый весит ~230 МБ (18.11.2026 — 36,7 ГБ мусора на C:)
+    try:
+        p.wait(timeout=10)
+    except Exception:
+        p.kill()
+    shutil.rmtree(prof, ignore_errors=True)
 
 asyncio.run(main())
