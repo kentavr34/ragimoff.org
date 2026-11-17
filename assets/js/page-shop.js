@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11172326';
+import { initChrome, esc, ARR } from './chrome.js?v=11180002';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11131215', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams((location.search || window.__Q || '')).get('b') || '';
-import { ORD } from './shop-order.js?v=11172326';
-import { fixImg } from './blocks.js?v=11172326';
+import { ORD } from './shop-order.js?v=11180002';
+import { fixImg } from './blocks.js?v=11180002';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -46,22 +46,25 @@ const line = it => `<li><a href="${esc(it.read_new || it.href)}"><b>${esc(it.t)}
 const grid = (items, lang) => items.length ? `<div class="shp__grid">${items.map(it => card(it, lang)).join('')}</div>` : '';
 
 function shop(d, lang) {
-  const all = d.groups.flatMap(g => g.items), T = ct(lang);
-  $('#shpHero').innerHTML = `<h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>
-    <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div><p class="shp__cart"></p>`;
+  const all = d.groups.flatMap(g => g.items), T = ct(lang), B = ORD.bundle;
   if (filter !== 'all' && !d.groups.some(g => g.id === filter)) filter = 'all';
   const yr = it => it.wy || 9999;   /* год написания — из единого источника сведений (_tools/shop_facts.py) */
+  /* 17.11.2026 (слово Кенана): набор «Все книги Фрейда» со скидкой — главное предложение магазина: идёт первым, до выбора авторов,
+     и стоит на месте при любом выборе (страница не прыгает). Число книг и полная цена — по каталогу, цена набора — та, что берёт сервер оплаты. */
+  const fg = d.groups.find(g => g.id === 'freud'), fb = fg ? fg.items.filter(it => !it.small) : [];
+  const nSet = fb.filter(it => it.price).length, fullSet = fb.reduce((s2, it) => s2 + (parseInt(it.price, 10) || 0), 0), pSet = Math.round(fullSet * (100 - SET_OFF) / 100), off = fullSet ? Math.round(100 - 100 * pSet / fullSet) : 0;
+  const money = lang === 'az' ? `${fullSet} AZN ${esc(T.setOld)} <b>${pSet} AZN</b>` : `<b>${pSet} AZN</b> ${esc(T.setOld)} ${fullSet} AZN`;
+  if (fg) SET_P = pSet;
+  const set = fg && B && pSet < fullSet ? `<div class="shp__set shp__set--top"><div><h2 class="shp__sett">${esc(T.set)}</h2><p class="shp__setm">${nSet} ${esc(T.setN)} · ${money}${off >= 5 ? ` · ${esc(T.setOff)} ${off} %` : ''}</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
+  /* выбор автора — «кирпичиками»: кнопки переносятся на следующую строку, за край экрана не уходят; у каждой — число книг */
+  $('#shpHero').innerHTML = `<h1 class="pp__t">${esc(d.title)}</h1><p class="pp__lead">${esc(d.lead)}</p>${set}
+    <div class="shp__chips" role="group">${[['all', d.u.all, all.length]].concat(d.groups.map(g => [g.id, g.name, g.items.length])).map(c => `<button type="button" class="chip" data-f="${c[0]}" aria-pressed="${String(filter === c[0])}">${esc(c[1])} <i>${c[2]}</i></button>`).join('')}</div><p class="shp__cart"></p>`;
   $('#shpBody').innerHTML = d.groups.filter(g => filter === 'all' || filter === g.id).map(g => {
-    const books = g.items.filter(it => !it.small), small = g.items.filter(it => it.small), B = ORD.bundle;
+    const books = g.items.filter(it => !it.small), small = g.items.filter(it => it.small);
     /* книги Фрейда — одним списком по времени написания, от ранних к поздним */
     const items = g.id === 'freud' ? books.map((it, i) => [yr(it), i, it]).sort((x, y) => x[0] - y[0] || x[1] - y[1]).map(x => x[2]) : books;
-    /* набор: число книг и полная цена считаются по каталогу, цена набора — та, что берёт сервер оплаты; порядок слов — по языку */
-    const nSet = books.filter(it => it.price).length, fullSet = books.reduce((s2, it) => s2 + (parseInt(it.price, 10) || 0), 0), pSet = Math.round(fullSet * (100 - SET_OFF) / 100), off = fullSet ? Math.round(100 - 100 * pSet / fullSet) : 0;
-    const money = lang === 'az' ? `${fullSet} AZN ${esc(T.setOld)} <b>${pSet} AZN</b>` : `<b>${pSet} AZN</b> ${esc(T.setOld)} ${fullSet} AZN`;
-    if (g.id === 'freud') SET_P = pSet;
-    const set = g.id === 'freud' && B && pSet < fullSet ? `<div class="shp__set rv"><div><h3 class="shp__sett">${esc(T.set)}</h3><p class="shp__setm">${nSet} ${esc(T.setN)} · ${money}${off >= 5 ? ` · ${esc(T.setOff)} ${off} %` : ''}</p></div><button type="button" class="btn" data-cart="bundle">${esc(T.setAdd)}</button></div>` : '';
     const sm = small.length ? `<h3 class="shp__sh rv"><span>${esc(((g.sub || []).find(x => x.id === 'small') || {}).t || '')}</span><i>${small.length}</i></h3><p class="shp__note rv">${esc(g.smallNote || '')}</p><ul class="shp__lines rv">${small.map(line).join('')}</ul>` : '';
-    return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>${set}${grid(items, lang)}${sm}</div></section>`;
+    return `<section class="sec shp__grp" data-g="${g.id}"><div class="wrap"><header class="shp__gh rv"><h2 class="shp__gt">${esc(g.name)}</h2><span class="shp__gn">${g.items.length}</span></header>${grid(items, lang)}${sm}</div></section>`;
   }).join('');
   document.title = d.title + ' — Doctor Ragimoff';
   cartNote(lang);

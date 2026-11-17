@@ -3,7 +3,7 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11172326';
+import { initChrome, esc } from './chrome.js?v=11180002';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11121146', q = new URLSearchParams((location.search || window.__Q || '')), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
@@ -94,10 +94,12 @@ function frame() {
   const t = u(), saved = +(store.get(posKey()) || 0);
   document.documentElement.style.setProperty('--rd-fs', fs + 'rem'); document.documentElement.style.setProperty('--rd-k', (fs / 1.1).toFixed(3));
   $('#rdTocT').textContent = t.toc; $('#rdTocX').setAttribute('aria-label', t.close);
-  { let g = $('#rdTocLg'); if (!g) { g = document.createElement('div'); g.id = 'rdTocLg'; g.className = 'rdr__lg rdr__lg--toc'; $('.rdr__toch').after(g); }      /* на телефоне язык книги выбирается здесь */
-    g.innerHTML = (B.langs.length > 1 ? B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${esc((t.short && t.short[l]) || l.toUpperCase())}</button>`).join('') : '') + themes(t); }
+  /* боковое меню книги: «Все книги» и язык книги кнопками из двух букв (слово Кенана 17.11.2026) */
+  { let g = $('#rdTocLg'); if (!g) { g = document.createElement('div'); g.id = 'rdTocLg'; g.className = 'rdr__lg rdr__lg--toc'; $('.rdr__toch').after(g); }
+    g.innerHTML = `<a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a>` + (B.langs.length > 1 ? `<span class="rdr__lgs" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}" aria-label="${esc((t.short && t.short[l]) || l)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''); }
   $('#rdTocL').innerHTML = `<li><a href="#" data-go="0"><span>—</span><b>${esc(t.title)}</b></a></li>` + toc().map(li).join('');
-  $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}${themes(t)}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB" aria-label="${esc(t.toc)}"><span class="rdr__tocw">${esc(t.toc)}</span><span class="rdr__toci" aria-hidden="true">☰</span></button></span>`;
+  /* шапка читалки = шапка сайта (один элемент): полный логотип, тема и язык — по одной кругляшке, A−, A+, меню книги */
+  $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${themes(t)}${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}" aria-label="${esc((t.short && t.short[l]) || l)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB" class="rdr__menu" aria-label="${esc(t.toc)}"><i></i><i></i></button></span>`;
   const others = B.langs.filter(l => l !== lang);
   const note = (others.length ? `<p class="rdr__langs"><span>${esc(t.other)}</span>${others.map(l => `<button type="button" class="chip" data-rl="${l}">${esc(t.short[l] || l)}</button>`).join('')}</p>` : '');
   $('#rdTitle').innerHTML = `<div class="rdr__tp">${cover()}<div class="rdr__ti">${B.kicker[lang] ? `<p class="pp__kind">${esc(B.kicker[lang])}</p>` : ''}<h1 class="pp__t${B.t[lang].length > 40 ? ' pp__t--long' : ''}">${esc(B.t[lang])}</h1>${B.sub[lang] ? `<p class="pp__lead">${esc(B.sub[lang])}</p>` : ''}
@@ -154,7 +156,10 @@ page.watch();
 
 document.addEventListener('click', e => {
   const go = e.target.closest('[data-go]'); if (go) { e.preventDefault(); show(+go.dataset.go, true); return; }
-  const rl = e.target.closest('[data-rl]'); if (rl) { const alt = window.__LANG && document.querySelector('link[rel="alternate"][hreflang="' + rl.dataset.rl + '"]'); if (alt) { location.href = new URL(alt.href).pathname; return; } const keep = curId; forced = rl.dataset.rl; lang = forced;
+  let rl = e.target.closest('[data-rl]');
+  /* язык книги в шапке — одна кругляшка: нажатие на текущий язык — следующий язык издания (AZ → RU → EN → TR) */
+  if (rl && rl.closest('.rdr__bar') && rl.getAttribute('aria-pressed') === 'true') { const all = [...rl.parentElement.querySelectorAll('[data-rl]')]; rl = all[(all.indexOf(rl) + 1) % all.length]; }
+  if (rl) { const alt = window.__LANG && document.querySelector('link[rel="alternate"][hreflang="' + rl.dataset.rl + '"]'); if (alt) { location.href = new URL(alt.href).pathname; return; } const keep = curId; forced = rl.dataset.rl; lang = forced;
     if (SITE.indexOf(lang) >= 0) { site = lang; store.set('r11_lang', lang); store.set('r11_rd_lang_' + bid, ''); } else store.set('r11_rd_lang_' + bid, lang + '|' + site);   /* язык сайта идёт за языком книги */
     frame(); show(keep ? idxById(keep) : 0, false); return; }
   const tg = e.target.closest('[data-tg]'); if (tg) { const g = tg.closest('.rdr__g'), op = g.classList.toggle('is-open'); g.querySelector('.rdr__gi').hidden = !op; g.querySelector('.rdr__gt').setAttribute('aria-expanded', String(op)); return; }

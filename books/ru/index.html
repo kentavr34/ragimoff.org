@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
+<script>/* 17.11.2026 (слово Кенана): прежний каталог книг закрыт — /books/ ведёт в новый магазин /<язык>/shop.html.
+   Здесь остаются только корзина и оплата (/books/#sebet): из нового магазина сюда приходят по кнопке корзины. */
+(function () {
+  if (location.hash === '#sebet') return;
+  var m = location.pathname.match(/^\/books\/(ru|en)\//), l = m ? m[1] : null;
+  if (!l) { try { l = localStorage.getItem('r11_lang'); } catch (e) {} }
+  l = (l === 'ru' || l === 'en') ? l : 'az';
+  location.replace('/' + l + '/shop.html' + (location.hash === '#freud' ? '#freud' : ''));
+})();
+</script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#07090E">

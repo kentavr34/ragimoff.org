@@ -1,12 +1,12 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11172326';
-import { T, LINKS3 as LINKS } from './content.js?v=11172326';
-import { regRender, regOpen } from './reg.js?v=11172326';
-import { initLight } from './light.js?v=11172326';
-import { initStats } from './stats.js?v=11172326';
-import { initApp } from './app.js?v=11172326';
-import { initAlign } from './align.js?v=11172326';
-import { initSeo, switchLang } from './seo.js?v=11172326';
+import { initTop } from './totop.js?v=11180002';
+import { T, LINKS3 as LINKS } from './content.js?v=11180002';
+import { regRender, regOpen } from './reg.js?v=11180002';
+import { initLight } from './light.js?v=11180002';
+import { initStats } from './stats.js?v=11180002';
+import { initApp } from './app.js?v=11180002';
+import { initAlign } from './align.js?v=11180002';
+import { initSeo, switchLang } from './seo.js?v=11180002';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -38,7 +38,7 @@ function render() {
   $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#headCta').textContent = t.nav.cta;
-  $('#mobIn').insertAdjacentHTML('afterbegin', `<a class="btn mob__cta" href="#reg" data-reg="consult">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
+  $('#mobIn').insertAdjacentHTML('afterbegin', `<div class="mob__lg" role="group" aria-label="${esc((t.a11y && t.a11y.lang) || 'Language')}">${['az', 'ru', 'en'].map(k => `<button type="button" data-lang-btn="${k}" aria-pressed="${String(k === lang)}">${k.toUpperCase()}</button>`).join('')}</div><a class="btn mob__cta" href="#reg" data-reg="consult">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
 
   $('#school').innerHTML = [...t.hero.school].map((ch, i) => ch === ' ' ? ' ' : `<span style="--i:${i}">${esc(ch)}</span>`).join('');   /* строгая строка встаёт по буквам */
   $('#heroBtns').innerHTML = ['#cons', '#edu', '#books', '#corp'].map((h, i) => `<a href="${h}" style="--i:${i}">${esc(t.hero.b[i])}</a>`).join('');
@@ -211,9 +211,12 @@ document.addEventListener('click', e => {
   if (e.target.closest('#lb')) { if (!e.target.closest('figure') || e.target.closest('#lbX')) galClose(); return; }
   if (e.target.closest('#bkPrev')) { bkGo(-1); return; } if (e.target.closest('#bkNext')) { bkGo(1); return; }
   let th = e.target.closest('[data-theme-btn]');
-  if (th && innerWidth < 761 && th.getAttribute('aria-pressed') === 'true') { const all = $$('[data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
+  if (th && th.getAttribute('aria-pressed') === 'true') { const all = $$('#themes [data-theme-btn]'); th = all[(all.indexOf(th) + 1) % all.length]; }   /* на телефоне одна кнопка: нажатие — следующая тема */
   if (th) { document.documentElement.dataset.theme = th.dataset.themeBtn; store.set('r11_theme', th.dataset.themeBtn); if (light) light.setTheme(); render(); return; }
-  const lg = e.target.closest('[data-lang-btn]'); if (lg) { if (switchLang(lg.dataset.langBtn)) return; lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
+  let lg = e.target.closest('[data-lang-btn]');
+  /* 17.11.2026 (слово Кенана): язык в шапке — одна кругляшка, как тема: нажатие на текущий язык — следующий */
+  if (lg && lg.closest('#langs') && lg.getAttribute('aria-pressed') === 'true') { const all = $$('#langs [data-lang-btn]'); lg = all[(all.indexOf(lg) + 1) % all.length]; }
+  if (lg) { if (switchLang(lg.dataset.langBtn)) return; lang = lg.dataset.langBtn; store.set('r11_lang', lang); render(); return; }
   const rg = e.target.closest('[data-reg]'); if (rg) regOpen(rg.dataset.reg);
   const a = e.target.closest('a[href^="#"]'); if (a && a.getAttribute('href').length > 1) { const el = $(a.getAttribute('href')); if (el) { e.preventDefault(); scrollTo({ top: el.getBoundingClientRect().top + scrollY - (el.matches('.sec--rib') ? 0 : 10), behavior: 'smooth' }); } }
 });

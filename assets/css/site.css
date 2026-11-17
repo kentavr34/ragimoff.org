@@ -1334,3 +1334,50 @@ body[data-kind="read"] .rdr__ti .pp__kind { font-size: calc(12.5px * var(--rd-k,
 .rdr__th .dot { width: 16px; height: 16px; }
 @media (max-width: 900px) { .rdr__bar .rdr__th { display: inline-flex; } .rdr__lg--toc .rdr__th { display: none; } }
 .rdr__bar .rdr__th button[aria-pressed="false"], .rdr__tools .rdr__th button[aria-pressed="false"] { display: none; }
+
+/* ═══ ШАПКА — ОДИН ЭЛЕМЕНТ на всех страницах сайта, в магазине и в читалке (слово Кенана 17.11.2026) ═══
+   Слева полный логотип RAGIMOFF; справа одинаковые кругляшки: тема (точка текущей темы), язык (две буквы текущего
+   языка; нажатие — следующий язык), меню. В читалке между ними ещё A− и A+, язык — язык книги (AZ RU EN TR).
+   Размер кругляшки один: --hc = 44 px (область нажатия); на узком телефоне в читалке уменьшается только логотип. Шапка не масштабируется кнопками A−/A+. */
+:root { --hc: var(--tap); }
+@media (max-width: 1180px) { .head__r { gap: var(--p8); } }
+#themes, #langs, .rdr__bar .rdr__th, .rdr__bar .rdr__lg { display: inline-flex; flex: 0 0 auto; max-width: none; padding: 0; border: 0; background: none; }
+#themes button[aria-pressed="false"], #langs button[aria-pressed="false"], .rdr__bar .rdr__lg button[aria-pressed="false"] { display: none; }
+#themes button, #langs button, .burger, .rdr__bar .rdr__tools button, .rdr__bar .rdr__th button, .rdr__bar .rdr__lg button {
+  width: var(--hc); min-width: var(--hc); height: var(--hc); min-height: var(--hc); flex: 0 0 var(--hc); padding: 0; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%; background: color-mix(in srgb, var(--bg) 55%, transparent); color: var(--milk);
+  font: 600 12.5px/1 var(--f-sub); letter-spacing: .06em; transition: border-color var(--t1), color var(--t1); }
+#langs button[aria-pressed="true"], .rdr__bar .rdr__lg button[aria-pressed="true"] { background: color-mix(in srgb, var(--bg) 55%, transparent); color: var(--gold-hi); border-color: color-mix(in srgb, var(--gold) 55%, var(--line)); }
+#themes button:hover, #langs button:hover, .burger:hover, .rdr__bar .rdr__tools button:hover { border-color: var(--gold); }
+#themes .dot, .rdr__bar .rdr__th .dot { width: 16px; height: 16px; }
+.burger { display: grid; align-content: center; gap: var(--p6); }
+.rdr__menu { align-content: center; gap: var(--p6) !important; } .rdr__menu i { display: block; width: 16px; height: 1.5px; margin: 0 auto; background: var(--milk); }
+@media (min-width: 1181px) { .burger { display: none; } }
+@media (max-width: 760px) {
+  .head { justify-content: space-between; gap: var(--p8); padding-left: var(--pad); padding-right: var(--pad); }
+  .head__r { flex: 0 0 auto; min-width: 0; margin-left: auto; gap: var(--p8); justify-content: flex-end; }
+  .logo { flex: 0 1 auto; min-width: 0; } .logo__w { display: inline; }
+}
+/* читалка: та же шапка — логотип целиком, «Все книги» перенесены в меню книги */
+body[data-kind="read"] .rdr__bar { min-height: var(--hd70); gap: var(--p8); padding: 0 var(--pad); }
+.rdr__bar .rdr__home { flex: 0 1 auto; min-width: 0; margin-right: 0; } .rdr__bar .rdr__home .logo__w { display: inline; }
+.rdr__bar .rdr__tools { flex: 0 0 auto; display: flex; align-items: center; gap: var(--p8); margin-left: auto; }
+body[data-kind="read"] .rdr__bar .rdr__tools button, body[data-kind="read"] .rdr__bar .rdr__lg button { font-size: 12.5px; }
+body[data-kind="read"] .rdr__bar #rdFsM, body[data-kind="read"] .rdr__bar #rdFsP { font-size: 13.5px; }
+@media (max-width: 400px) { .rdr__bar .rdr__tools { gap: var(--p4); } body[data-kind="read"] .rdr__bar { gap: var(--p6); padding: 0 var(--p12); } .rdr__bar .rdr__home .logo__r { font-size: 22px; padding-right: var(--p4); } .rdr__bar .rdr__home .logo__w { font-size: 10px; letter-spacing: .12em; } }
+@media (max-width: 345px) { .rdr__bar .rdr__home .logo__w, .head .logo__w { display: none; } }
+/* меню книги: «← Все книги», затем язык книги кнопками из двух букв (как в меню сайта) */
+.rdr__lg--toc { display: flex !important; flex-wrap: wrap; align-items: center; gap: var(--p10); margin: 0 0 var(--p14); padding: 0; border: 0; }
+.rdr__lg--toc .rdr__lib { flex: 1 1 100%; font: 500 15px/1.3 var(--f-sub); color: var(--gold-hi); }
+.rdr__lgs, .mob__lg { display: flex; gap: var(--p8); }
+.rdr__lgs button, .mob__lg button { width: var(--hc); height: var(--hc); min-height: 0; padding: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: none; font: 600 12.5px/1 var(--f-sub); letter-spacing: .06em; color: var(--text); }
+.rdr__lgs button[aria-pressed="true"], .mob__lg button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold-hi); background: color-mix(in srgb, var(--gold) 12%, transparent); }
+.mob__lg { order: -2; margin-bottom: var(--r1); }
+/* вкладки классификаций (МКБ-11 / DSM-5-TR / МКБ-10) в оглавлении: одна строка, размер — вместе с A−/A+ */
+.rdr__cts { gap: var(--p6); }
+body[data-kind="read"] .rdr__ct { flex: 1 1 auto; min-width: 0; padding: 0 var(--p6); white-space: nowrap; font-size: calc(13.5px * var(--rd-k, 1)); letter-spacing: .04em; }
+/* магазин (слово Кенана 17.11.2026): набор Фрейда — первым, выбор авторов «кирпичиками» в несколько строк, ничего за краем экрана */
+.shp__set--top { margin-top: var(--r1); }
+.shp__chips { flex-wrap: wrap; gap: var(--p8); }
+@media (max-width: 760px) { .shp__chips { flex-wrap: wrap; overflow: visible; margin: var(--r1) 0 0; padding: 0; } .shp__chips .chip { flex: 0 1 auto; min-height: var(--hc); padding: 0 var(--p14); } }
+body[data-kind="read"] .rdr__lg--toc .rdr__lib { font-size: calc(15px * min(var(--rd-k, 1), 1.2)); } body[data-kind="read"] .rdr__lg--toc .rdr__lib::before { content: none; }
