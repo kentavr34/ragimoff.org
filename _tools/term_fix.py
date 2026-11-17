@@ -480,6 +480,11 @@ TURK = [(re.compile(_B + a), b) for a, b in [
     (r"endişələrsiz", "narahatlıqsız"), (r"səbəb-sonuç", "səbəb-nəticə"), (r"uyqu yürüşü", "yuxugəzmə"),
     (r"təsvir edilmiş gibi", "təsvir edilmiş kimi"),
     (r"suçüstü", "cinayət başında"),
+    # 17.11.2026 (Кенану указали на турцизмы в Klinik): нет в obastan.com — fərqindəlik, yetərsiz; baxım=«уход» — тур. bakım
+    (r"fərqindəlik", "diqqətlilik"), (r"Fərqindəlik", "Diqqətlilik"),          # mindfulness: şüurlu diqqətlilik
+    (r"yetərsiz", "kifayətsiz"), (r"Yetərsiz", "Kifayətsiz"),                 # kifayətsiz/kifayətsizlik — есть в obastan
+    # «yetərli» — тоже нет в obastan, но замена зависит от контекста (yetərli deyil → kifayət deyil; yetərlidir → kifayətdir) — только вручную
+    (r"özünə baxım", "özünə qulluq"), (r"Özünə baxım", "Özünə qulluq"),
 ]]
 
 
