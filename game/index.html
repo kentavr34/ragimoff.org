@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Rokki &amp; Mikki — games and websites built with an AI agent</title>
-<meta name="description" content="Rokki &amp; Mikki is a small studio that makes games and websites with an AI coding agent as its only developer.">
+<title>Rokki &amp; Mikki — websites, games and apps made with AI</title>
+<meta name="description" content="Rokki &amp; Mikki: two brothers make websites, games and apps with AI. Dad helps. Three games, live websites and six visual styles to choose from.">
 <meta property="og:title" content="Rokki &amp; Mikki — games and websites">
 <meta property="og:description" content="A multiplayer chess game in Telegram, two 3D adventures and websites, made without a programmer.">
 <meta property="og:image" content="https://ragimoff.org/game/assets/store-1.jpg">
@@ -125,19 +125,47 @@ img, video { display: block; max-width: 100%; }
 .bub { position: absolute; bottom: -30px; width: var(--s); height: var(--s); border-radius: 50%; border: 1px solid rgba(220,255,252,.5); left: var(--l); animation: rise var(--d) linear infinite; animation-delay: var(--dl); }
 @keyframes rise { to { transform: translate(var(--dx), -115svh); opacity: 0; } }
 
-/* ── миры: горизонтальная лента ── */
+/* ── сайты: живые работы ── */
+.sites { padding: clamp(70px, 12vh, 150px) 0 clamp(40px, 8vh, 90px); }
+.work { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 64px); align-items: center; padding: 0 var(--pad); margin-bottom: clamp(56px, 10vh, 120px); }
+.work:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.work:nth-of-type(even) .frame { order: 2; }
+.frame { display: block; border: 1px solid var(--line); background: #0f1113; border-radius: 10px; overflow: hidden; box-shadow: 0 40px 90px rgba(0,0,0,.55); text-decoration: none; transition: transform .9s cubic-bezier(.16,1,.3,1); }
+.frame:hover { transform: translateY(-8px); }
+.frame .bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.frame .bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.frame .bar span { margin-left: 12px; font: 400 11.5px/1 var(--mono); letter-spacing: .06em; color: var(--dim); }
+.frame .view { aspect-ratio: 16 / 10; overflow: hidden; }
+.frame img { width: 100%; height: auto; transition: transform 6s cubic-bezier(.3,0,.2,1); }
+.work h3 { margin: 12px 0 14px; font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(34px, 4.2vw, 68px); line-height: .94; letter-spacing: -.01em; }
+.work p { margin: 0 0 12px; max-width: 36ch; font-size: clamp(19px, 1.5vw, 23px); }
+.ask { margin: 18px 0 18px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.ask b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(22px, 2vw, 30px); }
+.ask span { font: 500 12.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+
+/* ── меню стилей: горизонтальная лента ── */
 .worlds { position: relative; }
-.pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(64px, 9vh, 96px); overflow: hidden; }
+.pin .head { margin-bottom: clamp(14px, 2.4vh, 28px); }
+.pin .head h2 { font-size: clamp(34px, 8.5vh, 104px); }
 .strip { display: flex; gap: clamp(14px, 2vw, 30px); padding: 0 var(--pad); will-change: transform; }
-.world { flex: none; width: clamp(280px, 46vw, 720px); margin: 0; }
+.world { flex: none; width: clamp(270px, min(40vw, calc((100svh - 400px) * 1.6)), 640px); margin: 0; display: flex; flex-direction: column; }
 .world .fr { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
+.world .no { position: absolute; z-index: 2; left: 12px; top: 10px; font: 500 12px/1 var(--mono); letter-spacing: .12em; color: #fff; mix-blend-mode: difference; }
+.world .dsc { margin: 6px 0 0; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.32; color: var(--paper); }
+.world .for { margin: 6px 0 0; font: 400 11.5px/1.45 var(--mono); letter-spacing: .04em; color: var(--dim); }
+.world .buy { margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.world .pr { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 2.4vw, 38px); line-height: 1; }
+.world .pr s { font: 400 13px/1 var(--mono); color: var(--dim); margin-right: 8px; vertical-align: middle; }
+.world .btn { padding: 12px 14px; }
+.world.own .fr { display: grid; place-items: center; background: repeating-linear-gradient(135deg, #15181a 0 14px, #101214 14px 28px); }
+.world.own .fr b { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; font-size: clamp(54px, 7vw, 120px); color: var(--wine); }
 .world img, .world video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
 .world video { opacity: 0; transition: opacity .5s ease; }
 .world.play video { opacity: 1; }
 .world:hover img { transform: scale(1.05); }
-.world figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 12px; }
-.world b { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 42px); line-height: 1; }
-.worlds .note { padding: 26px var(--pad) 0; max-width: 60ch; color: var(--dim); font-size: 19px; }
+.world figcaption { display: flex; flex-direction: column; flex: 1; padding-top: 12px; }
+.world figcaption > b { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(22px, 2.2vw, 36px); line-height: 1; }
 
 /* ── услуги ── */
 .services { padding: clamp(80px, 14vh, 170px) 0 0; }
@@ -153,8 +181,10 @@ img, video { display: block; max-width: 100%; }
 /* ── контакт ── */
 .contact { padding: clamp(100px, 20vh, 240px) var(--pad) 40px; }
 .contact .mono { display: block; margin-bottom: 22px; }
-.mail { display: inline-block; font-family: var(--display); font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: clamp(30px, 8.6vw, 150px); line-height: .92; letter-spacing: -.02em; background: linear-gradient(90deg, var(--teal), var(--wine)) 0 100% / 0 .06em no-repeat; transition: background-size .7s cubic-bezier(.16,1,.3,1); overflow-wrap: anywhere; }
+.mail { display: inline-block; font-family: var(--display); font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: clamp(34px, 8.2vw, 140px); line-height: .92; letter-spacing: -.02em; background: linear-gradient(90deg, var(--teal), var(--wine)) 0 100% / 0 .06em no-repeat; transition: background-size .7s cubic-bezier(.16,1,.3,1); overflow-wrap: anywhere; }
 .mail:hover, .mail:focus-visible { background-size: 100% .06em; outline: none; }
+.reach { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(26px, 5vh, 46px); }
+.reach .btn { padding: 18px 24px; font-size: 13.5px; }
 .foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-top: clamp(70px, 14vh, 160px); padding-top: 18px; border-top: 1px solid var(--line); }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--paper); }
@@ -174,7 +204,10 @@ img, video { display: block; max-width: 100%; }
   .pin { position: static; height: auto; padding: 0; }
   .strip { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; transform: none !important; scrollbar-width: none; }
   .strip::-webkit-scrollbar { display: none; }
+  .pin .head h2 { font-size: clamp(40px, 12vw, 64px); }
   .world { width: 82vw; scroll-snap-align: center; }
+  .work, .work:nth-of-type(even) { grid-template-columns: 1fr; }
+  .work:nth-of-type(even) .frame { order: 0; }
   .rowx { grid-template-columns: 1fr; gap: 6px; }
   .head { flex-direction: column; gap: 8px; }
 }
@@ -198,14 +231,14 @@ img, video { display: block; max-width: 100%; }
       <span class="clip"><span class="ln" data-shift="1" aria-hidden="true"></span></span>
     </h1>
     <div class="hero-foot">
-      <p data-t="lead">A small studio that makes games and websites with an AI agent as its only developer.</p>
+      <p data-t="lead">Two brothers make websites, games and apps with AI. Dad helps.</p>
       <div class="cue"><span class="mono" data-t="scroll">Scroll</span><i></i></div>
     </div>
   </section>
 
   <section class="manifest">
-    <span class="mono" data-t="m_tag">How we work</span>
-    <p id="manifest" data-t="manifest">No programmer on the team. We design, we test, we write the bug reports. The agent writes every line of code.</p>
+    <span class="mono" data-t="m_tag">Who we are</span>
+    <p id="manifest" data-t="manifest">Rokki and Mikki are brothers. We invent the worlds and test them. An AI agent writes the code. Dad helps.</p>
   </section>
 
   <section class="games" id="games">
@@ -263,32 +296,71 @@ img, video { display: block; max-width: 100%; }
     </article>
   </section>
 
+  <section class="sites" id="sites">
+    <div class="head"><h2 data-t="h_web">Websites</h2><span class="mono" data-t="h_web_n">Live work</span></div>
+
+    <article class="work rise">
+      <a class="frame" href="https://ragimoff.org/" target="_blank" rel="noopener">
+        <div class="bar"><i></i><i></i><i></i><span>ragimoff.org</span></div>
+        <div class="view"><img src="assets/site-home.jpg" alt="The home page of ragimoff.org" loading="lazy" width="1440" height="900"></div>
+      </a>
+      <div>
+        <span class="mono" data-t="s1_tag">A full website · three languages</span>
+        <h3>ragimoff.org</h3>
+        <p data-t="s1_text">The site of a psychology school and practice: programs, consultations, a blog, sign-up forms and online payment. Built entirely with an AI agent.</p>
+        <div class="ask"><b data-t="s1_ask">Want a site like this?</b><span data-t="price_req">Price on request</span></div>
+        <div class="btns">
+          <a class="btn fill" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20like%20ragimoff.org." data-t="order">Order</a>
+          <a class="btn" href="https://ragimoff.org/" target="_blank" rel="noopener" data-t="open">Open the site</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="work rise">
+      <a class="frame" href="https://ragimoff.org/en/shop.html" target="_blank" rel="noopener">
+        <div class="bar"><i></i><i></i><i></i><span>ragimoff.org/shop</span></div>
+        <div class="view"><img src="assets/site-shop.jpg" alt="The online bookshop on ragimoff.org" loading="lazy" width="1440" height="900"></div>
+      </a>
+      <div>
+        <span class="mono" data-t="s2_tag">An online bookshop · a site inside a site</span>
+        <h3 data-t="s2_name">Bookshop</h3>
+        <p data-t="s2_text">A catalogue of books with covers, free reading in a built-in reader, a cart and payment by card.</p>
+        <div class="ask"><b data-t="s2_ask">Want an online shop like this?</b><span data-t="price_req2">Price on request</span></div>
+        <div class="btns">
+          <a class="btn fill" href="https://wa.me/994702200376?text=Hello!%20I%20want%20an%20online%20shop%20like%20ragimoff.org/shop." data-t="order2">Order</a>
+          <a class="btn" href="https://ragimoff.org/en/shop.html" target="_blank" rel="noopener" data-t="open2">Open the shop</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
   <section class="worlds" id="worlds">
     <div class="pin">
-      <div class="head"><h2 data-t="h_web">Websites</h2><span class="mono" data-t="h_web_n">Five worlds · concept work</span></div>
+      <div class="head"><h2 data-t="h_menu">Choose your style</h2><span class="mono" data-t="h_menu_n">Six on the menu</span></div>
       <div class="strip" id="strip">
-        <figure class="world"><div class="fr"><img src="assets/world-samurai.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-samurai.mp4"></video></div><figcaption><b data-t="w1">Blade &amp; ink</b><span class="mono">01</span></figcaption></figure>
-        <figure class="world"><div class="fr"><img src="assets/world-cyber.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-cyber.mp4"></video></div><figcaption><b data-t="w2">Neon rain</b><span class="mono">02</span></figcaption></figure>
-        <figure class="world"><div class="fr"><img src="assets/world-space.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-space.mp4"></video></div><figcaption><b data-t="w3">Rings of Saturn</b><span class="mono">03</span></figcaption></figure>
-        <figure class="world"><div class="fr"><img src="assets/world-steampunk.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-steampunk.mp4"></video></div><figcaption><b data-t="w4">Brass &amp; steam</b><span class="mono">04</span></figcaption></figure>
-        <figure class="world"><div class="fr"><img src="assets/world-minimal.jpg" alt="" loading="lazy" width="960" height="600"></div><figcaption><b data-t="w5">Quiet skyline</b><span class="mono">05</span></figcaption></figure>
+        <figure class="world"><div class="fr"><span class="no">01</span><img src="assets/world-samurai.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-samurai.mp4"></video></div><figcaption><b data-t="w1">Blade &amp; ink</b><p class="dsc" data-t="w1d">A film frame, not a postcard: temple yard, morning mist, sparks that turn into code.</p><p class="for" data-t="w1f">For film studios, sport, games, bold brands</p><div class="buy"><span class="pr"><s>$999</s>$499</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20the%20%22Blade%20and%20ink%22%20style." data-t="w_buy">I want this</a></div></figcaption></figure>
+        <figure class="world"><div class="fr"><span class="no">02</span><img src="assets/world-cyber.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-cyber.mp4"></video></div><figcaption><b data-t="w2">Neon rain</b><p class="dsc" data-t="w2d">Quiet cyberpunk: liquid chrome type, wet glass, one cold neon on almost black.</p><p class="for" data-t="w2f">For IT start-ups, fintech, games, night clubs</p><div class="buy"><span class="pr"><s>$999</s>$499</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20the%20%22Neon%20rain%22%20style." data-t="w_buy">I want this</a></div></figcaption></figure>
+        <figure class="world"><div class="fr"><span class="no">03</span><img src="assets/world-space.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-space.mp4"></video></div><figcaption><b data-t="w3">Observatory</b><p class="dsc" data-t="w3d">An old star atlas meets mission control: orbits, telemetry, starlight gold on deep blue.</p><p class="for" data-t="w3f">For education, science, space-tech, finance</p><div class="buy"><span class="pr"><s>$999</s>$499</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20the%20%22Observatory%22%20style." data-t="w_buy">I want this</a></div></figcaption></figure>
+        <figure class="world"><div class="fr"><span class="no">04</span><img src="assets/world-steampunk.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-steampunk.mp4"></video></div><figcaption><b data-t="w4">Workshop</b><p class="dsc" data-t="w4d">An inventor's study: engravings, blueprints, brass instruments and steam.</p><p class="for" data-t="w4f">For craft brands, workshops, museums, books</p><div class="buy"><span class="pr"><s>$999</s>$499</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20the%20%22Workshop%22%20style." data-t="w_buy">I want this</a></div></figcaption></figure>
+        <figure class="world"><div class="fr"><span class="no">05</span><img src="assets/world-minimal.jpg" alt="" loading="lazy" width="960" height="600"></div><figcaption><b data-t="w5">Ceramic &amp; air</b><p class="dsc" data-t="w5d">Warm minimalism: bone and linen, one object in the frame, huge type and a lot of air.</p><p class="for" data-t="w5f">For architects, interiors, photographers, galleries</p><div class="buy"><span class="pr"><s>$999</s>$499</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20the%20%22Ceramic%20and%20air%22%20style." data-t="w_buy">I want this</a></div></figcaption></figure>
+        <figure class="world own"><div class="fr"><span class="no">06</span><b>&amp;</b></div><figcaption><b data-t="w6">Your own world</b><p class="dsc" data-t="w6d">Your brand, your story: a style made from scratch, only for you.</p><p class="for" data-t="w6f">From a brief to launch</p><div class="buy"><span class="pr">$999</span><a class="btn" href="https://wa.me/994702200376?text=Hello!%20I%20want%20a%20website%20in%20my%20own%20style." data-t="w_buy6">Start</a></div></figcaption></figure>
       </div>
-      <p class="note" data-t="w_note">Each world is a different way of telling one story. These are concepts; a live example of our web work is the site you are on, ragimoff.org.</p>
     </div>
   </section>
 
   <section class="services" id="services">
     <div class="head"><h2 data-t="h_srv">What we do</h2><span class="mono" data-t="h_srv_n">By request</span></div>
     <div class="rows">
-      <div class="rowx rise"><span class="mono">01</span><b data-t="s1">Websites</b><p data-t="s1t">One-page and multi-page sites with motion built in code, fast on a phone.</p></div>
-      <div class="rowx rise"><span class="mono">02</span><b data-t="s2">Games</b><p data-t="s2t">Browser, Telegram and Godot games: from an idea on paper to a playable build.</p></div>
-      <div class="rowx rise"><span class="mono">03</span><b data-t="s3">Working with an agent</b><p data-t="s3t">How to run a long project with an AI coding agent without losing what already works.</p></div>
+      <div class="rowx rise"><span class="mono">01</span><b data-t="v1">Websites</b><p data-t="v1t">Landing pages, full sites and online shops with motion built in code, fast on a phone.</p></div>
+      <div class="rowx rise"><span class="mono">02</span><b data-t="v2">Games</b><p data-t="v2t">Telegram, Windows and Android games: from an idea on paper to a playable build.</p></div>
+      <div class="rowx rise"><span class="mono">03</span><b data-t="v3">Apps</b><p data-t="v3t">Business apps and tools for your own tasks, built with AI.</p></div>
     </div>
   </section>
 
   <section class="contact" id="contact">
     <span class="mono" data-t="c_tag">Write to us</span>
-    <a class="mail" href="mailto:kenan@ragimoff.org">kenan@<wbr>ragimoff.org</a>
+    <a class="mail" href="https://wa.me/994702200376" data-t="c_wa">Write on WhatsApp</a>
+    <div class="reach"><a class="btn fill" href="https://wa.me/994702200376">+994 70 220 03 76</a><a class="btn" href="mailto:kenan@ragimoff.org">kenan@ragimoff.org</a></div>
     <div class="foot mono">
       <span>Rokki &amp; Mikki · 2026</span>
       <span data-t="f_note">Built with an AI coding agent</span>
@@ -304,9 +376,9 @@ img, video { display: block; max-width: 100%; }
 
   /* ── язык ── */
   var RU = {
-    lead: "Маленькая студия: делаем игры и сайты, а единственный разработчик у нас — ИИ-агент.",
-    scroll: "Листайте", m_tag: "Как мы работаем",
-    manifest: "В команде нет программиста. Мы придумываем, проверяем и пишем отчёты об ошибках. Каждую строку кода пишет агент.",
+    lead: "Два брата делают сайты, игры и приложения с помощью ИИ. Папа помогает.",
+    scroll: "Листайте", m_tag: "Кто мы",
+    manifest: "Рокки и Микки — братья. Мы придумываем миры и проверяем их. Код пишет ИИ-агент. Папа помогает.",
     h_games: "Игры", h_games_n: "03 игры · во все можно играть",
     g1_tag: "3D-квест · Windows · Android", g1_name: "Заброшенный магазин",
     g1_text: "Ночная смена в закрытом магазине, где не так пусто, как кажется. Квест от первого лица; первый уровень готов и бесплатен.",
@@ -320,14 +392,25 @@ img, video { display: block; max-width: 100%; }
     g3_text: "Заброшенный аквапарк нужно включить обратно. 3D-приключение для детей: исследуй, ищи дорогу и возвращай парк к жизни.",
     g3_f1: "Godot 4 · версия 3.0.5", g3_f2: "Вся графика внутри сборки, интернет не нужен", g3_f3: "Windows и Android",
     g3_b1: "Windows · 140 МБ", g3_b2: "Android · 131 МБ",
-    h_web: "Сайты", h_web_n: "Пять миров · концепты",
-    w1: "Клинок и тушь", w2: "Неоновый дождь", w3: "Кольца Сатурна", w4: "Латунь и пар", w5: "Тихий город",
-    w_note: "Каждый мир — свой способ рассказать одну историю. Это концепты; живой пример нашей работы — сайт, на котором вы сейчас, ragimoff.org.",
+    h_web: "Сайты", h_web_n: "Живые работы",
+    s1_tag: "Полноценный сайт · три языка",
+    s1_text: "Сайт школы психологии и практики: программы, консультации, блог, формы записи и онлайн-оплата. Целиком сделан с ИИ-агентом.",
+    s1_ask: "Хотите такой сайт?", price_req: "Цена по запросу", order: "Заказать", open: "Открыть сайт",
+    s2_tag: "Книжный интернет-магазин · сайт внутри сайта", s2_name: "Книжный магазин",
+    s2_text: "Каталог книг с обложками, бесплатное чтение во встроенной читалке, корзина и оплата картой.",
+    s2_ask: "Хотите такой магазин?", price_req2: "Цена по запросу", order2: "Заказать", open2: "Открыть магазин",
+    h_menu: "Выберите свой стиль", h_menu_n: "Шесть в меню", w_buy: "Хочу этот", w_buy6: "Начать",
+    w1: "Клинок и тушь", w1d: "Кадр из фильма, а не открытка: двор храма, утренний туман, искры, которые превращаются в код.", w1f: "Для киностудий, спорта, игр, смелых брендов",
+    w2: "Неоновый дождь", w2d: "Тихий киберпанк: жидкий хром в буквах, мокрое стекло, один холодный неон на почти чёрном.", w2f: "Для IT-стартапов, финтеха, игр, ночных клубов",
+    w3: "Обсерватория", w3d: "Старый звёздный атлас встречает центр управления полётом: орбиты, телеметрия, звёздное золото на глубоком синем.", w3f: "Для образования, науки, космических проектов, финансов",
+    w4: "Мастерская", w4d: "Кабинет изобретателя: гравюры, чертежи, латунные приборы и пар.", w4f: "Для крафтовых брендов, мастерских, музеев, книг",
+    w5: "Керамика и воздух", w5d: "Тёплый минимализм: кость и лён, один предмет в кадре, огромный шрифт и много воздуха.", w5f: "Для архитекторов, интерьеров, фотографов, галерей",
+    w6: "Свой мир", w6d: "Ваш бренд, ваша история: стиль с нуля, только для вас.", w6f: "От брифа до запуска",
     h_srv: "Что мы делаем", h_srv_n: "По запросу",
-    s1: "Сайты", s1t: "Одностраничные и многостраничные сайты с движением из кода, быстрые на телефоне.",
-    s2: "Игры", s2t: "Игры для браузера, Telegram и на Godot: от идеи на бумаге до сборки, в которую можно играть.",
-    s3: "Работа с агентом", s3t: "Как вести долгий проект с ИИ-агентом и не терять то, что уже работает.",
-    c_tag: "Напишите нам", f_note: "Сделано с ИИ-агентом"
+    v1: "Сайты", v1t: "Лендинги, полноценные сайты и интернет-магазины с движением из кода, быстрые на телефоне.",
+    v2: "Игры", v2t: "Игры для Telegram, Windows и Android: от идеи на бумаге до сборки, в которую можно играть.",
+    v3: "Приложения", v3t: "Бизнес-приложения и инструменты под ваши задачи, сделанные с помощью ИИ.",
+    c_tag: "Напишите нам", c_wa: "Напишите в WhatsApp", f_note: "Сделано с ИИ-агентом"
   };
   var EN = {};
   var nodes = document.querySelectorAll("[data-t]");
