@@ -7,7 +7,7 @@
 <title>Rokki &amp; Mikki — games and websites built with an AI agent</title>
 <meta name="description" content="Rokki &amp; Mikki is a small studio that makes games and websites with an AI coding agent as its only developer.">
 <meta property="og:title" content="Rokki &amp; Mikki — games and websites">
-<meta property="og:description" content="A multiplayer chess game in Telegram, a 3D night-shift quest and websites, made without a programmer.">
+<meta property="og:description" content="A multiplayer chess game in Telegram, two 3D adventures and websites, made without a programmer.">
 <meta property="og:image" content="https://ragimoff.org/game/assets/store-1.jpg">
 <meta name="theme-color" content="#0b0c0d">
 <link rel="icon" href="assets/store.png">
@@ -119,6 +119,9 @@ img, video { display: block; max-width: 100%; }
 @keyframes drift { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
 .water .beam { position: absolute; top: -20%; left: 18%; width: 46%; height: 150%; background: linear-gradient(180deg, rgba(190,255,250,.2), transparent 70%); transform: rotate(14deg); filter: blur(22px); animation: beam 9s ease-in-out infinite alternate; }
 @keyframes beam { to { transform: rotate(6deg) translateX(14%); opacity: .6; } }
+.whale { position: absolute; left: 50%; top: 44%; width: min(46%, 300px); aspect-ratio: 1; margin: 0; transform: translate(-50%, -50%); border-radius: 24%; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.55); animation: bob 5.5s ease-in-out infinite alternate; }
+.whale img { position: static; width: 100%; height: 100%; inset: auto; }
+@keyframes bob { from { transform: translate(-50%, -54%) rotate(-3deg); } to { transform: translate(-50%, -46%) rotate(3deg); } }
 .bub { position: absolute; bottom: -30px; width: var(--s); height: var(--s); border-radius: 50%; border: 1px solid rgba(220,255,252,.5); left: var(--l); animation: rise var(--d) linear infinite; animation-delay: var(--dl); }
 @keyframes rise { to { transform: translate(var(--dx), -115svh); opacity: 0; } }
 
@@ -206,7 +209,7 @@ img, video { display: block; max-width: 100%; }
   </section>
 
   <section class="games" id="games">
-    <div class="head"><h2 data-t="h_games">Games</h2><span class="mono" data-t="h_games_n">03 titles · 02 playable</span></div>
+    <div class="head"><h2 data-t="h_games">Games</h2><span class="mono" data-t="h_games_n">03 titles · all playable</span></div>
 
     <article class="game">
       <div class="shot"><img src="assets/store-1.jpg" alt="Abandoned Store: a dark shop atrium seen in first person" data-par loading="lazy" width="1280" height="720"></div>
@@ -241,16 +244,21 @@ img, video { display: block; max-width: 100%; }
     <article class="game">
       <div class="shot"><div class="art water" data-par id="water">
         <div class="beam"></div>
+        <figure class="whale"><img src="assets/akva.jpg" alt="Abandoned Waterpark icon: a little whale in a diving mask" loading="lazy" width="512" height="512"></figure>
         <svg class="w3" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#7fe6de" d="M0 90 Q150 30 300 90 T600 90 T900 90 T1200 90 V200 H0Z"/></svg>
         <svg class="w2" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#49c8c2" d="M0 100 Q150 150 300 100 T600 100 T900 100 T1200 100 V200 H0Z"/></svg>
         <svg class="w1" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#12a5a2" d="M0 110 Q150 60 300 110 T600 110 T900 110 T1200 110 V200 H0Z"/></svg>
       </div></div>
       <div class="info">
         <div class="num">03</div>
-        <span class="mono" data-t="g3_tag">Co-op quest · up to four players</span>
+        <span class="mono" data-t="g3_tag">3D adventure · Windows · Android</span>
         <h3 data-t="g3_name">Abandoned Waterpark</h3>
-        <p data-t="g3_text">A spiral waterpark with an underwater world, sharks and a terrarium. The park must be brought back to life, and the animals saved.</p>
-        <div class="btns"><span class="tag-dev" data-t="g3_dev">In development</span></div>
+        <p data-t="g3_text">An abandoned waterpark has to be switched back on. A 3D adventure for kids: explore, find the way and bring the park back to life.</p>
+        <ul class="facts"><li data-t="g3_f1">Godot 4 · version 3.0.5</li><li data-t="g3_f2">All graphics inside the build, plays offline</li><li data-t="g3_f3">In-game text in Russian for now</li></ul>
+        <div class="btns">
+          <a class="btn fill" href="https://akvapark.45.67.216.36.sslip.io/game/Akvapark-3.0.5-windows.zip" data-t="g3_b1">Windows · 140 MB</a>
+          <a class="btn" href="https://akvapark.45.67.216.36.sslip.io/game/akvapark-3.0.5.apk" data-t="g3_b2">Android · 131 MB</a>
+        </div>
       </div>
     </article>
   </section>
@@ -299,7 +307,7 @@ img, video { display: block; max-width: 100%; }
     lead: "Маленькая студия: делаем игры и сайты, а единственный разработчик у нас — ИИ-агент.",
     scroll: "Листайте", m_tag: "Как мы работаем",
     manifest: "В команде нет программиста. Мы придумываем, проверяем и пишем отчёты об ошибках. Каждую строку кода пишет агент.",
-    h_games: "Игры", h_games_n: "03 игры · в 02 можно играть",
+    h_games: "Игры", h_games_n: "03 игры · во все можно играть",
     g1_tag: "3D-квест · Windows · Android", g1_name: "Заброшенный магазин",
     g1_text: "Ночная смена в закрытом магазине, где не так пусто, как кажется. Квест от первого лица; первый уровень готов и бесплатен.",
     g1_f1: "Godot 4 · около 70 тысяч строк GDScript", g1_f2: "Уровень 1 «Ночная смена», версия 1.0.3", g1_f3: "Windows и Android",
@@ -308,9 +316,10 @@ img, video { display: block; max-width: 100%; }
     g2_text: "Шахматы внутри Telegram, ничего не нужно устанавливать: партии в реальном времени, турниры, командные «войны стран», задачи и уроки.",
     g2_f1: "Около 53 тысяч строк · TypeScript, React, Python", g2_f2: "Игра против Stockfish на нескольких уровнях", g2_f3: "Код открыт",
     g2_b1: "Играть в Telegram", g2_b2: "Исходный код",
-    g3_tag: "Командный квест · до четырёх игроков", g3_name: "Заброшенный аквапарк",
-    g3_text: "Винтовой аквапарк с подводным миром, акулами и террариумом. Парк нужно вернуть к жизни, а зверей — спасти.",
-    g3_dev: "В разработке",
+    g3_tag: "3D-приключение · Windows · Android", g3_name: "Заброшенный аквапарк",
+    g3_text: "Заброшенный аквапарк нужно включить обратно. 3D-приключение для детей: исследуй, ищи дорогу и возвращай парк к жизни.",
+    g3_f1: "Godot 4 · версия 3.0.5", g3_f2: "Вся графика внутри сборки, интернет не нужен", g3_f3: "Windows и Android",
+    g3_b1: "Windows · 140 МБ", g3_b2: "Android · 131 МБ",
     h_web: "Сайты", h_web_n: "Пять миров · концепты",
     w1: "Клинок и тушь", w2: "Неоновый дождь", w3: "Кольца Сатурна", w4: "Латунь и пар", w5: "Тихий город",
     w_note: "Каждый мир — свой способ рассказать одну историю. Это концепты; живой пример нашей работы — сайт, на котором вы сейчас, ragimoff.org.",
