@@ -8,7 +8,7 @@
 <meta name="description" content="Rokki &amp; Mikki: two brothers make websites, games and apps with AI. Dad helps. Three games, live websites and six visual styles to choose from.">
 <meta property="og:title" content="Rokki &amp; Mikki — games and websites">
 <meta property="og:description" content="A multiplayer chess game in Telegram, two 3D adventures and websites, made without a programmer.">
-<meta property="og:image" content="https://ragimoff.org/game/assets/store-1.jpg">
+<meta property="og:image" content="https://ragimoff.org/game/assets/store-room.jpg">
 <meta name="theme-color" content="#0b0c0d">
 <link rel="icon" href="assets/store.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,6 +85,14 @@ img, video { display: block; max-width: 100%; }
 .shot { position: relative; min-height: 46svh; overflow: hidden; background: #000; }
 .shot img, .shot .art { position: absolute; inset: -6% 0; width: 100%; height: 112%; object-fit: cover; will-change: transform; }
 .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 55%, var(--ink-2)); pointer-events: none; }
+.shot > img { transition: opacity .28s ease; }
+.shot > img.swap { opacity: 0; }
+.thumbs { position: absolute; z-index: 2; left: clamp(14px, 2.4vw, 32px); bottom: clamp(14px, 2.4vw, 32px); display: flex; gap: 10px; }
+.thumbs button { position: relative; width: clamp(72px, 7.4vw, 118px); aspect-ratio: 16/9; padding: 0; border: 1px solid rgba(239,233,220,.28); background: #000; cursor: pointer; overflow: hidden; opacity: .62; transition: opacity .2s, border-color .2s, transform .2s; }
+.thumbs button img { position: static; display: block; width: 100%; height: 100%; object-fit: cover; }
+.thumbs button:hover, .thumbs button:focus-visible { opacity: 1; transform: translateY(-2px); }
+.thumbs button.on { opacity: 1; border-color: var(--teal, #2fb8b4); }
+.thumbs button:focus-visible { outline: 2px solid var(--teal, #2fb8b4); outline-offset: 2px; }
 .info { display: flex; flex-direction: column; justify-content: center; padding: clamp(26px, 4vw, 64px) var(--pad) clamp(26px, 4vw, 64px) clamp(22px, 3vw, 48px); }
 .num { font-family: var(--display); font-weight: 500; font-size: clamp(64px, 9vw, 150px); line-height: .8; color: transparent; -webkit-text-stroke: 1px var(--line); margin-bottom: 18px; }
 .game h3 { margin: 10px 0 14px; font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(38px, 4.6vw, 78px); line-height: .92; letter-spacing: -.01em; }
@@ -247,12 +255,19 @@ img, video { display: block; max-width: 100%; }
     <div class="head"><h2 data-t="h_games">Games</h2><span class="mono" data-t="h_games_n">03 titles · all playable</span></div>
 
     <article class="game">
-      <div class="shot"><img src="assets/store-1.jpg" alt="Abandoned Store: a dark shop atrium seen in first person" data-par loading="lazy" width="1280" height="720"></div>
+      <div class="shot"><img id="storeShot" src="assets/store-room.jpg" alt="Abandoned Store: a lit showroom living room with a green couch, a floor lamp and an old TV, seen in first person" data-par width="1280" height="720">
+        <div class="thumbs" id="storeThumbs">
+          <button type="button" class="on" data-src="assets/store-room.jpg" aria-label="Living rooms"><img src="assets/store-room-s.jpg" alt="" width="320" height="180"></button>
+          <button type="button" data-src="assets/store-divan.jpg" aria-label="The couch"><img src="assets/store-divan-s.jpg" alt="" width="320" height="180" loading="lazy"></button>
+          <button type="button" data-src="assets/store-atrium.jpg" aria-label="Atrium"><img src="assets/store-atrium-s.jpg" alt="" width="320" height="180" loading="lazy"></button>
+          <button type="button" data-src="assets/store-chase.jpg" aria-label="The chase"><img src="assets/store-chase-s.jpg" alt="" width="320" height="180" loading="lazy"></button>
+        </div>
+      </div>
       <div class="info">
         <div class="num">01</div>
         <span class="mono" data-t="g1_tag">3D quest · Windows · Android</span>
         <h3 data-t="g1_name">Abandoned Store</h3>
-        <p data-t="g1_text">A night shift in a closed shop that is not as empty as it looks. A first-person quest; the first level is finished and free.</p>
+        <p data-t="g1_text">A night shift in a closed furniture store: lit showroom living rooms, long aisles, and a couch that is not just a couch. The first level is finished and free.</p>
         <ul class="facts"><li data-t="g1_f1">Godot 4 · about 70,000 lines of GDScript</li><li data-t="g1_f2">Level 1 “Night Shift”, version 1.0.3</li><li data-t="g1_f3">In-game text in Russian for now</li></ul>
         <div class="btns">
           <a class="btn fill" href="https://magazin.45-67-216-36.sslip.io/proto/Magazin-L1-v1.0.3-windows.zip" data-t="g1_b1">Windows · 109 MB</a>
@@ -383,7 +398,7 @@ img, video { display: block; max-width: 100%; }
     manifest: "Рокки и Микки — братья. Мы придумываем миры и проверяем их. Код пишет ИИ-агент. Папа помогает.",
     h_games: "Игры", h_games_n: "03 игры · во все можно играть",
     g1_tag: "3D-квест · Windows · Android", g1_name: "Заброшенный магазин",
-    g1_text: "Ночная смена в закрытом магазине, где не так пусто, как кажется. Квест от первого лица; первый уровень готов и бесплатен.",
+    g1_text: "Ночная смена в закрытом мебельном магазине: освещённые гостиные-образцы, длинные проходы и диван, который не просто диван. Первый уровень готов и бесплатен.",
     g1_f1: "Godot 4 · около 70 тысяч строк GDScript", g1_f2: "Уровень 1 «Ночная смена», версия 1.0.3", g1_f3: "Windows и Android",
     g1_b1: "Windows · 109 МБ", g1_b2: "Android · 98 МБ",
     g2_tag: "Сетевые шахматы · Telegram",
@@ -530,6 +545,20 @@ img, video { display: block; max-width: 100%; }
   setInterval(function () {
     if (window.matchMedia("(hover: none)").matches) { auto += .9; tx = W * (.5 + .36 * Math.cos(auto)); ty = H * (.36 + .2 * Math.sin(auto * 1.3)); }
   }, 1600);
+
+  /* ── кадры «Магазина»: миниатюра меняет большой кадр ── */
+  (function () {
+    var big = document.getElementById("storeShot"), box = document.getElementById("storeThumbs");
+    if (!big || !box) return;
+    box.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b || b.classList.contains("on")) return;
+      [].forEach.call(box.children, function (x) { x.classList.toggle("on", x === b); });
+      var next = new Image();
+      big.classList.add("swap");
+      next.onload = function () { setTimeout(function () { big.src = b.dataset.src; big.classList.remove("swap"); }, 180); };
+      next.src = b.dataset.src;
+    });
+  })();
 
   /* ── прокрутка ── */
   var games = [].slice.call(document.querySelectorAll(".game")), pars = [].slice.call(document.querySelectorAll("[data-par]"));
