@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Rokki &amp; Mikki — games and websites built with an AI agent</title>
+<meta name="description" content="Rokki &amp; Mikki is a small studio that makes games and websites with an AI coding agent as its only developer.">
+<meta property="og:title" content="Rokki &amp; Mikki — games and websites">
+<meta property="og:description" content="A multiplayer chess game in Telegram, a 3D night-shift quest and websites, made without a programmer.">
+<meta property="og:image" content="https://ragimoff.org/game/assets/store-1.jpg">
+<meta name="theme-color" content="#0b0c0d">
+<link rel="icon" href="assets/store.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0b0c0d;
+  --ink-2: #131517;
+  --line: #2a2d30;
+  --paper: #efe9dc;
+  --dim: #9c968a;
+  --teal: #2fb8b4;
+  --wine: #d2385f;
+  --display: "Oswald", "Arial Narrow", Impact, sans-serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --pad: clamp(18px, 4vw, 56px);
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--serif); font-size: 20px; line-height: 1.45; overflow-x: hidden; }
+a { color: inherit; }
+img, video { display: block; max-width: 100%; }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+::selection { background: var(--wine); color: var(--paper); }
+
+/* ── верхняя полоса ── */
+.top { position: fixed; z-index: 30; inset: 0 0 auto 0; display: flex; justify-content: space-between; align-items: center; padding: 16px var(--pad); mix-blend-mode: difference; pointer-events: none; }
+.top > * { pointer-events: auto; }
+.top .brand { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-decoration: none; }
+.lang { display: flex; gap: 2px; }
+.lang button { font: 500 12px/1 var(--mono); letter-spacing: .12em; background: none; border: 0; color: #fff; opacity: .45; padding: 10px 8px; cursor: pointer; }
+.lang button[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+
+/* ── герой ── */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 var(--pad) clamp(22px, 4vh, 44px); overflow: hidden; }
+#glyphs { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; background: linear-gradient(to top, var(--ink), transparent); pointer-events: none; }
+.word { position: relative; z-index: 2; margin: 0; font-family: var(--display); font-weight: 700; text-transform: uppercase; line-height: .86; letter-spacing: -.02em; font-size: clamp(74px, 21.5vw, 360px); }
+.word .ln { display: block; white-space: nowrap; will-change: transform; }
+.word .ln + .ln { margin-top: .02em; }
+.word .ch { display: inline-block; transform: translateY(115%) rotate(8deg); opacity: 0; transition: transform 1.05s cubic-bezier(.16,1,.3,1), opacity .5s linear; transition-delay: calc(var(--i) * 55ms + 120ms); }
+.ready .word .ch { transform: none; opacity: 1; }
+.word .amp { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--wine); text-transform: none; letter-spacing: 0; margin-right: .06em; display: inline-block; }
+.word .r { color: var(--paper); }
+.word .ch.first { color: var(--teal); }
+.clip { display: block; overflow: hidden; padding-top: .06em; }
+.hero-foot { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-top: clamp(18px, 3vh, 34px); }
+.hero-foot p { margin: 0; max-width: 30ch; font-size: clamp(19px, 1.9vw, 27px); line-height: 1.25; font-style: italic; opacity: 0; transform: translateY(14px); transition: opacity .9s ease 1s, transform .9s cubic-bezier(.16,1,.3,1) 1s; }
+.ready .hero-foot p { opacity: 1; transform: none; }
+.cue { flex: none; display: flex; align-items: center; gap: 12px; opacity: 0; transition: opacity .8s ease 1.5s; }
+.ready .cue { opacity: 1; }
+.cue i { display: block; width: 1px; height: 46px; background: var(--dim); transform-origin: top; animation: cue 2.2s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1) translateY(46px); opacity: 0; } }
+
+/* ── манифест ── */
+.manifest { padding: clamp(90px, 18vh, 220px) var(--pad); }
+.manifest p { margin: 0; max-width: 21ch; font-style: italic; font-weight: 400; font-size: clamp(34px, 6.2vw, 104px); line-height: 1.04; letter-spacing: -.01em; }
+.manifest .w { opacity: .16; transition: opacity .35s linear; }
+.manifest .w.on { opacity: 1; }
+.manifest .mono { display: block; margin-bottom: 30px; }
+
+/* ── заголовки разделов ── */
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 0 var(--pad); margin-bottom: clamp(26px, 5vh, 56px); border-top: 1px solid var(--line); padding-top: 18px; }
+.head h2 { margin: 0; font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(40px, 7vw, 116px); line-height: .9; letter-spacing: -.015em; }
+
+/* ── игры: карточки наезжают друг на друга ── */
+.games { padding-bottom: 12vh; }
+.game { position: sticky; top: 0; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); background: var(--ink-2); border-top: 1px solid var(--line); overflow: hidden; transform-origin: 50% 0; will-change: transform; }
+.game:nth-of-type(2) { background: #101416; }
+.game:nth-of-type(3) { background: #0e1214; }
+.shot { position: relative; min-height: 46svh; overflow: hidden; background: #000; }
+.shot img, .shot .art { position: absolute; inset: -6% 0; width: 100%; height: 112%; object-fit: cover; will-change: transform; }
+.shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 55%, var(--ink-2)); pointer-events: none; }
+.info { display: flex; flex-direction: column; justify-content: center; padding: clamp(26px, 4vw, 64px) var(--pad) clamp(26px, 4vw, 64px) clamp(22px, 3vw, 48px); }
+.num { font-family: var(--display); font-weight: 500; font-size: clamp(64px, 9vw, 150px); line-height: .8; color: transparent; -webkit-text-stroke: 1px var(--line); margin-bottom: 18px; }
+.game h3 { margin: 10px 0 14px; font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(38px, 4.6vw, 78px); line-height: .92; letter-spacing: -.01em; }
+.game p { margin: 0 0 12px; max-width: 34ch; font-size: clamp(19px, 1.5vw, 23px); }
+.facts { list-style: none; padding: 0; margin: 14px 0 26px; display: grid; gap: 7px; }
+.facts li { font-family: var(--mono); font-size: 12.5px; letter-spacing: .06em; color: var(--dim); padding-left: 18px; position: relative; }
+.facts li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 1px; background: var(--teal); }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { position: relative; display: inline-flex; align-items: center; gap: 10px; padding: 15px 20px; font: 500 12.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--paper); border: 1px solid var(--paper); overflow: hidden; transition: color .35s ease; isolation: isolate; }
+.btn::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: translateY(101%); transition: transform .45s cubic-bezier(.16,1,.3,1); z-index: -1; }
+.btn:hover, .btn:focus-visible { color: var(--ink); }
+.btn:hover::before, .btn:focus-visible::before { transform: none; }
+.btn.fill { background: var(--teal); border-color: var(--teal); color: var(--ink); }
+.btn.fill::before { background: var(--paper); }
+.btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.tag-dev { display: inline-block; border: 1px solid var(--wine); color: var(--wine); padding: 9px 12px; font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+
+/* шахматная доска из кода */
+.board { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 20%, #17323a, #070a0b 70%); perspective: 1100px; }
+.board .grid { width: min(92%, 620px); aspect-ratio: 1; display: grid; grid-template-columns: repeat(8, 1fr); transform: rotateX(54deg) rotateZ(-18deg) translateY(-4%); box-shadow: 0 60px 90px rgba(0,0,0,.6); }
+.board .sq { position: relative; background: #1d2a2c; transition: background .5s ease; }
+.board .sq.l { background: #d8d0bd; }
+.board .sq.hit { background: var(--teal); }
+.board .sq.trail { background: #2a6f70; }
+.board .pc { position: absolute; left: 0; top: 0; width: 12.5%; height: 12.5%; display: grid; place-items: center; font-size: clamp(26px, 4.2vw, 58px); line-height: 1; color: var(--paper); text-shadow: 0 3px 0 #000, 0 10px 18px rgba(0,0,0,.7); transition: transform .7s cubic-bezier(.34,1.3,.5,1); transform: translate(var(--x), var(--y)); }
+
+/* вода из кода */
+.water { position: absolute; inset: 0; background: linear-gradient(180deg, #06181d 0%, #0b3a44 55%, #0d5560 100%); overflow: hidden; }
+.water svg { position: absolute; left: -10%; width: 120%; height: 46%; bottom: -2%; }
+.water .w1 { animation: drift 11s ease-in-out infinite alternate; opacity: .55; }
+.water .w2 { animation: drift 15s ease-in-out infinite alternate-reverse; opacity: .35; bottom: 9%; }
+.water .w3 { animation: drift 19s ease-in-out infinite alternate; opacity: .2; bottom: 20%; }
+@keyframes drift { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+.water .beam { position: absolute; top: -20%; left: 18%; width: 46%; height: 150%; background: linear-gradient(180deg, rgba(190,255,250,.2), transparent 70%); transform: rotate(14deg); filter: blur(22px); animation: beam 9s ease-in-out infinite alternate; }
+@keyframes beam { to { transform: rotate(6deg) translateX(14%); opacity: .6; } }
+.bub { position: absolute; bottom: -30px; width: var(--s); height: var(--s); border-radius: 50%; border: 1px solid rgba(220,255,252,.5); left: var(--l); animation: rise var(--d) linear infinite; animation-delay: var(--dl); }
+@keyframes rise { to { transform: translate(var(--dx), -115svh); opacity: 0; } }
+
+/* ── миры: горизонтальная лента ── */
+.worlds { position: relative; }
+.pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.strip { display: flex; gap: clamp(14px, 2vw, 30px); padding: 0 var(--pad); will-change: transform; }
+.world { flex: none; width: clamp(280px, 46vw, 720px); margin: 0; }
+.world .fr { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #000; }
+.world img, .world video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+.world video { opacity: 0; transition: opacity .5s ease; }
+.world.play video { opacity: 1; }
+.world:hover img { transform: scale(1.05); }
+.world figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 12px; }
+.world b { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(24px, 2.6vw, 42px); line-height: 1; }
+.worlds .note { padding: 26px var(--pad) 0; max-width: 60ch; color: var(--dim); font-size: 19px; }
+
+/* ── услуги ── */
+.services { padding: clamp(80px, 14vh, 170px) 0 0; }
+.rows { border-top: 1px solid var(--line); }
+.rowx { display: grid; grid-template-columns: 5ch minmax(0, 1.1fr) minmax(0, 1fr); gap: 20px; align-items: baseline; padding: clamp(18px, 3vh, 34px) var(--pad); border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+.rowx::before { content: ""; position: absolute; inset: 0; background: var(--paper); transform: scaleY(0); transform-origin: bottom; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+.rowx > * { position: relative; transition: color .3s ease; }
+.rowx:hover::before { transform: none; }
+.rowx:hover > * { color: var(--ink); }
+.rowx b { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(30px, 4.6vw, 76px); line-height: .95; }
+.rowx p { margin: 0; font-size: clamp(18px, 1.5vw, 23px); max-width: 38ch; }
+
+/* ── контакт ── */
+.contact { padding: clamp(100px, 20vh, 240px) var(--pad) 40px; }
+.contact .mono { display: block; margin-bottom: 22px; }
+.mail { display: inline-block; font-family: var(--display); font-weight: 700; text-transform: uppercase; text-decoration: none; font-size: clamp(30px, 8.6vw, 150px); line-height: .92; letter-spacing: -.02em; background: linear-gradient(90deg, var(--teal), var(--wine)) 0 100% / 0 .06em no-repeat; transition: background-size .7s cubic-bezier(.16,1,.3,1); overflow-wrap: anywhere; }
+.mail:hover, .mail:focus-visible { background-size: 100% .06em; outline: none; }
+.foot { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; margin-top: clamp(70px, 14vh, 160px); padding-top: 18px; border-top: 1px solid var(--line); }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--paper); }
+
+/* появление */
+.rise { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform 1s cubic-bezier(.16,1,.3,1); }
+.rise.in { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  body { font-size: 19px; }
+  .game { position: relative; min-height: 0; grid-template-columns: 1fr; grid-template-rows: 44svh auto; transform: none !important; filter: none !important; }
+  .shot::after { background: linear-gradient(180deg, transparent 60%, var(--ink-2)); }
+  .info { justify-content: flex-start; padding: 20px var(--pad) 34px; }
+  .num { font-size: 58px; margin-bottom: 8px; }
+  .hero-foot { flex-direction: column; align-items: flex-start; }
+  .cue { display: none; }
+  .pin { position: static; height: auto; padding: 0; }
+  .strip { overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; transform: none !important; scrollbar-width: none; }
+  .strip::-webkit-scrollbar { display: none; }
+  .world { width: 82vw; scroll-snap-align: center; }
+  .rowx { grid-template-columns: 1fr; gap: 6px; }
+  .head { flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#top">Rokki &amp; Mikki</a>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-set="en" aria-pressed="true">EN</button>
+    <button type="button" data-set="ru" aria-pressed="false">RU</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <canvas id="glyphs" aria-hidden="true"></canvas>
+    <h1 class="word" aria-label="Rokki &amp; Mikki">
+      <span class="clip"><span class="ln" data-shift="-1" aria-hidden="true"></span></span>
+      <span class="clip"><span class="ln" data-shift="1" aria-hidden="true"></span></span>
+    </h1>
+    <div class="hero-foot">
+      <p data-t="lead">A small studio that makes games and websites with an AI agent as its only developer.</p>
+      <div class="cue"><span class="mono" data-t="scroll">Scroll</span><i></i></div>
+    </div>
+  </section>
+
+  <section class="manifest">
+    <span class="mono" data-t="m_tag">How we work</span>
+    <p id="manifest" data-t="manifest">No programmer on the team. We design, we test, we write the bug reports. The agent writes every line of code.</p>
+  </section>
+
+  <section class="games" id="games">
+    <div class="head"><h2 data-t="h_games">Games</h2><span class="mono" data-t="h_games_n">03 titles · 02 playable</span></div>
+
+    <article class="game">
+      <div class="shot"><img src="assets/store-1.jpg" alt="Abandoned Store: a dark shop atrium seen in first person" data-par loading="lazy" width="1280" height="720"></div>
+      <div class="info">
+        <div class="num">01</div>
+        <span class="mono" data-t="g1_tag">3D quest · Windows · Android</span>
+        <h3 data-t="g1_name">Abandoned Store</h3>
+        <p data-t="g1_text">A night shift in a closed shop that is not as empty as it looks. A first-person quest; the first level is finished and free.</p>
+        <ul class="facts"><li data-t="g1_f1">Godot 4 · about 70,000 lines of GDScript</li><li data-t="g1_f2">Level 1 “Night Shift”, version 1.0.3</li><li data-t="g1_f3">In-game text in Russian for now</li></ul>
+        <div class="btns">
+          <a class="btn fill" href="https://magazin.45-67-216-36.sslip.io/proto/Magazin-L1-v1.0.3-windows.zip" data-t="g1_b1">Windows · 109 MB</a>
+          <a class="btn" href="https://magazin.45-67-216-36.sslip.io/proto/magazin-L1-v1.0.3.apk" data-t="g1_b2">Android · 98 MB</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="shot"><div class="art board" data-par><div class="grid" id="board"></div></div></div>
+      <div class="info">
+        <div class="num">02</div>
+        <span class="mono" data-t="g2_tag">Multiplayer chess · Telegram</span>
+        <h3>ChessCoin</h3>
+        <p data-t="g2_text">Chess inside Telegram, with nothing to install: real-time games, tournaments, team “country wars”, puzzles and lessons.</p>
+        <ul class="facts"><li data-t="g2_f1">About 53,000 lines · TypeScript, React, Python</li><li data-t="g2_f2">Plays against Stockfish at several levels</li><li data-t="g2_f3">The code is open</li></ul>
+        <div class="btns">
+          <a class="btn fill" href="https://t.me/chessgamecoin_bot" data-t="g2_b1">Play in Telegram</a>
+          <a class="btn" href="https://github.com/kentavr34/chesscoin-game" data-t="g2_b2">Source code</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="game">
+      <div class="shot"><div class="art water" data-par id="water">
+        <div class="beam"></div>
+        <svg class="w3" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#7fe6de" d="M0 90 Q150 30 300 90 T600 90 T900 90 T1200 90 V200 H0Z"/></svg>
+        <svg class="w2" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#49c8c2" d="M0 100 Q150 150 300 100 T600 100 T900 100 T1200 100 V200 H0Z"/></svg>
+        <svg class="w1" viewBox="0 0 1200 200" preserveAspectRatio="none"><path fill="#12a5a2" d="M0 110 Q150 60 300 110 T600 110 T900 110 T1200 110 V200 H0Z"/></svg>
+      </div></div>
+      <div class="info">
+        <div class="num">03</div>
+        <span class="mono" data-t="g3_tag">Co-op quest · up to four players</span>
+        <h3 data-t="g3_name">Abandoned Waterpark</h3>
+        <p data-t="g3_text">A spiral waterpark with an underwater world, sharks and a terrarium. The park must be brought back to life, and the animals saved.</p>
+        <div class="btns"><span class="tag-dev" data-t="g3_dev">In development</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="worlds" id="worlds">
+    <div class="pin">
+      <div class="head"><h2 data-t="h_web">Websites</h2><span class="mono" data-t="h_web_n">Five worlds · concept work</span></div>
+      <div class="strip" id="strip">
+        <figure class="world"><div class="fr"><img src="assets/world-samurai.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-samurai.mp4"></video></div><figcaption><b data-t="w1">Blade &amp; ink</b><span class="mono">01</span></figcaption></figure>
+        <figure class="world"><div class="fr"><img src="assets/world-cyber.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-cyber.mp4"></video></div><figcaption><b data-t="w2">Neon rain</b><span class="mono">02</span></figcaption></figure>
+        <figure class="world"><div class="fr"><img src="assets/world-space.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-space.mp4"></video></div><figcaption><b data-t="w3">Rings of Saturn</b><span class="mono">03</span></figcaption></figure>
+        <figure class="world"><div class="fr"><img src="assets/world-steampunk.jpg" alt="" loading="lazy" width="960" height="600"><video muted loop playsinline preload="none" data-src="assets/world-steampunk.mp4"></video></div><figcaption><b data-t="w4">Brass &amp; steam</b><span class="mono">04</span></figcaption></figure>
+        <figure class="world"><div class="fr"><img src="assets/world-minimal.jpg" alt="" loading="lazy" width="960" height="600"></div><figcaption><b data-t="w5">Quiet skyline</b><span class="mono">05</span></figcaption></figure>
+      </div>
+      <p class="note" data-t="w_note">Each world is a different way of telling one story. These are concepts; a live example of our web work is the site you are on, ragimoff.org.</p>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="head"><h2 data-t="h_srv">What we do</h2><span class="mono" data-t="h_srv_n">By request</span></div>
+    <div class="rows">
+      <div class="rowx rise"><span class="mono">01</span><b data-t="s1">Websites</b><p data-t="s1t">One-page and multi-page sites with motion built in code, fast on a phone.</p></div>
+      <div class="rowx rise"><span class="mono">02</span><b data-t="s2">Games</b><p data-t="s2t">Browser, Telegram and Godot games: from an idea on paper to a playable build.</p></div>
+      <div class="rowx rise"><span class="mono">03</span><b data-t="s3">Working with an agent</b><p data-t="s3t">How to run a long project with an AI coding agent without losing what already works.</p></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="mono" data-t="c_tag">Write to us</span>
+    <a class="mail" href="mailto:kenan@ragimoff.org">kenan@<wbr>ragimoff.org</a>
+    <div class="foot mono">
+      <span>Rokki &amp; Mikki · 2026</span>
+      <span data-t="f_note">Built with an AI coding agent</span>
+      <a href="https://ragimoff.org/">ragimoff.org</a>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var doc = document.documentElement;
+
+  /* ── язык ── */
+  var RU = {
+    lead: "Маленькая студия: делаем игры и сайты, а единственный разработчик у нас — ИИ-агент.",
+    scroll: "Листайте", m_tag: "Как мы работаем",
+    manifest: "В команде нет программиста. Мы придумываем, проверяем и пишем отчёты об ошибках. Каждую строку кода пишет агент.",
+    h_games: "Игры", h_games_n: "03 игры · в 02 можно играть",
+    g1_tag: "3D-квест · Windows · Android", g1_name: "Заброшенный магазин",
+    g1_text: "Ночная смена в закрытом магазине, где не так пусто, как кажется. Квест от первого лица; первый уровень готов и бесплатен.",
+    g1_f1: "Godot 4 · около 70 тысяч строк GDScript", g1_f2: "Уровень 1 «Ночная смена», версия 1.0.3", g1_f3: "Windows и Android",
+    g1_b1: "Windows · 109 МБ", g1_b2: "Android · 98 МБ",
+    g2_tag: "Сетевые шахматы · Telegram",
+    g2_text: "Шахматы внутри Telegram, ничего не нужно устанавливать: партии в реальном времени, турниры, командные «войны стран», задачи и уроки.",
+    g2_f1: "Около 53 тысяч строк · TypeScript, React, Python", g2_f2: "Игра против Stockfish на нескольких уровнях", g2_f3: "Код открыт",
+    g2_b1: "Играть в Telegram", g2_b2: "Исходный код",
+    g3_tag: "Командный квест · до четырёх игроков", g3_name: "Заброшенный аквапарк",
+    g3_text: "Винтовой аквапарк с подводным миром, акулами и террариумом. Парк нужно вернуть к жизни, а зверей — спасти.",
+    g3_dev: "В разработке",
+    h_web: "Сайты", h_web_n: "Пять миров · концепты",
+    w1: "Клинок и тушь", w2: "Неоновый дождь", w3: "Кольца Сатурна", w4: "Латунь и пар", w5: "Тихий город",
+    w_note: "Каждый мир — свой способ рассказать одну историю. Это концепты; живой пример нашей работы — сайт, на котором вы сейчас, ragimoff.org.",
+    h_srv: "Что мы делаем", h_srv_n: "По запросу",
+    s1: "Сайты", s1t: "Одностраничные и многостраничные сайты с движением из кода, быстрые на телефоне.",
+    s2: "Игры", s2t: "Игры для браузера, Telegram и на Godot: от идеи на бумаге до сборки, в которую можно играть.",
+    s3: "Работа с агентом", s3t: "Как вести долгий проект с ИИ-агентом и не терять то, что уже работает.",
+    c_tag: "Напишите нам", f_note: "Сделано с ИИ-агентом"
+  };
+  var EN = {};
+  var nodes = document.querySelectorAll("[data-t]");
+  nodes.forEach(function (n) { EN[n.dataset.t] = n.textContent; });
+  function setLang(l) {
+    var d = l === "ru" ? RU : EN;
+    doc.lang = l;
+    nodes.forEach(function (n) { if (d[n.dataset.t] != null) n.textContent = d[n.dataset.t]; });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === l)); });
+    splitManifest();
+    try { localStorage.setItem("rm-lang", l); } catch (e) {}
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.set); }); });
+
+  /* ── имя студии по буквам ── */
+  var lines = document.querySelectorAll(".word .ln");
+  ["ROKKI", "&MIKKI"].forEach(function (txt, li) {
+    var i0 = li * 5;
+    txt.split("").forEach(function (c, i) {
+      var s = document.createElement("span");
+      s.className = "ch" + (c === "&" ? " amp" : "") + (li === 0 && i === 0 ? " first" : "");
+      s.style.setProperty("--i", i0 + i);
+      s.textContent = c;
+      lines[li].appendChild(s);
+    });
+  });
+
+  /* ── манифест: слова загораются по прокрутке ── */
+  var man = document.getElementById("manifest"), words = [];
+  function splitManifest() {
+    var t = man.textContent;
+    man.textContent = "";
+    words = t.split(/\s+/).map(function (w) {
+      var s = document.createElement("span"); s.className = "w"; s.textContent = w + " "; man.appendChild(s); return s;
+    });
+    onScroll();
+  }
+
+  /* ── шахматная доска: конь ходит сам ── */
+  var board = document.getElementById("board"), sqs = [];
+  for (var r = 0; r < 8; r++) for (var c = 0; c < 8; c++) {
+    var q = document.createElement("div"); q.className = "sq" + ((r + c) % 2 ? "" : " l"); board.appendChild(q); sqs.push(q);
+  }
+  function piece(g, x, y) {
+    var p = document.createElement("div"); p.className = "pc"; p.textContent = g;
+    p.style.setProperty("--x", x * 100 + "%"); p.style.setProperty("--y", y * 100 + "%"); board.appendChild(p); return p;
+  }
+  piece("♚", 6, 0); piece("♜", 0, 0); piece("♟", 5, 1); piece("♟", 2, 2); piece("♕", 3, 7); piece("♔", 6, 7);
+  var knight = piece("♞", 1, 6);
+  knight.style.color = "#2fb8b4";
+  var path = [[1,6],[2,4],[4,3],[5,5],[3,4],[4,2],[6,3],[4,4],[2,5],[1,3],[3,2],[2,4],[0,5],[1,6]], step = 0, boardOn = false;
+  function hop() {
+    if (!boardOn) return;
+    var prev = path[step % path.length];
+    step++;
+    var p = path[step % path.length];
+    sqs.forEach(function (s) { s.classList.remove("hit"); });
+    sqs[prev[1] * 8 + prev[0]].classList.add("trail");
+    setTimeout(function (el) { el.classList.remove("trail"); }, 2600, sqs[prev[1] * 8 + prev[0]]);
+    sqs[p[1] * 8 + p[0]].classList.add("hit");
+    knight.style.setProperty("--x", p[0] * 100 + "%"); knight.style.setProperty("--y", p[1] * 100 + "%");
+  }
+  setInterval(hop, 1300);
+
+  /* ── пузыри ── */
+  var water = document.getElementById("water");
+  for (var b = 0; b < 16; b++) {
+    var u = document.createElement("i"); u.className = "bub";
+    u.style.setProperty("--s", (6 + Math.random() * 22).toFixed(0) + "px");
+    u.style.setProperty("--l", (Math.random() * 100).toFixed(1) + "%");
+    u.style.setProperty("--d", (9 + Math.random() * 12).toFixed(1) + "s");
+    u.style.setProperty("--dl", (-Math.random() * 20).toFixed(1) + "s");
+    u.style.setProperty("--dx", (Math.random() * 80 - 40).toFixed(0) + "px");
+    water.appendChild(u);
+  }
+
+  /* ── поле символов кода в герое ── */
+  var cv = document.getElementById("glyphs"), ctx = cv.getContext("2d"), G = "<>{}();=/*+[]&".split("");
+  var cells = [], W = 0, H = 0, dpr = 1, mx = -999, my = -999, tx = -999, ty = -999, heroOn = true, t0 = 0;
+  function sizeCanvas() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var gap = W < 700 ? 34 : 44; cells = [];
+    for (var y = gap / 2; y < H; y += gap) for (var x = gap / 2; x < W; x += gap)
+      cells.push({ x: x, y: y, g: G[(Math.random() * G.length) | 0], p: Math.random() * 6.28, hot: 0 });
+    if (mx === -999) { tx = mx = W * .72; ty = my = H * .34; }
+  }
+  function draw(now) {
+    if (heroOn) {
+      var dt = Math.min(now - t0, 50) / 1000; t0 = now;
+      mx += (tx - mx) * .08; my += (ty - my) * .08;
+      ctx.clearRect(0, 0, W, H);
+      ctx.font = "500 13px JetBrains Mono, monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      var R = Math.max(W, H) * .32;
+      for (var i = 0; i < cells.length; i++) {
+        var c = cells[i], dx = c.x - mx, dy = c.y - my, d = Math.sqrt(dx * dx + dy * dy);
+        var near = Math.max(0, 1 - d / R);
+        c.hot += (near - c.hot) * Math.min(1, dt * 6);
+        if (near > .55 && Math.random() < .012) c.g = G[(Math.random() * G.length) | 0];
+        var a = .05 + .04 * Math.sin(now / 1400 + c.p) + c.hot * .85;
+        if (a < .03) continue;
+        var k = c.hot * 14 / (d + 40);
+        ctx.fillStyle = c.hot > .5 ? (i % 7 === 0 ? "rgba(210,56,95," + a + ")" : "rgba(47,184,180," + a + ")") : "rgba(239,233,220," + a + ")";
+        ctx.fillText(c.g, c.x + dx * k, c.y + dy * k);
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  var hero = document.querySelector(".hero");
+  hero.addEventListener("pointermove", function (e) { var r = hero.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top; });
+  /* на телефоне свет гуляет сам */
+  var auto = 0;
+  setInterval(function () {
+    if (window.matchMedia("(hover: none)").matches) { auto += .9; tx = W * (.5 + .36 * Math.cos(auto)); ty = H * (.36 + .2 * Math.sin(auto * 1.3)); }
+  }, 1600);
+
+  /* ── прокрутка ── */
+  var games = [].slice.call(document.querySelectorAll(".game")), pars = [].slice.call(document.querySelectorAll("[data-par]"));
+  var worlds = document.querySelector(".worlds"), strip = document.getElementById("strip"), wide = true, ticking = false;
+  function layout() {
+    wide = window.innerWidth > 860;
+    worlds.style.height = wide ? (window.innerHeight + Math.max(0, strip.scrollWidth - window.innerWidth)) + "px" : "";
+  }
+  function onScroll() {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var vh = window.innerHeight, y = window.scrollY;
+      /* имя разъезжается */
+      var k = Math.min(1, y / vh);
+      lines.forEach(function (l) { l.style.transform = "translateX(" + (Number(l.dataset.shift) * k * 9) + "%)"; });
+      heroOn = y < vh;
+      /* манифест */
+      var mr = man.getBoundingClientRect(), prog = (vh * .82 - mr.top) / (mr.height + vh * .3), lit = Math.round(prog * words.length);
+      for (var i = 0; i < words.length; i++) words[i].classList.toggle("on", i < lit);
+      /* карточки игр: уходящая сжимается */
+      for (var g = 0; g < games.length; g++) {
+        var nx = games[g + 1], sc = 1, dim = 1;
+        if (nx && wide) { var p = 1 - Math.min(1, Math.max(0, nx.getBoundingClientRect().top / vh)); sc = 1 - p * .06; dim = 1 - p * .55; }
+        games[g].style.transform = "scale(" + sc + ")"; games[g].style.filter = dim < 1 ? "brightness(" + dim + ")" : "";
+      }
+      /* параллакс кадров */
+      for (var a = 0; a < pars.length; a++) {
+        var r = pars[a].parentNode.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) continue;
+        pars[a].style.transform = "translateY(" + ((r.top + r.height / 2 - vh / 2) / vh * -5).toFixed(2) + "%)";
+      }
+      boardOn = board.getBoundingClientRect().top < vh && board.getBoundingClientRect().bottom > 0;
+      /* лента миров */
+      if (wide) {
+        var wr = worlds.getBoundingClientRect(), max = strip.scrollWidth - window.innerWidth;
+        var wp = Math.min(1, Math.max(0, -wr.top / Math.max(1, wr.height - vh)));
+        strip.style.transform = "translateX(" + (-wp * max).toFixed(1) + "px)";
+      }
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", function () { sizeCanvas(); layout(); onScroll(); });
+
+  /* ── появление и видео миров ── */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: .2 });
+  document.querySelectorAll(".rise").forEach(function (n, i) { n.style.transitionDelay = (i % 3) * 90 + "ms"; io.observe(n); });
+  var vio = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target.querySelector("video"); if (!v) return;
+      if (e.isIntersecting) {
+        if (!v.src) v.src = v.dataset.src;
+        var pr = v.play(); if (pr && pr.then) pr.then(function () { e.target.classList.add("play"); }).catch(function () {});
+      } else { v.pause(); }
+    });
+  }, { threshold: .55 });
+  document.querySelectorAll(".world").forEach(function (w) { vio.observe(w); });
+
+  /* ── запуск ── */
+  var saved = null; try { saved = localStorage.getItem("rm-lang"); } catch (e) {}
+  setLang(saved || ((navigator.language || "en").slice(0, 2) === "ru" ? "ru" : "en"));
+  sizeCanvas(); layout(); requestAnimationFrame(draw);
+  window.addEventListener("load", function () { layout(); onScroll(); });
+  requestAnimationFrame(function () { requestAnimationFrame(function () { doc.classList.add("ready"); }); });
+})();
+</script>
+</body>
+</html>
