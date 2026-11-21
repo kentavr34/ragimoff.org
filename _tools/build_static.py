@@ -423,8 +423,10 @@ def build_chapters():
                         '<article class="rdr__chap" id="rdChap"><h1 class="rdr__h">%s</h1><div class="rdr__body">%s</div></article>') % (lang, bid, E(bt), navl, E(o["h1"]), body)
                 doc = tpl.replace('<div id="rdTitle"></div>\n    <article class="rdr__chap" id="rdChap" hidden></article>', main, 1)
                 q = "?b=%s&%s=%s" % (bid, "p" if ch.get("id") else "c", key)
-                w += write("%s/%s.html" % (lang, slug), finish(doc, "chapter", slug, lang, langs, o, q))
-                urls.append((slug, lang, langs))
+                # языки главы — только те, где эта глава есть (у книги-отрывка на другом языке глав меньше)
+                cl = [l for l in langs if os.path.exists("books/%s/%s/%03d.html" % (bid, l, i))]
+                w += write("%s/%s.html" % (lang, slug), finish(doc, "chapter", slug, lang, cl, o, q))
+                urls.append((slug, lang, cl))
             # оглавление книги в читалке (read.html?b=<книга>) → /<язык>/read/<книга>/index.html = первая глава
             first = toc[0].get("id") or "1"
             src = "%s/read/%s/%s.html" % (lang, bid, first)

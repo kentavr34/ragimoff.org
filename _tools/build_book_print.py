@@ -179,6 +179,11 @@ def book(lang, path):
     return out
 
 
+# Слово Кенана 21.11.2026: английская электронная «The Guilt Virus» идёт в Amazon KDP Select — электронный текст
+# нельзя раздавать вне Amazon; на сайте остаётся отрывок не больше 10 % (введение и глава 1).
+EXCERPT = {("virus-viny", "en"): (2, "Continue reading",
+                                  "This is a free excerpt: the Introduction and Chapter 1. "
+                                  "The complete book is available on Amazon in Kindle and paperback editions.")}
 pj = "books/%s/book.json" % bid
 P = json.load(io.open(pj, encoding="utf-8"))
 wrote = 0
@@ -188,6 +193,14 @@ for lang in P["langs"]:
         print("нет утверждённой печатной версии:", lang)
         continue
     ch = book(lang, os.path.join(PR, a["file"]))
+    if (bid, lang) in EXCERPT:                              # отрывок вместо полной книги (условие программы Amazon KDP Select)
+        keep, note_t, note = EXCERPT[(bid, lang)]
+        full = sum(len(re.sub(r"<[^>]+>", "", "".join(c["html"]))) for c in ch)
+        ch = ch[:keep]
+        part = sum(len(re.sub(r"<[^>]+>", "", "".join(c["html"]))) for c in ch)
+        assert part <= 0.10 * full, "отрывок больше 10 %% книги: %d из %d" % (part, full)
+        ch.append({"t": note_t, "html": ["<p>%s</p>" % note], "part": ""})
+        print("%s %s: отрывок %.1f %% книги" % (bid, lang, 100.0 * part / full))
     toc = []
     for i, c in enumerate(ch, 1):
         body = "\n".join(c["html"])
