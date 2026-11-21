@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11180056';
+import { initChrome, esc, ARR } from './chrome.js?v=11211352';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11131215', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams((location.search || window.__Q || '')).get('b') || '';
-import { ORD } from './shop-order.js?v=11180056';
-import { fixImg } from './blocks.js?v=11180056';
+import { ORD } from './shop-order.js?v=11211352';
+import { fixImg } from './blocks.js?v=11211352';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -36,8 +36,8 @@ function cartAdd(o) { const a = cartRead(), x = a.find(i => i.title === o.o); if
 function cartNote(lang) { const n = cartRead().reduce((s2, i) => s2 + (i.qty || 1), 0), T = ct(lang); $$('.shp__cart').forEach(el => { el.innerHTML = n ? `<a class="btn btn--line btn--sm" href="/books/#sebet">${esc(T.cart)}: ${n} · ${esc(T.go)}</a>` : ''; }); }
 /* две кнопки книги: читать и в корзину — одни и те же в карточке каталога и на странице книги */
 const acts = (it, lang) => { const T = ct(lang), o = ORD.items[it.ord || it.id];
-  return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : ''}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.ord || it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
-const btns = (it, d, lang) => `<div class="shp__btns">${it.read ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}<p class="shp__cart"></p></div>`;
+  return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : (it.closed ? `<span class="btn btn--sm btn--off" aria-disabled="true">${esc(T.read)}</span>` : '')}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.ord || it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
+const btns = (it, d, lang) => `<div class="shp__btns">${it.read || it.closed ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}<p class="shp__cart"></p></div>`;
 
 /* ЕДИНАЯ КАРТОЧКА КНИГИ: обложка, название, сведения, цена, две кнопки. Одна на все книги каталога и на блок «Другие книги» —
    изменение здесь меняет вид всех книг сразу. Малые тексты (несколько страниц) выводятся строкой без обложки. */
@@ -78,7 +78,7 @@ async function passToc(it, d, lang) {
   const l = P.langs.indexOf(lang) >= 0 ? lang : P.langs[0], list = (P.toc[l] || []).filter(x => !x.lvl), max = 24;
   if (!list.length) return;
   const idx = x => P.toc[l].indexOf(x) + 1;
-  box.innerHTML = `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div>${l !== lang ? `<p class="shp__note rv">${esc(d.u.azNote)}</p>` : ''}<ol class="shp__toc rv" lang="${l}">${list.slice(0, max).map(x => `<li><a href="read.html?b=${it.id}&${x.id ? 'p=' + x.id : 'c=' + idx(x)}">${esc(x.t)}</a></li>`).join('')}</ol>${list.length > max ? `<p class="shp__note">${esc(d.u.more)} ${list.length - max}…</p>` : ''}</div></div></section>`;
+  box.innerHTML = `<section class="sec"><div class="wrap pp__two"><div><h2 class="pp__h rv">${esc(d.u.toc)}</h2></div><div>${l !== lang ? `<p class="shp__note rv">${esc(d.u.azNote)}</p>` : ''}<ol class="shp__toc rv" lang="${l}">${list.slice(0, max).map(x => (P.closed || []).indexOf(l) >= 0 ? `<li><span>${esc(x.t)}</span></li>` : `<li><a href="read.html?b=${it.id}&${x.id ? 'p=' + x.id : 'c=' + idx(x)}">${esc(x.t)}</a></li>`).join('')}</ol>${list.length > max ? `<p class="shp__note">${esc(d.u.more)} ${list.length - max}…</p>` : ''}</div></div></section>`;
   setTimeout(() => page && page.watch(), 0);
 }
 

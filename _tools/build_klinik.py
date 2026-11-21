@@ -237,7 +237,8 @@ def main():
         toc = []
         for n, pid in enumerate(orders[lang], 1):
             body = fix_links(bodies[pid], lang, pid, set(orders[lang]), ids_of)
-            wrote += write(os.path.join(OUT, lang, "%03d.html" % n), body + "\n")
+            if ("klinik-psixiatriya", lang) not in libcommon.CLOSED_READ:   # закрытое чтение: текст на сайт не пишется
+                wrote += write(os.path.join(OUT, lang, "%03d.html" % n), body + "\n")
             i = infos[pid]
             item = {"t": i["t"], "n": len(re.sub(r"<[^>]+>", "", body)), "id": pid, "lvl": i["lvl"], "code": i["code"]}
             if i["en"]:

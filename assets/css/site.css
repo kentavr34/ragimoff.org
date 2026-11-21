@@ -60,6 +60,7 @@ main, .foot { position: relative; z-index: 1; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -16px color-mix(in srgb, var(--gold) 95%, transparent); }
 .btn--line { background: transparent; color: var(--milk); border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent); box-shadow: none; }
 .btn--line:hover { background: var(--gold); color: var(--on-gold); }
+.btn--off, .btn--off:hover { background: transparent; color: var(--smoke); border: 1px solid color-mix(in srgb, var(--smoke) 45%, transparent); box-shadow: none; cursor: not-allowed; opacity: .7; }
 .btn--sm { min-height: 46px; padding: 0 var(--p20); font-size: 15.5px; }
 .arrow { display: inline-block; transition: transform var(--t1) var(--e); } a:hover .arrow, button:hover .arrow { transform: translateX(5px); }
 .note { font: 400 14px/1.55 var(--f-text); color: var(--smoke); max-width: 46ch; }
@@ -1295,7 +1296,7 @@ body[data-kind="read"] .pp__hero { padding-top: var(--r2); }
 .rdr__toci { display: none; }
 @media (max-width: 900px) {
   .rdr__bar .rdr__th { display: inline-flex; } .rdr__lg--toc .rdr__th { display: none; }
-  .rdr__tools { gap: var(--p4); } .rdr__tools .rdr__th button { min-width: 26px; height: 32px; padding: 0 2px; }
+  .rdr__tools { gap: var(--p4); } .rdr__tools .rdr__th button { min-width: 26px; height: 32px; padding: 0 var(--p2); }
   .rdr__tools #rdFsM, .rdr__tools #rdFsP { min-width: 36px; padding: 0 var(--p6); }
   .rdr__tools #rdTocB { min-width: 40px; padding: 0 var(--p8); } .rdr__tocw { display: none; } .rdr__toci { display: inline; font-size: calc(18px * var(--rd-k, 1)); }
 }
@@ -1381,3 +1382,12 @@ body[data-kind="read"] .rdr__ct { flex: 1 1 auto; min-width: 0; padding: 0 var(-
 .shp__chips { flex-wrap: wrap; gap: var(--p8); }
 @media (max-width: 760px) { .shp__chips { flex-wrap: wrap; overflow: visible; margin: var(--r1) 0 0; padding: 0; } .shp__chips .chip { flex: 0 1 auto; min-height: var(--hc); padding: 0 var(--p14); } }
 body[data-kind="read"] .rdr__lg--toc .rdr__lib { font-size: calc(15px * min(var(--rd-k, 1), 1.2)); } body[data-kind="read"] .rdr__lg--toc .rdr__lib::before { content: none; }
+
+/* ШАПКА ЧИТАЛКИ НА ТЕЛЕФОНЕ (слово Кенана 21.11.2026): та же, что на всех страницах — логотип, тема, язык, меню.
+   Кнопки размера шрифта A− и A+ на узком экране стоят в меню книги, а не в шапке: пять кругляшек теснили логотип. */
+.rdr__fs { display: none; }
+@media (max-width: 600px) {
+  .rdr__bar #rdFsM, .rdr__bar #rdFsP { display: none !important; }
+  .rdr__lg--toc .rdr__fs { display: inline-flex; gap: var(--p6); margin-left: auto; }
+  .rdr__lg--toc .rdr__fs button { min-width: var(--tap); min-height: var(--tap); padding: 0 var(--p12); border-radius: 99px; border: 1px solid var(--line); font: 600 14px/1 var(--f-sub); color: var(--text); }
+}

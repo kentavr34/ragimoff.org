@@ -3,7 +3,7 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11180056';
+import { initChrome, esc } from './chrome.js?v=11211352';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11121146', q = new URLSearchParams((location.search || window.__Q || '')), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
@@ -36,6 +36,7 @@ const posKey = () => 'r11_rd_pos_' + bid + '_' + lang;
 async function passport() {
   if (B !== null) return B;
   try { const r = await fetch('books/' + bid + '/book.json?v=' + V); B = r.ok ? await r.json() : false; } catch (e) { B = false; }
+  if (B && B.closed) B.langs = B.langs.filter(l => B.closed.indexOf(l) < 0);   /* чтение на этом языке закрыто (libcommon.CLOSED_READ) */
   return B;
 }
 /* обложка — та же, что в каталоге: готовая (авторские книги, coverKey) или фактура из assets/img/books/covers с набранным названием */
@@ -96,7 +97,8 @@ function frame() {
   $('#rdTocT').textContent = t.toc; $('#rdTocX').setAttribute('aria-label', t.close);
   /* боковое меню книги: «Все книги» и язык книги кнопками из двух букв (слово Кенана 17.11.2026) */
   { let g = $('#rdTocLg'); if (!g) { g = document.createElement('div'); g.id = 'rdTocLg'; g.className = 'rdr__lg rdr__lg--toc'; $('.rdr__toch').after(g); }
-    g.innerHTML = `<a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a>` + (B.langs.length > 1 ? `<span class="rdr__lgs" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}" aria-label="${esc((t.short && t.short[l]) || l)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''); }
+    g.innerHTML = `<a class="rdr__lib" href="shop.html">← ${esc(t.lib)}</a>` + (B.langs.length > 1 ? `<span class="rdr__lgs" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}" aria-label="${esc((t.short && t.short[l]) || l)}">${l.toUpperCase()}</button>`).join('')}</span>` : '')
+      + `<span class="rdr__fs" role="group" aria-label="${esc(t.fs)}"><button type="button" data-fs="m" aria-label="${esc(t.fs)} −">A−</button><button type="button" data-fs="p" aria-label="${esc(t.fs)} +">A+</button></span>`; }
   $('#rdTocL').innerHTML = `<li><a href="#" data-go="0"><span>—</span><b>${esc(t.title)}</b></a></li>` + toc().map(li).join('');
   /* шапка читалки = шапка сайта (один элемент): полный логотип, тема и язык — по одной кругляшке, A−, A+, меню книги */
   $('#rdBar').innerHTML = `<a class="logo rdr__home" href="index.html" aria-label="Doctor Ragimoff — ${esc(t.home)}"><span class="logo__r">R<i></i></span><span class="logo__w">AGIMOFF</span></a><b class="rdr__bt">${esc(B.t[lang])}</b><span class="rdr__tools">${themes(t)}${B.langs.length > 1 ? `<span class="rdr__lg" role="group" aria-label="${esc(t.lng)}">${B.langs.map(l => `<button type="button" data-rl="${l}" aria-pressed="${String(l === lang)}" aria-label="${esc((t.short && t.short[l]) || l)}">${l.toUpperCase()}</button>`).join('')}</span>` : ''}<button type="button" id="rdFsM" aria-label="${esc(t.fs)} −">A−</button><button type="button" id="rdFsP" aria-label="${esc(t.fs)} +">A+</button><button type="button" id="rdTocB" class="rdr__menu" aria-label="${esc(t.toc)}"><i></i><i></i></button></span>`;
@@ -175,7 +177,7 @@ document.addEventListener('click', e => {
   if (e.target.closest('#rdTocX') || e.target.closest('#rdScrim')) { document.body.classList.remove('rd-toc-open'); return; }
   if (e.target.closest('#rdPrev')) { show(cur - 1, true); return; }
   if (e.target.closest('#rdNext')) { show(cur + 1, true); return; }
-  const fm = e.target.closest('#rdFsM'), fp = e.target.closest('#rdFsP');
+  const fm = e.target.closest('#rdFsM, [data-fs="m"]'), fp = e.target.closest('#rdFsP, [data-fs="p"]');
   if (fm || fp) { fs = Math.min(1.5, Math.max(.9, +(fs + (fp ? .06 : -.06)).toFixed(2))); document.documentElement.style.setProperty('--rd-fs', fs + 'rem'); document.documentElement.style.setProperty('--rd-k', (fs / 1.1).toFixed(3)); store.set('r11_rd_fs', fs); return; }
   /* сноска: текст примечания показывается во всплывающем окне, а не прыжком в конец главы */
   const ref = e.target.closest('.fn-ref a'); const pop = $('#rdPop');

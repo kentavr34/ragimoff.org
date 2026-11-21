@@ -104,6 +104,8 @@ for lang, rel in sorted(SRC.items(), key=lambda x: x[0] != "az"):
             it["t"] = PT.get(lang) or it["t"]
         if lib in LIB:
             it["read_new"] = "read.html?b=" + lib               # единая читалка новой системы
+        if (lib, lang) in libcommon.CLOSED_READ:                # чтение закрыто: кнопка «Читать» неактивна
+            it["read"], it["closed"] = False, True
         if lang == "az":
             AZ_PRICE[it["id"]] = it["price"]
         elif not it["price"] and AZ_PRICE.get(it["id"]):

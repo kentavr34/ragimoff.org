@@ -211,7 +211,8 @@ async def main():
                         if pg.startswith("read"):                       # в читалке язык страницы = язык книги: перевода на язык сайта может не быть (К10)
                             import json as _j, re as _r
                             _b = _r.search(r"[?&]b=([\w-]+)", pg)
-                            _L = _j.load(io.open("books/%s/book.json" % _b.group(1), encoding="utf-8"))["langs"] if _b else [lang]
+                            _P = _j.load(io.open("books/%s/book.json" % _b.group(1), encoding="utf-8")) if _b else {"langs": [lang]}
+                            _L = [x for x in _P["langs"] if x not in _P.get("closed", [])]      # язык с закрытым чтением читалка не показывает
                             want_lang = lang if lang in _L else _L[0]
                         if o.get("lang") != want_lang: v.append("язык страницы %s" % o.get("lang"))
                         if not o.get("reg") and not pg.startswith(("shop", "book", "test", "read")): v.append("нет формы записи")

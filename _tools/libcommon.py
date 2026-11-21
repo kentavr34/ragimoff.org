@@ -28,6 +28,12 @@ def local_cover(src):
     return "/images/books/covers/" + name if os.path.isfile(new) else src
 
 
+# ЧТЕНИЕ ЗАКРЫТО (слово Кенана 21.11.2026): английские версии четырёх книг по очереди выходят на Amazon (KDP Select требует,
+# чтобы электронного текста не было в открытом доступе). Книга в каталоге остаётся, заказать можно, кнопка «Читать» неактивна,
+# сам текст на сайт не выкладывается. Чтобы открыть чтение — убрать пару отсюда и пересобрать книгу.
+CLOSED_READ = {("virus-viny", "en"), ("shizofreniya", "en"), ("klinik-psixiatriya", "en"), ("phoenix-era", "en")}
+
+
 # названия книг на английском пишутся по правилам заглавия (как на обложке и в каталоге)
 TITLE_FIX = {("virus-viny", "en"): "The Guilt Virus", ("shizofreniya", "en"): "Schizophrenia. A Pandemic of Madness"}
 

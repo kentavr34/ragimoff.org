@@ -58,7 +58,8 @@ for b in jl("books/index.json")["books"]:
     if P.get("merged"):
         continue
     BOOKS[b["id"]] = P
-BOOK_LANGS = {k: [l for l in P["langs"] if l in LANGS] or ["az"] for k, P in BOOKS.items()}
+# языки чтения книги: язык с закрытым чтением (паспорт "closed", libcommon.CLOSED_READ) адресов глав не имеет
+BOOK_LANGS = {k: [l for l in P["langs"] if l in LANGS and l not in P.get("closed", [])] or ["az"] for k, P in BOOKS.items()}
 SHOP = {l: jl("data/shop/index.%s.json" % l) for l in LANGS}
 ITEMS = {l: {it["id"]: dict(it, g=g["name"], gid=g["id"]) for g in SHOP[l]["groups"] for it in g["items"]} for l in LANGS}
 FACTS = jl("_tools/shop_facts.json") if os.path.exists("_tools/shop_facts.json") else {}

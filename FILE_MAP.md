@@ -35,6 +35,7 @@
 | `browserconfig.xml` | значки для Windows |
 | `indexnow_key.txt` | ключ оповещения поисковиков |
 | `_lang-switch.js` | нужен странице заказа книг (временно) |
+| `llms.txt` | справка о сайте для ИИ-моделей (build_static.py) |
 | `apple-touch-icon-120x120.png` | значок |
 | `apple-touch-icon-152x152.png` | значок |
 | `apple-touch-icon-180x180.png` | значок |
@@ -45,6 +46,9 @@
 
 | папка | что лежит |
 |---|---|
+| `az/` | постоянные страницы на азербайджанском (build_static.py) |
+| `ru/` | постоянные страницы на русском (build_static.py) |
+| `en/` | постоянные страницы на английском (build_static.py) |
 | `assets/` | оформление и сценарии: css, js, img, hero |
 | `data/` | тексты страниц по разделам и языкам |
 | `books/` | библиотека: текст книг отдельно от страниц |
@@ -53,6 +57,7 @@
 | `vendor/` | сторонние библиотеки |
 | `sketch/` | наброски |
 | `payment/` | страницы возврата после оплаты (адреса записаны на сервере оплаты) |
+| `game/` | страница студии Rokki & Mikki (игры и сайты): изолирована, без ссылок из меню, закрыта от поиска (слово Кенана 18.11.2026) |
 | `test/` | действующий тест: aile.html и его движок quiz.js |
 | `app/` | приложение для Android |
 | `favicons/` | значки |
@@ -74,10 +79,11 @@
 
 | раздел | что лежит | файлов |
 |---|---|---|
+| `assets/img/og/` | картинка превью ссылок | 1 |
 | `assets/img/home/` | главная | 3 |
 | `assets/img/books/` | обложки книг | 45 |
 | `assets/img/specialists/` | портреты и дипломы специалистов | 16 |
-| `assets/img/programs/` | обучение: документы института, образцы, фото групп | 30 |
+| `assets/img/programs/` | обучение: документы института, образцы, фото групп | 31 |
 | `assets/img/consult/` | картины героя страниц консультаций | 9 |
 | `assets/img/training/` | тренинги для компаний | 1 |
 | `assets/img/blog/` | обложки статей по рубрикам | 50 |
@@ -99,11 +105,11 @@
 | `freud-aforizmlar` | Aforizmlər | az | 12 | 34 |
 | `freud-fliesse-mektublari` | Psixoanalizin başlanğıcından: Flissə məktublar | az | 119 | 767 |
 | `freud-gw01` | Histeriyadan psixoanalizə | az | 15 | 1044 |
-| `freud-gw02` | Yuxuların yozumu | az | 11 | 1318 |
+| `freud-gw02` | Yuxuların yozumu | az | 11 | 1317 |
 | `freud-gw04` | Gündəlik həyatın psixopatologiyası | az | 12 | 523 |
 | `freud-gw05` | Cinsəllik nəzəriyyəsi və Dora halı | az | 6 | 535 |
 | `freud-gw06` | Zarafat və onun şüursuzla əlaqəsi | az | 7 | 432 |
-| `freud-gw07` | Fantaziya, uşaqlıq və məcburiyyət | az | 16 | 700 |
+| `freud-gw07` | Fantaziya, uşaqlıq və sarışan hallar | az | 16 | 700 |
 | `freud-gw08` | Leonardo, Şreber və müalicənin texnikası | az | 25 | 722 |
 | `freud-gw09` | Totem və tabu | az | 5 | 335 |
 | `freud-gw10` | Narsisizm, şüursuz və matəm | az | 28 | 706 |
@@ -116,23 +122,26 @@
 | `freud-gw17` | Psixoanalizin xülasəsi | az | 30 | 454 |
 | `freud-koka-afaziya` | Koka və afaziya: psixoanalizdən əvvəlki əsərlər | az | 11 | 429 |
 | `freud-kokain` | Koka haqqında | az | 7 | 100 |
+| `freud-mektublar-aforizmler` | Məktublar və aforizmlər | az | 145 | 347 |
 | `freud-referatlar-1884-1885` | Referatlar | az | 2 | 151 |
 | `freud-resenziyalar-1887-1910` | Resenziyalar | az | 11 | 48 |
 | `freud-sehnede-psixopatik-personajlar` | Səhnədə psixopatik personajlar | az | 1 | 12 |
 | `freud-sevgi-mektublari` | Sevgi məktubları | az | 56 | 227 |
 | `freud-sossur-on-sozu` | R. de Sossürün kitabına ön söz | az | 1 | 3 |
-| `freud-usaq-iflici` | İnfantil serebral iflic | az | 11 | 803 |
+| `freud-usaq-iflici` | Uşaq serebral iflici | az | 11 | 803 |
 | `freud-yung-mektublari` | Freyd–Yunq məktubları | az | 366 | 966 |
 | `freud-zweig-mektublari` | Freyd–Tsveyq məktubları | az | 79 | 86 |
-| `klinik-psixiatriya` | Клиническая психиатрия | az ru en tr | 137/137/137/137 | 1334/1349/1251/1201 |
-| `phoenix-era` | Эра Феникса | az ru en | 22/22/22 | 313/307/340 |
-| `shizofreniya` | Шизофрения. Пандемия безумия | az ru en | 36/36/36 | 507/499/518 |
-| `virus-viny` | Вирус вины | az ru en | 29/29/29 | 346/319/335 |
+| `klinik-psixiatriya` | Клиническая психиатрия | az ru en tr | 137/137/0/137 | 1341/1357/1258/1208 |
+| `phoenix-era` | Эра Феникса | az ru en | 22/22/0 | 316/310/343 |
+| `shizofreniya` | Шизофрения. Пандемия безумия | az ru en | 36/36/0 | 507/499/518 |
+| `virus-viny` | Вирус вины | az ru en | 29/29/0 | 345/319/354 |
 
 ## Сценарии и стили — `assets/`
 
 | файл | назначение |
 |---|---|
+| `assets/js\align.js` | align.js — поля карточек одного ряда на одной высоте (слово Кенана 13.11.2026, обязательное требование к дизайну). |
+| `assets/js\app.js` | app.js — приложение RAGIMOFF (восстановлено 13.11.2026 по слову Кенана, прежняя версия — 09.11.2026). |
 | `assets/js\blocks.js` | test/11 — блоки внутренних страниц: один набор на специалистов, консультации, контакты, тренинги, право, блог. |
 | `assets/js\chrome.js` | test/11 — общая «рама» внутренних страниц: шапка, меню, тема, язык, соцсети, подвал. Тексты — из content.js, стили — из site.css. |
 | `assets/js\content.js` | test/11 — ТЕКСТЫ И ДАННЫЕ главной, три языка. Один источник: страница только рисует то, что здесь. |
@@ -144,8 +153,11 @@
 | `assets/js\programs.js` | Данные семи образовательных программ (ru / az / en). |
 | `assets/js\reader.js` | test/11 — единая читалка библиотеки: read.html?b=<книга>&c=<глава>. |
 | `assets/js\reg.js` | test/11 — единая форма записи: сначала «на что», дальше поля меняются. Всё, что можно, выбирается нажатием и уже выбрано по умолчанию. |
+| `assets/js\seo-map.js` | языки книг для постоянных адресов (собирает _tools/build_static.py) |
+| `assets/js\seo.js` | seo.js — постоянные адреса страниц на каждом языке (13.11.2026, слово Кенана: превью и поиск — на языке посетителя). |
 | `assets/js\shop-order.js` | Позиции корзины: название и цена каждой книги, как на странице заказа /books/ (собирает _tools/patch_shop_1112b.py). |
 | `assets/js\site.js` | test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. |
+| `assets/js\stats.js` | stats.js — своя статистика сайта (Кенан 13.11.2026). Данные уходят только на сервер школы (api.ragimoff.org/api/s), |
 | `assets/js\totop.js` | test/11 — кнопка «наверх»: одна на все страницы (главная и внутренние). Появляется после первого экрана, стоит над кнопкой WhatsApp. |
 | `assets/css\site.css` | test/11 — ГЛАВНАЯ. Единое управление: токены и три темы в начале файла; все блоки читают только эти переменные. |
 
@@ -154,22 +166,32 @@
 | файл | назначение |
 |---|---|
 | `_tools\apply_covers.py` | Новые обложки статей и картины героя (владелец 12.11.2026, п. 11): картинки из gen_blog_covers.py |
+| `_tools\apply_db_edits.py` | Перенос правок базы истины (truth.edit_log) в тексты книг сайта (15.11.2026). |
 | `_tools\build_blog.py` | Блог → данные test/11: статьи <lang>/bloq/*.html → data/blog/<slug>.<lang>.json, список → data/blog/index.<lang>.json. |
 | `_tools\build_book_print.py` | Книга сайта из печатной версии (12.11.2026): текст библиотеки собирается из свёрстанного Word папки Print — |
 | `_tools\build_book_print_freud.py` | Книги серии Фрейда на сайте — из печатных версий (13.11.2026). |
 | `_tools\build_klinik.py` | Книга «Клиническая психиатрия» -> библиотека новой системы (12.11.2026). |
+| `_tools\build_klinik_db.py` | Книга «Клиническая психиатрия» на сайте из итоговых версий базы истины (13.11.2026). |
 | `_tools\build_law.py` | Блок «Юридические основы деятельности» для страниц «Общая психология» и «Клиническая психология». |
 | `_tools\build_library.py` | Библиотека книг новой системы: текст хранится отдельно от страницы (решение владельца 12.11.2026). |
 | `_tools\build_library_legacy.py` | Библиотека: работы Фрейда вне серии, которые лежат в прежнем формате читалки (страницы глав с <main class="site-main">): |
 | `_tools\build_shop.py` | Каталог для прототипа книжного магазина (test/11/shop.html, book.html). |
 | `_tools\build_sitemap.py` | Карта сайта sitemap.xml: все страницы новой системы. Запуск из корня сайта: python _tools/build_sitemap.py |
+| `_tools\build_static.py` | build_static.py — постоянные страницы сайта на каждом языке для поисковиков, ИИ-моделей и превью ссылок (13.11.2026). |
 | `_tools\clean_data.py` | Чистка данных внутренних страниц: в строках остаются только strong, em, b, i, a, br, sup, sub. Статьи блога (prose) не трогаются. |
+| `_tools\close_en_read_1121.py` | Разовое закрытие чтения английских версий четырёх книг (слово Кенана 21.11.2026). |
 | `_tools\collect_images.py` | Картинки внутренних страниц: всё, на что ссылаются data/**/*.json (/images/…), копируется в assets/img/site/ — новая версия не зависит от старых папок. |
 | `_tools\css_collide.py` | Страж столкновения имён в стилях (урок 12.11.2026: правило «.posts» для страницы блога переопределило |
 | `_tools\css_scale.py` | Отступы — только из шкалы. Режимы: |
+| `_tools\find_book_of_text.py` | В какой книге сайта лежит текст правок базы (имена книг базы и сайта расходятся). |
 | `_tools\form_check.py` | Проверка формы записи на всех видах страниц БЕЗ создания заявок: сетевой вызов в браузере подменён, |
+| `_tools\gallery_check.py` | gallery_check.py — страж галерей (13.11.2026, слово Кенана: один и тот же диплом/сертификат не должен стоять в галерее дважды). |
 | `_tools\gen_art.py` | test/11 — иллюстрации через DashScope wan2.7-image (бесплатная квота воркспейса irada). |
 | `_tools\gen_blog_covers.py` | test/11 — обложки статей блога и картины героя новых страниц через DashScope wan2.7-image |
+| `_tools\klinik_apply_edits.py` | Перенос правок «Клинической психиатрии» из базы истины на сайт (13.11.2026). |
+| `_tools\klinik_apply_paras.py` | Перенос правок «Клинической психиатрии» AZ из базы истины на сайт по блокам (17.11.2026). |
+| `_tools\klinik_names_1117.py` | Названия в меню, оглавлениях и описаниях страниц «Клинической психиатрии» AZ на сайте (17.11.2026), как в AZ_v38: |
+| `_tools\klinik_title_fix.py` | Названия диагнозов в оглавлении «Клинической психиатрии» (14.11.2026). |
 | `_tools\libcommon.py` | Общее для сборщиков библиотеки: единый вид паспорта книги (book.json). |
 | `_tools\library_find.py` | Поиск по библиотеке: в какой книге, в какой главе и в каком абзаце написано (как по картотеке). |
 | `_tools\make_covers.py` | test/11 — сборка обложек: рисунок (_agent/art/<книга>.png) → кадр 2:3 → надписи шрифтом (cover.html) → assets/img/book-<книга>-<язык>.jpg |
@@ -182,8 +204,11 @@
 | `_tools\round.py` | Круг проверки главной по канону: замеры во всех сочетаниях (язык × тема × окно) и снимки блоков для критиков. |
 | `_tools\sentence_case.py` | Заголовки как предложения (решение владельца 12.11.2026, п. 10: «исправить как полагается с точки зрения |
 | `_tools\sentence_case_js.py` | Заголовки как предложения в текстах программ (assets/js/programs.js): названия модулей, блоков, документов. |
+| `_tools\shop_facts.py` | shop_facts.py — ЕДИНЫЙ ИСТОЧНИК сведений карточки книги (слово Кенана 13.11.2026: у всех книг один стандарт). |
 | `_tools\stamp.py` | Номер версии к стилям и скриптам — чтобы телефон не показывал старые файлы. Запуск из корня сайта перед публикацией: python _tools/stamp.py |
 | `_tools\structure_check.py` | Страж структуры файлов и карта файлов проекта (требование владельца 12.11.2026: «как в библиотеке — |
+| `_tools\term_audit.py` | term_audit.py — сверка терминов всех книг сайта с базой истины (слово Кенана 13.11.2026: «корень ошибки может быть во всех книгах»). |
+| `_tools\term_fix.py` | term_fix.py — названия болезней в азербайджанских текстах сайта: только по принятой номенклатуре (слово Кенана 13.11.2026). |
 | `_tools\verify_data.py` | Сторож дословности: каждая строка текста в data/<kind>/<slug>.<lang>.json должна быть в исходной странице (поле src). |
 
 Скрипты `patch_*.py` — разовые правки с датой в имени; они сохранены как журнал изменений и повторно ничего не меняют.

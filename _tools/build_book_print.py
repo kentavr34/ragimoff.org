@@ -179,11 +179,8 @@ def book(lang, path):
     return out
 
 
-# Слово Кенана 21.11.2026: английская электронная «The Guilt Virus» идёт в Amazon KDP Select — электронный текст
-# нельзя раздавать вне Amazon; на сайте остаётся отрывок не больше 10 % (введение и глава 1).
-EXCERPT = {("virus-viny", "en"): (2, "Continue reading",
-                                  "This is a free excerpt: the Introduction and Chapter 1. "
-                                  "The complete book is available on Amazon in Kindle and paperback editions.")}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import libcommon
 pj = "books/%s/book.json" % bid
 P = json.load(io.open(pj, encoding="utf-8"))
 wrote = 0
@@ -193,26 +190,21 @@ for lang in P["langs"]:
         print("нет утверждённой печатной версии:", lang)
         continue
     ch = book(lang, os.path.join(PR, a["file"]))
-    if (bid, lang) in EXCERPT:                              # отрывок вместо полной книги (условие программы Amazon KDP Select)
-        keep, note_t, note = EXCERPT[(bid, lang)]
-        full = sum(len(re.sub(r"<[^>]+>", "", "".join(c["html"]))) for c in ch)
-        ch = ch[:keep]
-        part = sum(len(re.sub(r"<[^>]+>", "", "".join(c["html"]))) for c in ch)
-        assert part <= 0.10 * full, "отрывок больше 10 %% книги: %d из %d" % (part, full)
-        ch.append({"t": note_t, "html": ["<p>%s</p>" % note], "part": ""})
-        print("%s %s: отрывок %.1f %% книги" % (bid, lang, 100.0 * part / full))
+    closed = (bid, lang) in libcommon.CLOSED_READ           # чтение закрыто: оглавление остаётся, текст на сайт не пишется
     toc = []
     for i, c in enumerate(ch, 1):
         body = "\n".join(c["html"])
-        wrote += save("books/%s/%s/%03d.html" % (bid, lang, i), body + "\n")
+        if not closed:
+            wrote += save("books/%s/%s/%03d.html" % (bid, lang, i), body + "\n")
         it = {"t": c["t"], "n": len(re.sub(r"<[^>]+>", "", body))}
         if c["part"]:
             it["part"] = c["part"]
         toc.append(it)
     for old in glob.glob("books/%s/%s/*.html" % (bid, lang)):
-        if int(os.path.basename(old)[:-5]) > len(toc):
+        if closed or int(os.path.basename(old)[:-5]) > len(toc):
             os.replace(old, old + ".old")                 # лишняя глава прежней сборки — не удаляется, а откладывается
     P["toc"][lang] = toc
+    P["closed"] = sorted((set(P.get("closed", [])) - {lang}) | ({lang} if closed else set()))
     print("%s %s: глав %d, знаков %d — из %s" % (bid, lang, len(toc), sum(x["n"] for x in toc), a["file"]))
 P["src"] = "Print: " + ", ".join(approved[l]["file"] for l in P["langs"] if l in approved)
 wrote += save(pj, json.dumps(P, ensure_ascii=False, indent=1) + "\n")

@@ -111,6 +111,10 @@ for b in books:
     counts = {}
     for l in P.get("langs", []):
         files = sorted(os.listdir("books/%s/%s" % (b, l))) if os.path.isdir("books/%s/%s" % (b, l)) else []
+        if l in P.get("closed", []):                    # чтение на этом языке закрыто (libcommon.CLOSED_READ): оглавление есть, текста на сайте быть не должно
+            if files:
+                bad.append("книга %s, язык %s: чтение закрыто, а файлы глав лежат на сайте (%d)" % (b, l, len(files)))
+            continue
         want = ["%03d.html" % i for i in range(1, len(P["toc"].get(l, [])) + 1)]
         if files != want:
             bad.append("книга %s, язык %s: файлы глав не совпадают с оглавлением (файлов %d, в оглавлении %d)" % (b, l, len(files), len(want)))
