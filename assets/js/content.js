@@ -26,7 +26,7 @@ export const LINKS = l => {
 export const T = {
   /* ───────────────────────────── РУССКИЙ ───────────────────────────── */
   ru: {
-    nav: { spec: 'Специалисты', books: 'Книги', edu: 'Обучение', cons: 'Консультации', corp: 'Тренинги', enl: 'Просвещение', blog: 'Блог', contact: 'Контакты', cta: 'Записаться', law: 'Юридические основы' },
+    nav: { spec: 'Специалисты', books: 'Книги', edu: 'Обучение', cons: 'Консультации', corp: 'Тренинги', enl: 'Просвещение', blog: 'Блог', tr: 'Перевод', contact: 'Контакты', cta: 'Записаться', law: 'Юридические основы' },
     hero: { school: 'Школа психологии', q: 'Doctor Ragimoff', scroll: 'Листайте вниз', b: ['Консультации', 'Обучение', 'Книги', 'Тренинги'] },
     belt: ['Психотерапия', 'Обучение психологов', 'Книги', 'Супервизия', 'Семейная терапия', 'Тренинги'],
     spec: { eye: '', h: 'Специалисты', sub: 'Подробнее о каждом — на личной странице.', more: 'Подробнее',
@@ -80,7 +80,7 @@ export const T = {
 
   /* ───────────────────────────── AZƏRBAYCAN ───────────────────────────── */
   az: {
-    nav: { spec: 'Mütəxəssislər', books: 'Kitablar', edu: 'Təhsil', cons: 'Konsultasiyalar', corp: 'Təlimlər', enl: 'Maarifləndirmə', blog: 'Bloq', contact: 'Əlaqə', cta: 'Qəbula yazılın', law: 'Hüquqi əsaslar' },
+    nav: { spec: 'Mütəxəssislər', books: 'Kitablar', edu: 'Təhsil', cons: 'Konsultasiyalar', corp: 'Təlimlər', enl: 'Maarifləndirmə', blog: 'Bloq', tr: 'Tərcümə', contact: 'Əlaqə', cta: 'Qəbula yazılın', law: 'Hüquqi əsaslar' },
     hero: { school: 'Psixologiya Məktəbi', q: 'Doctor Ragimoff', scroll: 'Sürüşdürün', b: ['Konsultasiyalar', 'Təhsil', 'Kitablar', 'Təlimlər'] },
     belt: ['Psixoterapiya', 'Psixoloqların təhsili', 'Kitablar', 'Superviziya', 'Ailə terapiyası', 'Təlimlər'],
     spec: { eye: '', h: 'Mütəxəssislər', sub: 'Hər biri haqqında ətraflı — öz səhifəsində.', more: 'Ətraflı',
@@ -134,7 +134,7 @@ export const T = {
 
   /* ───────────────────────────── ENGLISH ───────────────────────────── */
   en: {
-    nav: { spec: 'Specialists', books: 'Books', edu: 'Education', cons: 'Consultations', corp: 'Training', enl: 'Psychoeducation', blog: 'Blog', contact: 'Contact', cta: 'Book a visit', law: 'Legal basis' },
+    nav: { spec: 'Specialists', books: 'Books', edu: 'Education', cons: 'Consultations', corp: 'Training', enl: 'Psychoeducation', blog: 'Blog', tr: 'Translation', contact: 'Contact', cta: 'Book a visit', law: 'Legal basis' },
     hero: { school: 'School of Psychology', q: 'Doctor Ragimoff', scroll: 'Scroll down', b: ['Consultations', 'Education', 'Books', 'Training'] },
     belt: ['Psychotherapy', 'Training for psychologists', 'Books', 'Supervision', 'Family therapy', 'Training'],
     spec: { eye: '', h: 'Specialists', sub: 'More about each is on their own page.', more: 'Learn more',

@@ -106,7 +106,8 @@ main, .foot { position: relative; z-index: 1; }
 .mob__g.is-open .mob__sub { display: flex; }
 .mob__sub a { padding: var(--p8) 0; font: 400 17px/1.3 var(--f-read); color: var(--text); }
 @media (max-width: 1320px) { .nav__l { padding: 0 var(--p8); font-size: 13.5px; } .head { gap: var(--r1); } }
-@media (max-width: 1180px) { .nav, .head__cta { display: none; } .burger { display: grid; } }
+/* порог 1240 (было 1180): с пунктом «Перевод» русское меню при 1181–1215 px заходило на кнопки справа (21.11.2026) */
+@media (max-width: 1240px) { .nav, .head__cta { display: none; } .burger { display: grid; } }
 
 /* ── 1. ГЕРОЙ ── */
 .cine { position: relative; z-index: 2; height: 280vh; background: #07090E; --milk: #F2EDE3; --gold: #C9A961; --gold-hi: #E6CE93; --on-gold: #0B0D12; --smoke: #B9B3A7; --line: rgba(242, 237, 227, .2); }
@@ -704,7 +705,7 @@ main, .foot { position: relative; z-index: 1; }
 /* ═══ шапка на компьютере: поле слева = полю справа; при нехватке места меню плотнее, затем уходит в кнопку ═══ */
 @media (min-width: 761px) { .head { justify-content: space-between; } .nav { margin: 0; min-width: 0; } .head__r { margin-left: 0; } }
 @media (min-width: 761px) and (max-width: 1500px) { .head { gap: var(--s2); } .nav { gap: 0; } .nav__l { padding: 0 var(--p8); font-size: 13.5px; } .head__r { gap: var(--s1); } .head__cta { padding: 0 var(--p16); } }
-@media (min-width: 761px) and (max-width: 1180px) { .nav { display: none; } .burger { display: grid; } }
+@media (min-width: 761px) and (max-width: 1240px) { .nav { display: none; } .burger { display: grid; } }
 
 /* ═══ книги: блок по высоте видимой области, кнопки всех книг на одной линии (владелец, 11.11) ═══ */
 .bk__stick { --w: clamp(230px, 22vw, 330px); }
@@ -751,8 +752,8 @@ main, .foot { position: relative; z-index: 1; }
 
 /* ═══ замечания владельца 11.11 (ночь) ═══ */
 /* шапка на компьютере: между темой, языком и «Записаться» — нормальные зазоры */
-@media (min-width: 1181px) { .head__r { gap: var(--p20); } }
-@media (min-width: 1181px) and (max-width: 1500px) { .head__r { gap: var(--p14); } .nav__l { padding: 0 var(--p8); } }
+@media (min-width: 1241px) { .head__r { gap: var(--p20); } }
+@media (min-width: 1241px) and (max-width: 1500px) { .head__r { gap: var(--p14); } .nav__l { padding: 0 var(--p8); } }
 /* фото героя на компьютере — выше (тёмная полоса над головой меньше); телефон не меняется */
 @media (min-width: 761px) { :root { --hero-top: 64px; } }
 /* специалисты: лица одного масштаба */
@@ -1341,7 +1342,7 @@ body[data-kind="read"] .rdr__ti .pp__kind { font-size: calc(12.5px * var(--rd-k,
    языка; нажатие — следующий язык), меню. В читалке между ними ещё A− и A+, язык — язык книги (AZ RU EN TR).
    Размер кругляшки один: --hc = 44 px (область нажатия); на узком телефоне в читалке уменьшается только логотип. Шапка не масштабируется кнопками A−/A+. */
 :root { --hc: var(--tap); }
-@media (max-width: 1180px) { .head__r { gap: var(--p8); } }
+@media (max-width: 1240px) { .head__r { gap: var(--p8); } }
 #themes, #langs, .rdr__bar .rdr__th, .rdr__bar .rdr__lg { display: inline-flex; flex: 0 0 auto; max-width: none; padding: 0; border: 0; background: none; }
 #themes button[aria-pressed="false"], #langs button[aria-pressed="false"], .rdr__bar .rdr__lg button[aria-pressed="false"] { display: none; }
 #themes button, #langs button, .burger, .rdr__bar .rdr__tools button, .rdr__bar .rdr__th button, .rdr__bar .rdr__lg button {
@@ -1353,7 +1354,7 @@ body[data-kind="read"] .rdr__ti .pp__kind { font-size: calc(12.5px * var(--rd-k,
 #themes .dot, .rdr__bar .rdr__th .dot { width: 16px; height: 16px; }
 .burger { display: grid; align-content: center; gap: var(--p6); }
 .rdr__menu { align-content: center; gap: var(--p6) !important; } .rdr__menu i { display: block; width: 16px; height: 1.5px; margin: 0 auto; background: var(--milk); }
-@media (min-width: 1181px) { .burger { display: none; } }
+@media (min-width: 1241px) { .burger { display: none; } }
 @media (max-width: 760px) {
   .head { justify-content: space-between; gap: var(--p8); padding-left: var(--pad); padding-right: var(--pad); }
   .head__r { flex: 0 0 auto; min-width: 0; margin-left: auto; gap: var(--p8); justify-content: flex-end; }

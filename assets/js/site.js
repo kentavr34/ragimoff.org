@@ -1,12 +1,12 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11211352';
-import { T, LINKS3 as LINKS } from './content.js?v=11211352';
-import { regRender, regOpen } from './reg.js?v=11211352';
-import { initLight } from './light.js?v=11211352';
-import { initStats } from './stats.js?v=11211352';
-import { initApp } from './app.js?v=11211352';
-import { initAlign } from './align.js?v=11211352';
-import { initSeo, switchLang } from './seo.js?v=11211352';
+import { initTop } from './totop.js?v=11211448';
+import { T, LINKS3 as LINKS } from './content.js?v=11211448';
+import { regRender, regOpen } from './reg.js?v=11211448';
+import { initLight } from './light.js?v=11211448';
+import { initStats } from './stats.js?v=11211448';
+import { initApp } from './app.js?v=11211448';
+import { initAlign } from './align.js?v=11211448';
+import { initSeo, switchLang } from './seo.js?v=11211448';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -33,10 +33,10 @@ function render() {
     { k: 'books', href: L.shop || '#books', sub: t.books.b.map((b, i) => [L.books[i], b.t]).concat(L.shop && t.books.allBooks ? [[L.shop, t.books.allBooks]] : []) },
     { k: 'edu', href: 'program.html', sub: t.edu.p.map((p, i) => [L.prog[i], p.t]).concat([[L.law, t.nav.law]]) },
     { k: 'cons', href: 'consult.html?c=index', sub: t.cons.t.map((x, i) => [L.cons[i], x[0]]) },
-    { k: 'corp', href: L.corp || 'corporate.html', sub: t.corp.t.map(x => [L.corp, x]) }, { k: 'blog', href: L.blogAll || 'blog.html', sub: [] }, { k: 'contact', href: L.contact, sub: [] },
+    { k: 'corp', href: L.corp || 'corporate.html', sub: t.corp.t.map(x => [L.corp, x]) }, { k: 'blog', href: L.blogAll || 'blog.html', sub: [] }, { k: 'tr', href: 'https://translate.ragimoff.org/', sub: [], ext: 1 }, { k: 'contact', href: L.contact, sub: [] },
   ];
-  $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}">${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
-  $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}">${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
+  $('#nav').innerHTML = groups.map(g => `<div class="nav__i"><a class="nav__l" href="${g.href}"${g.ext ? ' target="_blank" rel="noopener"' : ''}>${esc(t.nav[g.k])}${g.sub.length ? CHEV : ''}</a>${g.sub.length ? `<div class="nav__dd">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
+  $('#mobIn').innerHTML = groups.map(g => `<div class="mob__g"><div class="mob__row"><a class="mob__big" href="${g.href}"${g.ext ? ' target="_blank" rel="noopener"' : ''}>${esc(t.nav[g.k])}</a>${g.sub.length ? `<button class="mob__tog" type="button" aria-label="+">${CHEV.replace('<svg', '<svg width="14" height="14"')}</button>` : ''}</div>${g.sub.length ? `<div class="mob__sub">${g.sub.map(s => `<a href="${s[0]}">${esc(s[1])}</a>`).join('')}</div>` : ''}</div>`).join('');
   $('#headCta').textContent = t.nav.cta;
   $('#mobIn').insertAdjacentHTML('afterbegin', `<div class="mob__lg" role="group" aria-label="${esc((t.a11y && t.a11y.lang) || 'Language')}">${['az', 'ru', 'en'].map(k => `<button type="button" data-lang-btn="${k}" aria-pressed="${String(k === lang)}">${k.toUpperCase()}</button>`).join('')}</div><a class="btn mob__cta" href="#reg" data-reg="consult">${esc(t.nav.cta)}</a>`);   /* на телефоне «Записаться» — в меню */
 
