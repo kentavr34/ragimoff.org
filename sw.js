@@ -1,7 +1,7 @@
 /* RAGIMOFF — приложение (PWA). Восстановлено 13.11.2026 по слову Кенана для новой версии сайта.
    Всё, что человек открыл (страницы, читалка, главы книг, картинки), сохраняется на устройстве; без интернета открывается из памяти.
-   Страницы: сначала сеть (всегда свежая версия), без сети — сохранённая копия. Файлы (стили, сценарии, шрифты, картинки,
-   главы книг, данные): сразу из памяти, в фоне обновляются. Заявки и оплата (api.ragimoff.org, POST, /payment/) — никогда.
+   Страницы, стили и сценарии: сначала сеть (всегда свежая версия), без сети — сохранённая копия. Остальные файлы (шрифты,
+   картинки, главы книг, данные): сразу из памяти, в фоне обновляются. Заявки и оплата (api.ragimoff.org, POST, /payment/) — никогда.
    Копии прежнего сайта (rgm-v1…v4) при первом запуске стираются. */
 var V = 'rgm-v5';
 var PAGES = V + '-pages', FILES = V + '-files';
@@ -39,6 +39,17 @@ self.addEventListener('fetch', function (e) {
           return h2 || new Response(OFFLINE, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
         });
       });
+    }));
+    return;
+  }
+  /* 23.11.2026: стили и сценарии — сначала сеть. Снимки страниц подключают site.css без номера версии,
+     и «сразу из памяти» показывало исправление вёрстки только со второго открытия (оглавление читалки). */
+  if (same && /\.(css|js|mjs)$/.test(url.pathname)) {
+    e.respondWith(fetch(req, { cache: 'no-cache' }).then(function (res) {   /* перепроверка у сервера: при неизменном файле — короткий ответ 304 */
+      if (res && res.ok) { var copy = res.clone(); caches.open(FILES).then(function (c) { c.put(req, copy); trim(FILES, MAX_FILES); }); }
+      return res;
+    }).catch(function () {
+      return caches.match(req).then(function (hit) { return hit || caches.match(req, { ignoreSearch: true }); });
     }));
     return;
   }
