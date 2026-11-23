@@ -1312,7 +1312,10 @@ body[data-kind="read"] .rdr__contents li b, body[data-kind="read"] .rdr__toc li 
 body[data-kind="read"] .rdr__part { font-size: calc(12.5px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr .rdr__tl .rdr__ga b { font-size: calc(18px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr .rdr__tl .rdr__gi b { font-size: calc(16px * var(--rd-k, 1)); }
-body[data-kind="read"] .rdr .rdr__tl .rdr__ga span, body[data-kind="read"] .rdr .rdr__tl .rdr__gi span { font-size: calc(12px * var(--rd-k, 1)); }
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga span, body[data-kind="read"] .rdr .rdr__tl .rdr__gi span { font-size: calc(12px * var(--rd-k, 1)); white-space: nowrap; }
+/* колонка кодов растёт вместе со шрифтом A+ (слово Кенана 23.11.2026: «6A60–6A8Z» наезжал на название раздела на телефоне).
+   Шрифт кодов моноширинный: ширина знака 0,6 кегля, самый длинный код — 9 знаков, берём 9,5. */
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga, body[data-kind="read"] .rdr .rdr__tl .rdr__gi a { grid-template-columns: max(calc(var(--u) * 9), calc(12px * var(--rd-k, 1) * 5.7)) minmax(0, 1fr); }
 body[data-kind="read"] .rdr__q input, body[data-kind="read"] .rdr__lg--toc button { font-size: calc(15px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr__ct { font-size: calc(clamp(20px, 2vw, 28px) * var(--rd-k, 1)); } body[data-kind="read"] .rdr__ca { font-size: calc(12px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr__meta dt { font-size: calc(14.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__meta dd { font-size: calc(15.5px * var(--rd-k, 1)); }
