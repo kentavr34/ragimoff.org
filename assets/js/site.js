@@ -1,12 +1,12 @@
 /* test/11 — главная: отрисовка из content.js, герой на кадрах, лента программ, книги в объёме, мифы, меню. */
-import { initTop } from './totop.js?v=11230521';
-import { T, LINKS3 as LINKS } from './content.js?v=11230521';
-import { regRender, regOpen } from './reg.js?v=11230521';
-import { initLight } from './light.js?v=11230521';
-import { initStats } from './stats.js?v=11230521';
-import { initApp } from './app.js?v=11230521';
-import { initAlign } from './align.js?v=11230521';
-import { initSeo, switchLang } from './seo.js?v=11230521';
+import { initTop } from './totop.js?v=11231538';
+import { T, LINKS3 as LINKS } from './content.js?v=11231538';
+import { regRender, regOpen } from './reg.js?v=11231538';
+import { initLight } from './light.js?v=11231538';
+import { initStats } from './stats.js?v=11231538';
+import { initApp } from './app.js?v=11231538';
+import { initAlign } from './align.js?v=11231538';
+import { initSeo, switchLang } from './seo.js?v=11231538';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));

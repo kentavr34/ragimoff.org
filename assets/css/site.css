@@ -1312,10 +1312,12 @@ body[data-kind="read"] .rdr__contents li b, body[data-kind="read"] .rdr__toc li 
 body[data-kind="read"] .rdr__part { font-size: calc(12.5px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr .rdr__tl .rdr__ga b { font-size: calc(18px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr .rdr__tl .rdr__gi b { font-size: calc(16px * var(--rd-k, 1)); }
-body[data-kind="read"] .rdr .rdr__tl .rdr__ga span, body[data-kind="read"] .rdr .rdr__tl .rdr__gi span { font-size: calc(12px * var(--rd-k, 1)); white-space: nowrap; }
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga span, body[data-kind="read"] .rdr .rdr__tl .rdr__gi span { font-size: calc(12px * var(--rd-k, 1)); white-space: normal; overflow-wrap: normal; }
 /* колонка кодов растёт вместе со шрифтом A+ (слово Кенана 23.11.2026: «6A60–6A8Z» наезжал на название раздела на телефоне).
-   Шрифт кодов моноширинный: ширина знака 0,6 кегля, самый длинный код — 9 знаков, берём 9,5. */
-body[data-kind="read"] .rdr .rdr__tl .rdr__ga, body[data-kind="read"] .rdr .rdr__tl .rdr__gi a { grid-template-columns: max(calc(var(--u) * 9), calc(12px * var(--rd-k, 1) * 5.7)) minmax(0, 1fr); }
+   Повтор 23.11.2026: коды набраны Inter (не моноширинным) — самый широкий неразрывный код «HA00–HA2Z» = 6,04 кегля;
+   берём 6,6 кегля с запасом на системный шрифт телефона. Длинные записи («HA00–HA2Z · HA40») переносятся по пробелу,
+   диапазон внутри не рвётся (между частями — знак-связка U+2060). */
+body[data-kind="read"] .rdr .rdr__tl .rdr__ga, body[data-kind="read"] .rdr .rdr__tl .rdr__gi a { grid-template-columns: max(calc(var(--u) * 9), calc(12px * var(--rd-k, 1) * 6.6)) minmax(0, 1fr); }
 body[data-kind="read"] .rdr__q input, body[data-kind="read"] .rdr__lg--toc button { font-size: calc(15px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr__ct { font-size: calc(clamp(20px, 2vw, 28px) * var(--rd-k, 1)); } body[data-kind="read"] .rdr__ca { font-size: calc(12px * var(--rd-k, 1)); }
 body[data-kind="read"] .rdr__meta dt { font-size: calc(14.5px * var(--rd-k, 1)); } body[data-kind="read"] .rdr__meta dd { font-size: calc(15.5px * var(--rd-k, 1)); }
