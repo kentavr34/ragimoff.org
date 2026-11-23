@@ -3,7 +3,7 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11231538';
+import { initChrome, esc } from './chrome.js?v=11231633';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11121146', q = new URLSearchParams((location.search || window.__Q || '')), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
@@ -24,7 +24,7 @@ let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = 
 let fs = Math.min(1.5, Math.max(.9, parseFloat(store.get('r11_rd_fs') || '1.1')));
 const u = () => U[B ? lang : site] || U[site] || U.ru, toc = () => (B && B.toc[lang]) || [], N = () => toc().length;
 const idxById = id => { const k = toc().findIndex(x => x.id === id); return k < 0 ? 0 : k + 1; };
-const cd = c => esc(c).replace(/–/g, '⁠–⁠');
+const cd = c => esc(c).replace(/–/g, '⁠–<wbr>');   /* тире держится за первой частью; при крупном шрифте вторая часть кода уходит на новую строку (слово Кенана 23.11.2026) */
 const pad = n => String(n).padStart(2, '0');
 const hrefDyn = i => 'read.html?b=' + bid + (toc()[i - 1] && toc()[i - 1].id ? '&p=' + encodeURIComponent(toc()[i - 1].id) : '&c=' + i);
 /* на постоянной странице (/<язык>/read/<книга>/<глава>.html) адрес главы — тоже постоянный, чтобы ссылкой можно было поделиться с превью */
