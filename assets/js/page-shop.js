@@ -1,13 +1,13 @@
 /* test/11 — прототип книжного магазина (shop.html) и страницы книги (book.html?b=<id>).
    Каталог — data/shop/index.<lang>.json (собирает _tools/build_shop.py из действующего магазина /books/, который не меняется).
    Чтение и заказ ведут в действующий магазин: корзина и оплата остаются там. Рама — chrome.js, стили — site.css (раздел SHP). */
-import { initChrome, esc, ARR } from './chrome.js?v=11231633';
+import { initChrome, esc, ARR } from './chrome.js?v=11262347';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11131215', kind = document.body.dataset.kind, cache = {};
 const bid = new URLSearchParams((location.search || window.__Q || '')).get('b') || '';
-import { ORD } from './shop-order.js?v=11231633';
-import { fixImg } from './blocks.js?v=11231633';
+import { ORD } from './shop-order.js?v=11262347';
+import { fixImg } from './blocks.js?v=11262347';
 let turn = 0, filter = (location.hash || '').replace('#', '') || 'all';          /* shop.html#freud — каталог сразу на нужном авторе */
 
 async function load(lang) {
@@ -37,7 +37,12 @@ function cartNote(lang) { const n = cartRead().reduce((s2, i) => s2 + (i.qty || 
 /* две кнопки книги: читать и в корзину — одни и те же в карточке каталога и на странице книги */
 const acts = (it, lang) => { const T = ct(lang), o = ORD.items[it.ord || it.id];
   return `<div class="shp__acts">${it.read ? `<a class="btn btn--sm" href="${esc(it.read_new || it.href)}">${esc(T.read)}</a>` : (it.closed ? `<span class="btn btn--sm btn--off" aria-disabled="true">${esc(T.read)}</span>` : '')}${o ? `<button type="button" class="btn btn--line btn--sm" data-cart="${esc(it.ord || it.id)}">${esc(T.add)}</button>` : ''}</div>`; };
-const btns = (it, d, lang) => `<div class="shp__btns">${it.read || it.closed ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}<p class="shp__cart"></p></div>`;
+/* 26.11.2026 (слово Кенана «Добавь»): бесплатный фрагмент Kindle на Amazon — только на странице книги.
+   ASIN — из KDP (D:\Projects\PR\books\ОЖИДАЮТ_ВЫХОДА.md). Phoenix Era — добавить после выхода Kindle (29.11). */
+const AMZ = { 'klinik-psixiatriya': 'B0HSQ4FZ9Y', 'shizofreniya': 'B0HSQ4F6C2', 'virus-viny': 'B0HSNX72B6' };
+const AMZ_T = { az: 'Amazon Kindle-da pulsuz fraqment', ru: 'Бесплатный фрагмент в Amazon Kindle', en: 'Free Kindle sample on Amazon', tr: 'Amazon Kindle’da ücretsiz örnek' };
+const amz = (it, lang) => AMZ[it.id] ? `<p class="shp__amz"><a href="https://read.amazon.com/sample/${AMZ[it.id]}?clientId=share" target="_blank" rel="noopener">${esc(AMZ_T[lang] || AMZ_T.en)} ↗</a></p>` : '';
+const btns = (it, d, lang) => `<div class="shp__btns">${it.read || it.closed ? '' : `<span class="shp__soon">${esc(d.u.soon)}</span>`}${acts(it, lang)}${amz(it, lang)}<p class="shp__cart"></p></div>`;
 
 /* ЕДИНАЯ КАРТОЧКА КНИГИ: обложка, название, сведения, цена, две кнопки. Одна на все книги каталога и на блок «Другие книги» —
    изменение здесь меняет вид всех книг сразу. Малые тексты (несколько страниц) выводятся строкой без обложки. */
