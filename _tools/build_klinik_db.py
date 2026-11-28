@@ -686,20 +686,24 @@ def build_trees(lang, oldtree, glist):
             code_of[c["id"]] = {a: b for a, b, _ in c["head"]["others"]}
     T["icd"] = icd
     tit = {c["id"]: c["t"] for g in glist for c in g["cards"]}
-    lbl = {}
+    nam = {}
     for g in glist:
         for c in g["cards"]:
-            for a, b_, _ in c["head"]["others"]:
-                lbl.setdefault(c["id"], []).append((a, b_))
+            for a, b_, cn in c["head"]["others"]:
+                nam.setdefault(c["id"], []).append((a, b_, cn))
     for key, pat in (("dsm", r"DSM"), ("icd10", r"(МКБ|XBT|ICD|İCD)-?10")):
         for grp in T[key]:
             for it in grp["items"]:
                 pid = it["id"]
                 if pid in tit:
-                    it["t"] = tit[pid]
-                    for a, b_ in lbl.get(pid, []):
-                        if re.search(pat, a, re.I) and b_ and b_ != "—":
-                            it["code"] = b_
+                    # 28.11.2026 (слово Кенана): в оглавлении DSM-5-TR — название DSM-5-TR, в МКБ-10 — название МКБ-10;
+                    # название МКБ-11 сюда НЕ подставлять (раньше it["t"] = tit[pid] смешивал классификации)
+                    for a, b_, cn in nam.get(pid, []):
+                        if re.search(pat, a, re.I):
+                            if b_ and b_ != "—":
+                                it["code"] = b_
+                            if cn and cn != "—":
+                                it["t"] = cn
     return T
 
 
@@ -733,10 +737,12 @@ def build_mundericat(lang, old, glist, oldtree):
             pid = m.group(1) if m else ""
             if pid in tit:
                 spans = a.find_all("span")
-                spans[1].string = tit[pid]
-                for lb, cd, _ in lbl.get(pid, []):
-                    if re.search(pat, lb, re.I) and cd and cd != "—":
-                        spans[0].string = cd
+                for lb, cd, cn in lbl.get(pid, []):       # 28.11.2026: своё название классификации, не МКБ-11
+                    if re.search(pat, lb, re.I):
+                        if cd and cd != "—":
+                            spans[0].string = cd
+                        if cn and cn != "—":
+                            spans[1].string = cn
         mt = pn.select_one(".toc-meta")
         if mt:
             mt.string = re.sub(r"\d+", str(ndis), mt.get_text(), count=1)
