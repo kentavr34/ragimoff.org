@@ -77,7 +77,10 @@ for L, T in book["trees"].items():
 ENCH = {g["code"]: g["t"] for g in book["trees"].get("en", {}).get("icd", [])}
 for L, T in book["trees"].items():
     chap = {g["code"]: g["t"] for g in T["icd"]}
+    icdn = {x["id"]: x["t"] for g in T["icd"] for x in g.get("items", [])}   # расстройство: название МКБ-11 из дерева
     for it in book.get("toc", {}).get(L, []):
+        if it.get("id") in icdn and it.get("code") not in chap and it.get("t") != icdn[it["id"]]:
+            ch.append((L, "toc-пункт", it["id"], it["t"], icdn[it["id"]])); it["t"] = icdn[it["id"]]
         cd = it.get("code")
         if cd in chap and it.get("t") != chap[cd]:
             ch.append((L, "toc-глава", cd, it["t"], chap[cd])); it["t"] = chap[cd]
