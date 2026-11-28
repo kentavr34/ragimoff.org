@@ -3,7 +3,7 @@
    собирает _tools/build_library.py. Новая книга или язык не требуют новых страниц.
    Как в прежней читалке: одна глава на экране, листание кнопками, клавишами ←/→ и свайпом, оглавление, размер шрифта,
    сноски во всплывающем окне, место чтения запоминается. Рама (шапка, темы, язык) — chrome.js, стили — site.css (раздел RDR). */
-import { initChrome, esc } from './chrome.js?v=11262347';
+import { initChrome, esc } from './chrome.js?v=11281910';
 
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const V = '11121146', q = new URLSearchParams((location.search || window.__Q || '')), bid = (q.get('b') || '').replace(/[^\w-]/g, '');
@@ -20,7 +20,7 @@ const U = {
 for (const k of Object.keys(U)) Object.assign(U[k], { home: { ru: 'На главную', az: 'Ana səhifə', en: 'Home', tr: 'Ana sayfa' }[k], theme: { ru: 'Тема', az: 'Mövzu', en: 'Theme', tr: 'Tema' }[k], lng: { ru: 'Язык книги', az: 'Kitabın dili', en: 'Book language', tr: 'Kitabın dili' }[k] });
 const SITE = ['az', 'ru', 'en'];
 const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
-let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = window.__LANG || '';   /* снимок главы: язык книги = язык адреса */
+let B = null, site = 'ru', lang = 'az', cur = 0, curId = '', turn = 0, clsSel = store.get('r11_rd_cls_' + bid) || 'icd', forced = window.__LANG || (new URLSearchParams(location.search).get('l') || '').toLowerCase();   /* снимок главы: язык книги = язык адреса; ?l=tr — прямая ссылка на язык книги */
 let fs = Math.min(1.5, Math.max(.9, parseFloat(store.get('r11_rd_fs') || '1.1')));
 const u = () => U[B ? lang : site] || U[site] || U.ru, toc = () => (B && B.toc[lang]) || [], N = () => toc().length;
 const idxById = id => { const k = toc().findIndex(x => x.id === id); return k < 0 ? 0 : k + 1; };
@@ -89,7 +89,14 @@ const themes = t => `<span class="seg rdr__th" role="group" aria-label="${esc(t.
 function pick() {
   const f = (store.get('r11_rd_lang_' + bid) || '').split('|');
   if (f[0] && f[1] === site && B.langs.indexOf(f[0]) >= 0) return f[0];
+  if (B.langs.indexOf('tr') >= 0 && turkVisitor()) return 'tr';   /* слово Кенана 28.11: из Турции книга открывается по-турецки */
   return B.langs.indexOf(site) >= 0 ? site : B.langs[0];
+}
+/* посетитель из Турции: турецкий язык браузера или часовой пояс Стамбула (без внешних запросов) */
+function turkVisitor() {
+  let tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  const ls = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).map(x => (x || '').slice(0, 2).toLowerCase());
+  return tz === 'Europe/Istanbul' || tz === 'Asia/Istanbul' || ls[0] === 'tr';
 }
 function frame() {
   const t = u(), saved = +(store.get(posKey()) || 0);

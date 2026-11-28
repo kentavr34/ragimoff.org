@@ -46,6 +46,15 @@ def sent(s, L, old):
     return re.sub(r"\(([^()]+)\)", par, low)
 
 
+def mcode(s):
+    """код DSM для колонки меню: без пояснений шапки («(… октябрь 2022)», «; G31.84 — только…», «например…»)"""
+    s = re.sub(r"\s*\([^()]*\)", "", (s or "").strip())
+    s = re.split(r";| — ", s)[0]
+    s = re.split(r",\s+(?=[^\sA-Z])", s)[0]                  # «…, məsələn F01.A0» → до запятой
+    s = re.sub(r"^[^A-Z+]*\+\s*", "", s)                     # «etioloji kod + F06.70» → «F06.70»
+    return s.strip(" ,")
+
+
 ch = []
 for L, T in book["trees"].items():
     hd = H.get(L)
@@ -72,6 +81,10 @@ for L, T in book["trees"].items():
                     new = short(h[f])
                     if new != it["t"]:
                         ch.append((L, key, it.get("code", ""), it["t"], new)); it["t"] = new
+                # 28.11.2026: код DSM-5-TR пункта — из шапки (ICD-10-CM FY2026, dx_dsm_code_fix); группа DSM — глава, не меняется
+                cd = mcode((h or {}).get("cdsm", "")) if key == "dsm" else ""
+                if cd and cd != "—" and it.get("code") and cd != it["code"]:
+                    ch.append((L, "dsm-код", it["id"], it["code"], cd)); it["code"] = cd
 # дерево МКБ-10: код пункта — код МКБ-10 из шапки (сверен по таблице перехода ВОЗ, страж dx_header_guard);
 # сменился код — пункт переходит в группу своего кода и встаёт по порядку кодов (28.11.2026)
 
@@ -126,6 +139,7 @@ for L, T in book["trees"].items():
 # панели оглавлений на страницах: пункт = ссылка ?p=<id>, вторая span — название
 NAMES = {L: {k: {it["id"]: it["t"] for g in T[k] for it in g.get("items", [])} for k in ("icd", "dsm", "icd10")} for L, T in book["trees"].items()}
 CHAP = {L: {g["code"]: g["t"] for g in T["icd"]} for L, T in book["trees"].items()}
+CODES = {L: {k: {it["id"]: it.get("code", "") for g in T[k] for it in g.get("items", [])} for k in ("dsm",)} for L, T in book["trees"].items()}
 pages = 0
 for f in glob.glob(os.path.join(D, "books", "klinik-psixiatriya", "*", "*.html")) + glob.glob(os.path.join(D, "*", "read", "klinik-psixiatriya", "*.html")):
     t = io.open(f, encoding="utf-8", newline="").read()
@@ -149,10 +163,12 @@ for f in glob.glob(os.path.join(D, "books", "klinik-psixiatriya", "*", "*.html")
         def it_sub(m):
             global n
             pid, code, name = m.group(2), m.group(4), _h.unescape(m.group(6))
-            want = NAMES[L][key].get(pid)
-            if want and want != name:
+            want = NAMES[L][key].get(pid) or name
+            wcode = CODES[L][key].get(pid) if key == "dsm" else None
+            wcode = _h.escape(wcode, quote=False) if wcode else code
+            if want != name or wcode != code:
                 n += 1
-                return m.group(1) + m.group(3) + m.group(4) + m.group(5) + _h.escape(want, quote=False) + m.group(7)
+                return m.group(1) + m.group(3) + wcode + m.group(5) + _h.escape(want, quote=False) + m.group(7)
             return m.group(0)
         if key == "icd10":
             # состав и порядок групп — из дерева (код мог смениться и пункт — перейти в другую группу); ссылки — прежние

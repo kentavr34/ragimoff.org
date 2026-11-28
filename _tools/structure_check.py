@@ -106,7 +106,7 @@ for b in books:
         continue
     P = json.load(io.open(pj, encoding="utf-8"))
     for x in os.listdir("books/" + b):
-        if x != "book.json" and x not in LANGS:
+        if x != "book.json" and x not in LANGS and x != "pdf":   # pdf/ — печатное издание для скачивания (28.11.2026)
             bad.append("лишнее в папке книги: books/%s/%s" % (b, x))
     counts = {}
     for l in P.get("langs", []):
