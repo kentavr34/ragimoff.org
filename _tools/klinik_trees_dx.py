@@ -72,6 +72,43 @@ for L, T in book["trees"].items():
                     new = short(h[f])
                     if new != it["t"]:
                         ch.append((L, key, it.get("code", ""), it["t"], new)); it["t"] = new
+# дерево МКБ-10: код пункта — код МКБ-10 из шапки (сверен по таблице перехода ВОЗ, страж dx_header_guard);
+# сменился код — пункт переходит в группу своего кода и встаёт по порядку кодов (28.11.2026)
+
+
+def grp_of(code, groups):
+    if not re.match(r"^[A-Z]\d\d", code or ""):
+        return next((g for g in groups if g.get("code") == "—"), None)
+    for g in groups:
+        m = re.match(r"^([A-Z]\d\d)(?:–([A-Z]\d\d))?$", g.get("code", ""))
+        if m and m.group(1) <= code[:3] <= (m.group(2) or m.group(1)):
+            return g
+    return next((g for g in groups if code[:3] in g.get("code", "")), None)   # «G47 · N94»
+
+
+def ckey(code):
+    return (code or "~").replace("–", "-")
+
+
+for L, T in book["trees"].items():
+    hd = H.get(L)
+    if not hd:
+        continue
+    card = {it["id"]: it["code"] for g in T["icd"] for it in g.get("items", [])}
+    for g in list(T["icd10"]):
+        for it in list(g.get("items", [])):
+            h = hd["heads"].get(card.get(it["id"], "")) or {}
+            new = (h.get("c10") or "").strip()
+            if not new or new == it.get("code"):
+                continue
+            dst = grp_of(new, T["icd10"])
+            if not dst:
+                print("!! нет группы МКБ-10 для", L, it["id"], new); continue
+            ch.append((L, "icd10-код", it["id"], it.get("code"), new + ("" if dst is g else " → группа " + dst["code"])))
+            it["code"] = new
+            g["items"].remove(it)                                    # и внутри той же группы — на место по порядку кодов
+            pos = next((i for i, x in enumerate(dst["items"]) if dst["code"] != "—" and ckey(x.get("code")) > ckey(new)), len(dst["items"]))
+            dst["items"].insert(pos, it)
 # book.json → toc: главы (код диапазона) — те же названия, что в дереве МКБ-11 (по toc строится навигация снимков build_static);
 # поле "en" у главы — название блока ВОЗ на английском (из EN-дерева)
 ENCH = {g["code"]: g["t"] for g in book["trees"].get("en", {}).get("icd", [])}
@@ -117,6 +154,24 @@ for f in glob.glob(os.path.join(D, "books", "klinik-psixiatriya", "*", "*.html")
                 n += 1
                 return m.group(1) + m.group(3) + m.group(4) + m.group(5) + _h.escape(want, quote=False) + m.group(7)
             return m.group(0)
+        if key == "icd10":
+            # состав и порядок групп — из дерева (код мог смениться и пункт — перейти в другую группу); ссылки — прежние
+            A = {m.group(2): m.group(1) for m in re.finditer(r'<a href="([^"]*?p=([^"&#]+))"><span class="sc">', seg)}
+            G = {g["code"]: g["items"] for g in book["trees"][L]["icd10"]}
+
+            def grp_sub(m):
+                global n
+                its = G.get(_h.unescape(m.group(2)))
+                if its is None or any(x["id"] not in A for x in its):
+                    return m.group(0)
+                if not its:
+                    body = m.group(4) if "tc-empty" in m.group(4) else m.group(4)
+                else:
+                    body = "".join('<a href="%s"><span class="sc">%s</span><span>%s</span></a>' % (A[x["id"]], _h.escape(x["code"], quote=False), _h.escape(x["t"], quote=False)) for x in its)
+                if body != m.group(4):
+                    n += 1
+                return m.group(1) + body + m.group(5)
+            seg = re.sub(r'(<div class="toc-ch"><div class="tc-head"><span class="tc-range">([^<]*)</span><span>[^<]*</span></div>(<div class="tc-list">))(.*?)(</div></div>)', grp_sub, seg)
         seg = re.sub(r'(<a href="read\.html\?b=klinik-psixiatriya&amp;p=([^"&#]+)">)(<span class="sc">)([^<]*)(</span><span>)([^<]*)(</span></a>)', it_sub, seg)
         if key == "icd":
             def ch_sub(m):
