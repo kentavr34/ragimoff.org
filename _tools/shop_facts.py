@@ -24,10 +24,11 @@ VS = P + "/Freud/Print/vne_serii/%s"
 
 # id: год издания, год написания (порядок Фрейда), PDF по языкам (glob; список = части сборника, страницы складываются)
 SRC = {
-    "klinik-psixiatriya": (2026, 0, {"az": P + "/Psychiatry/Print/Klinik_Psixiatriya_AZ_*.pdf", "ru": P + "/Psychiatry/Print/Klinik_Psixiatriya_RU_*.pdf", "en": P + "/Psychiatry/Print/Klinik_Psixiatriya_EN_*.pdf"}),
+    # 28.11.2026: EN «Психиатрии», «Шизофрении», «Феникса» печатаются не в B5 (Amazon 7×10 / 6×9) — для EN берутся страницы AZ B5
+    "klinik-psixiatriya": (2026, 0, {"az": P + "/Psychiatry/Print/Klinik_Psixiatriya_AZ_*.pdf", "ru": P + "/Psychiatry/Print/Klinik_Psixiatriya_RU_*.pdf"}),
     "virus-viny": (2024, 0, {"az": P + "/Virus/Print/Gunahkarliq_Virusu_AZ_*_B5.pdf", "ru": P + "/Virus/Print/Virus_Viny_RU_*_B5.pdf", "en": P + "/Virus/Print/Guilt_Virus_EN_*_B5.pdf"}),
-    "shizofreniya": (2025, 0, {"az": P + "/Pandemia/Print/Sizofreniya_AZ_*_B5.pdf", "ru": P + "/Pandemia/Print/Shizofreniya_RU_*_B5.pdf", "en": P + "/Pandemia/Print/Schizophrenia_EN_*_B5.pdf"}),
-    "phoenix-era": (2026, 0, {"az": P + "/Phoenix/Print/Feniks_Erasi_AZ_*_B5.pdf", "ru": P + "/Phoenix/Print/Era_Feniksa_RU_*_B5.pdf", "en": P + "/Phoenix/Print/Phoenix_Era_EN_*_B5.pdf"}),
+    "shizofreniya": (2025, 0, {"az": P + "/Pandemia/Print/Sizofreniya_AZ_*_B5.pdf", "ru": P + "/Pandemia/Print/Shizofreniya_RU_*_B5.pdf"}),
+    "phoenix-era": (2026, 0, {"az": P + "/Phoenix/Print/Feniks_Erasi_AZ_*_B5.pdf", "ru": P + "/Phoenix/Print/Era_Feniksa_RU_*_B5.pdf"}),
     "freud-gw01": (2026, 1892, {"az": FK % "01"}), "freud-gw02": (2026, 1900, {"az": FK % "02"}), "freud-gw04": (2026, 1901, {"az": FK % "03"}),
     "freud-gw05": (2026, 1904, {"az": FK % "04"}), "freud-gw06": (2026, 1905, {"az": FK % "05"}), "freud-gw07": (2026, 1906, {"az": FK % "06"}),
     "freud-gw08": (2026, 1909, {"az": FK % "07"}), "freud-gw09": (2026, 1912, {"az": FK % "08"}), "freud-gw10": (2026, 1913, {"az": FK % "09"}),
