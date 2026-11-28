@@ -18,7 +18,11 @@ R = {"en": [("DSM-5-TR: G47.10 Hypersomnolence Disorder", "DSM-5-TR: F51.11 Hype
      "tr": [("DSM-5-TR: G47.10 Hypersomnolence Disorder", "DSM-5-TR: F51.11 Hipersomnolans Bozukluğu"),
             ("8A05.0 Primary Tics or Tic Disorders", "8A05.0 Primer tikler veya tik bozuklukları"),
             ("6E20 Mental and Behavioural Disorders Associated with Pregnancy, Childbirth or the Puerperium",
-             "6E20 Gebelik, doğum veya lohusalık ile ilişkili ruhsal veya davranışsal bozukluklar, psikotik belirtisiz")]}
+             "6E20 Gebelik, doğum veya lohusalık ile ilişkili ruhsal veya davranışsal bozukluklar, psikotik belirtisiz"),
+            # TR_v63: МКБ-11 TR по официальному релизу ВОЗ 2025-01 (SimpleTabulation-ICD-11-MMS-tr.zip)
+            ("Serebrovasküler hastalığa bağlı demans", "Serebrovasküler hastalık nedenli demans"),
+            ("bağımlılık davranışına bağlı bozukluklar", "bağımlılık davranışı nedenli bozukluklar"),
+            ("BAĞIMLILIK DAVRANIŞINA BAĞLI BOZUKLUKLAR", "BAĞIMLILIK DAVRANIŞI NEDENLİ BOZUKLUKLAR")]}
 n = 0
 for L, pairs in R.items():
     for f in sorted(glob.glob(os.path.join(D, "books", "klinik-psixiatriya", L, "*.html"))):

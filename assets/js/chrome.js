@@ -1,11 +1,11 @@
 /* test/11 — общая «рама» внутренних страниц: шапка, меню, тема, язык, соцсети, подвал. Тексты — из content.js, стили — из site.css.
    Страница передаёт onRender(t, L, lang): он вызывается при загрузке и при каждой смене языка. */
-import { initTop } from './totop.js?v=11281910';
-import { T, LINKS3 as LINKS } from './content.js?v=11281910';
-import { PROGRAMS } from './programs.js?v=11281910';
-import { initStats } from './stats.js?v=11281910';
-import { initApp } from './app.js?v=11281910';
-import { initSeo, switchLang } from './seo.js?v=11281910';
+import { initTop } from './totop.js?v=11282007';
+import { T, LINKS3 as LINKS } from './content.js?v=11282007';
+import { PROGRAMS } from './programs.js?v=11282007';
+import { initStats } from './stats.js?v=11282007';
+import { initApp } from './app.js?v=11282007';
+import { initSeo, switchLang } from './seo.js?v=11282007';
 
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
